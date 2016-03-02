@@ -49,8 +49,8 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Application.snk \
-  Properties/AssemblyInfo.cs \
+mcs -target:library -out:%{dllname} -keyfile:Tizen.Application/Tizen.Application.snk \
+  Tizen.Application/Properties/AssemblyInfo.cs \
   Tizen.Application/*.cs \
   Tizen.Application/Interop/*.cs
 
