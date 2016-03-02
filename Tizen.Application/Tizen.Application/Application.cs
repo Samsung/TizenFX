@@ -46,7 +46,7 @@ namespace Tizen.Application
                 AppControl appControl = new AppControl(appControlHandle);
                 foreach (var item in _filterMap)
                 {
-                    if (item.Key.IsMatched(appControl))
+                    if (item.Key.IsMatch(appControl))
                     {
                         // Relaunch?
                         if (appControl.IsLaunchOperation() && CurrentContext != null && !CurrentContext.Empty())

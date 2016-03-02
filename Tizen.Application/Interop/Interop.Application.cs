@@ -13,10 +13,19 @@ internal static partial class Interop
 {
     internal static partial class Application
     {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AppCreateCallback(IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppPauseCallback(IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppResumeCallback(IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppTerminateCallback(IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
         [StructLayoutAttribute(LayoutKind.Sequential)]

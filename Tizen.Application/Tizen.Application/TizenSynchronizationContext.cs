@@ -1,64 +1,75 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace Tizen.Application {
-    public class TizenSynchronizationContext : SynchronizationContext {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        delegate bool GSourceFunc(IntPtr userData);
-
-        [DllImport("libglib-2.0.so.0 ", CallingConvention = CallingConvention.Cdecl)]
-        static extern uint g_idle_add(GSourceFunc d, IntPtr data);
-
-        public static void Initialize() {
-            SynchronizationContext.SetSynchronizationContext(new TizenSynchronizationContext());
+namespace Tizen.Application
+{
+    internal class TizenSynchronizationContext : SynchronizationContext
+    {
+        public static void Initialize()
+        {
+            SetSynchronizationContext(new TizenSynchronizationContext());
         }
-        private GSourceFunc wrapperHandler;
+        private Interop.Glib.GSourceFunc wrapperHandler;
         private Object transactionLock = new Object();
         private int transactionID = 0;
         private Dictionary<int, Action> handlerMap = new Dictionary<int, Action>();
 
-        TizenSynchronizationContext() {
-            wrapperHandler = new GSourceFunc(Handler);
+        TizenSynchronizationContext()
+        {
+            wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
         }
 
-        public override void Post(SendOrPostCallback d, object state) {
-            Post(() => {
+        public override void Post(SendOrPostCallback d, object state)
+        {
+            Post(() =>
+            {
                 d(state);
             });
         }
 
-        public override void Send(SendOrPostCallback d, object state) {
+        public override void Send(SendOrPostCallback d, object state)
+        {
             var mre = new ManualResetEvent(false);
             Exception err = null;
-            Post(() => {
-                try {
+            Post(() =>
+            {
+                try
+                {
                     d(state);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     err = ex;
-                } finally {
+                }
+                finally
+                {
                     mre.Set();
                 }
             });
             mre.WaitOne();
-            if (err != null) {
+            if (err != null)
+            {
                 throw err;
             }
         }
 
-        public void Post(Action action) {
+        public void Post(Action action)
+        {
             int id = 0;
-            lock (transactionLock) {
+            lock (transactionLock)
+            {
                 id = transactionID++;
             }
             handlerMap.Add(id, action);
-            g_idle_add(wrapperHandler, (IntPtr)id);
+            Interop.Glib.IdleAdd(wrapperHandler, (IntPtr)id);
         }
 
-        public bool Handler(IntPtr userData) {
+        public bool Handler(IntPtr userData)
+        {
             int key = (int)userData;
-            if (handlerMap.ContainsKey(key)) {
+            if (handlerMap.ContainsKey(key))
+            {
                 handlerMap[key]();
                 handlerMap.Remove(key);
             }

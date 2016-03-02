@@ -9,7 +9,7 @@ namespace Tizen.Application
     {
         private string _operation;
         private string _mime;
-        private string _scheme;
+        private string _uri;
         private Dictionary<string, object> _data;
 
         public static class Operations
@@ -45,21 +45,21 @@ namespace Tizen.Application
 
         public string Operation { get { return _operation; } }
         public string Mime { get { return _mime; } }
-        public string Scheme { get { return _scheme; } }
+        public string Uri { get { return _uri; } }
 
         internal AppControl(IntPtr appControlHandle)
         {
             var handle = new Interop.AppControl.SafeAppControlHandle(appControlHandle);
-            _operation = Interop.AppControl.GetOperation(handle);
-            _mime = Interop.AppControl.GetMime(handle);
-            _scheme = Interop.AppControl.GetScheme(handle);
+            Interop.AppControl.GetOperation(handle, out _operation);
+            Interop.AppControl.GetMime(handle, out _mime);
+            Interop.AppControl.GetUri(handle, out _uri);
         }
 
-        public AppControl(string operation, string mime, string scheme)
+        public AppControl(string operation, string mime, string uri)
         {
             _operation = operation;
             _mime = mime;
-            _scheme = scheme;
+            _uri = uri;
         }
 
         public bool IsLaunchOperation()

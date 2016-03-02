@@ -10,7 +10,8 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Libc = "libc.so.6";
+        public const string Aul = "libaul.so.0";
         public const string Application = "libcapi-appfw-application.so.0";
+        public const string Glib = "libglib-2.0.so.0";
     }
 }

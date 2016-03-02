@@ -7,13 +7,17 @@
 /// you entered into with Samsung.
 
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Sys
+    internal static partial class Glib
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Free(IntPtr ptr);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool GSourceFunc(IntPtr userData);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_idle_add", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
     }
 }
