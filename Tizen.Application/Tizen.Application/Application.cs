@@ -9,7 +9,6 @@ namespace Tizen.Application
 {
     public static class Application
     {
-        private static Dictionary<string, Type> _actorMap = new Dictionary<string, Type>();
         private static Dictionary<AppControlFilter, Type> _filterMap = new Dictionary<AppControlFilter, Type>();
         private static List<ApplicationContext> _contextList = new List<ApplicationContext>();
         private static Window _window = null;
@@ -17,14 +16,13 @@ namespace Tizen.Application
         public static event EventHandler ApplicationInit;
         public static event EventHandler ApplicationExit;
 
-        public static ApplicationContext CurrentContext { get { return _contextList.LastOrDefault(null); } }
+        private static ApplicationContext CurrentContext { get { return _contextList.LastOrDefault(null); } }
 
         public static int Run(string[] args)
         {
             Interop.Application.UIAppLifecycleCallbacks ops;
             ops.OnCreate = (userData) =>
             {
-                _contextList.Add(new ApplicationContext());
                 ApplicationInit(null, null);
                 if (_window == null)
                     _window = new Window();
@@ -51,24 +49,16 @@ namespace Tizen.Application
                 {
                     if (item.Key.IsMatch(appControl))
                     {
-                        // Relaunch?
-                        if (appControl.IsLaunchOperation() && CurrentContext != null && !CurrentContext.Empty())
-                        {
-                            // TODO: Resume should be called by windows event
-                            CurrentContext.Resume();
-                        }
-                        // Create new context and new actor when launching first or receiving appcontrol except launch.
-                        else
+                        if (CurrentContext == null || !appControl.IsLaunchOperation())
                         {
                             ApplicationContext ctx = new ApplicationContext();
+                            ctx.ReleaseContext += Ctx_ReleaseContext;
                             _contextList.Add(ctx);
                             Actor actor = ctx.StartActor(item.Value, appControl);
-
-                            // TODO: Resume should be called by windows event
                             if (!_window.Visible) {
                                 _window.Active();
                                 _window.Show();
-                                actor.Resume();
+                                ctx.Resume();
                             }
                         }
                         break;
@@ -77,8 +67,7 @@ namespace Tizen.Application
             };
             ops.OnTerminate = (userData) =>
             {
-                // TODO: Remove context and actors
-                ApplicationExit(null, null);
+                Exit();
             };
 
             TizenSynchronizationContext.Initialize();
@@ -88,7 +77,32 @@ namespace Tizen.Application
             return ret;
         }
 
+        public static void Hide()
+        {
+            throw new NotImplementedException();
+        }
 
+        public static void Exit()
+        {
+            ApplicationExit(null, null);
+            throw new NotImplementedException();
+        }
+
+        private static void Ctx_ReleaseContext(object sender, EventArgs e)
+        {
+            var ctx = sender as ApplicationContext;
+            if (ctx != null)
+            {
+                _contextList.Remove(ctx);
+                if (_contextList.Count > 0)
+                {
+                    Hide();
+                } else
+                {
+                    Exit();
+                }
+            }
+        }
 
         public static void AddActor(Type clazz)
         {
@@ -104,8 +118,6 @@ namespace Tizen.Application
         {
             if (!clazz.IsSubclassOf(typeof(Actor)))
                 throw new ArgumentException(clazz.FullName + " is not a subclass of Actor.");
-
-            _actorMap[clazz.FullName] = clazz;
 
             foreach (var prop in clazz.GetProperties())
             {

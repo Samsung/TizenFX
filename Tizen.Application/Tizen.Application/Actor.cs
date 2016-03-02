@@ -6,7 +6,7 @@ namespace Tizen.Application
     {
         private enum State
         {
-            Unknown,
+            None,
             Created,
             Started,
             Resumed,
@@ -14,11 +14,12 @@ namespace Tizen.Application
         }
 
         private ApplicationContext _context;
-        private State _state = State.Unknown;
+        private State _state = State.None;
         private AppControl _appcontrol;
 
         protected Page MainPage { get; set; }
         protected AppControl ReceivedAppControl { get { return _appcontrol; } }
+        protected ApplicationContext Context { get { return _context; } }
 
         protected virtual void OnCreate() { }
         protected virtual void OnStart() { }
@@ -61,6 +62,15 @@ namespace Tizen.Application
             {
                 OnResume();
                 _state = State.Resumed;
+            }
+        }
+
+        internal void Terminate()
+        {
+            if (_state != State.None)
+            {
+                OnTerminate();
+                _state = State.None;
             }
         }
 

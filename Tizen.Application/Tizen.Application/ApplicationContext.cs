@@ -10,6 +10,8 @@ namespace Tizen.Application
     {
         private List<Actor> _actorList;
 
+        internal event EventHandler ReleaseContext;
+
         internal Actor TopActor { get { return _actorList.LastOrDefault(null); } }
 
         internal ApplicationContext()
@@ -39,6 +41,24 @@ namespace Tizen.Application
             return found;
         }
 
+        internal void FinishActor(Actor actor)
+        {
+            Actor found = _actorList.Find(s => s == actor);
+            if (found == null)
+            {
+                throw new ArgumentException("Could not found the actor in current context.");
+            }
+
+            found.Pause();
+            found.Terminate();
+            _actorList.Remove(found);
+
+            if (IsEmpty())
+            {
+                ReleaseContext(this, null);
+            }
+        }
+
         internal void Pause()
         {
             if (TopActor != null)
@@ -55,7 +75,7 @@ namespace Tizen.Application
             }
         }
 
-        internal bool Empty()
+        internal bool IsEmpty()
         {
             return _actorList.Count == 0;
         }

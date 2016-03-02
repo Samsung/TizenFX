@@ -4,13 +4,11 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Application
 {
-    // TODO To be implemented
     public class AppControl
     {
         private string _operation;
         private string _mime;
         private string _uri;
-        private Dictionary<string, object> _data;
 
         public static class Operations
         {

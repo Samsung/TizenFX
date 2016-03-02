@@ -8,7 +8,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 internal static partial class Interop
 {
