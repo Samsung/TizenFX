@@ -50,7 +50,8 @@ cp %{SOURCE1} .
 mcs -target:library -out:%{dllname} -keyfile:Tizen.snk \
   Properties/AssemblyInfo.cs \
   Tizen/Log.cs \
-  Tizen/LogTraceListener.cs
+  Tizen/LogTraceListener.cs \
+  Tizen/NativeMethods.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then
