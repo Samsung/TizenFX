@@ -12,6 +12,7 @@ namespace Tizen.Application
         private static Dictionary<string, Type> _actorMap = new Dictionary<string, Type>();
         private static Dictionary<AppControlFilter, Type> _filterMap = new Dictionary<AppControlFilter, Type>();
         private static List<ApplicationContext> _contextList = new List<ApplicationContext>();
+        private static Window _window = null;
 
         public static event EventHandler ApplicationInit;
         public static event EventHandler ApplicationExit;
@@ -25,6 +26,8 @@ namespace Tizen.Application
             {
                 _contextList.Add(new ApplicationContext());
                 ApplicationInit(null, null);
+                if (_window == null)
+                    _window = new Window();
                 return true;
             };
             ops.OnPause = (userData) =>
@@ -60,8 +63,13 @@ namespace Tizen.Application
                             ApplicationContext ctx = new ApplicationContext();
                             _contextList.Add(ctx);
                             Actor actor = ctx.StartActor(item.Value, appControl);
+
                             // TODO: Resume should be called by windows event
-                            actor.Resume();
+                            if (!_window.Visible) {
+                                _window.Active();
+                                _window.Show();
+                                actor.Resume();
+                            }
                         }
                         break;
                     }
