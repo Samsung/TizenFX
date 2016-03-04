@@ -18,10 +18,10 @@ internal static partial class Interop {
         [DllImport(Libraries.Evas, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void evas_object_unref(IntPtr obj);
 
-        [DllImport(Libraries.Evas, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Elementary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void elm_win_activate(IntPtr obj);
 
-        [DllImport(Libraries.Evas, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Elementary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void elm_win_lower(IntPtr obj);
     }
 }

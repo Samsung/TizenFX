@@ -23,11 +23,13 @@ Requires(postun): mono-core
 # P/Invoke Dependencies
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
+BuildRequires: pkgconfig(evas)
 
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
 Requires: glib-2.0
 Requires: capi-appfw-application
+Requires: evas
 # DLL Dependencies
 #BuildRequires: ...
 
