@@ -60,6 +60,8 @@
     <Compile Include="Tizen.Application\ApplicationContext.cs" />
     <Compile Include="Tizen.Application\CodeExample.cs" />
     <Compile Include="Tizen.Application\Page.cs" />
+    <Compile Include="Tizen.Application\Service.cs" />
+    <Compile Include="Tizen.Application\ServiceManager.cs" />
     <Compile Include="Tizen.Application\Window.cs" />
     <Compile Include="Tizen.Application\TizenSynchronizationContext.cs" />
   </ItemGroup>

@@ -12,6 +12,7 @@ namespace Tizen.Application
         private static Dictionary<AppControlFilter, Type> _filterMap = new Dictionary<AppControlFilter, Type>();
         private static List<ApplicationContext> _contextList = new List<ApplicationContext>();
         private static Window _window = null;
+        private static ServiceManager _serviceManager = new ServiceManager();
 
         public static event EventHandler ApplicationInit;
         public static event EventHandler ApplicationExit;
@@ -24,8 +25,6 @@ namespace Tizen.Application
             ops.OnCreate = (userData) =>
             {
                 ApplicationInit(null, null);
-                if (_window == null)
-                    _window = new Window();
                 return true;
             };
             ops.OnPause = (userData) =>
@@ -45,23 +44,32 @@ namespace Tizen.Application
             ops.OnAppControl = (appControlHandle, userData) =>
             {
                 AppControl appControl = new AppControl(appControlHandle);
-                foreach (var item in _filterMap)
+                if (appControl.isService)
                 {
-                    if (item.Key.IsMatch(appControl))
+                    _serviceManager.OnAppControl(appControl);
+                } else {
+                    foreach (var item in _filterMap)
                     {
-                        if (CurrentContext == null || !appControl.IsLaunchOperation())
+                        if (item.Key.IsMatch(appControl))
                         {
-                            ApplicationContext ctx = new ApplicationContext();
-                            ctx.ReleaseContext += Ctx_ReleaseContext;
-                            _contextList.Add(ctx);
-                            Actor actor = ctx.StartActor(item.Value, appControl);
-                            if (!_window.Visible) {
-                                _window.Active();
-                                _window.Show();
-                                ctx.Resume();
+                            // Window was created when the first UI Actor was created
+                            if (_window == null)
+                                _window = new Window();
+                            if (CurrentContext == null || !appControl.IsLaunchOperation())
+                            {
+                                ApplicationContext ctx = new ApplicationContext();
+                                ctx.ReleaseContext += Ctx_ReleaseContext;
+                                _contextList.Add(ctx);
+                                Actor actor = ctx.StartActor(item.Value, appControl);
+                                if (!_window.Visible)
+                                {
+                                    _window.Active();
+                                    _window.Show();
+                                    ctx.Resume();
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             };
@@ -79,7 +87,8 @@ namespace Tizen.Application
 
         public static void Hide()
         {
-            throw new NotImplementedException();
+            if (_window != null)
+                _window.InActive();
         }
 
         public static void Exit()
@@ -99,6 +108,7 @@ namespace Tizen.Application
                     Hide();
                 } else
                 {
+                    // TODO. If running service was existed, application should not terminated, but Send the message to AUL(UI App terminate)
                     Exit();
                 }
             }
@@ -139,6 +149,29 @@ namespace Tizen.Application
             }
         }
 
+        public static void AddServiceHandler(Type clazz)
+        {
+            AddServiceHandler(clazz, new AppControlFilter[0] { });
+        }
+
+        public static void AddServiceHandler(Type clazz, AppControlFilter filter)
+        {
+            AddServiceHandler(clazz, new AppControlFilter[] { filter });
+        }
+
+        public static void AddServiceHandler(Type clazz, AppControlFilter[] filters)
+        {
+            _serviceManager.AddServiceHandler(clazz, filters);
+        }
+
+        internal static void StartService(Type clazz, AppControl appControl)
+        {
+            _serviceManager.StartService(clazz, appControl);
+        }
+        internal static void StopService(Type clazz)
+        {
+            _serviceManager.StopService(clazz);
+        }
     }
 
 

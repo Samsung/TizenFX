@@ -53,6 +53,11 @@ namespace Tizen.Application
             Interop.AppControl.GetUri(handle, out _uri);
         }
 
+        internal bool isService
+        {
+            get {return false;}
+        }
+
         public AppControl(string operation, string mime, string uri)
         {
             _operation = operation;

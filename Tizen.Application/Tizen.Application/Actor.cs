@@ -85,6 +85,15 @@ namespace Tizen.Application
             _context.StartActor(actor, appControl);
         }
 
+        protected void StartService(Type serviceType, AppControl appControl)
+        {
+            Application.StartService(serviceType, appControl);
+        }
+        protected void StopService(Type serviceType)
+        {
+            Application.StopService(serviceType);
+        }
+
         public void Finish()
         {
             throw new NotImplementedException();
