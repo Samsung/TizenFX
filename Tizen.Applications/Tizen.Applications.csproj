@@ -57,10 +57,10 @@
     <Compile Include="Interop\Interop.Application.cs" />
     <Compile Include="Interop\Interop.Bundle.cs" />
     <Compile Include="Interop\Interop.Glib.cs" />
+    <Compile Include="Interop\Interop.Libc.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Applications\AppControlEventArgs.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
@@ -68,6 +68,10 @@
     <Compile Include="Tizen.Applications\ServiceApplication.cs" />
     <Compile Include="Tizen.Applications\UIApplication.cs" />
     <Compile Include="Tizen.Applications\AppControl.cs" />
+    <Compile Include="Tizen.Applications\AppControlLaunchMode.cs" />
+    <Compile Include="Tizen.Applications\AppControlLaunchResult.cs" />
+    <Compile Include="Tizen.Applications\AppControlOperations.cs" />
+    <Compile Include="Tizen.Applications\AppControlReplyReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />

@@ -8,21 +8,13 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+internal static partial class Interop
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    internal static partial class Libc
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; internal set; }
+        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int Free(IntPtr ptr);
     }
 }

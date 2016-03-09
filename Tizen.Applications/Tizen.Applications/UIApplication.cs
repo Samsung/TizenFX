@@ -64,10 +64,16 @@ namespace Tizen.Applications
             Interop.Application.Exit();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnResume()
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnPause()
         {
         }

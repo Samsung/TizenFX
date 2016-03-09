@@ -12,7 +12,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// The Application handles an application state change or system events and provides mechanisms that launch other applications.
     /// </summary>
     public abstract class Application
     {
@@ -22,12 +22,12 @@ namespace Tizen.Applications
         private Interop.AppEvent.SafeAppEventHandle _localeChangedNativeHandle;
 
         /// <summary>
-        /// 
+        /// The low memory event.
         /// </summary>
         public event EventHandler<LowMemoryEventArgs> LowMemory;
 
         /// <summary>
-        /// 
+        /// The system language changed event.
         /// </summary>
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
 
@@ -42,7 +42,7 @@ namespace Tizen.Applications
         public ApplicationInfo ApplicationInfo { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Runs the application's main loop.
         /// </summary>
         /// <param name="args"></param>
         public virtual void Run(string[] args)
@@ -54,27 +54,36 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        /// Exits the main loop of application. 
         /// </summary>
         public abstract void Exit();
 
-        internal void SendCreate()
-        {
-            ApplicationInfo = new ApplicationInfo();
-            OnCreate();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnCreate()
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnTerminate()
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
         protected virtual void OnStart(AppControl control)
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             EventHandler<LowMemoryEventArgs> eh = LowMemory;
@@ -84,6 +93,10 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             EventHandler<LocaleChangedEventArgs> eh = LocaleChanged;
@@ -91,6 +104,12 @@ namespace Tizen.Applications
             {
                 eh(this, e);
             }
+        }
+
+        internal void SendCreate()
+        {
+            ApplicationInfo = new ApplicationInfo();
+            OnCreate();
         }
 
         private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)

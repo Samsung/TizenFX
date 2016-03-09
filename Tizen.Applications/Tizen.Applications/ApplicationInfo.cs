@@ -138,6 +138,9 @@ namespace Tizen.Applications
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class SharedPaths
         {
             internal SharedPaths() { }
@@ -175,6 +178,9 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class ExternalPaths
         {
             internal ExternalPaths() { }

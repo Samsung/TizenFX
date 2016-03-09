@@ -8,6 +8,9 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -16,197 +19,400 @@ namespace Tizen.Applications
     /// </summary>
     public class AppControl
     {
-        private readonly string _operation;
-        private readonly string _mime;
-        private readonly string _uri;
+        private const string LogTag = "Tizen.Applications";
+
+        private readonly Interop.AppControl.SafeAppControlHandle _handle;
+
+        private string _operation = null;
+        private string _mime = null;
+        private string _uri = null;
+        private string _category = null;
+        private string _applicationId = null;
+
+        private ExtraDataCollection _extraData = null;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="mime"></param>
-        /// <param name="uri"></param>
-        public AppControl(string operation, string mime, string uri)
+        public event EventHandler<AppControlReplyReceivedEventArgs> AppControlReplyReceived;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public AppControl()
         {
-            _operation = operation;
-            _mime = mime;
-            _uri = uri;
+            ErrorCode err = Interop.AppControl.Create(out _handle);
+            if (err != ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
+            }
         }
 
-        internal AppControl(IntPtr appControlHandle)
+        internal AppControl(IntPtr handle)
         {
-            var handle = new Interop.AppControl.SafeAppControlHandle(appControlHandle);
-            Interop.AppControl.GetOperation(handle, out _operation);
-            Interop.AppControl.GetMime(handle, out _mime);
-            Interop.AppControl.GetUri(handle, out _uri);
+            ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
+            if (err != ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
+            }
+        }
+
+        #region Public Properties
+
+        /// <summary>
+        /// The operation to be performed.
+        /// </summary>
+        public string Operation
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_operation))
+                {
+                    ErrorCode err = Interop.AppControl.GetOperation(_handle, out _operation);
+                    if (err != ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the operation from the appcontrol. Err = " + err);
+                    }
+                }
+                return _operation;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetOperation(_handle, value);
+                if (err == ErrorCode.None)
+                {
+                    _operation = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the operation to the appcontrol. Err = " + err);
+                }
+            }
         }
 
         /// <summary>
-        /// Gets the operation to be performed. 
+        /// The explicit MIME type of the data.
         /// </summary>
-        public string Operation { get { return _operation; } }
-
-        /// <summary>
-        /// Gets the explicit MIME type of the data. 
-        /// </summary>
-        public string Mime { get { return _mime; } }
-
-        /// <summary>
-        /// Gets the URI of the data. 
-        /// </summary>
-        public string Uri { get { return _uri; } }
-
-        internal bool IsLaunchOperation()
+        public string Mime
         {
-            if (_operation == null) return false;
-            return (_operation == Operations.Main) || (_operation == Operations.Default);
+            get
+            {
+                if (String.IsNullOrEmpty(_mime))
+                {
+                    ErrorCode err = Interop.AppControl.GetMime(_handle, out _mime);
+                    if (err != ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the mime from the appcontrol. Err = " + err);
+                    }
+                }
+                return _mime;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetMime(_handle, value);
+                if (err == ErrorCode.None)
+                {
+                    _mime = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the mime to the appcontrol. Err = " + err);
+                }
+            }
         }
 
-        internal bool IsService
+        /// <summary>
+        /// The URI of the data.
+        /// </summary>
+        public string Uri
         {
-            get { return false; }
+            get
+            {
+                if (String.IsNullOrEmpty(_uri))
+                {
+                    ErrorCode err = Interop.AppControl.GetUri(_handle, out _uri);
+                    if (err != ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the uri from the appcontrol. Err = " + err);
+                    }
+                }
+                return _uri;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetUri(_handle, value);
+                if (err == ErrorCode.None)
+                {
+                    _uri = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the uri to the appcontrol. Err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Category
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_category))
+                {
+                    ErrorCode err = Interop.AppControl.GetCategory(_handle, out _category);
+                    if (err != ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the category from the appcontrol. Err = " + err);
+                    }
+                }
+                return _category;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetCategory(_handle, value);
+                if (err == ErrorCode.None)
+                {
+                    _category = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the category to the appcontrol. Err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ApplicationId
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_applicationId))
+                {
+                    ErrorCode err = Interop.AppControl.GetAppId(_handle, out _applicationId);
+                    if (err != ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the appId from the appcontrol. Err = " + err);
+                    }
+                }
+                return _applicationId;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetAppId(_handle, value);
+                if (err == ErrorCode.None)
+                {
+                    _applicationId = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the appId to the appcontrol. Err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AppControlLaunchMode LaunchMode
+        {
+            get
+            {
+                int value = 0;
+                ErrorCode err = Interop.AppControl.GetLaunchMode(_handle, out value);
+                if (err != ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the launchMode from the appcontrol. Err = " + err);
+                }
+                return (AppControlLaunchMode)value;
+            }
+            set
+            {
+                ErrorCode err = Interop.AppControl.SetLaunchMode(_handle, (int)value);
+                if (err != ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to set the launchMode to the appcontrol. Err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CallerApplicationId
+        {
+            get
+            {
+                string value = String.Empty;
+                ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
+                if (err != ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the caller appId from the appcontrol. Err = " + err);
+                }
+                return value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsReplyRequested
+        {
+            get
+            {
+                bool value = false;
+                ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
+                if (err != ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to check the replyRequested of the appcontrol. Err = " + err);
+                }
+                return value;
+            }
+        }
+
+        public ExtraDataCollection ExtraData
+        {
+            get
+            {
+                if (_extraData == null)
+                {
+                    _extraData = new ExtraDataCollection(_handle);
+                }
+                return _extraData;
+            }
+        }
+
+        #endregion // Public Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> GetMatchedApplicationIds()
+        {
+            List<string> ids = new List<string>();
+            Interop.AppControl.AppMatchedCallback callback = new Interop.AppControl.AppMatchedCallback(
+                (handle, applicationId, userData) =>
+                {
+                    List<string> idsList = Marshal.GetObjectForIUnknown(userData) as List<string>;
+                    if (idsList != null)
+                    {
+                        idsList.Add(applicationId);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+
+            IntPtr pointerToApplicationIds = Marshal.GetIUnknownForObject(ids);
+            if (pointerToApplicationIds != null)
+            {
+                ErrorCode err = Interop.AppControl.ForeachAppMatched(_handle, callback, pointerToApplicationIds);
+                if (err != ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to get matched appids. err = " + err);
+                }
+                return ids;
+            }
+
+            return ids;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        public static void SendLaunchRequest(AppControl request)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        public static void SendLaunchRequestForReply(AppControl request)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reply"></param>
+        public void Reply(AppControl reply)
+        {
+            throw new NotImplementedException();
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        public static class Operations
+        public class ExtraDataCollection
         {
-            /// <summary>
-            /// An explicit launch for a homescreen application. 
-            /// </summary>
-            public const string Main = "http://tizen.org/appcontrol/operation/main";
+            private readonly Interop.AppControl.SafeAppControlHandle _handle;
+
+            internal ExtraDataCollection(Interop.AppControl.SafeAppControlHandle handle)
+            {
+                _handle = handle;
+            }
 
             /// <summary>
-            /// An explicit launch for an application that excludes a homescreen application. 
+            /// 
             /// </summary>
-            public const string Default = "http://tizen.org/appcontrol/operation/default";
+            /// <param name="key"></param>
+            /// <param name="value"></param>
+            public void Add(string key, string value)
+            {
+                throw new NotImplementedException();
+            }
 
             /// <summary>
-            /// Provides an editable access to the given data. 
+            /// 
             /// </summary>
-            public const string Edit = "http://tizen.org/appcontrol/operation/edit";
+            /// <param name="key"></param>
+            /// <param name="value"></param>
+            public void Add(string key, IEnumerable<string> value)
+            {
+                throw new NotImplementedException();
+            }
 
             /// <summary>
-            /// Displays the data. 
+            /// 
             /// </summary>
-            public const string View = "http://tizen.org/appcontrol/operation/view";
+            /// <typeparam name="T"></typeparam>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public T Get<T>(string key)
+            {
+                throw new NotImplementedException();
+            }
 
             /// <summary>
-            /// Picks items. 
+            /// 
             /// </summary>
-            public const string Pick = "http://tizen.org/appcontrol/operation/pick";
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public object Get(string key)
+            {
+                throw new NotImplementedException();
+            }
 
             /// <summary>
-            /// Creates contents. 
+            /// 
             /// </summary>
-            public const string CreateContent = "http://tizen.org/appcontrol/operation/create_content";
-
-            /// <summary>
-            /// Performs a call to someone. 
-            /// </summary>
-            public const string Call = "http://tizen.org/appcontrol/operation/call";
-
-            /// <summary>
-            /// Delivers some data to someone else. 
-            /// </summary>
-            public const string Send = "http://tizen.org/appcontrol/operation/send";
-
-            /// <summary>
-            /// Delivers text data to someone else. 
-            /// </summary>
-            public const string SendText = "http://tizen.org/appcontrol/operation/send_text";
-
-            /// <summary>
-            /// Shares an item with someone else. 
-            /// </summary>
-            public const string Share = "http://tizen.org/appcontrol/operation/share";
-
-            /// <summary>
-            /// Shares multiple items with someone else. 
-            /// </summary>
-            public const string MultiShare = "http://tizen.org/appcontrol/operation/multi_share";
-
-            /// <summary>
-            /// Shares text data with someone else. 
-            /// </summary>
-            public const string ShareText = "http://tizen.org/appcontrol/operation/share_text";
-
-            /// <summary>
-            /// Dials a number. This shows a UI with the number to be dialed, allowing the user to explicitly initiate the call. 
-            /// </summary>
-            public const string Dial = "http://tizen.org/appcontrol/operation/dial";
-
-            /// <summary>
-            /// Performs a search. 
-            /// </summary>
-            public const string Search = "http://tizen.org/appcontrol/operation/search";
-
-            /// <summary>
-            /// Downloads items. 
-            /// </summary>
-            public const string Download = "http://tizen.org/appcontrol/operation/download";
-
-            /// <summary>
-            /// Prints contents. 
-            /// </summary>
-            public const string Print = "http://tizen.org/appcontrol/operation/print";
-
-            /// <summary>
-            /// Composes a message. 
-            /// </summary>
-            public const string Compose = "http://tizen.org/appcontrol/operation/compose";
-
-            /// <summary>
-            /// Can be launched by interested System-Event. 
-            /// </summary>
-            public const string LaunchOnEvent = "http://tizen.org/appcontrol/operation/launch_on_event";
-
-            /// <summary>
-            /// Adds an item. 
-            /// </summary>
-            public const string Add = "http://tizen.org/appcontrol/operation/add";
-
-            /// <summary>
-            /// Captures images by camera applications. 
-            /// </summary>
-            public const string ImageCapture = "http://tizen.org/appcontrol/operation/image_capture";
-
-            /// <summary>
-            /// Captures videos by camera applications. 
-            /// </summary>
-            public const string VideoCapture = "http://tizen.org/appcontrol/operation/video_capture";
-
-            /// <summary>
-            /// Shows system settings. 
-            /// </summary>
-            public const string Setting = "http://tizen.org/appcontrol/operation/setting";
-
-            /// <summary>
-            /// Shows settings to enable Bluetooth. 
-            /// </summary>
-            public const string SettingBluetoothEnable = "http://tizen.org/appcontrol/operation/setting/bt_enable";
-
-            /// <summary>
-            /// Shows settings to configure Bluetooth visibility. 
-            /// </summary>
-            public const string SettingBluetoothVisibility = "http://tizen.org/appcontrol/operation/setting/bt_visibility";
-
-            /// <summary>
-            /// Shows settings to allow configuration of current location sources. 
-            /// </summary>
-            public const string SettingLocation = "http://tizen.org/appcontrol/operation/setting/location";
-
-            /// <summary>
-            /// Shows NFC settings. 
-            /// </summary>
-            public const string SettingNfc = "http://tizen.org/appcontrol/operation/setting/nfc";
-
-            /// <summary>
-            /// Shows settings to allow configuration of Wi-Fi. 
-            /// </summary>
-            public const string SettingWifi = "http://tizen.org/appcontrol/operation/setting/wifi";
+            /// <param name="key"></param>
+            public void Remove(string key)
+            {
+                throw new NotImplementedException();
+            }
         }
+
     }
 }

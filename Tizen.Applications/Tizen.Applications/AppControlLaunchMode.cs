@@ -9,11 +9,16 @@ namespace Tizen.Applications
     /// <summary>
     /// 
     /// </summary>
-    public class LocaleChangedEventArgs
+    public enum AppControlLaunchMode
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Locale { get; internal set; }
+        Single = 0,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Group,
     }
 }

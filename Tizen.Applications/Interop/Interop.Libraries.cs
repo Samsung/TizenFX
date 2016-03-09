@@ -17,5 +17,6 @@ internal static partial class Interop
         public const string AppcoreAgent = "libappcore-agent.so.1";
         public const string Bundle = "libbundle.so.0";
         public const string Glib = "libglib-2.0.so.0";
+        public const string Libc = "libc.so.6";
     }
 }
