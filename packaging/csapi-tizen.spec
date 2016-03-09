@@ -47,11 +47,10 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.snk \
-  Properties/AssemblyInfo.cs \
-  Tizen/Log.cs \
-  Tizen/LogTraceListener.cs \
-  Tizen/NativeMethods.cs
+mcs -target:library -out:%{dllname} -keyfile:Tizen/Tizen.snk \
+  Tizen/Properties/AssemblyInfo.cs \
+  Tizen/Tizen/*.cs \
+  Tizen/Interop/*.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then
