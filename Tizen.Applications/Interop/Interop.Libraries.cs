@@ -12,6 +12,7 @@ internal static partial class Interop
     {
         public const string Aul = "libaul.so.0";
         public const string Application = "libcapi-appfw-application.so.0";
+        public const string Bundle = "libbundle.so.0";
         public const string Glib = "libglib-2.0.so.0";
         public const string Elementary = "libelementary.so.1";
         public const string Evas = "libevas.so.1";

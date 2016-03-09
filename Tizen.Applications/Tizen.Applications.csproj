@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +51,7 @@
     <Compile Include="Interop\Interop.AppControl.cs" />
     <Compile Include="Interop\Interop.Application.cs" />
     <Compile Include="Interop\Interop.Aul.cs" />
+    <Compile Include="Interop\Interop.Bundle.cs" />
     <Compile Include="Interop\Interop.Glib.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.Window.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Tizen.Applications\AppControl.cs" />
     <Compile Include="Tizen.Applications\AppControlFilter.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
+    <Compile Include="Tizen.Applications\Bundle.cs" />
     <Compile Include="Tizen.Applications\Context.cs" />
     <Compile Include="Tizen.Applications\ActorGroup.cs" />
     <Compile Include="Tizen.Applications\Service.cs" />

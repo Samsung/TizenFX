@@ -57,7 +57,7 @@ mcs -target:library -out:%{dllname} -keyfile:Tizen.Applications/Tizen.Applicatio
   Tizen.Applications/Properties/AssemblyInfo.cs \
   Tizen.Applications/Tizen.Applications/*.cs \
   Tizen.Applications/Tizen.UI/*.cs \
-  Tizen.Applications/Interop/*.cs
+  Tizen.Applications/Interop/*.cs -unsafe
 
 # check p/invoke
 if [ -x %{dllname} ]; then
