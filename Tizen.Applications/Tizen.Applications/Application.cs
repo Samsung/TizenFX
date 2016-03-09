@@ -1,21 +1,33 @@
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
+
+using Tizen.UI;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Provides static methods and properties to manage an application, such as methods to register Actors and Services, 
+    /// to start an application.
+    /// </summary>
     public static class Application
     {
-        private static Dictionary<AppControlFilter, Type> s_filterMap = new Dictionary<AppControlFilter, Type>();
-        private static ContextGroup s_serviceGroup = new ContextGroup();
-        private static List<ContextGroup> s_actorGroupList = new List<ContextGroup>();
+        private static readonly Dictionary<AppControlFilter, Type> s_filterMap = new Dictionary<AppControlFilter, Type>();
+        private static readonly List<Service> s_serviceList = new List<Service>();
+        private static readonly List<ActorGroup> s_actorGroupList = new List<ActorGroup>();
 
-        private static Window s_window = null;
+        private static readonly Window s_window = null;
 
-        private static ContextGroup CurrentActorGroup
+        private static ActorGroup CurrentActorGroup
         {
             get
             {
@@ -23,10 +35,21 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Occurs when the application starts.
+        /// </summary>
         public static event EventHandler Created = delegate { };
+
+        /// <summary>
+        /// Occurs when the application's main loop exits.
+        /// </summary>
         public static event EventHandler Exited = delegate { };
 
-        public static int Run(string[] args)
+        /// <summary>
+        /// Runs the application's main loop.
+        /// </summary>
+        /// <param name="args">The command-line arguments</param>
+        public static void Run(string[] args)
         {
             Interop.Application.UIAppLifecycleCallbacks ops;
             ops.OnCreate = (userData) =>
@@ -36,9 +59,9 @@ namespace Tizen.Applications
             };
             ops.OnPause = (userData) =>
             {
-                if (CurrentActorGroup != null && CurrentActorGroup.TopContext != null)
+                if (CurrentActorGroup != null && CurrentActorGroup.TopActor != null)
                 {
-                    Actor actor = CurrentActorGroup.TopContext as Actor;
+                    Actor actor = CurrentActorGroup.TopActor as Actor;
                     if (actor != null)
                     {
                         actor.Pause();
@@ -47,9 +70,9 @@ namespace Tizen.Applications
             };
             ops.OnResume = (userData) =>
             {
-                if (CurrentActorGroup != null && CurrentActorGroup.TopContext != null)
+                if (CurrentActorGroup != null && CurrentActorGroup.TopActor != null)
                 {
-                    Actor actor = CurrentActorGroup.TopContext as Actor;
+                    Actor actor = CurrentActorGroup.TopActor as Actor;
                     if (actor != null)
                     {
                         actor.Resume();
@@ -76,12 +99,6 @@ namespace Tizen.Applications
                     {
                         if (item.Key.IsMatch(appControl) && item.Value.IsSubclassOf(typeof(Actor)))
                         {
-                            // Window was created when the first UI Actor was created
-                            if (s_window == null)
-                            {
-                                s_window = new Window();
-                            }
-
                             if (CurrentActorGroup == null || !appControl.IsLaunchOperation())
                             {
                                 StartActor(null, item.Value, appControl);
@@ -98,69 +115,103 @@ namespace Tizen.Applications
 
             TizenSynchronizationContext.Initialize();
 
-            int ret = Interop.Application.UIAppMain(args.Length, args, ref ops, IntPtr.Zero);
-
-            return ret;
+            // TODO: check ret of UIAppMain and throw exceptions when errors are returned.
+            Interop.Application.UIAppMain(args.Length, args, ref ops, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// Hides the application.
+        /// </summary>
         public static void Hide()
         {
             if (s_window != null)
                 s_window.InActive();
         }
 
+        /// <summary>
+        /// Exits the main loop of application.
+        /// </summary>
         public static void Exit()
         {
-            Exited(null, null);
-            throw new NotImplementedException();
+            Exited(null, null);            
+            // TODO: clear context and group
+            Interop.Application.UIAppExit();
         }
 
-        public static void RegisterActor(Type clazz)
+        /// <summary>
+        /// Registers an Actor class type.
+        /// </summary>
+        /// <param name="actorType">The type of Actor class.</param>
+        public static void RegisterActor(Type actorType)
         {
-            RegisterActor(clazz, new AppControlFilter[0] { });
+            RegisterActor(actorType, new AppControlFilter[0] { });
         }
 
-        public static void RegisterActor(Type clazz, AppControlFilter filter)
+        /// <summary>
+        /// Registers an Actor class type.
+        /// </summary>
+        /// <param name="actorType">The type of Actor class.</param>
+        /// <param name="filter">The filter to match Actor and AppControl.</param>
+        public static void RegisterActor(Type actorType, AppControlFilter filter)
         {
-            RegisterActor(clazz, new AppControlFilter[] { filter });
+            RegisterActor(actorType, new AppControlFilter[] { filter });
         }
 
-        public static void RegisterActor(Type clazz, AppControlFilter[] filters)
+        /// <summary>
+        /// Registers an Actor class type.
+        /// </summary>
+        /// <param name="actorType">The type of Actor class.</param>
+        /// <param name="filters">The array of filters to match Actor and AppControl.</param>
+        public static void RegisterActor(Type actorType, AppControlFilter[] filters)
         {
-            if (!clazz.IsSubclassOf(typeof(Actor)))
-                throw new ArgumentException(clazz.FullName + " is not a subclass of Actor.");
+            if (!actorType.IsSubclassOf(typeof(Actor)))
+                throw new ArgumentException(actorType.FullName + " is not a subclass of Actor.");
 
-            RegisterContext(clazz, filters);
+            RegisterContext(actorType, filters);
         }
 
-        public static void RegisterService(Type clazz)
+        /// <summary>
+        /// Registers an Service class type.
+        /// </summary>
+        /// <param name="serviceType">The type of Service class.</param>
+        public static void RegisterService(Type serviceType)
         {
-            RegisterService(clazz, new AppControlFilter[0] { });
+            RegisterService(serviceType, new AppControlFilter[0] { });
         }
 
-        public static void RegisterService(Type clazz, AppControlFilter filter)
+        /// <summary>
+        /// Registers an Service class type.
+        /// </summary>
+        /// <param name="serviceType">The type of Service class.</param>
+        /// <param name="filter">The filter to match Service and AppControl.</param>
+        public static void RegisterService(Type serviceType, AppControlFilter filter)
         {
-            RegisterService(clazz, new AppControlFilter[] { filter });
+            RegisterService(serviceType, new AppControlFilter[] { filter });
         }
 
-        public static void RegisterService(Type clazz, AppControlFilter[] filters)
+        /// <summary>
+        /// Registers an Service class type.
+        /// </summary>
+        /// <param name="serviceType">The type of Service class.</param>
+        /// <param name="filters">The array of filters to match Service and AppControl.</param>
+        public static void RegisterService(Type serviceType, AppControlFilter[] filters)
         {
-            if (!clazz.IsSubclassOf(typeof(Service)))
-                throw new ArgumentException(clazz.FullName + " is not a subclass of Service.");
+            if (!serviceType.IsSubclassOf(typeof(Service)))
+                throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
 
-            RegisterContext(clazz, filters);
+            RegisterContext(serviceType, filters);
         }
 
-        private static void RegisterContext(Type clazz, AppControlFilter[] filters)
+        private static void RegisterContext(Type contextType, AppControlFilter[] filters)
         {
-            foreach (var prop in clazz.GetProperties())
+            foreach (var prop in contextType.GetProperties())
             {
                 foreach (var attr in prop.GetCustomAttributes(false))
                 {
                     var filter = attr as AppControlFilter;
                     if (filter != null)
                     {
-                        s_filterMap.Add(filter, clazz);
+                        s_filterMap.Add(filter, contextType);
                     }
                 }
             }
@@ -168,61 +219,54 @@ namespace Tizen.Applications
             {
                 foreach (var filter in filters)
                 {
-                    s_filterMap.Add(filter, clazz);
+                    s_filterMap.Add(filter, contextType);
                 }
             }
         }
 
-        internal static void StartActor(ContextGroup group, Type actorType, AppControl control)
+        internal static void StartActor(ActorGroup group, Type actorType, AppControl control)
         {
             if (!actorType.IsSubclassOf(typeof(Actor)))
             {
                 throw new ArgumentException(actorType.FullName + " is not a subclass of Actor.");
             }
 
-            Actor actor = (Actor)Activator.CreateInstance(actorType);
-            ContextGroup ctxGroup = group;
-            if (ctxGroup == null)
+            // Window was created when the first UI Actor was created
+            //if (s_window == null)
+            //{
+            //    s_window = new Window();
+            //}
+
+            ActorGroup actorGroup = group;
+            if (actorGroup == null)
             {
-                ctxGroup = new ContextGroup();
-                s_actorGroupList.Add(ctxGroup);
+                actorGroup = new ActorGroup();
+                s_actorGroupList.Add(actorGroup);
             }
-            ctxGroup.AddContext(actor);
-            actor.Create(ctxGroup);
-            actor.Start(control);
+            actorGroup.StartActor(actorType, control);
 
             // TODO: consider resume operation
-            if (!s_window.Visible)
-            {
-                s_window.Active();
-                s_window.Show();
-                actor.Resume();
-            }
+            //if (!s_window.Visible)
+            //{
+            //    s_window.Active();
+            //    s_window.Show();
+            //    actor.Resume();
+            //}
         }
 
-        internal static void StopActor(ContextGroup group, Actor actor)
+        internal static void StopActor(ActorGroup group, Actor actor)
         {
-            actor.Pause();
-            actor.Terminate();
-            group.RemoveContext(actor);
+            group.StopActor(actor);
             if (group.IsEmpty)
             {
                 s_actorGroupList.Remove(group);
-                if (s_actorGroupList.Count == 0 && s_serviceGroup.IsEmpty)
+                if (s_actorGroupList.Count == 0 && s_serviceList.Count == 0)
                 {
                     Exit();
                 }
                 else
                 {
                     Hide();
-                }
-            }
-            else
-            {
-                Actor nextActor = group.TopContext as Actor;
-                if (nextActor != null)
-                {
-                    nextActor.Resume();
                 }
             }
         }
@@ -234,15 +278,14 @@ namespace Tizen.Applications
                 throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
             }
 
-            Context ctx = s_serviceGroup.FindContext(serviceType);
-            if (ctx == null)
+            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
+            if (svc == null)
             {
-                // Register ContextRemoved Handler once
-                ctx = (Service)Activator.CreateInstance(serviceType);
-                s_serviceGroup.AddContext(ctx);
-                ctx.Create(s_serviceGroup);
+                svc = (Service)Activator.CreateInstance(serviceType);
+                s_serviceList.Add(svc);
+                svc.Create();
             }
-            ctx.Start(control);
+            svc.Start(control);
         }
 
         internal static void StopService(Type serviceType)
@@ -252,17 +295,14 @@ namespace Tizen.Applications
                 throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
             }
 
-            Context ctx = s_serviceGroup.FindContext(serviceType);
-            if (ctx != null)
+            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
+            if (svc != null)
             {
-                ctx.Terminate();
-                s_serviceGroup.RemoveContext(ctx);
-                if (s_serviceGroup.IsEmpty)
+                svc.Terminate();
+                s_serviceList.Remove(svc);
+                if (s_actorGroupList.Count == 0 && s_serviceList.Count == 0)
                 {
-                    if (s_actorGroupList.Count == 0)
-                    {
-                        Exit();
-                    }
+                    Exit();
                 }
             }
         }

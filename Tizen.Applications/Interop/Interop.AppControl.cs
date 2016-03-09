@@ -6,6 +6,7 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -30,7 +31,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Application, EntryPoint = "app_control_get_mime", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetMime(SafeAppControlHandle handle, out string mime);
-        
+
         internal sealed class SafeAppControlHandle : SafeHandle
         {
             public SafeAppControlHandle() : base(IntPtr.Zero, true)

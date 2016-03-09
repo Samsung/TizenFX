@@ -1,3 +1,12 @@
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,14 +19,14 @@ namespace Tizen.Applications
         {
             SetSynchronizationContext(new TizenSynchronizationContext());
         }
-        private Interop.Glib.GSourceFunc wrapperHandler;
-        private Object transactionLock = new Object();
-        private int transactionID = 0;
-        private Dictionary<int, Action> handlerMap = new Dictionary<int, Action>();
+        private Interop.Glib.GSourceFunc _wrapperHandler;
+        private Object _transactionLock = new Object();
+        private int _transactionID = 0;
+        private Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
 
-        TizenSynchronizationContext()
+        private TizenSynchronizationContext()
         {
-            wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+            _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
         }
 
         public override void Post(SendOrPostCallback d, object state)
@@ -57,24 +66,23 @@ namespace Tizen.Applications
         public void Post(Action action)
         {
             int id = 0;
-            lock (transactionLock)
+            lock (_transactionLock)
             {
-                id = transactionID++;
+                id = _transactionID++;
             }
-            handlerMap.Add(id, action);
-            Interop.Glib.IdleAdd(wrapperHandler, (IntPtr)id);
+            _handlerMap.Add(id, action);
+            Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
         }
 
         public bool Handler(IntPtr userData)
         {
             int key = (int)userData;
-            if (handlerMap.ContainsKey(key))
+            if (_handlerMap.ContainsKey(key))
             {
-                handlerMap[key]();
-                handlerMap.Remove(key);
+                _handlerMap[key]();
+                _handlerMap.Remove(key);
             }
             return false;
         }
-
     }
 }

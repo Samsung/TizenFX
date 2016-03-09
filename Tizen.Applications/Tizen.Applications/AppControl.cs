@@ -1,15 +1,28 @@
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AppControl
     {
-        private string _operation;
-        private string _mime;
-        private string _uri;
+        private readonly string _operation;
+        private readonly string _mime;
+        private readonly string _uri;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static class Operations
         {
             public const string Main = "http://tizen.org/appcontrol/operation/main";
@@ -41,8 +54,19 @@ namespace Tizen.Applications
             public const string SettingWifi = "http://tizen.org/appcontrol/operation/setting/wifi";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Operation { get { return _operation; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Mime { get { return _mime; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Uri { get { return _uri; } }
 
         internal AppControl(IntPtr appControlHandle)
@@ -53,11 +77,12 @@ namespace Tizen.Applications
             Interop.AppControl.GetUri(handle, out _uri);
         }
 
-        internal bool IsService
-        {
-            get { return false; }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="mime"></param>
+        /// <param name="uri"></param>
         public AppControl(string operation, string mime, string uri)
         {
             _operation = operation;
@@ -65,11 +90,15 @@ namespace Tizen.Applications
             _uri = uri;
         }
 
-        public bool IsLaunchOperation()
+        internal bool IsLaunchOperation()
         {
             if (_operation == null) return false;
             return (_operation == Operations.Main) || (_operation == Operations.Default);
         }
 
+        internal bool IsService
+        {
+            get { return false; }
+        }
     }
 }

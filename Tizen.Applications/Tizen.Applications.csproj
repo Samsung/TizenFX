@@ -7,7 +7,8 @@
     <ProjectGuid>{663C5A3D-E631-4987-AEE7-F498C56A40FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Tizen.Applications</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -57,9 +58,8 @@
     <Compile Include="Tizen.Applications\AppControl.cs" />
     <Compile Include="Tizen.Applications\AppControlFilter.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
-    <Compile Include="Tizen.Applications\CodeExample.cs" />
     <Compile Include="Tizen.Applications\Context.cs" />
-    <Compile Include="Tizen.Applications\ContextGroup.cs" />
+    <Compile Include="Tizen.Applications\ActorGroup.cs" />
     <Compile Include="Tizen.Applications\Service.cs" />
     <Compile Include="Tizen.Applications\Window.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />

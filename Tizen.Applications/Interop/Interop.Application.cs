@@ -6,6 +6,7 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -41,5 +42,7 @@ internal static partial class Interop
         [DllImport(Libraries.Application, EntryPoint = "ui_app_main", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int UIAppMain(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
 
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void UIAppExit();
     }
 }

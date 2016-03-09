@@ -1,8 +1,20 @@
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+
 using System;
 using System.Text.RegularExpressions;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class AppControlFilter : Attribute
     {
@@ -10,10 +22,27 @@ namespace Tizen.Applications
         private readonly string _mime;
         private readonly string _uri;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Operation { get { return _operation; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Mime { get { return _mime; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Uri { get { return _uri; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="mime"></param>
+        /// <param name="uri"></param>
         public AppControlFilter(string operation, string mime = null, string uri = null)
         {
             _operation = operation;
@@ -21,6 +50,11 @@ namespace Tizen.Applications
             _uri = uri;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             AppControlFilter f = obj as AppControlFilter;
@@ -29,6 +63,10 @@ namespace Tizen.Applications
             return (_operation == f._operation) & (_mime == f._mime) & (_uri == f._uri);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             int hash = 0;
@@ -83,7 +121,7 @@ namespace Tizen.Applications
             return _uri == uri;
         }
 
-        public bool IsMatch(AppControl e)
+        internal bool IsMatch(AppControl e)
         {
             string mime = e.Mime;
             if (String.IsNullOrEmpty(mime) && !String.IsNullOrEmpty(e.Uri))
@@ -93,5 +131,4 @@ namespace Tizen.Applications
             return _operation == e.Operation && IsMimeMatched(mime) && IsUriMatched(e.Uri);
         }
     }
-
 }

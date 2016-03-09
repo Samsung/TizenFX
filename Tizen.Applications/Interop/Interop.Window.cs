@@ -1,8 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
 
-internal static partial class Interop {
-    internal static partial class Window {
+internal static partial class Interop
+{
+    internal static partial class Window
+    {
         [DllImport(Libraries.Elementary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr elm_win_add(IntPtr parent, string name, int type);
 

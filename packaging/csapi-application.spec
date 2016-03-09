@@ -56,6 +56,7 @@ cp %{SOURCE1} .
 mcs -target:library -out:%{dllname} -keyfile:Tizen.Applications/Tizen.Applications.snk \
   Tizen.Applications/Properties/AssemblyInfo.cs \
   Tizen.Applications/Tizen.Applications/*.cs \
+  Tizen.Applications/Tizen.UI/*.cs \
   Tizen.Applications/Interop/*.cs
 
 # check p/invoke
