@@ -64,7 +64,8 @@
     <Compile Include="Tizen.Applications\Context.cs" />
     <Compile Include="Tizen.Applications\ActorGroup.cs" />
     <Compile Include="Tizen.Applications\Service.cs" />
-    <Compile Include="Tizen.Applications\Window.cs" />
+    <Compile Include="Tizen.UI\Page.cs" />
+    <Compile Include="Tizen.UI\Window.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
