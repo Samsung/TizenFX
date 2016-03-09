@@ -7,8 +7,8 @@
     <ProjectGuid>{663C5A3D-E631-4987-AEE7-F498C56A40FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Application</RootNamespace>
-    <AssemblyName>Tizen.Application</AssemblyName>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>Tizen.Applications</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Tizen.Application.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Tizen.Applications.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,23 +53,22 @@
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.Window.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Application\Actor.cs" />
-    <Compile Include="Tizen.Application\AppControl.cs" />
-    <Compile Include="Tizen.Application\AppControlFilter.cs" />
-    <Compile Include="Tizen.Application\Application.cs" />
-    <Compile Include="Tizen.Application\ApplicationContext.cs" />
-    <Compile Include="Tizen.Application\CodeExample.cs" />
-    <Compile Include="Tizen.Application\Page.cs" />
-    <Compile Include="Tizen.Application\Service.cs" />
-    <Compile Include="Tizen.Application\ServiceManager.cs" />
-    <Compile Include="Tizen.Application\Window.cs" />
-    <Compile Include="Tizen.Application\TizenSynchronizationContext.cs" />
+    <Compile Include="Tizen.Applications\Actor.cs" />
+    <Compile Include="Tizen.Applications\AppControl.cs" />
+    <Compile Include="Tizen.Applications\AppControlFilter.cs" />
+    <Compile Include="Tizen.Applications\Application.cs" />
+    <Compile Include="Tizen.Applications\CodeExample.cs" />
+    <Compile Include="Tizen.Applications\Context.cs" />
+    <Compile Include="Tizen.Applications\ContextGroup.cs" />
+    <Compile Include="Tizen.Applications\Service.cs" />
+    <Compile Include="Tizen.Applications\Window.cs" />
+    <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tizen.Application.snk" />
+    <None Include="Tizen.Applications.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

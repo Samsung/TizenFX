@@ -2,11 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Tizen.Application")]
+[assembly: AssemblyTitle("Tizen.Applications")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Samsung Electronics")]
-[assembly: AssemblyProduct("Tizen.Application")]
+[assembly: AssemblyProduct("Tizen.Applications")]
 [assembly: AssemblyCopyright("Copyright (c) 2015 Samsung Electronics Co., Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

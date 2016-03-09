@@ -5,17 +5,17 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tizen.Application
+namespace Tizen.Applications
 {
     public class ViewActor : Actor
     {
         public string Type { get; set; }
-        protected override void OnCreate()
+        protected override void OnCreated()
         {
             Console.WriteLine();
         }
 
-        protected override void OnStart()
+        protected override void OnStarted()
         {
         }
 
@@ -27,11 +27,11 @@ namespace Tizen.Application
     [AppControlFilter("http://tizen.org/appcontrol/operation/default")]
     public class DefaultActor : Actor
     {
-        protected override void OnCreate()
+        protected override void OnCreated()
         {
         }
 
-        protected override void OnStart()
+        protected override void OnStarted()
         {
         }
     }
@@ -40,10 +40,10 @@ namespace Tizen.Application
     {
         static void test(string[] args) // main
         {
-            Application.ApplicationInit += Application_Create;
-            Application.ApplicationExit += Application_Terminate;
-            Application.AddActor(typeof(DefaultActor));
-            Application.AddActor(typeof(ViewActor), new AppControlFilter[] {
+            Application.Created += Application_Create;
+            Application.Exited += Application_Terminate;
+            Application.RegisterActor(typeof(DefaultActor));
+            Application.RegisterActor(typeof(ViewActor), new AppControlFilter[] {
                 new AppControlFilter("http://tizen.org/appcontrol/view", "image/*"),
                 new AppControlFilter("http://tizen.org/appcontrol/view", "text/*")
             });

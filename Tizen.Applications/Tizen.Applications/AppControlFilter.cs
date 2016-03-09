@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Tizen.Application
+namespace Tizen.Applications
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class AppControlFilter : Attribute

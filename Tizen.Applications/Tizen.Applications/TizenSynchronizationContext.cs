@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Tizen.Application
+namespace Tizen.Applications
 {
     internal class TizenSynchronizationContext : SynchronizationContext
     {

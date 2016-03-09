@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Application
+namespace Tizen.Applications
 {
     public class AppControl
     {
@@ -53,9 +53,9 @@ namespace Tizen.Application
             Interop.AppControl.GetUri(handle, out _uri);
         }
 
-        internal bool isService
+        internal bool IsService
         {
-            get {return false;}
+            get { return false; }
         }
 
         public AppControl(string operation, string mime, string uri)

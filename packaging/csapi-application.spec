@@ -1,5 +1,7 @@
+%define _use_internal_dependency_generator 0
+
 %define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Application.dll
+%define dllname Tizen.Applications.dll
 
 Name:       csapi-application
 Summary:    Tizen Application API for C#
@@ -51,10 +53,10 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Application/Tizen.Application.snk \
-  Tizen.Application/Properties/AssemblyInfo.cs \
-  Tizen.Application/Tizen.Application/*.cs \
-  Tizen.Application/Interop/*.cs
+mcs -target:library -out:%{dllname} -keyfile:Tizen.Applications/Tizen.Applications.snk \
+  Tizen.Applications/Properties/AssemblyInfo.cs \
+  Tizen.Applications/Tizen.Applications/*.cs \
+  Tizen.Applications/Interop/*.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then
