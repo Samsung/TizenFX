@@ -16,48 +16,17 @@ namespace Tizen.Applications
     /// </summary>
     public abstract class Context
     {
-        private AppControl _control;
+        internal AppControl _control;
 
         /// <summary>
         /// 
         /// </summary>
-        protected AppControl ReceivedAppControl
+        protected AppControl AppControl
         {
             get
             {
                 return _control;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnCreated() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnStarted() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnTerminated() { }
-
-        internal void Create()
-        {
-            OnCreated();
-        }
-
-        internal void Start(AppControl control)
-        {
-            _control = control;
-            OnStarted();
-        }
-
-        internal void Terminate()
-        {
-            OnTerminated();
         }
 
         /// <summary>

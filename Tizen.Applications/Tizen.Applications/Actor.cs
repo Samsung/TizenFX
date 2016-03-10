@@ -18,7 +18,18 @@ namespace Tizen.Applications
     /// </summary>
     public abstract class Actor : Context
     {
-        private ActorGroup _group;
+        internal Guid TaskId { get; set; }
+
+        private enum ActorState
+        {
+            None = 0,
+            Created = 1,
+            Started = 2, 
+            Resumed = 3,
+            Pasued = 4
+        }
+
+        private ActorState _state = ActorState.None;
 
         /// <summary>
         /// 
@@ -28,28 +39,72 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnPaused() { }
+        protected virtual void OnCreate() { }
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnResumed() { }
+        protected virtual void OnStart() { }
 
-        internal void Create(ActorGroup group)
+         /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnPause() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnResume() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnDestroy() { }
+
+        internal void Create()
         {
-            _group = group;
-            base.Create();
+            if (_state != ActorState.Created)
+            {
+                OnCreate();
+                _state = ActorState.Created;
+            }
+        }
+
+        internal void Start()
+        {
+            if (_state != ActorState.Started)
+            {
+                OnStart();
+                _state = ActorState.Started;
+            }
         }
 
         internal void Pause()
         {
-            OnPaused();
+            if (_state != ActorState.Pasued)
+            {
+                OnPause();
+                _state = ActorState.Pasued;
+            }
         }
 
         internal void Resume()
         {
-            OnResumed();
-            MainPage.Show();
+            if (_state != ActorState.Resumed)
+            {
+                OnResume();
+                _state = ActorState.Resumed;
+                MainPage.Show();
+            }
+        }
+
+        internal void Destroy()
+        {
+            if (_state != ActorState.None)
+            {
+                OnDestroy();
+                _state = ActorState.None;
+            }
         }
 
         /// <summary>
@@ -59,7 +114,7 @@ namespace Tizen.Applications
         /// <param name="control"></param>
         protected void StartActor(Actor actor, AppControl control)
         {
-            _group.StartActor(actor, control);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -69,7 +124,8 @@ namespace Tizen.Applications
         /// <param name="control"></param>
         protected override void StartActor(Type actorType, AppControl control)
         {
-            Application.StartActor(_group, actorType, control);
+
+            Application.StartActor(TaskId, actorType, control);
         }
 
         /// <summary>
@@ -77,7 +133,7 @@ namespace Tizen.Applications
         /// </summary>
         protected override void Finish()
         {
-            Application.StopActor(_group, this);
+            Application.StopActor(this);
         }
     }
 }

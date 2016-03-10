@@ -62,7 +62,6 @@
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />
     <Compile Include="Tizen.Applications\Context.cs" />
-    <Compile Include="Tizen.Applications\ActorGroup.cs" />
     <Compile Include="Tizen.Applications\Service.cs" />
     <Compile Include="Tizen.UI\Page.cs" />
     <Compile Include="Tizen.UI\Window.cs" />

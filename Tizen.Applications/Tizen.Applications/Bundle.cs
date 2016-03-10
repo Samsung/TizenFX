@@ -15,7 +15,7 @@ namespace Tizen.Applications
     {
         internal IntPtr _handle;
         private bool _disposed = false;
-        private List<string> _keys;
+        private readonly List<string> _keys;
 
         private enum BundleTypeProperty
         {

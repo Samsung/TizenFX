@@ -23,17 +23,17 @@ namespace Tizen.Applications
     {
         private static readonly Dictionary<AppControlFilter, Type> s_filterMap = new Dictionary<AppControlFilter, Type>();
         private static readonly List<Service> s_serviceList = new List<Service>();
-        private static readonly List<ActorGroup> s_actorGroupList = new List<ActorGroup>();
+        private static readonly List<Actor> s_actorList = new List<Actor>();
 
-        private static readonly Window s_window = null;
-
-        private static ActorGroup CurrentActorGroup
+        private static Actor ForegroundActor
         {
             get
             {
-                return s_actorGroupList.LastOrDefault(null);
+                return s_actorList.LastOrDefault(null);
             }
         }
+
+        private static readonly Window s_window = null;
 
         /// <summary>
         /// Occurs when the application starts.
@@ -59,24 +59,16 @@ namespace Tizen.Applications
             };
             ops.OnPause = (userData) =>
             {
-                if (CurrentActorGroup != null && CurrentActorGroup.TopActor != null)
+                if (ForegroundActor != null)
                 {
-                    Actor actor = CurrentActorGroup.TopActor as Actor;
-                    if (actor != null)
-                    {
-                        actor.Pause();
-                    }
+                    ForegroundActor.Pause();
                 }
             };
             ops.OnResume = (userData) =>
             {
-                if (CurrentActorGroup != null && CurrentActorGroup.TopActor != null)
+                if (ForegroundActor != null)
                 {
-                    Actor actor = CurrentActorGroup.TopActor as Actor;
-                    if (actor != null)
-                    {
-                        actor.Resume();
-                    }
+                    ForegroundActor.Resume();
                 }
             };
             ops.OnAppControl = (appControlHandle, userData) =>
@@ -99,9 +91,9 @@ namespace Tizen.Applications
                     {
                         if (item.Key.IsMatch(appControl) && item.Value.IsSubclassOf(typeof(Actor)))
                         {
-                            if (CurrentActorGroup == null || !appControl.IsLaunchOperation())
+                            if (ForegroundActor == null || !appControl.IsLaunchOperation())
                             {
-                                StartActor(null, item.Value, appControl);
+                                StartActor(Guid.Empty, item.Value, appControl);
                             }
                             break;
                         }
@@ -133,7 +125,7 @@ namespace Tizen.Applications
         /// </summary>
         public static void Exit()
         {
-            Exited(null, null);            
+            Exited(null, null);
             // TODO: clear context and group
             Interop.Application.UIAppExit();
         }
@@ -224,49 +216,89 @@ namespace Tizen.Applications
             }
         }
 
-        internal static void StartActor(ActorGroup group, Type actorType, AppControl control)
+        internal static void StartActor(Guid taskId, Type actorType, AppControl control)
         {
             if (!actorType.IsSubclassOf(typeof(Actor)))
             {
                 throw new ArgumentException(actorType.FullName + " is not a subclass of Actor.");
             }
 
-            // Window was created when the first UI Actor was created
-            //if (s_window == null)
-            //{
-            //    s_window = new Window();
-            //}
-
-            ActorGroup actorGroup = group;
-            if (actorGroup == null)
+            if (taskId != Guid.Empty && ForegroundActor != null && taskId != ForegroundActor.TaskId)
             {
-                actorGroup = new ActorGroup();
-                s_actorGroupList.Add(actorGroup);
+                throw new InvalidOperationException("StartActor() should be called from the foreground task.");
             }
-            actorGroup.StartActor(actorType, control);
 
-            // TODO: consider resume operation
-            //if (!s_window.Visible)
-            //{
-            //    s_window.Active();
-            //    s_window.Show();
-            //    actor.Resume();
-            //}
+            Actor actor = (Actor)Activator.CreateInstance(actorType);
+            actor.TaskId = taskId == Guid.Empty ? Guid.NewGuid() : taskId;
+            actor._control = control;
+            actor.Create();
+
+            if (ForegroundActor != null)
+            {
+                ForegroundActor.Pause();
+            }
+
+            s_actorList.Add(actor);
+            actor.Start();
+
+            if (!s_window.Visible)
+            {
+                s_window.Active();
+                s_window.Show();
+            }
+            actor.Resume();
         }
 
-        internal static void StopActor(ActorGroup group, Actor actor)
+        internal static void StartActor(Actor actor, AppControl control)
         {
-            group.StopActor(actor);
-            if (group.IsEmpty)
+            if (ForegroundActor == null)
             {
-                s_actorGroupList.Remove(group);
-                if (s_actorGroupList.Count == 0 && s_serviceList.Count == 0)
+                throw new ArgumentNullException("ForegroundActor", "The Actor stack is empty.");
+            }
+
+            if (actor.TaskId != ForegroundActor.TaskId)
+            {
+                throw new InvalidOperationException("StartActor() should be called from the foreground task.");
+            }
+
+            while (actor != ForegroundActor)
+            {
+                Actor popped = ForegroundActor;
+                s_actorList.Remove(popped);
+                popped.Pause();
+                popped.Destroy();
+            }
+            actor.Resume();
+        }
+
+        internal static void StopActor(Actor actor)
+        {
+            if (ForegroundActor == null)
+            {
+                throw new ArgumentNullException("ForegroundActor", "The Actor stack is empty.");
+            }
+
+            Guid prevForegroundTaskId = ForegroundActor.TaskId;
+
+            s_actorList.Remove(actor);
+            actor.Pause();
+            actor.Destroy();
+
+            if (actor.TaskId == prevForegroundTaskId)
+            {
+                if (ForegroundActor.TaskId == actor.TaskId)
                 {
-                    Exit();
+                    ForegroundActor.Resume();
                 }
                 else
                 {
-                    Hide();
+                    if (s_actorList.Count == 0 && s_serviceList.Count == 0)
+                    {
+                        Exit();
+                    }
+                    else {
+                        Hide();
+                    }
                 }
             }
         }
@@ -285,7 +317,8 @@ namespace Tizen.Applications
                 s_serviceList.Add(svc);
                 svc.Create();
             }
-            svc.Start(control);
+            svc._control = control;
+            svc.Start();
         }
 
         internal static void StopService(Type serviceType)
@@ -298,9 +331,9 @@ namespace Tizen.Applications
             Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
             if (svc != null)
             {
-                svc.Terminate();
+                svc.Destroy();
                 s_serviceList.Remove(svc);
-                if (s_actorGroupList.Count == 0 && s_serviceList.Count == 0)
+                if (ForegroundActor == null && s_serviceList.Count == 0)
                 {
                     Exit();
                 }

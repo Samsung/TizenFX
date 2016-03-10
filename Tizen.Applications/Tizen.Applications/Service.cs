@@ -19,11 +19,41 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
+        protected virtual void OnCreate() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnStart() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnDestroy() { }
+
+        internal void Create()
+        {
+            OnCreate();
+        }
+
+        internal void Start()
+        {
+            OnStart();
+        }
+
+        internal void Destroy()
+        {
+            OnDestroy();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="actorType"></param>
         /// <param name="control"></param>
         protected override void StartActor(Type actorType, AppControl control)
         {
-            Application.StartActor(null, actorType, control);
+            Application.StartActor(Guid.Empty, actorType, control);
         }
 
         /// <summary>

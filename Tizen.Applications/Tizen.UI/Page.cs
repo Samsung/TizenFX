@@ -6,6 +6,7 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,6 @@ namespace Tizen.UI
     {
         internal void Show()
         {
-
         }
     }
 }
