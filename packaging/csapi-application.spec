@@ -14,26 +14,18 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
-
-# P/Invoke Dependencies
+BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
-BuildRequires: pkgconfig(evas)
 
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
 Requires: glib-2.0
 Requires: capi-appfw-application
 Requires: evas
-# DLL Dependencies
-#BuildRequires: ...
+
+Requires(post): mono-core
+Requires(postun): mono-core
 
 %description
 Tizen API for C#
@@ -52,19 +44,7 @@ Development package for %{name}
 cp %{SOURCE1} .
 
 %build
-# build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Applications/Tizen.Applications.snk \
-  Tizen.Applications/Properties/AssemblyInfo.cs \
-  Tizen.Applications/Tizen.Applications/*.cs \
-  Tizen.Applications/Tizen.UI/*.cs \
-  Tizen.Applications/Interop/*.cs -unsafe
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+make
 
 %install
 # copy dll

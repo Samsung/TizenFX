@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,17 +13,49 @@ namespace Tizen.Applications
     /// </summary>
     public class Bundle : IDisposable
     {
-        internal IntPtr _handle;
+        private IntPtr _handle;
         private bool _disposed = false;
-        private readonly List<string> _keys;
+        private readonly HashSet<string> _keys;
 
         /// <summary>
         /// The Bundle constructor.
         /// </summary>
         public Bundle()
         {
-            _keys = new List<string>();
             _handle = Interop.Bundle.Create();
+            if ((BundleError)Internals.Errors.ErrorFacts.GetLastResult() == BundleError.OutOfMemory)
+            {
+                throw new InvalidOperationException("Out of memory");
+            }
+            _keys = new HashSet<string>();
+        }
+
+        internal Bundle(IntPtr handle)
+        {
+            if (handle != IntPtr.Zero)
+            {
+                _handle = handle;
+                _keys = new HashSet<string>();
+                Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
+                {
+                    _keys.Add(key);
+                };
+
+                Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+            }
+            else
+            {
+                throw new ArgumentNullException("Invalid bundle");
+            }
+        }
+
+        private enum BundleError
+        {
+            None = Internals.Errors.ErrorCode.None,
+            OutOfMemory = Internals.Errors.ErrorCode.OutOfMemory,
+            InvalidParameter = Internals.Errors.ErrorCode.InvalidParameter,
+            KeyNotAvailable = Internals.Errors.ErrorCode.KeyNotAvailable,
+            KeyExists = -0x01180000 | 0x01
         }
 
         private enum BundleTypeProperty
@@ -38,9 +70,9 @@ namespace Tizen.Applications
             None = -1,
             Any = 0,
             String = 1 | BundleTypeProperty.Measurable,
-            StringArray = BundleType.String | BundleTypeProperty.Array | BundleTypeProperty.Measurable,
+            StringArray = String | BundleTypeProperty.Array | BundleTypeProperty.Measurable,
             Byte = 2,
-            ByteArray = BundleType.Byte | BundleTypeProperty.Array
+            ByteArray = Byte | BundleTypeProperty.Array
         }
 
         /// <summary>
@@ -64,7 +96,7 @@ namespace Tizen.Applications
                 return _keys;
             }
         }
-        
+
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
@@ -72,6 +104,16 @@ namespace Tizen.Applications
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Checks whether the bundle contains an item with a specified key.
+        /// </summary>
+        /// <param name="key">The key to check for.</param>
+        /// <returns>true if the bundle contains the key. false otherwise.</returns>
+        public bool Contains(string key)
+        {
+            return _keys.Contains(key);
         }
 
         /// <summary>
@@ -95,14 +137,37 @@ namespace Tizen.Applications
         {
             if (!_keys.Contains(key))
             {
-                // TODO: validate offset and count
+                if (offset < 0)
+                {
+                    throw new ArgumentOutOfRangeException("offset", offset, "Cannot be less than 0");
+                }
+                if (offset > value.Length - 1)
+                {
+                    throw new ArgumentOutOfRangeException("offset", offset, "Greater than last index of array");
+                }
+                if (count < 1)
+                {
+                    throw new ArgumentOutOfRangeException("count", count, "Must be at least 1");
+                }
+                if (offset + count > value.Length)
+                {
+                    throw new ArgumentException("The count is too large for the specified offset");
+                }
                 // Code is in Interop file because it is unsafe
-                Interop.Bundle.UnsafeCode.AddItem(_handle, key, value, offset, count);
+                int ret = Interop.Bundle.UnsafeCode.AddItem(_handle, key, value, offset, count);
+                if ((BundleError)ret == BundleError.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
+                }
+                if ((BundleError)ret == BundleError.OutOfMemory)
+                {
+                    throw new InvalidOperationException("Out of memory");
+                }
                 _keys.Add(key);
             }
             else
             {
-                // TODO: handle when key already exists
+                throw new ArgumentException("Key already exists", "key");
             }
         }
 
@@ -115,12 +180,20 @@ namespace Tizen.Applications
         {
             if (!_keys.Contains(key))
             {
-                Interop.Bundle.AddString(_handle, key, value);
+                int ret = Interop.Bundle.AddString(_handle, key, value);
+                if ((BundleError)ret == BundleError.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
+                }
+                if ((BundleError)ret == BundleError.OutOfMemory)
+                {
+                    throw new InvalidOperationException("Out of memory");
+                }
                 _keys.Add(key);
             }
             else
             {
-                // TODO: handle when key already exists
+                throw new ArgumentException("Key already exists", "key");
             }
         }
 
@@ -134,12 +207,20 @@ namespace Tizen.Applications
             if (!_keys.Contains(key))
             {
                 string[] valueArray = value.ToArray();
-                Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Count());
+                int ret = Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Count());
+                if ((BundleError)ret == BundleError.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
+                }
+                if ((BundleError)ret == BundleError.OutOfMemory)
+                {
+                    throw new InvalidOperationException("Out of memory");
+                }
                 _keys.Add(key);
             }
             else
             {
-                // TODO: handle when key already exists
+                throw new ArgumentException("Key already exists", "key");
             }
         }
 
@@ -159,20 +240,17 @@ namespace Tizen.Applications
                     // get string
                     IntPtr stringPtr;
                     Interop.Bundle.GetString(_handle, key, out stringPtr);
-                    string stringResult = Marshal.PtrToStringAuto(stringPtr);
-                    return stringResult;
+                    return Marshal.PtrToStringAuto(stringPtr);
 
                     case (int)BundleType.StringArray:
                     // get string array
-                    IntPtr stringArrayPtr;
                     int stringArraySize;
-                    stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
+                    IntPtr stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
                     string[] stringArray;
                     IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
                     return stringArray;
 
                     case (int)BundleType.Byte:
-                    case (int)BundleType.ByteArray:
                     // get byte array
                     IntPtr byteArrayPtr;
                     int byteArraySize;
@@ -182,12 +260,116 @@ namespace Tizen.Applications
                     return byteArray;
 
                     default:
-                    return "PROBLEM"; // TODO: Handle this
+                    throw new ArgumentException("Key does not exist in the bundle", "key");
                 }
             }
             else
             {
-                return "PROBLEM"; // TODO: handle when key does not exist
+                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of a bundle item with a specified key.
+        /// Note that this is a generic method.
+        /// </summary>
+        /// <typeparam name="T">The generic type to return.</typeparam>
+        /// <param name="key">The key of the bundle item whose value is desired.</param>
+        /// <returns>The value of the bundle item if it is of the specified generic type.</returns>
+        public T GetItem<T>(string key)
+        {
+            return (T)GetItem(key);
+        }
+
+        /// <summary>
+        /// Gets the value of a bundle item with a specified key.
+        /// </summary>
+        /// <param name="key">The key of the bundle item whose value is desired.</param>
+        /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+        /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter. false otherwise.</returns>
+        public bool TryGetItem(string key, out byte[] value)
+        {
+            if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.Byte)
+            {
+                value = GetItem<byte[]>(key);
+                return true;
+            }
+            else
+            {
+                value = default(byte[]);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of a bundle item with a specified key.
+        /// </summary>
+        /// <param name="key">The key of the bundle item whose value is desired.</param>
+        /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+        /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter. false otherwise.</returns>
+        public bool TryGetItem(string key, out string value)
+        {
+            if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.String)
+            {
+                value = GetItem<string>(key);
+                return true;
+            }
+            else
+            {
+                value = default(string);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of a bundle item with a specified key.
+        /// </summary>
+        /// <param name="key">The key of the bundle item whose value is desired.</param>
+        /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+        /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter. false otherwise.</returns>
+        public bool TryGetItem(string key, out IEnumerable<string> value)
+        {
+            if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.StringArray)
+            {
+                value = GetItem<IEnumerable<string>>(key);
+                return true;
+            }
+            else
+            {
+                value = default(IEnumerable<string>);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks whether an item is of a specific type.
+        /// </summary>
+        /// <typeparam name="T">The generic type to check for.</typeparam>
+        /// <param name="key">The key whose type wants to be checked.</param>
+        /// <returns>true if the item is of the specified type. false otherwise.</returns>
+        public bool Is<T>(string key)
+        {
+            if (_keys.Contains(key))
+            {
+                int type = Interop.Bundle.GetType(_handle, key);
+                switch (type)
+                {
+                    case (int)BundleType.String:
+                    return typeof(string) == typeof(T);
+
+                    case (int)BundleType.StringArray:
+                    return typeof(T).IsAssignableFrom(typeof(string[]));
+
+                    case (int)BundleType.Byte:
+                    return typeof(byte[]) == typeof(T);
+
+                    default:
+                    throw new ArgumentException("Key does not exist in the bundle", "key");
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
             }
         }
 
@@ -199,19 +381,19 @@ namespace Tizen.Applications
         {
             if (_keys.Contains(key))
             {
-                Interop.Bundle.DeleteItem(_handle, key);
+                Interop.Bundle.RemoveItem(_handle, key);
                 _keys.Remove(key);
             }
             else
             {
-                // TODO: handle when key does not exist
+                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
             }
         }
 
         /// <summary>
-        /// 
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

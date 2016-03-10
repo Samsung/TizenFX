@@ -14,6 +14,9 @@ internal static partial class Interop
 {
     internal static partial class Bundle
     {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void Iterator(string key, int type, IntPtr keyval, IntPtr userData);
+
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr Create();
 
@@ -24,7 +27,7 @@ internal static partial class Interop
         internal static extern int Count(IntPtr handle);
 
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_del", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int DeleteItem(IntPtr handle, string key);
+        internal static extern int RemoveItem(IntPtr handle, string key);
 
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int AddString(IntPtr handle, string key, string value);
@@ -47,13 +50,16 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str_array", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr GetStringArray(IntPtr handle, string key, out int size);
 
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void Foreach(IntPtr handle, Iterator iterator, IntPtr userData);
+
         internal static class UnsafeCode
         {
-            internal static unsafe void AddItem(IntPtr handle, string key, byte[] value, int offset, int count)
+            internal static unsafe int AddItem(IntPtr handle, string key, byte[] value, int offset, int count)
             {
                 fixed (byte* pointer = value)
                 {
-                    AddByte(handle, key, pointer + offset, count);
+                    return AddByte(handle, key, pointer + offset, count);
                 }
             }
         }
