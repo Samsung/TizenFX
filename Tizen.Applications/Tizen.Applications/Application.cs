@@ -72,21 +72,21 @@ namespace Tizen.Applications
             };
             ops.OnAppControl = (appControlHandle, userData) =>
             {
-                AppControl appControl = new AppControl(appControlHandle);
-                if (appControl.IsService)
+                AppControl control = new AppControl(appControlHandle);
+                if (control.IsService)
                 {
-                    Type found = FindServiceInFilters(appControl);
+                    Type found = FindServiceInFilters(control);
                     if (found != null)
                     {
-                        //StartService(found, appControl);
+                        StartService(found, control);
                     }
                 }
                 else
                 {
-                    Type found = FindActorInFilters(appControl);
+                    Type found = FindActorInFilters(control);
                     if (found != null)
                     {
-                        //StartActor(null, )
+                        StartActor(null, found, Context.ActorFlags.NewInstance, control);
                     }
                 }
             };
