@@ -8,7 +8,6 @@
 
 
 using System;
-
 using Tizen.UI;
 
 namespace Tizen.Applications
@@ -18,122 +17,110 @@ namespace Tizen.Applications
     /// </summary>
     public abstract class Actor : Context
     {
-        internal Guid TaskId { get; set; }
-
-        private enum ActorState
-        {
-            None = 0,
-            Created = 1,
-            Started = 2, 
-            Resumed = 3,
-            Pasued = 4
-        }
-
         private ActorState _state = ActorState.None;
 
         /// <summary>
         /// 
         /// </summary>
+        public event EventHandler Created;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler Started;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler Resumed;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler Paused;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler Destroyed;
+
+        private enum ActorState
+        {
+            None = 0,
+            Created = 1,
+            Started = 2,
+            Resumed = 3,
+            Pasued = 4
+        }
+
+        internal Guid TaskId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal protected Page MainPage { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnCreate() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnStart() { }
-
-         /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnPause() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnResume() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnDestroy() { }
-
-        internal void Create()
+        
+        internal void OnCreate(Guid taskId, AppControl control)
         {
             if (_state != ActorState.Created)
             {
-                OnCreate();
+                TaskId = taskId;
+                _control = control;
                 _state = ActorState.Created;
+                if (Created != null)
+                {
+                    Created(this, EventArgs.Empty);
+                }
             }
         }
 
-        internal void Start()
+        internal void OnStart()
         {
             if (_state != ActorState.Started)
             {
-                OnStart();
                 _state = ActorState.Started;
+                if (Started != null)
+                {
+                    Started(this, EventArgs.Empty);
+                }
             }
         }
 
-        internal void Pause()
+        internal void OnPause()
         {
             if (_state != ActorState.Pasued)
             {
-                OnPause();
                 _state = ActorState.Pasued;
+                if (Paused != null)
+                {
+                    Paused(this, EventArgs.Empty);
+                }
             }
         }
 
-        internal void Resume()
+        internal void OnResume()
         {
             if (_state != ActorState.Resumed)
             {
-                OnResume();
                 _state = ActorState.Resumed;
+                if (Resumed != null)
+                {
+                    Resumed(this, EventArgs.Empty);
+                }
                 MainPage.Show();
             }
         }
 
-        internal void Destroy()
+        internal void OnDestroy()
         {
             if (_state != ActorState.None)
             {
-                OnDestroy();
                 _state = ActorState.None;
+                if (Destroyed != null)
+                {
+                    Destroyed(this, EventArgs.Empty);
+                }
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="actor"></param>
-        /// <param name="control"></param>
-        protected void StartActor(Actor actor, AppControl control)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="actorType"></param>
-        /// <param name="control"></param>
-        protected override void StartActor(Type actorType, AppControl control)
-        {
-
-            Application.StartActor(TaskId, actorType, control);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override void Finish()
-        {
-            Application.StopActor(this);
         }
     }
 }

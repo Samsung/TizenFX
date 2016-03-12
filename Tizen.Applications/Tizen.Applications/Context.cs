@@ -17,6 +17,14 @@ namespace Tizen.Applications
     public abstract class Context
     {
         internal AppControl _control;
+        
+        [Flags]
+        public enum ActorFlags
+        {
+            NewInstance = 1,
+            ClearTop = 2,
+            MoveToTop = 4,
+        }
 
         /// <summary>
         /// 
@@ -34,7 +42,20 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="actorType"></param>
         /// <param name="control"></param>
-        protected abstract void StartActor(Type actorType, AppControl control);
+        protected void StartActor(Type actorType, AppControl control, ActorFlags flags = ActorFlags.NewInstance)
+        {
+            Application.StartActor(this, actorType, ActorFlags.NewInstance, control);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="flags"></param>
+        protected void StartActor(AppControl control, ActorFlags flags = ActorFlags.NewInstance)
+        {
+            Application.StartActor(this, null, ActorFlags.NewInstance, control);
+        }
 
         /// <summary>
         /// 
@@ -49,6 +70,15 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="control"></param>
+        protected void StartService(AppControl control)
+        {
+            Application.StartService(null, control);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="serviceType"></param>
         protected void StopService(Type serviceType)
         {
@@ -58,7 +88,10 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected abstract void Finish();
+        protected void Finish()
+        {
+            Application.Finish(this);
+        }
 
         /// <summary>
         /// 

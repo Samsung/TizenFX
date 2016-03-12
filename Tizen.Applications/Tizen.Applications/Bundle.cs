@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -16,6 +16,15 @@ namespace Tizen.Applications
         internal IntPtr _handle;
         private bool _disposed = false;
         private readonly List<string> _keys;
+
+        /// <summary>
+        /// The Bundle constructor.
+        /// </summary>
+        public Bundle()
+        {
+            _keys = new List<string>();
+            _handle = Interop.Bundle.Create();
+        }
 
         private enum BundleTypeProperty
         {
@@ -55,39 +64,7 @@ namespace Tizen.Applications
                 return _keys;
             }
         }
-
-        /// <summary>
-        /// The Bundle constructor.
-        /// </summary>
-        public Bundle()
-        {
-            _keys = new List<string>();
-            _handle = Interop.Bundle.Create();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // to be used if there are any other disposable objects
-                }
-                if (_handle != IntPtr.Zero)
-                {
-                    Interop.Bundle.Free(_handle);
-                    _handle = IntPtr.Zero;
-                }
-
-                _disposed = true;
-            }
-        }
-
-        ~Bundle()
-        {
-            Dispose(false);
-        }
-
+        
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
@@ -166,19 +143,6 @@ namespace Tizen.Applications
             }
         }
 
-        private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
-        {
-            managedArray = new string[size];
-            IntPtr[] IntPtrArray = new IntPtr[size];
-
-            Marshal.Copy(unmanagedArray, IntPtrArray, 0, size);
-
-            for (int iterator = 0; iterator < size; iterator++)
-            {
-                managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
-            }
-        }
-
         /// <summary>
         /// Gets the value of a bundle item with a specified key.
         /// </summary>
@@ -192,33 +156,33 @@ namespace Tizen.Applications
                 switch (type)
                 {
                     case (int)BundleType.String:
-                        // get string
-                        IntPtr stringPtr;
-                        Interop.Bundle.GetString(_handle, key, out stringPtr);
-                        string stringResult = Marshal.PtrToStringAuto(stringPtr);
-                        return stringResult;
+                    // get string
+                    IntPtr stringPtr;
+                    Interop.Bundle.GetString(_handle, key, out stringPtr);
+                    string stringResult = Marshal.PtrToStringAuto(stringPtr);
+                    return stringResult;
 
                     case (int)BundleType.StringArray:
-                        // get string array
-                        IntPtr stringArrayPtr;
-                        int stringArraySize;
-                        stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
-                        string[] stringArray;
-                        IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
-                        return stringArray;
+                    // get string array
+                    IntPtr stringArrayPtr;
+                    int stringArraySize;
+                    stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
+                    string[] stringArray;
+                    IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
+                    return stringArray;
 
                     case (int)BundleType.Byte:
                     case (int)BundleType.ByteArray:
-                        // get byte array
-                        IntPtr byteArrayPtr;
-                        int byteArraySize;
-                        Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
-                        byte[] byteArray = new byte[byteArraySize];
-                        Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
-                        return byteArray;
+                    // get byte array
+                    IntPtr byteArrayPtr;
+                    int byteArraySize;
+                    Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
+                    byte[] byteArray = new byte[byteArraySize];
+                    Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
+                    return byteArray;
 
                     default:
-                        return "PROBLEM"; // TODO: Handle this
+                    return "PROBLEM"; // TODO: Handle this
                 }
             }
             else
@@ -241,6 +205,46 @@ namespace Tizen.Applications
             else
             {
                 // TODO: handle when key does not exist
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+                if (_handle != IntPtr.Zero)
+                {
+                    Interop.Bundle.Free(_handle);
+                    _handle = IntPtr.Zero;
+                }
+
+                _disposed = true;
+            }
+        }
+
+        ~Bundle()
+        {
+            Dispose(false);
+        }
+
+        private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
+        {
+            managedArray = new string[size];
+            IntPtr[] IntPtrArray = new IntPtr[size];
+
+            Marshal.Copy(unmanagedArray, IntPtrArray, 0, size);
+
+            for (int iterator = 0; iterator < size; iterator++)
+            {
+                managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
             }
         }
     }

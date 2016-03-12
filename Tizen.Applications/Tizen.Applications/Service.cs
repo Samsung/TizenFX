@@ -19,49 +19,41 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnCreate() { }
+        public event EventHandler Created;
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnStart() { }
+        public event EventHandler Started;
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnDestroy() { }
+        public event EventHandler Destroyed;
 
-        internal void Create()
+        internal void OnCreate(AppControl control)
         {
-            OnCreate();
+            _control = control;
+            if (Created != null)
+            {
+                Created(this, EventArgs.Empty);
+            }
         }
 
-        internal void Start()
+        internal void OnStart()
         {
-            OnStart();
+            if (Started != null)
+            {
+                Started(this, EventArgs.Empty);
+            }
         }
 
-        internal void Destroy()
+        internal void OnDestroy()
         {
-            OnDestroy();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="actorType"></param>
-        /// <param name="control"></param>
-        protected override void StartActor(Type actorType, AppControl control)
-        {
-            Application.StartActor(Guid.Empty, actorType, control);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override void Finish()
-        {
-            Application.StopService(GetType());
+            if (Destroyed != null)
+            {
+                Destroyed(this, EventArgs.Empty);
+            }
         }
     }
 }

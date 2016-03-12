@@ -17,9 +17,6 @@ internal static partial class Interop
         [DllImport(Libraries.Application, EntryPoint = "app_control_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Create(out SafeAppControlHandle handle);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_destroy", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int DangerousDestroy(IntPtr handle);
-
         [DllImport(Libraries.Application, EntryPoint = "app_control_get_app_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetAppId(IntPtr app_control, out IntPtr app_id);
 
@@ -31,6 +28,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Application, EntryPoint = "app_control_get_mime", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetMime(SafeAppControlHandle handle, out string mime);
+
+        [DllImport(Libraries.Application, EntryPoint = "app_control_destroy", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int DangerousDestroy(IntPtr handle);
 
         internal sealed class SafeAppControlHandle : SafeHandle
         {
@@ -44,13 +44,13 @@ internal static partial class Interop
 
             public override bool IsInvalid
             {
-                get { return handle == IntPtr.Zero; }
+                get { return this.handle == IntPtr.Zero; }
             }
 
             protected override bool ReleaseHandle()
             {
-                DangerousDestroy(handle);
-                SetHandle(IntPtr.Zero);
+                AppControl.DangerousDestroy(this.handle);
+                this.SetHandle(IntPtr.Zero);
                 return true;
             }
         }

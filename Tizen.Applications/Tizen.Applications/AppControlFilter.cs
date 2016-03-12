@@ -25,6 +25,19 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="mime"></param>
+        /// <param name="uri"></param>
+        public AppControlFilter(string operation, string mime = null, string uri = null)
+        {
+            _operation = operation;
+            _mime = mime;
+            _uri = uri;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Operation { get { return _operation; } }
 
         /// <summary>
@@ -36,19 +49,6 @@ namespace Tizen.Applications
         /// 
         /// </summary>
         public string Uri { get { return _uri; } }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="mime"></param>
-        /// <param name="uri"></param>
-        public AppControlFilter(string operation, string mime = null, string uri = null)
-        {
-            _operation = operation;
-            _mime = mime;
-            _uri = uri;
-        }
 
         /// <summary>
         /// 
@@ -85,6 +85,16 @@ namespace Tizen.Applications
             return hash;
         }
 
+        internal bool IsMatch(AppControl e)
+        {
+            string mime = e.Mime;
+            if (String.IsNullOrEmpty(mime) && !String.IsNullOrEmpty(e.Uri))
+            {
+                mime = Interop.Aul.GetMimeFromUri(e.Uri);
+            }
+            return _operation == e.Operation && IsMimeMatched(mime) && IsUriMatched(e.Uri);
+        }
+
         private bool IsMimeMatched(string mime)
         {
             if (_mime == "*" || _mime == "*/*")
@@ -119,16 +129,6 @@ namespace Tizen.Applications
                 return uri.StartsWith(_uri.Substring(0, _uri.Length - 1));
             }
             return _uri == uri;
-        }
-
-        internal bool IsMatch(AppControl e)
-        {
-            string mime = e.Mime;
-            if (String.IsNullOrEmpty(mime) && !String.IsNullOrEmpty(e.Uri))
-            {
-                mime = Interop.Aul.GetMimeFromUri(e.Uri);
-            }
-            return _operation == e.Operation && IsMimeMatched(mime) && IsUriMatched(e.Uri);
         }
     }
 }

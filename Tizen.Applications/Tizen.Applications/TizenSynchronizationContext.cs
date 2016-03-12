@@ -15,18 +15,19 @@ namespace Tizen.Applications
 {
     internal class TizenSynchronizationContext : SynchronizationContext
     {
-        public static void Initialize()
-        {
-            SetSynchronizationContext(new TizenSynchronizationContext());
-        }
-        private Interop.Glib.GSourceFunc _wrapperHandler;
-        private Object _transactionLock = new Object();
+        private readonly Interop.Glib.GSourceFunc _wrapperHandler;
+        private readonly Object _transactionLock = new Object();        
+        private readonly Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
         private int _transactionID = 0;
-        private Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
 
         private TizenSynchronizationContext()
         {
             _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+        }
+
+        public static void Initialize()
+        {
+            SetSynchronizationContext(new TizenSynchronizationContext());
         }
 
         public override void Post(SendOrPostCallback d, object state)

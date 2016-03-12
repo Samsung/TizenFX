@@ -36,7 +36,7 @@ internal static partial class Interop
         internal static extern int GetString(IntPtr handle, string key, out IntPtr value);
 
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_byte", CallingConvention = CallingConvention.Cdecl)]
-        unsafe internal static extern int AddByte(IntPtr handle, string key, byte* value, int size);
+        internal static extern unsafe int AddByte(IntPtr handle, string key, byte* value, int size);
 
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_byte", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetByte(IntPtr handle, string key, out IntPtr value, out int size);
@@ -49,7 +49,7 @@ internal static partial class Interop
 
         internal static class UnsafeCode
         {
-            unsafe internal static void AddItem(IntPtr handle, string key, byte[] value, int offset, int count)
+            internal static unsafe void AddItem(IntPtr handle, string key, byte[] value, int offset, int count)
             {
                 fixed (byte* pointer = value)
                 {

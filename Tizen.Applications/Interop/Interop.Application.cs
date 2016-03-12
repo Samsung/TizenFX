@@ -29,6 +29,12 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_main", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int UIAppMain(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
+
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void UIAppExit();
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct UIAppLifecycleCallbacks
         {
@@ -38,11 +44,5 @@ internal static partial class Interop
             public AppResumeCallback OnResume;
             public AppControlCallback OnAppControl;
         }
-
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_main", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UIAppMain(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
-
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void UIAppExit();
     }
 }

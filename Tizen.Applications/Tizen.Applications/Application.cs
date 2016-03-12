@@ -23,17 +23,8 @@ namespace Tizen.Applications
     {
         private static readonly Dictionary<AppControlFilter, Type> s_filterMap = new Dictionary<AppControlFilter, Type>();
         private static readonly List<Service> s_serviceList = new List<Service>();
-        private static readonly List<Actor> s_actorList = new List<Actor>();
-
-        private static Actor ForegroundActor
-        {
-            get
-            {
-                return s_actorList.LastOrDefault(null);
-            }
-        }
-
-        private static readonly Window s_window = null;
+        private static readonly ActorStack s_actorStack = new ActorStack();
+        private static Window s_window = null;
 
         /// <summary>
         /// Occurs when the application starts.
@@ -44,6 +35,14 @@ namespace Tizen.Applications
         /// Occurs when the application's main loop exits.
         /// </summary>
         public static event EventHandler Exited = delegate { };
+
+        private static Actor ForegroundActor
+        {
+            get
+            {
+                return s_actorStack.Peek();
+            }
+        }
 
         /// <summary>
         /// Runs the application's main loop.
@@ -61,14 +60,14 @@ namespace Tizen.Applications
             {
                 if (ForegroundActor != null)
                 {
-                    ForegroundActor.Pause();
+                    ForegroundActor.OnPause();
                 }
             };
             ops.OnResume = (userData) =>
             {
                 if (ForegroundActor != null)
                 {
-                    ForegroundActor.Resume();
+                    ForegroundActor.OnResume();
                 }
             };
             ops.OnAppControl = (appControlHandle, userData) =>
@@ -76,27 +75,18 @@ namespace Tizen.Applications
                 AppControl appControl = new AppControl(appControlHandle);
                 if (appControl.IsService)
                 {
-                    foreach (var item in s_filterMap)
+                    Type found = FindServiceInFilters(appControl);
+                    if (found != null)
                     {
-                        if (item.Key.IsMatch(appControl) && item.Value.IsSubclassOf(typeof(Service)))
-                        {
-                            StartService(item.Value, appControl);
-                            break;
-                        }
+                        //StartService(found, appControl);
                     }
                 }
                 else
                 {
-                    foreach (var item in s_filterMap)
+                    Type found = FindActorInFilters(appControl);
+                    if (found != null)
                     {
-                        if (item.Key.IsMatch(appControl) && item.Value.IsSubclassOf(typeof(Actor)))
-                        {
-                            if (ForegroundActor == null || !appControl.IsLaunchOperation())
-                            {
-                                StartActor(Guid.Empty, item.Value, appControl);
-                            }
-                            break;
-                        }
+                        //StartActor(null, )
                     }
                 }
             };
@@ -109,15 +99,6 @@ namespace Tizen.Applications
 
             // TODO: check ret of UIAppMain and throw exceptions when errors are returned.
             Interop.Application.UIAppMain(args.Length, args, ref ops, IntPtr.Zero);
-        }
-
-        /// <summary>
-        /// Hides the application.
-        /// </summary>
-        public static void Hide()
-        {
-            if (s_window != null)
-                s_window.InActive();
         }
 
         /// <summary>
@@ -194,6 +175,193 @@ namespace Tizen.Applications
             RegisterContext(serviceType, filters);
         }
 
+        internal static void StartActor(Context caller, Type actorType, Context.ActorFlags flags, AppControl control)
+        {
+            if (caller == null && actorType == null)
+            {
+                throw new ArgumentNullException("actorType");
+            }
+
+            Actor targetActor = null;
+
+            Actor callerActor = caller as Actor;
+            if (callerActor != null && ForegroundActor != callerActor)
+            {
+                throw new InvalidOperationException("StartActor() should be called from the foreground Actor.");
+            }
+
+            if (actorType == null)
+            {
+                actorType = FindActorInFilters(control);
+                if (actorType == null)
+                {
+                    throw new ArgumentException("Could not find the matched Actor.", "control");
+                }
+            }
+
+            if (callerActor != null && !IsFlagSet(flags, Context.ActorFlags.NewInstance))
+            {
+                targetActor = s_actorStack.FindInForegroundTask(actorType);
+            }
+
+            if (s_window == null)
+            {
+                s_window = new Window();
+            }
+
+            if (!s_window.Visible)
+            {
+                s_window.Active();
+                s_window.Show();
+            }
+
+            if (targetActor == null)
+            {
+                targetActor = (Actor)Activator.CreateInstance(actorType);
+                targetActor.OnCreate(callerActor != null ? callerActor.TaskId : Guid.NewGuid(), control);
+                s_actorStack.Push(targetActor);
+            }
+            else
+            {
+                if (IsFlagSet(flags, Context.ActorFlags.ClearTop))
+                {
+                    while (targetActor != ForegroundActor)
+                    {
+                        Actor popped = s_actorStack.Pop();
+                        popped.OnPause();
+                        popped.OnDestroy();
+                    }
+                }
+                else if (IsFlagSet(flags, Context.ActorFlags.MoveToTop))
+                {
+                    if (ForegroundActor != targetActor)
+                    {
+                        ForegroundActor.OnPause();
+                        s_actorStack.MoveToTop(targetActor);
+                    }
+                }
+            }
+            ForegroundActor.OnStart();
+            ForegroundActor.OnResume();
+        }
+
+        internal static void StopActor(Actor actor)
+        {
+            if (ForegroundActor == null)
+            {
+                throw new InvalidOperationException("The Actor stack is empty.");
+            }
+
+            Guid prevForegroundTaskId = ForegroundActor.TaskId;
+
+            s_actorStack.Remove(actor);
+            actor.OnPause();
+            actor.OnDestroy();
+
+            if (actor.TaskId == prevForegroundTaskId)
+            {
+                if (ForegroundActor.TaskId == actor.TaskId)
+                {
+                    ForegroundActor.OnResume();
+                }
+                else
+                {
+                    if (s_actorStack.Count == 0 && s_serviceList.Count == 0)
+                    {
+                        Exit();
+                    }
+                    else
+                    {
+                        s_window.Hide();
+                    }
+                }
+            }
+        }
+
+        internal static void StartService(Type serviceType, AppControl control)
+        {
+            if (serviceType == null)
+            {
+                serviceType = FindServiceInFilters(control);
+                if (serviceType == null)
+                {
+                    throw new ArgumentException("Could not find the matched Service.", "control");
+                }
+            }
+            else
+            {
+                if (!serviceType.IsSubclassOf(typeof(Service)))
+                {
+                    throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.", "serviceType");
+                }
+            }
+
+            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
+            if (svc == null)
+            {
+                svc = (Service)Activator.CreateInstance(serviceType);
+                s_serviceList.Add(svc);
+                svc.OnCreate(control);
+            }
+            svc.OnStart();
+        }
+
+        internal static void StopService(Type serviceType)
+        {
+            if (!serviceType.IsSubclassOf(typeof(Service)))
+            {
+                throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
+            }
+
+            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
+            if (svc != null)
+            {
+                svc.OnDestroy();
+                s_serviceList.Remove(svc);
+                if (ForegroundActor == null && s_serviceList.Count == 0)
+                {
+                    Exit();
+                }
+            }
+        }
+
+        internal static void Finish(Context caller)
+        {
+            if (caller is Actor)
+            {
+                StopActor(caller as Actor);
+            }
+            else if (caller is Service)
+            {
+                // TODO: check the value of GetType()
+                StopService(caller.GetType());
+            }
+        }
+
+        private static Type FindActorInFilters(AppControl control)
+        {
+            foreach (var item in s_filterMap)
+            {
+                if (item.Key.IsMatch(control) && item.Value.IsSubclassOf(typeof(Actor)))
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
+        private static Type FindServiceInFilters(AppControl control)
+        {
+            foreach (var item in s_filterMap)
+            {
+                if (item.Key.IsMatch(control) && item.Value.IsSubclassOf(typeof(Service)))
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
         private static void RegisterContext(Type contextType, AppControlFilter[] filters)
         {
             foreach (var prop in contextType.GetProperties())
@@ -216,127 +384,60 @@ namespace Tizen.Applications
             }
         }
 
-        internal static void StartActor(Guid taskId, Type actorType, AppControl control)
+        private static bool IsFlagSet(Context.ActorFlags flags, Context.ActorFlags values)
         {
-            if (!actorType.IsSubclassOf(typeof(Actor)))
-            {
-                throw new ArgumentException(actorType.FullName + " is not a subclass of Actor.");
-            }
-
-            if (taskId != Guid.Empty && ForegroundActor != null && taskId != ForegroundActor.TaskId)
-            {
-                throw new InvalidOperationException("StartActor() should be called from the foreground task.");
-            }
-
-            Actor actor = (Actor)Activator.CreateInstance(actorType);
-            actor.TaskId = taskId == Guid.Empty ? Guid.NewGuid() : taskId;
-            actor._control = control;
-            actor.Create();
-
-            if (ForegroundActor != null)
-            {
-                ForegroundActor.Pause();
-            }
-
-            s_actorList.Add(actor);
-            actor.Start();
-
-            if (!s_window.Visible)
-            {
-                s_window.Active();
-                s_window.Show();
-            }
-            actor.Resume();
+            return (values & flags) == values;
         }
 
-        internal static void StartActor(Actor actor, AppControl control)
+
+        private class ActorStack
         {
-            if (ForegroundActor == null)
+            private readonly List<Actor> _actorList;
+
+            public int Count
             {
-                throw new ArgumentNullException("ForegroundActor", "The Actor stack is empty.");
-            }
-
-            if (actor.TaskId != ForegroundActor.TaskId)
-            {
-                throw new InvalidOperationException("StartActor() should be called from the foreground task.");
-            }
-
-            while (actor != ForegroundActor)
-            {
-                Actor popped = ForegroundActor;
-                s_actorList.Remove(popped);
-                popped.Pause();
-                popped.Destroy();
-            }
-            actor.Resume();
-        }
-
-        internal static void StopActor(Actor actor)
-        {
-            if (ForegroundActor == null)
-            {
-                throw new ArgumentNullException("ForegroundActor", "The Actor stack is empty.");
-            }
-
-            Guid prevForegroundTaskId = ForegroundActor.TaskId;
-
-            s_actorList.Remove(actor);
-            actor.Pause();
-            actor.Destroy();
-
-            if (actor.TaskId == prevForegroundTaskId)
-            {
-                if (ForegroundActor.TaskId == actor.TaskId)
+                get
                 {
-                    ForegroundActor.Resume();
-                }
-                else
-                {
-                    if (s_actorList.Count == 0 && s_serviceList.Count == 0)
-                    {
-                        Exit();
-                    }
-                    else {
-                        Hide();
-                    }
+                    return _actorList.Count;
                 }
             }
-        }
 
-        internal static void StartService(Type serviceType, AppControl control)
-        {
-            if (!serviceType.IsSubclassOf(typeof(Service)))
+            public ActorStack()
             {
-                throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
+                _actorList = new List<Actor>();
             }
 
-            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
-            if (svc == null)
+            public Actor Peek()
             {
-                svc = (Service)Activator.CreateInstance(serviceType);
-                s_serviceList.Add(svc);
-                svc.Create();
-            }
-            svc._control = control;
-            svc.Start();
-        }
-
-        internal static void StopService(Type serviceType)
-        {
-            if (!serviceType.IsSubclassOf(typeof(Service)))
-            {
-                throw new ArgumentException(serviceType.FullName + " is not a subclass of Service.");
+                return _actorList.LastOrDefault(null);
             }
 
-            Service svc = s_serviceList.Find(s => s.GetType() == serviceType);
-            if (svc != null)
+            public void Push(Actor item)
             {
-                svc.Destroy();
-                s_serviceList.Remove(svc);
-                if (ForegroundActor == null && s_serviceList.Count == 0)
-                {
-                    Exit();
-                }
+                _actorList.Add(item);
+            }
+
+            public Actor Pop()
+            {
+                Actor last = Peek();
+                _actorList.Remove(last);
+                return last;
+            }
+
+            public void Remove(Actor actor)
+            {
+                _actorList.Remove(actor);
+            }
+
+            public Actor FindInForegroundTask(Type actorType)
+            {
+                return _actorList.Find(s => s.GetType() == actorType && s.TaskId == Peek().TaskId);
+            }
+
+            public void MoveToTop(Actor actor)
+            {
+                _actorList.Remove(actor);
+                _actorList.Add(actor);
             }
         }
     }
