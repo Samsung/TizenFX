@@ -18,7 +18,7 @@ namespace Tizen.Applications
         private readonly Interop.Glib.GSourceFunc _wrapperHandler;
         private readonly Object _transactionLock = new Object();        
         private readonly Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
-        private int _transactionID = 0;
+        private int _transactionId = 0;
 
         private TizenSynchronizationContext()
         {
@@ -69,7 +69,7 @@ namespace Tizen.Applications
             int id = 0;
             lock (_transactionLock)
             {
-                id = _transactionID++;
+                id = _transactionId++;
             }
             _handlerMap.Add(id, action);
             Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
