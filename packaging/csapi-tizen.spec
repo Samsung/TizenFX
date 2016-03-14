@@ -1,5 +1,4 @@
 %define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.dll
 
 Name:       csapi-tizen
 Summary:    Tizen API for C#
@@ -12,22 +11,16 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
+BuildRequires: pkgconfig(dlog)
+BuildRequires: pkgconfig(capi-base-common)
+
+Requires: dlog
+Requires: capi-base-common
+
 Requires(post): mono-core
 Requires(postun): mono-core
-
-# P/Invoke Dependencies
-BuildRequires: pkgconfig(dlog)
-
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
-Requires: dlog
-# DLL Dependencies
-#BuildRequires: ...
 
 %description
 Tizen API for C#
@@ -46,36 +39,27 @@ Development package for %{name}
 cp %{SOURCE1} .
 
 %build
-# build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen/Tizen.snk \
-  Tizen/Properties/AssemblyInfo.cs \
-  Tizen/Tizen/*.cs \
-  Tizen/Interop/*.cs
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+make
 
 %install
 # copy dll
 mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+install -p -m 644 Tizen.dll %{buildroot}%{dllpath}
+install -p -m 644 Tizen.Internals.dll %{buildroot}%{dllpath}
 
 # generate pkgconfig
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
 sed -e "s#@version@#%{version}#g" \
     -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
 
 %post
-gacutil -i %{dllpath}/%{dllname}
+gacutil -i %{dllpath}/Tizen.dll
+gacutil -i %{dllpath}/Tizen.Internals.dll
 
 %files
-%{dllpath}/%{dllname}
+%{dllpath}/Tizen.dll
+%{dllpath}/Tizen.Internals.dll
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
