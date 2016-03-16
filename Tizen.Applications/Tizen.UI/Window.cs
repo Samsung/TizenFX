@@ -11,7 +11,7 @@ using System;
 
 namespace Tizen.UI
 {
-    internal class Window : IDisposable
+    public class Window : IDisposable
     {
         private IntPtr _native_window = IntPtr.Zero;
 

@@ -59,7 +59,7 @@ namespace Tizen.Applications
         {
             AppControlFilter f = obj as AppControlFilter;
             if (f == null) return false;
-
+            
             return (_operation == f._operation) & (_mime == f._mime) & (_uri == f._uri);
         }
 

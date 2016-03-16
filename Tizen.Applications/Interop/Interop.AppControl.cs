@@ -14,7 +14,7 @@ internal static partial class Interop
 {
     internal static partial class AppControl
     {
-        [DllImport(Libraries.Application, EntryPoint = "app_control_create", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Application, EntryPoint = "app_control_create")]
         internal static extern int Create(out SafeAppControlHandle handle);
 
         [DllImport(Libraries.Application, EntryPoint = "app_control_get_app_id", CallingConvention = CallingConvention.Cdecl)]
