@@ -16,7 +16,8 @@ BuildRequires: mono-devel
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(capi-base-common)
 
-Requires: dlog
+# Add p/invoke runtime dependencies should be added manually
+Requires: libdlog
 Requires: capi-base-common
 
 Requires(post): mono-core
