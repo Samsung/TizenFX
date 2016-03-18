@@ -15,6 +15,7 @@ internal static partial class Interop
         public const string AppControl = "libcapi-appfw-app-control.so.0";
         public const string AppEvent = "libcapi-appfw-event.so.0";
         public const string AppcoreAgent = "libappcore-agent.so.1";
+        public const string AppManager = "libcapi-appfw-app-manager.so.0";
         public const string Bundle = "libbundle.so.0";
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";

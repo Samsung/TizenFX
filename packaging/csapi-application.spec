@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(appcore-agent)
+BuildRequires: pkgconfig(capi-appfw-app-manager)
 
 Requires: glib-2.0
 Requires: capi-appfw-application
