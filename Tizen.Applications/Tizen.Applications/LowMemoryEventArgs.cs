@@ -8,13 +8,15 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public abstract class ServiceController : Controller
+    public class LowMemoryEventArgs : EventArgs
     {
+        public LowMemoryStatus LowMemoryStatus { get; internal set; }
     }
 }

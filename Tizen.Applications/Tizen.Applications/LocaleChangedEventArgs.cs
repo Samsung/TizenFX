@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tizen.UI
+namespace Tizen.Applications
 {
-    public class Window : Tizen.Applications.IWindow
+    public class LocaleChangedEventArgs
     {
+        public string Locale { get; internal set; }
     }
 }

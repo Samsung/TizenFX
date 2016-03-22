@@ -47,33 +47,39 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Tizen.Internals">
-      <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
+      <HintPath>..\..\tizen\Tizen.Internals\obj\Debug\Tizen.Internals.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interop\Interop.AppCommon.cs" />
     <Compile Include="Interop\Interop.AppControl.cs" />
+    <Compile Include="Interop\Interop.AppEvent.cs" />
     <Compile Include="Interop\Interop.Application.cs" />
-    <Compile Include="Interop\Interop.Aul.cs" />
     <Compile Include="Interop\Interop.Bundle.cs" />
     <Compile Include="Interop\Interop.Glib.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.Window.cs" />
+    <Compile Include="Interop\Interop.Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Applications\Context.cs" />
-    <Compile Include="Tizen.Applications\UIController.cs" />
+    <Compile Include="Tizen.Applications\AppControlEventArgs.cs" />
+    <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
+    <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
+    <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
+    <Compile Include="Tizen.Applications\LowMemoryStatus.cs" />
+    <Compile Include="Tizen.Applications\ServiceApplication.cs" />
+    <Compile Include="Tizen.Applications\UIApplication.cs" />
     <Compile Include="Tizen.Applications\AppControl.cs" />
-    <Compile Include="Tizen.Applications\AppControlFilter.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />
-    <Compile Include="Tizen.Applications\Controller.cs" />
-    <Compile Include="Tizen.Applications\ServiceController.cs" />
-    <Compile Include="Tizen.UI\IUIContext.cs" />
-    <Compile Include="Tizen.UI\Page.cs" />
-    <Compile Include="Tizen.UI\Window.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
+      <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
+      <Name>Tizen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

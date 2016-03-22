@@ -19,10 +19,11 @@ BuildRequires: mono-devel
 BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
+BuildRequires: pkgconfig(appcore-agent)
 
 Requires: glib-2.0
 Requires: capi-appfw-application
-Requires: evas
+Requires: appcore-agent
 
 Requires(post): mono-core
 Requires(postun): mono-core

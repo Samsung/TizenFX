@@ -16,7 +16,7 @@ namespace Tizen.Applications
     internal class TizenSynchronizationContext : SynchronizationContext
     {
         private readonly Interop.Glib.GSourceFunc _wrapperHandler;
-        private readonly Object _transactionLock = new Object();        
+        private readonly Object _transactionLock = new Object();
         private readonly Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
         private int _transactionId = 0;
 

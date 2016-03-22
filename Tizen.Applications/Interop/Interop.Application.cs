@@ -14,26 +14,21 @@ internal static partial class Interop
 {
     internal static partial class Application
     {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AppCreateCallback(IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppPauseCallback(IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppResumeCallback(IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppTerminateCallback(IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_main", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UIAppMain(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_main")]
+        internal static extern int Main(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void UIAppExit();
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit")]
+        internal static extern void Exit();
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct UIAppLifecycleCallbacks
@@ -46,3 +41,4 @@ internal static partial class Interop
         }
     }
 }
+

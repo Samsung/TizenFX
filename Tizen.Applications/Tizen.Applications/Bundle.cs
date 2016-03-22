@@ -237,30 +237,30 @@ namespace Tizen.Applications
                 switch (type)
                 {
                     case (int)BundleType.String:
-                    // get string
-                    IntPtr stringPtr;
-                    Interop.Bundle.GetString(_handle, key, out stringPtr);
-                    return Marshal.PtrToStringAuto(stringPtr);
+                        // get string
+                        IntPtr stringPtr;
+                        Interop.Bundle.GetString(_handle, key, out stringPtr);
+                        return Marshal.PtrToStringAuto(stringPtr);
 
                     case (int)BundleType.StringArray:
-                    // get string array
-                    int stringArraySize;
-                    IntPtr stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
-                    string[] stringArray;
-                    IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
-                    return stringArray;
+                        // get string array
+                        int stringArraySize;
+                        IntPtr stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
+                        string[] stringArray;
+                        IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
+                        return stringArray;
 
                     case (int)BundleType.Byte:
-                    // get byte array
-                    IntPtr byteArrayPtr;
-                    int byteArraySize;
-                    Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
-                    byte[] byteArray = new byte[byteArraySize];
-                    Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
-                    return byteArray;
+                        // get byte array
+                        IntPtr byteArrayPtr;
+                        int byteArraySize;
+                        Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
+                        byte[] byteArray = new byte[byteArraySize];
+                        Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
+                        return byteArray;
 
                     default:
-                    throw new ArgumentException("Key does not exist in the bundle", "key");
+                        throw new ArgumentException("Key does not exist in the bundle", "key");
                 }
             }
             else
@@ -355,16 +355,16 @@ namespace Tizen.Applications
                 switch (type)
                 {
                     case (int)BundleType.String:
-                    return typeof(string) == typeof(T);
+                        return typeof(string) == typeof(T);
 
                     case (int)BundleType.StringArray:
-                    return typeof(T).IsAssignableFrom(typeof(string[]));
+                        return typeof(T).IsAssignableFrom(typeof(string[]));
 
                     case (int)BundleType.Byte:
-                    return typeof(byte[]) == typeof(T);
+                        return typeof(byte[]) == typeof(T);
 
                     default:
-                    throw new ArgumentException("Key does not exist in the bundle", "key");
+                        throw new ArgumentException("Key does not exist in the bundle", "key");
                 }
             }
             else

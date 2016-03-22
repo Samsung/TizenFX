@@ -14,22 +14,25 @@ internal static partial class Interop
 {
     internal static partial class AppControl
     {
-        [DllImport(Libraries.Application, EntryPoint = "app_control_create")]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_create")]
         internal static extern int Create(out SafeAppControlHandle handle);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_get_app_id", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_clone")]
+        internal static extern int Clone(out SafeAppControlHandle clone, SafeAppControlHandle handle);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_app_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetAppId(IntPtr app_control, out IntPtr app_id);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_get_operation", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_operation", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetOperation(SafeAppControlHandle handle, out string operation);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_get_uri", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_uri", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetUri(SafeAppControlHandle handle, out string uri);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_get_mime", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_mime", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetMime(SafeAppControlHandle handle, out string mime);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_control_destroy", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_destroy", CallingConvention = CallingConvention.Cdecl)]
         private static extern int DangerousDestroy(IntPtr handle);
 
         internal sealed class SafeAppControlHandle : SafeHandle
