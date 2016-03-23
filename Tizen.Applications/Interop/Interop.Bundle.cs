@@ -23,9 +23,6 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_free", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Free(IntPtr handle);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_count", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Count(IntPtr handle);
-
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_del", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int RemoveItem(IntPtr handle, string key);
 

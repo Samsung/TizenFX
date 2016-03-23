@@ -82,7 +82,7 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.Bundle.Count(_handle);
+                return _keys.Count;
             }
         }
 
