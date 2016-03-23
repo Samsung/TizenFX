@@ -32,7 +32,7 @@ namespace Tizen.Applications
             Interop.Application.UIAppLifecycleCallbacks ops;
             ops.OnCreate = (data) =>
             {
-                OnCreate();
+                SendCreate();
                 return true;
             };
             ops.OnTerminate = (data) =>
