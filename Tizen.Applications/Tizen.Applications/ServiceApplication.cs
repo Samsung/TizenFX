@@ -31,7 +31,7 @@ namespace Tizen.Applications
             Interop.Service.ServiceAppLifecycleCallbacks ops;
             ops.OnCreate = (data) =>
             {
-                OnCreate();
+                SendCreate();
                 return true;
             };
             ops.OnTerminate = (data) =>

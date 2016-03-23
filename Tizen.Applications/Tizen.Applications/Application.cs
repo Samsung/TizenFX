@@ -58,6 +58,11 @@ namespace Tizen.Applications
         /// </summary>
         public abstract void Exit();
 
+        internal void SendCreate()
+        {
+            ApplicationInfo = new ApplicationInfo();
+            OnCreate();
+        }
         protected virtual void OnCreate()
         {
         }
