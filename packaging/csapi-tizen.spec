@@ -58,7 +58,10 @@ sed -e "s#@version@#%{version}#g" \
 gacutil -i %{dllpath}/Tizen.dll
 gacutil -i %{dllpath}/Tizen.Internals.dll
 
+find %{_libdir}/mono/gac -name Tizen*  -exec chsmack -a "_" {} \;
+
 %files
+%manifest %{name}.manifest
 %{dllpath}/Tizen.dll
 %{dllpath}/Tizen.Internals.dll
 
