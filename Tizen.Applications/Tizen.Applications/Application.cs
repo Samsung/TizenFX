@@ -50,7 +50,7 @@ namespace Tizen.Applications
             s_CurrentApplication = this;
 
             Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, HandleAppEvent, IntPtr.Zero, out _lowMemoryNativeHandle);
-            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, HandleAppEvent, IntPtr.Zero, out _localeChangedNativeHandle);
+            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LanguageSet, HandleAppEvent, IntPtr.Zero, out _localeChangedNativeHandle);
         }
 
         /// <summary>
@@ -114,6 +114,7 @@ namespace Tizen.Applications
 
         private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)
         {
+            Console.WriteLine("HandleAppEvent!! eventName={0}, eventData={1}", eventName, eventData);
             Bundle b = new Bundle(eventData);
             if (eventName == Interop.AppEvent.EventNames.LowMemory)
             {

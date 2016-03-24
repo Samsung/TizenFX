@@ -62,7 +62,10 @@ sed -e "s#@version@#%{version}#g" \
 %post
 gacutil -i %{dllpath}/%{dllname}
 
+find %{_libdir}/mono/gac -name Tizen*  -exec chsmack -a "_" {} \;
+
 %files
+%manifest %{name}.manifest
 %{dllpath}/%{dllname}
 
 %files devel
