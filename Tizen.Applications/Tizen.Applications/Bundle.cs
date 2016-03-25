@@ -98,6 +98,14 @@ namespace Tizen.Applications
             }
         }
 
+        internal IntPtr Handle
+        {
+            get
+            {
+                return _handle;
+            }
+        }
+
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>

@@ -17,37 +17,37 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void Iterator(string key, int type, IntPtr keyval, IntPtr userData);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_create", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_create")]
         internal static extern IntPtr Create();
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_free", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_free")]
         internal static extern int Free(IntPtr handle);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_del", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_del")]
         internal static extern int RemoveItem(IntPtr handle, string key);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str")]
         internal static extern int AddString(IntPtr handle, string key, string value);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_type", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_type")]
         internal static extern int GetType(IntPtr handle, string key);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str")]
         internal static extern int GetString(IntPtr handle, string key, out IntPtr value);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_byte", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_byte")]
         internal static extern unsafe int AddByte(IntPtr handle, string key, byte* value, int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_byte", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_byte")]
         internal static extern int GetByte(IntPtr handle, string key, out IntPtr value, out int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str_array", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str_array")]
         internal static extern int AddStringArray(IntPtr handle, string key, string[] value, int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str_array", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str_array")]
         internal static extern IntPtr GetStringArray(IntPtr handle, string key, out int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach")]
         internal static extern void Foreach(IntPtr handle, Iterator iterator, IntPtr userData);
 
         internal static class UnsafeCode
