@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     /// <summary>
     /// ApplicationManager class. This class has the methods and events of the ApplicationManager.

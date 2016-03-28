@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     /// <summary>
     /// InstalledApplication class. This class has the methods and properties of InstalledApplication.

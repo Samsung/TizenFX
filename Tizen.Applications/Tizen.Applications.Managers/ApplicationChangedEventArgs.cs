@@ -8,7 +8,7 @@
 
 using System;
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     /// <summary>
     /// ApplicationChangedEventArgs class. This class is an event arguments of the ApplicationLaunched and ApplicationTerminated events.

@@ -6,7 +6,7 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     /// <summary>
     /// RunningApplication class. This class has the properties of RunningApplication.

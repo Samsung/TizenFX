@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     internal class ApplicationManagerImpl : IDisposable
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications.MessagePort
+namespace Tizen.Applications.Messages
 {
     /// <summary>
     /// Contains AppId, Port Name, Trusted

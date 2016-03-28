@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications.MessagePort
+namespace Tizen.Applications.Messages
 {
     /// <summary>
     /// An extended EventArgs class which contains remote message port information and message

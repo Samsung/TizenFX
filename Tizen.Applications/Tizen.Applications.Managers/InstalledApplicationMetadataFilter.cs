@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.Applications.Manager
+namespace Tizen.Applications.Managers
 {
     /// <summary>
     /// InstalledApplicationMetadataFilter class. This class is a parameter of InstallerApplicationAppsAsync method.

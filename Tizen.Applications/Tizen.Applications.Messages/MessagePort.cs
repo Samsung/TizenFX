@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tizen.Internals;
 
-namespace Tizen.Applications.MessagePort
+namespace Tizen.Applications.Messages
 {
     /// <summary>
     /// The Message Port API provides functions to send and receive messages between applications.
