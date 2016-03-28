@@ -19,7 +19,7 @@ namespace Tizen.Applications.Managers
         private int _pid = 0;
         private ApplicationState _state = ApplicationState.None;
 
-        public ApplicationChangedEventArgs(string applicationId, int processId, int state)
+        internal ApplicationChangedEventArgs(string applicationId, int processId, int state)
         {
             _appid = applicationId;
             _pid = processId;

@@ -174,11 +174,11 @@ namespace Tizen.Applications.Managers
         internal InstalledApplication GetInstalledApp(string applicationId)
         {
             Console.WriteLine("GetInstalledApp(appid)");
-            IntPtr info = IntPtr.Zero;
-            Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out info);
-            if (info != IntPtr.Zero)
+            IntPtr handle = IntPtr.Zero;
+            Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out handle);
+            if (handle != IntPtr.Zero)
             {
-                InstalledApplication app = new InstalledApplication(info);
+                InstalledApplication app = new InstalledApplication(handle);
                 return app;
             }
             return null;
@@ -187,14 +187,14 @@ namespace Tizen.Applications.Managers
         internal RunningApplication GetRunningApp(string applicationId)
         {
             Console.WriteLine("GetRunningApp(appid)");
-            IntPtr context = IntPtr.Zero;
-            Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out context);
+            IntPtr handle = IntPtr.Zero;
+            Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out handle);
 
-            if (context != IntPtr.Zero)
+            if (handle != IntPtr.Zero)
             {
                 int pid = 0;
-                Interop.ApplicationManager.AppContextGetPid(context, out pid);
-                Interop.ApplicationManager.AppContextDestroy(context);
+                Interop.ApplicationManager.AppContextGetPid(handle, out pid);
+                Interop.ApplicationManager.AppContextDestroy(handle);
                 RunningApplication app = new RunningApplication(applicationId, pid);
                 return app;
             }
@@ -231,16 +231,16 @@ namespace Tizen.Applications.Managers
         private void RegisterApplicationChangedEvent()
         {
             Console.WriteLine("RegisterApplicationChangedEvent()");
-            _applicationChangedEventCallback = (IntPtr context, int state, IntPtr userData) =>
+            _applicationChangedEventCallback = (IntPtr handle, int state, IntPtr userData) =>
             {
                 Console.WriteLine("ApplicationChangedEventCallback");
-                if (context == IntPtr.Zero) return;
+                if (handle == IntPtr.Zero) return;
 
                 IntPtr ptr = IntPtr.Zero;
-                Interop.ApplicationManager.AppContextGetAppId(context, out ptr);
+                Interop.ApplicationManager.AppContextGetAppId(handle, out ptr);
                 string appid = Marshal.PtrToStringAuto(ptr);
                 int pid = 0;
-                Interop.ApplicationManager.AppContextGetPid(context, out pid);
+                Interop.ApplicationManager.AppContextGetPid(handle, out pid);
 
                 if (state == 0)
                 {
