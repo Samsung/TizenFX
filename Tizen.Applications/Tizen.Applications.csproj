@@ -66,6 +66,7 @@
     <Compile Include="Tizen.Applications.Messages\MessageReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications.Messages\RemoteValues.cs" />
     <Compile Include="Tizen.Applications\AppControlReceivedEventArgs.cs" />
+    <Compile Include="Tizen.Applications\AppControlReplyCallback.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Tizen.Applications\AppControlLaunchMode.cs" />
     <Compile Include="Tizen.Applications\AppControlLaunchResult.cs" />
     <Compile Include="Tizen.Applications\AppControlOperations.cs" />
-    <Compile Include="Tizen.Applications\AppControlReplyReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
