@@ -7,29 +7,9 @@
 /// you entered into with Samsung.
 
 using System;
-using System.Collections.Generic;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
-    /// <summary>
-    /// Enumeration for application state.
-    /// </summary>
-    public enum ApplicationState
-    {
-        /// <summary>
-        /// Initial state.
-        /// </summary>
-        None = -1,
-        /// <summary>
-        /// Launched state.
-        /// </summary>
-        Launched,
-        /// <summary>
-        /// Terminated state.
-        /// </summary>
-        Terminated,
-    }
-
     /// <summary>
     /// ApplicationChangedEventArgs class. This class is an event arguments of the ApplicationLaunched and ApplicationTerminated events.
     /// </summary>

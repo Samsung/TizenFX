@@ -10,12 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
     /// <summary>
     /// ApplicationManager class. This class has the methods and events of the ApplicationManager.
     /// </summary>
-    static public class ApplicationManager
+    public static class ApplicationManager
     {
         /// <summary>
         /// ApplicationLaunched event. This event is occurred when the application is launched.

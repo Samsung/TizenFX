@@ -21,7 +21,7 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
 
-        private readonly Interop.AppControl.SafeAppControlHandle _handle;
+        internal Interop.AppControl.SafeAppControlHandle _handle;
 
         private string _operation = null;
         private string _mime = null;
@@ -42,15 +42,6 @@ namespace Tizen.Applications
         public AppControl()
         {
             ErrorCode err = Interop.AppControl.Create(out _handle);
-            if (err != ErrorCode.None)
-            {
-                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
-            }
-        }
-
-        internal AppControl(IntPtr handle)
-        {
-            ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
             if (err != ErrorCode.None)
             {
                 throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
@@ -239,47 +230,13 @@ namespace Tizen.Applications
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string CallerApplicationId
-        {
-            get
-            {
-                string value = String.Empty;
-                ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
-                if (err != ErrorCode.None)
-                {
-                    Log.Warn(LogTag, "Failed to get the caller appId from the appcontrol. Err = " + err);
-                }
-                return value;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsReplyRequested
-        {
-            get
-            {
-                bool value = false;
-                ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
-                if (err != ErrorCode.None)
-                {
-                    Log.Warn(LogTag, "Failed to check the replyRequested of the appcontrol. Err = " + err);
-                }
-                return value;
-            }
-        }
-
         public ExtraDataCollection ExtraData
         {
             get
             {
                 if (_extraData == null)
                 {
-                    _extraData = new ExtraDataCollection(_handle);
+                    _extraData = new ExtraDataCollection();
                 }
                 return _extraData;
             }
@@ -291,7 +248,7 @@ namespace Tizen.Applications
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetMatchedApplicationIds()
+        public static IEnumerable<string> GetMatchedApplicationIds(AppControl control)
         {
             List<string> ids = new List<string>();
             Interop.AppControl.AppMatchedCallback callback = new Interop.AppControl.AppMatchedCallback(
@@ -312,7 +269,7 @@ namespace Tizen.Applications
             IntPtr pointerToApplicationIds = Marshal.GetIUnknownForObject(ids);
             if (pointerToApplicationIds != null)
             {
-                ErrorCode err = Interop.AppControl.ForeachAppMatched(_handle, callback, pointerToApplicationIds);
+                ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, pointerToApplicationIds);
                 if (err != ErrorCode.None)
                 {
                     throw new InvalidOperationException("Failed to get matched appids. err = " + err);
@@ -344,25 +301,8 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="reply"></param>
-        public void Reply(AppControl reply)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
         public class ExtraDataCollection
         {
-            private readonly Interop.AppControl.SafeAppControlHandle _handle;
-
-            internal ExtraDataCollection(Interop.AppControl.SafeAppControlHandle handle)
-            {
-                _handle = handle;
-            }
-
             /// <summary>
             /// 
             /// </summary>

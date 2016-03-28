@@ -41,7 +41,7 @@ namespace Tizen.Applications
             };
             ops.OnAppControl = (appControlHandle, data) =>
             {
-                OnStart(new AppControl(appControlHandle));
+                OnAppControlReceived(new ReceivedAppControl(appControlHandle));
             };
             ops.OnResume = (data) =>
             {

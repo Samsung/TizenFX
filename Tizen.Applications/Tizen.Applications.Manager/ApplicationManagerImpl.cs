@@ -11,12 +11,31 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
-    internal partial class ApplicationManagerImpl : IDisposable
+    internal class ApplicationManagerImpl : IDisposable
     {
         private static ApplicationManagerImpl _instance = new ApplicationManagerImpl();
+
         private bool _disposed = false;
+        private Interop.ApplicationManager.AppManagerAppContextEventCallback _applicationChangedEventCallback;
+
+        private ApplicationManagerImpl()
+        {
+            Console.WriteLine("ApplicationManagerImpl()");
+            RegisterApplicationChangedEvent();
+        }
+
+
+        ~ApplicationManagerImpl()
+        {
+            Console.WriteLine("~ApplicationManagerImpl()");
+            UnRegisterApplicationChangedEvent();
+            Dispose(false);
+        }
+
+        internal event EventHandler<ApplicationChangedEventArgs> ApplicationLaunched;
+        internal event EventHandler<ApplicationChangedEventArgs> ApplicationTerminated;        
 
         internal static ApplicationManagerImpl Instance
         {
@@ -26,10 +45,23 @@ namespace Tizen.Applications
             }
         }
 
-        private ApplicationManagerImpl()
+        public void Dispose()
         {
-            Console.WriteLine("ApplicationManagerImpl()");
-            RegisterApplicationChangedEvent();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free managed objects.
+            }
+            //Free unmanaged objects
+            _disposed = true;
         }
 
         internal async Task<IEnumerable<InstalledApplication>> GetInstalledAppsAsync()
@@ -196,30 +228,49 @@ namespace Tizen.Applications
             return running;
         }
 
-        ~ApplicationManagerImpl()
+        private void RegisterApplicationChangedEvent()
         {
-            Console.WriteLine("~ApplicationManagerImpl()");
-            UnRegisterApplicationChangedEvent();
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
+            Console.WriteLine("RegisterApplicationChangedEvent()");
+            _applicationChangedEventCallback = (IntPtr context, int state, IntPtr userData) =>
             {
-                // Free managed objects.
-            }
-            //Free unmanaged objects
-            _disposed = true;
+                Console.WriteLine("ApplicationChangedEventCallback");
+                if (context == IntPtr.Zero) return;
+
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppContextGetAppId(context, out ptr);
+                string appid = Marshal.PtrToStringAuto(ptr);
+                int pid = 0;
+                Interop.ApplicationManager.AppContextGetPid(context, out pid);
+
+                if (state == 0)
+                {
+                    var launchedEventCache = ApplicationLaunched;
+                    if (launchedEventCache != null)
+                    {
+                        Console.WriteLine("Raise up ApplicationLaunched");
+                        ApplicationChangedEventArgs e = new ApplicationChangedEventArgs(appid, pid, state);
+                        launchedEventCache(null, e);
+                    }
+                }
+                else if (state == 1)
+                {
+                    var terminatedEventCache = ApplicationTerminated;
+                    if (terminatedEventCache != null)
+                    {
+                        Console.WriteLine("Raise up ApplicationTerminated");
+                        ApplicationChangedEventArgs e = new ApplicationChangedEventArgs(appid, pid, state);
+                        terminatedEventCache(null, e);
+                    }
+                }
+            };
+
+            Interop.ApplicationManager.AppManagerSetAppContextEvent(_applicationChangedEventCallback, IntPtr.Zero);
+        }
+
+        private void UnRegisterApplicationChangedEvent()
+        {
+            Console.WriteLine("UnRegisterApplicationChangedEvent()");
+            Interop.ApplicationManager.AppManagerUnSetAppContextEvent();
         }
     }
 }

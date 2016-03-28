@@ -6,19 +6,15 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
-using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
     /// <summary>
     /// RunningApplication class. This class has the properties of RunningApplication.
     /// </summary>
     public class RunningApplication
     {
-        private string _applicationId;
-        private int _processId;
+        private readonly string _applicationId;
+        private readonly int _processId;
 
         internal RunningApplication(string applicationId, int processId)
         {

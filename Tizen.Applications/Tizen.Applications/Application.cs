@@ -76,7 +76,7 @@ namespace Tizen.Applications
         /// 
         /// </summary>
         /// <param name="control"></param>
-        protected virtual void OnStart(AppControl control)
+        protected virtual void OnAppControlReceived(ReceivedAppControl control)
         {
         }
 

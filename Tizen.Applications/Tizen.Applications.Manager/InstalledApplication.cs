@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
     /// <summary>
     /// InstalledApplication class. This class has the methods and properties of InstalledApplication.
@@ -192,6 +192,9 @@ namespace Tizen.Applications
             Dispose(false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

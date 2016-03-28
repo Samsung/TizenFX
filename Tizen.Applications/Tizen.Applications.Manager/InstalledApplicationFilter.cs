@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Manager
 {
     /// <summary>
     /// InstalledApplicationFilter class. This class is a parameter of InstallerApplicationAppsAsync method.
@@ -102,55 +102,4 @@ namespace Tizen.Applications
         }
     }
 
-    /// <summary>
-    /// InstalledApplicationMetadataFilter class. This class is a parameter of InstallerApplicationAppsAsync method.
-    /// </summary>
-    public class InstalledApplicationMetadataFilter : IDisposable
-    {
-        private IntPtr _handle;
-        private bool disposed = false;
-
-        public InstalledApplicationMetadataFilter(IDictionary<string, string> filter)
-        {
-            Interop.ApplicationManager.AppInfoMetadataFilterCreate(out _handle);
-            foreach (var item in filter)
-            {
-                Interop.ApplicationManager.AppInfoMetadataFilterAdd(_handle, item.Key, item.Value);
-            }
-        }
-
-        internal IntPtr Handle
-        {
-            get
-            {
-                return _handle;
-            }
-        }
-
-        ~InstalledApplicationMetadataFilter()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-            if (disposing)
-            {
-                // to be used if there are any other disposable objects
-            }
-            if (_handle != IntPtr.Zero)
-            {
-                Interop.ApplicationManager.AppInfoMetadataFilterDestroy(_handle);
-            }
-            disposed = true;
-        }
-    }
 }
