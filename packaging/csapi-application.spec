@@ -21,10 +21,13 @@ BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(appcore-agent)
 BuildRequires: pkgconfig(capi-appfw-app-manager)
+BuildRequires: pkgconfig(message-port)
 
 Requires: glib-2.0
 Requires: capi-appfw-application
+Requires: capi-message-port
 Requires: appcore-agent
+
 
 Requires(post): mono-core
 Requires(postun): mono-core
