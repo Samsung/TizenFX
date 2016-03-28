@@ -22,6 +22,21 @@ namespace Tizen.Applications
         private Interop.AppEvent.SafeAppEventHandle _localeChangedNativeHandle;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs> Created;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs> Terminated;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<AppControlReceivedEventArgs> AppControlReceived;
+
+        /// <summary>
         /// The low memory event.
         /// </summary>
         public event EventHandler<LowMemoryEventArgs> LowMemory;
@@ -61,23 +76,40 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnCreate()
+        /// <param name="e"></param>
+        protected virtual void OnCreate(EventArgs e)
         {
+            var eh = Created as EventHandler<EventArgs>;
+            if (eh != null)
+            {
+                eh(this, e);
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnTerminate()
+        /// <param name="e"></param>
+        protected virtual void OnTerminate(EventArgs e)
         {
+            var eh = Terminated as EventHandler<EventArgs>;
+            if (eh != null)
+            {
+                eh(this, e);
+            }
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="control"></param>
-        protected virtual void OnAppControlReceived(ReceivedAppControl control)
+        /// <param name="e"></param>
+        protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            var eh = AppControlReceived as EventHandler<AppControlReceivedEventArgs>;
+            if (eh != null)
+            {
+                eh(this, e);
+            }
         }
 
         /// <summary>
@@ -86,7 +118,7 @@ namespace Tizen.Applications
         /// <param name="e"></param>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
-            EventHandler<LowMemoryEventArgs> eh = LowMemory;
+            var eh = LowMemory as EventHandler<LowMemoryEventArgs>;
             if (eh != null)
             {
                 eh(this, e);
@@ -99,7 +131,7 @@ namespace Tizen.Applications
         /// <param name="e"></param>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            EventHandler<LocaleChangedEventArgs> eh = LocaleChanged;
+            var eh = LocaleChanged as EventHandler<LocaleChangedEventArgs>;
             if (eh != null)
             {
                 eh(this, e);
@@ -109,7 +141,7 @@ namespace Tizen.Applications
         internal void SendCreate()
         {
             ApplicationInfo = new ApplicationInfo();
-            OnCreate();
+            OnCreate(EventArgs.Empty);
         }
 
         private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)

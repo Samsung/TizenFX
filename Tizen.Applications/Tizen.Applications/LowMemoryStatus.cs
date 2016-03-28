@@ -7,12 +7,6 @@
 /// you entered into with Samsung.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Tizen.Applications
 {
     /// <summary>

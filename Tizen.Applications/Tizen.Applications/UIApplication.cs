@@ -8,11 +8,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -21,6 +16,16 @@ namespace Tizen.Applications
     /// </summary>
     public class UIApplication : Application
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs> Resumed;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs> Paused;
+
         /// <summary>
         /// 
         /// </summary>
@@ -37,19 +42,19 @@ namespace Tizen.Applications
             };
             ops.OnTerminate = (data) =>
             {
-                OnTerminate();
+                OnTerminate(EventArgs.Empty);
             };
             ops.OnAppControl = (appControlHandle, data) =>
             {
-                OnAppControlReceived(new ReceivedAppControl(appControlHandle));
+                OnAppControlReceived(new AppControlReceivedEventArgs(new ReceivedAppControl(appControlHandle)));
             };
             ops.OnResume = (data) =>
             {
-                OnResume();
+                OnResume(EventArgs.Empty);
             };
             ops.OnPause = (data) =>
             {
-                OnPause();
+                OnPause(EventArgs.Empty);
             };
 
             TizenSynchronizationContext.Initialize();
@@ -67,15 +72,25 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnResume()
+        protected virtual void OnResume(EventArgs e)
         {
+            var eh = Resumed as EventHandler<EventArgs>;
+            if (eh != null)
+            {
+                eh(this, e);
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnPause()
+        protected virtual void OnPause(EventArgs e)
         {
+            var eh = Paused as EventHandler<EventArgs>;
+            if (eh != null)
+            {
+                eh(this, e);
+            }
         }
     }
 }

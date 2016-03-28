@@ -8,10 +8,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
@@ -36,11 +32,11 @@ namespace Tizen.Applications
             };
             ops.OnTerminate = (data) =>
             {
-                OnTerminate();
+                OnTerminate(EventArgs.Empty);
             };
             ops.OnAppControl = (appControlHandle, data) =>
             {
-                OnAppControlReceived(new ReceivedAppControl(appControlHandle));
+                OnAppControlReceived(new AppControlReceivedEventArgs(new ReceivedAppControl(appControlHandle)));
             };
 
             TizenSynchronizationContext.Initialize();
