@@ -68,6 +68,7 @@
     <Compile Include="Tizen.Applications.Messages\MessagePort.cs" />
     <Compile Include="Tizen.Applications.Messages\MessageReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications.Messages\RemoteValues.cs" />
+    <Compile Include="Tizen.Applications\AppControlReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
