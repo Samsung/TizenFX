@@ -19,12 +19,12 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        public event EventHandler<EventArgs> Resumed;
+        public event EventHandler Resumed;
 
         /// <summary>
         /// 
         /// </summary>
-        public event EventHandler<EventArgs> Paused;
+        public event EventHandler Paused;
 
         /// <summary>
         /// 
@@ -42,7 +42,7 @@ namespace Tizen.Applications
             };
             ops.OnTerminate = (data) =>
             {
-                OnTerminate(EventArgs.Empty);
+                OnTerminate();
             };
             ops.OnAppControl = (appControlHandle, data) =>
             {
@@ -50,11 +50,11 @@ namespace Tizen.Applications
             };
             ops.OnResume = (data) =>
             {
-                OnResume(EventArgs.Empty);
+                OnResume();
             };
             ops.OnPause = (data) =>
             {
-                OnPause(EventArgs.Empty);
+                OnPause();
             };
 
             TizenSynchronizationContext.Initialize();
@@ -72,24 +72,24 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnResume(EventArgs e)
+        protected virtual void OnResume()
         {
-            var eh = Resumed as EventHandler<EventArgs>;
+            EventHandler eh = Resumed;
             if (eh != null)
             {
-                eh(this, e);
+                eh(this, EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnPause(EventArgs e)
+        protected virtual void OnPause()
         {
-            var eh = Paused as EventHandler<EventArgs>;
+            EventHandler eh = Paused;
             if (eh != null)
             {
-                eh(this, e);
+                eh(this, EventArgs.Empty);
             }
         }
     }

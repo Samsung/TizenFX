@@ -32,7 +32,7 @@ namespace Tizen.Applications
             };
             ops.OnTerminate = (data) =>
             {
-                OnTerminate(EventArgs.Empty);
+                OnTerminate();
             };
             ops.OnAppControl = (appControlHandle, data) =>
             {
