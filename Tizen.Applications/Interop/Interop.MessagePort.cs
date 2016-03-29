@@ -20,7 +20,7 @@ internal static partial class Interop
         [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int SendMessageWithLocalPort(string remote_app_id, string remote_port, IntPtr message, int local_port_id);
 
-        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_trusted_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int SendTrustedMessageWithLocalPort(string remote_app_id, string remote_port, IntPtr message, int local_port_id);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
