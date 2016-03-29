@@ -46,9 +46,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tizen.Internals">
-      <HintPath>..\..\tizen\Tizen.Internals\obj\Debug\Tizen.Internals.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\Interop.AppCommon.cs" />
@@ -95,6 +92,10 @@
     <None Include="Tizen.Applications.snk" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
+      <Project>{b9aa1cb2-f72d-4a30-a33b-a20c850a38a0}</Project>
+      <Name>Tizen.Internals</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
       <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
       <Name>Tizen</Name>
