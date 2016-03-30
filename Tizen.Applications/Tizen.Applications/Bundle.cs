@@ -31,10 +31,7 @@ namespace Tizen.Applications
         public Bundle()
         {
             _handle = Interop.Bundle.Create();
-            if ((BundleError)Internals.Errors.ErrorFacts.GetLastResult() == BundleError.OutOfMemory)
-            {
-                throw new InvalidOperationException("Out of memory");
-            }
+            BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
             _keys = new HashSet<string>();
         }
 
@@ -51,20 +48,15 @@ namespace Tizen.Applications
                 };
 
                 Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+                if ((BundleErrorFactory.BundleError)Internals.Errors.ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid parameter - cannot create bundle instance");
+                }
             }
             else
             {
                 throw new ArgumentNullException("Invalid bundle");
             }
-        }
-
-        private enum BundleError
-        {
-            None = Internals.Errors.ErrorCode.None,
-            OutOfMemory = Internals.Errors.ErrorCode.OutOfMemory,
-            InvalidParameter = Internals.Errors.ErrorCode.InvalidParameter,
-            KeyNotAvailable = Internals.Errors.ErrorCode.KeyNotAvailable,
-            KeyExists = -0x01180000 | 0x01
         }
 
         private enum BundleTypeProperty
@@ -172,14 +164,7 @@ namespace Tizen.Applications
                 }
                 // Code is in Interop file because it is unsafe
                 int ret = Interop.Bundle.UnsafeCode.AddItem(_handle, key, value, offset, count);
-                if ((BundleError)ret == BundleError.InvalidParameter)
-                {
-                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
-                }
-                if ((BundleError)ret == BundleError.OutOfMemory)
-                {
-                    throw new InvalidOperationException("Out of memory");
-                }
+                BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Add(key);
             }
             else
@@ -198,14 +183,7 @@ namespace Tizen.Applications
             if (!_keys.Contains(key))
             {
                 int ret = Interop.Bundle.AddString(_handle, key, value);
-                if ((BundleError)ret == BundleError.InvalidParameter)
-                {
-                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
-                }
-                if ((BundleError)ret == BundleError.OutOfMemory)
-                {
-                    throw new InvalidOperationException("Out of memory");
-                }
+                BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Add(key);
             }
             else
@@ -225,14 +203,7 @@ namespace Tizen.Applications
             {
                 string[] valueArray = value.ToArray();
                 int ret = Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Count());
-                if ((BundleError)ret == BundleError.InvalidParameter)
-                {
-                    throw new ArgumentException("Invalid parameter (key may be null or empty string)");
-                }
-                if ((BundleError)ret == BundleError.OutOfMemory)
-                {
-                    throw new InvalidOperationException("Out of memory");
-                }
+                BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Add(key);
             }
             else
@@ -251,18 +222,21 @@ namespace Tizen.Applications
             if (_keys.Contains(key))
             {
                 int type = Interop.Bundle.GetType(_handle, key);
+                BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
                 switch (type)
                 {
                     case (int)BundleType.String:
                         // get string
                         IntPtr stringPtr;
-                        Interop.Bundle.GetString(_handle, key, out stringPtr);
+                        int retString = Interop.Bundle.GetString(_handle, key, out stringPtr);
+                        BundleErrorFactory.CheckAndThrowException(retString, _handle);
                         return Marshal.PtrToStringAuto(stringPtr);
 
                     case (int)BundleType.StringArray:
                         // get string array
                         int stringArraySize;
                         IntPtr stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
+                        BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
                         string[] stringArray;
                         IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
                         return stringArray;
@@ -271,7 +245,8 @@ namespace Tizen.Applications
                         // get byte array
                         IntPtr byteArrayPtr;
                         int byteArraySize;
-                        Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
+                        int retByte = Interop.Bundle.GetByte(_handle, key, out byteArrayPtr, out byteArraySize);
+                        BundleErrorFactory.CheckAndThrowException(retByte, _handle);
                         byte[] byteArray = new byte[byteArraySize];
                         Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
                         return byteArray;
@@ -313,6 +288,10 @@ namespace Tizen.Applications
             }
             else
             {
+                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
+                }
                 value = default(byte[]);
                 return false;
             }
@@ -333,6 +312,10 @@ namespace Tizen.Applications
             }
             else
             {
+                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
+                }
                 value = default(string);
                 return false;
             }
@@ -353,6 +336,10 @@ namespace Tizen.Applications
             }
             else
             {
+                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
+                }
                 value = default(IEnumerable<string>);
                 return false;
             }
@@ -394,16 +381,23 @@ namespace Tizen.Applications
         /// Removes a a bundle item with a specific key from a Bundle.
         /// </summary>
         /// <param name="key">The key of the item to delete.</param>
-        public void RemoveItem(string key)
+        /// <returns>true if the item is successfully found and removed. false otherwise (even if the item is not found).</returns>
+        public bool RemoveItem(string key)
         {
             if (_keys.Contains(key))
             {
-                Interop.Bundle.RemoveItem(_handle, key);
+                int ret = Interop.Bundle.RemoveItem(_handle, key);
+                if (ret == (int)BundleErrorFactory.BundleError.KeyNotAvailable)
+                {
+                    return false;
+                }
+                BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Remove(key);
+                return true;
             }
             else
             {
-                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
+                return false;
             }
         }
 
@@ -444,6 +438,46 @@ namespace Tizen.Applications
             for (int iterator = 0; iterator < size; iterator++)
             {
                 managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
+            }
+        }
+    }
+
+    internal static class BundleErrorFactory
+    {
+        internal enum BundleError
+        {
+            None = Internals.Errors.ErrorCode.None,
+            OutOfMemory = Internals.Errors.ErrorCode.OutOfMemory,
+            InvalidParameter = Internals.Errors.ErrorCode.InvalidParameter,
+            KeyNotAvailable = Internals.Errors.ErrorCode.KeyNotAvailable,
+            KeyExists = -0x01180000 | 0x01
+        }
+
+        static internal void CheckAndThrowException(int error, IntPtr handle)
+        {
+            if ((BundleError)error == BundleError.None)
+            {
+                return;
+            }
+            else if ((BundleError)error == BundleError.OutOfMemory)
+            {
+                throw new InvalidOperationException("Out of memory");
+            }
+            else if ((BundleError)error == BundleError.InvalidParameter)
+            {
+                if (handle == IntPtr.Zero)
+                {
+                    throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
+                }
+                throw new ArgumentException("Invalid parameter");
+            }
+            else if ((BundleError)error == BundleError.KeyNotAvailable)
+            {
+                throw new ArgumentException("Key does not exist in the bundle", "key");
+            }
+            else if ((BundleError)error == BundleError.KeyExists)
+            {
+                throw new ArgumentException("Key already exists", "key");
             }
         }
     }
