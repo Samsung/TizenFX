@@ -28,6 +28,10 @@ namespace Tizen.Applications.Messages
         /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
         public MessagePort(string portName, bool trusted)
         {
+            if (String.IsNullOrEmpty(portName))
+            {
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidParameter, "Invalid PortName", "PortName");
+            }
             _portName = portName;
             _trusted = trusted;
         }
@@ -44,18 +48,6 @@ namespace Tizen.Applications.Messages
         /// Called when a message is received.
         /// </summary>
         public event EventHandler<MessageReceivedEventArgs> MessageReceived;
-
-        private enum MessagePortError
-        {
-            None = Internals.Errors.ErrorCode.None,
-            IOError = Internals.Errors.ErrorCode.IoError,
-            OutOfMemory = Internals.Errors.ErrorCode.OutOfMemory,
-            InvalidParameter = Internals.Errors.ErrorCode.InvalidParameter,
-            PortNotFound = -0x01130000 | 0x01,
-            CertificateNotMatch = -0x01130000 | 0x02,
-            MaxExceeded = -0x01130000 | 0x03,
-            ResourceUnavailable = -0x01130000 | 0x04
-        }
 
         /// <summary>
         /// The name of the local message port
@@ -123,7 +115,7 @@ namespace Tizen.Applications.Messages
                     Bundle bundle = new Bundle(message);
                     MessageReceivedEventArgs args;
 
-                    if (remotePortName != null)
+                    if (!String.IsNullOrEmpty(remotePortName))
                     {
                         args = new MessageReceivedEventArgs(bundle, remoteAppId, remotePortName, trusted);
                     }
@@ -144,24 +136,19 @@ namespace Tizen.Applications.Messages
                     _portId = Interop.MessagePort.RegisterPort(_portName, _messageCallBack, IntPtr.Zero);
                 }
 
-                if(_portId > 0)
+                if (_portId > 0)
                 {
                     s_portMap.Add(this, 1);
                     _listening = true;
                 }
                 else
                 {
-                    switch ((MessagePortError)_portId)
-                    {
-                        case MessagePortError.IOError: throw new IOException("I/O Error");
-                        case MessagePortError.OutOfMemory: throw new InvalidOperationException("Out of memory");
-                        case MessagePortError.InvalidParameter: throw new ArgumentException("Invalid parameter");
-                    }
+                    MessagePortErrorFactory.ThrowException(_portId);
                 }
             }
             else
             {
-                throw new ArgumentException("Already listening");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Already listening");
             }
         }
 
@@ -182,7 +169,7 @@ namespace Tizen.Applications.Messages
                     ret = Interop.MessagePort.UnregisterPort(_portId);
                 }
 
-                if (ret == 0)
+                if (ret == (int)MessagePortError.None)
                 {
                     s_portMap.Remove(this);
                     _portId = 0;
@@ -190,18 +177,12 @@ namespace Tizen.Applications.Messages
                 }
                 else
                 {
-                    switch ((MessagePortError)ret)
-                    {
-                        case MessagePortError.IOError: throw new IOException("I/O Error");
-                        case MessagePortError.OutOfMemory: throw new InvalidOperationException("Out of memory");
-                        case MessagePortError.InvalidParameter: throw new ArgumentException("Invalid parameter");
-                        case MessagePortError.PortNotFound: throw new ArgumentNullException("Port not found");
-                    }
+                    MessagePortErrorFactory.ThrowException(ret);
                 }
             }
             else
             {
-                throw new InvalidOperationException("Already stopped");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Already stopped");
             }
         }
 
@@ -212,7 +193,7 @@ namespace Tizen.Applications.Messages
         /// <param name="remoteAppId">The ID of the remote application</param>
         /// <param name="remotePortName">The name of the remote message port</param>
         /// <param name="trusted">If true the trusted message port of remote application otherwise false</param>
-        public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted=false)
+        public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted = false)
         {
             if (_listening)
             {
@@ -225,23 +206,22 @@ namespace Tizen.Applications.Messages
                 {
                     ret = Interop.MessagePort.SendMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId);
                 }
-                if (ret != 0)
+
+                if (ret != (int)MessagePortError.None)
                 {
-                    switch ((MessagePortError)ret)
+                    if (ret== (int)MessagePortError.MaxExceeded)
                     {
-                        case MessagePortError.IOError: throw new IOException("I/O Error");
-                        case MessagePortError.InvalidParameter: throw new ArgumentException("Invalid parameter");
-                        case MessagePortError.OutOfMemory: throw new InvalidOperationException("Out of memory");
-                        case MessagePortError.PortNotFound: throw new ArgumentNullException("Port not found");
-                        case MessagePortError.CertificateNotMatch: throw new ArgumentException("Certification not match");
-                        case MessagePortError.MaxExceeded: throw new ArgumentOutOfRangeException("Max(4KB) exceeded");
-                        case MessagePortError.ResourceUnavailable: throw new ArgumentNullException("Resource unavailable");
+                        MessagePortErrorFactory.ThrowException(ret, "Message has exceeded the maximum limit(4KB)", "Message");
+                    }
+                    else
+                    {
+                        MessagePortErrorFactory.ThrowException(ret);
                     }
                 }
             }
             else
             {
-                throw new InvalidOperationException("Need listening");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Need listening");
             }
         }
 
@@ -252,7 +232,7 @@ namespace Tizen.Applications.Messages
         public override int GetHashCode()
         {
             int hash = 0;
-            if (_portName != null)
+            if (!String.IsNullOrEmpty(_portName))
             {
                 hash ^= _portName.GetHashCode();
             }
