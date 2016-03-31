@@ -20,6 +20,9 @@ namespace Tizen.Applications.Managers
         private IntPtr _handle;
         private bool disposed = false;
 
+        private const string LogTag = "Tizen.Applications.Managers";
+        private int ret = 0;
+
         internal InstalledApplication(IntPtr handle)
         {
             _handle = handle;
@@ -35,7 +38,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetAppId(_handle, out ptr);
-                string appid = Marshal.PtrToStringAuto(ptr);
+                string appid = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    appid = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get ApplicationId failed.");
+                }
                 return appid;
             }
         }
@@ -49,7 +60,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetPackage(_handle, out ptr);
-                string packageid = Marshal.PtrToStringAuto(ptr);
+                string packageid = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    packageid = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get PackageId failed.");
+                }
                 return packageid;
             }
         }
@@ -63,7 +82,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetLabel(_handle, out ptr);
-                string label = Marshal.PtrToStringAuto(ptr);
+                string label = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    label = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get Label failed.");
+                }
                 return label;
             }
         }
@@ -77,7 +104,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetExec(_handle, out ptr);
-                string exec = Marshal.PtrToStringAuto(ptr);
+                string exec = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    exec = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get ExcutablePath failed.");
+                }
                 return exec;
             }
         }
@@ -91,7 +126,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetIcon(_handle, out ptr);
-                string path = Marshal.PtrToStringAuto(ptr);
+                string path = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    path = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get IconPath failed.");
+                }
                 return path;
             }
         }
@@ -105,7 +148,15 @@ namespace Tizen.Applications.Managers
             {
                 IntPtr ptr = IntPtr.Zero;
                 Interop.ApplicationManager.AppInfoGetType(_handle, out ptr);
-                string type = Marshal.PtrToStringAuto(ptr);
+                string type = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    type = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get Type failed.");
+                }
                 return type;
             }
         }
@@ -122,7 +173,7 @@ namespace Tizen.Applications.Managers
 
                 Interop.ApplicationManager.AppInfoMetadataCallback cb = (string key, string value, IntPtr userData) =>
                 {
-                    Console.WriteLine("AppInfoMetadataCallback");
+                    Log.Debug(LogTag, "AppInfoMetadataCallback");
                     if (key.Length != 0)
                     {
                         metadata.Add(key, value);
@@ -130,8 +181,11 @@ namespace Tizen.Applications.Managers
                     return true;
                 };
 
-                Interop.ApplicationManager.AppInfoForeachMetadata(_handle, cb, IntPtr.Zero);
-
+                ret = Interop.ApplicationManager.AppInfoForeachMetadata(_handle, cb, IntPtr.Zero);
+                if (ret != 0)
+                {
+                    Log.Warn(LogTag, "InstalledApplication get Metadata failed.");
+                }
                 return metadata;
             }
         }
@@ -183,7 +237,15 @@ namespace Tizen.Applications.Managers
         {
             IntPtr ptr = IntPtr.Zero;
             Interop.ApplicationManager.AppInfoGetLocaledLabel(ApplicationId, locale, out ptr);
-            string label = Marshal.PtrToStringAuto(ptr);
+            string label = Label;
+            if (ptr != IntPtr.Zero)
+            {
+                label = Marshal.PtrToStringAuto(ptr);
+            }
+            else
+            {
+                Log.Warn(LogTag, "InstalledApplication GetLocalizedLabel(" + locale + ") failed.");
+            }
             return label;
         }
 
@@ -193,7 +255,7 @@ namespace Tizen.Applications.Managers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose()
         {

@@ -19,12 +19,23 @@ namespace Tizen.Applications.Managers
         private IntPtr _handle;
         private bool disposed = false;
 
+        private const string LogTag = "Tizen.Applications.Managers";
+        private int ret = 0;
+
         public InstalledApplicationMetadataFilter(IDictionary<string, string> filter)
         {
-            Interop.ApplicationManager.AppInfoMetadataFilterCreate(out _handle);
+            ret = Interop.ApplicationManager.AppInfoMetadataFilterCreate(out _handle);
+            if (ret != 0)
+            {
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, _handle, "InstalledApplicationMetadataFilter creation failed.");
+            }
             foreach (var item in filter)
             {
-                Interop.ApplicationManager.AppInfoMetadataFilterAdd(_handle, item.Key, item.Value);
+                ret = Interop.ApplicationManager.AppInfoMetadataFilterAdd(_handle, item.Key, item.Value);
+                if (ret != 0)
+                {
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, _handle, "InstalledApplicationMetadataFilter item add failed.");
+                }
             }
         }
 
