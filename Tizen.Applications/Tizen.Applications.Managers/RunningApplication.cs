@@ -13,13 +13,10 @@ namespace Tizen.Applications.Managers
     /// </summary>
     public class RunningApplication
     {
-        private readonly string _applicationId;
-        private readonly int _processId;
-
         internal RunningApplication(string applicationId, int processId)
         {
-            _applicationId = applicationId;
-            _processId = processId;
+            ApplicationId = applicationId;
+            ProcessId = processId;
         }
 
         /// <summary>
@@ -28,10 +25,8 @@ namespace Tizen.Applications.Managers
         /// <returns>string application id.</returns>
         public string ApplicationId
         {
-            get
-            {
-                return _applicationId;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,10 +35,8 @@ namespace Tizen.Applications.Managers
         /// <returns>string process id.</returns>
         public int ProcessId
         {
-            get
-            {
-                return _processId;
-            }
+            get;
+            set;
         }
     }
 }

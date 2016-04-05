@@ -22,7 +22,6 @@ namespace Tizen.Applications.Managers
         private Interop.ApplicationManager.AppManagerAppContextEventCallback _applicationChangedEventCallback;
 
         private const string LogTag = "Tizen.Applications.Managers";
-        private int _ret = 0;
 
         private ApplicationManagerImpl()
         {
@@ -80,10 +79,10 @@ namespace Tizen.Applications.Managers
                     if (handle != IntPtr.Zero)
                     {
                         IntPtr clonedHandle = IntPtr.Zero;
-                        _ret = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
-                        if (_ret != 0)
+                        int result = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
+                        if (result != 0)
                         {
-                            ApplicationManagerErrorFactory.ExceptionChecker(_ret, clonedHandle, "GetInstalledAppsAsync() failed.");
+                            ApplicationManagerErrorFactory.ExceptionChecker(result, clonedHandle, "GetInstalledAppsAsync() failed.");
                         }
                         InstalledApplication app = new InstalledApplication(clonedHandle);
                         Result.Add(app);
@@ -91,10 +90,10 @@ namespace Tizen.Applications.Managers
                     }
                     return false;
                 };
-                _ret = Interop.ApplicationManager.AppManagerForeachAppInfo(cb, IntPtr.Zero);
-                if (_ret != 0)
+                int ret = Interop.ApplicationManager.AppManagerForeachAppInfo(cb, IntPtr.Zero);
+                if (ret != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "GetInstalledAppsAsync() failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "GetInstalledAppsAsync() failed.");
                 }
                 return Result;
             });
@@ -113,10 +112,10 @@ namespace Tizen.Applications.Managers
                     if (handle != IntPtr.Zero)
                     {
                         IntPtr clonedHandle = IntPtr.Zero;
-                        _ret = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
-                        if (_ret != 0)
+                        int result = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
+                        if (result != 0)
                         {
-                            ApplicationManagerErrorFactory.ExceptionChecker(_ret, clonedHandle, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
+                            ApplicationManagerErrorFactory.ExceptionChecker(result, clonedHandle, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
                         }
                         InstalledApplication app = new InstalledApplication(clonedHandle);
                         Result.Add(app);
@@ -126,12 +125,12 @@ namespace Tizen.Applications.Managers
                 };
 
                 IntPtr appInfoFilter = MakeNativeAppInfoFilter(filter.Filter);
-                _ret = Interop.ApplicationManager.AppInfoFilterForeachAppinfo(appInfoFilter, cb, IntPtr.Zero);
+                int ret = Interop.ApplicationManager.AppInfoFilterForeachAppinfo(appInfoFilter, cb, IntPtr.Zero);
                 if (appInfoFilter != IntPtr.Zero)
                     Interop.ApplicationManager.AppInfoFilterDestroy(appInfoFilter);
-                if (_ret != 0)
+                if (ret != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
                 }
                 return Result;
             });
@@ -151,8 +150,8 @@ namespace Tizen.Applications.Managers
                     if (handle != IntPtr.Zero)
                     {
                         IntPtr clonedHandle = IntPtr.Zero;
-                        _ret = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
-                        if (_ret != 0)
+                        int result = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
+                        if (result != 0)
                         {
                             return false;
                         }
@@ -163,12 +162,12 @@ namespace Tizen.Applications.Managers
                     return false;
                 };
                 IntPtr appMedataFilter = MakeNativeAppMetadataFilter(filter.Filter);
-                _ret = Interop.ApplicationManager.AppInfoMetadataFilterForeach(appMedataFilter, cb, IntPtr.Zero);
+                int ret = Interop.ApplicationManager.AppInfoMetadataFilterForeach(appMedataFilter, cb, IntPtr.Zero);
                 if (appMedataFilter != IntPtr.Zero)
                     Interop.ApplicationManager.AppInfoMetadataFilterDestroy(appMedataFilter);
-                if (_ret != 0)
+                if (ret != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, appMedataFilter, "GetInstalledAppsAsync(InstalledApplicationMetadataFilter) failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, appMedataFilter, "GetInstalledAppsAsync(InstalledApplicationMetadataFilter) failed.");
                 }
                 return Result;
             });
@@ -188,15 +187,15 @@ namespace Tizen.Applications.Managers
                     if (handle != IntPtr.Zero)
                     {
                         IntPtr ptr = IntPtr.Zero;
-                        _ret = Interop.ApplicationManager.AppContextGetAppId(handle, out ptr);
-                        if (_ret != 0)
+                        int result = Interop.ApplicationManager.AppContextGetAppId(handle, out ptr);
+                        if (result != 0)
                         {
                             return false;
                         }
                         string appid = Marshal.PtrToStringAuto(ptr);
                         int pid = 0;
-                        _ret = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
-                        if (_ret != 0)
+                        result = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
+                        if (result != 0)
                         {
                             return false;
                         }
@@ -207,10 +206,10 @@ namespace Tizen.Applications.Managers
                     return false;
                 };
 
-                _ret = Interop.ApplicationManager.AppManagerForeachAppContext(cb, IntPtr.Zero);
-                if (_ret != 0)
+                int ret = Interop.ApplicationManager.AppManagerForeachAppContext(cb, IntPtr.Zero);
+                if (ret != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "GetRunningAppsAsync() failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "GetRunningAppsAsync() failed.");
                 }
                 return Result;
             });
@@ -220,10 +219,10 @@ namespace Tizen.Applications.Managers
         {
             Log.Debug(LogTag, "GetInstalledApp(applicationId)");
             IntPtr handle = IntPtr.Zero;
-            _ret = Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out handle);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out handle);
+            if (ret != 0)
             {
-                ApplicationManagerErrorFactory.ExceptionChecker(_ret, handle, "GetInstalledApp(applicationId) failed.");
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, handle, "GetInstalledApp(applicationId) failed.");
             }
             if (handle != IntPtr.Zero)
             {
@@ -237,18 +236,18 @@ namespace Tizen.Applications.Managers
         {
             Log.Debug(LogTag, "GetRunningApp(applicationId)");
             IntPtr handle = IntPtr.Zero;
-            _ret = Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out handle);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out handle);
+            if (ret != 0)
             {
-                ApplicationManagerErrorFactory.ExceptionChecker(_ret, handle, "GetRunningApp(applicationId) failed.");
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, handle, "GetRunningApp(applicationId) failed.");
             }
             if (handle != IntPtr.Zero)
             {
                 int pid = 0;
-                _ret = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
-                if (_ret != 0)
+                ret = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
+                if (ret != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, handle, "GetRunningApp(applicationId) failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(ret, handle, "GetRunningApp(applicationId) failed.");
                 }
                 RunningApplication app = new RunningApplication(applicationId, pid);
                 return app;
@@ -260,10 +259,10 @@ namespace Tizen.Applications.Managers
         {
             Log.Debug(LogTag, "GetRunningApp(processId)");
             string appid = "";
-            _ret = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
+            if (ret != 0)
             {
-                ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "GetRunningApp(processId) failed.");
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "GetRunningApp(processId) failed.");
             }
             RunningApplication app = new RunningApplication(appid, processId);
             return app;
@@ -273,8 +272,8 @@ namespace Tizen.Applications.Managers
         {
             Log.Debug(LogTag, "IsRunningApp(applicationId)");
             bool running = false;
-            _ret = Interop.ApplicationManager.AppManagerIsRunning(applicationId, out running);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerIsRunning(applicationId, out running);
+            if (ret != 0)
             {
                 Log.Warn(LogTag, "IsRunningApp(applicationId) failed.");
             }
@@ -285,14 +284,14 @@ namespace Tizen.Applications.Managers
         {
             Log.Debug(LogTag, "IsRunningApp(processId)");
             string appid = "";
-            _ret = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
+            if (ret != 0)
             {
-                ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "IsRunningApp(processId) failed.");
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "IsRunningApp(processId) failed.");
             }
             bool running = false;
-            _ret = Interop.ApplicationManager.AppManagerIsRunning(appid, out running);
-            if (_ret != 0)
+            ret = Interop.ApplicationManager.AppManagerIsRunning(appid, out running);
+            if (ret != 0)
             {
                 Log.Warn(LogTag, "IsRunningApp(processId) failed.");
             }
@@ -308,17 +307,17 @@ namespace Tizen.Applications.Managers
                 if (handle == IntPtr.Zero) return;
 
                 IntPtr ptr = IntPtr.Zero;
-                _ret = Interop.ApplicationManager.AppContextGetAppId(handle, out ptr);
-                if (_ret != 0)
+                int result = Interop.ApplicationManager.AppContextGetAppId(handle, out ptr);
+                if (result != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, handle, "RegisterApplicationChangedEvent() failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(result, handle, "RegisterApplicationChangedEvent() failed.");
                 }
                 string appid = Marshal.PtrToStringAuto(ptr);
                 int pid = 0;
-                _ret = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
-                if (_ret != 0)
+                result = Interop.ApplicationManager.AppContextGetPid(handle, out pid);
+                if (result != 0)
                 {
-                    ApplicationManagerErrorFactory.ExceptionChecker(_ret, handle, "RegisterApplicationChangedEvent() failed.");
+                    ApplicationManagerErrorFactory.ExceptionChecker(result, handle, "RegisterApplicationChangedEvent() failed.");
                 }
                 if (state == 0)
                 {
@@ -341,10 +340,10 @@ namespace Tizen.Applications.Managers
                     }
                 }
             };
-            _ret = Interop.ApplicationManager.AppManagerSetAppContextEvent(_applicationChangedEventCallback, IntPtr.Zero);
-            if (_ret != 0)
+            int ret = Interop.ApplicationManager.AppManagerSetAppContextEvent(_applicationChangedEventCallback, IntPtr.Zero);
+            if (ret != 0)
             {
-                ApplicationManagerErrorFactory.ExceptionChecker(_ret, IntPtr.Zero, "RegisterApplicationChangedEvent() register failed.");
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, IntPtr.Zero, "RegisterApplicationChangedEvent() register failed.");
             }
         }
 

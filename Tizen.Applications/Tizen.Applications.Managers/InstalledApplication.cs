@@ -21,7 +21,6 @@ namespace Tizen.Applications.Managers
         private bool disposed = false;
 
         private const string LogTag = "Tizen.Applications.Managers";
-        private int ret = 0;
 
         internal InstalledApplication(IntPtr handle)
         {
@@ -181,7 +180,7 @@ namespace Tizen.Applications.Managers
                     return true;
                 };
 
-                ret = Interop.ApplicationManager.AppInfoForeachMetadata(_handle, cb, IntPtr.Zero);
+                int ret = Interop.ApplicationManager.AppInfoForeachMetadata(_handle, cb, IntPtr.Zero);
                 if (ret != 0)
                 {
                     Log.Warn(LogTag, "InstalledApplication get Metadata failed.");
@@ -274,6 +273,7 @@ namespace Tizen.Applications.Managers
             if (_handle != IntPtr.Zero)
             {
                 Interop.ApplicationManager.AppInfoDestroy(_handle);
+                _handle = IntPtr.Zero;
             }
             disposed = true;
         }
