@@ -1,5 +1,3 @@
-%define _use_internal_dependency_generator 0
-
 %define dllpath %{_libdir}/mono/tizen
 %define dllname Tizen.Applications.dll
 
