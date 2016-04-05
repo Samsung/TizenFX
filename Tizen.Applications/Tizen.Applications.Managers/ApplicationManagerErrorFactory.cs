@@ -27,7 +27,7 @@ namespace Tizen.Applications.Managers
     {
         private const string LogTag = "Tizen.Applications.Managers";
 
-        internal static void ExceptionChecker(int ret, IntPtr handle, string msg)
+        internal static void ExceptionChecker(int ret, string msg)
         {
             Log.Debug(LogTag, "ExceptionChecker");
             ApplicationManagerError err = (ApplicationManagerError)ret;
@@ -35,10 +35,6 @@ namespace Tizen.Applications.Managers
             {
                 case ApplicationManagerError.InvalidParameter:
                     Log.Error(LogTag, msg);
-                    if (handle == IntPtr.Zero)
-                    {
-                        throw new InvalidOperationException("Invalid handle error occurred.");
-                    }
                     throw new ArgumentException(err + " error occurred.");
                 case ApplicationManagerError.OutOfMemory:
                 case ApplicationManagerError.IoError:
