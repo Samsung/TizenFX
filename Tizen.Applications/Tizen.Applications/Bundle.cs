@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -18,6 +19,7 @@ namespace Tizen.Applications
     /// A bundle holds items (key-value pairs) and can be used with other Tizen APIs.
     /// Keys can be used to access values.
     /// This class is accessed by using a constructor to create a new instance of this object.
+    /// A bundle instance is not guaranteed to be thread safe if the instance is modified by multiple threads.
     /// </summary>
     public class Bundle : IDisposable
     {
@@ -31,7 +33,7 @@ namespace Tizen.Applications
         public Bundle()
         {
             _handle = Interop.Bundle.Create();
-            BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
+            BundleErrorFactory.CheckAndThrowException(ErrorFacts.GetLastResult(), _handle);
             _keys = new HashSet<string>();
         }
 
@@ -48,7 +50,7 @@ namespace Tizen.Applications
                 };
 
                 Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
-                if ((BundleErrorFactory.BundleError)Internals.Errors.ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
+                if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
                 {
                     throw new ArgumentException("Invalid parameter - cannot create bundle instance");
                 }
@@ -222,7 +224,7 @@ namespace Tizen.Applications
             if (_keys.Contains(key))
             {
                 int type = Interop.Bundle.GetType(_handle, key);
-                BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
+                BundleErrorFactory.CheckAndThrowException(ErrorFacts.GetLastResult(), _handle);
                 switch (type)
                 {
                     case (int)BundleType.String:
@@ -236,7 +238,7 @@ namespace Tizen.Applications
                         // get string array
                         int stringArraySize;
                         IntPtr stringArrayPtr = Interop.Bundle.GetStringArray(_handle, key, out stringArraySize);
-                        BundleErrorFactory.CheckAndThrowException(Internals.Errors.ErrorFacts.GetLastResult(), _handle);
+                        BundleErrorFactory.CheckAndThrowException(ErrorFacts.GetLastResult(), _handle);
                         string[] stringArray;
                         IntPtrToStringArray(stringArrayPtr, stringArraySize, out stringArray);
                         return stringArray;
@@ -288,7 +290,7 @@ namespace Tizen.Applications
             }
             else
             {
-                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                if (_keys.Contains(key) && ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
                 {
                     throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
                 }
@@ -312,7 +314,7 @@ namespace Tizen.Applications
             }
             else
             {
-                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                if (_keys.Contains(key) && ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
                 {
                     throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
                 }
@@ -336,7 +338,7 @@ namespace Tizen.Applications
             }
             else
             {
-                if (_keys.Contains(key) && Internals.Errors.ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+                if (_keys.Contains(key) && ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
                 {
                     throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
                 }
@@ -446,10 +448,10 @@ namespace Tizen.Applications
     {
         internal enum BundleError
         {
-            None = Internals.Errors.ErrorCode.None,
-            OutOfMemory = Internals.Errors.ErrorCode.OutOfMemory,
-            InvalidParameter = Internals.Errors.ErrorCode.InvalidParameter,
-            KeyNotAvailable = Internals.Errors.ErrorCode.KeyNotAvailable,
+            None = ErrorCode.None,
+            OutOfMemory = ErrorCode.OutOfMemory,
+            InvalidParameter = ErrorCode.InvalidParameter,
+            KeyNotAvailable = ErrorCode.KeyNotAvailable,
             KeyExists = -0x01180000 | 0x01
         }
 
