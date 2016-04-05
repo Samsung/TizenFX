@@ -4,3 +4,4 @@ obj/
 *.dll
 .vs/
 Test/
+*.sln

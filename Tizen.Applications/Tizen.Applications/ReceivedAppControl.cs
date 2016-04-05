@@ -8,21 +8,14 @@
 
 using System;
 
-using Tizen.Internals.Errors;
-
 namespace Tizen.Applications
 {
     public class ReceivedAppControl : AppControl
     {
         private const string LogTag = "Tizen.Applications";
 
-        internal ReceivedAppControl(IntPtr handle)
+        internal ReceivedAppControl(IntPtr handle) : base(handle)
         {
-            ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
-            if (err != ErrorCode.None)
-            {
-                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
-            }
         }
 
         /// <summary>
@@ -33,8 +26,8 @@ namespace Tizen.Applications
             get
             {
                 string value = String.Empty;
-                ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
-                if (err != ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to get the caller appId from the appcontrol. Err = " + err);
                 }
@@ -45,13 +38,13 @@ namespace Tizen.Applications
         /// <summary>
         /// 
         /// </summary>
-        public bool IsReplyRequested
+        public bool IsReplyRequest
         {
             get
             {
                 bool value = false;
-                ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
-                if (err != ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to check the replyRequested of the appcontrol. Err = " + err);
                 }
@@ -59,15 +52,17 @@ namespace Tizen.Applications
             }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="reply"></param>
-        public void Reply(AppControl reply)
+        /// <param name="replyRequest"></param>
+        /// <param name="launchRequest"></param>
+        /// <param name="result"></param>
+        public void ReplyToLaunchRequest(AppControl replyRequest, AppControlLaunchResult result)
         {
-            throw new NotImplementedException();
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest._handle, this._handle, (int)result);
+            if (err == Interop.AppControl.ErrorCode.InvalidParameter)
+                throw new ArgumentException("Invalid parameter of ReplyToLaunchRequest()");
         }
-
     }
 }

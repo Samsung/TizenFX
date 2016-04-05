@@ -9,8 +9,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -32,20 +32,22 @@ namespace Tizen.Applications
         private ExtraDataCollection _extraData = null;
 
         /// <summary>
-        /// 
-        /// </summary>
-        public event EventHandler<AppControlReplyReceivedEventArgs> AppControlReplyReceived;
-
-        /// <summary>
         ///
         /// </summary>
         public AppControl()
         {
-            ErrorCode err = Interop.AppControl.Create(out _handle);
-            if (err != ErrorCode.None)
+            Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
+            if (err != Interop.AppControl.ErrorCode.None)
             {
                 throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
             }
+        }
+
+        internal AppControl(IntPtr handle)
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
+            if (err != Interop.AppControl.ErrorCode.None)
+                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
         }
 
         #region Public Properties
@@ -59,8 +61,8 @@ namespace Tizen.Applications
             {
                 if (String.IsNullOrEmpty(_operation))
                 {
-                    ErrorCode err = Interop.AppControl.GetOperation(_handle, out _operation);
-                    if (err != ErrorCode.None)
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetOperation(_handle, out _operation);
+                    if (err != Interop.AppControl.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get the operation from the appcontrol. Err = " + err);
                     }
@@ -69,8 +71,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetOperation(_handle, value);
-                if (err == ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetOperation(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
                 {
                     _operation = value;
                 }
@@ -90,8 +92,8 @@ namespace Tizen.Applications
             {
                 if (String.IsNullOrEmpty(_mime))
                 {
-                    ErrorCode err = Interop.AppControl.GetMime(_handle, out _mime);
-                    if (err != ErrorCode.None)
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetMime(_handle, out _mime);
+                    if (err != Interop.AppControl.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get the mime from the appcontrol. Err = " + err);
                     }
@@ -100,8 +102,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetMime(_handle, value);
-                if (err == ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetMime(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
                 {
                     _mime = value;
                 }
@@ -121,8 +123,8 @@ namespace Tizen.Applications
             {
                 if (String.IsNullOrEmpty(_uri))
                 {
-                    ErrorCode err = Interop.AppControl.GetUri(_handle, out _uri);
-                    if (err != ErrorCode.None)
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetUri(_handle, out _uri);
+                    if (err != Interop.AppControl.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get the uri from the appcontrol. Err = " + err);
                     }
@@ -131,8 +133,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetUri(_handle, value);
-                if (err == ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetUri(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
                 {
                     _uri = value;
                 }
@@ -144,7 +146,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Category
         {
@@ -152,8 +154,8 @@ namespace Tizen.Applications
             {
                 if (String.IsNullOrEmpty(_category))
                 {
-                    ErrorCode err = Interop.AppControl.GetCategory(_handle, out _category);
-                    if (err != ErrorCode.None)
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetCategory(_handle, out _category);
+                    if (err != Interop.AppControl.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get the category from the appcontrol. Err = " + err);
                     }
@@ -162,8 +164,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetCategory(_handle, value);
-                if (err == ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetCategory(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
                 {
                     _category = value;
                 }
@@ -175,7 +177,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string ApplicationId
         {
@@ -183,8 +185,8 @@ namespace Tizen.Applications
             {
                 if (String.IsNullOrEmpty(_applicationId))
                 {
-                    ErrorCode err = Interop.AppControl.GetAppId(_handle, out _applicationId);
-                    if (err != ErrorCode.None)
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetAppId(_handle, out _applicationId);
+                    if (err != Interop.AppControl.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get the appId from the appcontrol. Err = " + err);
                     }
@@ -193,8 +195,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetAppId(_handle, value);
-                if (err == ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetAppId(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
                 {
                     _applicationId = value;
                 }
@@ -206,15 +208,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AppControlLaunchMode LaunchMode
         {
             get
             {
                 int value = 0;
-                ErrorCode err = Interop.AppControl.GetLaunchMode(_handle, out value);
-                if (err != ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetLaunchMode(_handle, out value);
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to get the launchMode from the appcontrol. Err = " + err);
                 }
@@ -222,8 +224,8 @@ namespace Tizen.Applications
             }
             set
             {
-                ErrorCode err = Interop.AppControl.SetLaunchMode(_handle, (int)value);
-                if (err != ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetLaunchMode(_handle, (int)value);
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to set the launchMode to the appcontrol. Err = " + err);
                 }
@@ -235,9 +237,7 @@ namespace Tizen.Applications
             get
             {
                 if (_extraData == null)
-                {
-                    _extraData = new ExtraDataCollection();
-                }
+                    _extraData = new ExtraDataCollection(_handle);
                 return _extraData;
             }
         }
@@ -245,7 +245,7 @@ namespace Tizen.Applications
         #endregion // Public Properties
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<string> GetMatchedApplicationIds(AppControl control)
@@ -267,10 +267,10 @@ namespace Tizen.Applications
                 });
 
             IntPtr pointerToApplicationIds = Marshal.GetIUnknownForObject(ids);
-            if (pointerToApplicationIds != null)
+            if (pointerToApplicationIds != IntPtr.Zero)
             {
-                ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, pointerToApplicationIds);
-                if (err != ErrorCode.None)
+                Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, pointerToApplicationIds);
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
                     throw new InvalidOperationException("Failed to get matched appids. err = " + err);
                 }
@@ -281,78 +281,308 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="request"></param>
-        public static void SendLaunchRequest(AppControl request)
+        /// <param name="receiver"></param>
+        /// <param name="replyCallback"></param>
+        public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching = null)
         {
-            throw new NotImplementedException();
+            Interop.AppControl.ErrorCode err;
+
+            err = Interop.AppControl.EnableAppStartedResultEvent(launchRequest._handle);
+            if (err == Interop.AppControl.ErrorCode.InvalidParameter)
+                throw new ArgumentException("Invalid parameter of EnableAppStartedResultEvent()");
+
+            if (replyAfterLaunching != null)
+            {
+                Interop.AppControl.ReplyCallback replyNativeCallback = (launchRequestHandle, replyRequestHandle, result, userData) =>
+                {
+                    AppControlReplyCallback replyCallbackAfterLaunching = Marshal.GetObjectForIUnknown(userData) as AppControlReplyCallback;
+                    if (replyCallbackAfterLaunching != null)
+                        replyCallbackAfterLaunching(new AppControl(launchRequestHandle), new AppControl(replyRequestHandle), (AppControlLaunchResult)result);
+                };
+                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, replyNativeCallback, Marshal.GetIUnknownForObject(replyAfterLaunching));
+            }
+            else
+            {
+                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, null, IntPtr.Zero);
+            }
+
+            switch (err)
+            {
+                case Interop.AppControl.ErrorCode.InvalidParameter:
+                throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                case Interop.AppControl.ErrorCode.AppNotFound:
+                throw new InvalidOperationException("App not found");
+                case Interop.AppControl.ErrorCode.LaunchRejected:
+                throw new InvalidOperationException("Launch rejected");
+                case Interop.AppControl.ErrorCode.LaunchFailed:
+                throw new InvalidOperationException("Launch failed");
+                case Interop.AppControl.ErrorCode.TimedOut:
+                throw new TimeoutException("Timed out");
+                case Interop.AppControl.ErrorCode.PermissionDenied:
+                throw new InvalidOperationException("Permission denied");
+            }
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="request"></param>
-        public static void SendLaunchRequestForReply(AppControl request)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         public class ExtraDataCollection
         {
+            private readonly Interop.AppControl.SafeAppControlHandle _handle;
+
+            internal ExtraDataCollection(Interop.AppControl.SafeAppControlHandle handle)
+            {
+                _handle = handle;
+            }
+
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="key"></param>
             /// <param name="value"></param>
             public void Add(string key, string value)
             {
-                throw new NotImplementedException();
+                Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraData(_handle, key, value);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key or value is a zero-length string");
+                    case Interop.AppControl.ErrorCode.KeyRejected:
+                    throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                }
             }
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="key"></param>
             /// <param name="value"></param>
             public void Add(string key, IEnumerable<string> value)
             {
-                throw new NotImplementedException();
+                string[] valueArray = value.ToArray();
+                Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraDataArray(_handle, key, valueArray, valueArray.Length);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key or value is a zero-length string");
+                    case Interop.AppControl.ErrorCode.KeyRejected:
+                    throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                }
             }
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <typeparam name="T"></typeparam>
             /// <param name="key"></param>
             /// <returns></returns>
             public T Get<T>(string key)
             {
-                throw new NotImplementedException();
+                object ret = Get(key);
+                return (T)ret;
             }
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="key"></param>
             /// <returns></returns>
             public object Get(string key)
             {
-                throw new NotImplementedException();
+                if (IsCollection(key))
+                {
+                    return GetDataCollection(key);
+                }
+                else
+                {
+                    return GetData(key);
+                }
             }
 
             /// <summary>
-            /// 
+            ///
+            /// </summary>
+            /// <returns></returns>
+            public IEnumerable<string> GetKeys()
+            {
+                List<string> keys = new List<string>();
+                Interop.AppControl.ExtraDataCallback callback = new Interop.AppControl.ExtraDataCallback(
+                    (handle, key, userData) =>
+                    {
+                        List<string> keysList = Marshal.GetObjectForIUnknown(userData) as List<string>;
+                        if (keysList != null)
+                        {
+                            keysList.Add(key);
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
+
+                IntPtr pointerToKeys = Marshal.GetIUnknownForObject(keys);
+                if (pointerToKeys != IntPtr.Zero)
+                {
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachExtraData(_handle, callback, pointerToKeys);
+                    if (err != Interop.AppControl.ErrorCode.None)
+                    {
+                        throw new InvalidOperationException("Failed to get keys. err = " + err);
+                    }
+                    return keys;
+                }
+
+                return keys;
+            }
+
+            /// <summary>
+            ///
+            /// </summary>
+            /// <param name="key"></param>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public bool TryGet(string key, out string value)
+            {
+                Interop.AppControl.GetExtraData(_handle, key, out value);
+                if (value != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    value = default(string);
+                    return false;
+                }
+            }
+
+            /// <summary>
+            ///
+            /// </summary>
+            /// <param name="key"></param>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public bool TryGet(string key, out IEnumerable<string> value)
+            {
+                IntPtr valuePtr = IntPtr.Zero;
+                int len = -1;
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraDataArray(_handle, key, out valuePtr, out len);
+                if (err == Interop.AppControl.ErrorCode.None && valuePtr != IntPtr.Zero && len > 0)
+                {
+                    string[] stringArray = new string[len];
+                    for (int i = 0; i < len; ++i)
+                    {
+                        IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
+                        stringArray[i] = Marshal.PtrToStringAuto(charArr);
+                        Interop.Libc.Free(charArr);
+                    }
+                    Interop.Libc.Free(valuePtr);
+                    value = stringArray;
+                    return true;
+                }
+                else
+                {
+                    value = default(IEnumerable<string>);
+                    return false;
+                }
+            }
+
+            /// <summary>
+            ///
             /// </summary>
             /// <param name="key"></param>
             public void Remove(string key)
             {
-                throw new NotImplementedException();
+                Interop.AppControl.ErrorCode err = Interop.AppControl.RemoveExtraData(_handle, key);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                    case Interop.AppControl.ErrorCode.KeyNotFound:
+                    throw new KeyNotFoundException("Key is not found"); ;
+                    case Interop.AppControl.ErrorCode.KeyRejected:
+                    throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                }
+            }
+
+            /// <summary>
+            ///
+            /// </summary>
+            /// <returns></returns>
+            public int Count()
+            {
+                return GetKeys().Count();
+            }
+
+            /// <summary>
+            ///
+            /// </summary>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public bool IsCollection(string key)
+            {
+                bool isArray = false;
+                Interop.AppControl.ErrorCode err = Interop.AppControl.IsExtraDataArray(_handle, key, out isArray);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                }
+                return isArray;
+            }
+
+            private string GetData(string key)
+            {
+                string value = string.Empty;
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraData(_handle, key, out value);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                    case Interop.AppControl.ErrorCode.KeyNotFound:
+                    throw new KeyNotFoundException("Key is not found"); ;
+                    case Interop.AppControl.ErrorCode.InvalidDataType:
+                    throw new ArgumentException("Invalid data type: value is data collection type");
+                    case Interop.AppControl.ErrorCode.KeyRejected:
+                    throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                }
+                return value;
+            }
+
+            private IEnumerable<string> GetDataCollection(string key)
+            {
+                IntPtr valuePtr = IntPtr.Zero;
+                int len = -1;
+
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraDataArray(_handle, key, out valuePtr, out len);
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                    case Interop.AppControl.ErrorCode.KeyNotFound:
+                    throw new KeyNotFoundException("Key is not found"); ;
+                    case Interop.AppControl.ErrorCode.InvalidDataType:
+                    throw new ArgumentException("Invalid data type: value is data collection type");
+                    case Interop.AppControl.ErrorCode.KeyRejected:
+                    throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                }
+
+                string[] valueArray = null;
+                if (valuePtr != IntPtr.Zero && len > 0)
+                {
+                    valueArray = new string[len];
+                    for (int i = 0; i < len; ++i)
+                    {
+                        IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
+                        valueArray[i] = Marshal.PtrToStringAuto(charArr);
+                        Interop.Libc.Free(charArr);
+                    }
+                    Interop.Libc.Free(valuePtr);
+                }
+
+                return valueArray;
             }
         }
-
     }
 }

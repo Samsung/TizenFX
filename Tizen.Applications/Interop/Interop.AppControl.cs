@@ -9,15 +9,29 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Tizen.Internals.Errors;
-
 internal static partial class Interop
 {
     internal static partial class AppControl
     {
         internal delegate bool ExtraDataCallback(SafeAppControlHandle handle, string key, IntPtr userData);
         internal delegate bool AppMatchedCallback(SafeAppControlHandle handle, string applicationId, IntPtr userData);
-        internal delegate void ReplyCallback(SafeAppControlHandle request, SafeAppControlHandle reply, int result, IntPtr userData);
+        internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
+
+        internal enum ErrorCode
+        {
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+            AppNotFound = -0x01100000 | 0x21,
+            KeyNotFound = Tizen.Internals.Errors.ErrorCode.KeyNotAvailable,
+            KeyRejected = Tizen.Internals.Errors.ErrorCode.KeyRejected,
+            InvalidDataType = -0x01100000 | 0x22,
+            LaunchRejected = -0x01100000 | 0x23,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            LaunchFailed = -0x01100000 | 0x24,
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
+        }
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_create")]
         internal static extern ErrorCode Create(out SafeAppControlHandle handle);
