@@ -14,7 +14,8 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// The ID of the remote application that sent this message
         /// </summary>
-        public string AppId {
+        public string AppId
+        {
             get; set;
         }
         /// <summary>

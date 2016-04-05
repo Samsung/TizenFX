@@ -110,20 +110,23 @@ namespace Tizen.Applications.Messages
         /// </summary>
         public void Listen()
         {
-            lock(s_lock)
+            lock (s_lock)
             {
                 if (s_portMap.Contains(_portName))
                 {
                     throw new InvalidOperationException(_portName + " is already used");
                 }
-                _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) => {
-                    MessageReceivedEventArgs args = new MessageReceivedEventArgs() {
+                _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
+                {
+                    MessageReceivedEventArgs args = new MessageReceivedEventArgs()
+                    {
                         Message = new Bundle(message)
                     };
 
                     if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
                     {
-                        args.Remote = new RemoteValues() {
+                        args.Remote = new RemoteValues()
+                        {
                             AppId = remoteAppId,
                             PortName = remotePortName,
                             Trusted = trusted
@@ -163,7 +166,7 @@ namespace Tizen.Applications.Messages
                 MessagePortErrorFactory.ThrowException(ret);
             }
 
-            lock(s_lock)
+            lock (s_lock)
             {
                 s_portMap.Remove(_portName);
             }
@@ -190,7 +193,7 @@ namespace Tizen.Applications.Messages
 
             if (ret != (int)MessagePortError.None)
             {
-                if (ret== (int)MessagePortError.MaxExceeded)
+                if (ret == (int)MessagePortError.MaxExceeded)
                 {
                     MessagePortErrorFactory.ThrowException(ret, "Message has exceeded the maximum limit(4KB)", "Message");
                 }
@@ -219,6 +222,5 @@ namespace Tizen.Applications.Messages
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

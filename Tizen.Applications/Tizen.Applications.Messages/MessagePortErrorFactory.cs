@@ -21,7 +21,7 @@ namespace Tizen.Applications.Messages
     }
     internal static class MessagePortErrorFactory
     {
-        internal static void ThrowException(int errorCode, string errorMessage=null, string paramName=null)
+        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
         {
             MessagePortError err = (MessagePortError)errorCode;
             if (String.IsNullOrEmpty(errorMessage))
