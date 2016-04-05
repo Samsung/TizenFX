@@ -11,39 +11,13 @@ namespace Tizen.Applications.Messages
     /// </summary>
     public class MessageReceivedEventArgs : EventArgs
     {
-        private RemoteValues _remote;
-        private Bundle _message;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public MessageReceivedEventArgs(Bundle message, string appId, string portName, bool trusted)
-        {
-            _message = message;
-
-            _remote = new RemoteValues();
-            _remote.AppId = appId;
-            _remote.PortName = portName;
-            _remote.Trusted = trusted;
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public MessageReceivedEventArgs(Bundle message)
-        {
-            _message = message;
-        }
-
         /// <summary>
         /// Contains AppId, Port Name, Trusted
         /// </summary>
         public RemoteValues Remote
         {
-            get
-            {
-                return _remote;
-            }
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -51,10 +25,8 @@ namespace Tizen.Applications.Messages
         /// </summary>
         public Bundle Message
         {
-            get
-            {
-                return _message;
-            }
+            get;
+            internal set;
         }
     }
 }

@@ -17,9 +17,10 @@ namespace Tizen.Applications.Messages
     /// If a remote application sends a message, the registered callback function of the local port is called.
     /// The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.
     /// </remarks>
-    public class MessagePort
+    public class MessagePort : IDisposable
     {
-        private static Dictionary<MessagePort, int> s_portMap = new Dictionary<MessagePort, int>();
+        private static object s_lock = new object();
+        private static HashSet<string> s_portMap = new HashSet<string>();
 
         /// <summary>
         /// Constructor
@@ -42,6 +43,7 @@ namespace Tizen.Applications.Messages
             {
                 StopListening();
             }
+            Dispose(false);
         }
 
         /// <summary>
@@ -108,47 +110,37 @@ namespace Tizen.Applications.Messages
         /// </summary>
         public void Listen()
         {
-            if (!s_portMap.ContainsKey(this))
+            lock(s_lock)
             {
-                _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
+                if (s_portMap.Contains(_portName))
                 {
-                    Bundle bundle = new Bundle(message);
-                    MessageReceivedEventArgs args;
+                    throw new InvalidOperationException(_portName + " is already used");
+                }
+                _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) => {
+                    MessageReceivedEventArgs args = new MessageReceivedEventArgs() {
+                        Message = new Bundle(message)
+                    };
 
-                    if (!String.IsNullOrEmpty(remotePortName))
+                    if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
                     {
-                        args = new MessageReceivedEventArgs(bundle, remoteAppId, remotePortName, trusted);
+                        args.Remote = new RemoteValues() {
+                            AppId = remoteAppId,
+                            PortName = remotePortName,
+                            Trusted = trusted
+                        };
                     }
-                    else
-                    {
-                        args = new MessageReceivedEventArgs(bundle);
-                    }
-
                     RaiseMessageReceivedEvent(MessageReceived, args);
                 };
 
-                if (_trusted)
-                {
-                    _portId = Interop.MessagePort.RegisterTrustedPort(_portName, _messageCallBack, IntPtr.Zero);
-                }
-                else
-                {
-                    _portId = Interop.MessagePort.RegisterPort(_portName, _messageCallBack, IntPtr.Zero);
-                }
+                _portId = _trusted ?
+                            Interop.MessagePort.RegisterTrustedPort(_portName, _messageCallBack, IntPtr.Zero) :
+                            Interop.MessagePort.RegisterPort(_portName, _messageCallBack, IntPtr.Zero);
 
-                if (_portId > 0)
-                {
-                    s_portMap.Add(this, 1);
-                    _listening = true;
-                }
-                else
-                {
-                    MessagePortErrorFactory.ThrowException(_portId);
-                }
-            }
-            else
-            {
-                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Already listening");
+                if (_portId <= 0)
+                    throw new InvalidOperationException("Can't Listening with " + _portName);
+
+                s_portMap.Add(_portName);
+                _listening = true;
             }
         }
 
@@ -157,33 +149,26 @@ namespace Tizen.Applications.Messages
         /// </summary>
         public void StopListening()
         {
-            if (_listening)
+            if (!_listening)
             {
-                int ret;
-                if (_trusted)
-                {
-                    ret = Interop.MessagePort.UnregisterTrustedPort(_portId);
-                }
-                else
-                {
-                    ret = Interop.MessagePort.UnregisterPort(_portId);
-                }
+                throw new InvalidOperationException("Already stopped");
+            }
 
-                if (ret == (int)MessagePortError.None)
-                {
-                    s_portMap.Remove(this);
-                    _portId = 0;
-                    _listening = false;
-                }
-                else
-                {
-                    MessagePortErrorFactory.ThrowException(ret);
-                }
-            }
-            else
+            int ret = _trusted ?
+                        Interop.MessagePort.UnregisterTrustedPort(_portId) :
+                        Interop.MessagePort.UnregisterPort(_portId);
+
+            if (ret != (int)MessagePortError.None)
             {
-                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Already stopped");
+                MessagePortErrorFactory.ThrowException(ret);
             }
+
+            lock(s_lock)
+            {
+                s_portMap.Remove(_portName);
+            }
+            _portId = 0;
+            _listening = false;
         }
 
         /// <summary>
@@ -195,64 +180,22 @@ namespace Tizen.Applications.Messages
         /// <param name="trusted">If true the trusted message port of remote application otherwise false</param>
         public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted = false)
         {
-            if (_listening)
+            if (!_listening)
             {
-                int ret;
-                if (trusted)
-                {
-                    ret = Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId);
-                }
-                else
-                {
-                    ret = Interop.MessagePort.SendMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId);
-                }
+                throw new InvalidOperationException("Sould start listen before send");
+            }
+            int ret = trusted ?
+                        Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId) :
+                        Interop.MessagePort.SendMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId);
 
-                if (ret != (int)MessagePortError.None)
+            if (ret != (int)MessagePortError.None)
+            {
+                if (ret== (int)MessagePortError.MaxExceeded)
                 {
-                    if (ret== (int)MessagePortError.MaxExceeded)
-                    {
-                        MessagePortErrorFactory.ThrowException(ret, "Message has exceeded the maximum limit(4KB)", "Message");
-                    }
-                    else
-                    {
-                        MessagePortErrorFactory.ThrowException(ret);
-                    }
+                    MessagePortErrorFactory.ThrowException(ret, "Message has exceeded the maximum limit(4KB)", "Message");
                 }
+                MessagePortErrorFactory.ThrowException(ret, "Can't send message");
             }
-            else
-            {
-                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Need listening");
-            }
-        }
-
-        /// <summary>
-        /// Override GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            int hash = 0;
-            if (!String.IsNullOrEmpty(_portName))
-            {
-                hash ^= _portName.GetHashCode();
-            }
-            hash ^= _trusted.GetHashCode();
-            return hash;
-        }
-
-        /// <summary>
-        /// Override Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            MessagePort p = obj as MessagePort;
-            if (p == null)
-            {
-                return false;
-            }
-            return (_portName == p._portName) & (_trusted == p._trusted);
         }
 
         private void RaiseMessageReceivedEvent(EventHandler<MessageReceivedEventArgs> evt, MessageReceivedEventArgs args)
@@ -262,5 +205,20 @@ namespace Tizen.Applications.Messages
                 evt(this, args);
             }
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_listening)
+            {
+                StopListening();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
     }
 }
