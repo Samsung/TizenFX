@@ -46,23 +46,37 @@ namespace Tizen.Applications.Managers
         private IntPtr _handle;
         private bool disposed = false;
 
+        private const string LogTag = "Tizen.Applications.Managers";
+        private int ret = 0;
+
         public InstalledApplicationFilter(IDictionary<string, string> filter)
         {
-            Interop.ApplicationManager.AppInfoFilterCreate(out _handle);
+            ret = Interop.ApplicationManager.AppInfoFilterCreate(out _handle);
+            if (ret != 0)
+            {
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, _handle, "InstalledApplicationFilter creation failed.");
+            }
             foreach (var item in filter)
             {
                 if ((item.Key == Keys.Id) || (item.Key == Keys.Type) || (item.Key == Keys.Category))
                 {
-                    Interop.ApplicationManager.AppInfoFilterAddString(_handle, item.Key, item.Value);
+                    ret = Interop.ApplicationManager.AppInfoFilterAddString(_handle, item.Key, item.Value);
+                    if (ret != 0)
+                    {
+                        ApplicationManagerErrorFactory.ExceptionChecker(ret, _handle, "InstalledApplicationFilter item add failed.");
+                    }
                 }
                 else if ((item.Key == Keys.NoDisplay) || (item.Key == Keys.TaskManage))
                 {
-                    Interop.ApplicationManager.AppInfoFilterAddBool(_handle, item.Key, Convert.ToBoolean(item.Value));
+                    ret = Interop.ApplicationManager.AppInfoFilterAddBool(_handle, item.Key, Convert.ToBoolean(item.Value));
+                    if (ret != 0)
+                    {
+                        ApplicationManagerErrorFactory.ExceptionChecker(ret, _handle, "InstalledApplicationFilter item add failed.");
+                    }
                 }
                 else
                 {
-                    // Not Supported Key
-                    Console.WriteLine(item.Key + " is NOT supported for the InstalledApplicationFilter");
+                    Log.Warn(LogTag, "InstalledApplicationFilter is NOT supported " + item.Key + " key.");
                 }
             }
         }
