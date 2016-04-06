@@ -21,7 +21,7 @@ namespace Tizen.System
         FlashBrightness
     }
 }
-internal static class Interop
+internal static partial class Interop
 {
     internal static partial class Device
     {

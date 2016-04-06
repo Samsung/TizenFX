@@ -22,15 +22,17 @@ Requires(postun): mono-core
 
 # P/Invoke Dependencies
 BuildRequires: pkgconfig(capi-system-device)
+BuildRequires: pkgconfig(capi-system-runtime-info)
 
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
 Requires: capi-system-device
+Requires: capi-system-runtime-info
 # DLL Dependencies
 #BuildRequires: ...
 
 %description
-Tizen System Device API for C#
+Tizen System API for C#
 
 %package devel
 Summary:    Development package for %{name}
@@ -56,7 +58,15 @@ mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk \
   Tizen.System/Device/Haptic.cs \
   Tizen.System/Device/Led.cs \
   Tizen.System/Device/Power.cs \
-  Tizen.System/Interop/Interop.Device.cs
+  Tizen.System/Interop/Interop.Device.cs \
+  Tizen.System/Interop/Interop.Libraries.cs \
+  Tizen.System/Interop/Interop.RuntimeInfo.cs \
+  Tizen.System/RuntimeInfo/CpuUsage.cs \
+  Tizen.System/RuntimeInfo/Enumerations.cs \
+  Tizen.System/RuntimeInfo/MemoryInformation.cs \
+  Tizen.System/RuntimeInfo/RuntimeInfoErrorFactory.cs \
+  Tizen.System/RuntimeInfo/RuntimeInformation.cs \
+  Tizen.System/RuntimeInfo/RuntimeKeyStatusChangedEventArgs.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then
