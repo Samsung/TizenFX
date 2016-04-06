@@ -17,6 +17,13 @@ namespace Tizen.Applications
         private SharedPaths _shared = null;
         private ExternalPaths _external = null;
 
+        private string _id;
+        private string _name;
+        private string _version;
+        private string _dataPath;
+        private string _cachePath;
+        private string _resourcePath;
+
         internal ApplicationInfo()
         {
 
@@ -29,9 +36,11 @@ namespace Tizen.Applications
         {
             get
             {
-                string value;
-                Interop.AppCommon.AppGetId(out value);
-                return value;
+                if (_id == null)
+                {
+                    Interop.AppCommon.AppGetId(out _id);
+                }
+                return _id;
             }
         }
 
@@ -42,9 +51,12 @@ namespace Tizen.Applications
         {
             get
             {
-                string value;
-                Interop.AppCommon.AppGetName(out value);
-                return value;
+                if (_name == null)
+                {
+                    Interop.AppCommon.AppGetName(out _name);
+
+                }
+                return _name;
             }
         }
 
@@ -55,9 +67,11 @@ namespace Tizen.Applications
         {
             get
             {
-                string value;
-                Interop.AppCommon.AppGetVersion(out value);
-                return value;
+                if (_version == null)
+                {
+                    Interop.AppCommon.AppGetVersion(out _version);
+                }
+                return _version;
             }
         }
 
@@ -68,7 +82,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.AppCommon.AppGetDataPath();
+                if (_dataPath == null)
+                    _dataPath = Interop.AppCommon.AppGetDataPath();
+                return _dataPath;
             }
         }
 
@@ -79,7 +95,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.AppCommon.AppGetCachePath();
+                if (_cachePath == null)
+                    _cachePath = Interop.AppCommon.AppGetCachePath();
+                return _cachePath;
             }
         }
 
@@ -90,7 +108,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.AppCommon.AppGetResourcePath();
+                if (_resourcePath == null)
+                    _resourcePath = Interop.AppCommon.AppGetResourcePath();
+                return _resourcePath;
             }
         }
 
@@ -137,6 +157,10 @@ namespace Tizen.Applications
         /// </summary>
         public class SharedPaths
         {
+            private string _dataPath;
+            private string _resourcePath;
+            private string _trustedPath;
+
             internal SharedPaths() { }
             /// <summary>
             /// The absolute path to the application's shared data directory which is used to share data with other applications.
@@ -145,7 +169,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetSharedDataPath();
+                    if (_dataPath == null)
+                        _dataPath = Interop.AppCommon.AppGetSharedDataPath();
+                    return _dataPath;
                 }
             }
 
@@ -156,7 +182,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetSharedResourcePath();
+                    if (_resourcePath == null)
+                        _resourcePath = Interop.AppCommon.AppGetSharedResourcePath();
+                    return _resourcePath;
                 }
             }
 
@@ -167,7 +195,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetSharedTrustedPath();
+                    if (_trustedPath == null)
+                        _trustedPath = Interop.AppCommon.AppGetSharedTrustedPath();
+                    return _trustedPath;
                 }
             }
         }
@@ -177,6 +207,10 @@ namespace Tizen.Applications
         /// </summary>
         public class ExternalPaths
         {
+            private string _dataPath;
+            private string _cachePath;
+            private string _sharedDataPath;
+
             internal ExternalPaths() { }
 
             /// <summary>
@@ -186,7 +220,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetExternalDataPath();
+                    if (_dataPath == null)
+                        _dataPath = Interop.AppCommon.AppGetExternalDataPath();
+                    return _dataPath;
                 }
             }
 
@@ -197,7 +233,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetExternalCachePath();
+                    if (_cachePath == null)
+                        _cachePath = Interop.AppCommon.AppGetExternalCachePath();
+                    return _cachePath;
                 }
             }
 
@@ -208,7 +246,9 @@ namespace Tizen.Applications
             {
                 get
                 {
-                    return Interop.AppCommon.AppGetExternalSharedDataPath();
+                    if (_sharedDataPath == null)
+                        _sharedDataPath = Interop.AppCommon.AppGetExternalSharedDataPath();
+                    return _sharedDataPath;
                 }
             }
         }
