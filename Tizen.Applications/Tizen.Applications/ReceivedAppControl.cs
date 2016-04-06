@@ -58,7 +58,7 @@ namespace Tizen.Applications
         /// <param name="replyRequest"></param>
         /// <param name="launchRequest"></param>
         /// <param name="result"></param>
-        public void ReplyToLaunchRequest(AppControl replyRequest, AppControlLaunchResult result)
+        public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest._handle, this._handle, (int)result);
             if (err == Interop.AppControl.ErrorCode.InvalidParameter)

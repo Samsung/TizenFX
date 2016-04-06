@@ -15,5 +15,5 @@ using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
-    public delegate void AppControlReplyCallback(AppControl launchRequest, AppControl replyRequest, AppControlLaunchResult result);
+    public delegate void AppControlReplyCallback(AppControl launchRequest, AppControl replyRequest, AppControlReplyResult result);
 }

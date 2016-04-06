@@ -84,7 +84,7 @@
     <Compile Include="Tizen.Applications.Managers\RunningApplication.cs" />
     <Compile Include="Tizen.Applications\AppControl.cs" />
     <Compile Include="Tizen.Applications\AppControlLaunchMode.cs" />
-    <Compile Include="Tizen.Applications\AppControlLaunchResult.cs" />
+    <Compile Include="Tizen.Applications\AppControlReplyResult.cs" />
     <Compile Include="Tizen.Applications\AppControlOperations.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />

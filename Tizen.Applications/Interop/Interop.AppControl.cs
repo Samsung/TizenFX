@@ -13,6 +13,8 @@ internal static partial class Interop
 {
     internal static partial class AppControl
     {
+        internal const int AppStartedStatus = 1;
+
         internal delegate bool ExtraDataCallback(SafeAppControlHandle handle, string key, IntPtr userData);
         internal delegate bool AppMatchedCallback(SafeAppControlHandle handle, string applicationId, IntPtr userData);
         internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
