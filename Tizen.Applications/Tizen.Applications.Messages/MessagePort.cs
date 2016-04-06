@@ -118,9 +118,8 @@ namespace Tizen.Applications.Messages
                 }
                 _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
                 {
-                    MessageReceivedEventArgs args = new MessageReceivedEventArgs()
-                    {
-                        Message = new Bundle(message)
+                    MessageReceivedEventArgs args = new MessageReceivedEventArgs() {
+                        Message = Bundle.MakeRetainedBundle(message)
                     };
 
                     if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))

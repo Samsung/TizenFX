@@ -167,6 +167,7 @@ namespace Tizen.Applications
                 string value = b.GetItem<string>(Interop.AppEvent.EventKeys.LanguageSet);
                 OnLocaleChanged(new LocaleChangedEventArgs { Locale = value });
             }
+            b.Dispose();
         }
     }
 }

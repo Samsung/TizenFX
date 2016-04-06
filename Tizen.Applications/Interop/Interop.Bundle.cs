@@ -50,6 +50,9 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach")]
         internal static extern void Foreach(IntPtr handle, Iterator iterator, IntPtr userData);
 
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_dup")]
+        internal static extern IntPtr Clone(IntPtr handle);
+
         internal static class UnsafeCode
         {
             internal static unsafe int AddItem(IntPtr handle, string key, byte[] value, int offset, int count)
