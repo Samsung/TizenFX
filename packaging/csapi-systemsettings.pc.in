@@ -1,0 +1,5 @@
+Name: csapi-systemsettings
+Description: Tizen System Settings API for C#
+Version: @version@
+Libs: -r:@dllpath@/@dllname@
+Requires:
