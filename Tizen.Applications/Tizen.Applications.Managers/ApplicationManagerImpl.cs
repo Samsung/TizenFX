@@ -112,8 +112,8 @@ namespace Tizen.Applications.Managers
                     if (handle != IntPtr.Zero)
                     {
                         IntPtr clonedHandle = IntPtr.Zero;
-                        int result = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
-                        if (result != 0)
+                        int ret = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
+                        if (ret != 0)
                         {
                             return false;
                         }
@@ -123,56 +123,10 @@ namespace Tizen.Applications.Managers
                     }
                     return false;
                 };
-
-                IntPtr appInfoFilter = MakeNativeAppInfoFilter(filter.Filter);
-                int ret = Interop.ApplicationManager.AppInfoFilterForeachAppinfo(appInfoFilter, cb, IntPtr.Zero);
-                if (appInfoFilter != IntPtr.Zero)
-                    Interop.ApplicationManager.AppInfoFilterDestroy(appInfoFilter);
-                if (ret != 0)
-                {
-                    ApplicationManagerErrorFactory.ExceptionChecker(ret, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
-                }
+                filter.Fetch(cb);
                 return Result;
             });
         }
-
-        internal async Task<IEnumerable<InstalledApplication>> GetInstalledAppsAsync(InstalledApplicationMetadataFilter filter)
-        {
-            Log.Debug(LogTag, "GetInstalledAppsAsync(InstalledApplicationMetadataFilter filter)");
-
-            return await Task.Run(() =>
-            {
-                List<InstalledApplication> Result = new List<InstalledApplication>();
-
-                Interop.ApplicationManager.AppInfoFilterCallback cb = (IntPtr handle, IntPtr userData) =>
-                {
-                    Log.Debug(LogTag, "AppInfoFilterCallback");
-                    if (handle != IntPtr.Zero)
-                    {
-                        IntPtr clonedHandle = IntPtr.Zero;
-                        int result = Interop.ApplicationManager.AppInfoClone(out clonedHandle, handle);
-                        if (result != 0)
-                        {
-                            return false;
-                        }
-                        InstalledApplication app = new InstalledApplication(clonedHandle);
-                        Result.Add(app);
-                        return true;
-                    }
-                    return false;
-                };
-                IntPtr appMedataFilter = MakeNativeAppMetadataFilter(filter.Filter);
-                int ret = Interop.ApplicationManager.AppInfoMetadataFilterForeach(appMedataFilter, cb, IntPtr.Zero);
-                if (appMedataFilter != IntPtr.Zero)
-                    Interop.ApplicationManager.AppInfoMetadataFilterDestroy(appMedataFilter);
-                if (ret != 0)
-                {
-                    ApplicationManagerErrorFactory.ExceptionChecker(ret, "GetInstalledAppsAsync(InstalledApplicationMetadataFilter) failed.");
-                }
-                return Result;
-            });
-        }
-
         internal async Task<IEnumerable<RunningApplication>> GetRunningAppsAsync()
         {
             Log.Debug(LogTag, "GetRunningAppsAsync()");
@@ -352,6 +306,41 @@ namespace Tizen.Applications.Managers
             Log.Debug(LogTag, "UnRegisterApplicationChangedEvent()");
             Interop.ApplicationManager.AppManagerUnSetAppContextEvent();
         }
+    }
+    internal static class FilterExtension
+    {
+        private const string LogTag = "Tizen.Applications.Managers";
+        internal static void Fetch(this InstalledApplicationFilter filter, Interop.ApplicationManager.AppInfoFilterCallback callback)
+        {
+            if (filter is InstalledApplicationMetadataFilter)
+            {
+                InstalledApplicationMetadataFilter metaFilter = (InstalledApplicationMetadataFilter)filter;
+                metaFilter.Fetch(callback);
+                return;
+            }
+
+            IntPtr nativeHandle = MakeNativeAppInfoFilter(filter.Filter);
+            int ret = Interop.ApplicationManager.AppInfoFilterForeachAppinfo(nativeHandle, callback, IntPtr.Zero);
+            if (nativeHandle != IntPtr.Zero)
+                Interop.ApplicationManager.AppInfoFilterDestroy(nativeHandle);
+            if (ret != 0)
+            {
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, "GetInstalledAppsAsync(InstalledApplicationFilter) failed.");
+            }
+        }
+
+        internal static void Fetch(this InstalledApplicationMetadataFilter filter, Interop.ApplicationManager.AppInfoFilterCallback callback)
+        {
+            IntPtr nativeHandle = MakeNativeAppMetadataFilter(filter.Filter);
+            int ret = Interop.ApplicationManager.AppInfoMetadataFilterForeach(nativeHandle, callback, IntPtr.Zero);
+            if (nativeHandle != IntPtr.Zero)
+                Interop.ApplicationManager.AppInfoMetadataFilterDestroy(nativeHandle);
+            if (ret != 0)
+            {
+                ApplicationManagerErrorFactory.ExceptionChecker(ret, "GetInstalledAppsAsync(InstalledApplicationMetadataFilter) failed.");
+            }
+        }
+
 
         private static IntPtr MakeNativeAppInfoFilter(IDictionary<string, string> filter)
         {
