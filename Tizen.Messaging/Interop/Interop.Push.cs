@@ -1,0 +1,97 @@
+using System;
+using System.Runtime.InteropServices;
+
+internal static partial class Interop
+{
+    internal static partial class Push
+    {
+        internal static string LogTag = "Tizen.Messaging.Push";
+
+        internal enum Result
+        {
+            Success = 0,
+            Timeout = 1,
+            ServerError = 2,
+            SystemError = 3
+        };
+
+        internal enum ServiceError
+        {
+            None,
+            OutOfMemory,
+            InvalidParameter,
+            NotConnected,
+            NoData,
+            OpearationFailed,
+            PermissionDenied,
+            NotSupported
+        };
+
+        internal enum State
+        {
+            Registered,
+            Unregistered,
+            ProvisioningIPChange,
+            PingChange,
+            StateError
+        };
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void VoidStateChangedCallback(int state, string err, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void VoidNotifyCallback(IntPtr notification, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void VoidResultCallback(Result result, IntPtr msg, IntPtr userData);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_connect", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError ServiceConnect(string pushAppID, VoidStateChangedCallback stateCallback, VoidNotifyCallback notifyCallback, IntPtr userData, out IntPtr connection);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_disconnect", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void ServiceDisconnect(IntPtr connection);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_register", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError ServiceRegister(IntPtr connection, VoidResultCallback callback, IntPtr UserData);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_deregister", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError ServiceDeregister(IntPtr connection, VoidResultCallback callback, IntPtr UserData);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_app_control_to_noti_data", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern string AppControlToNotiData(IntPtr appControl, string operation);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_app_control_to_notification", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError AppControlToNotification(IntPtr appControl, string operation, out IntPtr noti);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_data", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationData(IntPtr notification, out string data);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_message", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationMessage(IntPtr notification, out string data);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_time", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationTime(IntPtr notification, out int receivedTime);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_sender", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationSender(IntPtr notification, out string sender);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_session_info", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationSessionInfo(IntPtr notification, out string sessionInfo);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_request_id", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationRequestId(IntPtr notification, out string requestID);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_notification_type", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetNotificationType(IntPtr notification, out int type);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_unread_notification", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetUnreadNotification(IntPtr connection, out IntPtr noti);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_request_unread_notification", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError RequestUnreadNotification(IntPtr connection);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_get_registration_id", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError GetRegistrationId(IntPtr connection, out string regID);
+
+        [DllImport(Libraries.Push, EntryPoint = "push_service_free_notification", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern Interop.Push.ServiceError FreeNotification(IntPtr connection);
+    }
+}
