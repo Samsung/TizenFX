@@ -37,12 +37,19 @@ namespace Tizen.Applications
             _keys = new HashSet<string>();
         }
 
-        internal Bundle(IntPtr handle)
+        static internal Bundle MakeRetainedBundle(IntPtr handle)
+        {
+            IntPtr clonedHandle = Interop.Bundle.Clone(handle);
+            return new Bundle(clonedHandle, true);
+        }
+
+        internal Bundle(IntPtr handle, bool ownership = false)
         {
             if (handle != IntPtr.Zero)
             {
                 _handle = handle;
-                _disposed = true;
+                if (!ownership)
+                    _disposed = true;
                 _keys = new HashSet<string>();
                 Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
                 {
