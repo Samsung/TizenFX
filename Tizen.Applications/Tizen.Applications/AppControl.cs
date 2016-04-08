@@ -31,6 +31,9 @@ namespace Tizen.Applications
 
         private ExtraDataCollection _extraData = null;
 
+        static private Dictionary<int, Interop.AppControl.ReplyCallback>  _replyNativeCallbackMaps = new Dictionary<int, Interop.AppControl.ReplyCallback>();
+        static private int _replyNativeCallbackId = 0;
+
         /// <summary>
         ///
         /// </summary>
@@ -281,10 +284,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        /// <param name="receiver"></param>
-        /// <param name="replyCallback"></param>
+        /// <param name="launchRequest"></param>
+        /// <param name="replyAfterLaunching"></param>
         public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching = null)
         {
             Interop.AppControl.ErrorCode err;
@@ -295,13 +298,30 @@ namespace Tizen.Applications
 
             if (replyAfterLaunching != null)
             {
-                Interop.AppControl.ReplyCallback replyNativeCallback = (launchRequestHandle, replyRequestHandle, result, userData) =>
+                int id = 0;
+                lock (_replyNativeCallbackMaps)
                 {
-                    AppControlReplyCallback replyCallbackAfterLaunching = Marshal.GetObjectForIUnknown(userData) as AppControlReplyCallback;
-                    if (replyCallbackAfterLaunching != null)
-                        replyCallbackAfterLaunching(new AppControl(launchRequestHandle), new AppControl(replyRequestHandle), (AppControlLaunchResult)result);
-                };
-                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, replyNativeCallback, Marshal.GetIUnknownForObject(replyAfterLaunching));
+                    id = _replyNativeCallbackId++;
+                    _replyNativeCallbackMaps[id] = (launchRequestHandle, replyRequestHandle, result, userData) =>
+                    {
+                        if (result == Interop.AppControl.AppStartedStatus)
+                        {
+                            Log.Debug(LogTag, "Callee App is started");
+                            return;
+                        }
+
+                        if (replyAfterLaunching != null)
+                        {
+                            Log.Debug(LogTag, "Reply Callback is launched");
+                            replyAfterLaunching(new AppControl(launchRequestHandle), new AppControl(replyRequestHandle), (AppControlReplyResult)result);
+                            lock (_replyNativeCallbackMaps)
+                            {
+                                _replyNativeCallbackMaps.Remove(id);
+                            }
+                        }
+                    };
+                }
+                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, _replyNativeCallbackMaps[id], IntPtr.Zero);
             }
             else
             {

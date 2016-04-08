@@ -9,13 +9,8 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for App Control Result.
     /// </summary>
-    public enum AppControlLaunchResult
+    public enum AppControlReplyResult
     {
-        /// <summary>
-        /// Callee application is launched actually.
-        /// </summary>
-        AppStarted = 1,
-
         /// <summary>
         /// Operation is succeeded
         /// </summary>
