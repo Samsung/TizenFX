@@ -11,13 +11,14 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// Arguments for the event that is raised when the application is launched.
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public class ApplicationLaunchedEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// The information of the application.
         /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; internal set; }
+        public ApplicationInfo ApplicationInfo { get; internal set; }        
     }
 }
+

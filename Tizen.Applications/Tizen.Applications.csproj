@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\Tizen.Applications.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,28 +61,25 @@
     <Compile Include="Interop\Interop.MessagePort.cs" />
     <Compile Include="Interop\Interop.Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Applications.Managers\ApplicationManagerErrorFactory.cs" />
-    <Compile Include="Tizen.Applications.Managers\ApplicationState.cs" />
-    <Compile Include="Tizen.Applications.Managers\InstalledApplicationMetadataFilter.cs" />
+    <Compile Include="Tizen.Applications\ApplicationInfoMetadataFilter.cs" />
     <Compile Include="Tizen.Applications.Messages\MessagePort.cs" />
     <Compile Include="Tizen.Applications.Messages\MessagePortErrorFactory.cs" />
     <Compile Include="Tizen.Applications.Messages\MessageReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications.Messages\RemoteValues.cs" />
     <Compile Include="Tizen.Applications\AppControlReceivedEventArgs.cs" />
     <Compile Include="Tizen.Applications\AppControlReplyCallback.cs" />
-    <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
+    <Compile Include="Tizen.Applications\ApplicationTerminatedEventArgs.cs" />
+    <Compile Include="Tizen.Applications\DirectoryInfo.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryStatus.cs" />
     <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
     <Compile Include="Tizen.Applications\ServiceApplication.cs" />
     <Compile Include="Tizen.Applications\UIApplication.cs" />
-    <Compile Include="Tizen.Applications.Managers\ApplicationChangedEventArgs.cs" />
-    <Compile Include="Tizen.Applications.Managers\ApplicationManager.cs" />
-    <Compile Include="Tizen.Applications.Managers\InstalledApplicationFilter.cs" />
-    <Compile Include="Tizen.Applications.Managers\ApplicationManagerImpl.cs" />
-    <Compile Include="Tizen.Applications.Managers\InstalledApplication.cs" />
-    <Compile Include="Tizen.Applications.Managers\RunningApplication.cs" />
+    <Compile Include="Tizen.Applications\ApplicationLaunchedEventArgs.cs" />
+    <Compile Include="Tizen.Applications\ApplicationManager.cs" />
+    <Compile Include="Tizen.Applications\ApplicationInfoFilter.cs" />
+    <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\AppControl.cs" />
     <Compile Include="Tizen.Applications\AppControlLaunchMode.cs" />
     <Compile Include="Tizen.Applications\AppControlReplyResult.cs" />

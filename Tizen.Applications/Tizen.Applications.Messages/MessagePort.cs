@@ -19,11 +19,11 @@ namespace Tizen.Applications.Messages
     /// </remarks>
     public class MessagePort : IDisposable
     {
-        private static object s_lock = new object();
-        private static HashSet<string> s_portMap = new HashSet<string>();
+        private static readonly object s_lock = new object();
+        private static readonly HashSet<string> s_portMap = new HashSet<string>();
 
         /// <summary>
-        /// Constructor
+        /// Initializes the instance of the MessagePort class.
         /// </summary>
         /// <param name="portName">The name of the local message port</param>
         /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
@@ -37,6 +37,9 @@ namespace Tizen.Applications.Messages
             _trusted = trusted;
         }
 
+        /// <summary>
+        /// Destructor of the MessagePort class.
+        /// </summary>
         ~MessagePort()
         {
             Dispose(false);
@@ -87,12 +90,12 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// The name of the local message port
         /// </summary>
-        private string _portName = null;
+        private readonly string _portName = null;
 
         /// <summary>
         /// If true the message port is a trusted port, otherwise false it is not
         /// </summary>
-        private bool _trusted = false;
+        private readonly bool _trusted = false;
 
         /// <summary>
         /// If true the message port is listening, otherwise false it is not
@@ -114,7 +117,8 @@ namespace Tizen.Applications.Messages
                 }
                 _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
                 {
-                    MessageReceivedEventArgs args = new MessageReceivedEventArgs() {
+                    MessageReceivedEventArgs args = new MessageReceivedEventArgs()
+                    {
                         Message = Bundle.MakeRetainedBundle(message)
                     };
 
@@ -204,6 +208,10 @@ namespace Tizen.Applications.Messages
             }
         }
 
+        /// <summary>
+        /// Releases the unmanaged resourced used by the MessagePort class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_listening)
@@ -211,13 +219,17 @@ namespace Tizen.Applications.Messages
                 try
                 {
                     StopListening();
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Tizen.Log.Warn(GetType().Namespace, "Exception in Dispose :" + e.Message);
                 }
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the MessagePort class.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

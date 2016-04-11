@@ -11,13 +11,14 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// Arguments for the event that is raised when the application is terminated.
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public class ApplicationTerminatedEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// The information of the application.
         /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; internal set; }
+        public ApplicationInfo ApplicationInfo { get; internal set; }
     }
 }
+

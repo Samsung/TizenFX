@@ -7,17 +7,14 @@
 // you entered into with Samsung.
 
 using System;
+using System.Collections.Generic;
 
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// This class is a parameter of InstallerApplicationApplicationsAsync method.
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public class ApplicationInfoMetadataFilter : ApplicationInfoFilter
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; internal set; }
     }
 }

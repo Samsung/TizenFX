@@ -1,256 +1,317 @@
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
 
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
     /// <summary>
-    ///
+    /// This class provides methods and properties to get information of the application.
     /// </summary>
-    public class ApplicationInfo
+    public class ApplicationInfo : IDisposable
     {
-        private SharedPaths _shared = null;
-        private ExternalPaths _external = null;
+        private const string LogTag = "Tizen.Applications";
+        private bool _disposed = false;
+        private IntPtr _infoHandle;
 
-        private string _id;
-        private string _name;
-        private string _version;
-        private string _dataPath;
-        private string _cachePath;
-        private string _resourcePath;
-
-        internal ApplicationInfo()
+        internal ApplicationInfo(IntPtr infoHandle)
         {
-
+            _infoHandle = infoHandle;
         }
 
         /// <summary>
-        /// The ID of the application.
+        /// Destructor of the class
         /// </summary>
-        public string Id
+        ~ApplicationInfo()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Gets the application id.
+        /// </summary>
+        public string ApplicationId
         {
             get
             {
-                if (_id == null)
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetAppId(_infoHandle, out ptr);
+                string appid = "";
+                if (ptr != IntPtr.Zero)
                 {
-                    Interop.AppCommon.AppGetId(out _id);
+                    appid = Marshal.PtrToStringAuto(ptr);
                 }
-                return _id;
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get ApplicationId failed.");
+                }
+                return appid;
             }
         }
 
         /// <summary>
-        /// The localized name of the application.
+        /// Gets the package id of the application.
         /// </summary>
-        public string Name
+        public string PackageId
         {
             get
             {
-                if (_name == null)
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetPackage(_infoHandle, out ptr);
+                string packageid = "";
+                if (ptr != IntPtr.Zero)
                 {
-                    Interop.AppCommon.AppGetName(out _name);
-
+                    packageid = Marshal.PtrToStringAuto(ptr);
                 }
-                return _name;
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get PackageId failed.");
+                }
+                return packageid;
             }
         }
 
         /// <summary>
-        /// The version of the application package.
+        /// Gets the label of the application.
         /// </summary>
-        public string Version
+        public string Label
         {
             get
             {
-                if (_version == null)
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetLabel(_infoHandle, out ptr);
+                string label = "";
+                if (ptr != IntPtr.Zero)
                 {
-                    Interop.AppCommon.AppGetVersion(out _version);
+                    label = Marshal.PtrToStringAuto(ptr);
                 }
-                return _version;
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get Label failed.");
+                }
+                return label;
             }
         }
 
         /// <summary>
-        /// The absolute path to the application's data directory which is used to store private data of the application.
+        /// Gets the excutable path of the application.
         /// </summary>
-        public string DataPath
+        public string ExcutablePath
         {
             get
             {
-                if (_dataPath == null)
-                    _dataPath = Interop.AppCommon.AppGetDataPath();
-                return _dataPath;
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetExec(_infoHandle, out ptr);
+                string exec = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    exec = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get ExcutablePath failed.");
+                }
+                return exec;
             }
         }
 
         /// <summary>
-        /// The absolute path to the application's cache directory which is used to store temporary data of the application.
+        /// Gets the absolute path to the icon image. 
         /// </summary>
-        public string CachePath
+        public string IconPath
         {
             get
             {
-                if (_cachePath == null)
-                    _cachePath = Interop.AppCommon.AppGetCachePath();
-                return _cachePath;
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetIcon(_infoHandle, out ptr);
+                string path = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    path = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get IconPath failed.");
+                }
+                return path;
             }
         }
 
         /// <summary>
-        /// The absolute path to the application resource directory. The resource files are delivered with the application package.
+        /// Gets the package type name.
         /// </summary>
-        public string ResourcePath
+        public string Type
         {
             get
             {
-                if (_resourcePath == null)
-                    _resourcePath = Interop.AppCommon.AppGetResourcePath();
-                return _resourcePath;
+                IntPtr ptr = IntPtr.Zero;
+                Interop.ApplicationManager.AppInfoGetType(_infoHandle, out ptr);
+                string type = "";
+                if (ptr != IntPtr.Zero)
+                {
+                    type = Marshal.PtrToStringAuto(ptr);
+                }
+                else
+                {
+                    Log.Warn(LogTag, "InstalledApplication get Type failed.");
+                }
+                return type;
             }
         }
 
         /// <summary>
-        /// The shared paths
+        /// Gets the application's metadata.
         /// </summary>
-        public SharedPaths Shared
+        public IDictionary<String, String> Metadata
         {
             get
             {
-                if (_shared == null)
-                    _shared = new SharedPaths();
-                return _shared;
+                IDictionary<string, string> metadata = new Dictionary<String, String>();
+
+                Interop.ApplicationManager.AppInfoMetadataCallback cb = (string key, string value, IntPtr userData) =>
+                {
+                    if (key.Length != 0)
+                    {
+                        metadata.Add(key, value);
+                    }
+                    return true;
+                };
+
+                Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoForeachMetadata(_infoHandle, cb, IntPtr.Zero);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get metadata of the application. err = " + err);
+                }
+                return metadata;
             }
         }
 
         /// <summary>
-        /// The external paths
+        /// Checks whether application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.
         /// </summary>
-        public ExternalPaths External
+        public bool IsNoDisplay
         {
             get
             {
-                if (_external == null)
-                    _external = new ExternalPaths();
-                return _external;
+                bool nodisplay = false;
+                Interop.ApplicationManager.AppInfoIsNodisplay(_infoHandle, out nodisplay);
+                return nodisplay;
             }
         }
 
         /// <summary>
-        /// The absolute path to the application's TEP(Tizen Expansion Package) directory. The resource files are delivered with the expansion package.
+        /// Checks whether application is launched on booting time. If the application will be automatically start on boot, true; otherwise, false.
         /// </summary>
-        public string ExpansionPackageResourcePath
+        public bool IsOnBoot
         {
             get
             {
-                return Interop.AppCommon.AppGetTepResourcePath();
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public class SharedPaths
-        {
-            private string _dataPath;
-            private string _resourcePath;
-            private string _trustedPath;
-
-            internal SharedPaths() { }
-            /// <summary>
-            /// The absolute path to the application's shared data directory which is used to share data with other applications.
-            /// </summary>
-            public string DataPath
-            {
-                get
-                {
-                    if (_dataPath == null)
-                        _dataPath = Interop.AppCommon.AppGetSharedDataPath();
-                    return _dataPath;
-                }
-            }
-
-            /// <summary>
-            /// The absolute path to the application's shared resource directory which is used to share resources with other applications.
-            /// </summary>
-            public string ResourcePath
-            {
-                get
-                {
-                    if (_resourcePath == null)
-                        _resourcePath = Interop.AppCommon.AppGetSharedResourcePath();
-                    return _resourcePath;
-                }
-            }
-
-            /// <summary>
-            /// The absolute path to the application's shared trusted directory which is used to share data with a family of trusted applications.
-            /// </summary>
-            public string TrustedPath
-            {
-                get
-                {
-                    if (_trustedPath == null)
-                        _trustedPath = Interop.AppCommon.AppGetSharedTrustedPath();
-                    return _trustedPath;
-                }
+                bool onboot = false;
+                Interop.ApplicationManager.AppInfoIsOnBoot(_infoHandle, out onboot);
+                return onboot;
             }
         }
 
         /// <summary>
-        /// 
+        /// Checks whether application is preloaded. If the application is preloaded, true; otherwise, false.
         /// </summary>
-        public class ExternalPaths
+        public bool IsPreload
         {
-            private string _dataPath;
-            private string _cachePath;
-            private string _sharedDataPath;
-
-            internal ExternalPaths() { }
-
-            /// <summary>
-            /// The absolute path to the application's external data directory which is used to store data of the application.
-            /// </summary>
-            public string DataPath
+            get
             {
-                get
-                {
-                    if (_dataPath == null)
-                        _dataPath = Interop.AppCommon.AppGetExternalDataPath();
-                    return _dataPath;
-                }
+                bool preloaded = false;
+                Interop.ApplicationManager.AppInfoIsPreLoad(_infoHandle, out preloaded);
+                return preloaded;
             }
+        }
 
-            /// <summary>
-            /// The absolute path to the application's external cache directory which is used to store temporary data of the application.
-            /// </summary>
-            public string CachePath
+        /// <summary>
+        /// Gets the application's process id. If the application is not running, the value will be zero (0).
+        /// </summary>
+        public int ProcessId
+        {
+            get
             {
-                get
+                int pid = 0;
+                IntPtr contextHandle = IntPtr.Zero;
+                try
                 {
-                    if (_cachePath == null)
-                        _cachePath = Interop.AppCommon.AppGetExternalCachePath();
-                    return _cachePath;
+                    Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
+                    Interop.ApplicationManager.AppContextGetPid(contextHandle, out pid);
                 }
+                finally
+                {
+                    if (contextHandle != IntPtr.Zero)
+                    {
+                        Interop.ApplicationManager.AppContextDestroy(contextHandle);
+                    }
+                }
+                return pid;
             }
+        }
 
-            /// <summary>
-            /// The absolute path to the application's external shared data directory which is used to share data with other applications.
-            /// </summary>
-            public string SharedDataPath
+        /// <summary>
+        /// Checks whether the application is running. It returns the installed application running state.
+        /// </summary>
+        public bool IsRunning
+        {
+            get
             {
-                get
-                {
-                    if (_sharedDataPath == null)
-                        _sharedDataPath = Interop.AppCommon.AppGetExternalSharedDataPath();
-                    return _sharedDataPath;
-                }
+                bool running = false;
+                Interop.ApplicationManager.AppManagerIsRunning(ApplicationId, out running);
+                return running;
             }
+        }
+
+        /// <summary>
+        /// Gets the localized label of application for the given locale.
+        /// </summary>
+        /// <param name="locale">locale.</param>
+        public string GetLocalizedLabel(string locale)
+        {
+            IntPtr ptr = IntPtr.Zero;
+            Interop.ApplicationManager.AppInfoGetLocaledLabel(ApplicationId, locale, out ptr);
+            string label = Label;
+            if (ptr != IntPtr.Zero)
+            {
+                label = Marshal.PtrToStringAuto(ptr);
+            }
+            else
+            {
+                Log.Warn(LogTag, "InstalledApplication GetLocalizedLabel(" + locale + ") failed.");
+            }
+            return label;
+        }
+
+        /// <summary>
+        /// Releases all resources used by the ApplicationInfo class.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+            if (disposing)
+            {
+            }
+            if (_infoHandle != IntPtr.Zero)
+            {
+                Interop.ApplicationManager.AppInfoDestroy(_infoHandle);
+                _infoHandle = IntPtr.Zero;
+            }
+            _disposed = true;
         }
     }
 }

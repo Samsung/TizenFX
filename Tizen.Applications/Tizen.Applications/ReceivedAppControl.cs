@@ -1,15 +1,18 @@
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
 
 using System;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the received AppControl.
+    /// </summary>
     public class ReceivedAppControl : AppControl
     {
         private const string LogTag = "Tizen.Applications";
@@ -56,7 +59,6 @@ namespace Tizen.Applications
         /// 
         /// </summary>
         /// <param name="replyRequest"></param>
-        /// <param name="launchRequest"></param>
         /// <param name="result"></param>
         public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)
         {

@@ -1,13 +1,14 @@
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
 
 using System;
+
+using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -16,50 +17,97 @@ namespace Tizen.Applications
     /// </summary>
     public abstract class Application
     {
+        private const string LogTag = "Tizen.Applications";
+
         private static Application s_CurrentApplication = null;
 
         private Interop.AppEvent.SafeAppEventHandle _lowMemoryNativeHandle;
         private Interop.AppEvent.SafeAppEventHandle _localeChangedNativeHandle;
 
+        private object _lock = new object();
+
+        private DirectoryInfo _directoryInfo;
+        private ApplicationInfo _applicationInfo;
+
         /// <summary>
-        /// 
+        /// Occurs when the application is launched.
         /// </summary>
         public event EventHandler Created;
 
         /// <summary>
-        /// 
+        /// Occurs when the application is about to shutdown.
         /// </summary>
         public event EventHandler Terminated;
 
         /// <summary>
-        /// 
+        /// Occurs whenever the application receives the appcontrol message.
         /// </summary>
         public event EventHandler<AppControlReceivedEventArgs> AppControlReceived;
 
         /// <summary>
-        /// The low memory event.
+        /// Occurs when the system memory is low.
         /// </summary>
         public event EventHandler<LowMemoryEventArgs> LowMemory;
 
         /// <summary>
-        /// The system language changed event.
+        /// Occurs when the system language is chagned.
         /// </summary>
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
 
         /// <summary>
-        /// 
+        /// Gets the instance of current application.
         /// </summary>
         public static Application Current { get { return s_CurrentApplication; } }
 
         /// <summary>
-        /// 
+        /// Gets the class representing directory information of current application.
         /// </summary>
-        public ApplicationInfo ApplicationInfo { get; internal set; }
+        public DirectoryInfo DirectoryInfo
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_directoryInfo == null)
+                    {
+                        _directoryInfo = new DirectoryInfo();
+                    }
+                }
+                return _directoryInfo;
+            }
+        }
+
+        /// <summary>
+        /// Gets the class representing information of current application.
+        /// </summary>
+        public ApplicationInfo ApplicationInfo
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    string appId;
+                    ErrorCode err = Interop.AppCommon.AppGetId(out appId);
+                    if (err == ErrorCode.None)
+                    {
+                        try
+                        {
+                            _applicationInfo = ApplicationManager.GetInstalledApplication(appId);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Warn(LogTag, "Failed to get application info. " + e.Message);
+                        }
+                    }
+                }
+                return _applicationInfo;
+            }
+        }
 
         /// <summary>
         /// Runs the application's main loop.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">Arguments from commandline.</param>
         public virtual void Run(string[] args)
         {
             s_CurrentApplication = this;
@@ -74,9 +122,9 @@ namespace Tizen.Applications
         public abstract void Exit();
 
         /// <summary>
-        /// 
+        /// Overrides this method if want to handle behavior when the application is launched.
+        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnCreate()
         {
             EventHandler eh = Created;
@@ -87,9 +135,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        /// Overrides this method if want to handle behavior when the application is terminated.
+        /// If base.OnTerminate() is not called, the event 'Terminated' will not be emitted.
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnTerminate()
         {
             EventHandler eh = Terminated;
@@ -98,9 +146,10 @@ namespace Tizen.Applications
                 eh(this, EventArgs.Empty);
             }
         }
-        
+
         /// <summary>
-        /// 
+        /// Overrides this method if want to handle behavior when the application receives the appcontrol message.
+        /// If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be emitted.
         /// </summary>
         /// <param name="e"></param>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -113,9 +162,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        /// Overrides this method if want to handle behavior when the system memory is low.
+        /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             EventHandler<LowMemoryEventArgs> eh = LowMemory;
@@ -126,9 +175,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        /// Overrides this method if want to handle behavior when the system language is changed.
+        /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             EventHandler<LocaleChangedEventArgs> eh = LocaleChanged;
@@ -140,7 +189,6 @@ namespace Tizen.Applications
 
         internal void SendCreate()
         {
-            ApplicationInfo = new ApplicationInfo();
             OnCreate();
         }
 

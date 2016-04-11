@@ -1,24 +1,23 @@
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
 
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.Applications.Managers
+namespace Tizen.Applications
 {
     /// <summary>
-    /// InstalledApplicationFilter class. This class is a parameter of InstallerApplicationAppsAsync method.
+    /// This class is a parameter of InstallerApplicationApplicationsAsync method.
     /// </summary>
-    public class InstalledApplicationFilter
+    public class ApplicationInfoFilter
     {
         /// <summary>
-        /// Keys class. This class is a possible key to use in the InstalledApplicationFilter.
+        /// This class is a possible key to use in the InstalledApplicationFilter.
         /// </summary>
         public static class Keys
         {
@@ -44,6 +43,9 @@ namespace Tizen.Applications.Managers
             public const string TaskManage = "PACKAGE_INFO_PROP_APP_TASKMANAGE";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IDictionary<string, string> Filter
         {
             get;
