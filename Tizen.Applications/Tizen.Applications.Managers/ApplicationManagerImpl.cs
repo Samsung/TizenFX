@@ -32,8 +32,6 @@ namespace Tizen.Applications.Managers
 
         ~ApplicationManagerImpl()
         {
-            Log.Debug(LogTag, "~ApplicationManagerImpl()");
-            UnRegisterApplicationChangedEvent();
             Dispose(false);
         }
 
@@ -64,6 +62,7 @@ namespace Tizen.Applications.Managers
                 // Free managed objects.
             }
             //Free unmanaged objects
+            UnRegisterApplicationChangedEvent();
             _disposed = true;
         }
 

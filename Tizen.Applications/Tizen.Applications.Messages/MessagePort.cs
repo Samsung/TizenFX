@@ -39,10 +39,6 @@ namespace Tizen.Applications.Messages
 
         ~MessagePort()
         {
-            if (_listening)
-            {
-                StopListening();
-            }
             Dispose(false);
         }
 
@@ -212,7 +208,13 @@ namespace Tizen.Applications.Messages
         {
             if (_listening)
             {
-                StopListening();
+                try
+                {
+                    StopListening();
+                } catch (Exception e)
+                {
+                    Tizen.Log.Warn(GetType().Namespace, "Exception in Dispose :" + e.Message);
+                }
             }
         }
 
