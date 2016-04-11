@@ -15,12 +15,7 @@ namespace Tizen.Applications.Managers
     /// <summary>
     /// InstalledApplicationMetadataFilter class. This class is a parameter of InstallerApplicationAppsAsync method.
     /// </summary>
-    public class InstalledApplicationMetadataFilter
+    public class InstalledApplicationMetadataFilter : InstalledApplicationFilter
     {
-        public IDictionary<string, string> Filter
-        {
-            get;
-            set;
-        }
     }
 }
