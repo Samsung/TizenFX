@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Content.Download
 {
@@ -13,7 +10,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Unhandled exception
         /// <summary>
-        None,
+        None = 0,
         /// <summary>
         /// Ready to download
         /// <summary>
@@ -52,7 +49,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Download is available through data network
         /// <summary>
-        DataNetwork,
+        DataNetwork = 0,
         /// <summary>
         /// Download is available through WiFi
         /// <summary>
@@ -75,7 +72,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Do not register notification
         /// <summary>
-        None,
+        None = 0,
         /// <summary>
         /// Completion notification for success state and failed state
         /// <summary>
@@ -85,5 +82,15 @@ namespace Tizen.Content.Download
         /// <summary>
         All
     }
-}
 
+    internal enum NotificationAppControlType
+    {
+        Downloading = 0,
+        Completed,
+        Failed
+    }
+    static internal class Downloads
+    {
+        internal const string LogTag = "Tizen.Content.Download";
+    }
+}

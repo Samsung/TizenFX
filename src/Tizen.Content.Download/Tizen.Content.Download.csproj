@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Content.Download</RootNamespace>
     <AssemblyName>Tizen.Content.Download</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -44,9 +46,26 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tizen">
+      <HintPath>..\..\..\..\..\Desktop\dll\usr\lib\mono\tizen\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Applications">
+      <HintPath>..\..\..\..\..\Desktop\dll\applicationdll\usr\lib\mono\tizen\Tizen.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Internals">
+      <HintPath>..\..\..\..\..\Desktop\dll\usr\lib\mono\tizen\Tizen.Internals.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Tizen.Content.Download\DownloadEnumerator.cs" />
+    <Compile Include="Tizen.Content.Download\Notification.cs" />
+    <Compile Include="Tizen.Content.Download\Request.cs" />
+    <Compile Include="Tizen.Content.Download\StateChangedEventArgs.cs" />
+    <Compile Include="Tizen.Content.Download\ProgressChangedEventArgs.cs" />
+    <Compile Include="Tizen.Content.Download\DownloadErrorFactory.cs" />
+    <Compile Include="Interop\Interop.Download.cs" />
+    <Compile Include="Interop\Interop.Libc.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,8 @@ Requires(postun): mono-core
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-web-url-download)
+BuildRequires: pkgconfig(csapi-tizen)
+BuildRequires: pkgconfig(csapi-application)
 
 %description
 Tizen API for C#
@@ -43,9 +45,10 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Content.Download/Tizen.Content.Download.snk \
+mcs -target:library -out:%{dllname} -keyfile:Tizen.Content.Download/Tizen.Content.Download.snk -pkg:'csapi-tizen' -pkg:'csapi-application'\
   Tizen.Content.Download/Properties/AssemblyInfo.cs \
-  Tizen.Content.Download/download/*.cs
+  Tizen.Content.Download/Tizen.Content.Download/*.cs \
+  Tizen.Content.Download/Interop/*.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then
