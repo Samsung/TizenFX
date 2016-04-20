@@ -44,7 +44,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IDictionary<string, string> Filter
         {

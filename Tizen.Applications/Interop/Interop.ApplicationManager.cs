@@ -114,7 +114,7 @@ internal static partial class Interop
         //int app_context_destroy(app_context_h app_context)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_package")]
-        internal static extern ErrorCode AppContextGetPackage(IntPtr handle, out IntPtr package);
+        internal static extern ErrorCode AppContextGetPackage(IntPtr handle, out string package);
         //int app_context_get_package (app_context_h app_context, char **package);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_app_id")]
@@ -146,31 +146,31 @@ internal static partial class Interop
         //int app_info_destroy (app_info_h app_info);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_app_id")]
-        internal static extern ErrorCode AppInfoGetAppId(IntPtr handle, out IntPtr applicationId);
+        internal static extern ErrorCode AppInfoGetAppId(IntPtr handle, out string applicationId);
         //int app_info_get_app_id (app_info_h app_info, char **app_id);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_exec")]
-        internal static extern ErrorCode AppInfoGetExec(IntPtr handle, out IntPtr exec);
+        internal static extern ErrorCode AppInfoGetExec(IntPtr handle, out string exec);
         //int app_info_get_exec (app_info_h app_info, char **exec);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_label")]
-        internal static extern ErrorCode AppInfoGetLabel(IntPtr handle, out IntPtr label);
+        internal static extern ErrorCode AppInfoGetLabel(IntPtr handle, out string label);
         //int app_info_get_label (app_info_h app_info, char **label);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_localed_label")]
-        internal static extern ErrorCode AppInfoGetLocaledLabel(string applicationId, string locale, out IntPtr label);
+        internal static extern ErrorCode AppInfoGetLocaledLabel(string applicationId, string locale, out string label);
         //int app_info_get_localed_label (const char *app_id, const char *locale, char **label);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_icon")]
-        internal static extern ErrorCode AppInfoGetIcon(IntPtr handle, out IntPtr path);
+        internal static extern ErrorCode AppInfoGetIcon(IntPtr handle, out string path);
         //int app_info_get_icon (app_info_h app_info, char **path)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_package")]
-        internal static extern ErrorCode AppInfoGetPackage(IntPtr handle, out IntPtr package);
+        internal static extern ErrorCode AppInfoGetPackage(IntPtr handle, out string package);
         //int app_info_get_package (app_info_h app_info, char **package)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_type")]
-        internal static extern ErrorCode AppInfoGetType(IntPtr handle, out IntPtr type);
+        internal static extern ErrorCode AppInfoGetType(IntPtr handle, out string type);
         //int app_info_get_type (app_info_h app_info, char **type)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_metadata")]
