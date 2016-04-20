@@ -15,7 +15,7 @@ namespace Tizen
     /// <summary>
     /// Provides methods to print log messages to Tizen logging system.
     /// </summary>
-    public class Log
+    public static class Log
     {
         /// <summary>
         /// Prints a log message with the DEBUG priority.
