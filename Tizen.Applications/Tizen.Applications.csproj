@@ -60,6 +60,7 @@
     <Compile Include="Interop\Interop.Libc.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.MessagePort.cs" />
+    <Compile Include="Interop\Interop.Notification.cs" />
     <Compile Include="Interop\Interop.Package.cs" />
     <Compile Include="Interop\Interop.PackageManager.cs" />
     <Compile Include="Interop\Interop.Service.cs" />
@@ -105,6 +106,12 @@
     <Compile Include="Tizen.Applications\AppControlOperations.cs" />
     <Compile Include="Tizen.Applications\Application.cs" />
     <Compile Include="Tizen.Applications\Bundle.cs" />
+    <Compile Include="Tizen.Applications\EventNotification.cs" />
+    <Compile Include="Tizen.Applications\Notification.cs" />
+    <Compile Include="Tizen.Applications\NotificationEnumerations.cs" />
+    <Compile Include="Tizen.Applications\NotificationErrorFactory.cs" />
+    <Compile Include="Tizen.Applications\NotificationManager.cs" />
+    <Compile Include="Tizen.Applications\ProgressNotification.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
