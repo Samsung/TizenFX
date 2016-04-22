@@ -16,6 +16,22 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents the control message to exchange between applications.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// public class AppControlExample : UIApplication
+    /// {
+    ///     /// ...
+    ///     protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    ///     {
+    ///         AppControl appControl = new AppControl();
+    ///         appControl.ApplicationId = "org.tizen.calculator";
+    ///         AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+    ///             // ...
+    ///         });
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     public class AppControl
     {
         private const string LogTag = "Tizen.Applications";
@@ -36,6 +52,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes the instance of the AppControl class.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when failed to create AppControl handle.</exception>
         public AppControl()
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
@@ -57,6 +74,19 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the operation to be performed.
         /// </summary>
+        /// <value>
+        /// The operation is the mandatory information for the launch request. If the operation is not specified,
+        /// AppControlOperations.Default is used for the launch request. If the operation is AppControlOperations.Default,
+        /// the package information is mandatory to explicitly launch the application. 
+        /// (if the operation is null for setter, it clears the previous value.)
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.Operation = AppControlOperations.Default;
+        /// Log.Debug(LogTag, "Operation: " + appControl.Operation);
+        /// </code>
+        /// </example>
         public string Operation
         {
             get
@@ -88,6 +118,16 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the explicit MIME type of the data.
         /// </summary>
+        /// <value>
+        /// (if the mime is null for setter, it clears the previous value.)
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.Mime = "image/jpg";
+        /// Log.Debug(LogTag, "Mime: " + appControl.Mime);
+        /// </code>
+        /// </example>
         public string Mime
         {
             get
@@ -119,6 +159,31 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the URI of the data.
         /// </summary>
+        /// <value>
+        /// Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and 
+        /// it is a regular file in this application's data path which can be obtained 
+        /// by property DataPath in ApplicationInfo class,
+        /// it will be shared to the callee application. 
+        /// Framework will grant a temporary permission to the callee application for this file and 
+        /// revoke it when the callee application is terminated.
+        /// The callee application can just read it. 
+        /// (if the uri is null for setter, it clears the previous value.)
+        /// </value>
+        /// <example>
+        /// <code>
+        /// public class AppControlExample : UIApplication
+        /// {
+        ///     ...
+        ///     protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        ///     {
+        ///         ...
+        ///         AppControl appControl = new AppControl();
+        ///         appContrl.Uri = this.ApplicationInfo.DataPath + "image.jpg";
+        ///         Log.Debug(LogTag, "Set Uri: " + appControl.Uri);
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         public string Uri
         {
             get
@@ -150,6 +215,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the explicit category.
         /// </summary>
+        /// <value>
+        /// (if the category is null for setter, it clears the previous value.)
+        /// </value>
         public string Category
         {
             get
@@ -181,6 +249,16 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the application id to explicitly launch.
         /// </summary>
+        /// <value>
+        /// (if the application id is null for setter, it clears the previous value.)
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// Log.Debug(LogTag, "ApplicationId: " + appControl.ApplicationId);
+        /// </code>
+        /// </example>
         public string ApplicationId
         {
             get
@@ -212,6 +290,21 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets and sets the launch mode of the application.
         /// </summary>
+        /// <value>
+        /// Although LaunchMode were set as AppControlLaunchMode.Group, 
+        /// callee application would be launched as single mode 
+        /// if the manifest file of callee application defined the launch mode as "single".
+        /// This property can just set the preference of caller application to launch an application. 
+        /// Sub-applications which were launched as group mode always have own process.
+        /// Since Tizen 3.0, if launch mode not set in the caller app control, 
+        /// this property returns AppControlLaunchMode.Single launch mode. 
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.LaunchMode = AppControlLaunchMode.Group;
+        /// </code>
+        /// </example>
         public AppControlLaunchMode LaunchMode
         {
             get
@@ -237,6 +330,17 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the collection of the extra data.
         /// </summary>
+        /// Extra data for communication between AppControls.
+        /// </summary>
+        /// <value>
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ExtraData.Add("key", "value");
+        /// ...
+        /// </code>
+        /// </example>
         public ExtraDataCollection ExtraData
         {
             get
@@ -252,7 +356,21 @@ namespace Tizen.Applications
         /// <summary>
         /// Retrieves all applications that can be launched to handle the given app_control request.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="control">The AppControl</param>
+        /// <returns>ApplicationIds</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid parameter</exception>
+        /// <example>
+        /// <code>
+        /// IEnumerable<string> applicationIds = AppControl.GetMatchedApplicationIds(control);
+        /// if (applicationIds != null)
+        /// {
+        ///     foreach (string id in applicationIds)
+        ///     {
+        ///         // ...
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         public static IEnumerable<string> GetMatchedApplicationIds(AppControl control)
         {
             List<string> ids = new List<string>();
@@ -288,8 +406,29 @@ namespace Tizen.Applications
         /// <summary>
         /// Sends the launch request.
         /// </summary>
-        /// <param name="launchRequest"></param>
-        /// <param name="replyAfterLaunching"></param>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request. 
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
+        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform. 
+        /// Also, implicit launch requests are NOT delivered to service applications since 2.4. 
+        /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a null arguament</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+        ///     // ...
+        /// });
+        /// </code>
+        /// </example>
         public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching = null)
         {
             Interop.AppControl.ErrorCode err;
@@ -348,7 +487,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        ///
+        /// Class for Extra Data
         /// </summary>
         public class ExtraDataCollection
         {
@@ -360,10 +499,21 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Adds extra data.
             /// </summary>
-            /// <param name="key"></param>
-            /// <param name="value"></param>
+            /// <remarks>
+            /// The function replaces any existing value for the given key.
+            /// </remarks>
+            /// <param name="key">The name of the extra data</param>
+            /// <param name="value">The value associated with the given key</param>
+            /// <exception cref="ArgumentNullException">Thrown when key or value is a zero-length string</exception>
+            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with system-defined key</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// appControl.ExtraData.Add("myKey", "myValue");
+            /// </code>
+            /// </example>
             public void Add(string key, string value)
             {
                 Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraData(_handle, key, value);
@@ -377,10 +527,22 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Adds extra data.
             /// </summary>
-            /// <param name="key"></param>
-            /// <param name="value"></param>
+            /// <remarks>
+            /// The function replaces any existing value for the given key.
+            /// </remarks>
+            /// <param name="key">The name of the extra data</param>
+            /// <param name="value">The value associated with the given key</param>
+            /// <exception cref="ArgumentNullException">Thrown when key or value is a zero-length string</exception>
+            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with system-defined key</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// string[] myValues = new string[] { "first", "second", "third" };
+            /// appControl.ExtraData.Add("myKey", myValues);
+            /// </code>
+            /// </example>
             public void Add(string key, IEnumerable<string> value)
             {
                 string[] valueArray = value.ToArray();
@@ -395,11 +557,20 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Gets the extra data.
             /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="key"></param>
-            /// <returns></returns>
+            /// <typeparam name="T">Only string & IEnumerable<string></typeparam>
+            /// <param name="key">The name of extra data</param>
+            /// <returns>The value associated with the given key</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// string myValue = appControl.ExtraData.Get<string>("myKey");
+            /// </code>
+            /// </example>
             public T Get<T>(string key)
             {
                 object ret = Get(key);
@@ -407,10 +578,23 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Gets the extra data.
             /// </summary>
-            /// <param name="key"></param>
-            /// <returns></returns>
+            /// <param name="key">The name of extra data</param>
+            /// <returns>The value associated with the given key</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// string myValue = appControl.ExtraData.Get("myKey") as string;
+            /// if (myValue != null)
+            /// {
+            ///     // ...
+            /// }
+            /// </code>
+            /// </example>
             public object Get(string key)
             {
                 if (IsCollection(key))
@@ -424,9 +608,23 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Gets all keys in extra data.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>The keys in the AppControl</returns>
+            /// <exception cref="InvalidOperationException">Thrown when invalid parameter</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// IEnumerable<string> keys = appControl.GetKeys();
+            /// if (keys != null)
+            /// {
+            ///     foreach (string key in keys)
+            ///     {
+            ///         // ...
+            ///     }
+            /// }
+            /// </code>
+            /// </example>
             public IEnumerable<string> GetKeys()
             {
                 List<string> keys = new List<string>();
@@ -460,11 +658,25 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Tries getting the extra data.
             /// </summary>
-            /// <param name="key"></param>
-            /// <param name="value"></param>
-            /// <returns></returns>
+            /// <param name="key">The name of extra data</param>
+            /// <param name="value">The value associated with the given key</param>
+            /// <returns>The result whether getting the value is done</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// string myValue = string.Empty;
+            /// bool result = appControl.ExtraData.TryGet("myKey", out myValue);
+            /// if (result != null)
+            /// {
+            ///     // ...
+            /// }
+            /// </code>
+            /// </example>
             public bool TryGet(string key, out string value)
             {
                 Interop.AppControl.GetExtraData(_handle, key, out value);
@@ -480,11 +692,28 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Tries getting the extra data.
             /// </summary>
-            /// <param name="key"></param>
-            /// <param name="value"></param>
-            /// <returns></returns>
+            /// <param name="key">The name of extra data</param>
+            /// <param name="value">The value associated with the given key</param>
+            /// <returns>The result whether getting the value is done</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// IEnumerable<string> myValue = null;
+            /// bool result = appControl.ExtraData.TryGet("myKey", out myValue);
+            /// if (result)
+            /// {
+            ///     foreach (string value in myValue)
+            ///     {
+            ///         // ...
+            ///     }
+            /// }
+            /// </code>
+            /// </example>
             public bool TryGet(string key, out IEnumerable<string> value)
             {
                 IntPtr valuePtr = IntPtr.Zero;
@@ -511,9 +740,18 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Removes the extra data.
             /// </summary>
-            /// <param name="key"></param>
+            /// <param name="key">The name of the extra data</param>
+            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// appControl.ExtraData.Remove("myKey");
+            /// </code>
+            /// </example>
             public void Remove(string key)
             {
                 Interop.AppControl.ErrorCode err = Interop.AppControl.RemoveExtraData(_handle, key);
@@ -529,19 +767,33 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            ///
+            /// Counts keys in the extra data.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>The number of counting keys</returns>
+            /// <exception cref="InvalidOperationException">Thrown when invalid parameter</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// int numberOfKeys = appControl.ExtraData.Count();
+            /// </code>
+            /// </example>
             public int Count()
             {
                 return GetKeys().Count();
             }
 
             /// <summary>
-            ///
+            /// Checks whether the extra data associated with the given key is of collection data type.
             /// </summary>
-            /// <param name="key"></param>
-            /// <returns></returns>
+            /// <param name="key">The name of the extra data</param>
+            /// <returns>If true the extra data is of array data type, otherwise false</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string</exception>
+            /// <example>
+            /// <code>
+            /// AppControl appControl = new AppControl();
+            /// bool result = appControl.ExtraData.IsCollection("myKey");
+            /// </code>
+            /// </example>
             public bool IsCollection(string key)
             {
                 bool isArray = false;

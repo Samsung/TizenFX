@@ -1,4 +1,4 @@
-// Copyright 2016 by Samsung Electronics, Inc.,
+﻿// Copyright 2016 by Samsung Electronics, Inc.,
 //
 // This software is the confidential and proprietary information
 // of Samsung Electronics, Inc. ("Confidential Information"). You
