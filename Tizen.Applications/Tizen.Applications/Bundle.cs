@@ -41,12 +41,6 @@ namespace Tizen.Applications
             _keys = new HashSet<string>();
         }
 
-        static internal Bundle MakeRetainedBundle(IntPtr handle)
-        {
-            IntPtr clonedHandle = Interop.Bundle.Clone(handle);
-            return new Bundle(clonedHandle, true);
-        }
-
         internal Bundle(IntPtr handle, bool ownership = false)
         {
             if (handle != IntPtr.Zero)
@@ -68,7 +62,7 @@ namespace Tizen.Applications
             }
             else
             {
-                throw new ArgumentNullException("Invalid bundle");
+                throw new ArgumentNullException("handle");
             }
         }
 
@@ -154,7 +148,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("string", "a_string");
         /// if (bundle.Contains("string"))
         /// {
-        ///     string aValue = bundle.GetItem<string/>("string");
+        ///     string aValue = bundle.GetItem<string>("string");
         ///     Console.WriteLine(aValue);
         /// }
         /// </code>
@@ -169,6 +163,7 @@ namespace Tizen.Applications
         /// <param name="key">The key to identify the item with. If an item with the key already exists in the Bundle, this method will not succeed.</param>
         /// <param name="value">The value of the item.</param>
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the Bundle instance has been disposed.</exception>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
@@ -177,6 +172,10 @@ namespace Tizen.Applications
         /// </code>
         public void AddItem(string key, byte[] value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
             AddItem(key, value, 0, value.Length);
         }
 
@@ -189,6 +188,7 @@ namespace Tizen.Applications
         /// <param name="count">The maximum number of bytes to add to the bundle starting with offset.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when the offset or count is out of range.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the Bundle instance has been disposed.</exception>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
@@ -199,6 +199,10 @@ namespace Tizen.Applications
         {
             if (!_keys.Contains(key))
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
                 if (offset < 0)
                 {
                     throw new ArgumentOutOfRangeException("offset", offset, "Cannot be less than 0");
@@ -291,7 +295,7 @@ namespace Tizen.Applications
         /// if (bundle.Contains("string"))
         /// {
         ///     object aValue = bundle.GetItem("string");
-        ///     if (bundle.Is<string/>("string");)
+        ///     if (bundle.Is<string>("string");)
         ///     {
         ///         string aString = (string)aValue;
         ///         Console.WriteLine(aString);
@@ -356,15 +360,15 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// if (bundle.Is<string/>("string_array"))
+        /// if (bundle.Is<string>("string_array"))
         /// {
         ///     Console.WriteLine("It is a string");
-        ///     Console.WriteLine(bundle.GetItem<string/>("string_array"));
+        ///     Console.WriteLine(bundle.GetItem<string>("string_array"));
         /// }
-        /// else if (bundle.Is<string[]/>("string_array"))
+        /// else if (bundle.Is<string[]>("string_array"))
         /// {
         ///     Console.WriteLine("It is a string[]");
-        ///     string[] anArray = bundle.GetItem<string[]/>("string_array");
+        ///     string[] anArray = bundle.GetItem<string[]>("string_array");
         ///     foreach (string value in anArray)
         ///     {
         ///         Console.WriteLine(value);
@@ -456,10 +460,10 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// System.Collections.Generic.IEnumerable<string> aStringArray;
-        /// if (bundle.TryGetItem("string", out aStringArray))
+        /// System.Collections.Generic.IEnumerable<string> aStringEnumerable;
+        /// if (bundle.TryGetItem("string", out aStringEnumerable))
         /// {
-        ///     foreach (string value in aStringArray)
+        ///     foreach (string value in aStringEnumerable)
         ///     {
         ///         Console.WriteLine(value);
         ///     }
@@ -495,10 +499,10 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// if (bundle.Is<string[]/>("string_array"))
+        /// if (bundle.Is<string[]>("string_array"))
         /// {
         ///     Console.WriteLine("It is a string[]");
-        ///     string[] anArray = bundle.GetItem<string[]/>("string_array");
+        ///     string[] anArray = bundle.GetItem<string[]>("string_array");
         ///     foreach (string value in anArray)
         ///     {
         ///         Console.WriteLine(value);
@@ -568,6 +572,12 @@ namespace Tizen.Applications
             }
         }
 
+        static internal Bundle MakeRetainedBundle(IntPtr handle)
+        {
+            IntPtr clonedHandle = Interop.Bundle.Clone(handle);
+            return new Bundle(clonedHandle, true);
+        }
+
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
@@ -598,7 +608,7 @@ namespace Tizen.Applications
             Dispose(false);
         }
 
-        private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
+        static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
         {
             managedArray = new string[size];
             IntPtr[] IntPtrArray = new IntPtr[size];
@@ -643,11 +653,11 @@ namespace Tizen.Applications
             }
             else if ((BundleError)error == BundleError.KeyNotAvailable)
             {
-                throw new ArgumentException("Key does not exist in the bundle", "key");
+                throw new ArgumentException("Key does not exist in the bundle");
             }
             else if ((BundleError)error == BundleError.KeyExists)
             {
-                throw new ArgumentException("Key already exists", "key");
+                throw new ArgumentException("Key already exists");
             }
         }
     }
