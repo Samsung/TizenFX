@@ -14,6 +14,11 @@ namespace Tizen.Applications
     public enum LowMemoryStatus
     {
         /// <summary>
+        /// Not initialized status
+        /// </summary>
+        None = 0x00,
+
+        /// <summary>
         /// Normal status
         /// </summary>
         Normal = 0x01,

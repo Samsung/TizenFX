@@ -86,17 +86,21 @@ namespace Tizen.Applications
             {
                 lock (_lock)
                 {
-                    string appId;
-                    ErrorCode err = Interop.AppCommon.AppGetId(out appId);
-                    if (err == ErrorCode.None)
+                    if (_applicationInfo == null)
                     {
-                        try
+                        string appId;
+                        ErrorCode err = Interop.AppCommon.AppGetId(out appId);
+                        if (err == ErrorCode.None)
                         {
-                            _applicationInfo = ApplicationManager.GetInstalledApplication(appId);
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Warn(LogTag, "Failed to get application info. " + e.Message);
+                            try
+                            {
+                                // TODO: Use lazy enabled AppInfo class without throwing exceptions.
+                                _applicationInfo = ApplicationManager.GetInstalledApplication(appId);
+                            }
+                            catch (Exception e)
+                            {
+                                Log.Warn(LogTag, "Failed to get application info. " + e.Message);
+                            }
                         }
                     }
                 }
@@ -110,6 +114,11 @@ namespace Tizen.Applications
         /// <param name="args">Arguments from commandline.</param>
         public virtual void Run(string[] args)
         {
+            if (args == null)
+            {
+                throw new ArgumentNullException("args");
+            }
+
             s_CurrentApplication = this;
 
             Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, HandleAppEvent, IntPtr.Zero, out _lowMemoryNativeHandle);
@@ -194,7 +203,6 @@ namespace Tizen.Applications
 
         private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)
         {
-            Console.WriteLine("HandleAppEvent!! eventName={0}, eventData={1}", eventName, eventData);
             Bundle b = new Bundle(eventData);
             if (eventName == Interop.AppEvent.EventNames.LowMemory)
             {

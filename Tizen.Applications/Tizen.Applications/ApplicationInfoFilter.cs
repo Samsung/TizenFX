@@ -49,7 +49,6 @@ namespace Tizen.Applications
         public IDictionary<string, string> Filter
         {
             get;
-            set;
         }
     }
 }
