@@ -1,5 +1,4 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Applications.dll
+%define BUILDCONF Debug
 
 Name:       csapi-application
 Summary:    Tizen Application API for C#
@@ -25,10 +24,6 @@ Requires: capi-appfw-application
 Requires: capi-message-port
 Requires: appcore-agent
 
-
-Requires(post): mono-core
-Requires(postun): mono-core
-
 %description
 Tizen API for C#
 
@@ -46,28 +41,22 @@ Development package for %{name}
 cp %{SOURCE1} .
 
 %build
-make
+xbuild Tizen.Applications/Tizen.Applications.csproj /p:Configuration=%{BUILDCONF}
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.Applications/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
+%define pc_libs %{_libdir}/mono/tizen/Tizen.Applications.dll
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
+sed -e "s#@name@#%{name}#g" \
+    -e "s#@version@#%{version}#g" \
+    -e "s#@libs@#%{pc_libs}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-
-%post
-gacutil -i %{dllpath}/%{dllname}
-
-find %{_libdir}/mono/gac -name Tizen*  -exec chsmack -a "_" {} \;
 
 %files
 %manifest %{name}.manifest
-%{dllpath}/%{dllname}
+%{_libdir}/mono/
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc

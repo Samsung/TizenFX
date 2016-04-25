@@ -1,5 +1,5 @@
-Name: csapi-application
+Name: @name@
 Description: Tizen Application API for C#
 Version: @version@
-Libs: -r:@dllpath@/@dllname@
+Libs: -r:@libs@
 Requires:
