@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Interop\Interop.AppCommon.cs" />
     <Compile Include="Interop\Interop.AppControl.cs" />
     <Compile Include="Interop\Interop.AppEvent.cs" />
@@ -101,6 +102,9 @@
       <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
       <Name>Tizen</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

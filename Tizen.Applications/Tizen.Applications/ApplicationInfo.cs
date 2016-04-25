@@ -74,9 +74,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the excutable path of the application.
+        /// Gets the executable path of the application.
         /// </summary>
-        public string ExcutablePath
+        public string ExecutablePath
         {
             get
             {
@@ -100,9 +100,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the package type name.
+        /// Gets the application type name.
         /// </summary>
-        public string Type
+        public string ApplicationType
         {
             get
             {

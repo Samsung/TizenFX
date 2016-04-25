@@ -428,8 +428,6 @@ namespace Tizen.Applications
             {
                 case Interop.ApplicationManager.ErrorCode.InvalidParameter:
                     return new ArgumentException(errMessage);
-                case Interop.ApplicationManager.ErrorCode.OutOfMemory:
-                    return new OutOfMemoryException(errMessage);
                 default:
                     return new InvalidOperationException(errMessage);
             }
