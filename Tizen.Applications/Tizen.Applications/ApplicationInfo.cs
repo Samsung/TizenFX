@@ -51,7 +51,7 @@ namespace Tizen.Applications
         {
             get
             {
-                if (_applicationId != string.Empty)
+                if (!string.IsNullOrEmpty(_applicationId))
                     return _applicationId;
                 IntPtr infoHandle = GetInfoHandle();
                 string appid = string.Empty;
@@ -339,7 +339,7 @@ namespace Tizen.Applications
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppInfo(_applicationId, out infoHandle);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get ApplicationInfo handle.");
+                    Log.Warn(LogTag, "Failed to get the handle of the ApplicationInfo.");
                 }
                 _infoHandle = infoHandle;
             }

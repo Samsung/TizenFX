@@ -48,23 +48,23 @@ internal static partial class Interop
             }
         }
 
-        internal class EventNames
+        internal static class EventNames
         {
-            internal const string LowMemory = "tizen.system.event.low_memory";
-            internal const string LanguageSet = "tizen.system.event.language_set";
+            public const string LowMemory = "tizen.system.event.low_memory";
+            public const string LanguageSet = "tizen.system.event.language_set";
         }
 
-        internal class EventKeys
+        internal static class EventKeys
         {
-            internal const string LowMemory = "low_memory";
-            internal const string LanguageSet = "language_set";
+            public const string LowMemory = "low_memory";
+            public const string LanguageSet = "language_set";
         }
 
-        internal class EventValues
+        internal static class EventValues
         {
-            internal const string MemoryNormal = "normal";
-            internal const string MemorySoftWarning = "soft_warning";
-            internal const string MemoryHardWarning = "hard_warning";
+            public const string MemoryNormal = "normal";
+            public const string MemorySoftWarning = "soft_warning";
+            public const string MemoryHardWarning = "hard_warning";
         }
     }
 }

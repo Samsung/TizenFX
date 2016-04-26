@@ -174,17 +174,32 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
+        /// Sends a untrusted message to the message port of a remote application.
+        /// </summary>
+        /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB</param>
+        /// <param name="remoteAppId">The ID of the remote application</param>
+        /// <param name="remotePortName">The name of the remote message port</param>
+        public void Send(Bundle message, string remoteAppId, string remotePortName)
+        {
+            Send(message, remoteAppId, remotePortName, false);
+        }
+
+        /// <summary>
         /// Sends a message to the message port of a remote application.
         /// </summary>
         /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB</param>
         /// <param name="remoteAppId">The ID of the remote application</param>
         /// <param name="remotePortName">The name of the remote message port</param>
         /// <param name="trusted">If true the trusted message port of remote application otherwise false</param>
-        public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted = false)
+        public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted)
         {
             if (!_listening)
             {
-                throw new InvalidOperationException("Sould start listen before send");
+                throw new InvalidOperationException("Should start listen before send");
+            }
+            if (message == null)
+            {
+                throw new ArgumentNullException("message");
             }
             int ret = trusted ?
                         Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId) :

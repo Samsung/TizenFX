@@ -1,7 +1,17 @@
 <Dictionary>
-	<Words>
-		<Recognized>
-			<Word>Tizen</Word>
-		</Recognized>
-	</Words>
+  <Words>
+    <Recognized>
+      <Word>Tizen</Word>
+      <Word>ApplicationInfo</Word>
+      <Word>LaunchMode</Word>
+      <Word>AppControl</Word>
+      <Word>Wifi</Word>
+      <Word>Nfc</Word>
+    </Recognized>
+    <Compound>
+      <Term CompoundAlternate="ApplicationInfo">applicationinfo</Term>
+      <Term CompoundAlternate="LaunchMode">launchmode</Term>
+      <Term CompoundAlternate="AppControl">appcontrol</Term>
+    </Compound>
+  </Words>
 </Dictionary>

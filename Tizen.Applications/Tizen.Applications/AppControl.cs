@@ -66,7 +66,9 @@ namespace Tizen.Applications
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
             if (err != Interop.AppControl.ErrorCode.None)
+            {
                 throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+            }
         }
 
         #region Public Properties
@@ -268,7 +270,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetAppId(_handle, out _applicationId);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the appId from the appcontrol. Err = " + err);
+                        Log.Warn(LogTag, "Failed to get the application id from the AppControl. Err = " + err);
                     }
                 }
                 return _applicationId;
@@ -282,7 +284,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the appId to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, "Failed to set the application id to the AppControl. Err = " + err);
                 }
             }
         }
@@ -313,7 +315,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetLaunchMode(_handle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the launchMode from the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, "Failed to get the LaunchMode from the AppControl. Err = " + err);
                 }
                 return (AppControlLaunchMode)value;
             }
@@ -322,7 +324,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.SetLaunchMode(_handle, (int)value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to set the launchMode to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, "Failed to set the LaunchMode to the AppControl. Err = " + err);
                 }
             }
         }
@@ -373,6 +375,11 @@ namespace Tizen.Applications
         /// </example>
         public static IEnumerable<string> GetMatchedApplicationIds(AppControl control)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException("control");
+            }
+
             List<string> ids = new List<string>();
             Interop.AppControl.AppMatchedCallback callback = new Interop.AppControl.AppMatchedCallback(
                 (handle, applicationId, userData) =>
@@ -395,7 +402,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, pointerToApplicationIds);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    throw new InvalidOperationException("Failed to get matched appids. err = " + err);
+                    throw new InvalidOperationException("Failed to get matched application ids. err = " + err);
                 }
                 return ids;
             }
@@ -415,8 +422,36 @@ namespace Tizen.Applications
         /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
         /// </remarks>
         /// <param name="launchRequest">The AppControl</param>
-        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered</param>
         /// <exception cref="ArgumentNullException">Thrown when failed because of a null arguament</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl);
+        /// </code>
+        /// </example>
+        public static void SendLaunchRequest(AppControl launchRequest)
+        {
+            SendLaunchRequest(launchRequest, null);
+        }
+
+        /// <summary>
+        /// Sends the launch request.
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request. 
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
+        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform. 
+        /// Also, implicit launch requests are NOT delivered to service applications since 2.4. 
+        /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of arguament is invalid</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -429,8 +464,13 @@ namespace Tizen.Applications
         /// });
         /// </code>
         /// </example>
-        public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching = null)
+        public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching)
         {
+            if (launchRequest == null)
+            {
+                throw new ArgumentNullException("launchRequest");
+            }
+
             Interop.AppControl.ErrorCode err;
 
             err = Interop.AppControl.EnableAppStartedResultEvent(launchRequest._handle);
@@ -469,20 +509,17 @@ namespace Tizen.Applications
                 err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, null, IntPtr.Zero);
             }
 
-            switch (err)
+            if (err != Interop.AppControl.ErrorCode.None)
             {
-                case Interop.AppControl.ErrorCode.InvalidParameter:
-                    throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
-                case Interop.AppControl.ErrorCode.AppNotFound:
-                    throw new InvalidOperationException("App not found");
-                case Interop.AppControl.ErrorCode.LaunchRejected:
-                    throw new InvalidOperationException("Launch rejected");
-                case Interop.AppControl.ErrorCode.LaunchFailed:
-                    throw new InvalidOperationException("Launch failed");
-                case Interop.AppControl.ErrorCode.TimedOut:
-                    throw new TimeoutException("Timed out");
-                case Interop.AppControl.ErrorCode.PermissionDenied:
-                    throw new InvalidOperationException("Permission denied");
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppControl.ErrorCode.TimedOut:
+                        throw new TimeoutException("Timed out");
+                    default:
+                        throw new InvalidOperationException("Error = " + err);
+                }
             }
         }
 
@@ -516,13 +553,26 @@ namespace Tizen.Applications
             /// </example>
             public void Add(string key, string value)
             {
-                Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraData(_handle, key, value);
-                switch (err)
+                if (string.IsNullOrEmpty(key))
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key or value is a zero-length string");
-                    case Interop.AppControl.ErrorCode.KeyRejected:
-                        throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                    throw new ArgumentNullException("key");
+                }
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("value");
+                }
+                Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraData(_handle, key, value);
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    switch (err)
+                    {
+                        case Interop.AppControl.ErrorCode.InvalidParameter:
+                            throw new ArgumentException("Invalid parameter: key or value is a zero-length string");
+                        case Interop.AppControl.ErrorCode.KeyRejected:
+                            throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                        default:
+                            throw new InvalidOperationException("Error = " + err);
+                    }
                 }
             }
 
@@ -545,14 +595,27 @@ namespace Tizen.Applications
             /// </example>
             public void Add(string key, IEnumerable<string> value)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
                 string[] valueArray = value.ToArray();
                 Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraDataArray(_handle, key, valueArray, valueArray.Length);
-                switch (err)
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key or value is a zero-length string");
-                    case Interop.AppControl.ErrorCode.KeyRejected:
-                        throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                    switch (err)
+                    {
+                        case Interop.AppControl.ErrorCode.InvalidParameter:
+                            throw new ArgumentException("Invalid parameter: key or value is a zero-length string");
+                        case Interop.AppControl.ErrorCode.KeyRejected:
+                            throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                        default:
+                            throw new InvalidOperationException("Error = " + err);
+                    }
                 }
             }
 
@@ -679,6 +742,10 @@ namespace Tizen.Applications
             /// </example>
             public bool TryGet(string key, out string value)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
                 Interop.AppControl.GetExtraData(_handle, key, out value);
                 if (value != null)
                 {
@@ -716,6 +783,10 @@ namespace Tizen.Applications
             /// </example>
             public bool TryGet(string key, out IEnumerable<string> value)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
                 IntPtr valuePtr = IntPtr.Zero;
                 int len = -1;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraDataArray(_handle, key, out valuePtr, out len);
@@ -754,15 +825,24 @@ namespace Tizen.Applications
             /// </example>
             public void Remove(string key)
             {
-                Interop.AppControl.ErrorCode err = Interop.AppControl.RemoveExtraData(_handle, key);
-                switch (err)
+                if (string.IsNullOrEmpty(key))
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
-                    case Interop.AppControl.ErrorCode.KeyNotFound:
-                        throw new KeyNotFoundException("Key is not found"); ;
-                    case Interop.AppControl.ErrorCode.KeyRejected:
-                        throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                    throw new ArgumentNullException("key");
+                }
+                Interop.AppControl.ErrorCode err = Interop.AppControl.RemoveExtraData(_handle, key);
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    switch (err)
+                    {
+                        case Interop.AppControl.ErrorCode.InvalidParameter:
+                            throw new ArgumentException("Invalid parameter: key is a zero-length string");
+                        case Interop.AppControl.ErrorCode.KeyNotFound:
+                            throw new KeyNotFoundException("Key is not found"); ;
+                        case Interop.AppControl.ErrorCode.KeyRejected:
+                            throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                        default:
+                            throw new InvalidOperationException("Error = " + err);
+                    }
                 }
             }
 
@@ -788,6 +868,7 @@ namespace Tizen.Applications
             /// <param name="key">The name of the extra data</param>
             /// <returns>If true the extra data is of array data type, otherwise false</returns>
             /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string</exception>
+            /// <exception cref="InvalidOperationException">Thrown when failed to check the key</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -796,50 +877,70 @@ namespace Tizen.Applications
             /// </example>
             public bool IsCollection(string key)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
                 bool isArray = false;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.IsExtraDataArray(_handle, key, out isArray);
-                switch (err)
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
+                    throw new InvalidOperationException("Error = " + err);
                 }
                 return isArray;
             }
 
             private string GetData(string key)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
                 string value = string.Empty;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraData(_handle, key, out value);
-                switch (err)
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
-                    case Interop.AppControl.ErrorCode.KeyNotFound:
-                        throw new KeyNotFoundException("Key is not found"); ;
-                    case Interop.AppControl.ErrorCode.InvalidDataType:
-                        throw new ArgumentException("Invalid data type: value is data collection type");
-                    case Interop.AppControl.ErrorCode.KeyRejected:
-                        throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                    switch (err)
+                    {
+                        case Interop.AppControl.ErrorCode.InvalidParameter:
+                            throw new ArgumentException("Invalid parameter: key is a zero-length string");
+                        case Interop.AppControl.ErrorCode.KeyNotFound:
+                            throw new KeyNotFoundException("Key is not found"); ;
+                        case Interop.AppControl.ErrorCode.InvalidDataType:
+                            throw new ArgumentException("Invalid data type: value is data collection type");
+                        case Interop.AppControl.ErrorCode.KeyRejected:
+                            throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                        default:
+                            throw new InvalidOperationException("Error = " + err);
+                    }
                 }
                 return value;
             }
 
             private IEnumerable<string> GetDataCollection(string key)
             {
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new ArgumentNullException("key");
+                }
                 IntPtr valuePtr = IntPtr.Zero;
                 int len = -1;
-
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraDataArray(_handle, key, out valuePtr, out len);
-                switch (err)
+                if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentNullException("Invalid parameter: key is a zero-length string");
-                    case Interop.AppControl.ErrorCode.KeyNotFound:
-                        throw new KeyNotFoundException("Key is not found"); ;
-                    case Interop.AppControl.ErrorCode.InvalidDataType:
-                        throw new ArgumentException("Invalid data type: value is data collection type");
-                    case Interop.AppControl.ErrorCode.KeyRejected:
-                        throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                    switch (err)
+                    {
+                        case Interop.AppControl.ErrorCode.InvalidParameter:
+                            throw new ArgumentException("Invalid parameter: key is a zero-length string");
+                        case Interop.AppControl.ErrorCode.KeyNotFound:
+                            throw new KeyNotFoundException("Key is not found"); ;
+                        case Interop.AppControl.ErrorCode.InvalidDataType:
+                            throw new ArgumentException("Invalid data type: value is data collection type");
+                        case Interop.AppControl.ErrorCode.KeyRejected:
+                            throw new ArgumentException("Key is rejected: the key is system-defined key.");
+                        default:
+                            throw new InvalidOperationException("Error = " + err);
+                    }
                 }
 
                 string[] valueArray = null;

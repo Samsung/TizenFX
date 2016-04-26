@@ -66,7 +66,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the caller appId from the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, "Failed to get the caller application id from the AppControl. Err = " + err);
                 }
                 return value;
             }
@@ -95,7 +95,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to check the replyRequested of the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, "Failed to check the reply  of the AppControl is requested. Err = " + err);
                 }
                 return value;
             }
@@ -123,9 +123,13 @@ namespace Tizen.Applications
         /// </example>
         public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)
         {
+            if (replyRequest == null)
+            {
+                throw new ArgumentNullException("replyRequest");
+            }
             Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest._handle, this._handle, (int)result);
-            if (err == Interop.AppControl.ErrorCode.InvalidParameter)
-                throw new ArgumentException("Invalid parameter of ReplyToLaunchRequest()");
+            if (err != Interop.AppControl.ErrorCode.None)
+                throw new InvalidOperationException("Failed to reply. Err = " + err);
         }
     }
 }
