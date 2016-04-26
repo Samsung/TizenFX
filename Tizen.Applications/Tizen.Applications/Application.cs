@@ -15,7 +15,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The Application handles an application state change or system events and provides mechanisms that launch other applications.
     /// </summary>
-    public abstract class Application
+    public abstract class Application : IDisposable
     {
         private const string LogTag = "Tizen.Applications";
 
@@ -88,19 +88,11 @@ namespace Tizen.Applications
                 {
                     if (_applicationInfo == null)
                     {
-                        string appId;
-                        ErrorCode err = Interop.AppCommon.AppGetId(out appId);
-                        if (err == ErrorCode.None)
+                        string appId = string.Empty;
+                        Interop.AppCommon.AppGetId(out appId);
+                        if (!string.IsNullOrEmpty(appId))
                         {
-                            try
-                            {
-                                // TODO: Use lazy enabled AppInfo class without throwing exceptions.
-                                _applicationInfo = ApplicationManager.GetInstalledApplication(appId);
-                            }
-                            catch (Exception e)
-                            {
-                                Log.Warn(LogTag, "Failed to get application info. " + e.Message);
-                            }
+                            _applicationInfo = new ApplicationInfo(appId);
                         }
                     }
                 }
@@ -225,5 +217,54 @@ namespace Tizen.Applications
             }
             b.Dispose();
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    if (_applicationInfo != null)
+                    {
+                        _applicationInfo.Dispose();
+                    }
+                    if (_lowMemoryNativeHandle != null && !_lowMemoryNativeHandle.IsInvalid)
+                    {
+                        _lowMemoryNativeHandle.Dispose();
+                    }
+                    if (_localeChangedNativeHandle != null && !_localeChangedNativeHandle.IsInvalid)
+                    {
+                        _localeChangedNativeHandle.Dispose();
+                    }
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        /// <summary>
+        /// Finalizer of the Application class.
+        /// </summary>
+        ~Application()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases all resources used by the Application class.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }
