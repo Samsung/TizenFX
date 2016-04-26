@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Tizen.Applications.Messages
 {
     /// <summary>
@@ -14,25 +8,16 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// The ID of the remote application that sent this message
         /// </summary>
-        public string AppId
-        {
-            get; set;
-        }
+        public string AppId { get; set; }
+
         /// <summary>
         /// The name of the remote message port
         /// </summary>
-        public string PortName
-        {
-            get;
-            set;
-        }
+        public string PortName { get; set; }
+
         /// <summary>
         /// If true the remote port is a trusted port, otherwise if false it is not
         /// </summary>
-        public bool Trusted
-        {
-            get;
-            set;
-        }
+        public bool Trusted { get; set; }
     }
 }

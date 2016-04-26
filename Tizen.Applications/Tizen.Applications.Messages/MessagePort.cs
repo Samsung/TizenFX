@@ -1,11 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Tizen.Internals;
 
 namespace Tizen.Applications.Messages
 {
@@ -21,6 +15,20 @@ namespace Tizen.Applications.Messages
     {
         private static readonly object s_lock = new object();
         private static readonly HashSet<string> s_portMap = new HashSet<string>();
+
+        // The name of the local message port
+        private readonly string _portName = null;
+
+        // If true the message port is a trusted port, otherwise false it is not
+        private readonly bool _trusted = false;
+
+        // The local message port ID
+        private int _portId = 0;
+
+        // If true the message port is listening, otherwise false it is not
+        private bool _listening = false;
+
+        private Interop.MessagePort.message_port_message_cb _messageCallBack;
 
         /// <summary>
         /// Initializes the instance of the MessagePort class.
@@ -83,28 +91,6 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
-        /// The local message port ID
-        /// </summary>
-        private int _portId = 0;
-
-        /// <summary>
-        /// The name of the local message port
-        /// </summary>
-        private readonly string _portName = null;
-
-        /// <summary>
-        /// If true the message port is a trusted port, otherwise false it is not
-        /// </summary>
-        private readonly bool _trusted = false;
-
-        /// <summary>
-        /// If true the message port is listening, otherwise false it is not
-        /// </summary>
-        private bool _listening = false;
-
-        private Interop.MessagePort.message_port_message_cb _messageCallBack;
-
-        /// <summary>
         /// Register the local message port.
         /// </summary>
         public void Listen()
@@ -131,7 +117,7 @@ namespace Tizen.Applications.Messages
                             Trusted = trusted
                         };
                     }
-                    RaiseMessageReceivedEvent(MessageReceived, args);
+                    MessageReceived?.Invoke(this, args);
                 };
 
                 _portId = _trusted ?
@@ -215,14 +201,6 @@ namespace Tizen.Applications.Messages
             }
         }
 
-        private void RaiseMessageReceivedEvent(EventHandler<MessageReceivedEventArgs> evt, MessageReceivedEventArgs args)
-        {
-            if (evt != null)
-            {
-                evt(this, args);
-            }
-        }
-
         /// <summary>
         /// Releases the unmanaged resourced used by the MessagePort class specifying whether to perform a normal dispose operation.
         /// </summary>
@@ -237,7 +215,7 @@ namespace Tizen.Applications.Messages
                 }
                 catch (Exception e)
                 {
-                    Tizen.Log.Warn(GetType().Namespace, "Exception in Dispose :" + e.Message);
+                    Log.Warn(GetType().Namespace, "Exception in Dispose :" + e.Message);
                 }
             }
         }

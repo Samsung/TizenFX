@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Applications.Messages
 {
@@ -14,19 +10,11 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Contains AppId, Port Name, Trusted
         /// </summary>
-        public RemoteValues Remote
-        {
-            get;
-            internal set;
-        }
+        public RemoteValues Remote { get; internal set; }
 
         /// <summary>
         /// The message passed from the remote application
         /// </summary>
-        public Bundle Message
-        {
-            get;
-            internal set;
-        }
+        public Bundle Message { get; internal set; }
     }
 }
