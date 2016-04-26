@@ -21,20 +21,20 @@ namespace Tizen
         /// Prints a log message with the DEBUG priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Debug(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
 
@@ -42,20 +42,20 @@ namespace Tizen
         /// Prints a log message with the VERBOSE priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Verbose(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
 
@@ -63,20 +63,20 @@ namespace Tizen
         /// Prints a log message with the INFO priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Info(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Info(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
 
@@ -84,20 +84,20 @@ namespace Tizen
         /// Prints a log message with the WARNING priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Warn(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
 
@@ -105,20 +105,20 @@ namespace Tizen
         /// Prints a log message with the ERROR priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Error(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Error(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
 
@@ -126,20 +126,20 @@ namespace Tizen
         /// Prints a log message with the FATAL priority.
         /// </summary>
         /// <param name="tag">The tag name of the log message.</param>
-        /// <param name="msg">The log message to print.</param>
+        /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="func">The function name of caller function. This argument will be set automatically by the compiler.</param>
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
-        public static void Fatal(string tag, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public static void Fatal(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s", msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s", message);
             }
             else
             {
                 Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, msg);
+                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
     }
