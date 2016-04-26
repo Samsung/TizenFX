@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A106C68E-0E2F-4A1F-9E87-113DC4F78787}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.Content</RootNamespace>
+    <AssemblyName>Tizen.Content</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.Content.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tizen">
+      <HintPath>..\..\..\Desktop\Tizen_dlls\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Applications">
+      <HintPath>..\..\..\Desktop\Tizen_dlls\Tizen.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Internals">
+      <HintPath>..\..\..\Desktop\Tizen_dlls\Tizen.Internals.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interop\Interop.AudioInformation.cs" />
+    <Compile Include="Interop\Interop.Glib.cs" />
+    <Compile Include="Interop\Interop.ImageInformation.cs" />
+    <Compile Include="Interop\Interop.Libc.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.MediaInformation.cs" />
+    <Compile Include="Interop\Interop.media_bookmark.cs" />
+    <Compile Include="Interop\Interop.media_content.cs" />
+    <Compile Include="Interop\Interop.media_face.cs" />
+    <Compile Include="Interop\Interop.media_filter.cs" />
+    <Compile Include="Interop\Interop.media_folder.cs" />
+    <Compile Include="Interop\Interop.media_group.cs" />
+    <Compile Include="Interop\Interop.media_playlist.cs" />
+    <Compile Include="Interop\Interop.media_storage.cs" />
+    <Compile Include="Interop\Interop.media_tag.cs" />
+    <Compile Include="Interop\Interop.VideoInformation.cs" />
+    <Compile Include="MediaContent\Album.cs" />
+    <Compile Include="MediaContent\AudioInformation.cs" />
+    <Compile Include="MediaContent\ContentCollection.cs" />
+    <Compile Include="MediaContent\ContentEventArgs.cs" />
+    <Compile Include="MediaContent\ContentFilter.cs" />
+    <Compile Include="MediaContent\ContentManager.cs" />
+    <Compile Include="MediaContent\CreateThumbnailResult.cs" />
+    <Compile Include="MediaContent\ExceptionFactory.cs" />
+    <Compile Include="MediaContent\FaceRect.cs" />
+    <Compile Include="MediaContent\Group.cs" />
+    <Compile Include="MediaContent\ImageInformation.cs" />
+    <Compile Include="MediaContent\MediaBookmark.cs" />
+    <Compile Include="MediaContent\MediaContentEnums.cs" />
+    <Compile Include="MediaContent\MediaContentErrorFactory.cs" />
+    <Compile Include="MediaContent\MediaContentTypes.cs" />
+    <Compile Include="MediaContent\MediaFace.cs" />
+    <Compile Include="MediaContent\MediaFolder.cs" />
+    <Compile Include="MediaContent\MediaInformation.cs" />
+    <Compile Include="MediaContent\PlayList.cs" />
+    <Compile Include="MediaContent\Storage.cs" />
+    <Compile Include="MediaContent\Tag.cs" />
+    <Compile Include="MediaContent\VideoInformation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tizen.Content.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
