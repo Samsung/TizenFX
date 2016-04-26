@@ -17,6 +17,13 @@ namespace Tizen.Applications
     /// </summary>
     public static class ApplicationManager
     {
+        private const string LogTag = "Tizen.Applications";
+
+        private static EventHandler<ApplicationLaunchedEventArgs> s_launchedHandler;
+        private static EventHandler<ApplicationTerminatedEventArgs> s_terminatedHandler;
+
+        private static Interop.ApplicationManager.AppManagerAppContextEventCallback s_applicationChangedEventCallback;
+
         /// <summary>
         /// Occurs whenever the installed applications get launched.
         /// </summary>
@@ -24,11 +31,19 @@ namespace Tizen.Applications
         {
             add
             {
-                ApplicationManagerImpl.Instance.ApplicationLaunched += value;
+                if (s_launchedHandler == null && s_terminatedHandler == null)
+                {
+                    RegisterApplicationChangedEvent();
+                }
+                s_launchedHandler += value;
             }
             remove
             {
-                ApplicationManagerImpl.Instance.ApplicationLaunched -= value;
+                s_launchedHandler -= value;
+                if (s_launchedHandler == null && s_terminatedHandler == null)
+                {
+                    UnRegisterApplicationChangedEvent();
+                }
             }
         }
 
@@ -39,107 +54,27 @@ namespace Tizen.Applications
         {
             add
             {
-                ApplicationManagerImpl.Instance.ApplicationTerminated += value;
+                if (s_launchedHandler == null && s_terminatedHandler == null)
+                {
+                    RegisterApplicationChangedEvent();
+                }
+                s_terminatedHandler += value;
             }
             remove
             {
-                ApplicationManagerImpl.Instance.ApplicationTerminated -= value;
+                s_terminatedHandler -= value;
+                if (s_launchedHandler == null && s_terminatedHandler == null)
+                {
+                    UnRegisterApplicationChangedEvent();
+                }
             }
         }
 
         /// <summary>
         /// Gets the information of the installed applications asynchronously.
         /// </summary>
-        public static Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
+        public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
-            return ApplicationManagerImpl.Instance.GetInstalledApplicationsAsync();
-        }
-
-        /// <summary>
-        /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
-        /// </summary>
-        /// <param name="filter">Key-value pairs for filtering.</param>
-        public static Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
-        {
-            return ApplicationManagerImpl.Instance.GetInstalledApplicationsAsync(filter);
-        }
-
-        /// <summary>
-        /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
-        /// </summary>
-        /// <param name="filter">Key-value pairs for filtering.</param>
-        public static Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
-        {
-            return ApplicationManagerImpl.Instance.GetInstalledApplicationsAsync(filter);
-        }
-
-        /// <summary>
-        /// Gets the information of the running applications asynchronously.
-        /// </summary>
-        public static Task<IEnumerable<ApplicationInfo>> GetRunningApplicationsAsync()
-        {
-            return ApplicationManagerImpl.Instance.GetRunningApplicationsAsync();
-        }
-
-        /// <summary>
-        /// Gets the information of the specified application with the application id.
-        /// </summary>
-        /// <param name="applicationId">Application id.</param>
-        public static ApplicationInfo GetInstalledApplication(string applicationId)
-        {
-            return ApplicationManagerImpl.Instance.GetInstalledApplication(applicationId);
-        }
-    }
-
-    internal class ApplicationManagerImpl : IDisposable
-    {
-        private const string LogTag = "Tizen.Applications";
-        private static ApplicationManagerImpl s_instance = new ApplicationManagerImpl();
-        private bool _disposed = false;
-        private Interop.ApplicationManager.AppManagerAppContextEventCallback _applicationChangedEventCallback;
-
-        internal event EventHandler<ApplicationLaunchedEventArgs> ApplicationLaunched;
-        internal event EventHandler<ApplicationTerminatedEventArgs> ApplicationTerminated;
-
-        internal static ApplicationManagerImpl Instance
-        {
-            get
-            {
-                return s_instance;
-            }
-        }
-
-        private ApplicationManagerImpl()
-        {
-            Log.Debug(LogTag, "ApplicationManagerImpl()");
-            RegisterApplicationChangedEvent();
-        }
-
-        ~ApplicationManagerImpl()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-            if (disposing)
-            {
-            }
-            UnRegisterApplicationChangedEvent();
-            _disposed = true;
-        }
-
-        internal async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
-        {
-            Log.Debug(LogTag, "GetInstalledApplicationsAsync()");
             return await Task.Run(() =>
             {
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
@@ -171,7 +106,11 @@ namespace Tizen.Applications
             });
         }
 
-        internal async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
+        /// <summary>
+        /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
+        /// </summary>
+        /// <param name="filter">Key-value pairs for filtering.</param>
+        public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
             return await Task.Run(() =>
             {
@@ -199,7 +138,42 @@ namespace Tizen.Applications
             });
         }
 
-        internal async Task<IEnumerable<ApplicationInfo>> GetRunningApplicationsAsync()
+        /// <summary>
+        /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
+        /// </summary>
+        /// <param name="filter">Key-value pairs for filtering.</param>
+        public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
+        {
+            return await Task.Run(() =>
+            {
+                List<ApplicationInfo> result = new List<ApplicationInfo>();
+
+                Interop.ApplicationManager.AppInfoFilterCallback cb = (IntPtr infoHandle, IntPtr userData) =>
+                {
+                    if (infoHandle != IntPtr.Zero)
+                    {
+                        IntPtr clonedHandle = IntPtr.Zero;
+                        Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoClone(out clonedHandle, infoHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to clone the appinfo. err = " + err);
+                            return false;
+                        }
+                        ApplicationInfo app = new ApplicationInfo(clonedHandle);
+                        result.Add(app);
+                        return true;
+                    }
+                    return false;
+                };
+                filter.Fetch(cb);
+                return result;
+            });
+        }
+
+        /// <summary>
+        /// Gets the information of the running applications asynchronously.
+        /// </summary>
+        public static async Task<IEnumerable<ApplicationInfo>> GetRunningApplicationsAsync()
         {
             return await Task.Run(() =>
             {
@@ -236,22 +210,26 @@ namespace Tizen.Applications
             });
         }
 
-        internal ApplicationInfo GetInstalledApplication(string applicationId)
+        /// <summary>
+        /// Gets the information of the specified application with the application id.
+        /// </summary>
+        /// <param name="applicationId">Application id.</param>
+        public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
             IntPtr infoHandle = IntPtr.Zero;
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out infoHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get the installed appinfo.");
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get the installed application information.");
             }
             ApplicationInfo app = new ApplicationInfo(infoHandle);
             return app;
         }
 
-        private void RegisterApplicationChangedEvent()
+        private static void RegisterApplicationChangedEvent()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
-            _applicationChangedEventCallback = (IntPtr contextHandle, Interop.ApplicationManager.AppContextEvent state, IntPtr userData) =>
+            s_applicationChangedEventCallback = (IntPtr contextHandle, Interop.ApplicationManager.AppContextEvent state, IntPtr userData) =>
             {
                 if (contextHandle == IntPtr.Zero) return;
                 try
@@ -260,17 +238,17 @@ namespace Tizen.Applications
                     err = Interop.ApplicationManager.AppContextGetAppId(contextHandle, out appid);
                     if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
-                        throw ApplicationManagerErrorFactory.GetException(err, "Failed to get appid.");
+                        throw ApplicationManagerErrorFactory.GetException(err, "Failed to get application id.");
                     }
 
                     ApplicationInfo appInfo = GetInstalledApplication(appid);
                     if (state == Interop.ApplicationManager.AppContextEvent.Launched)
                     {
-                        ApplicationLaunched?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationInfo = appInfo });
+                        s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationInfo = appInfo });
                     }
                     else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
                     {
-                        ApplicationTerminated?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationInfo = appInfo });
+                        s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationInfo = appInfo });
                     }
                 }
                 catch (Exception e)
@@ -278,14 +256,14 @@ namespace Tizen.Applications
                     Log.Warn(LogTag, e.Message);
                 }
             };
-            err = Interop.ApplicationManager.AppManagerSetAppContextEvent(_applicationChangedEventCallback, IntPtr.Zero);
+            err = Interop.ApplicationManager.AppManagerSetAppContextEvent(s_applicationChangedEventCallback, IntPtr.Zero);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the appcontext event.");
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the application context event.");
             }
         }
 
-        private void UnRegisterApplicationChangedEvent()
+        private static void UnRegisterApplicationChangedEvent()
         {
             Interop.ApplicationManager.AppManagerUnSetAppContextEvent();
         }
@@ -293,7 +271,7 @@ namespace Tizen.Applications
 
     internal static class FilterExtension
     {
-        private const string LogTag = "Tizen.Applications.Managers";
+        private const string LogTag = "Tizen.Applications";
         internal static void Fetch(this ApplicationInfoFilter filter, Interop.ApplicationManager.AppInfoFilterCallback callback)
         {
             if (filter is ApplicationInfoMetadataFilter)
@@ -313,7 +291,7 @@ namespace Tizen.Applications
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoFilterForeachAppinfo(nativeHandle, callback, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appinfo with filter.");
+                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to get application information list with filter.");
                 }
             }
             finally
@@ -334,7 +312,7 @@ namespace Tizen.Applications
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoMetadataFilterForeach(nativeHandle, callback, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach metadata with filter.");
+                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to get metadata list with filter.");
                 }
             }
             finally
