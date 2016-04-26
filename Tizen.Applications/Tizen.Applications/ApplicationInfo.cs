@@ -19,11 +19,21 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
         private bool _disposed = false;
-        private IntPtr _infoHandle;
+        private IntPtr _infoHandle = IntPtr.Zero;
+        private string _applicationId = string.Empty;
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
             _infoHandle = infoHandle;
+        }
+
+        /// <summary>
+        /// A constructor of ApplicationInfo that takes the application id.
+        /// </summary>
+        /// <param name="applicationId">application id.</param>
+        public ApplicationInfo(string applicationId)
+        {
+            _applicationId = applicationId;
         }
 
         /// <summary>
@@ -41,8 +51,14 @@ namespace Tizen.Applications
         {
             get
             {
+                if (_applicationId != string.Empty)
+                    return _applicationId;
+                IntPtr infoHandle = GetInfoHandle();
                 string appid = string.Empty;
-                Interop.ApplicationManager.AppInfoGetAppId(_infoHandle, out appid);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetAppId(infoHandle, out appid);
+                }
                 return appid;
             }
         }
@@ -54,8 +70,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 string packageid = string.Empty;
-                Interop.ApplicationManager.AppInfoGetPackage(_infoHandle, out packageid);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetPackage(infoHandle, out packageid);
+                }
                 return packageid;
             }
         }
@@ -67,8 +87,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 string label = string.Empty;
-                Interop.ApplicationManager.AppInfoGetLabel(_infoHandle, out label);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetLabel(infoHandle, out label);
+                }
                 return label;
             }
         }
@@ -80,8 +104,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 string exec = string.Empty;
-                Interop.ApplicationManager.AppInfoGetExec(_infoHandle, out exec);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetExec(infoHandle, out exec);
+                }
                 return exec;
             }
         }
@@ -93,8 +121,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 string path = string.Empty;
-                Interop.ApplicationManager.AppInfoGetIcon(_infoHandle, out path);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetIcon(infoHandle, out path);
+                }
                 return path;
             }
         }
@@ -106,8 +138,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 string type = string.Empty;
-                Interop.ApplicationManager.AppInfoGetType(_infoHandle, out type);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoGetType(infoHandle, out type);
+                }
                 return type;
             }
         }
@@ -130,10 +166,14 @@ namespace Tizen.Applications
                     return true;
                 };
 
-                Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoForeachMetadata(_infoHandle, cb, IntPtr.Zero);
-                if (err != Interop.ApplicationManager.ErrorCode.None)
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != IntPtr.Zero)
                 {
-                    Log.Warn(LogTag, "Failed to get metadata of the application. err = " + err);
+                    Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get metadata of the application. err = " + err);
+                    }
                 }
                 return metadata;
             }
@@ -146,8 +186,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 bool nodisplay = false;
-                Interop.ApplicationManager.AppInfoIsNodisplay(_infoHandle, out nodisplay);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoIsNodisplay(infoHandle, out nodisplay);
+                }
                 return nodisplay;
             }
         }
@@ -159,8 +203,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 bool onboot = false;
-                Interop.ApplicationManager.AppInfoIsOnBoot(_infoHandle, out onboot);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoIsOnBoot(infoHandle, out onboot);
+                }
                 return onboot;
             }
         }
@@ -172,8 +220,12 @@ namespace Tizen.Applications
         {
             get
             {
+                IntPtr infoHandle = GetInfoHandle();
                 bool preloaded = false;
-                Interop.ApplicationManager.AppInfoIsPreLoad(_infoHandle, out preloaded);
+                if (infoHandle != IntPtr.Zero)
+                {
+                    Interop.ApplicationManager.AppInfoIsPreLoad(infoHandle, out preloaded);
+                }
                 return preloaded;
             }
         }
@@ -217,6 +269,58 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the shared data path.
+        /// </summary>
+        public string SharedDataPath
+        {
+            get
+            {
+                string path = string.Empty;
+                Interop.ApplicationManager.AppManagerGetSharedDataPath(ApplicationId, out path);
+                return path;
+            }
+        }
+
+        /// <summary>
+        /// Gets the shared resource path.
+        /// </summary>
+        public string SharedResourcePath
+        {
+            get
+            {
+                string path = string.Empty;
+                Interop.ApplicationManager.AppManagerGetSharedResourcePath(ApplicationId, out path);
+                return path;
+            }
+        }
+
+        /// <summary>
+        /// Gets the shared trust path.
+        /// </summary>
+        public string SharedTrustedPath
+        {
+            get
+            {
+                string path = string.Empty;
+                Interop.ApplicationManager.AppManagerGetSharedTrustedPath(ApplicationId, out path);
+                return path;
+            }
+        }
+
+        /// <summary>
+        /// Gets the external shared data path.
+        /// </summary>
+        public string ExternalSharedDataPath
+        {
+            get
+            {
+                string path = string.Empty;
+                Interop.ApplicationManager.AppManagerGetExternalSharedDataPath(ApplicationId, out path);
+                return path;
+            }
+        }
+
+        /// <summary>
         /// Gets the localized label of application for the given locale.
         /// </summary>
         /// <param name="locale">locale.</param>
@@ -225,6 +329,21 @@ namespace Tizen.Applications
             string label = Label;
             Interop.ApplicationManager.AppInfoGetLocaledLabel(ApplicationId, locale, out label);
             return label;
+        }
+
+        private IntPtr GetInfoHandle()
+        {
+            if (_infoHandle == IntPtr.Zero)
+            {
+                IntPtr infoHandle = IntPtr.Zero;
+                Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppInfo(_applicationId, out infoHandle);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get ApplicationInfo handle.");
+                }
+                _infoHandle = infoHandle;
+            }
+            return _infoHandle;
         }
 
         /// <summary>
