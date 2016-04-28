@@ -9,6 +9,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Applications;
+
 internal static partial class Interop
 {
     internal static partial class AppControl
@@ -105,7 +107,7 @@ internal static partial class Interop
         internal static extern ErrorCode IsExtraDataArray(SafeAppControlHandle handle, string key, out bool array);
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_destroy")]
-        private static extern ErrorCode DangerousDestroy(IntPtr handle);
+        internal static extern ErrorCode DangerousDestroy(IntPtr handle);
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_foreach_extra_data")]
         internal static extern ErrorCode ForeachExtraData(SafeAppControlHandle handle, ExtraDataCallback callback, IntPtr userData);
@@ -124,24 +126,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.Application, EntryPoint = "app_control_enable_app_started_result_event")]
         internal static extern ErrorCode EnableAppStartedResultEvent(SafeAppControlHandle handle);
-
-        internal sealed class SafeAppControlHandle : SafeHandle
-        {
-            public SafeAppControlHandle() : base(IntPtr.Zero, true)
-            {
-            }
-
-            public override bool IsInvalid
-            {
-                get { return this.handle == IntPtr.Zero; }
-            }
-
-            protected override bool ReleaseHandle()
-            {
-                AppControl.DangerousDestroy(this.handle);
-                this.SetHandle(IntPtr.Zero);
-                return true;
-            }
-        }
     }
 }

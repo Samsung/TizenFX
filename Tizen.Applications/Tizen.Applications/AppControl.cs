@@ -36,18 +36,17 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
 
-        internal Interop.AppControl.SafeAppControlHandle _handle;
+        private static Dictionary<int, Interop.AppControl.ReplyCallback> s_replyNativeCallbackMaps = new Dictionary<int, Interop.AppControl.ReplyCallback>();
+        private static int s_replyNativeCallbackId = 0;
+
+        private readonly SafeAppControlHandle _handle;
 
         private string _operation = null;
         private string _mime = null;
         private string _uri = null;
         private string _category = null;
         private string _applicationId = null;
-
         private ExtraDataCollection _extraData = null;
-
-        static private Dictionary<int, Interop.AppControl.ReplyCallback> s_replyNativeCallbackMaps = new Dictionary<int, Interop.AppControl.ReplyCallback>();
-        static private int s_replyNativeCallbackId = 0;
 
         /// <summary>
         /// Initializes the instance of the AppControl class.
@@ -62,6 +61,15 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Initializes the instance of the AppControl class with the SafeAppControlHandle.
+        /// </summary>
+        /// <param name="handle"></param>
+        public AppControl(SafeAppControlHandle handle)
+        {
+            _handle = handle;
+        }
+
         internal AppControl(IntPtr handle)
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
@@ -72,6 +80,17 @@ namespace Tizen.Applications
         }
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets the SafeAppControlHandle instance.
+        /// </summary>
+        public SafeAppControlHandle SafeAppControlHandle
+        {
+            get
+            {
+                return _handle;
+            }
+        }
 
         /// <summary>
         /// Gets and sets the operation to be performed.
@@ -528,9 +547,9 @@ namespace Tizen.Applications
         /// </summary>
         public class ExtraDataCollection
         {
-            private readonly Interop.AppControl.SafeAppControlHandle _handle;
+            private readonly SafeAppControlHandle _handle;
 
-            internal ExtraDataCollection(Interop.AppControl.SafeAppControlHandle handle)
+            internal ExtraDataCollection(SafeAppControlHandle handle)
             {
                 _handle = handle;
             }

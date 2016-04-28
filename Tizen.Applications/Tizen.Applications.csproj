@@ -76,6 +76,7 @@
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryStatus.cs" />
     <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
+    <Compile Include="Tizen.Applications\SafeAppControlHandle.cs" />
     <Compile Include="Tizen.Applications\ServiceApplication.cs" />
     <Compile Include="Tizen.Applications\UIApplication.cs" />
     <Compile Include="Tizen.Applications\ApplicationLaunchedEventArgs.cs" />

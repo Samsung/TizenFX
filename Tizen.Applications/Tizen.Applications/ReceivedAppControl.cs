@@ -63,7 +63,7 @@ namespace Tizen.Applications
             get
             {
                 string value = String.Empty;
-                Interop.AppControl.ErrorCode err = Interop.AppControl.GetCaller(_handle, out value);
+                Interop.AppControl.ErrorCode err = Interop.AppControl.GetCaller(SafeAppControlHandle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to get the caller application id from the AppControl. Err = " + err);
@@ -92,7 +92,7 @@ namespace Tizen.Applications
             get
             {
                 bool value = false;
-                Interop.AppControl.ErrorCode err = Interop.AppControl.IsReplyRequested(_handle, out value);
+                Interop.AppControl.ErrorCode err = Interop.AppControl.IsReplyRequested(SafeAppControlHandle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to check the reply  of the AppControl is requested. Err = " + err);
@@ -127,7 +127,7 @@ namespace Tizen.Applications
             {
                 throw new ArgumentNullException("replyRequest");
             }
-            Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest._handle, this._handle, (int)result);
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest.SafeAppControlHandle, this.SafeAppControlHandle, (int)result);
             if (err != Interop.AppControl.ErrorCode.None)
                 throw new InvalidOperationException("Failed to reply. Err = " + err);
         }
