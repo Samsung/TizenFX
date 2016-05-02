@@ -5,3 +5,4 @@ obj/
 .vs/
 Test/
 *.sln
+*.csproj.user
