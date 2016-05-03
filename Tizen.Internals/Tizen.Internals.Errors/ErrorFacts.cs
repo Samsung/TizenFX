@@ -15,13 +15,13 @@ namespace Tizen.Internals.Errors
     /// <summary>
     /// 
     /// </summary>
-    internal static class ErrorFacts
+    public static class ErrorFacts
     {
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        internal static int GetLastResult()
+        public static int GetLastResult()
         {
             return Interop.CommonError.GetLastResult();
         }
@@ -31,7 +31,7 @@ namespace Tizen.Internals.Errors
         /// </summary>
         /// <param name="errorCode"></param>
         /// <returns></returns>
-        internal static string GetErrorMessage(int errorCode)
+        public static string GetErrorMessage(int errorCode)
         {
             IntPtr errorPtr = Interop.CommonError.GetErrorMessage(errorCode);
             return Marshal.PtrToStringAuto(errorPtr);
