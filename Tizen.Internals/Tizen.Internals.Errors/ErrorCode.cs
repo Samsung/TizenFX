@@ -8,7 +8,7 @@
 
 namespace Tizen.Internals.Errors
 {
-    internal enum ErrorCode : int
+    public enum ErrorCode : int
     {
         None = 0, //  0, /**< Successful */
         NotPermitted = -1, //  -EPERM, /**< Operation not permitted */
