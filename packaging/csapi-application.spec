@@ -19,10 +19,12 @@ BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(appcore-agent)
 BuildRequires: pkgconfig(capi-appfw-app-manager)
 BuildRequires: pkgconfig(message-port)
+BuildRequires: pkgconfig(capi-appfw-package-manager)
 
 Requires: capi-appfw-application
 Requires: capi-message-port
 Requires: appcore-agent
+Requires: capi-appfw-package-manager
 
 %description
 Tizen API for C#
