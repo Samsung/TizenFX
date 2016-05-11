@@ -61,6 +61,7 @@
     <Compile Include="Device\Haptic.cs" />
     <Compile Include="Device\Led.cs" />
     <Compile Include="Device\Power.cs" />
+    <Compile Include="Device\IR.cs" />
     <Compile Include="Device\DeviceEventArgs.cs" />
     <Compile Include="Interop\Interop.Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

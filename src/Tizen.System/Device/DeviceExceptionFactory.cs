@@ -30,9 +30,10 @@ namespace Tizen.System
                 case DeviceError.InvalidParameter:
                     exp =  new ArgumentException(msg);
                     break;
-                case DeviceError.AlreadyInProgress:
-                    //fall through
                 case DeviceError.NotSupported:
+                    exp = new InvalidOperationException(msg +" : Device does not support the Operation.");
+                    break;
+                case DeviceError.AlreadyInProgress:
                     //fall through
                 case DeviceError.ResourceBusy:
                     //fall through

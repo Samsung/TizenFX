@@ -21,7 +21,6 @@ namespace Tizen.System
         FlashBrightness
     }
 }
-
 internal static class Interop
 {
     internal static partial class Device
@@ -77,6 +76,12 @@ internal static class Interop
         internal static extern int DevicePowerRequestLock(int type, int timeout_ms);
         [DllImport("libcapi-system-device.so.0", EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DevicePowerReleaseLock(int type);
+
+        //IR
+        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_ir_is_available", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DeviceIRIsAvailable(out bool available);
+        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_ir_transmit", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DeviceIRTransmit(int carrierFreequency, int[] pattern, int size);
 
         // Callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

@@ -62,7 +62,7 @@ namespace Tizen.System
             DeviceError res = (DeviceError)Interop.Device.DeviceLedPlayCustom(on, off, color, 1);
             if (res != DeviceError.None)
             {
-                throw DeviceExceptionFactory.CreateException(DeviceError.InvalidParameter, "failed to play Led.");
+                throw DeviceExceptionFactory.CreateException(res, "failed to play Led.");
             }
         }
 
@@ -74,7 +74,7 @@ namespace Tizen.System
             DeviceError res = (DeviceError) Interop.Device.DeviceLedStopCustom();
             if(res != DeviceError.None)
             {
-                throw DeviceExceptionFactory.CreateException(DeviceError.InvalidParameter, "failed to stop Led.");
+                throw DeviceExceptionFactory.CreateException(res, "failed to stop Led.");
             }
         }
 
