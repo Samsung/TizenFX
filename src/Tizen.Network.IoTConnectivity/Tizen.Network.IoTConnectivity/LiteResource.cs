@@ -1,0 +1,130 @@
+﻿/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+using System.Collections.Generic;
+
+namespace Tizen.Network.IoTConnectivity
+{
+    public class LiteResource : Resource
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="uri">The uri path of the lite resource</param>
+        /// <param name="types">Resource type</param>
+        /// <param name="policy">Policy of the resource</param>
+        /// <param name="state">Optional State of the resource</param>
+        public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, State state = null)
+            : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
+        {
+            State = state;
+        }
+
+        /// <summary>
+        /// The state of the lite resource
+        /// </summary>
+        public State State { get; set; }
+
+        /// <summary>
+        /// The method to accept post request
+        /// </summary>
+        /// <param name="state">The new state of the lite resource</param>
+        /// <returns>true to accept post request, false to reject it</returns>
+        public virtual bool OnPost(State state)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Called on the get event.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        public sealed override Response OnGet(Request request)
+        {
+            Representation representation = new Representation()
+            {
+                UriPath = UriPath,
+                Interface = Interfaces,
+                Type = Types,
+                State = State
+            };
+
+            Response response = new Response()
+            {
+                Representation = representation,
+                Result = ResponseCode.Ok
+            };
+
+            return response;
+        }
+
+        /// <summary>
+        /// Called on the put event.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        public sealed override Response OnPut(Request request)
+        {
+            Response response = new Response();
+            response.Result = ResponseCode.Forbidden;
+            return response;
+        }
+
+        /// <summary>
+        /// Called on the post event.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        public sealed override Response OnPost(Request request)
+        {
+            if (OnPost(request.Representation.State))
+            {
+                State = request.Representation.State;
+                Representation representation = new Representation() {
+                    UriPath = UriPath,
+                    Interface = Interfaces,
+                    Type = Types,
+                    State = State
+                };
+
+                Response response = new Response() {
+                    Representation = representation,
+                    Result = ResponseCode.Ok
+                };
+
+                Notify(representation, QualityOfService.High);
+                return response;
+            }
+
+            return new Response()
+            {
+                Result = ResponseCode.Error
+            };
+        }
+
+        /// <summary>
+        /// Called on the delete event.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        public sealed override Response OnDelete(Request request)
+        {
+            Response response = new Response();
+            response.Result = ResponseCode.Forbidden;
+            return response;
+        }
+
+        /// <summary>
+        /// Called on the observing event.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        /// <param name="observerType">Observer type</param>
+        /// <param name="observeId">Observe identifier.</param>
+        public sealed override bool OnObserving(Request request, ObserveType observeType, int observeId)
+        {
+            return true;
+        }
+    }
+}
