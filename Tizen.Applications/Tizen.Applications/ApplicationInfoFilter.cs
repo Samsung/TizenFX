@@ -17,6 +17,14 @@ namespace Tizen.Applications
     public class ApplicationInfoFilter
     {
         /// <summary>
+        ///
+        /// </summary>
+        public ApplicationInfoFilter()
+        {
+            Filter = new Dictionary<string, string>();
+        }
+
+        /// <summary>
         /// This class is a possible key to use in the InstalledApplicationFilter.
         /// </summary>
         public static class Keys
@@ -48,7 +56,7 @@ namespace Tizen.Applications
         /// </summary>
         public IDictionary<string, string> Filter
         {
-            get;
+            get; private set;
         }
     }
 }
