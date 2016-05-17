@@ -1,6 +1,6 @@
 %define dllpath %{_libdir}/mono/tizen
 %define dllname Tizen.Multimedia.dll
-Name:       csapi-tizen.multimedia
+Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
 Version:    1.0.0
 Release:    1

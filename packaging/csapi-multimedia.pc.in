@@ -1,4 +1,4 @@
-Name: csapi-tizen.multimedia
+Name: csapi-multimedia
 Description: Tizen Multimedia API for C#
 Version: @version@
 Libs: -r:@dllpath@/@dllname@
