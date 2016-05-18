@@ -66,6 +66,7 @@
     <Compile Include="Interop\Interop.Device.cs" />
     <Compile Include="Interop\Interop.RuntimeInfo.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.Storage.cs" />
     <Compile Include="Interop\Interop.SystemInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeInfo\CpuUsage.cs" />
@@ -74,6 +75,11 @@
     <Compile Include="RuntimeInfo\RuntimeInformation.cs" />
     <Compile Include="RuntimeInfo\RuntimeKeyStatusChangedEventArgs.cs" />
     <Compile Include="RuntimeInfo\MemoryInformation.cs" />
+    <Compile Include="Storage\DirectoryType.cs" />
+    <Compile Include="Storage\Storage.cs" />
+    <Compile Include="Storage\StorageArea.cs" />
+    <Compile Include="Storage\StorageManager.cs" />
+    <Compile Include="Storage\StorageState.cs" />
     <Compile Include="SystemInfo\SystemInfo.cs" />
   </ItemGroup>
   <ItemGroup>
