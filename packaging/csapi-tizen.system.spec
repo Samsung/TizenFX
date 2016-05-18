@@ -1,5 +1,4 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.System.dll
+%define BUILDCONF Debug
 
 Name:       csapi-tizen.system
 Summary:    Tizen System API for C#
@@ -15,20 +14,19 @@ Source2:    %{name}.pc.in
 # TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
 
 # P/Invoke Dependencies
+BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(capi-system-device)
 BuildRequires: pkgconfig(capi-system-runtime-info)
+BuildRequires: pkgconfig(capi-system-info)
 
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
+# DLL Dependencies
 Requires: capi-system-device
 Requires: capi-system-runtime-info
-# DLL Dependencies
+Requires: capi-system-info
 #BuildRequires: ...
 
 %description
@@ -48,50 +46,21 @@ Development package for %{name}
 cp %{SOURCE1} .
 
 %build
-# build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk \
-  Tizen.System/Properties/AssemblyInfo.cs \
-  Tizen.System/System.cs \
-  Tizen.System/Device/EventArgs.cs \
-  Tizen.System/Device/Battery.cs \
-  Tizen.System/Device/Display.cs \
-  Tizen.System/Device/Haptic.cs \
-  Tizen.System/Device/Led.cs \
-  Tizen.System/Device/Power.cs \
-  Tizen.System/Interop/Interop.Device.cs \
-  Tizen.System/Interop/Interop.Libraries.cs \
-  Tizen.System/Interop/Interop.RuntimeInfo.cs \
-  Tizen.System/RuntimeInfo/CpuUsage.cs \
-  Tizen.System/RuntimeInfo/Enumerations.cs \
-  Tizen.System/RuntimeInfo/MemoryInformation.cs \
-  Tizen.System/RuntimeInfo/RuntimeInfoErrorFactory.cs \
-  Tizen.System/RuntimeInfo/RuntimeInformation.cs \
-  Tizen.System/RuntimeInfo/RuntimeKeyStatusChangedEventArgs.cs
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+xbuild Tizen.System/Tizen.System.csproj /p:Configuration=%{BUILDCONF}
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.System/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
+sed -e "s#@name@#%{name}#g" \
+    -e "s#@version@#%{version}#g" \
+    -e "s#@libs@#%{pc_libs}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
 
-%post
-gacutil -i %{dllpath}/%{dllname}
 
 %files
-%{dllpath}/%{dllname}
+%{_libdir}/mono
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
