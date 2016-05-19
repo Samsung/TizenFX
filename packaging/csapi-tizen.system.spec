@@ -27,7 +27,6 @@ BuildRequires: pkgconfig(capi-system-device)
 # TODO: It should be removed after fix tizen-rpm-config
 Requires: capi-system-device
 # DLL Dependencies
-BuildRequires: pkgconfig(csapi-tizen)
 #BuildRequires: ...
 
 %description
@@ -48,14 +47,13 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk -pkg:csapi-tizen \
+mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk \
   Tizen.System/Properties/AssemblyInfo.cs \
-  Tizen.System/Device/DeviceEventArgs.cs \
-  Tizen.System/Device/DeviceExceptionFactory.cs \
+  Tizen.System/System.cs \
+  Tizen.System/Device/EventArgs.cs \
   Tizen.System/Device/Battery.cs \
   Tizen.System/Device/Display.cs \
   Tizen.System/Device/Haptic.cs \
-  Tizen.System/Device/IR.cs \
   Tizen.System/Device/Led.cs \
   Tizen.System/Device/Power.cs \
   Tizen.System/Interop/Interop.Device.cs
