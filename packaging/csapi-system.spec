@@ -1,6 +1,6 @@
 %define BUILDCONF Debug
 
-Name:       csapi-tizen.system
+Name:       csapi-system
 Summary:    Tizen System API for C#
 Version:    1.0.0
 Release:    1
