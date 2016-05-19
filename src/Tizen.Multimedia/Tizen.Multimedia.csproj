@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Multimedia</RootNamespace>
     <AssemblyName>Tizen.Multimedia</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Interop\Interop.Player.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
-    <Compile Include="Player\MediaStream.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
     <Compile Include="Player\SubtitleTrack.cs" />
     <Compile Include="Player\AudioEffect.cs" />
@@ -79,6 +78,22 @@
     <Compile Include="Player\MediaStreamSource.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Player\PlayerErrorFactory.cs" />
+    <Compile Include="Recorder\AudioStreamDeliveredEventArgs.cs" />
+    <Compile Include="Recorder\Camera.cs" />
+    <Compile Include="Recorder\Recorder.cs" />
+    <Compile Include="Recorder\RecorderAttribute.cs" />
+    <Compile Include="Recorder\RecorderCapability.cs" />
+    <Compile Include="Recorder\RecorderEnums.cs" />
+    <Compile Include="Recorder\RecorderErrorFactory.cs" />
+    <Compile Include="Recorder\RecorderInterruptedEventArgs.cs" />
+    <Compile Include="Recorder\RecorderStateChangedEventArgs.cs" />
+    <Compile Include="Recorder\RecordingErrorOccurredEventArgs.cs" />
+    <Compile Include="Recorder\RecordingLimitReachedEventArgs.cs" />
+    <Compile Include="Recorder\RecordingStatusChangedEventArgs.cs" />
+    <Compile Include="Recorder\VideoResolution.cs" />
+    <Compile Include="Interop\Interop.Recorder.cs" />
+    <Compile Include="Interop\Interop.RecorderAttribute.cs" />
+    <Compile Include="Interop\Interop.RecorderCapability.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.snk" />
