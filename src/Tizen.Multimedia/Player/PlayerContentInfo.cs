@@ -40,8 +40,10 @@ namespace Tizen.Multimedia
             get
             {
 				string album;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Album, out album) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Album, out album);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get album info" + (PlayerError)ret);
 				}
                 return album;
             }
@@ -56,9 +58,12 @@ namespace Tizen.Multimedia
             get
             {
 				string artist;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Artist, out artist) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Artist, out artist);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get artist info" + (PlayerError)ret);
 				}
+
 				return artist;
             }
         }
@@ -72,8 +77,10 @@ namespace Tizen.Multimedia
             get
             {
 				string author;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Author, out author) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Author, out author);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get author info" + (PlayerError)ret);
 				}
 				return author;
             }
@@ -88,9 +95,12 @@ namespace Tizen.Multimedia
             get
             {
 				string genre;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Genre, out genre) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Genre, out genre);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get genre info" + (PlayerError)ret);
 				}
+
 				return genre;
             }
         }
@@ -104,8 +114,10 @@ namespace Tizen.Multimedia
             get
             {
 				string title;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Title, out title) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Title, out title);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get title info" + (PlayerError)ret);
 				}
 				return title;
             }
@@ -120,8 +132,10 @@ namespace Tizen.Multimedia
             get
             {
 				string year;
-				if (Interop.PlayerInterop.GetContentInfo (_playerHandle, (int)ContentInfoKey.Year, out year) != 0) {
-					// throw Exception;
+				int ret = Interop.Player.GetContentInfo (_playerHandle, (int)ContentInfoKey.Year, out year);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get title info" + (PlayerError)ret);
 				}
 				return year;
             }

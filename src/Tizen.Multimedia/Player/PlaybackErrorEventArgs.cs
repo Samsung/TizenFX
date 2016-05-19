@@ -34,6 +34,14 @@ namespace Tizen.Multimedia
             }
         }
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public PlaybackErrorEventArgs(int errorCode)
+		{
+			_errorCode = errorCode;
+		}
+
         internal int _errorCode;
 
     }

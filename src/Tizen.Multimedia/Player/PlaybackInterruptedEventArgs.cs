@@ -34,6 +34,14 @@ namespace Tizen.Multimedia
             }
         }
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public PlaybackInterruptedEventArgs(int interruptedCode)
+		{
+			_interruptedCode = interruptedCode;
+		}
+
         internal int _interruptedCode;
     }
 }

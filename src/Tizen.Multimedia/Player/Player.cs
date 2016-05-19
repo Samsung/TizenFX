@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
+	static internal class PlayerLog
+	{
+		internal const string LogTag = "Tizen.Multimedia.Player";
+	}
 
     /// <summary>
     /// The Player class provides APIs required for playback.
@@ -26,25 +30,203 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class Player
     {
-        /// <summary>
+		private EventHandler<PlaybackCompletedEventArgs> _playbackCompleted;
+		private Interop.Player.PlaybackCompletedCallback _playbackCompletedCallback;
+
+		private EventHandler<PlaybackInterruptedEventArgs> _playbackInterrupted;
+		private Interop.Player.PlaybackInterruptedCallback _playbackInterruptedCallback;
+
+		private EventHandler<PlaybackErrorEventArgs> _playbackError;
+		private Interop.Player.PlaybackErrorCallback _playbackErrorCallback;
+
+		//TODO: Uncomment this after MediaPacket is implemented.
+		//private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
+		//private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+
+		/// <summary>
         /// PlaybackCompleted event is raised when playback of a media is finished
         /// </summary>
-        public event EventHandler<PlaybackCompletedEventArgs> PlaybackCompleted;
+        public event EventHandler<PlaybackCompletedEventArgs> PlaybackCompleted
+		{
+			add
+			{
+				if(_playbackCompleted == null) {
+					RegisterPlaybackCompletedEvent();
+				}
+				_playbackCompleted += value;
+
+			}
+			remove
+			{
+				_playbackCompleted -= value;
+				if (_playbackCompleted == null) {
+					UnregisterPlaybackCompletedEvent();
+				}
+			}
+		}
+
+		private void RegisterPlaybackCompletedEvent()
+		{
+			_playbackCompletedCallback = (IntPtr userData) =>
+				{
+				PlaybackCompletedEventArgs eventArgs = new PlaybackCompletedEventArgs();
+				_playbackCompleted.Invoke(this, eventArgs);
+				};
+			int ret = Interop.Player.SetCompletedCb (_playerHandle, _playbackCompletedCallback, IntPtr.Zero);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Setting PlaybackCompleted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Setting PlaybackCompleted callback failed"); 
+			}
+			
+		}
+
+		private void UnregisterPlaybackCompletedEvent()
+		{
+			int ret = Interop.Player.UnsetCompletedCb (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Unsetting PlaybackCompleted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Unsetting PlaybackCompleted callback failed"); 
+			}
+			
+		}
 
         /// <summary>
         /// PlaybackInterruped event is raised when playback of a media is interrupted
         /// </summary>
-        public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterruped;
+        public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterruped
+		{
+			add
+			{
+				if(_playbackInterrupted == null) {
+					RegisterPlaybackInterruptedEvent();
+				}
+				_playbackInterrupted += value;
+			}
+			remove
+			{
+				_playbackInterrupted -= value;
+				if (_playbackInterrupted == null) {
+					UnregisterPlaybackInterruptedEvent();
+				}
+			}
+		}
+
+		private void RegisterPlaybackInterruptedEvent()
+		{
+			_playbackInterruptedCallback = (int code, IntPtr userData) =>
+			{
+				PlaybackInterruptedEventArgs eventArgs = new PlaybackInterruptedEventArgs(code);
+				_playbackInterrupted.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetInterruptedCb (_playerHandle, _playbackInterruptedCallback, IntPtr.Zero);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Setting PlaybackInterrupted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Setting PlaybackInterrupted callback failed"); 
+			}
+			
+		}
+
+		private void UnregisterPlaybackInterruptedEvent()
+		{
+			int ret = Interop.Player.UnsetInterruptedCb (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Unsetting PlaybackInterrupted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Unsetting PlaybackInterrupted callback failed"); 
+			}
+		}
 
         /// <summary>
         /// PlaybackErrorOccured event is raised when any error occurs
         /// </summary>
-        public event EventHandler<PlaybackErrorEventArgs> PlaybackErrorOccured;
+        public event EventHandler<PlaybackErrorEventArgs> PlaybackErrorOccured
+		{
+			add
+			{
+				if(_playbackError == null) {
+					RegisterPlaybackErrorEvent();
+				}
+				_playbackError += value;
+			}
+			remove
+			{
+				_playbackError -= value;
+				if (_playbackError == null) {
+					UnregisterPlaybackErrorEvent ();
+				}
+			}
+		}
 
+		private void RegisterPlaybackErrorEvent()
+		{
+			_playbackErrorCallback = (int code, IntPtr userData) =>
+			{
+				PlaybackErrorEventArgs eventArgs = new PlaybackErrorEventArgs(code);
+				_playbackError.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetErrorCb (_playerHandle, _playbackErrorCallback, IntPtr.Zero);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Setting PlaybackError callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Setting PlaybackError callback failed"); 
+			}
+			
+		}
+
+		private void UnregisterPlaybackErrorEvent()
+		{
+			int ret = Interop.Player.UnsetErrorCb (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Unsetting PlaybackError callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Unsetting PlaybackError callback failed"); 
+			}
+			
+		}
+
+
+		#if _MEDIA_PACKET_
+		TODO: Uncomment this after MediaPacket is implemented.
         /// <summary>
         /// VideoFrameCaptured event is raised when a video frame is decoded
         /// </summary>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded;
+        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
+		{
+			add
+			{
+				if(_videoFrameDecoded == null) {
+					RegisterVideoFrameDecodedEvent ();
+				}
+				_videoFrameDecoded += value;
+			}
+			remove
+			{
+				_videoFrameDecoded -= value;
+				if (_videoFrameDecoded == null) {
+					UnregisterVideoFrameDecodedEvent ();
+				}
+			}
+		}
+
+		private void RegisterVideoFrameDecodedEvent()
+		{
+			_videoFrameDecoded = (MediaPacket packet, IntPtr userData) =>
+			{
+				VideoFrameDecodedEventArgs eventArgs = new VideoFrameDecodedEventArgs();
+				_videoFrameDecoded.Invoke(this, eventArgs);
+			};
+			Interop.Player.SetErrorCb (_playerHandle, _videoFrameDecodedCallback, IntPtr.Zero);
+		}
+
+		private void UnregisterVideoFrameDecodedEvent()
+		{
+			Interop.Player.UnsetMediaPacketVideoFrameDecodedCb (_playerHandle);
+		}
+		#endif
+
 
         /// <summary>
         /// Get Player state.
@@ -55,9 +237,11 @@ namespace Tizen.Multimedia
             get
             {
 				int state;
-				if (Interop.PlayerInterop.GetState (_playerHandle, out state) != 0) {
-					//throw Exception;
-				}
+				int ret = Interop.Player.GetState (_playerHandle, out state);
+
+				if (ret != (int)PlayerError.None) 
+					PlayerErrorFactory.ThrowException (ret, "Get player state failed"); 
+
 				return (PlayerState)state;
             }
         }
@@ -70,14 +254,21 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if (Interop.PlayerInterop.SetVolume (_playerHandle, value, _rightVolume) == 0)
+				int ret = Interop.Player.SetVolume (_playerHandle, value, _rightVolume);
+
+				if (ret == (int)PlayerError.None) 
+				{
 					_leftVolume = value;
-				//else
-				//	throw Exception;
+				}
+				else 
+				{
+					Log.Error (PlayerLog.LogTag, "Set volume failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "set volume failed"); 
+				}
 			}
 			get
 			{
-				//Interop.PlayerInterop.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
+				//Interop.Player.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
 				return _leftVolume;
 			}
 		}
@@ -90,14 +281,21 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if ( Interop.PlayerInterop.SetVolume (_playerHandle, _leftVolume, value) == 0 )
+				int ret = Interop.Player.SetVolume (_playerHandle, _leftVolume, value);
+
+				if (ret == (int)PlayerError.None) 
+				{
 					_rightVolume = value;
-				//else
-				//	throw Exception;
+				}
+				else 
+				{
+					Log.Error (PlayerLog.LogTag, "Set volume failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "set volume failed"); 
+				}
 			}
 			get
 			{
-				//Interop.PlayerInterop.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
+				//Interop.Player.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
 				return _rightVolume;
 			}
 		}
@@ -110,10 +308,18 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
-				if (_audioLatencyMode != (int)value && Interop.PlayerInterop.SetAudioLatencyMode (_playerHandle, (int)value) == 0)
-					_audioLatencyMode = (int) value;
-				//else
-				//	throw Exception;
+				if (_audioLatencyMode != (int)value) 
+				{
+					int ret = Interop.Player.SetAudioLatencyMode (_playerHandle, (int)value);
+					if (ret != (int)PlayerError.None) {
+						Log.Error (PlayerLog.LogTag, "Set audio latency mode failed" + (PlayerError)ret);
+						PlayerErrorFactory.ThrowException (ret, "set audio latency mode failed");
+					} 
+					else 
+					{
+						_audioLatencyMode = (int)value;
+					}
+				}
 			}
 
 			get 
@@ -130,14 +336,22 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
-				if (_mute != value && Interop.PlayerInterop.SetMute (_playerHandle, value) == 0)
-					_mute = value;
-				//else
-				//	throw Exception;
+				if (_mute != value) 
+				{
+					int ret = Interop.Player.SetMute (_playerHandle, value);			
+					if (ret != (int)PlayerError.None) {
+						Log.Error (PlayerLog.LogTag, "Set mute failed" + (PlayerError)ret);
+						PlayerErrorFactory.ThrowException (ret, "set mute failed");
+					} 
+					else 
+					{
+						_mute = value;
+					}
+				}
 			}
 			get
 			{
-				//Interop.PlayerInterop.IsMuted (_playerHandle, out _mute);
+				//Interop.Player.IsMuted (_playerHandle, out _mute);
 				return _mute;
 			}
 		}
@@ -150,14 +364,23 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
-				if (_isLooping != value && Interop.PlayerInterop.SetLooping (_playerHandle, value) == 0)
-					_isLooping = value;
-				//else
-				//	throw Exception;
+				if (_isLooping != value) 
+				{
+					int ret = Interop.Player.SetLooping (_playerHandle, value);
+					if (ret != (int)PlayerError.None) 
+					{
+						Log.Error (PlayerLog.LogTag, "Set loop failed" + (PlayerError)ret);
+						PlayerErrorFactory.ThrowException (ret, "set loop failed");
+					} 
+					else 
+					{
+						_isLooping = value;
+					}
+				}
 			}
 			get
 			{
-				//Interop.PlayerInterop.IsLooping (_playerHandle, out _isLooping);
+				//Interop.Player.IsLooping (_playerHandle, out _isLooping);
 				return _isLooping;
 			}
 		}
@@ -170,8 +393,11 @@ namespace Tizen.Multimedia
         {
             set
             {
-				if (Interop.PlayerInterop.SetPlaybackRate (_playerHandle, value) != 0) {
-					//throw Exception;
+				int ret = Interop.Player.SetPlaybackRate (_playerHandle, value);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Set playback rate failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "set playback rate failed");
 				}
             }
         }
@@ -180,18 +406,27 @@ namespace Tizen.Multimedia
         /// Set/Get sound type.
         /// </summary>
         /// <value> System, Notification, Alarm, Ringtone, Media, Call, Voip, Voice </value>
-        public SoundType PlayerSoundType 
+        public AudioType PlayerAudioType 
 		{
 			set
 			{
-				if (_soundType != value && Interop.PlayerInterop.SetSoundType (_playerHandle, (int)value) != 0)
-					_soundType = value;
-				//else
-				//	throw Exception;
+				if (_audioType != value) 
+				{
+					int ret = Interop.Player.SetSoundType (_playerHandle, (int)value);
+					if (ret != (int)PlayerError.None) {
+						Log.Error (PlayerLog.LogTag, "Set audio type failed" + (PlayerError)ret);
+						PlayerErrorFactory.ThrowException (ret, "set audio type failed");
+					} 
+					else 
+					{
+						_audioType = value;
+					}
+				}
+
 			}
 			get
 			{
-				return _soundType;
+				return _audioType;
 			}
 		}
 
@@ -204,9 +439,9 @@ namespace Tizen.Multimedia
             get
             {
 				int playPosition;
-				if (Interop.PlayerInterop.GetPlayPosition (_playerHandle, out playPosition) != 0) {
-					//throw Exception;
-				}
+				int ret = Interop.Player.GetPlayPosition (_playerHandle, out playPosition);
+				if (ret != (int)PlayerError.None) 
+					Log.Error (PlayerLog.LogTag, "Failed to get play position, " + (PlayerError)ret);
 				return playPosition;
             }
         }
@@ -292,15 +527,20 @@ namespace Tizen.Multimedia
         /// Player constructor.</summary>
         public Player()
         {
-			// Throw exception on error returns?
-			Interop.PlayerInterop.Create (out _playerHandle);
+			int ret;
+			
+			ret = Interop.Player.Create (out _playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to create player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to create player"); 
+			}
 
 			// Initial get values
-			Interop.PlayerInterop.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
-			Interop.PlayerInterop.GetAudioLatencyMode (_playerHandle, out _audioLatencyMode);
-			Interop.PlayerInterop.IsMuted (_playerHandle, out _mute);
-			Interop.PlayerInterop.IsLooping (_playerHandle, out _isLooping);
-
+			Interop.Player.GetVolume (_playerHandle, out _leftVolume, out _rightVolume);
+			Interop.Player.GetAudioLatencyMode (_playerHandle, out _audioLatencyMode);
+			Interop.Player.IsMuted (_playerHandle, out _mute);
+			Interop.Player.IsLooping (_playerHandle, out _isLooping);
 
 			// AudioEffect
 			_audioEffect = new AudioEffect();
@@ -336,21 +576,31 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Prepares the media player for playback. </summary>
-		/// TODO: make async
-		public /*Task<void>*/void PrepareAsync()
+		public void PrepareAsync()
         {
-			if ((Interop.PlayerInterop.Prepare (_playerHandle)) != 0) {
-				//throw Exception;
-			}
-        }
+			int ret;
+			Task.Factory.StartNew (() => {
+				Interop.Player.PrepareCallback cb = (IntPtr userData) => {
+				}; 
+				ret = Interop.Player.PrepareAsync (_playerHandle, cb, IntPtr.Zero); 
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to prepare player" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Failed to prepare player"); 
+				}
+			});
+		}
 
         /// <summary>
         /// The most recently used media is reset and no longer associated with the player. Playback is no longer possible. 
         /// If you want to use the player again, you will have to set the data URI and call prepare() again. </summary>
         public void Unrepare()
         {
-			if (Interop.PlayerInterop.Unprepare (_playerHandle) != 0) {
-				//throw Exception;
+			int ret = Interop.Player.Unprepare (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to unprepare player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to unprepare player"); 
 			}
         }
 
@@ -358,8 +608,11 @@ namespace Tizen.Multimedia
         /// Starts or resumes playback.  </summary>
         public void Start()
         {
-			if (Interop.PlayerInterop.Start (_playerHandle) != 0) {
-				//throw Exception;
+			int ret = Interop.Player.Start (_playerHandle);
+			if ( ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to start player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to start player"); 
 			}
         }
 
@@ -367,8 +620,11 @@ namespace Tizen.Multimedia
         /// Stops playing media content. </summary>
         public void Stop()
         {
-			if (Interop.PlayerInterop.Stop (_playerHandle) != 0) {
-				//throw Exception;
+			int ret = Interop.Player.Stop (_playerHandle);
+			if ( ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to stop player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to stop player"); 
 			}
         }
 
@@ -376,39 +632,81 @@ namespace Tizen.Multimedia
         /// Pauses the player. </summary>
         public void Pause()
         {
-			if (Interop.PlayerInterop.Pause (_playerHandle) != 0) {
-				//throw Exception;
+			int ret = Interop.Player.Pause (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to pause player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to pause player"); 
 			}
         }
 
 		/// <summary>
 		/// sets media source for the player. </summary>
 		/// <param name="source"> Mediasource </param>
-		/// TODO: implement memory buffer and packet stream
 		public void SetSource(MediaSource source)
 		{
-			if (source.GetType() == typeof(MediaUriSource)) {
-				if ( Interop.PlayerInterop.SetUri (_playerHandle, ((MediaUriSource)source)._uri) != 0) {
-					// throw Exception
+			int ret;
+			if (source.GetType () == typeof(MediaUriSource)) 
+			{
+				ret = Interop.Player.SetUri (_playerHandle, ((MediaUriSource)source)._uri);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to seturi" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Failed to set uri"); 
 				}
+			} 
+			else if (source.GetType () == typeof(MediaBufferSource)) 
+			{
+				//if(Interop.Player.SetMemoryBuffer(_playerHandle, ((MediaBufferSource)source)._buffer, ((MediaBufferSource)source)._buffer.Length) != 0) {
+					// throw Exception
+				//}
 			}
+			// TODO: Handle MediaStream source after implementing MediaPacket module
 		}
 
 
         /// <summary>
         /// Captures a video frame asynchronously. </summary>
-        Task<VideoFrameCapture> CaptureVideoAsync()
+        public Task<VideoFrameCapture> CaptureVideoAsync()
         {
-          return null;
+			return Task.Factory.StartNew(() => CaptureVideoAsyncTask()).Result;
         }
+
+		internal Task<VideoFrameCapture> CaptureVideoAsyncTask()
+		{
+			TaskCompletionSource<VideoFrameCapture> t = new TaskCompletionSource<VideoFrameCapture> ();
+			Interop.Player.VideoCaptureCallback  cb = (byte[] data, int width, int height, uint size, IntPtr userData) => {
+				VideoFrameCapture v = new VideoFrameCapture(data, width, height, size);
+				t.SetResult(v);
+			};
+
+			int ret = Interop.Player.CaptureVideo (_playerHandle, cb, IntPtr.Zero);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Failed to capture video" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Failed to capture video"); 
+			}
+			return t.Task;
+		}
 
         /// <summary>
         ///Sets the seek position for playback, asynchronously.  </summary>
         /// <param name="milliseconds"> Position to be set in milliseconds</param>
         /// <param name="accurate"> accurate seek or not</param>
-        //public Task<void> SetPlayPositionAsync(int milliseconds, bool accurate)
-        //{
-        //}
+        public void SetPlayPositionAsync(int milliseconds, bool accurate)
+        {
+			Task.Factory.StartNew (() => {
+				Interop.Player.SeekCompletedCallback cb = (IntPtr userData) => {
+				}; 
+				int ret = Interop.Player.SetPlayPosition (_playerHandle, milliseconds, accurate, cb, IntPtr.Zero);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to set playposition" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Failed to set playposition"); 
+				}
+			});
+
+        }
 
 
         internal PlayerState _state;
@@ -417,7 +715,7 @@ namespace Tizen.Multimedia
 		internal int _audioLatencyMode;
 		internal bool _mute;
 		internal bool _isLooping;
-		internal SoundType _soundType;
+		internal AudioType _audioType;
 
 		internal Display _display;
 		internal Subtitle _subtitle;

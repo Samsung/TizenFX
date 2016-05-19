@@ -26,12 +26,35 @@ namespace Tizen.Multimedia
         /// Get current download position (bytes) 
         /// </summary>
         /// <value> current download position </value>
-        public ulong Current;
+        public ulong Current
+		{
+			set
+			{
+				_current = value;
+			}
+			get
+			{
+				return _current;
+			}
+		}
 
         /// <summary>
         /// Get total size of the file (bytes) 
         /// </summary>
         /// <value> Total size of file (bytes) </value>
-        public ulong TotalSize;
+        public ulong TotalSize
+		{
+			set
+			{
+				_totalSize = value;
+			}
+			get
+			{
+				return _totalSize;
+			}
+		}
+
+		internal ulong _current;
+		internal ulong _totalSize;
     }
 }

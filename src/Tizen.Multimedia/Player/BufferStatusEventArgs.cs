@@ -47,6 +47,15 @@ namespace Tizen.Multimedia
             }
         }
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public BufferStatusEventArgs(StreamingBufferStatus status, StreamType type)
+		{
+			_status = status;
+			_streamType = type;
+		}
+
         internal StreamingBufferStatus _status;
         internal StreamType _streamType;
 

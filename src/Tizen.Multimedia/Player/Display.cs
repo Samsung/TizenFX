@@ -32,10 +32,15 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if (Interop.PlayerInterop.SetDisplayMode (_playerHandle, (int)value) == 0) {
+				int ret = Interop.Player.SetDisplayMode (_playerHandle, (int)value);
+				if ( ret == (int)PlayerError.None) 
+				{
 					_displayMode = value;
-				} else {
-					//throw Exception
+				} 
+				else 
+				{
+					Log.Error (PlayerLog.LogTag, "Setting display mode failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Setting display mode failed"); 
 				}
 			}
 			get
@@ -52,10 +57,15 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if (Interop.PlayerInterop.SetDisplayVisible (_playerHandle, value) == 0) {
+				int ret = Interop.Player.SetDisplayVisible (_playerHandle, value);
+				if (ret == (int)PlayerError.None) 
+				{
 					_isVisible = value;
-				} else {
-					//throw Exception
+				} 
+				else 
+				{
+					Log.Error (PlayerLog.LogTag, "Setting display visible failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Setting display visible failed"); 
 				}
 			}
 			get
@@ -72,10 +82,14 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if (Interop.PlayerInterop.SetDisplayRotation (_playerHandle, (int)value) == 0) {
+				int ret = Interop.Player.SetDisplayRotation (_playerHandle, (int)value);
+				if (ret == (int)PlayerError.None)
+				{
 					_rotation = value;
-				} else {
-					//throw Exception
+				} else 
+				{
+					Log.Error (PlayerLog.LogTag, "Setting display rotation failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Setting display rotation failed"); 
 				}
 			}
 			get

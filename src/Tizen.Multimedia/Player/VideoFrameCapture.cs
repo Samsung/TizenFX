@@ -18,31 +18,88 @@ namespace Tizen.Multimedia
     /// <remarks>
     /// VideoSize class provides properties of a captured video frame
     /// </remarks>
-    class VideoFrameCapture
+    public class VideoFrameCapture
     {
 
         /// <summary>
         /// Get/Set ImageBuffer.
         /// </summary>
         /// <value> Image buffer </value>
-        public byte[] ImageBuffer { set; get; }
+        public byte[] ImageBuffer 
+		{
+			set
+			{
+				_imageBuffer = value;
+			}
+			get
+			{
+				return _imageBuffer;
+			}
+		}
 
         /// <summary>
         /// Get/Set width.
         /// </summary>
         /// <value> Image width </value>
-        public int Width { set; get; }
+        public int Width 
+		{
+			set
+			{
+				_width = value;
+			}
+			get
+			{
+				return _width;
+			}
+		}
 
         /// <summary>
         /// Get/Set height.
         /// </summary>
         /// <value> Image Height </value>
-        public int Height { set; get; }
+        public int Height 
+		{
+			set
+			{
+				_height = value;
+			}
+			get
+			{
+				return _height;
+			}
+		}
 
         /// <summary>
         /// Get/Set Size.
         /// </summary>
         /// <value> Size of the image </value>
-        public uint Size { set; get; }
+        public uint Size 
+		{
+			set
+			{
+				_size = value;
+			}
+			get
+			{
+				return _size;
+			}
+		}
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
+		{
+			_imageBuffer = imageBuffer;
+			_width = width;
+			_height = height;
+			_size = size;
+		}
+
+
+		internal byte[] _imageBuffer;
+		internal int _width;
+		internal int _height;
+		internal uint _size;
     }
 }

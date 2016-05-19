@@ -23,15 +23,38 @@ namespace Tizen.Multimedia
 	public class DownloadProgress
     {
         /// <summary>
-        /// Get Start position in percentage.
+        /// Set/Get Start position in percentage.
         /// </summary>
         /// <value> 0 to 100 </value>
-        public int Start;
+        public int Start
+		{
+			set
+			{
+				_start = value;
+			}
+			get
+			{
+				return _start;
+			}
+		}
 
         /// <summary>
-        /// Get Current position in percentage.
+        /// Set/Get Current position in percentage.
         /// </summary>
         /// <value> 0 to 100 </value>
-        public int Current;
+        public int Current
+		{
+			set
+			{
+				_current = value;
+			}
+			get
+			{
+				return _current;
+			}
+		}
+
+		internal int _start;
+		internal int _current;
     }
 }

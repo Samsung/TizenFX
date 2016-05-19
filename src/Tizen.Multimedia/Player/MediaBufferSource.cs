@@ -6,7 +6,10 @@ namespace Tizen.Multimedia
 	{
 		public MediaBufferSource (byte[] buffer)
 		{
+			_buffer = buffer;
 		}
+
+		internal byte[] _buffer;
 	}
 }
 

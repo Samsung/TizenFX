@@ -33,11 +33,15 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
+				int ret;
 				_bands = value;
 				foreach(EqualizerBand band in _bands)
 				{
-					if (Interop.PlayerInterop.AudioEffectSetEqualizerBandLevel (_playerHandle, _bands.IndexOf (band), band.Level) != 0) {
-						// throw Exception;
+					ret = Interop.Player.AudioEffectSetEqualizerBandLevel (_playerHandle, _bands.IndexOf (band), band.Level);
+					if ( ret != (int)PlayerError.None) 
+					{
+						Log.Error (PlayerLog.LogTag, "Failed to set equalizer band" + (PlayerError)ret);
+						PlayerErrorFactory.ThrowException (ret, "Failed to set equalizer band"); 
 					}
 				}
 
@@ -56,9 +60,11 @@ namespace Tizen.Multimedia
 		{ 
 			get 
 			{ 
-				int min, max;
-				if (Interop.PlayerInterop.AudioEffectGetEqualizerLevelRange (_playerHandle, out min, out max) != 0) {
-					//throw Exception;
+				int min, max, ret;
+				ret = Interop.Player.AudioEffectGetEqualizerLevelRange (_playerHandle, out min, out max);
+				if ( ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get min level" + (PlayerError)ret);
 				}
 				return min;
 			}
@@ -72,9 +78,11 @@ namespace Tizen.Multimedia
 		{
 			get
 			{
-				int min, max;
-				if (Interop.PlayerInterop.AudioEffectGetEqualizerLevelRange (_playerHandle, out min, out max) != 0) {
-					//throw Exception;
+				int min, max, ret;
+				ret = Interop.Player.AudioEffectGetEqualizerLevelRange (_playerHandle, out min, out max);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get max level" + (PlayerError)ret);
 				}
 				return max;
 			}
@@ -89,8 +97,10 @@ namespace Tizen.Multimedia
 			get
 			{
 				bool available = false;
-				if (Interop.PlayerInterop.AudioEffectEqualizerIsAvailable (_playerHandle, out available) != 0) {
-					//throw Exception;
+				int ret = Interop.Player.AudioEffectEqualizerIsAvailable (_playerHandle, out available);
+				if ( ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Failed to get equalizer availability" + (PlayerError)ret);
 				}
 				return available;
 			}

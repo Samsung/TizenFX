@@ -23,10 +23,56 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class Subtitle
     {
+
+		private EventHandler<SubtitleUpdatedEventArgs> _subtitleUpdated;
+		private Interop.Player.SubtitleUpdatedCallback _subtitleUpdatedCallback;
+
         /// <summary>
         /// Subtitle event is raised when the subtitle is updated
         /// </summary>
-        public event EventHandler<SubtitleUpdatedEventArgs> Updated;
+        public event EventHandler<SubtitleUpdatedEventArgs> Updated
+		{
+			add
+			{
+				if(_subtitleUpdated == null) {
+					RegisterSubtitleUpdatedEvent ();
+				}
+				_subtitleUpdated += value;
+			}
+			remove
+			{
+				_subtitleUpdated -= value;
+				if (_subtitleUpdated == null) {
+					UnregisterSubtitleUpdatedEvent ();
+				}
+			}
+		}
+
+		private void RegisterSubtitleUpdatedEvent()
+		{
+			_subtitleUpdatedCallback = (ulong duration, string text, IntPtr userData) =>
+			{
+				SubtitleUpdatedEventArgs eventArgs = new SubtitleUpdatedEventArgs(duration, text);
+				_subtitleUpdated.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetSubtitleUpdatedCb (_playerHandle, _subtitleUpdatedCallback, IntPtr.Zero);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Setting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Setting subtitle updated callback failed"); 
+			}
+
+		}
+
+		private void UnregisterSubtitleUpdatedEvent()
+		{
+			int ret = Interop.Player.UnsetSubtitleUpdatedCb (_playerHandle);
+			if (ret != (int)PlayerError.None) 
+			{
+				Log.Error (PlayerLog.LogTag, "Unsetting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException (ret, "Unsetting subtitle updated callback failed"); 
+			}
+		}
 
 
         /// <summary>
@@ -37,8 +83,11 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
-				if (Interop.PlayerInterop.SetSubtitlePositionOffset (_playerHandle, value) != 0) {
-					// throw Exception
+				int ret = Interop.Player.SetSubtitlePositionOffset (_playerHandle, value);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Setting position offset failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Setting position offset failed"); 
 				}
 			}
 		}
@@ -53,9 +102,13 @@ namespace Tizen.Multimedia
 			get
 			{
 				string langCode;
-				foreach (SubtitleTrack t in _textTrack) {
-					if (Interop.PlayerInterop.GetTrackLanguageCode (_playerHandle, (int)StreamType.Text, _textTrack.IndexOf (t), out langCode) != 0) {
-						// throw Exception
+				int ret;
+				foreach (SubtitleTrack t in _textTrack) 
+				{
+					ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Text, _textTrack.IndexOf (t), out langCode);
+					if (ret != (int)PlayerError.None) 
+					{
+						Log.Error (PlayerLog.LogTag, "Getting text track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -76,9 +129,12 @@ namespace Tizen.Multimedia
 			get
 			{
 				string langCode;
-				foreach (SubtitleTrack t in _audioTrack) {
-					if (Interop.PlayerInterop.GetTrackLanguageCode (_playerHandle, (int)StreamType.Audio, _audioTrack.IndexOf (t), out langCode) != 0) {
-						// throw Exception
+				foreach (SubtitleTrack t in _audioTrack) 
+				{
+					int ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Audio, _audioTrack.IndexOf (t), out langCode);
+					if (ret != (int)PlayerError.None) 
+					{
+						Log.Error (PlayerLog.LogTag, "Getting audio track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -99,9 +155,13 @@ namespace Tizen.Multimedia
 			get
 			{
 				string langCode;
-				foreach (SubtitleTrack t in _videoTrack) {
-					if (Interop.PlayerInterop.GetTrackLanguageCode (_playerHandle, (int)StreamType.Video, _videoTrack.IndexOf (t), out langCode) != 0) {
-						// throw Exception
+				int ret;
+				foreach (SubtitleTrack t in _videoTrack) 
+				{
+					ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Video, _videoTrack.IndexOf (t), out langCode);
+					if (ret != (int)PlayerError.None) 
+					{
+						Log.Error (PlayerLog.LogTag, "Getting video track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -121,8 +181,11 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				if (Interop.PlayerInterop.SetSubtitlePath (_playerHandle, value) != 0) {
-					// throw Exception
+				int ret = Interop.Player.SetSubtitlePath (_playerHandle, value);
+				if (ret != (int)PlayerError.None) 
+				{
+					Log.Error (PlayerLog.LogTag, "Setting subtitle path failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException (ret, "Setting subtitle path failed"); 
 				}
 			}
 		}

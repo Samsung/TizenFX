@@ -9,11 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Multimedia</RootNamespace>
     <AssemblyName>Tizen.Multimedia</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,8 +50,6 @@
     <Compile Include="Player\PlayerEnums.cs" />
     <Compile Include="Player\MediaStream.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
-    <Compile Include="Player\PlayerSource.cs" />
-    <Compile Include="Player\SourceFactory.cs" />
     <Compile Include="Player\SubtitleTrack.cs" />
     <Compile Include="Player\AudioEffect.cs" />
     <Compile Include="Player\BufferingProgressChangedEventArgs.cs" />
@@ -82,6 +78,7 @@
     <Compile Include="Player\MediaBufferSource.cs" />
     <Compile Include="Player\MediaStreamSource.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Player\PlayerErrorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.snk" />
@@ -95,4 +92,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
+      <Project>{7659CA59-410D-41A1-9841-586E88BC78C9}</Project>
+      <Name>Tizen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
+      <Project>{B9AA1CB2-F72D-4A30-A33B-A20C850A38A0}</Project>
+      <Name>Tizen.Internals</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

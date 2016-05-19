@@ -46,6 +46,15 @@ namespace Tizen.Multimedia
             }
         }
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public SubtitleUpdatedEventArgs(ulong duration, string text)
+		{
+			_duration = duration;
+			_text = text;
+		}
+
         internal ulong _duration;
         internal string _text;
     }

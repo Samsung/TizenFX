@@ -21,6 +21,7 @@ Requires(post): mono-core
 Requires(postun): mono-core
 # P/Invoke Dependencies
 BuildRequires: pkgconfig(capi-media-player)
+BuildRequires: pkgconfig(csapi-tizen)
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
 #Requires: capi-multimedia-device
@@ -39,7 +40,7 @@ Development package for %{name}
 cp %{SOURCE1} .
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Multimedia/Tizen.Multimedia.snk \
+mcs -target:library -out:%{dllname} -keyfile:Tizen.Multimedia/Tizen.Multimedia.snk -pkg:'csapi-tizen' \
   Tizen.Multimedia/Properties/AssemblyInfo.cs \
   Tizen.Multimedia/Player/*.cs \
   Tizen.Multimedia/Interop/*.cs

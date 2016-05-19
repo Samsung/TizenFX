@@ -25,12 +25,35 @@ namespace Tizen.Multimedia
         /// Get/Set Language code.
         /// </summary>
         /// <value> language code string </value>
-        public string LanguageCode { get; set; }
+        public string LanguageCode 
+		{
+			set
+			{ 
+				_languageCode = value;
+			}
+			get
+			{
+				return _languageCode;
+			}
+		}
 
         /// <summary>
         /// Get/Set activation status.
         /// </summary>
         /// <value> true, false </value>
-        public bool Activated { get; set; }
+        public bool Activated 
+		{
+			set
+			{
+				_activated = value;
+			}
+			get
+			{
+				return _activated;
+			}
+		}
+
+		internal string _languageCode;
+		internal bool _activated;
     }
 }

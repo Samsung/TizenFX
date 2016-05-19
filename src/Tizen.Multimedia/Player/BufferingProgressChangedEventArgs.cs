@@ -34,6 +34,14 @@ namespace Tizen.Multimedia
             }
         }
 
+		/// <summary>
+		/// constructor </summary>
+		public BufferingProgressEventArgs(int percent)
+		{
+			_percent = percent;
+		}
+
+
         internal int _percent;
 
     }

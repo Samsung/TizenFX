@@ -26,7 +26,17 @@ namespace Tizen.Multimedia
         /// Set/Get  new gain in decibel that is set to the given band [dB]
         /// </summary>
         /// <value> int level </value>
-        public int Level { set; get;}
+        public int Level 
+		{ 
+			set
+			{
+				_level = value;
+			}
+			get
+			{
+				return _level;
+			}
+		}
 
         /// <summary>
         /// Get frequency of the given band [dB] .
@@ -52,6 +62,7 @@ namespace Tizen.Multimedia
             }
         }
 
+		internal int _level;
         internal int _frequency;
         internal int _range;
     }

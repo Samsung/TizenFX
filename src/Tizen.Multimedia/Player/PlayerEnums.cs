@@ -205,7 +205,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for sound type
     /// </summary>
-    public enum SoundType
+    public enum AudioType
     {
         /// <summary>
         /// Sound type for system 

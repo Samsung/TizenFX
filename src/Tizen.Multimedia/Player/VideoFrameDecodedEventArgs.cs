@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class VideoFrameDecodedEventArgs : EventArgs
     {
+		// TODO: uncomment when MediaPacket is implemented.
         /// <summary>
         /// Get the Image buffer.
         /// </summary>

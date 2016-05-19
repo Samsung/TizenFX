@@ -26,7 +26,7 @@ namespace Tizen.Multimedia
         /// Get seek offset.
         /// </summary>
         /// <value> byte position to seek  </value>
-        public ulong Offset 
+		public UInt64 Offset 
         {
             get
             {
@@ -34,7 +34,15 @@ namespace Tizen.Multimedia
             }
         }
 
-        internal ulong _offset;
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public SeekOffsetEventArgs(UInt64 offset)
+		{
+			_offset = offset;
+		}
+
+		internal UInt64 _offset;
 
     }
 }

@@ -3,12 +3,49 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlayerInterop
+    internal static partial class Player
     {
 
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] 
-    internal delegate bool MediaTagCallback(IntPtr tagHandle, IntPtr UserData);
-   
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void PlaybackCompletedCallback(IntPtr userData);
+	
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void PlaybackInterruptedCallback(int code, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void PlaybackErrorCallback(int code, IntPtr userData);
+
+	//[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	//internal delegate void VideoFrameDecodedCallback(MediaPacket packet, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void SubtitleUpdatedCallback(ulong duration, string text, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void BufferingProgressCallback(int percent, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void ProgressiveDownloadMessageCallback(int type, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void VideoStreamChangedCallback(int width, int height, int fps, int bitrate, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void BufferStatusCallback(int status, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void SeekOffsetChangedCallback(UInt64 offset, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void VideoCaptureCallback(byte[] data, int width, int height, uint size, IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void PrepareCallback(IntPtr userData);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void SeekCompletedCallback(IntPtr userData);
+
+
 	[DllImport(Libraries.Player, EntryPoint = "player_create")]
 	internal static extern int  Create(out IntPtr player);
 
@@ -17,6 +54,9 @@ internal static partial class Interop
 
 	[DllImport(Libraries.Player, EntryPoint = "player_prepare")]
 	internal static extern int  Prepare(IntPtr player);
+
+	[DllImport(Libraries.Player, EntryPoint = "player_prepare_async")]
+	internal static extern int  PrepareAsync(IntPtr player, PrepareCallback cb, IntPtr userData);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unprepare")]
 	internal static extern int  Unprepare(IntPtr player);
@@ -63,6 +103,9 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_get_play_position")]
 	internal static extern int  GetPlayPosition(IntPtr player, out int millisecond);
 
+	[DllImport(Libraries.Player, EntryPoint = "player_set_play_position")]
+	internal static extern int  SetPlayPosition(IntPtr player, int millisecond, bool accurate, SeekCompletedCallback cb, IntPtr userData);
+
 	[DllImport(Libraries.Player, EntryPoint = "player_set_mute")]
 	internal static extern int  SetMute(IntPtr player, bool muted);
 
@@ -75,29 +118,29 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_is_looping")]
 	internal static extern int  IsLooping(IntPtr player, out bool looping);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_completed_cb")]
-	//internal static extern int  SetCompletedCb(IntPtr player, player_completed_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_completed_cb")]
+	internal static extern int  SetCompletedCb(IntPtr player, PlaybackCompletedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_completed_cb")]
 	internal static extern int  UnsetCompletedCb(IntPtr player);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_interrupted_cb")]
-	//internal static extern int  SetInterruptedCb(IntPtr player, player_interrupted_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_interrupted_cb")]
+	internal static extern int  SetInterruptedCb(IntPtr player, PlaybackInterruptedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_interrupted_cb")]
 	internal static extern int  UnsetInterruptedCb(IntPtr player);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_error_cb")]
-	//internal static extern int  SetErrorCb(IntPtr player, player_error_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_error_cb")]
+	internal static extern int  SetErrorCb(IntPtr player, PlaybackErrorCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_error_cb")]
 	internal static extern int  UnsetErrorCb(IntPtr player);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_capture_video")]
-	//internal static extern int  CaptureVideo(IntPtr player, player_video_captured_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_capture_video")]
+	internal static extern int  CaptureVideo(IntPtr player, VideoCaptureCallback callback, IntPtr user_data);
 
 	//[DllImport(Libraries.Player, EntryPoint = "player_set_media_packet_video_frame_decoded_cb")]
-	//internal static extern int  SetMediaPacketVideoFrameDecodedCb(IntPtr player, player_media_packet_video_decoded_cb callback, IntPtr user_data);
+	//internal static extern int  SetMediaPacketVideoFrameDecodedCb(IntPtr player, _videoFrameDecodedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_video_frame_decoded_cb")]
 	internal static extern int  UnsetMediaPacketVideoFrameDecodedCb(IntPtr player);
@@ -111,8 +154,8 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_get_streaming_download_progress")]
 	internal static extern int  GetStreamingDownloadProgress(IntPtr player, out int start, out int current);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_buffering_cb")]
-	//internal static extern int  SetBufferingCb(IntPtr player, player_buffering_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_buffering_cb")]
+	internal static extern int  SetBufferingCb(IntPtr player, BufferingProgressCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_buffering_cb")]
 	internal static extern int  UnsetBufferingCb(IntPtr player);
@@ -123,8 +166,8 @@ internal static partial class Interop
 	//[DllImport(Libraries.Player, EntryPoint = "player_get_progressive_download_status")]
 	//internal static extern int  GetProgressiveDownloadStatus(IntPtr player, unsigned long *current, unsigned long *total_size);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_progressive_download_message_cb")]
-	//internal static extern int  SetProgressiveDownloadMessageCb(IntPtr player, player_pd_message_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_progressive_download_message_cb")]
+	internal static extern int  SetProgressiveDownloadMessageCb(IntPtr player, ProgressiveDownloadMessageCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_progressive_download_message_cb")]
 	internal static extern int  UnsetProgressiveDownloadMessageCb(IntPtr player);
@@ -138,14 +181,14 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_info")]
 	internal static extern int  SetMediaStreamInfo(IntPtr player, int type, IntPtr format);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_buffer_status_cb")]
-	//internal static extern int  SetMediaStreamBufferStatusCb(IntPtr player, int type, player_media_stream_buffer_status_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_buffer_status_cb")]
+	internal static extern int  SetMediaStreamBufferStatusCb(IntPtr player, int type, BufferStatusCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_media_stream_buffer_status_cb")]
 	internal static extern int  UnsetMediaStreamBufferStatusCb(IntPtr player, int type);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_seek_cb")]
-	//internal static extern int  SetMediaStreamSeekCb(IntPtr player, int type, player_media_stream_seek_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_seek_cb")]
+	internal static extern int  SetMediaStreamSeekCb(IntPtr player, int type, SeekOffsetChangedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_media_stream_seek_cb")]
 	internal static extern int  UnsetMediaStreamSeekCb(IntPtr player, int type);
@@ -231,8 +274,8 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_path")]
 	internal static extern int  SetSubtitlePath(IntPtr player, string path);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_updated_cb")]
-	//internal static extern int  SetSubtitleUpdatedCb(IntPtr player, player_subtitle_updated_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_updated_cb")]
+	internal static extern int  SetSubtitleUpdatedCb(IntPtr player, SubtitleUpdatedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_subtitle_updated_cb")]
 	internal static extern int  UnsetSubtitleUpdatedCb(IntPtr player);
@@ -240,8 +283,8 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_position_offset")]
 	internal static extern int  SetSubtitlePositionOffset(IntPtr player, int millisecond);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_set_video_stream_changed_cb")]
-	//internal static extern int  SetVideoStreamChangedCb(IntPtr player, player_video_stream_changed_cb callback, IntPtr user_data);
+	[DllImport(Libraries.Player, EntryPoint = "player_set_video_stream_changed_cb")]
+	internal static extern int  SetVideoStreamChangedCb(IntPtr player, VideoStreamChangedCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_unset_video_stream_changed_cb")]
 	internal static extern int  UnsetVideoStreamChangedCb(IntPtr player);
