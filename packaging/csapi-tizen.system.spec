@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(capi-system-device)
 BuildRequires: pkgconfig(capi-system-runtime-info)
 BuildRequires: pkgconfig(capi-system-info)
+BuildRequires: pkgconfig(storage)
 
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
@@ -27,6 +28,7 @@ BuildRequires: pkgconfig(capi-system-info)
 Requires: capi-system-device
 Requires: capi-system-runtime-info
 Requires: capi-system-info
+Requires: storage
 #BuildRequires: ...
 
 %description
