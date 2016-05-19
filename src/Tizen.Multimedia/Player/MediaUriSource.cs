@@ -4,7 +4,7 @@ namespace Tizen.Multimedia
 {
 	public class MediaUriSource : MediaSource
 	{
-		public MediaUriSource (string uri)
+		public MediaUriSource(string uri)
 		{
 			_uri = uri;
 		}

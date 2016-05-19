@@ -44,8 +44,8 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_bufferStatusChanged -= value;
-				if (_bufferStatusChanged == null) {
-					UnregisterBufferStatusEvent ();
+				if(_bufferStatusChanged == null) {
+					UnregisterBufferStatusEvent();
 				}
 			}
 		}
@@ -57,12 +57,12 @@ namespace Tizen.Multimedia
 				BufferStatusEventArgs eventArgs = new BufferStatusEventArgs();
 				_bufferStatusChanged.Invoke(this, eventArgs);
 			};
-			Interop.Player.SetSubtitleUpdatedCb (_playerHandle, _bufferStatusChangedCallback, IntPtr.Zero);
+			Interop.Player.SetMediaStreamBufferStatusCb(_playerHandle, _bufferStatusChangedCallback, IntPtr.Zero);
 		}
 
 		private void UnregisterBufferStatusEvent()
 		{
-			Interop.Player.UnsetMediaStreamBufferStatusCb (_playerHandle);
+			Interop.Player.UnsetMediaStreamBufferStatusCb(_playerHandle);
 		}
 
 
@@ -81,8 +81,8 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_seekOffsetChanged -= value;
-				if (_seekOffsetChanged == null) {
-					UnregisterSeekOffsetChangedEvent ();
+				if(_seekOffsetChanged == null) {
+					UnregisterSeekOffsetChangedEvent();
 				}
 			}
 		}
@@ -94,12 +94,12 @@ namespace Tizen.Multimedia
 				SeekOffsetEventArgs eventArgs = new SeekOffsetEventArgs();
 				_seekOffsetChanged.Invoke(this, eventArgs);
 			};
-			Interop.Player.SetMediaStreamSeekCb (_playerHandle, _seekOffsetChangedCallback, IntPtr.Zero);
+			Interop.Player.SetMediaStreamSeekCb(_playerHandle, _seekOffsetChangedCallback, IntPtr.Zero);
 		}
 
 		private void UnregisterSeekOffsetChangedEvent()
 		{
-			Interop.Player.UnsetMediaStreamSeekCb (_playerHandle);
+			Interop.Player.UnsetMediaStreamSeekCb(_playerHandle);
 		}
 
 		#endif
@@ -132,6 +132,11 @@ namespace Tizen.Multimedia
 			{
 				return _minThreshold;
 			}
+		}
+
+
+		internal MediaStreamConfiguration()
+		{
 		}
 
 		internal ulong _maxSize;

@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Interop\Interop.Player.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
-    <Compile Include="Player\MediaStream.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
     <Compile Include="Player\SubtitleTrack.cs" />
     <Compile Include="Player\AudioEffect.cs" />

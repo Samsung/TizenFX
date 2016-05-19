@@ -54,6 +54,10 @@ namespace Tizen.Multimedia
 			}
 		}
 
+		internal DownloadProgress()
+		{
+		}
+
 		internal int _start;
 		internal int _current;
     }

@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
 
 	internal static class PlayerErrorFactory
 	{
-		internal static void ThrowException (int errorCode, string errorMessage = null, string paramName = null)
+		internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
 		{
 			PlayerError err = (PlayerError) errorCode;
 			if(string.IsNullOrEmpty(errorMessage))

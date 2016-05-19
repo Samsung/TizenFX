@@ -54,6 +54,10 @@ namespace Tizen.Multimedia
 			}
 		}
 
+		internal ProgressiveDownloadStatus()
+		{
+		}
+
 		internal ulong _current;
 		internal ulong _totalSize;
     }

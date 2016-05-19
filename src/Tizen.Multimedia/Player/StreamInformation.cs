@@ -45,10 +45,10 @@ namespace Tizen.Multimedia
             get
             {
 				string audioCodec, videoCodec;
-				int ret = Interop.Player.GetCodecInfo (_playerHandle, out audioCodec, out videoCodec);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetCodecInfo(_playerHandle, out audioCodec, out videoCodec);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get codec info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get codec info" + (PlayerError)ret);
 				}
 				return audioCodec;
             }
@@ -63,10 +63,10 @@ namespace Tizen.Multimedia
             get
             {
 				int duration;
-				int ret = Interop.Player.GetDuration (_playerHandle, out duration);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetDuration(_playerHandle, out duration);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get duration info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get duration info" + (PlayerError)ret);
 				}
                 return duration;
             }
@@ -81,10 +81,10 @@ namespace Tizen.Multimedia
             get
             {
 				int sampleRate, channels, bitRate;
-				int ret = Interop.Player.GetAudioStreamInfo (_playerHandle, out sampleRate, out channels, out bitRate);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetAudioStreamInfo(_playerHandle, out sampleRate, out channels, out bitRate);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get audio stream info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get audio stream info" + (PlayerError)ret);
 				}
 				return sampleRate;
             }
@@ -99,10 +99,10 @@ namespace Tizen.Multimedia
             get
             {
 				int sampleRate, channels, bitRate;
-				int ret = Interop.Player.GetAudioStreamInfo (_playerHandle, out sampleRate, out channels, out bitRate);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetAudioStreamInfo(_playerHandle, out sampleRate, out channels, out bitRate);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get audio channels info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get audio channels info" + (PlayerError)ret);
 				}
 				return channels;
             }
@@ -117,10 +117,10 @@ namespace Tizen.Multimedia
             get
             {
 				int sampleRate, channels, bitRate;
-				int ret = Interop.Player.GetAudioStreamInfo (_playerHandle, out sampleRate, out channels, out bitRate);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetAudioStreamInfo(_playerHandle, out sampleRate, out channels, out bitRate);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get audio bitrate info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get audio bitrate info" + (PlayerError)ret);
 				}
 				return bitRate;
             }
@@ -136,10 +136,10 @@ namespace Tizen.Multimedia
             get
             {
 				string audioCodec, videoCodec;
-				int ret = Interop.Player.GetCodecInfo (_playerHandle, out audioCodec, out videoCodec);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetCodecInfo(_playerHandle, out audioCodec, out videoCodec);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get video codec info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get video codec info" + (PlayerError)ret);
 				}
 				return videoCodec;
             }
@@ -154,10 +154,10 @@ namespace Tizen.Multimedia
             get
             {
 				int fps, bitRate;
-				int ret = Interop.Player.GetVideoStreamInfo (_playerHandle, out fps, out bitRate);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetVideoStreamInfo(_playerHandle, out fps, out bitRate);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get video fps info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get video fps info" + (PlayerError)ret);
 				}
 				return fps;
             }
@@ -172,10 +172,10 @@ namespace Tizen.Multimedia
             get
             {
 				int fps, bitRate;
-				int ret = Interop.Player.GetVideoStreamInfo (_playerHandle, out fps, out bitRate);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetVideoStreamInfo(_playerHandle, out fps, out bitRate);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get video bitrate info" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get video bitrate info" + (PlayerError)ret);
 				}
 				return bitRate;
             }
@@ -190,10 +190,10 @@ namespace Tizen.Multimedia
             get
             {
 				int height, width;
-				int ret = Interop.Player.GetVideoSize (_playerHandle, out width, out height);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetVideoSize(_playerHandle, out width, out height);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get video height" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get video height" + (PlayerError)ret);
 				}
 				return height;
             }
@@ -208,10 +208,10 @@ namespace Tizen.Multimedia
             get
             {
 				int height, width;
-				int ret = Interop.Player.GetVideoSize (_playerHandle, out width, out height);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.GetVideoSize(_playerHandle, out width, out height);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Failed to get video width" + (PlayerError)ret);
+					Log.Error(PlayerLog.LogTag, "Failed to get video width" + (PlayerError)ret);
 				}
 				return width;
             }
@@ -228,7 +228,11 @@ namespace Tizen.Multimedia
                 return _contentInfo;
             }
         }
-			
+
+		internal StreamInformation()
+		{
+		}
+
 		internal IntPtr _playerHandle;
 
         internal byte[] _albumArt;

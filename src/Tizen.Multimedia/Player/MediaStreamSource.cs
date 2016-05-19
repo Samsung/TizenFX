@@ -1,14 +1,42 @@
-﻿using System;
+﻿/// Media Stream source
+///
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.
+
+using System;
 
 namespace Tizen.Multimedia
 {
-	public class MediaStreamSource
+	/// <summary>
+	/// MediaStreamSource
+	/// </summary>
+	/// <remarks>
+	/// MediaStreamSource class for media stream configuration.
+	/// </remarks>
+
+	class MediaStreamSource
 	{
+		/// <summary>
+		/// Get/Set Audio Media format.
+		/// </summary>
+		/// <value> MediaFormat </value>
+		//public MediaFormat AudioMediaFormat { get; set; }
 
 		/// <summary>
-		/// Get audio stream configuration.
+		/// Get/Set Video Media format.
 		/// </summary>
-		/// <value> Audio StreamConfiguration </value>
+		/// <value> MediaFormat </value>
+		//public MediaFormat VideoMediaFormat { get; set; }
+
+		/// <summary>
+		/// Get/Set Audio configuration.
+		/// </summary>
+		/// <value> MediaStreamConfiguration </value>
 		public MediaStreamConfiguration AudioConfiguration 
 		{
 			get
@@ -18,9 +46,9 @@ namespace Tizen.Multimedia
 		}
 
 		/// <summary>
-		/// Get video stream configuration.
+		/// Get/Set Video configuration.
 		/// </summary>
-		/// <value> Video StreamConfiguration </value>
+		/// <value> MediaStreamConfiguration </value>
 		public MediaStreamConfiguration VideoConfiguration 
 		{
 			get
@@ -29,27 +57,23 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		public MediaStreamSource ()
+		/// <summary>
+		/// Get/Set Video Media format.
+		/// </summary>
+		/// <value> MediaFormat </value>
+		//public MediaFormat VideoMediaFormat { get; set; }
+
+
+		/// <summary>
+		/// Push Media stream </summary>
+		/// <param name="packet"> media packet</param>
+		//public void PushMediaStream(MediaPacket packet);
+
+		internal MediaStreamSource()
 		{
 		}
-
-		/// <summary>
-		/// Get/Set Media format.
-		/// </summary>
-		/// <value> AudioMediaFormat </value>
-		/// TODO: implement media format
-		//MediaFormat AudioMediaFormat {set; get;}
-
-		/// <summary>
-		/// Get/Set Media format.
-		/// </summary>
-		/// <value> VideoMediaFormat </value>
-		/// TODO: implement media format
-		//MediaFormat VideoMediaFormat {set; get;}
-
 
 		internal MediaStreamConfiguration _audioConfiguration;
 		internal MediaStreamConfiguration _videoConfiguration;
 	}
 }
-

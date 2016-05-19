@@ -202,51 +202,6 @@ namespace Tizen.Multimedia
         Overflow,
     }
 
-    /// <summary>
-    /// Enumeration for sound type
-    /// </summary>
-    public enum AudioType
-    {
-        /// <summary>
-        /// Sound type for system 
-        /// </summary>
-        System,
-
-        /// <summary>
-        ///  Sound type for notifications 
-        /// </summary>
-        Notification,
-
-        /// <summary>
-        /// Sound type for alarm 
-        /// </summary>
-        Alarm,
-
-        /// <summary>
-        /// Sound type for ringtones 
-        /// </summary>
-        Ringtone,
-
-        /// <summary>
-        ///  Sound type for media 
-        /// </summary>
-        Media,
-
-        /// <summary>
-        /// Sound type for call 
-        /// </summary>
-        Call,
-
-        /// <summary>
-        /// Sound type for voip
-        /// </summary>
-        Voip,
-
-        /// <summary>
-        ///  Sound type for voice 
-        /// </summary>
-        Voice
-    }
 
     /// <summary>
     /// Enumeration for source type

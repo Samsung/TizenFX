@@ -62,6 +62,10 @@ namespace Tizen.Multimedia
             }
         }
 
+		internal EqualizerBand()
+		{
+		}
+
 		internal int _level;
         internal int _frequency;
         internal int _range;

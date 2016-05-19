@@ -53,6 +53,10 @@ namespace Tizen.Multimedia
 			}
 		}
 
+		internal SubtitleTrack()
+		{
+		}
+
 		internal string _languageCode;
 		internal bool _activated;
     }

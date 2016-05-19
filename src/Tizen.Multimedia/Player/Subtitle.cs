@@ -20,6 +20,9 @@ namespace Tizen.Multimedia
     /// <remarks>
     /// This class provides properties and events that are required for subtitle
     /// during playback.
+	/// 
+	/// Note: Newly created subtitle has to be set to the 'Subtitle' property of the player object.
+	/// Else, operations on subtitle object do not work.
     /// </remarks>
     public class Subtitle
     {
@@ -35,15 +38,15 @@ namespace Tizen.Multimedia
 			add
 			{
 				if(_subtitleUpdated == null) {
-					RegisterSubtitleUpdatedEvent ();
+					RegisterSubtitleUpdatedEvent();
 				}
 				_subtitleUpdated += value;
 			}
 			remove
 			{
 				_subtitleUpdated -= value;
-				if (_subtitleUpdated == null) {
-					UnregisterSubtitleUpdatedEvent ();
+				if(_subtitleUpdated == null) {
+					UnregisterSubtitleUpdatedEvent();
 				}
 			}
 		}
@@ -55,22 +58,22 @@ namespace Tizen.Multimedia
 				SubtitleUpdatedEventArgs eventArgs = new SubtitleUpdatedEventArgs(duration, text);
 				_subtitleUpdated.Invoke(this, eventArgs);
 			};
-			int ret = Interop.Player.SetSubtitleUpdatedCb (_playerHandle, _subtitleUpdatedCallback, IntPtr.Zero);
-			if (ret != (int)PlayerError.None) 
+			int ret = Interop.Player.SetSubtitleUpdatedCb(_playerHandle, _subtitleUpdatedCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
 			{
-				Log.Error (PlayerLog.LogTag, "Setting subtitle updated callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException (ret, "Setting subtitle updated callback failed"); 
+				Log.Error(PlayerLog.LogTag, "Setting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting subtitle updated callback failed"); 
 			}
 
 		}
 
 		private void UnregisterSubtitleUpdatedEvent()
 		{
-			int ret = Interop.Player.UnsetSubtitleUpdatedCb (_playerHandle);
-			if (ret != (int)PlayerError.None) 
+			int ret = Interop.Player.UnsetSubtitleUpdatedCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
 			{
-				Log.Error (PlayerLog.LogTag, "Unsetting subtitle updated callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException (ret, "Unsetting subtitle updated callback failed"); 
+				Log.Error(PlayerLog.LogTag, "Unsetting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting subtitle updated callback failed"); 
 			}
 		}
 
@@ -83,11 +86,11 @@ namespace Tizen.Multimedia
 		{ 
 			set
 			{
-				int ret = Interop.Player.SetSubtitlePositionOffset (_playerHandle, value);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.SetSubtitlePositionOffset(_playerHandle, value);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Setting position offset failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException (ret, "Setting position offset failed"); 
+					Log.Error(PlayerLog.LogTag, "Setting position offset failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Setting position offset failed"); 
 				}
 			}
 		}
@@ -103,12 +106,12 @@ namespace Tizen.Multimedia
 			{
 				string langCode;
 				int ret;
-				foreach (SubtitleTrack t in _textTrack) 
+				foreach(SubtitleTrack t in _textTrack) 
 				{
-					ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Text, _textTrack.IndexOf (t), out langCode);
-					if (ret != (int)PlayerError.None) 
+					ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Text, _textTrack.IndexOf(t), out langCode);
+					if(ret != (int)PlayerError.None) 
 					{
-						Log.Error (PlayerLog.LogTag, "Getting text track language code failed" + (PlayerError)ret);
+						Log.Error(PlayerLog.LogTag, "Getting text track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -129,12 +132,12 @@ namespace Tizen.Multimedia
 			get
 			{
 				string langCode;
-				foreach (SubtitleTrack t in _audioTrack) 
+				foreach(SubtitleTrack t in _audioTrack) 
 				{
-					int ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Audio, _audioTrack.IndexOf (t), out langCode);
-					if (ret != (int)PlayerError.None) 
+					int ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Audio, _audioTrack.IndexOf(t), out langCode);
+					if(ret != (int)PlayerError.None) 
 					{
-						Log.Error (PlayerLog.LogTag, "Getting audio track language code failed" + (PlayerError)ret);
+						Log.Error(PlayerLog.LogTag, "Getting audio track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -156,12 +159,12 @@ namespace Tizen.Multimedia
 			{
 				string langCode;
 				int ret;
-				foreach (SubtitleTrack t in _videoTrack) 
+				foreach(SubtitleTrack t in _videoTrack) 
 				{
-					ret = Interop.Player.GetTrackLanguageCode (_playerHandle, (int)StreamType.Video, _videoTrack.IndexOf (t), out langCode);
-					if (ret != (int)PlayerError.None) 
+					ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Video, _videoTrack.IndexOf(t), out langCode);
+					if(ret != (int)PlayerError.None) 
 					{
-						Log.Error (PlayerLog.LogTag, "Getting video track language code failed" + (PlayerError)ret);
+						Log.Error(PlayerLog.LogTag, "Getting video track language code failed" + (PlayerError)ret);
 					}
 					t.LanguageCode = langCode;
 				}
@@ -177,17 +180,27 @@ namespace Tizen.Multimedia
 		/// Set path.
 		/// </summary>
 		/// <value> path string </value>
-		public string path
+		public string Path
 		{
 			set
 			{
-				int ret = Interop.Player.SetSubtitlePath (_playerHandle, value);
-				if (ret != (int)PlayerError.None) 
+				int ret = Interop.Player.SetSubtitlePath(_playerHandle, value);
+				if(ret != (int)PlayerError.None) 
 				{
-					Log.Error (PlayerLog.LogTag, "Setting subtitle path failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException (ret, "Setting subtitle path failed"); 
+					Log.Error(PlayerLog.LogTag, "Setting subtitle path failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Setting subtitle path failed"); 
 				}
 			}
+		}
+
+		/// <summary>
+		/// Subtitle Constructor.
+		/// Note: Newly created subtitle has to be set to the 'Subtitle' property of the player object.
+		/// Else, operations on subtitle object do not work.  </summary>
+		/// <param name="path"> subtitle path </param>
+		public Subtitle(string path)
+		{
+			_path = path;
 		}
 
 		IList<SubtitleTrack>  _textTrack;
@@ -195,5 +208,6 @@ namespace Tizen.Multimedia
 		IList<SubtitleTrack>  _videoTrack;
 
 		internal IntPtr _playerHandle;
+		internal string _path;
     }
 }

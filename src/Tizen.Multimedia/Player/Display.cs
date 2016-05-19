@@ -32,15 +32,15 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				int ret = Interop.Player.SetDisplayMode (_playerHandle, (int)value);
-				if ( ret == (int)PlayerError.None) 
+				int ret = Interop.Player.SetDisplayMode(_playerHandle, (int)value);
+				if( ret == (int)PlayerError.None) 
 				{
 					_displayMode = value;
 				} 
 				else 
 				{
-					Log.Error (PlayerLog.LogTag, "Setting display mode failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException (ret, "Setting display mode failed"); 
+					Log.Error(PlayerLog.LogTag, "Setting display mode failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Setting display mode failed"); 
 				}
 			}
 			get
@@ -57,15 +57,15 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				int ret = Interop.Player.SetDisplayVisible (_playerHandle, value);
-				if (ret == (int)PlayerError.None) 
+				int ret = Interop.Player.SetDisplayVisible(_playerHandle, value);
+				if(ret == (int)PlayerError.None) 
 				{
 					_isVisible = value;
 				} 
 				else 
 				{
-					Log.Error (PlayerLog.LogTag, "Setting display visible failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException (ret, "Setting display visible failed"); 
+					Log.Error(PlayerLog.LogTag, "Setting display visible failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Setting display visible failed"); 
 				}
 			}
 			get
@@ -82,14 +82,14 @@ namespace Tizen.Multimedia
 		{
 			set
 			{
-				int ret = Interop.Player.SetDisplayRotation (_playerHandle, (int)value);
-				if (ret == (int)PlayerError.None)
+				int ret = Interop.Player.SetDisplayRotation(_playerHandle, (int)value);
+				if(ret == (int)PlayerError.None)
 				{
 					_rotation = value;
 				} else 
 				{
-					Log.Error (PlayerLog.LogTag, "Setting display rotation failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException (ret, "Setting display rotation failed"); 
+					Log.Error(PlayerLog.LogTag, "Setting display rotation failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Setting display rotation failed"); 
 				}
 			}
 			get
