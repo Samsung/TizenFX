@@ -29,6 +29,7 @@ BuildRequires: pkgconfig(capi-system-runtime-info)
 Requires: capi-system-device
 Requires: capi-system-runtime-info
 # DLL Dependencies
+BuildRequires: pkgconfig(csapi-tizen)
 #BuildRequires: ...
 
 %description
@@ -49,13 +50,14 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk \
+mcs -target:library -out:%{dllname} -keyfile:Tizen.System/Tizen.System.snk -pkg:csapi-tizen \
   Tizen.System/Properties/AssemblyInfo.cs \
-  Tizen.System/System.cs \
-  Tizen.System/Device/EventArgs.cs \
+  Tizen.System/Device/DeviceEventArgs.cs \
+  Tizen.System/Device/DeviceExceptionFactory.cs \
   Tizen.System/Device/Battery.cs \
   Tizen.System/Device/Display.cs \
   Tizen.System/Device/Haptic.cs \
+  Tizen.System/Device/IR.cs \
   Tizen.System/Device/Led.cs \
   Tizen.System/Device/Power.cs \
   Tizen.System/Interop/Interop.Device.cs \
