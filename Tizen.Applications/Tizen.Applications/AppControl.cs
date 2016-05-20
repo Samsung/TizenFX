@@ -809,17 +809,17 @@ namespace Tizen.Applications
                 IntPtr valuePtr = IntPtr.Zero;
                 int len = -1;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraDataArray(_handle, key, out valuePtr, out len);
-                if (err == Interop.AppControl.ErrorCode.None && valuePtr != IntPtr.Zero && len > 0)
+                if (err == Interop.AppControl.ErrorCode.None && valuePtr != IntPtr.Zero)
                 {
-                    string[] stringArray = new string[len];
+                    List<string> stringList = new List<string>();
                     for (int i = 0; i < len; ++i)
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
-                        stringArray[i] = Marshal.PtrToStringAuto(charArr);
+                        stringList.Add(Marshal.PtrToStringAuto(charArr));
                         Interop.Libc.Free(charArr);
                     }
                     Interop.Libc.Free(valuePtr);
-                    value = stringArray;
+                    value = stringList;
                     return true;
                 }
                 else
@@ -962,19 +962,17 @@ namespace Tizen.Applications
                     }
                 }
 
-                string[] valueArray = null;
-                if (valuePtr != IntPtr.Zero && len > 0)
+                List<string> valueArray = new List<string>();
+                if (valuePtr != IntPtr.Zero)
                 {
-                    valueArray = new string[len];
                     for (int i = 0; i < len; ++i)
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
-                        valueArray[i] = Marshal.PtrToStringAuto(charArr);
+                        valueArray.Add(Marshal.PtrToStringAuto(charArr));
                         Interop.Libc.Free(charArr);
                     }
                     Interop.Libc.Free(valuePtr);
                 }
-
                 return valueArray;
             }
         }
