@@ -405,37 +405,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Set/Get sound type.
-        /// </summary>
-        /// <value> System, Notification, Alarm, Ringtone, Media, Call, Voip, Voice </value>
-		// TODO: Uncomment this once sound-manager changes are checked in
-		#if _SM_AUDIO_TYPE_
-        public AudioType PlayerAudioType 
-		{
-			set
-			{
-				if(_audioType != value) 
-				{
-					int ret = Interop.Player.SetSoundType(_playerHandle, (int)value);
-					if(ret != (int)PlayerError.None) {
-						Log.Error(PlayerLog.LogTag, "Set audio type failed" + (PlayerError)ret);
-						PlayerErrorFactory.ThrowException(ret, "set audio type failed");
-					} 
-					else 
-					{
-						_audioType = value;
-					}
-				}
-
-			}
-			get
-			{
-				return _audioType;
-			}
-		}
-		#endif
-
-        /// <summary>
         /// Get play position.
         /// </summary>
         /// <value> play position in milli seconds </value>

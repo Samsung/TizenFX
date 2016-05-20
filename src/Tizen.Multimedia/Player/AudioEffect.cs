@@ -48,6 +48,42 @@ namespace Tizen.Multimedia
 			}
 			get
 			{
+				int ret;
+				int count = 0, level = 0, frequency = 0, range = 0;
+				_bands.Clear();
+
+				ret = Interop.Player.AudioEffectGetEqualizerBandsCount(_playerHandle, out count);
+				if(ret == (int)PlayerError.None) 
+				{
+					for(int idx = 0; idx < count; idx++)
+					{
+						ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_playerHandle, idx, out level);
+						if(ret != (int)PlayerError.None)
+						{
+							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band level");
+						}
+
+						ret = Interop.Player.AudioEffectGetEqualizerBandFrequency(_playerHandle, idx, out frequency);
+						if(ret != (int)PlayerError.None)
+						{
+							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency");
+						}
+
+						ret = Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_playerHandle, idx, out range);
+						if(ret != (int)PlayerError.None)
+						{
+							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency range");
+						}
+
+						EqualizerBand band = new EqualizerBand(level, frequency, range);
+						_bands.Add(band);
+					}
+				} 
+				else 
+				{
+					Log.Error(PlayerLog.LogTag, "Failed to get equalizer band count");
+				}
+
 				return _bands;
 			}
 		}

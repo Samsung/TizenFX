@@ -135,10 +135,6 @@ namespace Tizen.Multimedia
         /// </summary>
         OriginalOrFull,
 
-        /// <summary>
-        /// Dst ROI mode  
-        /// </summary>
-        DstRoi
     }
 
 
