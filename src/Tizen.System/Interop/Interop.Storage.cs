@@ -79,19 +79,6 @@ internal static partial class Interop
         [DllImport(Libraries.Storage, EntryPoint = "storage_get_available_space")]
         internal static extern ErrorCode StorageGetAvailableSpace(int id, out ulong bytes);
 
-        [StructLayout(LayoutKind.Sequential)]
-        public struct FileSystemInfo
-        {
-            public uint BlockSize;
-            public uint FragmentSize;
-            public uint BlockCount;
-            public uint FreeBlocks;
-            public uint BlockAvailable;
-
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 14)]
-            public uint[] vals;
-        }
-
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate bool StorageDeviceSupportedCallback(int storageID, StorageArea type, StorageState state, string rootDirectory, IntPtr userData);
 
