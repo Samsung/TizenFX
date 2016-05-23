@@ -20,9 +20,11 @@ BuildRequires: mono-devel
 Requires(post): mono-core
 Requires(postun): mono-core
 # P/Invoke Dependencies
-BuildRequires: pkgconfig(capi-media-player)
 BuildRequires: pkgconfig(csapi-tizen)
+BuildRequires: pkgconfig(capi-media-player)
 BuildRequires: pkgconfig(capi-media-recorder)
+BuildRequires: pkgconfig(capi-media-sound-manager)
+
 # P/Invoke Runtime Dependencies
 # TODO: It should be removed after fix tizen-rpm-config
 #Requires: capi-multimedia-device
@@ -45,6 +47,7 @@ mcs -target:library -out:%{dllname} -keyfile:Tizen.Multimedia/Tizen.Multimedia.s
   Tizen.Multimedia/Properties/AssemblyInfo.cs \
   Tizen.Multimedia/Player/*.cs \
   Tizen.Multimedia/Recorder/*.cs \
+  Tizen.Multimedia/AudioManager/*.cs \
   Tizen.Multimedia/Interop/*.cs
 # check p/invoke
 if [ -x %{dllname} ]; then

@@ -7,6 +7,7 @@ internal static partial class Interop
 	{
 		public const string Player = "libcapi-media-player.so.0";
 		public const string Recorder = "libcapi-media-recorder.so.0";
+		public const string SoundManager = "libcapi-media-sound-manager.so.0";
 		public const string Libc = "libc.so.6";
 	}
 }
