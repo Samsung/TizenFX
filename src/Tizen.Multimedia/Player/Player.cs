@@ -546,12 +546,16 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Prepares the media player for playback. </summary>
-		public void PrepareAsync()
+		public Task<bool> PrepareAsync()
         {
 			int ret;
-			Task.Factory.StartNew(() => {
+            var task = new TaskCompletionSource<bool>();
+
+            Task.Factory.StartNew(() => {
 				Interop.Player.PrepareCallback cb = (IntPtr userData) => {
-				}; 
+                    task.SetResult(true);
+                    return;
+                }; 
 				ret = Interop.Player.PrepareAsync(_playerHandle, cb, IntPtr.Zero); 
 				if(ret != (int)PlayerError.None) 
 				{
@@ -559,7 +563,9 @@ namespace Tizen.Multimedia
 					PlayerErrorFactory.ThrowException(ret, "Failed to prepare player"); 
 				}
 			});
-		}
+
+            return task.Task;
+        }
 
         /// <summary>
         /// The most recently used media is reset and no longer associated with the player. Playback is no longer possible. 
