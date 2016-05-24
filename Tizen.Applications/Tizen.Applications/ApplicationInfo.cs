@@ -21,6 +21,7 @@ namespace Tizen.Applications
         private bool _disposed = false;
         private IntPtr _infoHandle = IntPtr.Zero;
         private string _applicationId = string.Empty;
+        private Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
@@ -57,7 +58,11 @@ namespace Tizen.Applications
                 string appid = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetAppId(infoHandle, out appid);
+                    err = Interop.ApplicationManager.AppInfoGetAppId(infoHandle, out appid);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the application id. err = " + err);
+                    }
                 }
                 return appid;
             }
@@ -74,7 +79,11 @@ namespace Tizen.Applications
                 string packageid = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetPackage(infoHandle, out packageid);
+                    err = Interop.ApplicationManager.AppInfoGetPackage(infoHandle, out packageid);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the package id. err = " + err);
+                    }
                 }
                 return packageid;
             }
@@ -91,7 +100,11 @@ namespace Tizen.Applications
                 string label = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetLabel(infoHandle, out label);
+                    err = Interop.ApplicationManager.AppInfoGetLabel(infoHandle, out label);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the label. err = " + err);
+                    }
                 }
                 return label;
             }
@@ -108,7 +121,11 @@ namespace Tizen.Applications
                 string exec = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetExec(infoHandle, out exec);
+                    err = Interop.ApplicationManager.AppInfoGetExec(infoHandle, out exec);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the executable file path. err = " + err);
+                    }
                 }
                 return exec;
             }
@@ -125,7 +142,11 @@ namespace Tizen.Applications
                 string path = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetIcon(infoHandle, out path);
+                    err = Interop.ApplicationManager.AppInfoGetIcon(infoHandle, out path);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the icon path. err = " + err);
+                    }
                 }
                 return path;
             }
@@ -142,7 +163,11 @@ namespace Tizen.Applications
                 string type = string.Empty;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoGetType(infoHandle, out type);
+                    err = Interop.ApplicationManager.AppInfoGetType(infoHandle, out type);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the application type. err = " + err);
+                    }
                 }
                 return type;
             }
@@ -169,7 +194,7 @@ namespace Tizen.Applications
                 IntPtr infoHandle = GetInfoHandle();
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, cb, IntPtr.Zero);
+                    err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, cb, IntPtr.Zero);
                     if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get metadata of the application. err = " + err);
@@ -190,7 +215,12 @@ namespace Tizen.Applications
                 bool nodisplay = false;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoIsNodisplay(infoHandle, out nodisplay);
+                    err = Interop.ApplicationManager.AppInfoIsNodisplay(infoHandle, out nodisplay);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the IsNoDisplay value. err = " + err);
+
+                    }
                 }
                 return nodisplay;
             }
@@ -207,7 +237,11 @@ namespace Tizen.Applications
                 bool onboot = false;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoIsOnBoot(infoHandle, out onboot);
+                    err = Interop.ApplicationManager.AppInfoIsOnBoot(infoHandle, out onboot);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the IsOnBoot value. err = " + err);
+                    }
                 }
                 return onboot;
             }
@@ -224,7 +258,11 @@ namespace Tizen.Applications
                 bool preloaded = false;
                 if (infoHandle != IntPtr.Zero)
                 {
-                    Interop.ApplicationManager.AppInfoIsPreLoad(infoHandle, out preloaded);
+                    err = Interop.ApplicationManager.AppInfoIsPreLoad(infoHandle, out preloaded);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the IsPreload value. err = " + err);
+                    }
                 }
                 return preloaded;
             }
@@ -241,8 +279,16 @@ namespace Tizen.Applications
                 IntPtr contextHandle = IntPtr.Zero;
                 try
                 {
-                    Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
-                    Interop.ApplicationManager.AppContextGetPid(contextHandle, out pid);
+                    err = Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the context handle. err = " + err);
+                    }
+                    err = Interop.ApplicationManager.AppContextGetPid(contextHandle, out pid);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the process id. err = " + err);
+                    }
                 }
                 finally
                 {
@@ -263,7 +309,11 @@ namespace Tizen.Applications
             get
             {
                 bool running = false;
-                Interop.ApplicationManager.AppManagerIsRunning(ApplicationId, out running);
+                err = Interop.ApplicationManager.AppManagerIsRunning(ApplicationId, out running);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the IsRunning value. err = " + err);
+                }
                 return running;
             }
         }
@@ -276,7 +326,11 @@ namespace Tizen.Applications
             get
             {
                 string path = string.Empty;
-                Interop.ApplicationManager.AppManagerGetSharedDataPath(ApplicationId, out path);
+                err = Interop.ApplicationManager.AppManagerGetSharedDataPath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the SharedDataPath. err = " + err);
+                }
                 return path;
             }
         }
@@ -289,7 +343,11 @@ namespace Tizen.Applications
             get
             {
                 string path = string.Empty;
-                Interop.ApplicationManager.AppManagerGetSharedResourcePath(ApplicationId, out path);
+                err = Interop.ApplicationManager.AppManagerGetSharedResourcePath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the SharedResourcePath. err = " + err);
+                }
                 return path;
             }
         }
@@ -302,7 +360,11 @@ namespace Tizen.Applications
             get
             {
                 string path = string.Empty;
-                Interop.ApplicationManager.AppManagerGetSharedTrustedPath(ApplicationId, out path);
+                err = Interop.ApplicationManager.AppManagerGetSharedTrustedPath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the SharedTrustedPath. err = " + err);
+                }
                 return path;
             }
         }
@@ -315,7 +377,11 @@ namespace Tizen.Applications
             get
             {
                 string path = string.Empty;
-                Interop.ApplicationManager.AppManagerGetExternalSharedDataPath(ApplicationId, out path);
+                err = Interop.ApplicationManager.AppManagerGetExternalSharedDataPath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the ExternalSharedDataPath. err = " + err);
+                }
                 return path;
             }
         }
@@ -326,8 +392,13 @@ namespace Tizen.Applications
         /// <param name="locale">locale.</param>
         public string GetLocalizedLabel(string locale)
         {
-            string label = Label;
-            Interop.ApplicationManager.AppInfoGetLocaledLabel(ApplicationId, locale, out label);
+            string label = string.Empty;
+            err = Interop.ApplicationManager.AppInfoGetLocaledLabel(ApplicationId, locale, out label);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get the GetLocalizedLabel. err = " + err);
+                label = Label;
+            }
             return label;
         }
 
@@ -336,10 +407,10 @@ namespace Tizen.Applications
             if (_infoHandle == IntPtr.Zero)
             {
                 IntPtr infoHandle = IntPtr.Zero;
-                Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppInfo(_applicationId, out infoHandle);
+                err = Interop.ApplicationManager.AppManagerGetAppInfo(_applicationId, out infoHandle);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the handle of the ApplicationInfo.");
+                    Log.Warn(LogTag, "Failed to get the handle of the ApplicationInfo. err = " + err);
                 }
                 _infoHandle = infoHandle;
             }
