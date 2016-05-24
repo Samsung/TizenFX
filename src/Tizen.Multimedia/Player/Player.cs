@@ -624,7 +624,7 @@ namespace Tizen.Multimedia
 			int ret;
 			if(source.GetType() == typeof(MediaUriSource)) 
 			{
-				ret = Interop.Player.SetUri(_playerHandle, ((MediaUriSource)source)._uri);
+				ret = Interop.Player.SetUri(_playerHandle, ((MediaUriSource)source).GetUri());
 				if(ret != (int)PlayerError.None) 
 				{
 					Log.Error(PlayerLog.LogTag, "Failed to seturi" + (PlayerError)ret);
@@ -648,7 +648,7 @@ namespace Tizen.Multimedia
 			return Task.Factory.StartNew(() => CaptureVideoAsyncTask()).Result;
         }
 
-		internal Task<VideoFrameCapture> CaptureVideoAsyncTask()
+		public Task<VideoFrameCapture> CaptureVideoAsyncTask()
 		{
 			TaskCompletionSource<VideoFrameCapture> t = new TaskCompletionSource<VideoFrameCapture> ();
 			Interop.Player.VideoCaptureCallback  cb = (byte[] data, int width, int height, uint size, IntPtr userData) => {
@@ -669,10 +669,14 @@ namespace Tizen.Multimedia
         ///Sets the seek position for playback, asynchronously.  </summary>
         /// <param name="milliseconds"> Position to be set in milliseconds</param>
         /// <param name="accurate"> accurate seek or not</param>
-        public void SetPlayPositionAsync(int milliseconds, bool accurate)
+		public Task<bool> SetPlayPositionAsync(int milliseconds, bool accurate)
         {
+			var task = new TaskCompletionSource<bool>();
+
 			Task.Factory.StartNew(() => {
 				Interop.Player.SeekCompletedCallback cb = (IntPtr userData) => {
+					task.SetResult(true);
+					return;
 				}; 
 				int ret = Interop.Player.SetPlayPosition(_playerHandle, milliseconds, accurate, cb, IntPtr.Zero);
 				if(ret != (int)PlayerError.None) 
@@ -682,6 +686,7 @@ namespace Tizen.Multimedia
 				}
 			});
 
+			return task.Task;
         }
 
 
@@ -691,7 +696,6 @@ namespace Tizen.Multimedia
 		internal int _audioLatencyMode;
 		internal bool _mute;
 		internal bool _isLooping;
-		//internal AudioType _audioType;
 
 		internal Display _display;
 		internal Subtitle _subtitle;

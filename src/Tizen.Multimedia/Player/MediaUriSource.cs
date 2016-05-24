@@ -9,7 +9,12 @@ namespace Tizen.Multimedia
 			_uri = uri;
 		}
 
-		internal string _uri;
+		internal string GetUri()
+		{
+			return _uri;
+		}
+
+		private string _uri;
 	}
 }
 

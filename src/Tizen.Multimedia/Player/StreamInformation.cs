@@ -10,6 +10,7 @@
 
 
 using System;
+using System.Runtime.InteropServices;
 
 
 namespace Tizen.Multimedia
@@ -32,7 +33,22 @@ namespace Tizen.Multimedia
         {
             get 
             {
-                return _albumArt;
+				int ret, size;
+				IntPtr art;
+				ret = Interop.Player.GetAlbumArt(_playerHandle, out art, out size);
+				if(ret != (int)PlayerError.None)
+				{
+					Log.Error(PlayerLog.LogTag, "Failed to get album art" + (PlayerError)ret);
+					Console.WriteLine("GetAlbumArt() failed " + ret);
+				}
+				else
+				{
+					byte[] albumArt;
+					albumArt = new byte[size];
+					Marshal.Copy(art, albumArt, 0, size);
+					return albumArt;
+				}
+				return null;
             }
         }
 
@@ -235,7 +251,6 @@ namespace Tizen.Multimedia
 
 		internal IntPtr _playerHandle;
 
-        internal byte[] _albumArt;
         internal PlayerContentInfo _contentInfo;
     }
 }
