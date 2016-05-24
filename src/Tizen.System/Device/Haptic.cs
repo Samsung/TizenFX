@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace Tizen.System
 {
     /// <summary>
@@ -9,9 +8,10 @@ namespace Tizen.System
     public class Vibrator : IDisposable
     {
         private readonly int _vibratorId;
-        private static readonly Dictionary<int, Vibrator> s_vibrators = new Dictionary<int, Vibrator>();
         private IntPtr _hapticHandle;
         private bool _disposedValue = false;
+        private static Lazy<IReadOnlyList<Vibrator>> _lazyVibrators;
+        private static int _maxcount = 0;
         private Vibrator(int id)
         {
             _vibratorId = id;
@@ -20,45 +20,60 @@ namespace Tizen.System
             {
                 throw DeviceExceptionFactory.CreateException(res, "unable to create Vibrator for given Id");
             }
+            res = (DeviceError)Interop.Device.DeviceHapticGetCount(out _maxcount);
+            if (res != DeviceError.None)
+            {
+                Log.Warn(DeviceExceptionFactory.LogTag, "unable to get Vibrators count.");
+            }
+
         }
 
         ~Vibrator()
         {
             Dispose(false);
         }
-
         /// <summary>
-        /// Get the Vibrator instance for the given vibrator index.
-        /// </summary>
-        /// <param name="deviceId"> The index of the vibrator.
-        /// It can be greater than or equal to 0 and less than the number of vibrators. </param>
-        public static Vibrator GetVibrator(int deviceNumber)
-        {
-            if (deviceNumber < 0 || deviceNumber >= NumberOfVibrators)
-            {
-                throw DeviceExceptionFactory.CreateException(DeviceError.InvalidParameter, "invalid vibrator number");
-            }
-            if (!s_vibrators.ContainsKey(deviceNumber))
-            {
-                s_vibrators.Add(deviceNumber, new Vibrator(deviceNumber));
-            }
-            return s_vibrators[deviceNumber];
-        }
-        /// <summary>
-        /// Gets the number of vibrators.
+        /// Get the number of avaialble vibrators.
         /// </summary>
         public static int NumberOfVibrators
         {
             get
             {
                 int count = 0;
-                DeviceError res = (DeviceError) Interop.Device.DeviceHapticGetCount(out count);
+                DeviceError res = (DeviceError)Interop.Device.DeviceHapticGetCount(out count);
                 if (res != DeviceError.None)
                 {
                     Log.Warn(DeviceExceptionFactory.LogTag, "unable to get Vibrators count.");
                 }
                 return count;
             }
+        }
+        /// <summary>
+        /// Get all the avaialble vibrators.
+        /// </summary>
+        public static IReadOnlyList<Vibrator> Vibrators
+        {
+            get
+            {
+                _lazyVibrators = new Lazy<IReadOnlyList<Vibrator>>(() => GetAllVibrators());
+                return _lazyVibrators.Value;
+            }
+        }
+        private static IReadOnlyList<Vibrator> GetAllVibrators()
+        {
+            int count = 0;
+            List< Vibrator > vibrators = new List<Vibrator>();
+            DeviceError res = (DeviceError)Interop.Device.DeviceHapticGetCount(out count);
+            if (res != DeviceError.None)
+            {
+                throw DeviceExceptionFactory.CreateException(res, "unable to get Vibrators count.");
+            }
+            for(int i = 0; i< NumberOfVibrators; i++)
+            {
+                vibrators.Add(new Vibrator(i));
+            }
+            return vibrators;
+
         }
         /// <summary>
         /// Vibrates during the specified time with a constant intensity.

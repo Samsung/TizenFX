@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace Tizen.System
 {
     /// <summary>
@@ -29,8 +28,8 @@ namespace Tizen.System
     public class Display
     {
         private readonly int _displayId;
-        private static readonly Dictionary<int, Display> s_displays = new Dictionary<int, Display>();
         private static readonly object s_lock = new object();
+        private static Lazy<IReadOnlyList<Display>> _lazyDisplays;
         private Display(int deviceNumber)
         {
             _displayId = deviceNumber;
@@ -52,7 +51,30 @@ namespace Tizen.System
                 return number;
             }
         }
+        /// <summary>
+        /// Get all the avaialble vibrators.
+        /// </summary>
+        public static IReadOnlyList<Display> Displays
+        {
+            get
+            {
+                _lazyDisplays = new Lazy<IReadOnlyList<Display>>(() => GetAllDisplayes());
+                return _lazyDisplays.Value;
+            }
+        }
 
+
+        private static IReadOnlyList<Display> GetAllDisplayes()
+        {
+            List<Display> displays = new List<Display>();
+
+            for (int i = 0; i < NumberOfDisplays; i++)
+            {
+                displays.Add(new Display(i));
+            }
+            return displays;
+
+        }
         /// <summary>
         /// The maximum brightness value that can be set.
         /// </summary>
@@ -94,24 +116,6 @@ namespace Tizen.System
                     throw DeviceExceptionFactory.CreateException(res, "unable to set brightness value");
                 }
             }
-        }
-        /// <summary>
-        /// Get the Display instance for the given display index.
-        /// </summary>
-        /// <param name="deviceNumber"> The index of the display.
-        /// It can be greater than or equal to 0 and less than the number of display devices </param>
-        public static Display GetDisplay(int deviceNumber)
-        {
-            //TODO: throw an exception for invalid display Id.
-            if(deviceNumber < 0 || deviceNumber >= NumberOfDisplays)
-            {
-                throw DeviceExceptionFactory.CreateException(DeviceError.InvalidParameter, "invalid display number");
-            }
-            if (!s_displays.ContainsKey(deviceNumber))
-            {
-                s_displays.Add(deviceNumber, new Display(deviceNumber));
-            }
-            return s_displays[deviceNumber];
         }
         /// <summary>
         /// The current display state.
