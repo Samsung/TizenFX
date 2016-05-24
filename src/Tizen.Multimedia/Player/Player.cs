@@ -388,23 +388,6 @@ namespace Tizen.Multimedia
 		}
 
         /// <summary>
-        /// Set playback rate.
-        /// </summary>
-        /// <value> -5.0x to 5.0x </value>
-        public float PlaybackRate 
-        {
-            set
-            {
-				int ret = Interop.Player.SetPlaybackRate(_playerHandle, value);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Set playback rate failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException(ret, "set playback rate failed");
-				}
-            }
-        }
-
-        /// <summary>
         /// Get play position.
         /// </summary>
         /// <value> play position in milli seconds </value>
@@ -688,6 +671,33 @@ namespace Tizen.Multimedia
 
 			return task.Task;
         }
+
+		/// <summary>
+		/// sets playback rate </summary>
+		/// <param name="rate"> playback rate -5.0x to 5.0x  </param>
+		public void SetPlaybackRate(float rate)
+		{
+			int ret = Interop.Player.SetPlaybackRate(_playerHandle, rate);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Set playback rate failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "set playback rate failed");
+			}
+		}
+
+		/// <summary>
+		/// sets audio stream policy </summary>
+		/// <param name="policy"> Audio Stream Policy  </param>
+		public void SetAudioStreamPolicy(AudioStreamPolicy policy)
+		{
+			// TODO: policy._streamInfo is currently private. Fix this.
+			//int ret = Interop.Player.SetPlaybackRate(_playerHandle, policy._streamInfo);
+			//if(ret != (int)PlayerError.None) 
+			//{
+			//	Log.Error(PlayerLog.LogTag, "Set Audio stream policy failed" + (PlayerError)ret);
+			//	PlayerErrorFactory.ThrowException(ret, "Set Audio stream policy failed");
+			//}
+		}
 
 
         internal PlayerState _state;
