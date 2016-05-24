@@ -1,0 +1,29 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tizen.System.Sensor/Sensor/Plugins/Accelerometer.cs">
+    <Files>
+      <File FileName="Tizen.System.Sensor/Sensor/Sensor.cs" Line="74" Column="14" />
+      <File FileName="Tizen.System.Sensor/Sensor/Plugins/Accelerometer.cs" Line="146" Column="34" />
+      <File FileName="Tizen.System.Sensor/Interop/Interop.Sensor.cs" Line="57" Column="75" />
+      <File FileName="Tizen.System.Sensor/Sensor/SensorErrorFactory.cs" Line="36" Column="60" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Node name="Tizen.Internals" expanded="True" />
+          <Node name="Tizen.System.Sensor" expanded="True">
+            <Node name="Interop" expanded="True" />
+            <Node name="Sensor" expanded="True">
+              <Node name="EventArgs" expanded="True" />
+              <Node name="Plugins" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,5 @@
+Name: csapi-system-sensor
+Description: Tizen Sensor API for C#
+Version: @version@
+Libs: -r:@dllpath@/@dllname@
+Requires:
