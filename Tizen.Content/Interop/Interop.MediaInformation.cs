@@ -16,7 +16,7 @@ internal static partial class Interop
     internal static partial class MediaInformation
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MediaThumbnailCompletedCallback(MediaContentError error, string path, IntPtr UserData);
+        internal delegate void MediaThumbnailCompletedCallback(MediaContentError error, string filePath, IntPtr UserData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool MediaTagCallback(IntPtr tagHandle, IntPtr UserData);
@@ -37,19 +37,19 @@ internal static partial class Interop
         internal delegate bool MediaInformationCallback(IntPtr mediaInformationHandle, IntPtr UserData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Insert(string path, out SafeMediaInformationHandle info);
+        internal static extern int Insert(string filePath, out SafeMediaInformationHandle info);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_batch_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int BatchInsert(string[] pathArray, int arrayLength, MediaInsertCompletedCallback callback, IntPtr userData);
+        internal static extern int BatchInsert(string[] filePathArray, int arrayLength, MediaInsertCompletedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_burst_shot_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int BurstShotInsert(string[] pathArray, int arrayLength, MediaInsertBurstShotCompletedCallback callback, IntPtr userData);
+        internal static extern int BurstShotInsert(string[] filePathArray, int arrayLength, MediaInsertBurstShotCompletedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_delete_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Delete(string mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_delete_batch_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int BatchDelete(IntPtr? filter);
+        internal static extern int BatchDelete(IntPtr filter);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Destroy(IntPtr mediaInformationHandle);
@@ -61,13 +61,13 @@ internal static partial class Interop
         internal static extern int GetMediaCount(IntPtr filter, out int mediaCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_media_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAllMedia(IntPtr? filter, MediaInformationCallback callback, IntPtr userData);
+        internal static extern int GetAllMedia(IntPtr filter, MediaInformationCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_tag_count_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetTagCount(string mediaId, IntPtr? filter, out int tagCount);
+        internal static extern int GetTagCount(string mediaId, IntPtr filter, out int tagCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_tag_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAllTags(string mediaId, IntPtr? filter, MediaTagCallback callback, IntPtr userData);
+        internal static extern int GetAllTags(string mediaId, IntPtr filter, MediaTagCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_bookmark_count_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetBookmarkCount(string mediaId, IntPtr filter, out int bookmarkCount);
@@ -82,19 +82,19 @@ internal static partial class Interop
         internal static extern int GetAllFaces(string mediaId, IntPtr filter, MediaFaceCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_image", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetImage(SafeMediaInformationHandle mediaInformationHandle, out Interop.ImageInformation.SafeImageInformationHandle image);
+        internal static extern int GetImage(IntPtr mediaInformationHandle, out Interop.ImageInformation.SafeImageInformationHandle image);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_video", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetVideo(SafeMediaInformationHandle mediaInformationHandle, out Interop.VideoInformation.SafeVideoInformationHandle video);
+        internal static extern int GetVideo(IntPtr mediaInformationHandle, out Interop.VideoInformation.SafeVideoInformationHandle video);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_audio", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAudio(SafeMediaInformationHandle mediaInformationHandle, out Interop.AudioInformation.SafeAudioInformationHandle audio);
+        internal static extern int GetAudio(IntPtr mediaInformationHandle, out Interop.AudioInformation.SafeAudioInformationHandle audio);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetMediaId(SafeMediaInformationHandle mediaInformationHandle, out string mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_file_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetFilePath(SafeMediaInformationHandle mediaInformationHandle, out string path);
+        internal static extern int GetFilePath(SafeMediaInformationHandle mediaInformationHandle, out string filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_display_name", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetDisplayName(SafeMediaInformationHandle mediaInformationHandle, out string name);
@@ -118,7 +118,7 @@ internal static partial class Interop
         internal static extern int GetTimeline(SafeMediaInformationHandle mediaInformationHandle, out int time);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_thumbnail_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetThumbnailPath(SafeMediaInformationHandle mediaInformationHandle, out string path);
+        internal static extern int GetThumbnailPath(SafeMediaInformationHandle mediaInformationHandle, out string filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_description", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetDescription(SafeMediaInformationHandle mediaInformationHandle, out string description);
@@ -235,7 +235,7 @@ internal static partial class Interop
         internal static extern int SetKeyword(SafeMediaInformationHandle mediaInformationHandle, string keyword);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_update_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UpdateToDB(SafeMediaInformationHandle mediaInformationHandle);
+        internal static extern int UpdateToDB(IntPtr mediaInformationHandle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_refresh_metadata_to_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int RefreshMetadataToDB(string mediaId);

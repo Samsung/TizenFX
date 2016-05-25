@@ -37,7 +37,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Out of memory.
         /// </summary>
-        OotOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
         /// <summary>
         /// Invalid Operation.
         /// </summary>

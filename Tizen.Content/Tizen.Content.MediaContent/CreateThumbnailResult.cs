@@ -42,7 +42,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>
         /// string path of the thumbnail.</value>
-        public string Path
+        public string FilePath
         {
             get;
             internal set;

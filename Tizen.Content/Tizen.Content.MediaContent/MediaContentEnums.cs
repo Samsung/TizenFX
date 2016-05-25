@@ -17,11 +17,11 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Ascending order
         /// </summary>
-        ASC,
+        Asc,
         /// <summary>
         /// Descending order
         /// </summary>
-        DESC
+        Desc
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Media file path. You can use above define to set the condition of media filter and order keyword.
         /// </summary>
-        Path,
+        FilePath,
         /// <summary>
         /// Media base name. You can use above define to set the condition of media filter and order keyword.
         /// </summary>
@@ -453,8 +453,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Invalid media group ID
         /// </summary>
-        Max,
-        None
+        Max
     }
     /// <summary>
     /// Enumerations for defining set of conditions in media filer for media folder
@@ -546,25 +545,29 @@ namespace Tizen.Content.MediaContent
     public enum ContentCollectionType
     {
         /// <summary>
-        ///
+        ///Content Collection type folder
         /// </summary>
         Folder,
         /// <summary>
-        ///
+        ///Content Collection type storage
         /// </summary>
         Storage,
         /// <summary>
-        /// 
+        /// Content Collection type album
         /// </summary>
         Album,
         /// <summary>
-        ///
+        ///Content Collection type playlist
         /// </summary>
         PlayList,
         /// <summary>
-        ///
+        ///Content Collection type tag
         /// </summary>
-        Tag
+        Tag,
+        /// <summary>
+        ///Content Collection type group
+        /// </summary>
+        Group
     }
     /// <summary>
     /// Enum to give the type of media information.</summary>

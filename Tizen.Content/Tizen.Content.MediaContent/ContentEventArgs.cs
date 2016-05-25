@@ -20,15 +20,15 @@ namespace Tizen.Content.MediaContent
     public class ContentUpdatedEventArgs : EventArgs
     {
         internal ContentUpdatedEventArgs(MediaContentError error, int pid, MediaContentUpdateItemType updateItem,
-            MediaContentDBUpdateType updateType, MediaContentType mediaType, string uuid, string path, string mimeType)
+            MediaContentDBUpdateType updateType, MediaContentType mediaType, string uuid, string filePath, string mimeType)
         {
             Error = error;
-            PID = pid;
+            Pid = pid;
             UpdateItem = updateItem;
             UpdateType = updateType;
             MediaType = mediaType;
-            UUID = uuid;
-            Path = path;
+            Uuid = uuid;
+            FilePath = filePath;
             MimeType = mimeType;
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The PID which publishes notification
         /// </summary>
-        public int PID
+        public int Pid
         {
             get; set;
         }
@@ -75,7 +75,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The UUID of media or directory, which is updated
         /// </summary>
-        public string UUID
+        public string Uuid
         {
             get; set;
         }
@@ -83,7 +83,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the media or directory
         /// </summary>
-        public string Path
+        public string FilePath
         {
             get; set;
         }
@@ -92,20 +92,6 @@ namespace Tizen.Content.MediaContent
         /// The mime type of the media info
         /// </summary>
         public string MimeType
-        {
-            get; set;
-        }
-    }
-
-    /// <summary>
-    /// Event arguments passed when the media scanning is finished.
-    /// </summary>
-    public class ContentScanCompletedEventArgs : EventArgs
-    {
-        /// <summary>
-        /// The error code
-        /// </summary>
-        private MediaContentError error
         {
             get; set;
         }

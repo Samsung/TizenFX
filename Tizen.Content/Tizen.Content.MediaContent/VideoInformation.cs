@@ -366,21 +366,15 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        /// <summary>
-        /// Updates the given video information in the media database.
-        /// </summary>
-        /// <returns>
-        /// void </returns>
-        public override void Update()
+        internal IntPtr VideoHandle
         {
-            int result = Interop.VideoInformation.UpdateToDB(_handle);
-            if ((MediaContentError)result != MediaContentError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                return _handle.DangerousGetHandle();
             }
         }
 
-        internal new readonly Interop.VideoInformation.SafeVideoInformationHandle _handle;
+        private readonly Interop.VideoInformation.SafeVideoInformationHandle _handle;
 
         internal VideoInformation(Interop.VideoInformation.SafeVideoInformationHandle handle, Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle)
             : base(mediaInformationHandle)

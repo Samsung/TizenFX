@@ -22,7 +22,7 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _bookmarkHandle;
         private bool _disposedValue = false;
-        internal readonly uint _timeStamp;
+        internal readonly DateTime _timeStamp;
         internal readonly String _thumbnailPath;
         internal readonly String _mediaId;
         internal MediaBookmark(IntPtr handle)
@@ -90,7 +90,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="timeStamp">The bookmark time offset (in seconds)</param>
         /// <param name="thumbnailPath">The thumbnail path of video bookmark. If the media type is audio, then thumbnail is null.</param>
-        public MediaBookmark(MediaInformation content, uint time, string thumbnailPath)
+        public MediaBookmark(MediaInformation content, DateTime time, string thumbnailPath)
         {
             _mediaId = content.MediaId;
             _timeStamp = time;

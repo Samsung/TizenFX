@@ -1,5 +1,5 @@
 %define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Messaging.MediaContent.dll
+%define dllname Tizen.Content.MediaContent.dll
 
 Name:       csapi-media-content
 Summary:    Tizen Media Content API for C#
@@ -46,7 +46,7 @@ cp %{SOURCE1} .
 mcs -target:library -out:%{dllname} -keyfile:Tizen.Content/Tizen.Content.snk -pkg:'csapi-tizen'\
   Tizen.Content/Properties/AssemblyInfo.cs \
   Tizen.Content/Interop/*.cs \
-  Tizen.Content/MediaContent/*.cs
+  Tizen.Content/Tizen.Content.MediaContent/*.cs
 
 # check p/invoke
 if [ -x %{dllname} ]; then

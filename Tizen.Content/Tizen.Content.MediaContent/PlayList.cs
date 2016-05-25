@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// </remarks>
     public class PlayList : ContentCollection
     {
+        private IDictionary<string, int> dictionary = new Dictionary<string, int>();
         private IntPtr _playlistHandle;
         internal IntPtr Handle
         {
@@ -32,6 +33,31 @@ namespace Tizen.Content.MediaContent
             set
             {
                 _playlistHandle = value;
+            }
+        }
+
+        private void refreshPlaylistDictionary()
+        {
+            dictionary.Clear();
+            MediaContentError res;
+            Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
+            {
+                Interop.MediaInformation.SafeMediaInformationHandle newHandle;
+                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
+                if (res != MediaContentError.None)
+                {
+                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
+                }
+
+                MediaInformation info = new MediaInformation(newHandle);
+                string mediaId;
+                Interop.MediaInformation.GetMediaId(newHandle, out mediaId);
+                dictionary.Add(mediaId, memberId);
+            };
+            res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, IntPtr.Zero, callback, IntPtr.Zero);
+            if (res != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(res, "Failed to get playlist items");
             }
         }
 
@@ -103,7 +129,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The constructor to create a new playlist with the given name in the media database.
         /// </summary>
-        /// <param name="playListName">The name of the inserted playlist</param>
+        /// <param name="name">The name of the inserted playlist</param>
         public PlayList(string name)
         {
             Name = name;
@@ -138,8 +164,14 @@ namespace Tizen.Content.MediaContent
         /// Removes the playlist members related with the media from the given playlist.
         /// </summary>
         /// <param name="mediaContent">The AudioContent object to be removed</param>
-        public void RemoveItem(int memberId)
+        public void RemoveItem(MediaInformation media)
         {
+            int memberId = -1;
+            dictionary.TryGetValue(media.MediaId, out memberId);
+            if (memberId == -1) {
+                refreshPlaylistDictionary();
+            }
+            dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.RemoveMedia(_playlistHandle, memberId);
             if (res != MediaContentError.None)
             {
@@ -181,17 +213,17 @@ namespace Tizen.Content.MediaContent
         /// Imports the playlist from m3u playlist file.
         /// </summary>
         /// <param name="name">The name of the playlist to save</param>
-        /// <param name="path">The path to import the playlist file</param>
+        /// <param name="filePath">The path to import the playlist file</param>
         /// <returns>The imported PlayList object</returns>
-        public static PlayList Import(string name, string path)
+        public static PlayList Import(string name, string filePath)
         {
             PlayList playList = null;
             IntPtr playlistHandle;
 
-            MediaContentError res = (MediaContentError)Interop.Playlist.ImportFromFile(name, path, out playlistHandle);
+            MediaContentError res = (MediaContentError)Interop.Playlist.ImportFromFile(name, filePath, out playlistHandle);
             if (res != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to import playlist  " + name + " from " + path);
+                throw MediaContentErrorFactory.CreateException(res, "Failed to import playlist  " + name + " from " + filePath);
             }
             playList = new PlayList(name);
             playList._playlistHandle = playlistHandle;
@@ -202,47 +234,14 @@ namespace Tizen.Content.MediaContent
         /// Exports the playlist to m3u playlist file.
         /// </summary>
         /// <returns>path The path to export the playlist</returns>
-        public static void Export(PlayList list, string path)
+        public static void Export(PlayList list, string filePath)
         {
 
-            MediaContentError res = (MediaContentError)Interop.Playlist.ExportToFile(list.Handle, path);
+            MediaContentError res = (MediaContentError)Interop.Playlist.ExportToFile(list.Handle, filePath);
             if (res != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to export playlist  " + list.Name + " to " + path);
+                throw MediaContentErrorFactory.CreateException(res, "Failed to export playlist  " + list.Name + " to " + filePath);
             }
-        }
-
-        /// <summary>
-        /// Gets the media content list for the given playlist member id.
-        /// </summary>
-        /// <param name="filter">The content filter</param>
-        /// <returns>Media content list</returns>
-        public Task<IDictionary<int, MediaInformation>> GetPlayListItemsAsync(ContentFilter filter)
-        {
-            var tcs = new TaskCompletionSource<IDictionary<int, MediaInformation>>();
-
-            IDictionary<int, MediaInformation> dictionary = new Dictionary<int, MediaInformation>();
-            IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res;
-            Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
-            {
-                Interop.MediaInformation.SafeMediaInformationHandle newHandle ;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
-                }
-
-                MediaInformation info = new MediaInformation(newHandle);
-                dictionary.Add(memberId, info);
-            };
-            res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get playlist items");
-            }
-            tcs.TrySetResult(dictionary);
-            return tcs.Task;
         }
 
         /// <summary>

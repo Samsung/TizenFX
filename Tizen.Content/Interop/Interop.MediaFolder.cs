@@ -26,7 +26,7 @@ internal static partial class Interop
 
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_path")]
-        internal static extern int GetPath(IntPtr folder, out string path);
+        internal static extern int GetPath(IntPtr folder, out string folderPath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_name")]
         internal static extern int GetName(IntPtr folder, out string folder_name);
@@ -65,6 +65,6 @@ internal static partial class Interop
         internal static extern int ForeachFolderFromDb(IntPtr filter, MediaFolderCallback callback, IntPtr user_data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_foreach_media_from_db")]
-        internal static extern int ForeachMediaFromDb(string folder_id, IntPtr? filter, MediaInfoCallback callback, IntPtr user_data);
+        internal static extern int ForeachMediaFromDb(string folder_id, IntPtr filter, MediaInfoCallback callback, IntPtr user_data);
     }
 }

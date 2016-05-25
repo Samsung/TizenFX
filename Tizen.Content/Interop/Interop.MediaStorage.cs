@@ -41,7 +41,7 @@ internal static partial class Interop
         internal delegate void MediaInfoCallback(Interop.MediaInformation.SafeMediaInformationHandle mediaInformation, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_foreach_storage_from_db")]
-        internal static extern int ForeachStorageFromDb(IntPtr? filter, MediaStorageCallback callback, IntPtr user_data);
+        internal static extern int ForeachStorageFromDb(IntPtr filter, MediaStorageCallback callback, IntPtr user_data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_foreach_media_from_db")]
         internal static extern int ForeachMediaFromDb(string storage_id, IntPtr filter, MediaInfoCallback callback, IntPtr user_data);

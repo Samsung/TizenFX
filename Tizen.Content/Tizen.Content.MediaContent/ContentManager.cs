@@ -33,7 +33,7 @@ namespace Tizen.Content.MediaContent
     /// ContentManager class is the interface class for accessing the ContentCollection and MediaInformation.
     /// This class allows usre to create/update db operations for media content.
     /// </summary>
-    public class ContentManager
+    public static class ContentManager
     {
         private static bool s_isConnected = false;
         internal static void ConnectToDB()
@@ -61,9 +61,9 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        private static readonly Interop.Content.MediaContentDBUpdatedCallback s_contentUpdatedCallback = (MediaContentError error, int pid, MediaContentUpdateItemType updateItem, MediaContentDBUpdateType updateType, MediaContentType mediaType, string uuid, string path, string mimeType, IntPtr userData) =>
+        private static readonly Interop.Content.MediaContentDBUpdatedCallback s_contentUpdatedCallback = (MediaContentError error, int pid, MediaContentUpdateItemType updateItem, MediaContentDBUpdateType updateType, MediaContentType mediaType, string uuid, string filePath, string mimeType, IntPtr userData) =>
         {
-            ContentUpdatedEventArgs eventArgs = new ContentUpdatedEventArgs(error, pid, updateItem, updateType, mediaType, uuid, path, mimeType);
+            ContentUpdatedEventArgs eventArgs = new ContentUpdatedEventArgs(error, pid, updateItem, updateType, mediaType, uuid, filePath, mimeType);
             s_contentUpdated?.Invoke(null, eventArgs);
         };
         private static event EventHandler<ContentUpdatedEventArgs> s_contentUpdated;
@@ -104,10 +104,10 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to cancel the media folder scanning.
         /// </summary>
-        /// <param name="path">The folder path</param>
-        public static void CancelScanningFolder(string path)
+        /// <param name="folderPath">The folder path</param>
+        public static void CancelScanningFolder(string folderPath)
         {
-            MediaContentError result = (MediaContentError)Interop.Content.CancelScanFolder(path);
+            MediaContentError result = (MediaContentError)Interop.Content.CancelScanFolder(folderPath);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed scan");
@@ -126,6 +126,9 @@ namespace Tizen.Content.MediaContent
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = MediaContentError.None;
+            MediaGroupType groupType = MediaGroupType.DisplayName;
+            if (handle != IntPtr.Zero)
+                groupType = filter.GroupType;
             switch (type)
             {
                 case ContentCollectionType.Album:
@@ -142,6 +145,9 @@ namespace Tizen.Content.MediaContent
                     break;
                 case ContentCollectionType.PlayList:
                     res = (MediaContentError)Interop.Playlist.GetPlaylistCountFromDb(handle, out count);
+                    break;
+                case ContentCollectionType.Group:
+                    res = (MediaContentError)Interop.Group.GetGroupCountFromDb(handle, groupType, out count);
                     break;
                 default:
                     res = MediaContentError.InavlidParameter;
@@ -214,7 +220,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media file.
         /// </summary>
-        /// <param name="path">The file path</param>
+        /// <param name="filePath">The file path</param>
         /// <returns>A reference to the MediaInformation object scanned</returns>
         /// <remarks>
         /// This function requests to scan a media file to the media server. If media file is not registered to DB yet,
@@ -222,29 +228,27 @@ namespace Tizen.Content.MediaContent
         /// then this tries to refresh information. If requested file does not exist on file system,
         /// information of the media file will be removed from the media DB.
         /// </remarks>
-        public static Task Scan(string path)
+        public static void Scan(string filePath)
         {
-            var task = new TaskCompletionSource<int>();
-            MediaContentError result = (MediaContentError)Interop.Content.ScanFile(path);
+            ConnectToDB();
+            MediaContentError result = (MediaContentError)Interop.Content.ScanFile(filePath);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed scan");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Inserts a media to the media database
         /// </summary>
         /// <param name="MediaInformation">Media to be inserted</param>
-        public static MediaInformation AddMediaInformation(string path)
+        public static MediaInformation AddMediaInformation(string filePath)
         {
             MediaInformation mediaInformation = null;
             ConnectToDB();
             Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle;
             //TODO: verify the usage of MediaInformation._handle.DangerousGetHandle()
-            MediaContentError result = (MediaContentError)Interop.MediaInformation.Insert(path, out mediaInformationHandle);
+            MediaContentError result = (MediaContentError)Interop.MediaInformation.Insert(filePath, out mediaInformationHandle);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
@@ -256,14 +260,14 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media folder, asynchronously.
         /// </summary>
-        /// <param name="path">The file path</param>
+        /// <param name="folderPath">The folder path</param>
         /// <remarks>
         /// This function requests to scan a media folder to the media server with given completed callback function.
         /// ContentScanCompleted event will be truggered when the scanning is finished.
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
-        public static Task StartScanningFolderAsync(string path, bool recursive = true)
+        public static Task StartScanningFolderAsync(string folderPath, bool recursive = true)
         {
             var task = new TaskCompletionSource<int>();
             Interop.Content.MediaScanCompletedCallback scanCompleted = (MediaContentError scanResult, IntPtr data) =>
@@ -272,7 +276,7 @@ namespace Tizen.Content.MediaContent
                 task.SetResult((int)scanResult);
             };
 
-            MediaContentError result = (MediaContentError)Interop.Content.ScanFolder(path, recursive, scanCompleted, IntPtr.Zero);
+            MediaContentError result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed scan");
@@ -281,18 +285,17 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the reference to a content collection.
+        /// Gets the reference to a content store.
         /// </summary>
-        /// <param name="type">Allowed types: Folder, Storage, Playlist, Tag</param>
+        /// <param name="type">Allowed types: MediaFolder, Storage</param>
         /// <param name="id">The id of the media content</param>
-        /// <returns>Reference to the ContentCollection</returns>
-        public static Task<T> GetContentCollectionsAsync<T>(string id) where T : ContentCollection
+        /// <returns>Reference to the ContentSourceType item</returns>
+        public static T GetContentCollection<T>(string id) where T : ContentCollection
         {
             ConnectToDB();
             MediaContentError res = MediaContentError.None;
             ContentCollection contentCollection = null;
             IntPtr _handle;
-            var task = new TaskCompletionSource<T>();
             if (typeof(T) == typeof(MediaFolder))
             {
                 res = (MediaContentError)Interop.Folder.GetFolderFromDb(id, out _handle);
@@ -301,7 +304,8 @@ namespace Tizen.Content.MediaContent
                     Log.Warn(Globals.LogTag, "Failed to get the content collection");
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
-                contentCollection = new MediaFolder(_handle);
+                if (_handle != IntPtr.Zero)
+                    contentCollection = new MediaFolder(_handle);
             }
             else if (typeof(T) == typeof(Storage))
             {
@@ -311,26 +315,32 @@ namespace Tizen.Content.MediaContent
                     Log.Warn(Globals.LogTag, "Failed to get the content collection");
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
-                contentCollection = new Storage(_handle);
+                if (_handle != IntPtr.Zero)
+                {
+                    String path;
+                    Interop.Storage.GetId(_handle, out path);
+                    Console.WriteLine("path from framework : " + path);
+                    contentCollection = new Storage(_handle);
+                }
+                else
+                    Console.WriteLine("invalid handle");
             }
 
-            task.SetResult((T)contentCollection);
-            return task.Task;
+            return (T)contentCollection;
         }
 
         /// <summary>
         /// Gets the reference to a content store.
         /// </summary>
-        /// <param name="type">Allowed types: MediaBookmark, Album</param>
+        /// <param name="type">Allowed types: PlayList, Album, Tag</param>
         /// <param name="id">The id of the media content</param>
         /// <returns>Reference to the ContentSourceType item</returns>
-        public static Task<T> GetContentCollectionAsync<T>(int id) where T : ContentCollection
+        public static T GetContentCollectionAsync<T>(int id) where T : ContentCollection
         {
             ConnectToDB();
             MediaContentError res = MediaContentError.None;
             ContentCollection contentCollection = null;
             IntPtr _handle;
-            var task = new TaskCompletionSource<T>();
             if (typeof(T) == typeof(PlayList))
             {
                 res = (MediaContentError)Interop.Playlist.GetPlaylistFromDb(id, out _handle);
@@ -339,7 +349,8 @@ namespace Tizen.Content.MediaContent
                     Log.Warn(Globals.LogTag, "Failed to get the content collection");
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
-                contentCollection = new MediaFolder(_handle);
+                if (_handle != IntPtr.Zero)
+                    contentCollection = new MediaFolder(_handle);
             }
             else if (typeof(T) == typeof(Album))
             {
@@ -349,7 +360,8 @@ namespace Tizen.Content.MediaContent
                     Log.Warn(Globals.LogTag, "Failed to get the content collection");
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
-                contentCollection = new Storage(_handle);
+                if (_handle != IntPtr.Zero)
+                    contentCollection = new Storage(_handle);
             }
             else if (typeof(T) == typeof(Tag))
             {
@@ -359,11 +371,10 @@ namespace Tizen.Content.MediaContent
                     Log.Warn(Globals.LogTag, "Failed to get the content collection");
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
-                contentCollection = new Storage(_handle);
+                if (_handle != IntPtr.Zero)
+                    contentCollection = new Storage(_handle);
             }
-
-            task.SetResult((T)contentCollection);
-            return task.Task;
+            return (T)contentCollection;
         }
 
         private static List<MediaFolder> ForEachFolder(ContentFilter filter)
@@ -518,7 +529,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="type">Allowed types: Album, MediaBookmark, Folder, Storage, Playlist, Tag</param>
         /// <param name="filter">Filter for content items</param>
         /// <returns></returns>
-        public static Task<IEnumerable<T>> GetContentCollectionAsync<T>(ContentFilter filter) where T : ContentCollection
+        public static Task<IEnumerable<T>> GetContentCollectionsAsync<T>(ContentFilter filter) where T : ContentCollection
         {
             ConnectToDB();
             var task = new TaskCompletionSource<IEnumerable<T>>();
@@ -558,11 +569,12 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts media files into the media database, asynchronously.
         /// </summary>
-        /// <param name="paths">The path array to the media files</param>
+        /// <param name="filePaths">The path array to the media files</param>
         /// <returns></returns>
-        public static Task AddBatchMediaInformationAsync(string[] paths)
+        public static Task AddBatchMediaInformationAsync(IEnumerable<string> filePaths)
         {
             ConnectToDB();
+            string[] paths = ((List<string>)filePaths).ToArray();
             var task = new TaskCompletionSource<int>();
             MediaContentError res = MediaContentError.None;
             Interop.MediaInformation.MediaInsertCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
@@ -580,12 +592,13 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts the burst shot images into the media database, asynchronously.
         /// </summary>
-        /// <param name="paths">The path array to the burst shot images</param>
+        /// <param name="filePaths">The path array to the burst shot images</param>
         /// <returns></returns>
-        public static Task AddBurstShotImagesAsync(string[] paths)
+        public static Task AddBurstShotImagesAsync(IEnumerable<string> filePaths)
         {
             ConnectToDB();
             var task = new TaskCompletionSource<int>();
+            string[] paths = ((List<string>)filePaths).ToArray();
             MediaContentError res = MediaContentError.None;
             Interop.MediaInformation.MediaInsertBurstShotCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
@@ -643,9 +656,67 @@ namespace Tizen.Content.MediaContent
                     throw MediaContentErrorFactory.CreateException(result, "Failed to clone media");
                 }
 
-                MediaInformation info = new MediaInformation(newHandle);
-
-                mediaInformationList.Add(info);
+                MediaContentType type;
+                Interop.MediaInformation.GetMediaType(newHandle, out type);
+                if (type == MediaContentType.Image)
+                {
+                    Interop.ImageInformation.SafeImageInformationHandle imageInfo;
+                    result = (MediaContentError)Interop.MediaInformation.GetImage(mediaHandle, out imageInfo);
+                    if (result != MediaContentError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                    }
+                    if (imageInfo != null)
+                    {
+                        MediaInformation info = new ImageInformation(imageInfo, newHandle);
+                        mediaInformationList.Add(info);
+                    }
+                    else
+                    {
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Image Information");
+                    }
+                }
+                else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
+                {
+                    Interop.AudioInformation.SafeAudioInformationHandle audioInfo;
+                    result = (MediaContentError)Interop.MediaInformation.GetAudio(mediaHandle, out audioInfo);
+                    if (result != MediaContentError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                    }
+                    if (audioInfo != null)
+                    {
+                        MediaInformation info = new AudioInformation(audioInfo, newHandle);
+                        mediaInformationList.Add(info);
+                    }
+                    else
+                    {
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Audio Information");
+                    }
+                }
+                else if (type == MediaContentType.Video)
+                {
+                    Interop.VideoInformation.SafeVideoInformationHandle audioInfo;
+                    result = (MediaContentError)Interop.MediaInformation.GetVideo(mediaHandle, out audioInfo);
+                    if (result != MediaContentError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                    }
+                    if (audioInfo != null)
+                    {
+                        MediaInformation info = new VideoInformation(audioInfo, newHandle);
+                        mediaInformationList.Add(info);
+                    }
+                    else
+                    {
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Audio Information");
+                    }
+                }
+                else if (type == MediaContentType.Others)
+                {
+                    MediaInformation info = new MediaInformation(newHandle);
+                    mediaInformationList.Add(info);
+                }
                 return true;
             };
              result = (MediaContentError)Interop.MediaInformation.GetAllMedia(handle, callback, IntPtr.Zero);
@@ -782,11 +853,9 @@ namespace Tizen.Content.MediaContent
         /// Inserts a content collection to the media database
         /// </summary>
         /// <param name="collection">The content collection to be inserted</param>
-        public static Task InsertToDatabaseAsync(ContentCollection collection)
+        public static void InsertToDatabase(ContentCollection collection)
         {
             ConnectToDB();
-            var task = new TaskCompletionSource<int>();
-            task.SetResult(0);
             Type type = collection.GetType();
             if (type == typeof(Tag))
             {
@@ -794,10 +863,9 @@ namespace Tizen.Content.MediaContent
                 MediaContentError result = (MediaContentError)Interop.Tag.InsertToDb(((Tag)collection).Name, out tagHandle);
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
                 ((Tag)collection).Handle= tagHandle;
-                task.SetResult((int)result);
             }
             if (type == typeof(PlayList))
             {
@@ -805,58 +873,50 @@ namespace Tizen.Content.MediaContent
                 MediaContentError result = (MediaContentError)Interop.Playlist.InsertToDb(((PlayList)collection).Name, out playListHandle);
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
                 ((PlayList)collection).Handle = playListHandle;
-                task.SetResult((int)result);
             }
             if (type == typeof(MediaFolder))
             {
                 MediaContentError result = MediaContentError.InvalidOperation;
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
-                task.SetResult((int)result);
             }
             if (type == typeof(Storage))
             {
                 MediaContentError result = MediaContentError.InvalidOperation;
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
-                task.SetResult((int)result);
             }
             if (type == typeof(Album))
             {
                 MediaContentError result = MediaContentError.InvalidOperation;
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
-                task.SetResult((int)result);
             }
             if (type == typeof(Group))
             {
                 MediaContentError result = MediaContentError.InvalidOperation;
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to insert collection to the database");
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
                 }
-                task.SetResult((int)result);
             }
-            return task.Task;
         }
 
         /// <summary>
         /// Deletes a media from the media database
         /// </summary>
         /// <param name="MediaInformation">Media to be deleted</param>
-        public static Task DeleteFromDatabaseAsync(MediaInformation MediaInformation)
+        public static void DeleteFromDatabase(MediaInformation MediaInformation)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             //TODO: verify the usage of MediaInformation._handle.DangerousGetHandle()
             MediaContentError result = (MediaContentError)Interop.MediaInformation.Delete(MediaInformation.MediaId);
@@ -864,117 +924,115 @@ namespace Tizen.Content.MediaContent
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Update a media in the media database
         /// </summary>
         /// <param name="MediaInformation">Media to be updated</param>
-        public static Task UpdateToDatabaseAsync(MediaInformation MediaInformation)
+        public static void UpdateToDatabase(MediaInformation mediaInformation)
         {
             ConnectToDB();
-            var task = new TaskCompletionSource<int>();
-            ConnectToDB();
-            //TODO: verify the usage of MediaInformation._handle.DangerousGetHandle()
-            MediaContentError result = (MediaContentError)Interop.MediaInformation.UpdateToDB(MediaInformation._handle);
+            MediaContentError result;
+            if (mediaInformation is ImageInformation)
+            {
+                result = (MediaContentError)Interop.AudioInformation.UpdateToDB(((ImageInformation)mediaInformation).ImageHandle);
+                if (result != MediaContentError.None)
+                {
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
+                }
+            }
+            else if(mediaInformation is VideoInformation)
+            {
+                result = (MediaContentError)Interop.VideoInformation.UpdateToDB(((VideoInformation)mediaInformation).VideoHandle);
+                if (result != MediaContentError.None)
+                {
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
+                }
+            }
+            else if(mediaInformation is AudioInformation)
+            {
+                result = (MediaContentError)Interop.AudioInformation.UpdateToDB(((AudioInformation)mediaInformation).AudioHandle);
+                if (result != MediaContentError.None)
+                {
+                    throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
+                }
+            }
+            result = (MediaContentError)Interop.MediaInformation.UpdateToDB(mediaInformation.MediaHandle);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Inserts a MediaBookmark to the media database
         /// </summary>
         /// <param name="bookmark">MediaBookmark to be inserted</param>
-        public static Task InsertToDatabaseAsync(MediaBookmark bookmark)
+        public static void InsertToDatabase(MediaBookmark bookmark)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.MediaBookmark.InsertToDb(bookmark._mediaId, bookmark._timeStamp, bookmark._thumbnailPath);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Deletes a bookmark from the media database
         /// </summary>
         /// <param name="bookmark">MediaBookmark to be deleted</param>
-        public static Task DeleteFromDatabaseAsync(MediaBookmark bookmark)
+        public static void DeleteFromDatabase(MediaBookmark bookmark)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.MediaBookmark.DeleteFromDb(bookmark.Id);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Delete Bookmark from DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Deletes a media face from the media database
         /// </summary>
         /// <param name="mediaFace">Media face to be deleted</param>
-        public static Task DeleteFromDatabaseAsync(MediaFace mediaFace)
+        public static void DeleteFromDatabase(MediaFace mediaFace)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.Face.DeleteFromDb(mediaFace.Id);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to Delete Face from DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Updates a media face in the media database
         /// </summary>
         /// <param name="mediaFace">Media face to be updated</param>
-        public static Task UpdateToDatabaseAsync(MediaFace mediaFace)
+        public static void UpdateToDatabase(MediaFace mediaFace)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.Face.UpdateToDb(mediaFace.Handle);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to update Face to DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
 
         /// <summary>
         /// Inserts a media face to the media database
         /// </summary>
         /// <param name="mediaFace">Media face to be inserted</param>
-        public static Task InsertToDatabaseAsync(MediaFace mediaFace)
+        public static void InsertToDatabase(MediaFace mediaFace)
         {
-            ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.Face.InsertToDb(mediaFace.Handle);
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to add Face to DB");
             }
-            task.SetResult(0);
-            return task.Task;
         }
     }
 }

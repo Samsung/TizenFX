@@ -70,7 +70,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the media folder
         /// </summary>
-        public string Path
+        public string FolderPath
         {
             get
             {

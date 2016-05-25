@@ -82,7 +82,7 @@ internal static partial class Interop
         internal static extern int SetPlayedPosition(SafeVideoInformationHandle videoInformationHandle, int playedPosition);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_update_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UpdateToDB(SafeVideoInformationHandle videoInformationHandle);
+        internal static extern int UpdateToDB(IntPtr videoInformationHandle);
 
         internal sealed class SafeVideoInformationHandle : SafeHandle
         {

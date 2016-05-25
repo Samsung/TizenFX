@@ -13,52 +13,52 @@ namespace Tizen.Content.MediaContent
             {
                 case MediaContentError.InavlidParameter:
                     {
-                        exp = new ArgumentException("Invalid Parameters Provided");
+                        exp = new ArgumentException(msg +" Invalid Parameters Provided");
                         break;
                     }
-                case MediaContentError.OotOfMemory:
+                case MediaContentError.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new InvalidOperationException(msg + " Out Of Memory");
                         break;
                     }
                 case MediaContentError.InavlidOperation:
                     {
-                        exp = new InvalidOperationException("Inavlid operation");
+                        exp = new InvalidOperationException(msg + " Inavlid operation");
                         break;
                     }
                 case MediaContentError.NoSpaceOnDevice:
                     {
-                        exp = new InvalidOperationException("No Space Left on Device");
+                        exp = new InvalidOperationException(msg + " No Space Left on Device");
                         break;
                     }
                 case MediaContentError.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new InvalidOperationException(msg + " Permission Denied");
                         break;
                     }
                 case MediaContentError.DBFailed:
                     {
-                        exp = new InvalidOperationException("DataBase Failed");
+                        exp = new InvalidOperationException(msg + " DataBase Failed");
                         break;
                     }
                 case MediaContentError.DBBusy:
                     {
-                        exp = new InvalidOperationException("DataBase Busy");
+                        exp = new InvalidOperationException(msg + " DataBase Busy");
                         break;
                     }
                 case MediaContentError.NetworkError:
                     {
-                        exp = new InvalidOperationException("Network Error");
+                        exp = new InvalidOperationException(msg + " Network Error");
                         break;
                     }
                 case MediaContentError.UnsupportedContent:
                     {
-                        exp = new ArgumentException("Content Not Supported");
+                        exp = new ArgumentException(msg + " Content Not Supported");
                         break;
                     }
                 default:
                     {
-                        exp = new InvalidOperationException("");
+                        exp = new InvalidOperationException(msg);
                         break;
                     }
             }

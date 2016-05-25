@@ -6,7 +6,7 @@ internal partial class Interop
     internal static partial class MediaBookmark
     {
         [DllImport(Libraries.MediaContent, EntryPoint = "media_bookmark_insert_to_db")]
-        internal static extern int InsertToDb(string media_id, uint time, string thumbnail_path);
+        internal static extern int InsertToDb(string media_id, DateTime time, string thumbnail_path);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_bookmark_delete_from_db")]
         internal static extern int DeleteFromDb(int bookmark_id);
@@ -27,6 +27,6 @@ internal partial class Interop
         internal static extern int GetMarkedTime(IntPtr bookmark, out uint marked_time);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_bookmark_get_thumbnail_path")]
-        internal static extern int GetThumbnailPath(IntPtr bookmark, out string path);
+        internal static extern int GetThumbnailPath(IntPtr bookmark, out string filePath);
     }
 }

@@ -27,20 +27,19 @@ namespace Tizen.Content.MediaContent
     /// handling with thumbnail and updating media info to DB.</remarks>
     public class MediaInformation
     {
-        internal readonly Interop.MediaInformation.SafeMediaInformationHandle _handle;
+        private readonly Interop.MediaInformation.SafeMediaInformationHandle _handle;
 
         /// <summary>
         /// Gets the count of media tags for the passed filter in the given mediaId from the media database.
         /// </summary>
         /// <returns>
         /// int count</returns>
-        /// <param name="content"> The content having the Media Id for the Tags</param>
         /// <param name="filter">The Filter for matching Tags</param>
-        public int GetTagCount(MediaInformation content, ContentFilter filter)
+        public int GetTagCount(ContentFilter filter)
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            int result = Interop.MediaInformation.GetTagCount(content.MediaId, handle, out count);
+            int result = Interop.MediaInformation.GetTagCount(MediaId, handle, out count);
             if ((MediaContentError)result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
@@ -114,20 +113,6 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Updates the given media info in the media database.
-        /// </summary>
-        /// <returns>
-        /// void </returns>
-        public virtual void Update()
-        {
-            int result = Interop.MediaInformation.UpdateToDB(_handle);
-            if ((MediaContentError)result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
-        }
-
-        /// <summary>
         /// Cancels the creation of image's thumbnail for the given media.
         /// </summary>
         /// <returns>
@@ -153,7 +138,7 @@ namespace Tizen.Content.MediaContent
             {
                 CreateThumbnailResult response = new CreateThumbnailResult();
                 response.Result = createResult;
-                response.Path = path;
+                response.FilePath = path;
                 task.SetResult(response);
             };
             int result = Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero);
@@ -997,6 +982,13 @@ namespace Tizen.Content.MediaContent
             }
         }
 
+        internal IntPtr MediaHandle
+        {
+            get
+            {
+                return _handle.DangerousGetHandle();
+            }
+        }
 
         internal MediaInformation(Interop.MediaInformation.SafeMediaInformationHandle handle)
         {

@@ -22,7 +22,7 @@ namespace Tizen.Content.MediaContent
     /// AudioContent class API gives the information related to the audio media stored in the device</summary>
     public class AudioInformation : MediaInformation
     {
-        internal new readonly Interop.AudioInformation.SafeAudioInformationHandle _handle;
+        private readonly Interop.AudioInformation.SafeAudioInformationHandle _handle;
 
         /// <summary>
         ///  Gets the tag ID for the media.
@@ -386,20 +386,13 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        /// <summary>
-        /// Updates the given audio information in the media database.
-        /// </summary>
-        /// <returns>
-        /// void </returns>
-        public override void Update()
+        internal IntPtr AudioHandle
         {
-            int result = Interop.AudioInformation.UpdateToDB(_handle);
-            if ((MediaContentError)result != MediaContentError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                return _handle.DangerousGetHandle();
             }
         }
-
 
         internal AudioInformation(Interop.AudioInformation.SafeAudioInformationHandle handle, Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle)
             : base(mediaInformationHandle)

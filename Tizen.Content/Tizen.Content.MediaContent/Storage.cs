@@ -18,7 +18,7 @@ namespace Tizen.Content.MediaContent
     /// The system generates the storage id when the external storage is added.And the system manages the media information in each of the storage by using storage id.
     /// So you can get the information from the storage that you want to view.
     /// </summary>
-    internal class Storage : ContentCollection
+    public class Storage : ContentCollection
     {
         private IntPtr _storageHandle;
         internal IntPtr Handle
@@ -48,7 +48,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage path of the media storage
         /// </summary>
-        public string Path
+        public string StoragePath
         {
             get
             {

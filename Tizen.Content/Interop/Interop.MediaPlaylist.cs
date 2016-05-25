@@ -37,10 +37,10 @@ internal static partial class Interop
         internal static extern int SetName(IntPtr playlist, string playlist_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_get_thumbnail_path")]
-        internal static extern int GetThumbnailPath(IntPtr playlist, out string path);
+        internal static extern int GetThumbnailPath(IntPtr playlist, out string filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_set_thumbnail_path")]
-        internal static extern int SetThumbnailPath(IntPtr playlist, string path);
+        internal static extern int SetThumbnailPath(IntPtr playlist, string filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_set_play_order")]
         internal static extern int SetPlayOrder(IntPtr playlist, int playlist_member_id, int play_order);
@@ -58,10 +58,10 @@ internal static partial class Interop
         internal static extern int UpdateToDb(IntPtr playlist);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_import_from_file")]
-        internal static extern int ImportFromFile(string playlist_name, string path, out IntPtr playlist);
+        internal static extern int ImportFromFile(string playlist_name, string filePath, out IntPtr playlist);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_export_to_file")]
-        internal static extern int ExportToFile(IntPtr playlist, string path);
+        internal static extern int ExportToFile(IntPtr playlist, string filePath);
 
         //Callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

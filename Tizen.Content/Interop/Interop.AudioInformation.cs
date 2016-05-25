@@ -85,7 +85,7 @@ internal static partial class Interop
         internal static extern int SetPlayedPosition(SafeAudioInformationHandle audioInformationHandle, int playedPosition);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_update_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UpdateToDB(SafeAudioInformationHandle audioInformationHandle);
+        internal static extern int UpdateToDB(IntPtr audioInformationHandle);
 
         internal sealed class SafeAudioInformationHandle : SafeHandle
         {

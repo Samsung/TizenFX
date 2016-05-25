@@ -21,7 +21,8 @@ namespace Tizen.Content.MediaContent
     /// ImageContent class API gives the information related to the image media stored in the device</summary>
     public class ImageInformation : MediaInformation
     {
-        internal new readonly Interop.ImageInformation.SafeImageInformationHandle _handle;
+        private readonly Interop.ImageInformation.SafeImageInformationHandle _handle;
+
         /// <summary>
         ///  Gets the tag ID for the image.
         /// </summary>
@@ -233,20 +234,13 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        /// <summary>
-        /// Updates the given image information in the media database.
-        /// </summary>
-        /// <returns>
-        /// void </returns>
-        public override void Update()
+        internal IntPtr ImageHandle
         {
-            int result = Interop.ImageInformation.UpdateToDB(_handle);
-            if ((MediaContentError)result != MediaContentError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                return _handle.DangerousGetHandle();
             }
         }
-
 
         internal ImageInformation(Interop.ImageInformation.SafeImageInformationHandle handle, Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle)
             : base(mediaInformationHandle)
