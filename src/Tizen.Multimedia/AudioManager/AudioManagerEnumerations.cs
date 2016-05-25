@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Tizen;
-using Tizen.Internals.Errors;
-
-namespace Tizen.Multimedia
+﻿namespace Tizen.Multimedia
 {    
     /// <summary>
     /// Enumeration for sound device mask.

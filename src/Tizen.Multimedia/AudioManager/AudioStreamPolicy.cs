@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -17,12 +14,10 @@ namespace Tizen.Multimedia
         private static int _focusStateWatchCounter = 0;
         
         private static EventHandler<FocusStateChangedEventArgs> _focusStateWatchForPlayback;
-        private static Interop.SoundStreamFocusStateWatchCallback _focusStateWatchForPlaybackCallback;
+        private static Interop.SoundStreamFocusStateWatchCallback _focusStateWatchCallback;
         private static EventHandler<FocusStateChangedEventArgs> _focusStateWatchForRecording;
-        private static Interop.SoundStreamFocusStateWatchCallback _focusStateWatchForRecordingCallback;
         private EventHandler<StreamFocusStateChangedEventArgs> _focusStateChanged;
         private Interop.SoundStreamFocusStateChangedCallback _focusStateChangedCallback;
-         
 
         /// <summary>
         /// Auto focus reacquisition property
@@ -107,8 +102,8 @@ namespace Tizen.Multimedia
             _streamType = streamType;
             _focusStateChangedCallback = (IntPtr streamInfo, int reason, string extraInfo, IntPtr userData) =>
             {
-                //_focusStateChangedEventArgs = new FocusStateChangedEventArgs(reason, extraInfo);           
-               // _focusStateChanged.Invoke(this, _focusStateChangedEventArgs);
+                StreamFocusStateChangedEventArgs eventArgs = new StreamFocusStateChangedEventArgs((AudioStreamFocusChangedReason)reason, extraInfo);
+                _focusStateChanged?.Invoke(this, eventArgs);
             };
 
             int ret = Interop.StreamPolicy.CreateStreamInformation((int)streamType, _focusStateChangedCallback, IntPtr.Zero, out _streamInfo);
@@ -119,7 +114,7 @@ namespace Tizen.Multimedia
         /// Acquires the stream focus.
         /// </summary>
         /// <param name="focusMask">The focus mask that user wants to acquire</param>
-        /// <param name="?">he Extra information for this request (optional, this can be null)</param>
+        /// <param name="extraInformation">The Extra information for this request (optional, this can be null)</param>
         /// <remarks>
         /// Do not call this API within event handlers of FocuStateChanged and StreamFocusStateWatch else it will throw and exception
         /// </remarks>
@@ -205,40 +200,22 @@ namespace Tizen.Multimedia
         {
             add
             {
-                if (AudioStreamPolicy._focusStateWatchForPlayback == null)
+                if (_focusStateWatchCounter == 0)
                 {
-                    RegisterPlaybackFocusStateWatchEvent();
+                    RegisterFocusStateWatchEvent();
                 }
                 _focusStateWatchCounter++;
-                AudioStreamPolicy._focusStateWatchForPlayback += value;
+                _focusStateWatchForPlayback += value;
             }
             remove
             {
-                AudioStreamPolicy._focusStateWatchForPlayback -= value;
+                _focusStateWatchForPlayback -= value;
                 _focusStateWatchCounter--;
-                if (AudioStreamPolicy._focusStateWatchForPlayback == null && _focusStateWatchCounter == 0)
+                if (_focusStateWatchCounter == 0)
                 {
-                    UnregisterFocusStateWatchForPlaybackEvent();
+                    UnregisterFocusStateWatch();
                 }
-
             }
-        }
-
-        private static void RegisterPlaybackFocusStateWatchEvent()
-        {
-            AudioStreamPolicy._focusStateWatchForPlaybackCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) => 
-                {
-                    FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(options, focusState, reason, extraInfo);
-                    AudioStreamPolicy._focusStateWatchForPlayback.Invoke(null, eventArgs);
-                };
-            int ret = Interop.StreamPolicy.SetFocusStateWatchCallback(AudioStreamFocusOptions.Playback, AudioStreamPolicy._focusStateWatchForPlaybackCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback for playback");
-        }
-
-        private static void UnregisterFocusStateWatchForPlaybackEvent()
-        {
-            int ret = Interop.StreamPolicy.UnsetFocusStateWatchCallback();
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset focus state watch callback for playback");
         }
 
         /// <summary>
@@ -251,40 +228,51 @@ namespace Tizen.Multimedia
         {
             add
             {
-                if (AudioStreamPolicy._focusStateWatchForRecording == null)
+                if (_focusStateWatchCounter == 0)
                 {
-                    RegisterRecordingFocusStateWatchEvent();
+                    RegisterFocusStateWatchEvent();
                 }
                 _focusStateWatchCounter++;
-                AudioStreamPolicy._focusStateWatchForRecording += value;
+                _focusStateWatchForRecording += value;
             }
             remove
             {
-                AudioStreamPolicy._focusStateWatchForRecording -= value;
+                _focusStateWatchForRecording -= value;
                 _focusStateWatchCounter--;
-                if (AudioStreamPolicy._focusStateWatchForRecording == null && _focusStateWatchCounter == 0)
+                if (_focusStateWatchCounter == 0)
                 {
-                    UnregisterFocusStateWatchForRecordingEvent();
+                    UnregisterFocusStateWatch();
                 }
-
             }
         }
 
-        private static void RegisterRecordingFocusStateWatchEvent()
+        private static void RegisterFocusStateWatchEvent()
         {
-            AudioStreamPolicy._focusStateWatchForRecordingCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) =>
-            {
-                FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(options, focusState, reason, extraInfo);
-                AudioStreamPolicy._focusStateWatchForRecording.Invoke(null, eventArgs);
-            };
-            int ret = Interop.StreamPolicy.SetFocusStateWatchCallback(AudioStreamFocusOptions.Recording, AudioStreamPolicy._focusStateWatchForRecordingCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback for recording");
+            _focusStateWatchCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) =>
+                {
+                    FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(focusState, reason, extraInfo);
+                    if (options == AudioStreamFocusOptions.Playback)
+                    {
+                        _focusStateWatchForPlayback?.Invoke(null, eventArgs);
+                    }
+                    else if (options == AudioStreamFocusOptions.Recording)
+                    {
+                        _focusStateWatchForRecording?.Invoke(null, eventArgs);
+                    }
+                    else if (options == (AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording))
+                    {
+                        _focusStateWatchForPlayback?.Invoke(null, eventArgs);
+                        _focusStateWatchForRecording?.Invoke(null, eventArgs);
+                    }
+                };
+            int ret = Interop.StreamPolicy.SetFocusStateWatchCallback(AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording, _focusStateWatchCallback, IntPtr.Zero);
+			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback");
         }
 
-        private static void UnregisterFocusStateWatchForRecordingEvent()
+        private static void UnregisterFocusStateWatch()
         {
             int ret = Interop.StreamPolicy.UnsetFocusStateWatchCallback();
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset focus state watch callback for recording");
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset focus state watch callback");
         }
 
         /// <summary>
@@ -298,31 +286,13 @@ namespace Tizen.Multimedia
        {
             add
             {
-                if (_focusStateChanged == null)
-                {
-                    RegisterFocusStateChangedEvent();
-                }
                 _focusStateChanged += value;
             }
             remove
             {
                 _focusStateChanged -= value;
-               
             }
-            
         }
-
-        public void RegisterFocusStateChangedEvent()
-        {
-            _focusStateChangedCallback = (IntPtr streamInfo, int reason, string extraInfo, IntPtr userData) =>
-                {
-                    StreamFocusStateChangedEventArgs eventArgs = new StreamFocusStateChangedEventArgs((AudioStreamFocusChangedReason)reason, extraInfo);
-                    _focusStateChanged.Invoke(this, eventArgs);
-                };
-           
-        }
-
-       
 
         ~AudioStreamPolicy()
         {
