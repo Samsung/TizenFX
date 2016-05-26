@@ -109,28 +109,52 @@ namespace Tizen.Multimedia
         /// <value> Max size in bytes </value>
         public ulong BufferMaxSize 
 		{ 
-			get
-			{ 
-				return _maxSize;
-			} 
 			set
 			{ 
-				_maxSize = value;
+				int ret = Interop.Player.SetMediaStreamBufferMaxSize(_playerHandle, (int)_streamType, value);
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Set Buffer Max size failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Set Buffer Max size failed");
+				}
+
+			} 
+			get
+			{ 
+				ulong size;
+				int ret = Interop.Player.GetMediaStreamBufferMaxSize(_playerHandle, (int)_streamType, out size);
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Set Buffer Max size failed" + (PlayerError)ret);
+				}
+				return size;
 			}
 		}
 
         /// <summary>
         /// Min threshold </summary>
-        /// <value> min threshold in bytes </value>
+        /// <value> min threshold in percent </value>
         public uint BufferMinThreshold 
 		{ 
 			set
 			{
-				_minThreshold = value;
+				int ret = Interop.Player.SetMediaStreamBufferMinThreshold(_playerHandle, (int)_streamType, value);
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Set Buffer Min threshold failed" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Set Buffer Min threshold failed");
+				}
+
 			}
 			get
 			{
-				return _minThreshold;
+				uint percent;
+				int ret = Interop.Player.GetMediaStreamBufferMinThreshold(_playerHandle, (int)_streamType, out percent);
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Get Buffer Min threshold failed" + (PlayerError)ret);
+				}
+				return percent;
 			}
 		}
 
@@ -139,8 +163,13 @@ namespace Tizen.Multimedia
 		{
 		}
 
-		internal ulong _maxSize;
-		internal uint _minThreshold;
+		internal void SetHandle(IntPtr handle)
+		{
+			_playerHandle = handle;
+		}
 
+		IntPtr _playerHandle;
+
+		internal StreamType _streamType;
     }
 }

@@ -19,7 +19,7 @@ namespace Tizen.Multimedia
 	/// MediaStreamSource class for media stream configuration.
 	/// </remarks>
 
-	class MediaStreamSource
+	public class MediaStreamSource : MediaSource
 	{
 		/// <summary>
 		/// Get/Set Audio Media format.
@@ -69,9 +69,20 @@ namespace Tizen.Multimedia
 		/// <param name="packet"> media packet</param>
 		//public void PushMediaStream(MediaPacket packet);
 
-		internal MediaStreamSource()
+		public MediaStreamSource()
 		{
+			_audioConfiguration = new MediaStreamConfiguration();
+			_videoConfiguration = new MediaStreamConfiguration();
+			_audioConfiguration._streamType = StreamType.Audio;
+			_videoConfiguration._streamType = StreamType.Video;
 		}
+
+		internal void SetHandle(IntPtr handle)
+		{
+			_audioConfiguration.SetHandle(handle);
+			_videoConfiguration.SetHandle(handle);
+		}
+
 
 		internal MediaStreamConfiguration _audioConfiguration;
 		internal MediaStreamConfiguration _videoConfiguration;

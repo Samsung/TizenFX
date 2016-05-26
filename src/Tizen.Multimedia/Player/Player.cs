@@ -620,7 +620,11 @@ namespace Tizen.Multimedia
 					// throw Exception
 				//}
 			}
+			else if(source.GetType() == typeof(MediaStreamSource))
+			{
 			// TODO: Handle MediaStream source after implementing MediaPacket module
+				((MediaStreamSource)source).SetHandle(_playerHandle);
+			}
 		}
 
 

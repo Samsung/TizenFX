@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Tizen.Multimedia
@@ -29,12 +30,12 @@ namespace Tizen.Multimedia
         /// Set/Get Equalizer band level, frequency and range.
         /// </summary>
         /// <value> EqualizerBand </value>
-		public IList<EqualizerBand> EqualizerBands 
+		public IEnumerable<EqualizerBand> EqualizerBands 
 		{ 
 			set
 			{
 				int ret;
-				_bands = value;
+				_bands = value.ToList();
 				foreach(EqualizerBand band in _bands)
 				{
 					ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_playerHandle, _bands.IndexOf(band), band.Level);
@@ -50,7 +51,15 @@ namespace Tizen.Multimedia
 			{
 				int ret;
 				int count = 0, level = 0, frequency = 0, range = 0;
-				_bands.Clear();
+
+				if(_bands == null)
+				{
+					_bands = new List<EqualizerBand>();
+				}
+				else
+				{
+					_bands.Clear();
+				}
 
 				ret = Interop.Player.AudioEffectGetEqualizerBandsCount(_playerHandle, out count);
 				if(ret == (int)PlayerError.None) 
@@ -148,6 +157,6 @@ namespace Tizen.Multimedia
 
 		internal IntPtr _playerHandle;
 
-		IList<EqualizerBand> _bands;
+		List<EqualizerBand> _bands;
     }
 }

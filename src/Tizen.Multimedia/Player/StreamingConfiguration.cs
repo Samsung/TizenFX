@@ -229,7 +229,16 @@ namespace Tizen.Multimedia
             get
             {
 				ProgressiveDownloadStatus status = new ProgressiveDownloadStatus();
-				// TODO: interop
+				ulong current, totalSize;
+				int ret = Interop.Player.GetProgressiveDownloadStatus(_playerHandle, out current, out totalSize);
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Getting progressive download status failed" + (PlayerError)ret);
+				}
+
+				status.TotalSize = totalSize;
+				status.Current = current;
+
 				return status;
             }
         }

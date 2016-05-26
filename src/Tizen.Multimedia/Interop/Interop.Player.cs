@@ -160,8 +160,8 @@ internal static partial class Interop
 	[DllImport(Libraries.Player, EntryPoint = "player_set_progressive_download_path")]
 	internal static extern int  SetProgressiveDownloadPath(IntPtr player, string path);
 
-	//[DllImport(Libraries.Player, EntryPoint = "player_get_progressive_download_status")]
-	//internal static extern int  GetProgressiveDownloadStatus(IntPtr player, unsigned long *current, unsigned long *total_size);
+	[DllImport(Libraries.Player, EntryPoint = "player_get_progressive_download_status")]
+	internal static extern int  GetProgressiveDownloadStatus(IntPtr player, out ulong current, out ulong total_size);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_set_progressive_download_message_cb")]
 	internal static extern int  SetProgressiveDownloadMessageCb(IntPtr player, ProgressiveDownloadMessageCallback callback, IntPtr user_data);
