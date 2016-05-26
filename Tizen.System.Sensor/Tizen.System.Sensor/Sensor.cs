@@ -8,8 +8,14 @@
 
 using System;
 
+
 namespace Tizen.System.Sensor
 {
+    internal static class Globals
+    {
+        internal const string LogTag = "Tizen.System.Sensor";
+    }
+
     /// <summary>
     /// Sensor class for storing hardware information about a particular sensor
     /// </summary>
@@ -23,16 +29,16 @@ namespace Tizen.System.Sensor
         private int _minInterval;
         private int _fifoCount;
         private int _maxBatchCount;
-        private bool _sensing = false;
+        private bool _isSensing = false;
         private bool _disposed = false;
-        private UInt64 _timestamp;
+        private TimeSpan _timeSpan;
         private uint _interval = 0;
         private uint _maxBatchLatency = 0;
         private SensorPausePolicy _pausePolicy = SensorPausePolicy.None;
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
 
-        protected abstract SensorType GetSensorType();
+        internal abstract SensorType GetSensorType();
         protected abstract void EventListenStart();
         protected abstract void EventListenStop();
 
@@ -59,6 +65,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the sensor name");
                 return _name;
             }
         }
@@ -70,6 +77,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the sensor vendor name");
                 return _vendor;
             }
         }
@@ -81,6 +89,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the min value of the sensor");
                 return _minValue;
             }
         }
@@ -92,6 +101,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the max value of the sensor");
                 return _maxValue;
             }
         }
@@ -103,6 +113,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the resolution of the sensor");
                 return _resolution;
             }
         }
@@ -114,6 +125,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the min interval for the sensor");
                 return _minInterval;
             }
         }
@@ -125,6 +137,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the fifo count of the sensor");
                 return _fifoCount;
             }
         }
@@ -136,6 +149,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the max batch count of the sensor");
                 return _maxBatchCount;
             }
         }
@@ -148,11 +162,13 @@ namespace Tizen.System.Sensor
         {
             set
             {
+                Log.Info(Globals.LogTag, "Setting the interval of the sensor");
                 _interval = value;
                 SetInterval();
             }
             get
             {
+                Log.Info(Globals.LogTag, "Getting the interval of the sensor");
                 return _interval;
             }
         }
@@ -164,11 +180,13 @@ namespace Tizen.System.Sensor
         {
             set
             {
+                Log.Info(Globals.LogTag, "Setting the max batch latency of the sensor");
                 _maxBatchLatency = value;
                 SetMaxBatchLatency();
             }
             get
             {
+                Log.Info(Globals.LogTag, "Getting the max batch latency of the sensor");
                 return _maxBatchLatency;
             }
         }
@@ -181,32 +199,37 @@ namespace Tizen.System.Sensor
         {
             set
             {
+                Log.Info(Globals.LogTag, "Setting the pause policy of the sensor");
                 _pausePolicy = value;
                 SetPausePolicy();
             }
             get
             {
+                Log.Info(Globals.LogTag, "Getting the pause policy of the sensor");
                 return _pausePolicy;
             }
         }
 
-        public UInt64 Timestamp
+        public TimeSpan TimeSpan
         {
             set
             {
-                _timestamp = value;
+                Log.Info(Globals.LogTag, "Setting the timespan of the sensor values");
+                _timeSpan = value;
             }
             get
             {
-                return _timestamp;
+                Log.Info(Globals.LogTag, "Getting the timespan of the sensor values");
+                return _timeSpan;
             }
         }
 
-        public bool Sensing
+        public bool IsSensing
         {
             get
             {
-                return _sensing;
+                Log.Info(Globals.LogTag, "Checking if the sensor is started");
+                return _isSensing;
             }
         }
 
@@ -224,13 +247,18 @@ namespace Tizen.System.Sensor
         /// </summary>
         public void Start()
         {
+            Log.Info(Globals.LogTag, "Starting the sensor");
             if (CheckListenerHandle())
             {
                 int error = Interop.SensorListener.StartListener(_listenerHandle);
-                if (error != 0)
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error starting sensor");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Unable to Start Sensor Listener");
+                }
                 EventListenStart();
-                _sensing = true;
+                _isSensing = true;
+                Log.Info(Globals.LogTag, "Sensor started");
             }
         }
 
@@ -240,17 +268,23 @@ namespace Tizen.System.Sensor
         /// </summary>
         public void Stop()
         {
-            if (!_sensing)
+            Log.Info(Globals.LogTag, "Stopping the sensor");
+            if (_isSensing)
             {
                 int error = Interop.SensorListener.StopListener(_listenerHandle);
-                if (error != 0)
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error stopping the sensor");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Unable to Stop Sensor Listener");
+                }
                 EventListenStop();
-                _sensing = false;
+                _isSensing = false;
+                Log.Info(Globals.LogTag, "Sensor stopped");
             }
             else
             {
-                throw new InvalidOperationException("Operation Failed: Sensor already stopped");
+                Log.Error(Globals.LogTag, "Can't stop sensor as it is already stopped");
+                throw new InvalidOperationException("Operation Failed: Sensor is already stopped");
             }
         }
 
@@ -275,8 +309,11 @@ namespace Tizen.System.Sensor
             IntPtr[] sensorList;
             int count;
             int error = Interop.SensorManager.GetSensorList(type, out list, out count);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor list");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.GetSensorList Failed");
+            }
             sensorList = Interop.IntPtrToIntPtrArray(list, count);
             _sensorHandle = sensorList[index];
             Interop.Libc.Free(list);
@@ -284,55 +321,88 @@ namespace Tizen.System.Sensor
 
         private void GetProperty()
         {
-            int error = (int)SensorErrorFactory.SensorError.None;
+            int error = (int)SensorError.None;
 
             error = Interop.Sensor.GetName(_sensorHandle, out _name);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor name");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.Name Failed");
+            }
 
             error = Interop.Sensor.GetVendor(_sensorHandle, out _vendor);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor vendor name");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.Vendor Failed");
+            }
 
             error = Interop.Sensor.GetMinRange(_sensorHandle, out _minValue);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor min value");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.MinValue Failed");
+            }
 
             error = Interop.Sensor.GetMaxRange(_sensorHandle, out _maxValue);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor max value");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.MaxValue Failed");
+            }
 
             error = Interop.Sensor.GetResolution(_sensorHandle, out _resolution);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor resolution");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.Resolution Failed");
+            }
 
             error = Interop.Sensor.GetMinInterval(_sensorHandle, out _minInterval);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor min interval");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.MinInterval Failed");
+            }
 
             error = Interop.Sensor.GetFifoCount(_sensorHandle, out _fifoCount);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor fifo count");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.FifoCount Failed");
+            }
 
             error = Interop.Sensor.GetMaxBatchCount(_sensorHandle, out _maxBatchCount);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor max batch count");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.MaxBatchCount Failed");
+            }
         }
 
         private void CreateListener()
         {
             int error = Interop.SensorListener.CreateListener(_sensorHandle, out _listenerHandle);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error cerating sensor listener handle");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.CreateListener Failed");
+            }
         }
 
         private void SetInterval()
         {
             if (CheckListenerHandle())
             {
-                int error = Interop.SensorListener.SetInterval(_listenerHandle, _interval);
-                if (error != 0)
-                    throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.PausePolicy Failed");
+                if (_isSensing)
+                {
+                    int error = Interop.SensorListener.SetInterval(_listenerHandle, _interval);
+                    if (error != (int)SensorError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error setting sensor interval");
+                        throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.SetInterval Failed");
+                    }
+                }
             }
         }
 
@@ -341,8 +411,11 @@ namespace Tizen.System.Sensor
             if (CheckListenerHandle())
             {
                 int error = Interop.SensorListener.SetMaxBatchLatency(_listenerHandle, _maxBatchLatency);
-                if (error != 0)
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error setting max batch latency");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.MaxBatchLatency Failed");
+                }
             }
         }
 
@@ -351,8 +424,11 @@ namespace Tizen.System.Sensor
             if (CheckListenerHandle())
             {
                 int error = Interop.SensorListener.SetAttribute(_listenerHandle, SensorAttribute.PausePolicy, (int)_pausePolicy);
-                if (error != 0)
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error setting sensor pause policy");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.PausePolicy Failed");
+                }
             }
         }
 
@@ -365,6 +441,7 @@ namespace Tizen.System.Sensor
             }
             else
             {
+                Log.Error(Globals.LogTag, "Sensor listener handle is null");
                 throw new ArgumentException("Invalid Parameter: Sensor is null");
             }
             return result;
@@ -379,6 +456,7 @@ namespace Tizen.System.Sensor
             }
             else
             {
+                Log.Error(Globals.LogTag, "Sensor handle is null");
                 throw new ArgumentException("Invalid Parameter: Sensor is null");
             }
             return result;

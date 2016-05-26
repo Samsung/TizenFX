@@ -13,9 +13,9 @@ namespace Tizen.System.Sensor
     /// <summary>
     /// Accelerometer changed event arguments. Class for storing the data returned by accelerometer
     /// </summary>
-    public class AccelerometerChangedEventArgs : EventArgs
+    public class AccelerometerDataUpdatedEventArgs : EventArgs
     {
-        internal AccelerometerChangedEventArgs(float[] values)
+        internal AccelerometerDataUpdatedEventArgs(float[] values)
         {
             X = values[0];
             Y = values[1];

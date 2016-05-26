@@ -15,8 +15,6 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class Accelerometer : Sensor
     {
-        private uint _defaultInterval = 0;
-
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
@@ -39,6 +37,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Checking if the Accelerometer sensor is supported");
                 return CheckIfSupported();
             }
         }
@@ -50,6 +49,7 @@ namespace Tizen.System.Sensor
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the count of accelerometer sensors");
                 return GetCount();
             }
         }
@@ -62,10 +62,10 @@ namespace Tizen.System.Sensor
         /// </param>
         public Accelerometer(int index = 0) : base(index)
         {
-            Interval = _defaultInterval;
+            Log.Info(Globals.LogTag, "Creating Accelerometer object");
         }
 
-        protected override SensorType GetSensorType()
+        internal override SensorType GetSensorType()
         {
             return SensorType.Accelerometer;
         }
@@ -74,14 +74,17 @@ namespace Tizen.System.Sensor
         /// Event Handler for storing the callback functions for event corresponding to change in accelerometer sensor data.
         /// </summary>
 
-        public event EventHandler<AccelerometerChangedEventArgs> DataUpdated;
+        public event EventHandler<AccelerometerDataUpdatedEventArgs> DataUpdated;
 
         private static bool CheckIfSupported()
         {
             bool isSupported;
             int error = Interop.SensorManager.SensorIsSupported(SensorType.Accelerometer, out isSupported);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking if accelerometer sensor is supported");
                 isSupported = false;
+            }
             return isSupported;
         }
 
@@ -90,8 +93,11 @@ namespace Tizen.System.Sensor
             IntPtr list;
             int count;
             int error = Interop.SensorManager.GetSensorList(SensorType.Accelerometer, out list, out count);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor list for accelerometer");
                 count = 0;
+            }
             else
                 Interop.Libc.Free(list);
             return count;
@@ -100,26 +106,32 @@ namespace Tizen.System.Sensor
         protected override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error setting event callback for accelerometer sensor");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set event callback for accelerometer");
+            }
         }
 
         protected override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
-            if (error != 0)
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error unsetting event callback for accelerometer sensor");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for accelerometer");
+            }
         }
 
         private void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
-            Timestamp = sensorData.timestamp;
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
             X = sensorData.values[0];
             Y = sensorData.values[1];
             Z = sensorData.values[2];
 
-            DataUpdated?.Invoke(this, new AccelerometerChangedEventArgs(sensorData.values));
+            DataUpdated?.Invoke(this, new AccelerometerDataUpdatedEventArgs(sensorData.values));
         }
     }
 }

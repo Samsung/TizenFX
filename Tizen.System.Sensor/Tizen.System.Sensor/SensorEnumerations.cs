@@ -13,7 +13,7 @@ namespace Tizen.System.Sensor
     /// <summary>
     /// The SensorType Enum defintion for all sensor types.
     /// </summary>
-    public enum SensorType
+    internal enum SensorType
     {
         /// <summary>
         /// All sensors. This can be used to retrieve Sensor class object for all available sensors.
@@ -90,7 +90,15 @@ namespace Tizen.System.Sensor
         /// <summary>
         /// Geomagnetic-based rotation vector sensor.
         /// </summary>
-        MagnetometerRotationVectorSensor = 20
+        MagnetometerRotationVectorSensor = 20,
+        /// <summary>
+        /// Pedometer sensor.
+        /// </summary>
+        HumanPedometer = 0x300,
+        /// <summary>
+        /// Sleep monitor sensor.
+        /// </summary>
+        HumanSleepMonitor = 22
     }
 
     /// <summary>
@@ -147,5 +155,26 @@ namespace Tizen.System.Sensor
     {
         AxisOrientation,
         PausePolicy
+    }
+
+    public enum PedometerState
+    {
+        Unknown,
+        Stop,
+        Walk,
+        Run
+    }
+
+    public enum SleepMonitorState
+    {
+        Unknown,
+        Wake,
+        Sleep
+    }
+
+    public enum ProximitySensorState
+    {
+        Near = 0,
+        Far = 5
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,9 @@
     <ProjectGuid>{CB655C6A-F73B-448E-913C-CA4DCBC5E401}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Tizen.System.Sensor</RootNamespace>
-    <AssemblyName>Tizen.System.Sensor</AssemblyName>
+    <AssemblyName>Tizen.System</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -27,6 +30,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.System.Sensor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -34,13 +44,51 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interop\Interop.Sensor.cs" />
-    <Compile Include="Sensor\Enumerations.cs" />
-    <Compile Include="Sensor\Sensor.cs" />
+    <Compile Include="Tizen.System.Sensor\SensorEnumerations.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\GravitySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\GyroscopeDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\GyroscopeRotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\HeartRateMonitorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\HumiditySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\LightSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\LinearAccelerationSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\MagnetometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\MagnetometerRotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\OrientationSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\PedometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\PressureSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\ProximitySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\RotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\SleepMonitorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\TemperatureSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\UltravioletSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\UncalibratedGyroscopeDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\UncalibratedMagnetometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\GravitySensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\Gyroscope.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\GyroscopeRotationVectorSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\HeartRateMonitor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\HumiditySensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\LightSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\LinearAccelerationSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\Magnetometer.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\MagnetometerRotationVectorSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\OrientationSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\Pedometer.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\PressureSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\ProximitySensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\RotationVectorSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\SleepMonitor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\TemperatureSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\UltravioletSensor.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\UncalibratedGyroscope.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\UncalibratedMagnetometer.cs" />
+    <Compile Include="Tizen.System.Sensor\Sensor.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Sensor\Plugins\Accelerometer.cs" />
-    <Compile Include="Sensor\EventArgs\SensorAccuracyChangedEventArgs.cs" />
-    <Compile Include="Sensor\EventArgs\AccelerometerChangedEventArgs.cs" />
-    <Compile Include="Sensor\SensorErrorFactory.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\Accelerometer.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\SensorAccuracyChangedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\AccelerometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\SensorErrorFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -48,6 +96,13 @@
       <Project>{B9AA1CB2-F72D-4A30-A33B-A20C850A38A0}</Project>
       <Name>Tizen.Internals</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
+      <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
+      <Name>Tizen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tizen.System.Sensor.snk" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

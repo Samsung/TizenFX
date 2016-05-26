@@ -1,5 +1,5 @@
 %define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.System.Sensor.dll
+%define dllname Tizen.System.dll
 
 Name:       csapi-system.sensor
 Summary:    Tizen Sensor API for C#

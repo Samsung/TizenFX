@@ -15,16 +15,16 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class SensorAccuracyChangedEventArgs : EventArgs
     {
-        internal SensorAccuracyChangedEventArgs(DateTime timestamp, SensorDataAccuracy accuracy)
+        internal SensorAccuracyChangedEventArgs(TimeSpan timespan, SensorDataAccuracy accuracy)
         {
-            TimeStamp = timestamp;
+            TimeSpan = timespan;
             Accuracy = accuracy;
         }
 
         /// <summary>
         /// Gets the time stamp.
         /// </summary>
-        public DateTime TimeStamp { get; private set; }
+        public TimeSpan TimeSpan { get; private set; }
 
         /// <summary>
         /// Gets the accuracy.

@@ -11,20 +11,20 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.System.Sensor
 {
+    internal enum SensorError
+    {
+        None = ErrorCode.None,
+        IOError = ErrorCode.IoError,
+        InvalidParameter = ErrorCode.InvalidParameter,
+        NotSupported = ErrorCode.NotSupported,
+        PermissionDenied = ErrorCode.PermissionDenied,
+        OutOfMemory = ErrorCode.OutOfMemory,
+        NotNeedCalibration = -0x02440000 | 0x03,
+        OperationFailed = -0x02440000 | 0x06
+    }
+
     internal static class SensorErrorFactory
     {
-        internal enum SensorError
-        {
-            None = ErrorCode.None,
-            IOError = ErrorCode.IoError,
-            InvalidParameter = ErrorCode.InvalidParameter,
-            NotSupported = ErrorCode.NotSupported,
-            PermissionDenied = ErrorCode.PermissionDenied,
-            OutOfMemory = ErrorCode.OutOfMemory,
-            NotNeedCalibration = -0x02440000 | 0x03,
-            OperationFailed = -0x02440000 | 0x06
-        }
-
         static internal Exception CheckAndThrowException(int error, string msg)
         {
             SensorError e = (SensorError)error;
