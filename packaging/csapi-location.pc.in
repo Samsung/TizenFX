@@ -1,0 +1,5 @@
+Name: csapi-location
+Description: Tizen location API's for C#
+Version: @version@
+Libs: -r:@dllpath@/@dllname@
+Requires:
