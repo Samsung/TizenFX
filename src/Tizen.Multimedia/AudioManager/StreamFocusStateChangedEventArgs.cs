@@ -2,7 +2,6 @@
 
 namespace Tizen.Multimedia
 {
-    
     /// <summary>
     /// Class extending EventArgs and contains the necessary parameters to passed to FocusStateChanged event handler
     /// </summary>
@@ -25,9 +24,9 @@ namespace Tizen.Multimedia
             get
             {
                 return _reason;
-            } 
+            }
         }
-        
+
         /// <summary>
         /// The extra information
         /// </summary>
@@ -36,7 +35,7 @@ namespace Tizen.Multimedia
             get
             {
                 return _extraInformation;
-            } 
+            }
         }
     }
 }

@@ -5,12 +5,12 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Class extending EventArgs which contains parameters to be passed to event handler of DeviceConnected event
     /// </summary>
-    public class AudioDeviceConnectionStateChangedEventArgs : EventArgs
+    public class AudioDeviceConnectionChangedEventArgs : EventArgs
     {
         private AudioDevice _device;
         private bool _isConnected;
 
-        internal AudioDeviceConnectionStateChangedEventArgs(AudioDevice device, bool isConnected)
+        internal AudioDeviceConnectionChangedEventArgs(AudioDevice device, bool isConnected)
         {
             _device = device;
             _isConnected = isConnected;
@@ -24,19 +24,18 @@ namespace Tizen.Multimedia
             get
             {
                 return _device;
-            } 
+            }
         }
 
         /// <summary>
         /// The state of device connection: (true = connected, false = disconnected)
         /// </summary>
         public bool IsConnected
-        { 
+        {
             get
             {
                 return _isConnected;
             }
         }
-    } 
-
+    }
 }

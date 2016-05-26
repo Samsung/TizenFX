@@ -3,40 +3,39 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Extnded EventArgs which contains the parameteres to be passed to the Volume Changed event
+    /// Extnded EventArgs which contains the parameteres to be passed to the AudioVolume Changed event
     /// </summary>
     public class VolumeChangedEventArgs : EventArgs{
 
-        private AudioType _type;
-        private uint _volume;
+        private AudioVolumeType _type;
+        private uint _level;
 
-        internal VolumeChangedEventArgs(AudioType type, uint volume)
+        internal VolumeChangedEventArgs(AudioVolumeType type, uint level)
         {
             _type = type;
-            _volume = volume;
+            _level = level;
         }
-
 
         /// <summary>
         ///  The sound type of the changed volume
         /// </summary>
-        public AudioType Type 
+        public AudioVolumeType Type 
         {
             get
             {
                 return _type;
             }
         }
+
         /// <summary>
         /// The new volume value
         /// </summary>
-        public uint Volume
+        public uint Level
         {
             get
             {
-                return _volume;
-            }  
+                return _level;
+            }
         }
     }
 }
-

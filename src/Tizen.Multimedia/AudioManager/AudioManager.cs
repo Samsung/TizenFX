@@ -3,89 +3,452 @@ using System.Collections.Generic;
 
 namespace Tizen.Multimedia
 {
+    internal static class AudioManagerLog
+    {
+        internal const string Tag = "Tizen.Multimedia.AudioManager";
+    }
+
     /// <summary>
-    /// The Audio Manager API provides functions to get and set sound parameters like volume, stream policy, session policy and devices.
+    /// The Audio Manager class provides functions to get and set sound parameters like volume and devices.
     /// </summary>
     public static class AudioManager
     {
         private static int _deviceConnectedCounter = 0;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _audioDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _audioDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _stateActivatedDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _stateActivatedDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _stateDeactivatedDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _stateDeactivatedDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _typeExternalDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _typeExternalDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _typeInternalDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _typeInternalDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _ioDirectionInDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _ioDirectionInDeviceConnectedCallback;
-        private static EventHandler<AudioDeviceConnectionStateChangedEventArgs> _ioDirectionOutDeviceConnected;
-        private static Interop.SoundDeviceConnectedCallback _ioDirectionOutDeviceConnectedCallback;
-
-
         private static int _deviceInformationChanged = 0;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _audioDeviceInformationChanged;
+
+        private static Interop.SoundDeviceConnectedCallback _audioDeviceConnectedCallback;
         private static Interop.SoundDeviceInformationChangedCallback _audioDeviceInformationChangedCallback;
+
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _stateActivatedDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _stateDeactivatedDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _typeExternalDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _typeInternalDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _ioDirectionInDeviceConnected;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _ioDirectionOutDeviceConnected;
+
+        private static EventHandler<AudioDevicePropertyChangedEventArgs> _audioDeviceInformationChanged;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _stateActivatedDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _stateActivatedDeviceInformationChangedCallback;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _stateDeactivatedDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _stateDeactivatedDeviceInformationChangedCallback;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _typeExternalDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _typeExternalDeviceInformationChangedCallback;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _typeInternalDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _typeInternalDeviceInformationChangedCallback;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _ioDirectionInDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _ioDirectionInDeviceInformationChangedCallback;
         private static EventHandler<AudioDevicePropertyChangedEventArgs> _ioDirectionOutDeviceInformationChanged;
-        private static Interop.SoundDeviceInformationChangedCallback _ioDirectionOutDeviceInformationChangedCallback;
-
-
-        /// <summary>
-        /// The VolumeController object (singleton) is-a part of SoundManager and its properties and methods are used via AudioManager
-        /// </summary>
-        public static Volume VolumeController
-        {
-            get;
-            private set;
-        }
 
         /// <summary>
         /// Constructor for AudioManager. Initializes the VolumeController property etc.
         /// </summary>
         static AudioManager()
         {
-            VolumeController = new Volume();
+            VolumeController = new AudioVolume();
         }
 
-        /*/// <summary>
-        /// Destructor for SoundManager. Frees the DeviceList and all devices in it etc.
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the state of connection of an Audio device was changed.
         /// </summary>
-        ~AudioManager()
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeviceConnectionChanged
         {
-
-        }*/
+            add
+            {
+                if (_audioDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.All);
+                    Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event registered");
+                }
+                _deviceConnectedCounter++;
+                _audioDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _audioDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event removed");
+            }
+        }
 
         /// <summary>
-        /// Gets the list consisting of all devices currently connected. 
+        /// Registers/Unregisters a function to be invoked when the connection of an activated audio device is changed.
         /// </summary>
-        /// <param name="deviceListFilter">The mask value</param>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> ActivatedDeviceConnectionChanged
+        {
+            add
+            {
+                if (_stateActivatedDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.Activated);
+                }
+                _deviceConnectedCounter++;
+                _stateActivatedDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _stateActivatedDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the connection of an deactivated audio device is changed
+        /// </summary>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeactivatedDeviceConnectionChanged
+        {
+            add
+            {
+                if (_stateDeactivatedDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.Deactivated);
+                }
+                _deviceConnectedCounter++;
+                _stateDeactivatedDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _stateDeactivatedDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the connection of an external audio device is changed
+        /// </summary>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> ExternalDeviceConnectionChanged
+        {
+            add
+            {
+                if (_typeExternalDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.External);
+                }
+                _deviceConnectedCounter++;
+                _typeExternalDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _typeExternalDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the connection of an internal audio device is changed
+        /// </summary>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> InternalDeviceConnectionChanged
+        {
+            add
+            {
+                if (_typeInternalDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.Internal);
+                }
+                _deviceConnectedCounter++;
+                _typeInternalDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _typeInternalDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the connection of an input audio device is changed.
+        /// </summary>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> InputDeviceConnectionChanged
+        {
+            add
+            {
+                if (_ioDirectionInDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.Input);
+                }
+                _deviceConnectedCounter++;
+                _ioDirectionInDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "InputDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _ioDirectionInDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "InputDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a function to be invoked when the connection of an output audio device is changed
+        /// </summary>
+        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> OutputDeviceConnectionChanged
+        {
+            add
+            {
+                if (_ioDirectionOutDeviceConnected == null)
+                {
+                    RegisterAudioDeviceEvent(AudioDeviceOptions.Output);
+                }
+                _deviceConnectedCounter++;
+                _ioDirectionOutDeviceConnected += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDeviceConnectionChanged event added");
+            }
+            remove
+            {
+                _deviceConnectedCounter--;
+                _ioDirectionOutDeviceConnected -= value;
+                if (_deviceConnectedCounter == 0)
+                {
+                    UnregisterDeviceConnectedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDeviceConnectionChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of an Audio sound device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DevicePropertyChanged
+        {
+            add
+            {
+                if (_audioDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.All);
+                }
+                _deviceInformationChanged++;
+                _audioDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _audioDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "DevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a activated audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ActivatedDevicePropertyChanged
+        {
+            add
+            {
+                if (_stateActivatedDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Activated);
+                }
+                _deviceInformationChanged++;
+                _stateActivatedDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _stateActivatedDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a deactivated audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DeactivatedDevicePropertyChanged
+        {
+            add
+            {
+                if (_stateDeactivatedDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Deactivated);
+                }
+                _deviceInformationChanged++;
+                _stateDeactivatedDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _stateDeactivatedDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceProperty Changed event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a external audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ExternalDevicePropertyChanged
+        {
+            add
+            {
+                if (_typeExternalDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.External);
+                }
+                _deviceInformationChanged++;
+                _typeExternalDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _typeExternalDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a internal audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InternalDevicePropertyChanged
+        {
+            add
+            {
+                if (_typeInternalDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Internal);
+                }
+                _deviceInformationChanged++;
+                _typeInternalDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _typeInternalDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a input audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InputDevicePropertyChanged
+        {
+            add
+            {
+                if (_ioDirectionInDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Input);
+                }
+                _deviceInformationChanged++;
+                _ioDirectionInDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "InputDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _ioDirectionInDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "InputDevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// Registers/Unregisters a callback function to be invoked when the property of a output audio device was changed.
+        /// </summary>
+        public static event EventHandler<AudioDevicePropertyChangedEventArgs> OutputDevicePropertyChanged
+        {
+            add
+            {
+                if (_ioDirectionOutDeviceInformationChanged == null)
+                {
+                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Output);
+                }
+                _deviceInformationChanged++;
+                _ioDirectionOutDeviceInformationChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDevicePropertyChanged event added");
+            }
+            remove
+            {
+                _deviceInformationChanged--;
+                _ioDirectionOutDeviceInformationChanged -= value;
+                if (_deviceInformationChanged == 0)
+                {
+                    UnregisterDeviceInformationChangedEvent();
+                }
+                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDevicePropertyChanged event removed");
+            }
+        }
+
+        /// <summary>
+        /// The VolumeController object (singleton) is-a part of SoundManager and its properties and methods are used via AudioManager
+        /// </summary>
+        public static AudioVolume VolumeController
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the list consisting of all devices currently connected.
+        /// </summary>
+        /// <param name="options">The audio device options</param>
         /// <returns>The list of connected devices: IEnumerable of Device objects</returns>
         public static IEnumerable<AudioDevice> GetCurrentDevices(AudioDeviceOptions options)
         {
             List<AudioDevice> audioDeviceList = new List<AudioDevice>();
             IntPtr deviceListHandle;
             IntPtr handlePosition;
-            int ret = Interop.Device.GetCurrentDeviceList(options, out deviceListHandle);
+            int ret = Interop.AudioDevice.GetCurrentDeviceList(options, out deviceListHandle);
 			if (ret != (int)AudioManagerError.NoData)
 			{
 				AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
 			}
-
             while (ret == (int)AudioManagerError.None)
             {
-                ret = Interop.Device.GetNextDevice(deviceListHandle, out handlePosition);
+                ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out handlePosition);
                 if (ret == (int)AudioManagerError.None)
                 {
                     audioDeviceList.Add(new AudioDevice(handlePosition));
@@ -95,604 +458,101 @@ namespace Tizen.Multimedia
 					AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
 				}
             }
-
-            //ret = Interop.Device.FreeDeviceList(deviceListHandle);
-            //if (ret != 0)
-            //{
-            //    //throws exception
-            //}
-
             return audioDeviceList;
-            // return new AudioDeviceCollection(options);
         }
 
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of an Audio device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> DeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("Audio Device Connected Event added....");
-                if (_audioDeviceConnected == null)
-                {
-                    RegisterAudioDeviceConnectedEvent();
-                    Console.WriteLine("Audio Device Connected Event Registered....");
-                }
-                _deviceConnectedCounter++;
-                _audioDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("Audio Device Connected Event removed");
-                _deviceConnectedCounter--;
-                _audioDeviceConnected -= value;
-                if (_audioDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterAudioDeviceConnectedEvent()
+        private static void RegisterAudioDeviceEvent(AudioDeviceOptions option)
         {
             _audioDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
             {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _audioDeviceConnected.Invoke(null, eventArgs);
+                int audioOption = (int) userData;
+
+                AudioDeviceConnectionChangedEventArgs eventArgs = new AudioDeviceConnectionChangedEventArgs(new AudioDevice(device), isConnected);
+
+                switch ((AudioDeviceOptions)audioOption)
+                {
+                    case AudioDeviceOptions.All:
+                        _audioDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Activated:
+                        _stateActivatedDeviceConnected?.Invoke(null, eventArgs); ;
+                        break;
+                    case AudioDeviceOptions.Deactivated:
+                        _stateDeactivatedDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.External:
+                        _typeExternalDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Internal:
+                        _typeInternalDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Input:
+                        _ioDirectionInDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Output:
+                        _ioDirectionOutDeviceConnected?.Invoke(null, eventArgs);
+                        break;
+                    default:
+                        return;
+                }
             };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.All, _audioDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
+            int ret = Interop.AudioDevice.SetDeviceConnectedCallback(option, _audioDeviceConnectedCallback, (IntPtr) option);
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device connected callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnected Event registered");
         }
 
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a StateActivated sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> ActivatedDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_stateActivatedDeviceConnected == null)
-                {
-                    RegisterStateActivatedDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _stateActivatedDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _stateActivatedDeviceConnected -= value;
-                if (_stateActivatedDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterStateActivatedDeviceConnectedEvent()
-        {
-            _stateActivatedDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _stateActivatedDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.Activated, _stateActivatedDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set activated device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a StateDeactivated sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> DeactivatedDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_stateDeactivatedDeviceConnected == null)
-                {
-                    RegisterStateDeactivatedDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _stateDeactivatedDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _stateDeactivatedDeviceConnected -= value;
-                if (_stateDeactivatedDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterStateDeactivatedDeviceConnectedEvent()
-        {
-            _stateDeactivatedDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _stateDeactivatedDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.Deactivated, _stateDeactivatedDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set deactivated device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a TypeExternal sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> ExternalDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_typeExternalDeviceConnected == null)
-                {
-                    RegisterTypeExternalDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _typeExternalDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _typeExternalDeviceConnected -= value;
-                if (_typeExternalDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterTypeExternalDeviceConnectedEvent()
-        {
-            _typeExternalDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _typeExternalDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.External, _typeExternalDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set external device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a TypeInternal sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> InternalDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_typeInternalDeviceConnected == null)
-                {
-                    RegisterTypeInternalDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _typeInternalDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _typeInternalDeviceConnected -= value;
-                if (_typeInternalDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterTypeInternalDeviceConnectedEvent()
-        {
-            _typeInternalDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _typeInternalDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.Internal, _typeInternalDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set internal device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a IoDirectionIn sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> InputDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_ioDirectionInDeviceConnected == null)
-                {
-                    RegisterIoDirectionInDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _ioDirectionInDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _ioDirectionInDeviceConnected -= value;
-                if (_ioDirectionInDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterIoDirectionInDeviceConnectedEvent()
-        {
-            _ioDirectionInDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _ioDirectionInDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.Input, _ioDirectionInDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set input device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of a IoDirectionOut sound device was changed. 
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionStateChangedEventArgs> OutputDeviceConnectionStateChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_ioDirectionOutDeviceConnected == null)
-                {
-                    RegisterIoDirectionOutDeviceConnectedEvent();
-                }
-                _deviceConnectedCounter++;
-                _ioDirectionOutDeviceConnected += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceConnectedCounter--;
-                _ioDirectionOutDeviceConnected -= value;
-                if (_ioDirectionOutDeviceConnected == null && _deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterIoDirectionOutDeviceConnectedEvent()
-        {
-            _ioDirectionOutDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
-            {
-                AudioDeviceConnectionStateChangedEventArgs eventArgs = new AudioDeviceConnectionStateChangedEventArgs(new AudioDevice(device), isConnected);
-                _ioDirectionOutDeviceConnected.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceConnectedCallback(AudioDeviceOptions.Output, _ioDirectionOutDeviceConnectedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set output device connected callback");
-            Console.WriteLine("Device connected Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Unregister for Deivce Connected event
-        /// </summary>
-        public static void UnregisterDeviceConnectedEvent()
-        {
-            int ret = Interop.Device.UnsetDeviceConnectedCallback();
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device connected callback");
-            Console.WriteLine("Device connected unregister event return:" + ret);
-
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of an Audio sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_audioDeviceInformationChanged == null)
-                {
-                    RegisterAudioDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _audioDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _audioDeviceInformationChanged -= value;
-                if (_audioDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterAudioDeviceInformationChangedEvent()
+        private static void RegisterDeviceInformationChangedEvent(AudioDeviceOptions option)
         {
             _audioDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
             {
+                int audioOption = (int)userData;
+
                 AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _audioDeviceInformationChanged.Invoke(null, eventArgs);
+
+                switch ((AudioDeviceOptions)audioOption)
+                {
+                    case AudioDeviceOptions.All:
+                        _audioDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Activated:
+                        _stateActivatedDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Deactivated:
+                        _stateDeactivatedDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.External:
+                        _typeExternalDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Internal:
+                        _typeInternalDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Input:
+                        _ioDirectionInDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    case AudioDeviceOptions.Output:
+                        _ioDirectionOutDeviceInformationChanged?.Invoke(null, eventArgs);
+                        break;
+                    default:
+                        return;
+                }
             };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.All, _audioDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
+            int ret = Interop.AudioDevice.SetDeviceInformationChangedCallback(option, _audioDeviceInformationChangedCallback, (IntPtr) option);
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device property changed callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDevicePropertyChangedEvent callback registered");
         }
 
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a StateActivated sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ActivatedDevicePropertyChanged
+        private static void UnregisterDeviceConnectedEvent()
         {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_stateActivatedDeviceInformationChanged == null)
-                {
-                    RegisterStateActivatedDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _stateActivatedDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _stateActivatedDeviceInformationChanged -= value;
-                if (_stateActivatedDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
+            int ret = Interop.AudioDevice.UnsetDeviceConnectedCallback();
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device connected callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectedEvent callback unregistered");
         }
 
-        public static void RegisterStateActivatedDeviceInformationChangedEvent()
+        private static void UnregisterDeviceInformationChangedEvent()
         {
-            _stateActivatedDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _stateActivatedDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.Activated, _stateActivatedDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set activated device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a StateDeactivated sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DeactivatedDevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_stateDeactivatedDeviceInformationChanged == null)
-                {
-                    RegisterStateDeactivatedDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _stateDeactivatedDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _stateDeactivatedDeviceInformationChanged -= value;
-                if (_stateDeactivatedDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterStateDeactivatedDeviceInformationChangedEvent()
-        {
-            _stateDeactivatedDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _stateDeactivatedDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.Deactivated, _stateDeactivatedDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set deactivated device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a TypeExternal sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ExternalDevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_typeExternalDeviceInformationChanged == null)
-                {
-                    RegisterTypeExternalDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _typeExternalDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _typeExternalDeviceInformationChanged -= value;
-                if (_typeExternalDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterTypeExternalDeviceInformationChangedEvent()
-        {
-            _typeExternalDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _typeExternalDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.External, _typeExternalDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set external device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a TypeInternal sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InternalDevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_typeInternalDeviceInformationChanged == null)
-                {
-                    RegisterTypeInternalDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _typeInternalDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _typeInternalDeviceInformationChanged -= value;
-                if (_typeInternalDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterTypeInternalDeviceInformationChangedEvent()
-        {
-            _typeInternalDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _typeInternalDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.Internal, _typeInternalDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set internal device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a IoDirectionIn sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InputDevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_ioDirectionInDeviceInformationChanged == null)
-                {
-                    RegisterIoDirectionInDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _ioDirectionInDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _ioDirectionInDeviceInformationChanged -= value;
-                if (_ioDirectionInDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterIoDirectionInDeviceInformationChangedEvent()
-        {
-            _ioDirectionInDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _ioDirectionInDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.Input, _ioDirectionInDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set input device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the information of a IoDirectionOut sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> OutputDevicePropertyChanged
-        {
-            add
-            {
-                Console.WriteLine("VolumeController Changed Event added....");
-                if (_ioDirectionOutDeviceInformationChanged == null)
-                {
-                    RegisterIoDirectionOutDeviceInformationChangedEvent();
-                }
-                _deviceInformationChanged++;
-                _ioDirectionOutDeviceInformationChanged += value;
-            }
-            remove
-            {
-                Console.WriteLine("VolumeController Changed Event removed");
-                _deviceInformationChanged--;
-                _ioDirectionOutDeviceInformationChanged -= value;
-                if (_ioDirectionOutDeviceInformationChanged == null && _deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-
-            }
-        }
-
-        public static void RegisterIoDirectionOutDeviceInformationChangedEvent()
-        {
-            _ioDirectionOutDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
-            {
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-                _ioDirectionOutDeviceInformationChanged.Invoke(null, eventArgs);
-            };
-            int ret = Interop.Device.SetDeviceInformationChangedCallback(AudioDeviceOptions.Output, _ioDirectionOutDeviceInformationChangedCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set output device information changed callback");
-            Console.WriteLine("Device Inforamtion Changed Event return:" + ret);
-        }
-
-        /// <summary>
-        /// Unregister for Device Information Changed Event
-        /// </summary>
-        public static void UnregisterDeviceInformationChangedEvent()
-        {
-            int ret = Interop.Device.UnsetDeviceInformationChangedCallback();
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device information changed callback");
-            Console.WriteLine("Device information Changed unregister event return:" + ret);
-
+            int ret = Interop.AudioDevice.UnsetDeviceInformationChangedCallback();
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device property changed callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDevicePropertyChanged callback unregistered");
         }
     }
-
-
 }

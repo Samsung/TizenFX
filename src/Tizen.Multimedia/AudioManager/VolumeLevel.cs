@@ -2,31 +2,39 @@
 
 namespace Tizen.Multimedia
 {
+    internal static class VolumeLevelLog
+    {
+        internal const string Tag = "Tizen.Multimedia.VolumeLevel";
+    }
+
     public class VolumeLevel
-    {                
-        public int this[AudioType type]
+    {
+        public int this[AudioVolumeType type]
         {
             get
             {
+                if (type == AudioVolumeType.None)
+                    throw new ArgumentException("Wrong Audio volume type. Cannot get volume level for AudioVolumeType.None");
                 int volume;
-                int ret = Interop.Volume.GetVolume(type, out volume);
+                int ret = Interop.AudioVolume.GetVolume(type, out volume);
                 if (ret != 0)
                 {
-                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get volume");
-                    Console.WriteLine("Get Volume Error: " + (AudioManagerError)ret);
-                }  
-
+                    Tizen.Log.Info(VolumeLevelLog.Tag, "Get Level Error: " + (AudioManagerError)ret);
+                    return -1;
+                }
                 return volume;
             }
             set
             {
-                int ret = Interop.Volume.SetVolume(type, value);
+                if (type == AudioVolumeType.None)
+                    throw new ArgumentException("Wrong Audio volume type. Cannot set volume level for AudioVolumeType.None");
+                int ret = Interop.AudioVolume.SetVolume(type, value);
                 if (ret != 0)
                 {
-                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set volume");
-                    Console.WriteLine("Set Volume Error: " + (AudioManagerError)ret);
-                }               
+                    Tizen.Log.Info(VolumeLevelLog.Tag, "Set Level Error: " + (AudioManagerError)ret);
+                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set level");
+                }
             }
-        } 
+        }
     }
 }
