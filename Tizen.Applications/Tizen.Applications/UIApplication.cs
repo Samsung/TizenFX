@@ -7,6 +7,7 @@
 // you entered into with Samsung.
 
 using System;
+using Tizen.UI;
 
 namespace Tizen.Applications
 {
@@ -24,6 +25,14 @@ namespace Tizen.Applications
         /// Occurs whenever the application is paused.
         /// </summary>
         public event EventHandler Paused;
+
+        /// <summary>
+        /// The main window instance of the UIApplication.
+        /// </summary>
+        /// <remarks>
+        /// This window is created before OnCreate() or created event. And the UIApplication will be terminated when this window is closed.
+        /// </remarks>
+        public Window Window { get; private set; }
 
         /// <summary>
         /// Runs the UI application's main loop.
@@ -74,11 +83,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnResume()
         {
-            EventHandler eh = Resumed;
-            if (eh != null)
-            {
-                eh(this, EventArgs.Empty);
-            }
+            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -87,11 +92,17 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnPause()
         {
-            EventHandler eh = Paused;
-            if (eh != null)
+            Paused?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void SendCreate()
+        {
+            Window = new Window("C# UI Application");
+            Window.Closed += (s, e) =>
             {
-                eh(this, EventArgs.Empty);
-            }
+                Exit();
+            };
+            OnCreate();
         }
     }
 }

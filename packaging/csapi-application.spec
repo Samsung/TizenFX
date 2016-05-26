@@ -14,10 +14,11 @@ Source2:    %{name}.pc.in
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
 BuildRequires: pkgconfig(csapi-tizen)
+BuildRequires: pkgconfig(csapi-uifw)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
-BuildRequires: pkgconfig(appcore-agent)
 BuildRequires: pkgconfig(capi-appfw-app-manager)
+BuildRequires: pkgconfig(appcore-agent)
 BuildRequires: pkgconfig(message-port)
 
 Requires: capi-appfw-application

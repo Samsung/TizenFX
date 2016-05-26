@@ -106,6 +106,10 @@
       <PkgConfig>csapi-tizen</PkgConfig>
       <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
     </Reference>
+    <Reference Include="Tizen.UI">
+      <PkgConfig>csapi-uifw</PkgConfig>
+      <HintPath>..\..\uifw\Tizen.UI\bin\Debug\Tizen.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
@@ -115,6 +119,10 @@
     <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
       <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
       <Name>Tizen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\uifw\Tizen.UI\Tizen.UI.csproj">
+      <Project>{d34841f9-046b-4dbf-9698-143386c24f78}</Project>
+      <Name>Tizen.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

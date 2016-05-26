@@ -128,11 +128,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnCreate()
         {
-            EventHandler eh = Created;
-            if (eh != null)
-            {
-                eh(this, EventArgs.Empty);
-            }
+            Created?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -141,11 +137,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnTerminate()
         {
-            EventHandler eh = Terminated;
-            if (eh != null)
-            {
-                eh(this, EventArgs.Empty);
-            }
+            Terminated?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -155,11 +147,7 @@ namespace Tizen.Applications
         /// <param name="e"></param>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
-            EventHandler<AppControlReceivedEventArgs> eh = AppControlReceived;
-            if (eh != null)
-            {
-                eh(this, e);
-            }
+            AppControlReceived?.Invoke(this, e);
         }
 
         /// <summary>
@@ -168,11 +156,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
-            EventHandler<LowMemoryEventArgs> eh = LowMemory;
-            if (eh != null)
-            {
-                eh(this, e);
-            }
+            LowMemory?.Invoke(this, e);
         }
 
         /// <summary>
@@ -181,16 +165,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            EventHandler<LocaleChangedEventArgs> eh = LocaleChanged;
-            if (eh != null)
-            {
-                eh(this, e);
-            }
-        }
-
-        internal void SendCreate()
-        {
-            OnCreate();
+            LocaleChanged?.Invoke(this, e);
         }
 
         private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)
