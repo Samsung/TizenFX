@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -36,10 +33,16 @@ namespace Tizen.Multimedia
             }
 
             set
-            {       
+            {
                 int ret = Interop.Volume.SetCurrentSoundType(value);
+                if (ret != 0)
+                {
+                    if (value == AudioType.None)
+                    {
+                        ret = Interop.Volume.UnsetCurrentType();
+                    }
+                }
                 AudioManagerErrorFactory.CheckAndThrowException(ret, "unable to set current sound type");
-
             } 
         }
 

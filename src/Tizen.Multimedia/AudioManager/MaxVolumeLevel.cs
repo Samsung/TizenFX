@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -15,7 +12,7 @@ namespace Tizen.Multimedia
                 int ret = Interop.Volume.GetMaxVolume(type, out maxVolume);
                 if (ret != 0)
                 {
-                   	AudioManagerErrorFactory.CheckAndThrowException(ret, "unable to get max volume");
+                   	AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get max volume");
                     Console.WriteLine("Max Volume Error: " + (AudioManagerError)ret);
                 }
 

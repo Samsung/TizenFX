@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -34,7 +31,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The extra information
         /// </summary>
-        public string ExtraInfo 
+        public string ExtraInfoformation
         {
             get
             {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -10,29 +7,15 @@ namespace Tizen.Multimedia
     /// </summary>
     public class FocusStateChangedEventArgs : EventArgs
     {
-        private AudioStreamFocusOptions _focusMask;
         private AudioStreamFocusState _focusState;
         private AudioStreamFocusChangedReason _reason;
         private string _extraInformation;
 
-        internal FocusStateChangedEventArgs(AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInformation)
+        internal FocusStateChangedEventArgs(AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInformation)
         {
-            _focusMask = focusMask;
             _focusState = focusState;
             _reason = reason;
             _extraInformation = extraInformation;
-        }
-
-        /// <summary>
-        /// The changed focus mask
-        /// </summary>
-        public AudioStreamFocusOptions FocusMask
-        {
-            get
-            {
-                return _focusMask;
-            }
-
         }
 
         /// <summary>
@@ -54,6 +37,17 @@ namespace Tizen.Multimedia
             get
             {
                 return _reason;
+            }
+        }
+
+        /// <summary>
+        /// The extra information
+        /// </summary>
+        public string ExtraInformation
+        {
+            get
+            {
+                return _extraInformation;
             }
         }
     }

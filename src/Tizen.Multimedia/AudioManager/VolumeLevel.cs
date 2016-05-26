@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tizen.Multimedia
 {
@@ -15,7 +12,7 @@ namespace Tizen.Multimedia
                 int ret = Interop.Volume.GetVolume(type, out volume);
                 if (ret != 0)
                 {
-                    AudioManagerErrorFactory.CheckAndThrowException(ret, "unable to get volume");
+                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get volume");
                     Console.WriteLine("Get Volume Error: " + (AudioManagerError)ret);
                 }  
 
@@ -26,12 +23,10 @@ namespace Tizen.Multimedia
                 int ret = Interop.Volume.SetVolume(type, value);
                 if (ret != 0)
                 {
-                    AudioManagerErrorFactory.CheckAndThrowException(ret, "unable to set volume");
+                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set volume");
                     Console.WriteLine("Set Volume Error: " + (AudioManagerError)ret);
                 }               
             }
-
-
         } 
     }
 }

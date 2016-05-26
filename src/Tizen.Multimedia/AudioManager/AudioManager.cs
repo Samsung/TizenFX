@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -51,7 +48,7 @@ namespace Tizen.Multimedia
         public static Volume VolumeController
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
