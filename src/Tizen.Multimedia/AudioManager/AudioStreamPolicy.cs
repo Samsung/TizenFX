@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         /// <summary>
         ///  The sound type of the stream information. 
         /// </summary>
-        public AudioType Type 
+        public AudioType Type
         {            
             get 
             {
@@ -87,7 +87,14 @@ namespace Tizen.Multimedia
             } 
         }
 
-       
+        internal IntPtr Handle
+        {
+            get
+            {
+                return _streamInfo;
+            }
+        }
+
         /// <summary>
         /// Constructor: creates and returns a StreamPolicy object (to SoundManager class)
         /// </summary>
