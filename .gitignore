@@ -2,3 +2,4 @@ bin/
 obj/
 *.exe
 *.dll
+!tct-system-tizen-tests/lib/*.dll
