@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.test.tizen.notification" version="1.0.0">
+    <ui-application appid="org.test.tizen.notification" exec="tct-notification-tizen-tests" type="capp" multiple="false" taskmanage="true" nodisplay="false">
+        <icon>icon.png</icon>
+        <label>tct-notification-tizen-tests</label>
+    </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+    </privileges>
+</manifest>
