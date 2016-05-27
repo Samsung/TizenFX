@@ -47,13 +47,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Tizen">
-      <HintPath>..\..\..\..\..\Desktop\dll\usr\lib\mono\tizen\Tizen.dll</HintPath>
+      <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
     </Reference>
     <Reference Include="Tizen.Applications">
-      <HintPath>..\..\..\..\..\Desktop\dll\applicationdll\usr\lib\mono\tizen\Tizen.Applications.dll</HintPath>
+      <HintPath>..\..\application\Tizen.Applications\bin\Debug\Tizen.Applications.dll</HintPath>
     </Reference>
     <Reference Include="Tizen.Internals">
-      <HintPath>..\..\..\..\..\Desktop\dll\usr\lib\mono\tizen\Tizen.Internals.dll</HintPath>
+      <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
