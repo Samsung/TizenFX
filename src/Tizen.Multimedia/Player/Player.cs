@@ -518,6 +518,8 @@ namespace Tizen.Multimedia
 			_streamInformation._contentInfo = new PlayerContentInfo();
 			_streamInformation._contentInfo._playerHandle = _playerHandle;
 
+			
+			Log.Debug(PlayerLog.LogTag, "player created : "+ _playerHandle);
         }
 
         /// <summary>
@@ -553,7 +555,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The most recently used media is reset and no longer associated with the player. Playback is no longer possible. 
         /// If you want to use the player again, you will have to set the data URI and call prepare() again. </summary>
-        public void Unrepare()
+        public void Unprepare()
         {
 			int ret = Interop.Player.Unprepare(_playerHandle);
 			if(ret != (int)PlayerError.None) 
