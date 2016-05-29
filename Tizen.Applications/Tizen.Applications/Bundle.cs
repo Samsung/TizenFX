@@ -271,7 +271,7 @@ namespace Tizen.Applications
         {
             if (!_keys.Contains(key))
             {
-                string[] valueArray = value.ToArray();
+                string[] valueArray = value.Select(v => v == null ? string.Empty : v).ToArray();
                 int ret = Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Count());
                 BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Add(key);
@@ -315,7 +315,10 @@ namespace Tizen.Applications
                         IntPtr stringPtr;
                         int retString = Interop.Bundle.GetString(_handle, key, out stringPtr);
                         BundleErrorFactory.CheckAndThrowException(retString, _handle);
-                        return Marshal.PtrToStringAuto(stringPtr);
+                        string stringValue = Marshal.PtrToStringAuto(stringPtr);
+                        if (stringValue == null)
+                            return string.Empty;
+                        return stringValue;
 
                     case (int)BundleType.StringArray:
                         // get string array
