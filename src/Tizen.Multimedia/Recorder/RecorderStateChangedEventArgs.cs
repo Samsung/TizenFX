@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -46,7 +42,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// True if the state changed by policy, otherwise False.
+        /// true if the state changed by policy, otherwise false.
         /// </summary>
         public bool ByPolicy
         {

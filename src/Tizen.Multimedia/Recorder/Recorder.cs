@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
-	static internal class Recorders
+	static internal class RecorderLog
 	{
-		internal const string LogTag = "Tizen.Multimedia.Recorder";
+		internal const string Tag = "Tizen.Multimedia.Recorder";
 	}
 
     /// <summary>
@@ -16,6 +13,9 @@ namespace Tizen.Multimedia
 	///  to start, stop and save the recorded content. It also provides methods
 	///  to get/set various attributes and capabilities of recorder.
     /// </summary>
+	/// /// <privilege>
+	/// http://tizen.org/privilege/recorder
+	/// </privilege>
 	public class Recorder : IDisposable
 	{
         private IntPtr _handle;
@@ -35,7 +35,6 @@ namespace Tizen.Multimedia
 		private EventHandler<RecordingErrorOccurredEventArgs> _recordingErrorOccured;
 		private Interop.Recorder.RecorderErrorCallback _recorderErrorCallback;
 
-
         /// <summary>
         /// Audio recorder constructor.
         /// </summary>
@@ -46,14 +45,9 @@ namespace Tizen.Multimedia
 			{
 				RecorderErrorFactory.ThrowException (ret, "Failed to create Audio recorder");
 			}
-			if (_attribute == null)
-			{
-				_attribute = new RecorderAttribute (_handle);
-			}
-			if (_capability == null)
-			{
-				_capability = new RecorderCapability (_handle);
-			}
+
+			_attribute = new RecorderAttribute (_handle);
+			_capability = new RecorderCapability (_handle);
 		}
 
         /// <summary>
@@ -69,14 +63,9 @@ namespace Tizen.Multimedia
 			{
 				RecorderErrorFactory.ThrowException (ret, "Failed to create Video recorder");
 			}
-			if (_attribute == null)
-			{
-				_attribute = new RecorderAttribute (_handle);
-			}
-			if (_capability == null)
-			{
-				_capability = new RecorderCapability (_handle);
-			}
+
+			_attribute = new RecorderAttribute (_handle);
+			_capability = new RecorderCapability (_handle);
         }
 
         /// <summary>
@@ -86,23 +75,6 @@ namespace Tizen.Multimedia
         {
 			Dispose (false);
         }
-
-        internal IntPtr Handle
-        {
-            get
-            {
-                return _handle;
-            }
-        }
-
-		/// <summary>
-		/// Release any unmanaged resources used by this object.
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
 
         /// <summary>
         /// Event that occurs when recorder is interrupted.
@@ -122,38 +94,15 @@ namespace Tizen.Multimedia
 				_recorderInterrupted -= value;
 				if (_recorderInterrupted == null)
 				{
-					UnRegisterRecorderInterruptedEvent ();
+					UnregisterRecorderInterruptedEvent ();
 				}
 			}
 		}
 
-		private void RegisterRecorderInterruptedEvent()
-		{
-			_interruptedCallback = (RecorderPolicy policy, RecorderState previous, RecorderState current, IntPtr userData) =>
-			{
-				RecorderInterruptedEventArgs eventArgs = new RecorderInterruptedEventArgs(policy, previous, current);
-				_recorderInterrupted.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetInterruptedCallback (_handle, _interruptedCallback, IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting Interrupted callback failed");
-			}
-		}
-
-		private void UnRegisterRecorderInterruptedEvent()
-		{
-			int ret = Interop.Recorder.UnsetInterruptedCallback (_handle);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Unsetting Interrupted callback failed");
-			}
-		}
-
-        /// <summary>
-        /// Event that occurs when audio stream data is being delivered.
-        /// </summary>
-        public event EventHandler<AudioStreamDeliveredEventArgs> AudioStreamDelivered
+		/// <summary>
+		/// Event that occurs when audio stream data is being delivered.
+		/// </summary>
+		public event EventHandler<AudioStreamDeliveredEventArgs> AudioStreamDelivered
 		{
 			add
 			{
@@ -168,41 +117,15 @@ namespace Tizen.Multimedia
 				_audioStreamDelivered -= value;
 				if (_audioStreamDelivered == null) 
 				{
-					UnRegisterAudioStreamDeliveredEvent ();
+					UnregisterAudioStreamDeliveredEvent ();
 				}
 			}
 		}
 
-		private void RegisterAudioStreamDeliveredEvent()
-		{
-			_audioStreamCallback = (IntPtr stream, int size, AudioSampleType type, int channel, uint timeStamp, IntPtr userData) =>
-			{
-                byte[] streamArray = new byte[size];
-                Marshal.Copy(stream, streamArray, 0, size);
-                AudioStreamDeliveredEventArgs eventArgs = new AudioStreamDeliveredEventArgs(streamArray, type, channel, timeStamp);
-				_audioStreamDelivered.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetAudioStreamCallback (_handle, _audioStreamCallback, IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting audiostream callback failed");
-			}
-		}
-
-		private void UnRegisterAudioStreamDeliveredEvent()
-		{
-			int ret = Interop.Recorder.UnsetAudioStreamCallback (_handle);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Unsetting audiostream callback failed");
-			}
-		}
-
-
-        /// <summary>
-        /// This event occurs when recorder state is changed.
-        /// </summary>
-        public event EventHandler<RecorderStateChangedEventArgs> RecorderStateChanged
+		/// <summary>
+		/// This event occurs when recorder state is changed.
+		/// </summary>
+		public event EventHandler<RecorderStateChangedEventArgs> RecorderStateChanged
 		{
 			add
 			{
@@ -217,38 +140,15 @@ namespace Tizen.Multimedia
 				_recorderStateChanged -= value;
 				if (_recorderStateChanged == null) 
 				{
-					UnRegisterStateChangedEvent ();
+					UnregisterStateChangedEvent ();
 				}
 			}
 		}
-
-		private void RegisterStateChangedEvent()
-		{
-			_recorderStateChangedCallback = (RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData) =>
-			{
-				RecorderStateChangedEventArgs eventArgs = new RecorderStateChangedEventArgs(previous, current, byPolicy);
-				_recorderStateChanged.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetStateChangedCallback (_handle, _recorderStateChangedCallback , IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting state changed callback failed");
-			}
-		}
-
-		private void UnRegisterStateChangedEvent()
-		{
-			int ret = Interop.Recorder.UnsetStateChangedCallback (_handle);	
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Unsetting state changed callback failed");
-			}
-		}
-
-        /// <summary>
-        /// Event that occurs when recording information changes.
-        /// </summary>
-        public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged
+			
+		/// <summary>
+		/// Event that occurs when recording information changes.
+		/// </summary>
+		public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged
 		{
 			add
 			{
@@ -263,38 +163,15 @@ namespace Tizen.Multimedia
 				_recordingStatusChanged -= value;
 				if (_recordingStatusChanged == null) 
 				{
-					UnRegisterRecordingStatusChangedEvent ();
+					UnregisterRecordingStatusChangedEvent ();
 				}
 			}
 		}
 
-		private void RegisterRecordingStatusChangedEvent()
-		{
-			_recordingStatusCallback = (ulong elapsedTime, ulong fileSize, IntPtr userData) =>
-			{
-				RecordingStatusChangedEventArgs eventArgs = new RecordingStatusChangedEventArgs(elapsedTime, fileSize);
-				_recordingStatusChanged.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetStatusChangedCallback (_handle, _recordingStatusCallback, IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting status changed callback failed");
-			}
-		}
-
-		private void UnRegisterRecordingStatusChangedEvent()
-		{
-			int ret = Interop.Recorder.UnsetStatusChangedCallback (_handle);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Unsetting status changed callback failed");
-			}
-		}
-
-        /// <summary>
-        /// Event that occurs when recording limit is reached.
-        /// </summary>
-        public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached
+		/// <summary>
+		/// Event that occurs when recording limit is reached.
+		/// </summary>
+		public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached
 		{
 			add
 			{
@@ -309,38 +186,15 @@ namespace Tizen.Multimedia
 				_recordingLimitReached -= value;
 				if (_recordingLimitReached == null) 
 				{
-					UnRegisterRecordingLimitReachedEvent ();
+					UnregisterRecordingLimitReachedEvent ();
 				}
 			}
 		}
 
-		private void RegisterRecordingLimitReachedEvent()
-		{
-			_recordingLimitReachedCallback = (RecordingLimitType type, IntPtr userData) =>
-			{
-				RecordingLimitReachedEventArgs eventArgs = new RecordingLimitReachedEventArgs(type);
-				_recordingLimitReached.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetLimitReachedCallback (_handle, _recordingLimitReachedCallback, IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting limit reached callback failed");
-			}
-		}
-
-		private void UnRegisterRecordingLimitReachedEvent()
-		{
-			int ret = Interop.Recorder.UnsetLimitReachedCallback (_handle);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException(ret, "Unsetting limit reached callback failed");
-			}
-		}
-
-        /// <summary>
-        /// Event that occurs when an error occurs during recorder operation.
-        /// </summary>
-        public event EventHandler<RecordingErrorOccurredEventArgs> RecordingErrorOccurred
+		/// <summary>
+		/// Event that occurs when an error occurs during recorder operation.
+		/// </summary>
+		public event EventHandler<RecordingErrorOccurredEventArgs> RecordingErrorOccurred
 		{
 			add
 			{
@@ -355,31 +209,8 @@ namespace Tizen.Multimedia
 				_recordingErrorOccured -= value;
 				if (_recordingErrorOccured == null) 
 				{
-					UnRegisterRecordingErrorOccuredEvent ();
+					UnregisterRecordingErrorOccuredEvent ();
 				}
-			}
-		}
-
-		private void RegisterRecordingErrorOccuredEvent()
-		{
-			_recorderErrorCallback = (RecorderErrorCode error, RecorderState current, IntPtr userData) =>
-			{
-				RecordingErrorOccurredEventArgs eventArgs = new RecordingErrorOccurredEventArgs(error, current);
-				_recordingErrorOccured.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Recorder.SetErrorCallback (_handle, _recorderErrorCallback, IntPtr.Zero);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Setting Error callback failed");
-			}
-		}
-
-		private void UnRegisterRecordingErrorOccuredEvent()
-		{
-			int ret = Interop.Recorder.UnsetErrorCallback (_handle);
-			if (ret != (int)RecorderError.None)
-			{
-				RecorderErrorFactory.ThrowException (ret, "Unsetting Error callback failed");
 			}
 		}
 
@@ -398,7 +229,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetFileName (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get filepath, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get filepath, " + (RecorderError)ret);
 				}
 				string result = Marshal.PtrToStringAuto (val);
 				Interop.Libc.Free (val);
@@ -409,7 +240,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.SetFileName (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set filepath, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set filepath, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set filepath");
 				}
             }
@@ -419,7 +250,7 @@ namespace Tizen.Multimedia
         /// Get the peak audio input level in dB
         /// </summary>
         /// <remarks>
-        /// 0 dB indicates maximum input level, -300dB indicates minimum input level.
+        /// 0dB indicates maximum input level, -300dB indicates minimum input level.
         /// </remarks>
         public double AudioLevel
         {
@@ -430,7 +261,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetAudioLevel (_handle, out level);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get Audio level, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get Audio level, " + (RecorderError)ret);
 				}
 				return level;
             }
@@ -448,7 +279,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetState (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get recorder state, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get recorder state, " + (RecorderError)ret);
 				}
 				return (RecorderState)val;
             }
@@ -466,7 +297,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetFileFormat (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get file format, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get file format, " + (RecorderError)ret);
 				}
 				return (RecorderFileFormat)val;
             }
@@ -475,7 +306,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.SetFileFormat (_handle, (int)value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set file format, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set file format, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret);
 				}
             }
@@ -493,7 +324,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetAudioEncoder (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get audio codec, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get audio codec, " + (RecorderError)ret);
 				}
 				return (RecorderAudioCodec)val;
             }
@@ -502,7 +333,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.SetAudioEncoder (_handle, (int)value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set audio codec, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set audio codec, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret);
 				}
             }
@@ -520,7 +351,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.Recorder.GetVideoEncoder (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-						Log.Error( Recorders.LogTag, "Failed to get video codec, " + (RecorderError)ret);
+						Log.Error( RecorderLog.Tag, "Failed to get video codec, " + (RecorderError)ret);
 				}
 				return (RecorderVideoCodec)val;
             }
@@ -530,7 +361,7 @@ namespace Tizen.Multimedia
 
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error(Recorders.LogTag, "Failed to set video codec, " + (RecorderError)ret);
+					Log.Error(RecorderLog.Tag, "Failed to set video codec, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException(ret);
 				}
             }
@@ -576,6 +407,9 @@ namespace Tizen.Multimedia
 		/// Before calling the function, it is required to set AudioEncoder,
 		/// videoencoder and fileformat properties of recorder.
 		/// </remarks>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Prepare()
 		{
 			int ret = Interop.Recorder.Prepare (_handle);
@@ -588,6 +422,9 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Resets the media recorder.
 		/// </summary>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Unprepare()
 		{
 			int ret = Interop.Recorder.Unprepare (_handle);
@@ -603,12 +440,12 @@ namespace Tizen.Multimedia
 		/// <remarks>
 		/// If file path has been set to an existing file, this file is removed automatically and updated by new one.
 		/// In the video recorder, some preview format does not support record mode. It will return InvalidOperation error.
-		///	You should use default preview format or CAMERA_PIXEL_FORMAT_NV12 in the record mode.
-		///	When you want to record audio or video file, you need to add privilege according to rules below additionally.
-		///	If you want to save contents to internal storage, you should add mediastorage privilege.
-		///	If you want to save contents to external storage, you should add externalstorage privilege.
+		///	You should use default preview format or CameraPixelFormatNv12 in the record mode.
 		///	The filename should be set before this function is invoked.
 		/// </remarks>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Start()
 		{
 			int ret = Interop.Recorder.Start (_handle);
@@ -624,6 +461,9 @@ namespace Tizen.Multimedia
 		/// <remarks>
 		/// Recording can be resumed with Start().
 		/// </remarks>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Pause()
 		{
 			int ret = Interop.Recorder.Pause (_handle);
@@ -636,6 +476,9 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Stops recording and saves the result.
 		/// </summary>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Commit()
 		{
 			int ret = Interop.Recorder.Commit (_handle);
@@ -649,6 +492,9 @@ namespace Tizen.Multimedia
 		/// Cancels the recording.
 		/// The recording data is discarded and not written in the recording file.
 		/// </summary>
+		/// <privilege>
+		/// http://tizen.org/privilege/recorder
+		/// </privilege>
 		public void Cancel()
 		{
 			int ret = Interop.Recorder.Cancel (_handle);
@@ -662,11 +508,24 @@ namespace Tizen.Multimedia
 		/// Sets the audio stream policy.
 		/// </summary>
 		/// <param name="policy">Policy.</param>
-		///public void SetAudioStreamPolicy(AudioStreamPolicy policy)
-	///    {
-     ///   }
-		///
+		public void SetAudioStreamPolicy(AudioStreamPolicy policy)
+		{
+			int ret = Interop.Recorder.SetAudioStreamPolicy (_handle, policy.Handle);
 
+			if (ret != (int)RecorderError.None) 
+			{
+				RecorderErrorFactory.ThrowException (ret, "Failed to set audio stream policy");
+			}
+     	}
+			
+		/// <summary>
+		/// Release any unmanaged resources used by this object.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 		/// <summary>
 		/// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
 		/// </summary>
@@ -685,6 +544,146 @@ namespace Tizen.Multimedia
 					_handle = IntPtr.Zero;
 				}
 				_disposed = true;
+			}
+		}
+
+		private void RegisterRecorderInterruptedEvent()
+		{
+			_interruptedCallback = (RecorderPolicy policy, RecorderState previous, RecorderState current, IntPtr userData) =>
+			{
+				RecorderInterruptedEventArgs eventArgs = new RecorderInterruptedEventArgs(policy, previous, current);
+				_recorderInterrupted?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetInterruptedCallback (_handle, _interruptedCallback, IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting Interrupted callback failed");
+			}
+		}
+
+		private void UnregisterRecorderInterruptedEvent()
+		{
+			int ret = Interop.Recorder.UnsetInterruptedCallback (_handle);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Unsetting Interrupted callback failed");
+			}
+		}
+
+		private void RegisterAudioStreamDeliveredEvent()
+		{
+			_audioStreamCallback = (IntPtr stream, int size, AudioSampleType type, int channel, uint recordingTime, IntPtr userData) =>
+			{
+				byte[] streamArray = new byte[size];
+				Marshal.Copy(stream, streamArray, 0, size);
+				AudioStreamDeliveredEventArgs eventArgs = new AudioStreamDeliveredEventArgs(streamArray, type, channel, recordingTime);
+				_audioStreamDelivered?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetAudioStreamCallback (_handle, _audioStreamCallback, IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting audiostream callback failed");
+			}
+		}
+
+		private void UnregisterAudioStreamDeliveredEvent()
+		{
+			int ret = Interop.Recorder.UnsetAudioStreamCallback (_handle);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Unsetting audiostream callback failed");
+			}
+		}
+
+		private void RegisterStateChangedEvent()
+		{
+			_recorderStateChangedCallback = (RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData) =>
+			{
+				RecorderStateChangedEventArgs eventArgs = new RecorderStateChangedEventArgs(previous, current, byPolicy);
+				_recorderStateChanged?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetStateChangedCallback (_handle, _recorderStateChangedCallback , IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting state changed callback failed");
+			}
+		}
+
+		private void UnregisterStateChangedEvent()
+		{
+			int ret = Interop.Recorder.UnsetStateChangedCallback (_handle);	
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Unsetting state changed callback failed");
+			}
+		}
+
+		private void RegisterRecordingStatusChangedEvent()
+		{
+			_recordingStatusCallback = (ulong elapsedTime, ulong fileSize, IntPtr userData) =>
+			{
+				RecordingStatusChangedEventArgs eventArgs = new RecordingStatusChangedEventArgs(elapsedTime, fileSize);
+				_recordingStatusChanged?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetStatusChangedCallback (_handle, _recordingStatusCallback, IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting status changed callback failed");
+			}
+		}
+
+		private void UnregisterRecordingStatusChangedEvent()
+		{
+			int ret = Interop.Recorder.UnsetStatusChangedCallback (_handle);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Unsetting status changed callback failed");
+			}
+		}
+
+		private void RegisterRecordingLimitReachedEvent()
+		{
+			_recordingLimitReachedCallback = (RecordingLimitType type, IntPtr userData) =>
+			{
+				RecordingLimitReachedEventArgs eventArgs = new RecordingLimitReachedEventArgs(type);
+				_recordingLimitReached?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetLimitReachedCallback (_handle, _recordingLimitReachedCallback, IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting limit reached callback failed");
+			}
+		}
+
+		private void UnregisterRecordingLimitReachedEvent()
+		{
+			int ret = Interop.Recorder.UnsetLimitReachedCallback (_handle);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException(ret, "Unsetting limit reached callback failed");
+			}
+		}
+
+		private void RegisterRecordingErrorOccuredEvent()
+		{
+			_recorderErrorCallback = (RecorderErrorCode error, RecorderState current, IntPtr userData) =>
+			{
+				RecordingErrorOccurredEventArgs eventArgs = new RecordingErrorOccurredEventArgs(error, current);
+				_recordingErrorOccured?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Recorder.SetErrorCallback (_handle, _recorderErrorCallback, IntPtr.Zero);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Setting Error callback failed");
+			}
+		}
+
+		private void UnregisterRecordingErrorOccuredEvent()
+		{
+			int ret = Interop.Recorder.UnsetErrorCallback (_handle);
+			if (ret != (int)RecorderError.None)
+			{
+				RecorderErrorFactory.ThrowException (ret, "Unsetting Error callback failed");
 			}
 		}
 	}

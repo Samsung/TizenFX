@@ -66,7 +66,7 @@ internal static partial class Interop
 		internal static extern int GetAudioLevel(IntPtr handle, out double dB);
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_set_filename")]
-		internal static extern int SetFileName(IntPtr handle, String path);
+		internal static extern int SetFileName(IntPtr handle, string path);
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_get_filename")]
 		internal static extern int GetFileName(IntPtr handle, out IntPtr path);
@@ -76,6 +76,9 @@ internal static partial class Interop
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_get_file_format")]
 		internal static extern int GetFileFormat(IntPtr handle, out int format);
+
+		[DllImport(Libraries.Recorder, EntryPoint = "recorder_set_sound_stream_info")]
+		internal static extern int SetAudioStreamPolicy (IntPtr handle, IntPtr streamInfoHandle);
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_set_audio_encoder")]
 		internal static extern int SetAudioEncoder(IntPtr handle, int codec);

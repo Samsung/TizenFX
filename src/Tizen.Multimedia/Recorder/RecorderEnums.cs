@@ -80,7 +80,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// M2TS file format.
 		/// </summary>
-		M2TS
+		M2ts
 	}
 
 	/// <summary>
@@ -97,9 +97,9 @@ namespace Tizen.Multimedia
 		/// </summary>
 		Security = 4,
 		/// <summary>
-		/// Sound policy.
+		/// Resource conflict policy.
 		/// </summary>
-		Resourceconflict = 5
+		ResourceConflict = 5
 	}
 
 	/// <summary>
@@ -124,7 +124,7 @@ namespace Tizen.Multimedia
 	/// <summary>
 	/// Enumeration for the recorder rotation type.
 	/// </summary>
-	public enum  RecorderRotation
+	public enum  RecorderOrientation
 	{
 		/// <summary>
 		/// No rotation.
@@ -159,7 +159,7 @@ namespace Tizen.Multimedia
 		Created,
 		/// <summary>
 		/// Recorder is ready to record. In case of video recorder,
-		/// preview display will be shown
+		/// preview display will be shown.
 		/// </summary>
 		Ready,
 		/// <summary>
@@ -216,7 +216,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Device Error.
         /// </summary>
-		ErrorDevice = RecorderError.ErrorDevice,
+		DeviceError = RecorderError.ErrorDevice,
         /// <summary>
         /// Internal error.
         /// </summary>

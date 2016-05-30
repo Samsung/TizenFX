@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -14,14 +10,14 @@ namespace Tizen.Multimedia
 		private byte[] _stream = null;
 		private AudioSampleType _type = AudioSampleType.S16Le;
 		private int _channel = 0;
-		private uint _timeStamp = 0;
+		private uint _recordingTime = 0;
 
-		internal AudioStreamDeliveredEventArgs(byte[] stream, AudioSampleType type, int channel, uint timeStamp)
+		internal AudioStreamDeliveredEventArgs(byte[] stream, AudioSampleType type, int channel, uint recordingTime)
 		{
 			_stream = stream;
 			_type = type;
 			_channel = channel;
-			_timeStamp = timeStamp;
+			_recordingTime = recordingTime;
 		}
 
         /// <summary>
@@ -58,13 +54,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The timestamp of the stream buffer in milliseconds.
+        /// The recording time of the stream buffer in milliseconds.
         /// </summary>
-        public uint TimeStamp
+        public uint RecordingTime
         {
             get
 			{
-				return _timeStamp;
+				return _recordingTime;
 			}
         }
     }

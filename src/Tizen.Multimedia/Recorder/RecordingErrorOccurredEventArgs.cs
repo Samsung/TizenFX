@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -12,7 +8,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecordingErrorOccurredEventArgs : EventArgs
 	{
-		private RecorderErrorCode _error = RecorderErrorCode.ErrorDevice;
+		private RecorderErrorCode _error = RecorderErrorCode.DeviceError;
 		private RecorderState _state = RecorderState.None;
 
 		internal RecordingErrorOccurredEventArgs(RecorderErrorCode error, RecorderState state)

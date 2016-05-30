@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
@@ -37,7 +34,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetSizeLimit (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get sizelimit, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get sizelimit, " + (RecorderError)ret);
 				}
 				return val;
             }
@@ -46,7 +43,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.SetSizeLimit (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set sizelimit, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set sizelimit, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set sizelimit");
 				}
             }
@@ -70,7 +67,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetTimeLimit (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get timelimit, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get timelimit, " + (RecorderError)ret);
 				}
 				return val;
             }
@@ -79,7 +76,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.SetTimeLimit (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set timelimit, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set timelimit, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set timelimit");
 				}
             }
@@ -97,7 +94,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetAudioSampleRate (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get audio samplerate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get audio samplerate, " + (RecorderError)ret);
 				}
 				return val;
             }
@@ -106,7 +103,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.SetAudioSampleRate (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set audio samplerate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set audio samplerate, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set audio samplerate");
 				}
             }
@@ -124,16 +121,16 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetAudioEncoderBitrate (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get audio bitrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get audio bitrate, " + (RecorderError)ret);
 				}
 				return val;
             }
             set
             {
-				int ret = Interop.RecorderAttribute.SetAudioEncoderBitrate (_handle, (int)value);
+				int ret = Interop.RecorderAttribute.SetAudioEncoderBitrate (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set audio bitrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set audio bitrate, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set audio bitrate");
 				}
             }
@@ -142,7 +139,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an video encoder in bits per second.
         /// </summary>
-        public int videoBitRate
+        public int VideoBitRate
         {
             get
             {
@@ -151,16 +148,16 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetVideoEncoderBitrate (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None) 
 				{
-					Log.Error (Recorders.LogTag, "Failed to get video bitrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get video bitrate, " + (RecorderError)ret);
 				}
 				return val;
             }
             set
             {
-				int ret = Interop.RecorderAttribute.SetVideoEncoderBitrate (_handle, (int)value);
+				int ret = Interop.RecorderAttribute.SetVideoEncoderBitrate (_handle, value);
 				if ((RecorderError)ret != RecorderError.None) 
 				{
-					Log.Error (Recorders.LogTag, "Failed to set video bitrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set video bitrate, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set video bitrate");
 				}
             }
@@ -176,14 +173,19 @@ namespace Tizen.Multimedia
 				bool val;
 
 				val = Interop.RecorderAttribute.GetMute (_handle);
+				int ret = ErrorFacts.GetLastResult ();
+				if ((RecorderError)ret != RecorderError.None) 
+				{
+					Log.Error (RecorderLog.Tag, "Failed to get the mute state of recorder, " + (RecorderError)ret);
+				}
 				return val;
             }
             set
             {
-				int ret = Interop.RecorderAttribute.SetMute (_handle, (bool)value);
+				int ret = Interop.RecorderAttribute.SetMute (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set mute, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set mute, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set mute");
 				}
             }
@@ -206,7 +208,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetMotionRate (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get video motionrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get video motionrate, " + (RecorderError)ret);
 				}
 				return val;
             }
@@ -215,7 +217,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.SetMotionRate (_handle, (double)value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set video motionrate, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set video motionrate, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set video motionrate");
 				}
             }
@@ -225,7 +227,7 @@ namespace Tizen.Multimedia
         /// The number of audio channel.
         /// </summary>
         /// <remarks>
-        /// The attribute is applied only in RECORDER_STATE_CREATED state.
+        /// The attribute is applied only in Created state.
         /// For mono recording, set channel to 1.
         /// For stereo recording, set channel to 2.
         /// </remarks>
@@ -238,16 +240,16 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetAudioChannel (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get audio channel, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get audio channel, " + (RecorderError)ret);
 				}
 				return val;
             }
             set
             {
-				int ret = Interop.RecorderAttribute.SetAudioChannel (_handle, (int)value);
+				int ret = Interop.RecorderAttribute.SetAudioChannel (_handle, value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set audio channel, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set audio channel, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set audio channel");
 				}
             }
@@ -265,7 +267,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetAudioDevice (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get audio device, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get audio device, " + (RecorderError)ret);
 				}
 				return (RecorderAudioDevice)val;
             }
@@ -274,7 +276,7 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.SetAudioDevice (_handle, (int)value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set audio device, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set audio device, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set audio device");
 				}
             }
@@ -283,7 +285,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The orientation in a video metadata tag.
         /// </summary>
-        public RecorderRotation Orientation
+        public RecorderOrientation OrientationTag
         {
             get
             {
@@ -292,16 +294,16 @@ namespace Tizen.Multimedia
 				int ret = Interop.RecorderAttribute.GetOrientationTag (_handle, out val);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to get recorder orientation, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to get recorder orientation, " + (RecorderError)ret);
 				}
-				return (RecorderRotation)val;
+				return (RecorderOrientation)val;
             }
             set
             {
 				int ret = Interop.RecorderAttribute.SetOrientationTag (_handle, (int)value);
 				if ((RecorderError)ret != RecorderError.None)
 				{
-					Log.Error (Recorders.LogTag, "Failed to set recorder orientation, " + (RecorderError)ret);
+					Log.Error (RecorderLog.Tag, "Failed to set recorder orientation, " + (RecorderError)ret);
 					RecorderErrorFactory.ThrowException (ret, "Failed to set audio orientation");
 				}
             }
