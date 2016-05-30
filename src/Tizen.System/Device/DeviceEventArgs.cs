@@ -25,7 +25,7 @@ namespace Tizen.System
         /// <summary>
         /// The charging state of the battery. Charging is of type boolean which indicates true/false based on currrent charging status.
         /// </summary>
-        public bool Charging { get; internal set; }
+        public bool IsCharging { get; internal set; }
     }
 
     // Display

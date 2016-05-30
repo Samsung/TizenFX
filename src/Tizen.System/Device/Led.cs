@@ -1,5 +1,5 @@
 using System;
-
+using Tizen.UI;
 namespace Tizen.System
 {
     /// <summary>
@@ -56,10 +56,10 @@ namespace Tizen.System
         /// The Color value
         /// The first byte means opaque and the other 3 bytes are RGB values.
         /// </param>
-        public static void Play(int on, int off, uint color)
+        public static void Play(int on, int off, Color color)
         {
             //looks like only blink option is supported. So hard coded to default blink option.
-            DeviceError res = (DeviceError)Interop.Device.DeviceLedPlayCustom(on, off, color, 1);
+            DeviceError res = (DeviceError)Interop.Device.DeviceLedPlayCustom(on, off, Convert.ToUInt32(color.Argb), 1);
             if (res != DeviceError.None)
             {
                 throw DeviceExceptionFactory.CreateException(res, "failed to play Led.");

@@ -17,6 +17,7 @@ BuildRequires: mono-devel
 
 # P/Invoke Dependencies
 BuildRequires: pkgconfig(csapi-tizen)
+BuildRequires: pkgconfig(csapi-uifw)
 BuildRequires: pkgconfig(capi-system-device)
 BuildRequires: pkgconfig(capi-system-runtime-info)
 BuildRequires: pkgconfig(capi-system-info)

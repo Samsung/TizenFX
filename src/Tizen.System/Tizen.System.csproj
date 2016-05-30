@@ -53,6 +53,9 @@
     <Reference Include="Tizen">
       <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
     </Reference>
+    <Reference Include="Tizen.UI">
+      <HintPath>..\..\uifw\Tizen.UI\bin\Debug\Tizen.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Device\Battery.cs" />

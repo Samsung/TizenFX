@@ -241,7 +241,7 @@ namespace Tizen.System
                         bool val = (value.ToInt32() == 1);
                         BatteryChargingStateChangedEventArgs e = new BatteryChargingStateChangedEventArgs()
                         {
-                            Charging = val
+                            IsCharging = val
                         };
                         s_chargingStateChanged?.Invoke(null, e);
                         return true;
