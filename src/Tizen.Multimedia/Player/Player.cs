@@ -11,6 +11,7 @@
  
 using System;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
@@ -404,12 +405,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Set sound stream.
-        /// </summary>
-        /// <value> Sound stream </value>
-        //public SoundStream SoundStream { set; }
-
-        /// <summary>
         /// Set/Get Display.
         /// </summary>
         /// <value> Display configuration </value>
@@ -618,9 +613,16 @@ namespace Tizen.Multimedia
 			} 
 			else if(source.GetType() == typeof(MediaBufferSource)) 
 			{
-				//if(Interop.Player.SetMemoryBuffer(_playerHandle, ((MediaBufferSource)source)._buffer, ((MediaBufferSource)source)._buffer.Length) != 0) {
-					// throw Exception
-				//}
+
+				byte[] buff = ((MediaBufferSource)source)._buffer;
+				GCHandle pinnedArray = GCHandle.Alloc(buff, GCHandleType.Pinned);
+				IntPtr mem = pinnedArray.AddrOfPinnedObject();
+				ret = Interop.Player.SetMemoryBuffer(_playerHandle, mem, buff.Length); 
+				if(ret != (int)PlayerError.None) 
+				{
+					Log.Error(PlayerLog.LogTag, "Failed to set memory buffer" + (PlayerError)ret);
+					PlayerErrorFactory.ThrowException(ret, "Failed to set memory buffer"); 
+				}
 			}
 			else if(source.GetType() == typeof(MediaStreamSource))
 			{
@@ -697,12 +699,12 @@ namespace Tizen.Multimedia
 		public void SetAudioStreamPolicy(AudioStreamPolicy policy)
 		{
 			// TODO: policy._streamInfo is currently private. Fix this.
-			//int ret = Interop.Player.SetPlaybackRate(_playerHandle, policy._streamInfo);
-			//if(ret != (int)PlayerError.None) 
-			//{
-			//	Log.Error(PlayerLog.LogTag, "Set Audio stream policy failed" + (PlayerError)ret);
-			//	PlayerErrorFactory.ThrowException(ret, "Set Audio stream policy failed");
-			//}
+			int ret = Interop.Player.SetAudioPolicyInfo(_playerHandle, policy.Handle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Set Audio stream policy failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Set Audio stream policy failed");
+			}
 		}
 
 
