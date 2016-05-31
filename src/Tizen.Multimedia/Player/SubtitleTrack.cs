@@ -53,8 +53,10 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		internal SubtitleTrack()
+		public SubtitleTrack(string code, bool activated)
 		{
+			_languageCode = code;
+			_activated = activated;
 		}
 
 		internal string _languageCode;

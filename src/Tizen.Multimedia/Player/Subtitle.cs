@@ -100,52 +100,97 @@ namespace Tizen.Multimedia
         /// Get/Set Text track.
         /// </summary>
         /// <value> Text track list </value>
-        public IList<SubtitleTrack>  TextTrack 
+		public IEnumerable<SubtitleTrack>  TextTrack 
 		{
 			get
 			{
 				string langCode;
+				int curTrack;
 				int ret;
-				foreach(SubtitleTrack t in _textTrack) 
+				int tracks = 0;
+				List<SubtitleTrack> textTrack = new List<SubtitleTrack>();
+
+				ret = Interop.Player.GetTrackCount(_playerHandle, (int)StreamType.Text, out tracks);
+				if(ret == (int)PlayerError.None)
 				{
-					ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Text, _textTrack.IndexOf(t), out langCode);
-					if(ret != (int)PlayerError.None) 
+					ret = Interop.Player.GetCurrentTrack(_playerHandle, (int)StreamType.Text, out curTrack);
+					if(ret == (int)PlayerError.None && tracks > 0)
 					{
-						Log.Error(PlayerLog.LogTag, "Getting text track language code failed" + (PlayerError)ret);
+						for(int idx = 0; idx < tracks; idx++)
+						{
+							bool activated = (curTrack == idx ? true : false);
+							ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Text, idx, out langCode);
+							if(ret == (int)PlayerError.None) 
+							{
+								SubtitleTrack st = new SubtitleTrack(langCode, activated);
+								textTrack.Add(st);
+							}
+							else
+							{
+								Log.Error(PlayerLog.LogTag, "Getting text track language code failed" + (PlayerError)ret);
+							}
+						}
 					}
-					t.LanguageCode = langCode;
+					else
+					{
+						Log.Error(PlayerLog.LogTag, "Getting current track index failed" + (PlayerError)ret);
+					}
 				}
-				return _textTrack;
-			}
-			set
-			{
-				_textTrack = value;
+				else
+				{
+					Log.Error(PlayerLog.LogTag, "Getting track count failed" + (PlayerError)ret);
+				}
+
+				return textTrack;
 			}
 		}
 
         /// <summary>
-        /// Get/Set Text track.
+        /// Get/Set Audio track.
         /// </summary>
         /// <value> Audio track list </value>
-        public IList<SubtitleTrack> AudioTrack 
+		public IEnumerable<SubtitleTrack> AudioTrack 
 		{
 			get
 			{
 				string langCode;
-				foreach(SubtitleTrack t in _audioTrack) 
+				int curTrack;
+				int ret;
+				int tracks = 0;
+				List<SubtitleTrack> audioTrack = new List<SubtitleTrack>();
+
+				ret = Interop.Player.GetTrackCount(_playerHandle, (int)StreamType.Audio, out tracks);
+				if(ret == (int)PlayerError.None)
 				{
-					int ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Audio, _audioTrack.IndexOf(t), out langCode);
-					if(ret != (int)PlayerError.None) 
+					ret = Interop.Player.GetCurrentTrack(_playerHandle, (int)StreamType.Audio, out curTrack);
+					if(ret == (int)PlayerError.None && tracks > 0)
 					{
-						Log.Error(PlayerLog.LogTag, "Getting audio track language code failed" + (PlayerError)ret);
+						for(int idx = 0; idx < tracks; idx++)
+						{
+							bool activated = (curTrack == idx ? true : false);
+							ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Audio, idx, out langCode);
+							if(ret == (int)PlayerError.None) 
+							{
+								SubtitleTrack st = new SubtitleTrack(langCode, activated);
+								audioTrack.Add(st);
+							}
+							else
+							{
+								Log.Error(PlayerLog.LogTag, "Getting audio track language code failed" + (PlayerError)ret);
+							}
+						}
 					}
-					t.LanguageCode = langCode;
+					else
+					{
+						Log.Error(PlayerLog.LogTag, "Getting audio track index failed" + (PlayerError)ret);
+					}
 				}
-				return _audioTrack;
-			}
-			set
-			{
-				_audioTrack = value;
+				else
+				{
+					Log.Error(PlayerLog.LogTag, "Getting audio track count failed" + (PlayerError)ret);
+				}
+
+				return audioTrack;
 			}
 		}
 
@@ -153,26 +198,48 @@ namespace Tizen.Multimedia
         /// Get/Set video track.
         /// </summary>
         /// <value> video track list </value>
-        public IList<SubtitleTrack> VideoTrack 
+		public IEnumerable<SubtitleTrack> VideoTrack 
 		{
 			get
 			{
 				string langCode;
+				int curTrack;
 				int ret;
-				foreach(SubtitleTrack t in _videoTrack) 
+				int tracks = 0;
+				List<SubtitleTrack> videoTrack = new List<SubtitleTrack>();
+
+				ret = Interop.Player.GetTrackCount(_playerHandle, (int)StreamType.Video, out tracks);
+				if(ret == (int)PlayerError.None)
 				{
-					ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Video, _videoTrack.IndexOf(t), out langCode);
-					if(ret != (int)PlayerError.None) 
+					ret = Interop.Player.GetCurrentTrack(_playerHandle, (int)StreamType.Video, out curTrack);
+					if(ret == (int)PlayerError.None && tracks > 0)
 					{
-						Log.Error(PlayerLog.LogTag, "Getting video track language code failed" + (PlayerError)ret);
+						for(int idx = 0; idx < tracks; idx++)
+						{
+							bool activated = (curTrack == idx ? true : false);
+							ret = Interop.Player.GetTrackLanguageCode(_playerHandle, (int)StreamType.Video, idx, out langCode);
+							if(ret == (int)PlayerError.None) 
+							{
+								SubtitleTrack st = new SubtitleTrack(langCode, activated);
+								videoTrack.Add(st);
+							}
+							else
+							{
+								Log.Error(PlayerLog.LogTag, "Getting video track language code failed" + (PlayerError)ret);
+							}
+						}
 					}
-					t.LanguageCode = langCode;
+					else
+					{
+						Log.Error(PlayerLog.LogTag, "Getting video track index failed" + (PlayerError)ret);
+					}
 				}
-				return _videoTrack;
-			}
-			set
-			{
-				_videoTrack = value;
+				else
+				{
+					Log.Error(PlayerLog.LogTag, "Getting video track count failed" + (PlayerError)ret);
+				}
+
+				return videoTrack;
 			}
 		}
 
@@ -202,10 +269,6 @@ namespace Tizen.Multimedia
 		{
 			_path = path;
 		}
-
-		IList<SubtitleTrack>  _textTrack;
-		IList<SubtitleTrack>  _audioTrack;
-		IList<SubtitleTrack>  _videoTrack;
 
 		internal IntPtr _playerHandle;
 		internal string _path;
