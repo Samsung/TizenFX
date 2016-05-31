@@ -67,7 +67,10 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Push Media stream </summary>
 		/// <param name="packet"> media packet</param>
-		//public void PushMediaStream(MediaPacket packet);
+		/// TODO: Implement this when MediaPacket is ready
+		//public void PushMediaStream(MediaPacket packet)
+		//{
+		//}
 
 		public MediaStreamSource()
 		{

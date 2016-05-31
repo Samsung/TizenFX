@@ -127,7 +127,6 @@ namespace Tizen.Multimedia
 				Log.Error(PlayerLog.LogTag, "Setting PlaybackInterrupted callback failed" + (PlayerError)ret);
 				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackInterrupted callback failed"); 
 			}
-			
 		}
 
 		private void UnregisterPlaybackInterruptedEvent()
