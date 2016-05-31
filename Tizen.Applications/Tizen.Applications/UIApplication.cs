@@ -16,6 +16,20 @@ namespace Tizen.Applications
     /// </summary>
     public class UIApplication : Application
     {
+        private Interop.Application.UIAppLifecycleCallbacks _callbacks;
+
+        /// <summary>
+        /// Initializes UIApplication class.
+        /// </summary>
+        public UIApplication()
+        {
+            _callbacks.OnCreate = new Interop.Application.AppCreateCallback(OnCreateNative);
+            _callbacks.OnTerminate = new Interop.Application.AppTerminateCallback(OnTerminateNative);
+            _callbacks.OnAppControl = new Interop.Application.AppControlCallback(OnAppControlNative);
+            _callbacks.OnResume = new Interop.Application.AppResumeCallback(OnResumeNative);
+            _callbacks.OnPause = new Interop.Application.AppPauseCallback(OnPauseNative);
+        }
+
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
@@ -42,31 +56,8 @@ namespace Tizen.Applications
         {
             base.Run(args);
 
-            Interop.Application.UIAppLifecycleCallbacks ops;
-            ops.OnCreate = (data) =>
-            {
-                SendCreate();
-                return true;
-            };
-            ops.OnTerminate = (data) =>
-            {
-                OnTerminate();
-            };
-            ops.OnAppControl = (appControlHandle, data) =>
-            {
-                OnAppControlReceived(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
-            };
-            ops.OnResume = (data) =>
-            {
-                OnResume();
-            };
-            ops.OnPause = (data) =>
-            {
-                OnPause();
-            };
-
             TizenSynchronizationContext.Initialize();
-            Interop.Application.Main(args.Length, args, ref ops, IntPtr.Zero);
+            Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
         }
 
         /// <summary>
@@ -95,7 +86,7 @@ namespace Tizen.Applications
             Paused?.Invoke(this, EventArgs.Empty);
         }
 
-        private void SendCreate()
+        private bool OnCreateNative(IntPtr data)
         {
             Window = new Window("C# UI Application");
             Window.Closed += (s, e) =>
@@ -103,6 +94,27 @@ namespace Tizen.Applications
                 Exit();
             };
             OnCreate();
+            return true;
+        }
+
+        private void OnTerminateNative(IntPtr data)
+        {
+            OnTerminate();
+        }
+
+        private void OnAppControlNative(IntPtr appControlHandle, IntPtr data)
+        {
+            OnAppControlReceived(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
+        }
+
+        private void OnResumeNative(IntPtr data)
+        {
+            OnResume();
+        }
+
+        private void OnPauseNative(IntPtr data)
+        {
+            OnPause();
         }
     }
 }

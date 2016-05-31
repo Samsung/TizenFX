@@ -15,6 +15,18 @@ namespace Tizen.Applications
     /// </summary>
     public class ServiceApplication : Application
     {
+        private Interop.Service.ServiceAppLifecycleCallbacks _callbacks;
+
+        /// <summary>
+        /// Initializes ServiceApplication class.
+        /// </summary>
+        public ServiceApplication()
+        {
+            _callbacks.OnCreate = new Interop.Service.ServiceAppCreateCallback(OnCreateNative);
+            _callbacks.OnTerminate = new Interop.Service.ServiceAppTerminateCallback(OnTerminateNative);
+            _callbacks.OnAppControl = new Interop.Service.ServiceAppControlCallback(OnAppControlNative);
+        }
+
         /// <summary>
         /// Runs the service application's main loop.
         /// </summary>
@@ -23,23 +35,8 @@ namespace Tizen.Applications
         {
             base.Run(args);
 
-            Interop.Service.ServiceAppLifecycleCallbacks ops;
-            ops.OnCreate = (data) =>
-            {
-                OnCreate();
-                return true;
-            };
-            ops.OnTerminate = (data) =>
-            {
-                OnTerminate();
-            };
-            ops.OnAppControl = (appControlHandle, data) =>
-            {
-                OnAppControlReceived(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
-            };
-
             TizenSynchronizationContext.Initialize();
-            Interop.Service.Main(args.Length, args, ref ops, IntPtr.Zero);
+            Interop.Service.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
         }
 
         /// <summary>
@@ -48,6 +45,22 @@ namespace Tizen.Applications
         public override void Exit()
         {
             Interop.Service.Exit();
+        }
+
+        private bool OnCreateNative(IntPtr data)
+        {
+            OnCreate();
+            return true;
+        }
+
+        private void OnTerminateNative(IntPtr data)
+        {
+            OnTerminate();
+        }
+
+        private void OnAppControlNative(IntPtr appControlHandle, IntPtr data)
+        {
+            OnAppControlReceived(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
         }
     }
 }

@@ -24,10 +24,20 @@ namespace Tizen.Applications
         private Interop.AppEvent.SafeAppEventHandle _lowMemoryNativeHandle;
         private Interop.AppEvent.SafeAppEventHandle _localeChangedNativeHandle;
 
+        private Interop.AppEvent.AppEventCallback _appEventCallback;
+
         private object _lock = new object();
 
         private DirectoryInfo _directoryInfo;
         private ApplicationInfo _applicationInfo;
+
+        /// <summary>
+        /// Initializes Application instance.
+        /// </summary>
+        public Application()
+        {
+            _appEventCallback = new Interop.AppEvent.AppEventCallback(HandleAppEvent);
+        }
 
         /// <summary>
         /// Occurs when the application is launched.
@@ -113,8 +123,8 @@ namespace Tizen.Applications
 
             s_CurrentApplication = this;
 
-            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, HandleAppEvent, IntPtr.Zero, out _lowMemoryNativeHandle);
-            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LanguageSet, HandleAppEvent, IntPtr.Zero, out _localeChangedNativeHandle);
+            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, _appEventCallback, IntPtr.Zero, out _lowMemoryNativeHandle);
+            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LanguageSet, _appEventCallback, IntPtr.Zero, out _localeChangedNativeHandle);
         }
 
         /// <summary>
