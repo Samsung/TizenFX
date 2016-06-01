@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
+
+using System;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 
@@ -6,11 +14,11 @@ internal static partial class Interop
 {
     internal static partial class Download
     {
-        //capi-web-url-download
         // Request class
-        //Callback delegate for event
-        internal delegate void StateChangedCallback(int requestId, int state, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void StateChangedCallback(int requestId, int state, IntPtr userData);
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void ProgressChangedCallback(int requestId, ulong receivedSize, IntPtr userData);
 
         [DllImport(Libraries.Download, EntryPoint = "download_create")]
@@ -77,6 +85,7 @@ internal static partial class Interop
         internal static extern int UnsetProgressCallback(int requestId);
 
         // Notification class
+
         [DllImport(Libraries.Download, EntryPoint = "download_set_notification_title")]
         internal static extern int SetNotificationTitle(int requestId, string title);
         [DllImport(Libraries.Download, EntryPoint = "download_get_notification_title")]
