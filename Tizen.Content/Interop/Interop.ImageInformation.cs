@@ -58,7 +58,7 @@ internal static partial class Interop
         internal static extern int GetHeight(SafeImageInformationHandle imageInformationHandle, out int width);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_update_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UpdateToDB(SafeImageInformationHandle imageInformationHandle);
+        internal static extern int UpdateToDB(IntPtr imageInformationHandle);
 
         internal sealed class SafeImageInformationHandle : SafeHandle
         {

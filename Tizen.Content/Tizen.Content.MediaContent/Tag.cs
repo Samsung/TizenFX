@@ -84,7 +84,7 @@ namespace Tizen.Content.MediaContent
         public Tag(string tagName)
         {
             Name = tagName;
-            ContentManager.ConnectToDB();
+            ContentManager.Database.ConnectToDB();
             MediaContentError res = (MediaContentError)Interop.Tag.InsertToDb(tagName, out _tagHandle);
             if (res != MediaContentError.None)
             {

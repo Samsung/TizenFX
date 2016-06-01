@@ -22,7 +22,7 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _bookmarkHandle;
         private bool _disposedValue = false;
-        internal readonly DateTime _timeStamp;
+        internal readonly uint _offset;
         internal readonly String _thumbnailPath;
         internal readonly String _mediaId;
         internal MediaBookmark(IntPtr handle)
@@ -71,29 +71,36 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The bookmark time offset (in milliseconds)
         /// </summary>
-        public uint TimeStamp
+        public uint Offset
         {
             get
             {
                 uint time;
                 MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out time);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get marked time for the bookmark");
-                }
                 return time;
+            }
+        }
+
+        /// <summary>
+        /// The bookmark time offset (in milliseconds)
+        /// </summary>
+        internal string MediaId
+        {
+            get
+            {
+                return _mediaId;
             }
         }
 
         /// <summary>
         /// Inserts a new bookmark in media on the specified time offset to the media database.
         /// </summary>
-        /// <param name="timeStamp">The bookmark time offset (in seconds)</param>
+        /// <param name="offset">The bookmark time offset (in seconds)</param>
         /// <param name="thumbnailPath">The thumbnail path of video bookmark. If the media type is audio, then thumbnail is null.</param>
-        public MediaBookmark(MediaInformation content, DateTime time, string thumbnailPath)
+        public MediaBookmark(MediaInformation content, uint offset, string thumbnailPath)
         {
             _mediaId = content.MediaId;
-            _timeStamp = time;
+            _offset = offset;
             if(thumbnailPath != null)
             _thumbnailPath = thumbnailPath;
         }

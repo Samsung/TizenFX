@@ -133,7 +133,7 @@ namespace Tizen.Content.MediaContent
         public PlayList(string name)
         {
             Name = name;
-            ContentManager.ConnectToDB();
+            ContentManager.Database.ConnectToDB();
             MediaContentError res = (MediaContentError) Interop.Playlist.InsertToDb(name, out _playlistHandle);
             if(res != MediaContentError.None)
             {
