@@ -6,3 +6,5 @@ obj/
 Test/
 *.sln
 *.csproj.user
+*.tpk
+!tct-applications-tizen-tests/lib/*.dll

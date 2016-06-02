@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.test.tizen.applications" version="1.0.0">
+    <ui-application appid="org.test.tizen.applications" exec="tct-applications-tizen-tests" type="capp" multiple="false" taskmanage="true" nodisplay="false">
+        <icon>icon.png</icon>
+        <label>tct-applications-tizen-tests</label>
+    </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        <privilege>http://tizen.org/privilege/packagemanager.clearcache</privilege>
+        <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+    </privileges>
+</manifest>
