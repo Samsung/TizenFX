@@ -1026,47 +1026,6 @@ namespace Tizen.System.SystemSettings
             }
         }
 
-        private static readonly Interop.Settings.SystemSettingsChangedCallback s_defaultFontTypeChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
-        {
-            string defaultFontType = SystemSettings.DefaultFontType;
-            DefaultFontTypeChangedEventArgs eventArgs = new DefaultFontTypeChangedEventArgs(defaultFontType);
-            s_defaultFontTypeChanged?.Invoke(null, eventArgs);
-        };
-        private static event EventHandler<DefaultFontTypeChangedEventArgs> s_defaultFontTypeChanged;
-        /// <summary>
-        /// DefaultFontTypeChanged event is triggered when the current system default font type is changed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e">A DefaultFontTypeChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<DefaultFontTypeChangedEventArgs> DefaultFontTypeChanged
-        {
-            add
-            {
-                if (s_defaultFontTypeChanged == null)
-                {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DefaultFontType, s_defaultFontTypeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
-                    {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
-                    }
-                }
-                s_defaultFontTypeChanged += value;
-            }
-
-            remove
-            {
-                s_defaultFontTypeChanged -= value;
-                if (s_defaultFontTypeChanged == null)
-                {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DefaultFontType);
-                    if (ret != SystemSettingsError.None)
-                    {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
-                    }
-                }
-            }
-        }
-
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_localeCountryChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
             string localeCountry = SystemSettings.LocaleCountry;
