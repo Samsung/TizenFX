@@ -94,7 +94,7 @@ namespace Tizen.Content.MediaContent
             int result = Interop.MediaInformation.MoveToDB(_handle, destination);
             if ((MediaContentError)result != MediaContentError.None)
             {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to move");
             }
         }
 
@@ -108,7 +108,7 @@ namespace Tizen.Content.MediaContent
             int result = Interop.MediaInformation.RefreshMetadataToDB(MediaId);
             if ((MediaContentError)result != MediaContentError.None)
             {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to move");
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Tizen;
 
 namespace Tizen.Content.MediaContent
 {
@@ -8,6 +9,7 @@ namespace Tizen.Content.MediaContent
 
         internal static Exception CreateException(MediaContentError err, string msg)
         {
+            Log.Info(Globals.LogTag, "Got Error " + err + " throwing Exception with msg " + msg);
             Exception exp;
             switch (err)
             {
