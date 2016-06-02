@@ -54,9 +54,9 @@ cp %{SOURCE1} .
 # build dll
 mcs -target:library -out:%{dllname} -keyfile:Tizen.System.Sensor/Tizen.System.Sensor.snk -pkg:'csapi-tizen'\
   Tizen.System.Sensor/Properties/AssemblyInfo.cs \
-  Tizen.System.Sensor/Sensor/Plugins/*.cs \
-  Tizen.System.Sensor/Sensor/EventArgs/*.cs \
-  Tizen.System.Sensor/Sensor/*.cs \
+  Tizen.System.Sensor/Tizen.System.Sensor/Plugins/*.cs \
+  Tizen.System.Sensor/Tizen.System.Sensor/EventArgs/*.cs \
+  Tizen.System.Sensor/Tizen.System.Sensor/*.cs \
   Tizen.System.Sensor/Interop/*.cs
 # check p/invoke
 if [ -x %{dllname} ]; then
