@@ -612,11 +612,9 @@ namespace Tizen.Multimedia
 			} 
 			else if(source.GetType() == typeof(MediaBufferSource)) 
 			{
-
-				byte[] buff = ((MediaBufferSource)source)._buffer;
-				GCHandle pinnedArray = GCHandle.Alloc(buff, GCHandleType.Pinned);
+				GCHandle pinnedArray = GCHandle.Alloc(((MediaBufferSource)source)._buffer, GCHandleType.Pinned);
 				IntPtr mem = pinnedArray.AddrOfPinnedObject();
-				ret = Interop.Player.SetMemoryBuffer(_playerHandle, mem, buff.Length); 
+				ret = Interop.Player.SetMemoryBuffer(_playerHandle, mem, ((MediaBufferSource)source)._buffer.Length); 
 				if(ret != (int)PlayerError.None) 
 				{
 					Log.Error(PlayerLog.LogTag, "Failed to set memory buffer" + (PlayerError)ret);
