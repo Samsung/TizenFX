@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -40,42 +41,6 @@ namespace Tizen.Content.MediaContent
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             int result = Interop.MediaInformation.GetTagCount(MediaId, handle, out count);
-            if ((MediaContentError)result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
-            return count;
-        }
-
-        /// <summary>
-        /// Gets the number of bookmarks for the passed filter in the given media ID from the media database.
-        /// </summary>
-        /// <returns>
-        /// int count</returns>
-        /// <param name="filter">The Filter for matching BookMarks</param>
-        public int GetMediaBookMarkCount(ContentFilter filter)
-        {
-            int count = 0;
-            IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError result = (MediaContentError) Interop.MediaInformation.GetBookmarkCount(MediaId, handle, out count);
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Error Occured with error code: ");
-            }
-            return count;
-        }
-
-        /// <summary>
-        /// Gets the number of faces for the passed filter in the given media ID from the media database.
-        /// </summary>
-        /// <returns>
-        /// int count</returns>
-        /// <param name="filter">The Filter for matching Face</param>
-        public int GetFaceCount(ContentFilter filter)
-        {
-            int count = 0;
-            IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            int result = Interop.MediaInformation.GetFaceCount(MediaId, handle, out count);
             if ((MediaContentError)result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
@@ -113,38 +78,72 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Cancels the creation of image's thumbnail for the given media.
-        /// </summary>
-        /// <returns>
-        /// void </returns>
-        public void CancelThumbnail()
-        {
-            int result = Interop.MediaInformation.CancelThumbnail(_handle);
-            if ((MediaContentError)result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
-        }
-
-        /// <summary>
         /// Creates a thumbnail image for the given media, asynchronously
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
-        public Task<CreateThumbnailResult> CreateThumbnailAsync()
+        public Task<string> CreateThumbnailAsync()
         {
-            var task = new TaskCompletionSource<CreateThumbnailResult>();
+            var task = new TaskCompletionSource<string>();
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                CreateThumbnailResult response = new CreateThumbnailResult();
-                response.Result = createResult;
-                response.FilePath = path;
-                task.SetResult(response);
+                if (createResult == MediaContentError.None)
+                {
+                    task.SetResult(path);
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)createResult);
+                    task.SetException(MediaContentErrorFactory.CreateException((MediaContentError)createResult, "Failed to create Thumbnail"));
+                }
             };
             int result = Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero);
             if ((MediaContentError)result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+            }
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Creates a thumbnail image for the given media, asynchronously
+        /// which can be cancelled
+        /// </summary>
+        /// <returns>
+        /// Task for creation of Thumbnail </returns>
+        public Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
+        {
+            var task = new TaskCompletionSource<string>();
+            cancellationToken.Register(() => {
+                Log.Info(Globals.LogTag, "Cancel thumbnail Called");
+                int resultCancel = Interop.MediaInformation.CancelThumbnail(_handle);
+                if ((MediaContentError)resultCancel != MediaContentError.None)
+                {
+                    Log.Error(Globals.LogTag, "Cancel thumbnail failed with error code: " + (MediaContentError)resultCancel);
+                }
+                else
+                {
+                    task.SetCanceled();
+                }
+            });
+            Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
+            {
+                Log.Info(Globals.LogTag, "Thumbnail Callabck Received");
+                if (createResult == MediaContentError.None)
+                {
+                    task.SetResult(path);
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)createResult);
+                    task.SetException(MediaContentErrorFactory.CreateException((MediaContentError)createResult, "Failed to create Thumbnail"));
+                }
+            };
+            int result = Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero);
+            if ((MediaContentError)result != MediaContentError.None)
+            {
+                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                task.SetException(MediaContentErrorFactory.CreateException((MediaContentError)result, "Creating Thumbnail Fail"));
             }
             return task.Task;
         }
@@ -167,72 +166,14 @@ namespace Tizen.Content.MediaContent
                 result = (MediaContentError)Interop.Tag.Clone(out newHandle, tagHandle);
                 if (result != MediaContentError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to clone Tag" );
+                    Log.Error(Globals.LogTag, "Failed to clone Tag");
                 }
                 Tag tag = new Tag(newHandle);
                 coll.Add(tag);
                 return true;
             };
-            result = (MediaContentError) Interop.MediaInformation.GetAllTags(MediaId, handle, tagsCallback, IntPtr.Zero);
+            result = (MediaContentError)Interop.MediaInformation.GetAllTags(MediaId, handle, tagsCallback, IntPtr.Zero);
             if (result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
-            task.SetResult(coll);
-            return task.Task;
-        }
-
-        /// <summary>
-        /// Iterates through the media bookmark in the given media info from the media database.
-        /// </summary>
-        /// <returns>
-        /// Task to get all the BookMarks </returns>
-        /// <param name="filter"> filter for the Tags</param>
-        public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
-        {
-            var task = new TaskCompletionSource<IEnumerable<MediaBookmark>>();
-            MediaContentError result;
-            Collection<MediaBookmark> coll = new Collection<MediaBookmark>();
-            IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            Interop.MediaInformation.MediaBookMarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
-            {
-                IntPtr newHandle;
-                result = (MediaContentError)Interop.MediaBookmark.Clone(out newHandle, handle);
-                if (result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to clone Tag");
-                }
-                MediaBookmark bookmark = new MediaBookmark(newHandle);
-                coll.Add(bookmark);
-                return true;
-            };
-            result = (MediaContentError) Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, bookmarksCallback, IntPtr.Zero);
-            if (result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
-            task.SetResult(coll);
-            return task.Task;
-        }
-
-        /// <summary>
-        /// Iterates through the media files with optional media_id in the given face face from the media database.
-        /// </summary>
-        /// <returns>
-        /// Task to get all the MediaFaces </returns>
-        /// <param name="filter"> filter for the Tags</param>
-        public Task<IEnumerable<MediaFace>> GetMediaFacesAsync(ContentFilter filter)
-        {
-            var task = new TaskCompletionSource<IEnumerable<MediaFace>>();
-            Collection<MediaFace> coll = new Collection<MediaFace>();
-            Interop.MediaInformation.MediaFaceCallback faceCallback = (IntPtr facehandle, IntPtr userData) =>
-            {
-                MediaFace face = new MediaFace(facehandle);
-                coll.Add(face);
-                return true;
-            };
-            int result = Interop.MediaInformation.GetAllFaces(MediaId, filter.Handle, faceCallback, IntPtr.Zero);
-            if ((MediaContentError)result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
             }
@@ -680,7 +621,7 @@ namespace Tizen.Content.MediaContent
                 int result = Interop.MediaInformation.SetAuthor(_handle, value);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result,"failed to set author");
+                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set author");
                 }
             }
         }

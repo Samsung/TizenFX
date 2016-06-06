@@ -140,16 +140,17 @@ namespace Tizen.Content.MediaContent
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             MediaContentError res;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            Interop.Storage.MediaInfoCallback callback = (Interop.MediaInformation.SafeMediaInformationHandle mediaHandle, IntPtr data) =>
+            Interop.Storage.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle.DangerousGetHandle());
+                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
                 if (res != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
                 }
                 MediaInformation info = new MediaInformation(newHandle);
                 mediaContents.Add(info);
+                return true;
             };
             res = (MediaContentError)Interop.Storage.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)

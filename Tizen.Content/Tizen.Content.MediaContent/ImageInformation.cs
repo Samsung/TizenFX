@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Tizen.Content.MediaContent
 {
@@ -232,6 +233,80 @@ namespace Tizen.Content.MediaContent
                 Tizen.Log.Info(Globals.LogTag, "Received isBurst:" + isBurst);
                 return isBurst;
             }
+        }
+
+        /// <summary>
+        /// Iterates through the media files with optional media_id in the given face face from the media database.
+        /// </summary>
+        /// <returns>
+        /// Task to get all the MediaFaces </returns>
+        /// <param name="filter"> filter for the Tags</param>
+        public Task<IEnumerable<MediaFace>> GetMediaFacesAsync(ContentFilter filter)
+        {
+            var task = new TaskCompletionSource<IEnumerable<MediaFace>>();
+            Collection<MediaFace> coll = new Collection<MediaFace>();
+            Interop.MediaInformation.MediaFaceCallback faceCallback = (IntPtr facehandle, IntPtr userData) =>
+            {
+                MediaFace face = new MediaFace(facehandle);
+                coll.Add(face);
+                return true;
+            };
+            int result = Interop.MediaInformation.GetAllFaces(MediaId, filter.Handle, faceCallback, IntPtr.Zero);
+            if ((MediaContentError)result != MediaContentError.None)
+            {
+                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+            }
+            task.SetResult(coll);
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Gets the number of faces for the passed filter in the given media ID from the media database.
+        /// </summary>
+        /// <returns>
+        /// int count</returns>
+        /// <param name="filter">The Filter for matching Face</param>
+        public int GetMediaFaceCount(ContentFilter filter)
+        {
+            int count = 0;
+            IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
+            int result = Interop.MediaInformation.GetFaceCount(MediaId, handle, out count);
+            if ((MediaContentError)result != MediaContentError.None)
+            {
+                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+            }
+            return count;
+        }
+
+
+        /// <summary>
+        /// Inserts a MediaFace item to the media database
+        /// </summary>
+        /// <param name="face">The MediaFace item to be inserted</param>
+        public MediaFace AddFace(ImageInformation image, FaceRect rect)
+        {
+            MediaFace face = new MediaFace(image, rect);
+            ContentManager.Database.Insert(face);
+            return face;
+        }
+
+        /// <summary>
+        /// Deletes a MediaFace from the media database.
+        /// For other types Unsupported exception is thrown.
+        /// </summary>
+        /// <param name="face">The face instance to be deleted</param>
+        public void DeleteFace(MediaFace face)
+        {
+            ContentManager.Database.Delete(face);
+        }
+
+        /// <summary>
+        /// Updates a media face instance in the media database
+        /// </summary>
+        /// <param name="mediaInfo">The MediaFace object to be updated</param>
+        public void UpdateFace(MediaFace face)
+        {
+            ContentManager.Database.Update(face);
         }
 
         internal IntPtr ImageHandle

@@ -68,7 +68,7 @@ internal static partial class Interop
         internal delegate bool MediaPlaylistCallback(IntPtr playListHandle, IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaylistMemberCallback(int playListMemberId, IntPtr mediaInformation, IntPtr data);
+        internal delegate bool PlaylistMemberCallback(int playListMemberId, IntPtr mediaInformation, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_foreach_playlist_from_db")]
         internal static extern int ForeachPlaylistFromDb(IntPtr filter, MediaPlaylistCallback callback, IntPtr user_data);

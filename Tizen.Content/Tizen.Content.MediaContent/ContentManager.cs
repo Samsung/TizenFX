@@ -9,8 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using System.Threading;
+
 /// <summary>
 /// The Media Content API provides functions, enumerations used in the entire Content Service.
 /// </summary>
@@ -35,7 +37,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public static class ContentManager
     {
-        private static ContentDatabase s_contentDB = new ContentDatabase();
+        private static readonly ContentDatabase s_contentDB = new ContentDatabase();
         public static ContentDatabase Database
         {
             get
@@ -43,20 +45,6 @@ namespace Tizen.Content.MediaContent
                 return s_contentDB;
             }
         }
-
-        /// <summary>
-        /// Requests to cancel the media folder scanning.
-        /// </summary>
-        /// <param name="folderPath">The folder path</param>
-        public static void CancelScanningFolder(string folderPath)
-        {
-            MediaContentError result = (MediaContentError)Interop.Content.CancelScanFolder(folderPath);
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Failed scan");
-            }
-        }
-
 
         /// <summary>
         /// Requests to scan a media file.
@@ -108,21 +96,130 @@ namespace Tizen.Content.MediaContent
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
-        public static Task StartScanningFolderAsync(string folderPath, bool recursive = true)
+        public static Task ScanFolderAsync(string folderPath, bool recursive = true)
         {
             var task = new TaskCompletionSource<int>();
+
             Interop.Content.MediaScanCompletedCallback scanCompleted = (MediaContentError scanResult, IntPtr data) =>
             {
-                Console.WriteLine("Scan Result: "+ scanResult);
+                if (scanResult != MediaContentError.None)
+                {
+                    task.SetException(MediaContentErrorFactory.CreateException(scanResult, "Failed scan"));
+                }
                 task.SetResult((int)scanResult);
             };
-
-            MediaContentError result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero);
+            DirectoryInfo dir = new DirectoryInfo(Path.GetFullPath(folderPath));
+            MediaContentError result = MediaContentError.None;
+            if (dir.Exists)
+            {
+                result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero);
+            }
+            else
+            {
+                result = MediaContentError.InavlidParameter;
+                task.SetException(MediaContentErrorFactory.CreateException(result, "Scan directory does not exist"));
+            }
             if (result != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(result, "Failed scan");
+                task.SetException(MediaContentErrorFactory.CreateException(result, "Failed scan"));
             }
             return task.Task;
+        }
+
+        internal static Interop.Content.MediaScanCompletedCallback scanCompleted = null;
+        internal static Object l = new Object();
+        /// <summary>
+        /// Requests to scan a media folder, asynchronously.
+        /// </summary>
+        /// <param name="folderPath">The folder path</param>
+        /// <remarks>
+        /// This function requests to scan a media folder to the media server with given completed callback function.
+        /// ContentScanCompleted event will be truggered when the scanning is finished.
+        /// The sub folders are also scanned,if there are sub folders in that folder.
+        /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
+        /// </remarks>
+        public static Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken, bool recursive = true)
+        {
+            var task = new TaskCompletionSource<int>();
+            bool taskCompleted = false;
+
+            cancellationToken.Register(() =>
+            {
+                Tizen.Log.Info("TCT", "Register ThreadId: " + Thread.CurrentThread.ManagedThreadId);
+
+                lock (l)
+                {
+                    Tizen.Log.Info("TCT", "Cancellation delegate: Taking Lock on l");
+                    if (!taskCompleted)
+                    {
+                        taskCompleted = true;
+                        Log.Info("TCT", "Cancellation requested, Trying to stop scan");
+                        MediaContentError res = (MediaContentError)Interop.Content.CancelScanFolder(folderPath);
+                        Log.Info("TCT", "CancelScanFolder executed. ");
+
+                        if (res != MediaContentError.None)
+                        {
+                            Tizen.Log.Info("TCT", "Failed CancelScanFolder. Error: " + res);
+                        }
+                        else {
+                            Tizen.Log.Info("TCT", "Folder scan was successfully cancelled. CancelScanFolder was successfully executed.");
+                            task.SetCanceled();
+                        }
+                    }
+                    else {
+                        Tizen.Log.Info("TCT", "Request rejected. FolderScan already completed");
+                    }
+                    Tizen.Log.Info("TCT", "Cancellation delegate: Releasing lock on l");
+                }
+            });
+            scanCompleted = (MediaContentError scanResult, IntPtr data) =>
+            {
+                Tizen.Log.Info("TCT", "Scan Callback ScanResult: " + scanResult);
+                Tizen.Log.Info("TCT", "Scan Callback ThreadId: " + Thread.CurrentThread.ManagedThreadId);
+                lock (l)
+                {
+                    Tizen.Log.Info("TCT", "Scan completed cb: Taking Lock on l");
+                    if (!taskCompleted)
+                    {
+                        taskCompleted = true;
+                        Tizen.Log.Info("TCT", "Scan folder callback recieved.");
+                        if (scanResult != MediaContentError.None)
+                        {
+                            Tizen.Log.Info("TCT", "Scan folder callback got error in scanResult. Error: " + scanResult);
+                            task.SetException(MediaContentErrorFactory.CreateException(scanResult, "Failed scan"));
+                        }
+                        Tizen.Log.Info("TCT", "Scan folder callback does not have any error");
+
+                        task.SetResult((int)scanResult);
+                    }
+                    else {
+                        Tizen.Log.Info("TCT", "ScanFolder task already cancelled/completed");
+                    }
+                    Tizen.Log.Info("TCT", "Scan completed cb: Releasing Lock on l");
+                }
+            };
+
+            DirectoryInfo dir = new DirectoryInfo(Path.GetFullPath(folderPath));
+            MediaContentError result = MediaContentError.None;
+            if (dir.Exists)
+            {
+                Tizen.Log.Info("TCT", "Scan folder start");
+                result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero);
+                Tizen.Log.Info("TCT", "Scan folder end");
+            }
+            else
+            {
+                result = MediaContentError.InavlidParameter;
+                task.SetException(MediaContentErrorFactory.CreateException(result, "Scan directory does not exist"));
+            }
+            if (result != MediaContentError.None)
+            {
+                task.SetException(MediaContentErrorFactory.CreateException(result, "Failed scan: " + result));
+            }
+            Tizen.Log.Info("TCT", "Before task return");
+
+            return task.Task;
+
         }
 
         /// <summary>
@@ -138,12 +235,16 @@ namespace Tizen.Content.MediaContent
             MediaContentError res = MediaContentError.None;
             Interop.MediaInformation.MediaInsertCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
+                if (error != MediaContentError.None)
+                {
+                    task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add batch media"));
+                }
                 task.SetResult((int)error);
             };
             res = (MediaContentError)Interop.MediaInformation.BatchInsert(paths, paths.Length, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
-                Log.Warn(Globals.LogTag, "Failed to add media information to the database");
+                task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add batch media"));
             }
             return task.Task;
         }
@@ -161,12 +262,16 @@ namespace Tizen.Content.MediaContent
             MediaContentError res = MediaContentError.None;
             Interop.MediaInformation.MediaInsertBurstShotCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
+                if (error != MediaContentError.None)
+                {
+                    task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add burst shots to db"));
+                }
                 task.SetResult((int)error);
             };
             res = (MediaContentError)Interop.MediaInformation.BurstShotInsert(paths, paths.Length, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
-                Log.Warn(Globals.LogTag, "Failed to add burst shots to the database");
+                task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add burst shots to db"));
             }
             return task.Task;
         }
@@ -187,9 +292,9 @@ namespace Tizen.Content.MediaContent
             res = (MediaContentError)Interop.MediaInformation.BatchDelete(handle);
             if (res != MediaContentError.None)
             {
-                Log.Warn(Globals.LogTag, "Failed to delete media from the database");
+                task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to delete batch media from db"));
             }
-            task.SetResult(0);
+            task.SetResult((int)res);
             return task.Task;
         }
     }

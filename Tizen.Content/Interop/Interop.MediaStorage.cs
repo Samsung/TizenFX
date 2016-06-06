@@ -38,7 +38,7 @@ internal static partial class Interop
         internal delegate bool MediaStorageCallback(IntPtr mediaStorageHandle, IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MediaInfoCallback(Interop.MediaInformation.SafeMediaInformationHandle mediaInformation, IntPtr data);
+        internal delegate bool MediaInfoCallback(IntPtr mediaInformation, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_foreach_storage_from_db")]
         internal static extern int ForeachStorageFromDb(IntPtr filter, MediaStorageCallback callback, IntPtr user_data);

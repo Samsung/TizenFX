@@ -211,7 +211,7 @@ namespace Tizen.Content.MediaContent
         {
             Dispose(false);
         }
-       public override void Dispose()
+        public override void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -244,22 +244,22 @@ namespace Tizen.Content.MediaContent
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res;
-            Interop.Folder.MediaInfoCallback callback = (Interop.MediaInformation.SafeMediaInformationHandle mediaHandle, IntPtr data) =>
+            Interop.Folder.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
-                //TODO: Create MediaInformation using safehandle.
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle.DangerousGetHandle());
+                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to clone media information");
+                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media information in folder");
                 }
                 MediaInformation info = new MediaInformation(newHandle);
                 mediaContents.Add(info);
+                return true;
             };
             res = (MediaContentError)Interop.Folder.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media information for the folder");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to get media information for the folder");
             }
             tcs.TrySetResult(mediaContents);
             return tcs.Task;

@@ -41,12 +41,17 @@ namespace Tizen.Content.MediaContent
         /// <param name="image">
         ///image item through which FaceRect has to be tagged.
         ///</param>
-        public MediaFace(MediaInformation image)
+        internal MediaFace(MediaInformation image, FaceRect rect)
         {
             MediaContentError res = (MediaContentError)Interop.Face.Create(image.MediaId, out _faceHandle);
             if (res != MediaContentError.None)
             {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to create MediaFace");
+            }
+            res = (MediaContentError)Interop.Face.SetFaceRect(_faceHandle, rect.X, rect.Y, rect.Width, rect.Height);
+            if (res != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(res, "Failed to set Rect to MediaFace");
             }
         }
 
@@ -69,7 +74,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.GetFaceRect(_faceHandle, out x, out y, out width, out height);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Rect for the Face");
                 }
                 return new FaceRect(x, y, width, height);
             }
@@ -79,7 +84,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.SetFaceRect(_faceHandle, rect.X, rect.Y, rect.Width, rect.Height);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set Rect for the Face");
                 }
             }
         }
@@ -95,7 +100,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.GetFaceId(_faceHandle, out id);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Id for the Face");
                 }
                 return id;
             }
@@ -112,7 +117,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.GetMediaId(_faceHandle, out mediaId);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media Id for the Face");
                 }
                 return mediaId;
             }
@@ -126,7 +131,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.GetTag(_faceHandle, out tag);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Tag for the Face");
                 }
                 return tag;
             }
@@ -135,7 +140,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res = (MediaContentError)Interop.Face.SetTag(_faceHandle, value);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set Tag for the Face");
                 }
             }
         }

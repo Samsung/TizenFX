@@ -22,7 +22,7 @@ namespace Tizen.Content.MediaContent
     /// </remarks>
     public class PlayList : ContentCollection
     {
-        private IDictionary<string, int> dictionary = new Dictionary<string, int>();
+        private readonly IDictionary<string, int> _dictionary = new Dictionary<string, int>();
         private IntPtr _playlistHandle;
         internal IntPtr Handle
         {
@@ -38,7 +38,7 @@ namespace Tizen.Content.MediaContent
 
         private void refreshPlaylistDictionary()
         {
-            dictionary.Clear();
+            _dictionary.Clear();
             MediaContentError res;
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
             {
@@ -52,7 +52,8 @@ namespace Tizen.Content.MediaContent
                 MediaInformation info = new MediaInformation(newHandle);
                 string mediaId;
                 Interop.MediaInformation.GetMediaId(newHandle, out mediaId);
-                dictionary.Add(mediaId, memberId);
+                _dictionary.Add(mediaId, memberId);
+                return true;
             };
             res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, IntPtr.Zero, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
@@ -77,6 +78,8 @@ namespace Tizen.Content.MediaContent
                 return id;
             }
         }
+
+        internal string _playListName;
         /// <summary>
         /// The playlist name
         /// </summary>
@@ -84,18 +87,16 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string name;
-                MediaContentError res = (MediaContentError)Interop.Playlist.GetName(_playlistHandle, out name);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Name for the PlayList");
-                }
-                return name;
+                return _playListName;
             }
             set
             {
                 MediaContentError res = (MediaContentError)Interop.Playlist.SetName(_playlistHandle, value);
-                if (res != MediaContentError.None)
+                if (res == MediaContentError.None)
+                {
+                    _playListName = value;
+                }
+                else
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set Name for the PlayList");
                 }
@@ -132,18 +133,17 @@ namespace Tizen.Content.MediaContent
         /// <param name="name">The name of the inserted playlist</param>
         public PlayList(string name)
         {
-            Name = name;
-            ContentManager.Database.ConnectToDB();
-            MediaContentError res = (MediaContentError) Interop.Playlist.InsertToDb(name, out _playlistHandle);
-            if(res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to create playlist");
-            }
+            _playListName = name;
         }
 
         internal PlayList(IntPtr handle)
         {
             _playlistHandle = handle;
+            MediaContentError res = (MediaContentError)Interop.Playlist.GetName(handle, out _playListName);
+            if (res != MediaContentError.None)
+            {
+                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Name for the PlayList");
+            }
         }
 
         /// <summary>
@@ -166,12 +166,13 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The AudioContent object to be removed</param>
         public void RemoveItem(MediaInformation media)
         {
-            int memberId = -1;
-            dictionary.TryGetValue(media.MediaId, out memberId);
-            if (memberId == -1) {
+            int memberId = 0;
+            _dictionary.TryGetValue(media.MediaId, out memberId);
+            if (memberId == 0)
+            {
                 refreshPlaylistDictionary();
             }
-            dictionary.TryGetValue(media.MediaId, out memberId);
+            _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.RemoveMedia(_playlistHandle, memberId);
             if (res != MediaContentError.None)
             {
@@ -182,10 +183,19 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Sets the playing order in the playlist.
         /// </summary>
-        /// <param name="playListMemberId">The playlist member ID</param>
+        /// <param name="media">The playlist reference</param>
         /// <param name="playOrder">The playing order</param>
-        public void SetPlayOrder(int memberId, int playOrder)
+        public void SetPlayOrder(MediaInformation media, int playOrder)
         {
+            Tizen.Log.Info("TCT", "Order set for Media Id: " + media.MediaId);
+            int memberId;
+            _dictionary.TryGetValue(media.MediaId, out memberId);
+            if (memberId == 0)
+            {
+                refreshPlaylistDictionary();
+                _dictionary.TryGetValue(media.MediaId, out memberId);
+            }
+            Tizen.Log.Info("TCT", "Order set for member Id: " + memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder);
             if (res != MediaContentError.None)
             {
@@ -198,9 +208,18 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="playListMemberId"></param>
         /// <param name="playOrder"></param>
-        public int GetPlayOrder(int memberId)
+        public int GetPlayOrder(MediaInformation media)
         {
+            Tizen.Log.Info("TCT", "Getting order for Media Id: " + media.MediaId);
             int playOrder;
+            int memberId;
+            _dictionary.TryGetValue(media.MediaId, out memberId);
+            if (memberId == 0)
+            {
+                refreshPlaylistDictionary();
+                _dictionary.TryGetValue(media.MediaId, out memberId);
+            }
+            Tizen.Log.Info("TCT", "Order set for Member Id: " + memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder);
             if (res != MediaContentError.None)
             {
@@ -236,7 +255,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>path The path to export the playlist</returns>
         public static void Export(PlayList list, string filePath)
         {
-
             MediaContentError res = (MediaContentError)Interop.Playlist.ExportToFile(list.Handle, filePath);
             if (res != MediaContentError.None)
             {
@@ -293,6 +311,7 @@ namespace Tizen.Content.MediaContent
                 }
                 MediaInformation info = new MediaInformation(newHandle);
                 mediaContents.Add(info);
+                return true;
             };
             res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
