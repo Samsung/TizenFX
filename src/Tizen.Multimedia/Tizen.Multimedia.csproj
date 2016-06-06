@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +46,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tizen">
+      <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Internals">
+      <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\Interop.Player.cs" />
@@ -123,14 +131,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
-      <Project>{7659CA59-410D-41A1-9841-586E88BC78C9}</Project>
-      <Name>Tizen</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
-      <Project>{B9AA1CB2-F72D-4A30-A33B-A20C850A38A0}</Project>
-      <Name>Tizen.Internals</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

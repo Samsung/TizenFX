@@ -1,5 +1,5 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Multimedia.dll
+%define BUILDCONF Debug
+
 Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
 Version:    1.0.0
@@ -10,64 +10,49 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
+
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-#BuildRequires: mcs
-#BuildRequires: mono-shlib-cop
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
-# P/Invoke Dependencies
+
 BuildRequires: pkgconfig(csapi-tizen)
 BuildRequires: pkgconfig(capi-media-player)
 BuildRequires: pkgconfig(capi-media-recorder)
 BuildRequires: pkgconfig(capi-media-sound-manager)
 
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
-#Requires: capi-multimedia-device
-# DLL Dependencies
-#BuildRequires: ...
 %description
 Tizen Multimedia API for C#
+
 %package devel
 Summary:    Development package for %{name}
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+
 %description devel
 Development package for %{name}
+
 %prep
 %setup -q
+
 cp %{SOURCE1} .
+
 %build
-# build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Multimedia/Tizen.Multimedia.snk -pkg:'csapi-tizen' \
-  Tizen.Multimedia/Properties/AssemblyInfo.cs \
-  Tizen.Multimedia/Player/*.cs \
-  Tizen.Multimedia/Recorder/*.cs \
-  Tizen.Multimedia/AudioManager/*.cs \
-  Tizen.Multimedia/Interop/*.cs
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+xbuild Tizen.Multimedia/Tizen.Multimedia.csproj /p:Configuration=%{BUILDCONF}
+
+
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.Multimedia/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
+
 # generate pkgconfig
+%define pc_libs %{_libdir}/mono/tizen/Tizen.Multimedia.dll
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
+sed -e "s#@name@#%{name}#g" \
+    -e "s#@version@#%{version}#g" \
+    -e "s#@libs@#%{pc_libs}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-%post
-gacutil -i %{dllpath}/%{dllname}
+
 %files
-%{dllpath}/%{dllname}
+%manifest %{name}.manifest
+%{_libdir}/mono/
+
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
