@@ -73,11 +73,11 @@ namespace Tizen.Messaging.Push
         }
 
         /// <summary>
-        /// Gives the request ID of the notification.
+        /// Gives the request Id of the notification.
         /// </summary>
         /// <value>
-        /// It is a string value representing the request ID of the Notification.</value>
-        public string RequestID
+        /// It is a string value representing the request Id of the Notification.</value>
+        public string RequestId
         {
             get;
             internal set;
@@ -102,7 +102,7 @@ namespace Tizen.Messaging.Push
             ReceivedAt = new DateTime();
             Sender = "";
             SessionInfo= "";
-            RequestID = "";
+            RequestId = "";
         }
     }
 }

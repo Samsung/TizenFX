@@ -73,7 +73,7 @@ namespace Tizen.Messaging.Push
                 result = Interop.Push.GetNotificationRequestId(notification, out requestid);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(requestid)))
                 {
-                    ob.RequestID = requestid;
+                    ob.RequestId = requestid;
                 }
                 int time;
                 result = Interop.Push.GetNotificationTime(notification, out time);

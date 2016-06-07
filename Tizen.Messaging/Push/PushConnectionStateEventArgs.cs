@@ -1,4 +1,4 @@
-﻿/// This File contains the Api's related to the PushConnectionStateEventArgs class
+/// This File contains the Api's related to the PushConnectionStateEventArgs class
 ///
 /// Copyright 2016 by Samsung Electronics, Inc.,
 ///
@@ -34,11 +34,11 @@ namespace Tizen.Messaging.Push
             /// <summary>
             /// To change the provisioning server IP.
             /// </summary>
-            ProvisioningIPChange = 2,
+            ProvisioningIPChanged = 2,
             /// <summary>
             /// Ping interval is changing.
             /// </summary>
-            PingChange = 3,
+            PingChanged = 3,
             /// <summary>
             /// Error Occured in Changing State.
             /// </summary>
