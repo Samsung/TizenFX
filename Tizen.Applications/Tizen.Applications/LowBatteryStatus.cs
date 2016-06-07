@@ -6,27 +6,26 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-using System;
-
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// Enumeration for low battery status.
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public enum LowBatteryStatus
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
-        public LowMemoryEventArgs(LowMemoryStatus status)
-        {
-            LowMemoryStatus = status;
-        }
+        None = 0,
 
         /// <summary>
-        /// 
+        /// The battery status is under 1%
         /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; private set; }
+        PowerOff = 1,
+
+        /// <summary>
+        /// The battery status is under 5%
+        /// </summary>
+        CriticalLow
     }
 }

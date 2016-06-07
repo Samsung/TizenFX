@@ -17,26 +17,34 @@ namespace Tizen.Applications
     /// </summary>
     public abstract class Application : IDisposable
     {
-        private const string LogTag = "Tizen.Applications";
+        internal const string LogTag = "Tizen.Applications";
 
         private static Application s_CurrentApplication = null;
 
-        private Interop.AppEvent.SafeAppEventHandle _lowMemoryNativeHandle;
-        private Interop.AppEvent.SafeAppEventHandle _localeChangedNativeHandle;
-
-        private Interop.AppEvent.AppEventCallback _appEventCallback;
-
         private object _lock = new object();
+
+        private Interop.AppCommon.AppEventCallback _lowMemoryCallback;
+        private Interop.AppCommon.AppEventCallback _lowBatteryCallback;
+        private Interop.AppCommon.AppEventCallback _localeChangedCallback;
+        private Interop.AppCommon.AppEventCallback _regionChangedCallback;
+
+        private IntPtr _lowMemoryEventHandle = IntPtr.Zero;
+        private IntPtr _lowBatteryEventHandle = IntPtr.Zero;
+        private IntPtr _localeChangedEventHandle = IntPtr.Zero;
+        private IntPtr _regionChangedEventHandle = IntPtr.Zero;
 
         private DirectoryInfo _directoryInfo;
         private ApplicationInfo _applicationInfo;
 
         /// <summary>
-        /// Initializes Application instance.
+        /// Initializes the Application class.
         /// </summary>
         public Application()
         {
-            _appEventCallback = new Interop.AppEvent.AppEventCallback(HandleAppEvent);
+            _lowMemoryCallback = new Interop.AppCommon.AppEventCallback(OnLowMemoryNative);
+            _lowBatteryCallback = new Interop.AppCommon.AppEventCallback(OnLowBatteryNative);
+            _localeChangedCallback = new Interop.AppCommon.AppEventCallback(OnLocaleChangedNative);
+            _regionChangedCallback = new Interop.AppCommon.AppEventCallback(OnRegionChangedNative);
         }
 
         /// <summary>
@@ -60,9 +68,19 @@ namespace Tizen.Applications
         public event EventHandler<LowMemoryEventArgs> LowMemory;
 
         /// <summary>
+        /// Occurs when the system battery is low.
+        /// </summary>
+        public event EventHandler<LowBatteryEventArgs> LowBattery;
+
+        /// <summary>
         /// Occurs when the system language is chagned.
         /// </summary>
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
+
+        /// <summary>
+        /// Occurs when the region format is changed.
+        /// </summary>
+        public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
 
         /// <summary>
         /// Gets the instance of current application.
@@ -121,10 +139,34 @@ namespace Tizen.Applications
                 throw new ArgumentNullException("args");
             }
 
+            TizenSynchronizationContext.Initialize();
+
             s_CurrentApplication = this;
 
-            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LowMemory, _appEventCallback, IntPtr.Zero, out _lowMemoryNativeHandle);
-            Interop.AppEvent.AddEventHandler(Interop.AppEvent.EventNames.LanguageSet, _appEventCallback, IntPtr.Zero, out _localeChangedNativeHandle);
+            ErrorCode err = ErrorCode.None;
+            err = AddEventHandler(out _lowMemoryEventHandle, Interop.AppCommon.AppEventType.LowMemory, _lowMemoryCallback);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for LowMemory event. Err = " + err);
+            }
+
+            err = AddEventHandler(out _lowBatteryEventHandle, Interop.AppCommon.AppEventType.LowBattery, _lowBatteryCallback);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for LowBattery event. Err = " + err);
+            }
+
+            err = AddEventHandler(out _localeChangedEventHandle, Interop.AppCommon.AppEventType.LanguageChanged, _localeChangedCallback);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for LocaleChanged event. Err = " + err);
+            }
+
+            err = AddEventHandler(out _regionChangedEventHandle, Interop.AppCommon.AppEventType.RegionFormatChanged, _regionChangedCallback);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for RegionFormatChanged event. Err = " + err);
+            }
         }
 
         /// <summary>
@@ -170,6 +212,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Overrides this method if want to handle behavior when the system battery is low.
+        /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
+        /// </summary>
+        protected virtual void OnLowBattery(LowBatteryEventArgs e)
+        {
+            LowBattery?.Invoke(this, e);
+        }
+
+        /// <summary>
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
         /// </summary>
@@ -178,29 +229,67 @@ namespace Tizen.Applications
             LocaleChanged?.Invoke(this, e);
         }
 
-        private void HandleAppEvent(string eventName, IntPtr eventData, IntPtr data)
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the region format is changed.
+        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// </summary>
+        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
-            Bundle b = new Bundle(eventData);
-            if (eventName == Interop.AppEvent.EventNames.LowMemory)
+            RegionFormatChanged?.Invoke(this, e);
+        }
+
+        internal virtual ErrorCode AddEventHandler(out IntPtr handle, Interop.AppCommon.AppEventType type, Interop.AppCommon.AppEventCallback callback)
+        {
+            handle = IntPtr.Zero;
+            return ErrorCode.None;
+        }
+
+        internal virtual void RemoveEventHandler(IntPtr handle)
+        {
+        }
+
+        private void OnLowMemoryNative(IntPtr infoHandle, IntPtr data)
+        {
+            LowMemoryStatus status = LowMemoryStatus.None;
+            ErrorCode err = Interop.AppCommon.AppEventGetLowMemoryStatus(infoHandle, out status);
+            if (err != ErrorCode.None)
             {
-                string value = b.GetItem<string>(Interop.AppEvent.EventKeys.LowMemory);
-                LowMemoryStatus status = LowMemoryStatus.Normal;
-                if (value == Interop.AppEvent.EventValues.MemorySoftWarning)
-                {
-                    status = LowMemoryStatus.SoftWarning;
-                }
-                else if (value == Interop.AppEvent.EventValues.MemoryHardWarning)
-                {
-                    status = LowMemoryStatus.HardWarning;
-                }
-                OnLowMemory(new LowMemoryEventArgs { LowMemoryStatus = status });
+                Log.Error(LogTag, "Failed to get memory status. Err = " + err);
             }
-            else if (eventName == Interop.AppEvent.EventNames.LanguageSet)
+            OnLowMemory(new LowMemoryEventArgs(status));
+        }
+
+        private void OnLowBatteryNative(IntPtr infoHandle, IntPtr data)
+        {
+            LowBatteryStatus status = LowBatteryStatus.None;
+            ErrorCode err = Interop.AppCommon.AppEventGetLowBatteryStatus(infoHandle, out status);
+            if (err != ErrorCode.None)
             {
-                string value = b.GetItem<string>(Interop.AppEvent.EventKeys.LanguageSet);
-                OnLocaleChanged(new LocaleChangedEventArgs { Locale = value });
+                Log.Error(LogTag, "Failed to get battery status. Err = " + err);
             }
-            b.Dispose();
+            OnLowBattery(new LowBatteryEventArgs(status));
+        }
+
+        private void OnLocaleChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            string lang;
+            ErrorCode err = Interop.AppCommon.AppEventGetLanguage(infoHandle, out lang);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get changed language. Err = " + err);
+            }
+            OnLocaleChanged(new LocaleChangedEventArgs(lang));
+        }
+
+        private void OnRegionChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            string region;
+            ErrorCode err = Interop.AppCommon.AppEventGetRegionFormat(infoHandle, out region);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get changed region format. Err = " + err);
+            }
+            OnRegionFormatChanged(new RegionFormatChangedEventArgs(region));
         }
 
         #region IDisposable Support
@@ -220,14 +309,23 @@ namespace Tizen.Applications
                     {
                         _applicationInfo.Dispose();
                     }
-                    if (_lowMemoryNativeHandle != null && !_lowMemoryNativeHandle.IsInvalid)
-                    {
-                        _lowMemoryNativeHandle.Dispose();
-                    }
-                    if (_localeChangedNativeHandle != null && !_localeChangedNativeHandle.IsInvalid)
-                    {
-                        _localeChangedNativeHandle.Dispose();
-                    }
+                }
+
+                if (_lowMemoryEventHandle != IntPtr.Zero)
+                {
+                    RemoveEventHandler(_lowMemoryEventHandle);
+                }
+                if (_lowBatteryEventHandle != IntPtr.Zero)
+                {
+                    RemoveEventHandler(_lowBatteryEventHandle);
+                }
+                if (_localeChangedEventHandle != IntPtr.Zero)
+                {
+                    RemoveEventHandler(_localeChangedEventHandle);
+                }
+                if (_regionChangedEventHandle != IntPtr.Zero)
+                {
+                    RemoveEventHandler(_regionChangedEventHandle);
                 }
 
                 disposedValue = true;

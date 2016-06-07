@@ -15,9 +15,24 @@ namespace Tizen.Applications
     /// </summary>
     public class LocaleChangedEventArgs : EventArgs
     {
+
         /// <summary>
         /// 
         /// </summary>
-        public string Locale { get; internal set; }
+        /// <param name="locale"></param>
+        public LocaleChangedEventArgs(string locale)
+        {
+            Locale = locale;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Locale { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Region { get; internal set; }
     }
 }

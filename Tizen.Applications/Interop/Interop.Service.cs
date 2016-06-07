@@ -9,6 +9,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals.Errors;
+
 internal static partial class Interop
 {
     internal static partial class Service
@@ -20,10 +22,16 @@ internal static partial class Interop
         internal delegate void ServiceAppControlCallback(IntPtr appControl, IntPtr userData);
 
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_main")]
-        internal static extern int Main(int argc, string[] argv, ref ServiceAppLifecycleCallbacks callback, IntPtr userData);
+        internal static extern ErrorCode Main(int argc, string[] argv, ref ServiceAppLifecycleCallbacks callback, IntPtr userData);
 
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_exit")]
         internal static extern void Exit();
+
+        [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_add_event_handler")]
+        internal static extern ErrorCode AddEventHandler(out IntPtr handle, AppCommon.AppEventType eventType, AppCommon.AppEventCallback callback, IntPtr data);
+
+        [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_remove_event_handler")]
+        internal static extern ErrorCode RemoveEventHandler(IntPtr handle);
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct ServiceAppLifecycleCallbacks

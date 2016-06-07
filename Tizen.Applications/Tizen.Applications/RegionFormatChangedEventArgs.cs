@@ -13,20 +13,21 @@ namespace Tizen.Applications
     /// <summary>
     /// 
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public class RegionFormatChangedEventArgs : EventArgs
     {
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
-        public LowMemoryEventArgs(LowMemoryStatus status)
+        /// <param name="region"></param>
+        public RegionFormatChangedEventArgs(string region)
         {
-            LowMemoryStatus = status;
+            Region = region;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; private set; }
+        public string Region { get; private set; }
     }
 }

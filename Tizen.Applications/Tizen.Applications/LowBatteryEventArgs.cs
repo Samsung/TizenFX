@@ -6,27 +6,25 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-using System;
-
 namespace Tizen.Applications
 {
     /// <summary>
     /// 
     /// </summary>
-    public class LowMemoryEventArgs : EventArgs
+    public class LowBatteryEventArgs
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="status"></param>
-        public LowMemoryEventArgs(LowMemoryStatus status)
+        public LowBatteryEventArgs(LowBatteryStatus status)
         {
-            LowMemoryStatus = status;
+            LowBatteryStatus = status;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public LowMemoryStatus LowMemoryStatus { get; private set; }
+        public LowBatteryStatus LowBatteryStatus { get; private set; }
     }
 }

@@ -8,6 +8,8 @@
 
 using System;
 
+using Tizen.Internals.Errors;
+
 namespace Tizen.Applications
 {
     /// <summary>
@@ -35,8 +37,11 @@ namespace Tizen.Applications
         {
             base.Run(args);
 
-            TizenSynchronizationContext.Initialize();
-            Interop.Service.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
+            ErrorCode err = Interop.Service.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to run the service. Err = " + err);
+            }
         }
 
         /// <summary>
@@ -45,6 +50,16 @@ namespace Tizen.Applications
         public override void Exit()
         {
             Interop.Service.Exit();
+        }
+
+        internal override ErrorCode AddEventHandler(out IntPtr handle, Interop.AppCommon.AppEventType type, Interop.AppCommon.AppEventCallback callback)
+        {
+            return Interop.Service.AddEventHandler(out handle, type, callback, IntPtr.Zero);
+        }
+
+        internal override void RemoveEventHandler(IntPtr handle)
+        {
+            Interop.Service.RemoveEventHandler(handle);
         }
 
         private bool OnCreateNative(IntPtr data)

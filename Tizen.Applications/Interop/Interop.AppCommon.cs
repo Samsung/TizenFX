@@ -6,14 +6,28 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
+using System;
 using System.Runtime.InteropServices;
 
 using Tizen.Internals.Errors;
+using Tizen.Applications;
 
 internal static partial class Interop
 {
     internal static partial class AppCommon
     {
+        internal enum AppEventType
+        {
+            LowMemory = 0,
+            LowBattery,
+            LanguageChanged,
+            DeviceOrientationChanged,
+            RegionFormatChanged,
+            SuspendedStateChanged
+        }
+
+        internal delegate void AppEventCallback(IntPtr handle, IntPtr data);
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_id")]
         internal static extern ErrorCode AppGetId(out string appId);
 
@@ -52,6 +66,19 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_version")]
         internal static extern ErrorCode AppGetVersion(out string version);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_memory_status")]
+        internal static extern ErrorCode AppEventGetLowMemoryStatus(IntPtr handle, out LowMemoryStatus status);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_battery_status")]
+        internal static extern ErrorCode AppEventGetLowBatteryStatus(IntPtr handle, out LowBatteryStatus status);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_language")]
+        internal static extern ErrorCode AppEventGetLanguage(IntPtr handle, out string lang);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format")]
+        internal static extern ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
+
     }
 }
 
