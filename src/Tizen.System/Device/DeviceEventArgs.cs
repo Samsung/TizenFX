@@ -3,13 +3,13 @@ using System;
 namespace Tizen.System
 {
     // Battery
-    public class BatteryCapacityChangedEventArgs : EventArgs
+    public class BatteryPercentChangedEventArgs : EventArgs
     {
         /// <summary>
         /// The current capacity of the battery.
         /// Capacity is an integer value from 0 to 100, that indicates remaining battery charge as a percentage of the maximum level.
         /// </summary>
-        public int Capacity { get; internal set; }
+        public int Percent { get; internal set; }
     }
 
     public class BatteryLevelChangedEventArgs : EventArgs

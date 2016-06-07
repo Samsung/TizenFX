@@ -52,12 +52,12 @@ namespace Tizen.System
         /// </summary>
         /// <value>It returns an integer value from 0 to 100 that indicates remaining
         /// battery charge as a percentage of the maximum level.</value>
-        public static int Capacity
+        public static int Percent
         {
             get
             {
                 int percent = 0;
-                DeviceError res = (DeviceError) Interop.Device.DeviceBatteryGetPercent(out percent);
+                DeviceError res = (DeviceError)Interop.Device.DeviceBatteryGetPercent(out percent);
                 if (res != DeviceError.None)
                 {
                     Log.Warn(DeviceExceptionFactory.LogTag, "unable to get battery percentage.");
@@ -73,7 +73,7 @@ namespace Tizen.System
             get
             {
                 int level = 0;
-                DeviceError res = (DeviceError) Interop.Device.DeviceBatteryGetLevelStatus(out level);
+                DeviceError res = (DeviceError)Interop.Device.DeviceBatteryGetLevelStatus(out level);
                 if (res != DeviceError.None)
                 {
                     Log.Warn(DeviceExceptionFactory.LogTag, "unable to get battery status.");
@@ -89,7 +89,7 @@ namespace Tizen.System
             get
             {
                 bool charging;
-                DeviceError res = (DeviceError) Interop.Device.DeviceBatteryIsCharging(out charging);
+                DeviceError res = (DeviceError)Interop.Device.DeviceBatteryIsCharging(out charging);
                 if (res != DeviceError.None)
                 {
                     Log.Warn(DeviceExceptionFactory.LogTag, "unable to get battery charging state.");
@@ -98,14 +98,14 @@ namespace Tizen.System
             }
         }
 
-        private static EventHandler<BatteryCapacityChangedEventArgs> s_capacityChanged;
+        private static EventHandler<BatteryPercentChangedEventArgs> s_capacityChanged;
         /// <summary>
         /// CapacityChanged is triggered when the battery charge percentage is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryCapacityChangedEventArgs object that contains changed battery capacity</param>
 
-        public static event EventHandler<BatteryCapacityChangedEventArgs> CapacityChanged
+        public static event EventHandler<BatteryPercentChangedEventArgs> PercentChanged
         {
             add
             {
@@ -113,7 +113,7 @@ namespace Tizen.System
                 {
                     if (s_capacityChanged == null)
                     {
-                        EventListenerStart(EventType.BatteryCapacity);
+                        EventListenerStart(EventType.BatteryPercent);
                     }
                     s_capacityChanged += value;
                 }
@@ -125,7 +125,7 @@ namespace Tizen.System
                     s_capacityChanged -= value;
                     if (s_capacityChanged == null)
                     {
-                        EventListenerStop(EventType.BatteryCapacity);
+                        EventListenerStop(EventType.BatteryPercent);
                     }
                 }
             }
@@ -171,7 +171,7 @@ namespace Tizen.System
         /// <param name="sender"></param>
         /// <param name="e">A BatteryChargingStateChangedEventArgs object that contains changed battery charging state</param>
 
-        public static event EventHandler<BatteryChargingStateChangedEventArgs> ChargingStatusChanged
+        public static event EventHandler<BatteryChargingStateChangedEventArgs> ChargingStateChanged
         {
             add
             {
@@ -205,13 +205,13 @@ namespace Tizen.System
         {
             switch (eventType)
             {
-                case EventType.BatteryCapacity:
+                case EventType.BatteryPercent:
                     s_cpacityHandler = (int type, IntPtr value, IntPtr data) =>
                     {
                         int val = value.ToInt32();
-                        BatteryCapacityChangedEventArgs e = new BatteryCapacityChangedEventArgs()
+                        BatteryPercentChangedEventArgs e = new BatteryPercentChangedEventArgs()
                         {
-                            Capacity = val
+                            Percent = val
                         };
                         s_capacityChanged?.Invoke(null, e);
                         return true;
@@ -255,7 +255,7 @@ namespace Tizen.System
         {
             switch (eventType)
             {
-                case EventType.BatteryCapacity:
+                case EventType.BatteryPercent:
                     Interop.Device.DeviceRemoveCallback(eventType, s_cpacityHandler);
                     break;
 

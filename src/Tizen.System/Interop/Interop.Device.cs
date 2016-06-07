@@ -14,7 +14,7 @@ namespace Tizen.System
 {
     internal enum EventType
     {
-        BatteryCapacity,
+        BatteryPercent,
         BatteryLevel,
         BatteryCharging,
         DisplayState,
