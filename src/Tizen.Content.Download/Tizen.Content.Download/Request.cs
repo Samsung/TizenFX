@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
+
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -11,11 +19,13 @@ namespace Tizen.Content.Download
     {
         private int _downloadId;
         private Notification _notificationProperties;
+        private IDictionary<string, string> _httpHeaders;
         private EventHandler<StateChangedEventArgs> _downloadStateChanged;
         private Interop.Download.StateChangedCallback _downloadStateChangedCallback;
         private EventHandler<ProgressChangedEventArgs> _downloadProgressChanged;
         private Interop.Download.ProgressChangedCallback _downloadProgressChangedCallback;
         private bool _disposed = false;
+
         /// <summary>
         /// Creates a Request object.
         /// </summary>
@@ -37,6 +47,7 @@ namespace Tizen.Content.Download
                 DownloadErrorFactory.ThrowException(ret, "Setting Url failed");
             }
             _notificationProperties = new Notification(_downloadId);
+            _httpHeaders = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -83,6 +94,7 @@ namespace Tizen.Content.Download
             }
 
             _notificationProperties = new Notification(_downloadId);
+            _httpHeaders = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -129,46 +141,13 @@ namespace Tizen.Content.Download
                 DownloadErrorFactory.ThrowException(ret, "Setting NetworkType failed");
             }
 
-            foreach (KeyValuePair<string, string> entry in httpHeaders)
-            {
-                ret = Interop.Download.AddHttpHeaderField(_downloadId, entry.Key, entry.Value);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Adding HttpHeaderField failed");
-                }
-            }
-
             _notificationProperties = new Notification(_downloadId);
+            _httpHeaders = httpHeaders;
         }
 
         ~Request()
         {
             Dispose(false);
-        }
-
-        /// <summary>
-        /// Releases all resources used by the Request class.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Deletes the corresponding download request.
-        /// </summary>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-            }
-            Interop.Download.DestroyRequest(_downloadId);
-            _disposed = true;
         }
 
         /// <summary>
@@ -194,28 +173,6 @@ namespace Tizen.Content.Download
             }
         }
 
-        private void RegisterStateChangedEvent()
-        {
-            _downloadStateChangedCallback = (int downloadId, int downloadState, IntPtr userData) =>
-            {
-                StateChangedEventArgs eventArgs = new StateChangedEventArgs((DownloadState)downloadState);
-                _downloadStateChanged.Invoke(this, eventArgs);
-            };
-            int ret = Interop.Download.SetStateChangedCallback(_downloadId, _downloadStateChangedCallback, IntPtr.Zero);
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Setting StateChanged callback failed");
-            }
-        }
-
-        private void UnregisterStateChangedEvent()
-        {
-            int ret = Interop.Download.UnsetStateChangedCallback(_downloadId);
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Unsetting StateChanged callback failed");
-            }
-        }
         /// <summary>
         /// Event that occurs when the download progress changes.
         /// </summary>
@@ -239,29 +196,6 @@ namespace Tizen.Content.Download
             }
         }
 
-        private void RegisterProgressChangedEvent()
-        {
-            _downloadProgressChangedCallback = (int downloadId, ulong size, IntPtr userData) =>
-            {
-                ProgressChangedEventArgs eventArgs = new ProgressChangedEventArgs(size);
-                _downloadProgressChanged.Invoke(this, eventArgs);
-            };
-            int ret = Interop.Download.SetProgressCallback(_downloadId, _downloadProgressChangedCallback, IntPtr.Zero);
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Setting ProgressChanged callback failed");
-            }
-        }
-
-        private void UnregisterProgressChangedEvent()
-        {
-            int ret = Interop.Download.UnsetProgressCallback(_downloadId);
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Unsetting ProgressChanged callback failed");
-            }
-        }
-
         /// <summary>
         /// Absolute path where the file will be downloaded.
         /// If you try to get this property value before calling Start(), an empty string is returned.
@@ -277,7 +211,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDownloadedPath(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get DownloadedPath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get DownloadedPath, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return path;
@@ -296,7 +230,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetMimeType(_downloadId, out mime);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get MimeType, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get MimeType, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return mime;
@@ -314,7 +248,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetState(_downloadId, out state);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get DownloadState, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get DownloadState, " + (DownloadError)ret);
                     return DownloadState.None;
                 }
                 return (DownloadState)state;
@@ -334,7 +268,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetContentName(_downloadId, out name);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get ContentName, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get ContentName, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return name;
@@ -354,7 +288,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetContentSize(_downloadId, out size);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get ContentSize, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get ContentSize, " + (DownloadError)ret);
                     return 0;
                 }
                 return size;
@@ -376,7 +310,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetHttpStatus(_downloadId, out status);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get HttpStatus, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get HttpStatus, " + (DownloadError)ret);
                     return 0;
                 }
                 return status;
@@ -399,7 +333,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetETag(_downloadId, out etag);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get ETagValue, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get ETagValue, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return etag;
@@ -439,7 +373,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetUrl(_downloadId, out url);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get Url, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get Url, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return url;
@@ -470,7 +404,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetNetworkType(_downloadId, out type);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get AllowedNetworkType, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get AllowedNetworkType, " + (DownloadError)ret);
                     return NetworkType.All;
                 }
                 return (NetworkType)type;
@@ -500,7 +434,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDestination(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get DestinationPath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get DestinationPath, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return path;
@@ -530,7 +464,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetFileName(_downloadId, out name);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get FileName, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get FileName, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return name;
@@ -561,7 +495,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetAutoDownload(_downloadId, out value);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get AutoDownload, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get AutoDownload, " + (DownloadError)ret);
                     return false;
                 }
                 return value;
@@ -593,7 +527,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetTempFilePath(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Downloads.LogTag, "Failed to get TempFilePath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get TempFilePath, " + (DownloadError)ret);
                     return String.Empty;
                 }
                 return path;
@@ -622,41 +556,7 @@ namespace Tizen.Content.Download
         {
             get
             {
-                Dictionary<string, string> httpHeaders = new Dictionary<string, string>();
-                IntPtr fieldsPointer;
-                int length;
-                int ret = Interop.Download.GetHttpHeaderFieldList(_downloadId, out fieldsPointer, out length);
-                if (ret != (int)DownloadError.None)
-                {
-                    Log.Error(Downloads.LogTag, "Failed to get HttpHeaders, " + (DownloadError)ret);
-                    return new Dictionary<string, string>();
-                }
-                string[] fields;
-                IntPtrToStringArray(fieldsPointer, length, out fields);
-                Interop.Libc.Free(fieldsPointer);
-                foreach (string field in fields)
-                {
-                    string value;
-                    ret = Interop.Download.GetHttpHeaderField(_downloadId, field, out value);
-                    if (ret != (int)DownloadError.None)
-                    {
-                        Log.Error(Downloads.LogTag, "Failed to get HttpHeader Field, " + (DownloadError)ret);
-                        return new Dictionary<string, string>();
-                    }
-                    httpHeaders.Add(field, value);
-                }
-                return httpHeaders;
-            }
-            set
-            {
-                foreach (KeyValuePair<string, string> entry in value)
-                {
-                    int ret = Interop.Download.AddHttpHeaderField(_downloadId, entry.Key, entry.Value);
-                    if (ret != (int)DownloadError.None)
-                    {
-                        DownloadErrorFactory.ThrowException(ret, "Failed to set HttpHeaders");
-                    }
-                }
+                return _httpHeaders;
             }
         }
 
@@ -669,7 +569,17 @@ namespace Tizen.Content.Download
         /// </remarks>
         public void Start()
         {
-            int ret = Interop.Download.StartDownload(_downloadId);
+            int ret = (int)DownloadError.None;
+            foreach (KeyValuePair<string, string> entry in _httpHeaders)
+            {
+                ret = Interop.Download.AddHttpHeaderField(_downloadId, entry.Key, entry.Value);
+                if (ret != (int)DownloadError.None)
+                {
+                    DownloadErrorFactory.ThrowException(ret, "Failed to set HttpHeaders");
+                }
+            }
+
+            ret = Interop.Download.StartDownload(_downloadId);
             if (ret != (int)DownloadError.None)
             {
                 DownloadErrorFactory.ThrowException(ret, "Failed to start download request");
@@ -706,6 +616,31 @@ namespace Tizen.Content.Download
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the Request class.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Deletes the corresponding download request.
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free managed objects.
+            }
+            Interop.Download.DestroyRequest(_downloadId);
+            _disposed = true;
+        }
+
         static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
         {
             managedArray = new string[size];
@@ -716,6 +651,54 @@ namespace Tizen.Content.Download
             for (int iterator = 0; iterator < size; iterator++)
             {
                 managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
+            }
+        }
+
+        private void RegisterStateChangedEvent()
+        {
+            _downloadStateChangedCallback = (int downloadId, int downloadState, IntPtr userData) =>
+            {
+                StateChangedEventArgs eventArgs = new StateChangedEventArgs((DownloadState)downloadState);
+                _downloadStateChanged?.Invoke(this, eventArgs);
+            };
+
+            int ret = Interop.Download.SetStateChangedCallback(_downloadId, _downloadStateChangedCallback, IntPtr.Zero);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Setting StateChanged callback failed");
+            }
+        }
+
+        private void UnregisterStateChangedEvent()
+        {
+            int ret = Interop.Download.UnsetStateChangedCallback(_downloadId);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Unsetting StateChanged callback failed");
+            }
+        }
+
+        private void RegisterProgressChangedEvent()
+        {
+            _downloadProgressChangedCallback = (int downloadId, ulong size, IntPtr userData) =>
+            {
+                ProgressChangedEventArgs eventArgs = new ProgressChangedEventArgs(size);
+                _downloadProgressChanged?.Invoke(this, eventArgs);
+            };
+
+            int ret = Interop.Download.SetProgressCallback(_downloadId, _downloadProgressChangedCallback, IntPtr.Zero);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Setting ProgressChanged callback failed");
+            }
+        }
+
+        private void UnregisterProgressChangedEvent()
+        {
+            int ret = Interop.Download.UnsetProgressCallback(_downloadId);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Unsetting ProgressChanged callback failed");
             }
         }
     }
