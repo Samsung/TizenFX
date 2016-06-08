@@ -29,7 +29,7 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// (bool) Indicates whether the motion service is activated
         /// </summary>
-        MotionActivation,
+        MotionActivationEnabled,
         /// <summary>
         /// (string) The file path of the current email alert ringtone
         /// </summary>
@@ -66,11 +66,11 @@ namespace Tizen.System.SystemSettings
         /// (bool) Indicates whether the 24-hour clock is used.
         /// If the value is false, the 12-hour clock is used.
         /// </summary>
-        LocaleTimeformat24Hour,
+        LocaleTimeFormat24HourEnabled,
         /// <summary>
         /// (string) Indicates the current time zone.
         /// </summary>
-        LocaleTimezone,
+        LocaleTimeZone,
         /// <summary>
         /// (int) Once System changes time, this event occurs to notify time change.
         /// </summary>
@@ -78,19 +78,19 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// GET (bool) Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
         /// </summary>
-        SoundLock,
+        SoundLockEnabled,
         /// <summary>
         /// GET (bool) Indicates whether the device is in the silent mode.
         /// </summary>
-        SoundSilentMode,
+        SoundSilentModeEnabled,
         /// <summary>
         /// GET (bool) Indicates whether the screen touch sound is enabled on the device.
         /// </summary>
-        SoundTouch,
+        SoundTouchEnabled,
         /// <summary>
         /// GET (bool) Indicates whether rotation control is automatic.
         /// </summary>
-        DisplayScreenRotationAuto,
+        DisplayScreenRotationAutoEnabled,
         /// <summary>
         /// GET (string) Indicates device name.
         /// </summary>
@@ -102,11 +102,11 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// GET (bool) Indicates whether Wi-Fi-related notifications are enabled on the device.
         /// </summary>
-        NetworkWifiNotification,
+        NetworkWifiNotificationEnabled,
         /// <summary>
         /// GET (bool) Indicates whether the device is in the flight mode.
         /// </summary>
-        NetworkFlightMode,
+        NetworkFlightModeEnabled,
         /// <summary>
         /// (int) Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
         /// </summary>

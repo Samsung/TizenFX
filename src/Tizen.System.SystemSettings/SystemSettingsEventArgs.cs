@@ -173,7 +173,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event MotionActivationChanged
     /// </summary>
-    public class MotionActivationChangedEventArgs : EventArgs
+    public class MotionActivationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionActivation;
         /// <summary>
@@ -183,10 +183,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.MotionActivation;
+                return SystemSettingsKeys.MotionActivationEnabled;
             }
         }
-        internal MotionActivationChangedEventArgs(bool val)
+        internal MotionActivationSettingChangedEventArgs(bool val)
         {
             _motionActivation = val;
         }
@@ -437,24 +437,24 @@ namespace Tizen.System.SystemSettings
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleTimeformat24HourChanged
+    /// EventArgs type for the event LocaleTimeFormat24HourChanged
     /// </summary>
-    public class LocaleTimeformat24HourChangedEventArgs : EventArgs
+    public class LocaleTimeFormat24HourSettingChangedEventArgs : EventArgs
     {
-        private readonly bool _localeTimeformat24Hour;
+        private readonly bool _localeTimeFormat24Hour;
         /// <summary>
-        /// The enum for LocaleTimeformat24Hour system setting key
+        /// The enum for LocaleTimeFormat24Hour system setting key
         /// </summary>
         public SystemSettingsKeys Key
         {
             get
             {
-                return SystemSettingsKeys.LocaleTimeformat24Hour;
+                return SystemSettingsKeys.LocaleTimeFormat24HourEnabled;
             }
         }
-        internal LocaleTimeformat24HourChangedEventArgs(bool val)
+        internal LocaleTimeFormat24HourSettingChangedEventArgs(bool val)
         {
-            _localeTimeformat24Hour = val;
+            _localeTimeFormat24Hour = val;
         }
 
         /// <summary>
@@ -464,30 +464,30 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return _localeTimeformat24Hour;
+                return _localeTimeFormat24Hour;
             }
         }
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleTimezoneChanged
+    /// EventArgs type for the event LocaleTimeZoneChanged
     /// </summary>
-    public class LocaleTimezoneChangedEventArgs : EventArgs
+    public class LocaleTimeZoneChangedEventArgs : EventArgs
     {
-        private readonly string _localeTimezone = null;
+        private readonly string _localeTimeZone = null;
         /// <summary>
-        /// The enum for LocaleTimezone system setting key
+        /// The enum for LocaleTimeZone system setting key
         /// </summary>
         public SystemSettingsKeys Key
         {
             get
             {
-                return SystemSettingsKeys.LocaleTimezone;
+                return SystemSettingsKeys.LocaleTimeZone;
             }
         }
-        internal LocaleTimezoneChangedEventArgs(string val)
+        internal LocaleTimeZoneChangedEventArgs(string val)
         {
-            _localeTimezone = val;
+            _localeTimeZone = val;
         }
 
         /// <summary>
@@ -497,7 +497,7 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return _localeTimezone;
+                return _localeTimeZone;
             }
         }
     }
@@ -522,7 +522,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event SoundLockChanged
     /// </summary>
-    public class SoundLockChangedEventArgs : EventArgs
+    public class SoundLockSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundLock;
         /// <summary>
@@ -532,10 +532,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.SoundLock;
+                return SystemSettingsKeys.SoundLockEnabled;
             }
         }
-        internal SoundLockChangedEventArgs(bool val)
+        internal SoundLockSettingChangedEventArgs(bool val)
         {
             _soundLock = val;
         }
@@ -555,7 +555,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event SoundSilentModeChanged
     /// </summary>
-    public class SoundSilentModeChangedEventArgs : EventArgs
+    public class SoundSilentModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundSilentMode;
         /// <summary>
@@ -565,10 +565,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.SoundSilentMode;
+                return SystemSettingsKeys.SoundSilentModeEnabled;
             }
         }
-        internal SoundSilentModeChangedEventArgs(bool val)
+        internal SoundSilentModeSettingChangedEventArgs(bool val)
         {
             _soundSilentMode = val;
         }
@@ -588,7 +588,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event SoundTouchChanged
     /// </summary>
-    public class SoundTouchChangedEventArgs : EventArgs
+    public class SoundTouchSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundTouch;
         /// <summary>
@@ -598,10 +598,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.SoundTouch;
+                return SystemSettingsKeys.SoundTouchEnabled;
             }
         }
-        internal SoundTouchChangedEventArgs(bool val)
+        internal SoundTouchSettingChangedEventArgs(bool val)
         {
             _soundTouch = val;
         }
@@ -621,7 +621,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event DisplayScreenRotationAutoChanged
     /// </summary>
-    public class DisplayScreenRotationAutoChangedEventArgs : EventArgs
+    public class DisplayScreenRotationAutoSettingChangedEventArgs : EventArgs
     {
         private readonly bool _displayScreenRotationAuto;
         /// <summary>
@@ -631,10 +631,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.DisplayScreenRotationAuto;
+                return SystemSettingsKeys.DisplayScreenRotationAutoEnabled;
             }
         }
-        internal DisplayScreenRotationAutoChangedEventArgs(bool val)
+        internal DisplayScreenRotationAutoSettingChangedEventArgs(bool val)
         {
             _displayScreenRotationAuto = val;
         }
@@ -720,7 +720,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event NetworkWifiNotificationChanged
     /// </summary>
-    public class NetworkWifiNotificationChangedEventArgs : EventArgs
+    public class NetworkWifiNotificationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkWifiNotification;
         /// <summary>
@@ -730,10 +730,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.NetworkWifiNotification;
+                return SystemSettingsKeys.NetworkWifiNotificationEnabled;
             }
         }
-        internal NetworkWifiNotificationChangedEventArgs(bool val)
+        internal NetworkWifiNotificationSettingChangedEventArgs(bool val)
         {
             _networkWifiNotification = val;
         }
@@ -753,7 +753,7 @@ namespace Tizen.System.SystemSettings
     /// <summary>
     /// EventArgs type for the event NetworkFlightModeChanged
     /// </summary>
-    public class NetworkFlightModeChangedEventArgs : EventArgs
+    public class NetworkFlightModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkFlightMode;
         /// <summary>
@@ -763,10 +763,10 @@ namespace Tizen.System.SystemSettings
         {
             get
             {
-                return SystemSettingsKeys.NetworkFlightMode;
+                return SystemSettingsKeys.NetworkFlightModeEnabled;
             }
         }
-        internal NetworkFlightModeChangedEventArgs(bool val)
+        internal NetworkFlightModeSettingChangedEventArgs(bool val)
         {
             _networkFlightMode = val;
         }

@@ -53,16 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SystemSettingsEventArgs.cs" />
-    <Compile Include="Interop\Interop.Settings.cs" />
+    <Compile Include="Interop\Interop.SystemSettings.cs" />
     <Compile Include="SystemSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemSettingsEnums.cs" />
     <Compile Include="SystemSettingsExceptionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packaging\csapi-tizen.system.manifest" />
-    <None Include="packaging\csapi-tizen.system.pc.in" />
-    <None Include="packaging\csapi-tizen.system.spec" />
     <None Include="Tizen.System.SystemSettings.snk" />
   </ItemGroup>
   <ItemGroup />

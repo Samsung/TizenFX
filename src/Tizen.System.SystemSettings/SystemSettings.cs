@@ -139,12 +139,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether the motion service is activated
         /// </summary>
-        public static bool MotionActivation
+        public static bool MotionActivationEnabled
         {
             get
             {
                 bool isMotionServiceActivated;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.MotionActivation, out isMotionServiceActivated);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.MotionActivationEnabled, out isMotionServiceActivated);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get MotionActivation system setting value.");
@@ -153,7 +153,7 @@ namespace Tizen.System.SystemSettings
             }
             set
             {
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.MotionActivation, value);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.MotionActivationEnabled, value);
                 if (res != SystemSettingsError.None)
                 {
                     throw SystemSettingsExceptionFactory.CreateException(res, "unable to set MotionActivation system setting.");
@@ -335,24 +335,24 @@ namespace Tizen.System.SystemSettings
         /// Indicates whether the 24-hour clock is used.
         /// If the value is false, the 12-hour clock is used.
         /// </summary>
-        public static bool LocaleTimeformat24Hour
+        public static bool LocaleTimeFormat24HourEnabled
         {
             get
             {
                 bool is24HrFormat;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.LocaleTimeformat24Hour, out is24HrFormat);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, out is24HrFormat);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimeformat24Hour system setting value.");
+                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimeFormat24Hour system setting value.");
                 }
                 return is24HrFormat;
             }
             set
             {
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.LocaleTimeformat24Hour, value);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, value);
                 if (res != SystemSettingsError.None)
                 {
-                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LocaleTimeformat24Hour system setting.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LocaleTimeFormat24Hour system setting.");
                 }
             }
         }
@@ -360,36 +360,36 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates the current time zone.
         /// </summary>
-        public static string LocaleTimezone
+        public static string LocaleTimeZone
         {
             get
             {
                 string timeZone;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LocaleTimezone, out timeZone);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LocaleTimeZone, out timeZone);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimezone system setting value.");
+                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimeZone system setting value.");
                 }
                 return timeZone;
             }
             set
             {
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueString(SystemSettingsKeys.LocaleTimezone, value);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueString(SystemSettingsKeys.LocaleTimeZone, value);
                 if (res != SystemSettingsError.None)
                 {
-                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LocaleTimezone system setting.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LocaleTimeZone system setting.");
                 }
             }
         }
         /// <summary>
         /// Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
         /// </summary>
-        public static bool SoundLock
+        public static bool SoundLockEnabled
         {
             get
             {
                 bool isSoundLockEnabled;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundLock, out isSoundLockEnabled);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundLockEnabled, out isSoundLockEnabled);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundLock system setting value.");
@@ -401,12 +401,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether the device is in the silent mode.
         /// </summary>
-        public static bool SoundSilentMode
+        public static bool SoundSilentModeEnabled
         {
             get
             {
                 bool isSilent;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundSilentMode, out isSilent);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundSilentModeEnabled, out isSilent);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundSilentMode system setting value.");
@@ -418,12 +418,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether the screen touch sound is enabled on the device.
         /// </summary>
-        public static bool SoundTouch
+        public static bool SoundTouchEnabled
         {
             get
             {
                 bool isTouchSoundEnabled;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundTouch, out isTouchSoundEnabled);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundTouchEnabled, out isTouchSoundEnabled);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundTouch system setting value.");
@@ -435,12 +435,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether rotation control is automatic.
         /// </summary>
-        public static bool DisplayScreenRotationAuto
+        public static bool DisplayScreenRotationAutoEnabled
         {
             get
             {
                 bool isRotationAutomatic;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.DisplayScreenRotationAuto, out isRotationAutomatic);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, out isRotationAutomatic);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get DisplayScreenRotationAuto system setting value.");
@@ -485,12 +485,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether Wi-Fi-related notifications are enabled on the device.
         /// </summary>
-        public static bool NetworkWifiNotification
+        public static bool NetworkWifiNotificationEnabled
         {
             get
             {
                 bool isWifiNotificationEnabled;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkWifiNotification, out isWifiNotificationEnabled);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkWifiNotificationEnabled, out isWifiNotificationEnabled);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get NetworkWifiNotification system setting value.");
@@ -502,12 +502,12 @@ namespace Tizen.System.SystemSettings
         /// <summary>
         /// Indicates whether the device is in the flight mode.
         /// </summary>
-        public static bool NetworkFlightMode
+        public static bool NetworkFlightModeEnabled
         {
             get
             {
                 bool isFlightModeEnabled;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkFlightMode, out isFlightModeEnabled);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkFlightModeEnabled, out isFlightModeEnabled);
                 if (res != SystemSettingsError.None)
                 {
                     Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get NetworkFlightMode system setting value.");
@@ -823,23 +823,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_motionActivationChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool motionActivation = SystemSettings.MotionActivation;
-            MotionActivationChangedEventArgs eventArgs = new MotionActivationChangedEventArgs(motionActivation);
+            bool motionActivation = SystemSettings.MotionActivationEnabled;
+            MotionActivationSettingChangedEventArgs eventArgs = new MotionActivationSettingChangedEventArgs(motionActivation);
             s_motionActivationChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<MotionActivationChangedEventArgs> s_motionActivationChanged;
+        private static event EventHandler<MotionActivationSettingChangedEventArgs> s_motionActivationChanged;
         /// <summary>
         /// MotionActivationChanged event is triggered when the motion service status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A MotionActivationChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<MotionActivationChangedEventArgs> MotionActivationChanged
+        public static event EventHandler<MotionActivationSettingChangedEventArgs> MotionActivationSettingChanged
         {
             add
             {
                 if (s_motionActivationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionActivation, s_motionActivationChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -853,7 +853,7 @@ namespace Tizen.System.SystemSettings
                 s_motionActivationChanged -= value;
                 if (s_motionActivationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivation);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivationEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1108,39 +1108,39 @@ namespace Tizen.System.SystemSettings
             }
         }
 
-        private static readonly Interop.Settings.SystemSettingsChangedCallback s_localeTimeformat24HourChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_localeTimeFormat24HourChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool localeTimeFormat24Hour = SystemSettings.LocaleTimeformat24Hour;
-            LocaleTimeformat24HourChangedEventArgs eventArgs = new LocaleTimeformat24HourChangedEventArgs(localeTimeFormat24Hour);
-            s_localeTimeformat24HourChanged?.Invoke(null, eventArgs);
+            bool localeTimeFormat24Hour = SystemSettings.LocaleTimeFormat24HourEnabled;
+            LocaleTimeFormat24HourSettingChangedEventArgs eventArgs = new LocaleTimeFormat24HourSettingChangedEventArgs(localeTimeFormat24Hour);
+            s_localeTimeFormat24HourChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<LocaleTimeformat24HourChangedEventArgs> s_localeTimeformat24HourChanged;
+        private static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> s_localeTimeFormat24HourChanged;
         /// <summary>
-        /// LocaleTimeformat24HourChanged event is triggered when the time format is changed
+        /// LocaleTimeFormat24HourChanged event is triggered when the time format is changed
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleTimeformat24HourChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<LocaleTimeformat24HourChangedEventArgs> LocaleTimeformat24HourChanged
+        /// <param name="e">A LocaleTimeFormat24HourChangedEventArgs object that contains the key & changed value</param>
+        public static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> LocaleTimeFormat24HourSettingChanged
         {
             add
             {
-                if (s_localeTimeformat24HourChanged == null)
+                if (s_localeTimeFormat24HourChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeformat24Hour, s_localeTimeformat24HourChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
                     }
                 }
-                s_localeTimeformat24HourChanged += value;
+                s_localeTimeFormat24HourChanged += value;
             }
 
             remove
             {
-                s_localeTimeformat24HourChanged -= value;
-                if (s_localeTimeformat24HourChanged == null)
+                s_localeTimeFormat24HourChanged -= value;
+                if (s_localeTimeFormat24HourChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeformat24Hour);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1149,39 +1149,39 @@ namespace Tizen.System.SystemSettings
             }
         }
 
-        private static readonly Interop.Settings.SystemSettingsChangedCallback s_localeTimezoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_localeTimeZoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            string localeTimezone = SystemSettings.LocaleTimezone;
-            LocaleTimezoneChangedEventArgs eventArgs = new LocaleTimezoneChangedEventArgs(localeTimezone);
-            s_localeTimezoneChanged?.Invoke(null, eventArgs);
+            string localeTimeZone = SystemSettings.LocaleTimeZone;
+            LocaleTimeZoneChangedEventArgs eventArgs = new LocaleTimeZoneChangedEventArgs(localeTimeZone);
+            s_localeTimeZoneChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<LocaleTimezoneChangedEventArgs> s_localeTimezoneChanged;
+        private static event EventHandler<LocaleTimeZoneChangedEventArgs> s_localeTimeZoneChanged;
         /// <summary>
-        /// LocaleTimezoneChanged event is triggered when the  current time zone is changed
+        /// LocaleTimeZoneChanged event is triggered when the  current time zone is changed
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleTimezoneChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<LocaleTimezoneChangedEventArgs> LocaleTimezoneChanged
+        /// <param name="e">A LocaleTimeZoneChangedEventArgs object that contains the key & changed value</param>
+        public static event EventHandler<LocaleTimeZoneChangedEventArgs> LocaleTimeZoneChanged
         {
             add
             {
-                if (s_localeTimezoneChanged == null)
+                if (s_localeTimeZoneChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimezone, s_localeTimezoneChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
                     }
                 }
-                s_localeTimezoneChanged += value;
+                s_localeTimeZoneChanged += value;
             }
 
             remove
             {
-                s_localeTimezoneChanged -= value;
-                if (s_localeTimezoneChanged == null)
+                s_localeTimeZoneChanged -= value;
+                if (s_localeTimeZoneChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimezone);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeZone);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1233,23 +1233,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_soundLockChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool soundLock = SystemSettings.SoundLock;
-            SoundLockChangedEventArgs eventArgs = new SoundLockChangedEventArgs(soundLock);
+            bool soundLock = SystemSettings.SoundLockEnabled;
+            SoundLockSettingChangedEventArgs eventArgs = new SoundLockSettingChangedEventArgs(soundLock);
             s_soundLockChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<SoundLockChangedEventArgs> s_soundLockChanged;
+        private static event EventHandler<SoundLockSettingChangedEventArgs> s_soundLockChanged;
         /// <summary>
         /// SoundLockChanged event is triggered when the screen lock sound enabled status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A SoundLockChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<SoundLockChangedEventArgs> SoundLockChanged
+        public static event EventHandler<SoundLockSettingChangedEventArgs> SoundLockSettingChanged
         {
             add
             {
                 if (s_soundLockChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundLock, s_soundLockChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1263,7 +1263,7 @@ namespace Tizen.System.SystemSettings
                 s_soundLockChanged -= value;
                 if (s_soundLockChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLock);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLockEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1274,23 +1274,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_soundSilentModeChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool soundSilentMode = SystemSettings.SoundSilentMode;
-            SoundSilentModeChangedEventArgs eventArgs = new SoundSilentModeChangedEventArgs(soundSilentMode);
+            bool soundSilentMode = SystemSettings.SoundSilentModeEnabled;
+            SoundSilentModeSettingChangedEventArgs eventArgs = new SoundSilentModeSettingChangedEventArgs(soundSilentMode);
             s_soundSilentModeChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<SoundSilentModeChangedEventArgs> s_soundSilentModeChanged;
+        private static event EventHandler<SoundSilentModeSettingChangedEventArgs> s_soundSilentModeChanged;
         /// <summary>
         /// SoundSilentModeChanged event is triggered when the silent mode status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A SoundSilentModeChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<SoundSilentModeChangedEventArgs> SoundSilentModeChanged
+        public static event EventHandler<SoundSilentModeSettingChangedEventArgs> SoundSilentModeSettingChanged
         {
             add
             {
                 if (s_soundSilentModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundSilentMode, s_soundSilentModeChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1304,7 +1304,7 @@ namespace Tizen.System.SystemSettings
                 s_soundSilentModeChanged -= value;
                 if (s_soundSilentModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentMode);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentModeEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1315,23 +1315,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_soundTouchChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool soundTouch = SystemSettings.SoundTouch;
-            SoundTouchChangedEventArgs eventArgs = new SoundTouchChangedEventArgs(soundTouch);
+            bool soundTouch = SystemSettings.SoundTouchEnabled;
+            SoundTouchSettingChangedEventArgs eventArgs = new SoundTouchSettingChangedEventArgs(soundTouch);
             s_soundTouchChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<SoundTouchChangedEventArgs> s_soundTouchChanged;
+        private static event EventHandler<SoundTouchSettingChangedEventArgs> s_soundTouchChanged;
         /// <summary>
         /// SoundTouchChanged event is triggered when the screen touch sound enabled status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A SoundTouchChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<SoundTouchChangedEventArgs> SoundTouchChanged
+        public static event EventHandler<SoundTouchSettingChangedEventArgs> SoundTouchSettingChanged
         {
             add
             {
                 if (s_soundTouchChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundTouch, s_soundTouchChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1345,7 +1345,7 @@ namespace Tizen.System.SystemSettings
                 s_soundTouchChanged -= value;
                 if (s_soundTouchChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouch);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1356,23 +1356,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_displayScreenRotationAutoChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool displayScreenRotationAuto = SystemSettings.DisplayScreenRotationAuto;
-            DisplayScreenRotationAutoChangedEventArgs eventArgs = new DisplayScreenRotationAutoChangedEventArgs(displayScreenRotationAuto);
+            bool displayScreenRotationAuto = SystemSettings.DisplayScreenRotationAutoEnabled;
+            DisplayScreenRotationAutoSettingChangedEventArgs eventArgs = new DisplayScreenRotationAutoSettingChangedEventArgs(displayScreenRotationAuto);
             s_displayScreenRotationAutoChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<DisplayScreenRotationAutoChangedEventArgs> s_displayScreenRotationAutoChanged;
+        private static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> s_displayScreenRotationAutoChanged;
         /// <summary>
         /// DisplayScreenRotationAutoChanged event is triggered when the automatic rotation control status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A DisplayScreenRotationAutoChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<DisplayScreenRotationAutoChangedEventArgs> DisplayScreenRotationAutoChanged
+        public static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> DisplayScreenRotationAutoSettingChanged
         {
             add
             {
                 if (s_displayScreenRotationAutoChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DisplayScreenRotationAuto, s_displayScreenRotationAutoChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1386,7 +1386,7 @@ namespace Tizen.System.SystemSettings
                 s_displayScreenRotationAutoChanged -= value;
                 if (s_displayScreenRotationAutoChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAuto);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1479,23 +1479,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_networkWifiNotificationChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool networkWifiNotification = SystemSettings.NetworkWifiNotification;
-            NetworkWifiNotificationChangedEventArgs eventArgs = new NetworkWifiNotificationChangedEventArgs(networkWifiNotification);
+            bool networkWifiNotification = SystemSettings.NetworkWifiNotificationEnabled;
+            NetworkWifiNotificationSettingChangedEventArgs eventArgs = new NetworkWifiNotificationSettingChangedEventArgs(networkWifiNotification);
             s_networkWifiNotificationChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<NetworkWifiNotificationChangedEventArgs> s_networkWifiNotificationChanged;
+        private static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> s_networkWifiNotificationChanged;
         /// <summary>
         /// NetworkWifiNotificationChanged event is triggered when the Wi-Fi-related notifications enabled status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A NetworkWifiNotificationChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<NetworkWifiNotificationChangedEventArgs> NetworkWifiNotificationChanged
+        public static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> NetworkWifiNotificationSettingChanged
         {
             add
             {
                 if (s_networkWifiNotificationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkWifiNotification, s_networkWifiNotificationChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1509,7 +1509,7 @@ namespace Tizen.System.SystemSettings
                 s_networkWifiNotificationChanged -= value;
                 if (s_networkWifiNotificationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotification);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1520,23 +1520,23 @@ namespace Tizen.System.SystemSettings
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_networkFlightModeChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            bool networkFlightMode = SystemSettings.NetworkFlightMode;
-            NetworkFlightModeChangedEventArgs eventArgs = new NetworkFlightModeChangedEventArgs(networkFlightMode);
+            bool networkFlightMode = SystemSettings.NetworkFlightModeEnabled;
+            NetworkFlightModeSettingChangedEventArgs eventArgs = new NetworkFlightModeSettingChangedEventArgs(networkFlightMode);
             s_networkFlightModeChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<NetworkFlightModeChangedEventArgs> s_networkFlightModeChanged;
+        private static event EventHandler<NetworkFlightModeSettingChangedEventArgs> s_networkFlightModeChanged;
         /// <summary>
         /// NetworkFlightModeChanged event is triggered when the flight mode status is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A NetworkFlightModeChangedEventArgs object that contains the key & changed value</param>
-        public static event EventHandler<NetworkFlightModeChangedEventArgs> NetworkFlightModeChanged
+        public static event EventHandler<NetworkFlightModeSettingChangedEventArgs> NetworkFlightModeSettingChanged
         {
             add
             {
                 if (s_networkFlightModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkFlightMode, s_networkFlightModeChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1550,7 +1550,7 @@ namespace Tizen.System.SystemSettings
                 s_networkFlightModeChanged -= value;
                 if (s_networkFlightModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightMode);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightModeEnabled);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
