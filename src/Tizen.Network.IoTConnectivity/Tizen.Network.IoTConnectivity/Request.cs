@@ -13,7 +13,7 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// Class respresenting Request to a resource
     /// </summary>
-    public class Request: IDisposable
+    public class Request : IDisposable
     {
         private bool _disposed = false;
 
@@ -55,9 +55,9 @@ namespace Tizen.Network.IoTConnectivity
 
             if (disposing)
             {
-                Representation.Dispose();
-                Query.Dispose();
-                Options.Dispose();
+                Representation?.Dispose();
+                Query?.Dispose();
+                Options?.Dispose();
             }
 
             _disposed = true;

@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -152,12 +153,14 @@ namespace Tizen.Network.IoTConnectivity
 
             if (disposing)
             {
-                Types.Dispose();
-                Interfaces.Dispose();
+                Types?.Dispose();
+                Interfaces?.Dispose();
             }
 
-            Interop.IoTConnectivity.Server.Resource.Destroy(_resourceHandle);
-            Interop.IoTConnectivity.Server.Observers.Destroy(_observerHandle);
+            if (_resourceHandle != IntPtr.Zero)
+                Interop.IoTConnectivity.Server.Resource.Destroy(_resourceHandle);
+            if (_observerHandle != IntPtr.Zero)
+                Interop.IoTConnectivity.Server.Observers.Destroy(_observerHandle);
             _disposed = true;
         }
 
@@ -280,15 +283,15 @@ namespace Tizen.Network.IoTConnectivity
             }
             finally
             {
-                request.Dispose();
+                request?.Dispose();
                 response?.Dispose();
             }
         }
 
         private Request GetRequest(IntPtr requestHandle)
         {
-            string hostAddress;
-            int ret = Interop.IoTConnectivity.Server.Request.GetHostAddress(requestHandle, out hostAddress);
+            IntPtr hostAddressPtr;
+            int ret = Interop.IoTConnectivity.Server.Request.GetHostAddress(requestHandle, out hostAddressPtr);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get host address");
@@ -354,7 +357,7 @@ namespace Tizen.Network.IoTConnectivity
 
             return new Request()
             {
-                HostAddress = hostAddress,
+                HostAddress = Marshal.PtrToStringAuto(hostAddressPtr),
                 Options = opts,
                 Query = query,
                 Representation = representation

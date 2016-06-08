@@ -81,5 +81,19 @@ namespace Tizen.Network.IoTConnectivity
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
         }
+
+        /// <summary>
+        /// Sets the device name
+        /// </summary>
+        /// <param name="deviceName">The device name</param>
+        public static void SetDeviceName(string deviceName)
+        {
+            int ret = Interop.IoTConnectivity.Server.IoTCon.SetDeviceName(deviceName);
+            if (ret != (int)IoTConnectivityError.None)
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed set device name");
+                throw IoTConnectivityErrorFactory.GetException(ret);
+            }
+        }
     }
 }

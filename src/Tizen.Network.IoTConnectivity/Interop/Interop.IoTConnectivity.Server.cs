@@ -31,6 +31,9 @@ internal static partial class Interop
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_stop_presence")]
                 internal static extern int StopPresence();
+
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_set_device_name")]
+                internal static extern int SetDeviceName(string deviceName);
             }
 
             internal static partial class Resource
@@ -68,7 +71,7 @@ internal static partial class Interop
                 internal static extern int GetNthChild(IntPtr parent, int index, out IntPtr child);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_resource_get_uri_path")]
-                internal static extern int GetUriPath(IntPtr resource, out string uriPpath);
+                internal static extern int GetUriPath(IntPtr resource, out IntPtr uriPath);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_resource_get_types")]
                 internal static extern int GetTypes(IntPtr resource, out IntPtr types);
@@ -83,7 +86,7 @@ internal static partial class Interop
             internal static partial class Request
             {
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_request_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr request, out string hostAddress);
+                internal static extern int GetHostAddress(IntPtr request, out IntPtr hostAddress);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_request_get_connectivity_type")]
                 internal static extern int GetConnectivityType(IntPtr request, out int connectivityType);
@@ -128,7 +131,7 @@ internal static partial class Interop
                 internal static extern int SetResult(IntPtr resp, int result);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_response_set_representation")]
-                internal static extern int SetRepresentation(IntPtr resp, string iface, IntPtr repr);
+                internal static extern int SetRepresentation(IntPtr resp, IntPtr repr);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_response_set_options")]
                 internal static extern int SetOptions(IntPtr resp, IntPtr options);

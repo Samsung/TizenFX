@@ -56,14 +56,15 @@ namespace Tizen.Network.IoTConnectivity
                 return false;
             }
 
-            string iface = "oic.if.baseline";
-            // TODO: iface parameter will be removed after native API is changed
-            ret = Interop.IoTConnectivity.Server.Response.SetRepresentation(responseHandle, iface, Representation._representationHandle);
-            if (ret != (int)IoTConnectivityError.None)
+            if (Representation != null)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to send response");
-                Interop.IoTConnectivity.Server.Response.Destroy(responseHandle);
-                return false;
+                ret = Interop.IoTConnectivity.Server.Response.SetRepresentation(responseHandle, Representation._representationHandle);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to send response");
+                    Interop.IoTConnectivity.Server.Response.Destroy(responseHandle);
+                    return false;
+                }
             }
 
             ret = Interop.IoTConnectivity.Server.Response.Send(responseHandle);
@@ -85,7 +86,6 @@ namespace Tizen.Network.IoTConnectivity
 
             if (disposing)
             {
-                Representation?.Dispose();
             }
 
             _disposed = true;

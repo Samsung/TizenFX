@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Network.IoTConnectivity
@@ -130,6 +131,11 @@ namespace Tizen.Network.IoTConnectivity
         public ResourcePolicy Policy { get; private set; }
 
         /// <summary>
+        /// The device name of the remote resource
+        /// </summary>
+        public string DeviceName { get; private set; }
+
+        /// <summary>
         /// The header options of the resource
         /// </summary>
         public ResourceOptions Options
@@ -180,7 +186,7 @@ namespace Tizen.Network.IoTConnectivity
             get
             {
                 int interval;
-                int ret = Interop.IoTConnectivity.Client.RemoteResource.GetTimeInterval(_remoteResourceHandle, out interval);
+                int ret = Interop.IoTConnectivity.Client.RemoteResource.GetTimeInterval(out interval);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Warn(IoTConnectivityErrorFactory.LogTag, "Failed to get time interval");
@@ -193,7 +199,7 @@ namespace Tizen.Network.IoTConnectivity
                 int ret = (int)IoTConnectivityError.InvalidParameter;
                 if (value < TimeOutMax && value > 0)
                 {
-                    ret = Interop.IoTConnectivity.Client.RemoteResource.SetTimeInterval(_remoteResourceHandle, value);
+                    ret = Interop.IoTConnectivity.Client.RemoteResource.SetTimeInterval(value);
                 }
                 if (ret != (int)IoTConnectivityError.None)
                 {
@@ -513,7 +519,16 @@ namespace Tizen.Network.IoTConnectivity
             else
             {
                 IPAddress address;
-                if (IPAddress.TryParse(hostAddress, out address))
+                string hostName = hostAddress;
+                if (hostAddress.Contains(":"))
+                {
+                    string[] hostParts = hostAddress.Split(':');
+                    if (hostParts.Length == 2)
+                    {
+                        hostName = hostParts[0];
+                    }
+                }
+                if (IPAddress.TryParse(hostName, out address))
                 {
                     switch (address.AddressFamily)
                     {
@@ -634,19 +649,28 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get remote resource");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
+
+            /*IntPtr deviceName;
+            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceName(_remoteResourceHandle, out deviceName);
+            if (ret != (int)IoTConnectivityError.None)
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
+                throw IoTConnectivityErrorFactory.GetException(ret);
+            }
+            DeviceName = Marshal.PtrToStringAuto(deviceName);*/
         }
 
         private void SetRemoteResource()
         {
-            string hostAddress, uriPath;
-            int ret = Interop.IoTConnectivity.Client.RemoteResource.GetHostAddress(_remoteResourceHandle, out hostAddress);
+            IntPtr hostAddressPtr, uriPathPtr;
+            int ret = Interop.IoTConnectivity.Client.RemoteResource.GetHostAddress(_remoteResourceHandle, out hostAddressPtr);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Faled to get host address");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            ret = Interop.IoTConnectivity.Client.RemoteResource.GetUriPath(_remoteResourceHandle, out uriPath);
+            ret = Interop.IoTConnectivity.Client.RemoteResource.GetUriPath(_remoteResourceHandle, out uriPathPtr);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Faled to get uri path");
@@ -654,7 +678,7 @@ namespace Tizen.Network.IoTConnectivity
             }
 
             int policy = (int)ResourcePolicy.NoProperty;
-            ret = Interop.IoTConnectivity.Client.RemoteResource.GetProperties(_remoteResourceHandle, out policy);
+            ret = Interop.IoTConnectivity.Client.RemoteResource.GetPolicies(_remoteResourceHandle, out policy);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Faled to get uri path");
@@ -676,17 +700,24 @@ namespace Tizen.Network.IoTConnectivity
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            string deviceId;
-            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceId(_remoteResourceHandle, out deviceId);
+            IntPtr deviceIdPtr;
+            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceId(_remoteResourceHandle, out deviceIdPtr);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device id");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-
-            DeviceId = deviceId;
-            HostAddress = hostAddress;
-            UriPath = uriPath;
+			IntPtr deviceName;
+            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceName(_remoteResourceHandle, out deviceName);
+            if (ret != (int)IoTConnectivityError.None)
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
+                throw IoTConnectivityErrorFactory.GetException(ret);
+            }
+            DeviceName = Marshal.PtrToStringAuto(deviceName);
+            DeviceId = Marshal.PtrToStringAuto(deviceIdPtr);
+            HostAddress = Marshal.PtrToStringAuto(hostAddressPtr);
+            UriPath = Marshal.PtrToStringAuto(uriPathPtr);
             Types = new ResourceTypes(typesHandle);
             Interfaces = new ResourceInterfaces(interfacesHandle);
             Policy = (ResourcePolicy)policy;
@@ -716,12 +747,11 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get options");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-
             return new RemoteResponse()
             {
                 Result = (ResponseCode)result,
                 Representation = new Representation(representationHandle),
-                Options = new ResourceOptions(optionsHandle)
+                Options = (optionsHandle == IntPtr.Zero)? null : new ResourceOptions(optionsHandle)
             };
         }
     }

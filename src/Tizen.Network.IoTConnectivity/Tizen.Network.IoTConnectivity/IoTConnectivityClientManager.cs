@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -77,6 +78,33 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Timeout property
+        /// </summary>
+        public static int PollingInterval
+        {
+            get
+            {
+                int interval;
+                int ret = Interop.IoTConnectivity.Client.IoTCon.GetPollingInterval(out interval);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Warn(IoTConnectivityErrorFactory.LogTag, "Failed to get polling interval");
+                    return 0;
+                }
+                return interval;
+            }
+            set
+            {
+                int ret = Interop.IoTConnectivity.Client.IoTCon.SetPollingInterval(value);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to set polling interval");
+                    throw IoTConnectivityErrorFactory.GetException(ret);
+                }
+            }
+        }
+
+        /// <summary>
         /// Connects to the iotcon service
         /// </summary>
         public static void Initialize()
@@ -90,11 +118,37 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Initializes IoTCon with secure mode.
+        /// </summary>
+        public static void SecureInitialize(string filePath)
+        {
+            int ret = Interop.IoTConnectivity.Client.IoTCon.SecureInitialize(filePath);
+            if (ret != (int)IoTConnectivityError.None)
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to initialize securely");
+                throw IoTConnectivityErrorFactory.GetException(ret);
+            }
+        }
+
+        /// <summary>
         /// Disconnects from the iotcon service
         /// </summary>
         public static void Deinitialize()
         {
             Interop.IoTConnectivity.Client.IoTCon.Deinitialize();
+        }
+
+        /// <summary>
+        /// Invokes a next message from a queue for receiving messages from others, immediately.
+        /// </summary>
+        public static void InvokePolling()
+        {
+            int ret = Interop.IoTConnectivity.Client.IoTCon.InvokePolling();
+            if (ret != (int)IoTConnectivityError.None)
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to invoke polling");
+                throw IoTConnectivityErrorFactory.GetException(ret);
+            }
         }
 
         /// <summary>
@@ -215,7 +269,6 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Invalid type");
                 throw new ArgumentException("Invalid type");
             }
-
             IntPtr id = IntPtr.Zero;
             lock (s_resourceFoundCallbacksMap)
             {
@@ -257,7 +310,6 @@ namespace Tizen.Network.IoTConnectivity
                     }
                 }
             };
-
             int errorCode = Interop.IoTConnectivity.Client.ResourceFinder.AddResourceFoundCb(hostAddress, (int)connectivityType, resourceType, isSecure, s_resourceFoundCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
@@ -319,7 +371,7 @@ namespace Tizen.Network.IoTConnectivity
                 }
             };
 
-            int errorCode = Interop.IoTConnectivity.Client.DeviceInformation.Get(hostAddress, (int)connectivityType, s_deviceInformationCallbacksMap[id], id);
+            int errorCode = Interop.IoTConnectivity.Client.DeviceInformation.Find(hostAddress, (int)connectivityType, s_deviceInformationCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device information");
@@ -381,7 +433,7 @@ namespace Tizen.Network.IoTConnectivity
                 }
             };
 
-            int errorCode = Interop.IoTConnectivity.Client.PlatformInformation.Get(hostAddress, (int)connectivityType, s_platformInformationCallbacksMap[id], id);
+            int errorCode = Interop.IoTConnectivity.Client.PlatformInformation.Find(hostAddress, (int)connectivityType, s_platformInformationCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get platform information");
@@ -398,7 +450,7 @@ namespace Tizen.Network.IoTConnectivity
         private static PresenceReceivedEventArgs GetPresenceReceivedEventArgs(int presenceId, IntPtr presenceResponseHandle)
         {
             int trigger;
-            string host, type;
+            IntPtr host, type;
 
             int ret = Interop.IoTConnectivity.Client.PresenceResponse.GetHostAddress(presenceResponseHandle, out host);
             if (ret != (int)IoTConnectivityError.None)
@@ -424,8 +476,8 @@ namespace Tizen.Network.IoTConnectivity
             PresenceReceivedEventArgs e = new PresenceReceivedEventArgs()
             {
                 PresenceId = presenceId,
-                HostAddress = host,
-                Type = type,
+                HostAddress = Marshal.PtrToStringAuto(host),
+                Type = Marshal.PtrToStringAuto(type),
                 EventType = (PresenceEventType)trigger
             };
 
@@ -434,7 +486,7 @@ namespace Tizen.Network.IoTConnectivity
 
         private static DeviceInformationFoundEventArgs GetDeviceInformationFoundEventArgs(int requestId, IntPtr deviceInfoHandle)
         {
-            string name, specVersion, deviceId, dataModelVersion;
+            IntPtr name, specVersion, deviceId, dataModelVersion;
 
             int ret = Interop.IoTConnectivity.Client.DeviceInformation.GetProperty(deviceInfoHandle, (int)Interop.IoTConnectivity.Client.DeviceInformation.Property.Name, out name);
             if (ret != (int)IoTConnectivityError.None)
@@ -467,10 +519,10 @@ namespace Tizen.Network.IoTConnectivity
             DeviceInformationFoundEventArgs e = new DeviceInformationFoundEventArgs()
             {
                 RequestId = requestId,
-                Name = name,
-                SpecVersion = specVersion,
-                DeviceId = deviceId,
-                DataModelVersion = dataModelVersion
+                Name = Marshal.PtrToStringAuto(name),
+                SpecVersion = Marshal.PtrToStringAuto(specVersion),
+                DeviceId = Marshal.PtrToStringAuto(deviceId),
+                DataModelVersion = Marshal.PtrToStringAuto(dataModelVersion)
             };
 
             return e;
@@ -478,7 +530,7 @@ namespace Tizen.Network.IoTConnectivity
 
         private static PlatformInformationFoundEventArgs GetPlatformInformationFoundEventArgs(int requestId, IntPtr platformInfoHandle)
         {
-            string platformId, manufacturerName, manufacturerUrl, modelNumber, dateOfManufacture, platformVersion, osVersion, hardwareVersion, firmwareVersion, supportUrl, systemTime;
+            IntPtr platformId, manufacturerName, manufacturerUrl, modelNumber, dateOfManufacture, platformVersion, osVersion, hardwareVersion, firmwareVersion, supportUrl, systemTime;
 
             int ret = Interop.IoTConnectivity.Client.PlatformInformation.GetProperty(platformInfoHandle, (int)Interop.IoTConnectivity.Client.PlatformInformation.Propery.Id, out platformId);
             if (ret != (int)IoTConnectivityError.None)
@@ -560,17 +612,17 @@ namespace Tizen.Network.IoTConnectivity
             PlatformInformationFoundEventArgs e = new PlatformInformationFoundEventArgs()
             {
                 RequestId = requestId,
-                PlatformId = platformId,
-                ManufacturerName = manufacturerName,
-                ManufacturerURL = manufacturerUrl,
-                DateOfManufacture = dateOfManufacture,
-                ModelNumber = modelNumber,
-                PlatformVersion = platformVersion,
-                OsVersion = osVersion,
-                HardwareVersion = hardwareVersion,
-                FirmwareVersion = firmwareVersion,
-                SupportUrl = supportUrl,
-                SystemTime = systemTime
+                PlatformId = Marshal.PtrToStringAuto(platformId),
+                ManufacturerName = Marshal.PtrToStringAuto(manufacturerName),
+                ManufacturerURL = Marshal.PtrToStringAuto(manufacturerUrl),
+                DateOfManufacture = Marshal.PtrToStringAuto(dateOfManufacture),
+                ModelNumber = Marshal.PtrToStringAuto(modelNumber),
+                PlatformVersion = Marshal.PtrToStringAuto(platformVersion),
+                OsVersion = Marshal.PtrToStringAuto(osVersion),
+                HardwareVersion = Marshal.PtrToStringAuto(hardwareVersion),
+                FirmwareVersion = Marshal.PtrToStringAuto(firmwareVersion),
+                SupportUrl = Marshal.PtrToStringAuto(supportUrl),
+                SystemTime = Marshal.PtrToStringAuto(systemTime)
             };
 
             return e;

@@ -18,24 +18,24 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="uri">The uri path of the lite resource</param>
         /// <param name="types">Resource type</param>
         /// <param name="policy">Policy of the resource</param>
-        /// <param name="state">Optional State of the resource</param>
-        public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, State state = null)
+        /// <param name="attribs">Optional attributes of the resource</param>
+        public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
-            State = state;
+            Attributes = attribs;
         }
 
         /// <summary>
-        /// The state of the lite resource
+        /// The attributes of the lite resource
         /// </summary>
-        public State State { get; set; }
+        public Attributes Attributes { get; set; }
 
         /// <summary>
         /// The method to accept post request
         /// </summary>
-        /// <param name="state">The new state of the lite resource</param>
+        /// <param name="attribs">The new attributes of the lite resource</param>
         /// <returns>true to accept post request, false to reject it</returns>
-        public virtual bool OnPost(State state)
+        public virtual bool OnPost(Attributes attribs)
         {
             return true;
         }
@@ -51,7 +51,7 @@ namespace Tizen.Network.IoTConnectivity
                 UriPath = UriPath,
                 Interface = Interfaces,
                 Type = Types,
-                State = State
+                Attributes = Attributes
             };
 
             Response response = new Response()
@@ -80,14 +80,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="request">Request.</param>
         public sealed override Response OnPost(Request request)
         {
-            if (OnPost(request.Representation.State))
+            if (OnPost(request.Representation.Attributes))
             {
-                State = request.Representation.State;
+                Attributes = request.Representation.Attributes;
                 Representation representation = new Representation() {
                     UriPath = UriPath,
                     Interface = Interfaces,
                     Type = Types,
-                    State = State
+                    Attributes = Attributes
                 };
 
                 Response response = new Response() {

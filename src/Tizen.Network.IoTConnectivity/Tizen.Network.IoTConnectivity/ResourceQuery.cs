@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -70,14 +71,14 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                string type;
+                IntPtr type;
                 int ret = Interop.IoTConnectivity.Common.Query.GetResourceType(_resourceQueryHandle, out type);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return type;
+                return Marshal.PtrToStringAuto(type);
             }
             set
             {
@@ -100,14 +101,14 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                string iface;
+                IntPtr iface;
                 int ret = Interop.IoTConnectivity.Common.Query.GetInterface(_resourceQueryHandle, out iface);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return iface;
+                return Marshal.PtrToStringAuto(iface);
             }
             set
             {
