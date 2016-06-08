@@ -9,6 +9,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals.Errors;
+
 internal static partial class Interop
 {
     internal static partial class Application
@@ -24,12 +26,18 @@ internal static partial class Interop
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
         [DllImport(Libraries.Application, EntryPoint = "ui_app_main")]
-        internal static extern int Main(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
+        internal static extern ErrorCode Main(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
 
         [DllImport(Libraries.Application, EntryPoint = "ui_app_exit")]
         internal static extern void Exit();
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_add_event_handler")]
+        internal static extern ErrorCode AddEventHandler(out IntPtr handle, AppCommon.AppEventType eventType, AppCommon.AppEventCallback callback, IntPtr data);
+
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_remove_event_handler")]
+        internal static extern ErrorCode RemoveEventHandler(IntPtr handle);
+
+        [StructLayout(LayoutKind.Sequential)]
         internal struct UIAppLifecycleCallbacks
         {
             public AppCreateCallback OnCreate;

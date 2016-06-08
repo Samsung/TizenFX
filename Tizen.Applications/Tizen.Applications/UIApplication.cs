@@ -7,6 +7,7 @@
 // you entered into with Samsung.
 
 using System;
+using Tizen.Internals.Errors;
 using Tizen.UI;
 
 namespace Tizen.Applications
@@ -56,8 +57,11 @@ namespace Tizen.Applications
         {
             base.Run(args);
 
-            TizenSynchronizationContext.Initialize();
-            Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
+            ErrorCode err = Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to run the application. Err = " + err);
+            }
         }
 
         /// <summary>
@@ -84,6 +88,16 @@ namespace Tizen.Applications
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);
+        }
+
+        internal override ErrorCode AddEventHandler(out IntPtr handle, Interop.AppCommon.AppEventType type, Interop.AppCommon.AppEventCallback callback)
+        {
+            return Interop.Application.AddEventHandler(out handle, type, callback, IntPtr.Zero);
+        }
+
+        internal override void RemoveEventHandler(IntPtr handle)
+        {
+            Interop.Application.RemoveEventHandler(handle);
         }
 
         private bool OnCreateNative(IntPtr data)

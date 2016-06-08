@@ -53,7 +53,6 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Interop\Interop.AppCommon.cs" />
     <Compile Include="Interop\Interop.AppControl.cs" />
-    <Compile Include="Interop\Interop.AppEvent.cs" />
     <Compile Include="Interop\Interop.Application.cs" />
     <Compile Include="Interop\Interop.ApplicationManager.cs" />
     <Compile Include="Interop\Interop.Bundle.cs" />
@@ -78,6 +77,8 @@
     <Compile Include="Tizen.Applications\DirectoryInfo.cs" />
     <Compile Include="Tizen.Applications\PackageEventState.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
+    <Compile Include="Tizen.Applications\LowBatteryEventArgs.cs" />
+    <Compile Include="Tizen.Applications\LowBatteryStatus.cs" />
     <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowMemoryStatus.cs" />
     <Compile Include="Tizen.Applications\Package.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Tizen.Applications\PackageSizeInformation.cs" />
     <Compile Include="Tizen.Applications\PackageType.cs" />
     <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
+    <Compile Include="Tizen.Applications\RegionFormatChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\SafeAppControlHandle.cs" />
     <Compile Include="Tizen.Applications\SafePackageManagerHandle.cs" />
     <Compile Include="Tizen.Applications\ServiceApplication.cs" />
