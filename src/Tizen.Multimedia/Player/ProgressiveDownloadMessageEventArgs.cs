@@ -22,6 +22,16 @@ namespace Tizen.Multimedia
     /// </remarks>
 	public class ProgressiveDownloadMessageEventArgs : EventArgs
     {
+		internal ProgressiveDownloadMessage _message;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public ProgressiveDownloadMessageEventArgs(ProgressiveDownloadMessage message)
+		{
+			_message = message;
+		}
+
         /// <summary>
         /// Get Progressive download message.
         /// </summary>
@@ -33,16 +43,5 @@ namespace Tizen.Multimedia
                 return _message;
             }
         }
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public ProgressiveDownloadMessageEventArgs(ProgressiveDownloadMessage message)
-		{
-			_message = message;
-		}
-
-        internal ProgressiveDownloadMessage _message;
-
     }
 }

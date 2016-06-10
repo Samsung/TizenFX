@@ -20,6 +20,22 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class VideoFrameCapture
     {
+		internal byte[] _imageBuffer;
+		internal int _width;
+		internal int _height;
+		internal uint _size;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
+		{
+			_imageBuffer = imageBuffer;
+			_width = width;
+			_height = height;
+			_size = size;
+		}
+
 
         /// <summary>
         /// Get/Set ImageBuffer.
@@ -84,22 +100,5 @@ namespace Tizen.Multimedia
 				return _size;
 			}
 		}
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
-		{
-			_imageBuffer = imageBuffer;
-			_width = width;
-			_height = height;
-			_size = size;
-		}
-
-
-		internal byte[] _imageBuffer;
-		internal int _width;
-		internal int _height;
-		internal uint _size;
     }
 }

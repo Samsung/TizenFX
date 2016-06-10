@@ -25,6 +25,12 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class AudioEffect
     {
+		internal IntPtr _playerHandle;
+		private List<EqualizerBand> _bands;
+
+		internal AudioEffect()
+		{
+		}
 
         /// <summary>
         /// Set/Get Equalizer band level, frequency and range.
@@ -45,7 +51,6 @@ namespace Tizen.Multimedia
 						PlayerErrorFactory.ThrowException(ret, "Failed to set equalizer band"); 
 					}
 				}
-
 			}
 			get
 			{
@@ -150,13 +155,5 @@ namespace Tizen.Multimedia
 				return available;
 			}
 		}
-
-		internal AudioEffect()
-		{
-		}
-
-		internal IntPtr _playerHandle;
-
-		List<EqualizerBand> _bands;
     }
 }

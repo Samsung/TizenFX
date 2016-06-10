@@ -23,14 +23,23 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class StreamingConfiguration
     {
+		internal IntPtr _playerHandle;
+		internal string _cookie;
+		internal string _userAgent;
+		internal string _progressiveDownloadPath;
 		private EventHandler<BufferingProgressEventArgs> _bufferingProgress;
 		private Interop.Player.BufferingProgressCallback _bufferingProgressCallback;
-
 		private EventHandler<ProgressiveDownloadMessageEventArgs> _pdMessage;
 		private Interop.Player.ProgressiveDownloadMessageCallback _pdMessageCallback;
-
 		private EventHandler<VideoStreamEventArgs> _videoStreamChanged;
 		private Interop.Player.VideoStreamChangedCallback _videoStreamChangedCallback;
+
+
+		internal StreamingConfiguration(IntPtr handle)
+		{
+			_playerHandle = handle;
+		}
+
 
 		/// <summary>
         /// BufferingProgressChanged event is raised when there is a change in the buffering status of a media stream
@@ -53,35 +62,6 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		private void RegisterBufferingProgressEvent()
-		{
-			_bufferingProgressCallback = (int percent, IntPtr userData) =>
-			{
-				BufferingProgressEventArgs eventArgs = new BufferingProgressEventArgs(percent);
-				_bufferingProgress.Invoke(this, eventArgs);
-			};
-
-			int ret = Interop.Player.SetBufferingCb(_playerHandle, _bufferingProgressCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting Buffering callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting Buffering callback failed"); 
-			}
-
-		}
-
-		private void UnregisterBufferingProgressEvent()
-		{
-			int ret = Interop.Player.UnsetBufferingCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting Buffering callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting Buffering callback failed"); 
-			}
-
-		}
-
-
         /// <summary>
         /// ProgressiveDownloadMessageChanged event is raised when progressive download is started or completed. 
         /// </summary>
@@ -103,33 +83,6 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		private void RegisterProgressiveDownloadMessageEvent()
-		{
-			_pdMessageCallback = (int type, IntPtr userData) =>
-			{
-				ProgressiveDownloadMessageEventArgs eventArgs = new ProgressiveDownloadMessageEventArgs((ProgressiveDownloadMessage)type);
-				_pdMessage.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Player.SetProgressiveDownloadMessageCb(_playerHandle, _pdMessageCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting progressive download callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting progressive download callback failed"); 
-			}
-		}
-
-		private void UnregisterProgressiveDownloadMessageEvent()
-		{
-			int ret = Interop.Player.UnsetProgressiveDownloadMessageCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting progressive download callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting progressive download callback failed"); 
-			}
-
-		}
-
-
         /// <summary>
         /// Video stream changed event is raised to notify the video stream changed. 
         /// </summary>
@@ -148,31 +101,6 @@ namespace Tizen.Multimedia
 				if(_videoStreamChanged == null) {
 					UnregisterVideoStreamChanged();
 				}
-			}
-		}
-
-		private void RegisterVideoStreamChangedEvent()
-		{
-			_videoStreamChangedCallback = (int width, int height, int fps, int bitrate, IntPtr userData) =>
-			{
-				VideoStreamEventArgs eventArgs = new VideoStreamEventArgs(height, width, fps, bitrate);
-				_videoStreamChanged.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Player.SetVideoStreamChangedCb(_playerHandle, _videoStreamChangedCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting video stream changed callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting video stream changed callback failed"); 
-			}
-		}
-
-		private void UnregisterVideoStreamChanged()
-		{
-			int ret = Interop.Player.UnsetVideoStreamChangedCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting video stream changed callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting video stream changed callback failed"); 
 			}
 		}
 
@@ -206,16 +134,17 @@ namespace Tizen.Multimedia
         {
             get
             {
-				DownloadProgress progress = new DownloadProgress();
+				DownloadProgress progress = null;
 				int start, current;
 				int ret = Interop.Player.GetStreamingDownloadProgress(_playerHandle, out start, out current);
-				if(ret != (int)PlayerError.None) 
+				if(ret == (int)PlayerError.None) 
+				{
+					progress = new DownloadProgress(start, current);
+				}
+				else
 				{
 					Log.Error(PlayerLog.LogTag, "Getting download progress failed" + (PlayerError)ret);
 				}
-
-				progress.Start = start;
-				progress.Current = current;
 				return progress;
             }
         }
@@ -228,16 +157,17 @@ namespace Tizen.Multimedia
         {
             get
             {
-				ProgressiveDownloadStatus status = new ProgressiveDownloadStatus();
+				ProgressiveDownloadStatus status = null; 
 				ulong current, totalSize;
 				int ret = Interop.Player.GetProgressiveDownloadStatus(_playerHandle, out current, out totalSize);
-				if(ret != (int)PlayerError.None) 
+				if(ret == (int)PlayerError.None) 
+				{
+					status = new ProgressiveDownloadStatus(current, totalSize);
+				}
+				else
 				{
 					Log.Error(PlayerLog.LogTag, "Getting progressive download status failed" + (PlayerError)ret);
 				}
-
-				status.TotalSize = totalSize;
-				status.Current = current;
 
 				return status;
             }
@@ -288,16 +218,82 @@ namespace Tizen.Multimedia
 		}
 
 
-		internal StreamingConfiguration(IntPtr handle)
+		private void RegisterBufferingProgressEvent()
 		{
-			_playerHandle = handle;
+			_bufferingProgressCallback = (int percent, IntPtr userData) =>
+			{
+				BufferingProgressEventArgs eventArgs = new BufferingProgressEventArgs(percent);
+				_bufferingProgress?.Invoke(this, eventArgs);
+			};
+
+			int ret = Interop.Player.SetBufferingCb(_playerHandle, _bufferingProgressCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting Buffering callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting Buffering callback failed"); 
+			}
+
 		}
 
-		internal IntPtr _playerHandle;
+		private void UnregisterBufferingProgressEvent()
+		{
+			int ret = Interop.Player.UnsetBufferingCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting Buffering callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting Buffering callback failed"); 
+			}
 
-		internal string _cookie;
-		internal string _userAgent;
-		internal string _progressiveDownloadPath;
+		}
+		private void RegisterProgressiveDownloadMessageEvent()
+		{
+			_pdMessageCallback = (int type, IntPtr userData) =>
+			{
+				ProgressiveDownloadMessageEventArgs eventArgs = new ProgressiveDownloadMessageEventArgs((ProgressiveDownloadMessage)type);
+				_pdMessage?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetProgressiveDownloadMessageCb(_playerHandle, _pdMessageCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting progressive download callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting progressive download callback failed"); 
+			}
+		}
+
+		private void UnregisterProgressiveDownloadMessageEvent()
+		{
+			int ret = Interop.Player.UnsetProgressiveDownloadMessageCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting progressive download callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting progressive download callback failed"); 
+			}
+
+		}
+
+		private void RegisterVideoStreamChangedEvent()
+		{
+			_videoStreamChangedCallback = (int width, int height, int fps, int bitrate, IntPtr userData) =>
+			{
+				VideoStreamEventArgs eventArgs = new VideoStreamEventArgs(height, width, fps, bitrate);
+				_videoStreamChanged?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetVideoStreamChangedCb(_playerHandle, _videoStreamChangedCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting video stream changed callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting video stream changed callback failed"); 
+			}
+		}
+
+		private void UnregisterVideoStreamChanged()
+		{
+			int ret = Interop.Player.UnsetVideoStreamChangedCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting video stream changed callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting video stream changed callback failed"); 
+			}
+		}
     }
-
 }

@@ -21,6 +21,21 @@ namespace Tizen.Multimedia
 
 	public class MediaStreamSource : MediaSource
 	{
+		internal MediaStreamConfiguration _audioConfiguration;
+		internal MediaStreamConfiguration _videoConfiguration;
+
+		/// <summary>
+		/// Constructor </summary>
+		public MediaStreamSource()
+		{
+			_audioConfiguration = new MediaStreamConfiguration();
+			_videoConfiguration = new MediaStreamConfiguration();
+			_audioConfiguration._streamType = StreamType.Audio;
+			_videoConfiguration._streamType = StreamType.Video;
+		}
+
+		#if _MEDIA_FORMAT_
+		TODO: Uncomment this when MediaFormat is implemented
 		/// <summary>
 		/// Get/Set Audio Media format.
 		/// </summary>
@@ -32,6 +47,7 @@ namespace Tizen.Multimedia
 		/// </summary>
 		/// <value> MediaFormat </value>
 		//public MediaFormat VideoMediaFormat { get; set; }
+		#endif
 
 		/// <summary>
 		/// Get/Set Audio configuration.
@@ -57,37 +73,20 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		/// <summary>
-		/// Get/Set Video Media format.
-		/// </summary>
-		/// <value> MediaFormat </value>
-		//public MediaFormat VideoMediaFormat { get; set; }
-
-
+		#if _MEDIA_PACKET_
 		/// <summary>
 		/// Push Media stream </summary>
 		/// <param name="packet"> media packet</param>
 		/// TODO: Implement this when MediaPacket is ready
-		//public void PushMediaStream(MediaPacket packet)
-		//{
-		//}
-
-		public MediaStreamSource()
+		public void PushMediaStream(MediaPacket packet)
 		{
-			_audioConfiguration = new MediaStreamConfiguration();
-			_videoConfiguration = new MediaStreamConfiguration();
-			_audioConfiguration._streamType = StreamType.Audio;
-			_videoConfiguration._streamType = StreamType.Video;
 		}
+		#endif
 
 		internal void SetHandle(IntPtr handle)
 		{
 			_audioConfiguration.SetHandle(handle);
 			_videoConfiguration.SetHandle(handle);
 		}
-
-
-		internal MediaStreamConfiguration _audioConfiguration;
-		internal MediaStreamConfiguration _videoConfiguration;
 	}
 }

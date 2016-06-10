@@ -31,18 +31,100 @@ namespace Tizen.Multimedia
     /// </remarks>
 	public class Player : IDisposable
     {
+		internal PlayerState _state;
+		internal float _leftVolume;
+		internal float _rightVolume;
+		internal int _audioLatencyMode;
+		internal bool _mute;
+		internal bool _isLooping;
+		internal Display _display;
+		internal Subtitle _subtitle;
+		internal AudioEffect _audioEffect;
+		internal StreamInformation _streamInformation;
+		internal StreamingConfiguration _streamingConfiguration;
+		internal IntPtr _playerHandle;
+
+		private bool _disposed = false;
 		private EventHandler<PlaybackCompletedEventArgs> _playbackCompleted;
 		private Interop.Player.PlaybackCompletedCallback _playbackCompletedCallback;
-
 		private EventHandler<PlaybackInterruptedEventArgs> _playbackInterrupted;
 		private Interop.Player.PlaybackInterruptedCallback _playbackInterruptedCallback;
-
 		private EventHandler<PlaybackErrorEventArgs> _playbackError;
 		private Interop.Player.PlaybackErrorCallback _playbackErrorCallback;
 
 		//TODO: Uncomment this after MediaPacket is implemented.
 		//private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
 		//private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+
+
+		/// <summary>
+		/// Player constructor.</summary>
+		public Player()
+		{
+			int ret;
+
+			ret = Interop.Player.Create(out _playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to create player" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Failed to create player"); 
+			}
+
+			// Initial get values
+			ret = Interop.Player.GetVolume(_playerHandle, out _leftVolume, out _rightVolume);
+			if(ret != (int)PlayerError.None)
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to get volume levels" + ret);
+			}
+
+			ret = Interop.Player.GetAudioLatencyMode(_playerHandle, out _audioLatencyMode);
+			if(ret != (int)PlayerError.None)
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to get Audio latency mode" + ret);
+			}
+
+			ret = Interop.Player.IsMuted(_playerHandle, out _mute);
+			if(ret != (int)PlayerError.None)
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to get mute status" + ret);
+			}
+
+			ret = Interop.Player.IsLooping(_playerHandle, out _isLooping);
+			if(ret != (int)PlayerError.None)
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to get loop status" + ret);
+			}
+
+
+			// AudioEffect
+			_audioEffect = new AudioEffect();
+			_audioEffect._playerHandle = _playerHandle;
+
+			// Display
+			_display = new Display(DisplayType.Evas /* Default value? */);
+			_display._playerHandle = _playerHandle;
+
+			// StreamingConfiguration
+			_streamingConfiguration = new StreamingConfiguration(_playerHandle);
+
+			// StreamInformation
+			_streamInformation = new StreamInformation();
+			_streamInformation._playerHandle = _playerHandle;
+			_streamInformation._contentInfo = new PlayerContentInfo();
+			_streamInformation._contentInfo._playerHandle = _playerHandle;
+
+
+			Log.Debug(PlayerLog.LogTag, "player created : "+ _playerHandle);
+		}
+
+		/// <summary>
+		/// Player destructor
+		/// </summary>
+		~Player()
+		{
+			Dispose(false);
+		}
+
 
 		/// <summary>
         /// PlaybackCompleted event is raised when playback of a media is finished
@@ -66,33 +148,6 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		private void RegisterPlaybackCompletedEvent()
-		{
-			_playbackCompletedCallback = (IntPtr userData) =>
-				{
-				PlaybackCompletedEventArgs eventArgs = new PlaybackCompletedEventArgs();
-				_playbackCompleted.Invoke(this, eventArgs);
-				};
-			int ret = Interop.Player.SetCompletedCb(_playerHandle, _playbackCompletedCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting PlaybackCompleted callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackCompleted callback failed"); 
-			}
-			
-		}
-
-		private void UnregisterPlaybackCompletedEvent()
-		{
-			int ret = Interop.Player.UnsetCompletedCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackCompleted callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackCompleted callback failed"); 
-			}
-			
-		}
-
         /// <summary>
         /// PlaybackInterruped event is raised when playback of a media is interrupted
         /// </summary>
@@ -111,31 +166,6 @@ namespace Tizen.Multimedia
 				if(_playbackInterrupted == null) {
 					UnregisterPlaybackInterruptedEvent();
 				}
-			}
-		}
-
-		private void RegisterPlaybackInterruptedEvent()
-		{
-			_playbackInterruptedCallback = (int code, IntPtr userData) =>
-			{
-				PlaybackInterruptedEventArgs eventArgs = new PlaybackInterruptedEventArgs(code);
-				_playbackInterrupted.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Player.SetInterruptedCb(_playerHandle, _playbackInterruptedCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting PlaybackInterrupted callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackInterrupted callback failed"); 
-			}
-		}
-
-		private void UnregisterPlaybackInterruptedEvent()
-		{
-			int ret = Interop.Player.UnsetInterruptedCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackInterrupted callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackInterrupted callback failed"); 
 			}
 		}
 
@@ -160,33 +190,6 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		private void RegisterPlaybackErrorEvent()
-		{
-			_playbackErrorCallback = (int code, IntPtr userData) =>
-			{
-				PlaybackErrorEventArgs eventArgs = new PlaybackErrorEventArgs(code);
-				_playbackError.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Player.SetErrorCb(_playerHandle, _playbackErrorCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting PlaybackError callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackError callback failed"); 
-			}
-			
-		}
-
-		private void UnregisterPlaybackErrorEvent()
-		{
-			int ret = Interop.Player.UnsetErrorCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackError callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackError callback failed"); 
-			}
-			
-		}
-
 
 		#if _MEDIA_PACKET_
 		TODO: Uncomment this after MediaPacket is implemented.
@@ -209,21 +212,6 @@ namespace Tizen.Multimedia
 					UnregisterVideoFrameDecodedEvent();
 				}
 			}
-		}
-
-		private void RegisterVideoFrameDecodedEvent()
-		{
-			_videoFrameDecoded = (MediaPacket packet, IntPtr userData) =>
-			{
-				VideoFrameDecodedEventArgs eventArgs = new VideoFrameDecodedEventArgs();
-				_videoFrameDecoded.Invoke(this, eventArgs);
-			};
-			Interop.Player.SetErrorCb(_playerHandle, _videoFrameDecodedCallback, IntPtr.Zero);
-		}
-
-		private void UnregisterVideoFrameDecodedEvent()
-		{
-			Interop.Player.UnsetMediaPacketVideoFrameDecodedCb(_playerHandle);
 		}
 		#endif
 
@@ -397,8 +385,10 @@ namespace Tizen.Multimedia
             {
 				int playPosition;
 				int ret = Interop.Player.GetPlayPosition(_playerHandle, out playPosition);
-				if(ret != (int)PlayerError.None) 
+				if(ret != (int)PlayerError.None)
+				{
 					Log.Error(PlayerLog.LogTag, "Failed to get play position, " + (PlayerError)ret);
+				}
 				return playPosition;
             }
         }
@@ -475,78 +465,12 @@ namespace Tizen.Multimedia
             }
         }
 
-        /// <summary>
-        /// Player constructor.</summary>
-        public Player()
-        {
-			int ret;
-			
-			ret = Interop.Player.Create(out _playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Failed to create player" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Failed to create player"); 
-			}
-
-			// Initial get values
-			Interop.Player.GetVolume(_playerHandle, out _leftVolume, out _rightVolume);
-			Interop.Player.GetAudioLatencyMode(_playerHandle, out _audioLatencyMode);
-			Interop.Player.IsMuted(_playerHandle, out _mute);
-			Interop.Player.IsLooping(_playerHandle, out _isLooping);
-
-			// AudioEffect
-			_audioEffect = new AudioEffect();
-			_audioEffect._playerHandle = _playerHandle;
-
-			// Display
-			_display = new Display(DisplayType.Evas /* Default value? */);
-			_display._playerHandle = _playerHandle;
-
-
-			// StreamingConfiguration
-			_streamingConfiguration = new StreamingConfiguration(_playerHandle);
-
-			// StreamInformation
-			_streamInformation = new StreamInformation();
-			_streamInformation._playerHandle = _playerHandle;
-			_streamInformation._contentInfo = new PlayerContentInfo();
-			_streamInformation._contentInfo._playerHandle = _playerHandle;
-
-			
-			Log.Debug(PlayerLog.LogTag, "player created : "+ _playerHandle);
-        }
-
-        /// <summary>
-        /// Player destructor
-        /// </summary>
-        ~Player()
-        {
-			Dispose(false);
-        }
 
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if(!_disposed)
-			{
-				if(disposing)
-				{
-					// To be used if there are any other disposable objects
-				}
-				if(_playerHandle != IntPtr.Zero)
-				{
-					Interop.Player.Destroy(_playerHandle);
-					_playerHandle = IntPtr.Zero;
-				}
-				_disposed = true;
-			}
-		}
-
 
         /// <summary>
         /// Prepares the media player for playback. </summary>
@@ -720,7 +644,6 @@ namespace Tizen.Multimedia
 		/// <param name="policy"> Audio Stream Policy  </param>
 		public void SetAudioStreamPolicy(AudioStreamPolicy policy)
 		{
-			// TODO: policy._streamInfo is currently private. Fix this.
 			int ret = Interop.Player.SetAudioPolicyInfo(_playerHandle, policy.Handle);
 			if(ret != (int)PlayerError.None) 
 			{
@@ -729,21 +652,119 @@ namespace Tizen.Multimedia
 			}
 		}
 
+		protected virtual void Dispose(bool disposing)
+		{
+			if(!_disposed)
+			{
+				if(disposing)
+				{
+					// To be used if there are any other disposable objects
+				}
+				if(_playerHandle != IntPtr.Zero)
+				{
+					Interop.Player.Destroy(_playerHandle);
+					_playerHandle = IntPtr.Zero;
+				}
+				_disposed = true;
+			}
+		}
 
-        internal PlayerState _state;
-		internal float _leftVolume;
-		internal float _rightVolume;
-		internal int _audioLatencyMode;
-		internal bool _mute;
-		internal bool _isLooping;
+		private void RegisterPlaybackCompletedEvent()
+		{
+			_playbackCompletedCallback = (IntPtr userData) =>
+			{
+				PlaybackCompletedEventArgs eventArgs = new PlaybackCompletedEventArgs();
+				_playbackCompleted?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetCompletedCb(_playerHandle, _playbackCompletedCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting PlaybackCompleted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackCompleted callback failed"); 
+			}
 
-		internal Display _display;
-		internal Subtitle _subtitle;
-        internal AudioEffect _audioEffect;
-        internal StreamInformation _streamInformation;
-        internal StreamingConfiguration _streamingConfiguration;
+		}
 
-		internal IntPtr _playerHandle;
-		private bool _disposed = false;
+		private void UnregisterPlaybackCompletedEvent()
+		{
+			int ret = Interop.Player.UnsetCompletedCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackCompleted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackCompleted callback failed"); 
+			}
+
+		}
+
+		private void RegisterPlaybackInterruptedEvent()
+		{
+			_playbackInterruptedCallback = (int code, IntPtr userData) =>
+			{
+				PlaybackInterruptedEventArgs eventArgs = new PlaybackInterruptedEventArgs(code);
+				_playbackInterrupted?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetInterruptedCb(_playerHandle, _playbackInterruptedCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting PlaybackInterrupted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackInterrupted callback failed"); 
+			}
+		}
+
+		private void UnregisterPlaybackInterruptedEvent()
+		{
+			int ret = Interop.Player.UnsetInterruptedCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackInterrupted callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackInterrupted callback failed"); 
+			}
+		}
+
+		private void RegisterPlaybackErrorEvent()
+		{
+			_playbackErrorCallback = (int code, IntPtr userData) =>
+			{
+				PlaybackErrorEventArgs eventArgs = new PlaybackErrorEventArgs(code);
+				_playbackError?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetErrorCb(_playerHandle, _playbackErrorCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting PlaybackError callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting PlaybackError callback failed"); 
+			}
+
+		}
+
+		private void UnregisterPlaybackErrorEvent()
+		{
+			int ret = Interop.Player.UnsetErrorCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting PlaybackError callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackError callback failed"); 
+			}
+
+		}
+
+		#if _MEDIA_PACKET_
+		TODO: Uncomment this when MediaPacket is implemented
+		private void RegisterVideoFrameDecodedEvent()
+		{
+			_videoFrameDecoded = (MediaPacket packet, IntPtr userData) =>
+			{
+				VideoFrameDecodedEventArgs eventArgs = new VideoFrameDecodedEventArgs();
+				_videoFrameDecoded?.Invoke(this, eventArgs);
+			};
+			Interop.Player.SetErrorCb(_playerHandle, _videoFrameDecodedCallback, IntPtr.Zero);
+		}
+
+		private void UnregisterVideoFrameDecodedEvent()
+		{
+			Interop.Player.UnsetMediaPacketVideoFrameDecodedCb(_playerHandle);
+		}
+		#endif
+
     }
 }

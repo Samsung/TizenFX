@@ -22,6 +22,17 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class PlaybackErrorEventArgs : EventArgs
     {
+		internal int _errorCode;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="errocode"> Playback error code </param>
+		public PlaybackErrorEventArgs(int errorCode)
+		{
+			_errorCode = errorCode;
+		}
+
         /// <summary>
         /// Get the error code.
         /// </summary>
@@ -33,16 +44,5 @@ namespace Tizen.Multimedia
                 return _errorCode;
             }
         }
-
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public PlaybackErrorEventArgs(int errorCode)
-		{
-			_errorCode = errorCode;
-		}
-
-        internal int _errorCode;
-
     }
 }

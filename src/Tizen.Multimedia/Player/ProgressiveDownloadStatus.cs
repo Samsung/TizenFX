@@ -22,6 +22,15 @@ namespace Tizen.Multimedia
     /// </remarks>
 	public class ProgressiveDownloadStatus
     {
+		internal ulong _current;
+		internal ulong _totalSize;
+
+		internal ProgressiveDownloadStatus(ulong current, ulong totalSize)
+		{
+			_current = current;
+			_totalSize = totalSize;
+		}
+
         /// <summary>
         /// Get current download position (bytes) 
         /// </summary>
@@ -53,12 +62,5 @@ namespace Tizen.Multimedia
 				return _totalSize;
 			}
 		}
-
-		internal ProgressiveDownloadStatus()
-		{
-		}
-
-		internal ulong _current;
-		internal ulong _totalSize;
     }
 }

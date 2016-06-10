@@ -23,7 +23,9 @@ namespace Tizen.Multimedia
     public class VideoFrameDecodedEventArgs : EventArgs
     {
 		// TODO: uncomment when MediaPacket is implemented.
-        /// <summary>
+		//internal MediaPacket _packet;
+
+		/// <summary>
         /// Get the Image buffer.
         /// </summary>
         /// <value> integer error code</value>
@@ -35,6 +37,5 @@ namespace Tizen.Multimedia
         //    }
         //}
 
-        //internal MediaPacket _packet;
     }
 }

@@ -22,6 +22,18 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class SubtitleUpdatedEventArgs : EventArgs
     {
+		internal ulong _duration;
+		internal string _text;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public SubtitleUpdatedEventArgs(ulong duration, string text)
+		{
+			_duration = duration;
+			_text = text;
+		}
+
         /// <summary>
         /// The duration of the updated subtitle .
         /// </summary>
@@ -46,16 +58,5 @@ namespace Tizen.Multimedia
             }
         }
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public SubtitleUpdatedEventArgs(ulong duration, string text)
-		{
-			_duration = duration;
-			_text = text;
-		}
-
-        internal ulong _duration;
-        internal string _text;
     }
 }

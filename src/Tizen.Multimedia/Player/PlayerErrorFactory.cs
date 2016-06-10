@@ -1,4 +1,15 @@
-﻿using System;
+﻿/// Player Error factory
+///
+/// Copyright 2016 by Samsung Electronics, Inc.,
+///
+/// This software is the confidential and proprietary information
+/// of Samsung Electronics, Inc. ("Confidential Information"). You
+/// shall not disclose such Confidential Information and shall use
+/// it only in accordance with the terms of the license agreement
+/// you entered into with Samsung.using System;
+/// 
+
+using System;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -7,24 +18,28 @@ namespace Tizen.Multimedia
 	{
 		None = ErrorCode.None,
 		InvalidParameter = ErrorCode.InvalidParameter,
-		InvalidState,
-		OutOfMemory,
-		NoSuchFile,
-		InvalidOperation,
-		NoSpaceOnDevice,
-		FeatureNotSupported,
-		SeekFailed,
-		FileNotSupported,
-		InvalidUri,
-		SoundPolicyError,
-		ConnectionFailed,
-		VideoCaptureFailed,
-		DrmExpired,
-		DrmNoLicense,
-		DrmFutureUse,
-		DrmNotPermitted,
-		ResourceLimit,
-		PermissionDenied
+		OutOfMemory = ErrorCode.OutOfMemory,
+		NoSuchFile = ErrorCode.NoSuchFile,
+		InvalidOperation = ErrorCode.InvalidOperation,
+		NoSpaceOnDevice = ErrorCode.FileNoSpaceOnDevice,
+		FeatureNotSupported = ErrorCode.NotSupported,
+		PermissionDenied = ErrorCode.PermissionDenied,
+		BufferSpace = ErrorCode.BufferSpace,
+		TizenPlayerError = -0x01940000,
+		PlayerErrorClass = TizenPlayerError | 0x20,
+		SeekFailed = PlayerErrorClass | 0x01,
+		InvalidState = PlayerErrorClass | 0x02,
+		FileNotSupported = PlayerErrorClass | 0x03,
+		InvalidUri = PlayerErrorClass | 0x04,
+		SoundPolicyError = PlayerErrorClass | 0x05,
+		ConnectionFailed = PlayerErrorClass | 0x06,
+		VideoCaptureFailed = PlayerErrorClass | 0x07,
+		DrmExpired = PlayerErrorClass | 0x08,
+		DrmNoLicense = PlayerErrorClass | 0x09,
+		DrmFutureUse = PlayerErrorClass | 0x0a,
+		DrmNotPermitted = PlayerErrorClass | 0x0b,
+		ResourceLimit = PlayerErrorClass | 0x0c,
+		ServiceDisconnected = PlayerErrorClass | 0x0d
 	};
 
 	internal static class PlayerErrorFactory

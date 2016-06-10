@@ -22,6 +22,16 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class SeekOffsetEventArgs : EventArgs
     {
+		internal UInt64 _offset;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public SeekOffsetEventArgs(UInt64 offset)
+		{
+			_offset = offset;
+		}
+
         /// <summary>
         /// Get seek offset.
         /// </summary>
@@ -33,16 +43,6 @@ namespace Tizen.Multimedia
                 return _offset;
             }
         }
-
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public SeekOffsetEventArgs(UInt64 offset)
-		{
-			_offset = offset;
-		}
-
-		internal UInt64 _offset;
 
     }
 }

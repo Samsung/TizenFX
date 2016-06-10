@@ -22,6 +22,17 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class PlaybackInterruptedEventArgs : EventArgs
     {
+		internal int _interruptedCode;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="interruptedCode"> Playback interrupted code </param>
+		public PlaybackInterruptedEventArgs(int interruptedCode)
+		{
+			_interruptedCode = interruptedCode;
+		}
+
         /// <summary>
         /// Get the error code.
         /// </summary>
@@ -33,15 +44,5 @@ namespace Tizen.Multimedia
                 return _interruptedCode;
             }
         }
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public PlaybackInterruptedEventArgs(int interruptedCode)
-		{
-			_interruptedCode = interruptedCode;
-		}
-
-        internal int _interruptedCode;
     }
 }

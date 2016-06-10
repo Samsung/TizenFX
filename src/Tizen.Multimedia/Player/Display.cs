@@ -23,6 +23,17 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class Display
     {
+		internal IntPtr _playerHandle;
+		internal bool _isVisible;
+		internal DisplayMode _displayMode;
+		internal DisplayRotation _rotation;
+
+		/// <summary>
+		/// Constructor - sets video display </summary>
+		/// <param name="displayType"> display type</param>
+		public Display(DisplayType displayType)
+		{
+		}
 
         /// <summary>
         /// Set/Get Display mode.
@@ -97,20 +108,5 @@ namespace Tizen.Multimedia
 				return _rotation;
 			}
 		}
-
-
-
-        /// <summary>
-        /// Constructor - sets video display </summary>
-        /// <param name="displayType"> display type</param>
-        public Display(DisplayType displayType)
-        {
-        }
-
-
-		internal IntPtr _playerHandle;
-		internal DisplayMode _displayMode;
-		internal bool _isVisible;
-		internal DisplayRotation _rotation;
     }
 }

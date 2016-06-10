@@ -22,6 +22,22 @@ namespace Tizen.Multimedia
     /// </remarks>
 	public class VideoStreamEventArgs : EventArgs
     {
+		internal int _height;
+		internal int _width;
+		internal int _fps;
+		internal int _bitrate;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public VideoStreamEventArgs(int height, int width, int fps, int bitrate)
+		{
+			_height = height;
+			_width = width;
+			_fps = fps;
+			_bitrate = bitrate;
+		}
+
         /// <summary>
         /// Get Video Height.
         /// </summary>
@@ -70,20 +86,5 @@ namespace Tizen.Multimedia
             }
         }
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public VideoStreamEventArgs(int height, int width, int fps, int bitrate)
-		{
-			_height = height;
-			_width = width;
-			_fps = fps;
-			_bitrate = bitrate;
-		}
-
-        internal int _height;
-        internal int _width;
-        internal int _fps;
-        internal int _bitrate;
     }
 }

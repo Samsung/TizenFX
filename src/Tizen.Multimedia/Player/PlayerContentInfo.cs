@@ -21,14 +21,10 @@ namespace Tizen.Multimedia
 
     public class PlayerContentInfo
     {
-		enum ContentInfoKey
+		internal IntPtr _playerHandle;
+
+		internal PlayerContentInfo()
 		{
-			Album,
-			Artist,
-			Author,
-			Genre,
-			Title,
-			Year
 		}
 
         /// <summary>
@@ -141,10 +137,5 @@ namespace Tizen.Multimedia
             }
         }
 
-		internal PlayerContentInfo()
-		{
-		}
-
-		internal IntPtr _playerHandle;
     }
 }

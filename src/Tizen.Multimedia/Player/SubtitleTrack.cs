@@ -21,6 +21,15 @@ namespace Tizen.Multimedia
 
     public class SubtitleTrack
     {
+		internal string _languageCode;
+		internal bool _activated;
+
+		public SubtitleTrack(string code, bool activated)
+		{
+			_languageCode = code;
+			_activated = activated;
+		}
+
         /// <summary>
         /// Get/Set Language code.
         /// </summary>
@@ -53,13 +62,5 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		public SubtitleTrack(string code, bool activated)
-		{
-			_languageCode = code;
-			_activated = activated;
-		}
-
-		internal string _languageCode;
-		internal bool _activated;
     }
 }

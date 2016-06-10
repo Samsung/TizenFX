@@ -26,9 +26,20 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class Subtitle
     {
-
+		internal IntPtr _playerHandle;
+		internal string _path;
 		private EventHandler<SubtitleUpdatedEventArgs> _subtitleUpdated;
 		private Interop.Player.SubtitleUpdatedCallback _subtitleUpdatedCallback;
+
+		/// <summary>
+		/// Subtitle Constructor.
+		/// Note: Newly created subtitle has to be set to the 'Subtitle' property of the player object.
+		/// Else, operations on subtitle object do not work.  </summary>
+		/// <param name="path"> subtitle path </param>
+		public Subtitle(string path)
+		{
+			_path = path;
+		}
 
         /// <summary>
         /// Subtitle event is raised when the subtitle is updated
@@ -50,33 +61,6 @@ namespace Tizen.Multimedia
 				}
 			}
 		}
-
-		private void RegisterSubtitleUpdatedEvent()
-		{
-			_subtitleUpdatedCallback = (ulong duration, string text, IntPtr userData) =>
-			{
-				SubtitleUpdatedEventArgs eventArgs = new SubtitleUpdatedEventArgs(duration, text);
-				_subtitleUpdated.Invoke(this, eventArgs);
-			};
-			int ret = Interop.Player.SetSubtitleUpdatedCb(_playerHandle, _subtitleUpdatedCallback, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Setting subtitle updated callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Setting subtitle updated callback failed"); 
-			}
-
-		}
-
-		private void UnregisterSubtitleUpdatedEvent()
-		{
-			int ret = Interop.Player.UnsetSubtitleUpdatedCb(_playerHandle);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Unsetting subtitle updated callback failed" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Unsetting subtitle updated callback failed"); 
-			}
-		}
-
 
         /// <summary>
         /// Set position offset.
@@ -260,17 +244,31 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		/// <summary>
-		/// Subtitle Constructor.
-		/// Note: Newly created subtitle has to be set to the 'Subtitle' property of the player object.
-		/// Else, operations on subtitle object do not work.  </summary>
-		/// <param name="path"> subtitle path </param>
-		public Subtitle(string path)
+
+		private void RegisterSubtitleUpdatedEvent()
 		{
-			_path = path;
+			_subtitleUpdatedCallback = (ulong duration, string text, IntPtr userData) =>
+			{
+				SubtitleUpdatedEventArgs eventArgs = new SubtitleUpdatedEventArgs(duration, text);
+				_subtitleUpdated?.Invoke(this, eventArgs);
+			};
+			int ret = Interop.Player.SetSubtitleUpdatedCb(_playerHandle, _subtitleUpdatedCallback, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Setting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Setting subtitle updated callback failed"); 
+			}
+
 		}
 
-		internal IntPtr _playerHandle;
-		internal string _path;
+		private void UnregisterSubtitleUpdatedEvent()
+		{
+			int ret = Interop.Player.UnsetSubtitleUpdatedCb(_playerHandle);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Unsetting subtitle updated callback failed" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Unsetting subtitle updated callback failed"); 
+			}
+		}
     }
 }

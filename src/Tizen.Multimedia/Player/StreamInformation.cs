@@ -24,6 +24,12 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class StreamInformation
     {
+		internal IntPtr _playerHandle;
+		internal PlayerContentInfo _contentInfo;
+
+		internal StreamInformation()
+		{
+		}
 
         /// <summary>
         /// Get album art.
@@ -245,12 +251,5 @@ namespace Tizen.Multimedia
             }
         }
 
-		internal StreamInformation()
-		{
-		}
-
-		internal IntPtr _playerHandle;
-
-        internal PlayerContentInfo _contentInfo;
     }
 }

@@ -220,4 +220,18 @@ namespace Tizen.Multimedia
         Stream,
     }
 
+	/// <summary>
+	/// Enumeration for Content info
+	/// </summary>
+	internal enum ContentInfoKey
+	{
+		Album,
+		Artist,
+		Author,
+		Genre,
+		Title,
+		Year
+	}
+
+
 }

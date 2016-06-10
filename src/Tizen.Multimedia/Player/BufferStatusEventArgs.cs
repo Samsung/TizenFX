@@ -22,6 +22,17 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class BufferStatusEventArgs : EventArgs
     {
+		internal StreamingBufferStatus _status;
+		internal StreamType _streamType;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public BufferStatusEventArgs(StreamingBufferStatus status, StreamType type)
+		{
+			_status = status;
+			_streamType = type;
+		}
 
         /// <summary>
         /// Get stream type.
@@ -46,18 +57,5 @@ namespace Tizen.Multimedia
                 return _status;
             }
         }
-
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public BufferStatusEventArgs(StreamingBufferStatus status, StreamType type)
-		{
-			_status = status;
-			_streamType = type;
-		}
-
-        internal StreamingBufferStatus _status;
-        internal StreamType _streamType;
-
     }
 }

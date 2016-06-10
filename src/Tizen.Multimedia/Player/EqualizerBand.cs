@@ -22,6 +22,14 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class EqualizerBand
     {
+		internal int _level;
+		internal int _frequency;
+		internal int _range;
+
+		internal EqualizerBand(int level, int frequency, int range)
+		{
+		}
+
         /// <summary>
         /// Set/Get  new gain in decibel that is set to the given band [dB]
         /// </summary>
@@ -61,13 +69,5 @@ namespace Tizen.Multimedia
                 return _range;
             }
         }
-
-		internal EqualizerBand(int level, int frequency, int range)
-		{
-		}
-
-		internal int _level;
-        internal int _frequency;
-        internal int _range;
     }
 }

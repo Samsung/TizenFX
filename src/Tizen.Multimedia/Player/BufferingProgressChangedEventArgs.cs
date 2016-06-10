@@ -22,7 +22,16 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class BufferingProgressEventArgs : EventArgs
     {
-        /// <summary>
+		internal int _percent;
+
+		/// <summary>
+		/// constructor </summary>
+		public BufferingProgressEventArgs(int percent)
+		{
+			_percent = percent;
+		}
+
+		/// <summary>
         /// Get buffering percentage.
         /// </summary>
         /// <value> 0 - 100 </value>
@@ -33,16 +42,5 @@ namespace Tizen.Multimedia
                 return _percent;
             }
         }
-
-		/// <summary>
-		/// constructor </summary>
-		public BufferingProgressEventArgs(int percent)
-		{
-			_percent = percent;
-		}
-
-
-        internal int _percent;
-
     }
 }

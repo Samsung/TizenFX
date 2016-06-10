@@ -21,14 +21,22 @@ namespace Tizen.Multimedia
 
     public class MediaStreamConfiguration
     {
+		internal IntPtr _playerHandle;
+		internal StreamType _streamType;
 		#if _MEDIA_FORMAT_
 		TODO: Uncomment this when MediaFormat is implemented.
 		private EventHandler<BufferStatusEventArgs> _bufferStatusChanged;
 		private Interop.Player.BufferStatusCallback _bufferStatusChangedCallback;
-
 		private EventHandler<SeekOffsetEventArgs> _seekOffsetChanged;
 		private Interop.Player.SeekOffsetChangedCallback _seekOffsetChangedCallback;
+		#endif
 
+		internal MediaStreamConfiguration()
+		{
+		}
+
+		#if _MEDIA_FORMAT_
+		TODO: Uncomment this when MediaFormat is implemented.
         /// <summary>
         /// BufferStatusChanged event is raised when buffer underrun or overflow occurs. 
         /// </summary>
@@ -50,22 +58,6 @@ namespace Tizen.Multimedia
 			}
 		}
 
-		private void RegisterBufferStatusEvent()
-		{
-			_bufferStatusChangedCallback = (int status, IntPtr userData) =>
-			{
-				BufferStatusEventArgs eventArgs = new BufferStatusEventArgs();
-				_bufferStatusChanged.Invoke(this, eventArgs);
-			};
-			Interop.Player.SetMediaStreamBufferStatusCb(_playerHandle, _bufferStatusChangedCallback, IntPtr.Zero);
-		}
-
-		private void UnregisterBufferStatusEvent()
-		{
-			Interop.Player.UnsetMediaStreamBufferStatusCb(_playerHandle);
-		}
-
-
         /// <summary>
         /// SeekOffsetChanged event is raised when seeking occurs. 
         /// </summary>
@@ -86,22 +78,6 @@ namespace Tizen.Multimedia
 				}
 			}
 		}
-
-		private void RegisterSeekOffsetChangedEvent()
-		{
-			_seekOffsetChangedCallback = (UInt64 offset, IntPtr userData) =>
-			{
-				SeekOffsetEventArgs eventArgs = new SeekOffsetEventArgs();
-				_seekOffsetChanged.Invoke(this, eventArgs);
-			};
-			Interop.Player.SetMediaStreamSeekCb(_playerHandle, _seekOffsetChangedCallback, IntPtr.Zero);
-		}
-
-		private void UnregisterSeekOffsetChangedEvent()
-		{
-			Interop.Player.UnsetMediaStreamSeekCb(_playerHandle);
-		}
-
 		#endif
 
         /// <summary>
@@ -158,18 +134,43 @@ namespace Tizen.Multimedia
 			}
 		}
 
-
-		internal MediaStreamConfiguration()
-		{
-		}
-
 		internal void SetHandle(IntPtr handle)
 		{
 			_playerHandle = handle;
 		}
 
-		IntPtr _playerHandle;
+		#if _MEDIA_FORMAT_
+		TODO: Uncomment this when MediaFormat is implemented.
+		private void RegisterBufferStatusEvent()
+		{
+			_bufferStatusChangedCallback = (int status, IntPtr userData) =>
+			{
+				BufferStatusEventArgs eventArgs = new BufferStatusEventArgs();
+				_bufferStatusChanged?.Invoke(this, eventArgs);
+			};
+			Interop.Player.SetMediaStreamBufferStatusCb(_playerHandle, _bufferStatusChangedCallback, IntPtr.Zero);
+		}
 
-		internal StreamType _streamType;
+		private void UnregisterBufferStatusEvent()
+		{
+			Interop.Player.UnsetMediaStreamBufferStatusCb(_playerHandle);
+		}
+
+		private void RegisterSeekOffsetChangedEvent()
+		{
+			_seekOffsetChangedCallback = (UInt64 offset, IntPtr userData) =>
+			{
+				SeekOffsetEventArgs eventArgs = new SeekOffsetEventArgs();
+				_seekOffsetChanged?.Invoke(this, eventArgs);
+			};
+			Interop.Player.SetMediaStreamSeekCb(_playerHandle, _seekOffsetChangedCallback, IntPtr.Zero);
+		}
+
+		private void UnregisterSeekOffsetChangedEvent()
+		{
+			Interop.Player.UnsetMediaStreamSeekCb(_playerHandle);
+		}
+		#endif
+
     }
 }
