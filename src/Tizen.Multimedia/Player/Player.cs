@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
     /// of the player such as playback rate, volume, looping etc. And, event handlers
     /// handles are provided to handle various playback events (like playback error/completion)
     /// </remarks>
-    public class Player
+	public class Player : IDisposable
     {
 		private EventHandler<PlaybackCompletedEventArgs> _playbackCompleted;
 		private Interop.Player.PlaybackCompletedCallback _playbackCompletedCallback;
@@ -521,7 +521,32 @@ namespace Tizen.Multimedia
         /// </summary>
         ~Player()
         {
+			Dispose(false);
         }
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if(!_disposed)
+			{
+				if(disposing)
+				{
+					// To be used if there are any other disposable objects
+				}
+				if(_playerHandle != IntPtr.Zero)
+				{
+					Interop.Player.Destroy(_playerHandle);
+					_playerHandle = IntPtr.Zero;
+				}
+				_disposed = true;
+			}
+		}
+
 
         /// <summary>
         /// Prepares the media player for playback. </summary>
@@ -719,5 +744,6 @@ namespace Tizen.Multimedia
         internal StreamingConfiguration _streamingConfiguration;
 
 		internal IntPtr _playerHandle;
+		private bool _disposed = false;
     }
 }
