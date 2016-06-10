@@ -6,41 +6,15 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-using System;
-using Tizen.Internals.Errors;
 using Tizen.UI;
 
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents an application that have UI screen. It has additional events for handling 'Resumed' and 'Paused' states.
+    /// Represents an application that have UI screen. The UIApplication class has a default main window.
     /// </summary>
-    public class UIApplication : Application
+    public class UIApplication : UIApplicationBase
     {
-        private Interop.Application.UIAppLifecycleCallbacks _callbacks;
-
-        /// <summary>
-        /// Initializes UIApplication class.
-        /// </summary>
-        public UIApplication()
-        {
-            _callbacks.OnCreate = new Interop.Application.AppCreateCallback(OnCreateNative);
-            _callbacks.OnTerminate = new Interop.Application.AppTerminateCallback(OnTerminateNative);
-            _callbacks.OnAppControl = new Interop.Application.AppControlCallback(OnAppControlNative);
-            _callbacks.OnResume = new Interop.Application.AppResumeCallback(OnResumeNative);
-            _callbacks.OnPause = new Interop.Application.AppPauseCallback(OnPauseNative);
-        }
-
-        /// <summary>
-        /// Occurs whenever the application is resumed.
-        /// </summary>
-        public event EventHandler Resumed;
-
-        /// <summary>
-        /// Occurs whenever the application is paused.
-        /// </summary>
-        public event EventHandler Paused;
-
         /// <summary>
         /// The main window instance of the UIApplication.
         /// </summary>
@@ -50,85 +24,16 @@ namespace Tizen.Applications
         public Window Window { get; private set; }
 
         /// <summary>
-        /// Runs the UI application's main loop.
+        /// Overrides this method if want to handle behavior before calling OnCreate().
+        /// Window property is initialized in this overrided method.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
-        public override void Run(string[] args)
-        {
-            base.Run(args);
-
-            ErrorCode err = Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
-            if (err != ErrorCode.None)
-            {
-                Log.Error(LogTag, "Failed to run the application. Err = " + err);
-            }
-        }
-
-        /// <summary>
-        /// Exits the main loop of the UI application. 
-        /// </summary>
-        public override void Exit()
-        {
-            Interop.Application.Exit();
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior when the application is resumed.
-        /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
-        /// </summary>
-        protected virtual void OnResume()
-        {
-            Resumed?.Invoke(this, EventArgs.Empty);
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior when the application is paused.
-        /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
-        /// </summary>
-        protected virtual void OnPause()
-        {
-            Paused?.Invoke(this, EventArgs.Empty);
-        }
-
-        internal override ErrorCode AddEventHandler(out IntPtr handle, Interop.AppCommon.AppEventType type, Interop.AppCommon.AppEventCallback callback)
-        {
-            return Interop.Application.AddEventHandler(out handle, type, callback, IntPtr.Zero);
-        }
-
-        internal override void RemoveEventHandler(IntPtr handle)
-        {
-            Interop.Application.RemoveEventHandler(handle);
-        }
-
-        private bool OnCreateNative(IntPtr data)
+        protected override void OnPreCreate()
         {
             Window = new Window("C# UI Application");
             Window.Closed += (s, e) =>
             {
                 Exit();
             };
-            OnCreate();
-            return true;
-        }
-
-        private void OnTerminateNative(IntPtr data)
-        {
-            OnTerminate();
-        }
-
-        private void OnAppControlNative(IntPtr appControlHandle, IntPtr data)
-        {
-            OnAppControlReceived(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
-        }
-
-        private void OnResumeNative(IntPtr data)
-        {
-            OnResume();
-        }
-
-        private void OnPauseNative(IntPtr data)
-        {
-            OnPause();
         }
     }
 }

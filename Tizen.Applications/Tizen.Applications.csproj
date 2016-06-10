@@ -113,6 +113,7 @@
     <Compile Include="Tizen.Applications\NotificationManager.cs" />
     <Compile Include="Tizen.Applications\ProgressNotification.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
+    <Compile Include="Tizen.Applications\UIApplicationBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.snk" />
