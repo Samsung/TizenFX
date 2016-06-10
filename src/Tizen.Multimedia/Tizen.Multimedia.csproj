@@ -54,6 +54,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioIO\AudioErrorHelper.cs" />
+    <Compile Include="AudioIO\AudioInput.cs" />
+    <Compile Include="AudioIO\AudioIOEnumerations.cs" />
+    <Compile Include="AudioIO\AudioOutput.cs" />
+    <Compile Include="AudioIO\AudioStateChangedEventArgs.cs" />
+    <Compile Include="AudioIO\AudioStreamLengthChangedEventArgs.cs" />
+    <Compile Include="AudioIO\BaseAudio.cs" />
+    <Compile Include="Interop\Interop.AudioIO.cs" />
     <Compile Include="Interop\Interop.Player.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
