@@ -51,10 +51,6 @@ internal static partial class Interop
         internal static extern int GetTempFilePath(int requestId, out string tempPath);
         [DllImport(Libraries.Download, EntryPoint = "download_add_http_header_field")]
         internal static extern int AddHttpHeaderField(int requestId, string field, string value);
-        [DllImport(Libraries.Download, EntryPoint = "download_get_http_header_field")]
-        internal static extern int GetHttpHeaderField(int requestId, string field, out string value);
-        [DllImport(Libraries.Download, EntryPoint = "download_get_http_header_field_list")]
-        internal static extern int GetHttpHeaderFieldList(int requestId, out IntPtr field, out int length);
         [DllImport(Libraries.Download, EntryPoint = "download_get_downloaded_file_path")]
         internal static extern int GetDownloadedPath(int requestId, out string downloadedPath);
         [DllImport(Libraries.Download, EntryPoint = "download_get_mime_type")]

@@ -64,7 +64,6 @@
     <Compile Include="Tizen.Content.Download\ProgressChangedEventArgs.cs" />
     <Compile Include="Tizen.Content.Download\DownloadErrorFactory.cs" />
     <Compile Include="Interop\Interop.Download.cs" />
-    <Compile Include="Interop\Interop.Libc.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
