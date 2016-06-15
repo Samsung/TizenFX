@@ -20,6 +20,7 @@ namespace Tizen.Content.MediaContent
     public class Tag : ContentCollection
     {
         private IntPtr _tagHandle;
+        private string _tagName;
         internal IntPtr Handle
         {
             get
@@ -55,18 +56,16 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string name;
-                MediaContentError res = (MediaContentError)Interop.Tag.GetName(_tagHandle, out name);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Id for the Tag");
-                }
-                return name;
+                return _tagName;
             }
             set
             {
                 MediaContentError res = (MediaContentError)Interop.Tag.SetName(_tagHandle, value);
-                if (res != MediaContentError.None)
+                if (res == MediaContentError.None)
+                {
+                    _tagName = value;
+                }
+                else
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set name for the Tag");
                 }
@@ -76,6 +75,11 @@ namespace Tizen.Content.MediaContent
         internal Tag(IntPtr tagHandle)
         {
             _tagHandle = tagHandle;
+            MediaContentError error = (MediaContentError)Interop.Tag.GetName(tagHandle, out _tagName);
+            if (error != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(error, "Failed to get the tage Name");
+            }
         }
         /// <summary>
         /// Creates a Tag object which can be inserted to the media database using ContentManager:InsertToDatabaseAsync(ContentCollection)
@@ -83,17 +87,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="tagName">The name of the media tag</param>
         public Tag(string tagName)
         {
-            Name = tagName;
-            ContentManager.Database.ConnectToDB();
-            MediaContentError res = (MediaContentError)Interop.Tag.InsertToDb(tagName, out _tagHandle);
-            if (res != MediaContentError.None)
-            {
-                Console.WriteLine("Exception occured "+ res);
-                throw MediaContentErrorFactory.CreateException(res, "Failed to create playlist");
-            }
-            string test;
-            Interop.Tag.GetName(_tagHandle, out test);
-            Console.WriteLine("test name " + res);
+            _tagName = tagName;
         }
 
         /// <summary>

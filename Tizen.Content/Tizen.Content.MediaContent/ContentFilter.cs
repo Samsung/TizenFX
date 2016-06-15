@@ -66,7 +66,6 @@ namespace Tizen.Content.MediaContent
             {
                 return _filterHandle;
             }
-
         }
         /// <summary>
         /// The start position of the given filter Starting from zero.

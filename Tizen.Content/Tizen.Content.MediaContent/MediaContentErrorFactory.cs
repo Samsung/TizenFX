@@ -15,7 +15,7 @@ namespace Tizen.Content.MediaContent
             {
                 case MediaContentError.InavlidParameter:
                     {
-                        exp = new ArgumentException(msg +" Invalid Parameters Provided");
+                        exp = new ArgumentException(msg + " Invalid Parameters Provided");
                         break;
                     }
                 case MediaContentError.OutOfMemory:

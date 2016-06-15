@@ -141,9 +141,9 @@ namespace Tizen.Content.MediaContent
                     throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
                 }
 
-              MediaInformation info = new MediaInformation(newHandle);
-              mediaContents.Add(info);
-              return true;
+                MediaInformation info = new MediaInformation(newHandle);
+                mediaContents.Add(info);
+                return true;
             };
             res = (MediaContentError)Interop.Group.MediaAlbumForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)

@@ -6,13 +6,14 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
 {
-    public abstract class ContentCollection :IDisposable
+    public abstract class ContentCollection : IDisposable
     {
         /// <summary>
         /// Gets the media count for this content store matching the passed filter

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Tizen.Content.MediaContent
 {
@@ -295,7 +296,7 @@ namespace Tizen.Content.MediaContent
                 int result = Interop.VideoInformation.SetPlayedCount(_handle, value);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result,"Failed to set played count");
+                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "Failed to set played count");
                 }
             }
         }
@@ -335,7 +336,7 @@ namespace Tizen.Content.MediaContent
                 int result = Interop.VideoInformation.SetPlayedTime(_handle, (int)value.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result,"failed to set played time");
+                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set played time");
                 }
             }
         }
@@ -361,9 +362,95 @@ namespace Tizen.Content.MediaContent
                 int result = Interop.VideoInformation.SetPlayedPosition(_handle, value);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result,"failed to set played position");
+                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set played position");
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the number of bookmarks for the passed filter in the given media ID from the media database.
+        /// </summary>
+        /// <returns>
+        /// int count</returns>
+        /// <param name="filter">The Filter for matching BookMarks</param>
+        public int GetMediaBookMarkCount(ContentFilter filter)
+        {
+            int count = 0;
+            IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
+            MediaContentError result = (MediaContentError)Interop.MediaInformation.GetBookmarkCount(MediaId, handle, out count);
+            if (result != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(result, "Error Occured with error code: ");
+            }
+            return count;
+        }
+
+        /// <summary>
+        /// Iterates through the media bookmark in the given media info from the media database.
+        /// </summary>
+        /// <returns>
+        /// Task to get all the BookMarks </returns>
+        /// <param name="filter"> filter for the Tags</param>
+        public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
+        {
+            var task = new TaskCompletionSource<IEnumerable<MediaBookmark>>();
+            MediaContentError result;
+            Collection<MediaBookmark> coll = new Collection<MediaBookmark>();
+            IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
+            Interop.MediaInformation.MediaBookMarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
+            {
+                IntPtr newHandle;
+                result = (MediaContentError)Interop.MediaBookmark.Clone(out newHandle, handle);
+                if (result != MediaContentError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to clone Tag");
+                }
+                MediaBookmark bookmark = new MediaBookmark(newHandle);
+                coll.Add(bookmark);
+                return true;
+            };
+            result = (MediaContentError)Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, bookmarksCallback, IntPtr.Zero);
+            if (result != MediaContentError.None)
+            {
+                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+            }
+            task.SetResult(coll);
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Adds a bookmark to the video
+        /// </summary>
+        /// <param name="offset">Offset of the video in seconds</param>
+        /// <param name="thumbnailPath">Thumbnail path for the bookmark</param>
+        /// <returns></returns>
+        public async Task<MediaBookmark> AddBookmark(uint offset, string thumbnailPath)
+        {
+            MediaBookmark result = null;
+            ContentManager.Database.Insert(MediaId, offset, thumbnailPath);
+            ContentFilter bookmarkfilter = new ContentFilter();
+            bookmarkfilter.Condition = "BOOKMARK_MARKED_TIME = " + offset;
+            IEnumerable<MediaBookmark> bookmarksList = null;
+            bookmarksList = await GetMediaBookmarksAsync(bookmarkfilter);
+            foreach (MediaBookmark bookmark in bookmarksList)
+            {
+                if (bookmark.Offset == offset)
+                {
+                    result = bookmark;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Deletes a bookmark from the media database.
+        /// For other types Unsupported exception is thrown.
+        /// </summary>
+        /// <param name="bookmark">The bookmark to be deleted</param>
+        public void DeleteBookmark(MediaBookmark bookmark)
+        {
+            ContentManager.Database.Delete(bookmark);
         }
 
         internal IntPtr VideoHandle

@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 /// from the media content service.
 /// </remarks>
 
+
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
@@ -34,33 +35,32 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class ContentDatabase
     {
-        private bool s_isConnected = false;
+        private bool _isConnected = false;
         internal ContentDatabase()
         {
-
         }
         internal void ConnectToDB()
         {
-            if (!s_isConnected)
+            if (!_isConnected)
             {
                 MediaContentError err = (MediaContentError)Interop.Content.Connect();
                 if (err != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(err, "failed to connect to db.");
                 }
-                s_isConnected = true;
+                _isConnected = true;
             }
         }
         private void DisconnectFromDB()
         {
-            if (s_isConnected)
+            if (_isConnected)
             {
                 MediaContentError err = (MediaContentError)Interop.Content.Disconnect();
                 if (err != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(err, "failed to disconnect to db.");
                 }
-                s_isConnected = false;
+                _isConnected = false;
             }
         }
 
@@ -110,7 +110,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="type">The content source type. Available types: Folder, Storage, MediaBookmark, Album, Playlist, Tag</param>
         /// <param name="filter">The media filter</param>
         /// <returns>The count of contents present in the media database for a ContentSourceType</returns>
-        public int GetCount<T>(ContentFilter filter) where T :  class
+        public int GetCount<T>(ContentFilter filter) where T : class
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
@@ -175,13 +175,13 @@ namespace Tizen.Content.MediaContent
             MediaContentError error = MediaContentError.None;
             ConnectToDB();
             MediaInformation result;
-                Interop.MediaInformation.SafeMediaInformationHandle mediaHandle;
-                error = (MediaContentError)Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle);
-                if (error != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(error, "Failed to get the media information from the database");
-                }
-                result = new MediaInformation(mediaHandle);
+            Interop.MediaInformation.SafeMediaInformationHandle mediaHandle;
+            error = (MediaContentError)Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle);
+            if (error != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(error, "Failed to get the media information from the database");
+            }
+            result = new MediaInformation(mediaHandle);
             return result;
         }
 
@@ -428,12 +428,12 @@ namespace Tizen.Content.MediaContent
         {
             ConnectToDB();
             var task = new TaskCompletionSource<IEnumerable<T>>();
-            if(typeof(T) == typeof(MediaInformation))
+            if (typeof(T) == typeof(MediaInformation))
             {
                 IEnumerable<MediaInformation> mediaList = GetMediaInformations(filter);
                 task.TrySetResult((IEnumerable<T>)mediaList);
             }
-            if (typeof(T) == typeof(Album))
+            else if (typeof(T) == typeof(Album))
             {
                 List<Album> collectionList = ForEachAlbum(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
@@ -587,7 +587,7 @@ namespace Tizen.Content.MediaContent
             {
                 result = (MediaContentError)Interop.Tag.DeleteFromDb(((Tag)contecollection).Id);
             }
-            if (type == typeof(PlayList))
+            else if (type == typeof(PlayList))
             {
                 result = (MediaContentError)Interop.Playlist.DeleteFromDb(((PlayList)contecollection).Id);
             }
@@ -599,12 +599,7 @@ namespace Tizen.Content.MediaContent
                 throw MediaContentErrorFactory.CreateException(result, "failed to Delete ContentCollection from DB");
         }
 
-        /// <summary>
-        /// Deletes a bookmark from the media database.
-        /// For other types Unsupported exception is thrown.
-        /// </summary>
-        /// <param name="bookmark">The bookmark to be deleted</param>
-        public void Delete(MediaBookmark bookmark)
+        internal void Delete(MediaBookmark bookmark)
         {
             ConnectToDB();
             MediaContentError result = MediaContentError.None;
@@ -613,12 +608,7 @@ namespace Tizen.Content.MediaContent
                 throw MediaContentErrorFactory.CreateException(result, "failed to Delete bookmark from DB");
         }
 
-        /// <summary>
-        /// Deletes a MediaFace from the media database.
-        /// For other types Unsupported exception is thrown.
-        /// </summary>
-        /// <param name="face">The face instance to be deleted</param>
-        public void Delete(MediaFace face)
+        internal void Delete(MediaFace face)
         {
             ConnectToDB();
             MediaContentError result = MediaContentError.None;
@@ -641,11 +631,11 @@ namespace Tizen.Content.MediaContent
             {
                 result = (MediaContentError)Interop.Tag.UpdateToDb(((Tag)contentCollection).Handle);
             }
-            if (type == typeof(PlayList))
+            else if (type == typeof(PlayList))
             {
                 result = (MediaContentError)Interop.Playlist.UpdateToDb(((PlayList)contentCollection).Handle);
             }
-            if (type == typeof(MediaFolder))
+            else if (type == typeof(MediaFolder))
             {
                 result = (MediaContentError)Interop.Folder.UpdateToDb(((MediaFolder)contentCollection).Handle);
             }
@@ -692,11 +682,7 @@ namespace Tizen.Content.MediaContent
                 throw MediaContentErrorFactory.CreateException(result, "Failed to update DB");
         }
 
-        /// <summary>
-        /// Updates a media face instance in the media database
-        /// </summary>
-        /// <param name="mediaInfo">The MediaFace object to be updated</param>
-        public void Update(MediaFace face)
+        internal void Update(MediaFace face)
         {
             ConnectToDB();
             Type type = face.GetType();
@@ -721,41 +707,34 @@ namespace Tizen.Content.MediaContent
                 result = (MediaContentError)Interop.Tag.InsertToDb(((Tag)contentCollection).Name, out handle);
                 ((Tag)contentCollection).Handle = handle;
             }
-            if (type == typeof(PlayList))
+            else if (type == typeof(PlayList))
             {
+                Console.WriteLine("Playlist insert");
                 result = (MediaContentError)Interop.Playlist.InsertToDb(((PlayList)contentCollection).Name, out handle);
                 ((PlayList)contentCollection).Handle = handle;
             }
             else
             {
-                result = MediaContentError.InvalidOperation;
+                Console.WriteLine("Inalid insert");
+                result = MediaContentError.InavlidParameter;
             }
             if (result != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
             }
-
         }
 
-        /// <summary>
-        /// Inserts a MediaBookMark item to the media database
-        /// </summary>
-        /// <param name="bookmark">The MediaBookmark item to be inserted</param>
-        public void Insert(MediaBookmark bookmark)
+        internal void Insert(string mediaId, uint offset, string thumbnailPath)
         {
             ConnectToDB();
-            MediaContentError  result = (MediaContentError)Interop.MediaBookmark.InsertToDb(((MediaBookmark)bookmark).MediaId, ((MediaBookmark)bookmark).Offset, ((MediaBookmark)bookmark).ThumbnailPath);
+            MediaContentError result = (MediaContentError)Interop.MediaBookmark.InsertToDb(mediaId, offset, thumbnailPath);
             if (result != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
+                throw MediaContentErrorFactory.CreateException(result, "Failed to insert bookmark to the database");
             }
         }
 
-        /// <summary>
-        /// Inserts a MediaFace item to the media database
-        /// </summary>
-        /// <param name="face">The MediaFace item to be inserted</param>
-        public void Insert(MediaFace face)
+        internal void Insert(MediaFace face)
         {
             ConnectToDB();
             MediaContentError result = (MediaContentError)Interop.Face.InsertToDb(((MediaFace)face).Handle);

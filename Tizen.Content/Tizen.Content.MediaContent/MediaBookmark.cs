@@ -24,10 +24,19 @@ namespace Tizen.Content.MediaContent
         private bool _disposedValue = false;
         internal readonly uint _offset;
         internal readonly String _thumbnailPath;
-        internal readonly String _mediaId;
         internal MediaBookmark(IntPtr handle)
         {
             _bookmarkHandle = handle;
+            MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset);
+            if (res != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(res, "Failed to set Offset");
+            }
+            res = (MediaContentError)Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out _thumbnailPath);
+            if (res != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(res, "Failed to set Thumbnail Path");
+            }
         }
 
         ~MediaBookmark()
@@ -58,13 +67,7 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string path;
-                MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out path);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get bookmark thumbnail path");
-                }
-                return path;
+                return _thumbnailPath;
             }
         }
 
@@ -75,20 +78,7 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                uint time;
-                MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out time);
-                return time;
-            }
-        }
-
-        /// <summary>
-        /// The bookmark time offset (in milliseconds)
-        /// </summary>
-        internal string MediaId
-        {
-            get
-            {
-                return _mediaId;
+                return _offset;
             }
         }
 
@@ -99,10 +89,9 @@ namespace Tizen.Content.MediaContent
         /// <param name="thumbnailPath">The thumbnail path of video bookmark. If the media type is audio, then thumbnail is null.</param>
         public MediaBookmark(MediaInformation content, uint offset, string thumbnailPath)
         {
-            _mediaId = content.MediaId;
             _offset = offset;
-            if(thumbnailPath != null)
-            _thumbnailPath = thumbnailPath;
+            if (thumbnailPath != null)
+                _thumbnailPath = thumbnailPath;
         }
         public void Dispose()
         {
