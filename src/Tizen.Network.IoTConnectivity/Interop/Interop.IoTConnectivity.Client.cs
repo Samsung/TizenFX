@@ -27,11 +27,11 @@ internal static partial class Interop
                     DataModelVersion,
                 }
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_get_device_info")]
-                internal static extern int Get(string hostAddress, int connectivityType, DeviceInformationCallback cb, IntPtr userData);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_device_info")]
+                internal static extern int Find(string hostAddress, int connectivityType, DeviceInformationCallback cb, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_device_info_get_property")]
-                internal static extern int GetProperty(IntPtr deviceInfoHandle, int property, out string value);
+                internal static extern int GetProperty(IntPtr deviceInfoHandle, int property, out IntPtr value);
             }
 
             internal static partial class PlatformInformation
@@ -53,11 +53,11 @@ internal static partial class Interop
                     SystemTime
                 }
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_get_platform_info")]
-                internal static extern int Get(string hostAddress, int connectivityType, PlatformInformationCallback cb, IntPtr userData);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_platform_info")]
+                internal static extern int Find(string hostAddress, int connectivityType, PlatformInformationCallback cb, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_platform_info_get_property")]
-                internal static extern int GetProperty(IntPtr platformInfoHandle, int property, out string value);
+                internal static extern int GetProperty(IntPtr platformInfoHandle, int property, out IntPtr value);
             }
 
             internal static partial class RemoteResource
@@ -120,17 +120,17 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_stop_monitoring")]
                 internal static extern int StopMonitoring(IntPtr resource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_uriPath")]
-                internal static extern int GetUriPath(IntPtr resource, out string uriPath);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_uri_path")]
+                internal static extern int GetUriPath(IntPtr resource, out IntPtr uriPath);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_connectivity_type")]
                 internal static extern int GetConnectivityType(IntPtr resource, out int connectivityType);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr resource, out string hostAddress);
+                internal static extern int GetHostAddress(IntPtr resource, out IntPtr hostAddress);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_id")]
-                internal static extern int GetDeviceId(IntPtr resource, out string deviceId);
+                internal static extern int GetDeviceId(IntPtr resource, out IntPtr deviceId);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_types")]
                 internal static extern int GetTypes(IntPtr resource, out IntPtr types);
@@ -138,8 +138,8 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_interfaces")]
                 internal static extern int GetInterfaces(IntPtr resource, out IntPtr ifaces);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_properties")]
-                internal static extern int GetProperties(IntPtr resource, out int properties);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_policies")]
+                internal static extern int GetPolicies(IntPtr resource, out int properties);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_options")]
                 internal static extern int GetOptions(IntPtr resource, out IntPtr options);
@@ -151,14 +151,20 @@ internal static partial class Interop
                 internal static extern int GetCachedRepresentation(IntPtr resource, out IntPtr representation);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_time_interval")]
-                internal static extern int GetTimeInterval(IntPtr resource, out int timeInterval);
+                internal static extern int GetTimeInterval(out int timeInterval);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_time_interval")]
-                internal static extern int SetTimeInterval(IntPtr resource, int timeInterval);
+                internal static extern int SetTimeInterval(int timeInterval);
+
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_name")]
+                internal static extern int GetDeviceName(IntPtr resource, out IntPtr deviceName);
             }
 
             internal static partial class IoTCon
             {
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_secure_initialize")]
+                internal static extern int SecureInitialize(string filePath);
+
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_initialize")]
                 internal static extern int Initialize();
 
@@ -170,6 +176,15 @@ internal static partial class Interop
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_set_timeout")]
                 internal static extern int SetTimeout(int timeoutSeconds);
+
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_get_interval")]
+                internal static extern int GetPollingInterval(out int interval);
+
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_set_interval")]
+                internal static extern int SetPollingInterval(int interval);
+
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_invoke")]
+                internal static extern int InvokePolling();
             }
 
             internal static partial class ResourceFinder
@@ -193,13 +208,13 @@ internal static partial class Interop
                 internal static extern int RemovePresenceCb(IntPtr presenceHandle);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr presence, out string hostAddress);
+                internal static extern int GetHostAddress(IntPtr presence, out IntPtr hostAddress);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_connectivity_type")]
                 internal static extern int GetConnectivityType(IntPtr presence, out int connectivityType);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_resource_type")]
-                internal static extern int GetResourceType(IntPtr presence, out string resourceType);
+                internal static extern int GetResourceType(IntPtr presence, out IntPtr resourceType);
             }
 
             internal static partial class PresenceResponse
@@ -211,13 +226,13 @@ internal static partial class Interop
                 internal static extern int GetTrigger(IntPtr response, out int trigger);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr response, out string hostAddress);
+                internal static extern int GetHostAddress(IntPtr response, out IntPtr hostAddress);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_connectivity_type")]
                 internal static extern int GetConnectivityType(IntPtr response, out int connectivityType);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_resource_type")]
-                internal static extern int GetResourceType(IntPtr response, out string resourceType);
+                internal static extern int GetResourceType(IntPtr response, out IntPtr resourceType);
             }
         }
     }

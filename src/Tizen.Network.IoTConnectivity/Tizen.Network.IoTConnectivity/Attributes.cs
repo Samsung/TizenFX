@@ -14,40 +14,40 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// State represents current state of a resource
+    /// Attributes represents current attributes of a resource
     /// </summary>
-    public class State : IDictionary<string, object>, IDisposable
+    public class Attributes : IDictionary<string, object>, IDisposable
     {
-        internal IntPtr _resourceStateHandle = IntPtr.Zero;
-        private readonly IDictionary<string, object> _state = new Dictionary<string, object>();
+        internal IntPtr _resourceAttributesHandle = IntPtr.Zero;
+        private readonly IDictionary<string, object> _attributes = new Dictionary<string, object>();
         private bool _disposed = false;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public State()
+        public Attributes()
         {
-            int ret = Interop.IoTConnectivity.Common.State.Create(out _resourceStateHandle);
+            int ret = Interop.IoTConnectivity.Common.Attributes.Create(out _resourceAttributesHandle);
             if (ret != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to create state handle");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to create attributes handle");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
         }
 
-        internal State(IntPtr stateHandleToClone)
+        internal Attributes(IntPtr attributesHandleToClone)
         {
-            int ret = Interop.IoTConnectivity.Common.State.Clone(stateHandleToClone, out _resourceStateHandle);
+            int ret = Interop.IoTConnectivity.Common.Attributes.Clone(attributesHandleToClone, out _resourceAttributesHandle);
             if (ret != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to create state handle");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to create attributes handle");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            SetState(stateHandleToClone);
+            SetAttributes(attributesHandleToClone);
         }
 
-        ~State()
+        ~Attributes()
         {
             Dispose(false);
         }
@@ -59,18 +59,18 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                return _state.Count;
+                return _attributes.Count;
             }
         }
 
         /// <summary>
-        /// Represents whether State is readonly
+        /// Represents whether Attributes is readonly
         /// </summary>
         public bool IsReadOnly
         {
             get
             {
-                return _state.IsReadOnly;
+                return _attributes.IsReadOnly;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                return _state.Keys;
+                return _attributes.Keys;
             }
         }
 
@@ -92,7 +92,7 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                return _state.Values;
+                return _attributes.Values;
             }
         }
 
@@ -105,7 +105,7 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                return _state[key];
+                return _attributes[key];
             }
 
             set
@@ -126,33 +126,33 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds status element
         /// </summary>
-        /// <param name="key">The key representing the state</param>
-        /// <param name="value">The value representing the state</param>
+        /// <param name="key">The key representing the attributes</param>
+        /// <param name="value">The value representing the attributes</param>
         public void Add(string key, object value)
         {
             int ret = 0;
             if (value is int)
             {
-                ret = Interop.IoTConnectivity.Common.State.AddInt(_resourceStateHandle, key, (int)value);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddInt(_resourceAttributesHandle, key, (int)value);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add int");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
             }
-            else if (value is State)
+            else if (value is Attributes)
             {
-                State state = (State)value;
-                ret = Interop.IoTConnectivity.Common.State.AddState(_resourceStateHandle, key, state._resourceStateHandle);
+                Attributes attribs = (Attributes)value;
+                ret = Interop.IoTConnectivity.Common.Attributes.AddAttributes(_resourceAttributesHandle, key, attribs._resourceAttributesHandle);
                 if (ret != (int)IoTConnectivityError.None)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add attributes");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
             }
             else if (value is string)
             {
-                ret = Interop.IoTConnectivity.Common.State.AddStr(_resourceStateHandle, key, (string)value);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddStr(_resourceAttributesHandle, key, (string)value);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add string");
@@ -161,7 +161,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             else if (value is double)
             {
-                ret = Interop.IoTConnectivity.Common.State.AddDouble(_resourceStateHandle, key, (double)value);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddDouble(_resourceAttributesHandle, key, (double)value);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add double");
@@ -170,7 +170,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             else if (value is bool)
             {
-                ret = Interop.IoTConnectivity.Common.State.AddBool(_resourceStateHandle, key, (bool)value);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddBool(_resourceAttributesHandle, key, (bool)value);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add bool");
@@ -185,7 +185,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get byte[] val");
                     throw new ArgumentException("Invalid Parameter");
                 }
-                ret = Interop.IoTConnectivity.Common.State.AddByteStr(_resourceStateHandle, key, val, val.Length);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddByteStr(_resourceAttributesHandle, key, val, val.Length);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add bool");
@@ -195,11 +195,10 @@ namespace Tizen.Network.IoTConnectivity
             else if (value is IEnumerable)
             {
                 IntPtr listHandle = List.GetListHandle(value);
-                ret = Interop.IoTConnectivity.Common.State.AddList(_resourceStateHandle, key, listHandle);
-                Interop.IoTConnectivity.Common.State.Destroy(listHandle);
+                ret = Interop.IoTConnectivity.Common.Attributes.AddList(_resourceAttributesHandle, key, listHandle);
                 if (ret != (int)IoTConnectivityError.None)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add list");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
             }
@@ -208,54 +207,54 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Add");
                 throw IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.InvalidParameter);
             }
-            _state.Add(key, value);
+            _attributes.Add(key, value);
         }
 
         /// <summary>
-        /// Clears state collection
+        /// Clears attributes collection
         /// </summary>
         public void Clear()
         {
-            foreach (string key in _state.Keys)
+            foreach (string key in _attributes.Keys)
             {
-                int ret = Interop.IoTConnectivity.Common.State.Remove(_resourceStateHandle, key);
+                int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
                 if (ret != (int)IoTConnectivityError.None)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to clear state");
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to clear attributes");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
             }
-            _state.Clear();
+            _attributes.Clear();
         }
 
         /// <summary>
-        /// Checks the given key value pair exists in state collection
+        /// Checks the given key value pair exists in attributes collection
         /// </summary>
         /// <param name="item">The status key value pair</param>
         /// <returns>true if exists. Otherwise, false</returns>
         public bool Contains(KeyValuePair<string, object> item)
         {
-            return _state.Contains(item);
+            return _attributes.Contains(item);
         }
 
         /// <summary>
-        /// Checks the given key exists in state collection
+        /// Checks the given key exists in attributes collection
         /// </summary>
         /// <param name="key">The status key</param>
         /// <returns>true if exists. Otherwise, false</returns>
         public bool ContainsKey(string key)
         {
-            return _state.ContainsKey(key);
+            return _attributes.ContainsKey(key);
         }
 
         /// <summary>
-        /// Copies the elements of the state to an Array, starting at a particular index.
+        /// Copies the elements of the attributes to an Array, starting at a particular index.
         /// </summary>
         /// <param name="array">The destination array</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
-            _state.CopyTo(array, arrayIndex);
+            _attributes.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -264,41 +263,41 @@ namespace Tizen.Network.IoTConnectivity
         /// <returns> An enumerator that can be used to iterate through the collection.</returns>
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            return _state.GetEnumerator();
+            return _attributes.GetEnumerator();
         }
 
         /// <summary>
-        /// Removes a state element from collection
+        /// Removes a attributes element from collection
         /// </summary>
-        /// <param name="item">The state element to remove</param>
+        /// <param name="item">The attributes element to remove</param>
         /// <returns>true if operation is success. Otherwise, false</returns>
         public bool Remove(KeyValuePair<string, object> item)
         {
-            int ret = Interop.IoTConnectivity.Common.State.Remove(_resourceStateHandle, item.Key);
+            int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, item.Key);
             if (ret != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove state");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            return _state.Remove(item);
+            return _attributes.Remove(item);
         }
 
         /// <summary>
-        ///  Removes a state element from collection using key
+        ///  Removes a attributes element from collection using key
         /// </summary>
-        /// <param name="key">The state element to remove</param>
+        /// <param name="key">The attributes element to remove</param>
         /// <returns>true if operation is success. Otherwise, false</returns>
         public bool Remove(string key)
         {
-            int ret = Interop.IoTConnectivity.Common.State.Remove(_resourceStateHandle, key);
+            int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
             if (ret != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove state");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            return _state.Remove(key);
+            return _attributes.Remove(key);
         }
 
         /// <summary>
@@ -306,15 +305,15 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value"> The value associated with the specified key</param>
-        /// <returns> true if the state collection contains an element with the specified key; otherwise, false.</returns>
+        /// <returns> true if the attributes collection contains an element with the specified key; otherwise, false.</returns>
         public bool TryGetValue(string key, out object value)
         {
-            return _state.TryGetValue(key, out value);
+            return _attributes.TryGetValue(key, out value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _state.GetEnumerator();
+            return _attributes.GetEnumerator();
         }
 
         public void Dispose()
@@ -333,30 +332,31 @@ namespace Tizen.Network.IoTConnectivity
                 // Free managed objects
             }
 
-            Interop.IoTConnectivity.Common.State.Destroy(_resourceStateHandle);
+            Interop.IoTConnectivity.Common.Attributes.Destroy(_resourceAttributesHandle);
             _disposed = true;
         }
 
-        private void SetState(IntPtr stateHandle)
+        private void SetAttributes(IntPtr attributesHandle)
         {
-            Interop.IoTConnectivity.Common.State.StateCallback cb = (IntPtr state, string key, IntPtr userData) =>
+            Interop.IoTConnectivity.Common.Attributes.AttributesCallback cb = (IntPtr attributes, string key, IntPtr userData) =>
             {
-                Interop.IoTConnectivity.Common.DataType type = 0;
-                int ret = Interop.IoTConnectivity.Common.State.GetType(state, key, out type);
+                Interop.IoTConnectivity.Common.DataType dataType;
+                int ret = Interop.IoTConnectivity.Common.Attributes.GetType(attributes, key, out dataType);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                switch (type)
+
+                switch ((Interop.IoTConnectivity.Common.DataType)dataType)
                 {
                     case Interop.IoTConnectivity.Common.DataType.Int:
                         {
                             int value;
-                            ret = Interop.IoTConnectivity.Common.State.GetInt(state, key, out value);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetInt(attributes, key, out value);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             Add(key, value);
@@ -365,10 +365,10 @@ namespace Tizen.Network.IoTConnectivity
                     case Interop.IoTConnectivity.Common.DataType.Bool:
                         {
                             bool value;
-                            ret = Interop.IoTConnectivity.Common.State.GetBool(state, key, out value);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetBool(attributes, key, out value);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             Add(key, value);
@@ -377,10 +377,10 @@ namespace Tizen.Network.IoTConnectivity
                     case Interop.IoTConnectivity.Common.DataType.Double:
                         {
                             double value;
-                            ret = Interop.IoTConnectivity.Common.State.GetDouble(state, key, out value);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetDouble(attributes, key, out value);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             Add(key, value);
@@ -389,10 +389,10 @@ namespace Tizen.Network.IoTConnectivity
                     case Interop.IoTConnectivity.Common.DataType.String:
                         {
                             string value;
-                            ret = Interop.IoTConnectivity.Common.State.GetStr(state, key, out value);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetStr(attributes, key, out value);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             Add(key, value);
@@ -402,10 +402,10 @@ namespace Tizen.Network.IoTConnectivity
                         {
                             IntPtr byteStrPtr;
                             int byteStrSize;
-                            ret = Interop.IoTConnectivity.Common.State.GetByteStr(state, key, out byteStrPtr, out byteStrSize);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetByteStr(attributes, key, out byteStrPtr, out byteStrSize);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             byte[] byteStr = new byte[byteStrSize];
@@ -421,25 +421,25 @@ namespace Tizen.Network.IoTConnectivity
                     case Interop.IoTConnectivity.Common.DataType.List:
                         {
                             IntPtr listHandle;
-                            ret = Interop.IoTConnectivity.Common.State.GetList(state, key, out listHandle);
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetList(attributes, key, out listHandle);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
                             Add(key, List.GetList(listHandle));
                             break;
                         }
-                    case Interop.IoTConnectivity.Common.DataType.State:
+                    case Interop.IoTConnectivity.Common.DataType.Attributes:
                         {
-                            IntPtr stateHndle;
-                            ret = Interop.IoTConnectivity.Common.State.GetState(state, key, out stateHndle);
+                            IntPtr attribsHandle;
+                            ret = Interop.IoTConnectivity.Common.Attributes.GetAttributes(attributes, key, out attribsHandle);
                             if (ret != (int)IoTConnectivityError.None)
                             {
-                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, new State(stateHndle));
+                            Add(key, new Attributes(attribsHandle));
                             break;
                         }
                     default:
@@ -449,10 +449,10 @@ namespace Tizen.Network.IoTConnectivity
                 return true;
             };
 
-            int res = Interop.IoTConnectivity.Common.State.Foreach(stateHandle, cb, IntPtr.Zero);
+            int res = Interop.IoTConnectivity.Common.Attributes.Foreach(attributesHandle, cb, IntPtr.Zero);
             if (res != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove state");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
                 throw IoTConnectivityErrorFactory.GetException(res);
             }
         }
@@ -476,7 +476,7 @@ namespace Tizen.Network.IoTConnectivity
                     ret = Interop.IoTConnectivity.Common.List.AddList(listHandle, childList, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add attributes");
                         Interop.IoTConnectivity.Common.List.Destroy(childList);
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
@@ -491,7 +491,7 @@ namespace Tizen.Network.IoTConnectivity
                     ret = Interop.IoTConnectivity.Common.List.AddInt(listHandle, val, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add attributes");
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
                 }
@@ -505,7 +505,7 @@ namespace Tizen.Network.IoTConnectivity
                     ret = Interop.IoTConnectivity.Common.List.AddStr(listHandle, val, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add str");
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
                 }
@@ -519,7 +519,7 @@ namespace Tizen.Network.IoTConnectivity
                     ret = Interop.IoTConnectivity.Common.List.AddDouble(listHandle, val, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add double");
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
                 }
@@ -533,21 +533,21 @@ namespace Tizen.Network.IoTConnectivity
                     ret = Interop.IoTConnectivity.Common.List.AddBool(listHandle, val, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add bool");
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
                 }
             }
-            else if (list is IEnumerable<State>)
+            else if (list is IEnumerable<Attributes>)
             {
-                ret = Interop.IoTConnectivity.Common.List.Create(Interop.IoTConnectivity.Common.DataType.State, out listHandle);
+                ret = Interop.IoTConnectivity.Common.List.Create(Interop.IoTConnectivity.Common.DataType.Attributes, out listHandle);
                 pos = 0;
-                foreach (State val in (IEnumerable<State>)list)
+                foreach (Attributes val in (IEnumerable<Attributes>)list)
                 {
-                    ret = Interop.IoTConnectivity.Common.List.AddState(listHandle, val._resourceStateHandle, pos++);
+                    ret = Interop.IoTConnectivity.Common.List.AddAttributes(listHandle, val._resourceAttributesHandle, pos++);
                     if (ret != (int)IoTConnectivityError.None)
                     {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add state");
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add attributes");
                         throw IoTConnectivityErrorFactory.GetException(ret);
                     }
                 }
@@ -630,15 +630,15 @@ namespace Tizen.Network.IoTConnectivity
                         ret = Interop.IoTConnectivity.Common.List.ForeachStr(listHandle, cb, IntPtr.Zero);
                         break;
                     }
-                case Interop.IoTConnectivity.Common.DataType.State:
+                case Interop.IoTConnectivity.Common.DataType.Attributes:
                     {
-                        list = new List<State>();
-                        Interop.IoTConnectivity.Common.List.StateCallback cb = (int pos, IntPtr value, IntPtr userData) =>
+                        list = new List<Attributes>();
+                        Interop.IoTConnectivity.Common.List.AttribsCallback cb = (int pos, IntPtr value, IntPtr userData) =>
                         {
-                            list.Add(new State(value));
+                            list.Add(new Attributes(value));
                             return true;
                         };
-                        ret = Interop.IoTConnectivity.Common.List.ForeachState(listHandle, cb, IntPtr.Zero);
+                        ret = Interop.IoTConnectivity.Common.List.ForeachAttributes(listHandle, cb, IntPtr.Zero);
                         break;
                     }
                 case Interop.IoTConnectivity.Common.DataType.ByteStr:
@@ -669,7 +669,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             if (ret != (int)IoTConnectivityError.None)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get state");
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
             return list;

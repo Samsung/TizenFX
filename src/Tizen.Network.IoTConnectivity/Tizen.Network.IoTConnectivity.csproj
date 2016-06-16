@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tizen.Network.IoTConnectivity\Attributes.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\CacheUpdatedEventArgs.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\DeviceInformationFoundEventArgs.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\FindingErrorOccurredEventArgs.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Tizen.Network.IoTConnectivity\ResourceQuery.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\Representation.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\ResourceOptions.cs" />
-    <Compile Include="Tizen.Network.IoTConnectivity\State.cs" />
     <Compile Include="Tizen.Network.IoTConnectivity\ResourceTypes.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,7 +25,7 @@ internal static partial class Interop
                 ByteStr,
                 Null,
                 List,
-                State
+                Attributes
             }
 
             internal static partial class ResourceTypes
@@ -76,78 +76,78 @@ internal static partial class Interop
                 internal static extern int Clone(IntPtr src, out IntPtr dest);
             }
 
-            internal static partial class State
+            internal static partial class Attributes
             {
-                internal delegate bool StateCallback(IntPtr state, string key, IntPtr userData);
+                internal delegate bool AttributesCallback(IntPtr attributes, string key, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_create")]
-                internal static extern int Create(out IntPtr state);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_create")]
+                internal static extern int Create(out IntPtr attributes);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_destroy")]
-                internal static extern void Destroy(IntPtr state);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_destroy")]
+                internal static extern void Destroy(IntPtr attributes);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_clone")]
-                internal static extern int Clone(IntPtr state, out IntPtr dest);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_clone")]
+                internal static extern int Clone(IntPtr attributes, out IntPtr attributes_clone);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_int")]
-                internal static extern int AddInt(IntPtr state, string key, int val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_int")]
+                internal static extern int AddInt(IntPtr attributes, string key, int val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_bool")]
-                internal static extern int AddBool(IntPtr state, string key, bool val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_bool")]
+                internal static extern int AddBool(IntPtr attributes, string key, bool val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_double")]
-                internal static extern int AddDouble(IntPtr state, string key, double val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_double")]
+                internal static extern int AddDouble(IntPtr attributes, string key, double val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_str")]
-                internal static extern int AddStr(IntPtr state, string key, string val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_str")]
+                internal static extern int AddStr(IntPtr attributes, string key, string val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_byte_str")]
-                internal static extern unsafe int AddByteStr(IntPtr state, string key, byte[] val, int len);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_byte_str")]
+                internal static extern int AddByteStr(IntPtr attributes, string key, byte[] val, int len);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_list")]
-                internal static extern int AddList(IntPtr state, string key, IntPtr list);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_list")]
+                internal static extern int AddList(IntPtr attributes, string key, IntPtr list);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_state")]
-                internal static extern int AddState(IntPtr dest, string key, IntPtr src);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_attributes")]
+                internal static extern int AddAttributes(IntPtr dest, string key, IntPtr src);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_add_null")]
-                internal static extern int AddNull(IntPtr state, string key);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_add_null")]
+                internal static extern int AddNull(IntPtr attributes, string key);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_int")]
-                internal static extern int GetInt(IntPtr state, string key, out int val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_int")]
+                internal static extern int GetInt(IntPtr attributes, string key, out int val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_bool")]
-                internal static extern int GetBool(IntPtr state, string key, out bool val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_bool")]
+                internal static extern int GetBool(IntPtr attributes, string key, out bool val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_double")]
-                internal static extern int GetDouble(IntPtr state, string key, out double val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_double")]
+                internal static extern int GetDouble(IntPtr attributes, string key, out double val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_str")]
-                internal static extern int GetStr(IntPtr state, string key, out string val);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_str")]
+                internal static extern int GetStr(IntPtr attributes, string key, out string val);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_byte_str")]
-                internal static extern int GetByteStr(IntPtr state, string key, out IntPtr value, out int size);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_byte_str")]
+                internal static extern int GetByteStr(IntPtr attributes, string key, out IntPtr value, out int size);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_list")]
-                internal static extern int GetList(IntPtr state, string key, out IntPtr list);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_list")]
+                internal static extern int GetList(IntPtr attributes, string key, out IntPtr list);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_state")]
-                internal static extern int GetState(IntPtr src, string key, out IntPtr dest);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_attributes")]
+                internal static extern int GetAttributes(IntPtr src, string key, out IntPtr dest);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_is_null")]
-                internal static extern int IsNull(IntPtr state, string key, out bool isNull);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_is_null")]
+                internal static extern int IsNull(IntPtr attributes, string key, out bool isNull);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_remove")]
-                internal static extern int Remove(IntPtr state, string key);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_remove")]
+                internal static extern int Remove(IntPtr attributes, string key);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_type")]
-                internal static extern int GetType(IntPtr state, string key, out DataType type);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_type")]
+                internal static extern int GetType(IntPtr attributes, string key, out DataType type);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_foreach")]
-                internal static extern int Foreach(IntPtr state, StateCallback cb, IntPtr userData);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_foreach")]
+                internal static extern int Foreach(IntPtr attributes, AttributesCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_state_get_keys_count")]
-                internal static extern int GetKeysCount(IntPtr state, out int count);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_keys_count")]
+                internal static extern int GetKeysCount(IntPtr attributes, out int count);
             }
 
             internal static partial class Query
@@ -161,10 +161,10 @@ internal static partial class Interop
                 internal static extern void Destroy(IntPtr query);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_query_get_resource_type")]
-                internal static extern int GetResourceType(IntPtr query, out string resourceType);
+                internal static extern int GetResourceType(IntPtr query, out IntPtr resourceType);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_query_get_interface")]
-                internal static extern int GetInterface(IntPtr query, out string resourceInterface);
+                internal static extern int GetInterface(IntPtr query, out IntPtr resourceInterface);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_query_set_resource_type")]
                 internal static extern int SetResourceType(IntPtr query, string resourceType);
@@ -179,7 +179,7 @@ internal static partial class Interop
                 internal static extern int Remove(IntPtr query, string key);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_query_lookup")]
-                internal static extern int Lookup(IntPtr query, string key, out string data);
+                internal static extern int Lookup(IntPtr query, string key, out IntPtr data);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_query_foreach")]
                 internal static extern int Foreach(IntPtr query, QueryCallback cb, IntPtr userData);
@@ -202,7 +202,7 @@ internal static partial class Interop
                 internal static extern int SetUriPath(IntPtr repr, string uriPath);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_get_uri_path")]
-                internal static extern int GetUriPath(IntPtr repr, out string uriPath);
+                internal static extern int GetUriPath(IntPtr repr, out IntPtr uriPath);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_set_resource_types")]
                 internal static extern int SetResourceTypes(IntPtr repr, IntPtr types);
@@ -216,11 +216,11 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_get_resource_interfaces")]
                 internal static extern int GetResourceInterfaces(IntPtr repr, out IntPtr ifaces);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_set_state")]
-                internal static extern int SetState(IntPtr repr, IntPtr state);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_set_attributes")]
+                internal static extern int SetAttributes(IntPtr repr, IntPtr attribs);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_get_state")]
-                internal static extern int GetState(IntPtr repr, out IntPtr state);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_get_attributes")]
+                internal static extern int GetAttributes(IntPtr repr, out IntPtr attribs);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_add_child")]
                 internal static extern int AddChild(IntPtr parent, IntPtr child);
@@ -255,7 +255,7 @@ internal static partial class Interop
                 internal static extern int Remove(IntPtr options, ushort id);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_options_lookup")]
-                internal static extern int Lookup(IntPtr options, ushort id, out string data);
+                internal static extern int Lookup(IntPtr options, ushort id, out IntPtr data);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_options_foreach")]
                 internal static extern int ForEach(IntPtr options, OptionsCallback cb, IntPtr userData);
@@ -275,7 +275,7 @@ internal static partial class Interop
 
                 internal delegate bool ListCallback(int pos, IntPtr value, IntPtr userData);
 
-                internal delegate bool StateCallback(int pos, IntPtr value, IntPtr userData);
+                internal delegate bool AttribsCallback(int pos, IntPtr value, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_create")]
                 internal static extern int Create(DataType type, out IntPtr list);
@@ -301,8 +301,8 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_add_list")]
                 internal static extern int AddList(IntPtr list, IntPtr val, int pos);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_add_state")]
-                internal static extern int AddState(IntPtr list, IntPtr val, int pos);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_add_attributes")]
+                internal static extern int AddAttributes(IntPtr list, IntPtr val, int pos);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_int")]
                 internal static extern int GetNthInt(IntPtr list, int pos, out int val);
@@ -314,16 +314,16 @@ internal static partial class Interop
                 internal static extern int GetNthDouble(IntPtr list, int pos, out double val);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_str")]
-                internal static extern int GetNthStr(IntPtr list, int pos, out string val);
+                internal static extern int GetNthStr(IntPtr list, int pos, out IntPtr val);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_byte_str")]
-                internal static extern int GetNthByteStr(IntPtr list, int pos, out string val, out int len);
+                internal static extern int GetNthByteStr(IntPtr list, int pos, out IntPtr val, out int len);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_list")]
                 internal static extern int GetNthList(IntPtr src, int pos, out IntPtr dest);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_state")]
-                internal static extern int GetNthState(IntPtr list, int pos, out IntPtr state);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_get_nth_attributes")]
+                internal static extern int GetNthAttributes(IntPtr list, int pos, out IntPtr attribs);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_remove_nth")]
                 internal static extern int RemoveNth(IntPtr list, int pos);
@@ -352,8 +352,8 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_foreach_list")]
                 internal static extern int ForeachList(IntPtr list, ListCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_foreach_state")]
-                internal static extern int ForeachState(IntPtr list, StateCallback cb, IntPtr userData);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_list_foreach_attributes")]
+                internal static extern int ForeachAttributes(IntPtr list, AttribsCallback cb, IntPtr userData);
             }
         }
     }

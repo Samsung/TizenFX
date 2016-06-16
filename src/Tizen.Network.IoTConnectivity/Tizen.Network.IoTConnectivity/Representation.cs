@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -66,14 +67,14 @@ namespace Tizen.Network.IoTConnectivity
         {
             get
             {
-                string path;
+                IntPtr path;
                 int ret = Interop.IoTConnectivity.Common.Representation.GetUriPath(_representationHandle, out path);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get uri");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return path;
+                return Marshal.PtrToStringAuto(path);
             }
             set
             {
@@ -125,7 +126,7 @@ namespace Tizen.Network.IoTConnectivity
             get
             {
                 IntPtr interfaceHandle;
-                int ret = Interop.IoTConnectivity.Common.Representation.GetResourceTypes(_representationHandle, out interfaceHandle);
+                int ret = Interop.IoTConnectivity.Common.Representation.GetResourceInterfaces(_representationHandle, out interfaceHandle);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
@@ -137,7 +138,7 @@ namespace Tizen.Network.IoTConnectivity
             {
                 int ret = (int)IoTConnectivityError.InvalidParameter;
                 if (value != null)
-                    ret = Interop.IoTConnectivity.Common.Representation.SetResourceTypes(_representationHandle, value.ResourceInterfacesHandle);
+                    ret = Interop.IoTConnectivity.Common.Representation.SetResourceInterfaces(_representationHandle, value.ResourceInterfacesHandle);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to set interface");
@@ -147,24 +148,32 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Current state of the resource
+        /// Current attributes of the resource
         /// </summary>
-        public State State
+        public Attributes Attributes
         {
             get
             {
-                return State;
+                IntPtr attributeHandle;
+                int ret = Interop.IoTConnectivity.Common.Representation.GetAttributes(_representationHandle, out attributeHandle);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
+                    throw IoTConnectivityErrorFactory.GetException(ret);
+                }
+                return new Attributes(attributeHandle);
             }
             set
             {
-                State = value;
                 int ret = (int)IoTConnectivityError.InvalidParameter;
-                if (State != null)
-                    ret = Interop.IoTConnectivity.Common.Representation.SetState(_representationHandle, State._resourceStateHandle);
-                if (ret != (int)IoTConnectivityError.None)
+                if (value != null)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to set interface");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
+                    ret = Interop.IoTConnectivity.Common.Representation.SetAttributes(_representationHandle, value._resourceAttributesHandle);
+                    if (ret != (int)IoTConnectivityError.None)
+                    {
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to set attributes");
+                        throw IoTConnectivityErrorFactory.GetException(ret);
+                    }
                 }
             }
         }
@@ -194,9 +203,9 @@ namespace Tizen.Network.IoTConnectivity
             if (disposing)
             {
                 // Free managed objects
-                Type.Dispose();
-                Interface.Dispose();
-                State?.Dispose();
+                Type?.Dispose();
+                Interface?.Dispose();
+                Attributes?.Dispose();
             }
 
             Interop.IoTConnectivity.Common.Representation.Destroy(_representationHandle);
@@ -210,7 +219,11 @@ namespace Tizen.Network.IoTConnectivity
                 foreach (Representation r in e.NewItems)
                 {
                     int ret = Interop.IoTConnectivity.Common.Representation.AddChild(_representationHandle, r._representationHandle);
-                    throw IoTConnectivityErrorFactory.GetException(ret);
+                    if (ret != (int)IoTConnectivityError.None)
+                    {
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add child");
+                        throw IoTConnectivityErrorFactory.GetException(ret);
+                    }
                 }
             }
             else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
@@ -218,7 +231,11 @@ namespace Tizen.Network.IoTConnectivity
                 foreach (Representation r in e.NewItems)
                 {
                     int ret = Interop.IoTConnectivity.Common.Representation.RemoveChild(_representationHandle, r._representationHandle);
-                    throw IoTConnectivityErrorFactory.GetException(ret);
+                    if (ret != (int)IoTConnectivityError.None)
+                    {
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove child");
+                        throw IoTConnectivityErrorFactory.GetException(ret);
+                    }
                 }
             }
         }
