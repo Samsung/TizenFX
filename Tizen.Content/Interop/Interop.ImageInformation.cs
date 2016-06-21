@@ -74,7 +74,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                Tizen.Log.Info(Globals.LogTag, "SafeImageInformationHandle::ReleaseHandle called");
                 ImageInformation.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;

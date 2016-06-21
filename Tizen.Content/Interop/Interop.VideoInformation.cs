@@ -98,7 +98,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                Tizen.Log.Info(Globals.LogTag, "SafeVideoInformationHandle::ReleaseHandle called");
                 VideoInformation.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;

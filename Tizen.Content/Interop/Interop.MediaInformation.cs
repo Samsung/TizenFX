@@ -270,7 +270,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                Tizen.Log.Info(Globals.LogTag, "SafeMediaInformationHandle::ReleaseHandle called");
                 MediaInformation.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;

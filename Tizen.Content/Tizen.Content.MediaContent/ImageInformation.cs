@@ -38,6 +38,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (mediaId == null)
+                {
+                    mediaId = "";
+                }
                 return mediaId;
             }
         }
@@ -119,6 +123,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (takenDate == null)
+                {
+                    takenDate = "";
+                }
                 return takenDate;
             }
         }
@@ -137,6 +145,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (burstId == null)
+                {
+                    burstId = "";
+                }
                 return burstId;
             }
         }
@@ -154,6 +166,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (exposureTime == null)
+                {
+                    exposureTime = "";
                 }
                 return exposureTime;
             }
@@ -211,7 +227,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
-                Tizen.Log.Info(Globals.LogTag, "Received model:" + model);
+                if (model == null)
+                {
+                    model = "";
+                }
                 return model;
             }
         }

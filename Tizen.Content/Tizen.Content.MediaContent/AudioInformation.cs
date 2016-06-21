@@ -39,6 +39,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (mediaId == null)
+                {
+                    mediaId = "";
+                }
                 return mediaId;
             }
         }
@@ -56,6 +60,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (album == null)
+                {
+                    album = "";
                 }
                 return album;
             }
@@ -75,6 +83,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (artist == null)
+                {
+                    artist = "";
+                }
                 return artist;
             }
         }
@@ -92,6 +104,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (albumArtist == null)
+                {
+                    albumArtist = "";
                 }
                 return albumArtist;
             }
@@ -111,6 +127,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (genre == null)
+                {
+                    genre = "";
+                }
                 return genre;
             }
         }
@@ -128,6 +148,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (composer == null)
+                {
+                    composer = "";
                 }
                 return composer;
             }
@@ -147,6 +171,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (year == null)
+                {
+                    year = "";
+                }
                 return year;
             }
         }
@@ -164,6 +192,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (recordedDate == null)
+                {
+                    recordedDate = "";
                 }
                 return recordedDate;
             }
@@ -183,6 +215,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (copyright == null)
+                {
+                    copyright = "";
+                }
                 return copyright;
             }
         }
@@ -200,6 +236,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (trackNumber == null)
+                {
+                    trackNumber = "";
                 }
                 return trackNumber;
             }

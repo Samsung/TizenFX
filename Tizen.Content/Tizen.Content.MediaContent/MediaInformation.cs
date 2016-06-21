@@ -82,13 +82,15 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
-        public Task<string> CreateThumbnailAsync()
+        public async Task<string> CreateThumbnailAsync()
         {
             var task = new TaskCompletionSource<string>();
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
+                Log.Info(Globals.LogTag, "Thumbnail Callback Received ");
                 if (createResult == MediaContentError.None)
                 {
+                    Log.Info(Globals.LogTag, "Thumbnail Callback Received with path " + path);
                     task.SetResult(path);
                 }
                 else
@@ -102,7 +104,7 @@ namespace Tizen.Content.MediaContent
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
             }
-            return task.Task;
+            return await task.Task;
         }
 
         /// <summary>
@@ -111,12 +113,13 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
-        public Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
+        public async Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
         {
             var task = new TaskCompletionSource<string>();
             cancellationToken.Register(() => {
                 Log.Info(Globals.LogTag, "Cancel thumbnail Called");
                 int resultCancel = Interop.MediaInformation.CancelThumbnail(_handle);
+                Log.Info(Globals.LogTag, "After CAPI CancelThumbnail");
                 if ((MediaContentError)resultCancel != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Cancel thumbnail failed with error code: " + (MediaContentError)resultCancel);
@@ -128,7 +131,7 @@ namespace Tizen.Content.MediaContent
             });
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                Log.Info(Globals.LogTag, "Thumbnail Callabck Received");
+                Log.Info(Globals.LogTag, "Thumbnail Callback Received");
                 if (createResult == MediaContentError.None)
                 {
                     task.SetResult(path);
@@ -145,7 +148,7 @@ namespace Tizen.Content.MediaContent
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 task.SetException(MediaContentErrorFactory.CreateException((MediaContentError)result, "Creating Thumbnail Fail"));
             }
-            return task.Task;
+            return await task.Task;
         }
 
         /// <summary>
@@ -196,6 +199,10 @@ namespace Tizen.Content.MediaContent
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                     //Log.Error()
                 }
+                if (mediaId == null)
+                {
+                    mediaId = "";
+                }
                 return mediaId;
             }
         }
@@ -214,6 +221,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (path == null)
+                {
+                    path = "";
+                }
                 return path;
             }
         }
@@ -231,6 +242,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (displayname == null)
+                {
+                    displayname = "";
                 }
                 return displayname;
             }
@@ -275,6 +290,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (mimeType == null)
+                {
+                    mimeType = "";
                 }
                 return mimeType;
             }
@@ -414,6 +433,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (thumbnailPath == null)
+                {
+                    thumbnailPath = "";
+                }
                 return thumbnailPath;
             }
         }
@@ -431,6 +454,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (description == null)
+                {
+                    description = "";
                 }
                 return description;
             }
@@ -536,6 +563,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (weather == null)
+                {
+                    weather = "";
+                }
                 return weather;
             }
             set
@@ -614,6 +645,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if(author == null)
+                {
+                    author = "";
+                }
                 return author;
             }
             set
@@ -639,6 +674,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (provider == null)
+                {
+                    provider = "";
                 }
                 return provider;
             }
@@ -666,6 +705,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (contentName == null)
+                {
+                    contentName = "";
+                }
                 return contentName;
             }
             set
@@ -692,6 +735,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (title == null)
+                {
+                    title = "";
+                }
                 return title;
             }
         }
@@ -709,6 +756,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (category == null)
+                {
+                    category = "";
                 }
                 return category;
             }
@@ -736,6 +787,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (loationTag == null)
+                {
+                    loationTag = "";
+                }
                 return loationTag;
             }
             set
@@ -761,6 +816,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (ageRating == null)
+                {
+                    ageRating = "";
                 }
                 return ageRating;
             }
@@ -788,6 +847,10 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
+                if (keyword == null)
+                {
+                    keyword = "";
+                }
                 return keyword;
             }
             set
@@ -813,6 +876,10 @@ namespace Tizen.Content.MediaContent
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
+                }
+                if (storageId == null)
+                {
+                    storageId = "";
                 }
                 return storageId;
             }

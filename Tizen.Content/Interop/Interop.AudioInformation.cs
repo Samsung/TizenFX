@@ -101,7 +101,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                Tizen.Log.Info(Globals.LogTag, "SafeAudioInformationHandle::ReleaseHandle called");
                 AudioInformation.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
