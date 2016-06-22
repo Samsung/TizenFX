@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// RemoteResource class
+    /// This class represents a remote resource.
     /// </summary>
     public class RemoteResource : IDisposable
     {
@@ -374,8 +374,14 @@ namespace Tizen.Network.IoTConnectivity
                 {
                     _responseCallbacksMap.Remove(responseCallbackId);
                 }
-
-                if (responseHandle != IntPtr.Zero)
+                if (err == (int)(IoTConnectivityError.Iotivity))
+                {
+                    RemoteResponse response = new RemoteResponse();
+                    response.Result = ResponseCode.Forbidden;
+                    response.Representation = null;
+                    tcsRemoteResponse.TrySetResult(response);
+                }
+                else if (responseHandle != IntPtr.Zero)
                 {
                     try
                     {
@@ -392,7 +398,6 @@ namespace Tizen.Network.IoTConnectivity
                     tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
                 }
             };
-
             IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Put(_remoteResourceHandle, representation._representationHandle, queryHandle, _responseCallbacksMap[id], id);
             if (errCode != (int)IoTConnectivityError.None)
@@ -474,8 +479,14 @@ namespace Tizen.Network.IoTConnectivity
                 {
                     _responseCallbacksMap.Remove(responseCallbackId);
                 }
-
-                if (responseHandle != IntPtr.Zero)
+                if (err == (int)(IoTConnectivityError.Iotivity))
+                {
+                    RemoteResponse response = new RemoteResponse();
+                    response.Result = ResponseCode.Forbidden;
+                    response.Representation = null;
+                    tcsRemoteResponse.TrySetResult(response);
+                }
+                else if (responseHandle != IntPtr.Zero)
                 {
                     try
                     {
@@ -707,7 +718,7 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device id");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-			IntPtr deviceName;
+            IntPtr deviceName;
             ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceName(_remoteResourceHandle, out deviceName);
             if (ret != (int)IoTConnectivityError.None)
             {

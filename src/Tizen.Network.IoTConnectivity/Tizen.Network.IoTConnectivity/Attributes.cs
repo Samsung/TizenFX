@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Attributes represents current attributes of a resource
+    /// This class represents current attributes of a resource.
     /// </summary>
     public class Attributes : IDictionary<string, object>, IDisposable
     {

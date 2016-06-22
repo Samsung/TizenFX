@@ -9,10 +9,12 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// DeviceInformationFoundEventArgs class. This class is an event arguments of the DeviceInformationFound event.
+    /// This class is an event arguments of the DeviceInformationFound event.
     /// </summary>
     public class DeviceInformationFoundEventArgs
     {
+        internal DeviceInformationFoundEventArgs() { }
+
         /// <summary>
         /// The request id
         /// </summary>

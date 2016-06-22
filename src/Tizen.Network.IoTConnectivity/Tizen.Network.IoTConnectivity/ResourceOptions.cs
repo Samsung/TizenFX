@@ -15,7 +15,7 @@ using Tizen;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class representing Resource options
+    /// This class represents resource options.
     /// </summary>
     public class ResourceOptions : IDictionary<ushort, string>, IDisposable
     {

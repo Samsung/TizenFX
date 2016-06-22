@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// StateChangedEventArgs class. This class is an event arguments of the StateChanged event.
+    /// This class is an event arguments of the StateChanged event.
     /// </summary>
     public class StateChangedEventArgs : EventArgs
     {
+        internal StateChangedEventArgs() { }
+
         /// <summary>
         /// State property.
         /// </summary>

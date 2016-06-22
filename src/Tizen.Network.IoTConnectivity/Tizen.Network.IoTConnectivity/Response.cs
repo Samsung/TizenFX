@@ -11,7 +11,7 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class representing Response from a resource
+    /// This class represents response from a resource.
     /// </summary>
     public class Response : IDisposable
     {

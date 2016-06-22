@@ -10,6 +10,9 @@ using System.Collections.Generic;
 
 namespace Tizen.Network.IoTConnectivity
 {
+    /// <summary>
+    /// Class represnets a lite resource.
+    /// </summary>
     public class LiteResource : Resource
     {
         /// <summary>
@@ -35,7 +38,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="attribs">The new attributes of the lite resource</param>
         /// <returns>true to accept post request, false to reject it</returns>
-        public virtual bool OnPost(Attributes attribs)
+        protected virtual bool OnPost(Attributes attribs)
         {
             return true;
         }
@@ -44,7 +47,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Called on the get event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public sealed override Response OnGet(Request request)
+        protected sealed override Response OnGet(Request request)
         {
             Representation representation = new Representation()
             {
@@ -67,7 +70,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Called on the put event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public sealed override Response OnPut(Request request)
+        protected sealed override Response OnPut(Request request)
         {
             Response response = new Response();
             response.Result = ResponseCode.Forbidden;
@@ -78,7 +81,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Called on the post event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public sealed override Response OnPost(Request request)
+        protected sealed override Response OnPost(Request request)
         {
             if (OnPost(request.Representation.Attributes))
             {
@@ -109,7 +112,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Called on the delete event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public sealed override Response OnDelete(Request request)
+        protected sealed override Response OnDelete(Request request)
         {
             Response response = new Response();
             response.Result = ResponseCode.Forbidden;
@@ -122,7 +125,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="request">Request.</param>
         /// <param name="observerType">Observer type</param>
         /// <param name="observeId">Observe identifier.</param>
-        public sealed override bool OnObserving(Request request, ObserveType observeType, int observeId)
+        protected sealed override bool OnObserving(Request request, ObserveType observeType, int observeId)
         {
             return true;
         }

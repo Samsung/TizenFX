@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class containing representation of a resource
+    /// Class containing representation of a resource.
     /// </summary>
     public class Representation : IDisposable
     {

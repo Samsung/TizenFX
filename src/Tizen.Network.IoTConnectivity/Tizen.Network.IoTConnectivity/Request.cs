@@ -11,11 +11,15 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class respresenting Request to a resource
+    /// Class respresenting request to a resource.
     /// </summary>
     public class Request : IDisposable
     {
         private bool _disposed = false;
+
+        internal Request()
+        {
+        }
 
         ~Request()
         {

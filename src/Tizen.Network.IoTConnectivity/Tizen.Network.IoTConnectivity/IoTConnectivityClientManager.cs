@@ -12,6 +12,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
+    /// <summary>
+    /// IoT connectivity client manager.
+    /// </summary>
     public static class IoTConnectivityClientManager
     {
         public const string MulticastAddress = null;
@@ -179,10 +182,10 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_presenceCallbacksMap[id] = (IntPtr presence, int result, IntPtr presenceResponseHandle, IntPtr userData) =>
             {
-                if (presenceResponseHandle != IntPtr.Zero)
+                int presenceId = (int)userData;
+                if (result == (int)IoTConnectivityError.None)
                 {
-                    int presenceId = (int)userData;
-                    if (result == 0)
+                    if (presenceResponseHandle != IntPtr.Zero)
                     {
                         PresenceReceivedEventArgs e = GetPresenceReceivedEventArgs(presenceId, presenceResponseHandle);
                         if (e == null)
@@ -194,9 +197,14 @@ namespace Tizen.Network.IoTConnectivity
                     }
                     else
                     {
-                        FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(presenceId, result);
-                        FindingErrorOccurred?.Invoke(null, e);
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
+                        return;
                     }
+                }
+                else
+                {
+                    FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(presenceId, result);
+                    FindingErrorOccurred?.Invoke(null, e);
                 }
             };
 
@@ -276,10 +284,10 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_resourceFoundCallbacksMap[id] = (IntPtr remoteResourceHandle, int result, IntPtr userData) =>
             {
-                if (remoteResourceHandle != IntPtr.Zero)
+                int requestId = (int)userData;
+                if (result == (int)IoTConnectivityError.None)
                 {
-                    int requestId = (int)userData;
-                    if (result == (int)IoTConnectivityError.None)
+                    if (remoteResourceHandle != IntPtr.Zero)
                     {
                         RemoteResource resource = null;
                         try
@@ -300,13 +308,18 @@ namespace Tizen.Network.IoTConnectivity
                     }
                     else
                     {
-                        FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
-                        FindingErrorOccurred?.Invoke(null, e);
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
+                        return;
+                    }
+                }
+                else
+                {
+                    FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
+                    FindingErrorOccurred?.Invoke(null, e);
 
-                        lock (s_resourceFoundCallbacksMap)
-                        {
-                            s_resourceFoundCallbacksMap.Remove(id);
-                        }
+                    lock (s_resourceFoundCallbacksMap)
+                    {
+                        s_resourceFoundCallbacksMap.Remove(id);
                     }
                 }
             };
@@ -345,10 +358,10 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_deviceInformationCallbacksMap[id] = (IntPtr deviceInfoHandle, int result, IntPtr userData) =>
             {
-                if (deviceInfoHandle != IntPtr.Zero)
+                int requestId = (int)userData;
+                if (result == (int)IoTConnectivityError.None)
                 {
-                    int requestId = (int)userData;
-                    if (result == 0)
+                    if (deviceInfoHandle != IntPtr.Zero)
                     {
                         DeviceInformationFoundEventArgs e = GetDeviceInformationFoundEventArgs(requestId, deviceInfoHandle);
                         if (e == null)
@@ -360,13 +373,18 @@ namespace Tizen.Network.IoTConnectivity
                     }
                     else
                     {
-                        FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
-                        FindingErrorOccurred?.Invoke(null, e);
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
+                        return;
+                    }
+                }
+                else
+                {
+                    FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
+                    FindingErrorOccurred?.Invoke(null, e);
 
-                        lock (s_deviceInformationCallbacksMap)
-                        {
-                            s_deviceInformationCallbacksMap.Remove(id);
-                        }
+                    lock (s_deviceInformationCallbacksMap)
+                    {
+                        s_deviceInformationCallbacksMap.Remove(id);
                     }
                 }
             };
@@ -407,10 +425,10 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_platformInformationCallbacksMap[id] = (IntPtr platformInfoHandle, int result, IntPtr userData) =>
             {
-                if (platformInfoHandle != IntPtr.Zero)
+                int requestId = (int)userData;
+                if (result == (int)IoTConnectivityError.None)
                 {
-                    int requestId = (int)userData;
-                    if (result == 0)
+                    if (platformInfoHandle != IntPtr.Zero)
                     {
                         PlatformInformationFoundEventArgs e = GetPlatformInformationFoundEventArgs(requestId, platformInfoHandle);
                         if (e == null)
@@ -422,13 +440,18 @@ namespace Tizen.Network.IoTConnectivity
                     }
                     else
                     {
-                        FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
-                        FindingErrorOccurred?.Invoke(null, e);
+                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
+                        return;
+                    }
+                }
+                else
+                {
+                    FindingErrorOccurredEventArgs e = GetFindingErrorOccurredEventArgs(requestId, result);
+                    FindingErrorOccurred?.Invoke(null, e);
 
-                        lock (s_platformInformationCallbacksMap)
-                        {
-                            s_platformInformationCallbacksMap.Remove(id);
-                        }
+                    lock (s_platformInformationCallbacksMap)
+                    {
+                        s_platformInformationCallbacksMap.Remove(id);
                     }
                 }
             };

@@ -21,11 +21,11 @@ namespace Tizen.Network.IoTConnectivity
         NotSupported = ErrorCode.NotSupported,
         NoData = ErrorCode.NoData,
         TimedOut = ErrorCode.TimedOut,
-        // TODO: Fix IoTivity error mask
-        Representation = 0x10700000 | 0x01,
-        InvalidType = 0x10700000 | 0x02,
-        Already = 0x10700000 | 0x03,
-        System = 0x10700000 | 0x04,
+        Iotivity = -0x01C80000 | 0x01,
+        Representation = -0x01C80000 | 0x02,
+        InvalidType = -0x01C80000 | 0x03,
+        Already = -0x01C80000 | 0x04,
+        System = -0x01C80000 | 0x06,
     }
 
     internal static class IoTConnectivityErrorFactory

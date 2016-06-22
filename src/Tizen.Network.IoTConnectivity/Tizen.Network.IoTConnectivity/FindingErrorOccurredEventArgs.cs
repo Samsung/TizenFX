@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// FoundErrorEventArgs class. This class is an event arguments of the FoundError event.
+    /// This class is an event arguments of the FindingErrorOccurred event.
     /// </summary>
     public class FindingErrorOccurredEventArgs : EventArgs
     {
+        internal FindingErrorOccurredEventArgs() { }
+
         /// <summary>
         /// RequestId property.
         /// </summary>
