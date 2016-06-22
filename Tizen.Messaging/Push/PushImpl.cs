@@ -51,30 +51,50 @@ namespace Tizen.Messaging.Push
                 {
                     ob.AppData = data;
                 }
+		else
+		{
+			ob.AppData = "";
+		}
                 string message;
                 result = Interop.Push.GetNotificationMessage(notification, out message);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(message)))
                 {
                     ob.Message = message;
                 }
+		else
+		{
+			ob.Message = "";
+		}
                 string sender;
                 result = Interop.Push.GetNotificationSender(notification, out sender);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(sender)))
                 {
                     ob.Sender = sender;
                 }
+		else
+		{
+			ob.Sender = "";
+		}
                 string sessioninfo;
                 result = Interop.Push.GetNotificationSessionInfo(notification, out sessioninfo);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(sessioninfo)))
                 {
                     ob.SessionInfo = sessioninfo;
                 }
+		else
+		{
+			ob.SessionInfo = "";
+		}
                 string requestid;
                 result = Interop.Push.GetNotificationRequestId(notification, out requestid);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(requestid)))
                 {
                     ob.RequestId = requestid;
                 }
+		else
+		{
+			ob.RequestId = "";
+		}
                 int time;
                 result = Interop.Push.GetNotificationTime(notification, out time);
                 DateTime utc;
@@ -113,7 +133,7 @@ namespace Tizen.Messaging.Push
             Log.Info(Interop.Push.LogTag, "PushServiceDisconnect Completed");
         }
 
-        internal Task<ServerResponse> PushServerRegister()
+        internal async Task<ServerResponse> PushServerRegister()
         {
             Log.Info(Interop.Push.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
@@ -140,10 +160,10 @@ namespace Tizen.Messaging.Push
                 Log.Error(Interop.Push.LogTag, "Register failed with " + result);
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
             }
-            return task.Task;
+            return await task.Task;
         }
 
-        internal Task<ServerResponse> PushServerUnregister()
+        internal async Task<ServerResponse> PushServerUnregister()
         {
             var task = new TaskCompletionSource<ServerResponse>();
             Interop.Push.VoidResultCallback registerResult = (Interop.Push.Result regResult, IntPtr msgPtr, IntPtr userData) =>
@@ -167,7 +187,7 @@ namespace Tizen.Messaging.Push
             {
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
             }
-            return task.Task;
+            return await task.Task;
         }
 
         internal string GetRegistrationId()
