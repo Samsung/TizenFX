@@ -245,7 +245,7 @@ namespace Tizen.Content.MediaContent
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
                 if (_handle != IntPtr.Zero)
-                    contentCollection = new MediaFolder(_handle);
+                    contentCollection = new PlayList(_handle);
             }
             else if (typeof(T) == typeof(Album))
             {
@@ -256,7 +256,7 @@ namespace Tizen.Content.MediaContent
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
                 if (_handle != IntPtr.Zero)
-                    contentCollection = new Storage(_handle);
+                    contentCollection = new Album(_handle);
             }
             else if (typeof(T) == typeof(Tag))
             {
@@ -267,7 +267,7 @@ namespace Tizen.Content.MediaContent
                     throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
                 }
                 if (_handle != IntPtr.Zero)
-                    contentCollection = new Storage(_handle);
+                    contentCollection = new Tag(_handle);
             }
             return (T)contentCollection;
         }

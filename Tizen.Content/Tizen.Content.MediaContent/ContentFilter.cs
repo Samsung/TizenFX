@@ -60,6 +60,9 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _filterHandle;
         private bool _disposedValue = false;
+        private ContentOrder _order = ContentOrder.Asc;
+        private string _orderKey = "MEDIA_ID";
+        private ContentCollation _collationType = ContentCollation.Default;
         internal IntPtr Handle
         {
             get
@@ -81,7 +84,7 @@ namespace Tizen.Content.MediaContent
                 res = (MediaContentError)Interop.Filter.GetOffset(_filterHandle, out offset, out count);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to Setoffset");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to Get offset");
                 }
                 return offset;
             }
@@ -104,6 +107,7 @@ namespace Tizen.Content.MediaContent
             {
                 throw MediaContentErrorFactory.CreateException(res, "Failed to Create Filter handle.");
             }
+            res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle,(int) _order, _orderKey, (int) _collationType);
         }
         /// <summary>
         /// The number of items to be searched with respect to the offset
@@ -126,7 +130,7 @@ namespace Tizen.Content.MediaContent
             {
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOffset(_filterHandle, value, this.Count);
+                res = (MediaContentError)Interop.Filter.SetOffset(_filterHandle, this.Offset, value);
                 if (res != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(res, "Failed to Setoffset/Count");
@@ -150,6 +154,10 @@ namespace Tizen.Content.MediaContent
                 if (res != MediaContentError.None)
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
+                }
+                if ( orderKey.Length == 0)
+                {
+                    orderKey = _orderKey;
                 }
                 return (ContentOrder)orderType;
             }
@@ -182,10 +190,11 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
                 }
-                return (ContentCollation)collatetType;
+                 return (ContentCollation)collatetType;
             }
             set
             {
+                _collationType = value;
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
                 res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, (int)this.Order, this.OrderKey, (int)value);
@@ -208,6 +217,7 @@ namespace Tizen.Content.MediaContent
                 MediaContentError res;
                 int collatetType;
                 res = (MediaContentError)Interop.Filter.GetCondition(_filterHandle, out conditionVal, out collatetType);
+                _collationType = (ContentCollation)collatetType;
                 if (res != MediaContentError.None)
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetCondition");
@@ -218,7 +228,7 @@ namespace Tizen.Content.MediaContent
             {
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, value, (int)this.CollationType);
+                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, value, (int) _collationType);
                 if (res != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition");
@@ -273,10 +283,15 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
                 }
+                if (orderKey.Length == 0)
+                {
+                    orderKey = _orderKey;
+                }
                 return orderKey;
             }
             set
             {
+                _orderKey = value;
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
                 res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, (int)this.Order, value, (int)this.CollationType);
