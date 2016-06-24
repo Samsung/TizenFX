@@ -30,7 +30,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public VideoStreamEventArgs(int height, int width, int fps, int bitrate)
+		internal VideoStreamEventArgs(int height, int width, int fps, int bitrate)
 		{
 			_height = height;
 			_width = width;

@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
+		internal VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
 		{
 			_imageBuffer = imageBuffer;
 			_width = width;
@@ -43,10 +43,6 @@ namespace Tizen.Multimedia
         /// <value> Image buffer </value>
         public byte[] ImageBuffer 
 		{
-			set
-			{
-				_imageBuffer = value;
-			}
 			get
 			{
 				return _imageBuffer;
@@ -59,10 +55,6 @@ namespace Tizen.Multimedia
         /// <value> Image width </value>
         public int Width 
 		{
-			set
-			{
-				_width = value;
-			}
 			get
 			{
 				return _width;
@@ -75,10 +67,6 @@ namespace Tizen.Multimedia
         /// <value> Image Height </value>
         public int Height 
 		{
-			set
-			{
-				_height = value;
-			}
 			get
 			{
 				return _height;
@@ -91,10 +79,6 @@ namespace Tizen.Multimedia
         /// <value> Size of the image </value>
         public uint Size 
 		{
-			set
-			{
-				_size = value;
-			}
 			get
 			{
 				return _size;

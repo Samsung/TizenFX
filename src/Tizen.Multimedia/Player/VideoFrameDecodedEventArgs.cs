@@ -25,6 +25,9 @@ namespace Tizen.Multimedia
 		// TODO: uncomment when MediaPacket is implemented.
 		//internal MediaPacket _packet;
 
+		internal VideoFrameDecodedEventArgs()
+		{
+		}
 		/// <summary>
         /// Get the Image buffer.
         /// </summary>

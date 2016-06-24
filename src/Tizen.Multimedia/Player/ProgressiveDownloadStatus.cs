@@ -37,10 +37,6 @@ namespace Tizen.Multimedia
         /// <value> current download position </value>
         public ulong Current
 		{
-			set
-			{
-				_current = value;
-			}
 			get
 			{
 				return _current;
@@ -53,10 +49,6 @@ namespace Tizen.Multimedia
         /// <value> Total size of file (bytes) </value>
         public ulong TotalSize
 		{
-			set
-			{
-				_totalSize = value;
-			}
 			get
 			{
 				return _totalSize;

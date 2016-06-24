@@ -22,5 +22,8 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class PlaybackCompletedEventArgs : EventArgs
     {
+		internal PlaybackCompletedEventArgs()
+		{
+		}
     }
 }

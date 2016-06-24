@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
 		/// Constructor.
 		/// </summary>
 		/// <param name="errocode"> Playback error code </param>
-		public PlaybackErrorEventArgs(int errorCode)
+		internal PlaybackErrorEventArgs(int errorCode)
 		{
 			_errorCode = errorCode;
 		}

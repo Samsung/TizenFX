@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public SubtitleUpdatedEventArgs(ulong duration, string text)
+		internal SubtitleUpdatedEventArgs(ulong duration, string text)
 		{
 			_duration = duration;
 			_text = text;

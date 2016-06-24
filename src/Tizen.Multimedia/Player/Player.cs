@@ -585,23 +585,6 @@ namespace Tizen.Multimedia
 			return Task.Factory.StartNew(() => CaptureVideoAsyncTask()).Result;
         }
 
-		public Task<VideoFrameCapture> CaptureVideoAsyncTask()
-		{
-			TaskCompletionSource<VideoFrameCapture> t = new TaskCompletionSource<VideoFrameCapture> ();
-			Interop.Player.VideoCaptureCallback  cb = (byte[] data, int width, int height, uint size, IntPtr userData) => {
-				VideoFrameCapture v = new VideoFrameCapture(data, width, height, size);
-				t.SetResult(v);
-			};
-
-			int ret = Interop.Player.CaptureVideo(_playerHandle, cb, IntPtr.Zero);
-			if(ret != (int)PlayerError.None) 
-			{
-				Log.Error(PlayerLog.LogTag, "Failed to capture video" + (PlayerError)ret);
-				PlayerErrorFactory.ThrowException(ret, "Failed to capture video"); 
-			}
-			return t.Task;
-		}
-
         /// <summary>
         ///Sets the seek position for playback, asynchronously.  </summary>
         /// <param name="milliseconds"> Position to be set in milliseconds</param>
@@ -747,6 +730,25 @@ namespace Tizen.Multimedia
 			}
 
 		}
+
+		private Task<VideoFrameCapture> CaptureVideoAsyncTask()
+		{
+			TaskCompletionSource<VideoFrameCapture> t = new TaskCompletionSource<VideoFrameCapture> ();
+			Interop.Player.VideoCaptureCallback  cb = (byte[] data, int width, int height, uint size, IntPtr userData) => {
+				VideoFrameCapture v = new VideoFrameCapture(data, width, height, size);
+				t.SetResult(v);
+			};
+
+			int ret = Interop.Player.CaptureVideo(_playerHandle, cb, IntPtr.Zero);
+			if(ret != (int)PlayerError.None) 
+			{
+				Log.Error(PlayerLog.LogTag, "Failed to capture video" + (PlayerError)ret);
+				PlayerErrorFactory.ThrowException(ret, "Failed to capture video"); 
+			}
+			return t.Task;
+		}
+
+
 
 		#if _MEDIA_PACKET_
 		TODO: Uncomment this when MediaPacket is implemented

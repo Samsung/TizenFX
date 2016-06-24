@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
 		/// Constructor
 		/// </summary>
 		/// <param name="interruptedCode"> Playback interrupted code </param>
-		public PlaybackInterruptedEventArgs(int interruptedCode)
+		internal PlaybackInterruptedEventArgs(int interruptedCode)
 		{
 			_interruptedCode = interruptedCode;
 		}

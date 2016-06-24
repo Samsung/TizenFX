@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public SeekOffsetEventArgs(UInt64 offset)
+		internal SeekOffsetEventArgs(UInt64 offset)
 		{
 			_offset = offset;
 		}

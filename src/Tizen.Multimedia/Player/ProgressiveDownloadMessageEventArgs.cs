@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ProgressiveDownloadMessageEventArgs(ProgressiveDownloadMessage message)
+		internal ProgressiveDownloadMessageEventArgs(ProgressiveDownloadMessage message)
 		{
 			_message = message;
 		}
