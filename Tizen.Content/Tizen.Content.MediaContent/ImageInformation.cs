@@ -264,14 +264,28 @@ namespace Tizen.Content.MediaContent
         {
             var task = new TaskCompletionSource<IEnumerable<MediaFace>>();
             Collection<MediaFace> coll = new Collection<MediaFace>();
+            MediaContentError result;
             Interop.MediaInformation.MediaFaceCallback faceCallback = (IntPtr facehandle, IntPtr userData) =>
             {
-                MediaFace face = new MediaFace(facehandle);
+                IntPtr newHandle;
+                result = (MediaContentError)Interop.Face.Clone(out newHandle, facehandle);
+                if (result != MediaContentError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to clone Tag");
+                }
+                MediaFace face = new MediaFace(newHandle);
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Got Media Face");
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Id " + face.Id);
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.MediaInformationId " + face.MediaInformationId);
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Orientation " + face.Orientation);
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Rect " + face.Rect);
+                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Tag " + face.Tag);
                 coll.Add(face);
                 return true;
             };
-            int result = Interop.MediaInformation.GetAllFaces(MediaId, filter.Handle, faceCallback, IntPtr.Zero);
-            if ((MediaContentError)result != MediaContentError.None)
+            IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
+            result = (MediaContentError)Interop.MediaInformation.GetAllFaces(MediaId, filterHandle, faceCallback, IntPtr.Zero);
+            if (result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
             }
@@ -290,6 +304,7 @@ namespace Tizen.Content.MediaContent
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             int result = Interop.MediaInformation.GetFaceCount(MediaId, handle, out count);
+            Tizen.Log.Info("TCT", "GetMediaFaceCount: " + count);
             if ((MediaContentError)result != MediaContentError.None)
             {
                 Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);

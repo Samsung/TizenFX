@@ -107,7 +107,7 @@ namespace Tizen.Content.MediaContent
             {
                 throw MediaContentErrorFactory.CreateException(res, "Failed to Create Filter handle.");
             }
-            res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle,(int) _order, _orderKey, (int) _collationType);
+            //res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle,(int) _order, _orderKey, (int) _collationType);
         }
         /// <summary>
         /// The number of items to be searched with respect to the offset

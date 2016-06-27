@@ -78,7 +78,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetFaceCount(string mediaId, IntPtr filter, out int bookmarkCount);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_bookmark_from_db", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_face_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetAllFaces(string mediaId, IntPtr filter, MediaFaceCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_image", CallingConvention = CallingConvention.Cdecl)]
