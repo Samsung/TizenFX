@@ -52,7 +52,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Get all the avaialble vibrators.
+        /// Get all the avaialble Displays.
         /// </summary>
         public static IReadOnlyList<Display> Displays
         {

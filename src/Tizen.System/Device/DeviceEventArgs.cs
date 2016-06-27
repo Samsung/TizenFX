@@ -5,6 +5,7 @@ namespace Tizen.System
     // Battery
     public class BatteryPercentChangedEventArgs : EventArgs
     {
+        internal BatteryPercentChangedEventArgs(){}
         /// <summary>
         /// The current capacity of the battery.
         /// Capacity is an integer value from 0 to 100, that indicates remaining battery charge as a percentage of the maximum level.
@@ -14,6 +15,7 @@ namespace Tizen.System
 
     public class BatteryLevelChangedEventArgs : EventArgs
     {
+        internal BatteryLevelChangedEventArgs(){}
         /// <summary>
         /// Level indicates the Current battery level status which is of type BatteryLevelStatus.
         /// </summary>
@@ -22,6 +24,7 @@ namespace Tizen.System
 
     public class BatteryChargingStateChangedEventArgs : EventArgs
     {
+        internal BatteryChargingStateChangedEventArgs() {}
         /// <summary>
         /// The charging state of the battery. Charging is of type boolean which indicates true/false based on currrent charging status.
         /// </summary>
@@ -31,6 +34,7 @@ namespace Tizen.System
     // Display
     public class DisplayStateChangedEventArgs : EventArgs
     {
+        internal DisplayStateChangedEventArgs() {}
         /// <summary>
         /// State indicates the current display state of the device which is an enum of type DisplayState.
         /// </summary>
@@ -40,6 +44,7 @@ namespace Tizen.System
     // Led
     public class LedBrightnessChangedEventArgs : EventArgs
     {
+        internal LedBrightnessChangedEventArgs() {}
         /// <summary>
         /// Brightness indicates the current brightness level of the display as an integer.
         /// </summary>
