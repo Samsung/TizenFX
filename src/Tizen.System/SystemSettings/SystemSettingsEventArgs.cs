@@ -336,39 +336,6 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event DefaultFontTypeChanged
-    /// </summary>
-    public class DefaultFontTypeChangedEventArgs : EventArgs
-    {
-        private readonly string _defaultFontType = null;
-        /// <summary>
-        /// The enum for DefaultFontType system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.DefaultFontType;
-            }
-        }
-        internal DefaultFontTypeChangedEventArgs(string val)
-        {
-            _defaultFontType = val;
-        }
-
-        /// <summary>
-        /// The current system default font type
-        /// </summary>
-        public string Value
-        {
-            get
-            {
-                return _defaultFontType;
-            }
-        }
-    }
-
-    /// <summary>
     /// EventArgs type for the event LocaleCountryChanged
     /// </summary>
     public class LocaleCountryChangedEventArgs : EventArgs
