@@ -359,6 +359,27 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
+        /// Full path of the temporary file which stores downloaded content.
+        /// </summary>
+        /// <remarks>
+        /// The download state must be one of the states after Downloading.
+        /// </remarks>
+        public string TemporaryPath
+        {
+            get
+            {
+                string path;
+                int ret = Interop.Download.GetTempFilePath(_downloadId, out path);
+                if (ret != (int)DownloadError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get TemporaryPath, " + (DownloadError)ret);
+                    return String.Empty;
+                }
+                return path;
+            }
+        }
+
+        /// <summary>
         /// URL to download.
         /// </summary>
         /// <remarks>
@@ -511,38 +532,6 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Directory path of the temporary file used in the previous download request.
-        /// This is only useful when resuming download to make HTTP request header at the client side. Otherwise, the path is ignored.
-        /// If you try to get this property value before setting or if any other error occurs, an empty string is returned.
-        /// </summary>
-        /// <remarks>
-        /// If the etag value is not present in the download database, it is not useful to set the temporary file path.
-        /// When resuming download request, the data is attached at the end of this temporary file.
-        /// </remarks>
-        public string TempFilePath
-        {
-            get
-            {
-                string path;
-                int ret = Interop.Download.GetTempFilePath(_downloadId, out path);
-                if (ret != (int)DownloadError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get TempFilePath, " + (DownloadError)ret);
-                    return String.Empty;
-                }
-                return path;
-            }
-            set
-            {
-                int ret = Interop.Download.SetTempFilePath(_downloadId, value.ToString());
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to set TempFilePath");
-                }
-            }
-        }
-
-        /// <summary>
         /// HTTP header field and value pairs to the download request.
         /// HTTP header <field,value> pair is the <key,value> pair in the Dictionary HttpHeaders
         /// The given HTTP header field will be included with the HTTP request of the download request.
@@ -558,6 +547,23 @@ namespace Tizen.Content.Download
             {
                 return _httpHeaders;
             }
+        }
+
+        /// <summary>
+        /// Sets the directory path of a temporary file used in a previous download request.
+        /// This is only useful when resuming download to make HTTP request header at the client side. Otherwise, the path is ignored.
+        /// </summary>
+        /// <remarks>
+        /// If the etag value is not present in the download database, it is not useful to set the temporary file path.
+        /// When resuming the download request, the data is attached at the end of this temporary file.
+        /// </remarks>
+        public void SetTemporaryFilePath(string path)
+        {
+                int ret = Interop.Download.SetTempFilePath(_downloadId, path);
+                if (ret != (int)DownloadError.None)
+                {
+                    DownloadErrorFactory.ThrowException(ret, "Failed to set TemporaryFilePath");
+                }
         }
 
         /// <summary>
@@ -619,6 +625,9 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Releases all resources used by the Request class.
         /// </summary>
+        /// <remarks>
+        /// After calling this method, download request related data exists in the download database for a certain period of time. Within that time, it is possible to use other APIs with this data.
+        /// </remarks>
         public void Dispose()
         {
             Dispose(true);
