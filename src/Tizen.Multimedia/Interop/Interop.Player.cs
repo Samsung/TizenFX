@@ -19,7 +19,7 @@ internal static partial class Interop
 	//internal delegate void VideoFrameDecodedCallback(MediaPacket packet, IntPtr userData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	internal delegate void SubtitleUpdatedCallback(ulong duration, string text, IntPtr userData);
+	internal delegate void SubtitleUpdatedCallback(uint duration, string text, IntPtr userData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	internal delegate void BufferingProgressCallback(int percent, IntPtr userData);

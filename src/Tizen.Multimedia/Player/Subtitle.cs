@@ -247,7 +247,7 @@ namespace Tizen.Multimedia
 
 		private void RegisterSubtitleUpdatedEvent()
 		{
-			_subtitleUpdatedCallback = (ulong duration, string text, IntPtr userData) =>
+			_subtitleUpdatedCallback = (uint duration, string text, IntPtr userData) =>
 			{
 				SubtitleUpdatedEventArgs eventArgs = new SubtitleUpdatedEventArgs(duration, text);
 				_subtitleUpdated?.Invoke(this, eventArgs);

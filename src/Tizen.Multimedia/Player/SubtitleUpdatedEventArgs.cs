@@ -22,13 +22,13 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class SubtitleUpdatedEventArgs : EventArgs
     {
-		internal ulong _duration;
+		internal uint _duration;
 		internal string _text;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		internal SubtitleUpdatedEventArgs(ulong duration, string text)
+		internal SubtitleUpdatedEventArgs(uint duration, string text)
 		{
 			_duration = duration;
 			_text = text;
@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         /// The duration of the updated subtitle .
         /// </summary>
         /// <value> ulong duration</value>
-        public ulong Duration 
+        public uint Duration 
         {
             get
             {
