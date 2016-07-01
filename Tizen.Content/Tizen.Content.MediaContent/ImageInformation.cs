@@ -27,8 +27,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the tag ID for the image.
         /// </summary>
-        /// <value> string tag ID</value>
-        public override string MediaId
+        public string MediaId
         {
             get
             {
@@ -49,7 +48,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the image width in pixels.
         /// </summary>
-        /// <value> int image width value</value>
         public int Width
         {
             get
@@ -67,7 +65,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the image height in pixels.
         /// </summary>
-        /// <value> int image height value</value>
         public int Height
         {
             get
@@ -85,7 +82,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Image orientation.
         /// </summary>
-        /// <value> MediaContentOrientation image orientation value</value>
         public MediaContentOrientation Orientation
         {
             get
@@ -110,9 +106,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the image creation time.
+        /// Gets the image creation time in seconds, since the Epoch.
         /// </summary>
-        /// <value> string </value>
         public string TakenDate
         {
             get
@@ -133,8 +128,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the burst shot ID.
+        /// If burst_id is Empty, this is not burst shot
         /// </summary>
-        /// <value> string </value>
         public string BurstId
         {
             get
@@ -156,7 +151,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the exposure time from exif.
         /// </summary>
-        /// <value> string </value>
         public string ExposureTime
         {
             get
@@ -178,7 +172,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the fnumber from exif.
         /// </summary>
-        /// <value> double </value>
         public double FNumber
         {
             get
@@ -197,7 +190,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the iso from exif.
         /// </summary>
-        /// <value> int </value>
         public int Iso
         {
             get
@@ -216,7 +208,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the model from exif.
         /// </summary>
-        /// <value> string </value>
         public string Model
         {
             get
@@ -237,8 +228,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Checks whether the media is a burst shot image.
+        /// The value is true if the media is a burst shot image,
+        /// otherwise false if the media is not a burst shot image.
         /// </summary>
-        /// <value> bool </value>
         public bool IsBurstShot
         {
             get

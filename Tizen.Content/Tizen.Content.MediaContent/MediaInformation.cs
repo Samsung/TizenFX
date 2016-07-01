@@ -79,6 +79,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Creates a thumbnail image for the given media, asynchronously
+        /// If a thumbnail already exists for the given media, then the path of thumbnail will be returned.
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
@@ -110,6 +111,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Creates a thumbnail image for the given media, asynchronously
         /// which can be cancelled
+        /// If a thumbnail already exists for the given media, then the path of thumbnail will be returned.
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
@@ -187,7 +189,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the tag ID for the media.
         /// </summary>
-        /// <value> string tag ID</value>
         public virtual string MediaId
         {
             get
@@ -210,7 +211,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the path to the media.
         /// </summary>
-        /// <value> string path</value>
         public string FilePath
         {
             get
@@ -232,7 +232,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Name of the media.
         /// </summary>
-        /// <value> string diaply name</value>
         public string DisplayName
         {
             get
@@ -262,7 +261,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the content type of the media.
         /// </summary>
-        /// <value> string diaply name</value>
         public MediaContentType MediaType
         {
             get
@@ -280,7 +278,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the MIME type from the media.
         /// </summary>
-        /// <value> string mime type</value>
         public string MimeType
         {
             get
@@ -300,9 +297,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the media file size.
+        ///  Gets the media file size in Bytes.
         /// </summary>
-        /// <value> long size</value>
         public long Size
         {
             get
@@ -320,7 +316,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Addition time of the media.
         /// </summary>
-        /// <value> DateTime</value>
         public DateTime AddedAt
         {
             get
@@ -360,7 +355,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the date of modification of media.
         /// </summary>
-        /// <value> DateTime</value>
         public DateTime ModifiedAt
         {
             get
@@ -391,7 +385,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the timeline of media.
         /// </summary>
-        /// <value> DateTime</value>
         public DateTime TimeLine
         {
             get
@@ -422,7 +415,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the thumbnail of media.
         /// </summary>
-        /// <value> string thumbnail path</value>
         public string ThumbnailPath
         {
             get
@@ -443,8 +435,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Description of media.
+        ///  If the media info has no description, the method returns empty string.
         /// </summary>
-        /// <value> string description</value>
         public string Description
         {
             get
@@ -472,9 +464,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// longitude of media.
+        /// Longitude of media.
+        /// Default Value is 0.0.
         /// </summary>
-        /// <value> double Longitude</value>
         public double Longitude
         {
             get
@@ -498,9 +490,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// latitude of media.
+        /// Latitude of media.
+        /// Default Value is 0.0.
         /// </summary>
-        /// <value> double latitude</value>
         public double Latitude
         {
             get
@@ -525,8 +517,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Altitude of media.
+        /// Default Value is 0.0.
         /// </summary>
-        /// <value> double Altitude</value>
         public double Altitude
         {
             get
@@ -551,8 +543,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Weather of media.
+        /// Dafault is empty string.
         /// </summary>
-        /// <value> string value </value>
         public string Weather
         {
             get
@@ -582,7 +574,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Rating of media.
         /// </summary>
-        /// <value> int value </value>
         public int Rating
         {
             get
@@ -607,8 +598,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Favorite status of media.
+        /// true if media info is set as favorite, otherwise false if media info is not set as favorite.
         /// </summary>
-        /// <value> bool value </value>
         public bool IsFavourite
         {
             get
@@ -634,7 +625,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Author of media.
         /// </summary>
-        /// <value> string value </value>
         public string Author
         {
             get
@@ -664,7 +654,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Provider of media.
         /// </summary>
-        /// <value> string value </value>
         public string Provider
         {
             get
@@ -694,7 +683,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Content name of media.
         /// </summary>
-        /// <value> string value </value>
         public string ContentName
         {
             get
@@ -724,7 +712,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the title of media.
         /// </summary>
-        /// <value> string value </value>
         public string Title
         {
             get
@@ -746,7 +733,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Category of media.
         /// </summary>
-        /// <value> string value </value>
         public string Category
         {
             get
@@ -776,7 +762,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// location tag of media.
         /// </summary>
-        /// <value> string value </value>
         public string LocationTag
         {
             get
@@ -806,7 +791,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Age Rating of media.
         /// </summary>
-        /// <value> string value </value>
         public string AgeRating
         {
             get
@@ -836,7 +820,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Keyword of media.
         /// </summary>
-        /// <value> string value </value>
         public string Keyword
         {
             get
@@ -866,7 +849,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the storage id of media.
         /// </summary>
-        /// <value> string value </value>
         public string StorageId
         {
             get
@@ -888,7 +870,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Checks whether the media is protected via DRM.
         /// </summary>
-        /// <value> bool value </value>
         public bool IsDrm
         {
             get
@@ -906,7 +887,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the storage type of media.
         /// </summary>
-        /// <value> ContentStorageType </value>
         public ContentStorageType StorageType
         {
             get
@@ -923,8 +903,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Number which represents how many times given content has been played.
+        /// While Setting the played count, it will only be incremented by 1, the value provided will be ignored.
         /// </summary>
-        /// <value> bool value </value>
         public int PlayedCount
         {
             get
@@ -939,28 +919,25 @@ namespace Tizen.Content.MediaContent
             }
             set
             {
-                for (int i = PlayedCount; i <= value; i++)
+                int result = Interop.MediaInformation.IncreasePlayedCount(_handle);
+                if ((MediaContentError)result != MediaContentError.None)
                 {
-                    int result = Interop.MediaInformation.IncreasePlayedCount(_handle);
-                    if ((MediaContentError)result != MediaContentError.None)
-                    {
-                        throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set increase played count");
-                    }
+                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set increase played count");
                 }
             }
         }
 
         /// <summary>
-        ///  Content's played time parameter.
+        ///  Content's latest played(opened) time of the media file.
+        ///  for set the current time is automatically taken from the system, the value provided will be ignored.
         /// </summary>
-        /// <value> DateTime</value>
         public DateTime PlayedAt
         {
             get
             {
                 DateTime addedAt;
                 int time;
-                int result = Interop.MediaInformation.GetPlayedTime(_handle, out time);
+                int result = Interop.MediaInformation.GetPlayedAt(_handle, out time);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
@@ -979,10 +956,9 @@ namespace Tizen.Content.MediaContent
                 }
                 return addedAt;
             }
-
             set
             {
-                int result = Interop.MediaInformation.SetPlayedTime(_handle);
+                int result = Interop.MediaInformation.SetPlayedAt(_handle);
                 if ((MediaContentError)result != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set played time");

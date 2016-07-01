@@ -20,7 +20,11 @@ using System.Collections.ObjectModel;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// AudioContent class API gives the information related to the audio media stored in the device</summary>
+    /// AudioContent class API gives the information related to the audio media stored in the device
+    /// Its purpose is threefold:
+    ///     - to provide information about audio content
+    ///     - to organize audio content logically(grouping)
+    /// </summary>
     public class AudioInformation : MediaInformation
     {
         private readonly Interop.AudioInformation.SafeAudioInformationHandle _handle;
@@ -28,8 +32,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the tag ID for the media.
         /// </summary>
-        /// <value> string tag ID</value>
-        public override string MediaId
+        public string MediaId
         {
             get
             {
@@ -49,8 +52,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album name.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string album name</value>
         public string Album
         {
             get
@@ -71,8 +75,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the artist name.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string artist name</value>
         public string Artist
         {
             get
@@ -93,8 +98,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album artist name.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string album artist name</value>
         public string AlbumArtist
         {
             get
@@ -115,8 +121,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the genre name.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string genre name</value>
         public string Genre
         {
             get
@@ -137,8 +144,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the composer name.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string composer name</value>
         public string Composer
         {
             get
@@ -159,8 +167,9 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the year.
+        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the media content has no album info, the method returns empty string.
         /// </summary>
-        /// <value> string year</value>
         public string Year
         {
             get
@@ -182,7 +191,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the recorded date.
         /// </summary>
-        /// <value> string recorded date</value>
         public string RecordedDate
         {
             get
@@ -203,8 +211,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the copyright notice.
+        ///  If the media content has no copyright info, the method returns empty string.
         /// </summary>
-        /// <value> string copyright notice</value>
         public string Copyright
         {
             get
@@ -225,8 +233,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the track number.
+        ///  If the value is an empty string, the method returns "Unknown".
         /// </summary>
-        /// <value> string track number</value>
         public string TrackNumber
         {
             get
@@ -246,9 +254,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the bitrate.
+        ///  Gets the bitrate in bit per second [bps].
         /// </summary>
-        /// <value> int bitrate</value>
         public int BitRate
         {
             get
@@ -266,7 +273,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets bit per sample.
         /// </summary>
-        /// <value> int bit per sample value</value>
         public int BitPerSample
         {
             get
@@ -282,9 +288,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the sample rate.
+        ///  Gets the sample rate in hz.
         /// </summary>
-        /// <value> int sample rate value</value>
         public int SampleRate
         {
             get
@@ -302,7 +307,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the channel.
         /// </summary>
-        /// <value> int channel value</value>
         public int Channel
         {
             get
@@ -318,9 +322,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the track duration.
+        ///  Gets the track duration in Milliseconds.
         /// </summary>
-        /// <value> int track duration value</value>
         public int Duration
         {
             get
@@ -332,98 +335,6 @@ namespace Tizen.Content.MediaContent
                     Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
                 }
                 return duration;
-            }
-        }
-
-        /// <summary>
-        /// Number which represents how many times given audio has been played.
-        /// </summary>
-        /// <value> bool value </value>
-        public new int PlayedCount
-        {
-            get
-            {
-                int playedCount = 0;
-                int result = Interop.AudioInformation.GetPlayedCount(_handle, out playedCount);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                return playedCount;
-            }
-            set
-            {
-                int result = Interop.AudioInformation.SetPlayedCount(_handle, value);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "failed to set played count");
-                }
-            }
-        }
-
-        /// <summary>
-        ///  Audio's played time parameter.
-        /// </summary>
-        /// <value> DateTime</value>
-        public new DateTime PlayedAt
-        {
-            get
-            {
-                DateTime playedAt;
-                int time;
-                int result = Interop.AudioInformation.GetPlayedTime(_handle, out time);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                DateTime utc;
-                if (time != 0)
-                {
-                    Tizen.Log.Info(Globals.LogTag, "Ticks received: " + time);
-                    utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
-                    playedAt = utc.ToLocalTime();
-                }
-                else
-                {
-                    Tizen.Log.Info(Globals.LogTag, "No Date received");
-                    playedAt = DateTime.Now;
-                }
-                return playedAt;
-            }
-
-            set
-            {
-                int result = Interop.AudioInformation.SetPlayedTime(_handle, (int)value.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "Failed to SetValue for AudioInfo");
-                }
-            }
-        }
-
-        /// <summary>
-        ///  Audio's played position parameter.
-        /// </summary>
-        /// <value> DateTime</value>
-        public int PlayedPosition
-        {
-            get
-            {
-                int playedCount = 0;
-                int result = Interop.AudioInformation.GetPlayedPosition(_handle, out playedCount);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                return playedCount;
-            }
-            set
-            {
-                int result = Interop.AudioInformation.SetPlayedPosition(_handle, value);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "Failed to set audio played position");
-                }
             }
         }
 

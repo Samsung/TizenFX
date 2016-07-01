@@ -178,7 +178,7 @@ internal static partial class Interop
         internal static extern int GetPlayedCount(SafeMediaInformationHandle mediaInformationHandle, out int playedCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_played_time", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetPlayedTime(SafeMediaInformationHandle mediaInformationHandle, out int playedTime);
+        internal static extern int GetPlayedAt(SafeMediaInformationHandle mediaInformationHandle, out int playedTime);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetMediaFromDB(string mediaId, out SafeMediaInformationHandle mediaInformationHandle);
@@ -187,7 +187,7 @@ internal static partial class Interop
         internal static extern int IncreasePlayedCount(SafeMediaInformationHandle mediaInformationHandle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_played_time", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetPlayedTime(SafeMediaInformationHandle mediaInformationHandle);
+        internal static extern int SetPlayedAt(SafeMediaInformationHandle mediaInformationHandle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_display_name", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int SetDisplayName(SafeMediaInformationHandle mediaInformationHandle, string displayName);
