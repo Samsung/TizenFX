@@ -53,7 +53,7 @@ namespace Tizen.Messaging.Push
                 }
 		else
 		{
-			ob.AppData = "";
+		    ob.AppData = "";
 		}
                 string message;
                 result = Interop.Push.GetNotificationMessage(notification, out message);
@@ -63,7 +63,7 @@ namespace Tizen.Messaging.Push
                 }
 		else
 		{
-			ob.Message = "";
+		    ob.Message = "";
 		}
                 string sender;
                 result = Interop.Push.GetNotificationSender(notification, out sender);
@@ -73,7 +73,7 @@ namespace Tizen.Messaging.Push
                 }
 		else
 		{
-			ob.Sender = "";
+		    ob.Sender = "";
 		}
                 string sessioninfo;
                 result = Interop.Push.GetNotificationSessionInfo(notification, out sessioninfo);
@@ -83,7 +83,7 @@ namespace Tizen.Messaging.Push
                 }
 		else
 		{
-			ob.SessionInfo = "";
+		    ob.SessionInfo = "";
 		}
                 string requestid;
                 result = Interop.Push.GetNotificationRequestId(notification, out requestid);
@@ -93,7 +93,7 @@ namespace Tizen.Messaging.Push
                 }
 		else
 		{
-			ob.RequestId = "";
+		    ob.RequestId = "";
 		}
                 int time;
                 result = Interop.Push.GetNotificationTime(notification, out time);
