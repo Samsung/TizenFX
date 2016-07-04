@@ -1,3 +1,5 @@
+%define BUILDCONF Debug
+
 %define dllpath %{_libdir}/mono/tizen
 %define dllname Tizen.System.dll
 
@@ -52,12 +54,8 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.System.Sensor/Tizen.System.Sensor.snk -pkg:'csapi-tizen'\
-  Tizen.System.Sensor/Properties/AssemblyInfo.cs \
-  Tizen.System.Sensor/Tizen.System.Sensor/Plugins/*.cs \
-  Tizen.System.Sensor/Tizen.System.Sensor/EventArgs/*.cs \
-  Tizen.System.Sensor/Tizen.System.Sensor/*.cs \
-  Tizen.System.Sensor/Interop/*.cs
+xbuild Tizen.System.Sensor/Tizen.System.Sensor.csproj /p:Configuration=%{BUILDCONF}
+
 # check p/invoke
 if [ -x %{dllname} ]; then
   RET=`mono-shlib-cop %{dllname}`; \
@@ -67,20 +65,19 @@ fi
 
 %install
 # copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.System.Sensor/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
+%define pc_libs %{_libdir}/mono/tizen/Tizen.System.Sensor.dll
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
+sed -e "s#@name@#%{name}#g" \
+    -e "s#@version@#%{version}#g" \
+    -e "s#@libs@#%{pc_libs}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-%post
-gacutil -i %{dllpath}/%{dllname}
 
 %files
-%{dllpath}/%{dllname}
+%manifest %{name}.manifest
+%{_libdir}/mono/
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc

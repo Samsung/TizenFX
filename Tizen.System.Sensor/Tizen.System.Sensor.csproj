@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CB655C6A-F73B-448E-913C-CA4DCBC5E401}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Tizen.Internals">
+      <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen">
+      <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,16 +97,6 @@
     <Compile Include="Tizen.System.Sensor\SensorErrorFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
-      <Project>{B9AA1CB2-F72D-4A30-A33B-A20C850A38A0}</Project>
-      <Name>Tizen.Internals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
-      <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
-      <Name>Tizen</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.System.Sensor.snk" />
   </ItemGroup>

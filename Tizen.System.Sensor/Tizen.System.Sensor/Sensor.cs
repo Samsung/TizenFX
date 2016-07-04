@@ -233,7 +233,7 @@ namespace Tizen.System.Sensor
             }
         }
 
-        protected IntPtr ListenerHandle
+        internal IntPtr ListenerHandle
         {
             get
             {
