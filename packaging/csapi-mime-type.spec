@@ -1,5 +1,4 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Content.MimeType.dll
+%define BUILDCONF Debug
 
 Name:       csapi-mime-type
 Summary:    Tizen MimeType API for C#
@@ -12,15 +11,8 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
-
-# P/Invoke Dependencies
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-content-mime-type)
 BuildRequires: pkgconfig(csapi-tizen)
@@ -43,22 +35,10 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Content.MimeType/Tizen.Content.MimeType.snk -pkg:'csapi-tizen'\
-  Tizen.Content.MimeType/Properties/AssemblyInfo.cs \
-  Tizen.Content.MimeType/Interop/*.cs \
-  Tizen.Content.MimeType/Tizen.Content.MimeType/*.cs
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+xbuild Tizen.Content.MimeType/Tizen.Content.MimeType.csproj /p:Configuration=%{BUILDCONF}
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.Content.MimeType/bin/%{BUILDCONF}/Tizen.Content.MimeType.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
@@ -67,11 +47,9 @@ sed -e "s#@version@#%{version}#g" \
     -e "s#@dllname@#%{dllname}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
 
-%post
-gacutil -i %{dllpath}/%{dllname}
-
 %files
-%{dllpath}/%{dllname}
+%manifest %{name}.manifest
+%{_libdir}/mono/
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
