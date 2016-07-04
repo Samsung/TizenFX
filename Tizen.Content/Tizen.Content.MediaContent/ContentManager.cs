@@ -80,7 +80,7 @@ namespace Tizen.Content.MediaContent
             MediaContentError result = (MediaContentError)Interop.MediaInformation.Insert(filePath, out mediaInformationHandle);
             if (result != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(result, "Failed to Insert Bookmark to DB");
+                throw MediaContentErrorFactory.CreateException(result, "Failed to Insert MediaInformation to DB");
             }
             mediaInformation = new MediaInformation(mediaInformationHandle);
             return mediaInformation;
@@ -92,7 +92,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="folderPath">The folder path</param>
         /// <remarks>
         /// This function requests to scan a media folder to the media server with given completed callback function.
-        /// ContentScanCompleted event will be truggered when the scanning is finished.
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
@@ -116,7 +115,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                result = MediaContentError.InavlidParameter;
+                result = MediaContentError.InvalidParameter;
                 task.SetException(MediaContentErrorFactory.CreateException(result, "Scan directory does not exist"));
             }
             if (result != MediaContentError.None)
@@ -209,7 +208,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                result = MediaContentError.InavlidParameter;
+                result = MediaContentError.InvalidParameter;
                 task.SetException(MediaContentErrorFactory.CreateException(result, "Scan directory does not exist"));
             }
             if (result != MediaContentError.None)

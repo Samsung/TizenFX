@@ -172,7 +172,9 @@ namespace Tizen.Content.MediaContent
             {
                 refreshPlaylistDictionary();
             }
+
             _dictionary.TryGetValue(media.MediaId, out memberId);
+            
             MediaContentError res = (MediaContentError)Interop.Playlist.RemoveMedia(_playlistHandle, memberId);
             if (res != MediaContentError.None)
             {

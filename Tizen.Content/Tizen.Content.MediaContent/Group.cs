@@ -19,6 +19,7 @@ namespace Tizen.Content.MediaContent
     public class Group : ContentCollection
     {
         private readonly string _groupName;
+        private readonly MediaGroupType _groupType;
         private bool _disposedValue = false;
 
         /// <summary>
@@ -29,9 +30,10 @@ namespace Tizen.Content.MediaContent
             get { return _groupName; }
         }
 
-        internal Group(string name)
+        internal Group(string name, MediaGroupType groupType)
         {
             _groupName = name;
+            _groupType = groupType;
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = (MediaContentError)Interop.Group.GetMediaCountFromDb(Name, filter.GroupType, handle, out mediaCount);
+            MediaContentError res = (MediaContentError)Interop.Group.GetMediaCountFromDb(Name, _groupType, handle, out mediaCount);
             if (res != MediaContentError.None)
             {
                 Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media count for the group");
@@ -91,7 +93,7 @@ namespace Tizen.Content.MediaContent
                 mediaContents.Add(info);
                 return true;
             };
-            res = (MediaContentError)Interop.Group.ForeachMediaFromDb(Name, filter.GroupType, handle, callback, IntPtr.Zero);
+            res = (MediaContentError)Interop.Group.ForeachMediaFromDb(Name, _groupType, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
                 Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media information for the group");

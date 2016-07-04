@@ -10,6 +10,7 @@
 
 
 using System;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Content.MediaContent
 {
@@ -33,7 +34,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Invalid parameter.
         /// </summary>
-        InavlidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+        InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
         /// <summary>
         /// Out of memory.
         /// </summary>
@@ -41,7 +42,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Invalid Operation.
         /// </summary>
-        InavlidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
+        InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
         /// <summary>
         /// No space left on device.
         /// </summary>
@@ -53,7 +54,6 @@ namespace Tizen.Content.MediaContent
         AlreadyInProgress = Tizen.Internals.Errors.ErrorCode.AlreadyInProgress,
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
         ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
-        InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
         /// <summary>
         /// DB operation failed.
         /// </summary>

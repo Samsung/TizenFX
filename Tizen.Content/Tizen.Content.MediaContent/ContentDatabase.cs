@@ -155,7 +155,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                res = MediaContentError.InavlidParameter;
+                res = MediaContentError.InvalidParameter;
             }
 
             if (res != MediaContentError.None)
@@ -328,14 +328,22 @@ namespace Tizen.Content.MediaContent
         private static List<Group> ForEachGroup(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
+            MediaGroupType groupType;
+            if (filter == null)
+            {
+                groupType = MediaGroupType.DisplayName;
+            }
+            else {
+                groupType = filter.GroupType;
+            }
             MediaContentError res = MediaContentError.None;
             List<Group> groupCollections = new List<Group>();
             Interop.Group.MediaGroupCallback groupCallback = (string groupName, IntPtr data) =>
             {
-                groupCollections.Add(new Group(groupName));
+                groupCollections.Add(new Group(groupName, groupType));
                 return true;
             };
-            res = (MediaContentError)Interop.Group.ForeachGroupFromDb(handle, filter.GroupType, groupCallback, IntPtr.Zero);
+            res = (MediaContentError)Interop.Group.ForeachGroupFromDb(handle, groupType, groupCallback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
                 Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
@@ -351,7 +359,9 @@ namespace Tizen.Content.MediaContent
             List<Storage> storageCollections = new List<Storage>();
             Interop.Storage.MediaStorageCallback storageCallback = (IntPtr storageHandle, IntPtr data) =>
             {
-                storageCollections.Add(new Storage(storageHandle));
+                IntPtr newHandle;
+                res = (MediaContentError)Interop.Storage.Clone(out newHandle, storageHandle);
+                storageCollections.Add(new Storage(newHandle));
                 return true;
             };
             res = (MediaContentError)Interop.Storage.ForeachStorageFromDb(handle, storageCallback, IntPtr.Zero);
@@ -504,7 +514,7 @@ namespace Tizen.Content.MediaContent
                     }
                     else
                     {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Image Information");
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Image Information");
                     }
                 }
                 else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
@@ -522,7 +532,7 @@ namespace Tizen.Content.MediaContent
                     }
                     else
                     {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Audio Information");
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Audio Information");
                     }
                 }
                 else if (type == MediaContentType.Video)
@@ -540,7 +550,7 @@ namespace Tizen.Content.MediaContent
                     }
                     else
                     {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InavlidParameter, "Could not find the Audio Information");
+                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Audio Information");
                     }
                 }
                 else if (type == MediaContentType.Others)
@@ -593,7 +603,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                result = MediaContentError.InavlidOperation;
+                result = MediaContentError.InvalidParameter;
             }
             if (result != MediaContentError.None)
                 throw MediaContentErrorFactory.CreateException(result, "failed to Delete ContentCollection from DB");
@@ -641,7 +651,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                result = MediaContentError.InavlidOperation;
+                result = MediaContentError.InvalidParameter;
             }
 
             if (result != MediaContentError.None)
@@ -675,7 +685,7 @@ namespace Tizen.Content.MediaContent
             }
             else
             {
-                result = MediaContentError.InavlidOperation;
+                result = MediaContentError.InvalidOperation;
             }
 
             if (result != MediaContentError.None)
@@ -716,7 +726,7 @@ namespace Tizen.Content.MediaContent
             else
             {
                 Console.WriteLine("Inalid insert");
-                result = MediaContentError.InavlidParameter;
+                result = MediaContentError.InvalidParameter;
             }
             if (result != MediaContentError.None)
             {

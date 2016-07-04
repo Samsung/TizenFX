@@ -13,7 +13,7 @@ namespace Tizen.Content.MediaContent
             Exception exp;
             switch (err)
             {
-                case MediaContentError.InavlidParameter:
+                case MediaContentError.InvalidParameter:
                     {
                         exp = new ArgumentException(msg + " Invalid Parameters Provided");
                         break;
@@ -23,7 +23,7 @@ namespace Tizen.Content.MediaContent
                         exp = new InvalidOperationException(msg + " Out Of Memory");
                         break;
                     }
-                case MediaContentError.InavlidOperation:
+                case MediaContentError.InvalidOperation:
                     {
                         exp = new InvalidOperationException(msg + " Inavlid operation");
                         break;

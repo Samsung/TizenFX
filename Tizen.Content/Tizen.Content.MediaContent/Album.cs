@@ -27,7 +27,7 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                int id;
+                int id = 0;
                 MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetAlbumId(_albumHandle, out id);
                 if (res != MediaContentError.None)
                 {
@@ -44,7 +44,7 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string artist;
+                string artist = "";
                 MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetArtist(_albumHandle, out artist);
                 if (res != MediaContentError.None)
                 {
@@ -61,8 +61,9 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string art;
+                string art = "";
                 MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out art);
+                Tizen.Log.Info("TCT", "Album Art Property: " + art);
                 if (res != MediaContentError.None)
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Album Art for the Album");
@@ -78,7 +79,7 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string name;
+                string name = "";
                 MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetArtist(_albumHandle, out name);
                 if (res != MediaContentError.None)
                 {
@@ -100,7 +101,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
         {
-            int mediaCount;
+            int mediaCount = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetMediaCountFromDb(Id, handle, out mediaCount);
             if (res != MediaContentError.None)
