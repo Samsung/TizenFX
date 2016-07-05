@@ -46,12 +46,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tizen">
-      <HintPath>..\..\..\..\uifw\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
-    </Reference>
-    <Reference Include="Tizen.Internals">
-      <HintPath>..\..\..\..\uifw\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tizen.Location\GpsSatellite.cs" />
@@ -74,6 +68,28 @@
     <None Include="Tizen.Location.snk" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+   <Reference Include="Tizen">
+    <PkgConfig>csapi-tizen</PkgConfig>
+    <HintPath>..\..\tizen\Tizen\obj\Debug\Tizen.dll</HintPath>
+   </Reference>
+   <Reference Include="Tizen.Internals">
+    <PkgConfig>csapi-tizen</PkgConfig>
+    <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
+   </Reference>
+  </ItemGroup>
+  <ItemGroup>
+   <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
+    <Project>{B9AA1CB2-F72D-4A30-A33B-A20C850A38A0}</Project>
+    <Name>Tizen.Internals</Name>
+    <Private>True</Private>
+   </ProjectReference>
+   <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
+    <Project>{7659CA59-410D-41A1-9841-586E88BC78C9}</Project>
+    <Name>Tizen</Name>
+    <Private>True</Private>
+   </ProjectReference>
+  </ItemGroup>  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

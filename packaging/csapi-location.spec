@@ -1,5 +1,4 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Location.dll
+%define BUILDCONF Debug
 
 Name:       csapi-location
 Summary:    Tizen Location API's for C#
@@ -12,24 +11,13 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
-
-# P/Invoke Dependencies
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(csapi-tizen)
 
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
 Requires: glib-2.0
 BuildRequires: pkgconfig(capi-location-manager)
-# DLL Dependencies
-#BuildRequires: ...
 
 %description
 Tizen API for C#
@@ -49,22 +37,10 @@ cp %{SOURCE1} .
 
 %build
 # build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.Location/Tizen.Location.snk -pkg:'csapi-tizen'\
-  Tizen.Location/Properties/AssemblyInfo.cs \
-  Tizen.Location/Interop/*.cs \
-  Tizen.Location/Tizen.Location/*.cs
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+xbuild Tizen.Location/Tizen.Location.csproj /p:Configuration=%{BUILDCONF}
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.Location/bin/%{BUILDCONF}/Tizen.Location.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
@@ -77,7 +53,8 @@ sed -e "s#@version@#%{version}#g" \
 gacutil -i %{dllpath}/%{dllname}
 
 %files
-%{dllpath}/%{dllname}
+%manifest %{name}.manifest
+%{_libdir}/mono/
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
