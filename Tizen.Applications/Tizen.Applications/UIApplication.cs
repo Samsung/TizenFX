@@ -13,7 +13,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents an application that have UI screen. The UIApplication class has a default main window.
     /// </summary>
-    public class UIApplication : UIApplicationBase
+    public class UIApplication : CoreUIApplication
     {
         /// <summary>
         /// The main window instance of the UIApplication.

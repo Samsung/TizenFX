@@ -6,12 +6,14 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
+using System;
+
 namespace Tizen.Applications
 {
     /// <summary>
     /// 
     /// </summary>
-    public class LowBatteryEventArgs
+    public class LowBatteryEventArgs : EventArgs
     {
         /// <summary>
         /// 
