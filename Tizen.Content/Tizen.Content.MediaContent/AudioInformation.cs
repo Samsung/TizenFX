@@ -339,7 +339,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the number of bookmarks for the passed filter in the given media ID from the media database.
+        /// Gets the number of MediaBookMark for the passed filter in the given media ID from the media database.
+        /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
         /// int count</returns>
@@ -357,10 +358,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Iterates through the media bookmark in the given media info from the media database.
+        /// Returns the MediaBookmarks for the given media info from the media database.
+        /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
-        /// Task to get all the BookMarks </returns>
+        /// Task to get all the BookMarks 
+        /// </returns>
         /// <param name="filter"> filter for the Tags</param>
         public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
         {
@@ -390,10 +393,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds a bookmark to the audio
+        /// Adds a MediaBookMark to the audio
         /// </summary>
         /// <param name="offset">Offset of the audio in seconds</param>
-        /// <param name="thumbnailPath">Thumbnail path for the bookmark</param>
         /// <returns></returns>
         public async Task<MediaBookmark> AddBookmark(uint offset)
         {
@@ -415,8 +417,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Deletes a bookmark from the media database.
-        /// For other types Unsupported exception is thrown.
+        /// Deletes a MediaBookMark from the media database.
         /// </summary>
         /// <param name="bookmark">The bookmark to be deleted</param>
         public void DeleteBookmark(MediaBookmark bookmark)

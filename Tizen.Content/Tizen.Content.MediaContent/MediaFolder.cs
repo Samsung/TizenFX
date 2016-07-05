@@ -34,7 +34,7 @@ namespace Tizen.Content.MediaContent
             }
         }
         /// <summary>
-        /// The ID of the media folder
+        /// The ID of the media folder. For each MediaFolder this id is unique.
         /// </summary>
         public string Id
         {
@@ -51,7 +51,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The ID of the upper media folder
+        /// ParentId of the MediaFolder that is the ID of the upper media folder (parent folder).
         /// </summary>
         public string ParentId
         {
@@ -110,7 +110,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The storage type of the media folder
+        /// The storage type of the media folder.
+        /// Storage types give information about the location of storage like Internal memory, USB or External Storage etc...
         /// </summary>
         public ContentStorageType StorageType
         {
@@ -161,7 +162,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The folder order info. Get/Set the folder viewing order
+        /// The folder order info. Get/Set the folder viewing order.
+        /// Default Order is ContentOrder.Asc (Ascending order).
         /// </summary>
         public ContentOrder Order
         {

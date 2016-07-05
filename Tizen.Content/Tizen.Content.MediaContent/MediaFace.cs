@@ -122,7 +122,9 @@ namespace Tizen.Content.MediaContent
                 return mediaId;
             }
         }
-
+        /// <summary>
+        /// Tag name for the MediaFace.
+        /// </summary>
         public string Tag
         {
             get
@@ -172,7 +174,6 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Dispose API for closing the internal resources.
-        /// This function can be used to stop all effects started by Vibrate().
         /// </summary>
         public void Dispose()
         {

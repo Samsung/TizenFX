@@ -38,7 +38,6 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Dispose API for closing the internal resources.
-        /// This function can be used to stop all effects started by Vibrate().
         /// </summary>
         public override void Dispose()
         {

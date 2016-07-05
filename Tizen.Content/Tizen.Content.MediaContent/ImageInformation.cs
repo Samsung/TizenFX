@@ -317,8 +317,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Deletes a MediaFace from the media database.
-        /// For other types Unsupported exception is thrown.
+        /// Deletes the MediaFace from the media database.
         /// </summary>
         /// <param name="face">The face instance to be deleted</param>
         public void DeleteFace(MediaFace face)
@@ -327,7 +326,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Updates a media face instance in the media database
+        /// Updates the MediaFace in the media database
         /// </summary>
         /// <param name="mediaInfo">The MediaFace object to be updated</param>
         public void UpdateFace(MediaFace face)

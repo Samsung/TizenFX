@@ -95,7 +95,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the number of media info for the given album present in the media database.
+        /// Gets the number of MediaInformation Items for the given album present in the media database.
+        /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
@@ -121,7 +122,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Iterates through the media files with an optional filter in the given media album from the media database.
+        /// Iterates through the media files with a filter in the given media album from the media database.
         /// This function gets all media files associated with the given media album and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
