@@ -38,13 +38,15 @@ namespace Tizen.Applications
         {
             add
             {
-                RegisterPackageManagerEventIfNeeded(GetFlaggedEventStatus(Interop.PackageManager.EventStatus.Install));
+                SetPackageManagerEventStatus();
+                RegisterPackageManagerEventIfNeeded();
                 s_installEventHandler += value;
             }
             remove
             {
                 s_installEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded(GetUnflaggedEventStatus(Interop.PackageManager.EventStatus.Install));
+                UnregisterPackageManagerEventIfNeeded();
+                SetPackageManagerEventStatus();
             }
         }
 
@@ -55,13 +57,15 @@ namespace Tizen.Applications
         {
             add
             {
-                RegisterPackageManagerEventIfNeeded(GetFlaggedEventStatus(Interop.PackageManager.EventStatus.Unstall));
+                SetPackageManagerEventStatus();
+                RegisterPackageManagerEventIfNeeded();
                 s_uninstallEventHandler += value;
             }
             remove
             {
                 s_uninstallEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded(GetUnflaggedEventStatus(Interop.PackageManager.EventStatus.Unstall));
+                UnregisterPackageManagerEventIfNeeded();
+                SetPackageManagerEventStatus();
             }
         }
 
@@ -72,13 +76,31 @@ namespace Tizen.Applications
         {
             add
             {
-                RegisterPackageManagerEventIfNeeded(GetFlaggedEventStatus(Interop.PackageManager.EventStatus.Upgrade));
+                SetPackageManagerEventStatus();
+                RegisterPackageManagerEventIfNeeded();
                 s_updateEventHandler += value;
             }
             remove
             {
                 s_updateEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded(GetFlaggedEventStatus(Interop.PackageManager.EventStatus.Upgrade));
+                UnregisterPackageManagerEventIfNeeded();
+                SetPackageManagerEventStatus();
+            }
+        }
+
+        private static SafePackageManagerHandle Handle
+        {
+            get
+            {
+                if (s_handle.IsInvalid)
+                {
+                    var err = Interop.PackageManager.PackageManagerCreate(out s_handle);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to create package manager handle. err = {0}", err));
+                    }
+                }
+                return s_handle;
             }
         }
 
@@ -370,17 +392,30 @@ namespace Tizen.Applications
             return result;
         }
 
-        private static Interop.PackageManager.EventStatus GetFlaggedEventStatus(Interop.PackageManager.EventStatus newEvent)
+        private static void SetPackageManagerEventStatus()
         {
-            return s_eventStatus | newEvent;
+            if (Handle.IsInvalid) return;
+
+            Interop.PackageManager.EventStatus eventStatus = Interop.PackageManager.EventStatus.All;
+            if (s_installEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Install;
+            if (s_uninstallEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Unstall;
+            if (s_updateEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Upgrade;
+
+            var err = Interop.PackageManager.ErrorCode.None;
+            if (s_eventStatus != eventStatus)
+            {
+                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                if (err == Interop.PackageManager.ErrorCode.None)
+                {
+                    s_eventStatus = eventStatus;
+                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
+                    return;
+                }
+            }
+            Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
         }
 
-        private static Interop.PackageManager.EventStatus GetUnflaggedEventStatus(Interop.PackageManager.EventStatus oldEvent)
-        {
-            return s_eventStatus & (~oldEvent);
-        }
-
-        private static void RegisterPackageManagerEventIfNeeded(Interop.PackageManager.EventStatus eventStatus)
+        private static void RegisterPackageManagerEventIfNeeded()
         {
             if (s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null)
             {
@@ -412,26 +447,9 @@ namespace Tizen.Applications
                 }
             };
 
-            if (s_handle.IsInvalid)
+            if (!Handle.IsInvalid)
             {
-                err = Interop.PackageManager.PackageManagerCreate(out s_handle);
-                if (err != Interop.PackageManager.ErrorCode.None)
-                {
-                    Log.Warn(LogTag, string.Format("Failed to create package manager handle. err = {0}", err));
-                }
-            }
-
-            if (!s_handle.IsInvalid)
-            {
-                if (s_eventStatus != eventStatus)
-                {
-                    err = Interop.PackageManager.PackageManagerSetEvenStatus(s_handle, eventStatus);
-                    if (err == Interop.PackageManager.ErrorCode.None)
-                    {
-                        s_eventStatus = eventStatus;
-                    }
-                }
-                err = Interop.PackageManager.PackageManagerSetEvent(s_handle, s_packageManagerEventCallback, IntPtr.Zero);
+                err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -439,27 +457,14 @@ namespace Tizen.Applications
             }
         }
 
-        private static void UnregisterPackageManagerEventIfNeeded(Interop.PackageManager.EventStatus eventStatus)
+        private static void UnregisterPackageManagerEventIfNeeded()
         {
-            if (s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null)
+            if (Handle.IsInvalid || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null)
             {
                 return;
             }
 
-            if (s_handle.IsInvalid)
-            {
-                return;
-            }
-
-            var err = Interop.PackageManager.PackageManagerUnsetEvent(s_handle);
-            if (s_eventStatus != eventStatus)
-            {
-                err = Interop.PackageManager.PackageManagerSetEvenStatus(s_handle, eventStatus);
-                if (err == Interop.PackageManager.ErrorCode.None)
-                {
-                    s_eventStatus = eventStatus;
-                }
-            }
+            var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");

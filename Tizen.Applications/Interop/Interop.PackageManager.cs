@@ -50,10 +50,10 @@ internal static partial class Interop
         [Flags]
         internal enum EventStatus
         {
-            All = 0,
-            Install = 1,
-            Unstall = 2,
-            Upgrade = 4,
+            All = 0x00,
+            Install = 0x01,
+            Unstall = 0x02,
+            Upgrade = 0x24,
         }
 
         internal enum EventType
