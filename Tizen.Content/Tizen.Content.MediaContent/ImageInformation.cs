@@ -247,7 +247,8 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Iterates through the media files with optional media_id in the given face face from the media database.
+        /// Iterates through the media faces with filter in the given media file from the media database.
+        /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
         /// Task to get all the MediaFaces </returns>
