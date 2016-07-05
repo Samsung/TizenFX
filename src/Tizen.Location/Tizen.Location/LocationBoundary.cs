@@ -18,10 +18,11 @@ namespace Tizen.Location
     public abstract class LocationBoundary
     {
         internal IntPtr handle;
+
         /// <summary>
         /// Gets the location boundary type.
         /// </summary>
-        public BoundaryType BoundaryType{ get; internal set;}
+        public BoundaryType BoundaryType{ get; internal set; }
 
         internal IntPtr GetHandle()
         {
@@ -239,7 +240,16 @@ namespace Tizen.Location
     [StructLayout(LayoutKind.Sequential)]
     public struct Coordinate
     {
+        /// <summary>
+        /// Latitude component of the co-ordinate.
+        /// Should have a value between [-90.0 ~ 90.0] (degrees).
+        /// </summary>
         public double Latitude;
+
+        /// <summary>
+        /// Longitude component of the co-ordinate.
+        /// Should have a value between [-180.0 ~ 180.0] (degrees).
+        /// </summary>
         public double Longitude;
     }
 }

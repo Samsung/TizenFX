@@ -34,8 +34,8 @@ namespace Tizen.Location
 
         /// <summary>
         /// The parameterized constructor of Location Class.
-        /// <param name="latitude"> Latitude component of the device co-ordinate.</param>
-        /// <param name="longitude"> Longitude component of the device co-ordinate.</param>
+        /// <param name="latitude"> Latitude component of the device co-ordinate [-90.0 ~ 90.0] (degrees).</param>
+        /// <param name="longitude"> Longitude component of the device co-ordinate[-180.0 ~ 180.0] (degrees).</param>
         /// <param name="altitude"> Altitude value.</param>
         /// <param name="horizontalAccuracy"> Horizontal Accuracy in meters.</param>
         /// <param name="speed"> Devie Speed.</param>
@@ -144,7 +144,7 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The timestamp (time when measurement took place or 0 if valid).
+        /// The time value when the measurement was done.
         /// </summary>
         public DateTime Timestamp
         {
@@ -162,10 +162,10 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the distance between the two given coordinates.
         /// </summary>
-        /// <param name="startLatitude"> The latitude of the source location.</param>
-        /// <param name="startLongitude"> The Longitude of the source location.</param>
-        /// <param name="endLatitude"> The latitude of the source location.</param>
-        /// <param name="endLongitude"> The longitude of the source location.</param>
+        /// <param name="startLatitude"> The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
+        /// <param name="startLongitude"> The Longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="endLatitude"> The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
+        /// <param name="endLongitude"> The longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
         /// <returns>Returns the distance between source and destination.</returns>
         public static double GetDistanceBetween(double startLatitude, double startLongitude, double endLatitude, double endLongitude)
         {

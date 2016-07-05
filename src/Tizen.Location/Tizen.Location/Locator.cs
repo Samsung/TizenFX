@@ -299,7 +299,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the details of the location asynchronously.
         /// </summary>
-        /// <param name="timeout"> Timeout to stop requesting single location after.</param>
+        /// <param name="timeout"> Timeout to stop requesting single location after(seconds).</param>
         /// <returns> A task which contains the current location details</returns>
         public Task<Location> GetLocationAsync(int timeout)
         {
@@ -383,9 +383,9 @@ namespace Tizen.Location
 
 
         /// <summary>
-        /// Adds a bounds for a given location manager.
+        /// Adds a bounds for a given locator.
         /// </summary>
-        /// <param name="locationBoundary"> The boundary object to be added to the location manager.</param>
+        /// <param name="locationBoundary"> The boundary object to be added to the locator.</param>
         public void AddBoundary(LocationBoundary locationBoundary)
         {
             Log.Info(Globals.LogTag, "AddBoundary called");
@@ -399,9 +399,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Deletes a bounds for a given location.
+        /// Deletes a bounds for a given locator.
         /// </summary>
-        /// <param name="locationBoundary"> The boundary object to be removed from the location manager.</param>
+        /// <param name="locationBoundary"> The boundary object to be removed from the locator.</param>
         public void RemoveBoundary(LocationBoundary locationBoundary)
         {
             Log.Info(Globals.LogTag, "RemoveBoundary called");

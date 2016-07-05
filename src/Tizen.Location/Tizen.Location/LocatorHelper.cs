@@ -29,7 +29,7 @@ namespace Tizen.Location
         /// </summary>
         /// <param name="locationType"> The back-end positioning method to be used for LBS.</param>
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
-        public static bool IsEnableType(LocationType locationType)
+        public static bool IsEnabledType(LocationType locationType)
         {
             Log.Info(Globals.LogTag, "Checking if the Location Manager type is Enabled");
             bool initStatus;
