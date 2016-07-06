@@ -1,4 +1,10 @@
+%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+
+%if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
@@ -9,50 +15,47 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
 
-BuildRequires: pkgconfig(csapi-tizen)
+# P/Invoke Build Requires
 BuildRequires: pkgconfig(capi-media-player)
 BuildRequires: pkgconfig(capi-media-recorder)
 BuildRequires: pkgconfig(capi-media-sound-manager)
 
+# C# API Requires
+BuildRequires: csapi-tizen
+
 %description
 Tizen Multimedia API for C#
 
-%package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
-
-%description devel
-Development package for %{name}
-
 %prep
 %setup -q
-
 cp %{SOURCE1} .
 
-%build
-xbuild Tizen.Multimedia/Tizen.Multimedia.csproj /p:Configuration=%{BUILDCONF}
+%define Assemblies Tizen.Multimedia
 
+%build
+for ASM in %{Assemblies}; do
+xbuild $ASM/$ASM.csproj \
+        /p:Configuration=%{BUILDCONF} \
+        /p:ReferencePath=%{dotnet_assembly_path}
+done
 
 %install
-gacutil -i Tizen.Multimedia/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
+# Assemblies
+mkdir -p %{buildroot}%{dotnet_assembly_path}
+for ASM in %{Assemblies}; do
+install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+done
 
-# generate pkgconfig
-%define pc_libs %{_libdir}/mono/tizen/Tizen.Multimedia.dll
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@name@#%{name}#g" \
-    -e "s#@version@#%{version}#g" \
-    -e "s#@libs@#%{pc_libs}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
+# License
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
 %manifest %{name}.manifest
-%{_libdir}/mono/
-
-%files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/license/%{name}
