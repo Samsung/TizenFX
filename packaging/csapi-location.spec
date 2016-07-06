@@ -1,7 +1,13 @@
+%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+
+%if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-location
-Summary:    Tizen Location API's for C#
+Summary:    Tizen Location API for C#
 Version:    1.0.0
 Release:    1
 Group:      Development/Libraries
@@ -9,52 +15,46 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-BuildRequires: pkgconfig(glib-2.0)
-BuildRequires: pkgconfig(csapi-tizen)
 
-Requires: glib-2.0
+# P/Invoke Build Requires
+BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-location-manager)
 
+# C# API Requires
+BuildRequires: csapi-tizen
+
 %description
-Tizen API for C#
-
-%package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
-
-%description devel
-Development package for %{name}
+Tizen Location API for C#
 
 %prep
 %setup -q
-
 cp %{SOURCE1} .
 
+%define Assemblies Tizen.Location
+
 %build
-# build dll
-xbuild Tizen.Location/Tizen.Location.csproj /p:Configuration=%{BUILDCONF}
+for ASM in %{Assemblies}; do
+xbuild $ASM/$ASM.csproj \
+        /p:Configuration=%{BUILDCONF} \
+        /p:ReferencePath=%{dotnet_assembly_path}
+done
 
 %install
-gacutil -i Tizen.Location/bin/%{BUILDCONF}/Tizen.Location.dll -root "%{buildroot}%{_libdir}" -package tizen
+# Assemblies
+mkdir -p %{buildroot}%{dotnet_assembly_path}
+for ASM in %{Assemblies}; do
+install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+done
 
-# generate pkgconfig
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-
-%post
-gacutil -i %{dllpath}/%{dllname}
+# License
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
 %manifest %{name}.manifest
-%{_libdir}/mono/
-
-%files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/license/%{name}
