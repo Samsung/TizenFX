@@ -1,5 +1,0 @@
-Name: csapi-download
-Description: Tizen Download API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:
