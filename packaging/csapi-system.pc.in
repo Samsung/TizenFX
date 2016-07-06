@@ -1,5 +1,0 @@
-Name: csapi-system
-Description: Tizen System API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:

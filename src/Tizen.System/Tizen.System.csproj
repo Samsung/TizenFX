@@ -91,9 +91,6 @@
     <Compile Include="SystemSettings\SystemSettingsExceptionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packaging\csapi-tizen.system.manifest" />
-    <None Include="packaging\csapi-tizen.system.pc.in" />
-    <None Include="packaging\csapi-tizen.system.spec" />
     <None Include="Tizen.System.snk" />
   </ItemGroup>
   <ItemGroup />
