@@ -1,5 +1,0 @@
-Name: csapi-tizen
-Description: Tizen API for C#
-Version: @version@
-Libs: -r:@dllpath@/Tizen.dll,@dllpath@/Tizen.Internals.dll
-Requires:

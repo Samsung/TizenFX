@@ -1,4 +1,10 @@
-%define dllpath %{_libdir}/mono/tizen
+%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+
+%if 0%{?tizen_build_devel_mode}
+%define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-tizen
 Summary:    Tizen API for C#
@@ -9,61 +15,43 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
+
+# P/Invoke Build Requires
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(capi-base-common)
-
-# Add p/invoke runtime dependencies should be added manually
-Requires: libdlog
-Requires: capi-base-common
-
-Requires(post): mono-core
-Requires(postun): mono-core
 
 %description
 Tizen API for C#
 
-%package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
-
-%description devel
-Development package for %{name}
-
 %prep
 %setup -q
-
 cp %{SOURCE1} .
 
+%define Assemblies Tizen Tizen.Internals
+
 %build
-make
+for ASM in %{Assemblies}; do
+xbuild $ASM/$ASM.csproj \
+        /p:Configuration=%{BUILDCONF} \
+        /p:ReferencePath=%{dotnet_assembly_path}
+done
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 Tizen.dll %{buildroot}%{dllpath}
-install -p -m 644 Tizen.Internals.dll %{buildroot}%{dllpath}
+# Assemblies
+mkdir -p %{buildroot}%{dotnet_assembly_path}
+for ASM in %{Assemblies}; do
+install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+done
 
-# generate pkgconfig
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-
-%post
-gacutil -i %{dllpath}/Tizen.dll
-gacutil -i %{dllpath}/Tizen.Internals.dll
-
-find %{_libdir}/mono/gac -name Tizen*  -exec chsmack -a "_" {} \;
+# License
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
 %manifest %{name}.manifest
-%{dllpath}/Tizen.dll
-%{dllpath}/Tizen.Internals.dll
-
-%files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/license/%{name}
