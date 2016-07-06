@@ -1,5 +1,0 @@
-Name: csapi-push
-Description: Tizen Push API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:
