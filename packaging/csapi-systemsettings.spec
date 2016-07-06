@@ -1,5 +1,10 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.System.SystemSettings.dll
+%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+
+%if 0%{?tizen_build_devel_mode}
+%define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-systemsettings
 Summary:    Tizen System API for C#
@@ -10,75 +15,45 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
 
-# P/Invoke Dependencies
+# P/Invoke Build Requires
 BuildRequires: pkgconfig(capi-system-system-settings)
 
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
-Requires: pkgconfig(capi-system-system-settings)
-# DLL Dependencies
-BuildRequires : pkgconfig(csapi-tizen)
+# C# API Requires
+BuildRequires: csapi-tizen
 
 %description
 Tizen System Device API for C#
 
-%package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
-
-%description devel
-Development package for %{name}
-
 %prep
 %setup -q
-
 cp %{SOURCE1} .
 
-%build
-# build dll
-mcs -target:library -out:%{dllname} -keyfile:Tizen.System.SystemSettings/Tizen.System.SystemSettings.snk -pkg:csapi-tizen \
-  Tizen.System.SystemSettings/Properties/AssemblyInfo.cs \
-  Tizen.System.SystemSettings/SystemSettings.cs \
-  Tizen.System.SystemSettings/SystemSettingsEnums.cs \
-  Tizen.System.SystemSettings/SystemSettingsEventArgs.cs \
-  Tizen.System.SystemSettings/SystemSettingsExceptionFactory.cs \
-  Tizen.System.SystemSettings/Interop/Interop.Settings.cs
+%define Assemblies Tizen.System.SystemSettings
 
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+%build
+for ASM in %{Assemblies}; do
+xbuild $ASM/$ASM.csproj \
+        /p:Configuration=%{BUILDCONF} \
+        /p:ReferencePath=%{dotnet_assembly_path}
+done
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+# Assemblies
+mkdir -p %{buildroot}%{dotnet_assembly_path}
+for ASM in %{Assemblies}; do
+install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+done
 
-# generate pkgconfig
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-
-%post
-gacutil -i %{dllpath}/%{dllname}
+# License
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
-%{dllpath}/%{dllname}
-
-%files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%manifest %{name}.manifest
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/license/%{name}
