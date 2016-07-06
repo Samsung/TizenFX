@@ -1,5 +1,0 @@
-Name: csapi-network-iotconnectivity
-Description: Tizen IoT Connectivity API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:
