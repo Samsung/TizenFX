@@ -8,7 +8,7 @@
     <ProjectGuid>{CB655C6A-F73B-448E-913C-CA4DCBC5E401}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Tizen.System.Sensor</RootNamespace>
-    <AssemblyName>Tizen.System</AssemblyName>
+    <AssemblyName>Tizen.System.Sensor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
