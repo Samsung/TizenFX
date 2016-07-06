@@ -123,15 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Tizen">
-      <PkgConfig>csapi-tizen</PkgConfig>
       <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
     </Reference>
     <Reference Include="Tizen.Internals">
-      <PkgConfig>csapi-tizen</PkgConfig>
       <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
     </Reference>
     <Reference Include="Tizen.UI">
-      <PkgConfig>csapi-uifw</PkgConfig>
       <HintPath>..\..\uifw\Tizen.UI\bin\Debug\Tizen.UI.dll</HintPath>
     </Reference>
   </ItemGroup>

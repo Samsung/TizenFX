@@ -1,5 +1,0 @@
-Name: @name@
-Description: Tizen Application API for C#
-Version: @version@
-Libs: -r:@libs@
-Requires:

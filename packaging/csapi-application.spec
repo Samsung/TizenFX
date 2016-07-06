@@ -1,4 +1,10 @@
+%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+
+%if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-application
 Summary:    Tizen Application API for C#
@@ -9,12 +15,12 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-BuildRequires: pkgconfig(csapi-tizen)
-BuildRequires: pkgconfig(csapi-uifw)
+
+# P/Invoke Build Requries
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-appfw-app-manager)
@@ -22,44 +28,38 @@ BuildRequires: pkgconfig(appcore-agent)
 BuildRequires: pkgconfig(message-port)
 BuildRequires: pkgconfig(notification)
 
-Requires: capi-appfw-application
-Requires: capi-message-port
-Requires: appcore-agent
-Requires: notification
+# C# API Requries
+BuildRequires: csapi-tizen
+BuildRequires: csapi-uifw
 
 %description
-Tizen API for C#
-
-%package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
-
-%description devel
-Development package for %{name}
+Tizen Application API for C#
 
 %prep
 %setup -q
-
 cp %{SOURCE1} .
 
+%define Assemblies Tizen.Applications
+
 %build
-xbuild Tizen.Applications/Tizen.Applications.csproj /p:Configuration=%{BUILDCONF}
+for ASM in %{Assemblies}; do
+xbuild $ASM/$ASM.csproj \
+        /p:Configuration=%{BUILDCONF} \
+        /p:ReferencePath=%{dotnet_assembly_path}
+done
 
 %install
-gacutil -i Tizen.Applications/bin/%{BUILDCONF}/*.dll -root "%{buildroot}%{_libdir}" -package tizen
+# Assemblies
+mkdir -p %{buildroot}%{dotnet_assembly_path}
+for ASM in %{Assemblies}; do
+install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+done
 
-# generate pkgconfig
-%define pc_libs %{_libdir}/mono/tizen/Tizen.Applications.dll
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@name@#%{name}#g" \
-    -e "s#@version@#%{version}#g" \
-    -e "s#@libs@#%{pc_libs}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
+# License
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
 %manifest %{name}.manifest
-%{_libdir}/mono/
-
-%files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/license/%{name}
