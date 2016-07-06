@@ -1,5 +1,0 @@
-Name: csapi-media-content
-Description: Tizen Media Content API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:
