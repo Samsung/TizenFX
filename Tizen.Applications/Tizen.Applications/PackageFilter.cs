@@ -18,7 +18,7 @@ namespace Tizen.Applications
         private IDictionary<string, bool> _filter;
 
         /// <summary>
-        /// Constructor
+        /// Default constructor with empty filter list. All installed applications will satisfy this filter unless updated with more specific filters.
         /// </summary>
         public PackageFilter()
         {
@@ -26,7 +26,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor with specific filters. Using this will filter out installed packages which do not meet the criteria of the filters.
         /// </summary>
         public PackageFilter(IDictionary<string, bool> filter)
         {

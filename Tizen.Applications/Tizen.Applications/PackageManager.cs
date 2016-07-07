@@ -161,7 +161,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Retrieves package information of all packages satisfying filter conditions.
+        /// Retrieves package information of all installed packages.
         /// </summary>
         /// <returns>Returns the list of packages asynchronously.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
@@ -171,7 +171,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Retrieves package information of all packages satisfying filter conditions.
+        /// Retrieves package information of all installed packages satisfying filter conditions.
         /// </summary>
         /// <param name="filter">Optional - package filters</param>
         /// <returns>Returns the list of packages asynchronously.</returns>
@@ -411,8 +411,8 @@ namespace Tizen.Applications
                     Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
                     return;
                 }
+                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
             }
-            Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
         }
 
         private static void RegisterPackageManagerEventIfNeeded()
