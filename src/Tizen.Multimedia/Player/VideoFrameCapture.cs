@@ -20,69 +20,69 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class VideoFrameCapture
     {
-		internal byte[] _imageBuffer;
-		internal int _width;
-		internal int _height;
-		internal uint _size;
+        internal byte[] _imageBuffer;
+        internal int _width;
+        internal int _height;
+        internal uint _size;
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		internal VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
-		{
-			_imageBuffer = imageBuffer;
-			_width = width;
-			_height = height;
-			_size = size;
-		}
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        internal VideoFrameCapture(byte[] imageBuffer, int width, int height, uint size)
+        {
+            _imageBuffer = imageBuffer;
+            _width = width;
+            _height = height;
+            _size = size;
+        }
 
 
         /// <summary>
-        /// Get/Set ImageBuffer.
+        /// Get ImageBuffer.
         /// </summary>
         /// <value> Image buffer </value>
-        public byte[] ImageBuffer 
-		{
-			get
-			{
-				return _imageBuffer;
-			}
-		}
+        public byte[] ImageBuffer
+        {
+            get
+            {
+                return _imageBuffer;
+            }
+        }
 
         /// <summary>
-        /// Get/Set width.
+        /// Get width.
         /// </summary>
         /// <value> Image width </value>
-        public int Width 
-		{
-			get
-			{
-				return _width;
-			}
-		}
+        public int Width
+        {
+            get
+            {
+                return _width;
+            }
+        }
 
         /// <summary>
-        /// Get/Set height.
+        /// Get height.
         /// </summary>
         /// <value> Image Height </value>
-        public int Height 
-		{
-			get
-			{
-				return _height;
-			}
-		}
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+        }
 
         /// <summary>
-        /// Get/Set Size.
+        /// Get Size.
         /// </summary>
         /// <value> Size of the image </value>
-        public uint Size 
-		{
-			get
-			{
-				return _size;
-			}
-		}
+        public uint Size
+        {
+            get
+            {
+                return _size;
+            }
+        }
     }
 }

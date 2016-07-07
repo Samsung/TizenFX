@@ -20,47 +20,39 @@ namespace Tizen.Multimedia
     /// <remarks>
     /// Contains Download progress
     /// </remarks>
-	public class DownloadProgress
+    public class DownloadProgress
     {
-		internal int _start;
-		internal int _current;
+        internal int _start;
+        internal int _current;
 
-		internal DownloadProgress(int start, int current)
-		{
-			_start = start;
-			_current = current;
-		}
+        internal DownloadProgress(int start, int current)
+        {
+            _start = start;
+            _current = current;
+        }
 
         /// <summary>
-        /// Set/Get Start position in percentage.
+        /// Get Start position in percentage.
         /// </summary>
         /// <value> 0 to 100 </value>
         public int Start
-		{
-			set
-			{
-				_start = value;
-			}
-			get
-			{
-				return _start;
-			}
-		}
+        {
+            get
+            {
+                return _start;
+            }
+        }
 
         /// <summary>
-        /// Set/Get Current position in percentage.
+        /// Get Current position in percentage.
         /// </summary>
         /// <value> 0 to 100 </value>
         public int Current
-		{
-			set
-			{
-				_current = value;
-			}
-			get
-			{
-				return _current;
-			}
-		}
+        {
+            get
+            {
+                return _current;
+            }
+        }
     }
 }
