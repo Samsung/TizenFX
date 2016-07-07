@@ -151,30 +151,82 @@ namespace Tizen.System.Sensor
         All
     }
 
+    /// <summary>
+    /// Sensor attribute.
+    /// </summary>
     public enum SensorAttribute
     {
+        /// <summary>
+        /// The axis orientation.
+        /// </summary>
         AxisOrientation,
+
+        /// <summary>
+        /// The pause policy.
+        /// </summary>
         PausePolicy
     }
 
+    /// <summary>
+    /// Pedometer state.
+    /// </summary>
     public enum PedometerState
     {
+        /// <summary>
+        /// Unknown.
+        /// </summary>
         Unknown,
+
+        /// <summary>
+        /// Stop state.
+        /// </summary>
         Stop,
+
+        /// <summary>
+        /// Walking state.
+        /// </summary>
         Walk,
+
+        /// <summary>
+        /// Running state.
+        /// </summary>
         Run
     }
 
+    /// <summary>
+    /// Sleep monitor state.
+    /// </summary>
     public enum SleepMonitorState
     {
+        /// <summary>
+        /// Unknown.
+        /// </summary>
         Unknown,
+
+        /// <summary>
+        /// The wake state.
+        /// </summary>
+
         Wake,
+        /// <summary>
+        /// The sleeping state.
+        /// </summary>
         Sleep
     }
 
+    /// <summary>
+    /// Proximity sensor state.
+    /// </summary>
     public enum ProximitySensorState
     {
+        /// <summary>
+        /// Near sate.
+        /// </summary>
         Near = 0,
+
+        /// <summary>
+        /// Far state.
+        /// </summary>
         Far = 5
     }
 }

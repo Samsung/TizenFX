@@ -210,6 +210,10 @@ namespace Tizen.System.Sensor
             }
         }
 
+        /// <summary>
+        /// Gets or sets the time span.
+        /// </summary>
+        /// <value>The time span.</value>
         public TimeSpan TimeSpan
         {
             set
@@ -224,6 +228,10 @@ namespace Tizen.System.Sensor
             }
         }
 
+        /// <summary>
+        /// Indicates whether this sensor is sensing.
+        /// </summary>
+        /// <value><c>true</c> if this sensor is sensing; otherwise, <c>false</c>.</value>
         public bool IsSensing
         {
             get

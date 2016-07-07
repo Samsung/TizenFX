@@ -77,6 +77,9 @@ namespace Tizen.System.Sensor
 
         public event EventHandler<MagnetometerDataUpdatedEventArgs> DataUpdated;
 
+        /// <summary>
+        /// Event handler for accuracy changed events.
+        /// </summary>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged
         {
             add
