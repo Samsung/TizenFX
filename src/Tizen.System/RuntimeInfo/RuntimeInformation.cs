@@ -361,7 +361,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// (event) BluetoothEnabled is rasied when system preference for bluetooth is changed.
+        /// (event) BluetoothEnabled is raised when system preference for bluetooth is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothEnabled
         {
@@ -393,7 +393,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) WifiHotspotEnabled is rasied when system preference for Wi-Fi is changed.
+        /// (event) WifiHotspotEnabled is raised when system preference for Wi-Fi is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> WifiHotspotEnabled
         {
@@ -425,7 +425,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) BluetoothTetheringEnabled is rasied when system preference for bluetooth tethering is changed.
+        /// (event) BluetoothTetheringEnabled is raised when system preference for bluetooth tethering is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothTetheringEnabled
         {
@@ -457,7 +457,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) UsbTetheringEnabled is rasied when system preference for USB terhering is changed.
+        /// (event) UsbTetheringEnabled is raised when system preference for USB terhering is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbTetheringEnabled
         {
@@ -489,7 +489,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) LocationServiceEnabled is rasied when system preference for location service is changed.
+        /// (event) LocationServiceEnabled is raised when system preference for location service is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> LocationServiceEnabled
         {
@@ -517,7 +517,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) LocationNetworkPositionEnabled is rasied when system preference for allowing location service to use location data from cellular and Wi-Fi is changed.
+        /// (event) LocationNetworkPositionEnabled is raised when system preference for allowing location service to use location data from cellular and Wi-Fi is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> LocationNetworkPositionEnabled
         {
@@ -549,7 +549,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) PacketDataEnabled is rasied when system preference for package data through 3G network is changed.
+        /// (event) PacketDataEnabled is raised when system preference for package data through 3G network is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> PacketDataEnabled
         {
@@ -581,7 +581,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) DataRoamingEnabled is rasied when system preference for data roaming is changed.
+        /// (event) DataRoamingEnabled is raised when system preference for data roaming is changed.
 
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> DataRoamingEnabled
@@ -614,7 +614,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) VibrationEnabled is rasied when system preference for vibration is changed.
+        /// (event) VibrationEnabled is raised when system preference for vibration is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> VibrationEnabled
         {
@@ -646,7 +646,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AudioJackConnected is rasied when audio jack is connected/disconnected.
+        /// (event) AudioJackConnected is raised when audio jack is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnected
         {
@@ -678,7 +678,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) GpsStatusChanged is rasied when status of GPS is changed.
+        /// (event) GpsStatusChanged is raised when status of GPS is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> GpsStatusChanged
         {
@@ -710,7 +710,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) BatteryIsCharging is rasied battery is currently charging.
+        /// (event) BatteryIsCharging is raised battery is currently charging.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BatteryIsCharging
         {
@@ -742,7 +742,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) TvOutConnected is rasied when TV out is connected/disconnected.
+        /// (event) TvOutConnected is raised when TV out is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> TvOutConnected
         {
@@ -774,7 +774,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AudioJackConnectorChanged is rasied when audio jack connection changes.
+        /// (event) AudioJackConnectorChanged is raised when audio jack connection changes.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnectorChanged
         {
@@ -806,7 +806,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) UsbConnected is rasied when USB is connected/disconnected.
+        /// (event) UsbConnected is raised when USB is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbConnected
         {
@@ -838,7 +838,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) ChargerConnected is rasied when charger is connected/disconnected.
+        /// (event) ChargerConnected is raised when charger is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> ChargerConnected
         {
@@ -870,7 +870,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AutoRotationEnabled is rasied when system preference for auto rotaion is changed.
+        /// (event) AutoRotationEnabled is raised when system preference for auto rotaion is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AutoRotationEnabled
         {
