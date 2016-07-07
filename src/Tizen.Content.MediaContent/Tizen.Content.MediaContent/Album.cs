@@ -55,7 +55,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The path of the media album_art
+        /// The path of the media album art
         /// </summary>
         public string Art
         {
@@ -73,7 +73,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The name of the media album handle
+        /// The name of the media album
         /// </summary>
         public string Name
         {

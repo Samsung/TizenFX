@@ -38,6 +38,10 @@ namespace Tizen.Content.MediaContent
     public static class ContentManager
     {
         private static readonly ContentDatabase s_contentDB = new ContentDatabase();
+
+        /// <summary>
+        /// Database instance to do all the Database oprtions for media content management.
+        /// </summary>
         public static ContentDatabase Database
         {
             get
@@ -49,7 +53,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media file.
         /// </summary>
-        /// <param name="filePath">The file path</param>
+        /// <param name="filePath">File path of the media to be scanned</param>
         /// <returns>A reference to the MediaInformation object scanned</returns>
         /// <remarks>
         /// This function requests to scan a media file to the media server. If media file is not registered to DB yet,
@@ -70,7 +74,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts a media to the media database
         /// </summary>
-        /// <param name="MediaInformation">Media to be inserted</param>
+        /// <param name="filePath">File path of the media to be inserted</param>
         public static MediaInformation AddMediaInformation(string filePath)
         {
             MediaInformation mediaInformation = null;
@@ -90,6 +94,7 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a media folder, asynchronously.
         /// </summary>
         /// <param name="folderPath">The folder path</param>
+        /// <param name="recursive">Indicate sif the folder is to recursively scanned. Default value: true</param>
         /// <remarks>
         /// This function requests to scan a media folder to the media server with given completed callback function.
         /// The sub folders are also scanned,if there are sub folders in that folder.
@@ -131,9 +136,10 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a media folder, asynchronously.
         /// </summary>
         /// <param name="folderPath">The folder path</param>
+        /// <param name="cancellationToken">Cancellation token required to cancel the current scan</param>
+        /// <param name="recursive">Indicate sif the folder is to recursively scanned. Default value: true</param>
         /// <remarks>
         /// This function requests to scan a media folder to the media server with given completed callback function.
-        /// ContentScanCompleted event will be truggered when the scanning is finished.
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>

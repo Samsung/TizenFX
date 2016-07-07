@@ -93,7 +93,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Adds a new media info to the tag.
         /// </summary>
-        /// <param name="mediaId">The ID to the media info which is added</param>
+        /// <param name="mediaContent">The media info which is added</param>
         public void AddItem(MediaInformation mediaContent)
         {
             Console.WriteLine("Tag add item info: " + mediaContent.MediaId);
@@ -108,7 +108,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Removes the media info from the given tag.
         /// </summary>
-        /// <param name="mediaId">The ID to the media info which is removed</param>
+        /// <param name="mediaContent">The media info which is removed</param>
         public void RemoveItem(MediaInformation mediaContent)
         {
             MediaContentError res = (MediaContentError)Interop.Tag.RemoveMedia(_tagHandle, mediaContent.MediaId);

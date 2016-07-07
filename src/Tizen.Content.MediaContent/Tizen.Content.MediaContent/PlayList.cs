@@ -163,18 +163,12 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Removes the playlist members related with the media from the given playlist.
         /// </summary>
-        /// <param name="mediaContent">The AudioContent object to be removed</param>
+        /// <param name="media">The AudioContent object to be removed</param>
         public void RemoveItem(MediaInformation media)
         {
             int memberId = 0;
+            refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            if (memberId == 0)
-            {
-                refreshPlaylistDictionary();
-            }
-
-            _dictionary.TryGetValue(media.MediaId, out memberId);
-            
             MediaContentError res = (MediaContentError)Interop.Playlist.RemoveMedia(_playlistHandle, memberId);
             if (res != MediaContentError.None)
             {
@@ -191,12 +185,8 @@ namespace Tizen.Content.MediaContent
         {
             Tizen.Log.Info("TCT", "Order set for Media Id: " + media.MediaId);
             int memberId;
+            refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            if (memberId == 0)
-            {
-                refreshPlaylistDictionary();
-                _dictionary.TryGetValue(media.MediaId, out memberId);
-            }
             Tizen.Log.Info("TCT", "Order set for member Id: " + memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder);
             if (res != MediaContentError.None)
@@ -208,20 +198,15 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the playing order in the playlist for the passed member id.
         /// </summary>
-        /// <param name="playListMemberId"></param>
-        /// <param name="playOrder"></param>
+        /// <param name="media"></param>
         public int GetPlayOrder(MediaInformation media)
         {
             Tizen.Log.Info("TCT", "Getting order for Media Id: " + media.MediaId);
             int playOrder;
             int memberId;
+            refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            if (memberId == 0)
-            {
-                refreshPlaylistDictionary();
-                _dictionary.TryGetValue(media.MediaId, out memberId);
-            }
-            Tizen.Log.Info("TCT", "Order set for Member Id: " + memberId);
+            Tizen.Log.Info("TCT", "Order get for Member Id: " + memberId);
             MediaContentError res = (MediaContentError)Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder);
             if (res != MediaContentError.None)
             {

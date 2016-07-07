@@ -107,7 +107,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the count of ContentCollections for the ContentCollectionType & passed filter from the media database.
         /// </summary>
-        /// <param name="type">The content source type. Available types: Folder, Storage, MediaBookmark, Album, Playlist, Tag</param>
         /// <param name="filter">The media filter</param>
         /// <returns>The count of contents present in the media database for a ContentSourceType</returns>
         public int GetCount<T>(ContentFilter filter) where T : class
@@ -431,7 +430,6 @@ namespace Tizen.Content.MediaContent
         /// <remarks>
         /// This function gets all ContentCollections matching the given filter. If NULL is passed to the filter, no filtering is applied.
         /// </remarks>
-        /// <param name="type">Allowed types: Album, MediaBookmark, Folder, Storage, Playlist, Tag</param>
         /// <param name="filter">Filter for content items</param>
         /// <returns></returns>
         public Task<IEnumerable<T>> SelectAsync<T>(ContentFilter filter)
@@ -570,9 +568,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Deletes a MediaInformation from the media database.
-        /// For other types Unsupported exception is thrown.
         /// </summary>
-        /// <param name="bookmark">The MediaInformation to be deleted</param>
+        /// <param name="mediaInfo">The MediaInformation to be deleted</param>
         public void Delete(MediaInformation mediaInfo)
         {
             ConnectToDB();
@@ -585,9 +582,9 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Deletes a content collection from the media database.
         /// Applicable for Tag and Playlist only.
-        /// For other types Unsupported exception is thrown.
+        /// For other types ArgumentException is thrown.
         /// </summary>
-        /// <param name="collection">The content collection to be deleted</param>
+        /// <param name="contecollection">The content collection to be deleted</param>
         public void Delete(ContentCollection contecollection)
         {
             ConnectToDB();
@@ -631,7 +628,7 @@ namespace Tizen.Content.MediaContent
         /// Updates a content collection in the media database
         /// Applicable for Tag, PlayList and MediagFolder types only.
         /// </summary>
-        /// <param name="collection">The content collection to be updated</param>
+        /// <param name="contentCollection">The content collection to be updated</param>
         public void Update(ContentCollection contentCollection)
         {
             ConnectToDB();
@@ -705,7 +702,7 @@ namespace Tizen.Content.MediaContent
         /// Inserts a content collection to the media database.
         /// Applicable for Tag and PlayList types only.
         /// </summary>
-        /// <param name="mediaItem">The content collection to be inserted</param>
+        /// <param name="contentCollection">The content collection to be inserted</param>
         public void Insert(ContentCollection contentCollection)
         {
             ConnectToDB();

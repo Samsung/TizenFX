@@ -309,7 +309,8 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts a MediaFace item to the media database
         /// </summary>
-        /// <param name="face">The MediaFace item to be inserted</param>
+        /// <param name="image">The image on which face is to be added</param>
+        /// <param name="rect">The dimensions of the face</param>
         public MediaFace AddFace(ImageInformation image, FaceRect rect)
         {
             MediaFace face = new MediaFace(image, rect);
@@ -329,7 +330,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Updates the MediaFace in the media database
         /// </summary>
-        /// <param name="mediaInfo">The MediaFace object to be updated</param>
+        /// <param name="face">The MediaFace object to be updated</param>
         public void UpdateFace(MediaFace face)
         {
             ContentManager.Database.Update(face);

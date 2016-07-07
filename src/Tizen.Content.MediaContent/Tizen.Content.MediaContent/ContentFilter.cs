@@ -6,56 +6,46 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
-/// <summary>
-/// The Content Filter API provides functions to manage media filters.
-/// </summary>
-/// <remarks>
-/// A Content filter is required for filtering information associated with Media Folder, Tag, Audio, MediaBookmark and Media Information on basis of details like offset, count, order and condition for searching.
-/// It provide functionality to set properties associated with a given content filter.
-
-/// Setting content filter properties helps to limit the number of filtered items as following:
-
-/// Offset - Used to set starting position of the filter's search
-/// Count - Used to set number of items to be searched from offset
-/// Condition - Used to set keyword which user want to search
-/// Order - Used to set type of media to be ordered by the filter
-
-/// Searchable expression can use one of the following forms:
-
-/// column = value
-/// column > value
-/// column >= value
-/// column < value
-/// column <= value
-/// value = column
-/// * - value > column
-/// value >= column
-/// value < column
-/// value <= column
-/// column IN (value)
-/// column IN(value-list)
-/// column NOT IN(value)
-/// column NOT IN(value-list)
-/// column LIKE value
-/// expression1 AND expression2 OR expression3
-
-/// Note that if you want to set qoutation(" ' " or " " ") as value of LIKE operator, you should use two times.(" '' " or " "" ") \n And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
-/// If these characters are used as value of LIKE operation, then the expression following the ESCAPE caluse of sqlite.
-/// For example,
-
-/// column LIKE ('#') ESCAPE('#') - "#" is escape character, it will be ignored.
-/// Similarly, call respective get function to get filter properties e.g.call media_filter_get_condition() function to get condition of the media filter and call media_filter_get_order() function to get order(media_content_order_e) of the filtered items and so on.
-/// </remarks>
-
-
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Tizen;
 
 namespace Tizen.Content.MediaContent
 {
+    /// <summary>
+    /// The Content Filter API provides functions to manage media filters.
+    /// </summary>
+    /// <remarks>
+    /// A Content filter is required for filtering information associated with Media Folder, Tag, Audio, MediaBookmark and Media Information on basis of details like offset, count, order and condition for searching.
+    /// It provide functionality to set properties associated with a given content filter.
+
+    /// Setting content filter properties helps to limit the number of filtered items as following:
+
+    /// Offset - Used to set starting position of the filter's search
+    /// Count - Used to set number of items to be searched from offset
+    /// Condition - Used to set keyword which user want to search
+    /// Order - Used to set type of media to be ordered by the filter
+
+    /// Searchable expression can use one of the following forms:
+
+    /// column = value
+    /// column > value
+    /// column >= value
+    /// column < value
+    /// column <= value
+    /// value = column
+    /// * - value > column
+    /// value >= column
+    /// value < column
+    /// value <= column
+    /// column IN (value)
+    /// column IN(value-list)
+    /// column NOT IN(value)
+    /// column NOT IN(value-list)
+    /// column LIKE value
+    /// expression1 AND expression2 OR expression3
+
+    /// Note that if you want to set qoutation(" ' " or " " ") as value of LIKE operator, you should use two times.(" '' " or " "" ") \n And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
+    /// If these characters are used as value of LIKE operation, then the expression following the ESCAPE caluse of sqlite.
+    /// </remarks>
     public class ContentFilter : IDisposable
     {
         private IntPtr _filterHandle;
@@ -155,7 +145,7 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
                 }
-                if ( orderKey.Length == 0)
+                if (orderKey.Length == 0)
                 {
                     orderKey = _orderKey;
                 }
@@ -190,7 +180,7 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
                 }
-                 return (ContentCollation)collatetType;
+                return (ContentCollation)collatetType;
             }
             set
             {
@@ -228,7 +218,7 @@ namespace Tizen.Content.MediaContent
             {
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, value, (int) _collationType);
+                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, value, (int)_collationType);
                 if (res != MediaContentError.None)
                 {
                     throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition");

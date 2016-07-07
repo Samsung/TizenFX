@@ -194,6 +194,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the count of media files for the passed filter in the given folder from the media database.
+        /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <param name="filter">ContentFilter used to match media content from teh media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
@@ -234,7 +235,7 @@ namespace Tizen.Content.MediaContent
             }
         }
         /// <summary>
-        /// Iterates through the media files with an optional filter in the given folder from the media database.
+        /// Iterates through the media files with an filter in the given folder from the media database.
         /// This function gets all media files associated with the given folder and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>

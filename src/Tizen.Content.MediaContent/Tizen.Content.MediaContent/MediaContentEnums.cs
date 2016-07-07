@@ -516,6 +516,9 @@ namespace Tizen.Content.MediaContent
         Cloud = 100
     };
 
+    /// <summary>
+    /// Enums for media database update type
+    /// </summary>
     public enum MediaContentDBUpdateType
     {
         /// <summary>
@@ -531,6 +534,10 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         Update
     }
+
+    /// <summary>
+    /// Enums for the type of item updated in media database
+    /// </summary>
     public enum MediaContentUpdateItemType
     {
         /// <summary>
@@ -542,6 +549,10 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         Directory
     }
+
+    /// <summary>
+    /// Enums for content collection types
+    /// </summary>
     public enum ContentCollectionType
     {
         /// <summary>

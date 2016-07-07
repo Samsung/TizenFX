@@ -30,12 +30,12 @@ namespace Tizen.Content.MediaContent
             MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset);
             if (res != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to set Offset");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to Get Offset");
             }
             res = (MediaContentError)Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out _thumbnailPath);
             if (res != MediaContentError.None)
             {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to set Thumbnail Path");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to Get Thumbnail Path");
             }
         }
 
@@ -85,9 +85,10 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts a new bookmark in media on the specified time offset to the media database.
         /// </summary>
+        /// <param name="content">Media in which the bookmark is to be inserted</param>
         /// <param name="offset">The bookmark time offset (in seconds)</param>
         /// <param name="thumbnailPath">The thumbnail path of video bookmark. If the media type is audio, then thumbnail is null.</param>
-        public MediaBookmark(MediaInformation content, uint offset, string thumbnailPath)
+        internal MediaBookmark(MediaInformation content, uint offset, string thumbnailPath)
         {
             _offset = offset;
             if (thumbnailPath != null)

@@ -15,6 +15,10 @@ using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
 {
+    /// <summary>
+    /// FaceRect represents a rectangle dimension to create a Face in an image.
+    /// It is used to create or tag a MediaFace in an image file.
+    /// </summary>
     public class FaceRect
     {
         public FaceRect(int x, int y, int width, int height)
@@ -24,9 +28,25 @@ namespace Tizen.Content.MediaContent
             Width = width;
             Height = height;
         }
+
+        /// <summary>
+        /// X coordinate of the FaceRect
+        /// </summary>
         public readonly int X;
+
+        /// <summary>
+        /// Y coordinate of the FaceRect
+        /// </summary>
         public readonly int Y;
+
+        /// <summary>
+        /// Width of the FaceRect
+        /// </summary>
         public readonly int Width;
+
+        /// <summary>
+        /// Height of the FaceRect
+        /// </summary>
         public readonly int Height;
     }
 }
