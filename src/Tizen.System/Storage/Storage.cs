@@ -105,15 +105,15 @@ namespace Tizen.System.Storage
         /// <summary>
         /// Storage ID
         /// </summary>
-        public readonly int Id;
+        public int Id { get; }
         /// <summary>
         /// Type of the storage
         /// </summary>
-        public readonly StorageArea StorageType;
+        public StorageArea StorageType { get; }
         /// <summary>
         /// Root directory for the storage
         /// </summary>
-        public readonly string RootDirectory;
+        public string RootDirectory { get; }
         /// <summary>
         /// Total storage size in bytes
         /// </summary>
