@@ -67,7 +67,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The backend instance.
         /// </summary>
-        protected ICoreBackend Backend { get; private set; }
+        protected ICoreBackend Backend { get { return _backend; } }
 
         /// <summary>
         /// Runs the application's main loop.

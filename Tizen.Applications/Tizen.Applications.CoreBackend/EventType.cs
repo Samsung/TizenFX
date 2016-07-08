@@ -87,6 +87,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         public override int GetHashCode()
         {
+            if (_typeName == null) return 0;
             return _typeName.GetHashCode();
         }
 
@@ -95,19 +96,8 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         public override bool Equals(object obj)
         {
-            return _typeName.Equals(obj);
-        }
-
-        /// <summary>
-        /// Determines whether this instance and a specified object.
-        /// </summary>
-        public bool Equals(EventType obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-            return _typeName.Equals(obj._typeName);
+            EventType other = obj as EventType;
+            return other != null && other._typeName == this._typeName;
         }
 
         /// <summary>
