@@ -17,14 +17,14 @@ internal static partial class Interop
 
         internal enum ServiceError
         {
-            None,
-            OutOfMemory,
-            InvalidParameter,
-            NotConnected,
-            NoData,
-            OpearationFailed,
-            PermissionDenied,
-            NotSupported
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            NotConnected = Tizen.Internals.Errors.ErrorCode.EndpointNotConnected,
+            NoData = Tizen.Internals.Errors.ErrorCode.NoData,
+            OpearationFailed = Tizen.Internals.Errors.ErrorCode.Unknown,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported
         };
 
         internal enum State

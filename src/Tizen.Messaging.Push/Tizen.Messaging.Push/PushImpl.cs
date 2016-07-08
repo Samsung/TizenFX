@@ -38,6 +38,10 @@ namespace Tizen.Messaging.Push
         {
             Interop.Push.VoidStateChangedCallback stateDelegate = (int state, string err, IntPtr userData) =>
             {
+                if (err == null)
+                {
+                    err = "";
+                }
                 PushConnectionStateEventArgs args = new PushConnectionStateEventArgs((PushConnectionStateEventArgs.PushState)state, err);
                 Push.StateChange(args);
             };
@@ -51,50 +55,50 @@ namespace Tizen.Messaging.Push
                 {
                     ob.AppData = data;
                 }
-		else
-		{
-		    ob.AppData = "";
-		}
+                else
+                {
+                    ob.AppData = "";
+                }
                 string message;
                 result = Interop.Push.GetNotificationMessage(notification, out message);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(message)))
                 {
                     ob.Message = message;
                 }
-		else
-		{
-		    ob.Message = "";
-		}
+                else
+                {
+                    ob.Message = "";
+                }
                 string sender;
                 result = Interop.Push.GetNotificationSender(notification, out sender);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(sender)))
                 {
                     ob.Sender = sender;
                 }
-		else
-		{
-		    ob.Sender = "";
-		}
+                else
+                {
+                    ob.Sender = "";
+                }
                 string sessioninfo;
                 result = Interop.Push.GetNotificationSessionInfo(notification, out sessioninfo);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(sessioninfo)))
                 {
                     ob.SessionInfo = sessioninfo;
                 }
-		else
-		{
-		    ob.SessionInfo = "";
-		}
+                else
+                {
+                    ob.SessionInfo = "";
+                }
                 string requestid;
                 result = Interop.Push.GetNotificationRequestId(notification, out requestid);
                 if ((result == Interop.Push.ServiceError.None) && !(String.IsNullOrEmpty(requestid)))
                 {
                     ob.RequestId = requestid;
                 }
-		else
-		{
-		    ob.RequestId = "";
-		}
+                else
+                {
+                    ob.RequestId = "";
+                }
                 int time;
                 result = Interop.Push.GetNotificationTime(notification, out time);
                 DateTime utc;
@@ -122,7 +126,7 @@ namespace Tizen.Messaging.Push
             Interop.Push.ServiceError connectResult = Interop.Push.ServiceConnect(pushAppId, stateDelegate, notifyDelegate, IntPtr.Zero, out _connection);
             if (connectResult != Interop.Push.ServiceError.None)
             {
-                Log.Error(Interop.Push.LogTag, "Connect failed with "+ connectResult);
+                Log.Error(Interop.Push.LogTag, "Connect failed with " + connectResult);
                 throw PushExceptionFactory.CreateResponseException(connectResult);
             }
         }

@@ -21,7 +21,7 @@ namespace Tizen.Messaging.Push
                 case Interop.Push.ServiceError.InvalidParameter:
                 {
                     Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.InvalidParameter");
-                    exp = new ArgumentException("The Parameter Passed was Invalid");
+                    exp = new InvalidOperationException("The Parameter Passed was Invalid or Invalid Operation Intented");
                     break;
                 }
                 case Interop.Push.ServiceError.NotConnected:
