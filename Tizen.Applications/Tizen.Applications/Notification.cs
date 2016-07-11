@@ -534,7 +534,7 @@ namespace Tizen.Applications.Notifications
                 int ret;
                 if(value)
                 {
-                    ret = Interop.Notification.SetLed(_handle, LedOption.On, _ledColor.Argb);
+                    ret = Interop.Notification.SetLed(_handle, LedOption.On, _ledColor.GetArgb());
                     if(ret != (int)NotificationError.None)
                     {
                         throw NotificationErrorFactory.GetException((NotificationError)ret, "unable to set led enabled");
@@ -584,7 +584,7 @@ namespace Tizen.Applications.Notifications
 
                 if(enabled >= LedOption.On)
                 {
-                    ret = Interop.Notification.SetLed(_handle, LedOption.On, value.Argb);
+                    ret = Interop.Notification.SetLed(_handle, LedOption.On, value.GetArgb());
                     if(ret != (int)NotificationError.None)
                     {
                         throw NotificationErrorFactory.GetException((NotificationError)ret, "unable to set led color");
