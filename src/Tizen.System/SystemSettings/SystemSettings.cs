@@ -278,7 +278,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current country setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
@@ -305,7 +305,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current language setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The language setting is in the ISO 639-2 format
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
@@ -1034,7 +1034,7 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleCountryChangedEventArgs> s_localeCountryChanged;
         /// <summary>
-        /// LocaleCountryChanged event is triggered when the current country setting in the <LANGUAGE>_<REGION> syntax, is changed
+        /// LocaleCountryChanged event is triggered when the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A LocaleCountryChangedEventArgs object that contains the key & changed value</param>
@@ -1075,7 +1075,7 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleLanguageChangedEventArgs> s_localeLanguageChanged;
         /// <summary>
-        /// LocaleLanguageChanged event is triggered when the current language setting in the <LANGUAGE>_<REGION> syntax, is changed
+        /// LocaleLanguageChanged event is triggered when the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A LocaleLanguageChangedEventArgs object that contains the key & changed value</param>
