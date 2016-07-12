@@ -39,7 +39,10 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
 
-        internal ReceivedAppControl(IntPtr handle) : base(handle)
+        /// <summary>
+        /// Initializes a ReceivedAppControl class.
+        /// </summary>
+        public ReceivedAppControl(SafeAppControlHandle handle) : base(handle)
         {
         }
 

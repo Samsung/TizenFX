@@ -62,8 +62,12 @@ namespace Tizen.Applications.CoreBackend
         {
             if (_handlers.ContainsKey(EventType.AppControlReceived))
             {
+                // Create a SafeAppControlHandle but the ownsHandle is false,
+                // because the appControlHandle will be closed by native appfw after this method automatically.
+                SafeAppControlHandle safeHandle = new SafeAppControlHandle(appControlHandle, false);
+
                 var handler = _handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-                handler.Invoke(new AppControlReceivedEventArgs { ReceivedAppControl = new ReceivedAppControl(appControlHandle) });
+                handler?.Invoke(new AppControlReceivedEventArgs(new ReceivedAppControl(safeHandle)));
             }
         }
 

@@ -16,6 +16,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Initializes a new instance of the SafeAppControlHandle class.
+        /// </summary>
+        /// <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
+        /// <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+        public SafeAppControlHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+        {
+            SetHandle(existingHandle);
+        }
+
+        /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
         public override bool IsInvalid

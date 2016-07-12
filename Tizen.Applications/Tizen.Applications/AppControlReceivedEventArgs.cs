@@ -16,8 +16,17 @@ namespace Tizen.Applications
     public class AppControlReceivedEventArgs : EventArgs
     {
         /// <summary>
+        /// Initializes AppControlReceivedEventArgs class.
+        /// </summary>
+        /// <param name="appControl"></param>
+        public AppControlReceivedEventArgs(ReceivedAppControl appControl)
+        {
+            ReceivedAppControl = appControl;
+        }
+
+        /// <summary>
         /// The received AppControl.
         /// </summary>
-        public ReceivedAppControl ReceivedAppControl { get; internal set; }
+        public ReceivedAppControl ReceivedAppControl { get; private set; }
     }
 }

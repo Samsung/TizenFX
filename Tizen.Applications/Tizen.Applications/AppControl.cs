@@ -67,10 +67,14 @@ namespace Tizen.Applications
         /// <param name="handle"></param>
         public AppControl(SafeAppControlHandle handle)
         {
-            _handle = handle;
+            Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+            }
         }
 
-        internal AppControl(IntPtr handle)
+        private AppControl(IntPtr handle)
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle);
             if (err != Interop.AppControl.ErrorCode.None)
