@@ -12,7 +12,7 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Location
 {
-    public static class LocationManagerError
+    internal static class LocationManagerError
     {
         public const int Base = -0x02C00000;
         public const int BoundsBase = -0x02C00000 | 0x20;
