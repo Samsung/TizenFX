@@ -20,7 +20,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class MediaFolder : ContentCollection
     {
-        private IntPtr _folderHandle;
+        private IntPtr _folderHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         internal IntPtr Handle
         {
@@ -162,10 +162,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The folder order info. Get/Set the folder viewing order.
-        /// Default Order is ContentOrder.Asc (Ascending order).
+        /// The folder order value. Get/Set the folder viewing order.
+        /// Default Order value is zero.
+        /// If you set the order value for each folder, you can sort in ascending or descending order as the set order values using the filter.
         /// </summary>
-        public ContentOrder Order
+        public int Order
         {
             get
             {
@@ -175,11 +176,11 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get modified date for the MediaFolder");
                 }
-                return (ContentOrder)order;
+                return order;
             }
             set
             {
-                MediaContentError res = (MediaContentError)Interop.Folder.SetOrder(_folderHandle, (int)value);
+                MediaContentError res = (MediaContentError)Interop.Folder.SetOrder(_folderHandle, value);
                 if (res != MediaContentError.None)
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set viewing order for the MediaFolder");

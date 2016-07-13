@@ -19,7 +19,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class Album : ContentCollection
     {
-        internal readonly IntPtr _albumHandle;
+        internal IntPtr _albumHandle = IntPtr.Zero;
         /// <summary>
         /// The media album ID
         /// </summary>
@@ -119,6 +119,7 @@ namespace Tizen.Content.MediaContent
             {
                 Log.Warn(MediaContentErrorFactory.LogTag, "Failed to dispose the album");
             }
+            _albumHandle = IntPtr.Zero;
         }
 
         /// <summary>

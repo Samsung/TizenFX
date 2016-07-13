@@ -20,7 +20,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class Storage : ContentCollection
     {
-        private IntPtr _storageHandle;
+        private IntPtr _storageHandle = IntPtr.Zero;
         internal IntPtr Handle
         {
             get
@@ -121,6 +121,7 @@ namespace Tizen.Content.MediaContent
         public override void Dispose()
         {
             MediaContentError res = (MediaContentError)Interop.Storage.Destroy(_storageHandle);
+            _storageHandle = IntPtr.Zero;
             if (res != MediaContentError.None)
             {
                 Log.Warn(MediaContentErrorFactory.LogTag, "Failed to dispose the storage");

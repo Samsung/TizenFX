@@ -9,7 +9,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-
+using Tizen.Content.MediaContent;
 
 internal static partial class Interop
 {
@@ -28,7 +28,7 @@ internal static partial class Interop
         internal static extern int SetCondition(IntPtr filter, string condition, int collate_type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_order")]
-        internal static extern int SetOrder(IntPtr filter, int order_type, string order_keyword, int collate_type);
+        internal static extern int SetOrder(IntPtr filter, ContentOrder order_type, string order_keyword, ContentCollation collate_type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_storage")]
         internal static extern int SetStorage(IntPtr filter, string storage_id);

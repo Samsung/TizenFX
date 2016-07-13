@@ -23,7 +23,7 @@ namespace Tizen.Content.MediaContent
     public class PlayList : ContentCollection
     {
         private readonly IDictionary<string, int> _dictionary = new Dictionary<string, int>();
-        private IntPtr _playlistHandle;
+        private IntPtr _playlistHandle = IntPtr.Zero;
         internal IntPtr Handle
         {
             get
@@ -269,6 +269,7 @@ namespace Tizen.Content.MediaContent
         public override void Dispose()
         {
             MediaContentError res = (MediaContentError)Interop.Playlist.Destroy(_playlistHandle);
+            _playlistHandle = IntPtr.Zero;
             if (res != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(res, "Failed to dispose the playlist");

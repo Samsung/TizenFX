@@ -16,7 +16,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class MediaFace : IDisposable
     {
-        private IntPtr _faceHandle;
+        private IntPtr _faceHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         internal IntPtr Handle
         {

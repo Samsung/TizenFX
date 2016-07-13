@@ -20,7 +20,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class MediaBookmark : IDisposable
     {
-        private IntPtr _bookmarkHandle;
+        private IntPtr _bookmarkHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         internal readonly uint _offset;
         internal readonly String _thumbnailPath;

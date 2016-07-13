@@ -48,7 +48,7 @@ namespace Tizen.Content.MediaContent
     /// </remarks>
     public class ContentFilter : IDisposable
     {
-        private IntPtr _filterHandle;
+        private IntPtr _filterHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         private ContentOrder _order = ContentOrder.Asc;
         private string _orderKey = "MEDIA_ID";
@@ -128,14 +128,12 @@ namespace Tizen.Content.MediaContent
             }
         }
         /// <summary>
-        /// Sets the media filter content order and order keyword.
+        /// Gets the media filter content order and order keyword.
         /// </summary>
         public ContentOrder Order
         {
             get
             {
-                //check If we can create multiple variables in a property itself..
-                //Guess.. This might be need to change as method.
                 int orderType;
                 string orderKey;
                 int collatetType;
@@ -145,21 +143,7 @@ namespace Tizen.Content.MediaContent
                 {
                     Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
                 }
-                if (orderKey.Length == 0)
-                {
-                    orderKey = _orderKey;
-                }
                 return (ContentOrder)orderType;
-            }
-            set
-            {
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, (int)value, this.OrderKey, (int)this.CollationType);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetOrder");
-                }
             }
         }
         /// <summary>
@@ -171,14 +155,13 @@ namespace Tizen.Content.MediaContent
             {
                 //check If we can create multiple variables in a property itself..
                 //Guess.. This might be need to change as method.
-                int orderType;
-                string orderKey;
+                string condition;
                 int collatetType;
                 MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType);
+                res = (MediaContentError)Interop.Filter.GetCondition(_filterHandle, out condition, out collatetType);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetCondition for CollationType");
                 }
                 return (ContentCollation)collatetType;
             }
@@ -187,23 +170,21 @@ namespace Tizen.Content.MediaContent
                 _collationType = value;
                 //TOD: check if we can convert this as method to club offset and count.
                 MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, (int)this.Order, this.OrderKey, (int)value);
+                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, this.Condition, (int)value);
                 if (res != MediaContentError.None)
                 {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetOrder");
+                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition for CollationType");
                 }
             }
         }
         /// <summary>
-        /// Sets the condition for the given filter.
+        /// Gets/Sets the condition for the given filter.
         /// </summary>
         public string Condition
         {
             get
             {
-                //check If we can create multiple variables in a property itself..
-                //Guess.. This might be need to change as method.
-                string conditionVal;
+                string conditionVal = "";
                 MediaContentError res;
                 int collatetType;
                 res = (MediaContentError)Interop.Filter.GetCondition(_filterHandle, out conditionVal, out collatetType);
@@ -262,8 +243,6 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                //check If we can create multiple variables in a property itself..
-                //Guess.. This might be need to change as method.
                 int orderType;
                 string orderKey;
                 int collatetType;
@@ -271,24 +250,9 @@ namespace Tizen.Content.MediaContent
                 res = (MediaContentError)Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType);
                 if (res != MediaContentError.None)
                 {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
-                }
-                if (orderKey.Length == 0)
-                {
-                    orderKey = _orderKey;
+                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder for OrderKey");
                 }
                 return orderKey;
-            }
-            set
-            {
-                _orderKey = value;
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, (int)this.Order, value, (int)this.CollationType);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetOrder");
-                }
             }
         }
         /// <summary>
@@ -298,6 +262,18 @@ namespace Tizen.Content.MediaContent
         {
             get; set;
         }
+        /// <summary>
+        /// SetOrderProperties like OrderType and OrderKey.
+        /// </summary>
+        public void SetOrderProperties(ContentOrder order, string oderKey)
+        {
+            MediaContentError res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, order, oderKey, CollationType);
+            if (res != MediaContentError.None)
+            {
+                throw MediaContentErrorFactory.CreateException(res, "Failed to SetOrder");
+            }
+        }
+
 
         /// <summary>
         /// Dispose API for closing the internal resources.

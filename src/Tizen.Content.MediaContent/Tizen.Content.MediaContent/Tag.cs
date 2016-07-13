@@ -19,8 +19,8 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class Tag : ContentCollection
     {
-        private IntPtr _tagHandle;
-        private string _tagName;
+        private IntPtr _tagHandle = IntPtr.Zero;
+        private string _tagName = "";
         internal IntPtr Handle
         {
             get
@@ -138,6 +138,7 @@ namespace Tizen.Content.MediaContent
         public override void Dispose()
         {
             MediaContentError res = (MediaContentError)Interop.Tag.Destroy(_tagHandle);
+            _tagHandle = IntPtr.Zero;
             if (res != MediaContentError.None)
             {
                 throw MediaContentErrorFactory.CreateException(res, "Failed to dispose the tag");
