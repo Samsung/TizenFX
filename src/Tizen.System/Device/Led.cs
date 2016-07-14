@@ -59,7 +59,7 @@ namespace Tizen.System
         public static void Play(int on, int off, Color color)
         {
             //looks like only blink option is supported. So hard coded to default blink option.
-            DeviceError res = (DeviceError)Interop.Device.DeviceLedPlayCustom(on, off, Convert.ToUInt32(color.Argb), 1);
+            DeviceError res = (DeviceError)Interop.Device.DeviceLedPlayCustom(on, off, Convert.ToUInt32(color.GetArgb()), 1);
             if (res != DeviceError.None)
             {
                 throw DeviceExceptionFactory.CreateException(res, "failed to play Led.");
