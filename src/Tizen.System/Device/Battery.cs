@@ -3,7 +3,7 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for the battery level.
+    /// Enumeration for the Battery level.
     /// </summary>
     public enum BatteryLevelStatus
     {
@@ -36,14 +36,18 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// The Battery API provides functions to get information about the battery.
+    /// The Battery class provides the Properties and Events for device battery.
     /// </summary>
     /// <remarks>
-    /// The Battery API provides the way to get the current battery capacity value,
-    /// battery state and charging state. It also supports the API for an application
-    /// to receive the battery events from the system. To receive the battery event
-    /// it should be described by the callback function.
+    /// The Battery API provides the way to get the current battery capacity value (Percent),
+    /// battery state and charging state. It also provides Events for an application
+    /// to receive the battery status change events from the device.
+    /// To receive the battery event, application should register with respective EventHandler.
     /// </remarks>
+    /// <code>
+    ///     Console.WriteLine("battery Charging state is: {0}", Tizen.System.Battery.IsCharging);
+    ///     Console.WriteLine("battery Percent is: {0}", Tizen.System.Battery.Percent);
+    /// </code>
     public static class Battery
     {
         private static readonly object s_lock = new object();
@@ -66,7 +70,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Gets the battery level.
+        /// Gets the current Battery level.
         /// </summary>
         public static BatteryLevelStatus Level
         {
@@ -82,7 +86,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Gets the charging state.
+        /// Gets the current charging state.
         /// </summary>
         public static bool IsCharging
         {
@@ -103,8 +107,19 @@ namespace Tizen.System
         /// CapacityChanged is triggered when the battery charge percentage is changed
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A BatteryCapacityChangedEventArgs object that contains changed battery capacity</param>
-
+        /// <param name="e">A BatteryCapacityChangedEventArgs object that contains changed battery capacity (Percent)</param>
+        /// <code>
+        /// public static async Task BatteryEventHandler()
+        /// {
+        ///     EventHandler<BatteryPercentChangedEventArgs> handler = null;
+        ///     handler = (object sender, BatteryChargingStateChangedEventArgs args) =>
+        ///     {
+        ///          Console.WriteLine("battery Percent is: {0}", args.Percent);
+        ///     }
+        ///     Battery.PercentChanged += handler;
+        ///     await Task.Delay(20000);
+        ///  }
+        /// </code>
         public static event EventHandler<BatteryPercentChangedEventArgs> PercentChanged
         {
             add
@@ -138,6 +153,18 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryLevelChangedEventArgs object that contains changed battery level </param>
+        /// <code>
+        /// public static async Task BatteryEventHandler()
+        /// {
+        ///     EventHandler<BatteryLevelChangedEventArgs> handler = null;
+        ///     handler = (object sender, BatteryLevelChangedEventArgs args) =>
+        ///     {
+        ///          Console.WriteLine("battery Level is: {0}", args.Level);
+        ///     }
+        ///     Battery.LevelChanged += handler;
+        ///     await Task.Delay(20000);
+        ///  }
+        /// </code>
         public static event EventHandler<BatteryLevelChangedEventArgs> LevelChanged
         {
             add
@@ -166,11 +193,23 @@ namespace Tizen.System
 
         private static event EventHandler<BatteryChargingStateChangedEventArgs> s_chargingStateChanged;
         /// <summary>
-        /// ChargingStatusChanged is triggered when the battery charging status is changed
+        /// ChargingStatusChanged is triggered when the Battery charging status is changed.
+        /// This event is triggered when Charger is connected/Disconnected.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryChargingStateChangedEventArgs object that contains changed battery charging state</param>
-
+        /// <code>
+        /// public static async Task BatteryEventHandler()
+        /// {
+        ///     EventHandler<BatteryChargingStateChangedEventArgs> handler = null;
+        ///     handler = (object sender, BatteryChargingStateChangedEventArgs args) =>
+        ///     {
+        ///          Console.WriteLine("battery Level is: {0}", args.IsCharging);
+        ///     }
+        ///     Battery.ChargingStateChanged += handler;
+        ///     await Task.Delay(20000);
+        ///  }
+        /// </code>
         public static event EventHandler<BatteryChargingStateChangedEventArgs> ChargingStateChanged
         {
             add
