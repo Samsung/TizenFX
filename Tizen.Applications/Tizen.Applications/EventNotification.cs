@@ -12,12 +12,24 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class for creating either SingleEvent notifications or MultiEvent notifications
+    /// Class for creating a simple event notification
     /// </summary>
+    /// <example>
+    /// <code>
+    /// public class EventNotificationExample
+    /// {
+    ///     /// ...
+    ///     EventNotification noti = new EventNotification();
+    ///     noti.EventCount = 2;
+    ///     noti.Title = "Unread Messages";
+    ///     NotificationManager.Post(noti);
+    /// }
+    /// </code>
+    /// </example>
     public class EventNotification : Notification
     {
         /// <summary>
-        /// Class contructor
+        /// Intializes instance of EventNotification class
         /// </summary>
         public EventNotification()
         {
@@ -49,6 +61,17 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Sets and gets the event count to be displayed on a Notification.
         /// </summary>
+        /// <value>
+        /// EventCount is a numeric value which is displayed on a notification.
+        /// For example, to show unread message count on a messenger notification event count can be set.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// EventNotification noti = new EventNotification();
+        /// noti.EventCount = 2;
+        /// Log.Debug(LogTag, "Event Count: " + noti.EventCount);
+        /// </code>
+        /// </example>
         public int EventCount
         {
             get
@@ -96,6 +119,17 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets TimeStamp. Defaults to 0 ms UTC i.e 1 Jan 1970.
         /// </summary>
+        /// <value>
+        /// Timestamp can be used to display a timestamp on a notification.
+        /// For example, in a message received notification, Timestamp can be used to display the time of message reception.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// EventNotification noti = new EventNotification();
+        /// noti.Timestamp = DateTime.Now;
+        /// Log.Debug(LogTag, "Timestamp: " + noti.Timestamp);
+        /// </code>
+        /// </example>
         public DateTime Timestamp
         {
             get
@@ -122,12 +156,27 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to add a button
+        /// Method to add a button to an event notification
         /// </summary>
         /// <param name="index">Index of the Button to be added to notification</param>
         /// <param name="imagePath">Path of Button image</param>
         /// <param name="text">Text of button</param>
         /// <param name="appControl">App control to be invoke on button click</param>
+        /// <remarks>
+        /// AddButton method can be used to add 2 different types of buttons, one for positive response and one for negative.
+        /// A button comprises of Image path for the button, Text for the button and an App control which is to be invoked on button click.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"notification.png";
+        /// string text = "Click";
+        /// AppControl clickApp = new AppControl();
+        /// clickApp.ApplicationId = "org.tizen.setting";        /// EventNotification noti = new EventNotification();
+        /// noti.AddButton(ButtonIndex.Positive, imagePath, text, clickApp);
+        /// </code>
+        /// </example>
         public void AddButton(ButtonIndex index, string imagePath = "", string text = "", AppControl appControl = null)
         {
             int ret = Interop.Notification.SetImage(_handle, (NotiImage)((int)index + (int)NotiImage.PositiveButton), imagePath);
@@ -159,9 +208,21 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to remove a button
+        /// Method to remove a button from an event notification
         /// </summary>
         /// <param name="index">Index of button to be removed</param>
+        /// <remarks>
+        /// RemoveButton method can be used to remove a button which has been added to the notification.
+        /// RemoveButton should only be called after a button has been added.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// EventNotification noti = new EventNotification();
+        /// noti.AddButton(ButtonIndex.Positive);
+        /// /// ...
+        /// noti.RemoveButton(ButtonIndex.Negative);
+        /// </code>
+        /// </example>
         public void RemoveButton(ButtonIndex index)
         {
             AppControl app = new AppControl();

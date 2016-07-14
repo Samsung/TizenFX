@@ -6,6 +6,8 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
+using System;
+
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace Tizen.Applications.Notifications
     public class ProgressNotification : Notification
     {
         /// <summary>
-        /// Class contructor
+        /// Intializes instance of ProgressNotification class
         /// </summary>
         public ProgressNotification()
         {
@@ -52,6 +54,17 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets maximum value for progress ticker. Defaults to 100.
         /// </summary>
+        /// <value>
+        /// Maximum should not be less than 0.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// ProgressNotification noti = new ProgressNotification();
+        /// noti.Maximum = 200;
+        /// Log.Debug(LogTag, "Maximum: " + noti.Maximum);
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentException">Thrown when value of Maximum being set is less than 0</exception>
         public double Maximum
         {
             get
@@ -84,6 +97,18 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// gets and sets current progress value for ticker. Defaults to 0.
         /// </summary>
+        /// <value>
+        /// ProgressValue should not be less than 0 or greater than Maximum.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// ProgressNotification noti = new ProgressNotification();
+        /// noti.Maximum = 200;
+        /// noti.ProgressValue = 100;
+        /// Log.Debug(LogTag, "Progress Value: " + noti.ProgressValue);
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentException">Thrown when value of ProgressValue being set is less than 0 or greater than value of Maximum</exception>
         public double ProgressValue
         {
             get

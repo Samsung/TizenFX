@@ -15,15 +15,15 @@ using Tizen.UI;
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Structure containing led on and off periods
+    /// Structure containing led on and off periods for making led blink
     /// </summary>
     public struct LedBlinkPeriod
     {
         /// <summary>
-        /// Constructor
+        /// Constructor to initialize values for led on and off times
         /// </summary>
-        /// <param name="on">On time of led in ms</param>
-        /// <param name="off">Off time of led in ms</param>
+        /// <param name="on">On time of led in milliseconds</param>
+        /// <param name="off">Off time of led in milliseconds</param>
         public LedBlinkPeriod(int on, int off)
         {
             OnTime = on;
@@ -31,7 +31,7 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// On time of Led in milliseconds
+        /// Time in milliseconds for which led turns on
         /// </summary>
         public int OnTime
         {
@@ -40,7 +40,7 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Off time of Led in milliseconds
+        /// Time in milliseconds for which led turns off
         /// </summary>
         public int OffTime
         {
@@ -73,6 +73,17 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Insert time of Notification. Default is 1 Jan 1970 9:00:00 until notification is posted.
         /// </summary>
+        /// <value>
+        /// InsertTime contains value at which the notification is posted.
+        /// InsertTime requires NotificationManager.Post to be called else InsertTime defaults to 1 Jan 1970 9:00:00.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Notification noti = new EventNotification();
+        /// NotificationManager.Post(noti);
+        /// Log.Debug(LogTag, "Insert Time: " + noti.InsertTime);
+        /// </code>
+        /// </example>
         public DateTime InsertTime
         {
             get
@@ -92,6 +103,14 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Title of Notification. Defaults to empty string.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// string title = "New Message";
+        /// Notification noti = new EventNotification();
+        /// noti.Title = title;
+        /// Log.Debug(LogTag, "Title: " + noti.Title);
+        /// </code>
+        /// </example>
         public string Title
         {
             get
@@ -122,6 +141,16 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Content of Notification. Defaults to empty string.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// string title = "New Message";
+        /// string content = "How are you?"
+        /// Notification noti = new EventNotification();
+        /// noti.Title = title;
+        /// noti.Content = content;
+        /// Log.Debug(LogTag, "Content: " + noti.Content);
+        /// </code>
+        /// </example>
         public string Content
         {
             get
@@ -152,6 +181,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Icon image Path. Defaults to empty string.
         /// </summary>
+        /// <value>
+        /// Image whose path is set can be seen on the notification when the Notification tray is opened.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"notification.png";
+        /// Notification noti = new EventNotification();
+        /// noti.IconPath = imagePath;
+        /// Log.Debug(LogTag, "Image Path: " + noti.IconPath);
+        /// </code>
+        /// </example>
         public string IconPath
         {
             get
@@ -182,6 +224,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Indicator icon image Path. Defaults to empty string.
         /// </summary>
+        /// <value>
+        /// Image whose path is set can be seen on the indicator when the notification is posted using NotificationManager.Post method.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"notification.png";
+        /// Notification noti = new EventNotification();
+        /// noti.IndicatorIconPath = imagePath;
+        /// Log.Debug(LogTag, "Image Path: " + noti.IndicatorIconPath);
+        /// </code>
+        /// </example>
         public string IndicatorIconPath
         {
             get
@@ -212,6 +267,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Background image Path. Defaults to string.Empty.
         /// </summary>
+        /// <value>
+        /// Image whose path is set can be seen on the notification when the Notification tray is opened.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"background.png";
+        /// Notification noti = new EventNotification();
+        /// noti.BackgroundImagePath = imagePath;
+        /// Log.Debug(LogTag, "Image Path: " + noti.BackgroundImagePath);
+        /// </code>
+        /// </example>
         public string BackgroundImagePath
         {
             get
@@ -242,6 +310,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets SubIcon image Path. Defaults to empty string.
         /// </summary>
+        /// <value>
+        /// Image whose path is set can be seen on the notification when the Notification tray is opened.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"background.png";
+        /// Notification noti = new EventNotification();
+        /// noti.SubIconPath = imagePath;
+        /// Log.Debug(LogTag, "Image Path: " + noti.SubIconPath);
+        /// </code>
+        /// </example>
         public string SubIconPath
         {
             get
@@ -272,6 +353,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Tag. Defaults to empty string.
         /// </summary>
+        /// <value>
+        /// User can set Tag to a particular string to a notification and use in conjunction with NotificationManager.Load method to retrieve its notification object.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// string tag = "firstNotification";
+        /// Notification noti = EventNotification();
+        /// noti.Tag = tag;
+        /// NotificationManager.Post(noti);
+        /// /// ...
+        /// Notification notiCopy = NotificationManager.Load/<Notification/>(tag);
+        /// </code>
+        /// </example>
         public string Tag
         {
             get
@@ -302,6 +396,14 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Areas to display the notification. Defaults to NotificaitonTray | Ticker | Indicator.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// NotificationArea area = NotificationArea.NotificationTray | NotificationArea.Indicator;
+        /// Notification noti = EventNotification();
+        /// noti.NotificationArea = area;
+        /// Log.Debug(LogTag, "Notification Areas: " + noti.NotificationArea);
+        /// </code>
+        /// </example>
         public NotificationArea NotificationArea
         {
             get
@@ -329,6 +431,12 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets the Notification Type.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// Log.Debug(LogTag, "Notification Type: " + noti.NotificationType);
+        /// </code>
+        /// </example>
         public NotificationType NotificationType
         {
             get;
@@ -336,8 +444,19 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Gets and sets the Led on and off time. Defaults to 0 for both.
+        /// Gets and sets the Led on and off times in milliseconds. Defaults to 0 for both.
         /// </summary>
+        /// <value>
+        /// LedBlinkPeriod is used with LedEnabled to make the led blink
+        /// </value>
+        /// <example>
+        /// <code>
+        /// LedBlinkPeriod period = new LedBlinkPeriod(1000, 500);
+        /// Notification noti = new ProgressNotification();
+        /// noti.LedBlinkPeriod = period;
+        /// noti.LedEnabled = true;
+        /// </code>
+        /// </example>
         public LedBlinkPeriod LedBlinkPeriod
         {
             get
@@ -366,6 +485,13 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets value to enable/disable sound for a notification. False by default.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// noti.SoundEnabled = true;
+        /// Log.Debug(LogTag, "Sound Enabled: " + noti.SoundEnabled);
+        /// </code>
+        /// </example>
         public bool SoundEnabled
         {
             get
@@ -414,6 +540,20 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Get and set path of custom sound file to be played for notification.Defaults to string.Empty.
         /// </summary>
+        /// <value>
+        /// If SoundPath is not set or set to String.Empty or null default sound is played.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string soundPath = dir.Resource+"sound.wav";
+        /// Notification noti = new ProgressNotification();
+        /// noti.SoundEnabled = true;
+        /// noti.SoundPath = soundPath;
+        /// Log.Debug(LogTag, "Sound Path: " + noti.SoundPath);
+        /// </code>
+        /// </example>
         public string SoundPath
         {
             get
@@ -460,6 +600,13 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets value to enable/disable vibration for a notification. Defaults to false;
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// noti.VibrationEnabled = true;
+        /// Log.Debug(LogTag, "Vibration Enabled: " + noti.VibrationEnabled);
+        /// </code>
+        /// </example>
         public bool VibrationEnabled
         {
             get
@@ -507,6 +654,18 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Get and sets value to enable/disable led. Defaults to false.
         /// </summary>
+        /// <value>
+        /// LedEnabled needs to be set to true as well as LedBlinkPeriod and LedColor must be set to appropriate values to make the led blink.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// noti.LedEnabled = true;
+        /// noti.LedColor = Color.Blue;
+        /// noti.LedBlinkPeriod = new LedBlinkPeriod(100, 100);
+        /// Log.Debug(LogTag, "Led Enabled: " + noti.LedEnabled);
+        /// </code>
+        /// </example>
         public bool LedEnabled
         {
             get
@@ -554,6 +713,14 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets custom led color for led. Default to Color(0, 0, 0, 0).
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// noti.LedEnabled = true;
+        /// noti.LedColor = Color.Red;
+        /// Log.Debug(LogTag, "Led Color: " + noti.LedColor.ToString());
+        /// </code>
+        /// </example>
         public Color LedColor
         {
             get
@@ -598,6 +765,16 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets value to enable/disable Volatile Display property. Defaults to false.
         /// </summary>
+        /// <value>
+        /// Volatile display property makes a notification to be cleared on reboot if it is set to true.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// Notification noti = new ProgressNotification();
+        /// noti.VolatileDisplayEnabled = true;
+        /// Log.Debug(LogTag, "Volatile Display: " + noti.VolatileDisplayEnabled);
+        /// </code>
+        /// </example>
         public bool VolatileDisplayEnabled
         {
             get
@@ -641,6 +818,16 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets and sets Thumbnail path for notification. Defaults to string.Empty.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Application app = Application.Current;
+        /// DirectoryInfo dir = app.DirectoryInfo;
+        /// string imagePath = dir.Resource+"thumb.png";
+        /// Notification noti = new EventNotification();
+        /// noti.ThumbnailPath = imagePath;
+        /// Log.Debug(LogTag, "Image Path: " + noti.ThumbnailPath);
+        /// </code>
+        /// </example>
         public string ThumbnailPath
         {
             get
@@ -674,6 +861,15 @@ namespace Tizen.Applications.Notifications
         /// Method for setting Notification Appcontrol which is invoked when notification is clicked
         /// </summary>
         /// <param name="app">AppControl object to set</param>
+        /// <example>
+        /// <code>
+        /// AppControl app = new AppControl();
+        /// app.ApplicationId = "org.tizen.setting";
+        /// Notification noti = new EventNotification();
+        /// noti.SetLaunchAppControl(app);
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentNullException">Thrown when argument is null</exception>
         public void SetLaunchAppControl(AppControl app)
         {
             if(app == null)
@@ -692,6 +888,16 @@ namespace Tizen.Applications.Notifications
         /// Method for getting Notification AppControl which will be invoked when notification is clicked
         /// </summary>
         /// <returns>AppControl object which was set</returns>
+        /// <example>
+        /// <code>
+        /// AppControl app = new AppControl();
+        /// app.ApplicationId = "org.tizen.setting";
+        /// Notification noti = new EventNotification();
+        /// noti.SetLaunchAppControl(app);
+        /// /// ...
+        /// AppControl clickApp = noti.GetLaunchAppControl();
+        /// </code>
+        /// </example>
         public AppControl GetLaunchAppControl()
         {
             SafeAppControlHandle app;

@@ -32,7 +32,7 @@ namespace Tizen.Applications.Notifications
     public enum NotificationArea
     {
         /// <summary>
-        /// Value for applying no applist. Default
+        /// Value for applying no applist.
         /// </summary>
         None = 0,
         /// <summary>
@@ -54,16 +54,16 @@ namespace Tizen.Applications.Notifications
     }
 
     /// <summary>
-    /// Enumeration for Button indices for Base Notifications
+    /// Enumeration for adding a button to an event notification
     /// </summary>
     public enum ButtonIndex : short
     {
         /// <summary>
-        /// Value for first index
+        /// Value to add a button for positive response
         /// </summary>
         Positive = 0,
         /// <summary>
-        /// Value for second index
+        /// Value to add a button for negative response
         /// </summary>
         Negative
     }
