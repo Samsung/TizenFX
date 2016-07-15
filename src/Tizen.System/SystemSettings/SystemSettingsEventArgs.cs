@@ -357,7 +357,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current country setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
         public string Value
@@ -391,7 +391,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current language setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
         public string Value
