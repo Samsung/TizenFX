@@ -22,35 +22,38 @@ namespace Tizen.Multimedia
     /// </remarks>
     public class EqualizerBand
     {
-		internal int _level;
-		internal int _frequency;
-		internal int _range;
+        internal int _level;
+        internal int _frequency;
+        internal int _range;
 
-		internal EqualizerBand(int level, int frequency, int range)
-		{
-		}
+        internal EqualizerBand(int level, int frequency, int range)
+        {
+            _level = level;
+            _frequency = frequency;
+            _range = range;
+        }
 
         /// <summary>
         /// Set/Get  new gain in decibel that is set to the given band [dB]
         /// </summary>
         /// <value> int level </value>
-        public int Level 
-		{ 
-			set
-			{
-				_level = value;
-			}
-			get
-			{
-				return _level;
-			}
-		}
+        public int Level
+        {
+            set
+            {
+                _level = value;
+            }
+            get
+            {
+                return _level;
+            }
+        }
 
         /// <summary>
         /// Get frequency of the given band [dB] .
         /// </summary>
         /// <value> int frequency</value>
-        public int Frequency 
+        public int Frequency
         {
             get
             {
@@ -62,7 +65,7 @@ namespace Tizen.Multimedia
         /// Getfrequency range of the given band [dB].
         /// </summary>
         /// <value> int range </value>
-        public int Range 
+        public int Range
         {
             get
             {

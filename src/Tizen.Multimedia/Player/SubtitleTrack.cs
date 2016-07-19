@@ -26,6 +26,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// SubtitleTrack Constructor.
+        /// </summary>
         /// <param name="code"> Language code string </param>
         /// <param name="activated"> subtitle activated true/false </param>
         public SubtitleTrack(string code, bool activated)

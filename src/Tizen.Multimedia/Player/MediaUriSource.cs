@@ -12,23 +12,30 @@ using System;
 
 namespace Tizen.Multimedia
 {
-	public class MediaUriSource : MediaSource
-	{
-		private string _uri;
+    /// <summary>
+    /// The MediaUriSource class used to set source to the player.
+    /// </summary>
+    /// <remarks>
+    /// MediaUriSource object is created using url string of the media
+    /// Then the object is set to the player as source.
+    /// </remarks>
+    public class MediaUriSource : MediaSource
+    {
+        private string _uri;
 
-		/// <summary>
-		/// Constructor </summary>
-		/// <param name="uri"> uri string </param>
-		public MediaUriSource(string uri)
-		{
-			_uri = uri;
-		}
+        /// <summary>
+        /// Constructor </summary>
+        /// <param name="uri"> uri string </param>
+        public MediaUriSource(string uri)
+        {
+            _uri = uri;
+        }
 
-		internal string GetUri()
-		{
-			return _uri;
-		}
+        internal string GetUri()
+        {
+            return _uri;
+        }
 
-	}
+    }
 }
 

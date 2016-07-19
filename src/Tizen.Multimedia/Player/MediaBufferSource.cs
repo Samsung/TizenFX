@@ -12,18 +12,25 @@ using System;
 
 namespace Tizen.Multimedia
 {
-	public class MediaBufferSource : MediaSource
-	{
-		internal byte[] _buffer;
+    /// <summary>
+    /// The MediaBufferSource class used to set source to the player.
+    /// </summary>
+    /// <remarks>
+    /// MediaBufferSource object is created using buffer containing
+    /// media content. Then the object is set to the player as source.
+    /// </remarks>
+    public class MediaBufferSource : MediaSource
+    {
+        internal byte[] _buffer;
 
-		/// <summary>
-		/// Constructor - sets media buffer </summary>
-		/// <param name="buffer"> source buffer </param>
-		public MediaBufferSource(byte[] buffer)
-		{
-			_buffer = buffer;
-		}
+        /// <summary>
+        /// Constructor - sets media buffer </summary>
+        /// <param name="buffer"> source buffer </param>
+        public MediaBufferSource(byte[] buffer)
+        {
+            _buffer = buffer;
+        }
 
-	}
+    }
 }
 

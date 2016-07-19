@@ -14,8 +14,15 @@ using System;
 
 namespace Tizen.Multimedia
 {
-	public abstract class MediaSource
-	{
-	}
+    /// <summary>
+    /// The MediaSource class used to set source to the player.
+    /// </summary>
+    /// <remarks>
+    /// This is abstract class. Actual source classes
+    /// should inherit this class.
+    /// </remarks>
+    public abstract class MediaSource
+    {
+    }
 }
 

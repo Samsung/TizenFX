@@ -18,41 +18,42 @@ namespace Tizen.Multimedia
     /// DownloadProgress
     /// </summary>
     /// <remarks>
-    /// Contains Progressive download status
+    /// Contains Progressive download status. ProgressiveDownloadStatus object is null initially.
+    /// It is created only when playback starts.
     /// </remarks>
-	public class ProgressiveDownloadStatus
+    public class ProgressiveDownloadStatus
     {
-		internal ulong _current;
-		internal ulong _totalSize;
+        internal ulong _current;
+        internal ulong _totalSize;
 
-		internal ProgressiveDownloadStatus(ulong current, ulong totalSize)
-		{
-			_current = current;
-			_totalSize = totalSize;
-		}
+        internal ProgressiveDownloadStatus(ulong current, ulong totalSize)
+        {
+            _current = current;
+            _totalSize = totalSize;
+        }
 
         /// <summary>
         /// Get current download position (bytes) 
         /// </summary>
         /// <value> current download position </value>
         public ulong Current
-		{
-			get
-			{
-				return _current;
-			}
-		}
+        {
+            get
+            {
+                return _current;
+            }
+        }
 
         /// <summary>
         /// Get total size of the file (bytes) 
         /// </summary>
         /// <value> Total size of file (bytes) </value>
         public ulong TotalSize
-		{
-			get
-			{
-				return _totalSize;
-			}
-		}
+        {
+            get
+            {
+                return _totalSize;
+            }
+        }
     }
 }
