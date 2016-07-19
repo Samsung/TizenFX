@@ -223,7 +223,7 @@ namespace Tizen.Applications
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info"));
             }
-            return await tcs.Task;
+            return await tcs.Task.ConfigureAwait(false);
         }
 
         /// <summary>
