@@ -2,7 +2,9 @@ using System;
 
 namespace Tizen.System
 {
-    // Battery
+    /// <summary>
+    /// BatteryPercentChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryPercentChanged event from Battery class.
+    /// </summary>
     public class BatteryPercentChangedEventArgs : EventArgs
     {
         internal BatteryPercentChangedEventArgs(){}
@@ -13,6 +15,9 @@ namespace Tizen.System
         public int Percent { get; internal set; }
     }
 
+    /// <summary>
+    /// BatteryLevelChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryLevelChanged event from Battery class.
+    /// </summary>
     public class BatteryLevelChangedEventArgs : EventArgs
     {
         internal BatteryLevelChangedEventArgs(){}
@@ -22,6 +27,9 @@ namespace Tizen.System
         public BatteryLevelStatus Level { get; internal set; }
     }
 
+    /// <summary>
+    /// BatteryChargingStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryChargingStateChanged event from Battery class.
+    /// </summary>
     public class BatteryChargingStateChangedEventArgs : EventArgs
     {
         internal BatteryChargingStateChangedEventArgs() {}
@@ -31,7 +39,9 @@ namespace Tizen.System
         public bool IsCharging { get; internal set; }
     }
 
-    // Display
+    /// <summary>
+    /// DisplayStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for DisplayStateChanged event from Display class.
+    /// </summary>
     public class DisplayStateChangedEventArgs : EventArgs
     {
         internal DisplayStateChangedEventArgs() {}
@@ -41,7 +51,9 @@ namespace Tizen.System
         public DisplayState State { get; internal set; }
     }
 
-    // Led
+    /// <summary>
+    /// LedBrightnessChangedEventArgs is an extended EventArgs class. This class contains event arguments for LedBrightnessChanged event from Led class.
+    /// </summary>
     public class LedBrightnessChangedEventArgs : EventArgs
     {
         internal LedBrightnessChangedEventArgs() {}

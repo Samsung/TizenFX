@@ -28,10 +28,12 @@ namespace Tizen.System
             switch (err)
             {
                 case DeviceError.InvalidParameter:
+                case DeviceError.NotInitialized:
+                    //fall through
                     exp =  new ArgumentException(msg);
                     break;
                 case DeviceError.NotSupported:
-                    exp = new InvalidOperationException(msg +" : Device does not support the Operation.");
+                    exp = new NotSupportedException(msg +" : Device does not support the Operation.");
                     break;
                 case DeviceError.AlreadyInProgress:
                     //fall through
@@ -39,12 +41,11 @@ namespace Tizen.System
                     //fall through
                 case DeviceError.OperationFailed:
                     //fall through
-                case DeviceError.NotInitialized:
-                    //fall through
-                case DeviceError.PermissionDenied:
-                    //fall through
                 case DeviceError.InvalidOperation:
                     exp = new InvalidOperationException(msg);
+                    break;
+                case DeviceError.PermissionDenied:
+                    exp = new UnauthorizedAccessException(msg);
                     break;
                 default:
                     exp = new InvalidOperationException("Unknown error occured.");
