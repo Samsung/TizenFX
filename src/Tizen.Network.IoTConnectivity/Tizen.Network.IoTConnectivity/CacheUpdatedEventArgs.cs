@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// CacheUpdatedEventArgs class. This class is an event arguments of the CacheUpdated event.
+    /// This class is an event arguments of the CacheUpdated event.
     /// </summary>
     public class CacheUpdatedEventArgs : EventArgs
     {
+        internal CacheUpdatedEventArgs() { }
+
         /// <summary>
         /// Representation property.
         /// </summary>

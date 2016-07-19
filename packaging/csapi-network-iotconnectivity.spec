@@ -1,5 +1,4 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Network.IoTConnectivity.dll
+%define BUILDCONF Debug
 
 Name:       csapi-network-iotconnectivity
 Summary:    Tizen IoT Connectivity API for C#
@@ -12,28 +11,14 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
-
-# P/Invoke Dependencies
 BuildRequires: pkgconfig(glib-2.0)
-BuildRequires: pkgconfig(capi-appfw-application)
-
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
-Requires: glib-2.0
 BuildRequires: pkgconfig(iotcon)
-# DLL Dependencies
 BuildRequires: pkgconfig(csapi-tizen)
-#BuildRequires: ...
 
 %description
-Tizen API for C#
+Tizen IoTConnectivity API for C#
 
 %package devel
 Summary:    Development package for %{name}
@@ -49,33 +34,21 @@ Development package for %{name}
 cp %{SOURCE1} .
 
 %build
-# build dll
-make
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
+xbuild Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity.csproj /p:Configuration=%{BUILDCONF}
 
 %install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
+gacutil -i Tizen.Network.IoTConnectivity/bin/%{BUILDCONF}/Tizen.Network.IoTConnectivity.dll -root "%{buildroot}%{_libdir}" -package tizen
 
 # generate pkgconfig
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
+sed -e "s#@name@#%{name}#g" \
+    -e "s#@version@#%{version}#g" \
+    -e "s#@libs@#%{pc_libs}#g" \
     %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
 
-%post
-gacutil -i %{dllpath}/%{dllname}
-
 %files
-%{dllpath}/%{dllname}
+%manifest %{name}.manifest
+%{_libdir}/mono/
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc

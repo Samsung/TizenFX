@@ -13,6 +13,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Network.IoTConnectivity
 {
+    /// <summary>
+    /// Abstract class respresenting a resource.
+    /// </summary>
     public abstract class Resource : IDisposable
     {
         private IntPtr _resourceHandle = IntPtr.Zero;
@@ -27,7 +30,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="types">Resource types</param>
         /// <param name="interfaces">Resource interfaces</param>
         /// <param name="policy">Policy input of the resoruce</param>
-        public Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
+        protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
         {
             UriPath = uri;
             Types = types;
@@ -112,25 +115,25 @@ namespace Tizen.Network.IoTConnectivity
         /// Called on the get event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public abstract Response OnGet(Request request);
+        protected abstract Response OnGet(Request request);
 
         /// <summary>
         /// Called on the put event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public abstract Response OnPut(Request request);
+        protected abstract Response OnPut(Request request);
 
         /// <summary>
         /// Called on the post event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public abstract Response OnPost(Request request);
+        protected abstract Response OnPost(Request request);
 
         /// <summary>
         /// Called on the delete event.
         /// </summary>
         /// <param name="request">Request.</param>
-        public abstract Response OnDelete(Request request);
+        protected abstract Response OnDelete(Request request);
 
         /// <summary>
         /// Called on the observing event.
@@ -138,7 +141,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="request">Request.</param>
         /// <param name="policy">Policy.</param>
         /// <param name="observeId">Observe identifier.</param>
-        public abstract bool OnObserving(Request request, ObserveType type, int observeId);
+        protected abstract bool OnObserving(Request request, ObserveType type, int observeId);
 
         public void Dispose()
         {

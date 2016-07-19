@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class to manage query of request
+    /// Class to manage query of request.
     /// </summary>
     public class ResourceQuery : IDictionary<string, string>, IDisposable
     {

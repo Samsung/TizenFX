@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// ObserverNotifiedEventArgs class. This class is an event arguments of the ObserverNotified event.
+    /// This class is an event arguments of the ObserverNotified event.
     /// </summary>
     public class ObserverNotifiedEventArgs : EventArgs
     {
+        internal ObserverNotifiedEventArgs() { }
+
         /// <summary>
         /// Result property.
         /// </summary>

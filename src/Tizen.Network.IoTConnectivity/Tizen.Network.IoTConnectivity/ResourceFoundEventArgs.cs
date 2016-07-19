@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// ResourceFoundEventArgs class. This class is an event arguments of the ResourceFound event.
+    /// This class is an event arguments of the ResourceFound event.
     /// </summary>
     public class ResourceFoundEventArgs : EventArgs
     {
+        internal ResourceFoundEventArgs() { }
+
         /// <summary>
         /// RequestId property.
         /// </summary>

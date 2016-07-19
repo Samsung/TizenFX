@@ -11,10 +11,12 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// PresenceReceivedEventArgs class. This class is an event arguments of the PresenceReceived event.
+    /// This class is an event arguments of the PresenceReceived event.
     /// </summary>
     public class PresenceReceivedEventArgs : EventArgs
     {
+        internal PresenceReceivedEventArgs() { }
+
         /// <summary>
         /// PresenceId property.
         /// </summary>
