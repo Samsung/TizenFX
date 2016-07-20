@@ -9,7 +9,7 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Observe type.
+    /// Enumeration for type of observation
     /// </summary>
     public enum ObserveType
     {

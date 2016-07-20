@@ -9,7 +9,7 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Indicates delete method of request
+    /// Enumeration for policy of observation
     /// </summary>
     public enum ObservePolicy
     {

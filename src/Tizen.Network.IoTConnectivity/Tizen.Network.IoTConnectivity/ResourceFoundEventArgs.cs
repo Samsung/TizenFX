@@ -18,15 +18,16 @@ namespace Tizen.Network.IoTConnectivity
         internal ResourceFoundEventArgs() { }
 
         /// <summary>
-        /// RequestId property.
+        /// Indicates the request id.
+        /// This is the same request id returned by the <see cref="IoTConnectivityClientManager.StartFindingResource()"/> API.
         /// </summary>
-        /// <returns>int RequestId.</returns>
         public int RequestId { get; internal set; }
 
         /// <summary>
-        /// Resource property.
+        /// Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.
         /// </summary>
-        /// <returns>RemoteResource Resource.</returns>
+        /// <seealso cref="IoTConnectivityClientManager.ResourceFound"/>
+        /// <seealso cref="IoTConnectivityClientManager.StartFindingResource()"/>
         public RemoteResource Resource { get; internal set; }
     }
 }

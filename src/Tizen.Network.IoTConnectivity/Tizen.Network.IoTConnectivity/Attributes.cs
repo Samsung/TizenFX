@@ -15,6 +15,8 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// This class represents current attributes of a resource.
+    /// It provides API to manage attributes.
+    /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
     public class Attributes : IDictionary<string, object>, IDisposable
     {
@@ -23,8 +25,11 @@ namespace Tizen.Network.IoTConnectivity
         private bool _disposed = false;
 
         /// <summary>
-        /// Constructor
+        /// The Attributes constructor
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
+        /// </code>
         public Attributes()
         {
             int ret = Interop.IoTConnectivity.Common.Attributes.Create(out _resourceAttributesHandle);
@@ -47,14 +52,23 @@ namespace Tizen.Network.IoTConnectivity
             SetAttributes(attributesHandleToClone);
         }
 
+        /// <summary>
+        /// Destructor of the Attributes class.
+        /// </summary>
         ~Attributes()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Gets the number of status elements
+        /// Gets the number of keys
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        /// attributes.Add("brightness", 50);
+        /// var count = attributes.Count;
+        /// Console.WriteLine("There are {0} keys in the attribute object", count);
+        /// </code>
         public int Count
         {
             get
@@ -64,8 +78,16 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Represents whether Attributes is readonly
+        /// Represents whether attribute is readonly
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.IsReadOnly)
+        ///     Console.WriteLine("Read only attribute");
+        /// </code>
         public bool IsReadOnly
         {
             get
@@ -75,8 +97,16 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Contains all the status keys
+        /// Contains all the attribute keys
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// var keys = attributes.Keys;
+        /// Console.WriteLine("Attribute contains keys {0} and {1}", keys.ElementAt(0), keys.ElementAt(1));
+        /// </code>
         public ICollection<string> Keys
         {
             get
@@ -86,8 +116,16 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Contains all the status values
+        /// Contains all the attribute values
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// var values = attributes.Values;
+        /// Console.WriteLine("Attribute contains values {0} and {1}", values.ElementAt(0), values.ElementAt(1));
+        /// </code>
         public ICollection<object> Values
         {
             get
@@ -97,15 +135,23 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Gets or sets the status with the specified key.
+        /// Gets or sets the attribute with the specified key.
         /// </summary>
-        /// <param name="key">The key of the status to get or set.</param>
+        /// <param name="key">The key of the attribute to get or set.</param>
         /// <returns>The element with the specified key.</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
+        /// attributes["state"] = "ON";
+        /// Console.WriteLine("Attribute value for key 'state' : {0}", attributes["state"]);
+        /// </code>
         public object this[string key]
         {
             get
             {
-                return _attributes[key];
+                if (_attributes.ContainsKey(key))
+                    return _attributes[key];
+                else
+                    return null;
             }
 
             set
@@ -115,19 +161,27 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Adds status key and value as a key value pair
+        /// Adds attribute key and value as a key value pair
         /// </summary>
-        /// <param name="item">The item to add</param>
+        /// <param name="item">The key value pair to add</param>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
+        /// attributes.Add(new KeyValuePair<string, object> ("state", "ON"));
+        /// </code>
         public void Add(KeyValuePair<string, object> item)
         {
             Add(item.Key, item.Value);
         }
 
         /// <summary>
-        /// Adds status element
+        /// Adds an attribute
         /// </summary>
-        /// <param name="key">The key representing the attributes</param>
-        /// <param name="value">The value representing the attributes</param>
+        /// <param name="key">The key representing the attribute</param>
+        /// <param name="value">The value representing the attribute</param>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
+        /// attributes.Add("brightness", 50);
+        /// </code>
         public void Add(string key, object value)
         {
             int ret = 0;
@@ -213,6 +267,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears attributes collection
         /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
+        /// attributes.Add("brightness", 50);
+        /// attributes.Clear();
+        /// </code>
         public void Clear()
         {
             foreach (string key in _attributes.Keys)
@@ -228,30 +287,56 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Checks the given key value pair exists in attributes collection
+        /// Checks whether the given key value pair exists in attributes collection
         /// </summary>
         /// <param name="item">The status key value pair</param>
         /// <returns>true if exists. Otherwise, false</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.Contains(new KeyValuePair<string, object> ("dim", 10))
+        ///     Console.WriteLine("Attribute conatins pair ('dim', 10)");
+        /// </code>
         public bool Contains(KeyValuePair<string, object> item)
         {
             return _attributes.Contains(item);
         }
 
         /// <summary>
-        /// Checks the given key exists in attributes collection
+        /// Checks whether the given key exists in attributes collection
         /// </summary>
-        /// <param name="key">The status key</param>
+        /// <param name="key">The status key to look for</param>
         /// <returns>true if exists. Otherwise, false</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.ContainsKey("dim"))
+        ///     Console.WriteLine("Attribute conatins key : dim");
+        /// </code>
         public bool ContainsKey(string key)
         {
             return _attributes.ContainsKey(key);
         }
 
         /// <summary>
-        /// Copies the elements of the attributes to an Array, starting at a particular index.
+        /// Copies the elements of the attributes to an array, starting at a particular index.
         /// </summary>
         /// <param name="array">The destination array</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// KeyValuePair<string, object>[] dest = new KeyValuePair<string, object>[attributes.Count];
+        /// int index = 0;
+        /// attributes.CopyTo(dest, index);
+        /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
+        /// </code>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
             _attributes.CopyTo(array, arrayIndex);
@@ -261,43 +346,66 @@ namespace Tizen.Network.IoTConnectivity
         ///   Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns> An enumerator that can be used to iterate through the collection.</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// foreach (KeyValuePair<string, object> pair in attributes)
+        /// {
+        ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
+        /// }
+        /// </code>
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
             return _attributes.GetEnumerator();
         }
 
         /// <summary>
-        /// Removes a attributes element from collection
+        /// Removes an attribute from collection
         /// </summary>
         /// <param name="item">The attributes element to remove</param>
         /// <returns>true if operation is success. Otherwise, false</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.Remove(new KeyValuePair<string, object>("dim", 10)))
+        ///     Console.WriteLine("Remove was successful");
+        /// </code>
         public bool Remove(KeyValuePair<string, object> item)
         {
-            int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, item.Key);
-            if (ret != (int)IoTConnectivityError.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
-                throw IoTConnectivityErrorFactory.GetException(ret);
-            }
-
-            return _attributes.Remove(item);
+            return Remove(item.Key);
         }
 
         /// <summary>
-        ///  Removes a attributes element from collection using key
+        ///  Removes an attribute from collection using key
         /// </summary>
         /// <param name="key">The attributes element to remove</param>
-        /// <returns>true if operation is success. Otherwise, false</returns>
+        /// <returns>true if operation is successful, Otherwise, false</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.Remove("state"))
+        ///     Console.WriteLine("Remove was successful");
+        /// </code>
         public bool Remove(string key)
         {
-            int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
-            if (ret != (int)IoTConnectivityError.None)
+            bool isRemoved = _attributes.Remove(key);
+            if (isRemoved)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
-                throw IoTConnectivityErrorFactory.GetException(ret);
+                int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
+                    throw IoTConnectivityErrorFactory.GetException(ret);
+                }
             }
 
-            return _attributes.Remove(key);
+            return isRemoved;
         }
 
         /// <summary>
@@ -306,22 +414,41 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value"> The value associated with the specified key</param>
         /// <returns> true if the attributes collection contains an element with the specified key; otherwise, false.</returns>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" }
+        /// };
+        /// object value;
+        /// var isPresent = attributes.TryGetValue("state", out value);
+        /// if (isPresent)
+        ///     Console.WriteLine("value : {0}", value);
+        /// </code>
         public bool TryGetValue(string key, out object value)
         {
             return _attributes.TryGetValue(key, out value);
         }
 
+        /// <summary>
+        ///   Returns an enumerator that iterates through the collection.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _attributes.GetEnumerator();
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

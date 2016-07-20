@@ -17,7 +17,7 @@ internal static partial class Interop
         {
             internal static partial class DeviceInformation
             {
-                internal delegate void DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
+                internal delegate bool DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
 
                 internal enum Property
                 {
@@ -36,7 +36,7 @@ internal static partial class Interop
 
             internal static partial class PlatformInformation
             {
-                internal delegate void PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
+                internal delegate bool PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
 
                 internal enum Propery
                 {
@@ -162,11 +162,8 @@ internal static partial class Interop
 
             internal static partial class IoTCon
             {
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_secure_initialize")]
-                internal static extern int SecureInitialize(string filePath);
-
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_initialize")]
-                internal static extern int Initialize();
+                internal static extern int Initialize(string filePath);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_deinitialize")]
                 internal static extern void Deinitialize();
@@ -190,7 +187,7 @@ internal static partial class Interop
             internal static partial class ResourceFinder
             {
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                internal delegate void FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
+                internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_resource")]
                 internal static extern int AddResourceFoundCb(string hostAddress, int connectivityType, string resourceType, bool isSecure, FoundResourceCallback cb, IntPtr userData);

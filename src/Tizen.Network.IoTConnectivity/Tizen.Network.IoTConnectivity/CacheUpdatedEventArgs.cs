@@ -18,9 +18,8 @@ namespace Tizen.Network.IoTConnectivity
         internal CacheUpdatedEventArgs() { }
 
         /// <summary>
-        /// Representation property.
+        /// Indicates the updated representation of the resource
         /// </summary>
-        /// <returns>Representation Representation.</returns>
         public Representation Representation { get; internal set; }
     }
 }

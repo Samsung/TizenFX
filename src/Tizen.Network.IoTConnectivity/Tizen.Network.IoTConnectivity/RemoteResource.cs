@@ -16,6 +16,7 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// This class represents a remote resource.
+    /// It provides APIs to manage remote resource.
     /// </summary>
     public class RemoteResource : IDisposable
     {
@@ -36,8 +37,19 @@ namespace Tizen.Network.IoTConnectivity
         private EventHandler<StateChangedEventArgs> _stateChangedEventHandler;
 
         /// <summary>
-        /// Constructor
+        /// Creates a remote resource instance
         /// </summary>
+        /// <remarks>
+        /// To use this API, you should provide all of the details required to correctly contact and
+        /// observe the object.\n
+        /// If not, you should discover the resource object manually.\n
+        /// The @a policy can contain multiple policies like ResourcePolicy.Discoverable | ResourcePolicy.Observable.
+        /// </remarks>
+        /// <param name="hostAddress">The host address of the resource</param>
+        /// <param name="uriPath">The URI path of the resource</param>
+        /// <param name="policy">The policies of the resource</param>
+        /// <param name="resourceTypes">The resource types of the resource</param>
+        /// <param name="resourceInterfaces">The resource interfaces of the resource</param>
         public RemoteResource(string hostAddress, string uriPath, ResourcePolicy policy, ResourceTypes resourceTypes, ResourceInterfaces resourceInterfaces)
         {
             if (hostAddress == null || uriPath == null || resourceTypes == null || resourceInterfaces == null)
@@ -67,18 +79,21 @@ namespace Tizen.Network.IoTConnectivity
             SetRemoteResource();
         }
 
+        /// <summary>
+        /// Destructor of the RemoteResource class.
+        /// </summary>
         ~RemoteResource()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Event that is called to cache resource attribute's
+        /// Event that is invoked with cached resource attributes
         /// </summary>
         public event EventHandler<CacheUpdatedEventArgs> CacheUpdated;
 
         /// <summary>
-        /// Observe event on the resource
+        /// Observe event on the resource sent by the server
         /// </summary>
         public event EventHandler<ObserverNotifiedEventArgs> ObserverNotified;
 
@@ -160,8 +175,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Cache enabled property
+        /// Indicates the CacheEnabled status of the remote resource.
         /// </summary>
+        /// <remarks>
+        /// Client can start caching only when this is set true. Set it to false to stop caching the resource attributes.
+        /// </remarks>
         public bool CacheEnabled
         {
             get
@@ -181,6 +199,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Time interval of monitoring and caching API
         /// </summary>
+        /// <remarks>
+        /// Default time interval is 10 seconds.\n
+        /// Seconds for time interval (must be in range from 1 to 3600)
+        /// </remarks>
         public int TimeInterval
         {
             get
@@ -197,7 +219,7 @@ namespace Tizen.Network.IoTConnectivity
             set
             {
                 int ret = (int)IoTConnectivityError.InvalidParameter;
-                if (value < TimeOutMax && value > 0)
+                if (value <= TimeOutMax && value > 0)
                 {
                     ret = Interop.IoTConnectivity.Client.RemoteResource.SetTimeInterval(value);
                 }
@@ -215,7 +237,7 @@ namespace Tizen.Network.IoTConnectivity
         public string DeviceId { get; private set; }
 
         /// <summary>
-        /// Gets cached representation of the remote resource
+        /// Gets cached representation from the remote resource
         /// </summary>
         public Representation CachedRepresentation()
         {
@@ -232,10 +254,16 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Registers the observe callback on the resource
+        /// Starts observing on the resource
         /// </summary>
+        /// <remarks>
+        /// When server sends notification message, <see cref="ObserverNotified"/> will be called.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
         /// <param name="policy">The type to specify how client wants to observe</param>
-        /// <param name="query">The ResourceQuery to send to server</param>
+        /// <param name="query">The query to send to server</param>
         public void StartObserving(ObservePolicy policy, ResourceQuery query = null)
         {
             _observeCallback = (IntPtr resource, int err, int sequenceNumber, IntPtr response, IntPtr userData) =>
@@ -290,8 +318,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Deregisters the observe callback on the resource
+        /// Stops observing on the resource
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
         public void StopObserving()
         {
             int ret = Interop.IoTConnectivity.Client.RemoteResource.DeregisterObserve(_remoteResourceHandle);
@@ -303,10 +334,13 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Gets the attributes of a resource
+        /// Gets the attributes of a resource, asynchronously
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
         /// <param name="query">The ResourceQuery to send to server</param>
-        /// <returns></returns>
+        /// <returns>Remote response with result and representation</returns>
         public async Task<RemoteResponse> GetAsync(ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -355,9 +389,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Puts the representation of a resource, asynchronously.
         /// </summary>
-        /// <param name="representation">Resource representation</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="representation">Resource representation to put</param>
         /// <param name="query">The ResourceQuery to send to server</param>
-        /// <returns></returns>
+        /// <returns>Remote response with result and representation</returns>
         public async Task<RemoteResponse> PutAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -409,11 +446,14 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Post request on a resource
+        /// Post request on a resource, asynchronously
         /// </summary>
-        /// <param name="representation">Resource representation</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="representation">Resource representation of request</param>
         /// <param name="query">The ResourceQuery to send to server</param>
-        /// <returns></returns>
+        /// <returns>Remote response with result and representation</returns>
         public async Task<RemoteResponse> PostAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -430,7 +470,6 @@ namespace Tizen.Network.IoTConnectivity
                 {
                     _responseCallbacksMap.Remove(responseCallbackId);
                 }
-
                 if (responseHandle != IntPtr.Zero)
                 {
                     try
@@ -448,7 +487,6 @@ namespace Tizen.Network.IoTConnectivity
                     tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
                 }
             };
-
             IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Post(_remoteResourceHandle, representation._representationHandle, queryHandle, _responseCallbacksMap[id], id);
             if (errCode != (int)IoTConnectivityError.None)
@@ -460,9 +498,12 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Delete the resource
+        /// Deletes the resource, asynchronously
         /// </summary>
-        /// <returns></returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <returns>Remote response with result and representation</returns>
         public async Task<RemoteResponse> DeleteAsync()
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -513,6 +554,9 @@ namespace Tizen.Network.IoTConnectivity
             return await tcsRemoteResponse.Task;
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -558,6 +602,10 @@ namespace Tizen.Network.IoTConnectivity
             return type;
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

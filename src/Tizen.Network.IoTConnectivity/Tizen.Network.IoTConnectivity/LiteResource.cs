@@ -6,22 +6,44 @@
 /// it only in accordance with the terms of the license agreement
 /// you entered into with Samsung.
 
-using System.Collections.Generic;
 
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class represnets a lite resource.
+    /// This class represents a lite resource.
+    /// It provides APIs to encapsulate resources.
+    /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
     public class LiteResource : Resource
     {
         /// <summary>
-        /// Constructor
+        /// The LiteResource constructor
         /// </summary>
+        /// <remarks>
+        /// Creates a lite resource which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource()"/>.\n
+        /// When client requests some operations, it send a response to client, automatically.\n
+        /// @a uri length must be less than 128.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
         /// <param name="uri">The uri path of the lite resource</param>
-        /// <param name="types">Resource type</param>
+        /// <param name="types">The type of the resource</param>
         /// <param name="policy">Policy of the resource</param>
         /// <param name="attribs">Optional attributes of the resource</param>
+        /// <pre>
+        /// IoTConnectivityServerManager.Initialize() should be called to initialize
+        /// </pre>
+        /// <seealso cref="ResourceTypes"/>
+        /// <seealso cref="ResourcePolicy"/>
+        /// <seealso cref="Attributes"/>
+        /// <code>
+        /// List<string> list = new List<string>() { "org.tizen.light" };
+        /// Attributes attributes = new Attributes() {
+        ///     { "state", "ON" }
+        /// };
+        /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable, attributes);
+        /// </code>
         public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
@@ -29,24 +51,48 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// The attributes of the lite resource
+        /// Gets or sets the attributes of the lite resource
         /// </summary>
+        /// <code>
+        /// List<string> list = new List<string>() { "org.tizen.light" };
+        /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable);
+        /// Attributes attributes = new Attributes() {
+        ///     { "state", "ON" }
+        /// };
+        /// res.Attributes = newAttributes;
+        /// foreach (KeyValuePair<string, object> pair in res.Attributes)
+        /// {
+        ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
+        /// }
+        /// </code>
         public Attributes Attributes { get; set; }
 
         /// <summary>
-        /// The method to accept post request
+        /// Decides whether to accept or reject a post request.
         /// </summary>
+        /// <remarks>
+        /// Child classes of this class can override this method to accept or reject post request.
+        /// </remarks>
         /// <param name="attribs">The new attributes of the lite resource</param>
         /// <returns>true to accept post request, false to reject it</returns>
+        /// <code>
+        /// public class MyLightResource : LiteResource
+        /// {
+        ///     protected override bool OnPost(Attributes attributes)
+        ///     {
+        ///         object newAttributes;
+        ///         attributes.TryGetValue("LIGHT_ATTRIBUTE", out newAttributes);
+        ///         if((int)newAttributes == 1)
+        ///             return true;
+        ///         return false;
+        ///     }
+        /// }
+        /// </code>
         protected virtual bool OnPost(Attributes attribs)
         {
             return true;
         }
 
-        /// <summary>
-        /// Called on the get event.
-        /// </summary>
-        /// <param name="request">Request.</param>
         protected sealed override Response OnGet(Request request)
         {
             Representation representation = new Representation()
@@ -66,10 +112,6 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
-        /// <summary>
-        /// Called on the put event.
-        /// </summary>
-        /// <param name="request">Request.</param>
         protected sealed override Response OnPut(Request request)
         {
             Response response = new Response();
@@ -77,10 +119,6 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
-        /// <summary>
-        /// Called on the post event.
-        /// </summary>
-        /// <param name="request">Request.</param>
         protected sealed override Response OnPost(Request request)
         {
             if (OnPost(request.Representation.Attributes))
@@ -108,10 +146,6 @@ namespace Tizen.Network.IoTConnectivity
             };
         }
 
-        /// <summary>
-        /// Called on the delete event.
-        /// </summary>
-        /// <param name="request">Request.</param>
         protected sealed override Response OnDelete(Request request)
         {
             Response response = new Response();
@@ -119,12 +153,6 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
-        /// <summary>
-        /// Called on the observing event.
-        /// </summary>
-        /// <param name="request">Request.</param>
-        /// <param name="observerType">Observer type</param>
-        /// <param name="observeId">Observe identifier.</param>
         protected sealed override bool OnObserving(Request request, ObserveType observeType, int observeId)
         {
             return true;

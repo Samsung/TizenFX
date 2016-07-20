@@ -9,7 +9,7 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for result response
+    /// Enumeration for result of response
     /// </summary>
     public enum ResponseCode
     {
@@ -18,15 +18,15 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         Ok = 0,
         /// <summary>
-        /// Indicates result of response for something error
+        /// Indicates result of response for some error
         /// </summary>
         Error,
         /// <summary>
-        /// Indicates result of response for resource has created
+        /// Indicates result of response for created resource
         /// </summary>
         Created,
         /// <summary>
-        ///  Indicates result of response for resource has deleted
+        ///  Indicates result of response for deleted resource
         /// </summary>
         Deleted,
         /// <summary>

@@ -12,26 +12,46 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// This class represents response from a resource.
+    /// It provides APIs to manage response.
     /// </summary>
     public class Response : IDisposable
     {
         private bool _disposed = false;
 
+        /// <summary>
+        /// Constructor of Response
+        /// </summary>
+        /// <code>
+        /// Response response = new Response();
+        /// </code>
+        public Response() { }
+
+        /// <summary>
+        /// Destructor of the Response class.
+        /// </summary>
         ~Response()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Result corresponding to a request
+        /// Gets or sets the result from/into the reponse
         /// </summary>
         public ResponseCode Result { get; set; }
 
         /// <summary>
-        /// Representation of the resource
+        /// Gets or sets the representation from/into the reponse
         /// </summary>
         public Representation Representation { get; set; }
 
+        /// <summary>
+        /// Gets or sets the options from/into the reponse
+        /// </summary>
+        public ResourceOptions Options { get; set; }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -67,6 +87,17 @@ namespace Tizen.Network.IoTConnectivity
                 }
             }
 
+            if (Options != null)
+            {
+                ret = Interop.IoTConnectivity.Server.Response.SetOptions(responseHandle, Options._resourceOptionsHandle);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to send response");
+                    Interop.IoTConnectivity.Server.Response.Destroy(responseHandle);
+                    return false;
+                }
+            }
+
             ret = Interop.IoTConnectivity.Server.Response.Send(responseHandle);
             if (ret != (int)IoTConnectivityError.None)
             {
@@ -79,6 +110,10 @@ namespace Tizen.Network.IoTConnectivity
             return true;
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

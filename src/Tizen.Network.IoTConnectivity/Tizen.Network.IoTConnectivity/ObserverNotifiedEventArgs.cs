@@ -18,15 +18,13 @@ namespace Tizen.Network.IoTConnectivity
         internal ObserverNotifiedEventArgs() { }
 
         /// <summary>
-        /// Result property.
+        /// Result of the observe response
         /// </summary>
-        /// <returns>ResponseCode Result.</returns>
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
-        /// Representation property.
+        /// Representation of the resource being observed.
         /// </summary>
-        /// <returns>Representation Representation.</returns>
         public Representation Representation { get; internal set; }
     }
 }

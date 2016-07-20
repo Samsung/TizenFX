@@ -18,27 +18,23 @@ namespace Tizen.Network.IoTConnectivity
         internal PresenceReceivedEventArgs() { }
 
         /// <summary>
-        /// PresenceId property.
+        /// Indicates request id of presence event.
         /// </summary>
-        /// <returns>int PresenceId.</returns>
         public int PresenceId { get; internal set; }
 
         /// <summary>
-        /// EventType property.
+        /// Indicates event type
         /// </summary>
-        /// <returns>PresenceEventType EventType.</returns>
         public PresenceEventType EventType { get; internal set; }
 
         /// <summary>
-        /// HostAddress property.
+        /// Indicates host address of resource
         /// </summary>
-        /// <returns>string HostAddress.</returns>
         public string HostAddress { get; internal set; }
 
         /// <summary>
-        /// Type property.
+        /// Indicates type of the resource
         /// </summary>
-        /// <returns>string Type.</returns>
         public string Type { get; internal set; }
     }
 }

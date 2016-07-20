@@ -13,10 +13,13 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// IoT connectivity client manager.
+    /// IoT connectivity client manager consists of client side APIs.
     /// </summary>
     public static class IoTConnectivityClientManager
     {
+        /// <summary>
+        /// The IP Address for multicast
+        /// </summary>
         public const string MulticastAddress = null;
 
         private static int s_presenceListenerId = 1;
@@ -29,33 +32,49 @@ namespace Tizen.Network.IoTConnectivity
         private static Dictionary<IntPtr, Interop.IoTConnectivity.Client.PlatformInformation.PlatformInformationCallback> s_platformInformationCallbacksMap = new Dictionary<IntPtr, Interop.IoTConnectivity.Client.PlatformInformation.PlatformInformationCallback>();
 
         /// <summary>
-        /// presence event on the resource
+        /// PresenceReceived event. This event is occurred when server starts sending presence of a resource.
         /// </summary>
         public static event EventHandler<PresenceReceivedEventArgs> PresenceReceived;
 
         /// <summary>
-        /// Resource found event handler
+        /// ResourceFound event. This event is occurred when a resource is found from the remote server
+        /// after sending request using API StartFindingResource().
         /// </summary>
         public static event EventHandler<ResourceFoundEventArgs> ResourceFound;
 
         /// <summary>
-        /// PlatformInformationFound event handler
+        /// PlatformInformationFound event. This event is occurred when platform information is found
+        /// after sending request using API StartFindingPlatformInformation().
         /// </summary>
         public static event EventHandler<PlatformInformationFoundEventArgs> PlatformInformationFound;
 
         /// <summary>
-        /// DeviceInformationFound event handler
+        /// DeviceInformationFound event. This event is occurred when device information is found
+        /// after sending request using API StartFindingDeviceInformation().
         /// </summary>
         public static event EventHandler<DeviceInformationFoundEventArgs> DeviceInformationFound;
 
         /// <summary>
-        /// FoundError event handler
+        /// FindingError event. This event is occurred when an error is found.
         /// </summary>
         public static event EventHandler<FindingErrorOccurredEventArgs> FindingErrorOccurred;
 
         /// <summary>
-        /// Timeout property
+        /// Timeout in seconds
         /// </summary>
+        /// <remarks>
+        /// Value to be set must be in range from 1 to 3600. Default timeout interval value is 30.\n
+        /// Sets/gets the timeout of StartFindingResource(), StartFindingDeviceInformation(), StartFindingPlatformInformation(),
+        /// RemoteResource.GetAsync(), RemoteResource.PutAsync(), RemoteResource.PostAsync() and RemoteResource.DeleteAsync() APIs.\n
+        /// Setter can throw exception.
+        /// </remarks>
+        /// <pre>
+        /// Initialize() should be called to initialize
+        /// </pre>
+        /// <code>
+        /// IoTConnectivityClientManager.Initialize();
+        /// IoTConnectivityClientManager.TimeOut = 120;
+        /// </code>
         public static int TimeOut
         {
             get
@@ -81,8 +100,22 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Timeout property
+        /// Polling interval of IoTConnectivity
         /// </summary>
+        /// <remarks>
+        /// Sets/Gets the polling inerval(milliseconds) of IoTCon. Default value is 100 milliseconds.
+        /// Value to be set must be in range from 1 to 999. The closer to 0, the faster it operates.
+        /// Setter is invoked immediately for changing the interval.
+        /// If you want the faster operation, we recommend you set 10 milliseconds for polling interval.
+        /// Setter can throw exception.
+        /// </remarks>
+        /// <pre>
+        /// Initialize() should be called to initialize
+        /// </pre>
+        /// <code>
+        /// IoTConnectivityClientManager.Initialize();
+        /// IoTConnectivityClientManager.PollingInterval = 100;
+        /// </code>
         public static int PollingInterval
         {
             get
@@ -108,11 +141,30 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Connects to the iotcon service
+        /// Initializes IoTCon.
+        /// Call this function to start IoTCon.
         /// </summary>
-        public static void Initialize()
+        /// <remarks>
+        /// @a filePath point to a file for handling secure virtual resources.
+        /// The file that is CBOR(Concise Binary Object Representation)-format must already exist
+        /// in @a filePath. We recommend to use application-local file for @a filePath.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/network.get \n
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="filePath">The file path to point to storage for handling secure virtual resources.</param>
+        /// <post>
+        /// You must call Deinitialize() if IoTCon API is no longer needed.
+        /// </post>
+        /// <seealso cref="Deinitialize()"/>
+        /// <code>
+        /// string filePath = "../../res/iotcon-test-svr-db-client.dat";
+        /// IoTConnectivityClientManager.Initialize(filePath);
+        /// </code>
+        public static void Initialize(string filePath)
         {
-            int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize();
+            int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize(filePath);
             if (ret != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to initialize");
@@ -121,21 +173,19 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Initializes IoTCon with secure mode.
+        /// Deinitializes IoTCon.
         /// </summary>
-        public static void SecureInitialize(string filePath)
-        {
-            int ret = Interop.IoTConnectivity.Client.IoTCon.SecureInitialize(filePath);
-            if (ret != (int)IoTConnectivityError.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to initialize securely");
-                throw IoTConnectivityErrorFactory.GetException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Disconnects from the iotcon service
-        /// </summary>
+        /// <remarks>
+        /// This API must be called if IoTCon API is no longer needed.
+        /// </remarks>
+        /// <pre>
+        /// Initialize() should be called to initialize.
+        /// </pre>
+        /// <seealso cref="Initialize()"/>
+        /// <seealso cref="SecureInitialize()"/>
+        /// <code>
+        /// IoTConnectivityClientManager.Deinitialize();
+        /// </code>
         public static void Deinitialize()
         {
             Interop.IoTConnectivity.Client.IoTCon.Deinitialize();
@@ -144,6 +194,16 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Invokes a next message from a queue for receiving messages from others, immediately.
         /// </summary>
+        /// <remarks>
+        /// This API invokes a next message from a queue for receiving messages from others, immediately.
+        /// After calling the API, it continues the polling with existing interval.
+        /// </remarks>
+        /// <pre>
+        /// Initialize() should be called to initialize.
+        /// </pre>
+        /// <code>
+        /// IoTConnectivityClientManager.InvokePolling();
+        /// </code>
         public static void InvokePolling()
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.InvokePolling();
@@ -157,9 +217,41 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts receiving presence events
         /// </summary>
-        /// <returns>
-        /// PresenceId
-        /// </returns>
+        /// <remarks>
+        /// Sends request to receive presence to an interested server's resource with resourceType.
+        /// If succeeded, <see cref="PresenceReceived"/> event handler will be triggered when the server sends presence.
+        /// A server sends presence events when adds / removes / alters a resource or start / stop presence.\n
+        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// The length of @ resourceType should be less than or equal to 61. The @ resourceType must start with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="hostAddress">The address or addressable name of the server</param>
+        /// <param name="resourceType">A resource type that a client is interested in</param>
+        /// <returns>PresenceId - An identifier for this request</returns>
+        /// <pre>Initialize() should be called to initialize.</pre>
+        /// <post>
+        /// When the resource receive presence, <see cref="PresenceReceived"/> event handler will be invoked.\n
+        /// You must destroy presence by calling StopReceivingPresence() if presence event is no longer needed.
+        /// </post>
+        /// <seealso cref="IoTConnectivityServerManager.StartSendingPresence()"/>
+        /// <seealso cref="IoTConnectivityServerManager.StopSendingPresence()"/>
+        /// <seealso cref="StopReceivingPresence()"/>
+        /// <seealso cref="PresenceReceived"/>
+        /// <code>
+        /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
+        ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
+        /// }
+        /// EventHandler<FindingErrorOccurredEventArgs> errorHandler = (sender, e) => {
+        ///     Console.Log("Found error :" + e.Error.Message);
+        /// }
+        /// IoTConnectivityClientManager.PresenceReceived += handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// // Do not forget to remove these event handlers when they are not required any more.
+        /// int id = IoTConnectivityClientManager.StartReceivingPresence(IoTConnectivityClientManager.MulticastAddress, "oic.iot.door");
+        /// </code>
         public static int StartReceivingPresence(string hostAddress, string resourceType)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
@@ -230,6 +322,36 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Stops receiving presence events
         /// </summary>
+        /// <remarks>
+        /// Sends request to not to receive server's presence any more.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="presenceId">The start presence request identifier</param>
+        /// <pre>
+        /// Initialize() should be called to initialize.
+        /// </pre>
+        /// <seealso cref="IoTConnectivityServerManager.StartSendingPresence()"/>
+        /// <seealso cref="IoTConnectivityServerManager.StopSendingPresence()"/>
+        /// <seealso cref="StartReceivingPresence()"/>
+        /// <seealso cref="PresenceReceived"/>
+        /// <code>
+        /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
+        ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
+        /// }
+        /// EventHandler<FindingErrorOccurredEventArgs> errorHandler = (sender, e) => {
+        ///     Console.Log("Found error :" + e.Error.Message);
+        /// }
+        /// IoTConnectivityClientManager.PresenceReceived += handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// int id = IoTConnectivityClientManager.StartReceivingPresence(IoTConnectivityClientManager.MulticastAddress, "oic.iot.door");
+        /// await Task.Delay(5000); // Do other things here
+        /// // Call StopReceivingPresence() when receiving presence is not required any more
+        /// IoTConnectivityClientManager.PresenceReceived -= handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred -= errorHandler;
+        /// IoTConnectivityClientManager.StopReceivingPresence(id);
+        /// </code>
         public static void StopReceivingPresence(int presenceId)
         {
             if (s_presenceHandlesMap.ContainsKey((IntPtr)presenceId))
@@ -258,11 +380,41 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Starts finding resource events
+        /// Starts finding resources.
         /// </summary>
-        /// <returns>
-        /// RequestId
-        /// </returns>
+        /// <remarks>
+        /// Sends request to find a resource of @a hostAddress server with @a resourceType.
+        /// If succeeded, <see cref="ResourceFound"/> event handler will be triggered with information of the resource.\n
+        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// The length of @a resourceType should be less than or equal to 61. The @ resourceType must start with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="hostAddress">The address or addressable name of the server</param>
+        /// <param name="resourceType">A resource type specified as a filter for the resource</param>
+        /// <param name="isSecure">The flag for secure communication with the server</param>
+        /// <returns>RequestId - An identifier for this request</returns>
+        /// <pre>Initialize() should be called to initialize.</pre>
+        /// <post>
+        /// When the resource is found, <see cref="ResourceFound"/> event handler will be invoked.
+        /// </post>
+        /// <seealso cref="ResourceFound"/>
+        /// <seealso cref="ResourceFoundEventArgs"/>
+        /// <seealso cref="TimeOut"/>
+        /// <code>
+        /// EventHandler<ResourceFoundEventArgs> handler = (sender, e) => {
+        ///     Console.Log("Found resource at host address :" + e.Resource.HostAddress + ", uri :" + e.Resource.UriPath);
+        /// }
+        /// EventHandler<FindingErrorOccurredEventArgs> errorHandler = (sender, e) => {
+        ///     Console.Log("Found error :" + e.Error.Message);
+        /// }
+        /// IoTConnectivityClientManager.ResourceFound += handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// // Do not forget to remove these event handlers when they are not required any more.
+        /// int id = IoTConnectivityClientManager.StartFindingResource(null, "oic.iot.door");
+        /// </code>
         public static int StartFindingResource(string hostAddress, string resourceType, bool isSecure = false)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
@@ -284,6 +436,9 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_resourceFoundCallbacksMap[id] = (IntPtr remoteResourceHandle, int result, IntPtr userData) =>
             {
+                if (ResourceFound == null)
+                    return false;
+
                 int requestId = (int)userData;
                 if (result == (int)IoTConnectivityError.None)
                 {
@@ -297,7 +452,7 @@ namespace Tizen.Network.IoTConnectivity
                         catch (Exception exp)
                         {
                             Log.Error(IoTConnectivityErrorFactory.LogTag, "Can't clone RemoteResource's handle: " + exp.Message);
-                            return;
+                            return true;
                         }
                         ResourceFoundEventArgs e = new ResourceFoundEventArgs()
                         {
@@ -309,7 +464,6 @@ namespace Tizen.Network.IoTConnectivity
                     else
                     {
                         Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
-                        return;
                     }
                 }
                 else
@@ -322,6 +476,7 @@ namespace Tizen.Network.IoTConnectivity
                         s_resourceFoundCallbacksMap.Remove(id);
                     }
                 }
+                return true;
             };
             int errorCode = Interop.IoTConnectivity.Client.ResourceFinder.AddResourceFoundCb(hostAddress, (int)connectivityType, resourceType, isSecure, s_resourceFoundCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
@@ -337,11 +492,38 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Starts finding device information events
+        /// Starts finding the device information of remote server.
         /// </summary>
-        /// <returns>
-        /// RequestId
-        /// </returns>
+        /// <remarks>
+        /// Requests server for device information.
+        /// If succeeded, <see cref="DeviceInformationFound"/> event handler will be triggered with information of the device.\n
+        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="hostAddress">The host address of remote server</param>
+        /// <returns>RequestId - An identifier for this request</returns>
+        /// <pre>Initialize() should be called to initialize.</pre>
+        /// <post>
+        /// <see cref="DeviceInformationFound" /> event handler will be invoked.
+        /// </post>
+        /// <seealso cref="IoTConnectivityServerManager.SetDeviceName()"/>
+        /// <seealso cref="DeviceInformationFound"/>
+        /// <seealso cref="DeviceInformationFoundEventArgs"/>
+        /// <seealso cref="TimeOut"/>
+        /// <code>
+        /// EventHandler<DeviceInformationFoundEventArgs> handler = (sender, e) => {
+        ///     Console.Log("Device information found, id : " + e.RequestId + ", name : " + e.Name);
+        /// }
+        /// EventHandler<FindingErrorOccurredEventArgs> errorHandler = (sender, e) => {
+        ///     Console.Log("Found error :" + e.Error.Message);
+        /// }
+        /// IoTConnectivityClientManager.DeviceInformationFound += handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// // Do not forget to remove these event handlers when they are not required any more.
+        /// int id = IoTConnectivityClientManager.StartFindingDeviceInformation(IoTConnectivityClientManager.MulticastAddress);
+        /// </code>
         public static int StartFindingDeviceInformation(string hostAddress)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
@@ -358,6 +540,9 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_deviceInformationCallbacksMap[id] = (IntPtr deviceInfoHandle, int result, IntPtr userData) =>
             {
+                if (DeviceInformationFound == null)
+                    return false;
+
                 int requestId = (int)userData;
                 if (result == (int)IoTConnectivityError.None)
                 {
@@ -367,14 +552,13 @@ namespace Tizen.Network.IoTConnectivity
                         if (e == null)
                         {
                             Log.Error(IoTConnectivityErrorFactory.LogTag, "Can't get DeviceInformationFoundEventArgs");
-                            return;
+                            return true;
                         }
                         DeviceInformationFound?.Invoke(null, e);
                     }
                     else
                     {
                         Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
-                        return;
                     }
                 }
                 else
@@ -387,6 +571,7 @@ namespace Tizen.Network.IoTConnectivity
                         s_deviceInformationCallbacksMap.Remove(id);
                     }
                 }
+                return true;
             };
 
             int errorCode = Interop.IoTConnectivity.Client.DeviceInformation.Find(hostAddress, (int)connectivityType, s_deviceInformationCallbacksMap[id], id);
@@ -404,11 +589,37 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Starts finding platform information events
+        /// Starts finding the platform information of remote server.
         /// </summary>
-        /// <returns>
-        /// RequestId
-        /// </returns>
+        /// <remarks>
+        /// Requests server for platform information.
+        /// If succeeded, <see cref="PlatformInformationFound" /> event handler will be triggered with information of the platform.\n
+        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="hostAddress">The host address of remote server</param>
+        /// <returns>RequestId - An identifier for this request</returns>
+        /// <pre>Initialize() should be called to initialize.</pre>
+        /// <post>
+        /// <see cref="PlatformInformationFound" /> event handler will be invoked.
+        /// </post>
+        /// <seealso cref="PlatformInformationFound"/>
+        /// <seealso cref="PlatformInformationFoundEventArgs"/>
+        /// <seealso cref="TimeOut"/>
+        /// <code>
+        /// EventHandler<PlatformInformationFoundEventArgs> handler = (sender, e) => {
+        ///     Console.Log("PlatformInformationFound :" + e.RequestId);
+        /// }
+        /// EventHandler<FindingErrorOccurredEventArgs> errorHandler = (sender, e) => {
+        ///     Console.Log("Found error :" + e.Error.Message);
+        /// }
+        /// IoTConnectivityClientManager.PlatformInformationFound += handler;
+        /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// // Do not forget to remove these event handlers when they are not required any more.
+        /// int id = IoTConnectivityClientManager.StartFindingPlatformInformation(IoTConnectivityClientManager.MulticastAddress);
+        /// </code>
         public static int StartFindingPlatformInformation(string hostAddress)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
@@ -425,6 +636,9 @@ namespace Tizen.Network.IoTConnectivity
             }
             s_platformInformationCallbacksMap[id] = (IntPtr platformInfoHandle, int result, IntPtr userData) =>
             {
+                if (PlatformInformationFound == null)
+                    return false;
+
                 int requestId = (int)userData;
                 if (result == (int)IoTConnectivityError.None)
                 {
@@ -434,14 +648,13 @@ namespace Tizen.Network.IoTConnectivity
                         if (e == null)
                         {
                             Log.Error(IoTConnectivityErrorFactory.LogTag, "Can't get PlatformInformationFoundEventArgs");
-                            return;
+                            return true; ;
                         }
                         PlatformInformationFound?.Invoke(null, e);
                     }
                     else
                     {
                         Log.Error(IoTConnectivityErrorFactory.LogTag, "Handle is null");
-                        return;
                     }
                 }
                 else
@@ -454,6 +667,7 @@ namespace Tizen.Network.IoTConnectivity
                         s_platformInformationCallbacksMap.Remove(id);
                     }
                 }
+                return true;
             };
 
             int errorCode = Interop.IoTConnectivity.Client.PlatformInformation.Find(hostAddress, (int)connectivityType, s_platformInformationCallbacksMap[id], id);
@@ -470,6 +684,7 @@ namespace Tizen.Network.IoTConnectivity
             return (int)id;
         }
 
+        // Private methods
         private static PresenceReceivedEventArgs GetPresenceReceivedEventArgs(int presenceId, IntPtr presenceResponseHandle)
         {
             int trigger;
@@ -635,17 +850,17 @@ namespace Tizen.Network.IoTConnectivity
             PlatformInformationFoundEventArgs e = new PlatformInformationFoundEventArgs()
             {
                 RequestId = requestId,
-                PlatformId = Marshal.PtrToStringAuto(platformId),
-                ManufacturerName = Marshal.PtrToStringAuto(manufacturerName),
-                ManufacturerURL = Marshal.PtrToStringAuto(manufacturerUrl),
-                DateOfManufacture = Marshal.PtrToStringAuto(dateOfManufacture),
-                ModelNumber = Marshal.PtrToStringAuto(modelNumber),
-                PlatformVersion = Marshal.PtrToStringAuto(platformVersion),
-                OsVersion = Marshal.PtrToStringAuto(osVersion),
-                HardwareVersion = Marshal.PtrToStringAuto(hardwareVersion),
-                FirmwareVersion = Marshal.PtrToStringAuto(firmwareVersion),
-                SupportUrl = Marshal.PtrToStringAuto(supportUrl),
-                SystemTime = Marshal.PtrToStringAuto(systemTime)
+                PlatformId = (platformId != IntPtr.Zero) ? Marshal.PtrToStringAuto(platformId) : string.Empty,
+                ManufacturerName = (manufacturerName != IntPtr.Zero) ? Marshal.PtrToStringAuto(manufacturerName) : string.Empty,
+                ManufacturerURL = (manufacturerUrl != IntPtr.Zero) ? Marshal.PtrToStringAuto(manufacturerUrl) : string.Empty,
+                DateOfManufacture = (dateOfManufacture != IntPtr.Zero) ? Marshal.PtrToStringAuto(dateOfManufacture) : string.Empty,
+                ModelNumber = (modelNumber != IntPtr.Zero) ? Marshal.PtrToStringAuto(modelNumber) : string.Empty,
+                PlatformVersion = (platformVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(platformVersion) : string.Empty,
+                OsVersion = (osVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(osVersion) : string.Empty,
+                HardwareVersion = (hardwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(hardwareVersion) : string.Empty,
+                FirmwareVersion = (firmwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(firmwareVersion) : string.Empty,
+                SupportUrl = (supportUrl != IntPtr.Zero) ? Marshal.PtrToStringAuto(supportUrl) : string.Empty,
+                SystemTime = (systemTime != IntPtr.Zero) ? Marshal.PtrToStringAuto(systemTime) : string.Empty
             };
 
             return e;
