@@ -57,7 +57,7 @@ namespace Tizen.System.Sensor
 
         internal override SensorType GetSensorType()
         {
-            return SensorType.HumanSleepMonitor;
+            return SensorType.SleepMonitor;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.System.Sensor
         private static bool CheckIfSupported()
         {
             bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.HumanSleepMonitor, out isSupported);
+            int error = Interop.SensorManager.SensorIsSupported(SensorType.SleepMonitor, out isSupported);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error checking if sleep monitor is supported");
@@ -82,7 +82,7 @@ namespace Tizen.System.Sensor
         {
             IntPtr list;
             int count;
-            int error = Interop.SensorManager.GetSensorList(SensorType.HumanSleepMonitor, out list, out count);
+            int error = Interop.SensorManager.GetSensorList(SensorType.SleepMonitor, out list, out count);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error getting sensor list for sleep");

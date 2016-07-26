@@ -53,6 +53,21 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interop\Interop.Sensor.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\FaceDownGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\PickUpGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\RunningActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\StationaryActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\InVehicleActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\WalkingActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\EventArgs\WristUpGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\ActivityDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\PickUpGestureDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\RunningActivityDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\InVehicleActivityDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\StationaryActivityDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\WalkingActivityDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\WristUpGestureDetector.cs" />
+    <Compile Include="Tizen.System.Sensor\Plugins\FaceDownGestureDetector.cs" />
     <Compile Include="Tizen.System.Sensor\SensorEnumerations.cs" />
     <Compile Include="Tizen.System.Sensor\EventArgs\GravitySensorDataUpdatedEventArgs.cs" />
     <Compile Include="Tizen.System.Sensor\EventArgs\GyroscopeDataUpdatedEventArgs.cs" />

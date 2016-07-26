@@ -94,11 +94,39 @@ namespace Tizen.System.Sensor
         /// <summary>
         /// Pedometer sensor.
         /// </summary>
-        HumanPedometer = 0x300,
+        Pedometer = 0x300,
         /// <summary>
         /// Sleep monitor sensor.
         /// </summary>
-        HumanSleepMonitor = 22
+        SleepMonitor = 0x301,
+        /// <summary>
+        /// Walking activity detector.
+        /// </summary>
+        WalkingActivityDetector = 0x401,
+        /// <summary>
+        /// Running activity detector.
+        /// </summary>
+        RunningActivityDetector = 0x402,
+        /// <summary>
+        /// Stationary activity detector.
+        /// </summary>
+        StationaryActivityDetector = 0x408,
+        /// <summary>
+        /// InVehicle activity detector.
+        /// </summary>
+        InVehicleActivityDetector = 0x409,
+        /// <summary>
+        /// Wrist up gesture detector.
+        /// </summary>
+        WristUpGestureDetector = 0x1201,
+        /// <summary>
+        /// Pick up gesture detector.
+        /// </summary>
+        PickUpGestureDetector = 0x1204,
+        /// <summary>
+        /// Face down gesture detector.
+        /// </summary>
+        FaceDownGestureDetector = 0x1205
     }
 
     /// <summary>
@@ -206,8 +234,8 @@ namespace Tizen.System.Sensor
         /// <summary>
         /// The wake state.
         /// </summary>
-
         Wake,
+
         /// <summary>
         /// The sleeping state.
         /// </summary>
@@ -228,5 +256,21 @@ namespace Tizen.System.Sensor
         /// Far state.
         /// </summary>
         Far = 5
+    }
+
+    /// <summary>
+    /// Detector sensor state.
+    /// </summary>
+    public enum DetectorState
+    {
+        /// <summary>
+        /// None sate.
+        /// </summary>
+        NotDetected = 0,
+
+        /// <summary>
+        /// Detected state.
+        /// </summary>
+        Detected = 1
     }
 }

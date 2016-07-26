@@ -92,7 +92,7 @@ namespace Tizen.System.Sensor
 
         internal override SensorType GetSensorType()
         {
-            return SensorType.HumanPedometer;
+            return SensorType.Pedometer;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Tizen.System.Sensor
         private static bool CheckIfSupported()
         {
             bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.HumanPedometer, out isSupported);
+            int error = Interop.SensorManager.SensorIsSupported(SensorType.Pedometer, out isSupported);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error checking if pedometer sensor is supported");
@@ -117,7 +117,7 @@ namespace Tizen.System.Sensor
         {
             IntPtr list;
             int count;
-            int error = Interop.SensorManager.GetSensorList(SensorType.HumanPedometer, out list, out count);
+            int error = Interop.SensorManager.GetSensorList(SensorType.Pedometer, out list, out count);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error getting sensor list for pedometer");
