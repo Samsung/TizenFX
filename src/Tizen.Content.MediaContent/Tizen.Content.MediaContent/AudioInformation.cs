@@ -52,8 +52,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album name.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Album
         {
@@ -75,8 +75,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the artist name.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Artist
         {
@@ -98,8 +98,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album artist name.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string AlbumArtist
         {
@@ -121,8 +121,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the genre name.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Genre
         {
@@ -144,8 +144,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the composer name.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Composer
         {
@@ -167,8 +167,8 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the year.
-        ///  If the value is an empty string, the method returns "Unknown".
-        ///  If the media content has no album info, the method returns empty string.
+        ///  If the value is an empty string, the property returns "Unknown".
+        ///  If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Year
         {
@@ -211,7 +211,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the copyright notice.
-        ///  If the media content has no copyright info, the method returns empty string.
+        ///  If the media content has no copyright info, the property returns empty string.
         /// </summary>
         public string Copyright
         {
@@ -233,7 +233,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the track number.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string TrackNumber
         {
@@ -362,7 +362,7 @@ namespace Tizen.Content.MediaContent
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
-        /// Task to get all the BookMarks 
+        /// Task to get all the BookMarks
         /// </returns>
         /// <param name="filter"> filter for the Tags</param>
         public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
@@ -396,7 +396,9 @@ namespace Tizen.Content.MediaContent
         /// Adds a MediaBookMark to the audio
         /// </summary>
         /// <param name="offset">Offset of the audio in seconds</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Task with newly added MediaBookMark instance.
+        /// </returns>
         public async Task<MediaBookmark> AddBookmark(uint offset)
         {
             MediaBookmark result = null;
@@ -413,13 +415,14 @@ namespace Tizen.Content.MediaContent
                     break;
                 }
             }
+            bookmarkfilter.Dispose();
             return result;
         }
 
         /// <summary>
-        /// Deletes a MediaBookMark from the media database.
+        /// Deletes a MediaBookMark item from the media database.
         /// </summary>
-        /// <param name="bookmark">The bookmark to be deleted</param>
+        /// <param name="bookmark">The MediaBookMark instance to be deleted</param>
         public void DeleteBookmark(MediaBookmark bookmark)
         {
             ContentManager.Database.Delete(bookmark);

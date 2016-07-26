@@ -48,8 +48,6 @@ namespace Tizen.Content.MediaContent
                 {
                     throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
                 }
-
-                MediaInformation info = new MediaInformation(newHandle);
                 string mediaId;
                 Interop.MediaInformation.GetMediaId(newHandle, out mediaId);
                 _dictionary.Add(mediaId, memberId);

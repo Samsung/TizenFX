@@ -36,9 +36,6 @@ namespace Tizen.Content.MediaContent
             _groupType = groupType;
         }
 
-        /// <summary>
-        /// Dispose API for closing the internal resources.
-        /// </summary>
         public override void Dispose()
         {
             Dispose(true);
@@ -60,12 +57,12 @@ namespace Tizen.Content.MediaContent
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
         {
-            int mediaCount;
+            int mediaCount = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = (MediaContentError)Interop.Group.GetMediaCountFromDb(Name, _groupType, handle, out mediaCount);
             if (res != MediaContentError.None)
             {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media count for the group");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to GetMediaCountFromDb");
             }
             return mediaCount;
         }
@@ -83,11 +80,15 @@ namespace Tizen.Content.MediaContent
             var tcs = new TaskCompletionSource<IEnumerable<MediaInformation>>();
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res;
+            MediaContentError res = MediaContentError.None;
             Interop.Group.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
                 res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
+                if (res != MediaContentError.None)
+                {
+                   throw  MediaContentErrorFactory.CreateException(res, "Failed to clone MediaInformation instance");
+                }
                 MediaInformation info = new MediaInformation(newHandle);
                 mediaContents.Add(info);
                 return true;
@@ -95,7 +96,7 @@ namespace Tizen.Content.MediaContent
             res = (MediaContentError)Interop.Group.ForeachMediaFromDb(Name, _groupType, handle, callback, IntPtr.Zero);
             if (res != MediaContentError.None)
             {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media information for the group");
+                throw MediaContentErrorFactory.CreateException(res, "Failed to get media information for the group");
             }
             tcs.TrySetResult(mediaContents);
             return tcs.Task;

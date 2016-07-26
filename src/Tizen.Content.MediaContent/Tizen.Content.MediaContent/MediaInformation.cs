@@ -297,7 +297,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the media file size in Bytes.
+        ///  Gets the media file size in bytes.
         /// </summary>
         public long Size
         {
@@ -435,7 +435,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Description of media.
-        ///  If the media info has no description, the method returns empty string.
+        ///  If the media info has no description, the property returns empty string.
         /// </summary>
         public string Description
         {

@@ -18,30 +18,71 @@ namespace Tizen.Content.MediaContent
     /// It provide functionality to set properties associated with a given content filter.
 
     /// Setting content filter properties helps to limit the number of filtered items as following:
-
+    ///<list>
+    /// <item><description>
     /// Offset - Used to set starting position of the filter's search
+    /// </description></item>
+    /// <item><description>
     /// Count - Used to set number of items to be searched from offset
+    /// </description></item>
+    /// <item><description>
     /// Condition - Used to set keyword which user want to search
+    /// </description></item>
+    /// <item><description>
     /// Order - Used to set type of media to be ordered by the filter
+    /// </description></item>
+    /// </list>
 
     /// Searchable expression can use one of the following forms:
 
+    ///<list>
+    /// <item><description>
     /// column = value
+    /// </description></item>
+    /// <item><description>
     /// column > value
+    /// </description></item>
+    /// <item><description>
     /// column >= value
+    /// </description></item>
+    /// <item><description>
     /// column < value
+    /// </description></item>
+    /// <item><description>
     /// column <= value
+    /// </description></item>
+    /// <item><description>
     /// value = column
-    /// * - value > column
+    /// </description></item>
+    /// <item><description>
     /// value >= column
+    /// </description></item>
+    /// <item><description>
     /// value < column
+    /// </description></item>
+    /// <item><description>
     /// value <= column
+    /// </description></item>
+    /// <item><description>
     /// column IN (value)
+    /// </description></item>
+    /// <item><description>
     /// column IN(value-list)
+    /// </description></item>
+    /// <item><description>
     /// column NOT IN(value)
+    /// </description></item>
+    /// <item><description>
     /// column NOT IN(value-list)
+    /// </description></item>
+    /// <item><description>
     /// column LIKE value
+    /// </description></item>
+    /// <item><description>
     /// expression1 AND expression2 OR expression3
+    /// </description></item>
+    /// </list>
+
 
     /// Note that if you want to set qoutation(" ' " or " " ") as value of LIKE operator, you should use two times.(" '' " or " "" ") \n And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
     /// If these characters are used as value of LIKE operation, then the expression following the ESCAPE caluse of sqlite.

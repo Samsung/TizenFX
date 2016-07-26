@@ -128,7 +128,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the burst shot ID.
-        /// If burst_id is Empty, this is not burst shot
+        /// If BurstId is empty, this is not a burst shot
         /// </summary>
         public string BurstId
         {

@@ -130,7 +130,7 @@ namespace Tizen.Content.MediaContent
             return task.Task;
         }
 
-        internal static Interop.Content.MediaScanCompletedCallback scanCompleted = null;
+        internal static Interop.Content.MediaScanCompletedCallback scanCompletedWithToken = null;
         internal static Object l = new Object();
         /// <summary>
         /// Requests to scan a media folder, asynchronously.
@@ -177,7 +177,7 @@ namespace Tizen.Content.MediaContent
                     Tizen.Log.Info("TCT", "Cancellation delegate: Releasing lock on l");
                 }
             });
-            scanCompleted = (MediaContentError scanResult, IntPtr data) =>
+            scanCompletedWithToken = (MediaContentError scanResult, IntPtr data) =>
             {
                 Tizen.Log.Info("TCT", "Scan Callback ScanResult: " + scanResult);
                 Tizen.Log.Info("TCT", "Scan Callback ThreadId: " + Thread.CurrentThread.ManagedThreadId);
@@ -209,7 +209,7 @@ namespace Tizen.Content.MediaContent
             if (dir.Exists)
             {
                 Tizen.Log.Info("TCT", "Scan folder start");
-                result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero);
+                result = (MediaContentError)Interop.Content.ScanFolder(folderPath, recursive, scanCompletedWithToken, IntPtr.Zero);
                 Tizen.Log.Info("TCT", "Scan folder end");
             }
             else
@@ -242,7 +242,7 @@ namespace Tizen.Content.MediaContent
             {
                 if (error != MediaContentError.None)
                 {
-                    task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add batch media"));
+                    task.SetException(MediaContentErrorFactory.CreateException(error, "Failed to add batch media"));
                 }
                 task.SetResult((int)error);
             };
@@ -269,7 +269,7 @@ namespace Tizen.Content.MediaContent
             {
                 if (error != MediaContentError.None)
                 {
-                    task.SetException(MediaContentErrorFactory.CreateException(res, "Failed to add burst shots to db"));
+                    task.SetException(MediaContentErrorFactory.CreateException(error, "Failed to add burst shots to db"));
                 }
                 task.SetResult((int)error);
             };

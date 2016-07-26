@@ -46,7 +46,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album name.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Album
         {
@@ -68,7 +68,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the artist name.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Artist
         {
@@ -90,7 +90,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the album artist name.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string AlbumArtist
         {
@@ -112,7 +112,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the genre name.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Genre
         {
@@ -134,7 +134,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the composer name.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Composer
         {
@@ -156,7 +156,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the year.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Year
         {
@@ -199,7 +199,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the copyright notice.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string Copyright
         {
@@ -221,7 +221,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         ///  Gets the track number.
-        ///  If the value is an empty string, the method returns "Unknown".
+        ///  If the value is an empty string, the property returns "Unknown".
         /// </summary>
         public string TrackNumber
         {
@@ -382,6 +382,7 @@ namespace Tizen.Content.MediaContent
                     break;
                 }
             }
+            bookmarkfilter.Dispose();
             return result;
         }
 

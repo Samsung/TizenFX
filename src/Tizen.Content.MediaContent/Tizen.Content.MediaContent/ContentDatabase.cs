@@ -225,7 +225,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the ContentCollection object for the passed media Id.
-        /// Applicable for Playlist, Album and Tag types.
+        /// Applicable for PlayList, Album and Tag types.
         /// </summary>
         /// <param name="id">The ContentCollection id to fetch the respective MediaInformation instance</param>
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
@@ -581,22 +581,22 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Deletes a content collection from the media database.
-        /// Applicable for Tag and Playlist only.
+        /// Applicable for Tag and PlayList only.
         /// For other types ArgumentException is thrown.
         /// </summary>
-        /// <param name="contecollection">The content collection to be deleted</param>
-        public void Delete(ContentCollection contecollection)
+        /// <param name="contentcollection">The ContentCollection instance to be deleted</param>
+        public void Delete(ContentCollection contentcollection)
         {
             ConnectToDB();
-            Type type = contecollection.GetType();
+            Type type = contentcollection.GetType();
             MediaContentError result = MediaContentError.None;
             if (type == typeof(Tag))
             {
-                result = (MediaContentError)Interop.Tag.DeleteFromDb(((Tag)contecollection).Id);
+                result = (MediaContentError)Interop.Tag.DeleteFromDb(((Tag)contentcollection).Id);
             }
             else if (type == typeof(PlayList))
             {
-                result = (MediaContentError)Interop.Playlist.DeleteFromDb(((PlayList)contecollection).Id);
+                result = (MediaContentError)Interop.Playlist.DeleteFromDb(((PlayList)contentcollection).Id);
             }
             else
             {
