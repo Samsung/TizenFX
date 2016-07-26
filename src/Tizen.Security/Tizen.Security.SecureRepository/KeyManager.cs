@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Tizen.Security.SecureRepository
+{
+    /// <summary>
+    /// This class provides the methods storing, retrieving, and creating keys.
+    /// </summary>
+    public class KeyManager : Manager
+    {
+        /// <summary>
+        /// Gets a key from secure repository.
+        /// </summary>
+        /// <param name="alias">The name of a key to retrieve.</param>
+        /// <param name="password">The password used in decrypting a key value.
+        /// If password of policy is provided in SaveKey(), the same password should be provided
+        /// </param>
+        /// <returns>A key specified by alias.</returns>
+        static public Key GetKey(string alias, string password)
+        {
+            IntPtr ptr = new IntPtr();
+
+            int ret = Interop.CkmcManager.CkmcGetKey(alias, password, out ptr);
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get key. alias=" + alias);
+
+            return new Key(ptr);
+        }
+
+        /// <summary>
+        /// Gets all alias of keys which the client can access.
+        /// </summary>
+        /// <returns>all alias of keys which the client can access.</returns>
+        static public IEnumerable<string> GetKeyAliases()
+        {
+            IntPtr ptr = new IntPtr();
+            int ret = Interop.CkmcManager.CkmcGetKeyAliasList(out ptr);
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get key aliases.");
+
+            return new SafeAliasListHandle(ptr).Aliases;
+        }
+
+        /// <summary>
+        /// Stores a key inside secure repository based on the provided policy.
+        /// </summary>
+        /// <param name="alias">The name of a key to be stored.</param>
+        /// <param name="key">The key's binary value to be stored.</param>
+        /// <param name="policy">The policy about how to store a key securely.</param>
+        /// <remarks>Type in key may be set to KeyType.None as an input. Type is determined inside secure reposioty during storing keys.</remarks>
+        /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
+        static public void SaveKey(string alias, Key key, Policy policy)
+        {
+            int ret = Interop.CkmcManager.CkmcSaveKey(alias, key.ToCkmcKey(), policy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to save Key. alias=" + alias);
+        }
+
+        /// <summary>
+        /// Creates RSA private/public key pair and stores them inside secure repository based on each policy.
+        /// </summary>
+        /// <param name="size">The size of key strength to be created. 1024, 2048, 3072, and 4096 are supported.</param>
+        /// <param name="privateKeyAlias">The name of private key to be stored.</param>
+        /// <param name="publicKeyAlias">The name of public key to be stored.</param>
+        /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
+        /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
+        static public void CreateKeyPairRsa(int size, string privateKeyAlias, string publicKeyAlias,
+                                            Policy privateKeyPolicy, Policy publicKeyPolicy)
+        {
+            int ret = Interop.CkmcManager.CkmcCreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
+                                        privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create RSA Key Pair");
+        }
+
+        /// <summary>
+        /// Creates DSA private/public key pair and stores them inside secure repository based on each policy.
+        /// </summary>
+        /// <param name="size">The size of key strength to be created. 1024, 2048, and 4096 are supported.</param>
+        /// <param name="privateKeyAlias">The name of private key to be stored.</param>
+        /// <param name="publicKeyAlias">The name of public key to be stored.</param>
+        /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
+        /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
+        static public void CreateKeyPairDsa(int size, string privateKeyAlias, string publicKeyAlias,
+                                            Policy privateKeyPolicy, Policy publicKeyPolicy)
+        {
+            int ret = Interop.CkmcManager.CkmcCreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
+                                        privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create DSA Key Pair");
+        }
+
+        /// <summary>
+        /// Creates ECDSA private/public key pair and stores them inside secure repository based on each policy.
+        /// </summary>
+        /// <param name="type">The type of elliptic curve of ECDSA.</param>
+        /// <param name="privateKeyAlias">The name of private key to be stored.</param>
+        /// <param name="publicKeyAlias">The name of public key to be stored.</param>
+        /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
+        /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
+        static public void CreateKeyPairEcdsa(EllipticCurveType type, string privateKeyAlias, string publicKeyAlias,
+                                    Policy privateKeyPolicy, Policy publicKeyPolicy)
+        {
+            int ret = Interop.CkmcManager.CkmcCreateKeyPairEcdsa((int)type, privateKeyAlias, publicKeyAlias,
+                                        privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create ECDSA Key Pair");
+        }
+
+        /// <summary>
+        /// Creates AES key and stores it inside secure repository based on each policy.
+        /// </summary>
+        /// <param name="size">The size of key strength to be created. 128, 192 and256 are supported.</param>
+        /// <param name="keyAlias">The name of key to be stored.</param>
+        /// <param name="policy">The policy about how to store the key securely.</param>
+        /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
+        static public void CreateKeyAes(int size, string keyAlias, Policy policy)
+        {
+            int ret = Interop.CkmcManager.CkmcCreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to AES Key");
+        }
+    }
+}

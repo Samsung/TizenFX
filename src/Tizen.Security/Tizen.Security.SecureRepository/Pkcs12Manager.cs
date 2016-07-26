@@ -1,0 +1,48 @@
+﻿using System;
+
+namespace Tizen.Security.SecureRepository
+{
+    /// <summary>
+    /// This class provides the methods storing, retrieving Pkcs12 contents.
+    /// </summary>
+    public class Pkcs12Manager : Manager
+    {
+        /// <summary>
+        /// Gets Pkcs12 contents from secure repository.
+        /// </summary>
+        /// <param name="alias">The name of data to retrieve.</param>
+        /// <param name="keyPassword">The password used in decrypting a private key value.
+        /// If password of keyPolicy is provided in SavePkcs12(), the same password should be provided
+        /// </param>
+        /// <param name="cerificatePassword">The password used in decrypting a certificate value.
+        /// If password of certificatePolicy is provided in SavePkcs12(), the same password should be provided
+        /// </param>
+        /// <returns>A Pkcs12 data specified by alias.</returns>
+        static public Pkcs12 GetPkcs12(string alias, string keyPassword, string cerificatePassword)
+        {
+            IntPtr ptr = new IntPtr();
+
+            int ret = Interop.CkmcManager.CkmcGetPkcs12(alias, keyPassword, cerificatePassword, out ptr);
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get PKCS12. alias=" + alias);
+
+            return new Pkcs12(ptr);
+        }
+
+        /// <summary>
+        /// Stores PKCS12's contents inside key manager based on the provided policies.
+        /// All items from the PKCS12 will use the same alias.
+        /// </summary>
+        /// <param name="alias">The name of a data to be stored.</param>
+        /// <param name="pkcs12">The pkcs12 data to be stored.</param>
+        /// <param name="keyPolicy">The policy about how to store pkcs's private key.</param>
+        /// <param name="certificatePolicy">The policy about how to store pkcs's certificate.</param>
+        static public void SavePkcs12(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
+        {
+            int ret = Interop.CkmcManager.CkmcSavePkcs12(alias,
+                                                    new PinnedObject(pkcs12.ToCkmcPkcs12()),
+                                                    keyPolicy.ToCkmcPolicy(),
+                                                    certificatePolicy.ToCkmcPolicy());
+            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to save PKCS12. alias=" + alias);
+        }
+    }
+}
