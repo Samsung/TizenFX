@@ -8,9 +8,9 @@ namespace Tizen.System
     /// The IR API provides functions to control a IR transmitter.
     /// The IR API provides the way to get the information whether IR is available and transmit IR command.
     /// </summary>
-    /// <previlege>
+    /// <privilege>
     /// http://tizen.org/privilege/use_ir
-    /// </previlege>
+    /// </privilege>
     /// <code>
     ///     Console.WriteLine("IR availablity for this device is: {0}", IR.IsAvailable);
     /// </code>

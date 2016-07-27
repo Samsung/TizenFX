@@ -9,9 +9,9 @@ namespace Tizen.System
     /// The Power API provides the way to control the power service.
     /// It can be made to hold the specific state to avoid CPU state internally.
     /// </remarks>
-    /// <previlege>
+    /// <privilege>
     /// http://tizen.org/privilege/display
-    /// </previlege>
+    /// </privilege>
     public static class Power
     {
         /// <summary>

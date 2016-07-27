@@ -31,9 +31,9 @@ namespace Tizen.System
     /// It also provides Events for an application to receive the Display state change events from the device.
     /// To receive the Display event, application should register with assocated EventHandler.
     /// </remarks>
-    /// <previlege>
+    /// <privilege>
     /// http://tizen.org/privilege/display
-    /// </previlege>
+    /// </privilege>
     /// <code>
     ///     Console.WriteLine("Display current state is: {0}", Tizen.System.Display.State);
     ///     Console.WriteLine("Total number of Displays are: {0}", Tizen.System.Display.NumberOfDisplays);

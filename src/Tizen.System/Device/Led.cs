@@ -13,9 +13,9 @@ namespace Tizen.System
     /// It is recommended to design feature related codes in your application for reliability.
     /// You can check if a device supports the related features for this API by using System Information, thereby controlling the procedure of your application.
     /// </remarks>
-    /// <previlege>
+    /// <privilege>
     ///  http://tizen.org/privilege/led
-    /// </previlege>
+    /// </privilege>
     /// <code>
     ///     Console.WriteLine("Led MaxBrightness is: {0}", Tizen.System.Led.MaxBrightness);
     ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);

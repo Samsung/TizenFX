@@ -10,9 +10,9 @@ namespace Tizen.System
     /// It allows the management of the device's vibrator parameters, such as the vibration count and level.
     /// It provides methods to Vibrate and Stop the vibration.
     /// </remarks>
-    /// <previlege>
+    /// <privilege>
     /// http://tizen.org/privilege/haptic
-    /// </previlege>
+    /// </privilege>
     /// <code>
     ///     Console.WriteLine("Total number of Vibrators are: {0}", Tizen.System.Vibrator.NumberOfVibrators);
     /// </code>
