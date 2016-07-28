@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Condition=" '$(CoreFxPath)' != '' ">
+     <Reference Include="Microsoft.Win32.Primitives">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.AppContext">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Concurrent">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Collections.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.ComponentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Debug">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Diagnostics.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Process">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Diagnostics.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tools">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Diagnostics.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.TraceSource">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Diagnostics.TraceSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Diagnostics.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Dynamic.Runtime">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Dynamic.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Extensions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.ZipFile">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Watcher">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.FileSystem.Watcher.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.MemoryMappedFiles">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.MemoryMappedFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.UnmanagedMemoryStream">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.IO.UnmanagedMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Parallel">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Linq.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Queryable">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Linq.Queryable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NameResolution">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.NameResolution.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Primitives">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Requests">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.Requests.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Security">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebHeaderCollection">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Net.WebHeaderCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ObjectModel">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.DispatchProxy">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Reflection.DispatchProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Extensions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Reflection.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Primitives">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Reflection.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.TypeExtensions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.ResourceManager">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Resources.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Handles">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.Handles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Loader">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Numerics">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Runtime.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Text.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.Extensions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Text.Encoding.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Parallel">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.Tasks.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.ThreadPool">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.ThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Timer">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Threading.Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XDocument">
+      <Private>False</Private>
+      <HintPath>$(CoreFxPath)/System.Xml.XDocument.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

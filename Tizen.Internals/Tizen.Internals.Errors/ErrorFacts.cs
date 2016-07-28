@@ -12,12 +12,12 @@ using System.Runtime.InteropServices;
 namespace Tizen.Internals.Errors
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class ErrorFacts
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static int GetLastResult()
@@ -26,14 +26,14 @@ namespace Tizen.Internals.Errors
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="errorCode"></param>
         /// <returns></returns>
         public static string GetErrorMessage(int errorCode)
         {
             IntPtr errorPtr = Interop.CommonError.GetErrorMessage(errorCode);
-            return Marshal.PtrToStringAuto(errorPtr);
+            return Marshal.PtrToStringAnsi(errorPtr);
         }
     }
 }
