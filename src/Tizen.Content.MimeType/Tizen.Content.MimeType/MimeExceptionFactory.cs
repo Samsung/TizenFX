@@ -17,15 +17,14 @@ namespace Tizen.Content.MimeType
                     exp = new ArgumentException("Invalid Parameters Provided");
                     break;
                 }
-
                 case MimeUtil.MimeError.IoError:
                 {
-                    exp = new SystemException("I/O Error Occured");
+                    exp = new InvalidOperationException("I/O Error Occured");
                     break;
                 }
                 case MimeUtil.MimeError.OutOfMemory:
                 {
-                    exp = new SystemException("Out Of Memory");
+                    exp = new InvalidOperationException("Out Of Memory");
                     break;
                 }
                 default:
