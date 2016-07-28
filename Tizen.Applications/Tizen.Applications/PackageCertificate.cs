@@ -82,7 +82,7 @@ namespace Tizen.Applications
 
         private static string GetValue(IDictionary<Interop.Package.CertificateType, string> dict, Interop.Package.CertificateType key)
         {
-            string value = string.Empty;
+            string value;
             dict.TryGetValue(key, out value);
             return value;
         }

@@ -114,7 +114,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static string GetPackageIdByApplicationId(string applicationId)
         {
-            string packageId = string.Empty;
+            string packageId;
             var err = Interop.PackageManager.PackageManageGetPackageIdByAppId(applicationId, out packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -427,18 +427,17 @@ namespace Tizen.Applications
             {
                 try
                 {
-                    PackageManagerEventArgs eventArgs = new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress);
                     if (eventType == Interop.PackageManager.EventType.Install)
                     {
-                        s_installEventHandler?.Invoke(null, eventArgs);
+                        s_installEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
                     }
                     else if (eventType == Interop.PackageManager.EventType.Uninstall)
                     {
-                        s_uninstallEventHandler?.Invoke(null, eventArgs);
+                        s_uninstallEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
                     }
                     else if (eventType == Interop.PackageManager.EventType.Update)
                     {
-                        s_updateEventHandler?.Invoke(null, eventArgs);
+                        s_updateEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
                     }
                 }
                 catch (Exception e)
