@@ -1,4 +1,5 @@
 %{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+%{!?dotnet_core_path: %define dotnet_core_path %{_datadir}/tizen.net/ref}
 
 %if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
@@ -20,11 +21,11 @@ Source1:    %{name}.manifest
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
 
-# P/Invoke Build Requires
-BuildRequires: pkgconfig(capi-system-device)
-BuildRequires: pkgconfig(capi-system-runtime-info)
-BuildRequires: pkgconfig(capi-system-info)
-BuildRequires: pkgconfig(storage)
+# .NETCore
+%if 0%{?_with_corefx}
+AutoReqProv: no
+BuildRequires: corefx-managed-32b-ref
+%endif
 
 # C# API Requires
 BuildRequires: csapi-tizen
@@ -42,22 +43,23 @@ cp %{SOURCE1} .
 %build
 for ASM in %{Assemblies}; do
 xbuild $ASM/$ASM.csproj \
+%if 0%{?_with_corefx}
+        /p:NoStdLib=True \
+        /p:TargetFrameworkVersion=v5.0 \
+        /p:AddAdditionalExplicitAssemblyReferences=False \
+        /p:CoreFxPath=%{dotnet_core_path} \
+%endif
         /p:Configuration=%{BUILDCONF} \
         /p:ReferencePath=%{dotnet_assembly_path}
 done
 
 %install
-# Assemblies
 mkdir -p %{buildroot}%{dotnet_assembly_path}
 for ASM in %{Assemblies}; do
 install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 done
 
-# License
-mkdir -p %{buildroot}%{_datadir}/license
-cp LICENSE %{buildroot}%{_datadir}/license/%{name}
-
 %files
 %manifest %{name}.manifest
+%license LICENSE
 %attr(644,root,root) %{dotnet_assembly_path}/*.dll
-%attr(644,root,root) %{_datadir}/license/%{name}
