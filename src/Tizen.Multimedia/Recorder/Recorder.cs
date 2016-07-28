@@ -124,7 +124,7 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_audioStreamDelivered -= value;
-				if (_audioStreamDelivered == null) 
+				if (_audioStreamDelivered == null)
 				{
 					UnregisterAudioStreamDeliveredEvent ();
 				}
@@ -147,13 +147,13 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_recorderStateChanged -= value;
-				if (_recorderStateChanged == null) 
+				if (_recorderStateChanged == null)
 				{
 					UnregisterStateChangedEvent ();
 				}
 			}
 		}
-			
+
 		/// <summary>
 		/// Event that occurs when recording information changes.
 		/// </summary>
@@ -170,7 +170,7 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_recordingStatusChanged -= value;
-				if (_recordingStatusChanged == null) 
+				if (_recordingStatusChanged == null)
 				{
 					UnregisterRecordingStatusChangedEvent ();
 				}
@@ -193,7 +193,7 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_recordingLimitReached -= value;
-				if (_recordingLimitReached == null) 
+				if (_recordingLimitReached == null)
 				{
 					UnregisterRecordingLimitReachedEvent ();
 				}
@@ -216,7 +216,7 @@ namespace Tizen.Multimedia
 			remove
 			{
 				_recordingErrorOccured -= value;
-				if (_recordingErrorOccured == null) 
+				if (_recordingErrorOccured == null)
 				{
 					UnregisterRecordingErrorOccuredEvent ();
 				}
@@ -240,7 +240,7 @@ namespace Tizen.Multimedia
 				{
 					Log.Error (RecorderLog.Tag, "Failed to get filepath, " + (RecorderError)ret);
 				}
-				string result = Marshal.PtrToStringAuto (val);
+				string result = Marshal.PtrToStringAnsi (val);
 				Interop.Libc.Free (val);
 				return result;
             }

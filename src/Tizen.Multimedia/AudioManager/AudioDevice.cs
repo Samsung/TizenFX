@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
             }
             AudioManagerErrorFactory.CheckAndThrowException(ret, _handle, "Unable to get device name");
 
-            _name = Marshal.PtrToStringAuto(name);
+            _name = Marshal.PtrToStringAnsi(name);
 
             ret = Interop.AudioDevice.GetDeviceType(_handle, out _type);
             if (ret != 0)
