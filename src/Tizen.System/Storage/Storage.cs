@@ -185,7 +185,7 @@ namespace Tizen.System
         /// </example>
         public string GetAbsolutePath(DirectoryType dirType)
         {
-            string path = string.Empty;
+            string path;
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAbsoluteDirectory(Id, (Interop.Storage.DirectoryType)dirType, out path);
             if (err != Interop.Storage.ErrorCode.None)
             {
