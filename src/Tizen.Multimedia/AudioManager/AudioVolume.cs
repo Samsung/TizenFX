@@ -24,23 +24,18 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Registers a function to be invoked when the volume level is changed.
         /// </summary>
-        public event EventHandler<VolumeChangedEventArgs> Changed
-        {
-            add
-            {
+        public event EventHandler<VolumeChangedEventArgs> Changed {
+            add {
                 Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event added....");
-                if (_volumeChanged == null)
-                {
+                if(_volumeChanged == null) {
                     RegisterVolumeChangedEvent();
                 }
                 _volumeChanged += value;
             }
-            remove
-            {
+            remove {
                 Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event removed....");
                 _volumeChanged -= value;
-                if (_volumeChanged == null)
-                {
+                if(_volumeChanged == null) {
                     UnregisterVolumeChangedEvent();
                 }
             }
@@ -50,26 +45,20 @@ namespace Tizen.Multimedia
         /// The Sound Manager has predefined types of sounds.(system, notification, alarm, ringtone, media, call, voip, voice).
         /// The type of the sound being currently played.
         /// </summary>
-        public AudioVolumeType CurrentType
-        {
-            get
-            {
+        public AudioVolumeType CurrentType {
+            get {
                 AudioVolumeType currentType;
                 int ret = Interop.AudioVolume.GetCurrentSoundType(out currentType);
-                if ( ret != 0)
-                {
+                if(ret != 0) {
                     Tizen.Log.Info(AudioVolumeLog.Tag, "Unable to get current sound type" + (AudioManagerError)ret);
                     return AudioVolumeType.None;
                 }
                 return currentType;
             }
-            set
-            {
+            set {
                 int ret = Interop.AudioVolume.SetCurrentSoundType(value);
-                if (ret != 0)
-                {
-                    if (value == AudioVolumeType.None)
-                    {
+                if(ret != 0) {
+                    if(value == AudioVolumeType.None) {
                         ret = Interop.AudioVolume.UnsetCurrentType();
                     }
                 }
@@ -77,14 +66,19 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// The indexer class which is used to get/set volume level specified for a particular sound type.
+        /// </summary>
         public VolumeLevel Level;
 
+        /// <summary>
+        /// The indexer class which is used to get maximum volume level supported for a particular sound type.
+        /// </summary>
         public MaxVolumeLevel MaxLevel;
 
         private void RegisterVolumeChangedEvent()
         {
-            _volumeChangedCallback = (AudioVolumeType type, uint volume, IntPtr userData) =>
-            {
+            _volumeChangedCallback = (AudioVolumeType type, uint volume, IntPtr userData) => {
                 VolumeChangedEventArgs eventArgs = new VolumeChangedEventArgs(type, volume);
                 _volumeChanged.Invoke(this, eventArgs);
             };

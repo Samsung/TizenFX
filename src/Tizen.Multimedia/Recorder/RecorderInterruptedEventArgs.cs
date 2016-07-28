@@ -9,48 +9,42 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecorderInterruptedEventArgs : EventArgs
     {
-		private RecorderPolicy _policy = RecorderPolicy.None;
-		private RecorderState _previous = RecorderState.None;
-		private RecorderState _current = RecorderState.None;
+        private RecorderPolicy _policy = RecorderPolicy.None;
+        private RecorderState _previous = RecorderState.None;
+        private RecorderState _current = RecorderState.None;
 
-		internal RecorderInterruptedEventArgs(RecorderPolicy policy, RecorderState previous, RecorderState current)
-		{
-			_policy = policy;
-			_previous = previous;
-			_current = current;
-		}
+        internal RecorderInterruptedEventArgs(RecorderPolicy policy, RecorderState previous, RecorderState current)
+        {
+            _policy = policy;
+            _previous = previous;
+            _current = current;
+        }
 
         /// <summary>
         /// The policy that interrupted the recorder.
         /// </summary>
-        public RecorderPolicy Policy
-        {
-            get
-			{
-				return _policy;
-			}
+        public RecorderPolicy Policy {
+            get {
+                return _policy;
+            }
         }
 
         /// <summary>
         /// The previous state of the recorder.
         /// </summary>
-        public RecorderState Previous
-        {
-            get
-			{
-				return _previous;
-			}
+        public RecorderState Previous {
+            get {
+                return _previous;
+            }
         }
 
         /// <summary>
         /// The current state of the recorder.
         /// </summary>
-        public RecorderState Current
-        {
-            get
-			{
-				return _current;
-			}
+        public RecorderState Current {
+            get {
+                return _current;
+            }
         }
     }
 }

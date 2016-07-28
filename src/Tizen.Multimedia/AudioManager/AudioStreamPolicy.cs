@@ -35,8 +35,7 @@ namespace Tizen.Multimedia
         public AudioStreamPolicy(AudioStreamType streamType)
         {
             _streamType = streamType;
-            _focusStateChangedCallback = (IntPtr streamInfo, int reason, string extraInfo, IntPtr userData) =>
-            {
+            _focusStateChangedCallback = (IntPtr streamInfo, int reason, string extraInfo, IntPtr userData) => {
                 StreamFocusStateChangedEventArgs eventArgs = new StreamFocusStateChangedEventArgs((AudioStreamFocusChangedReason)reason, extraInfo);
                 _focusStateChanged?.Invoke(this, eventArgs);
             };
@@ -55,23 +54,18 @@ namespace Tizen.Multimedia
         /// Remarks: You can set this only once per process.
         /// </remarks>
         /// </summary>
-        public static event EventHandler<FocusStateChangedEventArgs> PlaybackFocusStateWatch
-        {
-            add
-            {
-                if (_focusStateWatchCounter == 0)
-                {
+        public static event EventHandler<FocusStateChangedEventArgs> PlaybackFocusStateWatch {
+            add {
+                if(_focusStateWatchCounter == 0) {
                     RegisterFocusStateWatchEvent();
                 }
                 _focusStateWatchCounter++;
                 _focusStateWatchForPlayback += value;
             }
-            remove
-            {
+            remove {
                 _focusStateWatchForPlayback -= value;
                 _focusStateWatchCounter--;
-                if (_focusStateWatchCounter == 0)
-                {
+                if(_focusStateWatchCounter == 0) {
                     UnregisterFocusStateWatch();
                 }
             }
@@ -83,43 +77,36 @@ namespace Tizen.Multimedia
         /// Remarks: You can set this only once per process.
         /// </remarks>
         /// </summary>
-        public static event EventHandler<FocusStateChangedEventArgs> RecordingFocusStateWatch
-        {
-            add
-            {
-                if (_focusStateWatchCounter == 0)
-                {
+        public static event EventHandler<FocusStateChangedEventArgs> RecordingFocusStateWatch {
+            add {
+                if(_focusStateWatchCounter == 0) {
                     RegisterFocusStateWatchEvent();
                 }
                 _focusStateWatchCounter++;
                 _focusStateWatchForRecording += value;
             }
-            remove
-            {
+            remove {
                 _focusStateWatchForRecording -= value;
                 _focusStateWatchCounter--;
-                if (_focusStateWatchCounter == 0)
-                {
+                if(_focusStateWatchCounter == 0) {
                     UnregisterFocusStateWatch();
                 }
             }
         }
 
         /// <summary>
-        /// Registers function to be called when the state of focus that belongs to the stream_info is changed.
+        /// Registers function to be called when the state of focus that belongs to the current 
+        /// streamInfo is changed.
         /// </summary>
         /// <remarks>
         /// Remarks: This function is issued in the internal thread of the sound manager. Therefore it is recommended not to call UI update function in this function.
-        /// Postcondition : FocusStateForPlayback and FokcusStateForRecording in the registered event handler to figure out how the focus state of the StreamInfo has been changed.
+        /// Postcondition : Check PlaybackFocusState and RecordingFocusState in the registered event handler to figure out how the focus state of the StreamInfo has been changed.
         /// </remarks>
-        public event EventHandler<StreamFocusStateChangedEventArgs> StreamFocusStateChanged
-        {
-            add
-            {
+        public event EventHandler<StreamFocusStateChangedEventArgs> StreamFocusStateChanged {
+            add {
                 _focusStateChanged += value;
             }
-            remove
-            {
+            remove {
                 _focusStateChanged -= value;
             }
         }
@@ -127,14 +114,11 @@ namespace Tizen.Multimedia
         /// <summary>
         ///  The sound type of the stream information.
         /// </summary>
-        public AudioVolumeType VolumeType
-        {
-            get
-            {
+        public AudioVolumeType VolumeType {
+            get {
                 AudioVolumeType soundType;
-				int ret = Interop.AudioStreamPolicy.GetSoundType(_streamInfo, out soundType);
-                if (ret != 0)
-                {
+                int ret = Interop.AudioStreamPolicy.GetSoundType(_streamInfo, out soundType);
+                if(ret != 0) {
                     Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Unable to get sound type:" + (AudioManagerError)ret);
                     return AudioVolumeType.None;
                 }
@@ -145,15 +129,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The state of focus for playback.
         /// </summary>
-        public AudioStreamFocusState PlaybackFocusState
-        {
-            get
-            {
+        public AudioStreamFocusState PlaybackFocusState {
+            get {
                 AudioStreamFocusState stateForPlayback;
                 AudioStreamFocusState stateForRecording;
                 int ret = Interop.AudioStreamPolicy.GetFocusState(_streamInfo, out stateForPlayback, out stateForRecording);
-                if (ret != 0)
-                {
+                if(ret != 0) {
                     Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Unable to get focus state" + (AudioManagerError)ret);
                     return AudioStreamFocusState.Released;
                 }
@@ -164,15 +145,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The state of focus for recording.
         /// </summary>
-        public AudioStreamFocusState RecordingFocusState
-        {
-            get
-            {
+        public AudioStreamFocusState RecordingFocusState {
+            get {
                 AudioStreamFocusState stateForPlayback;
                 AudioStreamFocusState stateForRecording;
                 int ret = Interop.AudioStreamPolicy.GetFocusState(_streamInfo, out stateForPlayback, out stateForRecording);
-                if (ret != 0)
-                {
+                if(ret != 0) {
                     Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Unable to get focus state" + (AudioManagerError)ret);
                     return AudioStreamFocusState.Released;
                 }
@@ -186,31 +164,24 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// The focus reacquistion is set as default. If you don't want to reacquire the focus you've lost automatically, disable the focus reacqusition setting by using this API and vice versa.
         /// </remarks>
-        public bool FocusReacquisitionEnabled
-        {
-            get
-            {
+        public bool FocusReacquisitionEnabled {
+            get {
                 bool enabled;
                 int ret = Interop.AudioStreamPolicy.GetFocusReacquisition(_streamInfo, out enabled);
-                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get focus reacquisition");
-                if (ret != 0)
-                {
+                if(ret != 0) {
                     Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Unable to get focus reacquisition" + (AudioManagerError)ret);
                     return true;
                 }
                 return enabled;
             }
-            set
-            {
+            set {
                 int ret = Interop.AudioStreamPolicy.SetFocusReacquisition(_streamInfo, value);
                 AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus reacquisition");
             }
         }
 
-        internal IntPtr Handle
-        {
-            get
-            {
+        internal IntPtr Handle {
+            get {
                 return _streamInfo;
             }
         }
@@ -300,14 +271,11 @@ namespace Tizen.Multimedia
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
+            if(!_disposed) {
+                if(disposing) {
                     // to be used if there are any other disposable objects
                 }
-                if (_streamInfo != IntPtr.Zero)
-                {
+                if(_streamInfo != IntPtr.Zero) {
                     Interop.AudioStreamPolicy.DestroyStreamInformation(_streamInfo);  // Destroy the handle
                     _streamInfo = IntPtr.Zero;
                 }
@@ -317,25 +285,19 @@ namespace Tizen.Multimedia
 
         private static void RegisterFocusStateWatchEvent()
         {
-            _focusStateWatchCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) =>
-                {
-                    FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(focusState, reason, extraInfo);
-                    if (options == AudioStreamFocusOptions.Playback)
-                    {
-                        _focusStateWatchForPlayback?.Invoke(null, eventArgs);
-                    }
-                    else if (options == AudioStreamFocusOptions.Recording)
-                    {
-                        _focusStateWatchForRecording?.Invoke(null, eventArgs);
-                    }
-                    else if (options == (AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording))
-                    {
-                        _focusStateWatchForPlayback?.Invoke(null, eventArgs);
-                        _focusStateWatchForRecording?.Invoke(null, eventArgs);
-                    }
-                };
+            _focusStateWatchCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) => {
+                FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(focusState, reason, extraInfo);
+                if(options == AudioStreamFocusOptions.Playback) {
+                    _focusStateWatchForPlayback?.Invoke(null, eventArgs);
+                } else if(options == AudioStreamFocusOptions.Recording) {
+                    _focusStateWatchForRecording?.Invoke(null, eventArgs);
+                } else if(options == (AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording)) {
+                    _focusStateWatchForPlayback?.Invoke(null, eventArgs);
+                    _focusStateWatchForRecording?.Invoke(null, eventArgs);
+                }
+            };
             int ret = Interop.AudioStreamPolicy.SetFocusStateWatchCallback(AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording, _focusStateWatchCallback, IntPtr.Zero);
-			AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback");
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback");
         }
 
         private static void UnregisterFocusStateWatch()

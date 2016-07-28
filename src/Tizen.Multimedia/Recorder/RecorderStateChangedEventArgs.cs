@@ -8,48 +8,43 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecorderStateChangedEventArgs : EventArgs
     {
-		private RecorderState _previous = RecorderState.None;
-		private RecorderState _current = RecorderState.None;
-		private bool _policy = false;
+        private RecorderState _previous = RecorderState.None;
+        private RecorderState _current = RecorderState.None;
+        private bool _policy = false;
 
-		internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool policy)
-		{
-			_previous = previous;
-			_current = current;
-			_policy = policy;
-		}
+        internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool policy)
+        {
+            _previous = previous;
+            _current = current;
+            _policy = policy;
+        }
 
         /// <summary>
         /// Previous state of the recorder.
         /// </summary>
-        public RecorderState Previous
-        {
-            get
-			{
-				return _previous;
-			}
+        public RecorderState Previous {
+            get {
+                return _previous;
+            }
         }
 
         /// <summary>
         /// Current state of the recorder.
         /// </summary>
-        public RecorderState Current
-        {
-            get
-			{
-				return _current;
-			}
+        public RecorderState Current {
+            get {
+                return _current;
+            }
         }
 
         /// <summary>
-        /// true if the state changed by policy, otherwise false.
+        /// true if the state changed by policy such as Resource Conflict or Security, otherwise false
+        /// in normal state change.
         /// </summary>
-        public bool ByPolicy
-        {
-            get
-			{
-				return _policy;
-			}
+        public bool ByPolicy {
+            get {
+                return _policy;
+            }
         }
     }
 }

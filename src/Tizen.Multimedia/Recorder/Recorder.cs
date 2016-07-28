@@ -377,7 +377,7 @@ namespace Tizen.Multimedia
         }
 
 		/// <summary>
-		/// The maximum size of a recording file in KB(kilobytes). If 0 means
+		/// The maximum size of a recording file in KB(kilobytes). If 0, means
 		/// unlimited recording size.
 		/// </summary>
 		/// <remarks>
@@ -411,7 +411,7 @@ namespace Tizen.Multimedia
 		}
 
 		/// <summary>
-		/// The time limit of a recording file in Seconds. If 0 means unlimited recording
+		/// The time limit of a recording file in Seconds. If 0, means unlimited recording
 		/// time.
 		/// </summary>
 		/// <remarks>
@@ -922,10 +922,7 @@ namespace Tizen.Multimedia
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
-		/// <summary>
-		/// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
-		/// </summary>
-		/// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (!_disposed)
