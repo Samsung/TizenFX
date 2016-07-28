@@ -38,8 +38,11 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Tizen.System.Sensor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
+  <Import Project="CoreFx.References.targets" />
+  <ItemGroup Condition=" '$(CoreFxPath)' == '' ">
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Tizen.Internals">
       <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
     </Reference>
