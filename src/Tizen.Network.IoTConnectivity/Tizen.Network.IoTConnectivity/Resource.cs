@@ -429,7 +429,7 @@ namespace Tizen.Network.IoTConnectivity
 
             return new Request()
             {
-                HostAddress = Marshal.PtrToStringAuto(hostAddressPtr),
+                HostAddress = Marshal.PtrToStringAnsi(hostAddressPtr),
                 Options = opts,
                 Query = query,
                 Representation = representation

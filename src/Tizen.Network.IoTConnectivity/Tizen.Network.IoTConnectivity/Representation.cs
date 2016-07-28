@@ -90,7 +90,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get uri");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return Marshal.PtrToStringAuto(path);
+                return Marshal.PtrToStringAnsi(path);
             }
             set
             {

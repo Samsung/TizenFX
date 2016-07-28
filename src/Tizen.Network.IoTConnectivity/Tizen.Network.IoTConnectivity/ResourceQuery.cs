@@ -91,7 +91,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return Marshal.PtrToStringAuto(type);
+                return Marshal.PtrToStringAnsi(type);
             }
             set
             {
@@ -128,7 +128,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return Marshal.PtrToStringAuto(iface);
+                return Marshal.PtrToStringAnsi(iface);
             }
             set
             {

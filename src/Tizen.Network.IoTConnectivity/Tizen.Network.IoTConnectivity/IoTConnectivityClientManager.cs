@@ -714,8 +714,8 @@ namespace Tizen.Network.IoTConnectivity
             PresenceReceivedEventArgs e = new PresenceReceivedEventArgs()
             {
                 PresenceId = presenceId,
-                HostAddress = Marshal.PtrToStringAuto(host),
-                Type = Marshal.PtrToStringAuto(type),
+                HostAddress = Marshal.PtrToStringAnsi(host),
+                Type = Marshal.PtrToStringAnsi(type),
                 EventType = (PresenceEventType)trigger
             };
 
@@ -757,10 +757,10 @@ namespace Tizen.Network.IoTConnectivity
             DeviceInformationFoundEventArgs e = new DeviceInformationFoundEventArgs()
             {
                 RequestId = requestId,
-                Name = Marshal.PtrToStringAuto(name),
-                SpecVersion = Marshal.PtrToStringAuto(specVersion),
-                DeviceId = Marshal.PtrToStringAuto(deviceId),
-                DataModelVersion = Marshal.PtrToStringAuto(dataModelVersion)
+                Name = Marshal.PtrToStringAnsi(name),
+                SpecVersion = Marshal.PtrToStringAnsi(specVersion),
+                DeviceId = Marshal.PtrToStringAnsi(deviceId),
+                DataModelVersion = Marshal.PtrToStringAnsi(dataModelVersion)
             };
 
             return e;
@@ -850,17 +850,17 @@ namespace Tizen.Network.IoTConnectivity
             PlatformInformationFoundEventArgs e = new PlatformInformationFoundEventArgs()
             {
                 RequestId = requestId,
-                PlatformId = (platformId != IntPtr.Zero) ? Marshal.PtrToStringAuto(platformId) : string.Empty,
-                ManufacturerName = (manufacturerName != IntPtr.Zero) ? Marshal.PtrToStringAuto(manufacturerName) : string.Empty,
-                ManufacturerURL = (manufacturerUrl != IntPtr.Zero) ? Marshal.PtrToStringAuto(manufacturerUrl) : string.Empty,
-                DateOfManufacture = (dateOfManufacture != IntPtr.Zero) ? Marshal.PtrToStringAuto(dateOfManufacture) : string.Empty,
-                ModelNumber = (modelNumber != IntPtr.Zero) ? Marshal.PtrToStringAuto(modelNumber) : string.Empty,
-                PlatformVersion = (platformVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(platformVersion) : string.Empty,
-                OsVersion = (osVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(osVersion) : string.Empty,
-                HardwareVersion = (hardwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(hardwareVersion) : string.Empty,
-                FirmwareVersion = (firmwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAuto(firmwareVersion) : string.Empty,
-                SupportUrl = (supportUrl != IntPtr.Zero) ? Marshal.PtrToStringAuto(supportUrl) : string.Empty,
-                SystemTime = (systemTime != IntPtr.Zero) ? Marshal.PtrToStringAuto(systemTime) : string.Empty
+                PlatformId = (platformId != IntPtr.Zero) ? Marshal.PtrToStringAnsi(platformId) : string.Empty,
+                ManufacturerName = (manufacturerName != IntPtr.Zero) ? Marshal.PtrToStringAnsi(manufacturerName) : string.Empty,
+                ManufacturerURL = (manufacturerUrl != IntPtr.Zero) ? Marshal.PtrToStringAnsi(manufacturerUrl) : string.Empty,
+                DateOfManufacture = (dateOfManufacture != IntPtr.Zero) ? Marshal.PtrToStringAnsi(dateOfManufacture) : string.Empty,
+                ModelNumber = (modelNumber != IntPtr.Zero) ? Marshal.PtrToStringAnsi(modelNumber) : string.Empty,
+                PlatformVersion = (platformVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(platformVersion) : string.Empty,
+                OsVersion = (osVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(osVersion) : string.Empty,
+                HardwareVersion = (hardwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(hardwareVersion) : string.Empty,
+                FirmwareVersion = (firmwareVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(firmwareVersion) : string.Empty,
+                SupportUrl = (supportUrl != IntPtr.Zero) ? Marshal.PtrToStringAnsi(supportUrl) : string.Empty,
+                SystemTime = (systemTime != IntPtr.Zero) ? Marshal.PtrToStringAnsi(systemTime) : string.Empty
             };
 
             return e;

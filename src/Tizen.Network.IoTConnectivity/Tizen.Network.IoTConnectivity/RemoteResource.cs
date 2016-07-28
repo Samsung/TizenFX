@@ -716,7 +716,7 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-            DeviceName = Marshal.PtrToStringAuto(deviceName);*/
+            DeviceName = Marshal.PtrToStringAnsi(deviceName);*/
         }
 
         private void SetRemoteResource()
@@ -773,10 +773,10 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-            DeviceName = Marshal.PtrToStringAuto(deviceName);
-            DeviceId = Marshal.PtrToStringAuto(deviceIdPtr);
-            HostAddress = Marshal.PtrToStringAuto(hostAddressPtr);
-            UriPath = Marshal.PtrToStringAuto(uriPathPtr);
+            DeviceName = Marshal.PtrToStringAnsi(deviceName);
+            DeviceId = Marshal.PtrToStringAnsi(deviceIdPtr);
+            HostAddress = Marshal.PtrToStringAnsi(hostAddressPtr);
+            UriPath = Marshal.PtrToStringAnsi(uriPathPtr);
             Types = new ResourceTypes(typesHandle);
             Interfaces = new ResourceInterfaces(interfacesHandle);
             Policy = (ResourcePolicy)policy;
