@@ -38,7 +38,8 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Tizen.Content.Download.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
+  <Import Project="CoreFx.References.targets" />
+  <ItemGroup Condition=" '$(CoreFxPath)' == '' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +47,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Tizen">
       <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
     </Reference>
@@ -71,7 +74,7 @@
     <None Include="Tizen.Content.Download.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

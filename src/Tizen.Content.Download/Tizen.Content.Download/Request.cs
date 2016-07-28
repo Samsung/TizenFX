@@ -659,7 +659,7 @@ namespace Tizen.Content.Download
 
             for (int iterator = 0; iterator < size; iterator++)
             {
-                managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
+                managedArray[iterator] = Marshal.PtrToStringAnsi(IntPtrArray[iterator]);
             }
         }
 
