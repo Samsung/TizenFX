@@ -102,7 +102,7 @@ namespace Tizen.Applications
         /// <value>
         /// The operation is the mandatory information for the launch request. If the operation is not specified,
         /// AppControlOperations.Default is used for the launch request. If the operation is AppControlOperations.Default,
-        /// the package information is mandatory to explicitly launch the application. 
+        /// the package information is mandatory to explicitly launch the application.
         /// (if the operation is null for setter, it clears the previous value.)
         /// </value>
         /// <example>
@@ -185,13 +185,13 @@ namespace Tizen.Applications
         /// Gets and sets the URI of the data.
         /// </summary>
         /// <value>
-        /// Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and 
-        /// it is a regular file in this application's data path which can be obtained 
+        /// Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and
+        /// it is a regular file in this application's data path which can be obtained
         /// by property DataPath in ApplicationInfo class,
-        /// it will be shared to the callee application. 
-        /// Framework will grant a temporary permission to the callee application for this file and 
+        /// it will be shared to the callee application.
+        /// Framework will grant a temporary permission to the callee application for this file and
         /// revoke it when the callee application is terminated.
-        /// The callee application can just read it. 
+        /// The callee application can just read it.
         /// (if the uri is null for setter, it clears the previous value.)
         /// </value>
         /// <example>
@@ -316,13 +316,13 @@ namespace Tizen.Applications
         /// Gets and sets the launch mode of the application.
         /// </summary>
         /// <value>
-        /// Although LaunchMode were set as AppControlLaunchMode.Group, 
-        /// callee application would be launched as single mode 
+        /// Although LaunchMode were set as AppControlLaunchMode.Group,
+        /// callee application would be launched as single mode
         /// if the manifest file of callee application defined the launch mode as "single".
-        /// This property can just set the preference of caller application to launch an application. 
+        /// This property can just set the preference of caller application to launch an application.
         /// Sub-applications which were launched as group mode always have own process.
-        /// Since Tizen 3.0, if launch mode not set in the caller app control, 
-        /// this property returns AppControlLaunchMode.Single launch mode. 
+        /// Since Tizen 3.0, if launch mode not set in the caller app control,
+        /// this property returns AppControlLaunchMode.Single launch mode.
         /// </value>
         /// <example>
         /// <code>
@@ -437,11 +437,11 @@ namespace Tizen.Applications
         /// Sends the launch request.
         /// </summary>
         /// <remarks>
-        /// The operation is mandatory information for the launch request. 
+        /// The operation is mandatory information for the launch request.
         /// If the operation is not specified, AppControlOperations.Default is used by default.
         /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
-        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform. 
-        /// Also, implicit launch requests are NOT delivered to service applications since 2.4. 
+        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+        /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
         /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
         /// </remarks>
         /// <param name="launchRequest">The AppControl</param>
@@ -465,11 +465,11 @@ namespace Tizen.Applications
         /// Sends the launch request.
         /// </summary>
         /// <remarks>
-        /// The operation is mandatory information for the launch request. 
+        /// The operation is mandatory information for the launch request.
         /// If the operation is not specified, AppControlOperations.Default is used by default.
         /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
-        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform. 
-        /// Also, implicit launch requests are NOT delivered to service applications since 2.4. 
+        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+        /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
         /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
         /// </remarks>
         /// <param name="launchRequest">The AppControl</param>
@@ -819,7 +819,7 @@ namespace Tizen.Applications
                     for (int i = 0; i < len; ++i)
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
-                        stringList.Add(Marshal.PtrToStringAuto(charArr));
+                        stringList.Add(Marshal.PtrToStringAnsi(charArr));
                         Interop.Libc.Free(charArr);
                     }
                     Interop.Libc.Free(valuePtr);
@@ -972,7 +972,7 @@ namespace Tizen.Applications
                     for (int i = 0; i < len; ++i)
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
-                        valueArray.Add(Marshal.PtrToStringAuto(charArr));
+                        valueArray.Add(Marshal.PtrToStringAnsi(charArr));
                         Interop.Libc.Free(charArr);
                     }
                     Interop.Libc.Free(valuePtr);

@@ -126,7 +126,7 @@ namespace Tizen.Applications.Notifications
                 if (titlePtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(titlePtr);
+                return Marshal.PtrToStringAnsi(titlePtr);
             }
             set
             {
@@ -166,7 +166,7 @@ namespace Tizen.Applications.Notifications
                 if (contentPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(contentPtr);
+                return Marshal.PtrToStringAnsi(contentPtr);
             }
             set
             {
@@ -209,7 +209,7 @@ namespace Tizen.Applications.Notifications
                 if (pathPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(pathPtr);
+                return Marshal.PtrToStringAnsi(pathPtr);
             }
             set
             {
@@ -252,7 +252,7 @@ namespace Tizen.Applications.Notifications
                 if (pathPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(pathPtr);
+                return Marshal.PtrToStringAnsi(pathPtr);
             }
             set
             {
@@ -295,7 +295,7 @@ namespace Tizen.Applications.Notifications
                 if (pathPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(pathPtr);
+                return Marshal.PtrToStringAnsi(pathPtr);
             }
             set
             {
@@ -338,7 +338,7 @@ namespace Tizen.Applications.Notifications
                 if (pathPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(pathPtr);
+                return Marshal.PtrToStringAnsi(pathPtr);
             }
             set
             {
@@ -381,7 +381,7 @@ namespace Tizen.Applications.Notifications
                 if (tagPtr == IntPtr.Zero)
                     return string.Empty;
 
-                return Marshal.PtrToStringAuto(tagPtr);
+                return Marshal.PtrToStringAnsi(tagPtr);
             }
             set
             {
@@ -568,7 +568,7 @@ namespace Tizen.Applications.Notifications
                 }
 
                 if(pathPtr != IntPtr.Zero)
-                    _soundPath = Marshal.PtrToStringAuto(pathPtr);
+                    _soundPath = Marshal.PtrToStringAnsi(pathPtr);
 
                 return _soundPath;
             }
@@ -844,7 +844,7 @@ namespace Tizen.Applications.Notifications
                 if(pathPtr == IntPtr.Zero)
                     return string.Empty;
 
-                path = Marshal.PtrToStringAuto(pathPtr);
+                path = Marshal.PtrToStringAnsi(pathPtr);
                 return path;
             }
             set

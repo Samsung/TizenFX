@@ -89,7 +89,7 @@ namespace Tizen.Applications.Notifications
                 if(countPtr == IntPtr.Zero)
                     return 0;
 
-                count = Marshal.PtrToStringAuto(countPtr);
+                count = Marshal.PtrToStringAnsi(countPtr);
                 if(Int32.TryParse(count, out cnt))
                 {
                     return cnt;

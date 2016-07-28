@@ -7,6 +7,7 @@
 // you entered into with Samsung.
 
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -315,7 +316,7 @@ namespace Tizen.Applications
                         IntPtr stringPtr;
                         int retString = Interop.Bundle.GetString(_handle, key, out stringPtr);
                         BundleErrorFactory.CheckAndThrowException(retString, _handle);
-                        string stringValue = Marshal.PtrToStringAuto(stringPtr);
+                        string stringValue = Marshal.PtrToStringAnsi(stringPtr);
                         if (stringValue == null)
                             return string.Empty;
                         return stringValue;
@@ -523,7 +524,7 @@ namespace Tizen.Applications
                         return typeof(string) == typeof(T);
 
                     case (int)BundleType.StringArray:
-                        return typeof(T).IsAssignableFrom(typeof(string[]));
+                        return typeof(T).GetTypeInfo().IsAssignableFrom(typeof(string[]));
 
                     case (int)BundleType.Byte:
                         return typeof(byte[]) == typeof(T);
@@ -620,7 +621,7 @@ namespace Tizen.Applications
 
             for (int iterator = 0; iterator < size; iterator++)
             {
-                managedArray[iterator] = Marshal.PtrToStringAuto(IntPtrArray[iterator]);
+                managedArray[iterator] = Marshal.PtrToStringAnsi(IntPtrArray[iterator]);
             }
         }
     }

@@ -40,7 +40,8 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Tizen.Applications.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
+  <Import Project="CoreFx.References.targets" />
+  <ItemGroup Condition=" '$(CoreFxPath)' == '' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
