@@ -27,15 +27,7 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s", message);
-            }
-            else
-            {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
-            }
+            Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
         }
 
         /// <summary>
@@ -48,15 +40,7 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s", message);
-            }
-            else
-            {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
-            }
+            Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
         /// <summary>
@@ -69,15 +53,7 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Info(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s", message);
-            }
-            else
-            {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
-            }
+            Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
         /// <summary>
@@ -90,15 +66,7 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s", message);
-            }
-            else
-            {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
-            }
+            Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
 
         /// <summary>
@@ -111,15 +79,7 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Error(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s", message);
-            }
-            else
-            {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
-            }
+            Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
         /// <summary>
@@ -132,14 +92,19 @@ namespace Tizen
         /// <param name="line">The line number of calling position. This argument will be set automatically by the compiler.</param>
         public static void Fatal(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
+            Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
+        }
+
+        private static void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        {
             if (String.IsNullOrEmpty(file))
             {
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s", message);
+                Interop.Dlog.Print(priority, tag, "%s", message);
             }
             else
             {
-                Uri f = new Uri(file);
-                Interop.Dlog.Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                Uri f = new Uri("file://" + file);
+                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
             }
         }
     }
