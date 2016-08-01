@@ -25,6 +25,7 @@ BuildRequires: csapi-tizen
 BuildRequires: pkgconfig(glib-2.0)
 
 # privilege-info
+BuildRequires: csapi-application
 BuildRequires: pkgconfig(privilege-info)
 
 # key-manager

@@ -10,7 +10,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string PrivilegeInformation = "libprivilege-info.so.1.0.0";
+        public const string Privilege = "libprivilege-info.so.1";
         public const string KeyManagerClient = "libkey-manager-client.so.1";
         public const string TizenBaseCommon = "libcapi-base-common.so.0";
     }
