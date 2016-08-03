@@ -160,7 +160,11 @@
         /// <summary>
         /// Audio type for voice
         /// </summary>
-        Voice
+        Voice,
+        /// <summary>
+        /// Audio type None
+        /// </summary>
+        None
     }
 
     /// <summary>
