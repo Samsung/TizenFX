@@ -7,6 +7,7 @@
 /// you entered into with Samsung.
 
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Network.IoTConnectivity
@@ -34,51 +35,7 @@ namespace Tizen.Network.IoTConnectivity
 
         internal static void ThrowException(int err)
         {
-            IoTConnectivityError error = (IoTConnectivityError)err;
-            if (error == IoTConnectivityError.OutOfMemory)
-            {
-                throw new InvalidOperationException("Out of memory");
-            }
-            else if (error == IoTConnectivityError.InvalidParameter)
-            {
-                throw new ArgumentException("Invalid parameter");
-            }
-            else if (error == IoTConnectivityError.Io)
-            {
-                throw new ArgumentException("I/O Error");
-            }
-            else if (error == IoTConnectivityError.NoData)
-            {
-                throw new ArgumentException("No data found");
-            }
-            else if (error == IoTConnectivityError.TimedOut)
-            {
-                throw new ArgumentException("timed out");
-            }
-            else if (error == IoTConnectivityError.PermissionDenied)
-            {
-                throw new ArgumentException("Permission denied");
-            }
-            else if (error == IoTConnectivityError.NotSupported)
-            {
-                throw new ArgumentException("Not supported");
-            }
-            else if (error == IoTConnectivityError.Representation)
-            {
-                throw new ArgumentException("Representation error");
-            }
-            else if (error == IoTConnectivityError.InvalidType)
-            {
-                throw new ArgumentException("Invalid type");
-            }
-            else if (error == IoTConnectivityError.Already)
-            {
-                throw new ArgumentException("Duplicate");
-            }
-            else if (error == IoTConnectivityError.System)
-            {
-                throw new InvalidOperationException("System error");
-            }
+            throw GetException(err);
         }
 
         internal static Exception GetException(int err)
@@ -86,7 +43,7 @@ namespace Tizen.Network.IoTConnectivity
             IoTConnectivityError error = (IoTConnectivityError)err;
             if (error == IoTConnectivityError.OutOfMemory)
             {
-                return new InvalidOperationException("Out of memory");
+                return new OutOfMemoryException("Out of memory");
             }
             else if (error == IoTConnectivityError.InvalidParameter)
             {
@@ -94,27 +51,27 @@ namespace Tizen.Network.IoTConnectivity
             }
             else if (error == IoTConnectivityError.Io)
             {
-                return new ArgumentException("I/O Error");
+                return new IOException("I/O Error");
             }
             else if (error == IoTConnectivityError.NoData)
             {
-                return new ArgumentException("No data found");
+                return new InvalidOperationException("No data found");
             }
             else if (error == IoTConnectivityError.TimedOut)
             {
-                return new ArgumentException("timed out");
+                return new TimeoutException("timed out");
             }
             else if (error == IoTConnectivityError.PermissionDenied)
             {
-                return new ArgumentException("Permission denied");
+                return new UnauthorizedAccessException("Permission denied");
             }
             else if (error == IoTConnectivityError.NotSupported)
             {
-                return new ArgumentException("Not supported");
+                return new NotSupportedException("Not supported");
             }
             else if (error == IoTConnectivityError.Representation)
             {
-                return new ArgumentException("Representation error");
+                return new InvalidOperationException("Representation error");
             }
             else if (error == IoTConnectivityError.InvalidType)
             {
@@ -122,11 +79,11 @@ namespace Tizen.Network.IoTConnectivity
             }
             else if (error == IoTConnectivityError.Already)
             {
-                return new ArgumentException("Duplicate");
+                return new InvalidOperationException("Duplicate");
             }
             else if (error == IoTConnectivityError.System)
             {
-                return new InvalidOperationException("System error");
+                return new SystemException("System error");
             }
             else
             {

@@ -14,7 +14,8 @@ using System.Text.RegularExpressions;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class containing resource interfaces
+    /// This class contains resource interfaces and provides APIs to manage, add, remove those interfaces.
+    /// A resource interface indicates a class or category of resources.
     /// </summary>
     public class ResourceInterfaces : IEnumerable<string>, IDisposable
     {
@@ -24,7 +25,7 @@ namespace Tizen.Network.IoTConnectivity
         public const string DefaultInterface = "oic.if.baseline";
 
         /// <summary>
-        /// List Links Interface which is used to list the references to other resources  contained in a resource.
+        /// List Links Interface which is used to list the references to other resources contained in a resource.
         /// </summary>
         public const string LinkInterface = "oic.if.ll";
 
@@ -49,8 +50,13 @@ namespace Tizen.Network.IoTConnectivity
         private bool _disposed = false;
 
         /// <summary>
-        /// Constructor
+        /// Constructor of ResourceInterfaces
         /// </summary>
+        /// <seealso cref="Add()"/>
+        /// <seealso cref="Remove()"/>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
+        /// </code>
         public ResourceInterfaces()
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Create(out _resourceInterfacesHandle);
@@ -62,9 +68,13 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor of ResourceInterfaces using list of interfaces
         /// </summary>
         /// <param name="ifaces">List of resource interfaces</param>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
+        ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+        /// </code>
         public ResourceInterfaces(IEnumerable<string> ifaces)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Create(out _resourceInterfacesHandle);
@@ -79,9 +89,6 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
         internal ResourceInterfaces(IntPtr ifacesHandleToClone)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Clone(ifacesHandleToClone, out _resourceInterfacesHandle);
@@ -105,6 +112,9 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
+        /// <summary>
+        /// Destructor of the ResourceInterfaces class.
+        /// </summary>
         ~ResourceInterfaces()
         {
             Dispose(false);
@@ -119,8 +129,13 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Count of interfaces in the list
+        /// Indicates count of interfaces in the list
         /// </summary>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
+        ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+        /// Console.WriteLine("There are {0} interfaces", resourceInterfaces.Count);
+        /// </code>
         public int Count
         {
             get
@@ -132,7 +147,15 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds a resource interface into the list.
         /// </summary>
-        /// <param name="item"> Resource interface</param>
+        /// <remarks>
+        /// @a item could be a value such as <see cref="DefaultInterface"/>
+        /// </remarks>
+        /// <param name="item">The string data to insert into the resource interfaces</param>
+        /// <seealso cref="Remove()"/>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
+        /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
+        /// </code>
         public void Add(string item)
         {
             if (IsValid(item))
@@ -155,36 +178,69 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Removes a resource interface from the list
         /// </summary>
-        /// <param name="item">Resource interface</param>
+        /// <param name="item">The string data to delete from the resource ifaces</param>
+        /// <seealso cref="Add()"/>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.BatchInterface });
+        /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
+        /// </code>
         public void Remove(string item)
         {
-            int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Remove(_resourceInterfacesHandle, item);
-            if (ret != (int)IoTConnectivityError.None)
+            bool isRemoved = _resourceInterfaces.Remove(item);
+            if (isRemoved)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add interface");
-                throw IoTConnectivityErrorFactory.GetException(ret);
+                int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Remove(_resourceInterfacesHandle, item);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add interface");
+                    throw IoTConnectivityErrorFactory.GetException(ret);
+                }
             }
-            _resourceInterfaces.Remove(item);
+            else
+                throw IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.InvalidParameter);
         }
 
         /// <summary>
         /// Return enumerator for the list of interfaces
         /// </summary>
         /// <returns>The enumerator</returns>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
+        ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+        /// foreach(string item in resourceInterfaces)
+        /// {
+        ///     Console.WriteLine("Interface : {0}", item);
+        /// }
+        /// </code>
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceInterfaces.GetEnumerator();
         }
 
+        /// <summary>
+        /// Return enumerator for the list of interfaces
+        /// </summary>
+        /// <returns>The enumerator</returns>
+        /// <code>
+        /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
+        ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+        /// foreach(string item in resourceInterfaces)
+        /// {
+        ///     Console.WriteLine("Interface : {0}", item);
+        /// }
+        /// </code>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _resourceInterfaces.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _resourceInterfaces.GetEnumerator();
         }
 
         internal static bool IsValid(string type)
@@ -193,6 +249,10 @@ namespace Tizen.Network.IoTConnectivity
             return (type.Length <= MaxLength && char.IsLower(type[0]) && r.IsMatch(type));
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

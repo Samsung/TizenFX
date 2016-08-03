@@ -12,6 +12,7 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// Class respresenting request to a resource.
+    /// It provides APIs to manage client's request.
     /// </summary>
     public class Request : IDisposable
     {
@@ -21,6 +22,9 @@ namespace Tizen.Network.IoTConnectivity
         {
         }
 
+        /// <summary>
+        /// Destructor of the Request class.
+        /// </summary>
         ~Request()
         {
             Dispose(false);
@@ -46,12 +50,19 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         public ResourceOptions Options { get; internal set; }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

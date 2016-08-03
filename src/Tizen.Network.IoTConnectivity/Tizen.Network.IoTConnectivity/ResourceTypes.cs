@@ -14,7 +14,8 @@ using System.Text.RegularExpressions;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Class containing resource types
+    /// This class contains resource types and provides APIs to manage, add, remove those types.
+    /// A resource type indicates a class or category of resources.
     /// </summary>
     public class ResourceTypes : IEnumerable<string>, IDisposable
     {
@@ -24,8 +25,13 @@ namespace Tizen.Network.IoTConnectivity
         private bool _disposed = false;
 
         /// <summary>
-        /// Constructor
+        /// Constructor of ResourceTypes
         /// </summary>
+        /// <seealso cref="Add()"/>
+        /// <seealso cref="Remove()"/>
+        /// <code>
+        /// ResourceTypes types = new ResourceTypes();
+        /// </code>
         public ResourceTypes()
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -37,8 +43,12 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor of ResourceTypes using list of types
         /// </summary>
+        /// <param name="types">List of resource types</param>
+        /// <code>
+        /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
+        /// </code>
         public ResourceTypes(IEnumerable<string> types)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -54,9 +64,6 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
         internal ResourceTypes(IntPtr typesHandleToClone)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Clone(typesHandleToClone, out _resourceTypeHandle);
@@ -80,14 +87,21 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
+        /// <summary>
+        /// Destructor of the ResourceTypes class.
+        /// </summary>
         ~ResourceTypes()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Count of resource types in the list
+        /// Indicates count of types in the list
         /// </summary>
+        /// <code>
+        /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
+        /// Console.WriteLine("There are {0} items", types.Count);
+        /// </code>
         public int Count
         {
             get
@@ -97,9 +111,20 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///  Inserts a resource type into the list.
+        /// Adds a resource type into the list.
         /// </summary>
-        /// <param name="item">The resource type to add</param>
+        /// <remarks>
+        /// The length of @a item should be less than or equal to 61.\n
+        /// The @a item must start with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.\n
+        /// Duplicate strings are not allowed.
+        /// </remarks>
+        /// <param name="item">The string data to insert into the resource types</param>
+        /// <seealso cref="Remove()"/>
+        /// <code>
+        /// ResourceTypes resourceTypes = new ResourceTypes();
+        /// resourceTypes.Add("org.tizen.light");
+        /// </code>
         public void Add(string item)
         {
             if (IsValid(item))
@@ -120,35 +145,65 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///  Removes a resource type from the list
+        /// Removes a resource type from the list
         /// </summary>
-        /// <param name="item">The resource type to remove</param>
+        /// <param name="item">The string data to delete from the resource types</param>
+        /// <seealso cref="Add()"/>
+        /// <code>
+        /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
+        /// resourceTypes.Remove("oic.if.room");
+        /// </code>
         public void Remove(string item)
         {
-            int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
-            if (ret != (int)IoTConnectivityError.None)
+            bool isRemoved = _resourceTypes.Remove(item);
+            if (isRemoved)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove type");
-                throw IoTConnectivityErrorFactory.GetException(ret);
+                int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
+                if (ret != (int)IoTConnectivityError.None)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove type");
+                    throw IoTConnectivityErrorFactory.GetException(ret);
+                }
             }
-
-            _resourceTypes.Remove(item);
+            else
+                throw IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.InvalidParameter);
         }
 
         /// <summary>
-        ///  Return enumerator for the list of types
+        /// Return enumerator for the list of types
         /// </summary>
-        /// <returns>Enumerator of the collection</returns>
+        /// <returns>The enumerator</returns>
+        /// <code>
+        /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
+        /// foreach(string item in resourceTypes)
+        /// {
+        ///     Console.WriteLine("Type : {0}", item);
+        /// }
+        /// </code>
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
         }
 
+        /// <summary>
+        /// Return enumerator for the list of types
+        /// </summary>
+        /// <returns>The enumerator</returns>
+        /// <code>
+        /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
+        /// foreach(string item in resourceTypes)
+        /// {
+        ///     Console.WriteLine("Type : {0}", item);
+        /// }
+        /// </code>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -161,6 +216,10 @@ namespace Tizen.Network.IoTConnectivity
             return (type.Length <= MaxLength && char.IsLower(type[0]) && r.IsMatch(type));
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

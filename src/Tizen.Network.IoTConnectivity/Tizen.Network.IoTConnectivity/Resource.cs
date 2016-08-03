@@ -15,6 +15,7 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// Abstract class respresenting a resource.
+    /// All resources need to inherit from this class.
     /// </summary>
     public abstract class Resource : IDisposable
     {
@@ -26,10 +27,44 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The constructor
         /// </summary>
-        /// <param name="uri">URI of the resource</param>
+        /// <remarks>
+        /// @a uri format would be relative URI path like '/a/light'
+        /// and its length must be less than 128.
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="uri">The URI path of the resource</param>
         /// <param name="types">Resource types</param>
         /// <param name="interfaces">Resource interfaces</param>
-        /// <param name="policy">Policy input of the resoruce</param>
+        /// <param name="policy">The policies of the resoruce</param>
+        /// <pre>
+        /// IoTConnectivityServerManager.Initialize() should be called to initialize
+        /// </pre>
+        /// <seealso cref="ResourceTypes"/>
+        /// <seealso cref="ResourceInterfaces"/>
+        /// <seealso cref="ResourcePolicy"/>
+        /// <code>
+        /// // Create a class which inherits from Resource
+        /// public class DoorResource : Resource
+        /// {
+        ///     public DoorResource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
+        ///             : base(uri, types, interfaces, policy) {
+        ///     }
+        ///     protected override Response OnDelete(Request request) {
+        ///         // Do something
+        ///     }
+        ///     protected override Response OnGet(Request request) {
+        ///         // Do something
+        ///     }
+        ///     // Override other abstract methods of Resource class
+        /// }
+        ///
+        /// // Use it like below
+        /// ResourceInterfaces ifaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.DefaultInterface });
+        /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new" });
+        /// Resource resource = new DoorResource("/door/uri1", types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);
+        /// </code>
         protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
         {
             UriPath = uri;
@@ -47,6 +82,9 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
+        /// <summary>
+        /// Destructor of the Resource class.
+        /// </summary>
         ~Resource()
         {
             Dispose(false);
@@ -63,12 +101,12 @@ namespace Tizen.Network.IoTConnectivity
         public ResourceInterfaces Interfaces { get; internal set; }
 
         /// <summary>
-        /// The policy
+        /// The policies of the resource
         /// </summary>
         public ResourcePolicy Policy { get; internal set; }
 
         /// <summary>
-        /// URI of the resource
+        /// URI path of the resource
         /// </summary>
         public string UriPath { get; internal set; }
 
@@ -98,8 +136,30 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Notify the specified representation and qos.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
         /// <param name="representation">Representation.</param>
-        /// <param name="qos">Qos.</param>
+        /// <param name="qos">The quality of service for message transfer.</param>
+        /// <pre>
+        /// IoTConnectivityServerManager.Initialize() should be called to initialize
+        /// </pre>
+        /// <seealso cref="Representation"/>
+        /// <seealso cref="QualityOfService"/>
+        /// <code>
+        /// ResourceInterfaces ifaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.DefaultInterface });
+        /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new.notify" });
+        /// Resource resource = new DoorResource("/door/uri/new/notify", types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);
+        /// IoTConnectivityServerManager.RegisterResource(resource);
+        ///
+        /// Representation repr = new Representation();
+        /// repr.UriPath = "/door/uri/new/notify";
+        /// repr.Type = new ResourceTypes(new List<string>(){ "oic.iot.door.new.notify" });
+        /// repr.Attributes = new Attributes() {
+        ///      _attribute, 1 }
+        /// };
+        /// resource.Notify(repr, QualityOfService.High);
+        /// </code>
         public void Notify(Representation representation, QualityOfService qos)
         {
             int ret = (int)IoTConnectivityError.None;
@@ -112,43 +172,55 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Called on the get event.
+        /// This is Called when the client performs get operation on this resource.
         /// </summary>
-        /// <param name="request">Request.</param>
+        /// <param name="request">A request from client</param>
+        /// <returns>A response having the representation and the result</returns>
         protected abstract Response OnGet(Request request);
 
         /// <summary>
-        /// Called on the put event.
+        /// This is Called when the client performs put operation on this resource.
         /// </summary>
-        /// <param name="request">Request.</param>
+        /// <param name="request">A request from client</param>
+        /// <returns>A response</returns>
         protected abstract Response OnPut(Request request);
 
         /// <summary>
-        /// Called on the post event.
+        /// This is Called when the client performs post operation on this resource.
         /// </summary>
-        /// <param name="request">Request.</param>
+        /// <param name="request">A request from client</param>
+        /// <returns>A response having the representation and the result</returns>
         protected abstract Response OnPost(Request request);
 
         /// <summary>
-        /// Called on the delete event.
+        /// This is Called when the client performs delete operation on this resource.
         /// </summary>
-        /// <param name="request">Request.</param>
+        /// <param name="request">A request from client</param>
+        /// <returns>A response</returns>
         protected abstract Response OnDelete(Request request);
 
         /// <summary>
         /// Called on the observing event.
         /// </summary>
-        /// <param name="request">Request.</param>
-        /// <param name="policy">Policy.</param>
+        /// <param name="request">A request from client</param>
+        /// <param name="type">Observer type</param>
         /// <param name="observeId">Observe identifier.</param>
+        /// <returns>Returns true if it wants to be observed, else false.</returns>
         protected abstract bool OnObserving(Request request, ObserveType type, int observeId);
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
@@ -188,7 +260,6 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get observe type");
                     return;
                 }
-
                 if ((ObserveType)observeType != ObserveType.NoType)
                 {
                     int observeId;
@@ -238,7 +309,6 @@ namespace Tizen.Network.IoTConnectivity
                         }
                     }
                 }
-
                 int requestType;
                 ret = Interop.IoTConnectivity.Server.Request.GetRequestType(requestHandle, out requestType);
                 if (ret != (int)IoTConnectivityError.None)
@@ -246,7 +316,6 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get request type");
                     return;
                 }
-
                 switch ((Interop.IoTConnectivity.Server.RequestType)requestType)
                 {
                     case Interop.IoTConnectivity.Server.RequestType.Put:

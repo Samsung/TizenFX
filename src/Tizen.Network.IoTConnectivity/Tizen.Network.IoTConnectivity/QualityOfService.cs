@@ -9,7 +9,7 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Indicates observation request for all notifications including stale notifications
+    /// Enumeration for states of remote resource.
     /// </summary>
     public enum QualityOfService
     {

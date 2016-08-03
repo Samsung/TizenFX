@@ -16,62 +16,62 @@ namespace Tizen.Network.IoTConnectivity
         internal PlatformInformationFoundEventArgs() { }
 
         /// <summary>
-        /// The request id
+        /// Indicates the request id
         /// </summary>
         public int RequestId { get; internal set; }
 
         /// <summary>
-        /// The platform identifier
+        /// Indicates the platform identifier
         /// </summary>
         public string PlatformId { get; internal set; }
 
         /// <summary>
-        /// The name of manufacturer
+        /// Indicates the name of manufacturer
         /// </summary>
         public string ManufacturerName { get; internal set; }
 
         /// <summary>
-        /// URL of the manufacturer
+        /// Indicates URL of the manufacturer
         /// </summary>
         public string ManufacturerURL { get; internal set; }
 
         /// <summary>
-        /// Model number as designated by manufacturer
+        /// Indicates model number as designated by manufacturer
         /// </summary>
         public string ModelNumber { get; internal set; }
 
         /// <summary>
-        /// Manugacturing date of the device
+        /// Indicates manufacturing date of the device
         /// </summary>
         public string DateOfManufacture { get; internal set; }
 
         /// <summary>
-        /// Version of platfrom defined by manufacturer
+        /// Indicates version of platfrom defined by manufacturer
         /// </summary>
         public string PlatformVersion { get; internal set; }
 
         /// <summary>
-        /// Version of platfrom resident OS
+        /// Indicates version of platfrom resident OS
         /// </summary>
         public string OsVersion { get; internal set; }
 
         /// <summary>
-        /// Version of platform Hardware
+        /// Indicates version of platform Hardware
         /// </summary>
         public string HardwareVersion { get; internal set; }
 
         /// <summary>
-        /// Version of device firmware
+        /// Indicates version of device firmware
         /// </summary>
         public string FirmwareVersion { get; internal set; }
 
         /// <summary>
-        /// URL that points to support information from manufacturer
+        /// Indicates URL that points to support information from manufacturer
         /// </summary>
         public string SupportUrl { get; internal set; }
 
         /// <summary>
-        /// Reference time of the device
+        /// Indicates reference time of the device
         /// </summary>
         public string SystemTime { get; internal set; }
     }

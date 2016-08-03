@@ -26,7 +26,7 @@ namespace Tizen.Network.IoTConnectivity
         public string Name { get; internal set; }
 
         /// <summary>
-        /// Indicates human friendly name for device
+        /// Indicates spec version of the core specification
         /// </summary>
         public string SpecVersion { get; internal set; }
 

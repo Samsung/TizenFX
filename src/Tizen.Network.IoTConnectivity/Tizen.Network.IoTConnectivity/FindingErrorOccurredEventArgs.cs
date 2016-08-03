@@ -18,15 +18,13 @@ namespace Tizen.Network.IoTConnectivity
         internal FindingErrorOccurredEventArgs() { }
 
         /// <summary>
-        /// RequestId property.
+        /// The request id of the operation which caused this error
         /// </summary>
-        /// <returns>int RequestId.</returns>
         public int RequestId { get; internal set; }
 
         /// <summary>
-        /// Result property.
+        /// Contains error details.
         /// </summary>
-        /// <returns>FindingError Result.</returns>
         public Exception Error { get; internal set; }
     }
 }

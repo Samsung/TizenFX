@@ -18,9 +18,8 @@ namespace Tizen.Network.IoTConnectivity
         internal StateChangedEventArgs() { }
 
         /// <summary>
-        /// State property.
+        /// Indicates the new state of the resource
         /// </summary>
-        /// <returns>ResourceState State.</returns>
         public ResourceState State { get; internal set; }
     }
 }

@@ -10,9 +10,12 @@ namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
     /// This class represents remote response.
+    /// It represents the response of all CRUD operations.
     /// </summary>
     public class RemoteResponse
     {
+        internal RemoteResponse() { }
+
         /// <summary>
         /// Indicates the result of the response
         /// </summary>
