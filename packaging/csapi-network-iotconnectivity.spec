@@ -20,6 +20,11 @@ Source1:    %{name}.manifest
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
 
+%if 0%{?_with_corefx}
+AutoReqProv: no
+BuildRequires: corefx-managed-32b-ref
+%endif
+
 # P/Invoke Build Requires
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(iotcon)
