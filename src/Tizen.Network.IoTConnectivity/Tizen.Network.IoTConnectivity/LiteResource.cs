@@ -93,6 +93,8 @@ namespace Tizen.Network.IoTConnectivity
             return true;
         }
 
+        // The code block untill @endcond should not appear in doxygen spec.
+        /// @cond
         protected sealed override Response OnGet(Request request)
         {
             Representation representation = new Representation()
@@ -157,5 +159,6 @@ namespace Tizen.Network.IoTConnectivity
         {
             return true;
         }
+        /// @endcond
     }
 }
