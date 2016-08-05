@@ -18,7 +18,7 @@ namespace Tizen.Multimedia
     /// DownloadProgress
     /// </summary>
     /// <remarks>
-    /// Contains Download progress. Download object is null initially.
+    /// Contains DownloadProgress of streaming playback. DownloadProgress object is null initially.
     /// It is created only when playback starts.
     /// </remarks>
     public class DownloadProgress
