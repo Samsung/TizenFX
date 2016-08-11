@@ -66,6 +66,10 @@
     <Compile Include="Device\Power.cs" />
     <Compile Include="Device\IR.cs" />
     <Compile Include="Device\DeviceEventArgs.cs" />
+    <Compile Include="Feedback\Feedback.cs" />
+    <Compile Include="Feedback\FeedbackPattern.cs" />
+    <Compile Include="Feedback\FeedbackType.cs" />
+    <Compile Include="Interop\Interop.Feedback.cs" />
     <Compile Include="Interop\Interop.Device.cs" />
     <Compile Include="Interop\Interop.RuntimeInfo.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />

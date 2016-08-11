@@ -6,13 +6,20 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-internal static partial class Interop
+namespace Tizen.System.Feedback
 {
-    internal static partial class Libraries
+    /// <summary>
+    /// String and Enumeration for feedback patterns.
+    /// </summary>
+    internal struct FeedbackPattern
     {
-        internal const string RuntimeInfo = "libcapi-system-runtime-info.so.0";
-        internal const string Storage = "libstorage.so.0.1";
-        internal const string SystemInfo = "libcapi-system-info.so.0";
-        internal const string Feedback = "libfeedback.so.0";
+        internal int PatternNumber;
+        internal string PatternString;
+
+        internal FeedbackPattern(int n, string s)
+        {
+            PatternNumber = n;
+            PatternString = s;
+        }
     }
 }
