@@ -29,7 +29,6 @@ BuildRequires: corefx-managed-32b-ref
 
 # C# API Requires
 BuildRequires: csapi-tizen
-BuildRequires: csapi-uifw
 
 %description
 Tizen System API for C#

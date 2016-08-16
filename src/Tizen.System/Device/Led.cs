@@ -1,5 +1,7 @@
 using System;
-using Tizen.UI;
+
+using Tizen.Common;
+
 namespace Tizen.System
 {
     /// <summary>
