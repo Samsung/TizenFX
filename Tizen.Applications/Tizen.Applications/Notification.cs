@@ -9,7 +9,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Tizen.System;
+using Tizen.Common;
 
 namespace Tizen.Applications.Notifications
 {
