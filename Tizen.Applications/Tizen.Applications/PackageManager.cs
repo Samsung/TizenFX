@@ -485,7 +485,7 @@ namespace Tizen.Applications
                 case Interop.PackageManager.ErrorCode.PermissionDenied:
                     return new UnauthorizedAccessException(errMessage);
                 case Interop.PackageManager.ErrorCode.IoError:
-                    return new System.IO.IOException(errMessage);
+                    return new global::System.IO.IOException(errMessage);
                 default:
                     return new InvalidOperationException(errMessage);
             }

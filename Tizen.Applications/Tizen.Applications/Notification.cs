@@ -7,10 +7,9 @@
 // you entered into with Samsung.
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Tizen.UI;
+
+using Tizen.System;
 
 namespace Tizen.Applications.Notifications
 {
