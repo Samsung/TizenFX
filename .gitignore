@@ -1,0 +1,6 @@
+bin/
+obj/
+*.exe
+*.dll
+*.csproj.user
+.vs/
