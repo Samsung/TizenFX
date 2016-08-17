@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tizen.System.SystemSettings
+namespace Tizen.System
 {
     /// <summary>
     /// EventArgs type for the event IncomingCallRingtoneChanged
@@ -336,39 +336,6 @@ namespace Tizen.System.SystemSettings
     }
 
     /// <summary>
-    /// EventArgs type for the event DefaultFontTypeChanged
-    /// </summary>
-    public class DefaultFontTypeChangedEventArgs : EventArgs
-    {
-        private readonly string _defaultFontType = null;
-        /// <summary>
-        /// The enum for DefaultFontType system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.DefaultFontType;
-            }
-        }
-        internal DefaultFontTypeChangedEventArgs(string val)
-        {
-            _defaultFontType = val;
-        }
-
-        /// <summary>
-        /// The current system default font type
-        /// </summary>
-        public string Value
-        {
-            get
-            {
-                return _defaultFontType;
-            }
-        }
-    }
-
-    /// <summary>
     /// EventArgs type for the event LocaleCountryChanged
     /// </summary>
     public class LocaleCountryChangedEventArgs : EventArgs
@@ -390,7 +357,7 @@ namespace Tizen.System.SystemSettings
         }
 
         /// <summary>
-        /// Indicates the current country setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current country setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
         public string Value
@@ -424,7 +391,7 @@ namespace Tizen.System.SystemSettings
         }
 
         /// <summary>
-        /// Indicates the current language setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current language setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
         public string Value
@@ -516,6 +483,9 @@ namespace Tizen.System.SystemSettings
             {
                 return SystemSettingsKeys.Time;
             }
+        }
+        internal TimeChangedEventArgs()
+        {
         }
     }
 

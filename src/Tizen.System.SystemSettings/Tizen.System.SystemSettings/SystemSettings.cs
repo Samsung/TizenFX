@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tizen.System.SystemSettings
+namespace Tizen.System
 {
     /// <summary>
     /// The System Settings API provides APIs for sharing configuration over a system
@@ -278,7 +278,7 @@ namespace Tizen.System.SystemSettings
         }
 
         /// <summary>
-        /// Indicates the current country setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current country setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The country setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
@@ -305,7 +305,7 @@ namespace Tizen.System.SystemSettings
         }
 
         /// <summary>
-        /// Indicates the current language setting in the <LANGUAGE>_<REGION> syntax.
+        /// Indicates the current language setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The language setting is in the ISO 639-2 format
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
@@ -358,7 +358,7 @@ namespace Tizen.System.SystemSettings
         }
 
         /// <summary>
-        /// Indicates the current time zone.
+        /// Indicates the current time zone. Eg. "Pacific/Tahiti"
         /// </summary>
         public static string LocaleTimeZone
         {
@@ -1034,7 +1034,7 @@ namespace Tizen.System.SystemSettings
         };
         private static event EventHandler<LocaleCountryChangedEventArgs> s_localeCountryChanged;
         /// <summary>
-        /// LocaleCountryChanged event is triggered when the current country setting in the <LANGUAGE>_<REGION> syntax, is changed
+        /// LocaleCountryChanged event is triggered when the current country setting in the \<LANGUAGE\>_\<REGION\> syntax, is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A LocaleCountryChangedEventArgs object that contains the key & changed value</param>
@@ -1075,7 +1075,7 @@ namespace Tizen.System.SystemSettings
         };
         private static event EventHandler<LocaleLanguageChangedEventArgs> s_localeLanguageChanged;
         /// <summary>
-        /// LocaleLanguageChanged event is triggered when the current language setting in the <LANGUAGE>_<REGION> syntax, is changed
+        /// LocaleLanguageChanged event is triggered when the current language setting in the \<LANGUAGE\>_\<REGION\> syntax, is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">A LocaleLanguageChangedEventArgs object that contains the key & changed value</param>

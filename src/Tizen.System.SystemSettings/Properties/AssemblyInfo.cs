@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Tizen.System.SystemSettings")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Samsung Electronics")]
 [assembly: AssemblyProduct("Tizen.System.SystemSettings")]
-[assembly: AssemblyCopyright("Copyright \u00A9  2016")]
+[assembly: AssemblyCopyright("Copyright (c) 2016 Samsung Electronics Co., Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,8 +7,8 @@
 %define BUILDCONF Release
 %endif
 
-Name:       csapi-systemsettings
-Summary:    Tizen System API for C#
+Name:       csapi-system-settings
+Summary:    Tizen System Settings API for C#
 Version:    1.0.0
 Release:    1
 Group:      Development/Libraries
@@ -31,7 +31,7 @@ BuildRequires: corefx-managed-32b-ref
 BuildRequires: csapi-tizen
 
 %description
-Tizen System Device API for C#
+Tizen System Settings API for C#
 
 %prep
 %setup -q

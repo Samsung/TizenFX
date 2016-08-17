@@ -9,39 +9,37 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.System;
 
-namespace Tizen.System.SystemSettings
+internal static partial class Interop
 {
-    internal static class Interop
+    internal static partial class Settings
     {
-        internal static partial class Settings
-        {
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_int", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsSetValueInt(SystemSettingsKeys key, int value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_int", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsSetValueInt(SystemSettingsKeys key, int value);
 
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_bool", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsSetValueBool(SystemSettingsKeys key, bool value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_bool", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsSetValueBool(SystemSettingsKeys key, bool value);
 
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_string", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsSetValueString(SystemSettingsKeys key, string value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_value_string", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsSetValueString(SystemSettingsKeys key, string value);
 
 
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_int", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsGetValueInt(SystemSettingsKeys key, out int value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_int", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsGetValueInt(SystemSettingsKeys key, out int value);
 
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_bool", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsGetValueBool(SystemSettingsKeys key, out bool value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_bool", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsGetValueBool(SystemSettingsKeys key, out bool value);
 
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_string", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsGetValueString(SystemSettingsKeys key, out string value);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_get_value_string", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsGetValueString(SystemSettingsKeys key, out string value);
 
-            // Callback
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void SystemSettingsChangedCallback(SystemSettingsKeys key, IntPtr data);
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_changed_cb", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsSetCallback(SystemSettingsKeys systemSettingsKey, SystemSettingsChangedCallback cb, IntPtr data);
-            [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_unset_changed_cb", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int SystemSettingsRemoveCallback(SystemSettingsKeys systemSettingsKey);
-        }
+        // Callback
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SystemSettingsChangedCallback(SystemSettingsKeys key, IntPtr data);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsSetCallback(SystemSettingsKeys systemSettingsKey, SystemSettingsChangedCallback cb, IntPtr data);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_unset_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsRemoveCallback(SystemSettingsKeys systemSettingsKey);
     }
 }

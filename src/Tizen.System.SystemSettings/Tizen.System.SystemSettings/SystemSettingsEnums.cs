@@ -1,5 +1,5 @@
 ﻿
-namespace Tizen.System.SystemSettings
+namespace Tizen.System
 {
     /// <summary>
     /// Enumeration for all available system settings
@@ -51,13 +51,13 @@ namespace Tizen.System.SystemSettings
         /// </summary>
         DefaultFontType,
         /// <summary>
-        /// (string) Indicates the current country setting in the <LANGUAGE>_<REGION> syntax.
+        /// (string) Indicates the current country setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The country setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format
         /// </summary>
         LocaleCountry,
         /// <summary>
-        /// (string) Indicates the current language setting in the <LANGUAGE>_<REGION> syntax.
+        /// (string) Indicates the current language setting in the \<LANGUAGE\>_\<REGION\> syntax.
         /// The language setting is in the ISO 639-2 format
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Tizen.System.SystemSettings
         /// </summary>
         LocaleTimeFormat24HourEnabled,
         /// <summary>
-        /// (string) Indicates the current time zone.
+        /// (string) Indicates the current time zone. Eg. Pacific/Tahiti
         /// </summary>
         LocaleTimeZone,
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tizen.System.SystemSettings
+namespace Tizen.System
 {
     internal enum SystemSettingsError
     {
