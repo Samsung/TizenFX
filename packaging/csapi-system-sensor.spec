@@ -7,7 +7,7 @@
 %define BUILDCONF Release
 %endif
 
-Name:       csapi-system.sensor
+Name:       csapi-system-sensor
 Summary:    Tizen Sensor API for C#
 Version:    1.0.0
 Release:    1
