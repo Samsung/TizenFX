@@ -21,6 +21,9 @@ using Tizen.Applications;
 
 namespace Tizen.Security
 {
+    /// <summary>
+    /// The class provides the information of the given privilege and API version.
+    /// </summary>
     public static class Privilege
     {
         internal static string ToPackageTypeString(PackageType type)

@@ -47,7 +47,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         /// <param name="privateKeyAlias">The name of private key.</param>
         /// <param name="password">The password used in decrypting a private key value.</param>
-        /// <param name="message.">The message that is signed with a private key.</param>
+        /// <param name="message">The message that is signed with a private key.</param>
         /// <returns>A newly created signature.</returns>
         /// <remarks>The key type specified by privateKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
@@ -82,8 +82,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         /// <param name="publicKeyAlias">The name of public key.</param>
         /// <param name="password">The password used in decrypting a public key value.</param>
-        /// <param name="message.">The input on which the signature is created.</param>
-        /// <param name="signature.">The signature that is verified with public key.</param>
+        /// <param name="message">The input on which the signature is created.</param>
+        /// <param name="signature">The signature that is verified with public key.</param>
         /// <returns>The signature statue. True is returned when the signature is valid</returns>
         /// <remarks>The key type specified by publicKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
