@@ -39,20 +39,20 @@ Tizen Security API for C#
 
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Security
+%define Assemblies Tizen.Security Tizen.Security.SecureRepository
 
 %build
 for ASM in %{Assemblies}; do
 xbuild $ASM/$ASM.csproj \
-		   /p:Configuration=%{BUILDCONF} \
-		   /p:ReferencePath=%{dotnet_assembly_path}
+    /p:Configuration=%{BUILDCONF} \
+    /p:ReferencePath=%{dotnet_assembly_path}
 done
 
 %install
 # Assemblies
 mkdir -p %{buildroot}%{dotnet_assembly_path}
 for ASM in %{Assemblies}; do
-install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+    install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 done
 
 # License
@@ -61,5 +61,6 @@ cp LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 %files
 %manifest %{name}.manifest
-%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{dotnet_assembly_path}/Tizen.Security.dll
+%attr(644,root,root) %{dotnet_assembly_path}/Tizen.Security.SecureRepository.dll
 %attr(644,root,root) %{_datadir}/license/%{name}
