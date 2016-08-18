@@ -68,20 +68,20 @@ namespace Tizen.Security.SecureRepository
             {
                 IntPtr certPtr;
                 ret = Interop.CkmcTypes.CkmcCertNew(cert.Binary, (uint)cert.Binary.Length, (int)cert.Format, out certPtr);
-                Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to create new Certificate.");
+                Interop.CheckNThrowException(ret, "Failed to create new Certificate.");
 
                 IntPtr outCertList;
                 if (previous == IntPtr.Zero)
                 {
                     ret = Interop.CkmcTypes.CkmcCertListNew(certPtr, out outCertList);
-                    Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to create new CertificateList.");
+                    Interop.CheckNThrowException(ret, "Failed to create new CertificateList.");
                     first = outCertList;
                     previous = outCertList;
                 }
                 else
                 {
                     ret = Interop.CkmcTypes.CkmcCertListAdd(previous, certPtr, out outCertList);
-                    Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to add Certificate to CertificateList.");
+                    Interop.CheckNThrowException(ret, "Failed to add Certificate to CertificateList.");
                     previous = outCertList;
                 }
             }

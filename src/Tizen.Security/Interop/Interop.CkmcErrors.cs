@@ -15,37 +15,32 @@
  */
 
 using System;
+using Tizen.Internals.Errors;
 
 internal static partial class Interop
 {
     private const int TizenErrorKeyManager = -0x01E10000;
+    private const string LogTag = "Tizen.Security.SecureRepository";
 
     internal enum KeyManagerError : int
     {
-        // TODO : Add reference to real Tizen project
-        //None = Tizen.Internals.Errors.ErrorCode.None,
-        //InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter
-        None = 0, // CKMC_ERROR_NONE
-        InvalidParameter = -22, // CKMC_ERROR_INVALID_PARAMETER
+        None = ErrorCode.None,
+        InvalidParameter = ErrorCode.InvalidParameter,
         VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED
     };
 
-    internal class KeyManagerExceptionFactory
+    internal static void CheckNThrowException(int err, string msg)
     {
-        internal const string LogTag = "Tizen.Security.SecureRepository";
-
-        internal static void CheckNThrowException(int err, string msg)
+        switch (err)
         {
-            if (err == (int)KeyManagerError.None)
+            case (int)KeyManagerError.None:
                 return;
-
-            switch (err)
-            {
-                case (int)KeyManagerError.InvalidParameter:
-                    throw new ArgumentException(msg + ", error=" + Interop.GetErrorMessage(err));
-                default:
-                    throw new InvalidOperationException(msg + ", error=" + Interop.GetErrorMessage(err));
-            }
+            case (int)KeyManagerError.InvalidParameter:
+                throw new ArgumentException(string.Format("[{0}] {1}, error={2}",
+                    LogTag, msg, ErrorFacts.GetErrorMessage(err)));
+            default:
+                throw new InvalidOperationException(string.Format("[{0}] {1}, error={2}",
+                    LogTag, msg, ErrorFacts.GetErrorMessage(err)));
         }
     }
 }

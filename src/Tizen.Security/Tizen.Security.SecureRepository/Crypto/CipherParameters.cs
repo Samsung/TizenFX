@@ -43,7 +43,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         protected void Add(CipherParameterName name, long value)
         {
             int ret = Interop.CkmcTypes.CkmcParamListSetInteger(PtrCkmcParamList, (int)name, value);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to add parameter.");
+            Interop.CheckNThrowException(ret, "Failed to add parameter.");
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(value), value.Length);
             int ret = Interop.CkmcTypes.CkmcParamListSetBuffer(PtrCkmcParamList, (int)name, new PinnedObject(rawBuff));
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to add parameter.");
+            Interop.CheckNThrowException(ret, "Failed to add parameter.");
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             long value = 0;
             int ret = Interop.CkmcTypes.CkmcParamListGetInteger(PtrCkmcParamList, (int)name, out value);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get parameter.");
+            Interop.CheckNThrowException(ret, "Failed to get parameter.");
             return value;
         }
 
@@ -79,7 +79,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             IntPtr ptr = new IntPtr();
 
             int ret = Interop.CkmcTypes.CkmcParamListGetBuffer(PtrCkmcParamList, (int)name, out ptr);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get parameter.");
+            Interop.CheckNThrowException(ret, "Failed to get parameter.");
 
             return new SafeRawBufferHandle(ptr).Data;
         }

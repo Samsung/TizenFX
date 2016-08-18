@@ -39,7 +39,7 @@ namespace Tizen.Security.SecureRepository
             IntPtr ptr = new IntPtr();
 
             int ret = Interop.CkmcManager.CkmcGetPkcs12(alias, keyPassword, cerificatePassword, out ptr);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get PKCS12. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to get PKCS12. alias=" + alias);
 
             return new Pkcs12(ptr);
         }
@@ -58,7 +58,7 @@ namespace Tizen.Security.SecureRepository
                                                     new PinnedObject(pkcs12.ToCkmcPkcs12()),
                                                     keyPolicy.ToCkmcPolicy(),
                                                     certificatePolicy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to save PKCS12. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to save PKCS12. alias=" + alias);
         }
     }
 }

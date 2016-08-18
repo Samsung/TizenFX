@@ -54,7 +54,7 @@ namespace Tizen.Security.SecureRepository
         static public void RemoveAlias(string alias)
         {
             int ret = Interop.CkmcManager.CkmcRemoveAlias(alias);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to remove alias. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to remove alias. alias=" + alias);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Tizen.Security.SecureRepository
         static public void SetPermission(string alias, string otherPackageId, int permissions)
         {
             int ret = Interop.CkmcManager.CkmcSetPermission(alias, otherPackageId, permissions);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
         }
     }
 }

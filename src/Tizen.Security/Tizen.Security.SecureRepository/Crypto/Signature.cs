@@ -72,7 +72,7 @@ namespace Tizen.Security.SecureRepository.Crypto
 
             int ret = Interop.CkmcManager.CkmcCreateSignature(privateKeyAlias, password, messageBuff,
                                                             hash, rsaPadding, out ptrSignature);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to generate signature");
+            Interop.CheckNThrowException(ret, "Failed to generate signature");
 
             return new SafeRawBufferHandle(ptrSignature).Data;
         }
@@ -110,7 +110,7 @@ namespace Tizen.Security.SecureRepository.Crypto
                                                         signatureBuff, hash, rsaPadding);
             if (ret == (int)Interop.KeyManagerError.VerificationFailed)
                 return false;
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to verify signature");
+            Interop.CheckNThrowException(ret, "Failed to verify signature");
 
             return true;
         }

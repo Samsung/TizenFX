@@ -108,14 +108,6 @@ internal static partial class Interop
         public readonly IntPtr caChain;
     }
 
-
-    static public string GetErrorMessage(int errorCode)
-    {
-        IntPtr errorPtr = CkmcTypes.GetErrorMessage(errorCode);
-        return Marshal.PtrToStringAuto(errorPtr);
-    }
-
-
     internal static partial class CkmcTypes
     {
         [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_key_free", CallingConvention = CallingConvention.Cdecl)]
@@ -217,11 +209,5 @@ internal static partial class Interop
         [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_generate_new_params", CallingConvention = CallingConvention.Cdecl)]
         public static extern int CkmcGenerateNewParam(int algoType, out IntPtr paramList);
         // int ckmc_generate_new_params(ckmc_algo_type_e type, ckmc_param_list_h *pparams);
-
-        [DllImport(Libraries.TizenBaseCommon, EntryPoint = "get_error_message", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetErrorMessage(int err);
-        // char *get_error_message(int err);
-
     }
 }
-

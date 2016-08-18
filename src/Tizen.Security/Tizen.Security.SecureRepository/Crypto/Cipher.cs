@@ -58,7 +58,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             Interop.CkmcRawBuffer cipherTextBuff = new Interop.CkmcRawBuffer(new PinnedObject(cipherText), cipherText.Length);
 
             int ret = Interop.CkmcManager.CkmcDecryptData(Parameters.PtrCkmcParamList, keyAlias, password, cipherTextBuff, out ptrPlainText);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to decrypt data");
+            Interop.CheckNThrowException(ret, "Failed to decrypt data");
 
             return new SafeRawBufferHandle(ptrPlainText).Data;
         }
@@ -80,7 +80,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             Interop.CkmcRawBuffer plainTextBuff = new Interop.CkmcRawBuffer(new PinnedObject(plainText), plainText.Length);
 
             int ret = Interop.CkmcManager.CkmcEncryptData(Parameters.PtrCkmcParamList, keyAlias, password, plainTextBuff, out ptrCipherText);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to encrypt data");
+            Interop.CheckNThrowException(ret, "Failed to encrypt data");
 
             return new SafeRawBufferHandle(ptrCipherText).Data;
         }

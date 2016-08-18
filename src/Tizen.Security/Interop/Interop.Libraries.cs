@@ -20,6 +20,5 @@ internal static partial class Interop
     {
         public const string Privilege = "libprivilege-info.so.1";
         public const string KeyManagerClient = "libkey-manager-client.so.1";
-        public const string TizenBaseCommon = "libcapi-base-common.so.0";
     }
 }

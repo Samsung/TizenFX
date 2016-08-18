@@ -37,7 +37,7 @@ namespace Tizen.Security.SecureRepository
             IntPtr ptr = new IntPtr();
 
             int ret = Interop.CkmcManager.CkmcGetKey(alias, password, out ptr);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get key. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to get key. alias=" + alias);
 
             return new Key(ptr);
         }
@@ -50,7 +50,7 @@ namespace Tizen.Security.SecureRepository
         {
             IntPtr ptr = new IntPtr();
             int ret = Interop.CkmcManager.CkmcGetKeyAliasList(out ptr);
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to get key aliases.");
+            Interop.CheckNThrowException(ret, "Failed to get key aliases.");
 
             return new SafeAliasListHandle(ptr).Aliases;
         }
@@ -66,7 +66,7 @@ namespace Tizen.Security.SecureRepository
         static public void SaveKey(string alias, Key key, Policy policy)
         {
             int ret = Interop.CkmcManager.CkmcSaveKey(alias, key.ToCkmcKey(), policy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to save Key. alias=" + alias);
+            Interop.CheckNThrowException(ret, "Failed to save Key. alias=" + alias);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Tizen.Security.SecureRepository
         {
             int ret = Interop.CkmcManager.CkmcCreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create RSA Key Pair");
+            Interop.CheckNThrowException(ret, "Failed to Create RSA Key Pair");
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Tizen.Security.SecureRepository
         {
             int ret = Interop.CkmcManager.CkmcCreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create DSA Key Pair");
+            Interop.CheckNThrowException(ret, "Failed to Create DSA Key Pair");
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.Security.SecureRepository
         {
             int ret = Interop.CkmcManager.CkmcCreateKeyPairEcdsa((int)type, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to Create ECDSA Key Pair");
+            Interop.CheckNThrowException(ret, "Failed to Create ECDSA Key Pair");
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Tizen.Security.SecureRepository
         static public void CreateKeyAes(int size, string keyAlias, Policy policy)
         {
             int ret = Interop.CkmcManager.CkmcCreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
-            Interop.KeyManagerExceptionFactory.CheckNThrowException(ret, "Failed to AES Key");
+            Interop.CheckNThrowException(ret, "Failed to AES Key");
         }
     }
 }
