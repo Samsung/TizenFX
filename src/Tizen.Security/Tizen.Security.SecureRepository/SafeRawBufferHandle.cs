@@ -58,7 +58,7 @@ namespace Tizen.Security.SecureRepository
             if (IsInvalid) // do not release
                 return true;
 
-            Interop.CkmcTypes.CkmcBufferFree(handle);
+            Interop.CkmcTypes.BufferFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

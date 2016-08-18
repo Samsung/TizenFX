@@ -77,9 +77,9 @@ namespace Tizen.Security.SecureRepository
         internal CkmcKey ToCkmcKey()
         {
             return new Interop.CkmcKey(new PinnedObject(Binary),
-                                            Binary.Length,
-                                            (int)Type,
-                                            new PinnedObject(BinaryPassword));
+                                       Binary.Length,
+                                       (int)Type,
+                                       new PinnedObject(BinaryPassword));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Tizen.Security.SecureRepository
             if (IsInvalid) // do not release
                 return true;
 
-            Interop.CkmcTypes.CkmcKeyFree(handle);
+            Interop.CkmcTypes.KeyFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

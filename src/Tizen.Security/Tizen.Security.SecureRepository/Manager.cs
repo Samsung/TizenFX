@@ -53,7 +53,7 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>The item owner can remove by default.</remarks>
         static public void RemoveAlias(string alias)
         {
-            int ret = Interop.CkmcManager.CkmcRemoveAlias(alias);
+            int ret = Interop.CkmcManager.RemoveAlias(alias);
             Interop.CheckNThrowException(ret, "Failed to remove alias. alias=" + alias);
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>The item owner can set permissions.</remarks>
         static public void SetPermission(string alias, string otherPackageId, int permissions)
         {
-            int ret = Interop.CkmcManager.CkmcSetPermission(alias, otherPackageId, permissions);
+            int ret = Interop.CkmcManager.SetPermission(alias, otherPackageId, permissions);
             Interop.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
         }
     }

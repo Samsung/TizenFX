@@ -36,7 +36,7 @@ namespace Tizen.Security.SecureRepository
         {
             IntPtr ptr = new IntPtr();
 
-            int ret = Interop.CkmcManager.CkmcGetKey(alias, password, out ptr);
+            int ret = Interop.CkmcManager.GetKey(alias, password, out ptr);
             Interop.CheckNThrowException(ret, "Failed to get key. alias=" + alias);
 
             return new Key(ptr);
@@ -49,7 +49,7 @@ namespace Tizen.Security.SecureRepository
         static public IEnumerable<string> GetKeyAliases()
         {
             IntPtr ptr = new IntPtr();
-            int ret = Interop.CkmcManager.CkmcGetKeyAliasList(out ptr);
+            int ret = Interop.CkmcManager.GetKeyAliasList(out ptr);
             Interop.CheckNThrowException(ret, "Failed to get key aliases.");
 
             return new SafeAliasListHandle(ptr).Aliases;
@@ -65,7 +65,7 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void SaveKey(string alias, Key key, Policy policy)
         {
-            int ret = Interop.CkmcManager.CkmcSaveKey(alias, key.ToCkmcKey(), policy.ToCkmcPolicy());
+            int ret = Interop.CkmcManager.SaveKey(alias, key.ToCkmcKey(), policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to save Key. alias=" + alias);
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.Security.SecureRepository
         static public void CreateKeyPairRsa(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
-            int ret = Interop.CkmcManager.CkmcCreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
+            int ret = Interop.CkmcManager.CreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to Create RSA Key Pair");
         }
@@ -98,7 +98,7 @@ namespace Tizen.Security.SecureRepository
         static public void CreateKeyPairDsa(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
-            int ret = Interop.CkmcManager.CkmcCreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
+            int ret = Interop.CkmcManager.CreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to Create DSA Key Pair");
         }
@@ -115,7 +115,7 @@ namespace Tizen.Security.SecureRepository
         static public void CreateKeyPairEcdsa(EllipticCurveType type, string privateKeyAlias, string publicKeyAlias,
                                     Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
-            int ret = Interop.CkmcManager.CkmcCreateKeyPairEcdsa((int)type, privateKeyAlias, publicKeyAlias,
+            int ret = Interop.CkmcManager.CreateKeyPairEcdsa((int)type, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to Create ECDSA Key Pair");
         }
@@ -129,7 +129,7 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateKeyAes(int size, string keyAlias, Policy policy)
         {
-            int ret = Interop.CkmcManager.CkmcCreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
+            int ret = Interop.CkmcManager.CreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to AES Key");
         }
     }

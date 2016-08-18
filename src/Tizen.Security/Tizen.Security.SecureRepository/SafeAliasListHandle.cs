@@ -60,7 +60,7 @@ namespace Tizen.Security.SecureRepository
             if (IsInvalid) // do not release
                 return true;
 
-            Interop.CkmcTypes.CkmcAliasListAllFree(handle);
+            Interop.CkmcTypes.AliasListAllFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

@@ -37,7 +37,7 @@ namespace Tizen.Security.SecureRepository
         {
             IntPtr ptr = new IntPtr();
 
-            int ret = Interop.CkmcTypes.CkmcPkcs12Load(filePath, filePassword, out ptr);
+            int ret = Interop.CkmcTypes.Pkcs12Load(filePath, filePassword, out ptr);
             Interop.CheckNThrowException(ret, "Failed to load PKCS12. file=" + filePath);
 
             return new Pkcs12(ptr);
@@ -154,7 +154,7 @@ namespace Tizen.Security.SecureRepository
             if (IsInvalid) // do not release
                 return true;
 
-            Interop.CkmcTypes.CkmcPkcs12Free(handle);
+            Interop.CkmcTypes.Pkcs12Free(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

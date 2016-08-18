@@ -31,7 +31,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         public CipherParameters(CipherAlgorithmType algorithm) : base(IntPtr.Zero, true)
         {
             IntPtr ptrParams;
-            Interop.CkmcTypes.CkmcGenerateNewParam((int)algorithm, out ptrParams);
+            Interop.CkmcTypes.GenerateNewParam((int)algorithm, out ptrParams);
             this.SetHandle(ptrParams);
         }
 
@@ -42,7 +42,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="value">Parameter value.</param>
         protected void Add(CipherParameterName name, long value)
         {
-            int ret = Interop.CkmcTypes.CkmcParamListSetInteger(PtrCkmcParamList, (int)name, value);
+            int ret = Interop.CkmcTypes.ParamListSetInteger(PtrCkmcParamList, (int)name, value);
             Interop.CheckNThrowException(ret, "Failed to add parameter.");
         }
 
@@ -54,7 +54,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         protected void Add(CipherParameterName name, byte[] value)
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(value), value.Length);
-            int ret = Interop.CkmcTypes.CkmcParamListSetBuffer(PtrCkmcParamList, (int)name, new PinnedObject(rawBuff));
+            int ret = Interop.CkmcTypes.ParamListSetBuffer(PtrCkmcParamList, (int)name, new PinnedObject(rawBuff));
             Interop.CheckNThrowException(ret, "Failed to add parameter.");
         }
 
@@ -65,7 +65,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         protected long GetInteger(CipherParameterName name)
         {
             long value = 0;
-            int ret = Interop.CkmcTypes.CkmcParamListGetInteger(PtrCkmcParamList, (int)name, out value);
+            int ret = Interop.CkmcTypes.ParamListGetInteger(PtrCkmcParamList, (int)name, out value);
             Interop.CheckNThrowException(ret, "Failed to get parameter.");
             return value;
         }
@@ -78,7 +78,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             IntPtr ptr = new IntPtr();
 
-            int ret = Interop.CkmcTypes.CkmcParamListGetBuffer(PtrCkmcParamList, (int)name, out ptr);
+            int ret = Interop.CkmcTypes.ParamListGetBuffer(PtrCkmcParamList, (int)name, out ptr);
             Interop.CheckNThrowException(ret, "Failed to get parameter.");
 
             return new SafeRawBufferHandle(ptr).Data;
@@ -113,7 +113,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             if (IsInvalid) // do not release
                 return true;
-            Interop.CkmcTypes.CkmcParamListFree(handle);
+            Interop.CkmcTypes.ParamListFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

@@ -67,20 +67,20 @@ namespace Tizen.Security.SecureRepository
             foreach (Certificate cert in _certificates)
             {
                 IntPtr certPtr;
-                ret = Interop.CkmcTypes.CkmcCertNew(cert.Binary, (uint)cert.Binary.Length, (int)cert.Format, out certPtr);
+                ret = Interop.CkmcTypes.CertNew(cert.Binary, (uint)cert.Binary.Length, (int)cert.Format, out certPtr);
                 Interop.CheckNThrowException(ret, "Failed to create new Certificate.");
 
                 IntPtr outCertList;
                 if (previous == IntPtr.Zero)
                 {
-                    ret = Interop.CkmcTypes.CkmcCertListNew(certPtr, out outCertList);
+                    ret = Interop.CkmcTypes.CertListNew(certPtr, out outCertList);
                     Interop.CheckNThrowException(ret, "Failed to create new CertificateList.");
                     first = outCertList;
                     previous = outCertList;
                 }
                 else
                 {
-                    ret = Interop.CkmcTypes.CkmcCertListAdd(previous, certPtr, out outCertList);
+                    ret = Interop.CkmcTypes.CertListAdd(previous, certPtr, out outCertList);
                     Interop.CheckNThrowException(ret, "Failed to add Certificate to CertificateList.");
                     previous = outCertList;
                 }
@@ -107,7 +107,7 @@ namespace Tizen.Security.SecureRepository
             if (handle == IntPtr.Zero) // do not release
                 return true;
 
-            Interop.CkmcTypes.CkmcCertListAllFree(handle);
+            Interop.CkmcTypes.CertListAllFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

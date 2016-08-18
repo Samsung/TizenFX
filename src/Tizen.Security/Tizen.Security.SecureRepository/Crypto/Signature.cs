@@ -70,7 +70,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             IntPtr ptrSignature = new IntPtr();
             Interop.CkmcRawBuffer messageBuff = new Interop.CkmcRawBuffer(new PinnedObject(message), message.Length);
 
-            int ret = Interop.CkmcManager.CkmcCreateSignature(privateKeyAlias, password, messageBuff,
+            int ret = Interop.CkmcManager.CreateSignature(privateKeyAlias, password, messageBuff,
                                                             hash, rsaPadding, out ptrSignature);
             Interop.CheckNThrowException(ret, "Failed to generate signature");
 
@@ -106,7 +106,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             Interop.CkmcRawBuffer messageBuff = new Interop.CkmcRawBuffer(new PinnedObject(message), message.Length);
             Interop.CkmcRawBuffer signatureBuff = new Interop.CkmcRawBuffer(new PinnedObject(signature), signature.Length);
 
-            int ret = Interop.CkmcManager.CkmcVerifySignature(publicKeyAlias, password, messageBuff,
+            int ret = Interop.CkmcManager.VerifySignature(publicKeyAlias, password, messageBuff,
                                                         signatureBuff, hash, rsaPadding);
             if (ret == (int)Interop.KeyManagerError.VerificationFailed)
                 return false;

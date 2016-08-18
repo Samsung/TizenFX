@@ -110,104 +110,104 @@ internal static partial class Interop
 
     internal static partial class CkmcTypes
     {
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_key_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcKeyFree(IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_key_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void KeyFree(IntPtr buffer);
         // void ckmc_key_free(ckmc_key_s *key);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_buffer_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcBufferNew(byte[] data, uint size, out IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int BufferNew(byte[] data, uint size, out IntPtr buffer);
         // int ckmc_buffer_new(unsigned char *data, size_t size, ckmc_raw_buffer_s** ppbuffer);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_buffer_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcBufferFree(IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void BufferFree(IntPtr buffer);
         // void ckmc_buffer_free(ckmc_raw_buffer_s* buffer);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcCertNew(byte[] rawCert, uint size, int dataFormat, out IntPtr cert);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int CertNew(byte[] rawCert, uint size, int dataFormat, out IntPtr cert);
         // int ckmc_cert_new(unsigned char *raw_cert, size_t cert_size, ckmc_data_format_e data_format, ckmc_cert_s** ppcert);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcCertFree(IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CertFree(IntPtr buffer);
         // void ckmc_cert_free(ckmc_cert_s *cert);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_load_cert_from_file", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcLoadCertFromFile(string filePath, out IntPtr cert);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_load_cert_from_file", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int LoadCertFromFile(string filePath, out IntPtr cert);
         // int ckmc_load_cert_from_file(const char *file_path, ckmc_cert_s **cert);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_pkcs12_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcPkcs12New(string filePath, out IntPtr cert);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Pkcs12New(string filePath, out IntPtr cert);
         // int ckmc_pkcs12_new(ckmc_key_s *private_key, ckmc_cert_s* cert, ckmc_cert_list_s *ca_cert_list, ckmc_pkcs12_s** pkcs12_bundle);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_load_from_pkcs12_file", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcLoadFromPkcs12File(string filePath, string password, out IntPtr privateKey, out IntPtr cert, out IntPtr caCertList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_load_from_pkcs12_file", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int LoadFromPkcs12File(string filePath, string password, out IntPtr privateKey, out IntPtr cert, out IntPtr caCertList);
         // int ckmc_load_from_pkcs12_file(const char *file_path, const char* passphrase, ckmc_key_s **private_key, ckmc_cert_s** cert, ckmc_cert_list_s **ca_cert_list);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_pkcs12_load", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcPkcs12Load(string filePath, string password, out IntPtr pkcs12);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_load", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Pkcs12Load(string filePath, string password, out IntPtr pkcs12);
         // int ckmc_pkcs12_load(const char *file_path, const char* passphrase, ckmc_pkcs12_s **pkcs12_bundle);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_pkcs12_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcPkcs12Free(IntPtr pkcs12);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Pkcs12Free(IntPtr pkcs12);
         // void ckmc_pkcs12_free(ckmc_pkcs12_s *pkcs12);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_alias_list_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcAliasListNew(string alias, out IntPtr aliasList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AliasListNew(string alias, out IntPtr aliasList);
         // int ckmc_alias_list_new(char *alias, ckmc_alias_list_s **ppalias_list);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_alias_list_add", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcAliasListAdd(IntPtr previous, string alias, out IntPtr aliasList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_add", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int AliasListAdd(IntPtr previous, string alias, out IntPtr aliasList);
         // int ckmc_alias_list_add(ckmc_alias_list_s *previous, char* alias, ckmc_alias_list_s **pplast);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_alias_list_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcAliasListFree(IntPtr first);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void AliasListFree(IntPtr first);
         // void ckmc_alias_list_free(ckmc_alias_list_s* first);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_alias_list_all_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcAliasListAllFree(IntPtr first);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_all_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void AliasListAllFree(IntPtr first);
         // void ckmc_alias_list_all_free(ckmc_alias_list_s* first);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_list_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcCertListNew(IntPtr cert, out IntPtr certList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int CertListNew(IntPtr cert, out IntPtr certList);
         // int ckmc_cert_list_new(ckmc_cert_s *cert, ckmc_cert_list_s **ppcert_list);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_list_add", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcCertListAdd(IntPtr previous, IntPtr cert, out IntPtr certList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_add", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int CertListAdd(IntPtr previous, IntPtr cert, out IntPtr certList);
         // int ckmc_cert_list_add(ckmc_cert_list_s *previous, ckmc_cert_s *cert, ckmc_cert_list_s** pplast);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_list_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcCertListFree(IntPtr first);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CertListFree(IntPtr first);
         // void ckmc_cert_list_free(ckmc_cert_list_s *first);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_cert_list_all_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcCertListAllFree(IntPtr first);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_all_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CertListAllFree(IntPtr first);
         // void ckmc_cert_list_all_free(ckmc_cert_list_s *first);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcParamListNew(out IntPtr paramList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ParamListNew(out IntPtr paramList);
         // int ckmc_param_list_new(ckmc_param_list_h *pparams);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_set_integer", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcParamListSetInteger(IntPtr paramList, int name, long value);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_integer", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ParamListSetInteger(IntPtr paramList, int name, long value);
         // int ckmc_param_list_set_integer(ckmc_param_list_h params, ckmc_param_name_e name, uint64_t value);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_set_buffer", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcParamListSetBuffer(IntPtr paramList, int name, IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_buffer", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ParamListSetBuffer(IntPtr paramList, int name, IntPtr buffer);
         // int ckmc_param_list_set_buffer(ckmc_param_list_h params, ckmc_param_name_e name, const ckmc_raw_buffer_s* buffer);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_get_integer", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcParamListGetInteger(IntPtr paramList, int name, out long value);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_integer", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ParamListGetInteger(IntPtr paramList, int name, out long value);
         // int ckmc_param_list_get_integer(ckmc_param_list_h params, ckmc_param_name_e name, uint64_t *pvalue);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_get_buffer", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcParamListGetBuffer(IntPtr paramList, int name, out IntPtr buffer);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_buffer", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ParamListGetBuffer(IntPtr paramList, int name, out IntPtr buffer);
         // int ckmc_param_list_get_buffer(ckmc_param_list_h params, ckmc_param_name_e name, ckmc_raw_buffer_s **ppbuffer);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_param_list_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void CkmcParamListFree(IntPtr first);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ParamListFree(IntPtr first);
         // void ckmc_param_list_free(ckmc_param_list_h params);
 
-        [DllImport(Libraries.KeyManagerClient, EntryPoint = "ckmc_generate_new_params", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CkmcGenerateNewParam(int algoType, out IntPtr paramList);
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_generate_new_params", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GenerateNewParam(int algoType, out IntPtr paramList);
         // int ckmc_generate_new_params(ckmc_algo_type_e type, ckmc_param_list_h *pparams);
     }
 }

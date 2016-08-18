@@ -36,7 +36,7 @@ namespace Tizen.Security.SecureRepository
         {
             IntPtr ptr = new IntPtr();
 
-            int ret = Interop.CkmcManager.CkmcGetData(alias, password, out ptr);
+            int ret = Interop.CkmcManager.GetData(alias, password, out ptr);
             Interop.CheckNThrowException(ret, "Failed to get certificate. alias=" + alias);
 
             return new SafeRawBufferHandle(ptr).Data;
@@ -49,7 +49,7 @@ namespace Tizen.Security.SecureRepository
         static public IEnumerable<string> GetDataAliases()
         {
             IntPtr ptr = new IntPtr();
-            int ret = Interop.CkmcManager.CkmcGetDataAliasList(out ptr);
+            int ret = Interop.CkmcManager.GetDataAliasList(out ptr);
             Interop.CheckNThrowException(ret, "Failed to get data aliases");
 
             return new SafeAliasListHandle(ptr).Aliases;
@@ -65,7 +65,7 @@ namespace Tizen.Security.SecureRepository
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length);
 
-            int ret = Interop.CkmcManager.CkmcSaveData(alias, rawBuff, policy.ToCkmcPolicy());
+            int ret = Interop.CkmcManager.SaveData(alias, rawBuff, policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to save data. alias=" + alias);
         }
     }
