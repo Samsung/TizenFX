@@ -134,7 +134,7 @@ namespace Tizen.Applications.Messages
                 {
                     MessageReceivedEventArgs args = new MessageReceivedEventArgs()
                     {
-                        Message = Bundle.MakeRetainedBundle(message)
+                        Message = new Bundle(new SafeBundleHandle(message, false))
                     };
 
                     if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
@@ -253,8 +253,8 @@ namespace Tizen.Applications.Messages
                 throw new ArgumentNullException("message");
             }
             int ret = trusted ?
-                        Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId) :
-                        Interop.MessagePort.SendMessageWithLocalPort(remoteAppId, remotePortName, message.Handle, _portId);
+                        Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.SafeBundleHandle, _portId) :
+                        Interop.MessagePort.SendMessageWithLocalPort(remoteAppId, remotePortName, message.SafeBundleHandle, _portId);
 
             if (ret != (int)MessagePortError.None)
             {

@@ -9,6 +9,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Applications;
+
 internal static partial class Interop
 {
     internal static partial class MessagePort
@@ -26,10 +28,10 @@ internal static partial class Interop
         internal static extern int UnregisterTrustedPort(int trusted_local_port_id);
 
         [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SendMessageWithLocalPort(string remote_app_id, string remote_port, IntPtr message, int local_port_id);
+        internal static extern int SendMessageWithLocalPort(string remote_app_id, string remote_port, SafeBundleHandle message, int local_port_id);
 
         [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_trusted_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SendTrustedMessageWithLocalPort(string remote_app_id, string remote_port, IntPtr message, int local_port_id);
+        internal static extern int SendTrustedMessageWithLocalPort(string remote_app_id, string remote_port, SafeBundleHandle message, int local_port_id);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void message_port_message_cb(int local_port_id, string remote_app_id, string remote_port, bool trusted_remote_port, IntPtr message, IntPtr userData);

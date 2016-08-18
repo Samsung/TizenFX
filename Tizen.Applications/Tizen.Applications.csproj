@@ -101,6 +101,7 @@
     <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
     <Compile Include="Tizen.Applications\RegionFormatChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\SafeAppControlHandle.cs" />
+    <Compile Include="Tizen.Applications\SafeBundleHandle.cs" />
     <Compile Include="Tizen.Applications\SafePackageManagerHandle.cs" />
     <Compile Include="Tizen.Applications\ServiceApplication.cs" />
     <Compile Include="Tizen.Applications\StorageType.cs" />

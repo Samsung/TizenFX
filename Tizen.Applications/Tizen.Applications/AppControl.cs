@@ -67,6 +67,11 @@ namespace Tizen.Applications
         /// <param name="handle"></param>
         public AppControl(SafeAppControlHandle handle)
         {
+            if (handle == null)
+            {
+                throw new ArgumentNullException("handle");
+            }
+
             Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
             if (err != Interop.AppControl.ErrorCode.None)
             {

@@ -12,23 +12,23 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents a wrapper class for a unmanaged AppControl handle.
+    /// Represents a wrapper class for a unmanaged Bundle handle.
     /// </summary>
-    public sealed class SafeAppControlHandle : SafeHandle
+    public sealed class SafeBundleHandle : SafeHandle
     {
         /// <summary>
-        /// Initializes a new instance of the SafeAppControlHandle class.
+        /// Initializes a new instance of the SafeBundleHandle class.
         /// </summary>
-        public SafeAppControlHandle() : base(IntPtr.Zero, true)
+        public SafeBundleHandle() : base(IntPtr.Zero, true)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the SafeAppControlHandle class.
+        /// Initializes a new instance of the SafeBundleHandle class.
         /// </summary>
         /// <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
         /// <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
-        public SafeAppControlHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+        public SafeBundleHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
         {
             SetHandle(existingHandle);
         }
@@ -47,7 +47,7 @@ namespace Tizen.Applications
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.AppControl.DangerousDestroy(this.handle);
+            Interop.Bundle.DangerousFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

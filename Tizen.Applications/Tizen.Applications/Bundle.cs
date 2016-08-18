@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// </summary>
     public class Bundle : IDisposable
     {
-        private IntPtr _handle;
+        private SafeBundleHandle _handle;
         private bool _disposed = false;
         private readonly HashSet<string> _keys;
 
@@ -42,28 +42,29 @@ namespace Tizen.Applications
             _keys = new HashSet<string>();
         }
 
-        internal Bundle(IntPtr handle, bool ownership = false)
+        /// <summary>
+        /// The Bundle constructor.
+        /// </summary>
+        /// <param name="handle">The SafeBundleHandle instance.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when the handle is null or invalid.</exception>
+        public Bundle(SafeBundleHandle handle)
         {
-            if (handle != IntPtr.Zero)
-            {
-                _handle = handle;
-                if (!ownership)
-                    _disposed = true;
-                _keys = new HashSet<string>();
-                Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
-                {
-                    _keys.Add(key);
-                };
-
-                Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
-                if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
-                {
-                    throw new ArgumentException("Invalid parameter - cannot create bundle instance");
-                }
-            }
-            else
+            if (handle == null || handle.IsInvalid)
             {
                 throw new ArgumentNullException("handle");
+            }
+
+            _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            _keys = new HashSet<string>();
+            Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
+            {
+                _keys.Add(key);
+            };
+
+            Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+            if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
+            {
+                throw new ArgumentException("Invalid parameter - cannot create bundle instance");
             }
         }
 
@@ -122,12 +123,12 @@ namespace Tizen.Applications
             }
         }
 
-        internal IntPtr Handle
+        /// <summary>
+        /// Gets the SafeBundleHandle instance.
+        /// </summary>
+        public SafeBundleHandle SafeBundleHandle
         {
-            get
-            {
-                return _handle;
-            }
+            get { return _handle; }
         }
 
         /// <summary>
@@ -576,12 +577,6 @@ namespace Tizen.Applications
             }
         }
 
-        static internal Bundle MakeRetainedBundle(IntPtr handle)
-        {
-            IntPtr clonedHandle = Interop.Bundle.Clone(handle);
-            return new Bundle(clonedHandle, true);
-        }
-
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
@@ -592,12 +587,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
-                    // to be used if there are any other disposable objects
-                }
-                if (_handle != IntPtr.Zero)
-                {
-                    Interop.Bundle.Free(_handle);
-                    _handle = IntPtr.Zero;
+                    if (_handle != null && !_handle.IsInvalid)
+                        _handle.Dispose();
                 }
 
                 _disposed = true;
@@ -637,7 +628,7 @@ namespace Tizen.Applications
             KeyExists = -0x01180000 | 0x01
         }
 
-        static internal void CheckAndThrowException(int error, IntPtr handle)
+        static internal void CheckAndThrowException(int error, SafeBundleHandle handle)
         {
             if ((BundleError)error == BundleError.None)
             {
@@ -649,7 +640,7 @@ namespace Tizen.Applications
             }
             else if ((BundleError)error == BundleError.InvalidParameter)
             {
-                if (handle == IntPtr.Zero)
+                if (handle.IsInvalid)
                 {
                     throw new InvalidOperationException("Invalid bundle instance (object may have been disposed or released)");
                 }
