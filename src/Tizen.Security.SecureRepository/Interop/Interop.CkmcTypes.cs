@@ -138,10 +138,6 @@ internal static partial class Interop
         public static extern int Pkcs12New(string filePath, out IntPtr cert);
         // int ckmc_pkcs12_new(ckmc_key_s *private_key, ckmc_cert_s* cert, ckmc_cert_list_s *ca_cert_list, ckmc_pkcs12_s** pkcs12_bundle);
 
-        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_load_from_pkcs12_file", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int LoadFromPkcs12File(string filePath, string password, out IntPtr privateKey, out IntPtr cert, out IntPtr caCertList);
-        // int ckmc_load_from_pkcs12_file(const char *file_path, const char* passphrase, ckmc_key_s **private_key, ckmc_cert_s** cert, ckmc_cert_list_s **ca_cert_list);
-
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_load", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Pkcs12Load(string filePath, string password, out IntPtr pkcs12);
         // int ckmc_pkcs12_load(const char *file_path, const char* passphrase, ckmc_pkcs12_s **pkcs12_bundle);
