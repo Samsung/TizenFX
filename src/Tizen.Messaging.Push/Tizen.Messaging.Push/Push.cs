@@ -112,7 +112,7 @@ namespace Tizen.Messaging.Push
         public static void PushServiceDisconnect()
         {
             PushImpl.Instance.PushServiceDisconnect();
-            PushImpl.Reset();
+            //PushImpl.Reset();
         }
 
 
