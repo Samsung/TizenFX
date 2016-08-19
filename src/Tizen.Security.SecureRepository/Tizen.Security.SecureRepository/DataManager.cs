@@ -32,7 +32,7 @@ namespace Tizen.Security.SecureRepository
         /// If password of policy is provided in SaveData(), the same password should be provided
         /// </param>
         /// <returns>data specified by alias.</returns>
-        static public byte[] GetData(string alias, string password)
+        static public byte[] Get(string alias, string password)
         {
             IntPtr ptr = new IntPtr();
 
@@ -46,7 +46,7 @@ namespace Tizen.Security.SecureRepository
         /// Gets all alias of data which the client can access.
         /// </summary>
         /// <returns>all alias of data which the client can access.</returns>
-        static public IEnumerable<string> GetDataAliases()
+        static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = new IntPtr();
             int ret = Interop.CkmcManager.GetDataAliasList(out ptr);
@@ -61,7 +61,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of data to be stored.</param>
         /// <param name="data">The binary value to be stored.</param>
         /// <param name="policy">The policy about how to store data securely.</param>
-        static public void SaveData(string alias, byte[] data, Policy policy)
+        static public void Save(string alias, byte[] data, Policy policy)
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length);
 

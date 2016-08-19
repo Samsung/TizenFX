@@ -28,7 +28,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// A constructor with algorithm
         /// </summary>
         /// <param name="algorithm">An algorithm that this parameters are prepared for.</param>
-        public CipherParameters(CipherAlgorithmType algorithm) : base(IntPtr.Zero, true)
+        protected CipherParameters(CipherAlgorithmType algorithm) : base(IntPtr.Zero, true)
         {
             IntPtr ptrParams;
             Interop.CkmcTypes.GenerateNewParam((int)algorithm, out ptrParams);
@@ -62,7 +62,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Gets integer parameter.
         /// </summary>
         /// <param name="name">Parameter name.</param>
-        protected long GetInteger(CipherParameterName name)
+        public long GetInteger(CipherParameterName name)
         {
             long value = 0;
             int ret = Interop.CkmcTypes.ParamListGetInteger(PtrCkmcParamList, (int)name, out value);
@@ -74,7 +74,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Gets byte array parameter.
         /// </summary>
         /// <param name="name">Parameter name.</param>
-        protected byte[] GetBuffer(CipherParameterName name)
+        public byte[] GetBuffer(CipherParameterName name)
         {
             IntPtr ptr = new IntPtr();
 

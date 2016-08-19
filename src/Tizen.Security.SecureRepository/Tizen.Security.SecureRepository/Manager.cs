@@ -21,29 +21,26 @@ namespace Tizen.Security.SecureRepository
     /// </summary>
     public class Manager
     {
-        // ckmc_owner_id_separator
-        // ckmc_owner_id_system
+        /// <summary>
+        /// Creates a new full alias which is concatenation of owner id and alias.
+        /// </summary>
+        /// <param name="ownerId">Data owner's id. This should be package id if data
+        /// owner is application. If you want to access data stored by system services,
+        /// use CreateFullSystemAlias() instead.</param>
+        /// <param name="alias">Data alias.</param>
+        static public string CreateFullAlias(string ownerId, string alias)
+        {
+            return ownerId + Manager.OwnerIdSeperator + alias;
+        }
 
         /// <summary>
-        /// Separator between alias and owner id.
+        /// Creates a new full alias which is concatenation of system service's owner id and alias.
         /// </summary>
-        /// <remarks>
-        /// Alias can be provided as an alias alone, or together with owner id. 
-        /// In this case, separator " " (space bar) is used to separate id and alias.
-        /// </remarks>
-        public const string OwnerIdSeperator = " ";
-
-        /// <summary>
-        /// The owner of system database.
-        /// </summary>
-        /// <remarks>
-        /// SystemOwnerId constains id connected with all SYSTEM applications that run
-        /// with uid less than 5000.
-        /// Client should use SystemOwnerId to access data owned by system application
-        /// and stored in system database.
-        /// Note: Client must have permission to access proper row.
-        /// </remarks>
-        public const string SystemOwnerId = "/System";
+        /// <param name="alias">Data alias which is owned by system service.</param>
+        static public string CreateFullSystemAlias(string alias)
+        {
+            return Manager.CreateFullAlias(Manager.SystemOwnerId, alias);
+        }
 
         /// <summary>
         /// Removes a an entry (no matter of type) from the key manager.
@@ -70,5 +67,8 @@ namespace Tizen.Security.SecureRepository
             int ret = Interop.CkmcManager.SetPermission(alias, otherPackageId, permissions);
             Interop.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
         }
+
+        private const string OwnerIdSeperator = " ";
+        private const string SystemOwnerId = "/System";
     }
 }

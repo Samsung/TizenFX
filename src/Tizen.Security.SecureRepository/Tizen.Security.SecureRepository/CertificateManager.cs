@@ -32,7 +32,7 @@ namespace Tizen.Security.SecureRepository
         /// If password of policy is provided in SaveCertificate(), the same password should be provided
         /// </param>
         /// <returns>A certificate specified by alias.</returns>
-        static public Certificate GetCertificate(string alias, string password)
+        static public Certificate Get(string alias, string password)
         {
             IntPtr ptr = new IntPtr();
 
@@ -46,7 +46,7 @@ namespace Tizen.Security.SecureRepository
         /// Gets all alias of certificates which the client can access.
         /// </summary>
         /// <returns>all alias of certificates which the client can access.</returns>
-        static public IEnumerable<string> GetCertificateAliases()
+        static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = new IntPtr();
             int ret = Interop.CkmcManager.GetCertAliasList(out ptr);
@@ -61,7 +61,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of a certificate to be stored.</param>
         /// <param name="cert">The certificate's binary value to be stored.</param>
         /// <param name="policy">The policy about how to store a certificate securely.</param>
-        static public void SaveCertificate(string alias, Certificate cert, Policy policy)
+        static public void Save(string alias, Certificate cert, Policy policy)
         {
             int ret = Interop.CkmcManager.SaveCert(alias, cert.ToCkmcCert(), policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to save certificate. alias=" + alias);

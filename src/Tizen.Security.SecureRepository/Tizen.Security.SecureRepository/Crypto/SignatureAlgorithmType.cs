@@ -24,14 +24,14 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// RSA signature algorithm
         /// </summary>
-        RsaSignature = 0x01,
+        Rsa = 0x01,
         /// <summary>
         /// DSA signature algorithm
         /// </summary>
-        DsaSignature,
+        Dsa,
         /// <summary>
         /// ECDSA signature algorithm
         /// </summary>
-        EcdsaSignature
+        Ecdsa
     }
 }

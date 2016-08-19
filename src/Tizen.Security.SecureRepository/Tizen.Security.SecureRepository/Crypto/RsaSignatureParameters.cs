@@ -24,9 +24,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// A default constructor
         /// </summary>
-        /// <remarks>The SignatureAlgorithmType in SignatureParameters is set to SignatureAlgorithmType.RsaSignature.</remarks>
         /// <remarks>The RsaPadding is set to RsaPaddingAlgorithm.None.</remarks>
-        public RsaSignatureParameters() : base(SignatureAlgorithmType.RsaSignature)
+        public RsaSignatureParameters() : base(SignatureAlgorithmType.Rsa)
         {
         }
 

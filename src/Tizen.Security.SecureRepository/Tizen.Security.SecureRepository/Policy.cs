@@ -35,28 +35,6 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A constructor of Key that takes the flag for extractable.
-        /// </summary>
-        /// <param name="extractable">If true key may be extracted from secure repository.</param>
-        /// <remarks>The default value for Password is null.</remarks>
-        public Policy(bool extractable)
-        {
-            Password = null;
-            Extractable = extractable;
-        }
-
-        /// <summary>
-        /// A constructor of Key that takes the password.
-        /// </summary>
-        /// <param name="password">Used to encrypt data secure repository.</param>
-        /// <remarks>The default value for Extractabl is false.</remarks>
-        public Policy(String password)
-        {
-            Password = password;
-            Extractable = true;
-        }
-
-        /// <summary>
         /// A constructor of Key that takes the password and the flag for extractable.
         /// </summary>
         /// <param name="password">Used to encrypt data secure repository.</param>

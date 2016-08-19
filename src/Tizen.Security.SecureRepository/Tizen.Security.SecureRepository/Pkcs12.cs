@@ -28,12 +28,12 @@ namespace Tizen.Security.SecureRepository
     public class Pkcs12 : SafeHandle
     {
         /// <summary>
-        /// Creates a new Pkcs12from a given PKCS#12 file and returns it.
+        /// Load Pkcs12 from the given PKCS#12 file path.
         /// </summary>
         /// <param name="filePath">The path of PKCS12 file to be loaded.</param>
         /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
         /// If PKCS12 file is not encrypted, passphrase can be null.</param>
-        static public Pkcs12 LoadPkcs12(string filePath, string filePassword)
+        static public Pkcs12 Load(string filePath, string filePassword)
         {
             IntPtr ptr = new IntPtr();
 
@@ -53,20 +53,6 @@ namespace Tizen.Security.SecureRepository
 
             this.PrivateKey = privateKey;
             this.Certificate = null;
-            this.CaChain = null;
-        }
-
-        /// <summary>
-        /// A constructor of Key that takes a private key and its corresponding certicate.
-        /// </summary>
-        /// <param name="privateKey">A private key.</param>
-        /// <param name="certificate">A certificate corresponding the private key</param>
-        public Pkcs12(Key privateKey, Certificate certificate) : base(IntPtr.Zero, true)
-        {
-            this.SetHandle(IntPtr.Zero);
-
-            this.PrivateKey = privateKey;
-            this.Certificate = certificate;
             this.CaChain = null;
         }
 

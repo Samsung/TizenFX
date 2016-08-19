@@ -32,7 +32,7 @@ namespace Tizen.Security.SecureRepository
         /// If password of policy is provided in SaveKey(), the same password should be provided
         /// </param>
         /// <returns>A key specified by alias.</returns>
-        static public Key GetKey(string alias, string password)
+        static public Key Get(string alias, string password)
         {
             IntPtr ptr = new IntPtr();
 
@@ -46,7 +46,7 @@ namespace Tizen.Security.SecureRepository
         /// Gets all alias of keys which the client can access.
         /// </summary>
         /// <returns>all alias of keys which the client can access.</returns>
-        static public IEnumerable<string> GetKeyAliases()
+        static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = new IntPtr();
             int ret = Interop.CkmcManager.GetKeyAliasList(out ptr);
@@ -63,7 +63,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="policy">The policy about how to store a key securely.</param>
         /// <remarks>Type in key may be set to KeyType.None as an input. Type is determined inside secure reposioty during storing keys.</remarks>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
-        static public void SaveKey(string alias, Key key, Policy policy)
+        static public void Save(string alias, Key key, Policy policy)
         {
             int ret = Interop.CkmcManager.SaveKey(alias, key.ToCkmcKey(), policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to save Key. alias=" + alias);
@@ -78,7 +78,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
-        static public void CreateKeyPairRsa(int size, string privateKeyAlias, string publicKeyAlias,
+        static public void CreateRsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
             int ret = Interop.CkmcManager.CreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
@@ -95,7 +95,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
-        static public void CreateKeyPairDsa(int size, string privateKeyAlias, string publicKeyAlias,
+        static public void CreateDsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
             int ret = Interop.CkmcManager.CreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
@@ -112,7 +112,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
-        static public void CreateKeyPairEcdsa(EllipticCurveType type, string privateKeyAlias, string publicKeyAlias,
+        static public void CreateEcdsaKeyPair(EllipticCurveType type, string privateKeyAlias, string publicKeyAlias,
                                     Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
             int ret = Interop.CkmcManager.CreateKeyPairEcdsa((int)type, privateKeyAlias, publicKeyAlias,
@@ -127,7 +127,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="keyAlias">The name of key to be stored.</param>
         /// <param name="policy">The policy about how to store the key securely.</param>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
-        static public void CreateKeyAes(int size, string keyAlias, Policy policy)
+        static public void CreateAesKey(int size, string keyAlias, Policy policy)
         {
             int ret = Interop.CkmcManager.CreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to AES Key");

@@ -26,6 +26,20 @@ namespace Tizen.Security.SecureRepository
     public class Certificate : SafeHandle
     {
         /// <summary>
+        /// Load Certificate from the given file path.
+        /// </summary>
+        /// <param name="filePath">The path of certificate file to be loaded.</param>
+        static public Certificate Load(string filePath)
+        {
+            IntPtr ptr = new IntPtr();
+
+            int ret = Interop.CkmcTypes.LoadCertFromFile(filePath, out ptr);
+            Interop.CheckNThrowException(ret, "Failed to load Certificate. file=" + filePath);
+
+            return new Certificate(ptr);
+        }
+
+        /// <summary>
         /// A constructor of Certificate that takes the binary and its format.
         /// </summary>
         /// <param name="binary">The binary data of a certificate.</param>

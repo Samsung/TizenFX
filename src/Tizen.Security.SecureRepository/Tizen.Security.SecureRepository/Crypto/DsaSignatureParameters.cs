@@ -24,8 +24,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// A default constructor
         /// </summary>
-        /// <remarks>The SignatureAlgorithmType in SignatureParameters is set to SignatureAlgorithmType.DsaSignature.</remarks>
-        public DsaSignatureParameters() : base(SignatureAlgorithmType.DsaSignature)
+        public DsaSignatureParameters() : base(SignatureAlgorithmType.Dsa)
         {
         }
     }

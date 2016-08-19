@@ -34,7 +34,7 @@ namespace Tizen.Security.SecureRepository
         /// If password of certificatePolicy is provided in SavePkcs12(), the same password should be provided
         /// </param>
         /// <returns>A Pkcs12 data specified by alias.</returns>
-        static public Pkcs12 GetPkcs12(string alias, string keyPassword, string cerificatePassword)
+        static public Pkcs12 Get(string alias, string keyPassword, string cerificatePassword)
         {
             IntPtr ptr = new IntPtr();
 
@@ -52,7 +52,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="pkcs12">The pkcs12 data to be stored.</param>
         /// <param name="keyPolicy">The policy about how to store pkcs's private key.</param>
         /// <param name="certificatePolicy">The policy about how to store pkcs's certificate.</param>
-        static public void SavePkcs12(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
+        static public void Save(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
         {
             int ret = Interop.CkmcManager.SavePkcs12(alias,
                                                      new PinnedObject(pkcs12.ToCkmcPkcs12()),
