@@ -49,6 +49,7 @@ namespace Tizen.System.Sensor
         /// </param>
         public RunningActivityDetector(int index) : base(index)
         {
+            SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Running);
             Log.Info(Globals.LogTag, "Creating running activity detector object");
         }
 

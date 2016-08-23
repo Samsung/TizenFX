@@ -49,6 +49,7 @@ namespace Tizen.System.Sensor
         /// </param>
         public InVehicleActivityDetector(int index) : base(index)
         {
+            SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.InVehicle);
             Log.Info(Globals.LogTag, "Creating in-vehicle activity detector object");
         }
 

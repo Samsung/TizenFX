@@ -102,19 +102,19 @@ namespace Tizen.System.Sensor
         /// <summary>
         /// Walking activity detector.
         /// </summary>
-        WalkingActivityDetector = 0x401,
+        WalkingActivityDetector = 0x1A00,
         /// <summary>
         /// Running activity detector.
         /// </summary>
-        RunningActivityDetector = 0x402,
+        RunningActivityDetector = 0x1A00,
         /// <summary>
         /// Stationary activity detector.
         /// </summary>
-        StationaryActivityDetector = 0x408,
+        StationaryActivityDetector = 0x1A00,
         /// <summary>
         /// InVehicle activity detector.
         /// </summary>
-        InVehicleActivityDetector = 0x409,
+        InVehicleActivityDetector = 0x1A00,
         /// <summary>
         /// Wrist up gesture detector.
         /// </summary>

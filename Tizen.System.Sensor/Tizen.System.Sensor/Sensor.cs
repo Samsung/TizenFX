@@ -192,7 +192,7 @@ namespace Tizen.System.Sensor
         }
 
         /// <summary>
-        /// Gets the attribute.
+        /// Sets the pause policy of the sensor.
         /// </summary>
         /// <value>
         public SensorPausePolicy PausePolicy
@@ -201,7 +201,7 @@ namespace Tizen.System.Sensor
             {
                 Log.Info(Globals.LogTag, "Setting the pause policy of the sensor");
                 _pausePolicy = value;
-                SetPausePolicy();
+                SetAttribute(SensorAttribute.PausePolicy, (int)_pausePolicy);
             }
             get
             {
@@ -309,6 +309,19 @@ namespace Tizen.System.Sensor
 
             DestroyHandles();
             _disposed = true;
+        }
+
+        protected void SetAttribute(SensorAttribute attribute, int option)
+        {
+            if (CheckListenerHandle())
+            {
+                int error = Interop.SensorListener.SetAttribute(_listenerHandle, attribute, option);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error setting sensor pause policy");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.PausePolicy Failed");
+                }
+            }
         }
 
         private void GetHandleList(SensorType type, int index)
@@ -423,19 +436,6 @@ namespace Tizen.System.Sensor
                 {
                     Log.Error(Globals.LogTag, "Error setting max batch latency");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.MaxBatchLatency Failed");
-                }
-            }
-        }
-
-        private void SetPausePolicy()
-        {
-            if (CheckListenerHandle())
-            {
-                int error = Interop.SensorListener.SetAttribute(_listenerHandle, SensorAttribute.PausePolicy, (int)_pausePolicy);
-                if (error != (int)SensorError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error setting sensor pause policy");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.PausePolicy Failed");
                 }
             }
         }

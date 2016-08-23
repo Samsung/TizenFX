@@ -49,6 +49,7 @@ namespace Tizen.System.Sensor
         /// </param>
         public WalkingActivityDetector(int index) : base(index)
         {
+            SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Walking);
             Log.Info(Globals.LogTag, "Creating walking activity gesture detector object");
         }
 

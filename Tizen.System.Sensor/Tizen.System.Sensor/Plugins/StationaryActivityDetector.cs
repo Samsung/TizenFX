@@ -49,6 +49,7 @@ namespace Tizen.System.Sensor
         /// </param>
         public StationaryActivityDetector(int index) : base(index)
         {
+            SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Stationary);
             Log.Info(Globals.LogTag, "Creating stationary activity detector object");
         }
 

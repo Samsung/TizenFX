@@ -12,6 +12,18 @@ namespace Tizen.System.Sensor
 {
     public abstract class ActivityDetector : Sensor
     {
+        protected const int ActivityAttribute = (((int)SensorType.InVehicleActivityDetector << 8) | 0x80 | 0x1);
+
+        protected enum ActivityType
+        {
+            Unknown = 1,
+            Stationary = 2,
+            Walking = 4,
+            Running = 8,
+            InVehicle = 16,
+            OnBicycle = 32,
+        };
+
         /// <summary>
         /// Gets the activity accuracy of activity detector
         /// </summary>
