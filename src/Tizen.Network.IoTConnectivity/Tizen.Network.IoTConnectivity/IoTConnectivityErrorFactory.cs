@@ -83,7 +83,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             else if (error == IoTConnectivityError.System)
             {
-                return new SystemException("System error");
+                return new InvalidOperationException("System error");
             }
             else
             {
