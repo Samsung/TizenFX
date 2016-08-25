@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{663C5A3D-E631-4987-AEE7-F498C56A40FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Tizen.Applications.WidgetApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\Tizen.Applications.WidgetApplication.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.Applications.WidgetApplication.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="CoreFx.References.targets" />
+  <ItemGroup Condition=" '$(CoreFxPath)' == '' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tizen.Applications" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.Widget.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Applications.CoreBackend\WidgetCoreBackend.cs" />
+    <Compile Include="Tizen.Applications\WidgetApplication.cs" />
+    <Compile Include="Tizen.Applications\WidgetType.cs" />
+    <Compile Include="Tizen.Applications\WidgetBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tizen.Applications.WidgetApplication.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Tizen">
+      <HintPath>..\..\tizen\Tizen\bin\Debug\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Internals">
+      <HintPath>..\..\tizen\Tizen.Internals\bin\Debug\Tizen.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.UI">
+      <HintPath>..\..\uifw\Tizen.UI\bin\Debug\Tizen.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Applications">
+      <HintPath>..\..\task\application\Tizen.Applications\obj\Debug\Tizen.Applications.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
+      <Project>{b9aa1cb2-f72d-4a30-a33b-a20c850a38a0}</Project>
+      <Name>Tizen.Internals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tizen\Tizen\Tizen.csproj">
+      <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
+      <Name>Tizen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\uifw\Tizen.UI\Tizen.UI.csproj">
+      <Project>{d34841f9-046b-4dbf-9698-143386c24f78}</Project>
+      <Name>Tizen.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\application\Tizen.Applications\Tizen.Applications.csproj">
+      <Project>{d2d1a3ce-000e-4ab3-81c4-a8a44a008989}</Project>
+      <Name>Tizen.Applications</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
