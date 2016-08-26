@@ -392,9 +392,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
-        /// <param name="hostAddress">The address or addressable name of the server</param>
-        /// <param name="resourceType">A resource type specified as a filter for the resource</param>
-        /// <param name="isSecure">The flag for secure communication with the server</param>
+        /// <param name="hostAddress">The address or addressable name of the server. The address includes a protocol like coaps://</param>
+        /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
@@ -412,10 +411,12 @@ namespace Tizen.Network.IoTConnectivity
         /// }
         /// IoTConnectivityClientManager.ResourceFound += handler;
         /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
+        /// ResourceQuery query = new ResourceQuery();
+        /// query.Type = "oic.iot.door";
         /// // Do not forget to remove these event handlers when they are not required any more.
-        /// int id = IoTConnectivityClientManager.StartFindingResource(null, "oic.iot.door");
+        /// int id = IoTConnectivityClientManager.StartFindingResource(null, query);
         /// </code>
-        public static int StartFindingResource(string hostAddress, string resourceType, bool isSecure = false)
+        public static int StartFindingResource(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
             if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
@@ -424,11 +425,6 @@ namespace Tizen.Network.IoTConnectivity
                 throw new ArgumentException("Unable to parse host address");
             }
 
-            if (resourceType != null && !ResourceTypes.IsValid(resourceType))
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Invalid type");
-                throw new ArgumentException("Invalid type");
-            }
             IntPtr id = IntPtr.Zero;
             lock (s_resourceFoundCallbacksMap)
             {
@@ -478,7 +474,8 @@ namespace Tizen.Network.IoTConnectivity
                 }
                 return true;
             };
-            int errorCode = Interop.IoTConnectivity.Client.ResourceFinder.AddResourceFoundCb(hostAddress, (int)connectivityType, resourceType, isSecure, s_resourceFoundCallbacksMap[id], id);
+            IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
+            int errorCode = Interop.IoTConnectivity.Client.ResourceFinder.AddResourceFoundCb(hostAddress, (int)connectivityType, queryHandle, s_resourceFoundCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to register resource found event handler");
@@ -503,6 +500,7 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/internet
         /// </privilege>
         /// <param name="hostAddress">The host address of remote server</param>
+        /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
@@ -524,7 +522,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingDeviceInformation(IoTConnectivityClientManager.MulticastAddress);
         /// </code>
-        public static int StartFindingDeviceInformation(string hostAddress)
+        public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
             if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
@@ -574,7 +572,8 @@ namespace Tizen.Network.IoTConnectivity
                 return true;
             };
 
-            int errorCode = Interop.IoTConnectivity.Client.DeviceInformation.Find(hostAddress, (int)connectivityType, s_deviceInformationCallbacksMap[id], id);
+            IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
+            int errorCode = Interop.IoTConnectivity.Client.DeviceInformation.Find(hostAddress, (int)connectivityType, queryHandle, s_deviceInformationCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device information");
@@ -600,6 +599,7 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/internet
         /// </privilege>
         /// <param name="hostAddress">The host address of remote server</param>
+        /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
@@ -620,7 +620,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingPlatformInformation(IoTConnectivityClientManager.MulticastAddress);
         /// </code>
-        public static int StartFindingPlatformInformation(string hostAddress)
+        public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
             if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
@@ -670,7 +670,8 @@ namespace Tizen.Network.IoTConnectivity
                 return true;
             };
 
-            int errorCode = Interop.IoTConnectivity.Client.PlatformInformation.Find(hostAddress, (int)connectivityType, s_platformInformationCallbacksMap[id], id);
+            IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
+            int errorCode = Interop.IoTConnectivity.Client.PlatformInformation.Find(hostAddress, (int)connectivityType, queryHandle, s_platformInformationCallbacksMap[id], id);
             if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get platform information");

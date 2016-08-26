@@ -30,6 +30,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         Deleted,
         /// <summary>
+        ///  Indicates result of response for changed resource
+        /// </summary>
+        Changed,
+        /// <summary>
         /// Indicates result of response for slow resource
         /// </summary>
         Slow,

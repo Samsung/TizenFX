@@ -28,7 +28,7 @@ internal static partial class Interop
                 }
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_device_info")]
-                internal static extern int Find(string hostAddress, int connectivityType, DeviceInformationCallback cb, IntPtr userData);
+                internal static extern int Find(string hostAddress, int connectivityType, IntPtr query, DeviceInformationCallback cb, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_device_info_get_property")]
                 internal static extern int GetProperty(IntPtr deviceInfoHandle, int property, out IntPtr value);
@@ -54,7 +54,7 @@ internal static partial class Interop
                 }
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_platform_info")]
-                internal static extern int Find(string hostAddress, int connectivityType, PlatformInformationCallback cb, IntPtr userData);
+                internal static extern int Find(string hostAddress, int connectivityType, IntPtr query, PlatformInformationCallback cb, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_platform_info_get_property")]
                 internal static extern int GetProperty(IntPtr platformInfoHandle, int property, out IntPtr value);
@@ -190,7 +190,7 @@ internal static partial class Interop
                 internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_resource")]
-                internal static extern int AddResourceFoundCb(string hostAddress, int connectivityType, string resourceType, bool isSecure, FoundResourceCallback cb, IntPtr userData);
+                internal static extern int AddResourceFoundCb(string hostAddress, int connectivityType, IntPtr query, FoundResourceCallback cb, IntPtr userData);
             }
 
             internal static partial class Presence
