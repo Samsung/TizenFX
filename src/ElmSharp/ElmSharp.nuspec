@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>ElmSharp</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>C# Binding for Elementary</description>
+	</metadata>
+</package>

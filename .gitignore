@@ -1,0 +1,8 @@
+bin/
+obj/
+*.exe
+*.dll
+*.csproj.user
+*.xproj.user
+*.lock.json
+.vs/

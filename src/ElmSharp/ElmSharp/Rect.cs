@@ -1,0 +1,146 @@
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
+
+using System;
+
+namespace ElmSharp
+{
+    /// <summary>
+    /// A value that represent rectangluar space.
+    /// </summary>
+    public struct Rect : IEquatable<Rect>
+    {
+
+        public Rect(int x, int y, int w, int h)
+        {
+            X = x;
+            Y = y;
+            Width = w;
+            Height = h;
+        }
+        /// <summary>
+        /// Gets or sets the position of this Rectangle on the X axis.
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position of this Rectangle on the Y axis.
+        /// </summary>
+        public int Y { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of this Rectangle.
+        /// </summary>
+        public int Width { get; set; }
+
+        /// <summary>
+        /// Gets or sets the height of this Rectangle.
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// Gets the position of this Rectangle on the X axis.
+        /// </summary>
+        public int Left { get { return X; } }
+
+        /// <summary>
+        /// Gets the extent along the X axis.
+        /// </summary>
+        public int Right { get { return X + Width; } }
+
+        /// <summary>
+        /// Gets the position of this Rectangle on the Y axis.
+        /// </summary>
+        public int Top { get { return Y; } }
+
+        /// <summary>
+        /// Gets the extent along the Y axis.
+        /// </summary>
+        public int Bottom { get { return Y + Height; } }
+
+        /// <summary>
+        /// Gets the Point defined by Rectangle.Left and Rectangle.Top.
+        /// </summary>
+        public Point Location { get { return new Point { X = X, Y = Y }; } }
+
+        /// <summary>
+        /// Gets the extent of the Rectangle along its X and Y axis.
+        /// </summary>
+        public Size Size { get { return new Size { Width = Width, Height = Height }; } }
+
+        /// <summary>
+        /// A human-readable representation of the <see cref="T:Tizen.UI.Rectangle" />.
+        /// </summary>
+        /// <returns>The string is formatted as "{{X={0} Y={1} Width={2} Height={3}}}".</returns>
+        public override string ToString()
+        {
+            return string.Format("{{X={0} Y={1} Width={2} Height={3}}}", X, Y, Width, Height);
+        }
+
+        /// <summary>
+        /// Returns a hash value for the <see cref="T:Tizen.UI.Rectangle" />.
+        /// </summary>
+        /// <returns>A value intended for efficient insertion and lookup in hashtable-based data structures.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = X.GetHashCode();
+                hashCode = (hashCode * 397) ^ Y.GetHashCode();
+                hashCode = (hashCode * 397) ^ Width.GetHashCode();
+                hashCode = (hashCode * 397) ^ Height.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if the values of this are exactly equal to those in the argument.
+        /// </summary>
+        /// <param name="obj">Another <see cref="T:Tizen.UI.Rectangle" />.</param>
+        /// <returns>True if the values are equal to those in <paramref name="obj" />. Returns false if <paramref name="obj" /> is not a <see cref="T:Tizen.UI.Rectangle" />.</returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Rect))
+                return false;
+
+            return Equals((Rect)obj);
+        }
+
+        /// <summary>
+        /// Returns true if the values of this are exactly equal to those in the argument.
+        /// </summary>
+        /// <param name="other">Another <see cref="T:Tizen.UI.Rectangle" />.</param>
+        /// <returns>True if the values are equal to those in <paramref name="other" />.</returns>
+        public bool Equals(Rect other)
+        {
+            return X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);
+        }
+
+        /// <summary>
+        /// Whether the two <see cref="T:Tizen.UI.Rectangle" />s are equal.
+        /// </summary>
+        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle" /> on the left hand side.</param>
+        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle" /> on the right hand side.</param>
+        /// <returns>True if the two <see cref="T:Tizen.UI.Rectangle" />s have equal values.</returns>
+        public static bool operator ==(Rect r1, Rect r2)
+        {
+            return r1.Equals(r2);
+        }
+
+        /// <summary>
+        /// Whether two <see cref="T:Tizen.UI.Rectangle" />s are not equal.
+        /// </summary>
+        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle" /> on the left hand side.</param>
+        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle" /> on the right hand side.</param>
+        /// <returns>True if the two <see cref="T:Tizen.UI.Rectangle" />s do not have equal values.</returns>
+        public static bool operator !=(Rect r1, Rect r2)
+        {
+            return !r1.Equals(r2);
+        }
+    }
+}
