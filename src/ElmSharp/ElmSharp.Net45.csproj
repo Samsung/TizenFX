@@ -144,8 +144,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ElmSharp.Net45.project.json" />
     <None Include="ElmSharp.nuspec" />
-    <None Include="ElmSharp.project.json" />
     <None Include="ElmSharp.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />

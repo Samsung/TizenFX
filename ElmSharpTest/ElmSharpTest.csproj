@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E901BB06-632D-489E-86AC-66AD2EF85BCC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElmSharpTest</RootNamespace>
+    <AssemblyName>ElmSharpTest</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETCoreApp</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETCoreApp,Version=v1.0</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701;1702</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TC\BackgroundTest1.cs" />
+    <Compile Include="TC\BackgroundTest2.cs" />
+    <Compile Include="TC\BackgroundTest3.cs" />
+    <Compile Include="TC\BoxTest1.cs" />
+    <Compile Include="TC\ButtonTest1.cs" />
+    <Compile Include="TC\CalendarTest1.cs" />
+    <Compile Include="TC\CheckTest1.cs" />
+    <Compile Include="TC\ColorSelectorTest1.cs" />
+    <Compile Include="TC\ContextPopupTest1.cs" />
+    <Compile Include="TC\DateTimeSelectorTest1.cs" />
+    <Compile Include="TC\EntryTest1.cs" />
+    <Compile Include="TC\GenGridTest1.cs" />
+    <Compile Include="TC\GenGridTest2.cs" />
+    <Compile Include="TC\GenListTest1.cs" />
+    <Compile Include="TC\GenListTest2.cs" />
+    <Compile Include="TC\GenListTest3.cs" />
+    <Compile Include="TC\GenListTest4.cs" />
+    <Compile Include="TC\GenListTest5.cs" />
+    <Compile Include="TC\IconTest1.cs" />
+    <Compile Include="TC\IndexTest1.cs" />
+    <Compile Include="TC\IndexTest2.cs" />
+    <Compile Include="TC\LabelTest1.cs" />
+    <Compile Include="TC\ListTest1.cs" />
+    <Compile Include="TC\NaviframeTest1.cs" />
+    <Compile Include="TC\PanelTest1.cs" />
+    <Compile Include="TC\PanelTest2.cs" />
+    <Compile Include="TC\PanesTest1.cs" />
+    <Compile Include="TC\PopupTest1.cs" />
+    <Compile Include="TC\ProgressBarTest1.cs" />
+    <Compile Include="TC\RadioTest1.cs" />
+    <Compile Include="TC\RectangleTest1.cs" />
+    <Compile Include="TC\ScrollerTest1.cs" />
+    <Compile Include="TC\ScrollerTest2.cs" />
+    <Compile Include="TC\SliderTest1.cs" />
+    <Compile Include="TC\SpinnerTest1.cs" />
+    <Compile Include="TC\ToolbarTest1.cs" />
+    <Compile Include="TestCaseBase.cs" />
+    <Compile Include="TestRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElmSharpTest.project.json" />
+    <None Include="test.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElmSharp\ElmSharp.csproj">
+      <Project>{7b15af72-70cc-11e6-ae37-eb727f0bd84e}</Project>
+      <Name>ElmSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+    -->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+       to prevent it from outputting a warning (MSB3644).
+    -->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>

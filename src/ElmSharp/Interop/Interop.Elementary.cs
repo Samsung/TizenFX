@@ -235,13 +235,5 @@ internal static partial class Interop
         {
             elm_object_part_text_set(obj, IntPtr.Zero, text);
         }
-
-        internal static IntPtr GetPtrToObject(object data)
-        {
-            IntPtr dataPtr = IntPtr.Zero;
-            if (data != null)
-                Marshal.StructureToPtr(data, dataPtr, true);
-            return dataPtr;
-        }
     }
 }
