@@ -2,9 +2,6 @@ bin/
 obj/
 *.exe
 *.dll
-.vs/
-Test/
-*.sln
 *.csproj.user
-*.tpk
-!tct-applications-tizen-tests/lib/*.dll
+*.lock.json
+.vs/
