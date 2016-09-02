@@ -4,7 +4,7 @@
     "emitEntryPoint": true
   },
   "dependencies": {
-    "ElmSharp": "1.0.0"
+    "ElmSharp": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.0": {

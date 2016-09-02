@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{657E0754-FAF0-42B9-B9F5-45868826758E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElmSharp</RootNamespace>
+    <AssemblyName>ElmSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\Net45\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Net45\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ElmSharp.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ElmSharp\Background.cs" />
+    <Compile Include="ElmSharp\Box.cs" />
+    <Compile Include="ElmSharp\Button.cs" />
+    <Compile Include="ElmSharp\Calendar.cs" />
+    <Compile Include="ElmSharp\Check.cs" />
+    <Compile Include="ElmSharp\CheckStateChangedEventArgs.cs" />
+    <Compile Include="ElmSharp\Color.cs" />
+    <Compile Include="ElmSharp\ColorChangedEventArgs.cs" />
+    <Compile Include="ElmSharp\ColorSelector.cs" />
+    <Compile Include="ElmSharp\Conformant.cs" />
+    <Compile Include="ElmSharp\Container.cs" />
+    <Compile Include="ElmSharp\ContextPopup.cs" />
+    <Compile Include="ElmSharp\ContextPopupItem.cs" />
+    <Compile Include="ElmSharp\DateChangedEventArgs.cs" />
+    <Compile Include="ElmSharp\DateTimeSelector.cs" />
+    <Compile Include="ElmSharp\DisplayedMonthChangedEventArgs.cs" />
+    <Compile Include="ElmSharp\EcoreMainloop.cs" />
+    <Compile Include="ElmSharp\EcoreSynchronizationContext.cs" />
+    <Compile Include="ElmSharp\EdjeObject.cs" />
+    <Compile Include="ElmSharp\Elementary.cs" />
+    <Compile Include="ElmSharp\Entry.cs" />
+    <Compile Include="ElmSharp\EvasKeyEventArgs.cs" />
+    <Compile Include="ElmSharp\EvasMap.cs" />
+    <Compile Include="ElmSharp\EvasObject.cs" />
+    <Compile Include="ElmSharp\GenGrid.cs" />
+    <Compile Include="ElmSharp\GenGridItem.cs" />
+    <Compile Include="ElmSharp\GenItem.cs" />
+    <Compile Include="ElmSharp\GenItemClass.cs" />
+    <Compile Include="ElmSharp\GenList.cs" />
+    <Compile Include="ElmSharp\GenListItem.cs" />
+    <Compile Include="ElmSharp\Icon.cs" />
+    <Compile Include="ElmSharp\Image.cs" />
+    <Compile Include="ElmSharp\Index.cs" />
+    <Compile Include="ElmSharp\IndexItem.cs" />
+    <Compile Include="ElmSharp\ItemObject.cs" />
+    <Compile Include="ElmSharp\Label.cs" />
+    <Compile Include="ElmSharp\Layout.cs" />
+    <Compile Include="ElmSharp\List.cs" />
+    <Compile Include="ElmSharp\ListItem.cs" />
+    <Compile Include="ElmSharp\Naviframe.cs" />
+    <Compile Include="ElmSharp\NaviItem.cs" />
+    <Compile Include="ElmSharp\Panel.cs" />
+    <Compile Include="ElmSharp\Panes.cs" />
+    <Compile Include="ElmSharp\Point.cs" />
+    <Compile Include="ElmSharp\Point3D.cs" />
+    <Compile Include="ElmSharp\Popup.cs" />
+    <Compile Include="ElmSharp\PopupItem.cs" />
+    <Compile Include="ElmSharp\ProgressBar.cs" />
+    <Compile Include="ElmSharp\Radio.cs" />
+    <Compile Include="ElmSharp\Rect.cs" />
+    <Compile Include="ElmSharp\Rectangle.cs" />
+    <Compile Include="ElmSharp\Scroller.cs" />
+    <Compile Include="ElmSharp\Size.cs" />
+    <Compile Include="ElmSharp\Slider.cs" />
+    <Compile Include="ElmSharp\Spinner.cs" />
+    <Compile Include="ElmSharp\Table.cs" />
+    <Compile Include="ElmSharp\Toolbar.cs" />
+    <Compile Include="ElmSharp\ToolbarItem.cs" />
+    <Compile Include="ElmSharp\Widget.cs" />
+    <Compile Include="ElmSharp\Window.cs" />
+    <Compile Include="ElmSharp\WrapType.cs" />
+    <Compile Include="Interop\Interop.Ecore.cs" />
+    <Compile Include="Interop\Interop.Elementary.Bg.cs" />
+    <Compile Include="Interop\Interop.Elementary.Box.cs" />
+    <Compile Include="Interop\Interop.Elementary.Button.cs" />
+    <Compile Include="Interop\Interop.Elementary.CalendarView.cs" />
+    <Compile Include="Interop\Interop.Elementary.ColorPicker.cs" />
+    <Compile Include="Interop\Interop.Elementary.cs" />
+    <Compile Include="Interop\Interop.Elementary.CtxPopup.cs" />
+    <Compile Include="Interop\Interop.Elementary.DateTimePicker.cs" />
+    <Compile Include="Interop\Interop.Elementary.Entry.cs" />
+    <Compile Include="Interop\Interop.Elementary.GenGridView.cs" />
+    <Compile Include="Interop\Interop.Elementary.GenListView.cs" />
+    <Compile Include="Interop\Interop.Elementary.Image.cs" />
+    <Compile Include="Interop\Interop.Elementary.Index.cs" />
+    <Compile Include="Interop\Interop.Elementary.Label.cs" />
+    <Compile Include="Interop\Interop.Elementary.List.cs" />
+    <Compile Include="Interop\Interop.Elementary.Naviframe.cs" />
+    <Compile Include="Interop\Interop.Elementary.Panel.cs" />
+    <Compile Include="Interop\Interop.Elementary.Panes.cs" />
+    <Compile Include="Interop\Interop.Elementary.Popup.cs" />
+    <Compile Include="Interop\Interop.Elementary.ProgressBar.cs" />
+    <Compile Include="Interop\Interop.Elementary.ScrollView.cs" />
+    <Compile Include="Interop\Interop.Elementary.Slider.cs" />
+    <Compile Include="Interop\Interop.Elementary.Spinner.cs" />
+    <Compile Include="Interop\Interop.Elementary.Table.cs" />
+    <Compile Include="Interop\Interop.Elementary.Toolbar.cs" />
+    <Compile Include="Interop\Interop.Elementary.Win.cs" />
+    <Compile Include="Interop\Interop.Evas.cs" />
+    <Compile Include="Interop\Interop.Evas.Image.cs" />
+    <Compile Include="Interop\Interop.EvasObjectEvent.cs" />
+    <Compile Include="Interop\Interop.Libc.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.SmartEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ElmSharp.nuspec" />
+    <None Include="ElmSharp.project.json" />
+    <None Include="ElmSharp.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -17,6 +17,10 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
+# Mono
+BuildRequires: mono-compiler
+BuildRequires: mono-devel
+
 # .NETCore
 %if 0%{?_with_corefx}
 AutoReqProv: no
@@ -35,23 +39,44 @@ cp %{SOURCE1} .
 %define Assemblies ElmSharp
 
 %build
-dotnet-gbs build %{Assemblies} \
-%if 0%{?_with_corefx}
-        --CoreFxPath=%{dotnet_core_path} \
-%endif
-        --Configuration=%{BUILDCONF} \
-        --DotnetAssemblyPath=%{dotnet_assembly_path}
+# Build for Net45
+for ASM in %{Assemblies}; do
+if [ -e $ASM/$ASM.Net45.csproj ]; then
+  xbuild $ASM/$ASM.Net45.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/net45 \
+         /p:OutputPath=bin/net45
+fi
 
-dotnet-gbs pack %{Assemblies} --PackageVersion=%{version}
+# Build for Dotnet
+%if 0%{?_with_corefx}
+if [ -e $ASM/$ASM.csproj ]; then
+  xbuild $ASM/$ASM.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/netstandard1.6 \
+         /p:CoreFxPath=%{dotnet_core_path} \
+         /p:OutputPath=bin/netstandard1.6
+fi
+%endif
+
+# Make NuGet package
+dotnet-gbs pack $ASM/$ASM.nuspec --PackageVersion=%{version} --PackageFiles=$ASM/bin
+
+done
 
 %install
-mkdir -p %{buildroot}%{dotnet_assembly_path}
-dotnet-gbs install %{Assemblies} \
-        --Configuration=%{BUILDCONF} \
-        --InstallPath=%{buildroot}%{dotnet_assembly_path}
+mkdir -p %{buildroot}%{dotnet_assembly_path}/devel
+for ASM in %{Assemblies}; do
+  cp -fr $ASM/bin/* %{buildroot}%{dotnet_assembly_path}/devel
+%if 0%{?_with_corefx}
+  install -p -m 644 $ASM/bin/netstandard1.6/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%else
+  install -p -m 644 $ASM/bin/net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%endif
+done
 
 mkdir -p %{buildroot}/nuget
-install -p -m 644 .nuget/*.nupkg %{buildroot}/nuget
+install -p -m 644 *.nupkg %{buildroot}/nuget
 
 %files
 %manifest %{name}.manifest

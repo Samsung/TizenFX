@@ -10,18 +10,17 @@ namespace ElmSharp
 
         public override Color Color
         {
+            //TO-DO: Consider to support alpha to elm_bg.
             get
             {
                 int r;
                 int g;
                 int b;
                 Interop.Elementary.elm_bg_color_get(Handle, out r, out g, out b);
-                Color value = base.Color;
-                return new Color(r, g, b, value.A);
+                return new Color(r, g, b);
             }
             set
             {
-                base.Color = value;
                 Interop.Elementary.elm_bg_color_set(Handle, value.R, value.G, value.B);
             }
         }
