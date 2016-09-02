@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Common modules of the Device API for Tizen.Net</description>
+	</metadata>
+</package>

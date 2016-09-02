@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,9 +8,15 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen</RootNamespace>
     <AssemblyName>Tizen</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.6</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.6</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701;1702</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,8 +26,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Tizen.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,23 +41,21 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Tizen.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <Import Project="CoreFx.References.targets" />
-  <ItemGroup Condition=" '$(CoreFxPath)' == '' ">
-    <Reference Include="System" />
-  </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interop\Interop.CommonError.cs" />
     <Compile Include="Interop\Interop.Dlog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tizen.Common\Color.cs" />
+    <Compile Include="Tizen.Internals.Errors\ErrorCode.cs" />
+    <Compile Include="Tizen.Internals.Errors\ErrorFacts.cs" />
     <Compile Include="Tizen\Log.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Tizen.nuspec" />
+    <None Include="Tizen.project.json" />
     <None Include="Tizen.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
-  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -63,4 +64,16 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+    -->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+       to prevent it from outputting a warning (MSB3644).
+    -->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
 </Project>
