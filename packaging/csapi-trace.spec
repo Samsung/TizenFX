@@ -1,5 +1,11 @@
-%define dllpath %{_libdir}/mono/tizen
-%define dllname Tizen.Tracer.dll
+%{!?dotnet_assembly_path: %define dotnet_assembly_path /opt/usr/share/dotnet.tizen/framework}
+%{!?dotnet_core_path: %define dotnet_core_path %{_datadir}/tizen.net/ref}
+
+%if 0%{?tizen_build_devel_mode}
+%define BUILDCONF Debug
+%else
+%define BUILDCONF Release
+%endif
 
 Name:       csapi-trace
 Summary:    Tizen Tracer API for C#
@@ -10,72 +16,95 @@ License:    Apache-2.0
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
-Source2:    %{name}.pc.in
 
-# TODO: replace mono-compiler, mono-devel to mcs, mono-shlib-cop
+# Mono
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-# TODO: replace mono-core to gacutil.
-#       mono-core should provide the symbol 'gacutil'
-Requires(post): mono-core
-Requires(postun): mono-core
 
-# P/Invoke Dependencies
-BuildRequires: pkgconfig(ttrace)
-BuildRequires: pkgconfig(capi-ttrace)
+# .NETCore
+%if 0%{?_with_corefx}
+AutoReqProv: no
+BuildRequires: corefx-managed-32b-ref
+%endif
 
-# P/Invoke Runtime Dependencies
-# TODO: It should be removed after fix tizen-rpm-config
-Requires: ttrace
-Requires: capi-ttrace
-# DLL Dependencies
-BuildRequires: pkgconfig(csapi-tizen)
-#BuildRequires: ...
+BuildRequires: dotnet-build-tools
+
+# C# API Requires
+BuildRequires: csapi-tizen-devel
 
 %description
 Tizen Tracer API for C#
 
+%prep
+%setup -q
+cp %{SOURCE1} .
+
+%define Assemblies Tizen.Tracer
+
+%build
+# Build for Net45
+for ASM in %{Assemblies}; do
+if [ -e $ASM/$ASM.Net45.csproj ]; then
+  xbuild $ASM/$ASM.Net45.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/net45 \
+         /p:OutputPath=bin/net45
+fi
+
+# Build for Dotnet
+%if 0%{?_with_corefx}
+if [ -e $ASM/$ASM.csproj ]; then
+  xbuild $ASM/$ASM.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/netstandard1.6 \
+         /p:CoreFxPath=%{dotnet_core_path} \
+         /p:OutputPath=bin/netstandard1.6
+fi
+%endif
+
+# Make NuGet package
+dotnet-gbs pack $ASM/$ASM.nuspec --PackageVersion=%{version} --PackageFiles=$ASM/bin
+
+done
+
+%install
+mkdir -p %{buildroot}%{dotnet_assembly_path}/devel
+for ASM in %{Assemblies}; do
+  cp -fr $ASM/bin/* %{buildroot}%{dotnet_assembly_path}/devel
+%if 0%{?_with_corefx}
+  install -p -m 644 $ASM/bin/netstandard1.6/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%else
+  install -p -m 644 $ASM/bin/net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%endif
+done
+
+mkdir -p %{buildroot}/nuget
+install -p -m 644 *.nupkg %{buildroot}/nuget
+
+%files
+%manifest %{name}.manifest
+%license LICENSE
+%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+
 %package devel
-Summary:    Development package for %{name}
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
+Summary:   Development package for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+AutoReqProv: no
 
 %description devel
 Development package for %{name}
 
-%prep
-%setup -q
-
-cp %{SOURCE1} .
-
-%build
-# build dll
-make
-
-# check p/invoke
-if [ -x %{dllname} ]; then
-  RET=`mono-shlib-cop %{dllname}`; \
-  CNT=`echo $RET | grep -E "^error:" | wc -l`; \
-  if [ $CNT -gt 0 ]; then exit 1; fi
-fi
-
-%install
-# copy dll
-mkdir -p %{buildroot}%{dllpath}
-install -p -m 644 %{dllname} %{buildroot}%{dllpath}
-
-# generate pkgconfig
-mkdir -p %{buildroot}%{_libdir}/pkgconfig
-sed -e "s#@version@#%{version}#g" \
-    -e "s#@dllpath@#%{dllpath}#g" \
-    -e "s#@dllname@#%{dllname}#g" \
-    %{SOURCE2} > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
-
-%post
-gacutil -i %{dllpath}/%{dllname}
-
-%files
-%{dllpath}/%{dllname}
-
 %files devel
-%{_libdir}/pkgconfig/%{name}.pc
+%{dotnet_assembly_path}/devel/*
+
+%package nuget
+Summary:   NuGet package for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+
+%description nuget
+NuGet package for %{name}
+
+%files nuget
+/nuget/*.nupkg

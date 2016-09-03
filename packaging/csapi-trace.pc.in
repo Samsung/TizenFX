@@ -1,5 +1,0 @@
-Name: csapi-trace
-Description: Tizen Trace API for C#
-Version: @version@
-Libs: -r:@dllpath@/@dllname@
-Requires:

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.Tracer</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Tracing API for Tizen.Net</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.0" />
+    </dependencies>
+	</metadata>
+</package>
