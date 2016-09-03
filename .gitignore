@@ -2,4 +2,6 @@ bin/
 obj/
 *.exe
 *.dll
-!tct-system-tizen-tests/lib/*.dll
+*.csproj.user
+*.lock.json
+.vs/
