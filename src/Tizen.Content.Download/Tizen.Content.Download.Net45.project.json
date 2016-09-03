@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "Tizen.Applications": "1.0.0"
+  },
+  "frameworks": {
+    "net45": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
