@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Tizen.Security.SecureRepository.Crypto
 {
@@ -24,7 +24,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// </summary>
     abstract public class SignatureParameters
     {
-        private Hashtable _parameters;
+        private Dictionary<SignatureParameterName, int> _parameters;
 
         /// <summary>
         /// A constructor with algorithm
@@ -32,7 +32,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="algorithm">An algorithm that this parameters are prepared for.</param>
         protected SignatureParameters(SignatureAlgorithmType algorithm)
         {
-            _parameters = new Hashtable();
+            _parameters = new Dictionary<SignatureParameterName, int>();
             Add(SignatureParameterName.AlgorithmType, (int)algorithm);
         }
 
@@ -60,7 +60,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="value">Parameter value.</param>
         internal void Add(SignatureParameterName name, int value)
         {
-            _parameters.Add((int)name, value);
+            _parameters.Add(name, value);
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="name">Parameter name.</param>
         internal int Get(SignatureParameterName name)
         {
-            if (_parameters.ContainsKey((int)name))
-                return (int)_parameters[(int)name];
+            if (_parameters.ContainsKey(name))
+                return _parameters[name];
             else
                 throw new ArgumentException("No parameter for a given SignatureParameterName ");
         }

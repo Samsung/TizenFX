@@ -47,7 +47,7 @@ namespace Tizen.Security.SecureRepository
             Binary = new byte[ckmcKey.size];
             Marshal.Copy(ckmcKey.rawKey, Binary, 0, Binary.Length);
             Type = (KeyType)ckmcKey.keyType;
-            BinaryPassword = Marshal.PtrToStringAuto(ckmcKey.password);
+            BinaryPassword = Marshal.PtrToStringAnsi(ckmcKey.password);
         }
 
         /// <summary>
