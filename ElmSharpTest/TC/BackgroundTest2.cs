@@ -17,7 +17,7 @@ namespace ElmSharp.Test
 
             Background bg2 = new Background(window)
             {
-                Color = new Color(255, 255, 255, 100)
+                Color = new Color(60, 128, 255, 100)
             };
             Show(bg1, 0, 0, 500, 500);
             Show(bg2, 100, 100, 500, 500);
@@ -28,9 +28,9 @@ namespace ElmSharp.Test
 
         void Show(Background bg, int x, int y, int w, int h)
         {
-            bg.Show();
             bg.Move(x, y);
             bg.Resize(w, h);
+            bg.Show();
         }
     }
 }

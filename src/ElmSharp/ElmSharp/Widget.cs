@@ -123,5 +123,10 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_object_part_color_set(Handle, part, color.R, color.G, color.B, color.A);
         }
+
+        internal IntPtr GetPartContent(string part)
+        {
+            return Interop.Elementary.elm_object_part_content_get(Handle, part);
+        }
     }
 }

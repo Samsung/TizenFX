@@ -6,22 +6,33 @@ namespace ElmSharp
     {
         public Background(EvasObject parent) : base(parent)
         {
+            Style = "transparent";
         }
 
         public override Color Color
         {
-            //TO-DO: Consider to support alpha to elm_bg.
             get
             {
-                int r;
-                int g;
-                int b;
-                Interop.Elementary.elm_bg_color_get(Handle, out r, out g, out b);
-                return new Color(r, g, b);
+                int r = 0;
+                int g = 0;
+                int b = 0;
+                int a = 0;
+                var swallowContent = GetPartContent("elm.swallow.rectangle");
+                if (swallowContent != IntPtr.Zero)
+                {
+                    Interop.Evas.evas_object_color_get(swallowContent, out r, out g, out b, out a);
+                }
+                return new Color(r, g, b, a);
             }
             set
             {
-                Interop.Elementary.elm_bg_color_set(Handle, value.R, value.G, value.B);
+                var swallowContent = GetPartContent("elm.swallow.rectangle");
+                if(swallowContent == IntPtr.Zero)
+                {
+                    Interop.Elementary.elm_bg_color_set(Handle, value.R, value.G, value.B);
+                    swallowContent = GetPartContent("elm.swallow.rectangle");
+                }
+                Interop.Evas.evas_object_color_set(swallowContent, value.R, value.G, value.B, value.A);
             }
         }
 
