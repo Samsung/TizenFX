@@ -51,7 +51,7 @@ install_res() {
 
 run() {
   sdb root on
-  sdb_cmd "MONO_TRACE_LISTENER=Console.Error mono $TARGET_DIR/ElmSharpTest.exe $1"
+  sdb_cmd "MONO_TRACE_LISTENER=Console.Error mono $TARGET_DIR/ElmSharp.Test.exe $1"
   exit_on_error $?
 }
 

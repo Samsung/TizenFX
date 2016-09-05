@@ -6,8 +6,8 @@
     <ProjectGuid>{E901BB06-632D-489E-86AC-66AD2EF85BCC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElmSharpTest</RootNamespace>
-    <AssemblyName>ElmSharpTest</AssemblyName>
+    <RootNamespace>ElmSharp.Test</RootNamespace>
+    <AssemblyName>ElmSharp.Test</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup>
@@ -79,7 +79,7 @@
     <Compile Include="TestRunner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ElmSharpTest.project.json" />
+    <None Include="ElmSharp.Test.project.json" />
     <None Include="test.sh" />
   </ItemGroup>
   <ItemGroup>
