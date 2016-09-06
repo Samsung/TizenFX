@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.Applications.WidgetApplication</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Widget application API for Tizen.Net</description>
+    <dependencies>
+	 <dependency id="Tizen" version="1.0.0" />
+	 <dependency id="Tizen.Applications" version="1.0.0" />
+	<dependency id="Tizen.UI" version="1.0.0" />
+    </dependencies>
+	</metadata>
+</package>

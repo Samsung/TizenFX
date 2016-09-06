@@ -1,4 +1,4 @@
-%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
+%{!?dotnet_assembly_path: %define dotnet_assembly_path /opt/usr/share/dotnet.tizen/framework}
 %{!?dotnet_core_path: %define dotnet_core_path %{_datadir}/tizen.net/ref}
 
 %if 0%{?tizen_build_devel_mode}
@@ -8,7 +8,7 @@
 %endif
 
 Name:       csapi-widget-application
-Summary:    Tizen Widget Application API for C#
+Summary:    Tizen widget application API for C#
 Version:    1.0.0
 Release:    1
 Group:      Development/Libraries
@@ -27,13 +27,16 @@ AutoReqProv: no
 BuildRequires: corefx-managed-32b-ref
 %endif
 
+BuildRequires: dotnet-build-tools
+
 # C# API Requries
-BuildRequires: csapi-tizen
-BuildRequires: csapi-uifw
-BuildRequires: csapi-application
+BuildRequires: csapi-tizen-devel
+BuildRequires: csapi-application-devel
+BuildRequires: csapi-uifw-devel
+
 
 %description
-Tizen Widget Application API for C#
+Tizen widget application API for C#
 
 %prep
 %setup -q
@@ -42,25 +45,69 @@ cp %{SOURCE1} .
 %define Assemblies Tizen.Applications.WidgetApplication
 
 %build
+# Build for Net45
 for ASM in %{Assemblies}; do
-xbuild $ASM/$ASM.csproj \
+if [ -e $ASM/$ASM.Net45.csproj ]; then
+  xbuild $ASM/$ASM.Net45.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/net45 \
+         /p:OutputPath=bin/net45
+fi
+
+# Build for Dotnet
 %if 0%{?_with_corefx}
-        /p:NoStdLib=True \
-        /p:TargetFrameworkVersion=v5.0 \
-        /p:AddAdditionalExplicitAssemblyReferences=False \
-        /p:CoreFxPath=%{dotnet_core_path} \
+if [ -e $ASM/$ASM.csproj ]; then
+  xbuild $ASM/$ASM.csproj \
+         /p:Configuration=%{BUILDCONF} \
+         /p:DotnetAssemblyPath=%{dotnet_assembly_path}/devel/netstandard1.6 \
+         /p:CoreFxPath=%{dotnet_core_path} \
+         /p:OutputPath=bin/netstandard1.6
+fi
 %endif
-        /p:Configuration=%{BUILDCONF} \
-        /p:ReferencePath=%{dotnet_assembly_path}
+
+# Make NuGet package
+dotnet-gbs pack $ASM/$ASM.nuspec --PackageVersion=%{version} --PackageFiles=$ASM/bin
+
 done
 
 %install
-mkdir -p %{buildroot}%{dotnet_assembly_path}
+mkdir -p %{buildroot}%{dotnet_assembly_path}/devel
 for ASM in %{Assemblies}; do
-install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+  cp -fr $ASM/bin/* %{buildroot}%{dotnet_assembly_path}/devel
+%if 0%{?_with_corefx}
+  install -p -m 644 $ASM/bin/netstandard1.6/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%else
+  install -p -m 644 $ASM/bin/net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%endif
 done
+
+mkdir -p %{buildroot}/nuget
+install -p -m 644 *.nupkg %{buildroot}/nuget
 
 %files
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{dotnet_assembly_path}/*.dll
+
+%package devel
+Summary:   Development package for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+AutoReqProv: no
+
+%description devel
+Development package for %{name}
+
+%files devel
+%{dotnet_assembly_path}/devel/*
+
+%package nuget
+Summary:   NuGet package for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+
+%description nuget
+NuGet package for %{name}
+
+%files nuget
+/nuget/*.nupkg
