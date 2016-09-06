@@ -1,0 +1,15 @@
+bin/
+obj/
+.svace-dir
+CSCC.txt
+warnings.txt
+.gitattributes
+*~
+*.sln
+*.exe
+*.dll
+*.csproj.user
+*.lock.json
+Settings.StyleCop
+StyleCop.Cache
+.vs/
