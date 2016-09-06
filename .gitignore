@@ -3,5 +3,4 @@ obj/
 *.exe
 *.dll
 *.csproj.user
-*.lock.json
 .vs/
