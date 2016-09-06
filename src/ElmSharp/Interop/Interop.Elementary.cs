@@ -192,6 +192,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_layout_edje_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void edje_object_color_class_del(IntPtr obj, string colorClass);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool edje_object_part_exists(IntPtr obj, string part);
 
         [DllImport(Libraries.Elementary)]
@@ -211,7 +214,6 @@ internal static partial class Interop
             var text = _edje_object_part_text_get(obj, part);
             return Marshal.PtrToStringAnsi(text);
         }
-
 
         [DllImport(Libraries.Elementary, EntryPoint = "edje_object_part_text_style_user_peek", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
         internal static extern IntPtr _edje_object_part_text_style_user_peek(IntPtr obj, string part);

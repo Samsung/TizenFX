@@ -41,6 +41,14 @@ namespace ElmSharp
 
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
 
+        public string ClassName
+        {
+            get
+            {
+                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(Handle));
+            }
+        }
+
         public double WeightX
         {
             get

@@ -105,6 +105,7 @@
     <Compile Include="ElmSharp\Widget.cs" />
     <Compile Include="ElmSharp\Window.cs" />
     <Compile Include="ElmSharp\WrapType.cs" />
+    <Compile Include="Interop\Interop.Eo.cs" />
     <Compile Include="Interop\Interop.Ecore.cs" />
     <Compile Include="Interop\Interop.Elementary.Bg.cs" />
     <Compile Include="Interop\Interop.Elementary.Box.cs" />

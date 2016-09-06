@@ -12,12 +12,16 @@ namespace ElmSharp.Test
         {
             Button button1 = new Button(window) {
                 Text = "Button 1",
-
             };
+
+            button1.SetPartColor("bg-default", Color.Red);
 
             button1.Clicked += (s, e) =>
             {
-                Console.WriteLine("Button1 Clicked!");
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName);
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower());
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("_","/widget/"));
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("_", "/widget/")+ "/" + "bg-default");
             };
 
             button1.Pressed += (s, e) =>

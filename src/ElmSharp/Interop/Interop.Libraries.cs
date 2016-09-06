@@ -16,5 +16,6 @@ internal static partial class Interop
         internal const string Elementary = "libelementary.so.1";
         internal const string Eina = "libeina.so.1";
         internal const string Ecore = "libecore.so.1";
+        internal const string Eo = "libeo.so.1";
     }
 }
