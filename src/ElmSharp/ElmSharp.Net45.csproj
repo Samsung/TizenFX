@@ -135,6 +135,7 @@
     <Compile Include="Interop\Interop.Elementary.Table.cs" />
     <Compile Include="Interop\Interop.Elementary.Toolbar.cs" />
     <Compile Include="Interop\Interop.Elementary.Win.cs" />
+    <Compile Include="Interop\Interop.Eo.cs" />
     <Compile Include="Interop\Interop.Evas.cs" />
     <Compile Include="Interop\Interop.Evas.Image.cs" />
     <Compile Include="Interop\Interop.EvasObjectEvent.cs" />
