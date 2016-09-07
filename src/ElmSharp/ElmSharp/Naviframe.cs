@@ -83,7 +83,7 @@ namespace ElmSharp
             Interop.Elementary.elm_naviframe_item_pop(Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_naviframe_add(parent.Handle);
         }

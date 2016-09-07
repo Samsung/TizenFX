@@ -24,7 +24,7 @@ namespace ElmSharp
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.Evas.evas_object_evas_get(parent.Handle);
             return Interop.Evas.evas_object_rectangle_add(evas);

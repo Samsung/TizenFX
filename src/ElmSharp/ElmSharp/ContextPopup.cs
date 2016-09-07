@@ -94,7 +94,7 @@ namespace ElmSharp
             return Interop.Elementary.elm_ctxpopup_direction_available_get(Handle, (int)direction);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_ctxpopup_add(parent.Handle);
         }

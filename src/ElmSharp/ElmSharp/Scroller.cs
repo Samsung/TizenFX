@@ -212,7 +212,7 @@ namespace ElmSharp
             }
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_scroller_add(parent);
         }

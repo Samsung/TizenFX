@@ -79,7 +79,7 @@ namespace ElmSharp
             ClearChildren();
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_table_add(parent);
         }

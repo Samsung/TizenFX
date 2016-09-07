@@ -262,7 +262,7 @@ namespace ElmSharp
             Interop.Elementary.elm_entry_input_panel_return_key_type_set(Handle, (Interop.Elementary.ReturnKeyType)keyType);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_entry_add(parent.Handle);
         }

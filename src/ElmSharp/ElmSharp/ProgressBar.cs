@@ -99,7 +99,7 @@ namespace ElmSharp
             Interop.Elementary.elm_progressbar_pulse(Handle, false);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_progressbar_add(parent);
         }

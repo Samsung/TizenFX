@@ -81,7 +81,12 @@ namespace ElmSharp
             }
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        public void DeleteColorClass(string part)
+        {
+            Interop.Elementary.edje_object_color_class_del(Handle, part);
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_button_add(parent.Handle);
         }

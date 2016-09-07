@@ -268,19 +268,19 @@ namespace ElmSharp
         {
         }
 
-        internal virtual void OnInstantiated()
+        protected virtual void OnInstantiated()
         {
         }
 
-        internal virtual void OnRealized()
+        protected virtual void OnRealized()
         {
         }
 
-        internal virtual void OnUnrealize()
+        protected virtual void OnUnrealize()
         {
         }
 
-        internal abstract IntPtr CreateHandle(EvasObject parent);
+        protected abstract IntPtr CreateHandle(EvasObject parent);
 
         public void Realize(EvasObject parent)
         {

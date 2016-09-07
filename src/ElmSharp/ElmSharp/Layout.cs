@@ -47,7 +47,7 @@ namespace ElmSharp
             Interop.Elementary.elm_layout_file_set(Handle, file, group);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_layout_add(parent.Handle);
         }

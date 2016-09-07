@@ -161,7 +161,7 @@ namespace ElmSharp
             return Interop.Elementary.elm_spinner_special_value_get(Handle, value);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_spinner_add(parent);
         }

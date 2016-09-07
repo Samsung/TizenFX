@@ -138,7 +138,7 @@ namespace ElmSharp
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             Interop.Elementary.elm_config_accel_preference_set("3d");
             return Interop.Elementary.elm_win_add(parent != null ? parent.Handle : IntPtr.Zero, Name, 0);

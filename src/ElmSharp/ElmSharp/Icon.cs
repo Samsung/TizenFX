@@ -48,7 +48,7 @@ namespace ElmSharp
             Interop.Elementary.elm_icon_thumb_set(Handle, file, group);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_icon_add(parent);
         }

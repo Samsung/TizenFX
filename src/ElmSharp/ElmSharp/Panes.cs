@@ -53,7 +53,7 @@ namespace ElmSharp
             }
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_panes_add(parent);
         }

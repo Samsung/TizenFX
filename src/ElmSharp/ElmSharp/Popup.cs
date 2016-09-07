@@ -139,7 +139,7 @@ namespace ElmSharp
             Interop.Elementary.elm_popup_dismiss(Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_popup_add(parent.Handle);
         }

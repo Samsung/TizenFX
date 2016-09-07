@@ -51,7 +51,7 @@ namespace ElmSharp
             Interop.Elementary.elm_radio_group_add(Handle, group.Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_radio_add(parent);
         }

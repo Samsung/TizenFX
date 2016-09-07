@@ -282,7 +282,7 @@ namespace ElmSharp
         }
 
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_image_add(parent.Handle);
         }

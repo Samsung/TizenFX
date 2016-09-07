@@ -99,7 +99,7 @@ namespace ElmSharp
             Interop.Elementary.elm_index_level_go(Handle, level);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_index_add(parent);
         }

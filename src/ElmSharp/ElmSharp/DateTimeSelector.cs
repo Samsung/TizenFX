@@ -103,7 +103,7 @@ namespace ElmSharp
             Interop.Elementary.elm_datetime_field_visible_set(Handle, (int)type, visible);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_datetime_add(parent.Handle);
         }

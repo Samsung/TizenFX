@@ -11,7 +11,7 @@ namespace ElmSharp
             Interop.Elementary.elm_win_resize_object_add(parent.Handle, Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_conformant_add(parent.Handle);
         }

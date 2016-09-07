@@ -71,7 +71,7 @@ namespace ElmSharp
             Interop.Elementary.elm_panel_toggle(Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_panel_add(parent);
         }

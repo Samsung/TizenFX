@@ -82,7 +82,7 @@ namespace ElmSharp
             Interop.Elementary.elm_label_slide_go(Handle);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_label_add(parent.Handle);
         }

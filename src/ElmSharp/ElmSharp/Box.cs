@@ -58,7 +58,7 @@ namespace ElmSharp
             Interop.Elementary.elm_box_layout_set(Handle, _layoutCallback, IntPtr.Zero, null);
         }
 
-        internal override IntPtr CreateHandle(EvasObject parent)
+        protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_box_add(parent);
         }
