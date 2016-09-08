@@ -7,7 +7,6 @@
 // you entered into with Samsung.
 
 using System;
-using Tizen.UI;
 
 namespace Tizen.Applications
 {
@@ -19,11 +18,6 @@ namespace Tizen.Applications
         internal IntPtr Handle;
         internal string Id;
         protected static readonly string LogTag = typeof(WidgetBase).Namespace;
-
-        /// <summary>
-        /// The main window instance of the widget instance.
-        /// </summary>
-        public Window Window { get; private set; }
 
         /// <summary>
         /// Delete type
@@ -152,7 +146,7 @@ namespace Tizen.Applications
 
             Interop.Widget.GetWin(Handle, out win);
 
-            //TODO: convert win to an instance of Window
+            OnPreCreate(win, w, h);
         }
 
         /// <summary>
@@ -193,6 +187,15 @@ namespace Tizen.Applications
         /// <param name="content">The data set for updating this widget. It will be provided by requester.</param>
         /// <param name="isForce">Although the widget is paused, if it is TRUE, the widget can be updated</param>
         public virtual void OnUpdate(Bundle content, bool isForce)
+        {
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior before OnCreate() is completed.
+        /// <param name="w">The pixel value for widget width</param>
+        /// <param name="h">The pixel value for widget height</param>
+        /// </summary>
+        protected virtual void OnPreCreate(IntPtr window, int w, int h)
         {
         }
     }
