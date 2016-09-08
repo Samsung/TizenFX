@@ -8,7 +8,6 @@
     <dependencies>
 	 <dependency id="Tizen" version="1.0.0" />
 	 <dependency id="Tizen.Applications" version="1.0.0" />
-	<dependency id="Tizen.UI" version="1.0.0" />
     </dependencies>
 	</metadata>
 </package>
