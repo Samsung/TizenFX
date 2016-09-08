@@ -31,6 +31,12 @@ namespace ElmSharp
 
         public int Id { get; private set; }
 
+        public bool IsEnabled
+        {
+            get { return !Interop.Elementary.elm_object_item_disabled_get(Handle); }
+            set { Interop.Elementary.elm_object_item_disabled_set(Handle, !value); }
+        }
+
         internal IntPtr Handle
         {
             get

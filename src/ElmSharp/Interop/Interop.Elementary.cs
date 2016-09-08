@@ -174,6 +174,12 @@ internal static partial class Interop
         internal static extern void elm_object_item_del_cb_set(IntPtr obj, Interop.Evas.SmartCallback callback);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_item_disabled_set(IntPtr obj, bool disable);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_object_item_disabled_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_object_focus_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
