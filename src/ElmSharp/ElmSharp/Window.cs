@@ -37,6 +37,7 @@ namespace ElmSharp
     {
         Interop.SmartEvent _deleteRequest;
         Interop.SmartEvent _rotationChanged;
+
         public Window(string name) : this(null, name)
         {
         }
@@ -45,13 +46,10 @@ namespace ElmSharp
         {
             Name = name;
             Realize(parent);
-            Interop.Elementary.elm_win_indicator_mode_set(Handle, 2 /* ELM_WIN_INDICATOR_SHOW */);
+        }
 
-            _deleteRequest = new Interop.SmartEvent(this, Handle, "delete,request");
-            _rotationChanged = new Interop.SmartEvent(this, Handle, "wm,rotation,changed");
-
-            _deleteRequest.On += (s, e) => CloseRequested?.Invoke(this, EventArgs.Empty);
-            _rotationChanged.On += (s, e) => RotationChanged?.Invoke(this, EventArgs.Empty);
+        protected Window()
+        {
         }
 
         public event EventHandler CloseRequested;
@@ -136,6 +134,18 @@ namespace ElmSharp
         public void AddResizeObject(EvasObject obj)
         {
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
+        }
+
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            Interop.Elementary.elm_win_indicator_mode_set(Handle, 2 /* ELM_WIN_INDICATOR_SHOW */);
+
+            _deleteRequest = new Interop.SmartEvent(this, Handle, "delete,request");
+            _rotationChanged = new Interop.SmartEvent(this, Handle, "wm,rotation,changed");
+
+            _deleteRequest.On += (s, e) => CloseRequested?.Invoke(this, EventArgs.Empty);
+            _rotationChanged.On += (s, e) => RotationChanged?.Invoke(this, EventArgs.Empty);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
