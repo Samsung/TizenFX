@@ -60,7 +60,7 @@ namespace ElmSharp
             }
         }
 
-        public string Text
+        public virtual string Text
         {
             get
             {

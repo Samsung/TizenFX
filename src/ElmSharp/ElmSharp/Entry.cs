@@ -166,7 +166,7 @@ namespace ElmSharp
             }
         }
 
-        public new string Text
+        public override string Text
         {
             get
             {

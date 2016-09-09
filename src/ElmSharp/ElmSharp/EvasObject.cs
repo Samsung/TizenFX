@@ -73,7 +73,7 @@ namespace ElmSharp
             }
         }
 
-        public double AlignmentX
+        public virtual double AlignmentX
         {
             get
             {
@@ -85,7 +85,7 @@ namespace ElmSharp
             }
         }
 
-        public double AlignmentY
+        public virtual double AlignmentY
         {
             get
             {

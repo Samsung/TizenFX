@@ -97,7 +97,7 @@ namespace ElmSharp
             }
         }
 
-        public new double AlignmentX
+        public override double AlignmentX
         {
             get
             {
@@ -109,7 +109,7 @@ namespace ElmSharp
             }
         }
 
-        public new double AlignmentY
+        public override double AlignmentY
         {
             get
             {
