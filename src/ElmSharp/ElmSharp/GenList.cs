@@ -52,6 +52,9 @@ namespace ElmSharp
         Interop.SmartEvent<GenListItemEventArgs> _realized;
         Interop.SmartEvent<GenListItemEventArgs> _unrealized;
         Interop.SmartEvent<GenListItemEventArgs> _longpressed;
+        Interop.SmartEvent _scrollAnimationStarted;
+        Interop.SmartEvent _scrollAnimationStopped;
+        Interop.SmartEvent _changed;
 
         public GenList(EvasObject parent) : base(parent)
         {
@@ -92,6 +95,24 @@ namespace ElmSharp
         public event EventHandler<GenListItemEventArgs> ItemRealized;
         public event EventHandler<GenListItemEventArgs> ItemUnrealized;
         public event EventHandler<GenListItemEventArgs> ItemLongPressed;
+
+        public event EventHandler Changed
+        {
+            add { _changed.On += value; }
+            remove { _changed.On -= value; }
+        }
+
+        public event EventHandler ScrollAnimationStarted
+        {
+            add { _scrollAnimationStarted.On += value; }
+            remove { _scrollAnimationStarted.On -= value; }
+        }
+
+        public event EventHandler ScrollAnimationStopped
+        {
+            add { _scrollAnimationStopped.On += value; }
+            remove { _scrollAnimationStopped.On -= value; }
+        }
 
         public GenListItem Append(GenItemClass itemClass, object data)
         {
@@ -191,6 +212,9 @@ namespace ElmSharp
             _realized = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "realized", GenListItemEventArgs.CreateFromSmartEvent);
             _unrealized = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
             _longpressed = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _scrollAnimationStarted = new Interop.SmartEvent(this, Handle, "scroll,anim,start");
+            _scrollAnimationStopped = new Interop.SmartEvent(this, Handle, "scroll,anim,stop");
+            _changed = new Interop.SmartEvent(this, Handle, "changed");
 
             _selected.On += (s, e) => { ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { ItemUnselected?.Invoke(this, e); };
@@ -202,7 +226,6 @@ namespace ElmSharp
             _realized.On += (s, e) => { ItemRealized?.Invoke(this, e); };
             _unrealized.On += (s, e) => { ItemUnrealized?.Invoke(this, e); };
             _longpressed.On += (s, e) => { ItemLongPressed?.Invoke(this, e); };
-
         }
 
         void AddInternal(GenListItem item)

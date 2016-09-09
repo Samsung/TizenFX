@@ -14,6 +14,12 @@ internal static partial class Interop
     internal static partial class Elementary
     {
         [DllImport(Libraries.Elementary)]
+        internal static extern double elm_config_scroll_bring_in_scroll_friction_set(double time);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_config_scroll_bring_in_scroll_friction_get();
+
+        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_config_accel_preference_set(string preference);
 
         [DllImport(Libraries.Elementary)]

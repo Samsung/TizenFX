@@ -49,7 +49,13 @@ internal static partial class Interop
         [DllImport(Libraries.Ecore)]
         internal static extern IntPtr ecore_timer_del(IntPtr timer);
 
+        [DllImport(Libraries.Ecore)]
+        internal static extern IntPtr ecore_animator_add(EcoreTaskCallback func, IntPtr data);
 
+        [DllImport(Libraries.Ecore)]
+        internal static extern IntPtr ecore_animator_del(IntPtr animator);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern double ecore_time_get();
     }
-
 }

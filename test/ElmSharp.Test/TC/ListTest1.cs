@@ -40,6 +40,7 @@ namespace ElmSharp.Test
             list.ItemActivated += List_ItemActivated;
             list.ItemDoubleClicked += List_ItemDoubleClicked;
             list.ItemLongPressed += List_ItemLongPressed;
+            list.RenderPost += List_RenderPost;
             list.Update();
             list.Show();
 
@@ -70,6 +71,12 @@ namespace ElmSharp.Test
             prepend.Show();
             box.PackEnd(append);
             box.PackEnd(prepend);
+        }
+
+        int count = 0;
+        private void List_RenderPost(object sender, EventArgs e)
+        {
+            Console.WriteLine("{0} List_RenderPost", count++);
         }
 
         private void List_ItemLongPressed(object sender, ListItemEventArgs e)

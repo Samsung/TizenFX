@@ -60,9 +60,11 @@
     <Compile Include="ElmSharp\DateChangedEventArgs.cs" />
     <Compile Include="ElmSharp\DateTimeSelector.cs" />
     <Compile Include="ElmSharp\DisplayedMonthChangedEventArgs.cs" />
+    <Compile Include="ElmSharp\EcoreAnimator.cs" />
     <Compile Include="ElmSharp\EcoreMainloop.cs" />
     <Compile Include="ElmSharp\EcoreSynchronizationContext.cs" />
     <Compile Include="ElmSharp\EdjeObject.cs" />
+    <Compile Include="ElmSharp\ElmScrollConfig.cs" />
     <Compile Include="ElmSharp\Elementary.cs" />
     <Compile Include="ElmSharp\Entry.cs" />
     <Compile Include="ElmSharp\EvasKeyEventArgs.cs" />

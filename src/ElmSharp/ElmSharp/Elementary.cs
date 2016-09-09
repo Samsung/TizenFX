@@ -18,5 +18,15 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_run();
         }
+
+        public static double GetSystemScrollFriction()
+        {
+            return Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_get();
+        }
+
+        public static void SetSystemScrollFriction(double timeSet)
+        {
+            Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_set(timeSet);
+        }
     }
 }

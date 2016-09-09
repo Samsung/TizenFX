@@ -13,6 +13,7 @@ namespace ElmSharp
         Interop.EvasObjectEvent<EvasKeyEventArgs> _keydown;
         Interop.EvasObjectEvent _moved;
         Interop.EvasObjectEvent _resized;
+        Interop.EvasObjectEvent _renderPost;
 
         protected EvasObject(EvasObject parent) : this()
         {
@@ -38,6 +39,13 @@ namespace ElmSharp
             add { _resized.On += value; }
             remove { _resized.On -= value; }
         }
+
+        public event EventHandler RenderPost
+        {
+            add { _renderPost.On += value; }
+            remove { _renderPost.On -= value; }
+        }
+
 
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
 
@@ -295,6 +303,7 @@ namespace ElmSharp
                 _keyup = new Interop.EvasObjectEvent<EvasKeyEventArgs>(this, Handle, Interop.Evas.ObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Move);
                 _resized = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Resize);
+                _renderPost = new Interop.EvasObjectEvent(this, Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost);
 
                 _deleted.On += (s, e) => MakeInvalidate();
                 _keydown.On += (s, e) => KeyDown?.Invoke(this, e);
