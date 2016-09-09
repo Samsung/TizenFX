@@ -14,7 +14,7 @@ namespace ElmSharp
         {
         }
 
-        internal Widget(EvasObject parent) : base(parent)
+        protected Widget(EvasObject parent) : base(parent)
         {
             _focused = new Interop.SmartEvent(this, Handle, "focused");
             _focused.On += (s, e) => Focused?.Invoke(this, EventArgs.Empty);

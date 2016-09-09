@@ -14,7 +14,7 @@ namespace ElmSharp
         Interop.EvasObjectEvent _moved;
         Interop.EvasObjectEvent _resized;
 
-        internal EvasObject(EvasObject parent) : this()
+        protected EvasObject(EvasObject parent) : this()
         {
             Debug.Assert(parent == null || parent.IsRealized);
             Realize(parent);
