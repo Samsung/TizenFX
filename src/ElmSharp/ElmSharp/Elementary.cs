@@ -13,5 +13,10 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_shutdown();
         }
+
+        public static void Run()
+        {
+            Interop.Elementary.elm_run();
+        }
     }
 }
