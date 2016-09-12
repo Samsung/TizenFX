@@ -150,11 +150,11 @@ internal static partial class Interop
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_cached_representation")]
                 internal static extern int GetCachedRepresentation(IntPtr resource, out IntPtr representation);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_time_interval")]
-                internal static extern int GetTimeInterval(out int timeInterval);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_checking_interval")]
+                internal static extern int GetTimeInterval(IntPtr resource, out int timeInterval);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_time_interval")]
-                internal static extern int SetTimeInterval(int timeInterval);
+                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_checking_interval")]
+                internal static extern int SetTimeInterval(IntPtr resource, int timeInterval);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_name")]
                 internal static extern int GetDeviceName(IntPtr resource, out IntPtr deviceName);

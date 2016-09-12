@@ -208,7 +208,7 @@ namespace Tizen.Network.IoTConnectivity
             get
             {
                 int interval;
-                int ret = Interop.IoTConnectivity.Client.RemoteResource.GetTimeInterval(out interval);
+                int ret = Interop.IoTConnectivity.Client.RemoteResource.GetTimeInterval(_remoteResourceHandle, out interval);
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Warn(IoTConnectivityErrorFactory.LogTag, "Failed to get time interval");
@@ -221,7 +221,7 @@ namespace Tizen.Network.IoTConnectivity
                 int ret = (int)IoTConnectivityError.InvalidParameter;
                 if (value <= TimeOutMax && value > 0)
                 {
-                    ret = Interop.IoTConnectivity.Client.RemoteResource.SetTimeInterval(value);
+                    ret = Interop.IoTConnectivity.Client.RemoteResource.SetTimeInterval(_remoteResourceHandle, value);
                 }
                 if (ret != (int)IoTConnectivityError.None)
                 {
