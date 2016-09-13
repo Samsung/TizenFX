@@ -223,7 +223,7 @@ namespace ElmSharp
             bool ret = Interop.Elementary.elm_image_memfile_set(Handle, img, size, IntPtr.Zero, IntPtr.Zero);
             if (!ret)
             {
-                Console.WriteLine("Failed to set memory buffer to Image");
+                throw new InvalidOperationException("Failed to set memory buffer to Image");
             }
 
             LoadingCompleted?.Invoke(this, EventArgs.Empty);
