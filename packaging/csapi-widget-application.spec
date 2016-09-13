@@ -32,7 +32,6 @@ BuildRequires: dotnet-build-tools
 # C# API Requries
 BuildRequires: csapi-tizen-devel
 BuildRequires: csapi-application-devel
-BuildRequires: csapi-uifw-devel
 
 
 %description
