@@ -67,7 +67,7 @@ namespace ElmSharp
 
         public NaviItem InsertBefore(NaviItem before, EvasObject content)
         {
-            return InsertBefore(before, content);
+            return InsertBefore(before, content, "");
         }
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)
         {
