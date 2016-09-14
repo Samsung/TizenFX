@@ -7,6 +7,7 @@ namespace ElmSharp
         EvasObject _content;
         bool _isPopped;
         Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;
+
         NaviItem(IntPtr handle, EvasObject content) : base(handle)
         {
             _isPopped = false;
@@ -17,6 +18,7 @@ namespace ElmSharp
                 Popped?.Invoke(this, EventArgs.Empty);
                 return true;
             };
+            Interop.Elementary.elm_naviframe_item_pop_cb_set(handle, _popped, IntPtr.Zero);
         }
 
         public event EventHandler Popped;
