@@ -75,6 +75,11 @@ namespace ElmSharp
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(before);
             _itemStack.Insert(idx, naviItem);
+            naviItem.Popped += (s, e) =>
+            {
+                _itemStack.Remove(naviItem);
+                Popped?.Invoke(this, new NaviframeEventArgs() { Content = naviItem.Content });
+            };
             return naviItem;
         }
 
