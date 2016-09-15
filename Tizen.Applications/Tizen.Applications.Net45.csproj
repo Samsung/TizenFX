@@ -60,6 +60,7 @@
     <Compile Include="Interop\Interop.Notification.cs" />
     <Compile Include="Interop\Interop.Package.cs" />
     <Compile Include="Interop\Interop.PackageManager.cs" />
+    <Compile Include="Interop\Interop.Preference.cs" />
     <Compile Include="Interop\Interop.Service.cs" />
     <Compile Include="Interop\Interop.Alarm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +95,8 @@
     <Compile Include="Tizen.Applications\PackageManagerEventArgs.cs" />
     <Compile Include="Tizen.Applications\PackageSizeInformation.cs" />
     <Compile Include="Tizen.Applications\PackageType.cs" />
+    <Compile Include="Tizen.Applications\Preference.cs" />
+    <Compile Include="Tizen.Applications\PreferenceChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
     <Compile Include="Tizen.Applications\RegionFormatChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\SafeAppControlHandle.cs" />
