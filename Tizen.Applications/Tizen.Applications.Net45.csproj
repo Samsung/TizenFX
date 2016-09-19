@@ -61,6 +61,7 @@
     <Compile Include="Interop\Interop.Package.cs" />
     <Compile Include="Interop\Interop.PackageManager.cs" />
     <Compile Include="Interop\Interop.Service.cs" />
+    <Compile Include="Interop\Interop.Alarm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\EventType.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\DefaultCoreBackend.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="Tizen.Applications\NotificationManager.cs" />
     <Compile Include="Tizen.Applications\ProgressNotification.cs" />
     <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
+    <Compile Include="Tizen.Applications\Alarm.cs" />
+    <Compile Include="Tizen.Applications\AlarmErrorFactory.cs" />
+    <Compile Include="Tizen.Applications\AlarmManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.Net45.project.json" />

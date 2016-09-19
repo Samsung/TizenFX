@@ -1,0 +1,79 @@
+// Copyright 2016 by Samsung Electronics, Inc.,
+//
+// This software is the confidential and proprietary information
+// of Samsung Electronics, Inc. ("Confidential Information"). You
+// shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Samsung.
+
+using System;
+using System.Runtime.InteropServices;
+
+using Tizen.Internals.Errors;
+using Tizen.Applications;
+
+internal static partial class Interop
+{
+    internal static partial class Alarm
+    {
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct DateTime
+        {
+            internal int sec;
+            internal int min;
+            internal int hour;
+            internal int mday; /* day of the month, range 1 to 31*/
+            internal int mon;
+            internal int year;
+            internal int wday; /* day of the week, range 0 to 6*/
+            internal int yday; /* day in the year, range 0 to 365*/
+            internal int isdst; /* daylight saving time*/
+        };
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_after_delay")]
+        internal static extern int CreateAlarmAfterDelay(SafeAppControlHandle appControl, int delay, int period, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_after_delay")]
+        internal static extern int CreateAlarmOnceAfterDelay(SafeAppControlHandle appControl, int delay, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_at_date")]
+        internal static extern int CreateAlarmOnceAtDate(SafeAppControlHandle appControl, DateTime date, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_with_recurrence_week_flag")]
+        internal static extern int CreateAlarmRecurWeek(SafeAppControlHandle appControl, DateTime date, int week, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_recurrence_week_flag")]
+        internal static extern int GetAlarmWeekFlag(int alarmId, out int weekFlag);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_cancel")]
+        internal static extern int CancelAlarm(int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_cancel_all")]
+        internal static extern int CancelAllAlarms();
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_date")]
+        internal static extern int GetAlarmScheduledDate(int alarmId, out DateTime date);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_current_time")]
+        internal static extern int GetCurrentTime(out DateTime date);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_app_control")]
+        internal static extern int GetAlarmAppControl(int alarmId, out SafeAppControlHandle control);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_period")]
+        internal static extern int GetAlarmScheduledPeriod(int alarmId, out int period);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_set_global")]
+        internal static extern int SetAlarmGlobalFlag(int alarmId, bool global);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_global")]
+        internal static extern int GetAlarmGlobalFlag(int alarmId, out bool global);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_foreach_registered_alarm")]
+        internal static extern int GetAllRegisteredAlarms(RegisteredAlarmCallback callback, IntPtr userData);
+
+        //callback
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);
+    }
+}
