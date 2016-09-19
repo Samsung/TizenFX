@@ -254,7 +254,7 @@ namespace ElmSharp
 
         public void SetInputPanelEnabled(bool enabled)
         {
-            Interop.Elementary.elm_entry_input_panel_enabled_set(Handle, true);
+            Interop.Elementary.elm_entry_input_panel_enabled_set(Handle, enabled);
         }
 
         public void SetInputPanelReturnKeyType(InputPanelReturnKeyType keyType)
