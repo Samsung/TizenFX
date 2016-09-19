@@ -41,8 +41,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.Applications.WidgetControl.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.WidgetControl.project.json" />
+    <None Include="Tizen.Applications.WidgetControl.nuspec" />
+    <None Include="Tizen.Applications.WidgetControl.snk" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\Interop.Libraries.cs" />
