@@ -163,6 +163,18 @@ namespace ElmSharp
             }
         }
 
+        public bool IsHighlight
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_highlight_mode_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_highlight_mode_set(Handle, value);
+            }
+        }
+
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
