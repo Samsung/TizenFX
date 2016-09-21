@@ -28,8 +28,11 @@ namespace ElmSharp
 
     public class Panel : Layout
     {
+        Interop.SmartEvent _toggled;
         public Panel(EvasObject parent) : base(parent)
         {
+            _toggled = new Interop.SmartEvent(this, Handle, "toggled");
+            _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
         }
 
         public bool IsOpen
@@ -55,6 +58,8 @@ namespace ElmSharp
                 Interop.Elementary.elm_panel_orient_set(Handle, (int)value);
             }
         }
+
+        public event EventHandler Toggled;
 
         public void SetScrollable(bool enable)
         {

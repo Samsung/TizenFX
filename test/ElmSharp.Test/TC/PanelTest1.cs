@@ -76,6 +76,10 @@ namespace ElmSharp.Test
             {
                 panel.Direction = (PanelDirection)((int)(panel.Direction+1) % 4);
             };
+            panel.Toggled += (s, e) =>
+            {
+                Console.WriteLine("Panel Toggled!");
+            };
         }
         
     }
