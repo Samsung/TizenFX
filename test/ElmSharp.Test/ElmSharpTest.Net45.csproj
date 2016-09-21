@@ -66,6 +66,7 @@
     <Compile Include="TC\LabelTest1.cs" />
     <Compile Include="TC\ListTest1.cs" />
     <Compile Include="TC\NaviframeTest1.cs" />
+    <Compile Include="TC\NaviframeTest2.cs" />
     <Compile Include="TC\PanelTest1.cs" />
     <Compile Include="TC\PanelTest2.cs" />
     <Compile Include="TC\PanesTest1.cs" />

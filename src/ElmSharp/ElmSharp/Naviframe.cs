@@ -17,6 +17,15 @@ namespace ElmSharp
             _transitionFinished.On += (s, e) => AnimationFinished?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// It is always called when NaviItem was removed.
+        /// (even if removed by NaviItem.Delete())
+        /// This event will be invoked in progress of Pop/Delete operation. 
+        /// After called Popped event, Pop/Delete method will be returned
+        /// </remarks>
         public event EventHandler<NaviframeEventArgs> Popped;
         public event EventHandler AnimationFinished;
         public IReadOnlyList<NaviItem> NavigationStack
@@ -57,11 +66,7 @@ namespace ElmSharp
             IntPtr item = Interop.Elementary.elm_naviframe_item_push(Handle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, null);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             _itemStack.Add(naviItem);
-            naviItem.Popped += (s, e) =>
-            {
-                _itemStack.Remove(naviItem);
-                Popped?.Invoke(this, new NaviframeEventArgs() { Content = naviItem.Content });
-            };
+            naviItem.Popped += ItemPoppedHandler;
             return naviItem;
         }
 
@@ -75,11 +80,21 @@ namespace ElmSharp
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(before);
             _itemStack.Insert(idx, naviItem);
-            naviItem.Popped += (s, e) =>
-            {
-                _itemStack.Remove(naviItem);
-                Popped?.Invoke(this, new NaviframeEventArgs() { Content = naviItem.Content });
-            };
+            naviItem.Popped += ItemPoppedHandler;
+            return naviItem;
+        }
+
+        public NaviItem InsertAfter(NaviItem after, EvasObject content)
+        {
+            return InsertAfter(after, content, "");
+        }
+        public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)
+        {
+            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(Handle, after, title, IntPtr.Zero, IntPtr.Zero, content, null);
+            NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
+            int idx = _itemStack.IndexOf(after);
+            _itemStack.Insert(idx + 1, naviItem);
+            naviItem.Popped += ItemPoppedHandler;
             return naviItem;
         }
 
@@ -91,6 +106,15 @@ namespace ElmSharp
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_naviframe_add(parent.Handle);
+        }
+
+        void ItemPoppedHandler(object sender, EventArgs e)
+        {
+            NaviItem item = sender as NaviItem;
+            if (item == null)
+                return;
+            _itemStack.Remove(item);
+            Popped?.Invoke(this, new NaviframeEventArgs() { Content = item.Content });
         }
     }
 }

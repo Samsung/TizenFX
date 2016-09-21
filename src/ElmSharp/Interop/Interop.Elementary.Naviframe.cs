@@ -50,6 +50,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_naviframe_item_insert_before(IntPtr naviframe, IntPtr before, string title, IntPtr prev, IntPtr next, IntPtr content, string style);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_naviframe_item_insert_after(IntPtr naviframe, IntPtr after, string title, IntPtr prev, IntPtr next, IntPtr content, string style);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_naviframe_top_item_get(IntPtr naviframe);
 
         [DllImport(Libraries.Elementary)]
