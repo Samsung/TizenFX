@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using ElmSharp;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ namespace ElmSharp.Test
             {
                 IsFixedAspect = false
             };
-            image.Load("/home/owner/res/picture.png");
+            image.Load(Path.Combine(TestRunner.ResourceDir,  "picture.png"));
             image.Clicked += (e, o) =>
             {
                 Console.WriteLine("Image has been clicked. (IsFixedAspect = {0}", image.IsFixedAspect);

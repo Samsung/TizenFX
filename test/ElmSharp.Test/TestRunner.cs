@@ -7,34 +7,41 @@
 // you entered into with Samsung.
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
+using Tizen.Applications;
+
 namespace ElmSharp.Test
 {
-    public class TestRunner
+    public class TestRunner : CoreUIApplication
     {
+        private Window _firstPageWindow;
+
+        public static string ResourceDir { get; private set; }
+
         public TestRunner()
         {
         }
 
-        public void Run(string[] args)
+        protected override void OnCreate()
         {
+            ResourceDir = DirectoryInfo.Resource;
+
+            var testCases = GetTestCases();
+            CreateFirstPage(testCases);
+            base.OnCreate();
+        }
+
+        public void RunStandalone(string[] args)
+        {
+            ResourceDir = Path.Combine(Path.GetDirectoryName(typeof(TestRunner).GetTypeInfo().Assembly.Location), "res");
+
             Elementary.Initialize();
 
             EcoreSynchronizationContext.Initialize();
-
-            Window window = new Window("TestWindow");
-            window.Show();
-            window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
-            window.KeyUp += (s, e) =>
-            {
-                if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
-                {
-                    EcoreMainloop.Quit();
-                }
-            };
 
             var testCases = GetTestCases();
             TestCaseBase theTest = null;
@@ -46,14 +53,13 @@ namespace ElmSharp.Test
 
             if (theTest != null)
             {
-                theTest.Run(window);
+                StartTC(theTest);
                 EcoreMainloop.Begin();
-            } else
+            }
+            else
             {
-                foreach (var test in testCases)
-                {
-                    Console.WriteLine("{0}", test.TestName);
-                }
+                CreateFirstPage(testCases);
+                EcoreMainloop.Begin();
             }
 
             Elementary.Shutdown();
@@ -78,10 +84,100 @@ namespace ElmSharp.Test
             EcoreMainloop.Quit();
         }
 
+        private Window CreateWindow(bool isSecond = false)
+        {
+            Window window = new Window("ElmSharp UI Tests");
+            window.Show();
+            if (isSecond)
+            {
+                window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, true);
+                window.KeyUp += (s, e) =>
+                {
+                    if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
+                    {
+                        window.Hide();
+                    }
+                };
+            }
+            else
+            {
+                window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
+                window.KeyUp += (s, e) =>
+                {
+                    if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
+                    {
+                        UIExit();
+                    }
+                };
+            }
+            return window;
+        }
+
+        private void CreateFirstPage(IEnumerable<TestCaseBase> testCases)
+        {
+            _firstPageWindow = CreateWindow();
+            Conformant conformant = new Conformant(_firstPageWindow);
+            conformant.Show();
+            Box box = new Box(_firstPageWindow)
+            {
+                AlignmentX = -1,
+                AlignmentY = -1,
+                WeightX = 1,
+                WeightY = 1,
+            };
+            box.Show();
+            conformant.SetContent(box);
+
+            List list = new List(_firstPageWindow)
+            {
+                AlignmentX = -1,
+                AlignmentY = -1,
+                WeightX = 1,
+                WeightY = 1
+            };
+
+            foreach (var tc in testCases)
+            {
+                list.Append(tc.TestName);
+            }
+
+            list.ItemSelected += (s, e) =>
+            {
+                foreach (var tc in testCases)
+                {
+                    if (tc.TestName == e.Item.Text)
+                    {
+                        StartTCFromList(tc);
+                        break;
+                    }
+                }
+            };
+
+            list.Update();
+            list.Show();
+
+            box.PackEnd(list);
+        }
+
+        private void StartTC(TestCaseBase tc)
+        {
+            Window window = CreateWindow();
+            tc.Run(window);
+        }
+
+        private void StartTCFromList(TestCaseBase tc)
+        {
+            Window window = CreateWindow(true);
+            tc.Run(window);
+        }
+
         static void Main(string[] args)
         {
             TestRunner testRunner = new TestRunner();
             testRunner.Run(args);
+
+            // if running with appfw is failed, below line will be executed.
+            testRunner.RunStandalone(args);
         }
     }
 }
