@@ -89,7 +89,10 @@ namespace ElmSharp
             }
         }
 
-        public DisplayRotation AavailableRotations
+        [Obsolete("Sorry, it's error typo of AvailableRotations, please use AvailableRotations")]
+        public DisplayRotation AavailableRotations { get; set; }
+
+        public DisplayRotation AvailableRotations
         {
             get
             {
