@@ -94,6 +94,7 @@
     <Compile Include="ElmSharp\Panes.cs" />
     <Compile Include="ElmSharp\Point.cs" />
     <Compile Include="ElmSharp\Point3D.cs" />
+    <Compile Include="ElmSharp\Polygon.cs" />
     <Compile Include="ElmSharp\Popup.cs" />
     <Compile Include="ElmSharp\PopupItem.cs" />
     <Compile Include="ElmSharp\ProgressBar.cs" />

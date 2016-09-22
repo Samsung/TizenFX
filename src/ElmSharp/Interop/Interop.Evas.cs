@@ -213,6 +213,15 @@ internal static partial class Interop
         internal static extern void evas_map_free(IntPtr map);
 
         [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_polygon_add(IntPtr evas);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_polygon_point_add(IntPtr evas, int x, int y);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_polygon_points_clear(IntPtr evas);
+
+        [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_rectangle_add(IntPtr evas);
 
         [DllImport(Libraries.Evas)]
