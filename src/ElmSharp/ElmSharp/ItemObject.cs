@@ -58,7 +58,7 @@ namespace ElmSharp
             }
         }
 
-        internal event EventHandler Deleted;
+        public event EventHandler Deleted;
 
         public void Delete()
         {
