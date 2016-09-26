@@ -117,6 +117,14 @@ namespace ElmSharp
         {
             Deleted?.Invoke(this, EventArgs.Empty);
             OnInvalidate();
+            if (s_IdToItemTable.ContainsKey(Id))
+            {
+                s_IdToItemTable.Remove(Id);
+            }
+            if (s_HandleToItemTable.ContainsKey(_handle))
+            {
+                s_HandleToItemTable.Remove(_handle);
+            }
             _handle = IntPtr.Zero;
         }
 

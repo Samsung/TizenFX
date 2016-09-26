@@ -73,6 +73,12 @@ namespace ElmSharp
             GC.SuppressFinalize(this);
         }
 
+        internal void SendItemDeleted(object data)
+        {
+            // data is user inserted value with GenItem
+            DeleteHandler?.Invoke(data);
+        }
+
         private string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part)
         {
             GenItem item = ItemObject.GetItemById((int)data) as GenItem;
@@ -85,8 +91,12 @@ namespace ElmSharp
         }
         private void DelCallback(IntPtr data, IntPtr obj)
         {
-            GenItem item = ItemObject.GetItemById((int)data) as GenItem;
-            DeleteHandler?.Invoke(item?.Data);
+            // We can't use this callback
+            // because, when item was deleted
+            // First, ItemObject deleted callback was called
+            // and We need to clean up ItemObject related objects
+            // This callback was called after ItemObject deleted callback was completed.
+            // So, We can't get resource reletated with ItemObject
         }
     }
 

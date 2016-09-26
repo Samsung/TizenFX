@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ElmSharp
 {
@@ -16,6 +16,7 @@ namespace ElmSharp
         public abstract void Update();
         protected override void OnInvalidate()
         {
+            ItemClass?.SendItemDeleted(Data);
             Data = null;
             ItemClass = null;
         }

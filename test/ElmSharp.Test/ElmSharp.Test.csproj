@@ -57,6 +57,7 @@
     <Compile Include="TC\GenListTest2.cs" />
     <Compile Include="TC\GenListTest3.cs" />
     <Compile Include="TC\GenListTest4.cs" />
+    <Compile Include="TC\GenListTest6.cs" />
     <Compile Include="TC\PerformanceTest.cs" />
     <Compile Include="TC\GenListTest5.cs" />
     <Compile Include="TC\IconTest1.cs" />
@@ -120,4 +121,14 @@
     <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
   </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
+        <ProjectCorporateFlavorCfg />
+      </FlavorProperties>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
+        <ProjectCorporateFlavorCfg />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
