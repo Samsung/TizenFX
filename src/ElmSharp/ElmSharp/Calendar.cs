@@ -105,13 +105,13 @@ namespace ElmSharp
         {
             get
             {
-                var tm = new Interop.Elementary.tm();
-                Interop.Elementary.elm_calendar_selected_time_get(Handle, out tm);
-                return ConvertToDateTime(tm);
+                var tm = new Interop.Libc.SystemTime();
+                Interop.Elementary.elm_calendar_selected_time_get(Handle, ref tm);
+                return tm;
             }
             set
             {
-                var tm = ConvertToTM(value);
+                Interop.Libc.SystemTime tm = value;
                 Interop.Elementary.elm_calendar_selected_time_set(Handle, ref tm);
                 _cacheSelectedDate = value;
             }
@@ -132,27 +132,6 @@ namespace ElmSharp
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_calendar_add(parent.Handle);
-        }
-
-        private static DateTime ConvertToDateTime(Interop.Elementary.tm tm)
-        {
-            DateTime date = new DateTime(tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-            return date;
-        }
-
-        private static Interop.Elementary.tm ConvertToTM(DateTime date)
-        {
-            Interop.Elementary.tm tm = new Interop.Elementary.tm();
-            tm.tm_sec = date.Second;
-            tm.tm_min = date.Minute;
-            tm.tm_hour = date.Hour;
-            tm.tm_mday = date.Day;
-            tm.tm_mon = date.Month - 1;
-            tm.tm_year = date.Year - 1900;
-            tm.tm_wday = (int)date.DayOfWeek;
-            tm.tm_yday = date.DayOfYear;
-            tm.tm_isdst = date.IsDaylightSavingTime() ? 1 : 0;
-            return tm;
         }
 
         static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)

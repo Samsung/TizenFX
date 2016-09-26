@@ -21,10 +21,10 @@ internal static partial class Interop
         internal static extern void elm_calendar_min_max_year_get(IntPtr obj, out int min, out int max);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_calendar_selected_time_set(IntPtr obj, ref tm selectedtime);
+        internal static extern void elm_calendar_selected_time_set(IntPtr obj, ref Libc.SystemTime selectedtime);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_calendar_selected_time_get(IntPtr obj, out tm selectedtime);
+        internal static extern void elm_calendar_selected_time_get(IntPtr obj, ref Libc.SystemTime selectedtime);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_calendar_first_day_of_week_set(IntPtr obj, int day);
@@ -39,7 +39,7 @@ internal static partial class Interop
         internal static extern int elm_calendar_selectable_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_calendar_displayed_time_get(IntPtr obj, out tm displayedtime);
+        internal static extern bool elm_calendar_displayed_time_get(IntPtr obj, out Libc.SystemTime displayedtime);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_calendar_interval_set(IntPtr obj, double interval);

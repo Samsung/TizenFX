@@ -46,13 +46,13 @@ namespace ElmSharp
         {
             get
             {
-                var tm = new Interop.Elementary.tm();
+                var tm = new Interop.Libc.SystemTime();
                 Interop.Elementary.elm_datetime_value_max_get(Handle, ref tm);
-                return ConvertToDateTime(tm);
+                return tm;
             }
             set
             {
-                var tm = ConvertToTM(value);
+                Interop.Libc.SystemTime tm = value;
                 Interop.Elementary.elm_datetime_value_max_set(Handle, ref tm);
             }
         }
@@ -61,13 +61,13 @@ namespace ElmSharp
         {
             get
             {
-                var tm = new Interop.Elementary.tm();
+                var tm = new Interop.Libc.SystemTime();
                 Interop.Elementary.elm_datetime_value_min_get(Handle, ref tm);
-                return ConvertToDateTime(tm);
+                return tm;
             }
             set
             {
-                var tm = ConvertToTM(value);
+                Interop.Libc.SystemTime tm = value;
                 Interop.Elementary.elm_datetime_value_min_set(Handle, ref tm);
             }
         }
@@ -76,13 +76,13 @@ namespace ElmSharp
         {
             get
             {
-                var tm = new Interop.Elementary.tm();
+                var tm = new Interop.Libc.SystemTime();
                 Interop.Elementary.elm_datetime_value_get(Handle, ref tm);
-                return ConvertToDateTime(tm);
+                return tm;
             }
             set
             {
-                var tm = ConvertToTM(value);
+                Interop.Libc.SystemTime tm = value;
                 Interop.Elementary.elm_datetime_value_set(Handle, ref tm);
                 _cacheDateTime = value;
             }
@@ -90,7 +90,7 @@ namespace ElmSharp
 
         public bool IsFieldVisible(DateTimeFieldType type)
         {
-            return Interop.Elementary.elm_datetime_field_visible_get(Handle, (int) type);
+            return Interop.Elementary.elm_datetime_field_visible_get(Handle, (int)type);
         }
 
         public void SetFieldLimit(DateTimeFieldType type, int minimum, int maximum)
@@ -106,27 +106,6 @@ namespace ElmSharp
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_datetime_add(parent.Handle);
-        }
-
-        DateTime ConvertToDateTime(Interop.Elementary.tm tm)
-        {
-            DateTime date = new DateTime(tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-            return date;
-        }
-
-        Interop.Elementary.tm ConvertToTM(DateTime date)
-        {
-            Interop.Elementary.tm tm = new Interop.Elementary.tm();
-            tm.tm_sec = date.Second;
-            tm.tm_min = date.Minute;
-            tm.tm_hour = date.Hour;
-            tm.tm_mday = date.Day;
-            tm.tm_mon = date.Month - 1;
-            tm.tm_year = date.Year - 1900;
-            tm.tm_wday = (int)date.DayOfWeek;
-            tm.tm_yday = date.DayOfYear;
-            tm.tm_isdst = date.IsDaylightSavingTime() ? 1 : 0;
-            return tm;
         }
     }
 }

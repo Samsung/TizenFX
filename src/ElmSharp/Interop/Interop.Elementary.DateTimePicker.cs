@@ -17,10 +17,10 @@ internal static partial class Interop
         internal static extern IntPtr elm_datetime_add(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_set(IntPtr obj, ref tm newtime);
+        internal static extern bool elm_datetime_value_set(IntPtr obj, ref Libc.SystemTime newtime);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_get(IntPtr obj, ref tm currtime);
+        internal static extern bool elm_datetime_value_get(IntPtr obj, ref Libc.SystemTime currtime);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_datetime_format_set(IntPtr obj, string format);
@@ -35,16 +35,16 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_max_set(IntPtr obj, ref tm maxtime);
+        internal static extern bool elm_datetime_value_max_set(IntPtr obj, ref Libc.SystemTime maxtime);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_max_get(IntPtr obj, ref tm maxtime);
+        internal static extern bool elm_datetime_value_max_get(IntPtr obj, ref Libc.SystemTime maxtime);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_min_set(IntPtr obj, ref tm mintime);
+        internal static extern bool elm_datetime_value_min_set(IntPtr obj, ref Libc.SystemTime mintime);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_datetime_value_min_get(IntPtr obj, ref tm mintime);
+        internal static extern bool elm_datetime_value_min_get(IntPtr obj, ref Libc.SystemTime mintime);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_datetime_field_limit_set(IntPtr obj, int type, int min, int max);
@@ -58,19 +58,6 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_datetime_field_visible_get(IntPtr obj, int type);
 
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        internal struct tm
-        {
-            public int tm_sec;
-            public int tm_min;
-            public int tm_hour;
-            public int tm_mday;
-            public int tm_mon;
-            public int tm_year;
-            public int tm_wday;
-            public int tm_yday;
-            public int tm_isdst;
-        }
         internal enum DateTimeFieldType
         {
             Year,
