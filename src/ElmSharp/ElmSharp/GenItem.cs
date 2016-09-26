@@ -7,7 +7,7 @@ namespace ElmSharp
         internal GenItem(object data, GenItemClass itemClass) : base(IntPtr.Zero)
         {
             Data = data;
-            ItemClass = ItemClass;
+            ItemClass = itemClass;
         }
 
         public GenItemClass ItemClass { get; private set; }
