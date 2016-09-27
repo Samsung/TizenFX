@@ -6,12 +6,14 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
+using System;
+
 namespace Tizen.Applications
 {
     /// <summary>
     /// Class for event arguments of the badge event
     /// </summary>
-    public class BadgeEventArgs
+    public class BadgeEventArgs : EventArgs
     {
         /// <summary>
         /// Enumeration for badge action.
