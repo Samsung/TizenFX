@@ -47,7 +47,7 @@ namespace Tizen.System.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular in-vehicle activity detector in case of multiple sensors.
         /// </param>
-        public InVehicleActivityDetector(int index) : base(index)
+        public InVehicleActivityDetector(int index = 0) : base(index)
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.InVehicle);
             Log.Info(Globals.LogTag, "Creating in-vehicle activity detector object");

@@ -47,7 +47,7 @@ namespace Tizen.System.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular walking activity detector in case of multiple sensors.
         /// </param>
-        public WalkingActivityDetector(int index) : base(index)
+        public WalkingActivityDetector(int index = 0) : base(index)
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Walking);
             Log.Info(Globals.LogTag, "Creating walking activity gesture detector object");
