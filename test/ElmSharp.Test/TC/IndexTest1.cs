@@ -84,6 +84,11 @@ namespace ElmSharp.Test
             index.Update(0);
             box.PackEnd(list);
             box.PackEnd(index);
+            box.SetLayoutCallback(() =>
+            {
+                list.Geometry = box.Geometry;
+                index.Geometry = box.Geometry;
+            });
             conformant.SetContent(box);
         }
 

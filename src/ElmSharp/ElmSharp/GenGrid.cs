@@ -236,15 +236,15 @@ namespace ElmSharp
             _unrealized = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
             _longpressed = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
 
-            _selected.On += (s, e) => { ItemSelected?.Invoke(this, e); };
-            _unselected.On += (s, e) => { ItemUnselected?.Invoke(this, e); };
-            _activated.On += (s, e) => { ItemActivated?.Invoke(this, e); };
-            _pressed.On += (s, e) => { ItemPressed?.Invoke(this, e); };
-            _released.On += (s, e) => { ItemReleased?.Invoke(this, e); };
-            _doubleClicked.On += (s, e) => { ItemDoubleClicked?.Invoke(this, e); };
-            _realized.On += (s, e) => { ItemRealized?.Invoke(this, e); };
-            _unrealized.On += (s, e) => { ItemUnrealized?.Invoke(this, e); };
-            _longpressed.On += (s, e) => { ItemLongPressed?.Invoke(this, e); };
+            _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
+            _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };
+            _activated.On += (s, e) => { if (e.Item != null) ItemActivated?.Invoke(this, e); };
+            _pressed.On += (s, e) => { if (e.Item != null) ItemPressed?.Invoke(this, e); };
+            _released.On += (s, e) => { if (e.Item != null) ItemReleased?.Invoke(this, e); };
+            _doubleClicked.On += (s, e) => { if (e.Item != null) ItemDoubleClicked?.Invoke(this, e); };
+            _realized.On += (s, e) => { if (e.Item != null) ItemRealized?.Invoke(this, e); };
+            _unrealized.On += (s, e) => { if (e.Item != null) ItemUnrealized?.Invoke(this, e); };
+            _longpressed.On += (s, e) => { if (e.Item != null) ItemLongPressed?.Invoke(this, e); };
 
         }
 
