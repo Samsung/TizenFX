@@ -185,6 +185,9 @@ namespace Tizen.System.Feedback
         /// Get supported information about specific type and pattern
         /// </summary>
         /// <remarks>
+        /// Now, IsSupportedPattern is not working for FeedbackType.All.
+        /// This API is working for FeedbackType.Sound and FeedbackType.Vibration only.
+        /// If you use FeedbackType.All for type parameter, this API will throw ArgumentException.
         /// To get supported information for Vibration type, app should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
         /// <param name="type">Feedback type</param>
