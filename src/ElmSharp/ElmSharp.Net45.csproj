@@ -79,6 +79,7 @@
     <Compile Include="ElmSharp\GenItemClass.cs" />
     <Compile Include="ElmSharp\GenList.cs" />
     <Compile Include="ElmSharp\GenListItem.cs" />
+    <Compile Include="ElmSharp\GestureLayer.cs" />
     <Compile Include="ElmSharp\Icon.cs" />
     <Compile Include="ElmSharp\Image.cs" />
     <Compile Include="ElmSharp\Index.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Interop\Interop.Elementary.Entry.cs" />
     <Compile Include="Interop\Interop.Elementary.GenGridView.cs" />
     <Compile Include="Interop\Interop.Elementary.GenListView.cs" />
+    <Compile Include="Interop\Interop.Elementary.GestureLayer.cs" />
     <Compile Include="Interop\Interop.Elementary.Image.cs" />
     <Compile Include="Interop\Interop.Elementary.Index.cs" />
     <Compile Include="Interop\Interop.Elementary.Label.cs" />
