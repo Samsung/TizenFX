@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07A0D110-3092-4A09-BF85-95555C7E7DFF}</ProjectGuid>
+    <ProjectGuid>{DA0F2227-9343-443E-BF51-744ED9422C2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>
@@ -64,7 +64,6 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
