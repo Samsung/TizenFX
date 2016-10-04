@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{20C210FC-AE4F-411F-9BA9-8DD900ED61DB}</ProjectGuid>
+    <ProjectGuid>{D6ED1942-9F12-4F29-BB73-60E90B2DC612}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Tizen.Tracer</RootNamespace>
     <AssemblyName>Tizen.Tracer</AssemblyName>
@@ -58,7 +58,6 @@
     <None Include="Tizen.Tracer.Net45.project.json" />
     <None Include="Tizen.Tracer.snk" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
