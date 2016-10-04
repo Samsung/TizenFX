@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A667ADA4-E7DB-4E45-9D31-491024750EE1}</ProjectGuid>
+    <ProjectGuid>{90467170-27D6-4177-B55F-FF78529F9795}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Applications.WidgetControl</RootNamespace>
@@ -16,9 +16,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.6</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.6</NuGetTargetMoniker>
-    <TargetFrameworkMoniker>.NETStandard,Version=v1.6</TargetFrameworkMoniker>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
     <NoStdLib>true</NoStdLib>
     <NoWarn>$(NoWarn);1701</NoWarn>
@@ -59,7 +58,6 @@
     <Compile Include="Tizen.Applications\WidgetControl.cs" />
     <Compile Include="Tizen.Applications\WidgetLifecycleEventArgs.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -80,29 +78,4 @@
     <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
   </PropertyGroup>
-  <!-- Include tasks for Tizen -->
-  <PropertyGroup>
-    <TizenBuildPath>$(MSBuildExtensionsPath)\Tizen</TizenBuildPath>
-    <TizenToolsPath>$(TizenBuildPath)\bin</TizenToolsPath>
-  </PropertyGroup>
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenCleanPackageSource" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenPreparePackageManifest" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenPreparePackageSource" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenSignPackage" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <!-- Task to clean package source -->
-  <Target Name="_TizenCleanPkgSrc">
-    <TizenCleanPackageSource SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" />
-  </Target>
-  <!-- Task to prepare tizen-manifest.xml file -->
-  <Target Name="_TizenPrepManifest">
-    <TizenPreparePackageManifest SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" />
-  </Target>
-  <!-- Task to prepare package sources(executable, dlls, resource files) -->
-  <Target Name="_TizenPrepPkgSrc">
-    <TizenPreparePackageSource SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" AssemblyName="$(AssemblyName)" TargetPath="$(TargetPath)" />
-  </Target>
-  <!-- Task to signing and packaging -->
-  <Target Name="_TizenSignPackge">
-    <TizenSignPackage SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" SolutionName="$(SolutionName)" AuthorCertificate="$(AuthorCertificate)" AuthorPasswd="$(AuthorPasswd)" DistribCertificate="$(DistribCertificate)" DistribPasswd="$(DistribPasswd)" />
-  </Target>
 </Project>
