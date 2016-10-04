@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.Network.IoTConnectivity</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Tizen IoTConnectivity API for Tizen.Net</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.1" />
+    </dependencies>
+	</metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.Network.IoTConnectivity.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/Net45/Tizen.Network.IoTConnectivity.dll" target="lib/net45" />
+  </files>
+</package>
