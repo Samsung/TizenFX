@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "Tizen": "1.0.0"
+    "Tizen": "1.0.1"
   },
   "frameworks": {
     "net45": {}

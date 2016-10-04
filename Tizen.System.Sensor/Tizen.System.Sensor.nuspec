@@ -6,7 +6,11 @@
 		<authors>Tizen Developers</authors>
 		<description>Sensor API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.0" />
+      <dependency id="Tizen" version="1.0.1" />
     </dependencies>
 	</metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.System.Sensor.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/Net45/Tizen.System.Sensor.dll" target="lib/net45" />
+  </files>
 </package>
