@@ -218,6 +218,7 @@ namespace ElmSharp
             LoadingCompleted?.Invoke(this, EventArgs.Empty);
         }
        
+        [CLSCompliant(false)]
         public unsafe void Load(byte* img, long size)
         {
             bool ret = Interop.Elementary.elm_image_memfile_set(Handle, img, size, IntPtr.Zero, IntPtr.Zero);
