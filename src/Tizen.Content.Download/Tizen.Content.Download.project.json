@@ -1,12 +1,9 @@
 {
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "Tizen.Applications": "1.0.0"
+    "Tizen.Applications": "1.0.1"
   },
   "frameworks": {
-    "netstandard1.6": {}
-  },
-  "runtimes": {
-    "win": {}
+    "netstandard1.3": {}
   }
 }
