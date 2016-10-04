@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -54,9 +54,10 @@
     <Compile Include="Tizen\Log.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Tizen.Net45.project.json" />
+    <None Include="Tizen.nuspec" />
     <None Include="Tizen.snk" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
