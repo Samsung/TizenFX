@@ -1,18 +1,10 @@
 {
-  "buildOptions": {
-    "debugType": "portable",
-    "platform": "AnyCPU",
-    "preserveCompilationContext": true
-  },
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "Tizen": "1.0.0",
-    "Tizen.Applications": "1.0.0",
-  },
-  "runtimes": {
-    "win": {}
+    "Tizen": "1.0.1",
+    "Tizen.Applications": "1.0.1",
   },
   "frameworks": {
-    "netstandard1.6": {}
+    "netstandard1.3": {}
   }
 }
