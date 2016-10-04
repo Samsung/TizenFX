@@ -525,7 +525,7 @@ namespace Tizen.Applications
                         return typeof(string) == typeof(T);
 
                     case (int)BundleType.StringArray:
-                        return typeof(T).GetTypeInfo().IsAssignableFrom(typeof(string[]));
+                        return typeof(T).GetTypeInfo().IsAssignableFrom(typeof(string[]).GetTypeInfo());
 
                     case (int)BundleType.Byte:
                         return typeof(byte[]) == typeof(T);
