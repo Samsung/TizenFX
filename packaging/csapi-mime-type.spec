@@ -16,6 +16,8 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
+AutoReqProv: no
+
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
 
