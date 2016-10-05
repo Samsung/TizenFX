@@ -45,5 +45,11 @@ namespace ElmSharp
                 Interop.Elementary.elm_genlist_item_select_mode_set(Handle, (Interop.Elementary.Elm_Object_Select_Mode)value);
             }
         }
+
+        public void UpdateItemClass(GenItemClass itemClass)
+        {
+            Interop.Elementary.elm_genlist_item_item_class_update((IntPtr)Handle, itemClass.UnmanagedPtr);
+            ItemClass = itemClass;
+        }
     }
 }

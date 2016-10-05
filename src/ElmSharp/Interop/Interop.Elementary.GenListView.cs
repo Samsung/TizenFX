@@ -115,5 +115,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern Elm_Object_Select_Mode elm_genlist_item_select_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_item_class_update(IntPtr obj, IntPtr itc);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_clear(IntPtr obj);
     }
 }

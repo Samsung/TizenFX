@@ -195,6 +195,11 @@ namespace ElmSharp
             Interop.Elementary.elm_genlist_realized_items_update(Handle);
         }
 
+        public void Clear()
+        {
+            Interop.Elementary.elm_genlist_clear(Handle);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_genlist_add(parent);

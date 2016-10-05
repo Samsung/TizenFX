@@ -10,7 +10,7 @@ namespace ElmSharp
             ItemClass = itemClass;
         }
 
-        public GenItemClass ItemClass { get; private set; }
+        public GenItemClass ItemClass { get; protected set; }
         public object Data { get; private set; }
         public abstract bool IsSelected { get; set; }
         public abstract void Update();
