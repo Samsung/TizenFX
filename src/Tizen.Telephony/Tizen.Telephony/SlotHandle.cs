@@ -14,11 +14,27 @@ namespace Tizen.Telephony
 {
     public class SlotHandle
     {
+        internal IntPtr _handle;
+        private List<Interop.Telephony.NotificationCallback> _changeNotificationList = new List<Interop.Telephony.NotificationCallback>();
+
+        internal SlotHandle(IntPtr handle)
+        {
+            _handle = handle;
+        }
+
         /// <summary>
         /// Event Handler for Receiving the Telephony State Changes
         /// this event will be triggered for the NotificationId's given in the SetNotificationId API
         /// </summary>
         public event EventHandler<ChangeNotificationEventArgs> ChangeNotification;
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                return _handle;
+            }
+        }
 
         /// <summary>
         /// The Notification Id's for which the ChangeNotification event will be triggered
@@ -70,20 +86,6 @@ namespace Tizen.Telephony
             }
         }
 
-        internal SlotHandle(IntPtr handle)
-        {
-            _handle = handle;
-        }
-
-        internal IntPtr Handle
-        {
-            get
-            {
-                return _handle;
-            }
-        }
-
-        internal IntPtr _handle;
         private void SetCallback(ChangeNotificationEventArgs.Notification n)
         {
             Interop.Telephony.NotificationCallback NotificationDelegate = (IntPtr handle, ChangeNotificationEventArgs.Notification notiId, IntPtr data, IntPtr userData) =>
@@ -286,7 +288,5 @@ namespace Tizen.Telephony
                 throw e;
             }
         }
-
-        private List<Interop.Telephony.NotificationCallback> _changeNotificationList = new List<Interop.Telephony.NotificationCallback>();
     }
 }

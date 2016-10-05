@@ -16,6 +16,27 @@ namespace Tizen.Telephony
     /// </summary>
     public class Sim
     {
+        internal IntPtr _handle;
+
+        /// <summary>
+        /// Sim Class Constructor
+        /// </summary>
+        /// <param name="handle">
+        /// SlotHandle received in the Manager.Init API
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// This exception occurs if handle provided is null
+        /// </exception>
+        public Sim(SlotHandle handle)
+        {
+            if (handle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _handle = handle._handle;
+        }
+
         /// <summary>
         /// Enumeration for the state of SIM card.
         /// </summary>
@@ -87,17 +108,6 @@ namespace Tizen.Telephony
             /// ISIM Application
             /// </summary>
             Isim = 0x08
-        }
-
-        /// <summary>
-        /// Sim Class Constructor
-        /// </summary>
-        /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
-        /// </param>
-        public Sim(SlotHandle handle)
-        {
-            _handle = handle._handle;
         }
 
         /// <summary>
@@ -452,7 +462,5 @@ namespace Tizen.Telephony
                 return callForwardingIndicatorState;
             }
         }
-
-        internal IntPtr _handle;
     }
 }

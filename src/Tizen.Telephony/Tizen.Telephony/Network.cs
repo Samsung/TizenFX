@@ -15,6 +15,27 @@ namespace Tizen.Telephony
     /// </summary>
     public class Network
     {
+        internal IntPtr _handle;
+
+        /// <summary>
+        /// Network Class Constructor
+        /// </summary>
+        /// <param name="handle">
+        /// SlotHandle received in the Manager.Init API
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// This exception occurs if handle provided is null
+        /// </exception>
+        public Network(SlotHandle handle)
+        {
+            if (handle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _handle = handle._handle;
+        }
+
         /// <summary>
         /// Enumeration for RSSI (Receive Signal Strength Indicator).
         /// Rssi6 indicates the highest strength.
@@ -250,17 +271,6 @@ namespace Tizen.Telephony
             /// Unavailable
             /// </summary>
             Unavailable
-        }
-
-        /// <summary>
-        /// Network Class Constructor
-        /// </summary>
-        /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
-        /// </param>
-        public Network(SlotHandle handle)
-        {
-            _handle = handle._handle;
         }
 
         /// <summary>
@@ -826,7 +836,5 @@ namespace Tizen.Telephony
                 return baseStationLongitude;
             }
         }
-
-        internal IntPtr _handle;
     }
 }

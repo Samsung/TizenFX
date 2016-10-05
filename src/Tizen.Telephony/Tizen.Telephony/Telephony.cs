@@ -65,6 +65,16 @@ namespace Tizen.Telephony
     /// </summary>
     public static class Manager
     {
+        internal static List<SlotHandle> _telephonyHandle = new List<SlotHandle>();
+        private static HandleList _handleList;
+        private static bool _isInitialized = false;
+        private static event EventHandler<StateEventArgs> _stateChanged;
+        private static StateChangedCallback stateDelegate = delegate(State state, IntPtr userData)
+        {
+            StateEventArgs args = new StateEventArgs(state);
+            _stateChanged?.Invoke(null, args);
+        };
+
         /// <summary>
         /// Event Handler to be invoked when the telephony state changes.
         /// </summary>
@@ -99,6 +109,28 @@ namespace Tizen.Telephony
                         Log.Error(LogTag, "Remove StateChanged Failed with Error: " + error);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Acquires the telephony state value.
+        /// </summary>
+        /// <returns>
+        /// The state value of telephony.
+        /// </returns>
+        public static State CurrentState
+        {
+            get
+            {
+                State state = State.NotReady;
+                TelephonyError error = Interop.Telephony.TelephonyGetState(out state);
+                if (error != TelephonyError.None)
+                {
+                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetState Failed with Error " + error);
+                    return State.Unavailable;
+                }
+
+                return state;
             }
         }
 
@@ -145,7 +177,7 @@ namespace Tizen.Telephony
             }
 
             _isInitialized = true;
-            Tizen.Log.Info(Interop.Telephony.LogTag, "Returning the number of sims " + _handleList.Count);
+            //Tizen.Log.Info(Interop.Telephony.LogTag, "Returning the number of sims " + _handleList.Count);
             return _telephonyHandle;
         }
 
@@ -176,28 +208,6 @@ namespace Tizen.Telephony
             _telephonyHandle.Clear();
         }
 
-        /// <summary>
-        /// Acquires the telephony state value.
-        /// </summary>
-        /// <returns>
-        /// The state value of telephony.
-        /// </returns>
-        public static State CurrentState
-        {
-            get
-            {
-                State state = State.NotReady;
-                TelephonyError error = Interop.Telephony.TelephonyGetState(out state);
-                if (error != TelephonyError.None)
-                {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetState Failed with Error " + error);
-                    return State.Unavailable;
-                }
-
-                return state;
-            }
-        }
-
         internal static SlotHandle FindHandle(IntPtr handle)
         {
             SlotHandle temp = _telephonyHandle[0];
@@ -211,16 +221,5 @@ namespace Tizen.Telephony
 
             return temp;
         }
-
-        internal static List<SlotHandle> _telephonyHandle = new List<SlotHandle>();
-
-        private static StateChangedCallback stateDelegate = delegate(State state, IntPtr userData)
-        {
-            StateEventArgs args = new StateEventArgs(state);
-            _stateChanged?.Invoke(null, args);
-        };
-        private static HandleList _handleList;
-        private static bool _isInitialized = false;
-        private static event EventHandler<StateEventArgs> _stateChanged;
     }
 }
