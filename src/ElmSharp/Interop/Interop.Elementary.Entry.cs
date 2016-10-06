@@ -149,6 +149,12 @@ internal static partial class Interop
             var text = _elm_entry_entry_get(obj);
             return Marshal.PtrToStringAnsi(text);
         }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_scrollable_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_scrollable_set(IntPtr obj, bool scroll);
     }
 }
 

@@ -202,6 +202,25 @@ namespace ElmSharp
             }
         }
 
+        public bool Scrollable
+        {
+            get
+            {
+                return Interop.Elementary.elm_entry_scrollable_get(Handle);
+            }
+            set
+            {
+                // HACK: Enabling the scrollable property of an entry causes its internal
+                //       hierarchy to change, making the internal edje object inaccessible.
+                //       Access it before the property is set, to cache the edje object's handle.
+                if (value)
+                {
+                    var dummy = EdjeObject;
+                }
+                Interop.Elementary.elm_entry_scrollable_set(Handle, value);
+            }
+        }
+
         public static string ConvertMarkupToUtf8(string markup)
         {
             return Interop.Elementary.elm_entry_markup_to_utf8(markup);
