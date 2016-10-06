@@ -192,7 +192,10 @@ internal static partial class Interop
         internal static extern void elm_object_focus_set(IntPtr obj, bool focus);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_theme_extension_add(IntPtr obj, string path);
+        internal static extern void elm_theme_extension_add(IntPtr theme, string path);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_theme_overlay_add(IntPtr theme, string path);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_theme_new();

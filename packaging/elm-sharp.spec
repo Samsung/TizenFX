@@ -22,6 +22,7 @@ BuildRequires: mono-compiler
 BuildRequires: mono-devel
 
 BuildRequires: dotnet-build-tools
+BuildRequires: edje-tools
 
 %description
 C# Binding for Elementary
@@ -42,6 +43,8 @@ find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
 nuget pack $ASM/$ASM.nuspec -Version %{version} -Properties Configuration=%{BUILDCONF}
 done
 
+edje_cc ElmSharp/theme/%{profile}/elm-sharp-theme-%{profile}.edc ElmSharp/theme/elm-sharp-theme.edj
+
 %install
 # Runtime Binary
 mkdir -p %{buildroot}%{dotnet_assembly_path}
@@ -55,11 +58,15 @@ done
 # NuGet
 mkdir -p %{buildroot}/nuget
 install -p -m 644 *.nupkg %{buildroot}/nuget
+# Theme
+mkdir %{buildroot}%{_datadir}/edje/elm-sharp -p
+install -m 644 ElmSharp/theme/elm-sharp-theme.edj %{buildroot}%{_datadir}/edje/elm-sharp/
 
 %files
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{_datadir}/edje/elm-sharp/*.edj
 
 %package nuget
 Summary:   NuGet package for %{name}
