@@ -15,11 +15,24 @@ internal static partial class Interop
     {
         internal enum Elm_Genlist_Item_Scrollto_Type
         {
-            ELM_GENLIST_ITEM_SCROLLTO_NONE = 0,   // Scrolls to nowhere
-            ELM_GENLIST_ITEM_SCROLLTO_IN = (1 << 0),   // Scrolls to the nearest viewport
-            ELM_GENLIST_ITEM_SCROLLTO_TOP = (1 << 1),   // Scrolls to the top of the viewport
-            ELM_GENLIST_ITEM_SCROLLTO_MIDDLE = (1 << 2),   // Scrolls to the middle of the viewport
-            ELM_GENLIST_ITEM_SCROLLTO_BOTTOM = (1 << 3)   // Scrolls to the bottom of the viewport
+            ELM_GENLIST_ITEM_SCROLLTO_NONE = 0,
+            // Scrolls to nowhere
+            ELM_GENLIST_ITEM_SCROLLTO_IN = (1 << 0),
+            // Scrolls to the nearest viewport
+            ELM_GENLIST_ITEM_SCROLLTO_TOP = (1 << 1),
+            // Scrolls to the top of the viewport
+            ELM_GENLIST_ITEM_SCROLLTO_MIDDLE = (1 << 2),
+            // Scrolls to the middle of the viewport
+            ELM_GENLIST_ITEM_SCROLLTO_BOTTOM = (1 << 3)
+            // Scrolls to the bottom of the viewport
+        }
+
+        internal enum Elm_Object_Select_Mode
+        {
+            ELM_OBJECT_SELECT_MODE_DEFAULT,
+            ELM_OBJECT_SELECT_MODE_ALWAYS,
+            ELM_OBJECT_SELECT_MODE_NONE,
+            ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY
         }
 
         [DllImport(Libraries.Elementary)]
@@ -96,5 +109,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_selected_set(IntPtr obj, bool selected);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_select_mode_set(IntPtr obj, Elm_Object_Select_Mode mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern Elm_Object_Select_Mode elm_genlist_item_select_mode_get(IntPtr obj);
     }
 }
