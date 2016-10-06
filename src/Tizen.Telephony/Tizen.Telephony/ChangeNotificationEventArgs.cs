@@ -14,12 +14,6 @@ namespace Tizen.Telephony
     /// </summary>
     public class ChangeNotificationEventArgs : EventArgs
     {
-        internal ChangeNotificationEventArgs(Notification noti, object data)
-        {
-            NotificationType = noti;
-            NotificationData = data;
-        }
-
         /// <summary>
         /// Enumeration for Telephony notification.
         /// </summary>
@@ -262,19 +256,17 @@ namespace Tizen.Telephony
         /// <summary>
         /// Telephony notification type
         /// </summary>
-        public Notification NotificationType
-        {
-            get;
-            internal set;
-        }
+        public Notification notificationType;
 
         /// <summary>
         /// Data as per the Notification type
         /// </summary>
-        public object NotificationData
+        public object notificationData;
+
+        internal ChangeNotificationEventArgs(Notification noti, object data)
         {
-            get;
-            internal set;
+            notificationType = noti;
+            notificationData = data;
         }
     }
 }

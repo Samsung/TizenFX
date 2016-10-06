@@ -67,10 +67,6 @@
     <None Include="Tizen.Telephony.project.json" />
     <None Include="Tizen.Telephony.snk" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

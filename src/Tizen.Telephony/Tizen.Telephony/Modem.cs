@@ -15,24 +15,14 @@ namespace Tizen.Telephony
     /// </summary>
     public class Modem
     {
-        internal IntPtr _handle;
-
         /// <summary>
         /// Modem Class Constructor
         /// </summary>
         /// <param name="handle">
         /// SlotHandle received in the Manager.Init API
         /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// This exception occurs if handle provided is null
-        /// </exception>
         public Modem(SlotHandle handle)
         {
-            if (handle == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             _handle = handle._handle;
         }
 
@@ -142,5 +132,7 @@ namespace Tizen.Telephony
             }
 
         }
+
+        internal IntPtr _handle;
     }
 }
