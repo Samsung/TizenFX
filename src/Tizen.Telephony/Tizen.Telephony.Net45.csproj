@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0A02F90-8B02-4F35-AFD7-6A7EABD14A91}</ProjectGuid>
+    <ProjectGuid>{E87B20AE-B752-4E64-9517-4827AC42A33A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Telephony</RootNamespace>
@@ -36,6 +36,16 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Tizen.Telephony.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.Telephony.cs" />

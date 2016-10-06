@@ -14,14 +14,18 @@ namespace Tizen.Telephony
     /// </summary>
     public class StateEventArgs : EventArgs
     {
+        internal StateEventArgs(State s)
+        {
+            CurrentState = s;
+        }
+
         /// <summary>
         /// The Current State
         /// </summary>
-        public State currentState;
-
-        internal StateEventArgs(State s)
+        public State CurrentState
         {
-            currentState = s;
+            get;
+            internal set;
         }
     }
 }

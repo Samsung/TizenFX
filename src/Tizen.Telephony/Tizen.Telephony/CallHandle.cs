@@ -16,6 +16,8 @@ namespace Tizen.Telephony
     /// </summary>
     public class CallHandle
     {
+        private IntPtr _callHandle;
+
         /// <summary>
         /// Enumeration for the call status.
         /// </summary>
@@ -237,7 +239,5 @@ namespace Tizen.Telephony
         {
             _callHandle = handle;
         }
-
-        private IntPtr _callHandle;
     }
 }

@@ -19,14 +19,28 @@ namespace Tizen.Telephony
     /// </summary>
     public class Call
     {
+        internal IntPtr _handle;
+        private List<IntPtr> _callHandle = new List<IntPtr>();
+        private List<CallHandle> _list = new List<CallHandle>();
+        private IntPtr _callList;
+        private Interop.Call.SafeCallList _safeCallList;
+
         /// <summary>
         /// Public Constructor
         /// </summary>
         /// <param name="handle">
         /// SlotHandle received in the Manager.Init API
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// This exception occurs if handle provided is null
+        /// </exception>
         public Call(SlotHandle handle)
         {
+            if (handle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _handle = handle._handle;
         }
 
@@ -64,6 +78,12 @@ namespace Tizen.Telephony
         /// <returns>
         /// List of CallHandle for existing calls.
         /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// This exception can occur due to one of the following reasons:
+        /// 1. Permission Denied
+        /// 2. Not Supported
+        /// 3. Operation Failed
+        /// </exception>
         public List<CallHandle> GetCallHandleList()
         {
             uint count;
@@ -73,26 +93,23 @@ namespace Tizen.Telephony
             if (error != TelephonyError.None)
             {
                 Tizen.Log.Error(Interop.Telephony.LogTag, "GetCallList Failed with error " + error);
-                return _list;
+                throw ExceptionFactory.CreateException(error);
             }
 
             _callHandle.Clear();
-            IntPtr[] handleArray = new IntPtr[count];
-            Marshal.Copy(_callList, handleArray, 0, (int)count);
-            foreach (IntPtr handle in handleArray)
+            if (count > 0)
             {
-                CallHandle info = new CallHandle(handle);
-                _list.Add(info);
-            }
+                IntPtr[] handleArray = new IntPtr[count];
+                Marshal.Copy(_callList, handleArray, 0, (int)count);
+                foreach (IntPtr handle in handleArray)
+                {
+                    CallHandle info = new CallHandle(handle);
+                    _list.Add(info);
+                }
 
-            _safeCallList = new Interop.Call.SafeCallList(_callList, count);
+                _safeCallList = new Interop.Call.SafeCallList(_callList, count);
+            }
             return _list;
         }
-
-        internal IntPtr _handle;
-        private List<IntPtr> _callHandle = new List<IntPtr>();
-        private List<CallHandle> _list = new List<CallHandle>();
-        private IntPtr _callList;
-        private Interop.Call.SafeCallList _safeCallList;
     }
 }
