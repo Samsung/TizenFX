@@ -5,3 +5,5 @@ obj/
 *.csproj.user
 *.lock.json
 .vs/
+*.edj
+*.sln

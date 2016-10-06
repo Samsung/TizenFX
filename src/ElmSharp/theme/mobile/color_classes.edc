@@ -1,0 +1,6 @@
+color_classes {
+   color_class {
+      name: "elm/widget/colorselector/default/bg-default";
+      color: 250 250 250 255;
+   }
+}

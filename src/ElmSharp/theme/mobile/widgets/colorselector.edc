@@ -1,0 +1,96 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+group {
+   name: "elm/colorselector/palette/colorplane";
+   alias: "elm/colorselector/palette/default";
+   data.item: "horizontal_pad" COLORSELECTOR_PORTRAIT_HOR_PAD_COLORPLANE_INC;
+   data.item: "vertical_pad" COLORSELECTOR_PORTRAIT_VER_PAD_COLORPLANE_INC;
+
+   parts {
+      part { name: "base";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: COLORSELECTOR_PALETTE_COLORPLANE_WIDTH_INC COLORSELECTOR_PALETTE_COLORPLANE_HEIGHT_INC;
+            max: -1 -1;
+         }
+      }
+      part { name: "bg";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "base";
+            rel2.to: "base";
+            color_class: "elm/widget/colorselector/default/bg-default"; /// for C#
+         }
+      }
+      part { name: "top_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 COLORSELECTOR_TOPBOTTOM_PAD_COLORPLANE_INC;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "base";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "base";
+            }
+            align: 0.0 0.0;
+         }
+      }
+      part { name: "palette";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            align: 0.5 0.0;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 1.0;
+               to_y: "top_padding";
+            }
+            rel2.to_y: "top_padding";
+         }
+      }
+      part{ name: "palette_bottom_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 COLORSELECTOR_TOPBOTTOM_PAD_COLORPLANE_INC;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "palette";
+            }
+            rel2.to: "palette";
+            align: 0.0 0.0;
+         }
+      }
+   }
+}

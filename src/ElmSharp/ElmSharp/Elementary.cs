@@ -1,12 +1,19 @@
 using System;
+using System.IO;
 
 namespace ElmSharp
 {
     public static class Elementary
     {
+        private static readonly string _themeFilePath = "/usr/share/edje/elm-sharp/elm-sharp-theme.edj";
+
         public static void Initialize()
         {
             Interop.Elementary.elm_init(0, null);
+            if (File.Exists(_themeFilePath))
+            {
+                Interop.Elementary.elm_theme_overlay_add(IntPtr.Zero, _themeFilePath);
+            }
         }
 
         public static void Shutdown()
