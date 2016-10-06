@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// WristUpGestureDetector Class. Used for registering callbacks for wrist up gesture detector and getting the wrist up state
+    /// </summary>
     public class WristUpGestureDetector : Sensor
     {
         /// <summary>

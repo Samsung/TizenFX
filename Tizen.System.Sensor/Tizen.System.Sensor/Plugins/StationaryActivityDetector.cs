@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// StationaryActivityDetector Class. Used for registering callbacks for stationary activity detector and getting the stationary state
+    /// </summary>
     public class StationaryActivityDetector : ActivityDetector
     {
         /// <summary>

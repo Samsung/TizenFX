@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// InVehicleActivityDetector Class. Used for registering callbacks for in vehicle activity detector and getting the in vehicle state
+    /// </summary>
     public class InVehicleActivityDetector : ActivityDetector
     {
         /// <summary>

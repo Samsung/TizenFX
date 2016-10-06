@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// RunningActivityDetector Class. Used for registering callbacks for running activity detector and getting the running state
+    /// </summary>
     public class RunningActivityDetector : ActivityDetector
     {
         /// <summary>

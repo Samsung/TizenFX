@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// PickUpGestureDetector Class. Used for registering callbacks for pick up activity detector and getting the pick up state
+    /// </summary>
     public class PickUpGestureDetector : Sensor
     {
         /// <summary>

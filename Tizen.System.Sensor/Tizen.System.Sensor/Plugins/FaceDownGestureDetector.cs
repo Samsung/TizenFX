@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// FaceDownGestureDetector Class. Used for registering callbacks for face down gesture detector and getting the face down state
+    /// </summary>
     public class FaceDownGestureDetector : Sensor
     {
         /// <summary>

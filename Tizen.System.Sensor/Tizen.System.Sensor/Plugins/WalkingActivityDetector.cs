@@ -10,6 +10,9 @@ using System;
 
 namespace Tizen.System.Sensor
 {
+    /// <summary>
+    /// WalkingActivityDetector Class. Used for registering callbacks for walking activity detector and getting the walking state
+    /// </summary>
     public class WalkingActivityDetector : ActivityDetector
     {
         /// <summary>
