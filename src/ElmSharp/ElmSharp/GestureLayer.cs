@@ -352,20 +352,20 @@ namespace ElmSharp
                 case GestureType.LongTap:
                 case GestureType.DoubleTap:
                 case GestureType.TripleTap:
-                    action(Marshal.PtrToStructure<TapData>(event_info));
+                    action(Marshal.PtrToStructure(event_info, typeof(TapData)));
                     break;
                 case GestureType.Momentum:
-                    action(Marshal.PtrToStructure<MomentumData>(event_info));
+                    action(Marshal.PtrToStructure(event_info, typeof(MomentumData)));
                     break;
                 case GestureType.Line:
                 case GestureType.Flick:
-                    action(Marshal.PtrToStructure<LineData>(event_info));
+                    action(Marshal.PtrToStructure(event_info, typeof(LineData)));
                     break;
                 case GestureType.Zoom:
-                    action(Marshal.PtrToStructure<ZoomData>(event_info));
+                    action(Marshal.PtrToStructure(event_info, typeof(ZoomData)));
                     break;
                 case GestureType.Rotate:
-                    action(Marshal.PtrToStructure<RotateData>(event_info));
+                    action(Marshal.PtrToStructure(event_info, typeof(RotateData)));
                     break;
             }
         }
