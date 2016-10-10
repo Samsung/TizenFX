@@ -27,7 +27,7 @@ internal static partial class Interop
             this.password = password;
             this.extractable = extractable;
         }
-        [MarshalAs(UnmanagedType.LPTStr)]
+        [MarshalAs(UnmanagedType.LPStr)]
         public readonly string password;
         [MarshalAs(UnmanagedType.Bool)]
         public readonly bool extractable;
