@@ -34,5 +34,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_description_by_pkgtype")]
             internal static extern int GetDescriptionByPkgtype(string packageType, string apiVersion, string privilege, out string description);
+
+        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_display_name")]
+            internal static extern int GetPrivacyDisplayName(string privilege, out string displayName);
+
+        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_privilege_status")]
+            internal static extern int GetPrivacyPrivilegeStatus(string privilege, out bool status);
     }
 }
