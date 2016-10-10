@@ -6,7 +6,7 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-namespace Tizen.System.Feedback
+namespace Tizen.System
 {
     /// <summary>
     /// String and Enumeration for feedback patterns.

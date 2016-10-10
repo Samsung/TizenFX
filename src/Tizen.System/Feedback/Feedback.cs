@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Tizen.System.Feedback
+namespace Tizen.System
 {
     /// <summary>
     /// Class for constants
@@ -62,7 +62,7 @@ namespace Tizen.System.Feedback
     /// For controlling sound, previlege is not needed.
     /// </privilege>
     /// <code>
-    /// Tizen.System.Feedback.Feedback feedback = new Tizen.System.Feedback.Feedback();
+    /// Feedback feedback = new Feedback();
     /// bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");
     /// </code>
     public class Feedback
@@ -170,7 +170,7 @@ namespace Tizen.System.Feedback
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Deinitialize();
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to initialize feedback. err = {0}", res));
+                Log.Warn(LogTag, string.Format("Failed to deinitialize feedback. err = {0}", res));
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -201,7 +201,7 @@ namespace Tizen.System.Feedback
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
         /// <code>
-	/// Tizen.System.Feedback.Feedback feedback = new Tizen.System.Feedback.Feedback();
+	    /// Feedback feedback = new Feedback();
         /// bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");
         /// </code>
         /// </example>
@@ -264,7 +264,7 @@ namespace Tizen.System.Feedback
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
         /// <code>
-	/// Tizen.System.Feedback.Feedback feedback = new Tizen.System.Feedback.Feedback();
+        /// Feedback feedback = new Feedback();
         /// feedback.Play(FeedbackType.All, "Tap");
         /// </code>
         /// </example>

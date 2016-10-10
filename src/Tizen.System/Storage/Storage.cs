@@ -8,7 +8,7 @@
 
 using System;
 
-namespace Tizen.System.Storage
+namespace Tizen.System
 {
     /// <summary>
     /// class to access storage device information

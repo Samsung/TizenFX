@@ -6,7 +6,7 @@
 // it only in accordance with the terms of the license agreement
 // you entered into with Samsung.
 
-namespace Tizen.System.Storage
+namespace Tizen.System
 {
     /// <summary>
     /// Enumeration for the state of storage devices.

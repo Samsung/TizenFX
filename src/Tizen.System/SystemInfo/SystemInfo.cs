@@ -8,7 +8,7 @@
 
 using System;
 
-namespace Tizen.System.SystemInfo
+namespace Tizen.System
 {
     /// <summary>
     /// System Information class. This class has methods which can be used to obtain device information

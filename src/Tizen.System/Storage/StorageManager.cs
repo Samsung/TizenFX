@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.System.Storage
+namespace Tizen.System
 {
     /// <summary>
     /// Storage Manager, provides properties/ methods to access storage in the device.
