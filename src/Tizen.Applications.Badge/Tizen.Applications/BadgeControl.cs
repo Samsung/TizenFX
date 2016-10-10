@@ -18,6 +18,7 @@ namespace Tizen.Applications
     {
         private static event EventHandler<BadgeEventArgs> s_changed;
         private static bool s_registered = false;
+        private static Interop.Badge.ChangedCallback s_callback;
 
         /// <summary>
         /// Event handler for receiving badge events.
@@ -31,7 +32,9 @@ namespace Tizen.Applications
             {
                 if (s_changed == null && !s_registered)
                 {
-                    Interop.Badge.ErrorCode err = Interop.Badge.SetChangedCallback(OnChangedEvent, IntPtr.Zero);
+                    if (s_callback == null)
+                        s_callback = new Interop.Badge.ChangedCallback(OnChangedEvent);
+                    Interop.Badge.ErrorCode err = Interop.Badge.SetChangedCallback(s_callback, IntPtr.Zero);
 
                     switch (err)
                     {
@@ -44,7 +47,6 @@ namespace Tizen.Applications
                         case Interop.Badge.ErrorCode.OutOfMemory:
                             throw new InvalidOperationException("Out-of-memory at unmanaged code");
                     }
-
                     s_registered = true;
                 }
                 s_changed += value;
@@ -54,7 +56,7 @@ namespace Tizen.Applications
                 s_changed -= value;
                 if (s_changed == null && s_registered)
                 {
-                    Interop.Badge.ErrorCode err = Interop.Badge.UnsetChangedCallback(OnChangedEvent);
+                    Interop.Badge.ErrorCode err = Interop.Badge.UnsetChangedCallback(s_callback);
 
                     switch (err)
                     {
@@ -67,7 +69,7 @@ namespace Tizen.Applications
                         case Interop.Badge.ErrorCode.NotExist:
                             throw new InvalidOperationException("Not exist");
                     }
-
+                    s_callback = null;
                     s_registered = false;
                 }
             }
