@@ -9,7 +9,7 @@ internal static partial class Interop
     internal delegate void SoundStreamFocusStateChangedCallback(IntPtr streamInfo, int reason, string extraInfo, IntPtr userData);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void SoundStreamFocusStateWatchCallback(AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData);
+    internal delegate void SoundStreamFocusStateWatchCallback(int id, AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData);
 
     internal static partial class AudioStreamPolicy
     {
@@ -46,10 +46,10 @@ internal static partial class Interop
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_sound_type")]
         internal static extern int GetSoundType(IntPtr streamInfo, out AudioVolumeType soundType);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_set_focus_state_watch_cb")]
-        internal static extern int SetFocusStateWatchCallback(AudioStreamFocusOptions focusMask, SoundStreamFocusStateWatchCallback callback, IntPtr userData);
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_add_focus_state_watch_cb")]
+        internal static extern int AddFocusStateWatchCallback(AudioStreamFocusOptions focusMask, SoundStreamFocusStateWatchCallback callback, IntPtr userData, out int id);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_unset_focus_state_watch_cb")]
-        internal static extern int UnsetFocusStateWatchCallback();
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_remove_focus_state_watch_cb")]
+        internal static extern int RemoveFocusStateWatchCallback(int id);
     }
 }

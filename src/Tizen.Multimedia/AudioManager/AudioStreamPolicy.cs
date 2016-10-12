@@ -16,6 +16,7 @@ namespace Tizen.Multimedia
         private static EventHandler<FocusStateChangedEventArgs> _focusStateWatchForPlayback;
         private static EventHandler<FocusStateChangedEventArgs> _focusStateWatchForRecording;
         private static Interop.SoundStreamFocusStateWatchCallback _focusStateWatchCallback;
+        private static int _focusWatchCbId;
 
         private IntPtr _streamInfo;
         private AudioStreamType _streamType;
@@ -56,6 +57,7 @@ namespace Tizen.Multimedia
         /// </summary>
         public static event EventHandler<FocusStateChangedEventArgs> PlaybackFocusStateWatch {
             add {
+                Tizen.Log.Info(AudioStreamPolicyLog.Tag, "############# _focusStateWatchCounter" + _focusStateWatchCounter);
                 if(_focusStateWatchCounter == 0) {
                     RegisterFocusStateWatchEvent();
                 }
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia
                 _focusStateWatchForPlayback += value;
             }
             remove {
+                Tizen.Log.Info(AudioStreamPolicyLog.Tag, "############# _focusStateWatchCounter" + _focusStateWatchCounter);
                 _focusStateWatchForPlayback -= value;
                 _focusStateWatchCounter--;
                 if(_focusStateWatchCounter == 0) {
@@ -285,9 +288,11 @@ namespace Tizen.Multimedia
 
         private static void RegisterFocusStateWatchEvent()
         {
-            _focusStateWatchCallback = (AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) => {
+            _focusStateWatchCallback = (int id, AudioStreamFocusOptions options, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) => {
+                Tizen.Log.Info(AudioStreamPolicyLog.Tag, "############# _Inside _focusStateWatchCallback : id = " + id + "options = " + options);
                 FocusStateChangedEventArgs eventArgs = new FocusStateChangedEventArgs(focusState, reason, extraInfo);
                 if(options == AudioStreamFocusOptions.Playback) {
+                    Tizen.Log.Info(AudioStreamPolicyLog.Tag, "############# _eventArgs =  " + eventArgs);
                     _focusStateWatchForPlayback?.Invoke(null, eventArgs);
                 } else if(options == AudioStreamFocusOptions.Recording) {
                     _focusStateWatchForRecording?.Invoke(null, eventArgs);
@@ -296,13 +301,14 @@ namespace Tizen.Multimedia
                     _focusStateWatchForRecording?.Invoke(null, eventArgs);
                 }
             };
-            int ret = Interop.AudioStreamPolicy.SetFocusStateWatchCallback(AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording, _focusStateWatchCallback, IntPtr.Zero);
+            int ret = Interop.AudioStreamPolicy.AddFocusStateWatchCallback(AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording, _focusStateWatchCallback, IntPtr.Zero, out _focusWatchCbId);
+            Tizen.Log.Info(AudioStreamPolicyLog.Tag, "############# _AddFocusStateWatchCallback : ret  =  " + ret + " ID = " + _focusWatchCbId);
             AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set focus state watch callback");
         }
 
         private static void UnregisterFocusStateWatch()
         {
-            int ret = Interop.AudioStreamPolicy.UnsetFocusStateWatchCallback();
+            int ret = Interop.AudioStreamPolicy.RemoveFocusStateWatchCallback(_focusWatchCbId);
             AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset focus state watch callback");
         }
     }
