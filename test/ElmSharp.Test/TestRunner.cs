@@ -128,32 +128,39 @@ namespace ElmSharp.Test
             box.Show();
             conformant.SetContent(box);
 
-            List list = new List(_firstPageWindow)
+            GenList list = new GenList(_firstPageWindow)
             {
+                Homogeneous = true,
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1
             };
 
+            GenItemClass defaultClass = new GenItemClass("default")
+            {
+                GetTextHandler = (data, part) =>
+                {
+                    return string.Format("{0}",(string)data);
+                }
+            };
+
             foreach (var tc in testCases)
             {
-                list.Append(tc.TestName);
+                list.Append(defaultClass, tc.TestName);
             }
 
             list.ItemSelected += (s, e) =>
             {
                 foreach (var tc in testCases)
                 {
-                    if (tc.TestName == e.Item.Text)
+                    if (tc.TestName == (string)(e.Item.Data))
                     {
                         StartTCFromList(tc);
                         break;
                     }
                 }
             };
-
-            list.Update();
             list.Show();
 
             box.PackEnd(list);
