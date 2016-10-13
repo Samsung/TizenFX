@@ -23,11 +23,14 @@ namespace ElmSharp
             Handle = handle;
         }
 
-        ~ItemObject()
-        {
-            if (Handle != IntPtr.Zero)
-                Interop.Elementary.elm_object_item_del(Handle);
-        }
+        // C# Finalizer was called on GC thread
+        // So, We can't access to EFL object
+        // And When Finalizer was called, Field can be already released.
+        //~ItemObject()
+        //{
+        //    if (Handle != IntPtr.Zero)
+        //        Interop.Elementary.elm_object_item_del(Handle);
+        //}
 
         public int Id { get; private set; }
 

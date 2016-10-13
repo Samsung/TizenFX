@@ -37,6 +37,7 @@ namespace ElmSharp
     {
         Interop.SmartEvent _deleteRequest;
         Interop.SmartEvent _rotationChanged;
+        HashSet<EvasObject> _referenceHolder = new HashSet<EvasObject>();
 
         public Window(string name) : this(null, name)
         {
@@ -149,6 +150,16 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_config_accel_preference_set("3d");
             return Interop.Elementary.elm_win_add(parent != null ? parent.Handle : IntPtr.Zero, Name, 0);
+        }
+
+        internal void AddChild(EvasObject obj)
+        {
+            _referenceHolder.Add(obj);
+        }
+
+        internal void RemoveChild(EvasObject obj)
+        {
+            _referenceHolder.Remove(obj);
         }
 
         static int[] ConvertDegreeArray(DisplayRotation value)
