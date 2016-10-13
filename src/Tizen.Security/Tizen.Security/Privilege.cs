@@ -26,15 +26,17 @@ namespace Tizen.Security
     /// </summary>
     public static class Privilege
     {
+        internal static readonly string PackageTypeTpk = "PRVINFO_PACKAGE_TYPE_NATIVE";
+        internal static readonly string PackageTypeWgt = "PRVINFO_PACKAGE_TYPE_WEB";
         internal static string ToPackageTypeString(PackageType type)
         {
             if (type == PackageType.TPK)
             {
-                return "PRVINFO_PACKAGE_TYPE_NATIVE";
+                return PackageTypeTpk;
             }
             else if (type == PackageType.WGT)
             {
-                return "PRVINFO_PACKAGE_TYPE_WEB";
+                return PackageTypeWgt;
             }
             else
             {
@@ -46,8 +48,8 @@ namespace Tizen.Security
         /// Gets the display name of the given privilege.
         /// </summary>
         /// <param name="apiVersion">The api version</param>
-        /// <param name="privilege">The privilege name to get display name</param>
-        /// <returns>display name of given privilege at given api version</returns>
+        /// <param name="privilege">The privilege</param>
+        /// <returns>The display name of given privilege at given api version</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege)
@@ -62,9 +64,9 @@ namespace Tizen.Security
         /// Gets the display name of the given privilege.
         /// </summary>
         /// <param name="apiVersion">The api version</param>
-        /// <param name="privilege">The privilege name to get display name</param>
-        /// <param name="packageType">The package type to get privilege's display name</param>
-        /// <returns>display name of given privilege at given api version and the package type</returns>
+        /// <param name="privilege">The privilege</param>
+        /// <param name="packageType">The type of application package</param>
+        /// <returns>The display name of given privilege at given api version and the package type</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege, PackageType packageType)
@@ -79,8 +81,8 @@ namespace Tizen.Security
         /// Gets the description of the given privilege.
         /// </summary>
         /// <param name="apiVersion">The api version</param>
-        /// <param name="privilege">The privilege name to get description</param>
-        /// <returns>description of given privilege at given api version</returns>
+        /// <param name="privilege">The privilege</param>
+        /// <returns>The description of given privilege at given api version</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege)
@@ -95,9 +97,9 @@ namespace Tizen.Security
         /// Gets the description of the given privilege.
         /// </summary>
         /// <param name="apiVersion">The api version</param>
-        /// <param name="privilege">The privilege name to get description</param>
-        /// <param name="packageType">The package type to get privilege's description</param>
-        /// <returns>description of given privilege at given api version and the package type</returns>
+        /// <param name="privilege">The privilege</param>
+        /// <param name="packageType">The type of application package</param>
+        /// <returns>The description of given privilege at given api version and the package type</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege, PackageType packageType)
@@ -106,6 +108,39 @@ namespace Tizen.Security
             int ret = Interop.Privilege.GetDescriptionByPkgtype(ToPackageTypeString(packageType),apiVersion, privilege, out description);
             PrivilegeErrorFactory.ThrowException(ret);
             return description;
+        }
+
+        /// <summary>
+        /// Gets the display name of the privacy group in which the given privilege is included.
+        /// </summary>
+        /// <param name="privilege">The privilege</param>
+        /// <remarks>The privilege must be privacy related.</remarks>
+        /// <returns>The privacy group's display name that the given privilege is included in</returns>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
+        public static string GetPrivacyDisplayName(string privilege)
+        {
+            string displayName;
+            int ret = Interop.Privilege.GetPrivacyDisplayName(privilege, out displayName);
+            PrivilegeErrorFactory.ThrowException(ret);
+            return displayName;
+        }
+
+        /// <summary>
+        /// Gets the status of the given privacy related privilege.
+        /// </summary>
+        /// <param name="privilege">The privilege</param>
+        /// <remarks>The privilege must be privacy related.</remarks>
+        /// <remarks>In case of errors, status is set to true</remarks>
+        /// <returns>status true if the privilege is on and false if the privilege is off.</returns>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
+        public static bool GetPrivacyPrivilegeStatus(string privilege)
+        {
+            bool status;
+            int ret = Interop.Privilege.GetPrivacyPrivilegeStatus(privilege, out status);
+            PrivilegeErrorFactory.ThrowException(ret);
+            return status;
         }
     }
 
