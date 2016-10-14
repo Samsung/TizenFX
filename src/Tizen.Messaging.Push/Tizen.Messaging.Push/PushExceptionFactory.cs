@@ -7,56 +7,56 @@ namespace Tizen.Messaging.Push
 {
     class PushExceptionFactory
     {
-        internal static Exception CreateResponseException(Interop.Push.ServiceError result)
+        internal static Exception CreateResponseException(Interop.PushClient.ServiceError result)
         {
             Exception exp;
             switch (result)
             {
-                case Interop.Push.ServiceError.OutOfMemory:
+                case Interop.PushClient.ServiceError.OutOfMemory:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.OutOfMemory");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.OutOfMemory");
                     exp = new InvalidOperationException("Memory Not Sufficient for the current operation");
                     break;
                 }
-                case Interop.Push.ServiceError.InvalidParameter:
+                case Interop.PushClient.ServiceError.InvalidParameter:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.InvalidParameter");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.InvalidParameter");
                     exp = new InvalidOperationException("The Parameter Passed was Invalid or Invalid Operation Intented");
                     break;
                 }
-                case Interop.Push.ServiceError.NotConnected:
+                case Interop.PushClient.ServiceError.NotConnected:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.NotConnected");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.NotConnected");
                     exp = new InvalidOperationException("Not Connected to Server");
                     break;
                 }
-                case Interop.Push.ServiceError.NoData:
+                case Interop.PushClient.ServiceError.NoData:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.NoData");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.NoData");
                     exp = new InvalidOperationException("No Data");
                     break;
                 }
-                case Interop.Push.ServiceError.OpearationFailed:
+                case Interop.PushClient.ServiceError.OpearationFailed:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.OpearationFailed");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.OpearationFailed");
                     exp = new InvalidOperationException("Operation Failed");
                     break;
                 }
-                case Interop.Push.ServiceError.PermissionDenied:
+                case Interop.PushClient.ServiceError.PermissionDenied:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.PermissionDenied");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.PermissionDenied");
                     exp = new InvalidOperationException("Permission Denied");
                     break;
                 }
-                case Interop.Push.ServiceError.NotSupported:
+                case Interop.PushClient.ServiceError.NotSupported:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Interop.Push.ServiceError.NotSupported");
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Interop.Push.ServiceError.NotSupported");
                     exp = new InvalidOperationException("Not Supported");
                     break;
                 }
                 default:
                 {
-                    Tizen.Log.Error(Interop.Push.LogTag, "Creating Exception for Default case for error code " + result);
+                    Tizen.Log.Error(Interop.PushClient.LogTag, "Creating Exception for Default case for error code " + result);
                     exp = new Exception();
                     break;
                 }

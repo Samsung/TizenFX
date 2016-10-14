@@ -1,4 +1,4 @@
-/// This File contains the Api's related to the PushManager class
+/// This File contains the Api's related to the PushClient class
 ///
 /// Copyright 2016 by Samsung Electronics, Inc.,
 ///
@@ -15,10 +15,10 @@ using System.Threading.Tasks;
 namespace Tizen.Messaging.Push
 {
     /// <summary>
-    /// The PushManager API provides functions to connect to push service for receiving push messages.
+    /// The PushClient API provides functions to connect to push service for receiving push messages.
     /// </summary>
     /// <remarks>
-    /// The PushManager API provides the way to connect with the push service.
+    /// The PushClient API provides the way to connect with the push service.
     /// It provides api's to connect/disconnect from the push service.
     /// Api's are provided so that an application can register itself
     /// with the push server along with api's to request push message.
@@ -29,18 +29,18 @@ namespace Tizen.Messaging.Push
     /// {
     ///     static void Main(string[] args)
     ///     {
-    ///         Push.PushServiceConnect("xxxxx");
-    ///         Task<ServerResponse> tr = Push.PushServerRegister();
+    ///         PushClient.PushServiceConnect("xxxxx");
+    ///         Task<ServerResponse> tr = PushClient.PushServerRegister();
     ///         tr.GetAwaiter().OnCompleted(() => {
     ///             ServerResponse res = tr.Result;
-    ///             Push.GetUnreadNotifications();
-    ///             Task<ServerResponse> tu = Push.PushServerUnregister();
+    ///             PushClient.GetUnreadNotifications();
+    ///             Task<ServerResponse> tu = PushClient.PushServerUnregister();
     ///             tu.GetAwaiter().OnCompleted(() => {
-    ///                 Push.PushServiceDisconnect();
+    ///                 PushClient.PushServiceDisconnect();
     ///             });
     ///         });
-    ///         Push.NotificationReceived += EventHandlerNotificationReceived;
-    ///         Push.StateChanged += EventHandlerStateChanged;
+    ///         PushClient.NotificationReceived += EventHandlerNotificationReceived;
+    ///         PushClient.StateChanged += EventHandlerStateChanged;
     ///     }
     /// }
     /// static void EventHandlerNotificationReceived(object sender, PushMessageEventArgs e)
@@ -53,7 +53,7 @@ namespace Tizen.Messaging.Push
     /// }
     /// </code>
     /// </example>
-    public static class Push
+    public static class PushClient
     {
         /// <summary>
         /// Event Handler for receiving the notifications.

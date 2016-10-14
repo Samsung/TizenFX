@@ -50,9 +50,9 @@
     <Compile Include="Interop\Interop.Glib.cs" />
     <Compile Include="Interop\Interop.Libc.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.Push.cs" />
+    <Compile Include="Interop\Interop.PushClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Messaging.Push\Push.cs" />
+    <Compile Include="Tizen.Messaging.Push\PushClient.cs" />
     <Compile Include="Tizen.Messaging.Push\PushConnectionStateEventArgs.cs" />
     <Compile Include="Tizen.Messaging.Push\PushExceptionFactory.cs" />
     <Compile Include="Tizen.Messaging.Push\PushImpl.cs" />
