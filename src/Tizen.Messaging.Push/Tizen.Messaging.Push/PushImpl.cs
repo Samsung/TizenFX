@@ -45,7 +45,7 @@ namespace Tizen.Messaging.Push
                 PushConnectionStateEventArgs args = new PushConnectionStateEventArgs((PushConnectionStateEventArgs.PushState)state, err);
                 PushClient.StateChange(args);
             };
-            Interop.Push.VoidNotifyCallback notifyDelegate = (IntPtr notification, IntPtr userData) =>
+            Interop.PushClient.VoidNotifyCallback notifyDelegate = (IntPtr notification, IntPtr userData) =>
             {
                 Interop.PushClient.ServiceError result;
                 PushMessageEventArgs ob = new PushMessageEventArgs();
@@ -120,10 +120,10 @@ namespace Tizen.Messaging.Push
                     ob.Type = type;
                 }
                 PushClient.Notify(ob);
-                //Interop.Push.FreeNotification(notification);
+                //Interop.PushClient.FreeNotification(notification);
                 Log.Info(Interop.PushClient.LogTag, "Free Notification Done");
             };
-            Interop.PushClient.ServiceError connectResult = Interop.Push.ServiceConnect(pushAppId, stateDelegate, notifyDelegate, IntPtr.Zero, out _connection);
+            Interop.PushClient.ServiceError connectResult = Interop.PushClient.ServiceConnect(pushAppId, stateDelegate, notifyDelegate, IntPtr.Zero, out _connection);
             if (connectResult != Interop.PushClient.ServiceError.None)
             {
                 Log.Error(Interop.PushClient.LogTag, "Connect failed with " + connectResult);
@@ -158,7 +158,7 @@ namespace Tizen.Messaging.Push
                 }
             };
             Interop.PushClient.ServiceError result = Interop.PushClient.ServiceRegister(_connection, registerResult, IntPtr.Zero);
-            Log.Info(Interop.PushClient.LogTag, "Interop.Push.ServiceRegister Completed");
+            Log.Info(Interop.PushClient.LogTag, "Interop.PushClient.ServiceRegister Completed");
             if (result != Interop.PushClient.ServiceError.None)
             {
                 Log.Error(Interop.PushClient.LogTag, "Register failed with " + result);
