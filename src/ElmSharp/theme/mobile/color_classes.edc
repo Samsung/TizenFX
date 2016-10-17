@@ -1,6 +1,60 @@
 color_classes {
+   /*
+    * Colorselector
+    */
    color_class {
-      name: "elm/widget/colorselector/default/bg-default";
+      name: "colorselector/default/bg";
       color: 250 250 250 255;
+   }
+   /*
+    * Entry
+    */
+   color_class { "entry/default/text_edit";
+      color: 0 0 0 255;
+   }
+   color_class { "entry/default/text_edit_focused";
+      color: 0 0 0 255;
+   }
+   color_class { "entry/default/text_edit_disabled";
+      color: 0 0 0 110;
+   }
+   color_class { "entry/default/text_guide";
+      color: 0 0 0 145;
+   }
+   color_class { "entry/default/text_guide_focused";
+      color: 0 0 0 145;
+   }
+   color_class { "entry/default/text_guide_disabled";
+      color: 0 0 0 110;
+   }
+   color_class {
+      name: "entry/default/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "entry/default/cursor";
+      color: 0 184 230 110;
+   }
+   /*
+    * Label
+    */
+   color_class {
+      name: "label/default/bg";
+      color: 0 0 0 0;
+   }
+   color_class {
+      name: "label/slide_long/bg";
+      color: 0 0 0 0;
+   }
+   color_class {
+      name: "label/slide_short/bg";
+      color: 0 0 0 0;
+   }
+   color_class {
+      name: "label/slide_roll/bg";
+      color: 0 0 0 0;
+   }
+   color_class {
+      name: "label/slide_bounce/bg";
+      color: 0 0 0 0;
    }
 }

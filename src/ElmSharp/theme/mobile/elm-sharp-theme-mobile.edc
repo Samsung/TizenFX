@@ -51,10 +51,41 @@ data.item: "version" "110";
 
 collections {
    base_scale: BASE_SCALE_INC;
+   plugins {
+      plugin {
+         name: "touch_sound";
+         source: "feedback";
+         param: "FEEDBACK_TYPE_SOUND FEEDBACK_PATTERN_TAP"; // FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_TOUCH_TAP
+
+         /* 2014.06.11 updated from libsvi(feedback)
+          Above plugin will run below external function:
+          int feedback_play_type(feedback_type_e type, feedback_pattern_e pattern);
+
+          param1: feedback_type_e
+          FEEDBACK_TYPE_NONE = 0,
+          FEEDBACK_TYPE_SOUND = 1,
+          FEEDBACK_TYPE_VIBRATION,
+          FEEDBACK_TYPE_LED,
+          FEEDBACK_TYPE_END
+
+          * param2 enumeration:
+          FEEDBACK_PATTERN_TAP = 0,
+          FEEDBACK_PATTERN_SIP,
+          FEEDBACK_PATTERN_SIP_BACKSPACE,
+          FEEDBACK_PATTERN_SIP_FUNCTION,
+          FEEDBACK_PATTERN_SIP_FJKEY,
+          ...
+
+          * For more information please refer libsvi.
+          */
+      }
+   }
 
 #include "color_classes.edc"
 
 #include "widgets/colorselector.edc"
+#include "widgets/entry.edc"
+#include "widgets/label.edc"
 
 }
 
