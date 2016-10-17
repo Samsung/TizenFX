@@ -153,6 +153,9 @@ namespace Tizen.Applications
 
                 case Interop.Badge.ErrorCode.ServiceNotReady:
                     throw new InvalidOperationException("Service is not ready");
+
+                case Interop.Badge.ErrorCode.NotExist:
+                    throw new InvalidOperationException("Not exist");
             }
         }
 
