@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class SleepMonitor : Sensor
     {
+        private static string SleepMonitorKey = "http://tizen.org/feature/sensor.sleep_monitor";
+
         /// <summary>
         /// Gets the value of the sleep state.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the SleepMonitor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.SleepMonitor, SleepMonitorKey);
             }
         }
 
@@ -66,17 +68,6 @@ namespace Tizen.System.Sensor
 
         public event EventHandler<SleepMonitorDataUpdatedEventArgs> DataUpdated;
 
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.SleepMonitor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if sleep monitor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

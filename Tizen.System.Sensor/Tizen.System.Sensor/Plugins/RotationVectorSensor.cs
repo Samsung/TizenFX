@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class RotationVectorSensor : Sensor
     {
+        private static string RotationVectorKey = "http://tizen.org/feature/sensor.rotation_vector";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the X component of the rotation vector.
@@ -49,7 +51,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the RotationVectorSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.RotationVectorSensor, RotationVectorKey);
             }
         }
 
@@ -108,18 +110,6 @@ namespace Tizen.System.Sensor
                     AccuracyListenStop();
                 }
             }
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.RotationVectorSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if rotation vector sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

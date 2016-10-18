@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class HeartRateMonitor : Sensor
     {
+        private const string HRMKey = "http://tizen.org/feature/sensor.heart_rate_monitor";
+
         /// <summary>
         /// Gets the value of the heart rate monitor.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the HeartRateMonitor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.HeartRateMonitor, HRMKey);
             }
         }
 
@@ -65,18 +67,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<HeartRateMonitorDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.HeartRateMonitor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if heart rate monitor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

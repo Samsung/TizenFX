@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class WalkingActivityDetector : ActivityDetector
     {
+        private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
+
         /// <summary>
         /// Gets the state of walking activity detector
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the walking activity detector is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.WalkingActivityDetector, ActivityDetectorKey);
             }
         }
 
@@ -54,18 +56,6 @@ namespace Tizen.System.Sensor
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Walking);
             Log.Info(Globals.LogTag, "Creating walking activity gesture detector object");
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.WalkingActivityDetector, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if walking activity detector is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

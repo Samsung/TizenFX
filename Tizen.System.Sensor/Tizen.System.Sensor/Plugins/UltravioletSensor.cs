@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class UltravioletSensor : Sensor
     {
+        private static string UltravioletSensorKey = "http://tizen.org/feature/sensor.ultraviolet";
+
         /// <summary>
         /// Gets the value of the ultraviolet sensor.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the UltravioletSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.UltravioletSensor, UltravioletSensorKey);
             }
         }
 
@@ -66,17 +68,6 @@ namespace Tizen.System.Sensor
 
         public event EventHandler<UltravioletSensorDataUpdatedEventArgs> DataUpdated;
 
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.UltravioletSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if ultraviolet sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

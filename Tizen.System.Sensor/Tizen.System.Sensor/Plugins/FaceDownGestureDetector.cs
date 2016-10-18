@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class FaceDownGestureDetector : Sensor
     {
+        private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";
+
         /// <summary>
         /// Gets the state of the face down gesture.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the face down gesture detector is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.FaceDownGestureDetector, GestureDetectorKey);
             }
         }
 
@@ -58,18 +60,6 @@ namespace Tizen.System.Sensor
         internal override SensorType GetSensorType()
         {
             return SensorType.FaceDownGestureDetector;
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.FaceDownGestureDetector, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if face down gesture detector is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class PickUpGestureDetector : Sensor
     {
+        private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";
+
         /// <summary>
         /// Gets the state of the pick up gesture.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the pick up gesture detector is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.PickUpGestureDetector, GestureDetectorKey);
             }
         }
 

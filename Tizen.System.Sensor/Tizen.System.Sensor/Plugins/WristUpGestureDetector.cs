@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class WristUpGestureDetector : Sensor
     {
+        private static string WristUpKey = "http://tizen.org/feature/sensor.wrist_up";
+
         /// <summary>
         /// Gets the state of the wrist up gesture.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the wrist up gesture detector is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.WristUpGestureDetector, WristUpKey);
             }
         }
 
@@ -58,18 +60,6 @@ namespace Tizen.System.Sensor
         internal override SensorType GetSensorType()
         {
             return SensorType.WristUpGestureDetector;
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.WristUpGestureDetector, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if wrist up gesture detector is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

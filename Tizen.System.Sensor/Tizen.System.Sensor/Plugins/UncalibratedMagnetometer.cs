@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class UncalibratedMagnetometer : Sensor
     {
+        private static string UncalibratedMagnetometerKey = "http://tizen.org/feature/sensor.magnetometer.uncalibrated";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the X component of the acceleration.
@@ -54,7 +56,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the UncalibratedMagnetometer sensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.UncalibratedMagnetometer, UncalibratedMagnetometerKey);
             }
         }
 
@@ -113,18 +115,6 @@ namespace Tizen.System.Sensor
                     AccuracyListenStop();
                 }
             }
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.UncalibratedMagnetometer, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if uncalibrated magnetometer sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

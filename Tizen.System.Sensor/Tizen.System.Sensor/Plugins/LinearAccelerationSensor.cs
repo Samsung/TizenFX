@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class LinearAccelerationSensor : Sensor
     {
+        private const string LinearAccelerationSensorKey = "http://tizen.org/feature/sensor.linear_acceleration";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the X component of the linear acceleration.
@@ -39,7 +41,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the LinearAccelerationSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.LinearAccelerationSensor, LinearAccelerationSensorKey);
             }
         }
 
@@ -98,18 +100,6 @@ namespace Tizen.System.Sensor
                     AccuracyListenStop();
                 }
             }
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.LinearAccelerationSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if linear acceleration sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class TemperatureSensor : Sensor
     {
+        private static string TemperatureSensorKey = "http://tizen.org/feature/sensor.temperature";
+
         /// <summary>
         /// Gets the value of the temperature sensor.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the TemperatureSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.TemperatureSensor, TemperatureSensorKey);
             }
         }
 
@@ -66,17 +68,6 @@ namespace Tizen.System.Sensor
 
         public event EventHandler<TemperatureSensorDataUpdatedEventArgs> DataUpdated;
 
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.TemperatureSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if temperature sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

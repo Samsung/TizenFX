@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class Pedometer : Sensor
     {
+        private static string PedometerKey = "http://tizen.org/feature/sensor.pedometer";
+
         /// <summary>
         /// Gets the step count
         /// </summary>
@@ -63,7 +65,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the Pedometer sensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.Pedometer, PedometerKey);
             }
         }
 
@@ -100,18 +102,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<PedometerDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.Pedometer, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if pedometer sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class UncalibratedGyroscope : Sensor
     {
+        private static string UncalibratedGyroscopeKey = "http://tizen.org/feature/sensor.gyroscope.uncalibrated";
+
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
@@ -53,7 +55,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the UncalibratedGyroscope sensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.UncalibratedGyroscope, UncalibratedGyroscopeKey);
             }
         }
 
@@ -90,18 +92,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<UncalibratedGyroscopeDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.UncalibratedGyroscope, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if uncalibrated gyroscope sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

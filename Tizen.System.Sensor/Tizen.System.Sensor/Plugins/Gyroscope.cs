@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class Gyroscope : Sensor
     {
+        private const string GyroscopeKey = "http://tizen.org/feature/sensor.gyroscope";
+
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the Gyroscope sensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.Gyroscope, GyroscopeKey);
             }
         }
 
@@ -75,18 +77,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<GyroscopeDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.Gyroscope, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if gyroscope sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

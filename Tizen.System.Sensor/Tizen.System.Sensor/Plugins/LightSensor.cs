@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class LightSensor : Sensor
     {
+        private const string LightSensorKey = "http://tizen.org/feature/sensor.photometer";
+
         /// <summary>
         /// Gets the Level of the light.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the LightSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.LightSensor, LightSensorKey);
             }
         }
 
@@ -65,18 +67,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<LightSensorDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.LightSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if light sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

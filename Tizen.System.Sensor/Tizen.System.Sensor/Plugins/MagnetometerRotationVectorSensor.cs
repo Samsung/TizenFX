@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class MagnetometerRotationVectorSensor : Sensor
     {
+        private static string MagnetometerRVKey = "http://tizen.org/feature/sensor.geomagnetic_rotation_vector";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the X component of the magnetometer rotation vector.
@@ -49,7 +51,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the MagnetometerRotationVectorSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.MagnetometerRotationVectorSensor, MagnetometerRVKey);
             }
         }
 

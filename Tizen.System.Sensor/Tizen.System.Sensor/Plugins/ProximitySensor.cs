@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class ProximitySensor : Sensor
     {
+        private static string ProximitySensorKey = "http://tizen.org/feature/sensor.proximity";
+
         /// <summary>
         /// Gets the proximity state.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the ProximitySensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.ProximitySensor, ProximitySensorKey);
             }
         }
 
@@ -65,18 +67,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<ProximitySensorDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.ProximitySensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if proximity sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

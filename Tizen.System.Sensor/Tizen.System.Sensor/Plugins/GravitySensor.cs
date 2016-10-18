@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class GravitySensor : Sensor
     {
+        private const string GravitySensorKey = "http://tizen.org/feature/sensor.gravity";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the X component of the gravity.
@@ -39,7 +41,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the GravitySensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.GravitySensor, GravitySensorKey);
             }
         }
 
@@ -98,18 +100,6 @@ namespace Tizen.System.Sensor
                     AccuracyListenStop();
                 }
             }
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.GravitySensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if gravity sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

@@ -7,7 +7,7 @@
 // you entered into with Samsung.
 
 using System;
-
+using Tizen.System;
 
 namespace Tizen.System.Sensor
 {
@@ -247,6 +247,27 @@ namespace Tizen.System.Sensor
             {
                 return _listenerHandle;
             }
+        }
+
+        internal static bool CheckIfSupported(SensorType type, String key)
+        {
+            bool isSupported = false;
+            bool error = SystemInfo.TryGetValue(key, out isSupported);
+
+            if (!error || !isSupported)
+            {
+                Log.Error(Globals.LogTag, "Error checking if sensor is supported(systeminfo)");
+                return false;
+            }
+
+            int ret = Interop.SensorManager.SensorIsSupported(type, out isSupported);
+            if (ret != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking if sensor is supported");
+                isSupported = false;
+            }
+
+            return isSupported;
         }
 
         /// <summary>

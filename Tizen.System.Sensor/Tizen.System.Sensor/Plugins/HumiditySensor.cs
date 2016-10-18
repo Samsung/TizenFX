@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class HumiditySensor : Sensor
     {
+        private const string HumiditySensorKey = "http://tizen.org/feature/sensor.humidity";
+
         /// <summary>
         /// Gets the value of the humidity sensor.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the HumiditySensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.HumiditySensor, HumiditySensorKey);
             }
         }
 
@@ -65,18 +67,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<HumiditySensorDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.HumiditySensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if humidity sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

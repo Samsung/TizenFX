@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class GyroscopeRotationVectorSensor : Sensor
     {
+        private const string GyroscopeRVKey = "http://tizen.org/feature/sensor.gyroscope_rotation_vector";
+
         /// <summary>
         /// Gets the X component of the gyroscope rotation vector.
         /// </summary>
@@ -48,7 +50,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the GyroscopeRotationVectorSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.GyroscopeRotationVectorSensor, GyroscopeRVKey);
             }
         }
 
@@ -85,18 +87,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<GyroscopeRotationVectorSensorDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.GyroscopeRotationVectorSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if gyroscope rotation vector sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

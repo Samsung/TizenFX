@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class PressureSensor : Sensor
     {
+        private static string PressureSensorKey = "http://tizen.org/feature/sensor.barometer";
+
         /// <summary>
         /// Gets the value of the pressure sensor.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the PressureSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.PressureSensor, PressureSensorKey);
             }
         }
 
@@ -66,17 +68,6 @@ namespace Tizen.System.Sensor
 
         public event EventHandler<PressureSensorDataUpdatedEventArgs> DataUpdated;
 
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.PressureSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if pressure sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {

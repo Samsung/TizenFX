@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// </summary>
     public class InVehicleActivityDetector : ActivityDetector
     {
+        private const string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
+
         /// <summary>
         /// Gets the state of in-vehicle activity detector
         /// </summary>
@@ -28,7 +30,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the in-vehicle activity detector is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.InVehicleActivityDetector, ActivityDetectorKey);
             }
         }
 
@@ -54,18 +56,6 @@ namespace Tizen.System.Sensor
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.InVehicle);
             Log.Info(Globals.LogTag, "Creating in-vehicle activity detector object");
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.InVehicleActivityDetector, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if in-vehicle activity detector is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

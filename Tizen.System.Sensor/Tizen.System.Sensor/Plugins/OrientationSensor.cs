@@ -15,6 +15,8 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class OrientationSensor : Sensor
     {
+        private static string OrientationSensorKey = "http://tizen.org/feature/sensor.tiltmeter";
+
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
         /// Gets the Azimuth component of the orientation.
@@ -39,7 +41,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the OrientationSensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.OrientationSensor, OrientationSensorKey);
             }
         }
 
@@ -98,18 +100,6 @@ namespace Tizen.System.Sensor
                     AccuracyListenStop();
                 }
             }
-        }
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.OrientationSensor, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if orientation sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
         }
 
         private static int GetCount()

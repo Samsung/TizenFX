@@ -15,6 +15,7 @@ namespace Tizen.System.Sensor
     /// /// </summary>
     public class Accelerometer : Sensor
     {
+        private static string AccelerometerKey = "http://tizen.org/feature/sensor.accelerometer";
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
@@ -38,7 +39,7 @@ namespace Tizen.System.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the Accelerometer sensor is supported");
-                return CheckIfSupported();
+                return CheckIfSupported(SensorType.Accelerometer, AccelerometerKey);
             }
         }
 
@@ -75,18 +76,6 @@ namespace Tizen.System.Sensor
         /// </summary>
 
         public event EventHandler<AccelerometerDataUpdatedEventArgs> DataUpdated;
-
-        private static bool CheckIfSupported()
-        {
-            bool isSupported;
-            int error = Interop.SensorManager.SensorIsSupported(SensorType.Accelerometer, out isSupported);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error checking if accelerometer sensor is supported");
-                isSupported = false;
-            }
-            return isSupported;
-        }
 
         private static int GetCount()
         {
