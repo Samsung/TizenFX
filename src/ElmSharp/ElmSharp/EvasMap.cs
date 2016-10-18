@@ -39,6 +39,18 @@ namespace ElmSharp
             }
         }
 
+        public bool IsMoveSync
+        {
+            get
+            {
+                return Interop.Evas.evas_map_util_object_move_sync_get(_evasMap);
+            }
+            set
+            {
+                Interop.Evas.evas_map_util_object_move_sync_set(_evasMap, value);
+            }
+        }
+
         public void PopulatePoints(EvasObject obj, int z)
         {
             Interop.Evas.evas_map_util_points_populate_from_object_full(_evasMap, obj, z);

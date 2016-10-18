@@ -204,6 +204,12 @@ internal static partial class Interop
         internal static extern bool evas_object_map_enable_get(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
+        internal static extern void evas_map_util_object_move_sync_set(IntPtr map, bool enabled);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_map_util_object_move_sync_get(IntPtr map);
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_map_set(IntPtr obj, IntPtr map);
 
         [DllImport(Libraries.Evas)]
