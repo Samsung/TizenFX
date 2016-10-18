@@ -14,18 +14,18 @@ internal static partial class Interop
     internal static partial class Tracer
 	{
 		[DllImport(Libraries.ttrace, EntryPoint = "trace_begin")]
-		internal static extern int Begin (String name);
+		internal static extern void Begin (String name);
 
 		[DllImport(Libraries.ttrace, EntryPoint = "trace_end")]
-		internal static extern int End ();
+		internal static extern void End ();
 
 		[DllImport(Libraries.ttrace, EntryPoint = "trace_async_begin")]
-		internal static extern int AsyncBegin (int cookie, String name);
+		internal static extern void AsyncBegin (int cookie, String name);
 
 		[DllImport(Libraries.ttrace, EntryPoint = "trace_async_end")]
-		internal static extern int AsyncEnd (int cookie, String name);
+		internal static extern void AsyncEnd (int cookie, String name);
 
 		[DllImport(Libraries.ttrace, EntryPoint = "trace_update_counter")]
-		internal static extern int TraceValue (int value, String name);
+		internal static extern void TraceValue (int value, String name);
     }
 }

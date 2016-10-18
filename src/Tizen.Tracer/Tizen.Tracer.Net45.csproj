@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D6ED1942-9F12-4F29-BB73-60E90B2DC612}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Tizen.Tracer</RootNamespace>
-    <AssemblyName>Tizen.Tracer</AssemblyName>
+    <RootNamespace>Tizen</RootNamespace>
+    <AssemblyName>Tizen</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
