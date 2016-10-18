@@ -46,10 +46,11 @@ namespace ElmSharp
             }
         }
 
-        public void UpdateItemClass(GenItemClass itemClass)
+        public void UpdateItemClass(GenItemClass itemClass, object data)
         {
-            Interop.Elementary.elm_genlist_item_item_class_update((IntPtr)Handle, itemClass.UnmanagedPtr);
+            Data = data;
             ItemClass = itemClass;
+            Interop.Elementary.elm_genlist_item_item_class_update((IntPtr)Handle, itemClass.UnmanagedPtr);
         }
     }
 }

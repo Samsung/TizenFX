@@ -11,7 +11,7 @@ namespace ElmSharp
         }
 
         public GenItemClass ItemClass { get; protected set; }
-        public object Data { get; private set; }
+        public object Data { get; protected set; }
         public abstract bool IsSelected { get; set; }
         public abstract void Update();
         protected override void OnInvalidate()
