@@ -96,6 +96,7 @@ namespace ElmSharp.Test
                     if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
                     {
                         window.Hide();
+                        window.Unrealize();
                     }
                 };
             }

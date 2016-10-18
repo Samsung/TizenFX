@@ -26,6 +26,14 @@ namespace ElmSharp
             OnInstantiated();
         }
 
+        // C# Finalizer was called on GC thread
+        // So, We can't access to EFL object
+        // And When Finalizer was called, Field can be already released.
+        //~EvasObject()
+        //{
+        //    Unrealize();
+        //}
+
         public event EventHandler Deleted;
         public event EventHandler<EvasKeyEventArgs> KeyUp;
         public event EventHandler<EvasKeyEventArgs> KeyDown;
@@ -212,11 +220,6 @@ namespace ElmSharp
             Interop.Evas.evas_object_size_hint_weight_set(Handle, x, y);
         }
 
-        ~EvasObject()
-        {
-           Unrealize();
-        }
-
         public void Show()
         {
             Interop.Evas.evas_object_show(Handle);
@@ -247,6 +250,9 @@ namespace ElmSharp
             Deleted?.Invoke(this, EventArgs.Empty);
             OnInvalidate();
             Handle = IntPtr.Zero;
+
+            (Parent as Window)?.RemoveChild(this);
+            Parent = null;
             _deleted = null;
         }
 
@@ -297,6 +303,9 @@ namespace ElmSharp
                 Parent = parent;
                 Handle = CreateHandle(parent);
                 Debug.Assert(Handle != IntPtr.Zero);
+
+                (parent as Window)?.AddChild(this);
+
                 OnRealized();
                 _deleted = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Del);
                 _keydown = new Interop.EvasObjectEvent<EvasKeyEventArgs>(this, Handle, Interop.Evas.ObjectCallbackType.KeyDown, EvasKeyEventArgs.Create);
@@ -317,10 +326,25 @@ namespace ElmSharp
             if (IsRealized)
             {
                 OnUnrealize();
-                Interop.Evas.evas_object_del(Handle);
+                IntPtr toBeDeleted = Handle;
                 Handle = IntPtr.Zero;
-                Parent = null;
+                _deleted?.Dispose();
                 _deleted = null;
+                _keydown?.Dispose();
+                _keydown = null;
+                _keyup?.Dispose();
+                _keyup = null;
+                _moved?.Dispose();
+                _moved = null;
+                _resized?.Dispose();
+                _resized = null;
+                _renderPost?.Dispose();
+                _renderPost = null;
+
+                (Parent as Window)?.RemoveChild(this);
+
+                Interop.Evas.evas_object_del(toBeDeleted);
+                Parent = null;
             }
         }
     }

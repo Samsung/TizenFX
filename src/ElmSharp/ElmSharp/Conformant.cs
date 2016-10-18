@@ -8,7 +8,7 @@ namespace ElmSharp
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
             Interop.Elementary.elm_win_conformant_set(parent.Handle, true);
-            Interop.Elementary.elm_win_resize_object_add(parent.Handle, Handle);
+            parent.AddResizeObject(this);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)

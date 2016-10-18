@@ -78,10 +78,11 @@ internal static partial class Interop
             {
                 if (disposing)
                 {
-                    foreach (var cb in _nativeCallbacks)
-                    {
-                        Evas.evas_object_event_callback_del(_handle, _type, cb.callback);
-                    }
+                    // Place holder to dispose managed state (managed objects).
+                }
+                foreach (var cb in _nativeCallbacks)
+                {
+                    Evas.evas_object_event_callback_del(_handle, _type, cb.callback);
                 }
                 _nativeCallbacks.Clear();
                 _disposed = true;
@@ -152,10 +153,11 @@ internal static partial class Interop
             {
                 if (disposing)
                 {
-                    foreach (var cb in _nativeCallbacks)
-                    {
-                        Evas.evas_object_event_callback_del(_handle, _type, cb.callback);
-                    }
+                    // Place holder to dispose managed state (managed objects).
+                }
+                foreach (var cb in _nativeCallbacks)
+                {
+                    Evas.evas_object_event_callback_del(_handle, _type, cb.callback);
                 }
                 _nativeCallbacks.Clear();
                 _disposed = true;
