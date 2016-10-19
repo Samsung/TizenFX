@@ -1,5 +1,6 @@
-{
+﻿{
   "dependencies": {
+    "ElmSharp": "1.0.7",
     "Tizen": "1.0.1"
   },
   "frameworks": {

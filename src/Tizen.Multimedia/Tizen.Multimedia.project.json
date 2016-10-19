@@ -1,5 +1,6 @@
-{
+﻿{
   "dependencies": {
+    "ElmSharp": "1.0.7",
     "NETStandard.Library": "1.6.0",
     "Tizen": "1.0.1"
   },

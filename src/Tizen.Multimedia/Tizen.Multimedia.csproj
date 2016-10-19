@@ -51,6 +51,8 @@
     <Compile Include="AudioIO\BaseAudio.cs" />
     <Compile Include="Interop\Interop.AudioIO.cs" />
     <Compile Include="Interop\Interop.Player.cs" />
+    <Compile Include="Interop\Interop.MediaView.cs" />
+    <Compile Include="MediaView\MediaView.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
     <Compile Include="Player\SubtitleTrack.cs" />
