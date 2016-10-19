@@ -8,6 +8,14 @@ namespace Tizen.Multimedia
         {
             AudioIOError code = (AudioIOError)errorCode;
             // 현재는 에러코드 최상위 exception으로 전달, 추후 상황에 맞게 케이스 처리해야 함.
+
+            Log.Info("Audio", "Error code = " + code);
+            if (code > 0)
+            {
+                Log.Info("Audio", "Code > 0, no error!!!!");
+                return;
+            }
+
             switch (code)
             {
                 case AudioIOError.None:
