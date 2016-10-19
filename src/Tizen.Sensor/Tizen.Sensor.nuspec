@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.Sensor</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Sensor API for Tizen.Net</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.1" />
+    </dependencies>
+	</metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.Sensor.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/Net45/Tizen.Sensor.dll" target="lib/net45" />
+  </files>
+</package>

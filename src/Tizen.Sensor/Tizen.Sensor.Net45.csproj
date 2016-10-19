@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15FBE509-20D4-4D66-A8FC-5B0AC807BB88}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.Sensor</RootNamespace>
+    <AssemblyName>Tizen.Sensor</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Net45\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Net45\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.Sensor.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interop\Interop.Sensor.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\FaceDownGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\PickUpGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\RunningActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\StationaryActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\InVehicleActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\WalkingActivityDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\WristUpGestureDetectorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\ActivityDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\PickUpGestureDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\RunningActivityDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\InVehicleActivityDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\StationaryActivityDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\WalkingActivityDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\WristUpGestureDetector.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\FaceDownGestureDetector.cs" />
+    <Compile Include="Tizen.Sensor\SensorEnumerations.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\GravitySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\GyroscopeDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\GyroscopeRotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\HeartRateMonitorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\HumiditySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\LightSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\LinearAccelerationSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\MagnetometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\MagnetometerRotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\OrientationSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\PedometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\PressureSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\ProximitySensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\RotationVectorSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\SleepMonitorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\TemperatureSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\UltravioletSensorDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\UncalibratedGyroscopeDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\UncalibratedMagnetometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\GravitySensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\Gyroscope.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\GyroscopeRotationVectorSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\HeartRateMonitor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\HumiditySensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\LightSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\LinearAccelerationSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\Magnetometer.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\MagnetometerRotationVectorSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\OrientationSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\Pedometer.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\PressureSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\ProximitySensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\RotationVectorSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\SleepMonitor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\TemperatureSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\UltravioletSensor.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\UncalibratedGyroscope.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\UncalibratedMagnetometer.cs" />
+    <Compile Include="Tizen.Sensor\Sensor.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Tizen.Sensor\Plugins\Accelerometer.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\SensorAccuracyChangedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\EventArgs\AccelerometerDataUpdatedEventArgs.cs" />
+    <Compile Include="Tizen.Sensor\SensorErrorFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tizen.Sensor.nuspec" />
+    <None Include="Tizen.Sensor.Net45.project.json" />
+    <None Include="Tizen.Sensor.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
