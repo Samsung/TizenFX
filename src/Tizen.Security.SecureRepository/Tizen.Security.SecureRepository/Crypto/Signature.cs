@@ -49,6 +49,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="password">The password used in decrypting a private key value.</param>
         /// <param name="message">The message that is signed with a private key.</param>
         /// <returns>A newly created signature.</returns>
+        /// <exception cref="ArgumentException">privateKeyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Key-protecting password isn't matched.
+        /// Key does not exist with privateKeyAlias.
+        /// </exception>
         /// <remarks>The key type specified by privateKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
         public byte[] Sign(string privateKeyAlias, string password, byte[] message)
@@ -84,7 +89,12 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="password">The password used in decrypting a public key value.</param>
         /// <param name="message">The input on which the signature is created.</param>
         /// <param name="signature">The signature that is verified with public key.</param>
-        /// <returns>The signature statue. True is returned when the signature is valid</returns>
+        /// <returns>The signature status. True is returned when the signature is valid.</returns>
+        /// <exception cref="ArgumentException">publicKeyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Key-protecting password isn't matched.
+        /// Key does not exist with publicKeyAlias.
+        /// </exception>
         /// <remarks>The key type specified by publicKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
         public bool Verify(string publicKeyAlias, string password, byte[] message, byte[] signature)

@@ -40,6 +40,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         /// <param name="name">Parameter name.</param>
         /// <param name="value">Parameter value.</param>
+        /// <exception cref="ArgumentException">CipherParameterName is invalid.</exception>
         protected void Add(CipherParameterName name, long value)
         {
             int ret = Interop.CkmcTypes.ParamListSetInteger(PtrCkmcParamList, (int)name, value);
@@ -51,6 +52,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         /// <param name="name">Parameter name.</param>
         /// <param name="value">Parameter value.</param>
+        /// <exception cref="ArgumentException">CipherParameterName is invalid.</exception>
         protected void Add(CipherParameterName name, byte[] value)
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(value), value.Length);
@@ -62,6 +64,10 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Gets integer parameter.
         /// </summary>
         /// <param name="name">Parameter name.</param>
+        /// <exception cref="ArgumentException">
+        /// CipherParameterName is invalid.
+        /// No parameter set with the name.
+        /// </exception>
         public long GetInteger(CipherParameterName name)
         {
             long value = 0;
@@ -74,6 +80,10 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Gets byte array parameter.
         /// </summary>
         /// <param name="name">Parameter name.</param>
+        /// <exception cref="ArgumentException">
+        /// CipherParameterName is invalid.
+        /// No parameter set with the name.
+        /// </exception>
         public byte[] GetBuffer(CipherParameterName name)
         {
             IntPtr ptr = new IntPtr();

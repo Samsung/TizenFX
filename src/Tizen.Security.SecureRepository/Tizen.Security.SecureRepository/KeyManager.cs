@@ -28,10 +28,15 @@ namespace Tizen.Security.SecureRepository
         /// Gets a key from secure repository.
         /// </summary>
         /// <param name="alias">The name of a key to retrieve.</param>
-        /// <param name="password">The password used in decrypting a key value.
-        /// If password of policy is provided in SaveKey(), the same password should be provided
+        /// <param name="password">
+        /// The password used in decrypting a key value.
+        /// If password of policy is provided in SaveKey(), the same password should be provided.
         /// </param>
         /// <returns>A key specified by alias.</returns>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Key does not exist with the alias or key-protecting password isn't matched.
+        /// </exception>
         static public Key Get(string alias, string password)
         {
             IntPtr ptr = new IntPtr();
@@ -45,7 +50,8 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Gets all alias of keys which the client can access.
         /// </summary>
-        /// <returns>all alias of keys which the client can access.</returns>
+        /// <returns>All alias of keys which the client can access.</returns>
+        /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = new IntPtr();
@@ -61,6 +67,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of a key to be stored.</param>
         /// <param name="key">The key's binary value to be stored.</param>
         /// <param name="policy">The policy about how to store a key securely.</param>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format. key argument is invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Key with alias does already exist.</exception>
         /// <remarks>Type in key may be set to KeyType.None as an input. Type is determined inside secure reposioty during storing keys.</remarks>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void Save(string alias, Key key, Policy policy)
@@ -77,6 +85,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <exception cref="ArgumentException">size is invalid. privateKeyAlias or publicKeyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Key with privateKeyAlias or publicKeyAlias does already exist.</exception>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateRsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
@@ -94,6 +104,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <exception cref="ArgumentException">size is invalid. privateKeyAlias or publicKeyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Key with privateKeyAlias or publicKeyAlias does already exist.</exception>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateDsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
@@ -111,6 +123,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
         /// <param name="publicKeyPolicy">The policy about how to store a public key securely.</param>
+        /// <exception cref="ArgumentException">Elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Key with privateKeyAlias or publicKeyAlias does already exist.</exception>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateEcdsaKeyPair(EllipticCurveType type, string privateKeyAlias, string publicKeyAlias,
                                     Policy privateKeyPolicy, Policy publicKeyPolicy)
@@ -126,6 +140,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="size">The size of key strength to be created. 128, 192 and256 are supported.</param>
         /// <param name="keyAlias">The name of key to be stored.</param>
         /// <param name="policy">The policy about how to store the key securely.</param>
+        /// <exception cref="ArgumentException">Key size is invalid. keyAlias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Key with privateKeyAlias or publicKeyAlias does already exist.</exception>
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateAesKey(int size, string keyAlias, Policy policy)
         {

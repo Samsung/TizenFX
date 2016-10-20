@@ -14,6 +14,8 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
@@ -46,6 +48,8 @@ namespace Tizen.Security.SecureRepository
         /// Removes a an entry (no matter of type) from the key manager.
         /// </summary>
         /// <param name="alias">Item alias to be removed.</param>
+        /// <exception cref="ArgumentException">alias is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">alias does not exist.</exception>
         /// <remarks>To remove item, client must have remove permission to the specified item.</remarks>
         /// <remarks>The item owner can remove by default.</remarks>
         static public void RemoveAlias(string alias)
@@ -60,6 +64,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">Item alias for which access will be granted.</param>
         /// <param name="otherPackageId">Package id of the application that will gain access rights.</param>
         /// <param name="permissions">Mask of permissions(Permission enum) granted for an application with otherPackageId.</param>
+        /// <exception cref="ArgumentException">alias or otherPackageId is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">alias does not exist.</exception>
         /// <remarks>Data identified by alias should exist.</remarks>
         /// <remarks>The item owner can set permissions.</remarks>
         static public void SetPermission(string alias, string otherPackageId, int permissions)

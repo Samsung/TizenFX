@@ -51,6 +51,14 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <param name="cipherText">Data to be decrypted (some algorithms may require additional
         /// information embedded in encrypted data.AES GCM is an example).</param>
         /// <returns>Decrypted data.</returns>
+        /// <exception cref="ArgumentException">
+        /// Mandatory algorithm parameter is missing or invalid.
+        /// Optional algorithm parameter is invalid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Key-protecting password isn't matched.
+        /// Key does not exist with keyAlias.
+        /// </exception>
         /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         public byte[] Decrypt(string keyAlias, string password, byte[] cipherText)
         {
@@ -73,6 +81,14 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// For RSA the size must be smaller or equal to (key_size_in bytes - 42).
         /// Example: for 1024 RSA key the maximum data size is 1024/8 - 42 = 86.</param>
         /// <returns>Encrypted data.</returns>
+        /// <exception cref="ArgumentException">
+        /// Mandatory algorithm parameter is missing or invalid.
+        /// Optional algorithm parameter is invalid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Key-protecting password isn't matched.
+        /// Key does not exist with keyAlias.
+        /// </exception>
         /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         public byte[] Encrypt(string keyAlias, string password, byte[] plainText)
         {

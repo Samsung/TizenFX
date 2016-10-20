@@ -29,9 +29,13 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="alias">The name of a certificate to retrieve.</param>
         /// <param name="password">The password used in decrypting a data value.
-        /// If password of policy is provided in SaveData(), the same password should be provided
+        /// If password of policy is provided in SaveData(), the same password should be provided.
         /// </param>
-        /// <returns>data specified by alias.</returns>
+        /// <returns>Data specified by alias.</returns>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Data does not exist with the alias or data-protecting password isn't matched.
+        /// </exception>
         static public byte[] Get(string alias, string password)
         {
             IntPtr ptr = new IntPtr();
@@ -45,7 +49,8 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Gets all alias of data which the client can access.
         /// </summary>
-        /// <returns>all alias of data which the client can access.</returns>
+        /// <returns>All alias of data which the client can access.</returns>
+        /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = new IntPtr();
@@ -61,6 +66,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of data to be stored.</param>
         /// <param name="data">The binary value to be stored.</param>
         /// <param name="policy">The policy about how to store data securely.</param>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format. Data policy cannot be unextractable.</exception>
+        /// <exception cref="InvalidOperationException">Data with alias does already exist.</exception>
         static public void Save(string alias, byte[] data, Policy policy)
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length);

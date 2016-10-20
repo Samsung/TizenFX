@@ -34,6 +34,12 @@ namespace Tizen.Security.SecureRepository
         /// If password of certificatePolicy is provided in SavePkcs12(), the same password should be provided
         /// </param>
         /// <returns>A Pkcs12 data specified by alias.</returns>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Pkcs12 does not exist with the alias.
+        /// Optional password of key in Pkcs12 isn't matched.
+        /// Optional password of certificate in Pkcs12 isn't matched.
+        /// </exception>
         static public Pkcs12 Get(string alias, string keyPassword, string cerificatePassword)
         {
             IntPtr ptr = new IntPtr();
@@ -52,6 +58,8 @@ namespace Tizen.Security.SecureRepository
         /// <param name="pkcs12">The pkcs12 data to be stored.</param>
         /// <param name="keyPolicy">The policy about how to store pkcs's private key.</param>
         /// <param name="certificatePolicy">The policy about how to store pkcs's certificate.</param>
+        /// <exception cref="ArgumentException">Alias argument is null or invalid format. Pkcs12 argument is invalid format.</exception>
+        /// <exception cref="InvalidOperationException">Pkcs12 with alias does already exist.</exception>
         static public void Save(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
         {
             int ret = Interop.CkmcManager.SavePkcs12(alias,

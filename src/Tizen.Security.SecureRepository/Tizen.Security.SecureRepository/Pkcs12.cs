@@ -33,6 +33,13 @@ namespace Tizen.Security.SecureRepository
         /// <param name="filePath">The path of PKCS12 file to be loaded.</param>
         /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
         /// If PKCS12 file is not encrypted, passphrase can be null.</param>
+        /// <exception cref="ArgumentException">filePath is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// No file on filePath.
+        /// No permission to access file.
+        /// File is invalid PKCS12 format.
+        /// File cannot be extracted with provided filePassword.
+        /// </exception>
         static public Pkcs12 Load(string filePath, string filePassword)
         {
             IntPtr ptr = new IntPtr();

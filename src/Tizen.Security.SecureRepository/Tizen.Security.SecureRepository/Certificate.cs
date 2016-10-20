@@ -29,6 +29,8 @@ namespace Tizen.Security.SecureRepository
         /// Load Certificate from the given file path.
         /// </summary>
         /// <param name="filePath">The path of certificate file to be loaded.</param>
+        /// <returns>Loaded certificate class instance.</returns>
+        /// <exception cref="InvalidOperationException">Invalid certificate file format. Provided file path does not exist or cannot be accessed.</exception>
         static public Certificate Load(string filePath)
         {
             IntPtr ptr = new IntPtr();
@@ -93,7 +95,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// When overridden in a derived class, executes the code required to free the handle.
         /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
+        /// <returns>true if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
             if (IsInvalid) // do not release
