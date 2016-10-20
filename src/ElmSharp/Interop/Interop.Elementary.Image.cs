@@ -17,6 +17,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_image_add(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_image_async_open_set(IntPtr obj, bool async);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_image_object_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
@@ -28,7 +31,7 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_image_file_set(IntPtr obj, string file, string group);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_image_file_get")]
         internal static extern void _elm_image_file_get(IntPtr obj, out IntPtr file, out IntPtr group);
         internal static string elm_image_file_get(IntPtr obj)
         {

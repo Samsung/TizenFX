@@ -14,10 +14,7 @@ namespace ElmSharp
         public Image(EvasObject parent) : base(parent)
         {
             _clicked = new Interop.SmartEvent(this, Handle, "clicked");
-            _clicked.On += (s, e) =>
-            {
-                Clicked?.Invoke(this, EventArgs.Empty);
-            };
+            _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
         }
 
         public event EventHandler Clicked;
@@ -193,7 +190,6 @@ namespace ElmSharp
             }
         }
 
-
         public ImageOrientation Orientation
         {
             get
@@ -206,43 +202,64 @@ namespace ElmSharp
             }
         }
 
-        public void Load(string file)
+        public bool Load(string file)
         {
+            if (file == null)
+                throw new ArgumentNullException("file");
+
+            Interop.Elementary.elm_image_async_open_set(Handle, false);
             Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
-            bool ret = Interop.Elementary.elm_image_file_set(Handle, file, null);
-            if (!ret)
-            {
-                throw new InvalidOperationException("Failed to set file to Image");
-            }
-
-            LoadingCompleted?.Invoke(this, EventArgs.Empty);
+            return Interop.Elementary.elm_image_file_set(Handle, file, null);
         }
-       
+
+        public bool Load(Uri uri)
+        {
+            if (uri == null)
+                throw new ArgumentNullException("uri");
+
+            return Load(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri);
+        }
+
         [CLSCompliant(false)]
-        public unsafe void Load(byte* img, long size)
+        [Obsolete("This method will be removed. Use Load(Stream stream) instead.")]
+        public unsafe bool Load(byte* img, long size)
         {
-            bool ret = Interop.Elementary.elm_image_memfile_set(Handle, img, size, IntPtr.Zero, IntPtr.Zero);
-            if (!ret)
+            if (img == null)
+                throw new ArgumentNullException("img");
+
+            Interop.Elementary.elm_image_async_open_set(Handle, false);
+            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
+            return Interop.Elementary.elm_image_memfile_set(Handle, img, size, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        public bool Load(Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            Interop.Elementary.elm_image_async_open_set(Handle, false);
+            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
+            MemoryStream memstream = new MemoryStream();
+            stream.CopyTo(memstream);
+            unsafe
             {
-                throw new InvalidOperationException("Failed to set memory buffer to Image");
+                byte[] dataArr = memstream.ToArray();
+                fixed (byte* data = &dataArr[0])
+                {
+                    return Interop.Elementary.elm_image_memfile_set(Handle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                }
             }
-
-            LoadingCompleted?.Invoke(this, EventArgs.Empty);
         }
 
-        public void LoadAsync(Uri uri)
+        public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (uri.IsFile)
-                LoadFromFileAsync(uri.LocalPath);
-            else
-                LoadFromUriAsync(uri.AbsoluteUri);
-        }
+            if (file == null)
+                throw new ArgumentNullException("file");
 
-        public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken)
-        {
-            var tcs = new TaskCompletionSource<bool>();
-
+            Interop.Elementary.elm_image_async_open_set(Handle, true);
             Interop.Elementary.elm_image_preload_disabled_set(Handle, false);
+
+            var tcs = new TaskCompletionSource<bool>();
 
             cancellationToken.Register(() =>
             {
@@ -251,6 +268,85 @@ namespace ElmSharp
                     tcs.SetCanceled();
                 }
             });
+
+            Interop.SmartEvent loadReady = new Interop.SmartEvent(this, Handle, "load,ready");
+            loadReady.On += (s, e) =>
+            {
+                loadReady.Dispose();
+                LoadingCompleted?.Invoke(this, EventArgs.Empty);
+                if (tcs != null && !tcs.Task.IsCompleted)
+                {
+                    tcs.SetResult(true);
+                }
+            };
+
+            Interop.SmartEvent loadError = new Interop.SmartEvent(this, Handle, "load,error");
+            loadError.On += (s, e) =>
+            {
+                loadError.Dispose();
+                LoadingFailed?.Invoke(this, EventArgs.Empty);
+                if (tcs != null && !tcs.Task.IsCompleted)
+                {
+                    tcs.SetResult(false);
+                }
+            };
+
+            bool ret = Interop.Elementary.elm_image_file_set(Handle, file, null);
+            if (!ret)
+            {
+                throw new InvalidOperationException("Failed to set file to Image");
+            }
+
+            return tcs.Task;
+        }
+
+        public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (uri == null)
+                throw new ArgumentNullException("uri");
+
+            return LoadAsync(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri, cancellationToken);
+        }
+
+        public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            Interop.Elementary.elm_image_async_open_set(Handle, true);
+            Interop.Elementary.elm_image_preload_disabled_set(Handle, false);
+
+            var tcs = new TaskCompletionSource<bool>();
+
+            cancellationToken.Register(() =>
+            {
+                if (tcs != null && !tcs.Task.IsCompleted)
+                {
+                    tcs.SetCanceled();
+                }
+            });
+
+            Interop.SmartEvent loadReady = new Interop.SmartEvent(this, Handle, "load,ready");
+            loadReady.On += (s, e) =>
+            {
+                loadReady.Dispose();
+                LoadingCompleted?.Invoke(this, EventArgs.Empty);
+                if (tcs != null && !tcs.Task.IsCompleted)
+                {
+                    tcs.SetResult(true);
+                }
+            };
+
+            Interop.SmartEvent loadError = new Interop.SmartEvent(this, Handle, "load,error");
+            loadError.On += (s, e) =>
+            {
+                loadError.Dispose();
+                LoadingFailed?.Invoke(this, EventArgs.Empty);
+                if (tcs != null && !tcs.Task.IsCompleted)
+                {
+                    tcs.SetResult(false);
+                }
+            };
 
             MemoryStream memstream = new MemoryStream();
             await stream.CopyToAsync(memstream);
@@ -268,66 +364,12 @@ namespace ElmSharp
                 }
             }
 
-            var evasObj = Interop.Elementary.elm_image_object_get(Handle);
-            Interop.EvasObjectEvent preloadedCallback = new Interop.EvasObjectEvent(this, evasObj, Interop.Evas.ObjectCallbackType.ImagePreloaded);
-            preloadedCallback.On += (s, e) =>
-            {
-                preloadedCallback.Dispose();
-                if (tcs != null && !tcs.Task.IsCompleted)
-                {
-                    tcs.SetResult(true);
-                }
-            };
-
             return await tcs.Task;
         }
-
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_image_add(parent.Handle);
-        }
-
-        void LoadFromFileAsync(string file)
-        {
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, false);
-            bool ret = Interop.Elementary.elm_image_file_set(Handle, file, null);
-            if (!ret)
-            {
-                throw new InvalidOperationException("Failed to set file to Image");
-            }
-
-            // FIXME: Due to the bug of EFL, the preload callback should be set after elm_image_file_set().
-            var evasObj = Interop.Elementary.elm_image_object_get(Handle);
-            var preloadedCallback = new Interop.EvasObjectEvent(this, evasObj, Interop.Evas.ObjectCallbackType.ImagePreloaded);
-            preloadedCallback.On += (s, e) =>
-            {
-                preloadedCallback.Dispose();
-                LoadingCompleted?.Invoke(this, EventArgs.Empty);
-            };
-        }
-
-        void LoadFromUriAsync(string path)
-        {
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
-            Interop.SmartEvent downloadDone = new Interop.SmartEvent(this, Handle, "download,done");
-            downloadDone.On += (s, e) =>
-            {
-                downloadDone.Dispose();
-                LoadingCompleted?.Invoke(this, EventArgs.Empty);
-            };
-            Interop.SmartEvent downloadError = new Interop.SmartEvent(this, Handle, "download,error");
-            downloadError.On += (s, e) =>
-            {
-                downloadError.Dispose();
-                LoadingFailed?.Invoke(this, EventArgs.Empty);
-            };
-
-            bool ret = Interop.Elementary.elm_image_file_set(Handle, path, null);
-            if (!ret)
-            {
-                throw new InvalidOperationException("Failed to set file to Image");
-            }
         }
     }
 
