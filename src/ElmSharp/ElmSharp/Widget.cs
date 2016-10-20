@@ -121,7 +121,10 @@ namespace ElmSharp
 
         public void SetPartColor(string part, Color color)
         {
-            Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R, color.G, color.B, color.A);
+            Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
+                                                                              color.G * color.A / 255,
+                                                                              color.B * color.A / 255,
+                                                                              color.A);
         }
 
         internal IntPtr GetPartContent(string part)
