@@ -105,6 +105,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_genlist_first_item_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_last_item_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_genlist_item_selected_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]

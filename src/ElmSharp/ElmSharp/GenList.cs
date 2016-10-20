@@ -85,6 +85,24 @@ namespace ElmSharp
             }
         }
 
+        public GenListItem FirstItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_genlist_first_item_get(Handle);
+                return ItemObject.GetItemByHandle(handle) as GenListItem;
+            }
+        }
+
+        public GenListItem LastItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_genlist_last_item_get(Handle);
+                return ItemObject.GetItemByHandle(handle) as GenListItem;
+            }
+        }
+
         public event EventHandler<GenListItemEventArgs> ItemSelected;
         public event EventHandler<GenListItemEventArgs> ItemUnselected;
         public event EventHandler<GenListItemEventArgs> ItemPressed;
