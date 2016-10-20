@@ -47,5 +47,25 @@
 #define COLORSELECTOR_PALETTE_COLORPLANE_WIDTH_INC 678
 #define COLORSELECTOR_PORTRAIT_HOR_PAD_COLORPLANE_INC "8"
 #define COLORSELECTOR_PORTRAIT_VER_PAD_COLORPLANE_INC "8"
-#define COLORSELECTOR_PALETTE_COLORBG_MIN_COLORPLANE_INC 90 90
 #define COLORSELECTOR_TOPBOTTOM_PAD_COLORPLANE_INC 24
+
+//****************************************************************************//
+// Entry
+//****************************************************************************//
+#define ENTRY_PREEDIT_BACKGROUND_COLOR_INC "#000000"
+#define ENTRY_PREEDIT_HIGHLIGHT_BACKGROUND_COLOR_INC "#8bd8ff99"
+#define ENTRY_PREEDIT_TEXT_COLOR_INC "#FAFAFA"
+#define ENTRY_PREEDIT_UNDERLINE_COLOR_INC "#000000"
+#define ENTRY_PREEDIT_SUB1_COLOR_INC "#2EA8E1"
+#define ENTRY_PREEDIT_SUB2_COLOR_INC "#9962C3"
+#define ENTRY_PREEDIT_SUB3_COLOR_INC "#76DE37"
+#define ENTRY_PREEDIT_SUB4_COLOR_INC "#999999"
+#define ENTRY_LEFT_RIGHT_MARGIN_INC 5
+#define ENTRY_FONT_SIZE_INC 40
+#define ENTRY_CURSOR_SIZE_INC 3 0
+
+//****************************************************************************//
+// Label
+//****************************************************************************//
+#define LABEL_FONT_SIZE_INC 24
+

@@ -1,0 +1,722 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved 
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define SLIDE_SPEED_WEIGHT 0.5
+#define SLIDE_TEXT_GAP 60
+#define SLIDE_TEXT_CHAR_GAP "      " //60 (6 spaces)
+#define SLIDE_TEXT_MAX_LENGTH (2*(1024+6))
+
+styles {
+   style { "textblock_style";
+      base: "font=Tizen:weight=Normal font_size="LABEL_FONT_SIZE_INC" color=#FFF color_class=label/default/text text_class=label";
+      tag:  "br" "\n";
+      tag:  "ps" "ps";
+      tag:  "hilight" "+ font_weight=Bold";
+      tag:  "b" "+ font_weight=Bold";
+      tag:  "tab" "\t";
+   }
+   style { "textblock_charwrap_style";
+      base: "font=Tizen:weight=Normal font_size="LABEL_FONT_SIZE_INC" color=#FFF color_class=label/default/text text_class=label";
+      tag:  "br" "\n";
+      tag:  "ps" "ps";
+      tag:  "hilight" "+ font_weight=Bold";
+      tag:  "b" "+ font_weight=Bold";
+      tag:  "tab" "\t";
+   }
+   style { "textblock_style_marker";
+      base: "font=Tizen:weight=Bold font_size=14 align=center color=#FFF wrap=word color_class=label/default/text text_class=tizen";
+      tag:  "br" "\n";
+      tag:  "ps" "ps";
+      tag:  "hilight" "+ font_weight=Bold";
+      tag:  "b" "+ font_weight=Bold";
+      tag:  "tab" "\t";
+   }
+}
+
+group { "elm/label/event/default";
+   inherit_only: 1;
+   programs {
+      program { "start_slide";
+         source: "elm";
+         signal: "elm,state,slide,start";
+         after: "on_start_slide";
+      }
+      program { "stop_slide";
+         source: "elm";
+         signal: "elm,state,slide,stop";
+         after: "on_stop_slide";
+      }
+   }
+}
+
+group { "elm/label/base/template";
+   inherit: "elm/label/event/default";
+   inherit_only: 1;
+   parts {
+      rect { "bg";
+         desc { "default";
+            color_class: "label/default/bg";
+         }
+      }
+      rect { "clipper";
+         desc { "default";
+         }
+      }
+      textblock { "elm.text";
+         scale;
+         clip: "clipper";
+         desc { "default";
+            text.style: "textblock_style";
+         }
+      }
+   }
+   programs {
+      program { "on_start_slide";
+      }
+      program { "on_stop_slide";
+      }
+   }
+}
+
+group { "elm/label/base/default";
+   inherit: "elm/label/base/template";
+   parts {
+      textblock { "elm.text";
+         scale;
+         clip: "clipper";
+         desc { "default";
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+      }
+   }
+}
+
+/* default label doesn't use it */
+group { "elm/label/base_wrap/default";
+   inherit: "elm/label/base/template";
+   parts {
+      textblock { "elm.text";
+         scale;
+         multiline: 1;
+         desc { "default";
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "charwrap_mode";
+            text {
+               style: "textblock_charwrap_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+      }
+   }
+   programs {
+      program { "default";
+         signal: "elm,state,default";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.text";
+      }
+      program { "charwrap";
+         signal: "elm,state,charwrap";
+         source: "elm";
+         action: STATE_SET "charwrap_mode";
+         target: "elm.text";
+      }
+   }
+}
+
+/* default label doesn't use it */
+group { "elm/label/base_wrap_ellipsis/default";
+   inherit: "elm/label/base/template";
+   parts {
+      textblock { "elm.text";
+         scale;
+         multiline: 1;
+         desc { "default";
+            fixed: 0 1;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "charwrap_mode";
+            fixed: 0 1;
+            text {
+               style: "textblock_charwrap_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+      }
+   }
+   programs {
+      program { "default";
+         signal: "elm,state,default";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.text";
+      }
+      program { "charwrap";
+         signal: "elm,state,charwrap";
+         source: "elm";
+         action: STATE_SET "charwrap_mode";
+         target: "elm.text";
+      }
+   }
+}
+
+group { "elm/label/base/slide_long";
+   inherit: "elm/label/base/template";
+   script {
+      public g_duration = 0, g_stopslide, g_timer_id, g_anim_id;
+
+      public message(Msg_Type:type, id, ...) {
+         if (type == MSG_FLOAT_SET) {
+            new Float:duration;
+            duration = getfarg(2);
+            if (id == 0)
+            set_float(g_duration, duration);
+            else
+            set_float(g_duration, duration / LABEL_FONT_SIZE_INC * SLIDE_SPEED_WEIGHT);
+         }
+      }
+      public slide_to_end_anim(val, Float:pos) {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_tween_state(PART:"elm.text", pos, "slide_begin", 0.0, "slide_end", 0.0);
+         if (pos >= 1.0) {
+            id = timer(0.5, "slide_to_begin", 1);
+            set_int(g_timer_id, id);
+         }
+      }
+      public slide_to_end() {
+         new stopflag;
+         new id;
+         new Float:duration;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         duration = get_float(g_duration);
+         id = anim(duration, "slide_to_end_anim", 1);
+         set_int(g_anim_id, id);
+      }
+      public slide_to_begin() {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_state(PART:"elm.text", "slide_begin", 0.0);
+         id = timer(0.5, "slide_to_end", 1);
+         set_int(g_timer_id, id);
+      }
+      public start_slide() {
+         set_int(g_stopslide, 0);
+         set_state(PART:"elm.text", "slide_begin", 0.0);
+         slide_to_end();
+      }
+      public stop_slide() {
+         new id;
+         set_int(g_stopslide, 1);
+         id = get_int(g_anim_id);
+         cancel_anim(id);
+         id = get_int(g_timer_id);
+         cancel_timer(id);
+         set_state(PART:"elm.text", "default", 0.0);
+      }
+   }
+   parts {
+      rect { "bg";
+         desc { "default";
+            color_class: "label/slide_long/bg";
+         }
+      }
+      textblock { "elm.text";
+         scale;
+         clip: "clipper";
+         desc { "default";
+            align: 0.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "slide_end";
+            inherit: "default";
+            rel2.relative: 0.0 1.0;
+            align: 1.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "slide_begin";
+            inherit: "default";
+            rel1.relative: 1.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+      }
+   }
+   programs {
+      program { "on_start_slide";
+         script {
+            start_slide();
+         }
+      }
+      program { "on_stop_slide";
+         script {
+            stop_slide();
+         }
+      }
+   }
+}
+
+group { "elm/label/base/slide_roll";
+   inherit: "elm/label/base/template";
+   script {
+      public g_duration = 0;
+      public g_stopslide = 0;
+      public g_timer_id = 0;
+      public g_anim_id = 0;
+      public g_tb_w = 0;
+      public g_tb_h = LABEL_FONT_SIZE_INC;
+      public org_text = 0;
+      public message(Msg_Type:type, id, ...) {
+         if (type == MSG_FLOAT_SET) {
+            new Float:duration;
+            duration = getfarg(2);
+            if (id == 0)
+            set_float(g_duration, duration);
+            else
+            set_float(g_duration, duration / get_int(g_tb_h) * SLIDE_SPEED_WEIGHT);
+         }
+      }
+      public get_tb_width() {
+         new x, y, w, h;
+         set_state(PART:"elm.text", "no_ellipsis", 0.0);
+         get_geometry(PART:"elm.text", x, y, w, h);
+         set_int(g_tb_w, w);
+         set_int(g_tb_h, h);
+         set_state(PART:"clipper_elm.text", "default", 0.0);
+         get_geometry(PART:"clipper_elm.text", x, y, w, h);
+         set_int(org_text, w);
+      }
+      public slide_to_end_anim(val, Float:pos) {
+         if (get_int(g_stopslide)) return;
+         set_tween_state(PART:"elm.text.slide", pos*0.5, "slide_begin", 0.0, "slide_end", 0.0);
+         if (pos >= 1.0) {
+            set_int(g_timer_id, timer(1.5, "start_slide", 0));
+         }
+      }
+      public slide_to_end() {
+         if (get_int(g_stopslide)) return;
+         set_int(g_anim_id, anim(get_float(g_duration), "slide_to_end_anim", 0));
+      }
+      public start_slide(val) {
+         new Float:len;
+         set_int(g_stopslide, 0);
+         get_tb_width();
+         if (!get_float(g_duration)) {
+            len = get_int(g_tb_w);
+            set_float(g_duration, len / get_int(g_tb_h) * SLIDE_SPEED_WEIGHT);
+         }
+         if(get_int(g_tb_w) > get_int(org_text)) {
+            run_program(PROGRAM:"slide_text_set");
+            set_state(PART:"elm.text.slide", "slide_begin", 0.0);
+            set_state(PART:"clipper_elm.text", "hide", 0.0);
+            set_state(PART:"clipper_elm.text.slide", "show", 0.0);
+            slide_to_end();
+         }
+      }
+      public stop_slide() {
+         new slide_start_timer;
+         new slide_anim_id;
+         set_int(g_stopslide, 1);
+         set_float(g_duration, 0);
+         slide_start_timer = get_int(g_timer_id);
+         if (slide_start_timer) {
+            cancel_timer(slide_start_timer);
+            set_int(g_timer_id, 0);
+         }
+         slide_anim_id = get_int(g_anim_id);
+         if (slide_anim_id) {
+            cancel_anim(slide_anim_id);
+            set_int(g_anim_id, 0);
+         }
+         set_text(PART:"elm.text.slide", "");
+         set_state(PART:"elm.text", "default", 0.0);
+         set_state(PART:"elm.text.slide", "default", 0.0);
+         set_state(PART:"clipper_elm.text", "default", 0.0);
+         set_state(PART:"clipper_elm.text.slide", "default", 0.0);
+      }
+   }
+   parts {
+      rect { "bg";
+         desc { "default";
+            color_class: "label/slide_roll/bg";
+         }
+      }
+      rect { "clipper_elm.text";
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+         }
+         desc { "hide";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         scale;
+         clip: "clipper_elm.text";
+         desc { "default";
+            align: 0.0 0.5;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+            }
+         }
+         desc { "no_ellipsis";
+            inherit: "default";
+            text.min: 1 1;
+         }
+      }
+      rect { "clipper_elm.text.slide";
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+            hid;
+         }
+         desc { "show";
+            inherit: "default";
+            vis;
+         }
+      }
+      spacer { "slide_text_gap";
+         scale;
+         desc { "default";
+            fixed: 1 0;
+            min: SLIDE_TEXT_GAP 0;
+            max: SLIDE_TEXT_GAP -1;
+            align: 1.0 0.5;
+            rel2.relative: 0.0 1.0;
+         }
+      }
+      textblock { "elm.text.slide";
+         scale;
+         clip: "clipper_elm.text.slide";
+         desc { "default";
+            align: 0.0 0.5;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+            }
+         }
+         desc { "slide_begin";
+            inherit: "default";
+            text.min: 1 1;
+            rel2.relative: 0.0 1.0;
+         }
+         desc { "slide_end";
+            inherit: "default";
+            align: 1.0 0.5;
+            text.min: 1 1;
+            text.align: 1.0 0.5;
+            rel.to: "slide_text_gap";
+         }
+      }
+   }
+   programs {
+      program { "slide_text_set";
+         script {
+            new buf[1024];
+            new buffer[SLIDE_TEXT_MAX_LENGTH];
+            get_text(PART:"elm.text", buf, 1024);
+            snprintf(buffer, SLIDE_TEXT_MAX_LENGTH, "%s", buf);
+            strcat(buffer, SLIDE_TEXT_CHAR_GAP);
+            strcat(buffer, buf);
+            strcat(buffer, SLIDE_TEXT_CHAR_GAP);
+            set_text(PART:"elm.text.slide", buffer);
+         }
+      }
+      program { "on_start_slide";
+         script {
+            run_program(PROGRAM:"stop_slide");
+            set_int(g_timer_id, timer(1.5, "start_slide", 0));
+         }
+      }
+      program { "on_stop_slide";
+         script {
+            stop_slide();
+         }
+      }
+   }
+}
+
+group { "elm/label/base/slide_short";
+   inherit: "elm/label/base/template";
+   script {
+      public g_duration = 0, g_stopslide, g_timer_id, g_anim_id;
+
+      public message(Msg_Type:type, id, ...) {
+         if (type == MSG_FLOAT_SET) {
+            new Float:duration;
+            duration = getfarg(2);
+            if (id == 0)
+            set_float(g_duration, duration);
+            else
+            set_float(g_duration, duration / LABEL_FONT_SIZE_INC * SLIDE_SPEED_WEIGHT);
+         }
+      }
+      public slide_to_end_anim(val, Float:pos) {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_tween_state(PART:"elm.text", pos, "slide_begin", 0.0, "slide_end", 0.0);
+         if (pos >= 1.0) {
+            id = timer(0.5, "slide_to_begin", 1);
+            set_int(g_timer_id, id);
+         }
+      }
+      public slide_to_end() {
+         new stopflag;
+         new id;
+         new Float:duration;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         duration = get_float(g_duration);
+         id = anim(duration, "slide_to_end_anim", 1);
+         set_int(g_anim_id, id);
+      }
+      public slide_to_begin() {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_state(PART:"elm.text", "slide_begin", 0.0);
+         id = timer(0.5, "slide_to_end", 1);
+         set_int(g_timer_id, id);
+      }
+      public start_slide() {
+         set_int(g_stopslide, 0);
+         set_state(PART:"elm.text", "slide_begin", 0.0);
+         slide_to_end();
+      }
+      public stop_slide() {
+         new id;
+         set_int(g_stopslide, 1);
+         id = get_int(g_anim_id);
+         cancel_anim(id);
+         id = get_int(g_timer_id);
+         cancel_timer(id);
+         set_state(PART:"elm.text", "default", 0.0);
+      }
+   }
+   parts {
+      rect { "bg";
+         desc { "default";
+            color_class: "label/slide_short/bg";
+         }
+      }
+      textblock { "elm.text";
+         scale;
+         clip: "clipper";
+         desc { "default";
+            align: 0.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "slide_end";
+            inherit: "default";
+            rel1.relative: 1.0 0.0;
+            align: 1.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "slide_begin";
+            inherit: "default";
+            rel2.relative: 0.0 1.0;
+            align: 0.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+      }
+   }
+   programs {
+      program { "on_start_slide";
+         script {
+            start_slide();
+         }
+      }
+      program { "on_stop_slide";
+         script {
+            stop_slide();
+         }
+      }
+   }
+}
+
+group { "elm/label/base/slide_bounce";
+   inherit: "elm/label/base/template";
+   script {
+      public g_duration = 0, g_stopslide, g_timer_id, g_anim_id;
+
+      public message(Msg_Type:type, id, ...) {
+         if (type == MSG_FLOAT_SET) {
+            new Float:duration;
+            duration = getfarg(2);
+            if (id == 0)
+            set_float(g_duration, duration);
+            else
+            set_float(g_duration, duration / LABEL_FONT_SIZE_INC * SLIDE_SPEED_WEIGHT);
+         }
+      }
+      public slide_to_end_anim(val, Float:pos) {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_tween_state(PART:"elm.text", pos, "slide_begin", 0.0, "slide_end", 0.0);
+         if (pos >= 1.0) {
+            id = timer(0.5, "slide_to_begin", 1);
+            set_int(g_timer_id, id);
+         }
+      }
+      public slide_to_end() {
+         new stopflag;
+         new id;
+         new Float:duration;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         duration = get_float(g_duration);
+         id = anim(duration, "slide_to_end_anim", 1);
+         set_int(g_anim_id, id);
+      }
+      public slide_to_begin_anim(val, Float:pos) {
+         new stopflag;
+         new id;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         set_tween_state(PART:"elm.text", pos, "slide_end", 0.0, "slide_begin", 0.0);
+         if (pos >= 1.0) {
+            id = timer(0.5, "slide_to_end", 1);
+            set_int(g_timer_id, id);
+         }
+      }
+      public slide_to_begin() {
+         new stopflag;
+         new id;
+         new Float:duration;
+         stopflag = get_int(g_stopslide);
+         if (stopflag == 1) return;
+         duration = get_float(g_duration);
+         id = anim(duration, "slide_to_begin_anim", 1);
+         set_int(g_anim_id, id);
+      }
+      public start_slide() {
+         set_int(g_stopslide, 0);
+         set_state(PART:"elm.text", "slide_begin", 0.0);
+         slide_to_end();
+      }
+      public stop_slide() {
+         new id;
+         set_int(g_stopslide, 1);
+         id = get_int(g_anim_id);
+         cancel_anim(id);
+         id = get_int(g_timer_id);
+         cancel_timer(id);
+         set_state(PART:"elm.text", "default", 0.0);
+      }
+   }
+   parts {
+      rect { "bg";
+         desc { "default";
+            color_class: "label/slide_bounce/bg";
+         }
+      }
+      textblock { "elm.text";
+         scale;
+         clip: "clipper";
+         desc { "default";
+            align: 0.0 0.0;
+            text {
+               style: "textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "slide_end";
+            inherit: "default";
+            rel1.relative: 1.0 0.0;
+            align: 1.0 0.0;
+            text.min: 1 1;
+         }
+         desc { "slide_begin";
+            inherit: "default";
+            rel2.relative: 0.0 1.0;
+            text.min: 1 1;
+         }
+      }
+   }
+   programs {
+      program { "on_start_slide";
+         script {
+            start_slide();
+         }
+      }
+      program { "on_stop_slide";
+         script {
+            stop_slide();
+         }
+      }
+   }
+}
