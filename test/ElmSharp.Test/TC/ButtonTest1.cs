@@ -14,14 +14,14 @@ namespace ElmSharp.Test
                 Text = "Button 1",
             };
 
-            button1.SetPartColor("bg-normal", Color.Red);
+            button1.SetPartColor("bg", Color.Red);
 
             button1.Clicked += (s, e) =>
             {
                 Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName);
                 Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower());
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("_","/widget/"));
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("_", "/widget/")+ "/" + "bg-normal");
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("elm_",""));
+                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("elm_", "")+ "/" + "bg");
             };
 
             button1.Pressed += (s, e) =>
