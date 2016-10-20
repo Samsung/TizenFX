@@ -6,7 +6,7 @@
 		<authors>Tizen Developers</authors>
 		<description>Push API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.1" />
+      <dependency id="Tizen" version="1.0.2" />
     </dependencies>
 	</metadata>
   <files>
