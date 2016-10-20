@@ -18,7 +18,7 @@ namespace Tizen.Applications
     public class WidgetApplication : CoreApplication
     {
         /// <summary>
-        /// Initializes WidgetApplication class.
+        /// Initializes WidgetApplication class with Type and application id.
         /// </summary>
         /// <param name="typeInfo">map structure for derived class type and widget id</param>
         public WidgetApplication(IDictionary<Type, string> typeInfo) : base(new WidgetCoreBackend())
@@ -29,7 +29,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initializes WidgetApplication class.
+        /// Initializes WidgetApplication class with Type.
         /// </summary>
         /// <remarks> Widget id will be replaced as application id</remarks>
         /// <param name="type">derived class type</param>
