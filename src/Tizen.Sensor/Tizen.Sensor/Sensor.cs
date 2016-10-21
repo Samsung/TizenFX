@@ -303,7 +303,7 @@ namespace Tizen.Sensor
         public void Stop()
         {
             Log.Info(Globals.LogTag, "Stopping the sensor");
-            if (_isSensing)
+            if (CheckListenerHandle())
             {
                 int error = Interop.SensorListener.StopListener(_listenerHandle);
                 if (error != (int)SensorError.None)
@@ -314,11 +314,6 @@ namespace Tizen.Sensor
                 EventListenStop();
                 _isSensing = false;
                 Log.Info(Globals.LogTag, "Sensor stopped");
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Can't stop sensor as it is already stopped");
-                throw new InvalidOperationException("Operation Failed: Sensor is already stopped");
             }
         }
 
