@@ -30,7 +30,7 @@ namespace Tizen.Security.SecureRepository
             List<string> aliases = new List<string>();
             while (ptrAliases != IntPtr.Zero)
             {
-                CkmcAliasList ckmcAliasList = (CkmcAliasList)Marshal.PtrToStructure(ptrAliases, typeof(CkmcAliasList));
+                CkmcAliasList ckmcAliasList = Marshal.PtrToStructure<CkmcAliasList>(ptrAliases);
                 aliases.Add(Marshal.PtrToStringAnsi(ckmcAliasList.alias));
                 ptrAliases = ckmcAliasList.next;
             }

@@ -57,7 +57,7 @@ namespace Tizen.Security.SecureRepository
         {
             base.SetHandle(ptrCkmcCert);
 
-            CkmcCert ckmcCert = (CkmcCert)Marshal.PtrToStructure(ptrCkmcCert, typeof(CkmcCert));
+            CkmcCert ckmcCert = Marshal.PtrToStructure<CkmcCert>(ptrCkmcCert);
             Binary = new byte[ckmcCert.size];
             Marshal.Copy(ckmcCert.rawCert, Binary, 0, Binary.Length);
             Format = (DataFormat)ckmcCert.dataFormat;

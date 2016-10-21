@@ -82,7 +82,7 @@ namespace Tizen.Security.SecureRepository
         {
             this.SetHandle(ptrCkmcPkcs12);
 
-            CkmcPkcs12 ckmcPkcs12 = (CkmcPkcs12)Marshal.PtrToStructure(handle, typeof(CkmcPkcs12));
+            CkmcPkcs12 ckmcPkcs12 = Marshal.PtrToStructure<CkmcPkcs12>(handle);
             this.PrivateKey = new Key(ckmcPkcs12.privateKey, false);
             if (ckmcPkcs12.certificate != IntPtr.Zero)
                 this.Certificate = new Certificate(ckmcPkcs12.certificate, false);

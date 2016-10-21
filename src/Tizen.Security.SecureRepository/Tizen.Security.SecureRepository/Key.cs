@@ -43,7 +43,7 @@ namespace Tizen.Security.SecureRepository
         {
             base.SetHandle(ptr);
 
-            CkmcKey ckmcKey = (CkmcKey)Marshal.PtrToStructure(handle, typeof(CkmcKey));
+            CkmcKey ckmcKey = Marshal.PtrToStructure<CkmcKey>(handle);
             Binary = new byte[ckmcKey.size];
             Marshal.Copy(ckmcKey.rawKey, Binary, 0, Binary.Length);
             Type = (KeyType)ckmcKey.keyType;

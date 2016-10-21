@@ -39,7 +39,7 @@ namespace Tizen.Security.SecureRepository
             IntPtr ptrCurr = handle;
             while (ptrCurr != IntPtr.Zero)
             {
-                CkmcCertList ckmcCertList = (CkmcCertList)Marshal.PtrToStructure(ptrCurr, typeof(CkmcCertList));
+                CkmcCertList ckmcCertList = Marshal.PtrToStructure<CkmcCertList>(ptrCurr);
                 certs.Add(new Certificate(ckmcCertList.cert, false));
                 ptrCurr = ckmcCertList.next;
             }
