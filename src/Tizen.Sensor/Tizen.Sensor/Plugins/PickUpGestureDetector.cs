@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular pick up gesture detector in case of multiple sensors.
         /// </param>
-        public PickUpGestureDetector(int index = 0) : base(index)
+        public PickUpGestureDetector(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating pick up gesture detector object");
         }

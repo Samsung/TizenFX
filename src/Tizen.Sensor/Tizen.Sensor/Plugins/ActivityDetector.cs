@@ -31,7 +31,7 @@ namespace Tizen.Sensor
 
         protected abstract void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data);
 
-        internal ActivityDetector(int index) : base(index)
+        internal ActivityDetector(uint index) : base(index)
         {
         }
 

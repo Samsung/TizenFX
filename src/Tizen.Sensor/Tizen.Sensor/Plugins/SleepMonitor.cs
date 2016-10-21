@@ -59,7 +59,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular sleep monitor in case of multiple sensors
         /// </param>
-        public SleepMonitor(int index = 0) : base(index)
+        public SleepMonitor(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating SleepMonitor object");
         }

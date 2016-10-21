@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular temperature sensor in case of multiple sensors
         /// </param>
-        public TemperatureSensor(int index = 0) : base(index)
+        public TemperatureSensor(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating TemperatureSensor object");
         }

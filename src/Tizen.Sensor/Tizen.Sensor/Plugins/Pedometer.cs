@@ -94,7 +94,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular pedometer sensor in case of multiple sensors
         /// </param>
-        public Pedometer(int index = 0) : base(index)
+        public Pedometer(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating Pedometer object");
         }

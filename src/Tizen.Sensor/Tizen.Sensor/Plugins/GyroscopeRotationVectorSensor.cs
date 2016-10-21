@@ -75,7 +75,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular gyroscope rotation vector sensor in case of multiple sensors
         /// </param>
-        public GyroscopeRotationVectorSensor(int index = 0) : base(index)
+        public GyroscopeRotationVectorSensor(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating GyroscopeRotationVectorSensor object");
         }

@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular stationary activity detector in case of multiple sensors.
         /// </param>
-        public StationaryActivityDetector(int index = 0) : base(index)
+        public StationaryActivityDetector(uint index = 0) : base(index)
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Stationary);
             Log.Info(Globals.LogTag, "Creating stationary activity detector object");

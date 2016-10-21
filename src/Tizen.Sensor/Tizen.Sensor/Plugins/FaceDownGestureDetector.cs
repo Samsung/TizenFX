@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular face down gesture detector in case of multiple sensors.
         /// </param>
-        public FaceDownGestureDetector(int index = 0) : base(index)
+        public FaceDownGestureDetector(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating face down gesture detector object");
         }

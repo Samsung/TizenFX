@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular wrist up gesture detector in case of multiple sensors.
         /// </param>
-        public WristUpGestureDetector(int index = 0) : base(index)
+        public WristUpGestureDetector(uint index = 0) : base(index)
         {
             Log.Info(Globals.LogTag, "Creating wrist up gesture detector object");
         }

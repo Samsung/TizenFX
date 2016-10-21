@@ -42,7 +42,7 @@ namespace Tizen.Sensor
         protected abstract void EventListenStart();
         protected abstract void EventListenStop();
 
-        internal Sensor(int index)
+        internal Sensor(uint index)
         {
             SensorType type = GetSensorType();
             GetHandleList(type, index);
@@ -350,7 +350,7 @@ namespace Tizen.Sensor
             }
         }
 
-        private void GetHandleList(SensorType type, int index)
+        private void GetHandleList(SensorType type, uint index)
         {
             IntPtr list;
             IntPtr[] sensorList;

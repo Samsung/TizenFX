@@ -55,7 +55,7 @@ namespace Tizen.Sensor
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular running activity detector in case of multiple sensors.
         /// </param>
-        public RunningActivityDetector(int index = 0) : base(index)
+        public RunningActivityDetector(uint index = 0) : base(index)
         {
             SetAttribute((SensorAttribute)ActivityAttribute, (int)ActivityType.Running);
             Log.Info(Globals.LogTag, "Creating running activity detector object");
