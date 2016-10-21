@@ -164,6 +164,11 @@ namespace Tizen.System
         /// <returns>The current status of the given key</returns>
         internal static object GetStatus(RuntimeInformationKey key)
         {
+            Type value;
+            if (!s_keyDataTypeMapping.TryGetValue(key, out value))
+            {
+                RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            }
             if (s_keyDataTypeMapping[key] == typeof(int))
             {
                 int status;
