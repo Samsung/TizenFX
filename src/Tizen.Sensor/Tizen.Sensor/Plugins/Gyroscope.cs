@@ -12,7 +12,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// Gyroscope Sensor Class. Used for registering callbacks for gyroscope and getting gyroscope data
-    /// /// </summary>
+    /// </summary>
     public class Gyroscope : Sensor
     {
         private const string GyroscopeKey = "http://tizen.org/feature/sensor.gyroscope";
@@ -59,6 +59,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.Gyroscope"/> class.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular gyroscope sensor in case of multiple sensors
         /// </param>

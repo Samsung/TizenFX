@@ -158,6 +158,7 @@ namespace Tizen.Sensor
         /// Sets the interval of the sensor for sensor data event
         /// Callbacks will be called at frequency of this interval
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public uint Interval
         {
             set
@@ -176,6 +177,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Sets the max batch latency for the sensor corresponding to the sensor data event.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public uint MaxBatchLatency
         {
             set
@@ -194,7 +196,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Sets the pause policy of the sensor.
         /// </summary>
-        /// <value>
+        /// <value>The pause policy</value>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public SensorPausePolicy PausePolicy
         {
             set
@@ -274,6 +277,7 @@ namespace Tizen.Sensor
         /// Starts the sensor.
         /// After this the event handlers will start receiving events.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void Start()
         {
             Log.Info(Globals.LogTag, "Starting the sensor");
@@ -295,6 +299,7 @@ namespace Tizen.Sensor
         /// Stop the sensor.
         /// After this the event handlers will stop receiving the events
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void Stop()
         {
             Log.Info(Globals.LogTag, "Stopping the sensor");

@@ -12,7 +12,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// Accelerometer Sensor Class. Used for registering callbacks for accelerometer and getting accelerometer data
-    /// /// </summary>
+    /// </summary>
     public class Accelerometer : Sensor
     {
         private static string AccelerometerKey = "http://tizen.org/feature/sensor.accelerometer";
@@ -46,6 +46,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of accelerometer sensors available on the device.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public static int Count
         {
             get
@@ -58,6 +59,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.Accelerometer"/> class.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular accelerometer sensor in case of multiple sensors
         /// </param>
@@ -74,7 +78,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in accelerometer sensor data.
         /// </summary>
-
         public event EventHandler<AccelerometerDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

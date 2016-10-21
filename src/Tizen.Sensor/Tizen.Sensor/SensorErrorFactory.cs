@@ -37,9 +37,9 @@ namespace Tizen.Sensor
                 case SensorError.InvalidParameter:
                     return new ArgumentException("Invalid Parameter: " + msg);
                 case SensorError.NotSupported:
-                    return new InvalidOperationException("Not Supported: " + msg);
+                    return new NotSupportedException("Not Supported: " + msg);
                 case SensorError.PermissionDenied:
-                    return new InvalidOperationException("Permission Denied: " + msg);
+                    return new UnauthorizedAccessException("Permission Denied: " + msg);
                 case SensorError.OutOfMemory:
                     return new InvalidOperationException("Out of Memory: " + msg);
                 case SensorError.NotNeedCalibration:

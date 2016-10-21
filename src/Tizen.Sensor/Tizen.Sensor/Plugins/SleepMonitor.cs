@@ -49,6 +49,13 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.SleepMonitor"/> class.
         /// </summary>
+        /// <remarks>
+        /// For accessing sleep monitor, app should have http://tizen.org/privilege/healthinfo privilege.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular sleep monitor in case of multiple sensors
         /// </param>

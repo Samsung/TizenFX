@@ -12,7 +12,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// GravitySensor Class. Used for registering callbacks for gravity sensor and getting gravity data
-    /// /// </summary>
+    /// </summary>
     public class GravitySensor : Sensor
     {
         private const string GravitySensorKey = "http://tizen.org/feature/sensor.gravity";
@@ -60,6 +60,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.GravitySensor"/> class.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular gravity sensor in case of multiple sensors
         /// </param>
