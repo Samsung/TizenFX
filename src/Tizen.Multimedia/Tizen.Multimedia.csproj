@@ -122,6 +122,23 @@
     <Compile Include="Interop\Interop.Device.cs" />
     <Compile Include="Interop\Interop.StreamPolicy.cs" />
     <Compile Include="Interop\Interop.Volume.cs" />
+    <Compile Include="Interop\Interop.MediaController.cs" />
+    <Compile Include="MediaController\Playback.cs" />
+    <Compile Include="MediaController\Metadata.cs" />
+    <Compile Include="MediaController\ServerInformation.cs" />
+    <Compile Include="MediaController\CustomCommandEventArgs.cs" />
+    <Compile Include="MediaController\PlaybackStateCommandEventArgs.cs" />
+    <Compile Include="MediaController\ServerUpdatedEventArgs.cs" />
+    <Compile Include="MediaController\PlaybackUpdatedEventArgs.cs" />
+    <Compile Include="MediaController\MetadataUpdatedEventArgs.cs" />
+    <Compile Include="MediaController\ShuffleModeUpdatedEventArgs.cs" />
+    <Compile Include="MediaController\RepeatModeUpdatedEventArgs.cs" />
+    <Compile Include="MediaController\MediaControllerErrorFactory.cs" />
+    <Compile Include="MediaController\MediaControllerEnums.cs" />
+    <Compile Include="MediaController\MediaControllerLog.cs" />
+    <Compile Include="MediaController\Client.cs" />
+    <Compile Include="MediaController\Server.cs" />
+    <Compile Include="MediaController\CommandReplyEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.nuspec" />
