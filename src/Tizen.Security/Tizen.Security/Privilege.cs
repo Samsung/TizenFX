@@ -47,6 +47,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the given privilege.
         /// </summary>
+        /// <remarks>If there's no matching privilege then it returns last token of given privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <returns>The display name of given privilege at given api version</returns>
@@ -63,6 +64,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the given privilege.
         /// </summary>
+        /// <remarks>If there's no matching privilege then it returns last token of given privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <param name="packageType">The type of application package</param>
@@ -80,6 +82,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the description of the given privilege.
         /// </summary>
+        /// <remarks>If there's no matching privilege then it returns description string for undefined privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <returns>The description of given privilege at given api version</returns>
@@ -96,6 +99,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the description of the given privilege.
         /// </summary>
+        /// <remarks>If there's no matching privilege then it returns description string for undefined privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <param name="packageType">The type of application package</param>
@@ -131,7 +135,6 @@ namespace Tizen.Security
         /// </summary>
         /// <param name="privilege">The privilege</param>
         /// <remarks>The privilege must be privacy related.</remarks>
-        /// <remarks>In case of errors, status is set to true</remarks>
         /// <returns>status true if the privilege is on and false if the privilege is off.</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
