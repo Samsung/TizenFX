@@ -59,7 +59,7 @@
     <Compile Include="MetadataExtractor\Artwork.cs" />
     <Compile Include="MetadataExtractor\Metadata.cs" />
     <Compile Include="MetadataExtractor\MetadataExtractor.cs" />
-    <Compile Include="Interop\Interop.MediaView.cs" />
+    <Compile Include="Interop\Interop.EvasObject.cs" />
     <Compile Include="MediaView\MediaView.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
     <Compile Include="Player\MediaStreamConfiguration.cs" />
