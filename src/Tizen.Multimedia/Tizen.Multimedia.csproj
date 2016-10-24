@@ -51,6 +51,14 @@
     <Compile Include="AudioIO\BaseAudio.cs" />
     <Compile Include="Interop\Interop.AudioIO.cs" />
     <Compile Include="Interop\Interop.Player.cs" />
+    <Compile Include="Interop\Interop.MetadataExtractor.cs" />
+    <Compile Include="MetadataExtractor\MetadataEnums.cs" />
+    <Compile Include="MetadataExtractor\MetadataExtractorErrorFactory.cs" />
+    <Compile Include="MetadataExtractor\Synclyrics.cs" />
+    <Compile Include="MetadataExtractor\Frame.cs" />
+    <Compile Include="MetadataExtractor\Artwork.cs" />
+    <Compile Include="MetadataExtractor\Metadata.cs" />
+    <Compile Include="MetadataExtractor\MetadataExtractor.cs" />
     <Compile Include="Interop\Interop.MediaView.cs" />
     <Compile Include="MediaView\MediaView.cs" />
     <Compile Include="Player\PlayerEnums.cs" />
