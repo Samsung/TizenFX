@@ -342,10 +342,17 @@ namespace Tizen.Multimedia
 				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
 			}
 
-			tmpBuf = new byte[getSize];
-			Marshal.Copy(getArtworkData, tmpBuf, 0, getSize);
+			if (getSize > 0)
+			{
+				tmpBuf = new byte[getSize];
+				Marshal.Copy(getArtworkData, tmpBuf, 0, getSize);
 
-			_artwork = new Artwork(tmpBuf, getMimeType);
+				_artwork = new Artwork(tmpBuf, getMimeType);
+			}
+			else
+			{
+				_artwork = new Artwork(null, null);
+			}
 
 			return _artwork;
 		}
@@ -358,7 +365,7 @@ namespace Tizen.Multimedia
 		{
 			int ret;
 			Synclyrics _lyrics;
-			ulong getTimestamp;
+			uint getTimestamp;
 			string getLyrics;
 
 			ret = Interop.MetadataExtractor.GetSynclyrics(_handle, index, out getTimestamp, out getLyrics);
@@ -405,7 +412,7 @@ namespace Tizen.Multimedia
 		/// <param name="accurate"> If @c true the user can get an accurate frame for the given timestamp,\n
 		///						 otherwise @c false if the user can only get the nearest i-frame of the video rapidly </param>
 		/// <value> Frame object </value>
-		public Frame GetFrameAtTime(ulong timeStamp, bool accurate)
+		public Frame GetFrameAtTime(uint timeStamp, bool accurate)
 		{
 			int ret;
 			Frame _frame;

@@ -25,12 +25,12 @@ namespace Tizen.Multimedia
 	/// </remarks>
 	public class Synclyrics
 	{
-		internal Synclyrics(string lyrics, ulong timestamp)
+		internal Synclyrics(string lyrics, uint timestamp)
 		{
 			Lyrics = lyrics;
 			Timestamp = timestamp;
 		}
 		public readonly string Lyrics;
-		public readonly ulong Timestamp;
+		public readonly uint Timestamp;
 	}
 }
