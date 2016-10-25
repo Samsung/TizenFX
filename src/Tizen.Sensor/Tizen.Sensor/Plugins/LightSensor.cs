@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// LightSensor Class. Used for registering callbacks for light sensor and getting light data
     /// /// </summary>
-    public class LightSensor : Sensor
+    public sealed class LightSensor : Sensor
     {
         private const string LightSensorKey = "http://tizen.org/feature/sensor.photometer";
 
@@ -86,7 +86,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -96,7 +96,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

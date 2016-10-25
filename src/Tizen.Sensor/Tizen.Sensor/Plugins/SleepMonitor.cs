@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// SleepMonitor Class. Used for registering callbacks for sleep monitor and getting sleep data
     /// /// </summary>
-    public class SleepMonitor : Sensor
+    public sealed class SleepMonitor : Sensor
     {
         private static string SleepMonitorKey = "http://tizen.org/feature/sensor.sleep_monitor";
 
@@ -91,7 +91,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -101,7 +101,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

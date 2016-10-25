@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// HumiditySensor Class. Used for registering callbacks for humidity sensor and getting humidity data
     /// /// </summary>
-    public class HumiditySensor : Sensor
+    public sealed class HumiditySensor : Sensor
     {
         private const string HumiditySensorKey = "http://tizen.org/feature/sensor.humidity";
 
@@ -86,7 +86,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -96,7 +96,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

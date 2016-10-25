@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// WalkingActivityDetector Class. Used for registering callbacks for walking activity detector and getting the walking state
     /// </summary>
-    public class WalkingActivityDetector : ActivityDetector
+    public sealed class WalkingActivityDetector : ActivityDetector
     {
         private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
 
@@ -81,7 +81,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<WalkingActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
+        protected internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
             TimeSpan = new TimeSpan((Int64)sensorData.timestamp);

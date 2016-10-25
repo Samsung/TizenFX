@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// RunningActivityDetector Class. Used for registering callbacks for running activity detector and getting the running state
     /// </summary>
-    public class RunningActivityDetector : ActivityDetector
+    public sealed class RunningActivityDetector : ActivityDetector
     {
         private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
 
@@ -81,7 +81,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<RunningActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
+        protected internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
             TimeSpan = new TimeSpan((Int64)sensorData.timestamp);

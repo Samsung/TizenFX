@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// MagnetometerRotationVectorSensor Class. Used for registering callbacks for magnetometer rotation vector sensor and getting magnetometer rotation vector data
     /// /// </summary>
-    public class MagnetometerRotationVectorSensor : Sensor
+    public sealed class MagnetometerRotationVectorSensor : Sensor
     {
         private static string MagnetometerRVKey = "http://tizen.org/feature/sensor.geomagnetic_rotation_vector";
 
@@ -142,7 +142,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -152,7 +152,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// PressureSensor Class. Used for registering callbacks for pressure sensor and getting pressure data
     /// /// </summary>
-    public class PressureSensor : Sensor
+    public sealed class PressureSensor : Sensor
     {
         private static string PressureSensorKey = "http://tizen.org/feature/sensor.barometer";
 
@@ -87,7 +87,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

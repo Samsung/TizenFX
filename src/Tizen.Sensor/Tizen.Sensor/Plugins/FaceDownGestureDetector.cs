@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// FaceDownGestureDetector Class. Used for registering callbacks for face down gesture detector and getting the face down state
     /// </summary>
-    public class FaceDownGestureDetector : Sensor
+    public sealed class FaceDownGestureDetector : Sensor
     {
         private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";
 
@@ -85,7 +85,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<FaceDownGestureDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -95,7 +95,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

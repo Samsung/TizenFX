@@ -39,8 +39,8 @@ namespace Tizen.Sensor
         private IntPtr _listenerHandle = IntPtr.Zero;
 
         internal abstract SensorType GetSensorType();
-        protected abstract void EventListenStart();
-        protected abstract void EventListenStop();
+        protected internal abstract void EventListenStart();
+        protected internal abstract void EventListenStop();
 
         internal Sensor(uint index)
         {

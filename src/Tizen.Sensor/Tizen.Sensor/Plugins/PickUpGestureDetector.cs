@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// PickUpGestureDetector Class. Used for registering callbacks for pick up activity detector and getting the pick up state
     /// </summary>
-    public class PickUpGestureDetector : Sensor
+    public sealed class PickUpGestureDetector : Sensor
     {
         private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";
 
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<PickUpGestureDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -107,7 +107,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

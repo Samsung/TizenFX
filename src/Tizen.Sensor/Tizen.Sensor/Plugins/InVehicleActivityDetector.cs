@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// InVehicleActivityDetector Class. Used for registering callbacks for in vehicle activity detector and getting the in vehicle state
     /// </summary>
-    public class InVehicleActivityDetector : ActivityDetector
+    public sealed class InVehicleActivityDetector : ActivityDetector
     {
         private const string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
 
@@ -81,7 +81,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<InVehicleActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
+        protected internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
             TimeSpan = new TimeSpan((Int64)sensorData.timestamp);

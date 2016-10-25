@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// GravitySensor Class. Used for registering callbacks for gravity sensor and getting gravity data
     /// </summary>
-    public class GravitySensor : Sensor
+    public sealed class GravitySensor : Sensor
     {
         private const string GravitySensorKey = "http://tizen.org/feature/sensor.gravity";
 
@@ -120,7 +120,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -130,7 +130,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

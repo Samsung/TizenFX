@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// WristUpGestureDetector Class. Used for registering callbacks for wrist up gesture detector and getting the wrist up state
     /// </summary>
-    public class WristUpGestureDetector : Sensor
+    public sealed class WristUpGestureDetector : Sensor
     {
         private static string WristUpKey = "http://tizen.org/feature/sensor.wrist_up";
 
@@ -85,7 +85,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<WristUpGestureDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -95,7 +95,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

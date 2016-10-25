@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// TemperatureSensor Class. Used for registering callbacks for temperature sensor and getting temperature data
     /// /// </summary>
-    public class TemperatureSensor : Sensor
+    public sealed class TemperatureSensor : Sensor
     {
         private static string TemperatureSensorKey = "http://tizen.org/feature/sensor.temperature";
 
@@ -87,7 +87,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

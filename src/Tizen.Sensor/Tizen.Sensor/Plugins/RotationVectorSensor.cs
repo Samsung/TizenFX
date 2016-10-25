@@ -13,7 +13,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// RotationVectorSensor Class. Used for registering callbacks for rotation vector sensor and getting rotation vector data
     /// /// </summary>
-    public class RotationVectorSensor : Sensor
+    public sealed class RotationVectorSensor : Sensor
     {
         private static string RotationVectorKey = "http://tizen.org/feature/sensor.rotation_vector";
 
@@ -130,7 +130,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected override void EventListenStart()
+        protected internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -140,7 +140,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected override void EventListenStop()
+        protected internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
