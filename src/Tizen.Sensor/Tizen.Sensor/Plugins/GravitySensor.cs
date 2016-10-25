@@ -21,17 +21,17 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the gravity.
         /// </summary>
-        public float X { get; private set; }
+        public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the gravity.
         /// </summary>
-        public float Y { get; private set; }
+        public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the gravity.
         /// </summary>
-        public float Z { get; private set; }
+        public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether gravity sensor is supported by device.

@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the temperature sensor.
         /// </summary>
-        public float Temperature { get; private set; }
+        public float Temperature { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether temperature sensor is supported by device.

@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of the face down gesture.
         /// </summary>
-        public DetectorState FaceDown { get; private set; }
+        public DetectorState FaceDown { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether face down gesture detector is supported by device.

@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the heart rate monitor.
         /// </summary>
-        public int HeartRate { get; private set; }
+        public int HeartRate { get; private set; } = int.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether heart rate monitor is supported by device.

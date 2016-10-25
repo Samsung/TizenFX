@@ -20,42 +20,42 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the step count
         /// </summary>
-        public int StepCount { get; private set; }
+        public uint StepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the walking step count
         /// </summary>
-        public int WalkStepCount { get; private set; }
+        public uint WalkStepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the running step count
         /// </summary>
-        public int RunStepCount { get; private set; }
+        public uint RunStepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the moving distance
         /// </summary>
-        public float MovingDistance { get; private set; }
+        public float MovingDistance { get; private set; } = 0;
 
         /// <summary>
         /// Gets the calorie burned
         /// </summary>
-        public float CalorieBurned { get; private set; }
+        public float CalorieBurned { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last speed
         /// </summary>
-        public float LastSpeed { get; private set; }
+        public float LastSpeed { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last stepping frequency
         /// </summary>
-        public float LastSteppingFrequency { get; private set; }
+        public float LastSteppingFrequency { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last step status
         /// </summary>
-        public PedometerState LastStepStatus { get; private set; }
+        public PedometerState LastStepStatus { get; private set; } = PedometerState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether pedometer sensor is supported by device.
@@ -149,9 +149,9 @@ namespace Tizen.Sensor
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
             TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
-            StepCount = (int)sensorData.values[0];
-            WalkStepCount = (int)sensorData.values[1];
-            RunStepCount = (int)sensorData.values[2];
+            StepCount = (uint)sensorData.values[0];
+            WalkStepCount = (uint)sensorData.values[1];
+            RunStepCount = (uint)sensorData.values[2];
             MovingDistance = sensorData.values[3];
             CalorieBurned = sensorData.values[4];
             LastSpeed = sensorData.values[5];

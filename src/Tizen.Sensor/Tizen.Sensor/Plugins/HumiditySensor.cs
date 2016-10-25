@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the humidity sensor.
         /// </summary>
-        public float Humidity { get; private set; }
+        public float Humidity { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether humidity sensor is supported by device.

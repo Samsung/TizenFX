@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of the pick up gesture.
         /// </summary>
-        public DetectorState PickUp { get; private set; }
+        public DetectorState PickUp { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether pick up gesture detector is supported by device.

@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of walking activity detector
         /// </summary>
-        public DetectorState Walking { get; private set; }
+        public DetectorState Walking { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether walking activity detector is supported by device.

@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of stationary activity detector
         /// </summary>
-        public DetectorState Stationary { get; private set; }
+        public DetectorState Stationary { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether stationary activity detector is supported by device.

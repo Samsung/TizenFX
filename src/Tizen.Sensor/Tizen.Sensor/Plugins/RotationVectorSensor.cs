@@ -21,27 +21,27 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the rotation vector.
         /// </summary>
-        public float X { get; private set; }
+        public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the rotation vector.
         /// </summary>
-        public float Y { get; private set; }
+        public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the rotation vector.
         /// </summary>
-        public float Z { get; private set; }
+        public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the W component of the rotation vector.
         /// </summary>
-        public float W { get; private set; }
+        public float W { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Accuracy of the rotation vector data.
         /// </summary>
-        public SensorDataAccuracy Accuracy { get; private set; }
+        public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
         /// Returns true or false based on whether rotation vector sensor is supported by device.

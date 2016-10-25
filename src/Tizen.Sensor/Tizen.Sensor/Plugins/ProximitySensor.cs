@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the proximity state.
         /// </summary>
-        public ProximitySensorState Proximity { get; private set; }
+        public ProximitySensorState Proximity { get; private set; } = ProximitySensorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether proximity sensor is supported by device.

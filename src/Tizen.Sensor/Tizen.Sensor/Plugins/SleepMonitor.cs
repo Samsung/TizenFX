@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the sleep state.
         /// </summary>
-        public SleepMonitorState SleepState { get; private set; }
+        public SleepMonitorState SleepState { get; private set; } = SleepMonitorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether sleep monitor is supported by device.

@@ -21,22 +21,22 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the magnetometer rotation vector.
         /// </summary>
-        public float X { get; private set; }
+        public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the magnetometer rotation vector.
         /// </summary>
-        public float Y { get; private set; }
+        public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the magnetometer rotation vector.
         /// </summary>
-        public float Z { get; private set; }
+        public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the W component of the magnetometer rotation vector.
         /// </summary>
-        public float W { get; private set; }
+        public float W { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Accuracy of the magnetometer rotation vector data.

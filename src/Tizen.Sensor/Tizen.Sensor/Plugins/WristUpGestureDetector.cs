@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of the wrist up gesture.
         /// </summary>
-        public DetectorState WristUp { get; private set; }
+        public DetectorState WristUp { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether wrist up gesture detector is supported by device.

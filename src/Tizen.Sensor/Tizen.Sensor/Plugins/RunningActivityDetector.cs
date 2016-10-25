@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of running activity detector
         /// </summary>
-        public DetectorState Running { get; private set; }
+        public DetectorState Running { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether running activity detector is supported by device.

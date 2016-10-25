@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the ultraviolet sensor.
         /// </summary>
-        public float UltravioletIndex { get; private set; }
+        public float UltravioletIndex { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether ultraviolet sensor is supported by device.

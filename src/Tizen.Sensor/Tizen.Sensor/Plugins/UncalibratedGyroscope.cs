@@ -20,32 +20,32 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
-        public float X { get; private set; }
+        public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the acceleration.
         /// </summary>
-        public float Y { get; private set; }
+        public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the acceleration.
         /// </summary>
-        public float Z { get; private set; }
+        public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the BiasX component of the uncalibrated gyroscope data.
         /// </summary>
-        public float BiasX { get; private set; }
+        public float BiasX { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasY component of the uncalibrated gyroscope data.
         /// </summary>
-        public float BiasY { get; private set; }
+        public float BiasY { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasZ component of the uncalibrated gyroscope data.
         /// </summary>
-        public float BiasZ { get; private set; }
+        public float BiasZ { get; private set; } = 0;
 
         /// <summary>
         /// Returns true or false based on whether uncalibrated gyroscope sensor is supported by device.

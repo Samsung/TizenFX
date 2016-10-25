@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the pressure sensor.
         /// </summary>
-        public float Pressure { get; private set; }
+        public float Pressure { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether pressure sensor is supported by device.

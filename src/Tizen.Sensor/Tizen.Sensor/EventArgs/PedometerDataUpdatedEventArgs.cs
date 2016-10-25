@@ -17,9 +17,9 @@ namespace Tizen.Sensor
     {
         internal PedometerDataUpdatedEventArgs(float[] values)
         {
-            StepCount = (int) values[0];
-            WalkStepCount = (int) values[1];
-            RunStepCount = (int) values[2];
+            StepCount = (uint) values[0];
+            WalkStepCount = (uint) values[1];
+            RunStepCount = (uint) values[2];
             MovingDistance = values[3];
             CalorieBurned = values[4];
             LastSpeed = values[5];
@@ -30,17 +30,17 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the step count
         /// </summary>
-        public int StepCount { get; private set; }
+        public uint StepCount { get; private set; }
 
         /// <summary>
         /// Gets the walking step count
         /// </summary>
-        public int WalkStepCount { get; private set; }
+        public uint WalkStepCount { get; private set; }
 
         /// <summary>
         /// Gets the running step count
         /// </summary>
-        public int RunStepCount { get; private set; }
+        public uint RunStepCount { get; private set; }
 
         /// <summary>
         /// Gets the moving distance

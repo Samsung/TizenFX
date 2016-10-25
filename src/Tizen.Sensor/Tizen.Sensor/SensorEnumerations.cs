@@ -203,7 +203,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Unknown.
         /// </summary>
-        Unknown,
+        Unknown = -1,
 
         /// <summary>
         /// Stop state.
@@ -229,7 +229,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Unknown.
         /// </summary>
-        Unknown,
+        Unknown = -1,
 
         /// <summary>
         /// The wake state.
@@ -248,6 +248,11 @@ namespace Tizen.Sensor
     public enum ProximitySensorState
     {
         /// <summary>
+        /// Unknown.
+        /// </summary>
+        Unknown = -1,
+
+        /// <summary>
         /// Near sate.
         /// </summary>
         Near = 0,
@@ -263,6 +268,11 @@ namespace Tizen.Sensor
     /// </summary>
     public enum DetectorState
     {
+        /// <summary>
+        /// Unknown.
+        /// </summary>
+        Unknown = -1,
+
         /// <summary>
         /// None sate.
         /// </summary>

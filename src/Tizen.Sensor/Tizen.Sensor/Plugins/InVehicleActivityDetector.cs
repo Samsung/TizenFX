@@ -20,7 +20,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of in-vehicle activity detector
         /// </summary>
-        public DetectorState InVehicle { get; private set; }
+        public DetectorState InVehicle { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether in-vehicle activity detector is supported by device.

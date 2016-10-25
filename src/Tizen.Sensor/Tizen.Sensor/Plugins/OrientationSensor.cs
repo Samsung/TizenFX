@@ -21,17 +21,17 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the Azimuth component of the orientation.
         /// </summary>
-        public float Azimuth { get; private set; }
+        public float Azimuth { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Pitch component of the orientation.
         /// </summary>
-        public float Pitch { get; private set; }
+        public float Pitch { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Roll component of the orientation.
         /// </summary>
-        public float Roll { get; private set; }
+        public float Roll { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether orientation sensor is supported by device.
