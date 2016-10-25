@@ -20,140 +20,139 @@ namespace Tizen.Multimedia
     /// Audio effect
     /// </summary>
     /// <remarks>
-    /// This class provides properties and API that are required for setting
+    /// This class provides properties and API that are required for setting/getting
     /// audio effects of a player.
     /// </remarks>
     public class AudioEffect
     {
-		internal IntPtr _playerHandle;
-		private List<EqualizerBand> _bands;
+        internal IntPtr _playerHandle;
+        private List<EqualizerBand> _bands;
 
-		internal AudioEffect()
-		{
-		}
+        internal AudioEffect()
+        {
+        }
 
         /// <summary>
-        /// Set/Get Equalizer band level, frequency and range.
+        /// Set/Get Equalizer band level.
+        /// Get frequency and range.
         /// </summary>
         /// <value> EqualizerBand </value>
-		public IEnumerable<EqualizerBand> EqualizerBands 
-		{ 
-			set
-			{
-				int ret;
-				_bands = value.ToList();
-				foreach(EqualizerBand band in _bands)
-				{
-					ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_playerHandle, _bands.IndexOf(band), band.Level);
-					if( ret != (int)PlayerError.None) 
-					{
-						Log.Error(PlayerLog.LogTag, "Failed to set equalizer band" + (PlayerError)ret);
-						PlayerErrorFactory.ThrowException(ret, "Failed to set equalizer band"); 
-					}
-				}
-			}
-			get
-			{
-				int ret;
-				int count = 0, level = 0, frequency = 0, range = 0;
+        public IEnumerable<EqualizerBand> EqualizerBands
+        {
+            set
+            {
+                int ret;
+                _bands = value.ToList();
+                foreach(EqualizerBand band in _bands)
+                {
+                    ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_playerHandle, _bands.IndexOf(band), band.Level);
+                    if(ret != (int)PlayerError.None)
+                    {
+                        Log.Error(PlayerLog.LogTag, "Failed to set equalizer band" + (PlayerError)ret);
+                        PlayerErrorFactory.ThrowException(ret, "Failed to set equalizer band");
+                    }
+                }
+            }
+            get
+            {
+                int ret;
+                int count = 0, level = 0, frequency = 0, range = 0;
 
-				if(_bands == null)
-				{
-					_bands = new List<EqualizerBand>();
-				}
-				else
-				{
-					_bands.Clear();
-				}
+                if(_bands == null)
+                {
+                    _bands = new List<EqualizerBand>();
+                } else
+                {
+                    _bands.Clear();
+                }
 
-				ret = Interop.Player.AudioEffectGetEqualizerBandsCount(_playerHandle, out count);
-				if(ret == (int)PlayerError.None) 
-				{
-					for(int idx = 0; idx < count; idx++)
-					{
-						ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_playerHandle, idx, out level);
-						if(ret != (int)PlayerError.None)
-						{
-							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band level");
-						}
+                ret = Interop.Player.AudioEffectGetEqualizerBandsCount(_playerHandle, out count);
+                if(ret == (int)PlayerError.None)
+                {
+                    for(int idx = 0; idx < count; idx++)
+                    {
+                        ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_playerHandle, idx, out level);
+                        if(ret != (int)PlayerError.None)
+                        {
+                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band level");
+                        }
 
-						ret = Interop.Player.AudioEffectGetEqualizerBandFrequency(_playerHandle, idx, out frequency);
-						if(ret != (int)PlayerError.None)
-						{
-							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency");
-						}
+                        ret = Interop.Player.AudioEffectGetEqualizerBandFrequency(_playerHandle, idx, out frequency);
+                        if(ret != (int)PlayerError.None)
+                        {
+                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency");
+                        }
 
-						ret = Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_playerHandle, idx, out range);
-						if(ret != (int)PlayerError.None)
-						{
-							Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency range");
-						}
+                        ret = Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_playerHandle, idx, out range);
+                        if(ret != (int)PlayerError.None)
+                        {
+                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency range");
+                        }
 
-						EqualizerBand band = new EqualizerBand(level, frequency, range);
-						_bands.Add(band);
-					}
-				} 
-				else 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get equalizer band count");
-				}
+                        EqualizerBand band = new EqualizerBand(level, frequency, range);
+                        _bands.Add(band);
+                    }
+                } else
+                {
+                    Log.Error(PlayerLog.LogTag, "Failed to get equalizer band count");
+                }
 
-				return _bands;
-			}
-		}
+                return _bands;
+            }
+        }
 
         /// <summary>
-        /// Get Min level.
+        /// Get Minimum Level of the bands in dB.
         /// </summary>
         /// <value> Minimum level </value>
-        public int MinLevel 
-		{ 
-			get 
-			{ 
-				int min, max, ret;
-				ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
-				if( ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get min level" + (PlayerError)ret);
-				}
-				return min;
-			}
-		}
+        public int MinLevel
+        {
+            get
+            {
+                int min, max, ret;
+                ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
+                if(ret != (int)PlayerError.None)
+                {
+                    Log.Error(PlayerLog.LogTag, "Failed to get min level" + (PlayerError)ret);
+                }
+                return min;
+            }
+        }
 
         /// <summary>
-        /// Get Min level.
+        /// Get Maximum Level of the bands in dB.
         /// </summary>
         /// <value> Maximum level </value>
-        public int MaxLevel 
-		{
-			get
-			{
-				int min, max, ret;
-				ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get max level" + (PlayerError)ret);
-				}
-				return max;
-			}
-		}
+        public int MaxLevel
+        {
+            get
+            {
+                int min, max, ret;
+                ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
+                if(ret != (int)PlayerError.None)
+                {
+                    Log.Error(PlayerLog.LogTag, "Failed to get max level" + (PlayerError)ret);
+                }
+                return max;
+            }
+        }
 
         /// <summary>
-        /// Get equalizer avaialbility.
+        /// Get Equalizer Avaialbility.
         /// </summary>
         /// <value> true, false </value>
-        public bool Available 
-		{ 
-			get
-			{
-				bool available = false;
-				int ret = Interop.Player.AudioEffectEqualizerIsAvailable(_playerHandle, out available);
-				if( ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get equalizer availability" + (PlayerError)ret);
-				}
-				return available;
-			}
-		}
+        public bool Available
+        {
+            get
+            {
+                bool available = false;
+                int ret = Interop.Player.AudioEffectEqualizerIsAvailable(_playerHandle, out available);
+                if(ret != (int)PlayerError.None)
+                {
+                    Log.Error(PlayerLog.LogTag, "Failed to get equalizer availability" + (PlayerError)ret);
+                }
+                return available;
+            }
+        }
     }
 }

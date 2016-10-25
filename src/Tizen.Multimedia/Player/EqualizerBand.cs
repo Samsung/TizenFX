@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Getfrequency range of the given band [dB].
+        /// Get frequency range of the given band [dB].
         /// </summary>
         /// <value> int range </value>
         public int Range

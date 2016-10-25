@@ -99,7 +99,7 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Get/Set Text track.
+        /// Get Text track.
         /// </summary>
         /// <value> Text track list </value>
         public IEnumerable<SubtitleTrack>  TextTrack
@@ -145,7 +145,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get/Set Audio track.
+        /// Get Audio track.
         /// </summary>
         /// <value> Audio track list </value>
         public IEnumerable<SubtitleTrack> AudioTrack
@@ -191,7 +191,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get/Set video track.
+        /// Get video track.
         /// </summary>
         /// <value> video track list </value>
         public IEnumerable<SubtitleTrack> VideoTrack
