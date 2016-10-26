@@ -225,8 +225,6 @@ namespace Tizen.Applications.Notifications
         /// </example>
         public void RemoveButton(ButtonIndex index)
         {
-            AppControl app = new AppControl();
-
             int ret = Interop.Notification.RemoveButton(_handle, (int)index + 1);
             if(ret != (int)NotificationError.None)
             {
@@ -243,12 +241,6 @@ namespace Tizen.Applications.Notifications
             if (ret != (int)NotificationError.None)
             {
                 throw NotificationErrorFactory.GetException((NotificationError)ret, "unable to set button text");
-            }
-
-            ret = Interop.Notification.SetEventHandler(_handle, (int)index, app.SafeAppControlHandle);
-            if (ret != (int)NotificationError.None)
-            {
-                throw NotificationErrorFactory.GetException((NotificationError)ret, "unable to set button event handler");
             }
         }
     }
