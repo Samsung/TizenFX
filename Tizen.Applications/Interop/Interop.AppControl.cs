@@ -25,8 +25,8 @@ internal static partial class Interop
     {
         internal const int AppStartedStatus = 1;
 
-        internal delegate bool ExtraDataCallback(SafeAppControlHandle handle, string key, IntPtr userData);
-        internal delegate bool AppMatchedCallback(SafeAppControlHandle handle, string applicationId, IntPtr userData);
+        internal delegate bool ExtraDataCallback(IntPtr handle, string key, IntPtr userData);
+        internal delegate bool AppMatchedCallback(IntPtr handle, string applicationId, IntPtr userData);
         internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
 
         internal enum ErrorCode

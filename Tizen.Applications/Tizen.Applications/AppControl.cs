@@ -417,30 +417,21 @@ namespace Tizen.Applications
             }
 
             List<string> ids = new List<string>();
-            Interop.AppControl.AppMatchedCallback callback = new Interop.AppControl.AppMatchedCallback(
-                (handle, applicationId, userData) =>
-                {
-                    List<string> idsList = Marshal.GetObjectForIUnknown(userData) as List<string>;
-                    if (idsList != null)
-                    {
-                        idsList.Add(applicationId);
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-
-            IntPtr pointerToApplicationIds = Marshal.GetIUnknownForObject(ids);
-            if (pointerToApplicationIds != IntPtr.Zero)
+            Interop.AppControl.AppMatchedCallback callback = (handle, applicationId, userData) =>
             {
-                Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, pointerToApplicationIds);
-                if (err != Interop.AppControl.ErrorCode.None)
+                if (applicationId == null)
                 {
-                    throw new InvalidOperationException("Failed to get matched application ids. err = " + err);
+                        return false;
                 }
-                return ids;
+
+                ids.Add(applicationId);
+                return true;
+            };
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachAppMatched(control._handle, callback, IntPtr.Zero);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                    throw new InvalidOperationException("Failed to get matched application ids. err = " + err);
             }
 
             return ids;
@@ -727,30 +718,21 @@ namespace Tizen.Applications
             public IEnumerable<string> GetKeys()
             {
                 List<string> keys = new List<string>();
-                Interop.AppControl.ExtraDataCallback callback = new Interop.AppControl.ExtraDataCallback(
-                    (handle, key, userData) =>
-                    {
-                        List<string> keysList = Marshal.GetObjectForIUnknown(userData) as List<string>;
-                        if (keysList != null)
-                        {
-                            keysList.Add(key);
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    });
-
-                IntPtr pointerToKeys = Marshal.GetIUnknownForObject(keys);
-                if (pointerToKeys != IntPtr.Zero)
+                Interop.AppControl.ExtraDataCallback callback = (handle, key, userData) =>
                 {
-                    Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachExtraData(_handle, callback, pointerToKeys);
-                    if (err != Interop.AppControl.ErrorCode.None)
+                    if (key == null)
                     {
-                        throw new InvalidOperationException("Failed to get keys. err = " + err);
+                        return false;
                     }
-                    return keys;
+
+                    keys.Add(key);
+                    return true;
+                };
+
+                Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachExtraData(_handle, callback, IntPtr.Zero);
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to get keys. err = " + err);
                 }
 
                 return keys;
