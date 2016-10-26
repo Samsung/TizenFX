@@ -6,7 +6,7 @@
     <ProjectGuid>{D6ED1942-9F12-4F29-BB73-60E90B2DC612}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Tizen</RootNamespace>
-    <AssemblyName>Tizen</AssemblyName>
+    <AssemblyName>Tizen.Tracer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
