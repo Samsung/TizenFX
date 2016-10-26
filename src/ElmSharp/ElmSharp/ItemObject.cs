@@ -12,6 +12,7 @@ namespace ElmSharp
         private static Dictionary<IntPtr, ItemObject> s_HandleToItemTable = new Dictionary<IntPtr, ItemObject>();
         private static int s_globalId = 0;
 
+        readonly Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
         Interop.Evas.SmartCallback _deleteCallback;
         IntPtr _handle = IntPtr.Zero;
 
@@ -81,6 +82,7 @@ namespace ElmSharp
                 Interop.Elementary.elm_object_item_part_content_unset(Handle, part);
             }
             Interop.Elementary.elm_object_item_part_content_set(Handle, part, content);
+            _partContents[part ?? "__default__"] = content;
         }
 
         public void SetPartText(string part, string text)
@@ -128,6 +130,7 @@ namespace ElmSharp
             {
                 s_HandleToItemTable.Remove(_handle);
             }
+            _partContents.Clear();
             _handle = IntPtr.Zero;
         }
 
