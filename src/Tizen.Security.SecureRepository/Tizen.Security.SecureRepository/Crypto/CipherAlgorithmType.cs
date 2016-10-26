@@ -50,10 +50,10 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// AES-CFB algorithm
         /// Supported parameters:
-        /// - ParameterName.AlgorithmType = AecCfb(mandatory),
+        /// - ParameterName.AlgorithmType = AesCfb(mandatory),
         /// - ParameterName.IV = 16-byte initialization vector(mandatory)
         /// </summary>
-        AecCfb,
+        AesCfb,
         /// <summary>
         /// RSA-OAEP algorithm
         /// Supported parameters:

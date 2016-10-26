@@ -25,7 +25,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// A default constructor
         /// </summary>
         /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCfb.</remarks>
-        public AesCfbCipherParameters() : base(CipherAlgorithmType.AecCfb)
+        public AesCfbCipherParameters() : base(CipherAlgorithmType.AesCfb)
         {
         }
     }

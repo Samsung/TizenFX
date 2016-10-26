@@ -56,7 +56,7 @@
     <Compile Include="Tizen.Security.SecureRepository\Crypto\DsaSignatureParameters.cs" />
     <Compile Include="Tizen.Security.SecureRepository\Crypto\EcdsaSignatureParameters.cs" />
     <Compile Include="Tizen.Security.SecureRepository\Crypto\HashAlgorithm.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaOaepParameters.cs" />
+    <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaOaepCipherParameters.cs" />
     <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaPaddingAlgorithm.cs" />
     <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaSignatureParameters.cs" />
     <Compile Include="Tizen.Security.SecureRepository\Crypto\Signature.cs" />
