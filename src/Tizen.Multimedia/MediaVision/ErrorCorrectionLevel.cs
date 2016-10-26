@@ -1,0 +1,48 @@
+﻿/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Tizen.Multimedia
+{
+    /// <summary>
+    /// Enumeration for supported QR code error correction level.
+    /// </summary>
+    /// <remarks>
+    /// This is unavailable for 1D barcodes
+    /// </remarks>
+    public enum ErrorCorrectionLevel
+    {
+        /// <summary>
+        /// Recovery up to 7% losses
+        /// </summary>
+        Low,
+        /// <summary>
+        /// Recovery up to 15% losses
+        /// </summary>
+        Medium,
+        /// <summary>
+        /// Recovery up to 25% losses
+        /// </summary>
+        Quartile,
+        /// <summary>
+        /// Recovery up to 30% losses
+        /// </summary>
+        High,
+        /// <summary>
+        /// Unavailable
+        /// </summary>
+        Unavailable
+    }
+}
