@@ -76,8 +76,9 @@ namespace Tizen.Security.SecureRepository
 
         internal CkmcKey ToCkmcKey()
         {
-            return new Interop.CkmcKey(new PinnedObject(Binary),
-                                       Binary.Length,
+            byte[] bin = (Binary != null) ? Binary : new byte[0] ;
+            return new Interop.CkmcKey(new PinnedObject(bin),
+                                       bin.Length,
                                        (int)Type,
                                        new PinnedObject(BinaryPassword));
         }

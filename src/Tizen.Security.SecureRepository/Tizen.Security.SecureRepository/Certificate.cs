@@ -81,7 +81,8 @@ namespace Tizen.Security.SecureRepository
 
         internal CkmcCert ToCkmcCert()
         {
-            return new Interop.CkmcCert(new PinnedObject(Binary), Binary.Length, (int)Format);
+            byte[] bin = (Binary != null) ? Binary : new byte[0];
+            return new Interop.CkmcCert(new PinnedObject(bin), bin.Length, (int)Format);
         }
 
         /// <summary>
