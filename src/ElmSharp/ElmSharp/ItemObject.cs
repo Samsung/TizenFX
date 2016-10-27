@@ -77,9 +77,10 @@ namespace ElmSharp
 
         public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
-            if (preserveOldContent)
+            IntPtr oldContent = Interop.Elementary.elm_object_item_part_content_unset(Handle, part);
+            if (oldContent != IntPtr.Zero && !preserveOldContent)
             {
-                Interop.Elementary.elm_object_item_part_content_unset(Handle, part);
+                Interop.Evas.evas_object_del(oldContent);
             }
             Interop.Elementary.elm_object_item_part_content_set(Handle, part, content);
             _partContents[part ?? "__default__"] = content;
