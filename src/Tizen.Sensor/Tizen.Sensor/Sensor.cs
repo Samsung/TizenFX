@@ -303,7 +303,7 @@ namespace Tizen.Sensor
         public void Stop()
         {
             Log.Info(Globals.LogTag, "Stopping the sensor");
-            if (CheckListenerHandle())
+            if (_isSensing)
             {
                 int error = Interop.SensorListener.StopListener(_listenerHandle);
                 if (error != (int)SensorError.None)
