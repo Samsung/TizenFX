@@ -21,7 +21,6 @@ namespace Tizen.Location
         Hybrid, /**<This method selects the best method available at the moment.*/
         Gps, /**<This method uses Global Positioning System.*/
         Wps, /**<This method uses WiFi Positioning System.*/
-        Mock /**<This method uses Mock location for testing.*/
     }
 
     /// <summary>

@@ -44,12 +44,12 @@ namespace Tizen.Location
         /// </summary>
         public Location(double latitude, double longitude, double altitude, double horizontalAccuracy, double direction, double speed, int timestamp)
         {
-            _altitude = altitude;
             _latitude = latitude;
             _longitude = longitude;
+            _altitude = altitude;
+            _horizontal = horizontalAccuracy;
             _direction = direction;
             _speed = speed;
-            _horizontal = horizontalAccuracy;
             _timestamp = timestamp;
         }
 
