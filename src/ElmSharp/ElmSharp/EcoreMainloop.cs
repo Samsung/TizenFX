@@ -9,7 +9,6 @@ namespace ElmSharp
         static readonly Object _taskLock = new Object();
         static int _newTaskId = 0;
 
-
         static Interop.Ecore.EcoreTaskCallback _nativeHandler;
 
         static EcoreMainloop()
@@ -18,6 +17,8 @@ namespace ElmSharp
             Interop.Ecore.ecore_main_loop_glib_integrate();
             _nativeHandler = NativeHandler;
         }
+
+        public static bool IsMainThread => Interop.Eina.eina_main_loop_is();
 
         public static void Begin()
         {

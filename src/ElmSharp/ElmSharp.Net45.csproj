@@ -113,6 +113,7 @@
     <Compile Include="ElmSharp\Window.cs" />
     <Compile Include="ElmSharp\WrapType.cs" />
     <Compile Include="Interop\Interop.Ecore.cs" />
+    <Compile Include="Interop\Interop.Eina.cs" />
     <Compile Include="Interop\Interop.Elementary.Bg.cs" />
     <Compile Include="Interop\Interop.Elementary.Box.cs" />
     <Compile Include="Interop\Interop.Elementary.Button.cs" />
