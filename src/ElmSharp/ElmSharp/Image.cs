@@ -202,6 +202,28 @@ namespace ElmSharp
             }
         }
 
+        public override Color Color
+        {
+            get
+            {
+                int r = 255, g = 255, b = 255, a = 255;
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                if (evasObj != IntPtr.Zero)
+                {
+                    Interop.Evas.evas_object_color_get(evasObj, out r, out g, out b, out a);
+                }
+                return Color.FromRgba(r, g, b, a);
+            }
+            set
+            {
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                if (evasObj != IntPtr.Zero)
+                {
+                    Interop.Evas.evas_object_color_set(evasObj, value.R, value.G, value.B, value.A);
+                }
+            }
+        }
+
         public bool Load(string file)
         {
             if (file == null)
