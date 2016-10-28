@@ -57,6 +57,17 @@
     <Compile Include="Interop\Interop.MediaTool.cs" />
     <Compile Include="Interop\Interop.EvasObject.cs" />
     <Compile Include="Interop\Interop.Player.cs" />
+	<Compile Include="MediaCodec\BufferStatusChangedEventArgs.cs" />
+    <Compile Include="MediaCodec\EosReachedEventArgs.cs" />
+    <Compile Include="MediaCodec\ErrorOccurredEventArgs.cs" />
+    <Compile Include="MediaCodec\InputProcessedEventArgs.cs" />
+    <Compile Include="MediaCodec\MediaCodec.cs" />
+    <Compile Include="MediaCodec\MediaCodecDebug.cs" />
+    <Compile Include="MediaCodec\MediaCodecError.cs" />
+    <Compile Include="MediaCodec\MediaCodecStatus.cs" />
+    <Compile Include="MediaCodec\MediaCodecType.cs" />
+    <Compile Include="MediaCodec\OutputAvailableEventArgs.cs" />
+    <Compile Include="MediaCodec\SupportedCodecType.cs" /
     <Compile Include="MediaTool\MediaFormat.cs" />
     <Compile Include="MediaTool\MediaFormatAacType.cs" />
     <Compile Include="MediaTool\MediaFormatMimeType.cs" />

@@ -99,8 +99,7 @@ internal static partial class Interop
         internal static extern int GetSupportedType(IntPtr handle, int codecType, bool isEncoder,
             out int value);
 
-        // TODO the native method name needs to get replaced with new one which will be added
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_foreach_supported_codec")]
+        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_foreach_supported_codec_static")]
         internal static extern int ForeachSupportedCodec(SupportedCodecCallback cb, IntPtr arg);
     }
 }
