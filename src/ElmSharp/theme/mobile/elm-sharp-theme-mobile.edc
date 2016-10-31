@@ -87,6 +87,7 @@ collections {
 #include "widgets/entry.edc"
 #include "widgets/label.edc"
 #include "widgets/radio.edc"
+#include "widgets/layout.edc"
 
 }
 

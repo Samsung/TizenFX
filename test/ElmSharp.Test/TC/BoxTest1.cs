@@ -24,11 +24,14 @@ namespace ElmSharp.Test
         public override string TestName => "BoxTest1";
         public override string TestDescription => "To test basic operation of Box";
 
+        Box box;
+
         public override void Run(Window window)
         {
             Conformant conformant = new Conformant(window);
             conformant.Show();
-            Box box = new Box(window);
+            box = new Box(window);
+            box.BackgroundColor = Color.Orange;
             conformant.SetContent(box);
             box.Show();
 
@@ -44,14 +47,16 @@ namespace ElmSharp.Test
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
-                WeightY = 1
+                WeightY = 1,
+                BackgroundColor = new Color(50,100,200,75)
             };
             Button button3 = new Button(window) {
                 Text = "Button 3",
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
-                WeightY = 1
+                WeightY = 1,
+                BackgroundColor = Color.Olive
             };
 
             box.PackEnd(button1);
@@ -69,7 +74,7 @@ namespace ElmSharp.Test
 
         private void Button1_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine("{0} Clicked!", ((Button)sender).Text);
+            Console.WriteLine("{0} Clicked! - Button's BG Color : {1}, Box's BG Color : {2}", ((Button)sender).Text, ((Button)sender).BackgroundColor, box.BackgroundColor);
         }
     }
 }

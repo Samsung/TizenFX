@@ -27,6 +27,11 @@ namespace ElmSharp
         {
         }
 
+        protected virtual IntPtr GetRealHandle(IntPtr handle)
+        {
+            return Interop.Elementary.elm_object_part_content_get(handle, "elm.swallow.content");
+        }
+
         internal void AddChild(EvasObject obj)
         {
             _children.Add(obj);
