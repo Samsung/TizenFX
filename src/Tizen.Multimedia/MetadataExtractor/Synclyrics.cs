@@ -23,20 +23,23 @@ using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// Synchronized lyrics information
-	/// </summary>
-	/// <remarks>
-	/// This class provides properties of the synchronized lyrics information of the given media
-	/// </remarks>
-	public class Synclyrics
+    /// <summary>
+    /// This class provides properties of the synchronized lyrics information of the given media
+    /// </summary>
+    public class Synclyrics
 	{
 		internal Synclyrics(string lyrics, uint timestamp)
 		{
 			Lyrics = lyrics;
 			Timestamp = timestamp;
 		}
-		public readonly string Lyrics;
-		public readonly uint Timestamp;
+        /// <summary>
+        /// The lyrics of the index
+        /// </summary>
+        public readonly string Lyrics;
+        /// <summary>
+        /// The time information of the index
+        /// </summary>
+        public readonly uint Timestamp;
 	}
 }

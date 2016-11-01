@@ -22,21 +22,24 @@ using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// Artwork image information
-	/// </summary>
-	/// <remarks>
-	/// This class provides properties of the artwork information of the given media
-	/// </remarks>
-	public class Artwork
+    /// <summary>
+    /// This class provides properties of the artwork information of the given media
+    /// </summary>
+    public class Artwork
 	{
 		internal Artwork(byte[] artworkData, string mimeType)
 		{
-			ArtworkData = artworkData;
+            ArtworkData = artworkData;
 			MimeType = mimeType;
 		}
+        /// <summary>
+        /// The encoded artwork image
+        /// </summary>
+        public readonly byte[] ArtworkData;
 
-		public readonly byte[] ArtworkData;
-		public readonly string MimeType;
+        /// <summary>
+        /// The mime type of artwork
+        /// </summary>
+        public readonly string MimeType;
 	}
 }

@@ -23,18 +23,21 @@ using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// Frame information
-	/// </summary>
-	/// <remarks>
-	/// This class provides properties of the frame information of the given media
-	/// </remarks>
-	public class Frame
+    /// <summary>
+    /// This class provides properties of the frame data of the given video file
+    /// </summary>
+    public class Frame
 	{
 		internal Frame(byte[] frameData)
 		{
 			FrameData = frameData;
 		}
+        /// <summary>
+        /// The raw frame data
+        /// </summary>
+        /// <remarks>
+        /// Provided raw data is RGB888 format.
+        /// </remarks>
 		public readonly byte[] FrameData;
 	}
 }
