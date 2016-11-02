@@ -42,6 +42,9 @@ namespace Tizen.System
     {
         /// <summary>
         /// Gets the max brightness value of a LED that is located next to the camera.
+        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
+        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
+        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
         /// </summary>
         public static int MaxBrightness
         {
@@ -67,6 +70,7 @@ namespace Tizen.System
         /// </remarks>
         /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
+        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
         /// <code>
         ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
         ///     Tizen.System.Led.Brightness = 50;
