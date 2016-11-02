@@ -67,7 +67,7 @@
     <Compile Include="MediaCodec\MediaCodecStatus.cs" />
     <Compile Include="MediaCodec\MediaCodecType.cs" />
     <Compile Include="MediaCodec\OutputAvailableEventArgs.cs" />
-    <Compile Include="MediaCodec\SupportedCodecType.cs" /
+    <Compile Include="MediaCodec\SupportedCodecType.cs" />
     <Compile Include="MediaTool\MediaFormat.cs" />
     <Compile Include="MediaTool\MediaFormatAacType.cs" />
     <Compile Include="MediaTool\MediaFormatMimeType.cs" />
