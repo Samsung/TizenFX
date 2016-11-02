@@ -90,6 +90,28 @@ namespace Tizen.Security.SecureRepository
                 this.CaChain = new SafeCertificateListHandle(ckmcPkcs12.caChain, false).Certificates;
         }
 
+        internal IntPtr GetHandle()
+        {
+            if (this.PrivateKey == null)
+                return IntPtr.Zero;
+
+            IntPtr keyPtr = this.PrivateKey.GetHandle();
+            IntPtr certPtr = this.Certificate != null ?
+                    this.Certificate.GetHandle() : IntPtr.Zero;
+
+            if (this.handle == IntPtr.Zero)
+            {
+                var caCerts = new SafeCertificateListHandle(this.CaChain);
+                int ret = Interop.CkmcTypes.Pkcs12New(keyPtr,
+                                                      certPtr,
+                                                      caCerts.ToCkmcCertificateListPtr(),
+                                                      out this.handle);
+                Interop.CheckNThrowException(ret, "Failed to create pkcs12");
+            }
+
+            return this.handle;
+        }
+
         /// <summary>
         /// A private key.
         /// </summary>
@@ -116,15 +138,11 @@ namespace Tizen.Security.SecureRepository
 
         internal CkmcPkcs12 ToCkmcPkcs12()
         {
-            Interop.CkmcKey ckmcKey = (PrivateKey != null) ?
-                                            PrivateKey.ToCkmcKey() : new Interop.CkmcKey(IntPtr.Zero, 0, 0, null);
-            Interop.CkmcCert ckmcCert = (Certificate != null) ?
-                                            Certificate.ToCkmcCert() : new Interop.CkmcCert(IntPtr.Zero, 0, 0);
             SafeCertificateListHandle ckmcCaCerts = new SafeCertificateListHandle(CaChain);
 
-            return new Interop.CkmcPkcs12(new PinnedObject(ckmcKey),
-                                            new PinnedObject(ckmcCert),
-                                            ckmcCaCerts.ToCkmcCertificateListPtr());
+            return new Interop.CkmcPkcs12(PrivateKey.GetHandle(),
+                                          Certificate.GetHandle(),
+                                          ckmcCaCerts.ToCkmcCertificateListPtr());
         }
 
         /// <summary>

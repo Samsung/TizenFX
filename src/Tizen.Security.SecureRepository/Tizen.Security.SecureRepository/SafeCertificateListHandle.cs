@@ -67,7 +67,7 @@ namespace Tizen.Security.SecureRepository
             foreach (Certificate cert in _certificates)
             {
                 IntPtr certPtr;
-                ret = Interop.CkmcTypes.CertNew(cert.Binary, (uint)cert.Binary.Length, (int)cert.Format, out certPtr);
+                ret = Interop.CkmcTypes.CertNew(cert.Binary, (UIntPtr)cert.Binary.Length, (int)cert.Format, out certPtr);
                 Interop.CheckNThrowException(ret, "Failed to create new Certificate.");
 
                 IntPtr outCertList;

@@ -63,6 +63,20 @@ namespace Tizen.Security.SecureRepository
             Format = (DataFormat)ckmcCert.dataFormat;
         }
 
+        internal IntPtr GetHandle()
+        {
+            if (this.handle == IntPtr.Zero)
+            {
+                int ret = Interop.CkmcTypes.CertNew(this.Binary,
+                                                    (UIntPtr)this.Binary.Length,
+                                                    (int)this.Format,
+                                                    out this.handle);
+                Interop.CheckNThrowException(ret, "Failed to create cert");
+            }
+
+            return this.handle;
+        }
+
         /// <summary>
         /// The binary value of a certificate.
         /// </summary>

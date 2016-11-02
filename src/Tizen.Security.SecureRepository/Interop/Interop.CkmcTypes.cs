@@ -111,12 +111,16 @@ internal static partial class Interop
 
     internal static partial class CkmcTypes
     {
+        [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_key_new", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int KeyNew(byte[] rawKey, UIntPtr size, int keyType, string password, out IntPtr cert);
+        // int ckmc_key_new(unsigned char *raw_key, size_t key_size, ckmc_key_type_e key_type, char *password, ckmc_key_s **ppkey);
+        //
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_key_free", CallingConvention = CallingConvention.Cdecl)]
         public static extern void KeyFree(IntPtr buffer);
         // void ckmc_key_free(ckmc_key_s *key);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int BufferNew(byte[] data, uint size, out IntPtr buffer);
+        public static extern int BufferNew(byte[] data, UIntPtr size, out IntPtr buffer);
         // int ckmc_buffer_new(unsigned char *data, size_t size, ckmc_raw_buffer_s** ppbuffer);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_free", CallingConvention = CallingConvention.Cdecl)]
@@ -124,7 +128,7 @@ internal static partial class Interop
         // void ckmc_buffer_free(ckmc_raw_buffer_s* buffer);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CertNew(byte[] rawCert, uint size, int dataFormat, out IntPtr cert);
+        public static extern int CertNew(byte[] rawCert, UIntPtr size, int dataFormat, out IntPtr cert);
         // int ckmc_cert_new(unsigned char *raw_cert, size_t cert_size, ckmc_data_format_e data_format, ckmc_cert_s** ppcert);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_free", CallingConvention = CallingConvention.Cdecl)]
@@ -136,7 +140,7 @@ internal static partial class Interop
         // int ckmc_load_cert_from_file(const char *file_path, ckmc_cert_s **cert);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_new", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Pkcs12New(string filePath, out IntPtr cert);
+        public static extern int Pkcs12New(IntPtr key, IntPtr cert, IntPtr caCerts, out IntPtr p12_bundle);
         // int ckmc_pkcs12_new(ckmc_key_s *private_key, ckmc_cert_s* cert, ckmc_cert_list_s *ca_cert_list, ckmc_pkcs12_s** pkcs12_bundle);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_load", CallingConvention = CallingConvention.Cdecl)]

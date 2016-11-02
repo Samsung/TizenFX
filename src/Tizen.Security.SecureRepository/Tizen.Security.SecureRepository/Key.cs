@@ -50,6 +50,21 @@ namespace Tizen.Security.SecureRepository
             BinaryPassword = ckmcKey.password;
         }
 
+        internal IntPtr GetHandle()
+        {
+            if (this.handle == IntPtr.Zero)
+            {
+                int ret = Interop.CkmcTypes.KeyNew(this.Binary,
+                                                   (UIntPtr)this.Binary.Length,
+                                                   (int)this.Type,
+                                                   this.BinaryPassword,
+                                                   out this.handle);
+                Interop.CheckNThrowException(ret, "Failed to create key");
+            }
+
+            return this.handle;
+        }
+
         /// <summary>
         /// The binary value of a key.
         /// </summary>

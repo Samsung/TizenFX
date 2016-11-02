@@ -63,7 +63,7 @@ namespace Tizen.Security.SecureRepository
         static public void Save(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
         {
             int ret = Interop.CkmcManager.SavePkcs12(alias,
-                                                     new PinnedObject(pkcs12.ToCkmcPkcs12()),
+                                                     pkcs12.GetHandle(),
                                                      keyPolicy.ToCkmcPolicy(),
                                                      certificatePolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to save PKCS12. alias=" + alias);
