@@ -44,10 +44,10 @@ namespace Tizen.Security.SecureRepository
             base.SetHandle(ptr);
 
             CkmcKey ckmcKey = Marshal.PtrToStructure<CkmcKey>(handle);
-            Binary = new byte[ckmcKey.size];
+            Binary = new byte[(int)ckmcKey.size];
             Marshal.Copy(ckmcKey.rawKey, Binary, 0, Binary.Length);
             Type = (KeyType)ckmcKey.keyType;
-            BinaryPassword = Marshal.PtrToStringAnsi(ckmcKey.password);
+            BinaryPassword = ckmcKey.password;
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Tizen.Security.SecureRepository
             return new Interop.CkmcKey(new PinnedObject(bin),
                                        bin.Length,
                                        (int)Type,
-                                       new PinnedObject(BinaryPassword));
+                                       BinaryPassword);
         }
 
         /// <summary>

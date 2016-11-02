@@ -36,17 +36,18 @@ internal static partial class Interop
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcKey
     {
-        public CkmcKey(IntPtr binary, int keySize, int keyType, IntPtr password)
+        public CkmcKey(IntPtr binary, int keySize, int keyType, string password)
         {
             this.rawKey = binary;
-            this.size = (uint)keySize;
+            this.size = (UIntPtr)keySize;
             this.keyType = keyType;
             this.password = password;
         }
         public readonly IntPtr rawKey;
-        public readonly uint size;
+        public readonly UIntPtr size;
         public readonly int keyType;
-        public readonly IntPtr password;
+        [MarshalAs(UnmanagedType.LPStr)]
+        public readonly string password;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -55,11 +56,11 @@ internal static partial class Interop
         public CkmcCert(IntPtr binary, int size, int dataFormat)
         {
             this.rawCert = binary;
-            this.size = (uint)size;
+            this.size = (UIntPtr)size;
             this.dataFormat = dataFormat;
         }
         public readonly IntPtr rawCert;
-        public readonly uint size;
+        public readonly UIntPtr size;
         public readonly int dataFormat;
     }
 
@@ -69,10 +70,10 @@ internal static partial class Interop
         public CkmcRawBuffer(IntPtr binary, int size)
         {
             this.data = binary;
-            this.size = (uint)size;
+            this.size = (UIntPtr)size;
         }
         public readonly IntPtr data;
-        public readonly uint size;
+        public readonly UIntPtr size;
     }
 
     [StructLayout(LayoutKind.Sequential)]

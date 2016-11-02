@@ -30,7 +30,7 @@ namespace Tizen.Security.SecureRepository
                 return;
 
             CkmcRawBuffer buff = Marshal.PtrToStructure<CkmcRawBuffer>(ptrRawBuffer);
-            byte[] data = new byte[buff.size];
+            byte[] data = new byte[(int)buff.size];
             Marshal.Copy(buff.data, data, 0, data.Length);
 
             this.Data = data;

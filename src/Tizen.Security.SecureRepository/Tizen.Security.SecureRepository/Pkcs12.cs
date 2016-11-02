@@ -117,7 +117,7 @@ namespace Tizen.Security.SecureRepository
         internal CkmcPkcs12 ToCkmcPkcs12()
         {
             Interop.CkmcKey ckmcKey = (PrivateKey != null) ?
-                                            PrivateKey.ToCkmcKey() : new Interop.CkmcKey(IntPtr.Zero, 0, 0, IntPtr.Zero);
+                                            PrivateKey.ToCkmcKey() : new Interop.CkmcKey(IntPtr.Zero, 0, 0, null);
             Interop.CkmcCert ckmcCert = (Certificate != null) ?
                                             Certificate.ToCkmcCert() : new Interop.CkmcCert(IntPtr.Zero, 0, 0);
             SafeCertificateListHandle ckmcCaCerts = new SafeCertificateListHandle(CaChain);
