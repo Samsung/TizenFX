@@ -14,6 +14,8 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
@@ -30,17 +32,21 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Length of counter block in bits. 
+        /// Length of counter block in bits.
         /// </summary>
         /// <remarks>Optional, only 128b is supported at the moment.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">value should be positive.</exception>
         public long CounterLength
         {
             get
             {
-                return (uint)GetInteger(CipherParameterName.CounterLength);
+                return GetInteger(CipherParameterName.CounterLength);
             }
             set
             {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(
+                        string.Format("invalid value{0} on CounterLength", value));
                 Add(CipherParameterName.CounterLength, value);
             }
         }

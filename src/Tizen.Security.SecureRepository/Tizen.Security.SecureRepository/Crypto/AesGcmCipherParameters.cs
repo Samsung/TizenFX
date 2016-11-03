@@ -14,6 +14,8 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
@@ -33,10 +35,26 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// GCM tag length in bits.
         /// </summary>
         /// <remarks>One of {32, 64, 96, 104, 112, 120, 128} (optional, if not present the length 128 is used.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">TagLength should be one of {32, 64, 96, 104, 112, 120, 128}</exception>
         public long TagLength
         {
-            get { return GetInteger(CipherParameterName.TagLength); }
-            set { Add(CipherParameterName.TagLength, value); }
+            get
+            {
+                return GetInteger(CipherParameterName.TagLength);
+            }
+            set
+            {
+                if (value != 32 && value != 64 && value != 96 && value != 104 &&
+                    value != 112 && value != 120 && value != 128)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        string.Format("invalid value{0} on TagLength", value));
+                }
+                else
+                {
+                    Add(CipherParameterName.TagLength, value);
+                }
+            }
         }
 
         /// <summary>
