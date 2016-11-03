@@ -79,13 +79,13 @@ internal static partial class Interop
 
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_create_key_pair_rsa", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CreateKeyPairRsa(int size, string privateKeyAlias, string publicKeyAlias,
+        public static extern int CreateKeyPairRsa(UIntPtr size, string privateKeyAlias, string publicKeyAlias,
                                                   CkmcPolicy privateKeyPolicy, CkmcPolicy publicKeyPolicy);
         // int ckmc_create_key_pair_rsa(const size_t size, const char* private_key_alias, const char* public_key_alias,
         //                              const ckmc_policy_s policy_private_key, const ckmc_policy_s policy_public_key);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_create_key_pair_dsa", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CreateKeyPairDsa(int size, string privateKeyAlias, string publicKeyAlias,
+        public static extern int CreateKeyPairDsa(UIntPtr size, string privateKeyAlias, string publicKeyAlias,
                                                   CkmcPolicy privateKeyPolicy, CkmcPolicy publicKeyPolicy);
         // int ckmc_create_key_pair_dsa(const size_t size, const char* private_key_alias, const char* public_key_alias,
         //                              const ckmc_policy_s policy_private_key, const ckmc_policy_s policy_public_key);
@@ -93,11 +93,11 @@ internal static partial class Interop
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_create_key_pair_ecdsa", CallingConvention = CallingConvention.Cdecl)]
         public static extern int CreateKeyPairEcdsa(int ecType, string privateKeyAlias, string publicKeyAlias,
                                                         CkmcPolicy privateKeyPolicy, CkmcPolicy publicKeyPolicy);
-        // int ckmc_create_key_pair_ecdsa(const size_t size, const char* private_key_alias, const char* public_key_alias,
+        // int ckmc_create_key_pair_ecdsa(const ckmc_ec_type_e type, const char* private_key_alias, const char* public_key_alias,
         //                                const ckmc_policy_s policy_private_key, const ckmc_policy_s policy_public_key);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_create_key_aes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int CreateKeyAes(int size, string ceyAlias, CkmcPolicy keyPolicy);
+        public static extern int CreateKeyAes(UIntPtr size, string ceyAlias, CkmcPolicy keyPolicy);
         // int ckmc_create_key_aes(size_t size, const char* key_alias, ckmc_policy_s key_policy);
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_create_signature", CallingConvention = CallingConvention.Cdecl)]
@@ -129,7 +129,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.KeyManager, EntryPoint = "ckmc_get_cert_chain_with_trustedcert", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCertChainWithTrustedCerts(IntPtr cert, IntPtr untrustedCerts, IntPtr trustedCerts,
-                                                                    bool useTrustedSystemCerts, out IntPtr certChain);
+                                                              bool useTrustedSystemCerts, out IntPtr certChain);
         // int ckmc_get_cert_chain_with_trustedcert(const ckmc_cert_s *cert, const ckmc_cert_list_s* untrustedcerts,
         //       const ckmc_cert_list_s* trustedcerts, const bool use_trustedsystemcerts, ckmc_cert_list_s **ppcert_chain_list);
 

@@ -80,7 +80,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Creates RSA private/public key pair and stores them inside secure repository based on each policy.
         /// </summary>
-        /// <param name="size">The size of key strength to be created. 1024, 2048, 3072, and 4096 are supported.</param>
+        /// <param name="size">The size of key strength to be created. 1024, 2048, and 4096 are supported.</param>
         /// <param name="privateKeyAlias">The name of private key to be stored.</param>
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
@@ -91,7 +91,10 @@ namespace Tizen.Security.SecureRepository
         static public void CreateRsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
-            int ret = Interop.CkmcManager.CreateKeyPairRsa(size, privateKeyAlias, publicKeyAlias,
+            if (size != 1024 && size != 2048 && size != 4096)
+                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+
+            int ret = Interop.CkmcManager.CreateKeyPairRsa((UIntPtr)size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to Create RSA Key Pair");
         }
@@ -99,7 +102,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Creates DSA private/public key pair and stores them inside secure repository based on each policy.
         /// </summary>
-        /// <param name="size">The size of key strength to be created. 1024, 2048, and 4096 are supported.</param>
+        /// <param name="size">The size of key strength to be created. 1024, 2048, 3072, and 4096 are supported.</param>
         /// <param name="privateKeyAlias">The name of private key to be stored.</param>
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
         /// <param name="privateKeyPolicy">The policy about how to store a private key securely.</param>
@@ -110,7 +113,10 @@ namespace Tizen.Security.SecureRepository
         static public void CreateDsaKeyPair(int size, string privateKeyAlias, string publicKeyAlias,
                                             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
-            int ret = Interop.CkmcManager.CreateKeyPairDsa(size, privateKeyAlias, publicKeyAlias,
+            if (size != 1024 && size != 2048 && size != 3072 && size != 4096)
+                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+
+            int ret = Interop.CkmcManager.CreateKeyPairDsa((UIntPtr)size, privateKeyAlias, publicKeyAlias,
                                         privateKeyPolicy.ToCkmcPolicy(), publicKeyPolicy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to Create DSA Key Pair");
         }
@@ -145,7 +151,10 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>If password in policy is provided, the key is additionally encrypted with the password in policy.</remarks>
         static public void CreateAesKey(int size, string keyAlias, Policy policy)
         {
-            int ret = Interop.CkmcManager.CreateKeyAes(size, keyAlias, policy.ToCkmcPolicy());
+            if (size != 128 && size != 192 && size != 256)
+                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+
+            int ret = Interop.CkmcManager.CreateKeyAes((UIntPtr)size, keyAlias, policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to AES Key");
         }
     }
