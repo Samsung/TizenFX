@@ -54,7 +54,7 @@ namespace Tizen.Location
                     else
                     {
                         Log.Error(Globals.LogTag, "Error Setting the Callback Interval");
-                        LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                        throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                     }
                 }
             }
@@ -75,7 +75,12 @@ namespace Tizen.Location
         private string GetNmea()
         {
             string value = null;
-            Interop.GpsSatellite.GetNMEAData(_handle, out value);
+            int ret = Interop.GpsSatellite.GetNMEAData(_handle, out value);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error getting the NMEAData," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
 
             return value;
         }
@@ -98,7 +103,12 @@ namespace Tizen.Location
             uint numActive = 0;
             uint numInView;
             int timestamp;
-            Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
+            int ret = Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
             return numActive;
         }
 
@@ -144,7 +154,12 @@ namespace Tizen.Location
                 satelliteList.Add(satellite);
                 return true;
             };
-            Interop.GpsSatellite.GetForEachSatelliteInView(_handle, callback, IntPtr.Zero);
+            int ret = Interop.GpsSatellite.GetForEachSatelliteInView(_handle, callback, IntPtr.Zero);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
             return satelliteList;
         }
 
@@ -164,7 +179,7 @@ namespace Tizen.Location
             else
             {
                 Log.Error(Globals.LogTag, "Error constructing GpsSatellite class");
-                LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
             }
         }
 
@@ -204,7 +219,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in setting satellite status changed callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -215,7 +230,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Getting Unsetting satellite status changed callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 

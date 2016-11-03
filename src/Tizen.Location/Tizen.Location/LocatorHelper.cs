@@ -45,7 +45,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error Checking the Location Manager type is Enabled," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return initStatus;
         }

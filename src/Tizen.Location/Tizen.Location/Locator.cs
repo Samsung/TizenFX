@@ -64,7 +64,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error creating Location Manager," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             _location = new Location();
             _locationType = locationType;
@@ -103,7 +103,7 @@ namespace Tizen.Location
                 else
                 {
                     Log.Error(Globals.LogTag, "Error setting Callback Interval");
-                    LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace Tizen.Location
                 else
                 {
                     Log.Error(Globals.LogTag, "Error Setting the StayInterval");
-                    LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace Tizen.Location
                 else
                 {
                     Log.Error(Globals.LogTag, "Error Setting the Distance");
-                    LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                 }
             }
         }
@@ -220,7 +220,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error Set Enable Mock Type," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -236,7 +236,7 @@ namespace Tizen.Location
                 if (((LocationError)ret != LocationError.None))
                 {
                     Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
-                    LocationErrorFactory.ThrowLocationException(ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
                 }
                 Locator.s_locatorReference = this;
                 _isStarted = true;
@@ -245,7 +245,7 @@ namespace Tizen.Location
             else
             {
                 Log.Error(Globals.LogTag, "Error, previous instance of Locator should be stopped before starting a new one," + LocationError.NotSupported);
-                LocationErrorFactory.ThrowLocationException((int)LocationError.NotSupported);
+                throw LocationErrorFactory.ThrowLocationException((int)LocationError.NotSupported);
             }
         }
 
@@ -260,7 +260,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             Locator.s_locatorReference = null;
             _isStarted = false;
@@ -286,7 +286,7 @@ namespace Tizen.Location
             else
             {
                 Log.Error(Globals.LogTag, "Error in setting up location mocking," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -300,7 +300,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in clear up location mocking," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -339,7 +339,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in setting up location mocking," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return task.Task;
         }
@@ -369,7 +369,7 @@ namespace Tizen.Location
                 if (((LocationError)ret != LocationError.None))
                 {
                     Log.Error(Globals.LogTag, "Error in get current location infomation," + (LocationError)ret);
-                    LocationErrorFactory.ThrowLocationException(ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
             else
@@ -379,7 +379,7 @@ namespace Tizen.Location
                 if (((LocationError)ret != LocationError.None))
                 {
                     Log.Error(Globals.LogTag, "Error in get last location information," + (LocationError)ret);
-                    LocationErrorFactory.ThrowLocationException(ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
 
@@ -402,7 +402,7 @@ namespace Tizen.Location
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
                 Log.Error(Globals.LogTag, "Error Adding Boundary," + (LocationBoundError)ret);
-                LocationErrorFactory.ThrowLocationBoundaryException(ret);
+                throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
         }
 
@@ -417,7 +417,7 @@ namespace Tizen.Location
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
                 Log.Error(Globals.LogTag, "Error Removing Boundary," + (LocationBoundError)ret);
-                LocationErrorFactory.ThrowLocationBoundaryException(ret);
+                throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
         }
 
@@ -445,7 +445,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Destroy handle" + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -484,7 +484,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Service State Changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -495,7 +495,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in UnSetting Service State Changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -540,7 +540,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Zone Changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -601,7 +601,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -612,7 +612,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Unsetting Setting's Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -658,7 +658,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Distance based location changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -669,7 +669,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in UnSetting Distance based location changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -716,7 +716,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting location changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 
@@ -727,7 +727,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in UnSetting location changed Callback," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
 

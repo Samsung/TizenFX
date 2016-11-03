@@ -183,7 +183,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error getting single distance information ," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return result;
         }
@@ -201,7 +201,7 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error getting distance information to the specifed location," + (LocationError)ret);
-                LocationErrorFactory.ThrowLocationException(ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return result;
         }

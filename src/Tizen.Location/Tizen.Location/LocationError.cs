@@ -60,27 +60,28 @@ namespace Tizen.Location
     {
         internal static Exception ThrowLocationException(int errCode)
         {
+            Log.Error(Globals.LogTag, "Throw Location Exception : " + errCode);
             LocationError error = (LocationError)errCode;
             switch (error)
             {
-                case LocationError.AcessibilityNotallowed:
-                    return new InvalidOperationException("Accesibility not allowed");
-                case LocationError.SettingOff:
-                    return new InvalidOperationException("Current locationtype setting is off");
-                case LocationError.IncorrectMethod:
-                    return new InvalidOperationException("Incorrect method used");
-                case LocationError.InvalidParameter:
-                    return new ArgumentException("Invalid Parameter passed");
-                case LocationError.NetworkFailed:
-                    return new InvalidOperationException("Network failed");
-                case LocationError.NotSupported:
-                    return new InvalidOperationException("Operation not supported");
                 case LocationError.OutOfMemoryError:
                     return new InvalidOperationException("Out of memory error");
-                case LocationError.SecuirtyRestricted:
-                    return new InvalidOperationException("Security Restricted");
+                case LocationError.InvalidParameter:
+                    return new ArgumentException("Invalid Parameter passed");
+                case LocationError.AcessibilityNotallowed:
+                    return new UnauthorizedAccessException("Accesibility not allowed");
+                case LocationError.NotSupported:
+                    return new NotSupportedException("Not supported");
+                case LocationError.IncorrectMethod:
+                    return new InvalidOperationException("Incorrect method used");
+                case LocationError.NetworkFailed:
+                    return new InvalidOperationException("Network failed");
                 case LocationError.ServiceNotAvailable:
                     return new InvalidOperationException("Service not available");
+                case LocationError.SettingOff:
+                    return new InvalidOperationException("Current locationtype setting is off");
+                case LocationError.SecuirtyRestricted:
+                    return new InvalidOperationException("Security Restricted");
                 default:
                     return new InvalidOperationException("Unknown Error");
             }
@@ -91,16 +92,16 @@ namespace Tizen.Location
             LocationBoundError error = (LocationBoundError)errCode;
             switch (error)
             {
-                case LocationBoundError.IncorrectType:
-                    return new InvalidOperationException("Incorrect type passed");
-                case LocationBoundError.InvalidParameter:
-                    return new ArgumentException("Invalid parameter passed");
-                case LocationBoundError.IsAdded:
-                    return new InvalidOperationException("Boundary is not addded");
-                case LocationBoundError.NotSupported:
-                    return new InvalidOperationException("Operation Not supported");
                 case LocationBoundError.OutOfMemoryError:
                     return new InvalidOperationException("Out of memory exception");
+                case LocationBoundError.InvalidParameter:
+                    return new ArgumentException("Invalid parameter passed");
+                case LocationBoundError.NotSupported:
+                    return new NotSupportedException("Not supported");
+                case LocationBoundError.IncorrectType:
+                    return new InvalidOperationException("Incorrect type passed");
+                case LocationBoundError.IsAdded:
+                    return new InvalidOperationException("Boundary is not addded");
                 default:
                     return new InvalidOperationException("Unknown Error");
             }
