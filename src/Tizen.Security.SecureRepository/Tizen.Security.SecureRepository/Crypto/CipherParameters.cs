@@ -56,8 +56,17 @@ namespace Tizen.Security.SecureRepository.Crypto
         protected void Add(CipherParameterName name, byte[] value)
         {
             Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(value), value.Length);
-            int ret = Interop.CkmcTypes.ParamListSetBuffer(PtrCkmcParamList, (int)name, new PinnedObject(rawBuff));
-            Interop.CheckNThrowException(ret, "Failed to add parameter.");
+            IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(rawBuff));
+            try
+            {
+                Marshal.StructureToPtr<Interop.CkmcRawBuffer>(rawBuff, ptr, false);
+                int ret = Interop.CkmcTypes.ParamListSetBuffer(PtrCkmcParamList, (int)name, ptr);
+                Interop.CheckNThrowException(ret, "Failed to add parameter.");
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(ptr);
+            }
         }
 
         /// <summary>

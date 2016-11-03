@@ -89,17 +89,17 @@ namespace Tizen.Security.SecureRepository
         /// <remarks>The trusted root certificate of the chain should exist in the system's certificate storage.</remarks>
         /// <remarks>The trusted root certificate of the chain in system's certificate storage is added to the certificate chain.</remarks>
         static public IEnumerable<Certificate> GetCertificateChain(Certificate certificate,
-                                                                    IEnumerable<Certificate> untrustedCertificates)
+                                                                   IEnumerable<Certificate> untrustedCertificates)
         {
-            IntPtr ptrCertChain = new IntPtr();
+            var ptrCertChain = new IntPtr();
+            var untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
 
-            SafeCertificateListHandle untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
-
-            int ret = Interop.CkmcManager.GetCertChain(new PinnedObject(certificate.ToCkmcCert()),
-                                                        untrustedCerts.ToCkmcCertificateListPtr(), out ptrCertChain);
+            int ret = Interop.CkmcManager.GetCertChain(certificate.GetHandle(),
+                                                       untrustedCerts.ToCkmcCertificateListPtr(),
+                                                       out ptrCertChain);
             Interop.CheckNThrowException(ret, "Failed to get certificate chain");
 
-            SafeCertificateListHandle certChain = new SafeCertificateListHandle(ptrCertChain);
+            var certChain = new SafeCertificateListHandle(ptrCertChain);
             return certChain.Certificates;
         }
 
@@ -119,20 +119,21 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         /// <remarks>The trusted root certificate of the chain in system's certificate storage is added to the certificate chain.</remarks>
         static public IEnumerable<Certificate> GetCertificateChain(Certificate certificate,
-                                                                    IEnumerable<Certificate> untrustedCertificates,
-                                                                    IEnumerable<Certificate> trustedCertificates,
-                                                                    bool useTrustedSystemCertificates)
+                                                                   IEnumerable<Certificate> untrustedCertificates,
+                                                                   IEnumerable<Certificate> trustedCertificates,
+                                                                   bool useTrustedSystemCertificates)
         {
-            IntPtr ptrCertChain = new IntPtr();
-            SafeCertificateListHandle untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
-            SafeCertificateListHandle trustedCerts = new SafeCertificateListHandle(trustedCertificates);
+            var ptrCertChain = new IntPtr();
+            var untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
+            var trustedCerts = new SafeCertificateListHandle(trustedCertificates);
 
-            int ret = Interop.CkmcManager.GetCertChainWithTrustedCerts(new PinnedObject(certificate.ToCkmcCert()),
-                            untrustedCerts.ToCkmcCertificateListPtr(), trustedCerts.ToCkmcCertificateListPtr(), useTrustedSystemCertificates,
+            int ret = Interop.CkmcManager.GetCertChainWithTrustedCerts(
+                            certificate.GetHandle(), untrustedCerts.ToCkmcCertificateListPtr(),
+                            trustedCerts.ToCkmcCertificateListPtr(), useTrustedSystemCertificates,
                             out ptrCertChain);
             Interop.CheckNThrowException(ret, "Failed to get certificate chain with trusted certificates");
 
-            SafeCertificateListHandle certChain = new SafeCertificateListHandle(ptrCertChain);
+            var certChain = new SafeCertificateListHandle(ptrCertChain);
 
             return certChain.Certificates;
         }

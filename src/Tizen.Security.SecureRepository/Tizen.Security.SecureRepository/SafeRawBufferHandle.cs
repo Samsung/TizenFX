@@ -41,6 +41,11 @@ namespace Tizen.Security.SecureRepository
             get; set;
         }
 
+        internal IntPtr GetHandle()
+        {
+            return this.handle;
+        }
+
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
