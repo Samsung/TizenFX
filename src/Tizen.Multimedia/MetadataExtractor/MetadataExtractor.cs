@@ -68,8 +68,8 @@ namespace Tizen.Multimedia
 		public MetadataExtractor(byte[] buffer)
 		{
 			int ret;
-			IntPtr buf = new IntPtr(0);
 			int size = buffer.Length;
+			IntPtr buf = Marshal.AllocHGlobal(size);
 
 			if (buffer == null || size == 0)
 			{
