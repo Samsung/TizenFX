@@ -99,6 +99,7 @@ namespace Tizen.Multimedia
 		/// Gets metadata
 		/// </summary>
 		/// <value> Metadata object </value>
+		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
 		public Metadata GetMetadata()
 		{
 			int ret;
@@ -332,6 +333,7 @@ namespace Tizen.Multimedia
 		/// Gets the artwork image in a media file
 		/// </summary>
 		/// <value> Artwork object </value>
+		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
 		public Artwork GetArtwork()
 		{
 			int ret;
@@ -367,6 +369,8 @@ namespace Tizen.Multimedia
 		/// </summary>
 		/// <param name="index"> The index of time/lyrics to set </param>
 		/// <value> Synclyrics object </value>
+		/// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
+		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
 		public Synclyrics GetSynclyrics(int index)
 		{
 			int ret;
@@ -389,6 +393,7 @@ namespace Tizen.Multimedia
 		/// Gets the frame of a video media file
 		/// </summary>
 		/// <value> Frame object </value>
+		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
 		public Frame GetFrame()
 		{
 			int ret;
@@ -418,6 +423,8 @@ namespace Tizen.Multimedia
 		/// <param name="accurate"> If @c true the user can get an accurate frame for the given timestamp,\n
 		///						 otherwise @c false if the user can only get the nearest i-frame of the video rapidly </param>
 		/// <value> Frame object </value>
+		/// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
+		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
 		public Frame GetFrameAtTime(uint timeStamp, bool accurate)
 		{
 			int ret;
