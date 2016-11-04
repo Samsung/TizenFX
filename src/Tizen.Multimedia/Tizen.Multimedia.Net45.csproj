@@ -54,7 +54,6 @@
     <Compile Include="AudioIO\BaseAudio.cs" />
     <Compile Include="Camera\Area.cs" />
     <Compile Include="Camera\Camera.cs" />
-    <Compile Include="Camera\CameraDeviceStateChangedEventArgs.cs" />
     <Compile Include="Camera\CameraDisplay.cs" />
     <Compile Include="Camera\CameraEnums.cs" />
     <Compile Include="Camera\CameraErrorFactory.cs" />
