@@ -243,6 +243,14 @@
     <Compile Include="MediaController\Client.cs" />
     <Compile Include="MediaController\Server.cs" />
     <Compile Include="MediaController\CommandReplyEventArgs.cs" />
+    <Compile Include="ScreenMirroring\AudioInformation.cs" />
+    <Compile Include="ScreenMirroring\ErrorOccurredEventArgs.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroring.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroringEnumerations.cs" />
+    <Compile Include="ScreenMirroring\StateChangedEventArgs.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroringErrorFactory.cs" />
+    <Compile Include="ScreenMirroring\VideoInformation.cs" />
+    <Compile Include="Interop\Interop.ScreenMirroring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.nuspec" />

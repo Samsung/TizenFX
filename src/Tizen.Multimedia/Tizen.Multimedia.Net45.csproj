@@ -221,6 +221,14 @@
     <Compile Include="Interop\Interop.Device.cs" />
     <Compile Include="Interop\Interop.StreamPolicy.cs" />
     <Compile Include="Interop\Interop.Volume.cs" />
+    <Compile Include="ScreenMirroring\AudioInformation.cs" />
+    <Compile Include="ScreenMirroring\ErrorOccurredEventArgs.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroring.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroringEnumerations.cs" />
+    <Compile Include="ScreenMirroring\StateChangedEventArgs.cs" />
+    <Compile Include="Interop\Interop.ScreenMirroring.cs" />
+    <Compile Include="ScreenMirroring\ScreenMirroringErrorFactory.cs" />
+    <Compile Include="ScreenMirroring\VideoInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.nuspec" />
