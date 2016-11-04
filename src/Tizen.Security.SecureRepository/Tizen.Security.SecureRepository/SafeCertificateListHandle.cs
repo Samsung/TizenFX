@@ -104,9 +104,6 @@ namespace Tizen.Security.SecureRepository
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            if (handle == IntPtr.Zero) // do not release
-                return true;
-
             Interop.CkmcTypes.CertListAllFree(handle);
             this.SetHandle(IntPtr.Zero);
             return true;
