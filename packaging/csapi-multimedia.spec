@@ -8,7 +8,7 @@
 
 Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
-Version:    1.0.7
+Version:    1.0.8
 Release:    0
 Group:      Development/Libraries
 License:    Apache-2.0
