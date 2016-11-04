@@ -129,7 +129,12 @@ namespace Tizen.Location
             uint numActive;
             uint numInView = 0;
             int timestamp;
-            Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
+            int ret = Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
             return numInView;
         }
 
