@@ -25,26 +25,25 @@ namespace Tizen.Security.SecureRepository
     {
         private IEnumerable<Certificate> _certificates;
 
-        public SafeCertificateListHandle(IEnumerable<Certificate> certs) : base(IntPtr.Zero, true)
+        public SafeCertificateListHandle(IEnumerable<Certificate> certs) :
+            base(IntPtr.Zero, true)
         {
-            this.SetHandle(IntPtr.Zero);
             _certificates = certs;
         }
 
-        public SafeCertificateListHandle(IntPtr ptrCerts, bool ownsHandle = true) : base(IntPtr.Zero, ownsHandle)
+        public SafeCertificateListHandle(IntPtr ptr, bool ownsHandle = true) :
+            base(ptr, ownsHandle)
         {
-            this.SetHandle(ptrCerts);
-
-            List<Certificate> certs = new List<Certificate>();
-            IntPtr ptrCurr = handle;
-            while (ptrCurr != IntPtr.Zero)
+            var cur = ptr;
+            var certs = new List<Certificate>();
+            while (cur != IntPtr.Zero)
             {
-                CkmcCertList ckmcCertList = Marshal.PtrToStructure<CkmcCertList>(ptrCurr);
+                var ckmcCertList = Marshal.PtrToStructure<CkmcCertList>(cur);
                 certs.Add(new Certificate(ckmcCertList.cert, false));
-                ptrCurr = ckmcCertList.next;
+                cur = ckmcCertList.next;
             }
 
-            _certificates = certs;
+            this._certificates = certs;
         }
 
         public IEnumerable<Certificate> Certificates
@@ -52,44 +51,60 @@ namespace Tizen.Security.SecureRepository
             get { return _certificates; }
         }
 
-        internal IntPtr ToCkmcCertificateListPtr(bool updateHandle = true)
+        internal IntPtr GetHandle(bool updateHandle = true)
         {
             if (_certificates == null)
                 return IntPtr.Zero;
 
             if (!IsInvalid)
-                return handle;
+                return this.handle;
 
             IntPtr first = IntPtr.Zero;
             IntPtr previous = IntPtr.Zero;
+            IntPtr certPtr = IntPtr.Zero;
 
-            int ret;
-            foreach (Certificate cert in _certificates)
+            try
             {
-                IntPtr certPtr;
-                ret = Interop.CkmcTypes.CertNew(cert.Binary, (UIntPtr)cert.Binary.Length, (int)cert.Format, out certPtr);
-                Interop.CheckNThrowException(ret, "Failed to create new Certificate.");
+                foreach (var cert in this._certificates)
+                {
+                    // initialize local variables to release memory safely for
+                    // in case of exception occured
+                    certPtr = IntPtr.Zero;
 
-                IntPtr outCertList;
-                if (previous == IntPtr.Zero)
-                {
-                    ret = Interop.CkmcTypes.CertListNew(certPtr, out outCertList);
-                    Interop.CheckNThrowException(ret, "Failed to create new CertificateList.");
-                    first = outCertList;
+                    certPtr = cert.GetHandle(false);
+
+                    IntPtr outCertList;
+                    if (previous == IntPtr.Zero)
+                    {
+                        Interop.CheckNThrowException(
+                            Interop.CkmcTypes.CertListNew(certPtr, out outCertList),
+                            "Failed to create new CertificateList.");
+                        first = outCertList;
+                    }
+                    else
+                    {
+                        Interop.CheckNThrowException(
+                            Interop.CkmcTypes.CertListAdd(previous, certPtr,
+                                                          out outCertList),
+                            "Failed to add Certificate to CertificateList.");
+                    }
                     previous = outCertList;
                 }
-                else
-                {
-                    ret = Interop.CkmcTypes.CertListAdd(previous, certPtr, out outCertList);
-                    Interop.CheckNThrowException(ret, "Failed to add Certificate to CertificateList.");
-                    previous = outCertList;
-                }
+
+                if (updateHandle)
+                    this.SetHandle(first);
+
+                return first;
             }
+            catch
+            {
+                if (first != IntPtr.Zero)
+                    Interop.CkmcTypes.CertListAllFree(this.handle);
+                if (certPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertFree(certPtr);
 
-            if (updateHandle)
-                this.SetHandle(first);
-
-            return first;
+                throw;
+            }
         }
 
         /// <summary>
@@ -97,16 +112,17 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public override bool IsInvalid
         {
-            get { return (handle == IntPtr.Zero); }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.CertListAllFree(handle);
+            Interop.CkmcTypes.CertListAllFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

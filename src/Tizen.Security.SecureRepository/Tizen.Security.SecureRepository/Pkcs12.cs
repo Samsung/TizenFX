@@ -44,7 +44,7 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public Pkcs12 Load(string filePath, string filePassword)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
             int ret = Interop.CkmcTypes.Pkcs12Load(filePath, filePassword, out ptr);
             Interop.CheckNThrowException(ret, "Failed to load PKCS12. file=" + filePath);
@@ -101,29 +101,17 @@ namespace Tizen.Security.SecureRepository
             IntPtr p12Ptr = IntPtr.Zero;
             try
             {
-                int ret = Interop.CkmcTypes.KeyNew(
-                    this.PrivateKey.Binary, (UIntPtr)this.PrivateKey.Binary.Length,
-                    (int)this.PrivateKey.Type, this.PrivateKey.BinaryPassword, out keyPtr);
-                Interop.CheckNThrowException(ret, "Failed to duplicate key");
+                keyPtr = this.PrivateKey.GetHandle(false);
 
                 if (this.Certificate != null)
-                {
-                    ret = Interop.CkmcTypes.CertNew(
-                        this.Certificate.Binary, (UIntPtr)this.Certificate.Binary.Length,
-                        (int)this.Certificate.Format, out certPtr);
-                    Interop.CheckNThrowException(ret, "Failed to duplicate cert");
-                }
+                    certPtr = this.Certificate.GetHandle(false);
 
-                if (this.CaChain != null)
-                {
-                    var safeCertsHandle = new SafeCertificateListHandle(this.CaChain);
-                    // handle should not be updated in SafeCertificateListHandle
-                    // because it'll be freed with Pkcs12Free
-                    cacertPtr = safeCertsHandle.ToCkmcCertificateListPtr(false);
-                }
+                if (this._certChainHandle != null)
+                    cacertPtr = this._certChainHandle.GetHandle(false);
 
-                ret = Interop.CkmcTypes.Pkcs12New(keyPtr, certPtr, cacertPtr, out p12Ptr);
-                Interop.CheckNThrowException(ret, "Failed to create pkcs12");
+                Interop.CheckNThrowException(
+                    Interop.CkmcTypes.Pkcs12New(keyPtr, certPtr, cacertPtr, out p12Ptr),
+                    "Failed to create pkcs12");
 
                 if (!this.IsInvalid && !this.ReleaseHandle())
                     throw new InvalidOperationException("Failed to release p12 handle");
@@ -193,7 +181,7 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
@@ -203,7 +191,7 @@ namespace Tizen.Security.SecureRepository
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.Pkcs12Free(handle);
+            Interop.CkmcTypes.Pkcs12Free(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

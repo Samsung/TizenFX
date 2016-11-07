@@ -22,18 +22,40 @@ namespace Tizen.Security.SecureRepository
 {
     internal class SafeRawBufferHandle : SafeHandle
     {
-        public SafeRawBufferHandle(IntPtr ptrRawBuffer, bool ownsHandle = true) : base(IntPtr.Zero, true)
+        public SafeRawBufferHandle(IntPtr ptr, bool ownsHandle = true) :
+            base(ptr, true)
         {
-            this.SetHandle(ptrRawBuffer);
+            if (ptr == IntPtr.Zero)
+                throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
 
-            if (ptrRawBuffer == IntPtr.Zero)
-                return;
-
-            CkmcRawBuffer buff = Marshal.PtrToStructure<CkmcRawBuffer>(ptrRawBuffer);
-            byte[] data = new byte[(int)buff.size];
-            Marshal.Copy(buff.data, data, 0, data.Length);
-
+            var ckmcBuf = Marshal.PtrToStructure<CkmcRawBuffer>(ptr);
+            byte[] data = new byte[(int)ckmcBuf.size];
+            Marshal.Copy(ckmcBuf.data, data, 0, data.Length);
             this.Data = data;
+        }
+
+        internal IntPtr GetHandle()
+        {
+            IntPtr ptr = IntPtr.Zero;
+            try
+            {
+                int ret = Interop.CkmcTypes.BufferNew(
+                    this.Data, (UIntPtr)this.Data.Length, out ptr);
+                CheckNThrowException(ret, "Failed to create buf");
+
+                if (!this.IsInvalid && !this.ReleaseHandle())
+                    throw new InvalidOperationException("Failed to release buf handle");
+
+                this.SetHandle(ptr);
+                return this.handle;
+            }
+            catch
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+
+                throw;
+            }
         }
 
         public byte[] Data
@@ -41,26 +63,22 @@ namespace Tizen.Security.SecureRepository
             get; set;
         }
 
-        internal IntPtr GetHandle()
-        {
-            return this.handle;
-        }
-
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.BufferFree(handle);
+            Interop.CkmcTypes.BufferFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

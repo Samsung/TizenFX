@@ -26,43 +26,66 @@ namespace Tizen.Security.SecureRepository
     public class Key : SafeHandle
     {
         /// <summary>
-        /// A constructor of Key that takes the binary, its type, and optional password of binary.
+        /// A constructor of Key that takes the binary, its type, and optional password
+        /// of binary.
         /// </summary>
-        /// <param name="binary">The binary value of a key. This binary may be encrypted with binaryPassword.</param>
+        /// <param name="binary">
+        /// The binary value of a key. This binary may be encrypted with binaryPassword.
+        /// </param>
         /// <param name="type">The key's type.</param>
-        /// <param name="binaryPassword">The password used to decrypt binary when binary is encrypted.</param>
-        public Key(byte[] binary, KeyType type, string binaryPassword) : base(IntPtr.Zero, true)
+        /// <param name="binaryPassword">
+        /// The password used to decrypt binary when binary is encrypted.
+        /// </param>
+        public Key(byte[] binary, KeyType type, string binaryPassword) :
+            base(IntPtr.Zero, true)
         {
-            this.SetHandle(IntPtr.Zero);
-            Binary = binary;
-            Type = type;
-            BinaryPassword = binaryPassword;
+            this.Binary = binary;
+            this.Type = type;
+            this.BinaryPassword = binaryPassword;
         }
 
-        internal Key(IntPtr ptr, bool ownsHandle = true) : base(IntPtr.Zero, ownsHandle)
+        internal Key(IntPtr ptr, bool ownsHandle = true) : base(ptr, ownsHandle)
         {
-            base.SetHandle(ptr);
+            if (ptr == IntPtr.Zero)
+                throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
 
-            CkmcKey ckmcKey = Marshal.PtrToStructure<CkmcKey>(handle);
-            Binary = new byte[(int)ckmcKey.size];
-            Marshal.Copy(ckmcKey.rawKey, Binary, 0, Binary.Length);
-            Type = (KeyType)ckmcKey.keyType;
-            BinaryPassword = ckmcKey.password;
+            var ckmcKey = Marshal.PtrToStructure<CkmcKey>(ptr);
+            this.Binary = new byte[(int)ckmcKey.size];
+            Marshal.Copy(ckmcKey.rawKey, this.Binary, 0, this.Binary.Length);
+            this.Type = (KeyType)ckmcKey.keyType;
+            this.BinaryPassword = ckmcKey.password;
         }
 
-        internal IntPtr GetHandle()
+        // Refresh handle(IntPtr) always. Because C# layer
+        // properties(Binary, Type, BinaryPassword) could be changed.
+        internal IntPtr GetHandle(bool updateHandle = true)
         {
-            if (this.handle == IntPtr.Zero)
+            IntPtr ptr = IntPtr.Zero;
+            try
             {
-                int ret = Interop.CkmcTypes.KeyNew(this.Binary,
-                                                   (UIntPtr)this.Binary.Length,
-                                                   (int)this.Type,
-                                                   this.BinaryPassword,
-                                                   out this.handle);
-                Interop.CheckNThrowException(ret, "Failed to create key");
-            }
+                int ret = Interop.CkmcTypes.KeyNew(
+                    this.Binary, (UIntPtr)this.Binary.Length, (int)this.Type,
+                    this.BinaryPassword, out ptr);
+                CheckNThrowException(ret, "Failed to create key");
 
-            return this.handle;
+                if (updateHandle)
+                {
+                    if (!this.IsInvalid && !this.ReleaseHandle())
+                        throw new InvalidOperationException(
+                            "Failed to release key handle");
+
+                    this.SetHandle(ptr);
+                }
+
+                return ptr;
+            }
+            catch
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.KeyFree(ptr);
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -91,11 +114,11 @@ namespace Tizen.Security.SecureRepository
 
         internal CkmcKey ToCkmcKey()
         {
-            byte[] bin = (Binary != null) ? Binary : new byte[0] ;
-            return new Interop.CkmcKey(new PinnedObject(bin),
-                                       bin.Length,
-                                       (int)Type,
-                                       BinaryPassword);
+            return new Interop.CkmcKey(
+                (Binary == null) ? IntPtr.Zero : new PinnedObject(this.Binary),
+                (Binary == null) ? 0 : this.Binary.Length,
+                (int)this.Type,
+                this.BinaryPassword);
         }
 
         /// <summary>
@@ -103,16 +126,17 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.KeyFree(handle);
+            Interop.CkmcTypes.KeyFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

@@ -23,16 +23,16 @@ namespace Tizen.Security.SecureRepository
 {
     internal class SafeAliasListHandle : SafeHandle
     {
-        public SafeAliasListHandle(IntPtr ptrAliases, bool ownsHandle = true) : base(IntPtr.Zero, ownsHandle)
+        public SafeAliasListHandle(IntPtr ptr, bool ownsHandle = true) :
+            base(ptr, ownsHandle)
         {
-            base.SetHandle(ptrAliases);
-
-            List<string> aliases = new List<string>();
-            while (ptrAliases != IntPtr.Zero)
+            var cur = ptr;
+            var aliases = new List<string>();
+            while (cur != IntPtr.Zero)
             {
-                CkmcAliasList ckmcAliasList = Marshal.PtrToStructure<CkmcAliasList>(ptrAliases);
+                var ckmcAliasList = Marshal.PtrToStructure<CkmcAliasList>(cur);
                 aliases.Add(Marshal.PtrToStringAnsi(ckmcAliasList.alias));
-                ptrAliases = ckmcAliasList.next;
+                cur = ckmcAliasList.next;
             }
 
             this.Aliases = aliases;
@@ -48,16 +48,17 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.AliasListAllFree(handle);
+            Interop.CkmcTypes.AliasListAllFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

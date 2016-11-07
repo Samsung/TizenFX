@@ -30,13 +30,17 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="filePath">The path of certificate file to be loaded.</param>
         /// <returns>Loaded certificate class instance.</returns>
-        /// <exception cref="InvalidOperationException">Invalid certificate file format. Provided file path does not exist or cannot be accessed.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Invalid certificate file format. Provided file path does not exist or
+        /// cannot be accessed.
+        /// </exception>
         static public Certificate Load(string filePath)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcTypes.LoadCertFromFile(filePath, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to load Certificate. file=" + filePath);
+            Interop.CheckNThrowException(
+                CkmcTypes.LoadCertFromFile(filePath, out ptr),
+                "Failed to load Certificate: " + filePath);
 
             return new Certificate(ptr);
         }
@@ -48,33 +52,51 @@ namespace Tizen.Security.SecureRepository
         /// <param name="format">The format of the binary data.</param>
         public Certificate(byte[] binary, DataFormat format) : base(IntPtr.Zero, true)
         {
-            this.SetHandle(IntPtr.Zero);
-            Binary = binary;
-            Format = format;
+            this.Binary = binary;
+            this.Format = format;
         }
 
-        internal Certificate(IntPtr ptrCkmcCert, bool ownsHandle = true) : base(IntPtr.Zero, ownsHandle)
+        internal Certificate(IntPtr ptr, bool ownsHandle = true) :
+            base(ptr, ownsHandle)
         {
-            base.SetHandle(ptrCkmcCert);
+            if (ptr == IntPtr.Zero)
+                throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
 
-            CkmcCert ckmcCert = Marshal.PtrToStructure<CkmcCert>(ptrCkmcCert);
-            Binary = new byte[(int)ckmcCert.size];
-            Marshal.Copy(ckmcCert.rawCert, Binary, 0, Binary.Length);
-            Format = (DataFormat)ckmcCert.dataFormat;
+            var ckmcCert = Marshal.PtrToStructure<CkmcCert>(ptr);
+            this.Binary = new byte[(int)ckmcCert.size];
+            Marshal.Copy(ckmcCert.rawCert, this.Binary, 0, this.Binary.Length);
+            this.Format = (DataFormat)ckmcCert.dataFormat;
         }
 
-        internal IntPtr GetHandle()
+        // Refresh handle(IntPtr) always. Because C# layer
+        // properties(Binary, Format) could be changed.
+        internal IntPtr GetHandle(bool updateHandle = true)
         {
-            if (this.handle == IntPtr.Zero)
+            IntPtr ptr = IntPtr.Zero;
+            try
             {
-                int ret = Interop.CkmcTypes.CertNew(this.Binary,
-                                                    (UIntPtr)this.Binary.Length,
-                                                    (int)this.Format,
-                                                    out this.handle);
-                Interop.CheckNThrowException(ret, "Failed to create cert");
-            }
+                int ret = CkmcTypes.CertNew(
+                    this.Binary, (UIntPtr)this.Binary.Length, (int)this.Format, out ptr);
+                CheckNThrowException(ret, "Failed to create cert");
 
-            return this.handle;
+                if (updateHandle)
+                {
+                    if (!this.IsInvalid && !this.ReleaseHandle())
+                        throw new InvalidOperationException(
+                            "Failed to release cert handle");
+
+                    this.SetHandle(ptr);
+                }
+
+                return ptr;
+            }
+            catch
+            {
+                if (ptr != IntPtr.Zero)
+                    CkmcTypes.CertFree(ptr);
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -95,8 +117,10 @@ namespace Tizen.Security.SecureRepository
 
         internal CkmcCert ToCkmcCert()
         {
-            byte[] bin = (Binary != null) ? Binary : new byte[0];
-            return new Interop.CkmcCert(new PinnedObject(bin), bin.Length, (int)Format);
+            return new Interop.CkmcCert(
+                (Binary == null) ? IntPtr.Zero : new PinnedObject(this.Binary),
+                (Binary == null) ? 0 : this.Binary.Length,
+                (int)Format);
         }
 
         /// <summary>
@@ -104,16 +128,17 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.CkmcTypes.CertFree(handle);
+            Interop.CkmcTypes.CertFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

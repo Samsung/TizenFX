@@ -95,7 +95,7 @@ namespace Tizen.Security.SecureRepository
             var untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
 
             int ret = Interop.CkmcManager.GetCertChain(certificate.GetHandle(),
-                                                       untrustedCerts.ToCkmcCertificateListPtr(),
+                                                       untrustedCerts.GetHandle(),
                                                        out ptrCertChain);
             Interop.CheckNThrowException(ret, "Failed to get certificate chain");
 
@@ -128,8 +128,8 @@ namespace Tizen.Security.SecureRepository
             var trustedCerts = new SafeCertificateListHandle(trustedCertificates);
 
             int ret = Interop.CkmcManager.GetCertChainWithTrustedCerts(
-                            certificate.GetHandle(), untrustedCerts.ToCkmcCertificateListPtr(),
-                            trustedCerts.ToCkmcCertificateListPtr(), useTrustedSystemCertificates,
+                            certificate.GetHandle(), untrustedCerts.GetHandle(),
+                            trustedCerts.GetHandle(), useTrustedSystemCertificates,
                             out ptrCertChain);
             Interop.CheckNThrowException(ret, "Failed to get certificate chain with trusted certificates");
 
@@ -149,7 +149,7 @@ namespace Tizen.Security.SecureRepository
         {
             int ocspStatus = (int)OcspStatus.Good;
             SafeCertificateListHandle certChain = new SafeCertificateListHandle(certificateChain);
-            int ret = Interop.CkmcManager.OcspCheck(certChain.ToCkmcCertificateListPtr(), ref ocspStatus);
+            int ret = Interop.CkmcManager.OcspCheck(certChain.GetHandle(), ref ocspStatus);
             Interop.CheckNThrowException(ret, "Failed to get certificate chain with trusted certificates");
             return (OcspStatus)ocspStatus;
         }
