@@ -44,7 +44,7 @@ namespace Tizen.Multimedia
         /// <param name="fileName">Name of path/file to load the image object</param>
         public Image(string fileName)
         {
-            ret = Interop.MediaVision.Image.Load(fileName, out _imageObjectHandle);
+            int ret = Interop.MediaVision.Image.Load(fileName, out _imageObjectHandle);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to load image object from file");
         }
 
