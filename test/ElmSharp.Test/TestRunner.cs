@@ -48,6 +48,7 @@ namespace ElmSharp.Test
             ResourceDir = Path.Combine(Path.GetDirectoryName(typeof(TestRunner).GetTypeInfo().Assembly.Location), "res");
 
             Elementary.Initialize();
+            Elementary.ThemeOverlay();
 
             EcoreSynchronizationContext.Initialize();
 

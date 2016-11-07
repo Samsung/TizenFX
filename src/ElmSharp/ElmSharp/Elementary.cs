@@ -26,10 +26,6 @@ namespace ElmSharp
         public static void Initialize()
         {
             Interop.Elementary.elm_init(0, null);
-            if (File.Exists(_themeFilePath))
-            {
-                Interop.Elementary.elm_theme_overlay_add(IntPtr.Zero, _themeFilePath);
-            }
         }
 
         public static void Shutdown()
@@ -40,6 +36,14 @@ namespace ElmSharp
         public static void Run()
         {
             Interop.Elementary.elm_run();
+        }
+
+        public static void ThemeOverlay()
+        {
+            if (File.Exists(_themeFilePath))
+            {
+                Interop.Elementary.elm_theme_overlay_add(IntPtr.Zero, _themeFilePath);
+            }
         }
 
         public static double GetSystemScrollFriction()
