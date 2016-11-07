@@ -52,7 +52,7 @@ namespace Tizen.Security.SecureRepository
             get { return _certificates; }
         }
 
-        internal IntPtr ToCkmcCertificateListPtr()
+        internal IntPtr ToCkmcCertificateListPtr(bool updateHandle = true)
         {
             if (_certificates == null)
                 return IntPtr.Zero;
@@ -86,7 +86,9 @@ namespace Tizen.Security.SecureRepository
                 }
             }
 
-            this.SetHandle(first);
+            if (updateHandle)
+                this.SetHandle(first);
+
             return first;
         }
 

@@ -27,6 +27,8 @@ namespace Tizen.Security.SecureRepository
     /// </summary>
     public class Pkcs12 : SafeHandle
     {
+        private SafeCertificateListHandle _certChainHandle = null;
+
         /// <summary>
         /// Load Pkcs12 from the given PKCS#12 file path.
         /// </summary>
@@ -56,60 +58,97 @@ namespace Tizen.Security.SecureRepository
         /// <param name="privateKey">A private key.</param>
         public Pkcs12(Key privateKey) : base(IntPtr.Zero, true)
         {
-            this.SetHandle(IntPtr.Zero);
-
             this.PrivateKey = privateKey;
             this.Certificate = null;
             this.CaChain = null;
         }
 
         /// <summary>
-        /// A constructor of Key that takes a private key, its corresponding certicate, and CA's certificate chain.
+        /// A constructor of Key that takes a private key, its corresponding certicate,
+        /// and CA's certificate chain.
         /// </summary>
         /// <param name="privateKey">A private key.</param>
         /// <param name="certificate">A certificate corresponding the private key</param>
-        /// <param name="caChain">A certificate chain of CA(Certificate Authority) that issued the certificate.</param>
-        public Pkcs12(Key privateKey, Certificate certificate, IEnumerable<Certificate> caChain) : base(IntPtr.Zero, true)
+        /// <param name="caChain">
+        /// A certificate chain of CA(Certificate Authority) that issued the certificate.
+        /// </param>
+        public Pkcs12(Key privateKey,
+                      Certificate certificate,
+                      IEnumerable<Certificate> caChain) : base(IntPtr.Zero, true)
         {
-            this.SetHandle(IntPtr.Zero);
-
             this.PrivateKey = privateKey;
             this.Certificate = certificate;
             this.CaChain = caChain;
         }
 
-        internal Pkcs12(IntPtr ptrCkmcPkcs12, bool ownsHandle = true) : base(IntPtr.Zero, ownsHandle)
+        internal Pkcs12(IntPtr ptr, bool ownsHandle = true) : base(ptr, ownsHandle)
         {
-            this.SetHandle(ptrCkmcPkcs12);
+            var ckmcPkcs12 = Marshal.PtrToStructure<Interop.CkmcPkcs12>(ptr);
 
-            CkmcPkcs12 ckmcPkcs12 = Marshal.PtrToStructure<CkmcPkcs12>(handle);
             this.PrivateKey = new Key(ckmcPkcs12.privateKey, false);
             if (ckmcPkcs12.certificate != IntPtr.Zero)
                 this.Certificate = new Certificate(ckmcPkcs12.certificate, false);
             if (ckmcPkcs12.caChain != IntPtr.Zero)
-                this.CaChain = new SafeCertificateListHandle(ckmcPkcs12.caChain, false).Certificates;
+                this._certChainHandle = new SafeCertificateListHandle(ckmcPkcs12.caChain,
+                                                                      false);
         }
 
         internal IntPtr GetHandle()
         {
-            if (this.PrivateKey == null)
-                return IntPtr.Zero;
-
-            IntPtr keyPtr = this.PrivateKey.GetHandle();
-            IntPtr certPtr = this.Certificate != null ?
-                    this.Certificate.GetHandle() : IntPtr.Zero;
-
-            if (this.handle == IntPtr.Zero)
+            IntPtr keyPtr = IntPtr.Zero;
+            IntPtr certPtr = IntPtr.Zero;
+            IntPtr cacertPtr = IntPtr.Zero;
+            IntPtr p12Ptr = IntPtr.Zero;
+            try
             {
-                var caCerts = new SafeCertificateListHandle(this.CaChain);
-                int ret = Interop.CkmcTypes.Pkcs12New(keyPtr,
-                                                      certPtr,
-                                                      caCerts.ToCkmcCertificateListPtr(),
-                                                      out this.handle);
-                Interop.CheckNThrowException(ret, "Failed to create pkcs12");
-            }
+                int ret = Interop.CkmcTypes.KeyNew(
+                    this.PrivateKey.Binary, (UIntPtr)this.PrivateKey.Binary.Length,
+                    (int)this.PrivateKey.Type, this.PrivateKey.BinaryPassword, out keyPtr);
+                Interop.CheckNThrowException(ret, "Failed to duplicate key");
 
-            return this.handle;
+                if (this.Certificate != null)
+                {
+                    ret = Interop.CkmcTypes.CertNew(
+                        this.Certificate.Binary, (UIntPtr)this.Certificate.Binary.Length,
+                        (int)this.Certificate.Format, out certPtr);
+                    Interop.CheckNThrowException(ret, "Failed to duplicate cert");
+                }
+
+                if (this.CaChain != null)
+                {
+                    var safeCertsHandle = new SafeCertificateListHandle(this.CaChain);
+                    // handle should not be updated in SafeCertificateListHandle
+                    // because it'll be freed with Pkcs12Free
+                    cacertPtr = safeCertsHandle.ToCkmcCertificateListPtr(false);
+                }
+
+                ret = Interop.CkmcTypes.Pkcs12New(keyPtr, certPtr, cacertPtr, out p12Ptr);
+                Interop.CheckNThrowException(ret, "Failed to create pkcs12");
+
+                if (!this.IsInvalid && !this.ReleaseHandle())
+                    throw new InvalidOperationException("Failed to release p12 handle");
+
+                this.SetHandle(p12Ptr);
+                return this.handle;
+            }
+            catch
+            {
+                if (p12Ptr != IntPtr.Zero)
+                {
+                    Interop.CkmcTypes.Pkcs12Free(p12Ptr);
+                }
+                else
+                {
+                    if (keyPtr != IntPtr.Zero)
+                        Interop.CkmcTypes.KeyFree(keyPtr);
+                    if (certPtr != IntPtr.Zero)
+                        Interop.CkmcTypes.CertFree(certPtr);
+                    if (cacertPtr != IntPtr.Zero)
+                        Interop.CkmcTypes.CertListAllFree(cacertPtr);
+                }
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -133,16 +172,20 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         public IEnumerable<Certificate> CaChain
         {
-            get; set;
-        }
-
-        internal CkmcPkcs12 ToCkmcPkcs12()
-        {
-            SafeCertificateListHandle ckmcCaCerts = new SafeCertificateListHandle(CaChain);
-
-            return new Interop.CkmcPkcs12(PrivateKey.GetHandle(),
-                                          Certificate.GetHandle(),
-                                          ckmcCaCerts.ToCkmcCertificateListPtr());
+            get
+            {
+                if (this._certChainHandle == null)
+                    return null;
+                else
+                    return this._certChainHandle.Certificates;
+            }
+            set
+            {
+                if (value == null)
+                    this._certChainHandle = null;
+                else
+                    this._certChainHandle = new SafeCertificateListHandle(value);
+            }
         }
 
         /// <summary>
@@ -154,7 +197,8 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// When overridden in a derived class, executes the code required to free
+        /// the handle.
         /// </summary>
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
