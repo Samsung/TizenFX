@@ -83,10 +83,6 @@ namespace Tizen.System
         /// </summary>
         AudioJackConnector = 21,
         /// <summary>
-        /// Indicates whether USB is connected.
-        /// </summary>
-        Usb = 23,
-        /// <summary>
         /// Indicates whether charger is connected.
         /// </summary>
         Charger = 24,

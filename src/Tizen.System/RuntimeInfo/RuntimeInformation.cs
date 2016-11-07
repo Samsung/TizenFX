@@ -41,7 +41,6 @@ namespace Tizen.System
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_batteryIsCharging;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_tvOutConnected;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_audioJackConnectorChanged;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_usbConnected;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_chargerConnected;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_autoRotationEnabled;
 
@@ -123,11 +122,6 @@ namespace Tizen.System
                         s_audioJackConnectorChanged?.Invoke(null, eventArgs);
                         break;
                     };
-                case RuntimeInformationKey.Usb:
-                    {
-                        s_usbConnected?.Invoke(null, eventArgs);
-                        break;
-                    };
                 case RuntimeInformationKey.Charger:
                     {
                         s_chargerConnected?.Invoke(null, eventArgs);
@@ -157,7 +151,6 @@ namespace Tizen.System
             [RuntimeInformationKey.AudioJack] = typeof(bool),
             [RuntimeInformationKey.BatteryIsCharging] = typeof(bool),
             [RuntimeInformationKey.TvOut] = typeof(bool),
-            [RuntimeInformationKey.Usb] = typeof(bool),
             [RuntimeInformationKey.Charger] = typeof(bool),
             [RuntimeInformationKey.AutoRotation] = typeof(bool),
             [RuntimeInformationKey.Gps] = typeof(int),
@@ -809,38 +802,6 @@ namespace Tizen.System
                 if (s_audioJackConnectorChanged == null)
                 {
                     int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.AudioJackConnector);
-                    if (ret != (int)RuntimeInfoError.None)
-                    {
-                        Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
-                        RuntimeInfoErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) UsbConnected is raised when USB is connected/disconnected.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbConnected
-        {
-            add
-            {
-                if (s_usbConnected == null)
-                {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.Usb, s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != (int)RuntimeInfoError.None)
-                    {
-                        Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
-                        RuntimeInfoErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_usbConnected += value;
-            }
-            remove
-            {
-                s_usbConnected -= value;
-                if (s_usbConnected == null)
-                {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.Usb);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
