@@ -1,13 +1,18 @@
 <?xml version="1.0"?>
 <package>
-  <metadata>
+	<metadata>
 		<id>ElmSharp</id>
 		<version>$version$</version>
-		<authors>Tizen Developers</authors>
-		<description>C# Binding for Elementary</description>
+		<authors>tizen</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<projectUrl>https://www.tizen.org/</projectUrl>
+		<iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
+		<description>ElmSharp is the top-most library based on Tizen Native UI Framwork (EFL). It provides a variety of pre-built UI components, such as layout objects and widgets, that allow you to build rich graphical user interfaces.</description>
 	</metadata>
-  <files>
-    <file src="bin/$Configuration$/ElmSharp.dll" target="lib/netstandard1.3" />
-    <file src="bin/$Configuration$/Net45/ElmSharp.dll" target="lib/net45" />
-  </files>
+	<files>
+		<file src="bin/$Configuration$/ElmSharp.dll" target="lib/netstandard1.3" />
+		<file src="bin/$Configuration$/Net45/ElmSharp.dll" target="lib/net45" />
+	</files>
 </package>
