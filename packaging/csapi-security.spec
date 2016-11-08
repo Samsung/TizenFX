@@ -6,6 +6,10 @@
 %define BUILDCONF Release
 %endif
 
+%define Assemblies Tizen.Security Tizen.Security.SecureRepository
+%define version_security          1.0.4
+%define version_secure_repository 1.0.4
+
 Name:       csapi-security
 Summary:    Tizen Security API for C#
 Version:    1.0.4
@@ -34,16 +38,20 @@ Tizen Security API for C#
 %setup -q
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Security Tizen.Security.SecureRepository
-
 %build
 for ASM in %{Assemblies}; do
-# NuGet Restore
-find $ASM/*.project.json -exec nuget restore {} \;
-# Build
-find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
-# NuGet Pack
-nuget pack $ASM/$ASM.nuspec -Version %{version} -Properties Configuration=%{BUILDCONF}
+  # NuGet Restore
+  find $ASM/*.project.json -exec nuget restore {} \;
+  # Build
+  find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
+  # NuGet Pack
+  if [ "$ASM" = "Tizen.Security" ]; then
+    nuget pack $ASM/$ASM.nuspec -Version %{version_security} \
+      -Properties Configuration=%{BUILDCONF}
+  elif [ "$ASM" = "Tizen.Security.SecureRepository" ]; then
+    nuget pack $ASM/$ASM.nuspec -Version %{version_secure_repository} \
+      -Properties Configuration=%{BUILDCONF}
+  fi
 done
 
 %install
