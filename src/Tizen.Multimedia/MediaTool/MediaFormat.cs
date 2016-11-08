@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using System;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
@@ -40,7 +56,7 @@ namespace Tizen.Multimedia
         {
             if (handle == IntPtr.Zero)
             {
-                throw new ArgumentNullException("The handle value is null.");
+                throw new ArgumentException("The handle value is invalid.");
             }
 
             int type = 0;
@@ -84,6 +100,11 @@ namespace Tizen.Multimedia
             AsNativeHandle(handle);
 
             return handle;
+        }
+
+        internal static void ReleaseNativeHandle(IntPtr handle)
+        {
+            Interop.MediaFormat.Unref(handle);
         }
 
         /// <summary>
@@ -155,6 +176,12 @@ namespace Tizen.Multimedia
 
             MediaToolDebug.AssertNoError(ret);
         }
+
+        public override string ToString()
+        {
+            return $"[{ nameof(ContainerMediaFormat) }] MimeType : { _mimeType }";
+        }
+
     }
 
     /// <summary>
@@ -376,6 +403,12 @@ namespace Tizen.Multimedia
             {
                 return _bitRate;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"[{ nameof(VideoMediaFormat) }] MimeType : { _mimeType }, Width : { _width }, "
+                +  $"Height : { _height }, FrameRate : { _frameRate }, BitRate : { _bitRate }";
         }
     }
 
@@ -640,6 +673,12 @@ namespace Tizen.Multimedia
                 return _aacType;
             }
         }
+
+        public override string ToString()
+        {
+            return $"[{ nameof(AudioMediaFormat) }] MimeType : { _mimeType }, Channel : { _channel }, "
+                + $"SampleRate : { _sampleRate }, Bit : { _bit }, BitRate : { _bitRate }, AacType : { _aacType }";
+        }
     }
 
     /// <summary>
@@ -742,6 +781,11 @@ namespace Tizen.Multimedia
             {
                 return _textType;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"[{ nameof(TextMediaFormat) }] MimeType : { _mimeType }, TextType : { _textType }";
         }
     }
 }

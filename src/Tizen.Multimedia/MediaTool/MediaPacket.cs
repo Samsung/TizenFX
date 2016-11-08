@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -16,7 +32,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the MediaPacket class with the specified media format.
         /// </summary>
-        /// <param name="format">A media format containing properties for the packet.</param>
+        /// <param name="format">The media format containing properties for the packet.</param>
         /// <exception cref="System.ArgumentNullException">format is null.</exception>
         /// <exception cref="System.ArgumentException">
         ///     <see cref="MediaFormatType"/> of the specified format is <see cref="MediaFormatType.Container"/>.</exception>
@@ -26,7 +42,7 @@ namespace Tizen.Multimedia
         {
             if (format == null)
             {
-                throw new ArgumentNullException("MediaFormat must be not null.");
+                throw new ArgumentNullException(nameof(format));
             }
 
             if (format.Type == MediaFormatType.Container)
@@ -41,7 +57,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the MediaPacket class from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle.</param>
+        /// <param name="handle">The native handle to be used.</param>
         internal MediaPacket(IntPtr handle)
         {
             _handle = handle;
@@ -72,7 +88,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Creates and initializes a native handle for the current object.
         /// </summary>
-        /// <param name="format">A format to be set to the media format.</param>
+        /// <param name="format">The format to be set to the media format.</param>
         /// <exception cref="NotEnoughMemoryException">Out of memory.</exception>
         /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
         private void Initialize(MediaFormat format)
@@ -399,6 +415,10 @@ namespace Tizen.Multimedia
         ///     </exception>
         public void Dispose()
         {
+            if (_isDisposed)
+            {
+                return;
+            }
             ValidateNotLocked();
 
             Dispose(true);
@@ -492,7 +512,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves video planes of the current packet.
         /// </summary>
-        /// <returns><see cref="MediaPacketVideoPlane"/>s allocated to the current MediaPacket.</returns>
+        /// <returns>The <see cref="MediaPacketVideoPlane"/>s allocated to the current MediaPacket.</returns>
         private MediaPacketVideoPlane[] GetVideoPlanes()
         {
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
@@ -515,19 +535,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the buffer of the current packet.
         /// </summary>
-        /// <returns>A <see cref="MediaPacketBuffer"/> allocated to the current MediaPacket.</returns>
+        /// <returns>The <see cref="MediaPacketBuffer"/> allocated to the current MediaPacket.</returns>
         private MediaPacketBuffer GetBuffer()
         {
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
             IntPtr dataHandle = IntPtr.Zero;
-            int size = 0;
 
             int ret = Interop.MediaPacket.GetBufferData(_handle, out dataHandle);
             MediaToolDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
 
+            int size = 0;
             ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out size);
             MediaToolDebug.AssertNoError(ret);
 
@@ -597,7 +617,6 @@ namespace Tizen.Multimedia
 
                 _packet._lock.SetLock();
 
-                //TODO need test
                 _gcHandle = GCHandle.Alloc(this);
 
                 SetExtra(GCHandle.ToIntPtr(_gcHandle));
@@ -651,7 +670,8 @@ namespace Tizen.Multimedia
             {
                 if (!_isDisposed)
                 {
-                    SetExtra(IntPtr.Zero);
+                    // TODO rollback after the corresponding native api is fixed.
+                    //SetExtra(IntPtr.Zero);
 
                     if (_gcHandle.IsAllocated)
                     {
@@ -670,7 +690,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Creates an object of the MediaPacekt with the specified <see cref="MediaFormat"/>.
         /// </summary>
-        /// <param name="format">A media format for the new packet.</param>
+        /// <param name="format">The media format for the new packet.</param>
         /// <returns>A new MediaPacket object.</returns>
         public static MediaPacket Create(MediaFormat format)
         {
