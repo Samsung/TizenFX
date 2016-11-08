@@ -23,14 +23,24 @@ namespace Tizen.Location
     /// <summary>
     /// Abstract class which provides functions related to geographic bounds information.
     /// </summary>
-    public abstract class LocationBoundary
+    public abstract class LocationBoundary : IDisposable
     {
         internal IntPtr handle;
+        private bool _disposed = false;
 
         /// <summary>
         /// Gets the location boundary type.
         /// </summary>
         public BoundaryType BoundaryType{ get; internal set; }
+
+        /// <summary>
+        /// The destructor of LocationBoundary class.
+        /// </summary>
+        ~LocationBoundary()
+        {
+            Log.Info(Globals.LogTag, "The destructor of LocationBoundary class");
+            Dispose(false);
+        }
 
         internal IntPtr GetHandle()
         {
@@ -46,6 +56,37 @@ namespace Tizen.Location
         {
             Log.Info(Globals.LogTag, "Checking if coordinates are contained within boundary");
             return Interop.LocationBoundary.IsValidCoordinates(handle, coordinate);
+        }
+
+        /// <summary>
+        /// The overidden Dispose method of the IDisposable class.
+        /// </summary>
+        public void Dispose()
+        {
+            Log.Info(Globals.LogTag, "Dispose");
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            Log.Info(Globals.LogTag, "Dispose");
+            if (_disposed)
+                return;
+
+            DestroyHandle();
+            _disposed = true;
+        }
+
+        private void DestroyHandle()
+        {
+            Log.Info(Globals.LogTag, "DestroyHandle");
+            int ret = Interop.LocationBoundary.DestroyBoundary(handle);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error in DestroyBoundary handle" + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
         }
     }
 

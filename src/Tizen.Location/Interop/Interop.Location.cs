@@ -142,7 +142,7 @@ internal static partial class Interop
         public static extern bool IsValidCoordinates(IntPtr handle, Coordinate coordinate);
 
         [DllImport(Libraries.Location, EntryPoint = "location_bounds_destroy")]
-        public static extern bool DestroyBoundary(IntPtr handle);
+        public static extern int DestroyBoundary(IntPtr handle);
     }
 
     internal static partial class GpsSatellite

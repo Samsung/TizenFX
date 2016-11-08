@@ -25,12 +25,12 @@ namespace Tizen.Location
     /// </summary>
     public class Location
     {
-        private double _altitude;
         private double _latitude;
         private double _longitude;
+        private double _altitude;
+        private double _horizontal;
         private double _direction;
         private double _speed;
-        private double _horizontal;
         internal int _timestamp;
 
         /// <summary>
@@ -59,21 +59,6 @@ namespace Tizen.Location
             _direction = direction;
             _speed = speed;
             _timestamp = timestamp;
-        }
-
-        /// <summary>
-        /// The current altitude (meters).
-        /// </summary>
-        public double Altitude
-        {
-            get
-            {
-                return _altitude;
-            }
-            set
-            {
-                _altitude = value;
-            }
         }
 
         /// <summary>
@@ -107,6 +92,36 @@ namespace Tizen.Location
         }
 
         /// <summary>
+        /// The current altitude (meters).
+        /// </summary>
+        public double Altitude
+        {
+            get
+            {
+                return _altitude;
+            }
+            set
+            {
+                _altitude = value;
+            }
+        }
+
+        /// <summary>
+        /// The horizontal accuracy.
+        /// </summary>
+        public double HorizontalAccuracy
+        {
+            get
+            {
+                return _horizontal;
+            }
+            set
+            {
+                _horizontal = value;
+            }
+        }
+
+        /// <summary>
         /// The direction, degrees from the north.
         /// </summary>
         public double Direction
@@ -133,21 +148,6 @@ namespace Tizen.Location
             set
             {
                 _speed = value;
-            }
-        }
-
-        /// <summary>
-        /// The horizontal accuracy.
-        /// </summary>
-        public double HorizontalAccuracy
-        {
-            get
-            {
-                return _horizontal;
-            }
-            set
-            {
-                _horizontal = value;
             }
         }
 

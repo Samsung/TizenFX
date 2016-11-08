@@ -33,8 +33,7 @@ namespace Tizen.Location
     /// </summary>
     public enum LocationType
     {
-        None = -1, /**<Undefined method.*/
-        Hybrid, /**<This method selects the best method available at the moment.*/
+        Hybrid = 0, /**<This method selects the best method available at the moment.*/
         Gps, /**<This method uses Global Positioning System.*/
         Wps, /**<This method uses WiFi Positioning System.*/
     }

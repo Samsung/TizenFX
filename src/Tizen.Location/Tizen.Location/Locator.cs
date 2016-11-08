@@ -276,7 +276,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.SetMockLocation(_handle, location.Latitude, location.Longitude, location.Altitude, location.Speed, location.Direction, location.HorizontalAccuracy);
             if (((LocationError)ret == LocationError.None))
             {
-                _location.Altitude = 0;
+                _location.Altitude = location.Altitude;
                 _location.Latitude = location.Latitude;
                 _location.Longitude = location.Longitude;
                 _location.Speed = location.Speed;
