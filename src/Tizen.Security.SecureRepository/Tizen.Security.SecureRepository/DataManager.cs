@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
@@ -38,12 +39,20 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public byte[] Get(string alias, string password)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetData(alias, password, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get certificate. alias=" + alias);
-
-            return new SafeRawBufferHandle(ptr).Data;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetData(alias, password, out ptr),
+                    "Failed to get certificate. alias=" + alias);
+                return new SafeRawBufferHandle(ptr).Data;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+            }
         }
 
         /// <summary>
@@ -53,11 +62,20 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
-            IntPtr ptr = new IntPtr();
-            int ret = Interop.CkmcManager.GetDataAliasList(out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get data aliases");
+            IntPtr ptr = IntPtr.Zero;
 
-            return new SafeAliasListHandle(ptr).Aliases;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetDataAliasList(out ptr),
+                    "Failed to get data aliases");
+                return new SafeAliasListHandle(ptr).Aliases;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.AliasListAllFree(ptr);
+            }
         }
 
         /// <summary>
@@ -70,10 +88,12 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="InvalidOperationException">Data with alias does already exist.</exception>
         static public void Save(string alias, byte[] data, Policy policy)
         {
-            Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length);
-
-            int ret = Interop.CkmcManager.SaveData(alias, rawBuff, policy.ToCkmcPolicy());
-            Interop.CheckNThrowException(ret, "Failed to save data. alias=" + alias);
+            Interop.CheckNThrowException(
+                Interop.CkmcManager.SaveData(
+                    alias,
+                    new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length),
+                    policy.ToCkmcPolicy()),
+                "Failed to save data. alias=" + alias);
         }
     }
 }

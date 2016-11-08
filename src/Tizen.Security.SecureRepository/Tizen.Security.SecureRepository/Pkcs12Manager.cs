@@ -15,6 +15,7 @@
  */
 
 using System;
+using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
@@ -42,12 +43,21 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public Pkcs12 Get(string alias, string keyPassword, string cerificatePassword)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetPkcs12(alias, keyPassword, cerificatePassword, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get PKCS12. alias=" + alias);
-
-            return new Pkcs12(ptr);
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetPkcs12(
+                        alias, keyPassword, cerificatePassword, out ptr),
+                    "Failed to get PKCS12. alias=" + alias);
+                return new Pkcs12(ptr);
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.Pkcs12Free(ptr);
+            }
         }
 
         /// <summary>
@@ -62,11 +72,22 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="InvalidOperationException">Pkcs12 with alias does already exist.</exception>
         static public void Save(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
         {
-            int ret = Interop.CkmcManager.SavePkcs12(alias,
-                                                     pkcs12.GetHandle(),
-                                                     keyPolicy.ToCkmcPolicy(),
-                                                     certificatePolicy.ToCkmcPolicy());
-            Interop.CheckNThrowException(ret, "Failed to save PKCS12. alias=" + alias);
+            IntPtr ptr = IntPtr.Zero;
+            try
+            {
+                ptr = pkcs12.GetHandle();
+
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.SavePkcs12(
+                        alias, ptr, keyPolicy.ToCkmcPolicy(),
+                        certificatePolicy.ToCkmcPolicy()),
+                    "Failed to save PKCS12. alias=" + alias);
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.Pkcs12Free(ptr);
+            }
         }
     }
 }

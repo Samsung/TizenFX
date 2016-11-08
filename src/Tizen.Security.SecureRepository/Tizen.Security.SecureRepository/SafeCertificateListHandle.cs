@@ -21,25 +21,23 @@ using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
-    internal class SafeCertificateListHandle : SafeHandle
+    internal class SafeCertificateListHandle
     {
         private IEnumerable<Certificate> _certificates;
 
-        public SafeCertificateListHandle(IEnumerable<Certificate> certs) :
-            base(IntPtr.Zero, true)
+        public SafeCertificateListHandle(IEnumerable<Certificate> certs)
         {
             _certificates = certs;
         }
 
-        public SafeCertificateListHandle(IntPtr ptr, bool ownsHandle = true) :
-            base(ptr, ownsHandle)
+        public SafeCertificateListHandle(IntPtr ptr)
         {
             var cur = ptr;
             var certs = new List<Certificate>();
             while (cur != IntPtr.Zero)
             {
                 var ckmcCertList = Marshal.PtrToStructure<CkmcCertList>(cur);
-                certs.Add(new Certificate(ckmcCertList.cert, false));
+                certs.Add(new Certificate(ckmcCertList.cert));
                 cur = ckmcCertList.next;
             }
 
@@ -51,13 +49,10 @@ namespace Tizen.Security.SecureRepository
             get { return _certificates; }
         }
 
-        internal IntPtr GetHandle(bool updateHandle = true)
+        internal IntPtr GetHandle()
         {
             if (_certificates == null)
                 return IntPtr.Zero;
-
-            if (!IsInvalid)
-                return this.handle;
 
             IntPtr first = IntPtr.Zero;
             IntPtr previous = IntPtr.Zero;
@@ -71,7 +66,7 @@ namespace Tizen.Security.SecureRepository
                     // in case of exception occured
                     certPtr = IntPtr.Zero;
 
-                    certPtr = cert.GetHandle(false);
+                    certPtr = cert.GetHandle();
 
                     IntPtr outCertList;
                     if (previous == IntPtr.Zero)
@@ -91,40 +86,17 @@ namespace Tizen.Security.SecureRepository
                     previous = outCertList;
                 }
 
-                if (updateHandle)
-                    this.SetHandle(first);
-
                 return first;
             }
             catch
             {
                 if (first != IntPtr.Zero)
-                    Interop.CkmcTypes.CertListAllFree(this.handle);
+                    Interop.CkmcTypes.CertListAllFree(first);
                 if (certPtr != IntPtr.Zero)
                     Interop.CkmcTypes.CertFree(certPtr);
 
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free
-        /// the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
-        protected override bool ReleaseHandle()
-        {
-            Interop.CkmcTypes.CertListAllFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
         }
     }
 }

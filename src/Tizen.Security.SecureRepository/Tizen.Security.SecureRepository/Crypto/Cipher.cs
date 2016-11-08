@@ -62,13 +62,24 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         public byte[] Decrypt(string keyAlias, string password, byte[] cipherText)
         {
-            IntPtr ptrPlainText = new IntPtr();
-            Interop.CkmcRawBuffer cipherTextBuff = new Interop.CkmcRawBuffer(new PinnedObject(cipherText), cipherText.Length);
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.DecryptData(Parameters.PtrCkmcParamList, keyAlias, password, cipherTextBuff, out ptrPlainText);
-            Interop.CheckNThrowException(ret, "Failed to decrypt data");
-
-            return new SafeRawBufferHandle(ptrPlainText).Data;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.DecryptData(
+                        Parameters.PtrCkmcParamList, keyAlias, password,
+                        new Interop.CkmcRawBuffer(
+                            new PinnedObject(cipherText), cipherText.Length),
+                        out ptr),
+                    "Failed to decrypt data");
+                return new SafeRawBufferHandle(ptr).Data;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+            }
         }
 
         /// <summary>
@@ -92,13 +103,24 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
         public byte[] Encrypt(string keyAlias, string password, byte[] plainText)
         {
-            IntPtr ptrCipherText = new IntPtr();
-            Interop.CkmcRawBuffer plainTextBuff = new Interop.CkmcRawBuffer(new PinnedObject(plainText), plainText.Length);
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.EncryptData(Parameters.PtrCkmcParamList, keyAlias, password, plainTextBuff, out ptrCipherText);
-            Interop.CheckNThrowException(ret, "Failed to encrypt data");
-
-            return new SafeRawBufferHandle(ptrCipherText).Data;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.EncryptData(
+                        Parameters.PtrCkmcParamList, keyAlias, password,
+                        new Interop.CkmcRawBuffer(
+                            new PinnedObject(plainText), plainText.Length),
+                        out ptr),
+                    "Failed to encrypt data");
+                return new SafeRawBufferHandle(ptr).Data;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+            }
         }
     }
 }

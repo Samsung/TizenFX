@@ -21,16 +21,15 @@ using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
-    internal class SafeAliasListHandle : SafeHandle
+    internal class SafeAliasListHandle
     {
-        public SafeAliasListHandle(IntPtr ptr, bool ownsHandle = true) :
-            base(ptr, ownsHandle)
+        public SafeAliasListHandle(IntPtr ptr)
         {
             var cur = ptr;
             var aliases = new List<string>();
             while (cur != IntPtr.Zero)
             {
-                var ckmcAliasList = Marshal.PtrToStructure<CkmcAliasList>(cur);
+                var ckmcAliasList = Marshal.PtrToStructure<Interop.CkmcAliasList>(cur);
                 aliases.Add(Marshal.PtrToStringAnsi(ckmcAliasList.alias));
                 cur = ckmcAliasList.next;
             }
@@ -41,26 +40,6 @@ namespace Tizen.Security.SecureRepository
         public List<string> Aliases
         {
             get; set;
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free
-        /// the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
-        protected override bool ReleaseHandle()
-        {
-            Interop.CkmcTypes.AliasListAllFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
         }
     }
 }

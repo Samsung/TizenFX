@@ -72,14 +72,24 @@ namespace Tizen.Security.SecureRepository.Crypto
             }
             catch { }
 
-            IntPtr ptrSignature = new IntPtr();
-            Interop.CkmcRawBuffer messageBuff = new Interop.CkmcRawBuffer(new PinnedObject(message), message.Length);
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.CreateSignature(privateKeyAlias, password, messageBuff,
-                                                            hash, rsaPadding, out ptrSignature);
-            Interop.CheckNThrowException(ret, "Failed to generate signature");
-
-            return new SafeRawBufferHandle(ptrSignature).Data;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.CreateSignature(
+                        privateKeyAlias, password,
+                        new Interop.CkmcRawBuffer(
+                            new PinnedObject(message), message.Length),
+                        hash, rsaPadding, out ptr),
+                    "Failed to generate signature");
+                return new SafeRawBufferHandle(ptr).Data;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+            }
         }
 
         /// <summary>
@@ -113,11 +123,15 @@ namespace Tizen.Security.SecureRepository.Crypto
             }
             catch { }
 
-            Interop.CkmcRawBuffer messageBuff = new Interop.CkmcRawBuffer(new PinnedObject(message), message.Length);
-            Interop.CkmcRawBuffer signatureBuff = new Interop.CkmcRawBuffer(new PinnedObject(signature), signature.Length);
 
-            int ret = Interop.CkmcManager.VerifySignature(publicKeyAlias, password, messageBuff,
-                                                        signatureBuff, hash, rsaPadding);
+            int ret = Interop.CkmcManager.VerifySignature(
+                publicKeyAlias,
+                password,
+                new Interop.CkmcRawBuffer(new PinnedObject(message), message.Length),
+                new Interop.CkmcRawBuffer(new PinnedObject(signature), signature.Length),
+                hash,
+                rsaPadding);
+
             if (ret == (int)Interop.KeyManagerError.VerificationFailed)
                 return false;
             Interop.CheckNThrowException(ret, "Failed to verify signature");

@@ -23,7 +23,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Class that represents a certificate.
     /// </summary>
-    public class Certificate : SafeHandle
+    public class Certificate
     {
         /// <summary>
         /// Load Certificate from the given file path.
@@ -50,14 +50,13 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="binary">The binary data of a certificate.</param>
         /// <param name="format">The format of the binary data.</param>
-        public Certificate(byte[] binary, DataFormat format) : base(IntPtr.Zero, true)
+        public Certificate(byte[] binary, DataFormat format)
         {
             this.Binary = binary;
             this.Format = format;
         }
 
-        internal Certificate(IntPtr ptr, bool ownsHandle = true) :
-            base(ptr, ownsHandle)
+        internal Certificate(IntPtr ptr)
         {
             if (ptr == IntPtr.Zero)
                 throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
@@ -70,23 +69,16 @@ namespace Tizen.Security.SecureRepository
 
         // Refresh handle(IntPtr) always. Because C# layer
         // properties(Binary, Format) could be changed.
-        internal IntPtr GetHandle(bool updateHandle = true)
+        internal IntPtr GetHandle()
         {
             IntPtr ptr = IntPtr.Zero;
             try
             {
-                int ret = CkmcTypes.CertNew(
-                    this.Binary, (UIntPtr)this.Binary.Length, (int)this.Format, out ptr);
-                CheckNThrowException(ret, "Failed to create cert");
-
-                if (updateHandle)
-                {
-                    if (!this.IsInvalid && !this.ReleaseHandle())
-                        throw new InvalidOperationException(
-                            "Failed to release cert handle");
-
-                    this.SetHandle(ptr);
-                }
+                CheckNThrowException(
+                    CkmcTypes.CertNew(
+                        this.Binary, (UIntPtr)this.Binary.Length, (int)this.Format,
+                        out ptr),
+                    "Failed to create cert");
 
                 return ptr;
             }
@@ -121,26 +113,6 @@ namespace Tizen.Security.SecureRepository
                 (Binary == null) ? IntPtr.Zero : new PinnedObject(this.Binary),
                 (Binary == null) ? 0 : this.Binary.Length,
                 (int)Format);
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free
-        /// the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully.</returns>
-        protected override bool ReleaseHandle()
-        {
-            Interop.CkmcTypes.CertFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
         }
     }
 }

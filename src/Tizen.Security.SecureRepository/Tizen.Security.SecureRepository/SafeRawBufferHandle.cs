@@ -20,10 +20,9 @@ using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
-    internal class SafeRawBufferHandle : SafeHandle
+    internal class SafeRawBufferHandle
     {
-        public SafeRawBufferHandle(IntPtr ptr, bool ownsHandle = true) :
-            base(ptr, true)
+        public SafeRawBufferHandle(IntPtr ptr)
         {
             if (ptr == IntPtr.Zero)
                 throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
@@ -39,15 +38,12 @@ namespace Tizen.Security.SecureRepository
             IntPtr ptr = IntPtr.Zero;
             try
             {
-                int ret = Interop.CkmcTypes.BufferNew(
-                    this.Data, (UIntPtr)this.Data.Length, out ptr);
-                CheckNThrowException(ret, "Failed to create buf");
+                CheckNThrowException(
+                    Interop.CkmcTypes.BufferNew(
+                        this.Data, (UIntPtr)this.Data.Length, out ptr),
+                    "Failed to create buf");
 
-                if (!this.IsInvalid && !this.ReleaseHandle())
-                    throw new InvalidOperationException("Failed to release buf handle");
-
-                this.SetHandle(ptr);
-                return this.handle;
+                return ptr;
             }
             catch
             {
@@ -61,26 +57,6 @@ namespace Tizen.Security.SecureRepository
         public byte[] Data
         {
             get; set;
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free
-        /// the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
-        protected override bool ReleaseHandle()
-        {
-            Interop.CkmcTypes.BufferFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
         }
     }
 }

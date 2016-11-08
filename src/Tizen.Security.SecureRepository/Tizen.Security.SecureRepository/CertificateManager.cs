@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
@@ -38,12 +39,20 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public Certificate Get(string alias, string password)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetCert(alias, password, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get certificate. alias=" + alias);
-
-            return new Certificate(ptr);
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetCert(alias, password, out ptr),
+                    "Failed to get certificate. alias=" + alias);
+                return new Certificate(ptr);
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertFree(ptr);
+            }
         }
 
         /// <summary>
@@ -53,11 +62,20 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
-            IntPtr ptr = new IntPtr();
-            int ret = Interop.CkmcManager.GetCertAliasList(out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get certificate aliases.");
+            IntPtr ptr = IntPtr.Zero;
 
-            return new SafeAliasListHandle(ptr).Aliases;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetCertAliasList(out ptr),
+                    "Failed to get certificate aliases.");
+                return new SafeAliasListHandle(ptr).Aliases;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.AliasListAllFree(ptr);
+            }
         }
 
         /// <summary>
@@ -70,8 +88,10 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="InvalidOperationException">Certificate with alias does already exist.</exception>
         static public void Save(string alias, Certificate cert, Policy policy)
         {
-            int ret = Interop.CkmcManager.SaveCert(alias, cert.ToCkmcCert(), policy.ToCkmcPolicy());
-            Interop.CheckNThrowException(ret, "Failed to save certificate. alias=" + alias);
+            Interop.CheckNThrowException(
+                Interop.CkmcManager.SaveCert(
+                    alias, cert.ToCkmcCert(), policy.ToCkmcPolicy()),
+                "Failed to save certificate. alias=" + alias);
         }
 
         /// <summary>
@@ -91,16 +111,32 @@ namespace Tizen.Security.SecureRepository
         static public IEnumerable<Certificate> GetCertificateChain(Certificate certificate,
                                                                    IEnumerable<Certificate> untrustedCertificates)
         {
-            var ptrCertChain = new IntPtr();
-            var untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
+            IntPtr ptrCertChain = IntPtr.Zero;
+            IntPtr certPtr = IntPtr.Zero;
+            IntPtr untrustedPtr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetCertChain(certificate.GetHandle(),
-                                                       untrustedCerts.GetHandle(),
-                                                       out ptrCertChain);
-            Interop.CheckNThrowException(ret, "Failed to get certificate chain");
+            try
+            {
+                var untrusted = new SafeCertificateListHandle(untrustedCertificates);
 
-            var certChain = new SafeCertificateListHandle(ptrCertChain);
-            return certChain.Certificates;
+                certPtr = certificate.GetHandle();
+                untrustedPtr = untrusted.GetHandle();
+
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetCertChain(
+                        certPtr, untrustedPtr,
+                        out ptrCertChain),
+                    "Failed to get certificate chain");
+
+                return new SafeCertificateListHandle(ptrCertChain).Certificates;
+            }
+            finally
+            {
+                if (certPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertFree(certPtr);
+                if (untrustedPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertListAllFree(untrustedPtr);
+            }
         }
 
         /// <summary>
@@ -123,19 +159,36 @@ namespace Tizen.Security.SecureRepository
                                                                    IEnumerable<Certificate> trustedCertificates,
                                                                    bool useTrustedSystemCertificates)
         {
-            var ptrCertChain = new IntPtr();
-            var untrustedCerts = new SafeCertificateListHandle(untrustedCertificates);
-            var trustedCerts = new SafeCertificateListHandle(trustedCertificates);
+            IntPtr certPtr = IntPtr.Zero;
+            IntPtr untrustedPtr = IntPtr.Zero;
+            IntPtr trustedPtr = IntPtr.Zero;
+            IntPtr ptrCertChain = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetCertChainWithTrustedCerts(
-                            certificate.GetHandle(), untrustedCerts.GetHandle(),
-                            trustedCerts.GetHandle(), useTrustedSystemCertificates,
-                            out ptrCertChain);
-            Interop.CheckNThrowException(ret, "Failed to get certificate chain with trusted certificates");
+            try
+            {
+                var untrusted = new SafeCertificateListHandle(untrustedCertificates);
+                var trusted = new SafeCertificateListHandle(trustedCertificates);
 
-            var certChain = new SafeCertificateListHandle(ptrCertChain);
+                certPtr = certificate.GetHandle();
+                untrustedPtr = untrusted.GetHandle();
+                trustedPtr = trusted.GetHandle();
 
-            return certChain.Certificates;
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetCertChainWithTrustedCerts(
+                        certPtr, untrustedPtr, trustedPtr,
+                        useTrustedSystemCertificates, out ptrCertChain),
+                    "Failed to get certificate chain with trusted certificates");
+                return new SafeCertificateListHandle(ptrCertChain).Certificates;
+            }
+            finally
+            {
+                if (certPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertFree(certPtr);
+                if (untrustedPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertListAllFree(untrustedPtr);
+                if (trustedPtr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertListAllFree(trustedPtr);
+            }
         }
 
         /// <summary>
@@ -147,11 +200,25 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="InvalidOperationException">some of certificate in chain is expired or not valid yet.</exception>
         static public OcspStatus CheckOcsp(IEnumerable<Certificate> certificateChain)
         {
-            int ocspStatus = (int)OcspStatus.Good;
-            SafeCertificateListHandle certChain = new SafeCertificateListHandle(certificateChain);
-            int ret = Interop.CkmcManager.OcspCheck(certChain.GetHandle(), ref ocspStatus);
-            Interop.CheckNThrowException(ret, "Failed to get certificate chain with trusted certificates");
-            return (OcspStatus)ocspStatus;
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                int ocspStatus = (int)OcspStatus.Good;
+                var certChain = new SafeCertificateListHandle(certificateChain);
+
+                ptr = certChain.GetHandle();
+
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.OcspCheck(ptr, ref ocspStatus),
+                    "Failed to get certificate chain with trusted certificates");
+                return (OcspStatus)ocspStatus;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.CertListAllFree(ptr);
+            }
         }
     }
 }

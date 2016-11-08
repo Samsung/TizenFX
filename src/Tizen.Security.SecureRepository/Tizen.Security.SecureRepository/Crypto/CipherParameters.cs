@@ -95,12 +95,21 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </exception>
         public byte[] GetBuffer(CipherParameterName name)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcTypes.ParamListGetBuffer(PtrCkmcParamList, (int)name, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get parameter.");
-
-            return new SafeRawBufferHandle(ptr).Data;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcTypes.ParamListGetBuffer(
+                        PtrCkmcParamList, (int)name, out ptr),
+                    "Failed to get parameter.");
+                return new SafeRawBufferHandle(ptr).Data;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.BufferFree(ptr);
+            }
         }
 
         /// <summary>
@@ -113,7 +122,7 @@ namespace Tizen.Security.SecureRepository.Crypto
 
         internal IntPtr PtrCkmcParamList
         {
-            get { return handle; }
+            get { return this.handle; }
         }
 
         /// <summary>
@@ -121,7 +130,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         public override bool IsInvalid
         {
-            get { return handle == IntPtr.Zero; }
+            get { return this.handle == IntPtr.Zero; }
         }
 
         /// <summary>
@@ -130,9 +139,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
-            if (IsInvalid) // do not release
-                return true;
-            Interop.CkmcTypes.ParamListFree(handle);
+            Interop.CkmcTypes.ParamListFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }

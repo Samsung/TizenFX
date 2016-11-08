@@ -23,7 +23,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Class that represents a key.
     /// </summary>
-    public class Key : SafeHandle
+    public class Key
     {
         /// <summary>
         /// A constructor of Key that takes the binary, its type, and optional password
@@ -36,15 +36,14 @@ namespace Tizen.Security.SecureRepository
         /// <param name="binaryPassword">
         /// The password used to decrypt binary when binary is encrypted.
         /// </param>
-        public Key(byte[] binary, KeyType type, string binaryPassword) :
-            base(IntPtr.Zero, true)
+        public Key(byte[] binary, KeyType type, string binaryPassword)
         {
             this.Binary = binary;
             this.Type = type;
             this.BinaryPassword = binaryPassword;
         }
 
-        internal Key(IntPtr ptr, bool ownsHandle = true) : base(ptr, ownsHandle)
+        internal Key(IntPtr ptr)
         {
             if (ptr == IntPtr.Zero)
                 throw new ArgumentNullException("Returned ptr from CAPI cannot be null");
@@ -58,24 +57,16 @@ namespace Tizen.Security.SecureRepository
 
         // Refresh handle(IntPtr) always. Because C# layer
         // properties(Binary, Type, BinaryPassword) could be changed.
-        internal IntPtr GetHandle(bool updateHandle = true)
+        internal IntPtr GetHandle()
         {
             IntPtr ptr = IntPtr.Zero;
             try
             {
-                int ret = Interop.CkmcTypes.KeyNew(
-                    this.Binary, (UIntPtr)this.Binary.Length, (int)this.Type,
-                    this.BinaryPassword, out ptr);
-                CheckNThrowException(ret, "Failed to create key");
-
-                if (updateHandle)
-                {
-                    if (!this.IsInvalid && !this.ReleaseHandle())
-                        throw new InvalidOperationException(
-                            "Failed to release key handle");
-
-                    this.SetHandle(ptr);
-                }
+                CheckNThrowException(
+                    Interop.CkmcTypes.KeyNew(
+                        this.Binary, (UIntPtr)this.Binary.Length, (int)this.Type,
+                        this.BinaryPassword, out ptr),
+                    "Failed to create key");
 
                 return ptr;
             }
@@ -119,26 +110,6 @@ namespace Tizen.Security.SecureRepository
                 (Binary == null) ? 0 : this.Binary.Length,
                 (int)this.Type,
                 this.BinaryPassword);
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free
-        /// the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
-        protected override bool ReleaseHandle()
-        {
-            Interop.CkmcTypes.KeyFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
         }
     }
 }

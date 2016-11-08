@@ -39,12 +39,20 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public Key Get(string alias, string password)
         {
-            IntPtr ptr = new IntPtr();
+            IntPtr ptr = IntPtr.Zero;
 
-            int ret = Interop.CkmcManager.GetKey(alias, password, out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get key. alias=" + alias);
-
-            return new Key(ptr);
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetKey(alias, password, out ptr),
+                    "Failed to get key. alias=" + alias);
+                return new Key(ptr);
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.KeyFree(ptr);
+            }
         }
 
         /// <summary>
@@ -54,11 +62,20 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
-            IntPtr ptr = new IntPtr();
-            int ret = Interop.CkmcManager.GetKeyAliasList(out ptr);
-            Interop.CheckNThrowException(ret, "Failed to get key aliases.");
+            IntPtr ptr = IntPtr.Zero;
 
-            return new SafeAliasListHandle(ptr).Aliases;
+            try
+            {
+                Interop.CheckNThrowException(
+                    Interop.CkmcManager.GetKeyAliasList(out ptr),
+                    "Failed to get key aliases.");
+                return new SafeAliasListHandle(ptr).Aliases;
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.AliasListAllFree(ptr);
+            }
         }
 
         /// <summary>
