@@ -73,6 +73,7 @@
     <Compile Include="ElmSharp\EvasKeyEventArgs.cs" />
     <Compile Include="ElmSharp\EvasMap.cs" />
     <Compile Include="ElmSharp\EvasObject.cs" />
+    <Compile Include="ElmSharp\EvasObjectEvent.cs" />
     <Compile Include="ElmSharp\GenGrid.cs" />
     <Compile Include="ElmSharp\GenGridItem.cs" />
     <Compile Include="ElmSharp\GenItem.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ElmSharp\Scroller.cs" />
     <Compile Include="ElmSharp\Size.cs" />
     <Compile Include="ElmSharp\Slider.cs" />
+    <Compile Include="ElmSharp\SmartEvent.cs" />
     <Compile Include="ElmSharp\Spinner.cs" />
     <Compile Include="ElmSharp\Table.cs" />
     <Compile Include="ElmSharp\Toolbar.cs" />
@@ -144,10 +146,8 @@
     <Compile Include="Interop\Interop.Eo.cs" />
     <Compile Include="Interop\Interop.Evas.cs" />
     <Compile Include="Interop\Interop.Evas.Image.cs" />
-    <Compile Include="Interop\Interop.EvasObjectEvent.cs" />
     <Compile Include="Interop\Interop.Libc.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.SmartEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

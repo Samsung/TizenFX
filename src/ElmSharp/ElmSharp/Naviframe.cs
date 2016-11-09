@@ -25,11 +25,11 @@ namespace ElmSharp
     }
     public class Naviframe : Widget
     {
-        Interop.SmartEvent _transitionFinished;
+        SmartEvent _transitionFinished;
         readonly List<NaviItem> _itemStack = new List<NaviItem>();
         public Naviframe(EvasObject parent) : base(parent)
         {
-            _transitionFinished = new Interop.SmartEvent(this, Handle, "transition,finished");
+            _transitionFinished = new SmartEvent(this, "transition,finished");
             _transitionFinished.On += (s, e) => AnimationFinished?.Invoke(this, EventArgs.Empty);
         }
 

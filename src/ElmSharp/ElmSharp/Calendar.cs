@@ -23,14 +23,14 @@ namespace ElmSharp
 {
     public class Calendar : Layout
     {
-        private Interop.SmartEvent _changed;
+        private SmartEvent _changed;
         private DateTime _cacheSelectedDate;
-        private Interop.SmartEvent _displayedMonthChanged;
+        private SmartEvent _displayedMonthChanged;
         private int _cacheDisplayedMonth;
 
         public Calendar(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (sender, e) =>
             {
                 DateTime selectedDate = SelectedDate;
@@ -38,7 +38,7 @@ namespace ElmSharp
                 _cacheSelectedDate = selectedDate;
             };
 
-            _displayedMonthChanged = new Interop.SmartEvent(this, Handle, "display,changed");
+            _displayedMonthChanged = new SmartEvent(this, "display,changed");
             _displayedMonthChanged.On += (sender, e) =>
             {
                 int currentDisplayedMonth = SelectedDate.Month;

@@ -18,26 +18,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-internal static partial class Interop
+namespace ElmSharp
 {
-    internal class SmartEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
+    public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
-        private readonly object _sender;
+        private EvasObject _sender;
         private readonly string _eventName;
-        private readonly IntPtr _handle;
+        private IntPtr _handle;
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
-        public SmartEvent(object sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
+        public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
+        {
+        }
+
+        internal SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
         {
             _sender = sender;
             _eventName = eventName;
             _handle = handle;
             _parser = parser;
+            sender.AddToEventLifeTracker(this);
         }
-        public SmartEvent(object sender, IntPtr handle, string eventName) : this(sender, handle, eventName, null)
+
+        public SmartEvent(EvasObject sender, string eventName) : this(sender, eventName, null)
         {
         }
 
@@ -56,6 +62,10 @@ internal static partial class Interop
         {
             add
             {
+                if (_handle == IntPtr.Zero)
+                {
+                    return;
+                }
                 EventHandler<TEventArgs> handler = value;
                 var cb = new Interop.Evas.SmartCallback((d, o, e) =>
                 {
@@ -69,6 +79,10 @@ internal static partial class Interop
 
             remove
             {
+                if (_handle == IntPtr.Zero)
+                {
+                    return;
+                }
                 EventHandler<TEventArgs> handler = value;
                 var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler);
                 foreach (var cb in callbacks)
@@ -78,38 +92,47 @@ internal static partial class Interop
             }
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void MakeInvalidate()
+        {
+            _sender = null;
+            _handle = IntPtr.Zero;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
                 // Place holder to dispose managed state (managed objects).
             }
-            foreach (var cb in _nativeCallbacks)
+            if (_handle != IntPtr.Zero)
             {
-                Evas.evas_object_smart_callback_del(_handle, _eventName, cb.callback);
+                foreach (var cb in _nativeCallbacks)
+                {
+                    Interop.Evas.evas_object_smart_callback_del(_handle, _eventName, cb.callback);
+                }
             }
             _nativeCallbacks.Clear();
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 
-    internal class SmartEvent : IDisposable
+    public class SmartEvent : IInvalidatable
     {
-        private readonly object _sender;
-        private readonly string _eventName;
-        private readonly IntPtr _handle;
-        private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
+        private SmartEvent<EventArgs> _smartEvent;
+        private event EventHandler _handlers;
 
-        public SmartEvent(object sender, IntPtr handle, string eventName)
+        public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.Handle, eventName)
         {
-            _sender = sender;
-            _eventName = eventName;
-            _handle = handle;
+        }
+
+        internal SmartEvent(EvasObject sender, IntPtr handle, string eventName)
+        {
+            _smartEvent = new SmartEvent<EventArgs>(sender, handle, eventName, null);
         }
 
         ~SmartEvent()
@@ -117,35 +140,41 @@ internal static partial class Interop
             Dispose(false);
         }
 
-        private struct NativeCallback
-        {
-            public Interop.Evas.SmartCallback callback;
-            public EventHandler eventHandler;
-        }
-
         public event EventHandler On
         {
             add
             {
-                EventHandler handler = value;
-                var cb = new Interop.Evas.SmartCallback((d, o, e) =>
+                if (_handlers == null)
                 {
-                    handler(_sender, EventArgs.Empty);
-                });
-                _nativeCallbacks.Add(new NativeCallback { callback = cb, eventHandler = handler });
-                int i = _nativeCallbacks.Count - 1;
-                Interop.Evas.evas_object_smart_callback_add(_handle, _eventName, _nativeCallbacks[i].callback, IntPtr.Zero);
+                    _smartEvent.On += SendEvent;
+                }
+                _handlers += value;
             }
 
             remove
             {
-                EventHandler handler = value;
-                var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler);
-                foreach (var cb in callbacks)
+                _handlers -= value;
+                if (_handlers == null)
                 {
-                    Interop.Evas.evas_object_smart_callback_del(_handle, _eventName, cb.callback);
+                    _smartEvent.On -= SendEvent;
                 }
             }
+        }
+
+        private void SendEvent(object sender, EventArgs e)
+        {
+            _handlers?.Invoke(sender, e);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void MakeInvalidate()
+        {
+            _smartEvent.MakeInvalidate();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -153,18 +182,8 @@ internal static partial class Interop
             if (disposing)
             {
                 // Place holder to dispose managed state (managed objects).
+                _smartEvent.Dispose();
             }
-            foreach (var cb in _nativeCallbacks)
-            {
-                Evas.evas_object_smart_callback_del(_handle, _eventName, cb.callback);
-            }
-            _nativeCallbacks.Clear();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

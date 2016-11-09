@@ -22,11 +22,11 @@ namespace ElmSharp
     public class Index : Layout
     {
         HashSet<IndexItem> _children = new HashSet<IndexItem>();
-        Interop.SmartEvent _delayedChanged;
+        SmartEvent _delayedChanged;
 
         public Index(EvasObject parent) : base(parent)
         {
-            _delayedChanged = new Interop.SmartEvent(this, Handle, "delay,changed");
+            _delayedChanged = new SmartEvent(this, "delay,changed");
             _delayedChanged.On += _delayedChanged_On;
         }
 

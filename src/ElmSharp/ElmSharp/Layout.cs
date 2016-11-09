@@ -20,19 +20,19 @@ namespace ElmSharp
 {
     public class Layout : Widget
     {
-        Interop.SmartEvent _languageChanged;
-        Interop.SmartEvent _themeChanged;
+        SmartEvent _languageChanged;
+        SmartEvent _themeChanged;
 
         IntPtr _edjeHandle;
 
         public Layout(EvasObject parent) : base(parent)
         {
-            _languageChanged = new Interop.SmartEvent(this, Handle, "language,changed");
+            _languageChanged = new SmartEvent(this, "language,changed");
             _languageChanged.On += (s, e) => {
                 LanguageChanged?.Invoke(this, EventArgs.Empty);
             };
 
-            _themeChanged = new Interop.SmartEvent(this, Handle, "theme,changed");
+            _themeChanged = new SmartEvent(this, "theme,changed");
             _themeChanged.On += (s, e) =>
             {
                 ThemeChanged?.Invoke(this, EventArgs.Empty);

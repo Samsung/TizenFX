@@ -20,11 +20,11 @@ namespace ElmSharp
 {
     public class ProgressBar : Layout
     {
-        Interop.SmartEvent _changed;
+        SmartEvent _changed;
 
         public ProgressBar(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (s, e) =>
             {
                 ValueChanged?.Invoke(this, EventArgs.Empty);

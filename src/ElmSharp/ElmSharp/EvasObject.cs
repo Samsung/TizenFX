@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ElmSharp
@@ -24,12 +25,14 @@ namespace ElmSharp
         internal IntPtr Handle { get; set; }
         internal EvasObject Parent { get; set; }
 
-        Interop.EvasObjectEvent _deleted;
-        Interop.EvasObjectEvent<EvasKeyEventArgs> _keyup;
-        Interop.EvasObjectEvent<EvasKeyEventArgs> _keydown;
-        Interop.EvasObjectEvent _moved;
-        Interop.EvasObjectEvent _resized;
-        Interop.EvasObjectEvent _renderPost;
+        EvasObjectEvent _deleted;
+        EvasObjectEvent<EvasKeyEventArgs> _keyup;
+        EvasObjectEvent<EvasKeyEventArgs> _keydown;
+        EvasObjectEvent _moved;
+        EvasObjectEvent _resized;
+        EvasObjectEvent _renderPost;
+
+        readonly HashSet<IInvalidatable> _eventStore = new HashSet<IInvalidatable>();
 
         protected EvasObject(EvasObject parent) : this()
         {
@@ -69,7 +72,6 @@ namespace ElmSharp
             add { _renderPost.On += value; }
             remove { _renderPost.On -= value; }
         }
-
 
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
 
@@ -261,17 +263,6 @@ namespace ElmSharp
             Interop.Evas.evas_object_lower(Handle);
         }
 
-        public void MakeInvalidate()
-        {
-            Deleted?.Invoke(this, EventArgs.Empty);
-            OnInvalidate();
-            Handle = IntPtr.Zero;
-
-            (Parent as Window)?.RemoveChild(this);
-            Parent = null;
-            _deleted = null;
-        }
-
         public static implicit operator IntPtr(EvasObject obj)
         {
             if (obj == null)
@@ -323,17 +314,16 @@ namespace ElmSharp
                 (parent as Window)?.AddChild(this);
 
                 OnRealized();
-                _deleted = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Del);
-                _keydown = new Interop.EvasObjectEvent<EvasKeyEventArgs>(this, Handle, Interop.Evas.ObjectCallbackType.KeyDown, EvasKeyEventArgs.Create);
-                _keyup = new Interop.EvasObjectEvent<EvasKeyEventArgs>(this, Handle, Interop.Evas.ObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
-                _moved = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Move);
-                _resized = new Interop.EvasObjectEvent(this, Handle, Interop.Evas.ObjectCallbackType.Resize);
-                _renderPost = new Interop.EvasObjectEvent(this, Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost);
+                _deleted = new EvasObjectEvent(this, EvasObjectCallbackType.Del);
+                _keydown = new EvasObjectEvent<EvasKeyEventArgs>(this, EvasObjectCallbackType.KeyDown, EvasKeyEventArgs.Create);
+                _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
+                _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
+                _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
+                _renderPost = new EvasObjectEvent(this, Interop.Evas.evas_object_evas_get(Handle), EvasObjectCallbackType.RenderPost);
 
                 _deleted.On += (s, e) => MakeInvalidate();
                 _keydown.On += (s, e) => KeyDown?.Invoke(this, e);
                 _keyup.On += (s, e) => KeyUp?.Invoke(this, e);
-
             }
         }
 
@@ -344,18 +334,8 @@ namespace ElmSharp
                 OnUnrealize();
                 IntPtr toBeDeleted = Handle;
                 Handle = IntPtr.Zero;
-                _deleted?.Dispose();
-                _deleted = null;
-                _keydown?.Dispose();
-                _keydown = null;
-                _keyup?.Dispose();
-                _keyup = null;
-                _moved?.Dispose();
-                _moved = null;
-                _resized?.Dispose();
-                _resized = null;
-                _renderPost?.Dispose();
-                _renderPost = null;
+
+                DisposeEvent();
 
                 (Parent as Window)?.RemoveChild(this);
 
@@ -363,5 +343,41 @@ namespace ElmSharp
                 Parent = null;
             }
         }
+
+        private void MakeInvalidate()
+        {
+            Deleted?.Invoke(this, EventArgs.Empty);
+            OnInvalidate();
+            Handle = IntPtr.Zero;
+
+            MakeInvalidateEvent();
+
+            (Parent as Window)?.RemoveChild(this);
+            Parent = null;
+            _deleted = null;
+        }
+
+        private void DisposeEvent()
+        {
+            foreach (var evt in _eventStore)
+            {
+                evt.Dispose();
+            }
+            _eventStore.Clear();
+        }
+        private void MakeInvalidateEvent()
+        {
+            foreach (var evt in _eventStore)
+            {
+                evt.MakeInvalidate();
+            }
+            _eventStore.Clear();
+        }
+
+        internal void AddToEventLifeTracker(IInvalidatable item)
+        {
+            _eventStore.Add(item);
+        }
+
     }
 }

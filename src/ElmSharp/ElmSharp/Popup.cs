@@ -35,37 +35,36 @@ namespace ElmSharp
     public class Popup : Layout
     {
         HashSet<PopupItem> _children = new HashSet<PopupItem>();
-        Interop.SmartEvent _dismissed;
-        Interop.SmartEvent _blockClicked;
-        Interop.SmartEvent _timeout;
-        Interop.SmartEvent _showFinished;
+        SmartEvent _dismissed;
+        SmartEvent _blockClicked;
+        SmartEvent _timeout;
+        SmartEvent _showFinished;
 
         public Popup(EvasObject parent) : base(parent)
         {
-            _dismissed = new Interop.SmartEvent(this, Handle, "dismissed");
+            _dismissed = new SmartEvent(this, "dismissed");
             _dismissed.On += (sender, e) =>
             {
                 Dismissed?.Invoke(this, EventArgs.Empty);
             };
 
-            _blockClicked = new Interop.SmartEvent(this, Handle, "block,clicked");
+            _blockClicked = new SmartEvent(this, "block,clicked");
             _blockClicked.On += (sender, e) =>
             {
                 OutsideClicked?.Invoke(this, EventArgs.Empty);
             };
 
-            _timeout = new Interop.SmartEvent(this, Handle, "timeout");
+            _timeout = new SmartEvent(this, "timeout");
             _timeout.On += (sender, e) =>
             {
                 TimedOut?.Invoke(this, EventArgs.Empty);
             };
 
-            _showFinished = new Interop.SmartEvent(this, Handle, "show,finished");
+            _showFinished = new SmartEvent(this, "show,finished");
             _showFinished.On += (sender, e) =>
             {
                 ShowAnimationFinished?.Invoke(this, EventArgs.Empty);
             };
-
         }
 
         public event EventHandler Dismissed;

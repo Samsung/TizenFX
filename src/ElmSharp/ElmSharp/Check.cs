@@ -20,12 +20,12 @@ namespace ElmSharp
 {
     public class Check : Layout
     {
-        private Interop.SmartEvent _changed;
+        private SmartEvent _changed;
         private bool _currentState;
 
         public Check(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (sender, e) =>
             {
                 StateChanged?.Invoke(this, new CheckStateChangedEventArgs(_currentState, IsChecked));

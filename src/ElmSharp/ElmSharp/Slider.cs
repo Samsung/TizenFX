@@ -23,23 +23,23 @@ namespace ElmSharp
         double _minimum = 0.0;
         double _maximum = 1.0;
 
-        Interop.SmartEvent _changed;
-        Interop.SmartEvent _delayedChanged;
-        Interop.SmartEvent _dragStarted;
-        Interop.SmartEvent _dragStopped;
+        SmartEvent _changed;
+        SmartEvent _delayedChanged;
+        SmartEvent _dragStarted;
+        SmartEvent _dragStopped;
 
         public Slider(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _delayedChanged = new Interop.SmartEvent(this, Handle, "delay,changed");
+            _delayedChanged = new SmartEvent(this, "delay,changed");
             _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _dragStarted = new Interop.SmartEvent(this, Handle, "slider,drag,start");
+            _dragStarted = new SmartEvent(this, "slider,drag,start");
             _dragStarted.On += (s, e) => DragStarted?.Invoke(this, EventArgs.Empty);
 
-            _dragStopped = new Interop.SmartEvent(this, Handle, "slider,drag,stop");
+            _dragStopped = new SmartEvent(this, "slider,drag,stop");
             _dragStopped.On += (s, e) => DragStopped?.Invoke(this, EventArgs.Empty);
         }
 

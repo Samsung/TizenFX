@@ -40,10 +40,10 @@ namespace ElmSharp
 
     public class Panel : Layout
     {
-        Interop.SmartEvent _toggled;
+        SmartEvent _toggled;
         public Panel(EvasObject parent) : base(parent)
         {
-            _toggled = new Interop.SmartEvent(this, Handle, "toggled");
+            _toggled = new SmartEvent(this, "toggled");
             _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
         }
 

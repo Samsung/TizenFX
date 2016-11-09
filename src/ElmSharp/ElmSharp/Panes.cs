@@ -20,12 +20,12 @@ namespace ElmSharp
 {
     public class Panes : Layout
     {
-        Interop.SmartEvent _press;
-        Interop.SmartEvent _unpressed;
+        SmartEvent _press;
+        SmartEvent _unpressed;
         public Panes(EvasObject parent) : base(parent)
         {
-            _press = new Interop.SmartEvent(this, Handle, "press");
-            _unpressed = new Interop.SmartEvent(this, Handle, "unpressed");
+            _press = new SmartEvent(this, "press");
+            _unpressed = new SmartEvent(this, "unpressed");
 
             _press.On += (s, e) => Pressed?.Invoke(this, e);
             _unpressed.On += (s, e) => Unpressed?.Invoke(this, e);

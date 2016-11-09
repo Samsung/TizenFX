@@ -23,8 +23,8 @@ namespace ElmSharp
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
 
-        Interop.SmartEvent _focused;
-        Interop.SmartEvent _unfocused;
+        SmartEvent _focused;
+        SmartEvent _unfocused;
 
         protected Widget()
         {
@@ -32,12 +32,11 @@ namespace ElmSharp
 
         protected Widget(EvasObject parent) : base(parent)
         {
-            _focused = new Interop.SmartEvent(this, Handle, "focused");
+            _focused = new SmartEvent(this, "focused");
             _focused.On += (s, e) => Focused?.Invoke(this, EventArgs.Empty);
 
-            _unfocused = new Interop.SmartEvent(this, Handle, "unfocused");
+            _unfocused = new SmartEvent(this, "unfocused");
             _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
-
         }
 
         public event EventHandler Focused;

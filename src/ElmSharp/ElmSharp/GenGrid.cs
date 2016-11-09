@@ -42,15 +42,15 @@ namespace ElmSharp
     {
         HashSet<GenGridItem> _children = new HashSet<GenGridItem>();
 
-        Interop.SmartEvent<GenGridItemEventArgs> _selected;
-        Interop.SmartEvent<GenGridItemEventArgs> _unselected;
-        Interop.SmartEvent<GenGridItemEventArgs> _activated;
-        Interop.SmartEvent<GenGridItemEventArgs> _pressed;
-        Interop.SmartEvent<GenGridItemEventArgs> _released;
-        Interop.SmartEvent<GenGridItemEventArgs> _doubleClicked;
-        Interop.SmartEvent<GenGridItemEventArgs> _realized;
-        Interop.SmartEvent<GenGridItemEventArgs> _unrealized;
-        Interop.SmartEvent<GenGridItemEventArgs> _longpressed;
+        SmartEvent<GenGridItemEventArgs> _selected;
+        SmartEvent<GenGridItemEventArgs> _unselected;
+        SmartEvent<GenGridItemEventArgs> _activated;
+        SmartEvent<GenGridItemEventArgs> _pressed;
+        SmartEvent<GenGridItemEventArgs> _released;
+        SmartEvent<GenGridItemEventArgs> _doubleClicked;
+        SmartEvent<GenGridItemEventArgs> _realized;
+        SmartEvent<GenGridItemEventArgs> _unrealized;
+        SmartEvent<GenGridItemEventArgs> _longpressed;
 
         public GenGrid(EvasObject parent) : base(parent)
         {
@@ -239,15 +239,15 @@ namespace ElmSharp
 
         void InitializeSmartEvent()
         {
-            _selected = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "selected", GenGridItemEventArgs.CreateFromSmartEvent);
-            _unselected = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "unselected", GenGridItemEventArgs.CreateFromSmartEvent);
-            _activated = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "activated", GenGridItemEventArgs.CreateFromSmartEvent);
-            _pressed = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "pressed", GenGridItemEventArgs.CreateFromSmartEvent);
-            _released = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "released", GenGridItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "clicked,double", GenGridItemEventArgs.CreateFromSmartEvent);
-            _realized = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
-            _unrealized = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new Interop.SmartEvent<GenGridItemEventArgs>(this, Handle, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<GenGridItemEventArgs>(this, "selected", GenGridItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<GenGridItemEventArgs>(this, "unselected", GenGridItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<GenGridItemEventArgs>(this,"activated", GenGridItemEventArgs.CreateFromSmartEvent);
+            _pressed = new SmartEvent<GenGridItemEventArgs>(this, "pressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _released = new SmartEvent<GenGridItemEventArgs>(this, "released", GenGridItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<GenGridItemEventArgs>(this, "clicked,double", GenGridItemEventArgs.CreateFromSmartEvent);
+            _realized = new SmartEvent<GenGridItemEventArgs>(this, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
+            _unrealized = new SmartEvent<GenGridItemEventArgs>(this, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<GenGridItemEventArgs>(this, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };
@@ -258,7 +258,6 @@ namespace ElmSharp
             _realized.On += (s, e) => { if (e.Item != null) ItemRealized?.Invoke(this, e); };
             _unrealized.On += (s, e) => { if (e.Item != null) ItemUnrealized?.Invoke(this, e); };
             _longpressed.On += (s, e) => { if (e.Item != null) ItemLongPressed?.Invoke(this, e); };
-
         }
 
         void AddInternal(GenGridItem item)

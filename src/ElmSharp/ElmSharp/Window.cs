@@ -51,8 +51,8 @@ namespace ElmSharp
 
     public class Window : Widget
     {
-        Interop.SmartEvent _deleteRequest;
-        Interop.SmartEvent _rotationChanged;
+        SmartEvent _deleteRequest;
+        SmartEvent _rotationChanged;
         HashSet<EvasObject> _referenceHolder = new HashSet<EvasObject>();
 
         public Window(string name) : this(null, name)
@@ -65,8 +65,8 @@ namespace ElmSharp
             Realize(parent);
             Interop.Elementary.elm_win_indicator_mode_set(Handle, 2 /* ELM_WIN_INDICATOR_SHOW */);
 
-            _deleteRequest = new Interop.SmartEvent(this, Handle, "delete,request");
-            _rotationChanged = new Interop.SmartEvent(this, Handle, "wm,rotation,changed");
+            _deleteRequest = new SmartEvent(this, "delete,request");
+            _rotationChanged = new SmartEvent(this, "wm,rotation,changed");
             _deleteRequest.On += (s, e) => CloseRequested?.Invoke(this, EventArgs.Empty);
             _rotationChanged.On += (s, e) => RotationChanged?.Invoke(this, EventArgs.Empty);
         }

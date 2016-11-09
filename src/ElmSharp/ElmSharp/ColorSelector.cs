@@ -31,12 +31,12 @@ namespace ElmSharp
 
     public class ColorSelector : Layout
     {
-        private readonly Interop.SmartEvent<ColorChangedEventArgs> _changed;
+        private readonly SmartEvent<ColorChangedEventArgs> _changed;
         private Color _currentColor;
 
         public ColorSelector(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent<ColorChangedEventArgs>(this, Handle, "changed", (data, obj, info) =>
+            _changed = new SmartEvent<ColorChangedEventArgs>(this, "changed", (data, obj, info) =>
             {
                 return new ColorChangedEventArgs(_currentColor, SelectedColor);
             });

@@ -20,11 +20,11 @@ namespace ElmSharp
 {
     public class Label : Layout
     {
-        Interop.SmartEvent _slideCompleted;
+        SmartEvent _slideCompleted;
 
         public Label(EvasObject parent) : base(parent)
         {
-            _slideCompleted = new Interop.SmartEvent(this, Handle, "slide,end");
+            _slideCompleted = new SmartEvent(this, "slide,end");
             _slideCompleted.On += (s, e) =>
             {
                 SlideCompleted?.Invoke(this, EventArgs.Empty);

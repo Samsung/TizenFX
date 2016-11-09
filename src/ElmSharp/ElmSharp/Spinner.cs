@@ -23,15 +23,15 @@ namespace ElmSharp
         double _minimum = 0.0;
         double _maximum = 100.0;
 
-        Interop.SmartEvent _changed;
-        Interop.SmartEvent _delayedChanged;
+        SmartEvent _changed;
+        SmartEvent _delayedChanged;
 
         public Spinner(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _delayedChanged = new Interop.SmartEvent(this, Handle, "delay,changed");
+            _delayedChanged = new SmartEvent(this, "delay,changed");
             _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
         }
 

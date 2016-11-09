@@ -30,12 +30,12 @@ namespace ElmSharp
 
     public class DateTimeSelector : Layout
     {
-        Interop.SmartEvent _changed;
+        SmartEvent _changed;
         DateTime _cacheDateTime;
 
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _changed = new SmartEvent(this, "changed");
             _changed.On += (s, e) =>
             {
                 DateTime newDateTime = DateTime;

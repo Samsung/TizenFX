@@ -34,17 +34,17 @@ namespace ElmSharp
 
     public class Scroller : Layout
     {
-        Interop.SmartEvent _scroll;
-        Interop.SmartEvent _dragStart;
-        Interop.SmartEvent _dragStop;
-        Interop.SmartEvent _scrollpage;
+        SmartEvent _scroll;
+        SmartEvent _dragStart;
+        SmartEvent _dragStop;
+        SmartEvent _scrollpage;
 
         public Scroller(EvasObject parent) : base(parent)
         {
-            _scroll = new Interop.SmartEvent(this, Handle, "scroll");
-            _dragStart = new Interop.SmartEvent(this, Handle, "scroll,drag,start");
-            _dragStop = new Interop.SmartEvent(this, Handle, "scroll,drag,stop");
-            _scrollpage = new Interop.SmartEvent(this, Handle, "scroll,page,changed");
+            _scroll = new SmartEvent(this, "scroll");
+            _dragStart = new SmartEvent(this, "scroll,drag,start");
+            _dragStop = new SmartEvent(this, "scroll,drag,stop");
+            _scrollpage = new SmartEvent(this, "scroll,page,changed");
         }
 
         public event EventHandler Scrolled

@@ -58,19 +58,19 @@ namespace ElmSharp
     {
         HashSet<GenListItem> _children = new HashSet<GenListItem>();
 
-        Interop.SmartEvent<GenListItemEventArgs> _selected;
-        Interop.SmartEvent<GenListItemEventArgs> _unselected;
-        Interop.SmartEvent<GenListItemEventArgs> _activated;
-        Interop.SmartEvent<GenListItemEventArgs> _pressed;
-        Interop.SmartEvent<GenListItemEventArgs> _released;
-        Interop.SmartEvent<GenListItemEventArgs> _doubleClicked;
-        Interop.SmartEvent<GenListItemEventArgs> _expanded;
-        Interop.SmartEvent<GenListItemEventArgs> _realized;
-        Interop.SmartEvent<GenListItemEventArgs> _unrealized;
-        Interop.SmartEvent<GenListItemEventArgs> _longpressed;
-        Interop.SmartEvent _scrollAnimationStarted;
-        Interop.SmartEvent _scrollAnimationStopped;
-        Interop.SmartEvent _changed;
+        SmartEvent<GenListItemEventArgs> _selected;
+        SmartEvent<GenListItemEventArgs> _unselected;
+        SmartEvent<GenListItemEventArgs> _activated;
+        SmartEvent<GenListItemEventArgs> _pressed;
+        SmartEvent<GenListItemEventArgs> _released;
+        SmartEvent<GenListItemEventArgs> _doubleClicked;
+        SmartEvent<GenListItemEventArgs> _expanded;
+        SmartEvent<GenListItemEventArgs> _realized;
+        SmartEvent<GenListItemEventArgs> _unrealized;
+        SmartEvent<GenListItemEventArgs> _longpressed;
+        SmartEvent _scrollAnimationStarted;
+        SmartEvent _scrollAnimationStopped;
+        SmartEvent _changed;
 
         public GenList(EvasObject parent) : base(parent)
         {
@@ -241,19 +241,19 @@ namespace ElmSharp
 
         void InitializeSmartEvent()
         {
-            _selected = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "selected", GenListItemEventArgs.CreateFromSmartEvent);
-            _unselected = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "unselected", GenListItemEventArgs.CreateFromSmartEvent);
-            _activated = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "activated", GenListItemEventArgs.CreateFromSmartEvent);
-            _pressed = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "pressed", GenListItemEventArgs.CreateFromSmartEvent);
-            _released = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "released", GenListItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "clicked,double", GenListItemEventArgs.CreateFromSmartEvent);
-            _expanded = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "expanded", GenListItemEventArgs.CreateFromSmartEvent);
-            _realized = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "realized", GenListItemEventArgs.CreateFromSmartEvent);
-            _unrealized = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new Interop.SmartEvent<GenListItemEventArgs>(this, Handle, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
-            _scrollAnimationStarted = new Interop.SmartEvent(this, Handle, "scroll,anim,start");
-            _scrollAnimationStopped = new Interop.SmartEvent(this, Handle, "scroll,anim,stop");
-            _changed = new Interop.SmartEvent(this, Handle, "changed");
+            _selected = new SmartEvent<GenListItemEventArgs>(this, "selected", GenListItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<GenListItemEventArgs>(this, "unselected", GenListItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<GenListItemEventArgs>(this, "activated", GenListItemEventArgs.CreateFromSmartEvent);
+            _pressed = new SmartEvent<GenListItemEventArgs>(this, "pressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _released = new SmartEvent<GenListItemEventArgs>(this, "released", GenListItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<GenListItemEventArgs>(this, "clicked,double", GenListItemEventArgs.CreateFromSmartEvent);
+            _expanded = new SmartEvent<GenListItemEventArgs>(this, "expanded", GenListItemEventArgs.CreateFromSmartEvent);
+            _realized = new SmartEvent<GenListItemEventArgs>(this, "realized", GenListItemEventArgs.CreateFromSmartEvent);
+            _unrealized = new SmartEvent<GenListItemEventArgs>(this, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<GenListItemEventArgs>(this, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _scrollAnimationStarted = new SmartEvent(this, "scroll,anim,start");
+            _scrollAnimationStopped = new SmartEvent(this, "scroll,anim,stop");
+            _changed = new SmartEvent(this, "changed");
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };

@@ -31,12 +31,12 @@ namespace ElmSharp
     public class ContextPopup : Layout
     {
         HashSet<ContextPopupItem> _children = new HashSet<ContextPopupItem>();
-        Interop.SmartEvent _dismissed;
+        SmartEvent _dismissed;
         Interop.Evas.SmartCallback _onSelected;
 
         public ContextPopup(EvasObject parent) : base(parent)
         {
-            _dismissed = new Interop.SmartEvent(this, Handle, "dismissed");
+            _dismissed = new SmartEvent(this, "dismissed");
             _dismissed.On += (sender, e) =>
             {
                 Dismissed?.Invoke(this, EventArgs.Empty);

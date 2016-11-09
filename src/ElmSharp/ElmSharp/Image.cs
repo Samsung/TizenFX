@@ -25,11 +25,11 @@ namespace ElmSharp
     {
         bool _canScaleUp = true;
         bool _canScaleDown = true;
-        Interop.SmartEvent _clicked;
+        SmartEvent _clicked;
 
         public Image(EvasObject parent) : base(parent)
         {
-            _clicked = new Interop.SmartEvent(this, Handle, "clicked");
+            _clicked = new SmartEvent(this, "clicked");
             _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
         }
 
@@ -307,7 +307,7 @@ namespace ElmSharp
                 }
             });
 
-            Interop.SmartEvent loadReady = new Interop.SmartEvent(this, Handle, "load,ready");
+            SmartEvent loadReady = new SmartEvent(this, Handle, "load,ready");
             loadReady.On += (s, e) =>
             {
                 loadReady.Dispose();
@@ -318,7 +318,7 @@ namespace ElmSharp
                 }
             };
 
-            Interop.SmartEvent loadError = new Interop.SmartEvent(this, Handle, "load,error");
+            SmartEvent loadError = new SmartEvent(this, Handle, "load,error");
             loadError.On += (s, e) =>
             {
                 loadError.Dispose();
@@ -364,7 +364,7 @@ namespace ElmSharp
                 }
             });
 
-            Interop.SmartEvent loadReady = new Interop.SmartEvent(this, Handle, "load,ready");
+            SmartEvent loadReady = new SmartEvent(this, Handle, "load,ready");
             loadReady.On += (s, e) =>
             {
                 loadReady.Dispose();
@@ -375,7 +375,7 @@ namespace ElmSharp
                 }
             };
 
-            Interop.SmartEvent loadError = new Interop.SmartEvent(this, Handle, "load,error");
+            SmartEvent loadError = new SmartEvent(this, Handle, "load,error");
             loadError.On += (s, e) =>
             {
                 loadError.Dispose();

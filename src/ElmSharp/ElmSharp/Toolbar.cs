@@ -48,12 +48,12 @@ namespace ElmSharp
 
     public class Toolbar : Widget
     {
-        Interop.SmartEvent<ToolbarItemEventArgs> _clicked;
-        Interop.SmartEvent<ToolbarItemEventArgs> _selected;
-        Interop.SmartEvent<ToolbarItemEventArgs> _longpressed;
+        SmartEvent<ToolbarItemEventArgs> _clicked;
+        SmartEvent<ToolbarItemEventArgs> _selected;
+        SmartEvent<ToolbarItemEventArgs> _longpressed;
         public Toolbar(EvasObject parent) : base(parent)
         {
-            _selected = new Interop.SmartEvent<ToolbarItemEventArgs>(this, Handle, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<ToolbarItemEventArgs>(this, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
             _selected.On += (s, e) =>
             {
                 if (e.Item != null)
@@ -62,12 +62,12 @@ namespace ElmSharp
                     e.Item.SendSelected();
                 }
             };
-            _longpressed = new Interop.SmartEvent<ToolbarItemEventArgs>(this, Handle, "longpressed", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<ToolbarItemEventArgs>(this, "longpressed", ToolbarItemEventArgs.CreateFromSmartEvent);
             _longpressed.On += (s, e) =>
             {
                 e.Item?.SendLongPressed();
             };
-            _clicked = new Interop.SmartEvent<ToolbarItemEventArgs>(this, Handle, "clicked", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _clicked = new SmartEvent<ToolbarItemEventArgs>(this, "clicked", ToolbarItemEventArgs.CreateFromSmartEvent);
             _clicked.On += (s, e) =>
             {
                 e.Item?.SendClicked();

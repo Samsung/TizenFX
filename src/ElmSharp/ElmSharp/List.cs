@@ -40,19 +40,19 @@ namespace ElmSharp
     public class List : Layout
     {
         HashSet<ListItem> _children = new HashSet<ListItem>();
-        Interop.SmartEvent<ListItemEventArgs> _selected;
-        Interop.SmartEvent<ListItemEventArgs> _unselected;
-        Interop.SmartEvent<ListItemEventArgs> _doubleClicked;
-        Interop.SmartEvent<ListItemEventArgs> _longpressed;
-        Interop.SmartEvent<ListItemEventArgs> _activated;
+        SmartEvent<ListItemEventArgs> _selected;
+        SmartEvent<ListItemEventArgs> _unselected;
+        SmartEvent<ListItemEventArgs> _doubleClicked;
+        SmartEvent<ListItemEventArgs> _longpressed;
+        SmartEvent<ListItemEventArgs> _activated;
 
         public List(EvasObject parent) : base(parent)
         {
-            _selected = new Interop.SmartEvent<ListItemEventArgs>(this, Handle, "selected", ListItemEventArgs.CreateFromSmartEvent);
-            _unselected = new Interop.SmartEvent<ListItemEventArgs>(this, Handle, "unselected", ListItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new Interop.SmartEvent<ListItemEventArgs>(this, Handle, "clicked,double", ListItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new Interop.SmartEvent<ListItemEventArgs>(this, Handle, "longpressed", ListItemEventArgs.CreateFromSmartEvent);
-            _activated = new Interop.SmartEvent<ListItemEventArgs>(this, Handle, "activated", ListItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<ListItemEventArgs>(this, "selected", ListItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<ListItemEventArgs>(this, "unselected", ListItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<ListItemEventArgs>(this, "clicked,double", ListItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<ListItemEventArgs>(this, "longpressed", ListItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<ListItemEventArgs>(this, "activated", ListItemEventArgs.CreateFromSmartEvent);
             _selected.On += (s, e) => { ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { ItemUnselected?.Invoke(this, e); };
             _doubleClicked.On += (s, e) => { ItemDoubleClicked?.Invoke(this, e); };

@@ -106,23 +106,23 @@ namespace ElmSharp
 
     public class Entry : Layout
     {
-        Interop.SmartEvent _clicked;
-        Interop.SmartEvent _changedByUser;
-        Interop.SmartEvent _cursorChanged;
-        Interop.SmartEvent _activated;
+        SmartEvent _clicked;
+        SmartEvent _changedByUser;
+        SmartEvent _cursorChanged;
+        SmartEvent _activated;
 
         public Entry(EvasObject parent) : base(parent)
         {
-            _clicked = new Interop.SmartEvent(this, Handle, "clicked");
+            _clicked = new SmartEvent(this, "clicked");
             _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
 
-            _changedByUser = new Interop.SmartEvent(this, Handle, "changed,user");
+            _changedByUser = new SmartEvent(this, "changed,user");
             _changedByUser.On += (s, e) => ChangedByUser?.Invoke(this, EventArgs.Empty);
 
-            _cursorChanged = new Interop.SmartEvent(this, Handle, "cursor,changed");
+            _cursorChanged = new SmartEvent(this, "cursor,changed");
             _cursorChanged.On += (s, e) => CursorChanged?.Invoke(this, EventArgs.Empty);
 
-            _activated = new Interop.SmartEvent(this, Handle, "activated");
+            _activated = new SmartEvent(this, "activated");
             _activated.On += (s, e) => Activated?.Invoke(this, EventArgs.Empty);
         }
 

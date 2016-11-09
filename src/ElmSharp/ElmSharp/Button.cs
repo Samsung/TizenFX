@@ -20,17 +20,17 @@ namespace ElmSharp
 {
     public class Button : Layout
     {
-        private Interop.SmartEvent _clicked;
-        private Interop.SmartEvent _repeated;
-        private Interop.SmartEvent _pressed;
-        private Interop.SmartEvent _released;
+        private SmartEvent _clicked;
+        private SmartEvent _repeated;
+        private SmartEvent _pressed;
+        private SmartEvent _released;
 
         public Button(EvasObject parent) : base(parent)
         {
-            _clicked = new Interop.SmartEvent(this, Handle, "clicked");
-            _repeated = new Interop.SmartEvent(this, Handle, "repeated");
-            _pressed = new Interop.SmartEvent(this, Handle, "pressed");
-            _released = new Interop.SmartEvent(this, Handle, "unpressed");
+            _clicked = new SmartEvent(this, "clicked");
+            _repeated = new SmartEvent(this, "repeated");
+            _pressed = new SmartEvent(this, "pressed");
+            _released = new SmartEvent(this, "unpressed");
 
             _clicked.On += (sender, e) =>
             {

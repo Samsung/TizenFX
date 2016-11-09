@@ -106,6 +106,8 @@ namespace ElmSharp.Test
                     {
                         window.Hide();
                         window.Unrealize();
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
                     }
                 };
             }
