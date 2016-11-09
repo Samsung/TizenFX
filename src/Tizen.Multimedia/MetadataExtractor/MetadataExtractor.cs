@@ -68,17 +68,18 @@ namespace Tizen.Multimedia
 		public MetadataExtractor(byte[] buffer)
 		{
 			int ret;
-			int size = buffer.Length;
-			IntPtr buf = Marshal.AllocHGlobal(size);
 
-			if (buffer == null || size == 0)
+			if (buffer == null || buffer.Length == 0)
 			{
 				Log.Error(MetadataExtractorLog.LogTag, "buffer is null");
 				MetadataExtractorErrorFactory.ThrowException((int)MetadataExtractorError.InvalidParameter, "buffer is null");
 			}
 			else
-			{
-				Marshal.Copy(buffer, 0, buf, size);
+            {
+                int size = buffer.Length;
+                IntPtr buf = Marshal.AllocHGlobal(size);
+                Marshal.Copy(buffer, 0, buf, size);
+
 				ret = Interop.MetadataExtractor.Create(out _handle);
 				if (ret != (int)MetadataExtractorError.None)
 				{

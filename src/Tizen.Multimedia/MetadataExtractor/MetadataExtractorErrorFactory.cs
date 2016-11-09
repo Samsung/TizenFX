@@ -38,21 +38,16 @@ namespace Tizen.Multimedia
 	{
 		internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
 		{
-			MetadataExtractorError err = (MetadataExtractorError)errorCode;
-			if(string.IsNullOrEmpty(errorMessage))
-			{
-				errorMessage = err.ToString();
-			}
 			switch ((MetadataExtractorError)errorCode)
 			{
 				case MetadataExtractorError.InvalidParameter:
-					throw new ArgumentException(errorMessage, paramName);
+					throw new ArgumentException("[" + errorCode.ToString() + "]" + errorMessage, paramName);
 
 				case MetadataExtractorError.OutOfMemory:
 				case MetadataExtractorError.FileExists:
 				case MetadataExtractorError.PermissionDenied:
 				case MetadataExtractorError.MetadataExtractorErrorOperationFailed:
-					throw new InvalidOperationException(errorMessage);
+					throw new InvalidOperationException("[" + errorCode.ToString() + "]" + errorMessage);
 			}
 		}
 	}
