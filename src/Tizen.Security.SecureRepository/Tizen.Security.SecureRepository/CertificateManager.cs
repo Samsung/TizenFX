@@ -29,16 +29,24 @@ namespace Tizen.Security.SecureRepository
         /// Gets a certificate from secure repository.
         /// </summary>
         /// <param name="alias">The name of a certificate to retrieve.</param>
-        /// <param name="password">The password used in decrypting a certificate value.
-        /// If password of policy is provided in SaveCertificate(), the same password should be provided.
+        /// <param name="password">
+        /// The password used in decrypting a certificate value. If password of
+        /// policy is provided in SaveCertificate(), the same password should be
+        /// provided.
         /// </param>
         /// <returns>A certificate specified by alias.</returns>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is null or invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Certificate does not exist with the alias or certificate-protecting password isn't matched.
+        /// Certificate does not exist with the alias or certificate-protecting
+        /// password isn't matched.
         /// </exception>
         static public Certificate Get(string alias, string password)
         {
+            if (alias == null)
+                throw new ArgumentNullException("alias cannot be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try
@@ -83,11 +91,20 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="alias">The name of a certificate to be stored.</param>
         /// <param name="cert">The certificate's binary value to be stored.</param>
-        /// <param name="policy">The policy about how to store a certificate securely.</param>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format. cert argument is invalid format.</exception>
-        /// <exception cref="InvalidOperationException">Certificate with alias does already exist.</exception>
+        /// <param name="policy">
+        /// The policy about how to store a certificate securely.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is null or invalid format. cert argument is invalid format.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Certificate with alias does already exist.
+        /// </exception>
         static public void Save(string alias, Certificate cert, Policy policy)
         {
+            if (alias == null || cert == null || policy == null)
+                throw new ArgumentNullException("More than one of argument is null");
+
             Interop.CheckNThrowException(
                 Interop.CkmcManager.SaveCert(
                     alias, cert.ToCkmcCert(), policy.ToCkmcPolicy()),
@@ -98,19 +115,32 @@ namespace Tizen.Security.SecureRepository
         /// Verifies a certificate chain and returns that chain.
         /// </summary>
         /// <param name="certificate">The certificate to be verified.</param>
-        /// <param name="untrustedCertificates">The untrusted CA certificates to be used in verifying a certificate chain.</param>
+        /// <param name="untrustedCertificates">
+        /// The untrusted CA certificates to be used in verifying a certificate chain.
+        /// </param>
         /// <returns>A newly created certificate chain.</returns>
-        /// <exception cref="ArgumentException">Some of certificate in arguments is invalid.</exception>
+        /// <exception cref="ArgumentException">
+        /// Some of certificate in arguments is invalid.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Some of certificate in arguments is expired or not valid yet.
         /// Certificate cannot build chain.
         /// Root certificate is not in trusted system certificate store.
         /// </exception>
-        /// <remarks>The trusted root certificate of the chain should exist in the system's certificate storage.</remarks>
-        /// <remarks>The trusted root certificate of the chain in system's certificate storage is added to the certificate chain.</remarks>
-        static public IEnumerable<Certificate> GetCertificateChain(Certificate certificate,
-                                                                   IEnumerable<Certificate> untrustedCertificates)
+        /// <remarks>
+        /// The trusted root certificate of the chain should exist in the system's
+        /// certificate storage.
+        /// </remarks>
+        /// <remarks>
+        /// The trusted root certificate of the chain in system's certificate storage
+        /// is added to the certificate chain.
+        /// </remarks>
+        static public IEnumerable<Certificate> GetCertificateChain(
+            Certificate certificate, IEnumerable<Certificate> untrustedCertificates)
         {
+            if (certificate == null)
+                throw new ArgumentNullException("Certificate is null");
+
             IntPtr ptrCertChain = IntPtr.Zero;
             IntPtr certPtr = IntPtr.Zero;
             IntPtr untrustedPtr = IntPtr.Zero;
@@ -140,25 +170,41 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Verifies a certificate chain and returns that chain using user entered trusted and untrusted CA certificates.
+        /// Verifies a certificate chain and returns that chain using user entered
+        /// trusted and untrusted CA certificates.
         /// </summary>
         /// <param name="certificate">The certificate to be verified.</param>
-        /// <param name="untrustedCertificates">The untrusted CA certificates to be used in verifying a certificate chain.</param>
-        /// <param name="trustedCertificates">The trusted CA certificates to be used in verifying a certificate chain.</param>
-        /// <param name="useTrustedSystemCertificates">The flag indicating the use of the trusted root certificates in the system's certificate storage.</param>
+        /// <param name="untrustedCertificates">
+        /// The untrusted CA certificates to be used in verifying a certificate chain.
+        /// </param>
+        /// <param name="trustedCertificates">
+        /// The trusted CA certificates to be used in verifying a certificate chain.
+        /// </param>
+        /// <param name="useTrustedSystemCertificates">
+        /// The flag indicating the use of the trusted root certificates in the
+        /// system's certificate storage.
+        /// </param>
         /// <returns>A newly created certificate chain.</returns>
-        /// <exception cref="ArgumentException">Some of certificate in arguments is invalid.</exception>
+        /// <exception cref="ArgumentException">
+        /// Some of certificate in arguments is invalid.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Some of certificate in arguments is expired or not valid yet.
         /// Certificate cannot build chain.
         /// Root certificate is not in trusted system certificate store.
         /// </exception>
-        /// <remarks>The trusted root certificate of the chain in system's certificate storage is added to the certificate chain.</remarks>
-        static public IEnumerable<Certificate> GetCertificateChain(Certificate certificate,
-                                                                   IEnumerable<Certificate> untrustedCertificates,
-                                                                   IEnumerable<Certificate> trustedCertificates,
-                                                                   bool useTrustedSystemCertificates)
+        /// <remarks>
+        /// The trusted root certificate of the chain in system's certificate storage
+        /// is added to the certificate chain.
+        /// </remarks>
+        static public IEnumerable<Certificate> GetCertificateChain(
+            Certificate certificate, IEnumerable<Certificate> untrustedCertificates,
+            IEnumerable<Certificate> trustedCertificates,
+            bool useTrustedSystemCertificates)
         {
+            if (certificate == null)
+                throw new ArgumentNullException("Certificate is null");
+
             IntPtr certPtr = IntPtr.Zero;
             IntPtr untrustedPtr = IntPtr.Zero;
             IntPtr trustedPtr = IntPtr.Zero;
@@ -194,12 +240,21 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Perform OCSP which checks certificate is whether revoked or not.
         /// </summary>
-        /// <param name="certificateChain">Valid certificate chain to perform OCSP check.</param>
+        /// <param name="certificateChain">
+        /// Valid certificate chain to perform OCSP check.
+        /// </param>
         /// <returns>A status result of OCSP check.</returns>
-        /// <exception cref="ArgumentException">certificateChain is not valid chain or certificate.</exception>
-        /// <exception cref="InvalidOperationException">some of certificate in chain is expired or not valid yet.</exception>
+        /// <exception cref="ArgumentException">
+        /// certificateChain is not valid chain or certificate.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// some of certificate in chain is expired or not valid yet.
+        /// </exception>
         static public OcspStatus CheckOcsp(IEnumerable<Certificate> certificateChain)
         {
+            if (certificateChain == null)
+                throw new ArgumentNullException("Certificate chain is null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try

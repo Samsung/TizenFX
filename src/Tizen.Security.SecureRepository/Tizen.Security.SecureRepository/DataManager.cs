@@ -29,16 +29,23 @@ namespace Tizen.Security.SecureRepository
         /// Gets data from secure repository.
         /// </summary>
         /// <param name="alias">The name of a certificate to retrieve.</param>
-        /// <param name="password">The password used in decrypting a data value.
-        /// If password of policy is provided in SaveData(), the same password should be provided.
+        /// <param name="password">
+        /// The password used in decrypting a data value.
+        /// If password of policy is provided in SaveData(), the same password should
+        /// be provided.
         /// </param>
         /// <returns>Data specified by alias.</returns>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is null or invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Data does not exist with the alias or data-protecting password isn't matched.
         /// </exception>
         static public byte[] Get(string alias, string password)
         {
+            if (alias == null)
+                throw new ArgumentNullException("alias cannot be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try
@@ -84,10 +91,19 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of data to be stored.</param>
         /// <param name="data">The binary value to be stored.</param>
         /// <param name="policy">The policy about how to store data securely.</param>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format. Data policy cannot be unextractable.</exception>
-        /// <exception cref="InvalidOperationException">Data with alias does already exist.</exception>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is null or invalid format. Data policy cannot be unextractable.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Data with alias does already exist.
+        /// </exception>
         static public void Save(string alias, byte[] data, Policy policy)
         {
+            if (alias == null || policy == null)
+                throw new ArgumentNullException("alias and policy should be null");
+            else if (policy.Extractable == false)
+                throw new ArgumentException("Data should be extractable");
+
             Interop.CheckNThrowException(
                 Interop.CkmcManager.SaveData(
                     alias,
