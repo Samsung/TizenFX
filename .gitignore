@@ -198,3 +198,8 @@ obj/
 *.dll
 *.csproj.user
 *.lock.json
+
+# cscope/ctags
+cscope.files
+cscope.out
+tags
