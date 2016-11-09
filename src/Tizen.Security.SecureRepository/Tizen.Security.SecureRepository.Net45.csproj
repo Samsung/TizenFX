@@ -37,48 +37,10 @@
     <AssemblyOriginatorKeyFile>Tizen.Security.SecureRepository.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Interop\Interop.CkmcErrors.cs" />
-    <Compile Include="Interop\Interop.CkmcManager.cs" />
-    <Compile Include="Interop\Interop.CkmcTypes.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Certificate.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\CertificateManager.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\AesCbcCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\AesCfbCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\AesCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\AesCtrCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\AesGcmCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\Cipher.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\CipherAlgorithmType.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\CipherParameterName.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\CipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\DsaSignatureParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\EcdsaSignatureParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\HashAlgorithm.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaOaepCipherParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaPaddingAlgorithm.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\RsaSignatureParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\Signature.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\SignatureAlgorithmType.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\SignatureParameterName.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Crypto\SignatureParameters.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\DataFormat.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\DataManager.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\EllipticCurveType.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Key.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\KeyManager.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\KeyType.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Manager.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\OcspStatus.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Permission.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\PinnedObject.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Pkcs12.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Pkcs12Manager.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\Policy.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\SafeAliasListHandle.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\SafeCertificateListHandle.cs" />
-    <Compile Include="Tizen.Security.SecureRepository\SafeRawBufferHandle.cs" />
+    <Compile Include="Tizen.Security.SecureRepository\*.cs" />
+    <Compile Include="Tizen.Security.SecureRepository\Crypto\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Security.SecureRepository.nuspec" />
