@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 /// <summary>
 /// The Media Content API provides functions, enumerations used in the entire Content Service.
@@ -228,7 +227,7 @@ namespace Tizen.Content.MediaContent
                     result = new Storage(handle);
                 }
             }
-            return (T)result;
+            return (result != null) ? (T)result : null;
         }
 
 
@@ -277,7 +276,7 @@ namespace Tizen.Content.MediaContent
                 if (_handle != IntPtr.Zero)
                     contentCollection = new Tag(_handle);
             }
-            return (T)contentCollection;
+            return (contentCollection != null) ? (T)contentCollection : null;
         }
 
         private static List<MediaFolder> ForEachFolder(ContentFilter filter)
@@ -369,6 +368,11 @@ namespace Tizen.Content.MediaContent
             {
                 IntPtr newHandle;
                 res = (MediaContentError)Interop.Storage.Clone(out newHandle, storageHandle);
+                if (res != MediaContentError.None)
+                {
+                    Log.Warn(Globals.LogTag, "Failed to clone storage handle");
+                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone storage handle");
+                }
                 storageCollections.Add(new Storage(newHandle));
                 return true;
             };
@@ -701,7 +705,7 @@ namespace Tizen.Content.MediaContent
         internal void Update(MediaFace face)
         {
             ConnectToDB();
-            Type type = face.GetType();
+
             MediaContentError result = (MediaContentError)Interop.Face.UpdateToDb(face.Handle);
             if (result != MediaContentError.None)
                 throw MediaContentErrorFactory.CreateException(result, "Failed to update DB");
