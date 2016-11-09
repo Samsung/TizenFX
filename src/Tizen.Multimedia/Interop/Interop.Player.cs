@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 internal static partial class Interop
@@ -8,7 +8,7 @@ internal static partial class Interop
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	internal delegate void PlaybackCompletedCallback(IntPtr userData);
-	
+
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	internal delegate void PlaybackInterruptedCallback(int code, IntPtr userData);
 
@@ -248,10 +248,10 @@ internal static partial class Interop
 	internal static extern int  GetDisplayRotation(IntPtr player, out int rotation);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_get_content_info")]
-	internal static extern int  GetContentInfo(IntPtr player, int key, out string value);
+	internal static extern int  GetContentInfo(IntPtr player, int key, out IntPtr value);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_get_codec_info")]
-	internal static extern int  GetCodecInfo(IntPtr player, out string audio_codec, out string video_codec);
+	internal static extern int  GetCodecInfo(IntPtr player, out IntPtr audio_codec, out IntPtr video_codec);
 
 	[DllImport(Libraries.Player, EntryPoint = "player_get_audio_stream_info")]
 	internal static extern int  GetAudioStreamInfo(IntPtr player, out int sample_rate, out int channel, out int bit_rate);
