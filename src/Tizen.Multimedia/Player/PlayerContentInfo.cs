@@ -1,4 +1,4 @@
-﻿/// PlayerContentInfo
+/// PlayerContentInfo
 ///
 /// Copyright 2016 by Samsung Electronics, Inc.,
 ///
@@ -9,6 +9,7 @@
 /// you entered into with Samsung.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
@@ -21,11 +22,32 @@ namespace Tizen.Multimedia
 
     public class PlayerContentInfo
     {
-		internal IntPtr _playerHandle;
+        internal IntPtr _playerHandle;
 
-		internal PlayerContentInfo()
-		{
-		}
+        internal PlayerContentInfo()
+        {
+        }
+
+        private string GetContentInfo(ContentInfoKey key)
+        {
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                int ret = Interop.Player.GetContentInfo(_playerHandle, (int)key, out ptr);
+                if (ret != (int)PlayerError.None)
+                {
+                    Log.Error(PlayerLog.LogTag, "Failed to get album info" + (PlayerError)ret);
+                    return "";
+                }
+
+                return Marshal.PtrToStringAnsi(ptr);
+            }
+            finally
+            {
+                Interop.Libc.Free(ptr);
+            }
+        }
 
         /// <summary>
         /// Metadata - Album
@@ -35,13 +57,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string album;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Album, out album);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get album info" + (PlayerError)ret);
-				}
-                return album;
+                return GetContentInfo(ContentInfoKey.Album);
             }
         }
 
@@ -53,14 +69,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string artist;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Artist, out artist);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get artist info" + (PlayerError)ret);
-				}
-
-				return artist;
+                return GetContentInfo(ContentInfoKey.Artist);
             }
         }
 
@@ -72,13 +81,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string author;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Author, out author);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get author info" + (PlayerError)ret);
-				}
-				return author;
+                return GetContentInfo(ContentInfoKey.Author);
             }
         }
 
@@ -90,14 +93,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string genre;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Genre, out genre);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get genre info" + (PlayerError)ret);
-				}
-
-				return genre;
+                return GetContentInfo(ContentInfoKey.Genre);
             }
         }
 
@@ -109,13 +105,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string title;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Title, out title);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get title info" + (PlayerError)ret);
-				}
-				return title;
+                return GetContentInfo(ContentInfoKey.Title);
             }
         }
 
@@ -127,13 +117,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-				string year;
-				int ret = Interop.Player.GetContentInfo(_playerHandle, (int)ContentInfoKey.Year, out year);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Failed to get title info" + (PlayerError)ret);
-				}
-				return year;
+                return GetContentInfo(ContentInfoKey.Year);
             }
         }
 
