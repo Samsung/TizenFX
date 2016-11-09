@@ -89,5 +89,10 @@ namespace Tizen.Security.SecureRepository
                     Interop.CkmcTypes.Pkcs12Free(ptr);
             }
         }
+
+        // to be static class safely
+        internal Pkcs12Manager()
+        {
+        }
     }
 }

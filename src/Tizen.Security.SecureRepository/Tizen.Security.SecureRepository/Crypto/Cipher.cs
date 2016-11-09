@@ -68,7 +68,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             {
                 Interop.CheckNThrowException(
                     Interop.CkmcManager.DecryptData(
-                        Parameters.PtrCkmcParamList, keyAlias, password,
+                        Parameters.Ptr, keyAlias, password,
                         new Interop.CkmcRawBuffer(
                             new PinnedObject(cipherText), cipherText.Length),
                         out ptr),
@@ -109,7 +109,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             {
                 Interop.CheckNThrowException(
                     Interop.CkmcManager.EncryptData(
-                        Parameters.PtrCkmcParamList, keyAlias, password,
+                        Parameters.Ptr, keyAlias, password,
                         new Interop.CkmcRawBuffer(
                             new PinnedObject(plainText), plainText.Length),
                         out ptr),

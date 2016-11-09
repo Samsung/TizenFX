@@ -220,5 +220,10 @@ namespace Tizen.Security.SecureRepository
                     Interop.CkmcTypes.CertListAllFree(ptr);
             }
         }
+
+        // to be static class safely
+        internal CertificateManager()
+        {
+        }
     }
 }

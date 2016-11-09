@@ -27,16 +27,6 @@ namespace Tizen.Security.SecureRepository.Crypto
         private Dictionary<SignatureParameterName, int> _parameters;
 
         /// <summary>
-        /// A constructor with algorithm
-        /// </summary>
-        /// <param name="algorithm">An algorithm that this parameters are prepared for.</param>
-        protected SignatureParameters(SignatureAlgorithmType algorithm)
-        {
-            _parameters = new Dictionary<SignatureParameterName, int>();
-            Add(SignatureParameterName.AlgorithmType, (int)algorithm);
-        }
-
-        /// <summary>
         /// Signature algorithm type.
         /// </summary>
         public SignatureAlgorithmType SignatureAlgorithm
@@ -53,20 +43,22 @@ namespace Tizen.Security.SecureRepository.Crypto
             set { Add(SignatureParameterName.HashAlgorithm, (int)value); }
         }
 
-        /// <summary>
-        /// Adds integer parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
-        /// <param name="value">Parameter value.</param>
+        // for inherited in internal only
+        internal SignatureParameters()
+        {
+        }
+
+        internal SignatureParameters(SignatureAlgorithmType algorithm)
+        {
+            _parameters = new Dictionary<SignatureParameterName, int>();
+            Add(SignatureParameterName.AlgorithmType, (int)algorithm);
+        }
+
         internal void Add(SignatureParameterName name, int value)
         {
             _parameters.Add(name, value);
         }
 
-        /// <summary>
-        /// Gets integer parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
         internal int Get(SignatureParameterName name)
         {
             if (_parameters.ContainsKey(name))

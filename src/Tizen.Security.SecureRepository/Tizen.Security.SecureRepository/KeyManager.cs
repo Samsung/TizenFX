@@ -174,5 +174,10 @@ namespace Tizen.Security.SecureRepository
             int ret = Interop.CkmcManager.CreateKeyAes((UIntPtr)size, keyAlias, policy.ToCkmcPolicy());
             Interop.CheckNThrowException(ret, "Failed to AES Key");
         }
+
+        // to be static class safely
+        internal KeyManager()
+        {
+        }
     }
 }

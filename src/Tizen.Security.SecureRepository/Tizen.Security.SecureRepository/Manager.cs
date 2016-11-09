@@ -74,6 +74,11 @@ namespace Tizen.Security.SecureRepository
             Interop.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
         }
 
+        // to being static base class
+        internal Manager()
+        {
+        }
+
         private const string OwnerIdSeperator = " ";
         private const string SystemOwnerId = "/System";
     }

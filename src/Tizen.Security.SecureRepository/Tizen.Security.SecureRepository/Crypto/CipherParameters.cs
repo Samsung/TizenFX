@@ -15,133 +15,61 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
     /// A abstract class holding parameters for encryption and decryption.
     /// </summary>
-    abstract public class CipherParameters : SafeHandle
+    abstract public class CipherParameters
     {
-        /// <summary>
-        /// A constructor with algorithm
-        /// </summary>
-        /// <param name="algorithm">An algorithm that this parameters are prepared for.</param>
-        protected CipherParameters(CipherAlgorithmType algorithm) : base(IntPtr.Zero, true)
-        {
-            IntPtr ptrParams;
-            Interop.CkmcTypes.GenerateNewParam((int)algorithm, out ptrParams);
-            this.SetHandle(ptrParams);
-        }
-
-        /// <summary>
-        /// Adds integer parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
-        /// <param name="value">Parameter value.</param>
-        /// <exception cref="ArgumentException">CipherParameterName is invalid.</exception>
-        protected void Add(CipherParameterName name, long value)
-        {
-            int ret = Interop.CkmcTypes.ParamListSetInteger(PtrCkmcParamList, (int)name, value);
-            Interop.CheckNThrowException(ret, "Failed to add parameter.");
-        }
-
-        /// <summary>
-        /// Adds byte array parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
-        /// <param name="value">Parameter value.</param>
-        /// <exception cref="ArgumentException">CipherParameterName is invalid.</exception>
-        protected void Add(CipherParameterName name, byte[] value)
-        {
-            Interop.CkmcRawBuffer rawBuff = new Interop.CkmcRawBuffer(new PinnedObject(value), value.Length);
-            IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(rawBuff));
-            try
-            {
-                Marshal.StructureToPtr<Interop.CkmcRawBuffer>(rawBuff, ptr, false);
-                int ret = Interop.CkmcTypes.ParamListSetBuffer(PtrCkmcParamList, (int)name, ptr);
-                Interop.CheckNThrowException(ret, "Failed to add parameter.");
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(ptr);
-            }
-        }
-
-        /// <summary>
-        /// Gets integer parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
-        /// <exception cref="ArgumentException">
-        /// CipherParameterName is invalid.
-        /// No parameter set with the name.
-        /// </exception>
-        public long GetInteger(CipherParameterName name)
-        {
-            long value = 0;
-            int ret = Interop.CkmcTypes.ParamListGetInteger(PtrCkmcParamList, (int)name, out value);
-            Interop.CheckNThrowException(ret, "Failed to get parameter.");
-            return value;
-        }
-
-        /// <summary>
-        /// Gets byte array parameter.
-        /// </summary>
-        /// <param name="name">Parameter name.</param>
-        /// <exception cref="ArgumentException">
-        /// CipherParameterName is invalid.
-        /// No parameter set with the name.
-        /// </exception>
-        public byte[] GetBuffer(CipherParameterName name)
-        {
-            IntPtr ptr = IntPtr.Zero;
-
-            try
-            {
-                Interop.CheckNThrowException(
-                    Interop.CkmcTypes.ParamListGetBuffer(
-                        PtrCkmcParamList, (int)name, out ptr),
-                    "Failed to get parameter.");
-                return new SafeRawBufferHandle(ptr).Data;
-            }
-            finally
-            {
-                if (ptr != IntPtr.Zero)
-                    Interop.CkmcTypes.BufferFree(ptr);
-            }
-        }
+        private SafeCipherParametersHandle _handle;
 
         /// <summary>
         /// Cipher algorithm type.
         /// </summary>
         public CipherAlgorithmType Algorithm
         {
-            get { return (CipherAlgorithmType)GetInteger(CipherParameterName.AlgorithmType); }
+            get
+            {
+                return (CipherAlgorithmType)GetInteger(
+                    CipherParameterName.AlgorithmType);
+            }
         }
 
-        internal IntPtr PtrCkmcParamList
+        // for inherited in internal only
+        internal CipherParameters()
         {
-            get { return this.handle; }
         }
 
-        /// <summary>
-        /// Gets a value that indicates whether the handle is invalid.
-        /// </summary>
-        public override bool IsInvalid
+        internal CipherParameters(CipherAlgorithmType algorithm)
         {
-            get { return this.handle == IntPtr.Zero; }
+            this._handle = new SafeCipherParametersHandle(algorithm);
         }
 
-        /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
-        /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
-        protected override bool ReleaseHandle()
+        internal void Add(CipherParameterName name, long value)
         {
-            Interop.CkmcTypes.ParamListFree(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
+            this._handle.SetInteger(name, value);
+        }
+
+        internal void Add(CipherParameterName name, byte[] value)
+        {
+            this._handle.SetBuffer(name, value);
+        }
+
+        internal long GetInteger(CipherParameterName name)
+        {
+            return this._handle.GetInteger(name);
+        }
+
+        internal byte[] GetBuffer(CipherParameterName name)
+        {
+            return this._handle.GetBuffer(name);
+        }
+
+        internal IntPtr Ptr
+        {
+            get { return this._handle.Ptr; }
         }
     }
 }

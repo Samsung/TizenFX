@@ -95,5 +95,10 @@ namespace Tizen.Security.SecureRepository
                     policy.ToCkmcPolicy()),
                 "Failed to save data. alias=" + alias);
         }
+
+        // to be static class safely
+        internal DataManager()
+        {
+        }
     }
 }
