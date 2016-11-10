@@ -175,6 +175,8 @@ namespace Tizen.Location
         /// <param name="endLatitude"> The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="endLongitude"> The longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
         /// <returns>Returns the distance between source and destination.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public static double GetDistanceBetween(double startLatitude, double startLongitude, double endLatitude, double endLongitude)
         {
             double result;
@@ -193,6 +195,8 @@ namespace Tizen.Location
         /// </summary>
         /// <param name="location"> The location object to which distance is to be calculated.</param>
         /// <returns>Returns the distance to the specified location.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public double GetDistanceTo(Location location)
         {
             double result;

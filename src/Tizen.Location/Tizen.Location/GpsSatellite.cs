@@ -34,6 +34,7 @@ namespace Tizen.Location
         /// The time interval between callback updates.
         /// Should be in the range [1~120] seconds.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public int Interval
         {
             get
@@ -63,6 +64,10 @@ namespace Tizen.Location
         /// <summary>
         /// The NMEAData from the Satellite.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public string Nmea
         {
             get
@@ -89,6 +94,10 @@ namespace Tizen.Location
         /// <summary>
         /// The Count of Active satellites.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public int ActiveCount
         {
             get
@@ -115,6 +124,10 @@ namespace Tizen.Location
         /// <summary>
         /// The Count of satellites in view.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public int InViewCount
         {
             get
@@ -141,6 +154,10 @@ namespace Tizen.Location
         /// <summary>
         /// The list of satellites/last recorded satellites in view.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public IList<SatelliteInformation> Satellites
         {
             get
@@ -172,6 +189,7 @@ namespace Tizen.Location
         /// The constructor of GpsSatellite class.
         /// <param name="locator"> Locator object initilized using Gps.</param>
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public GpsSatellite(Locator locator)
         {
             Log.Info(Globals.LogTag, "Calling GpsSatellite constructor");
@@ -192,6 +210,9 @@ namespace Tizen.Location
         /// (event) SatelliteStatusUpdated is raised whenever satellite information is updated.
         /// The callback will be invoked periodically (every Interval seconds).
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public event EventHandler<SatelliteStatusChangedEventArgs> SatelliteStatusUpdated
         {
             add
