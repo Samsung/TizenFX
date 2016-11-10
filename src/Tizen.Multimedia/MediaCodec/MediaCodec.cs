@@ -41,7 +41,7 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (ret == (int)MediaCodecErrorCode.InvalidOperation)
             {
-                throw new InvalidOperationException("Not able to initiate a new media codec.");
+                throw new InvalidOperationException("Not able to initialize a new media codec.");
             }
 
             MediaCodecDebug.AssertNoError(ret);
@@ -128,6 +128,11 @@ namespace Tizen.Multimedia.MediaCodec
 
         private static bool TryGetMimeTypeFromCodecType<T>(int codecType, ref T result)
         {
+            if (codecType == -1)
+            {
+                return false;
+            }
+
             foreach (T value in Enum.GetValues(typeof(T)))
             {
                 if ((Convert.ToInt32(value) & CodecTypeMask) == codecType)
@@ -235,7 +240,7 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (format == null)
             {
-                throw new ArgumentNullException("Format can't be null.");
+                throw new ArgumentNullException(nameof(format));
             }
 
             if (codecType != MediaCodecTypes.Hardware && codecType != MediaCodecTypes.Software)
@@ -344,7 +349,7 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (packet == null)
             {
-                throw new ArgumentNullException("Packet can't be null");
+                throw new ArgumentNullException(nameof(packet));
             }
 
             MediaPacket.Lock packetLock = new MediaPacket.Lock(packet);
@@ -479,9 +484,12 @@ namespace Tizen.Multimedia.MediaCodec
                 catch (Exception)
                 {
                     Interop.MediaPacket.Destroy(packetHandle);
+
+                    // TODO should we throw it to unmanaged code?
                     throw;
                 }
 
+                //TODO dispose if no event handler registered
                 _outputAvailable?.Invoke(this, args);
             };
 
