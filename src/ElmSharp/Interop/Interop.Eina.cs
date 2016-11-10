@@ -22,6 +22,7 @@ internal static partial class Interop
     internal static partial class Eina
     {
         [DllImport(Libraries.Eina)]
+        [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool eina_main_loop_is();
     }
 }
