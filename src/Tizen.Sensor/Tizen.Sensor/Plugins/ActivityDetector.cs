@@ -37,13 +37,13 @@ namespace Tizen.Sensor
         /// </summary>
         public SensorDataAccuracy ActivityAccuracy { get; protected set; }
 
-        protected internal abstract void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data);
+        internal abstract void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data);
 
         internal ActivityDetector(uint index) : base(index)
         {
         }
 
-        protected internal override void EventListenStart()
+        internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -53,7 +53,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected internal override void EventListenStop()
+        internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

@@ -47,8 +47,8 @@ namespace Tizen.Sensor
         private IntPtr _listenerHandle = IntPtr.Zero;
 
         internal abstract SensorType GetSensorType();
-        protected internal abstract void EventListenStart();
-        protected internal abstract void EventListenStop();
+        internal abstract void EventListenStart();
+        internal abstract void EventListenStop();
 
         internal Sensor(uint index)
         {
@@ -340,7 +340,7 @@ namespace Tizen.Sensor
             _disposed = true;
         }
 
-        protected void SetAttribute(SensorAttribute attribute, int option)
+        internal void SetAttribute(SensorAttribute attribute, int option)
         {
             if (CheckListenerHandle())
             {

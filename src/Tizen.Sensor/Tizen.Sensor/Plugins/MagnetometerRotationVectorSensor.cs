@@ -150,7 +150,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        protected internal override void EventListenStart()
+        internal override void EventListenStart()
         {
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
@@ -160,7 +160,7 @@ namespace Tizen.Sensor
             }
         }
 
-        protected internal override void EventListenStop()
+        internal override void EventListenStop()
         {
             int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)

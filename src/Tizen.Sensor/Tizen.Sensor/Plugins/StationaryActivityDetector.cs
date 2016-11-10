@@ -89,7 +89,7 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<StationaryActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        protected internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
+        internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
         {
             Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
             TimeSpan = new TimeSpan((Int64)sensorData.timestamp);

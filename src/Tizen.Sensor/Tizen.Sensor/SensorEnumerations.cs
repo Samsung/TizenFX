@@ -138,6 +138,22 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
+    /// Sensor attribute.
+    /// </summary>
+    internal enum SensorAttribute
+    {
+        /// <summary>
+        /// The axis orientation.
+        /// </summary>
+        AxisOrientation,
+
+        /// <summary>
+        /// The pause policy.
+        /// </summary>
+        PausePolicy
+    }
+
+    /// <summary>
     /// SensorDataAccuracy Enum definition for all possible sensor data accuracy Values.
     /// </summary>
     public enum SensorDataAccuracy
@@ -185,22 +201,6 @@ namespace Tizen.Sensor
         /// Receives data when the LCD is off and in the power save mode.
         /// </summary>
         All
-    }
-
-    /// <summary>
-    /// Sensor attribute.
-    /// </summary>
-    public enum SensorAttribute
-    {
-        /// <summary>
-        /// The axis orientation.
-        /// </summary>
-        AxisOrientation,
-
-        /// <summary>
-        /// The pause policy.
-        /// </summary>
-        PausePolicy
     }
 
     /// <summary>
