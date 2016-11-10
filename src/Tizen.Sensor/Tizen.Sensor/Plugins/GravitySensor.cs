@@ -150,7 +150,7 @@ namespace Tizen.Sensor
 
         private void AccuracyListenStart()
         {
-            int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, Interval, AccuracyEventCallback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, AccuracyEventCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting accuracy event callback for gravity sensor");

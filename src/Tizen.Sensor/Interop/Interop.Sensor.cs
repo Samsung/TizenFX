@@ -77,7 +77,7 @@ internal static partial class Interop
         internal static extern int UnsetEventCallback(IntPtr listernerHandle);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_accuracy_cb")]
-        internal static extern int SetAccuracyCallback(IntPtr listenerHandle, uint intervalMs, SensorAccuracyCallback callback, IntPtr data);
+        internal static extern int SetAccuracyCallback(IntPtr listenerHandle, SensorAccuracyCallback callback, IntPtr data);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_unset_accuracy_cb")]
         internal static extern int UnsetAccuracyCallback(IntPtr listernerHandle);
