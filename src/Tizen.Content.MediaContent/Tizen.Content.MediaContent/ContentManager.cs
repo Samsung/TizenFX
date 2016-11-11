@@ -244,8 +244,8 @@ namespace Tizen.Content.MediaContent
         public static Task AddMediaInformationBatchAsync(IEnumerable<string> filePaths)
         {
             Database.ConnectToDB();
-            string[] paths = ((List<string>)filePaths).ToArray();
             var task = new TaskCompletionSource<int>();
+            string[] paths = ((List<string>)filePaths).ToArray();
             MediaContentError res = MediaContentError.None;
             Interop.MediaInformation.MediaInsertCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
