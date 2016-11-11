@@ -8,7 +8,7 @@
 
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
-Version:    1.0.13
+Version:    1.0.14
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
