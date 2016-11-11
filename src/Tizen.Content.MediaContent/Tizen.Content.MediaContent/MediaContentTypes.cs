@@ -17,7 +17,6 @@
 
 
 using System;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Content.MediaContent
 {
