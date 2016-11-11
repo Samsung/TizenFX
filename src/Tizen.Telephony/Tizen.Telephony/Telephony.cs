@@ -43,7 +43,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// Enumeration for the preferred voice call subscription.
     /// </summary>
-    public enum CallPreferredVoiceSubsubscription
+    public enum CallPreferredVoiceSubscription
     {
         /// <summary>
         /// Unknown status

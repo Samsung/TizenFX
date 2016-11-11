@@ -30,7 +30,7 @@ internal static partial class Interop
     internal static partial class Call
     {
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_preferred_voice_subscription")]
-        internal static extern Telephony.TelephonyError GetPreferredVoiceSubscription(IntPtr handle, out CallPreferredVoiceSubsubscription callSub);
+        internal static extern Telephony.TelephonyError GetPreferredVoiceSubscription(IntPtr handle, out CallPreferredVoiceSubscription callSub);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_call_list")]
         internal static extern Telephony.TelephonyError GetCallList(IntPtr handle, out uint count, out IntPtr callList);

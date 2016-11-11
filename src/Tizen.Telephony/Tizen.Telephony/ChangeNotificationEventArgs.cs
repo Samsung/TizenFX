@@ -259,7 +259,7 @@ namespace Tizen.Telephony
             VideoCallStatusIncoming,
             /// <summary>
             /// Notification to be invoked when the preferred voice subscription changes.
-            /// CallPreferredVoiceSubsubscription will be delivered in notification data
+            /// CallPreferredVoiceSubscription will be delivered in notification data
             /// </summary>
             /// <privilege>
             /// http://tizen.org/privilege/telephony

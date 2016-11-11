@@ -20,6 +20,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Telephony
 {
+    /// <summary>
+    /// This Class provides API's that provides functionality related to slot handle.
+    /// </summary>
     public class SlotHandle
     {
         internal IntPtr _handle;
@@ -272,7 +275,7 @@ namespace Tizen.Telephony
 
                     case ChangeNotificationEventArgs.Notification.CallPreferredVoiceSubscription:
                         {
-                            notiData = (CallPreferredVoiceSubsubscription)Marshal.ReadInt32(data);
+                            notiData = (CallPreferredVoiceSubscription)Marshal.ReadInt32(data);
                             break;
                         }
 

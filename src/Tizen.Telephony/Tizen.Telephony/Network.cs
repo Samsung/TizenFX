@@ -284,9 +284,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the LAC (Location Area Code) of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA network.
         /// </remarks>
@@ -314,9 +314,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the cell ID of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
@@ -343,9 +343,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the RSSI (Received Signal Strength Indicator).
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// The Received Signal Strength Indicator
         /// Higher the received number, the stronger the signal strength.
@@ -370,9 +370,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the roaming state of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// true if roaming, otherwise false if not roaming
         /// </returns>
@@ -395,9 +395,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MCC (Mobile Country Code) of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
@@ -424,9 +424,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MNC (Mobile Network Code) of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
@@ -453,9 +453,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the name of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
@@ -482,9 +482,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network service type of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in case network is in service.
         /// </remarks>
@@ -510,9 +510,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the packet service type of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in HSDPA network.
         /// </remarks>
@@ -539,9 +539,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network name option of the current registered network.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// The network name display option
         /// </returns>
@@ -565,9 +565,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current network state of the telephony service.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// The current network state
         /// </returns>
@@ -591,9 +591,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current default subscription for data service (Packet Switched).
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returnns>
         /// The current default data subscription
         /// </returnns>
@@ -617,9 +617,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current default subscription for voice service (Circuit Switched).
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returnns>
         /// The current default voice subscription
         /// </returnns>
@@ -643,9 +643,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network selection mode.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// The network selection mode.
         /// </returns>
@@ -669,9 +669,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the TAC (Tracking Area Code) of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in LTE network.
         /// </remarks>
@@ -699,9 +699,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the system ID of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
@@ -729,9 +729,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network ID of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
@@ -759,9 +759,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station ID of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
@@ -790,9 +790,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station latitude of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
@@ -819,9 +819,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station longitude of the current location.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/location.coarse
-        /// </priviledge>
+        /// </privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>

@@ -55,22 +55,22 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current value for the preferred voice call subscription.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// The currently set preferred voicecall subscription value.
         /// </returns>
-        public CallPreferredVoiceSubsubscription PreferredVoiceSubscription
+        public CallPreferredVoiceSubscription PreferredVoiceSubscription
         {
             get
             {
-                CallPreferredVoiceSubsubscription subs = CallPreferredVoiceSubsubscription.Unknown;
+                CallPreferredVoiceSubscription subs = CallPreferredVoiceSubscription.Unknown;
                 TelephonyError error = Interop.Call.GetPreferredVoiceSubscription(_handle, out subs);
                 if (error != TelephonyError.None)
                 {
                     Tizen.Log.Error(Interop.Telephony.LogTag, "GetPreferredVoiceSubscription Failed with error " + error);
-                    return CallPreferredVoiceSubsubscription.Unknown;
+                    return CallPreferredVoiceSubscription.Unknown;
                 }
 
                 return subs;
@@ -80,9 +80,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the list of the current call.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/telephony
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// List of CallHandle for existing calls.
         /// </returns>
