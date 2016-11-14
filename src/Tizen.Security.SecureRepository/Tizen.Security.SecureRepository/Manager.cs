@@ -19,7 +19,8 @@ using System;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// This class is a base class of XxxManager classes. It provides the common methods for all sub classes.
+    /// This class is a base class of XxxManager classes. It provides the common methods
+    /// for all sub classes.
     /// </summary>
     public class Manager
     {
@@ -36,7 +37,8 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Creates a new full alias which is concatenation of system service's owner id and alias.
+        /// Creates a new full alias which is concatenation of system service's
+        /// owner id and alias.
         /// </summary>
         /// <param name="alias">Data alias which is owned by system service.</param>
         static public string CreateFullSystemAlias(string alias)
@@ -48,30 +50,52 @@ namespace Tizen.Security.SecureRepository
         /// Removes a an entry (no matter of type) from the key manager.
         /// </summary>
         /// <param name="alias">Item alias to be removed.</param>
-        /// <exception cref="ArgumentException">alias is null or invalid format.</exception>
+        /// <exception cref="ArgumentNullException">alias is null.</exception>
+        /// <exception cref="ArgumentException">alias is invalid format.</exception>
         /// <exception cref="InvalidOperationException">alias does not exist.</exception>
-        /// <remarks>To remove item, client must have remove permission to the specified item.</remarks>
+        /// <remarks>
+        /// To remove item, client must have remove permission to the specified item.
+        /// </remarks>
         /// <remarks>The item owner can remove by default.</remarks>
         static public void RemoveAlias(string alias)
         {
-            int ret = Interop.CkmcManager.RemoveAlias(alias);
-            Interop.CheckNThrowException(ret, "Failed to remove alias. alias=" + alias);
+            if (alias == null)
+                throw new ArgumentNullException("alias should not be null");
+
+            Interop.CheckNThrowException(
+                Interop.CkmcManager.RemoveAlias(alias),
+                "Failed to remove alias. alias=" + alias);
         }
 
         /// <summary>
         /// Allows another application to access client's application data.
         /// </summary>
         /// <param name="alias">Item alias for which access will be granted.</param>
-        /// <param name="otherPackageId">Package id of the application that will gain access rights.</param>
-        /// <param name="permissions">Mask of permissions(Permission enum) granted for an application with otherPackageId.</param>
-        /// <exception cref="ArgumentException">alias or otherPackageId is null or invalid format.</exception>
+        /// <param name="otherPackageId">
+        /// Package id of the application that will gain access rights.
+        /// </param>
+        /// <param name="permissions">
+        /// Mask of permissions(Permission enum) granted for an application with
+        /// otherPackageId.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// alias or otherPackageId is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// alias or otherPackageId is invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">alias does not exist.</exception>
         /// <remarks>Data identified by alias should exist.</remarks>
         /// <remarks>The item owner can set permissions.</remarks>
-        static public void SetPermission(string alias, string otherPackageId, int permissions)
+        static public void SetPermission(
+            string alias, string otherPackageId, int permissions)
         {
-            int ret = Interop.CkmcManager.SetPermission(alias, otherPackageId, permissions);
-            Interop.CheckNThrowException(ret, "Failed to set permission. alias=" + alias);
+            if (alias == null || otherPackageId == null)
+                throw new ArgumentNullException("alias or otherPackageId is null");
+
+            Interop.CheckNThrowException(
+                Interop.CkmcManager.SetPermission(alias, otherPackageId, permissions),
+                "Failed to set permission. alias=" + alias);
         }
 
         // to being static base class

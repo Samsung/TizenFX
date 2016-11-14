@@ -35,7 +35,7 @@ namespace Tizen.Security.SecureRepository
         /// <param name="filePath">The path of PKCS12 file to be loaded.</param>
         /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
         /// If PKCS12 file is not encrypted, passphrase can be null.</param>
-        /// <exception cref="ArgumentException">filePath is null.</exception>
+        /// <exception cref="ArgumentNullException">filePath is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// No file on filePath.
         /// No permission to access file.
@@ -44,6 +44,9 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         static public Pkcs12 Load(string filePath, string filePassword)
         {
+            if (filePath == null)
+                throw new ArgumentNullException("filePath should not be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try

@@ -35,8 +35,11 @@ namespace Tizen.Security.SecureRepository
         /// provided.
         /// </param>
         /// <returns>A certificate specified by alias.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Alias argument is null
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format.
+        /// Alias argument is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Certificate does not exist with the alias or certificate-protecting
@@ -94,8 +97,11 @@ namespace Tizen.Security.SecureRepository
         /// <param name="policy">
         /// The policy about how to store a certificate securely.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format. cert argument is invalid format.
+        /// Alias argument is invalid format. cert argument is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Certificate with alias does already exist.
@@ -119,6 +125,9 @@ namespace Tizen.Security.SecureRepository
         /// The untrusted CA certificates to be used in verifying a certificate chain.
         /// </param>
         /// <returns>A newly created certificate chain.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// certificate argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
         /// Some of certificate in arguments is invalid.
         /// </exception>
@@ -185,6 +194,9 @@ namespace Tizen.Security.SecureRepository
         /// system's certificate storage.
         /// </param>
         /// <returns>A newly created certificate chain.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// certificate argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
         /// Some of certificate in arguments is invalid.
         /// </exception>
@@ -244,6 +256,9 @@ namespace Tizen.Security.SecureRepository
         /// Valid certificate chain to perform OCSP check.
         /// </param>
         /// <returns>A status result of OCSP check.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// certificateChain argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
         /// certificateChain is not valid chain or certificate.
         /// </exception>

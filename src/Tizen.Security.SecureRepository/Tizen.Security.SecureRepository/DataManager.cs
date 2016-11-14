@@ -35,8 +35,11 @@ namespace Tizen.Security.SecureRepository
         /// be provided.
         /// </param>
         /// <returns>Data specified by alias.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Alias argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format.
+        /// Alias argument is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Data does not exist with the alias or data-protecting password isn't matched.
@@ -91,15 +94,18 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of data to be stored.</param>
         /// <param name="data">The binary value to be stored.</param>
         /// <param name="policy">The policy about how to store data securely.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format. Data policy cannot be unextractable.
+        /// Alias argument is invalid format. Data policy cannot be unextractable.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Data with alias does already exist.
         /// </exception>
         static public void Save(string alias, byte[] data, Policy policy)
         {
-            if (alias == null || policy == null)
+            if (alias == null || data == null || policy == null)
                 throw new ArgumentNullException("alias and policy should be null");
             else if (policy.Extractable == false)
                 throw new ArgumentException("Data should be extractable");

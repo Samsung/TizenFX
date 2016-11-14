@@ -28,21 +28,31 @@ namespace Tizen.Security.SecureRepository
         /// Gets Pkcs12 contents from secure repository.
         /// </summary>
         /// <param name="alias">The name of data to retrieve.</param>
-        /// <param name="keyPassword">The password used in decrypting a private key value.
-        /// If password of keyPolicy is provided in SavePkcs12(), the same password should be provided
+        /// <param name="keyPassword">
+        /// The password used in decrypting a private key value. If password of
+        /// keyPolicy is provided in SavePkcs12(), the same password should be provided
         /// </param>
-        /// <param name="cerificatePassword">The password used in decrypting a certificate value.
-        /// If password of certificatePolicy is provided in SavePkcs12(), the same password should be provided
+        /// <param name="cerificatePassword">
+        /// The password used in decrypting a certificate value. If password of
+        /// certificatePolicy is provided in SavePkcs12(), the same password should be
+        /// provided
         /// </param>
         /// <returns>A Pkcs12 data specified by alias.</returns>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format.</exception>
+        /// <exception cref="ArgumentNullException">Alias argument is null.</exception>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Pkcs12 does not exist with the alias.
         /// Optional password of key in Pkcs12 isn't matched.
         /// Optional password of certificate in Pkcs12 isn't matched.
         /// </exception>
-        static public Pkcs12 Get(string alias, string keyPassword, string cerificatePassword)
+        static public Pkcs12 Get(
+            string alias, string keyPassword, string cerificatePassword)
         {
+            if (alias == null)
+                throw new ArgumentNullException("alias should not be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try
@@ -66,12 +76,26 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="alias">The name of a data to be stored.</param>
         /// <param name="pkcs12">The pkcs12 data to be stored.</param>
-        /// <param name="keyPolicy">The policy about how to store pkcs's private key.</param>
-        /// <param name="certificatePolicy">The policy about how to store pkcs's certificate.</param>
-        /// <exception cref="ArgumentException">Alias argument is null or invalid format. Pkcs12 argument is invalid format.</exception>
-        /// <exception cref="InvalidOperationException">Pkcs12 with alias does already exist.</exception>
-        static public void Save(string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
+        /// <param name="keyPolicy">
+        /// The policy about how to store pkcs's private key.
+        /// </param>
+        /// <param name="certificatePolicy">
+        /// The policy about how to store pkcs's certificate.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Any of argument is null.</exception>
+        /// <exception cref="ArgumentException">
+        /// Alias argument is invalid format. Pkcs12 argument is invalid format.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Pkcs12 with alias does already exist.
+        /// </exception>
+        static public void Save(
+            string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
         {
+            if (alias == null || pkcs12 == null || keyPolicy == null ||
+                certificatePolicy == null)
+                throw new ArgumentNullException("any of argument is null");
+
             IntPtr ptr = IntPtr.Zero;
             try
             {
