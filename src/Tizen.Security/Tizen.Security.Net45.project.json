@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "Tizen.Applications": "1.0.1"
+    "Tizen.Applications": "1.0.2"
   },
   "frameworks": {
     "net45": {}
