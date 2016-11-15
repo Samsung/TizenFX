@@ -3,7 +3,7 @@
   <metadata>
 		<id>Tizen.Sensor</id>
 		<version>$version$</version>
-		<authors>tizen</authors>
+		<authors>Samsung Electronics</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>https://www.tizen.org/</projectUrl>
@@ -11,7 +11,8 @@
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
 		<description>Provides the classes to control and get data from the sensors supported by the device.</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.1" />
+      <dependency id="Tizen" version="1.0.2" />
+      <dependency id="Tizen.System" version="1.0.5" />
     </dependencies>
 	</metadata>
   <files>
