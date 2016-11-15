@@ -4,7 +4,7 @@
     <id>Tizen</id>
     <version>$version$</version>
     <title>Tizen Base Library</title>
-    <authors>tizen</authors>
+    <authors>Samsung Electronics</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://www.tizen.org/</projectUrl>
