@@ -22,7 +22,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for server state
 	/// </summary>
-	public enum ServerState
+	public enum MediaControllerServerState
 	{
 		/// <summary>
 		/// Server state is unknown 
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for playback state
 	/// </summary>
-	public enum PlaybackState
+	public enum MediaControllerPlaybackState
 	{
 		/// <summary>
 		/// Playback state is unknown 
@@ -84,7 +84,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for shuffle mode
 	/// </summary>
-	public enum ShuffleMode
+	public enum MediaControllerShuffleMode
 	{
 		/// <summary>
 		/// Shuffle mode is On
@@ -100,7 +100,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for repeat mode
 	/// </summary>
-	public enum RepeatMode
+	public enum MediaControllerRepeatMode
 	{
 		/// <summary>
 		/// Repeat mode is On
@@ -116,7 +116,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for repeat mode
 	/// </summary>
-	public enum SubscriptionType
+	public enum MediaControllerSubscriptionType
 	{
 		/// <summary>
 		/// Repeat mode is Off
@@ -147,7 +147,7 @@ namespace Tizen.Multimedia.MediaController
 	/// <summary>
 	/// Enumeration for metadata attributes
 	/// </summary>
-	internal enum Attributes
+	internal enum MediaControllerAttributes
 	{
 		/// <summary>
 		/// Attribute is title
@@ -168,6 +168,11 @@ namespace Tizen.Multimedia.MediaController
 		/// Attribute is author
 		/// </summary>
 		Author,
+
+		/// <summary>
+		/// Attribute is genre
+		/// </summary>
+		Genre,
 
 		/// <summary>
 		/// Attribute is duration

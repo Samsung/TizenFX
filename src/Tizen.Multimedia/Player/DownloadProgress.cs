@@ -1,59 +1,60 @@
-﻿/// Download progress
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
-
-using System;
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 namespace Tizen.Multimedia
 {
 
     /// <summary>
-    /// DownloadProgress
+    /// Represents data for a downloading status.
     /// </summary>
-    /// <remarks>
-    /// Contains DownloadProgress of streaming playback. DownloadProgress object is null initially.
-    /// It is created only when playback starts.
-    /// </remarks>
-    public class DownloadProgress
+    public struct DownloadProgress
     {
-        internal int _start;
-        internal int _current;
-
-        internal DownloadProgress(int start, int current)
+        /// <summary>
+        /// Initialize a new instance of the DownloadProgress struct.
+        /// </summary>
+        /// <param name="start">The position that downloading started in percentage.</param>
+        /// <param name="current">The position indicating the current downloading progress in percentage.</param>
+        public DownloadProgress(int start, int current)
         {
-            _start = start;
-            _current = current;
+            Start = start;
+            Current = current;
         }
 
         /// <summary>
-        /// Get Start position in percentage.
+        /// Gets or sets the start position.
         /// </summary>
-        /// <value> 0 to 100 </value>
+        /// <value>The position that downloading started in percentage.</value>
         public int Start
         {
-            get
-            {
-                return _start;
-            }
+            get;
+            set;
         }
 
         /// <summary>
-        /// Get Current position in percentage.
+        /// Gets or sets the current position.
         /// </summary>
-        /// <value> 0 to 100 </value>
+        /// <value>The position indicating the current downloading progress in percentage.</value>
         public int Current
         {
-            get
-            {
-                return _current;
-            }
+            get;
+            set;
+        }
+
+        public override string ToString()
+        {
+            return $"Start : { Start }, Current: { Current }";
         }
     }
 }

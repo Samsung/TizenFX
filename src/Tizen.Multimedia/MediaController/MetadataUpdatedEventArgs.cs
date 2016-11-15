@@ -29,14 +29,12 @@ namespace Tizen.Multimedia.MediaController
 	public class MetadataUpdatedEventArgs : EventArgs
 	{
 		internal string _serverName;
-		internal Metadata _metadata;
-		internal IntPtr _userData;
+		internal MediaControllerMetadata _metadata;
 
-		public MetadataUpdatedEventArgs (string name, IntPtr handle, IntPtr userData)
+		public MetadataUpdatedEventArgs (string name, IntPtr handle)
 		{
 			_serverName = name;
-			_metadata = new Metadata (handle);
-			_userData = userData;
+			_metadata = new MediaControllerMetadata (handle);
 		}
 				
 		/// <summary>
@@ -55,23 +53,11 @@ namespace Tizen.Multimedia.MediaController
 		/// Get playback information.
 		/// </summary>
 		/// <value> 0 - 100 </value>
-		public Metadata Metadata
+		public MediaControllerMetadata Metadata
 		{
 			get
 			{
 				return _metadata;
-			}
-		}
-
-		/// <summary>
-		/// Get user data.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public IntPtr UserData
-		{
-			get
-			{
-				return _userData;
 			}
 		}
 	}

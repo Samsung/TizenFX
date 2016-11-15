@@ -66,6 +66,12 @@ namespace Tizen.Multimedia
             {
                 try
                 {
+                    int faceLabel = 0;
+                    if (faceLabelPtr != IntPtr.Zero)
+                    {
+                        faceLabel = Marshal.ReadInt32(faceLabelPtr);
+                    }
+
                     Rectangle faceLocation = null;
                     if (faceLocationPtr != IntPtr.Zero)
                     {
@@ -76,15 +82,9 @@ namespace Tizen.Multimedia
                             Height = loc.height,
                             Point = new Point(loc.x, loc.y)
                         };
+                        Log.Info(MediaVisionLog.Tag, String.Format("Face label {0} recognized at : ({1}, {2}), Width : {3}, Height : {4}, confidence : {5}", faceLabel, faceLocation.Point.X, faceLocation.Point.Y, faceLocation.Width, faceLocation.Height, confidence));
                     }
 
-                    int faceLabel = 0;
-                    if (faceLabelPtr != IntPtr.Zero)
-                    {
-                        faceLabel = Marshal.ReadInt32(faceLabelPtr);
-                    }
-
-                    Log.Info(MediaVisionLog.Tag, String.Format("Face label {0} recognized at : ({1}, {2}), Width : {3}, Height : {4}, confidence : {5}", faceLabel, faceLocation.Point.X, faceLocation.Point.Y, faceLocation.Width, faceLocation.Height, confidence));
                     FaceRecognitionResult result = new FaceRecognitionResult()
                     {
                         Location = faceLocation,

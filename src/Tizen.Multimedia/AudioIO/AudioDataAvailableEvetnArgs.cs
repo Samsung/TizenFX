@@ -14,32 +14,20 @@
 * limitations under the License.
 */
 
-
-
 using System;
 
-namespace Tizen.Multimedia.MediaController
+namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// ServerInformation represents a name and state of server application.
-	/// </summary>
-	public class ServerInformation
-	{
-		internal ServerInformation(string _name, MediaControllerServerState _state)
-		{
-			Name = _name;
-			State = _state;
-		}
+    /// <summary>
+    /// Provides data for the <see cref="AsyncAudioCapture.DataAvailable"/> event.
+    /// </summary>
+    public class AudioDataAvailableEvetnArgs : EventArgs
+    {
+        internal AudioDataAvailableEvetnArgs(byte[] data)
+        {
+            Data = data;
+        }
 
-		/// <summary>
-		/// The name of server
-		/// </summary>
-		public readonly string Name;
-
-		/// <summary>
-		/// The state of server
-		/// </summary>
-		public readonly MediaControllerServerState State;
-	}
+        public byte[] Data { get; }
+    }
 }
-

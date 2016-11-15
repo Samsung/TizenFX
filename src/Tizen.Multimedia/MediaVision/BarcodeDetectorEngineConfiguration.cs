@@ -35,6 +35,7 @@ namespace Tizen.Multimedia
         public BarcodeDetectorEngineConfiguration()
             : base()
         {
+            TargetAttribute = _targetAttr;
         }
 
         /// <summary>

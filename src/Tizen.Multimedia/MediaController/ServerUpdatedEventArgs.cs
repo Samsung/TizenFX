@@ -28,16 +28,13 @@ namespace Tizen.Multimedia.MediaController
 	public class ServerUpdatedEventArgs : EventArgs
 	{
 		internal ServerInformation _serverInfo;
-		internal ServerState _serverState;
-		internal IntPtr _userData;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		internal ServerUpdatedEventArgs(string name, ServerState state, IntPtr userData)
+		internal ServerUpdatedEventArgs(string name, MediaControllerServerState state)
 		{
 			_serverInfo = new ServerInformation (name, state);
-			_userData = userData;
 		}
 
 		/// <summary>
@@ -49,18 +46,6 @@ namespace Tizen.Multimedia.MediaController
 			get
 			{
 				return _serverInfo;
-			}
-		}
-
-		/// <summary>
-		/// Get userData.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public IntPtr userData
-		{
-			get
-			{
-				return _userData;
 			}
 		}
 	}

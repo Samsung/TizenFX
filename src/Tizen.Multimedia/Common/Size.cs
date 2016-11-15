@@ -14,19 +14,32 @@
  * limitations under the License.
  */
 
-using System.Diagnostics;
-
-namespace Tizen.Multimedia.MediaCodec
+namespace Tizen.Multimedia
 {
-    internal class MediaCodecDebug
+    public struct Size
     {
 
-        [ConditionalAttribute("DEBUG")]
-        internal static void AssertNoError(int errorCode)
+        public Size(int width, int height)
         {
-            Debug.Assert(errorCode == (int)MediaCodecErrorCode.None,
-                $"The API is supposed not to return an error! But it returns error({ errorCode}).",
-                "Implementation of core may have been changed, modify the call to throw if the return code is not ok.");
+            Width = width;
+            Height = height;
+        }
+
+        public int Width
+        {
+            get;
+            set;
+        }
+
+        public int Height
+        {
+            get;
+            set;
+        }
+
+        public override string ToString()
+        {
+            return $"Width : { Width }, Height : { Height }";
         }
     }
 }

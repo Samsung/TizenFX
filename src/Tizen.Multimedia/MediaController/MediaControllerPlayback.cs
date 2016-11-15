@@ -22,14 +22,14 @@ namespace Tizen.Multimedia.MediaController
     /// <summary>
 	/// Playback represents a playback state and playback position.
 	/// </summary>
-	public class Playback
+	public class MediaControllerPlayback
 	{
-		public Playback(PlaybackState state, ulong position) {
+		public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
 			State = state;
 			Position = position;
 		}
 
-		internal Playback(IntPtr _playbackHandle) {
+		internal MediaControllerPlayback(IntPtr _playbackHandle) {
 			MediaControllerError res = MediaControllerError.None;
 			int _state = 0;
 			ulong _position = 0L;
@@ -48,20 +48,14 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Playback position failed");
 			}
 
-			res = (MediaControllerError)Interop.MediaControllerClient.DestroyPlayback(_playbackHandle);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Destroy Playback handle failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Destroy Playback handle failed");
-			}
-			State = (PlaybackState)_state;
+			State = (MediaControllerPlaybackState)_state;
 			Position = _position;
 		}
 
        /// <summary>
        /// The state of playback of media application
        /// </summary>
-		public PlaybackState State;
+		public MediaControllerPlaybackState State;
 
 		/// <summary>
 		/// The position of playback of media application

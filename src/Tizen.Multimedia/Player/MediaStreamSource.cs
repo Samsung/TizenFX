@@ -1,92 +1,281 @@
-﻿/// Media Stream source
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// MediaStreamSource
-	/// </summary>
-	/// <remarks>
-	/// MediaStreamSource class for media stream configuration.
-	/// </remarks>
 
-	public class MediaStreamSource : MediaSource
-	{
-		internal MediaStreamConfiguration _audioConfiguration;
-		internal MediaStreamConfiguration _videoConfiguration;
+    /// <summary>
+    /// Provides the ability to push packets as the source of <see cref="Player"/>
+    /// </summary>
+    /// <remarks>The source must be set as a source to a player before pushing.</remarks>
+    /// <seealso cref="Player.SetSource(MediaSource)"/>
+    // TODO is this name appropriate?
+    public sealed class MediaStreamSource : MediaSource
+    {
+        private readonly MediaFormat _audioMediaFormat;
+        private readonly MediaFormat _videoMediaFormat;
 
-		/// <summary>
-		/// Constructor </summary>
-		public MediaStreamSource()
-		{
-			_audioConfiguration = new MediaStreamConfiguration();
-			_videoConfiguration = new MediaStreamConfiguration();
-			_audioConfiguration._streamType = StreamType.Audio;
-			_videoConfiguration._streamType = StreamType.Video;
-		}
+        public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
+        {
+            get
+            {
+                yield return MediaFormatAudioMimeType.Aac;
+            }
+        }
 
-		#if _MEDIA_FORMAT_
-		TODO: Uncomment this when MediaFormat is implemented
-		/// <summary>
-		/// Get/Set Audio Media format.
-		/// </summary>
-		/// <value> MediaFormat </value>
-		//public MediaFormat AudioMediaFormat { get; set; }
+        public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
+        {
+            get
+            {
+                yield return MediaFormatVideoMimeType.H264SP;
+            }
+        }
 
-		/// <summary>
-		/// Get/Set Video Media format.
-		/// </summary>
-		/// <value> MediaFormat </value>
-		//public MediaFormat VideoMediaFormat { get; set; }
-		#endif
+        private Player _player;
 
-		/// <summary>
-		/// Get/Set Audio configuration.
-		/// </summary>
-		/// <value> MediaStreamConfiguration </value>
-		public MediaStreamConfiguration AudioConfiguration 
-		{
-			get
-			{
-				return _audioConfiguration;
-			}
-		}
+        private MediaStreamConfiguration CreateAudioConfiguration(AudioMediaFormat format)
+        {
+            if( format == null )
+            {
+                return null;
+            }
 
-		/// <summary>
-		/// Get/Set Video configuration.
-		/// </summary>
-		/// <value> MediaStreamConfiguration </value>
-		public MediaStreamConfiguration VideoConfiguration 
-		{
-			get
-			{
-				return _videoConfiguration;
-			}
-		}
+            if (!SupportedAudioTypes.Contains(format.MimeType))
+            {
+                throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
+            }
 
-		#if _MEDIA_PACKET_
-		/// <summary>
-		/// Push Media stream </summary>
-		/// <param name="packet"> media packet</param>
-		/// TODO: Implement this when MediaPacket is ready
-		public void PushMediaStream(MediaPacket packet)
-		{
-		}
-		#endif
+            return new MediaStreamConfiguration(this, StreamType.Audio);
+        }
 
-		internal void SetHandle(IntPtr handle)
-		{
-			_audioConfiguration.SetHandle(handle);
-			_videoConfiguration.SetHandle(handle);
-		}
-	}
+        private MediaStreamConfiguration CreateVideoConfiguration(VideoMediaFormat format)
+        {
+            if (format == null)
+            {
+                return null;
+            }
+
+            if (!SupportedVideoTypes.Contains(format.MimeType))
+            {
+                throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
+            }
+
+            return new MediaStreamConfiguration(this, StreamType.Video);
+        }
+
+
+        /// <summary>
+        /// Initialize a new instance of the MediaStreamSource class
+        /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
+        /// </summary>
+        /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
+        /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
+        /// <remarks>AAC and H.264 are supported.</remarks>
+        /// <exception cref="ArgumentNullException">both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="audioMediaFormat"/> is not supported.
+        ///     <para>-or-</para>
+        ///     <paramref name="videoMediaFormat"/> is not supported.
+        /// </exception>
+        /// <seealso cref="SupportedAudioTypes"/>
+        /// <seealso cref="SupportedVideoTypes"/>
+        public MediaStreamSource(AudioMediaFormat audioMediaFormat, VideoMediaFormat videoMediaFormat)
+        {
+            if (audioMediaFormat == null && videoMediaFormat == null)
+            {
+                throw new ArgumentNullException(nameof(audioMediaFormat) + " and " + nameof(videoMediaFormat));
+            }
+
+            _audioMediaFormat = audioMediaFormat;
+            _videoMediaFormat = videoMediaFormat;
+
+            AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
+            VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
+        }
+
+        /// <summary>
+        /// Initialize a new instance of the MediaStreamSource class with the specified <see cref="AudioMediaFormat"/>.
+        /// </summary>
+        /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
+        /// <remarks>AAC is supported.</remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="audioMediaFormat"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="audioMediaFormat"/> is not supported.</exception>
+        /// <seealso cref="SupportedAudioTypes"/>
+        public MediaStreamSource(AudioMediaFormat audioMediaFormat)
+        {
+            if (audioMediaFormat == null)
+            {
+                throw new ArgumentNullException(nameof(audioMediaFormat));
+            }
+
+            _audioMediaFormat = audioMediaFormat;
+
+            AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
+        }
+        /// <summary>
+        /// Initialize a new instance of the MediaStreamSource class with the specified <see cref="VideoMediaFormat"/>.
+        /// </summary>
+        /// <remarks>H.264 can is supported.</remarks>
+        /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="videoMediaFormat"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
+        /// <seealso cref="SupportedVideoTypes"/>
+        public MediaStreamSource(VideoMediaFormat videoMediaFormat)
+        {
+            if (videoMediaFormat == null)
+            {
+                throw new ArgumentNullException(nameof(videoMediaFormat));
+            }
+
+            _videoMediaFormat = videoMediaFormat;
+
+            VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
+        }
+
+        /// <summary>
+        /// Gets the audio configuration or null if no AudioMediaFormat is specified in the constructor.
+        /// </summary>
+        public MediaStreamConfiguration AudioConfiguration { get; }
+
+        /// <summary>
+        /// Gets the video configuration or null if no VideoMediaFormat is specified in the constructor.
+        /// </summary>
+        public MediaStreamConfiguration VideoConfiguration { get; }
+
+        /// <summary>
+        /// Pushes elementary stream to decode audio or video.
+        /// </summary>
+        /// <remarks>This source must be set as a source to a player and the player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <param name="packet">The <see cref="MediaPacket"/> to decode.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     This source is not set as a source to a player.
+        ///     <para>-or-</para>
+        ///     The player is not in the valid state.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">packet is null.</exception>
+        /// <exception cref="ObjectDisposedException">packet has been disposed.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="packet"/> is neither video nor audio type.
+        ///     <para>-or-</para>
+        ///     The format of packet is not matched with the specified format in the constructor.
+        /// </exception>
+        /// <exception cref="NoBufferSpaceException">the internal buffer reaches limits.</exception>
+        /// <seealso cref="Player.SetSource(MediaSource)"/>
+        /// <seealso cref="MediaStreamConfiguration.BufferMaxSize"/>
+        /// <seealso cref="MediaPacket"/>
+        public void Push(MediaPacket packet)
+        {
+            if (_player == null)
+            {
+                throw new InvalidOperationException("The source is not set as a source to a player yet.");
+            }
+            if (packet == null)
+            {
+                throw new ArgumentNullException(nameof(packet));
+            }
+            if (packet.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(packet));
+            }
+
+            if (packet.Format.Type == MediaFormatType.Text || packet.Format.Type == MediaFormatType.Container)
+            {
+                throw new ArgumentException($"The format of the packet is invalid : { packet.Format.Type }.");
+            }
+
+            if (!packet.Format.Equals(_audioMediaFormat) && !packet.Format.Equals(_videoMediaFormat))
+            {
+                throw new ArgumentException($"The format of the packet is invalid : Unmatched format.");
+            }
+
+            if (packet.Format.Type == MediaFormatType.Video && _videoMediaFormat == null)
+            {
+                throw new ArgumentException("Video is not configured with the current source.");
+            }
+            if (packet.Format.Type == MediaFormatType.Audio && _audioMediaFormat == null)
+            {
+                throw new ArgumentException("Audio is not configured with the current source.");
+            }
+
+            _player.ValidatePlayerState(PlayerState.Paused, PlayerState.Playing, PlayerState.Ready);
+
+            int ret = Interop.Player.PushMediaStream(_player.GetHandle(), packet.GetHandle());
+
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to push the packet to the player");
+        }
+
+        private void SetMediaStreamInfo(StreamType streamType, MediaFormat mediaFormat)
+        {
+            if (mediaFormat == null)
+            {
+                return;
+            }
+
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                ptr = mediaFormat.AsNativeHandle();
+                int ret = Interop.Player.SetMediaStreamInfo(_player.GetHandle(), (int)streamType, ptr);
+
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the media stream info");
+            }
+            finally
+            {
+                MediaFormat.ReleaseNativeHandle(ptr);
+            }
+        }
+
+        internal override void OnAttached(Player player)
+        {
+            Debug.Assert(player != null);
+
+            if (_player != null)
+            {
+                throw new InvalidOperationException("The source is has already been assigned to another player.");
+            }
+
+            AudioConfiguration?.OnPlayerSet(player);
+            VideoConfiguration?.OnPlayerSet(player);
+
+            _player = player;
+
+            SetMediaStreamInfo(StreamType.Audio, _audioMediaFormat);
+            SetMediaStreamInfo(StreamType.Video, _videoMediaFormat);
+        }
+
+        internal override void OnDetached(Player player)
+        {
+            base.OnDetached(player);
+
+            AudioConfiguration?.OnPlayerUnset(player);
+            VideoConfiguration?.OnPlayerUnset(player);
+
+            _player = null;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Player"/> that this source is assigned to as a source or null if this source is not assigned.
+        /// </summary>
+        /// <seealso cref="Player.SetSource(MediaSource)"/>
+        public Player Player => _player;
+
+    }
 }

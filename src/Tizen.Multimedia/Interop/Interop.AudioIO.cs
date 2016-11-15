@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 internal static partial class Interop
@@ -7,22 +7,17 @@ internal static partial class Interop
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void AudioStreamCallback(IntPtr handle, uint nbytes, IntPtr userdata);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void AudioStateChangedCallback(IntPtr handle, int previous, int current, bool byPolicy, IntPtr userData);
 
         internal static partial class AudioInput
         {
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_state_changed_cb")]
-            internal static extern int SetAudioInputStateChangedCallback(IntPtr handle, AudioStateChangedCallback callback, IntPtr user_data);
-
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_unset_state_changed_cb")]
-            internal static extern int UnsetAudioInputStateChangedCallback(IntPtr handle);
+            internal static extern int SetStateChangedCallback(IntPtr handle, AudioStateChangedCallback callback, IntPtr user_data);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_stream_cb")]
-            internal static extern int SetAudioInputStreamChangedCallback(IntPtr handle, AudioStreamCallback callback, IntPtr user_data);
-
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_unset_stream_cb")]
-            internal static extern int UnsetAudioInputStreamChangedCallback(IntPtr handle);
+            internal static extern int SetStreamCallback(IntPtr handle, AudioStreamCallback callback, IntPtr user_data);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_create")]
             internal static extern int Create(int sampleRate, int channel, int type, out IntPtr handle);
@@ -49,7 +44,7 @@ internal static partial class Interop
             internal static extern int Flush(IntPtr handle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_read")]
-            internal static extern int Read(IntPtr handle, IntPtr buffer, int length);
+            internal static extern int Read(IntPtr handle, byte[] buffer, int length);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_get_buffer_size")]
             internal static extern int GetBufferSize(IntPtr handle, out int size);
@@ -64,7 +59,7 @@ internal static partial class Interop
             internal static extern int GetSampleType(IntPtr handle, out int sampleType);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_peek")]
-            internal static extern int Peek(IntPtr handle, out IntPtr buffer, out uint length);
+            internal static extern int Peek(IntPtr handle, out IntPtr buffer, ref uint length);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_drop")]
             internal static extern int Drop(IntPtr handle);
@@ -72,16 +67,10 @@ internal static partial class Interop
         internal static partial class AudioOutput
         {
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_set_state_changed_cb")]
-            internal static extern int SetAudioOutputStateChangedCallback(IntPtr handle, AudioStateChangedCallback callback, IntPtr user_data);
-
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_unset_state_changed_cb")]
-            internal static extern int UnsetAudioOutputStateChangedCallback(IntPtr handle);
+            internal static extern int SetStateChangedCallback(IntPtr handle, AudioStateChangedCallback callback, IntPtr user_data);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_set_stream_cb")]
-            internal static extern int SetAudioOutputStreamChangedCallback(IntPtr handle, AudioStreamCallback callback, IntPtr user_data);
-
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_unset_stream_cb")]
-            internal static extern int UnsetAudioOutputStreamChangedCallback(IntPtr handle);
+            internal static extern int SetStreamChangedCallback(IntPtr handle, AudioStreamCallback callback, IntPtr user_data);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_create_new")]
             internal static extern int Create(int sampleRate, int channel, int type, out IntPtr handle);
@@ -126,7 +115,7 @@ internal static partial class Interop
             internal static extern int Unprepare(IntPtr handle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_write")]
-            internal static extern int Write(IntPtr handle, IntPtr buffer, uint length);
+            internal static extern int Write(IntPtr handle, byte[] buffer, uint length);
         }
     }
 }

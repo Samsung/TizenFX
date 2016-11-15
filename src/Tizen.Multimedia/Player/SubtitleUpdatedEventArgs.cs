@@ -1,62 +1,47 @@
-﻿/// This File contains SubtitleUpdatedEventArgs class
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 using System;
 
 namespace Tizen.Multimedia
 {
-
     /// <summary>
-    /// SubtitleUpdated event arguments
+    /// Provides data for the <see cref="Player.SubtitleUpdated"/> event.
     /// </summary>
-    /// <remarks>
-    /// SubtitleUpdated event arguments
-    /// </remarks>
     public class SubtitleUpdatedEventArgs : EventArgs
     {
-		internal uint _duration;
-		internal string _text;
-
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		internal SubtitleUpdatedEventArgs(uint duration, string text)
-		{
-			_duration = duration;
-			_text = text;
-		}
-
-        /// <summary>
-        /// The duration of the updated subtitle .
-        /// </summary>
-        /// <value> ulong duration</value>
-        public uint Duration 
+        internal SubtitleUpdatedEventArgs(uint duration, string text)
         {
-            get
-            {
-                return _duration;
-            }
+            Duration = duration;
+            Text = text;
         }
 
         /// <summary>
-        /// The text of the updated subtitle .
+        /// Gets the he duration of the updated subtitl .
+        /// </summary>
+        public uint Duration { get; }
+
+        /// <summary>
+        /// Gets the text of the updated subtitle.
         /// </summary>
         /// <value> string </value>
-        public string Text 
-        {
-            get
-            {
-                return _text;
-            }
-        }
+        public string Text { get; }
 
+        public override string ToString()
+        {
+            return $"Duration : { Duration }, Text : { Text }";
+        }
     }
 }

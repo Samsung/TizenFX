@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// This class represents result of image recognition.
+    /// </summary>
     public class ImageRecognitionResult
     {
-        /// <summary>
-        /// This class represents result of image recognition operation.
-        /// </summary>
         internal ImageRecognitionResult()
         {
         }
 
         /// <summary>
-        /// The locations of image objects on the source image.
+        /// The indexes of recognized image objects and their locations on the source image.
         /// </summary>
-        public List<Quadrangle> Locations { get; internal set; }
+        public List<Tuple<int, Quadrangle>> Results { get; internal set; }
     }
 }

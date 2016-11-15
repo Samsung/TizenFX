@@ -14,31 +14,42 @@
  * limitations under the License.
  */
 
-using System;
-
+﻿using System;
+using Tizen.Internals.Errors;
 namespace Tizen.Multimedia
 {
+    internal enum SCMirroringErrorCode
+    {
+        None = ErrorCode.None,
+        InvalidParameter = ErrorCode.InvalidParameter,
+        OutOfMemory = ErrorCode.OutOfMemory,
+        InvalidOperation = ErrorCode.InvalidOperation,
+        ConnectionTimeOut = ErrorCode.ConnectionTimeout,
+        PermissionDenied = ErrorCode.PermissionDenied,
+        NotSupported = ErrorCode.NotSupported,
+        Unknown = ErrorCode.Unknown
+    };
     public class ScreenMirroringErrorFactory
     {
         internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
         {
-            SCMirroringError err = (SCMirroringError)errorCode;
+            SCMirroringErrorCode err = (SCMirroringErrorCode)errorCode;
             if (string.IsNullOrEmpty(errorMessage))
             {
                 errorMessage = err.ToString();
             }
 
-            switch ((SCMirroringError)errorCode)
+            switch ((SCMirroringErrorCode)errorCode)
             {
-                case SCMirroringError.InvalidParameter:
+                case SCMirroringErrorCode.InvalidParameter:
                 throw new ArgumentException(errorMessage, paramName);
 
-                case SCMirroringError.OutOfMemory:
-                case SCMirroringError.InvalidOperation:
-                case SCMirroringError.ConnectionTimeOut:
-                case SCMirroringError.PermissionDenied:
-                case SCMirroringError.NotSupported:
-                case SCMirroringError.Unknown:
+                case SCMirroringErrorCode.OutOfMemory:
+                case SCMirroringErrorCode.InvalidOperation:
+                case SCMirroringErrorCode.ConnectionTimeOut:
+                case SCMirroringErrorCode.PermissionDenied:
+                case SCMirroringErrorCode.NotSupported:
+                case SCMirroringErrorCode.Unknown:
                 throw new InvalidOperationException(errorMessage);
             }
         }

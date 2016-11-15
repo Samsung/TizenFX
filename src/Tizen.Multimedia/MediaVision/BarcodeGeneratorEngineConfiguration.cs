@@ -39,6 +39,9 @@ namespace Tizen.Multimedia
         public BarcodeGeneratorEngineConfiguration()
             : base()
         {
+            TextAttribute = _textAttr;
+            FrontColor = _frontColor;
+            BackColor = _backColor;
         }
 
         /// <summary>

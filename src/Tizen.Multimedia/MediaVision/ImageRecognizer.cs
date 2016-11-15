@@ -64,15 +64,20 @@ namespace Tizen.Multimedia
             {
                 try
                 {
-                    List<Quadrangle> locations = new List<Quadrangle>();
+                    List<Tuple<int, Quadrangle>> recognitionResults = new List<Tuple<int, Quadrangle>>();
                     if (numberOfObjects > 0)
                     {
                         IntPtr[] imageLocationsPtr = new IntPtr[numberOfObjects];
                         Marshal.Copy(locationsPtr, imageLocationsPtr, 0, (int)numberOfObjects);
 
-                        // Prepare list of locations
+                        // Prepare list of locations and its indexes
                         for (int i = 0; i < numberOfObjects; i++)
                         {
+                            if (imageLocationsPtr[i] == null)
+                            {
+                                continue;
+                            }
+
                             Interop.MediaVision.Quadrangle location = (Interop.MediaVision.Quadrangle)Marshal.PtrToStructure(imageLocationsPtr[i], typeof(Interop.MediaVision.Quadrangle));
                             Quadrangle quadrangle = new Quadrangle()
                             {
@@ -85,13 +90,13 @@ namespace Tizen.Multimedia
                                 }
                             };
                             Log.Info(MediaVisionLog.Tag, String.Format("Image recognized, Location : {0}", quadrangle.ToString()));
-                            locations.Add(quadrangle);
+                            recognitionResults.Add(Tuple.Create(i, quadrangle));
                         }
                     }
 
                     ImageRecognitionResult result = new ImageRecognitionResult()
                     {
-                        Locations = locations
+                        Results = recognitionResults
                     };
 
                     if (!tcsResult.TrySetResult(result))

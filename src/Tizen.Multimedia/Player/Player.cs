@@ -1,475 +1,464 @@
-/// Player
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 using System;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
 namespace Tizen.Multimedia
 {
-    static internal class PlayerLog
-    {
-        internal const string LogTag = "Tizen.Multimedia.Player";
-    }
-
     /// <summary>
-    /// The Player class provides APIs required for playback.
+    /// Provides the ability to control media playback.
     /// </summary>
     /// <remarks>
-    /// The Player APIs provides functions to create a player, set media filename/url
-    /// and play the media content. It also provides APIs to adjust the configurations
-    /// of the player such as playback rate, volume, looping etc. And, event handlers
-    /// handles are provided to handle various playback events (like playback error/completion)
+    /// The Player provides functions to play a media content.
+    /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
+    /// Note that only one video player can be played at one time.
     /// </remarks>
-    public class Player : IDisposable
+    public sealed class Player : IDisposable
     {
-        internal PlayerState _state;
-        internal float _leftVolume;
-        internal float _rightVolume;
-        internal int _audioLatencyMode;
-        internal bool _mute;
-        internal bool _isLooping;
-        internal Display _display;
-        internal Subtitle _subtitle;
-        internal AudioEffect _audioEffect;
-        internal StreamInformation _streamInformation;
-        internal StreamingConfiguration _streamingConfiguration;
-        internal IntPtr _playerHandle;
+        private IntPtr _handle = IntPtr.Zero;
 
-        private bool _disposed = false;
-        private EventHandler<PlaybackCompletedEventArgs> _playbackCompleted;
+        /// <summary>
+        /// Occurs when playback of a media is finished.
+        /// </summary>
+        public event EventHandler<EventArgs> PlaybackCompleted;
         private Interop.Player.PlaybackCompletedCallback _playbackCompletedCallback;
-        private EventHandler<PlaybackInterruptedEventArgs> _playbackInterrupted;
+
+        /// <summary>
+        /// Occurs when playback of a media is interrupted.
+        /// </summary>
+        public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterrupted;
         private Interop.Player.PlaybackInterruptedCallback _playbackInterruptedCallback;
-        private EventHandler<PlaybackErrorEventArgs> _playbackError;
+
+        /// <summary>
+        /// Occurs when any error occurs.
+        /// </summary>
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        public event EventHandler<PlayerErrorOccurredEventArgs> ErrorOccurred;
         private Interop.Player.PlaybackErrorCallback _playbackErrorCallback;
 
-        //TODO: Uncomment this after MediaPacket is implemented.
-        //private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
-        //private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
-
+        /// <summary>
+        /// Occurs when a video frame is decoded
+        /// </summary>
+        /// <remarks>
+        ///     <para>The event handler will be executed on an internal thread.</para>
+        ///     <para>The <see cref="VideoFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
+        /// </remarks>
+        /// <see cref="VideoFrameDecodedEventArgs.Packet"/>
+        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded;
+        private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
 
         /// <summary>
-        /// Player constructor.</summary>
+        /// Occurs when the video stream changed.
+        /// </summary>
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        public event EventHandler<VideoStreamChangedEventArgs> VideoStreamChanged;
+        private Interop.Player.VideoStreamChangedCallback _videoStreamChangedCallback;
+
+        /// <summary>
+        /// Occurs when the subtitle is updated.
+        /// </summary>
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        public EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
+        private Interop.Player.SubtitleUpdatedCallback _subtitleUpdatedCallback;
+
+        /// <summary>
+        /// Occurs when there is a change in the buffering status of streaming.
+        /// </summary>
+        public event EventHandler<BufferingProgressChangedEventArgs> BufferingProgressChanged;
+        private Interop.Player.BufferingProgressCallback _bufferingProgressCallback;
+
+        internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamAudioBufferStatusChanged;
+        private Interop.Player.MediaStreamBufferStatusCallback _mediaStreamAudioBufferStatusChangedCallback;
+
+        internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamVideoBufferStatusChanged;
+        private Interop.Player.MediaStreamBufferStatusCallback _mediaStreamVideoBufferStatusChangedCallback;
+
+        internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamAudioSeekingOccurred;
+        private Interop.Player.MediaStreamSeekCallback _mediaStreamAudioSeekCallback;
+
+        internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamVideoSeekingOccurred;
+        private Interop.Player.MediaStreamSeekCallback _mediaStreamVideoSeekCallback;
+
+        /// <summary>
+        /// Initialize a new instance of the Player class.
+        /// </summary>
         public Player()
         {
-            int ret;
-
-            ret = Interop.Player.Create(out _playerHandle);
-            if (ret != (int)PlayerError.None)
+            try
             {
-                Log.Error(PlayerLog.LogTag, "Failed to create player" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to create player");
-            }
+                int ret = Interop.Player.Create(out _handle);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to create player");
 
-            // Initial get values
-            ret = Interop.Player.GetVolume(_playerHandle, out _leftVolume, out _rightVolume);
-            if (ret != (int)PlayerError.None)
+                RetrieveProperties();
+                RegisterCallbacks();
+
+                AudioEffect = new AudioEffect(this);
+            }
+            catch (Exception)
             {
-                Log.Error(PlayerLog.LogTag, "Failed to get volume levels" + ret);
+                if (_handle != IntPtr.Zero)
+                {
+                    Interop.Player.Destroy(_handle);
+                }
+                throw;
             }
-
-            ret = Interop.Player.GetAudioLatencyMode(_playerHandle, out _audioLatencyMode);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to get Audio latency mode" + ret);
-            }
-
-            ret = Interop.Player.IsMuted(_playerHandle, out _mute);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to get mute status" + ret);
-            }
-
-            ret = Interop.Player.IsLooping(_playerHandle, out _isLooping);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to get loop status" + ret);
-            }
-
-
-            // AudioEffect
-            _audioEffect = new AudioEffect();
-            _audioEffect._playerHandle = _playerHandle;
-
-            // Display
-            _display = new Display(DisplayType.Evas /* Default value? */);
-            _display._playerHandle = _playerHandle;
-
-            // StreamingConfiguration
-            _streamingConfiguration = new StreamingConfiguration(_playerHandle);
-
-            // StreamInformation
-            _streamInformation = new StreamInformation();
-            _streamInformation._playerHandle = _playerHandle;
-            _streamInformation._contentInfo = new PlayerContentInfo();
-            _streamInformation._contentInfo._playerHandle = _playerHandle;
-
-
-            Log.Debug(PlayerLog.LogTag, "player created : " + _playerHandle);
         }
 
-        /// <summary>
-        /// Player destructor
-        /// </summary>
+        private void RetrieveProperties()
+        {
+            PlayerErrorConverter.ThrowIfError(Interop.Player.GetVolume(_handle, out _volume, out _volume),
+                "Failed to initialize the player");
+
+            int value = 0;
+            PlayerErrorConverter.ThrowIfError(Interop.Player.GetAudioLatencyMode(_handle, out value),
+                "Failed to initialize the player");
+            _audioLatencyMode = (AudioLatencyMode)value;
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.IsLooping(_handle, out _isLooping),
+                "Failed to initialize the player");
+        }
+
+        private void RegisterCallbacks()
+        {
+            RegisterSubtitleUpdatedCallback();
+            RegisterErrorOccuuredCallback();
+            RegisterPlaybackInterruptedCallback();
+            RegisterVideoStreamChangedCallback();
+            RegisterBufferingCallback();
+            RegisterMediaStreamBufferStatusCallback();
+            RegisterMediaStreamSeekCallback();
+            RegisterPlaybackCompletedCallback();
+            RegisterVideoFrameDecodedCallback();
+        }
+
         ~Player()
         {
             Dispose(false);
         }
 
+        internal IntPtr GetHandle()
+        {
+            ValidateNotDisposed();
+            return _handle;
+        }
+
+        internal void ValidatePlayerState(params PlayerState[] desiredStates)
+        {
+            Debug.Assert(desiredStates.Length > 0);
+
+            ValidateNotDisposed();
+
+            var curState = State;
+            if (curState.IsAnyOf(desiredStates))
+            {
+                return;
+            }
+
+            throw new InvalidOperationException($"The player is not in a valid state. " +
+                $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
+        }
+
+        #region Properties
+        #region Network configuration
+        private string _cookie = "";
+        private string _userAgent = "";
 
         /// <summary>
-        /// PlaybackCompleted event is raised when playback of a media is finished
+        /// Gets or Sets the cookie for streaming playback.
         /// </summary>
-        public event EventHandler<PlaybackCompletedEventArgs> PlaybackCompleted
+        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
+        public string Cookie
         {
-            add
+            get
             {
-                if (_playbackCompleted == null)
-                {
-                    RegisterPlaybackCompletedEvent();
-                }
-                _playbackCompleted += value;
-
+                return _cookie;
             }
-            remove
+            set
             {
-                _playbackCompleted -= value;
-                if (_playbackCompleted == null)
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value == null)
                 {
-                    UnregisterPlaybackCompletedEvent();
+                    throw new ArgumentNullException(nameof(value), "Cookie can't be null.");
                 }
+
+                int ret = Interop.Player.SetStreamingCookie(_handle, value, value.Length);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the cookie to the player");
+
+                _cookie = value;
             }
         }
 
         /// <summary>
-        /// PlaybackInterruped event is raised when playback of a media is interrupted
+        /// Gets or Sets the user agent for streaming playback.
         /// </summary>
-        public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterruped
+        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
+        public string UserAgent
         {
-            add
+            get
             {
-                if (_playbackInterrupted == null)
-                {
-                    RegisterPlaybackInterruptedEvent();
-                }
-                _playbackInterrupted += value;
+                return _userAgent;
             }
-            remove
+            set
             {
-                _playbackInterrupted -= value;
-                if (_playbackInterrupted == null)
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value == null)
                 {
-                    UnregisterPlaybackInterruptedEvent();
+                    throw new ArgumentNullException(nameof(value), "UserAgent can't be null.");
                 }
+
+                int ret = Interop.Player.SetStreamingUserAgent(_handle, value, value.Length);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the user agent to the player");
+
+                _userAgent = value;
             }
         }
+        #endregion
 
         /// <summary>
-        /// PlaybackErrorOccured event is raised when any error occurs
+        /// Gets the state of the player.
         /// </summary>
-        public event EventHandler<PlaybackErrorEventArgs> PlaybackErrorOccured
-        {
-            add
-            {
-                if (_playbackError == null)
-                {
-                    RegisterPlaybackErrorEvent();
-                }
-                _playbackError += value;
-            }
-            remove
-            {
-                _playbackError -= value;
-                if (_playbackError == null)
-                {
-                    UnregisterPlaybackErrorEvent();
-                }
-            }
-        }
-
-
-#if _MEDIA_PACKET_
-		TODO: Uncomment this after MediaPacket is implemented.
-        /// <summary>
-        /// VideoFrameCaptured event is raised when a video frame is decoded
-        /// </summary>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
-		{
-			add
-			{
-				if(_videoFrameDecoded == null) {
-					RegisterVideoFrameDecodedEvent();
-				}
-				_videoFrameDecoded += value;
-			}
-			remove
-			{
-				_videoFrameDecoded -= value;
-				if(_videoFrameDecoded == null) {
-					UnregisterVideoFrameDecodedEvent();
-				}
-			}
-		}
-#endif
-
-
-        /// <summary>
-        /// Get Player state.
-        /// </summary>
-        /// <value> PlayerState </value>
+        /// <value>The current state of the player.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public PlayerState State
         {
             get
             {
-                int state;
-                int ret = Interop.Player.GetState(_playerHandle, out state);
+                ValidateNotDisposed();
 
-                if (ret != (int)PlayerError.None)
-                    PlayerErrorFactory.ThrowException(ret, "Get player state failed");
+                //TODO is this needed?
+                if (IsPreparing())
+                {
+                    return PlayerState.Preparing;
+                }
+
+                int state = 0;
+                int ret = Interop.Player.GetState(_handle, out state);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to retrieve the state of the player");
+
+                Debug.Assert(Enum.IsDefined(typeof(PlayerState), state));
 
                 return (PlayerState)state;
             }
         }
 
-        /// <summary>
-        /// Set/Get the left volume level.
-        /// </summary>
-        /// <value> 0 to 1.0 that indicates left volume level </value>
-        public float LeftVolume
-        {
-            set
-            {
-                int ret = Interop.Player.SetVolume(_playerHandle, value, value);
-
-                if (ret == (int)PlayerError.None)
-                {
-                    _leftVolume = value;
-                }
-                else
-                {
-                    Log.Error(PlayerLog.LogTag, "Set volume failed" + (PlayerError)ret);
-                    PlayerErrorFactory.ThrowException(ret, "set volume failed");
-                }
-            }
-            get
-            {
-                //Interop.Player.GetVolume(_playerHandle, out _leftVolume, out _rightVolume);
-                return _leftVolume;
-            }
-        }
+        private AudioLatencyMode _audioLatencyMode;
 
         /// <summary>
-        /// Set/Get the right volume level.
+        /// Gets or sets the audio latency mode.
         /// </summary>
-        /// <value> 0 to 1.0 that indicates right volume level </value>
-        public float RightVolume
-        {
-            set
-            {
-                int ret = Interop.Player.SetVolume(_playerHandle, value, value);
-
-                if (ret == (int)PlayerError.None)
-                {
-                    _rightVolume = value;
-                }
-                else
-                {
-                    Log.Error(PlayerLog.LogTag, "Set volume failed" + (PlayerError)ret);
-                    PlayerErrorFactory.ThrowException(ret, "set volume failed");
-                }
-            }
-            get
-            {
-                //Interop.Player.GetVolume(_playerHandle, out _leftVolume, out _rightVolume);
-                return _rightVolume;
-            }
-        }
-
-        /// <summary>
-        /// Set/Get the Audio Latency Mode.
-        /// </summary>
-        /// <value> Low, Mid, High </value>
+        /// <value>A <see cref="AudioLatencyMode"/> that specifies the mode. The default is <see cref="AudioLatencyMode.Mid"/>.</value>
+        /// <remarks>
+        /// If the mode is <see cref="AudioLatencyMode.AudioLatencyMode"/>,
+        /// audio output interval can be increased so, it can keep more audio data to play.
+        /// But, state transition like pause or resume can be more slower than default(<see cref="AudioLatencyMode.Mid"/>) mode.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
         public AudioLatencyMode AudioLatencyMode
         {
-            set
-            {
-                if (_audioLatencyMode != (int)value)
-                {
-                    int ret = Interop.Player.SetAudioLatencyMode(_playerHandle, (int)value);
-                    if (ret != (int)PlayerError.None)
-                    {
-                        Log.Error(PlayerLog.LogTag, "Set audio latency mode failed" + (PlayerError)ret);
-                        PlayerErrorFactory.ThrowException(ret, "set audio latency mode failed");
-                    }
-                    else
-                    {
-                        _audioLatencyMode = (int)value;
-                    }
-                }
-            }
-
             get
             {
-                return (AudioLatencyMode)_audioLatencyMode;
+                return _audioLatencyMode;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                if (_audioLatencyMode == value)
+                {
+                    return;
+                }
+                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
+
+                int ret = Interop.Player.SetAudioLatencyMode(_handle, (int)value);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the audio latency mode of the player");
+
+                _audioLatencyMode = value;
             }
         }
 
-        /// <summary>
-        /// Set/Get  mute.
-        /// </summary>
-        /// <value> true, false </value>
-        public bool Mute
-        {
-            set
-            {
-                if (_mute != value)
-                {
-                    int ret = Interop.Player.SetMute(_playerHandle, value);
-                    if (ret != (int)PlayerError.None)
-                    {
-                        Log.Error(PlayerLog.LogTag, "Set mute failed" + (PlayerError)ret);
-                        PlayerErrorFactory.ThrowException(ret, "set mute failed");
-                    }
-                    else
-                    {
-                        _mute = value;
-                    }
-                }
-            }
-            get
-            {
-                //Interop.Player.IsMuted(_playerHandle, out _mute);
-                return _mute;
-            }
-        }
+        private bool _isLooping;
 
         /// <summary>
-        /// Set/Get Loop play.
+        /// Gets or sets the looping state.
         /// </summary>
-        /// <value> true, false </value>
+        /// <value>true if the playback is looping; otherwise, false. The default value is false.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public bool IsLooping
         {
-            set
-            {
-                if (_isLooping != value)
-                {
-                    int ret = Interop.Player.SetLooping(_playerHandle, value);
-                    if (ret != (int)PlayerError.None)
-                    {
-                        Log.Error(PlayerLog.LogTag, "Set loop failed" + (PlayerError)ret);
-                        PlayerErrorFactory.ThrowException(ret, "set loop failed");
-                    }
-                    else
-                    {
-                        _isLooping = value;
-                    }
-                }
-            }
             get
             {
-                //Interop.Player.IsLooping(_playerHandle, out _isLooping);
                 return _isLooping;
             }
-        }
-
-        /// <summary>
-        /// Get play position.
-        /// </summary>
-        /// <value> play position in milli seconds </value>
-        public int PlayPosition
-        {
-            get
-            {
-                int playPosition;
-                int ret = Interop.Player.GetPlayPosition(_playerHandle, out playPosition);
-                if (ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to get play position, " + (PlayerError)ret);
-                }
-                return playPosition;
-            }
-        }
-
-        /// <summary>
-        /// Set/Get Display.
-        /// </summary>
-        /// <value> Display configuration </value>
-        public Display Display
-        {
             set
             {
-                _display = value;
-                _display._playerHandle = _playerHandle;
+                ValidateNotDisposed();
+
+                if (_isLooping == value)
+                {
+                    return;
+                }
+
+                int ret = Interop.Player.SetLooping(_handle, value);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the mute state of the player");
+
+                _isLooping = value;
+
             }
+        }
+
+        #region Display methods
+        private PlayerDisplay _display;
+
+        private int SetDisplay(PlayerDisplay display)
+        {
+            if (display == null)
+            {
+                return Interop.Player.SetDisplay(_handle, (int)PlayerDisplayType.None, IntPtr.Zero);
+            }
+
+            Debug.Assert(Enum.IsDefined(typeof(PlayerDisplayType), display.Type));
+            Debug.Assert(display.EvasObject != null);
+
+            return Interop.Player.SetDisplay(_handle, (int)display.Type, display.EvasObject);
+        }
+
+        private void ReplaceDisplay(PlayerDisplay newDisplay)
+        {
+            if (_display != null)
+            {
+                _display.Player = null;
+            }
+
+            _display = newDisplay;
+            _display.Player = this;
+        }
+
+        /// <summary>
+        /// Gets or sets the display.
+        /// </summary>
+        /// <value>A <see cref="PlayerDisplay"/> that specifies the display configurations.</value>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public PlayerDisplay Display
+        {
             get
             {
                 return _display;
             }
-        }
-
-        /// <summary>
-        /// Set/Get Subtitle.
-        /// </summary>
-        /// <value> Subtitle configuration </value>
-        public Subtitle Subtitle
-        {
             set
             {
-                _subtitle = value;
-                _subtitle._playerHandle = _playerHandle;
-                _subtitle._subPath = _subtitle._path;
-            }
-            get
-            {
-                return _subtitle;
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value != null && value.Player != null)
+                {
+                    if (ReferenceEquals(this, value.Player))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The display has already been assigned to another player.");
+                    }
+                }
+
+                PlayerErrorConverter.ThrowIfError(SetDisplay(value), "Failed to set the display to the player");
+
+                ReplaceDisplay(value);
             }
         }
+        #endregion
 
+        private PlayerTrackInfo _audioTrack;
 
         /// <summary>
-        /// Get AudioEffect.
+        /// Gets the track info for audio.
         /// </summary>
-        /// <value> AudioEffect object </value>
-        public AudioEffect AudioEffect
+        /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
+        public PlayerTrackInfo AudioTrackInfo
         {
             get
             {
-                return _audioEffect;
+                if (_audioTrack == null)
+                {
+                    _audioTrack = new PlayerTrackInfo(this, StreamType.Audio);
+                }
+                return _audioTrack;
+            }
+        }
+
+        private PlayerTrackInfo _subtitleTrackInfo;
+
+        /// <summary>
+        /// Gets the track info for subtitle.
+        /// </summary>
+        /// <value>A <see cref="PlayerTrackInfo"/> for subtitle.</value>
+        public PlayerTrackInfo SubtitleTrackInfo
+        {
+            get
+            {
+                if (_subtitleTrackInfo == null)
+                {
+                    _subtitleTrackInfo = new PlayerTrackInfo(this, StreamType.Text);
+                }
+                return _subtitleTrackInfo;
+            }
+        }
+
+        private StreamInfo _streamInfo;
+
+        /// <summary>
+        /// Gets the stream information.
+        /// </summary>
+        /// <value>A <see cref="StreamInfo"/> for this player.</value>
+        public StreamInfo StreamInfo
+        {
+            get
+            {
+                if (_streamInfo == null)
+                {
+                    _streamInfo = new StreamInfo(this);
+                }
+                return _streamInfo;
             }
         }
 
         /// <summary>
-        /// Get stream information.
+        /// Gets audio effect.
         /// </summary>
-        /// <value> StreamInformation object </value>
-        public StreamInformation StreamInformation
-        {
-            get
-            {
-                return _streamInformation;
-            }
-        }
+        public AudioEffect AudioEffect { get; }
 
-        /// <summary>
-        /// Get StreamingConfiguration.
-        /// </summary>
-        /// <value> StreamingConfiguration object </value>
-        public StreamingConfiguration StreamingConfiguration
-        {
-            get
-            {
-                return _streamingConfiguration;
-            }
-        }
+        #endregion
 
+        #region Dispose support
+        private bool _disposed;
 
         public void Dispose()
         {
@@ -477,308 +466,719 @@ namespace Tizen.Multimedia
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Prepares the media player for playback. </summary>
-        public Task<bool> PrepareAsync()
-        {
-            int ret;
-            var task = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Interop.Player.PrepareCallback cb = (IntPtr userData) =>
-                {
-                    task.SetResult(true);
-                    return;
-                };
-                ret = Interop.Player.PrepareAsync(_playerHandle, cb, IntPtr.Zero);
-                if (ret != (int)PlayerError.None)
-                {
-                    task.SetResult(false);
-                    Log.Error(PlayerLog.LogTag, "Failed to prepare player" + (PlayerError)ret);
-                    PlayerErrorFactory.ThrowException(ret, "Failed to prepare player");
-                }
-            });
-
-            return task.Task;
-        }
-
-        /// <summary>
-        /// The most recently used media is reset and no longer associated with the player. Playback is no longer possible.
-        /// If you want to use the player again, you will have to set the data URI and call prepare() again. </summary>
-        public void Unprepare()
-        {
-            int ret = Interop.Player.Unprepare(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to unprepare player" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to unprepare player");
-            }
-        }
-
-        /// <summary>
-        /// Starts or resumes playback.  </summary>
-        public void Start()
-        {
-            int ret = Interop.Player.Start(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to start player" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to start player");
-            }
-        }
-
-        /// <summary>
-        /// Stops playing media content. </summary>
-        public void Stop()
-        {
-            int ret = Interop.Player.Stop(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to stop player" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to stop player");
-            }
-        }
-
-        /// <summary>
-        /// Pauses the player. </summary>
-        public void Pause()
-        {
-            int ret = Interop.Player.Pause(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to pause player" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to pause player");
-            }
-        }
-
-        /// <summary>
-        /// sets media source for the player. </summary>
-        /// <param name="source"> Mediasource </param>
-        public void SetSource(MediaSource source)
-        {
-            int ret;
-            if (source.GetType() == typeof(MediaUriSource))
-            {
-                ret = Interop.Player.SetUri(_playerHandle, ((MediaUriSource)source).GetUri());
-                if (ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to seturi" + (PlayerError)ret);
-                    PlayerErrorFactory.ThrowException(ret, "Failed to set uri");
-                }
-            }
-            else if (source.GetType() == typeof(MediaBufferSource))
-            {
-                GCHandle pinnedArray = GCHandle.Alloc(((MediaBufferSource)source)._buffer, GCHandleType.Pinned);
-                IntPtr mem = pinnedArray.AddrOfPinnedObject();
-                ret = Interop.Player.SetMemoryBuffer(_playerHandle, mem, ((MediaBufferSource)source)._buffer.Length);
-                if (ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to set memory buffer" + (PlayerError)ret);
-                    PlayerErrorFactory.ThrowException(ret, "Failed to set memory buffer");
-                }
-            }
-            else if (source.GetType() == typeof(MediaStreamSource))
-            {
-                // TODO: Handle MediaStream source after implementing MediaPacket module
-                ((MediaStreamSource)source).SetHandle(_playerHandle);
-            }
-        }
-
-
-        /// <summary>
-        /// Captures a video frame asynchronously. </summary>
-        public Task<VideoFrameCapture> CaptureVideoAsync()
-        {
-            return Task.Factory.StartNew(() => CaptureVideoAsyncTask()).Result;
-        }
-
-        /// <summary>
-        ///Sets the seek position for playback, asynchronously.  </summary>
-        /// <param name="milliseconds"> Position to be set in milliseconds</param>
-        /// <param name="accurate"> accurate seek or not</param>
-        public Task<bool> SetPlayPositionAsync(int milliseconds, bool accurate)
-        {
-            var task = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Interop.Player.SeekCompletedCallback cb = (IntPtr userData) =>
-                {
-                    task.SetResult(true);
-                    return;
-                };
-                int ret = Interop.Player.SetPlayPosition(_playerHandle, milliseconds, accurate, cb, IntPtr.Zero);
-                if (ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to set playposition" + (PlayerError)ret);
-                    task.SetResult(false);
-                    PlayerErrorFactory.ThrowException(ret, "Failed to set playposition");
-                }
-            });
-
-            return task.Task;
-        }
-
-        /// <summary>
-        /// sets playback rate </summary>
-        /// <param name="rate"> playback rate -5.0x to 5.0x  </param>
-        public void SetPlaybackRate(float rate)
-        {
-            int ret = Interop.Player.SetPlaybackRate(_playerHandle, rate);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Set playback rate failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "set playback rate failed");
-            }
-        }
-
-        /// <summary>
-        /// sets audio stream policy </summary>
-        /// <param name="policy"> Audio Stream Policy  </param>
-        public void SetAudioStreamPolicy(AudioStreamPolicy policy)
-        {
-            int ret = Interop.Player.SetAudioPolicyInfo(_playerHandle, policy.Handle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Set Audio stream policy failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Set Audio stream policy failed");
-            }
-        }
-
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposed)
             {
-                if (disposing)
+                if (_source != null)
                 {
-                    // To be used if there are any other disposable objects
+                    try
+                    {
+                        _source.DetachFrom(this);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(nameof(Player), e.ToString());
+                    }
                 }
-                if (_playerHandle != IntPtr.Zero)
+                _source = null;
+
+                if (_handle != IntPtr.Zero)
                 {
-                    Interop.Player.Destroy(_playerHandle);
-                    _playerHandle = IntPtr.Zero;
+                    Interop.Player.Destroy(_handle);
+                    _handle = IntPtr.Zero;
                 }
                 _disposed = true;
             }
         }
 
-        private void RegisterPlaybackCompletedEvent()
+        internal void ValidateNotDisposed()
         {
-            _playbackCompletedCallback = (IntPtr userData) =>
+            if (_disposed)
             {
-                PlaybackCompletedEventArgs eventArgs = new PlaybackCompletedEventArgs();
-                _playbackCompleted?.Invoke(this, eventArgs);
+                throw new ObjectDisposedException(nameof(Player));
+            }
+        }
+
+        internal bool IsDisposed
+        {
+            get
+            {
+                return _disposed;
+            }
+        }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets the mute state.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        public bool IsMuted()
+        {
+            ValidateNotDisposed();
+
+            bool value = false;
+            PlayerErrorConverter.ThrowIfError(Interop.Player.IsMuted(_handle, out value),
+                "Failed to get the mute state of the player");
+            return value;
+        }
+
+        /// <summary>
+        /// Sets the mute state.
+        /// </summary>
+        /// <param name="mute">true to mute the player; otherwise, false.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        public void SetMute(bool mute)
+        {
+            ValidateNotDisposed();
+
+            int ret = Interop.Player.SetMute(_handle, mute);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the mute state of the player");
+        }
+
+        /// <summary>
+        /// Get Streaming download Progress.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not streaming.
+        ///     <para>-or-</para>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        public DownloadProgress GetDownloadProgress()
+        {
+            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+
+            int start = 0;
+            int current = 0;
+            int ret = Interop.Player.GetStreamingDownloadProgress(_handle, out start, out current);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to get download progress");
+
+            return new DownloadProgress(start, current);
+        }
+
+        #region Volume
+        private float _volume;
+
+        /// <summary>
+        /// Sets the current volume.
+        /// </summary>
+        /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     value is less than zero.
+        ///     <para>-or-</para>
+        ///     value is greater than 1.0.
+        /// </exception>
+        public void SetVolume(float value)
+        {
+            ValidateNotDisposed();
+
+            if (value < 0F || 1.0F < value)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value,
+                    $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
+            }
+
+            int ret = Interop.Player.SetVolume(_handle, value, value);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the volume of the player");
+        }
+
+        /// <summary>
+        /// Gets the current volume.
+        /// </summary>
+        /// <remarks>the volume range is from 0 to 1.0, inclusive.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        public float GetVolume()
+        {
+            ValidateNotDisposed();
+
+            float value = 0.0F;
+            int ret = Interop.Player.GetVolume(_handle, out value, out value);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the volume of the player");
+            return value;
+        }
+        #endregion
+
+        /// <summary>
+        /// Sets the subtitle path for playback.
+        /// </summary>
+        /// <remarks>Only MicroDVD/SubViewer(*.sub), SAMI(*.smi), and SubRip(*.srt) subtitle formats are supported.
+        ///     <para>The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any files are used to play located in the internal storage.
+        ///     The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The specified path does not exist.</exception>
+        /// <exception cref="ArgumentNullException">The path is null.</exception>
+        public void SetSubtitle(string path)
+        {
+            ValidateNotDisposed();
+
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (!File.Exists(path))
+            {
+                throw new ArgumentException($"The specified file does not exist : { path }.");
+            }
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, path),
+                "Failed to set the subtitle path to the player");
+        }
+
+        /// <summary>
+        /// Removes the subtitle path.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public void ClearSubtitle()
+        {
+            ValidatePlayerState(PlayerState.Idle);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, null),
+                "Failed to clear the subtitle of the player");
+        }
+
+        /// <summary>
+        /// Sets the offset for the subtitle.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public void SetSubtitleOffset(int offset)
+        {
+            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePositionOffset(_handle, offset),
+                "Failed to the subtitle offset of the player");
+        }
+
+        private void Prepare()
+        {
+            int ret = Interop.Player.Prepare(_handle);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to prepare the player");
+        }
+
+        /// <summary>
+        /// Prepares the media player for playback, asynchronously.
+        /// </summary>
+        /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
+        ///     and a source must be set.</remarks>
+        /// <exception cref="InvalidOperationException">No source is set.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public Task PrepareAsync()
+        {
+            if (_source == null)
+            {
+                throw new InvalidOperationException("No source is set.");
+            }
+
+            ValidatePlayerState(PlayerState.Idle);
+
+            var completionSource = new TaskCompletionSource<bool>();
+
+            SetPreparing();
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    Prepare();
+                    ClearPreparing();
+                    completionSource.SetResult(true);
+                }
+                catch (Exception e)
+                {
+                    ClearPreparing();
+                    completionSource.TrySetException(e);
+                }
+            });
+
+            return completionSource.Task;
+        }
+
+        /// <summary>
+        /// Unprepares the player.
+        /// </summary>
+        /// <remarks>
+        ///     The most recently used source is reset and no longer associated with the player. Playback is no longer possible.
+        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync"/> again.
+        ///     <para>
+        ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.
+        ///     It has no effect if the player is already in the <see cref="PlayerState.Idle"/> state.
+        ///     </para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public void Unprepare()
+        {
+            if (State == PlayerState.Idle)
+            {
+                return;
+            }
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.Unprepare(_handle),
+                "Failed to unprepare the player");
+
+            if (_source != null)
+            {
+                _source.DetachFrom(this);
+            }
+            _source = null;
+        }
+
+
+        //TODO remarks needs to be updated. see the native reference.
+        /// <summary>
+        /// Starts or resumes playback.
+        /// </summary>
+        /// <remarks>
+        /// The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
+        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="Stop"/>
+        /// <seealso cref="Pause"/>
+        /// <seealso cref="PlaybackCompleted"/>
+        public void Start()
+        {
+            if (State == PlayerState.Playing)
+            {
+                return;
+            }
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.Start(_handle), "Failed to start the player");
+        }
+
+        /// <summary>
+        /// Stops playing media content.
+        /// </summary>
+        /// <remarks>
+        /// The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.
+        /// It has no effect if the player is already in the <see cref="PlayerState.Ready"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="Start"/>
+        /// <seealso cref="Pause"/>
+        public void Stop()
+        {
+            if (State == PlayerState.Ready)
+            {
+                return;
+            }
+            ValidatePlayerState(PlayerState.Paused, PlayerState.Playing);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.Stop(_handle), "Failed to stop the player");
+        }
+
+        /// <summary>
+        /// Pauses the player.
+        /// </summary>
+        /// <remarks>
+        /// The player must be in the <see cref="PlayerState.Playing"/> state.
+        /// It has no effect if the player is already in the <see cref="PlayerState.Paused"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="Start"/>
+        public void Pause()
+        {
+            if (State == PlayerState.Paused)
+            {
+                return;
+            }
+
+            ValidatePlayerState(PlayerState.Playing);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.Pause(_handle), "Failed to pause the player");
+        }
+
+        private MediaSource _source;
+
+        /// <summary>
+        /// Sets a media source for the player.
+        /// </summary>
+        /// <param name="source">A <see cref="MediaSource"/> that specifies the source for playback.</param>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     <para>-or-</para>
+        ///     It is not able to assign the source to the player.
+        ///     </exception>
+        /// <seealso cref="PrepareAsync"/>
+        public void SetSource(MediaSource source)
+        {
+            ValidatePlayerState(PlayerState.Idle);
+
+            if (source != null)
+            {
+                source.AttachTo(this);
+            }
+
+            if (_source != null)
+            {
+                _source.DetachFrom(this);
+            }
+
+            _source = source;
+        }
+
+        /// <summary>
+        /// Captures a video frame asynchronously.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        public Task<CapturedFrame> CaptureVideoAsync()
+        {
+            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+
+            TaskCompletionSource<CapturedFrame> t = new TaskCompletionSource<CapturedFrame>();
+
+            Interop.Player.VideoCaptureCallback cb = (data, width, height, size, gchPtr) =>
+            {
+                Debug.Assert(size <= int.MaxValue);
+
+                byte[] buf = new byte[size];
+                Marshal.Copy(data, buf, 0, (int)size);
+
+                t.TrySetResult(new CapturedFrame(buf, width, height));
+
+                GCHandle.FromIntPtr(gchPtr).Free();
             };
-            int ret = Interop.Player.SetCompletedCb(_playerHandle, _playbackCompletedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerError.None)
+
+            var gch = GCHandle.Alloc(cb);
+            try
             {
-                Log.Error(PlayerLog.LogTag, "Setting PlaybackCompleted callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Setting PlaybackCompleted callback failed");
+                PlayerErrorConverter.ThrowIfError(
+                    Interop.Player.CaptureVideo(_handle, cb, GCHandle.ToIntPtr(gch)),
+                    "Failed to capture the video");
+            }
+            catch(Exception)
+            {
+                gch.Free();
+                throw;
             }
 
-        }
-
-        private void UnregisterPlaybackCompletedEvent()
-        {
-            int ret = Interop.Player.UnsetCompletedCb(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Unsetting PlaybackCompleted callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackCompleted callback failed");
-            }
-
-        }
-
-        private void RegisterPlaybackInterruptedEvent()
-        {
-            _playbackInterruptedCallback = (int code, IntPtr userData) =>
-            {
-                PlaybackInterruptedEventArgs eventArgs = new PlaybackInterruptedEventArgs(code);
-                _playbackInterrupted?.Invoke(this, eventArgs);
-            };
-            int ret = Interop.Player.SetInterruptedCb(_playerHandle, _playbackInterruptedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Setting PlaybackInterrupted callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Setting PlaybackInterrupted callback failed");
-            }
-        }
-
-        private void UnregisterPlaybackInterruptedEvent()
-        {
-            int ret = Interop.Player.UnsetInterruptedCb(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Unsetting PlaybackInterrupted callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackInterrupted callback failed");
-            }
-        }
-
-        private void RegisterPlaybackErrorEvent()
-        {
-            _playbackErrorCallback = (int code, IntPtr userData) =>
-            {
-                PlaybackErrorEventArgs eventArgs = new PlaybackErrorEventArgs(code);
-                _playbackError?.Invoke(this, eventArgs);
-            };
-            int ret = Interop.Player.SetErrorCb(_playerHandle, _playbackErrorCallback, IntPtr.Zero);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Setting PlaybackError callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Setting PlaybackError callback failed");
-            }
-
-        }
-
-        private void UnregisterPlaybackErrorEvent()
-        {
-            int ret = Interop.Player.UnsetErrorCb(_playerHandle);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Unsetting PlaybackError callback failed" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Unsetting PlaybackError callback failed");
-            }
-
-        }
-
-        private Task<VideoFrameCapture> CaptureVideoAsyncTask()
-        {
-            TaskCompletionSource<VideoFrameCapture> t = new TaskCompletionSource<VideoFrameCapture>();
-            Interop.Player.VideoCaptureCallback cb = (byte[] data, int width, int height, uint size, IntPtr userData) =>
-            {
-                VideoFrameCapture v = new VideoFrameCapture(data, width, height, size);
-                t.SetResult(v);
-            };
-
-            int ret = Interop.Player.CaptureVideo(_playerHandle, cb, IntPtr.Zero);
-            if (ret != (int)PlayerError.None)
-            {
-                Log.Error(PlayerLog.LogTag, "Failed to capture video" + (PlayerError)ret);
-                PlayerErrorFactory.ThrowException(ret, "Failed to capture video");
-            }
             return t.Task;
         }
 
-
-
-#if _MEDIA_PACKET_
-        //TODO: Uncomment this when MediaPacket is implemented
-        private void RegisterVideoFrameDecodedEvent()
+        /// <summary>
+        /// Gets the play position in milliseconds.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        public int GetPlayPosition()
         {
-            _videoFrameDecoded = (MediaPacket packet, IntPtr userData) =>
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
+
+            int playPosition = 0;
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.GetPlayPosition(_handle, out playPosition),
+                "Failed to get the play position of the player");
+
+            return playPosition;
+        }
+
+        private void SetPlayPosition(int milliseconds, bool accurate,
+            Interop.Player.SeekCompletedCallback cb)
+        {
+            int ret = Interop.Player.SetPlayPosition(_handle, milliseconds, accurate, cb, IntPtr.Zero);
+
+            //Note that we assume invalid param error is returned only when the position value is invalid.
+            if (ret == (int)PlayerErrorCode.InvalidArgument)
             {
-                VideoFrameDecodedEventArgs eventArgs = new VideoFrameDecodedEventArgs();
-                _videoFrameDecoded?.Invoke(this, eventArgs);
-            };
-            Interop.Player.SetErrorCb(_playerHandle, _videoFrameDecodedCallback, IntPtr.Zero);
+                throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
+                    "The position is not valid.");
+            }
+
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set play position");
         }
 
-        private void UnregisterVideoFrameDecodedEvent()
+        /// <summary>
+        /// Sets the seek position for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in milliseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="GetPlayPosition"/>
+        public Task SetPlayPositionAsync(int position, bool accurate)
         {
-            Interop.Player.UnsetMediaPacketVideoFrameDecodedCb(_playerHandle);
-        }
-#endif
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+
+            bool immediateResult = _source is MediaStreamSource;
+
+            Interop.Player.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
+
+            SetPlayPosition(position, accurate, cb);
+            if (immediateResult)
+            {
+                taskCompletionSource.TrySetResult(true);
+            }
+
+            return taskCompletionSource.Task;
+        }
+
+        /// <summary>
+        /// Sets playback rate.
+        /// </summary>
+        /// <param name="rate">The value for the playback rate. Valid range is -5.0 to 5.0, inclusive.</param>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>The sound will be muted, when the playback rate is under 0.0 or over 2.0.</para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     <para>-or-</para>
+        ///     Streaming playback.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="rate"/> is less than 5.0.
+        ///     <para>-or-</para>
+        ///     <paramref name="rate"/> is greater than 5.0.
+        ///     <para>-or-</para>
+        ///     <paramref name="rate"/> is zero.
+        /// </exception>
+        public void SetPlaybackRate(float rate)
+        {
+            if (rate < -5.0F || 5.0F < rate || rate == 0.0F)
+            {
+                throw new ArgumentOutOfRangeException(nameof(rate), rate, "Valid range is -5.0 to 5.0 (except 0.0)");
+            }
+
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.SetPlaybackRate(_handle, rate),
+                "Failed to set the playback rate.");
+        }
+
+        /// <summary>
+        /// Applies the audio stream policy.
+        /// </summary>
+        /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">
+        ///     The player has already been disposed of.
+        ///     <para>-or-</para>
+        ///     <paramref name="poilcy"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
+        public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
+        {
+            if (policy == null)
+            {
+                throw new ArgumentNullException(nameof(policy));
+            }
+
+            if (policy.Handle == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException(nameof(policy));
+            }
+
+            ValidatePlayerState(PlayerState.Idle);
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.SetAudioPolicyInfo(_handle, policy.Handle),
+                "Failed to set the audio stream policy to the player");
+        }
+        #endregion
+
+        #region Callback registrations
+        private void RegisterSubtitleUpdatedCallback()
+        {
+            _subtitleUpdatedCallback = (duration, text, _) =>
+            {
+                SubtitleUpdated?.Invoke(this, new SubtitleUpdatedEventArgs(duration, text));
+            };
+
+            int ret = Interop.Player.SetSubtitleUpdatedCb(_handle, _subtitleUpdatedCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the player");
+        }
+
+        private void RegisterPlaybackCompletedCallback()
+        {
+            _playbackCompletedCallback = _ =>
+            {
+                PlaybackCompleted?.Invoke(this, EventArgs.Empty);
+            };
+            int ret = Interop.Player.SetCompletedCb(_handle, _playbackCompletedCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackCompleted");
+        }
+
+        private void RegisterPlaybackInterruptedCallback()
+        {
+            _playbackInterruptedCallback = (code, _) =>
+            {
+                if (!Enum.IsDefined(typeof(PlaybackIntrruptionReason), code))
+                {
+                    return;
+                }
+
+                PlaybackInterrupted?.Invoke(this,
+                    new PlaybackInterruptedEventArgs((PlaybackIntrruptionReason)code));
+            };
+            int ret = Interop.Player.SetInterruptedCb(_handle, _playbackInterruptedCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackInterrupted");
+        }
+
+        private void RegisterErrorOccuuredCallback()
+        {
+            _playbackErrorCallback = (code, _) =>
+            {
+                if (!Enum.IsDefined(typeof(PlayerError), code))
+                {
+                    return;
+                }
+                //TODO handle service disconnected error.
+
+                ErrorOccurred?.Invoke(this, new PlayerErrorOccurredEventArgs((PlayerError)code));
+            };
+            int ret = Interop.Player.SetErrorCb(_handle, _playbackErrorCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Setting PlaybackError callback failed");
+        }
+
+        private void RegisterVideoFrameDecodedCallback()
+        {
+            _videoFrameDecodedCallback = (packetHandle,_) =>
+            {
+                var handler = VideoFrameDecoded;
+                if (handler != null)
+                {
+                    handler.Invoke(this,
+                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            int ret = Interop.Player.SetVideoFrameDecodedCb(_handle, _videoFrameDecodedCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to register the VideoFrameDecoded");
+        }
+
+        private void RegisterVideoStreamChangedCallback()
+        {
+            ValidatePlayerState(PlayerState.Idle);
+
+            _videoStreamChangedCallback = (width, height, fps, bitrate, _) =>
+            {
+                VideoStreamChangedEventArgs eventArgs = new VideoStreamChangedEventArgs(height, width, fps, bitrate);
+                VideoStreamChanged?.Invoke(this, eventArgs);
+            };
+            int ret = Interop.Player.SetVideoStreamChangedCb(GetHandle(), _videoStreamChangedCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the video stream changed callback");
+        }
+
+        private void RegisterBufferingCallback()
+        {
+            _bufferingProgressCallback = (percent, _) =>
+            {
+                Log.Debug(nameof(Player), $"Buffering callback with percent { percent }");
+                BufferingProgressChanged?.Invoke(this, new BufferingProgressChangedEventArgs(percent));
+            };
+
+            int ret = Interop.Player.SetBufferingCb(_handle, _bufferingProgressCallback, IntPtr.Zero);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to set BufferingProgress");
+        }
+
+        private void RegisterMediaStreamBufferStatusCallback()
+        {
+            _mediaStreamAudioBufferStatusChangedCallback = (status, _) =>
+            {
+                Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
+
+                MediaStreamAudioBufferStatusChanged?.Invoke(this,
+                    new MediaStreamBufferStatusChangedEventArgs((MediaStreamBufferStatus)status));
+            };
+            _mediaStreamVideoBufferStatusChangedCallback = (status, _) =>
+            {
+                Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
+
+                MediaStreamVideoBufferStatusChanged?.Invoke(this,
+                    new MediaStreamBufferStatusChangedEventArgs((MediaStreamBufferStatus)status));
+            };
+
+            RegisterMediaStreamBufferStatusCallback(StreamType.Audio, _mediaStreamAudioBufferStatusChangedCallback);
+            RegisterMediaStreamBufferStatusCallback(StreamType.Video, _mediaStreamVideoBufferStatusChangedCallback);
+        }
+
+        private void RegisterMediaStreamBufferStatusCallback(StreamType streamType,
+            Interop.Player.MediaStreamBufferStatusCallback cb)
+        {
+            int ret = Interop.Player.SetMediaStreamBufferStatusCb(_handle, (int)streamType,
+              cb, IntPtr.Zero);
+
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the player");
+        }
+
+        private void RegisterMediaStreamSeekCallback()
+        {
+            _mediaStreamAudioSeekCallback = (offset, _) =>
+            {
+                MediaStreamAudioSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
+            };
+            _mediaStreamVideoSeekCallback = (offset, _) =>
+            {
+                MediaStreamVideoSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
+            };
+
+            RegisterMediaStreamSeekCallback(StreamType.Audio, _mediaStreamAudioSeekCallback);
+            RegisterMediaStreamSeekCallback(StreamType.Video, _mediaStreamVideoSeekCallback);
+        }
+
+        private void RegisterMediaStreamSeekCallback(StreamType streamType, Interop.Player.MediaStreamSeekCallback cb)
+        {
+            int ret = Interop.Player.SetMediaStreamSeekCb(_handle, (int)streamType,
+                cb, IntPtr.Zero);
+
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the player");
+        }
+        #endregion
+
+        #region Preparing state
+
+        private int _isPreparing;
+
+        private bool IsPreparing()
+        {
+            return Interlocked.CompareExchange(ref _isPreparing, 1, 1) == 1;
+        }
+
+        private void SetPreparing()
+        {
+            Interlocked.Exchange(ref _isPreparing, 1);
+        }
+
+        private void ClearPreparing()
+        {
+            Interlocked.Exchange(ref _isPreparing, 0);
+        }
+        #endregion
     }
 }

@@ -16,8 +16,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Tizen.Applications;
 
 namespace Tizen.Multimedia.MediaController
 {
@@ -43,8 +44,8 @@ namespace Tizen.Multimedia.MediaController
 		private Interop.MediaControllerClient.ShuffleModeUpdatedCallback _shufflemodeUpdatedCallback;
 		private EventHandler<RepeatModeUpdatedEventArgs> _repeatmodeUpdated;
 		private Interop.MediaControllerClient.RepeatModeUpdatedCallback _repeatmodeUpdatedCallback;
-		private EventHandler<CommandReplyEventArgs> _commandReply;
-		private Interop.MediaControllerClient.CommandReplyRecievedCallback _commandReplyCallback;
+		private EventHandler<CustomCommandReplyEventArgs> _customcommandReply;
+		private Interop.MediaControllerClient.CommandReplyRecievedCallback _customcommandReplyCallback;
 
 		public MediaControllerClient ()
 		{
@@ -202,27 +203,29 @@ namespace Tizen.Multimedia.MediaController
 		/// <summary>
 		/// CommandReply event is raised when reply for command is recieved
 		/// </summary>
-		public event EventHandler<CommandReplyEventArgs> CommandReply
+		public event EventHandler<CustomCommandReplyEventArgs> CustomCommandReply
 		{
 			add
 			{
-				if(_commandReply == null)
+				if(_customcommandReply == null)
 				{
-					_commandReplyCallback = (string serverName, int result, IntPtr bundle, IntPtr userData) =>
+					_customcommandReplyCallback = (string serverName, int result, IntPtr bundle, IntPtr userData) =>
 					{
-						CommandReplyEventArgs eventArgs = new CommandReplyEventArgs(serverName, result, bundle, userData);
-						_commandReply?.Invoke(this, eventArgs);
+						SafeBundleHandle bundleHandle = new SafeBundleHandle(bundle, true);
+						Applications.Bundle _bundle = new Bundle(bundleHandle);
+						CustomCommandReplyEventArgs eventArgs = new CustomCommandReplyEventArgs(serverName, result, _bundle);
+						_customcommandReply?.Invoke(this, eventArgs);
 					};
 				}
-				_commandReply += value;
+				_customcommandReply += value;
 
 			}
 			remove
 			{
-				_commandReply -= value;
-				if(_commandReply == null)
+				_customcommandReply -= value;
+				if(_customcommandReply == null)
 				{
-					_commandReplyCallback = null;
+					_customcommandReplyCallback = null;
 				}
 			}
 		}
@@ -242,14 +245,14 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Latest server failed");
 			}
 
-			ServerInformation _serverInfo = new ServerInformation (_name, (ServerState)_state);
+			ServerInformation _serverInfo = new ServerInformation (_name, (MediaControllerServerState)_state);
 			return _serverInfo;
 		}
 
 		/// <summary>
 		/// gets playback information for specific server </summary>
 		/// <param name="serverName"> Server Name  </param>
-		public Playback GetPlayback(String serverName)
+		public MediaControllerPlayback GetPlayback(String serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			IntPtr _playbackHandle = IntPtr.Zero;
@@ -261,14 +264,14 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
 			}
 
-			Playback _playback = new Playback (_playbackHandle);
+			MediaControllerPlayback _playback = new MediaControllerPlayback (_playbackHandle);
 			return _playback;
 		}
 
 		/// <summary>
 		/// gets metadata information for specific server </summary>
 		/// <param name="serverName"> Server Name  </param>
-		public Metadata GetMetadata(String serverName)
+		public MediaControllerMetadata GetMetadata(String serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			IntPtr _metadataHandle = IntPtr.Zero;
@@ -280,14 +283,14 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
 			}
 
-			Metadata _metadata = new Metadata (_metadataHandle);
+			MediaControllerMetadata _metadata = new MediaControllerMetadata (_metadataHandle);
 			return _metadata;
 		}
 
 		/// <summary>
 		/// gets shuffle mode for specific server </summary>
 		/// <param name="serverName"> Server Name  </param>
-		public ShuffleMode GetShuffleMode(String serverName)
+		public MediaControllerShuffleMode GetShuffleMode(String serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			int _shuffleMode;
@@ -298,13 +301,13 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
 			}
 
-			return (ShuffleMode)_shuffleMode;
+			return (MediaControllerShuffleMode)_shuffleMode;
 		}
 
 		/// <summary>
 		/// gets repeat mode for specific server </summary>
 		/// <param name="serverName"> Server Name  </param>
-		public RepeatMode GetRepeatMode(String serverName)
+		public MediaControllerRepeatMode GetRepeatMode(String serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			int _repeatMode;
@@ -315,14 +318,14 @@ namespace Tizen.Multimedia.MediaController
 				MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
 			}
 
-			return (RepeatMode)_repeatMode;
+			return (MediaControllerRepeatMode)_repeatMode;
 		}
 
 		/// <summary>
 		/// Send command of playback state to server application </summary>
 		/// <param name="serverName"> Server Name  </param>
 		/// <param name="state"> Playback State  </param>
-		public void SendPlaybackStateCommand(string serverName, PlaybackState state)
+		public void SendPlaybackStateCommand(string serverName, MediaControllerPlaybackState state)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			res = (MediaControllerError)Interop.MediaControllerClient.SendPlaybackStateCommand(_handle, serverName, (int)state);
@@ -339,14 +342,10 @@ namespace Tizen.Multimedia.MediaController
 		/// <param name="command"> Command  </param>
 		/// <param name="bundle"> Bundle data  </param>
 		/// <param name="userData"> User Data  </param>
-		public void SendCustomCommand(string serverName, string command, IntPtr bundle, IntPtr userData)
+		public void SendCustomCommand(string serverName, string command, Bundle bundle)
 		{
 			MediaControllerError res = MediaControllerError.None;
-			if (_commandReply == null) {
-				res = (MediaControllerError)Interop.MediaControllerClient.SendCustomCommand(_handle, serverName, command, bundle, _commandReplyCallback, IntPtr.Zero);
-			} else {
-				res = (MediaControllerError)Interop.MediaControllerClient.SendCustomCommand(_handle, serverName, command, bundle, _commandReplyCallback, userData);
-			}
+			res = (MediaControllerError)Interop.MediaControllerClient.SendCustomCommand(_handle, serverName, command, bundle.SafeBundleHandle, _customcommandReplyCallback, IntPtr.Zero);
 			if(res != MediaControllerError.None)
 			{
 				Log.Error(MediaControllerLog.LogTag, "Send custom command failed" + res);
@@ -358,7 +357,7 @@ namespace Tizen.Multimedia.MediaController
 		/// Subscribe subscription type from specific server application </summary>
 		/// <param name="type"> Subscription Type  </param>
 		/// <param name="serverName"> Server Name  </param>
-		public void Subscribe(SubscriptionType type, string serverName)
+		public void Subscribe(MediaControllerSubscriptionType type, string serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			res = (MediaControllerError)Interop.MediaControllerClient.Subscribe(_handle, (int)type, serverName);
@@ -373,7 +372,7 @@ namespace Tizen.Multimedia.MediaController
 		/// Subscribe subscription type from specific server application </summary>
 		/// <param name="type"> Subscription Type  </param>
 		/// <param name="serverName"> Server Name  </param>
-		public void Unsubscribe(SubscriptionType type, string serverName)
+		public void Unsubscribe(MediaControllerSubscriptionType type, string serverName)
 		{
 			MediaControllerError res = MediaControllerError.None;
 			res = (MediaControllerError)Interop.MediaControllerClient.Unsubscribe(_handle, (int)type, serverName);
@@ -399,7 +398,7 @@ namespace Tizen.Multimedia.MediaController
 		/// <summary>
 		/// gets subscribed server list </summary>
 		/// <param name="subscriptionType"> Subscription Type  </param>
-		public Task<IEnumerable<string>> GetSubscribedServerList(SubscriptionType subscriptionType)
+		public Task<IEnumerable<string>> GetSubscribedServerList(MediaControllerSubscriptionType subscriptionType)
 		{
 			var task = new TaskCompletionSource<IEnumerable<string>>();
 
@@ -413,7 +412,7 @@ namespace Tizen.Multimedia.MediaController
 		{
 			_serverUpdatedCallback = (string serverName, int serverState, IntPtr userData) =>
 			{
-				ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(serverName, (ServerState)serverState, userData);
+				ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(serverName, (MediaControllerServerState)serverState);
 				_serverUpdated?.Invoke(this, eventArgs);
 			};
 			Interop.MediaControllerClient.SetServerUpdatedCb(_handle, _serverUpdatedCallback, IntPtr.Zero);
@@ -428,7 +427,7 @@ namespace Tizen.Multimedia.MediaController
 		{
 			_playbackUpdatedCallback = (string serverName, IntPtr playback, IntPtr userData) =>
 			{
-				PlaybackUpdatedEventArgs eventArgs = new PlaybackUpdatedEventArgs(serverName, playback, userData);
+				PlaybackUpdatedEventArgs eventArgs = new PlaybackUpdatedEventArgs(serverName, playback);
 				_playbackUpdated?.Invoke(this, eventArgs);
 			};
 			Interop.MediaControllerClient.SetPlaybackUpdatedCb(_handle, _playbackUpdatedCallback, IntPtr.Zero);
@@ -443,7 +442,7 @@ namespace Tizen.Multimedia.MediaController
 		{
 			_metadataUpdatedCallback = (string serverName, IntPtr metadata, IntPtr userData) =>
 			{
-				MetadataUpdatedEventArgs eventArgs = new MetadataUpdatedEventArgs(serverName, metadata, userData);
+				MetadataUpdatedEventArgs eventArgs = new MetadataUpdatedEventArgs(serverName, metadata);
 				_metadataUpdated?.Invoke(this, eventArgs);
 			};
 			Interop.MediaControllerClient.SetMetadataUpdatedCb(_handle, _metadataUpdatedCallback, IntPtr.Zero);
@@ -459,7 +458,7 @@ namespace Tizen.Multimedia.MediaController
 			MediaControllerError res = MediaControllerError.None;
 			_shufflemodeUpdatedCallback = (string serverName, int shuffleMode, IntPtr userData) =>
 			{
-				ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(serverName, (ShuffleMode)shuffleMode, userData);
+				ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(serverName, (MediaControllerShuffleMode)shuffleMode);
 				_shufflemodeUpdated?.Invoke(this, eventArgs);
 			};
 			res = (MediaControllerError)Interop.MediaControllerClient.SetShuffleModeUpdatedCb(_handle, _shufflemodeUpdatedCallback, IntPtr.Zero);
@@ -480,7 +479,7 @@ namespace Tizen.Multimedia.MediaController
 			MediaControllerError res = MediaControllerError.None;
 			_repeatmodeUpdatedCallback = (string serverName, int repeatMode, IntPtr userData) =>
 			{
-				RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(serverName, (RepeatMode)repeatMode, userData);
+				RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(serverName, (MediaControllerRepeatMode)repeatMode);
 				_repeatmodeUpdated?.Invoke(this, eventArgs);
 			};
 			res = (MediaControllerError)Interop.MediaControllerClient.SetRepeatModeUpdatedCb(_handle, _repeatmodeUpdatedCallback, IntPtr.Zero);

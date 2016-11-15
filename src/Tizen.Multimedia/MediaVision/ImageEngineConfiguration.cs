@@ -49,7 +49,7 @@ namespace Tizen.Multimedia
         private int _imageTrackingHistoryAmountValue = 3;
         private double _imageTrackingExpectedOffsetValue = 0;
         private bool _imageTrackingUseStabilizationValue = true;
-        private double _imageTrackingStabilizationTolerantShiftValue;
+        private double _imageTrackingStabilizationTolerantShiftValue = 0.00006;
         private double _imageTrackingStabilizationSpeedValue = 0.3;
         private double _imageTrackingStabilizationAccelarationValue = 0.1;
 
@@ -62,6 +62,19 @@ namespace Tizen.Multimedia
         public ImageEngineConfiguration()
             : base()
         {
+            ObjectScaleFactor = _imageRecognitionObjectScaleFactorValue;
+            ObjectMaxKeyPoints = _imageRecognitionObjectMaxKeypointsValue;
+            SceneScaleFactor = _imageRecognitionSceneScaleFactorValue;
+            SceneMaxKeyPoints = _imageRecognitionSceneMaxKeypointsValue;
+            MinKeyPointsMatches = _imageRecognitionMinKeypointsMatchValue;
+            RequiredMatchingPart = _imageRecognitionReqMatchPartValue;
+            TolerantPartMatchingError = _imageRecognitionTolerantPartMatchingErrorValue;
+            TrackingHistoryAmount = _imageTrackingHistoryAmountValue;
+            ExpectedTrackingOffset = _imageTrackingExpectedOffsetValue;
+            UseTrackingStabilization = _imageTrackingUseStabilizationValue;
+            TrackingStabilizationTolerantShift = _imageTrackingStabilizationTolerantShiftValue;
+            TrackingStabilizationSpeed = _imageTrackingStabilizationSpeedValue;
+            TrackingStabilizationAccelaration = _imageTrackingStabilizationAccelarationValue;
         }
 
         /// <summary>

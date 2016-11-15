@@ -13,31 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 using System;
-using System.Diagnostics;
 
-namespace Tizen.Multimedia.MediaCodec
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaCodec.InputProcessed"/> event.
+    /// Provides data for the <see cref="Player.ErrorOccurred"/> event.
     /// </summary>
-    public class InputProcessedEventArgs : EventArgs
+    public class PlayerErrorOccurredEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the InputProcessedEventArgs class.
+        /// Initialize a new instance of the PlayerErrorOccurredEventArgs class.
         /// </summary>
-        /// <param name="packet">The packet that the codec has processed.</param>
-        internal InputProcessedEventArgs(MediaPacket packet)
+        /// <param name="error">The value indicating what kind of error occurred.</param>
+        public PlayerErrorOccurredEventArgs(PlayerError error)
         {
-            Debug.Assert(packet != null);
-
-            Packet = packet;
+            Error = error;
         }
 
         /// <summary>
-        /// Gets the packet that the codec has processed.
+        /// Gets the error.
         /// </summary>
-        public MediaPacket Packet { get; }
+        public PlayerError Error { get; }
+
+        public override string ToString()
+        {
+            return $"Error : { Error }";
+        }
     }
 }

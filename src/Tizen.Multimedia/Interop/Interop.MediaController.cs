@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
 internal static partial class Interop
 {
@@ -21,7 +22,7 @@ internal static partial class Interop
 		internal delegate void RepeatModeUpdatedCallback(string serverName, int repeatMode, IntPtr userData);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		internal delegate void CommandReplyRecievedCallback(string serverName, int result, IntPtr bundleData, IntPtr userData);
+		internal delegate void CommandReplyRecievedCallback(string serverName, int result, IntPtr bundle, IntPtr userData);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate bool SubscribedServerCallback(string serverName, IntPtr userData);
@@ -105,7 +106,7 @@ internal static partial class Interop
 		internal static extern int SendPlaybackStateCommand(IntPtr handle, string serverName, int state);
 
 		[DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_custom_command")]
-		internal static extern int SendCustomCommand(IntPtr handle, string serverName, string command, IntPtr bundle, CommandReplyRecievedCallback callback, IntPtr userData);
+		internal static extern int SendCustomCommand(IntPtr handle, string serverName, string command, SafeBundleHandle bundle, CommandReplyRecievedCallback callback, IntPtr userData);
 
 		[DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server_subscribed")]
 		internal static extern int ForeachSubscribedServer(IntPtr handle, int subscriptionType, SubscribedServerCallback callback, IntPtr userData);
@@ -120,7 +121,7 @@ internal static partial class Interop
 		internal delegate void PlaybackStateCommandRecievedCallback(string clientName, int state, IntPtr userData);
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		internal delegate void CustomCommandRecievedCallback(string clientName, string command, IntPtr bundleData, IntPtr userData);
+		internal delegate void CustomCommandRecievedCallback(string clientName, string command, IntPtr bundle, IntPtr userData);
 
 		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
 		internal static extern int Create(out IntPtr handle);
@@ -155,13 +156,13 @@ internal static partial class Interop
 		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
 		internal static extern int UnsetPlaybackStateCmdRecvCb(IntPtr handle);
 
-		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_custom_command_received_cb ")]
+		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_custom_command_received_cb")]
 		internal static extern int SetCustomCmdRecvCb(IntPtr handle, CustomCommandRecievedCallback callback, IntPtr userData);
 
-		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_custom_command_received_cb ")]
+		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_custom_command_received_cb")]
 		internal static extern int UnsetCustomCmdRecvCb(IntPtr handle);
 
-		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_command_reply ")]
-		internal static extern int SendCommandReply(IntPtr handle, string clientName, int result, IntPtr bundleData);
+		[DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_command_reply")]
+		internal static extern int SendCommandReply(IntPtr handle, string clientName, int result, SafeBundleHandle bundle);
 	}
 }

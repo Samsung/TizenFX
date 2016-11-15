@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The mp4 type.
         /// </summary>
-        Mp4,
+        MP4,
 
         /// <summary>
         /// The 3gp type.

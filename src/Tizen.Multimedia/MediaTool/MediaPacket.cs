@@ -36,7 +36,6 @@ namespace Tizen.Multimedia
         /// <exception cref="System.ArgumentNullException">format is null.</exception>
         /// <exception cref="System.ArgumentException">
         ///     <see cref="MediaFormatType"/> of the specified format is <see cref="MediaFormatType.Container"/>.</exception>
-        /// <exception cref="NotEnoughMemoryException">Out of memory.</exception>
         /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
         internal MediaPacket(MediaFormat format)
         {
@@ -62,10 +61,10 @@ namespace Tizen.Multimedia
         {
             _handle = handle;
 
-            IntPtr formatHandle = IntPtr.Zero;
+            IntPtr formatHandle;
             int ret = Interop.MediaPacket.GetFormat(handle, out formatHandle);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             try
             {
@@ -89,23 +88,22 @@ namespace Tizen.Multimedia
         /// Creates and initializes a native handle for the current object.
         /// </summary>
         /// <param name="format">The format to be set to the media format.</param>
-        /// <exception cref="NotEnoughMemoryException">Out of memory.</exception>
         /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
         private void Initialize(MediaFormat format)
         {
-            IntPtr formatHandle = IntPtr.Zero;
-
             if (format.Type == MediaFormatType.Container)
             {
                 throw new ArgumentException("Creating a packet for container is not supported.");
             }
+
+            IntPtr formatHandle = IntPtr.Zero;
 
             try
             {
                 formatHandle = format.AsNativeHandle();
 
                 int ret = Interop.MediaPacket.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(_handle != IntPtr.Zero, "Created handle must not be null");
 
@@ -133,7 +131,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Allocates internal buffer.
         /// </summary>
-        /// <exception cref="NotEnoughMemoryException">Out of memory.</exception>
         /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
         private void Alloc()
         {
@@ -146,7 +143,7 @@ namespace Tizen.Multimedia
             switch (ret)
             {
                 case ErrorCode.OutOfMemory:
-                    throw new NotEnoughMemoryException("Failed to allocate buffer for the packet.");
+                    throw new OutOfMemoryException("Failed to allocate buffer for the packet.");
 
                 default:
                     throw new InvalidOperationException("Failed to create a packet.");
@@ -183,7 +180,7 @@ namespace Tizen.Multimedia
                 ulong value = 0;
                 int ret = Interop.MediaPacket.GetPts(_handle, out value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 return value;
             }
@@ -194,7 +191,7 @@ namespace Tizen.Multimedia
 
                 int ret = Interop.MediaPacket.SetPts(_handle, value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -213,7 +210,7 @@ namespace Tizen.Multimedia
                 ulong value = 0;
                 int ret = Interop.MediaPacket.GetDts(_handle, out value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 return value;
             }
@@ -224,7 +221,7 @@ namespace Tizen.Multimedia
 
                 int ret = Interop.MediaPacket.SetDts(_handle, value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -242,7 +239,7 @@ namespace Tizen.Multimedia
                 bool value = false;
                 int ret = Interop.MediaPacket.IsEncoded(_handle, out value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 return value;
             }
@@ -297,7 +294,7 @@ namespace Tizen.Multimedia
 
                 ulong value = 0;
                 int ret = Interop.MediaPacket.GetBufferSize(_handle, out value);
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(value < int.MaxValue);
 
@@ -322,7 +319,7 @@ namespace Tizen.Multimedia
                 }
 
                 int ret = Interop.MediaPacket.SetBufferSize(_handle, (ulong)value);
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -373,7 +370,7 @@ namespace Tizen.Multimedia
 
                 int ret = Interop.MediaPacket.GetBufferFlags(_handle, out value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 return (MediaPacketBufferFlags)value;
             }
@@ -385,11 +382,11 @@ namespace Tizen.Multimedia
 
                 int ret = Interop.MediaPacket.ResetBufferFlags(_handle);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 ret = Interop.MediaPacket.SetBufferFlags(_handle, (int)value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -520,7 +517,7 @@ namespace Tizen.Multimedia
             uint numberOfPlanes = 0;
             int ret = Interop.MediaPacket.GetNumberOfVideoPlanes(_handle, out numberOfPlanes);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             MediaPacketVideoPlane[] planes = new MediaPacketVideoPlane[numberOfPlanes];
 
@@ -540,16 +537,16 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
-            IntPtr dataHandle = IntPtr.Zero;
+            IntPtr dataHandle;
 
             int ret = Interop.MediaPacket.GetBufferData(_handle, out dataHandle);
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
 
             int size = 0;
             ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out size);
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             return new MediaPacketBuffer(this, dataHandle, size);
         }
@@ -637,16 +634,16 @@ namespace Tizen.Multimedia
             {
                 int ret = Interop.MediaPacket.SetExtra(_packet._handle, ptr);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
             }
 
             private static IntPtr GetExtra(IntPtr handle)
             {
-                IntPtr value = IntPtr.Zero;
+                IntPtr value;
 
                 int ret = Interop.MediaPacket.GetExtra(handle, out value);
 
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 return value;
             }

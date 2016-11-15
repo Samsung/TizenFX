@@ -51,27 +51,35 @@ namespace Tizen.Multimedia
 
         internal void Add<T>(string key, T value)
         {
-            int ret = 0;
             object val = (object)value;
-            if (typeof(T) == typeof(double))
-            {
-                ret = Interop.MediaVision.EngineConfig.SetDouble(_engineHandle, key, (double)val);
-            }
-            else if (typeof(T) == typeof(int))
-            {
-                ret = Interop.MediaVision.EngineConfig.SetInt(_engineHandle, key, (int)val);
-            }
-            else if (typeof(T) == typeof(bool))
-            {
-                ret = Interop.MediaVision.EngineConfig.SetBool(_engineHandle, key, (bool)val);
-            }
-            else if (typeof(T) == typeof(string))
-            {
-                ret = Interop.MediaVision.EngineConfig.SetString(_engineHandle, key, (string)val);
-            }
 
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to add attribute");
-            _config.Add(key, val);
+            if (!_config.ContainsKey(key))
+            {
+                _config.Add(key, val);
+            }
+            else
+            {
+                int ret = 0;
+                if (typeof(T) == typeof(double))
+                {
+                    ret = Interop.MediaVision.EngineConfig.SetDouble(_engineHandle, key, (double)val);
+                }
+                else if (typeof(T) == typeof(int))
+                {
+                    ret = Interop.MediaVision.EngineConfig.SetInt(_engineHandle, key, (int)val);
+                }
+                else if (typeof(T) == typeof(bool))
+                {
+                    ret = Interop.MediaVision.EngineConfig.SetBool(_engineHandle, key, (bool)val);
+                }
+                else if (typeof(T) == typeof(string))
+                {
+                    ret = Interop.MediaVision.EngineConfig.SetString(_engineHandle, key, (string)val);
+                }
+
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to add attribute");
+                _config[key] = val;
+            }
         }
 
         internal object Get(string key)
@@ -87,19 +95,12 @@ namespace Tizen.Multimedia
             }
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object.
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
-        /// </summary>
-        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

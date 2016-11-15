@@ -24,22 +24,14 @@ namespace Tizen.Multimedia.MediaCodec
     /// <remarks>The output packet needs to be disposed after it is used to clean up unmanaged resources.</remarks>
     public class OutputAvailableEventArgs : EventArgs
     {
-        private readonly MediaPacket _packet;
-
         internal OutputAvailableEventArgs(IntPtr packetHandle)
         {
-            _packet = MediaPacket.From(packetHandle);
+            Packet = MediaPacket.From(packetHandle);
         }
 
         /// <summary>
         /// Gets the result packet.
         /// </summary>
-        public MediaPacket Packet
-        {
-            get
-            {
-                return _packet;
-            }
-        }
+        public MediaPacket Packet { get; }
     }
 }

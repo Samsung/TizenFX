@@ -14,32 +14,17 @@
 * limitations under the License.
 */
 
-
-
 using System;
 
-namespace Tizen.Multimedia.MediaController
+namespace Tizen.Multimedia
 {
-	/// <summary>
-	/// ServerInformation represents a name and state of server application.
-	/// </summary>
-	public class ServerInformation
-	{
-		internal ServerInformation(string _name, MediaControllerServerState _state)
-		{
-			Name = _name;
-			State = _state;
-		}
+    public class AudioPlaybackBufferAvailableEventArgs : EventArgs
+    {
+        internal AudioPlaybackBufferAvailableEventArgs(int length)
+        {
+            Length = length;
+        }
 
-		/// <summary>
-		/// The name of server
-		/// </summary>
-		public readonly string Name;
-
-		/// <summary>
-		/// The state of server
-		/// </summary>
-		public readonly MediaControllerServerState State;
-	}
+        public int Length { get; }
+    }
 }
-

@@ -1,28 +1,44 @@
-﻿/// Mediasource
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
-
-using System;
-
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The MediaSource class used to set source to the player.
+    /// MediaSource is a base class for <see cref="Player"/> sources.
     /// </summary>
-    /// <remarks>
-    /// This is abstract class. Actual source classes
-    /// should inherit this class.
-    /// </remarks>
     public abstract class MediaSource
     {
+        internal MediaSource()
+        {
+        }
+
+        internal void AttachTo(Player player)
+        {
+            OnAttached(player);
+        }
+
+        internal void DetachFrom(Player player)
+        {
+            OnDetached(player);
+        }
+
+        internal abstract void OnAttached(Player player);
+
+        internal virtual void OnDetached(Player player)
+        {
+        }
     }
 }
 

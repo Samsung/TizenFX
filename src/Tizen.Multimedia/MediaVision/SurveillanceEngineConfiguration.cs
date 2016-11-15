@@ -39,6 +39,9 @@ namespace Tizen.Multimedia
         public SurveillanceEngineConfiguration()
             : base()
         {
+            FaceRecognitionModelFilePath = _faceRecognitionModelFilePathValue;
+            MovementDetectionThreshold = _movementDetectionThresholdValue;
+            SkipFramesCount = _skipFramesCountValue;
         }
 
         /// <summary>

@@ -188,19 +188,12 @@ namespace Tizen.Multimedia
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to learn");
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object.
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
-        /// </summary>
-        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

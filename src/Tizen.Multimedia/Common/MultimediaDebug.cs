@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-using System;
+using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
-    /// <summary>
-    /// The exception that is thrown when there is no memory to allocate a new buffer for the packet.
-    /// </summary>
-    public class NotEnoughMemoryException : Exception
+    internal class MultimediaDebug
     {
-        /// <summary>
-        /// Initializes a new instance of the NotEnoughMemoryException class with a specified error message.
-        /// </summary>
-        /// <param name="message">Error description.</param>
-        public NotEnoughMemoryException(string message) : base(message)
+        [Conditional("DEBUG")]
+        internal static void AssertNoError(int errorCode)
         {
+            Debug.Assert(errorCode == (int)Internals.Errors.ErrorCode.None,
+                $"The API is supposed not to return an error! But it returns error({ errorCode }).",
+                "Implementation of core may have been changed, modify the call to throw if the return code is not ok.");
         }
     }
 }

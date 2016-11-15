@@ -13,21 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 using System;
 
-namespace Tizen.Multimedia.MediaCodec
+namespace Tizen.Multimedia
 {
+
     /// <summary>
-    /// Provides data for the <see cref="MediaCodec.EosReached"/> event.
+    /// Provides data for the <see cref="MediaStreamConfiguration.BufferStatusChanged"/> event.
     /// </summary>
-    public class EosReachedEventArgs : EventArgs
+    public class MediaStreamBufferStatusChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the EosReachedEventArgs class.
+        /// Initialize a new instance of the MediaStreamBufferStatusChangedEventArgs class.
         /// </summary>
-        public EosReachedEventArgs()
+        /// <param name="status">The value indicating the status of the stream.</param>
+        public MediaStreamBufferStatusChangedEventArgs(MediaStreamBufferStatus status)
         {
+            Status = status;
+        }
+
+        /// <summary>
+        /// Gets the status.
+        /// </summary>
+        public MediaStreamBufferStatus Status { get; }
+
+        public override string ToString()
+        {
+            return $"Status : { Status }";
         }
     }
 }

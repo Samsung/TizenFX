@@ -39,14 +39,14 @@ namespace Tizen.Multimedia
             _packet = packet;
 
             int ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideWidth);
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideHeight);
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
-            IntPtr dataHandle = IntPtr.Zero;
+            IntPtr dataHandle;
             ret = Interop.MediaPacket.GetVideoPlaneData(packet.GetHandle(), index, out dataHandle);
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             _buffer = new MediaPacketBuffer(packet, dataHandle, _strideWidth * _strideHeight);
         }

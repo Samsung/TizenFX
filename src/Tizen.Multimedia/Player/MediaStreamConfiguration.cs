@@ -1,176 +1,172 @@
-﻿/// Media Stream configuration
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 using System;
+using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// MediaStream configuration
+    /// Provides means to configure properties and handle events for <see cref="MediaStreamSource"/>.
     /// </summary>
-    /// <remarks>
-    /// MediaStreamConfiguration class for media stream configuration.
-    /// </remarks>
-
+    /// <seealso cref="MediaStreamSource"/>
     public class MediaStreamConfiguration
     {
-		internal IntPtr _playerHandle;
-		internal StreamType _streamType;
-		#if _MEDIA_FORMAT_
-		TODO: Uncomment this when MediaFormat is implemented.
-		private EventHandler<BufferStatusEventArgs> _bufferStatusChanged;
-		private Interop.Player.BufferStatusCallback _bufferStatusChangedCallback;
-		private EventHandler<SeekOffsetEventArgs> _seekOffsetChanged;
-		private Interop.Player.SeekOffsetChangedCallback _seekOffsetChangedCallback;
-		#endif
+        private const ulong DefaultBufferMaxSize = 200000;
+        private const uint DefaultBufferMinThreshold = 0;
 
-		internal MediaStreamConfiguration()
-		{
-		}
+        private readonly MediaStreamSource _owner;
+        private readonly StreamType _streamType;
 
-		#if _MEDIA_FORMAT_
-		TODO: Uncomment this when MediaFormat is implemented.
+        private ulong _bufferMaxSize = DefaultBufferMaxSize;
+        private uint _threshold = DefaultBufferMinThreshold;
+
+        internal MediaStreamConfiguration(MediaStreamSource owner, StreamType streamType)
+        {
+            _owner = owner;
+            _streamType = streamType;
+        }
+
         /// <summary>
-        /// BufferStatusChanged event is raised when buffer underrun or overflow occurs. 
+        /// Occurs when the buffer underrun or overflow.
         /// </summary>
-        public event EventHandler<BufferStatusEventArgs> BufferStatusChanged
-		{
-			add
-			{
-				if(_bufferStatusChanged == null) {
-					RegisterBufferStatusEvent();
-				}
-				_bufferStatusChanged += value;
-			}
-			remove
-			{
-				_bufferStatusChanged -= value;
-				if(_bufferStatusChanged == null) {
-					UnregisterBufferStatusEvent();
-				}
-			}
-		}
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <seealso cref="BufferMaxSize"/>
+        /// <seealso cref="BufferMinThreshold"/>
+        public event EventHandler<MediaStreamBufferStatusChangedEventArgs> BufferStatusChanged;
 
         /// <summary>
-        /// SeekOffsetChanged event is raised when seeking occurs. 
+        /// Occurs when the seeking is requested.
         /// </summary>
-        public event EventHandler<SeekOffsetEventArgs> SeekOffsetChanged
-		{
-			add
-			{
-				if(_seekOffsetChanged == null) {
-					RegisterSeekOffsetChangedEvent();
-				}
-				_seekOffsetChanged += value;
-			}
-			remove
-			{
-				_seekOffsetChanged -= value;
-				if(_seekOffsetChanged == null) {
-					UnregisterSeekOffsetChangedEvent();
-				}
-			}
-		}
-		#endif
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        public event EventHandler<MediaStreamSeekingOccurredEventArgs> SeekingOccurred;
 
         /// <summary>
-        /// max size bytes of buffer </summary>
-        /// <value> Max size in bytes </value>
-        public ulong BufferMaxSize 
-		{ 
-			set
-			{ 
-				int ret = Interop.Player.SetMediaStreamBufferMaxSize(_playerHandle, (int)_streamType, value);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Set Buffer Max size failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException(ret, "Set Buffer Max size failed");
-				}
+        /// Gets the max size of the buffer.
+        /// </summary>
+        /// <value>The max size of the buffer. The default is 200000.</value>
+        /// <remarks>If the buffer level over the max size, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Overflow"/>.</remarks>
+        /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">value is zero.</exception>
+        /// <seealso cref="BufferStatusChanged"/>
+        public ulong BufferMaxSize
+        {
+            get
+            {
+                return _bufferMaxSize;
+            }
+            set
+            {
+                if (_owner.Player == null)
+                {
+                    throw new InvalidOperationException("The source is not assigned to a player yet.");
+                }
 
-			} 
-			get
-			{ 
-				ulong size;
-				int ret = Interop.Player.GetMediaStreamBufferMaxSize(_playerHandle, (int)_streamType, out size);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Set Buffer Max size failed" + (PlayerError)ret);
-				}
-				return size;
-			}
-		}
+                Debug.Assert(_owner.Player.IsDisposed == false);
+
+                if (value == 0UL)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "the buffer max size can't be zero.");
+                }
+
+                int ret = Interop.Player.SetMediaStreamBufferMaxSize(_owner.Player.GetHandle(), (int)_streamType, value);
+
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the buffer max size");
+
+                _bufferMaxSize = value;
+            }
+        }
 
         /// <summary>
-        /// Min threshold </summary>
-        /// <value> min threshold in percent </value>
-        public uint BufferMinThreshold 
-		{ 
-			set
-			{
-				int ret = Interop.Player.SetMediaStreamBufferMinThreshold(_playerHandle, (int)_streamType, value);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Set Buffer Min threshold failed" + (PlayerError)ret);
-					PlayerErrorFactory.ThrowException(ret, "Set Buffer Min threshold failed");
-				}
+        /// Gets the min threshold of the buffer or zero if the <see cref="MediaStreamSource"/> is not assigned to a player.
+        /// </summary>
+        /// <value>The minimum threshold of the buffer in percentage. The default is zero.</value>
+        /// <remarks>If the buffer level drops below the threshold value, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Underrun"/>.</remarks>
+        /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">value is greater than 100.</exception>
+        /// <seealso cref="BufferStatusChanged"/>
+        public uint BufferMinThreshold
+        {
+            get
+            {
+                return _threshold;
+            }
+            set
+            {
+                if (_owner.Player == null)
+                {
+                    throw new InvalidOperationException("The source is not assigned to a player yet.");
+                }
 
-			}
-			get
-			{
-				uint percent;
-				int ret = Interop.Player.GetMediaStreamBufferMinThreshold(_playerHandle, (int)_streamType, out percent);
-				if(ret != (int)PlayerError.None) 
-				{
-					Log.Error(PlayerLog.LogTag, "Get Buffer Min threshold failed" + (PlayerError)ret);
-				}
-				return percent;
-			}
-		}
+                Debug.Assert(_owner.Player.IsDisposed == false);
 
-		internal void SetHandle(IntPtr handle)
-		{
-			_playerHandle = handle;
-		}
+                if (100 < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"The threshold can't be greater than 100, but got { value }.");
+                }
 
-		#if _MEDIA_FORMAT_
-		TODO: Uncomment this when MediaFormat is implemented.
-		private void RegisterBufferStatusEvent()
-		{
-			_bufferStatusChangedCallback = (int status, IntPtr userData) =>
-			{
-				BufferStatusEventArgs eventArgs = new BufferStatusEventArgs();
-				_bufferStatusChanged?.Invoke(this, eventArgs);
-			};
-			Interop.Player.SetMediaStreamBufferStatusCb(_playerHandle, _bufferStatusChangedCallback, IntPtr.Zero);
-		}
+                int ret = Interop.Player.SetMediaStreamBufferMinThreshold(_owner.Player.GetHandle(), (int)_streamType, value);
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the buffer minimum threshold");
 
-		private void UnregisterBufferStatusEvent()
-		{
-			Interop.Player.UnsetMediaStreamBufferStatusCb(_playerHandle);
-		}
+                _threshold = value;
+            }
+        }
 
-		private void RegisterSeekOffsetChangedEvent()
-		{
-			_seekOffsetChangedCallback = (UInt64 offset, IntPtr userData) =>
-			{
-				SeekOffsetEventArgs eventArgs = new SeekOffsetEventArgs();
-				_seekOffsetChanged?.Invoke(this, eventArgs);
-			};
-			Interop.Player.SetMediaStreamSeekCb(_playerHandle, _seekOffsetChangedCallback, IntPtr.Zero);
-		}
+        internal void OnPlayerSet(Player player)
+        {
+            if (_streamType == StreamType.Audio)
+            {
+                player.MediaStreamAudioSeekingOccurred += MediaStreamSeekingOccurred;
+                player.MediaStreamAudioBufferStatusChanged += MediaStreamBufferStatusChanged;
+            }
+            else
+            {
+                player.MediaStreamVideoSeekingOccurred += MediaStreamSeekingOccurred;
+                player.MediaStreamVideoBufferStatusChanged += MediaStreamBufferStatusChanged;
+            }
 
-		private void UnregisterSeekOffsetChangedEvent()
-		{
-			Interop.Player.UnsetMediaStreamSeekCb(_playerHandle);
-		}
-		#endif
+            int ret = Interop.Player.SetMediaStreamBufferMaxSize(player.GetHandle(), (int)_streamType, _bufferMaxSize);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the media stream configuration");
 
+            ret = Interop.Player.SetMediaStreamBufferMinThreshold(player.GetHandle(), (int)_streamType, _threshold);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the media stream configuration");
+        }
+
+        internal void OnPlayerUnset(Player player)
+        {
+            if (_streamType == StreamType.Audio)
+            {
+                player.MediaStreamAudioSeekingOccurred -= MediaStreamSeekingOccurred;
+                player.MediaStreamAudioBufferStatusChanged -= MediaStreamBufferStatusChanged;
+            }
+            else
+            {
+                player.MediaStreamVideoSeekingOccurred -= MediaStreamSeekingOccurred;
+                player.MediaStreamVideoBufferStatusChanged -= MediaStreamBufferStatusChanged;
+            }
+        }
+
+        private void MediaStreamBufferStatusChanged(object sender, MediaStreamBufferStatusChangedEventArgs e)
+        {
+            BufferStatusChanged?.Invoke(this, e);
+        }
+
+        private void MediaStreamSeekingOccurred(object sender, MediaStreamSeekingOccurredEventArgs e)
+        {
+            SeekingOccurred?.Invoke(this, e);
+        }
     }
 }

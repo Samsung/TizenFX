@@ -16,6 +16,7 @@
 
 
 using System;
+using Tizen.Applications;
 
 namespace Tizen.Multimedia.MediaController
 {
@@ -26,19 +27,17 @@ namespace Tizen.Multimedia.MediaController
 	/// <remarks>
 	/// CustomCommandRecieved event arguments
 	/// </remarks>
-	public class CommandReplyEventArgs : EventArgs
+	public class CustomCommandReplyEventArgs : EventArgs
 	{
 		internal string _serverName;
 		internal int _result;
-		internal IntPtr _bundle;
-		internal IntPtr _userData;
+		internal Bundle _bundle;
 
-		public CommandReplyEventArgs (string serverName, int result, IntPtr bundle, IntPtr userData)
+		public CustomCommandReplyEventArgs (string serverName, int result, Bundle bundle)
 		{
 			_serverName = serverName;
 			_result = result;
 			_bundle = bundle;
-			_userData = userData;
 		}
 
 		/// <summary>
@@ -69,23 +68,11 @@ namespace Tizen.Multimedia.MediaController
 		/// Get bundle data.
 		/// </summary>
 		/// <value> 0 - 100 </value>
-		public IntPtr BundleData
+		public Bundle BundleData
 		{
 			get
 			{
 				return _bundle;
-			}
-		}
-
-		/// <summary>
-		/// Get user data.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public IntPtr UserData
-		{
-			get
-			{
-				return _userData;
 			}
 		}
 	}

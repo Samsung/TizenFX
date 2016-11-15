@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 using System;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
@@ -31,20 +30,15 @@ namespace Tizen.Multimedia
         /// <param name="type">A type for the format.</param>
         internal MediaFormat(MediaFormatType type)
         {
-            _type = type;
+            Type = type;
         }
-
-        private readonly MediaFormatType _type;
 
         /// <summary>
         /// Gets the type of the current format.
         /// </summary>
         public MediaFormatType Type
         {
-            get
-            {
-                return _type;
-            }
+            get;
         }
 
         /// <summary>
@@ -64,7 +58,7 @@ namespace Tizen.Multimedia
 
             if (ret != (int)ErrorCode.InvalidOperation)
             {
-                MediaToolDebug.AssertNoError(ret);
+                MultimediaDebug.AssertNoError(ret);
 
                 switch ((MediaFormatType)type)
                 {
@@ -95,7 +89,7 @@ namespace Tizen.Multimedia
             IntPtr handle;
             int ret = Interop.MediaFormat.Create(out handle);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             AsNativeHandle(handle);
 
@@ -131,7 +125,7 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
             }
-            _mimeType = mimeType;
+            MimeType = mimeType;
         }
 
         /// <summary>
@@ -147,41 +141,51 @@ namespace Tizen.Multimedia
 
             int ret = Interop.MediaFormat.GetContainerMimeType(handle, out mimeType);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatContainerMimeType), mimeType),
                 "Invalid container mime type!");
 
-            _mimeType = (MediaFormatContainerMimeType)mimeType;
+            MimeType = (MediaFormatContainerMimeType)mimeType;
         }
-
-        private readonly MediaFormatContainerMimeType _mimeType;
 
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
         public MediaFormatContainerMimeType MimeType
         {
-            get
-            {
-                return _mimeType;
-            }
+            get;
         }
 
         protected override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Container);
 
-            int ret = Interop.MediaFormat.SetContainerMimeType(handle, (int)_mimeType);
+            int ret = Interop.MediaFormat.SetContainerMimeType(handle, (int)MimeType);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
         }
 
         public override string ToString()
         {
-            return $"[{ nameof(ContainerMediaFormat) }] MimeType : { _mimeType }";
+            return $"[{ nameof(ContainerMediaFormat) }] MimeType : { MimeType }";
         }
 
+        public override bool Equals(object obj)
+        {
+            var rhs = obj as ContainerMediaFormat;
+            if (rhs == null)
+            {
+                return false;
+            }
+
+            return MimeType == rhs.MimeType;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)MimeType;
+        }
     }
 
     /// <summary>
@@ -258,11 +262,11 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException("Bit rate value can't be less than zero.");
             }
 
-            _mimeType = mimeType;
-            _width = width;
-            _height = height;
-            _frameRate = frameRate;
-            _bitRate = bitRate;
+            MimeType = mimeType;
+            Width = width;
+            Height = height;
+            FrameRate = frameRate;
+            BitRate = bitRate;
         }
 
         /// <summary>
@@ -274,9 +278,20 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            GetInfo(handle, out _width, out _height, out _bitRate, out _mimeType);
+            int width = 0;
+            int height = 0;
+            int bitRate = 0;
+            int frameRate = 0;
+            MediaFormatVideoMimeType mimeType;
+            GetInfo(handle, out width, out height, out bitRate, out mimeType);
 
-            GetFrameRate(handle, out _frameRate);
+            GetFrameRate(handle, out frameRate);
+
+            MimeType = mimeType;
+            Width = width;
+            Height = height;
+            FrameRate = frameRate;
+            BitRate = bitRate;
         }
 
         /// <summary>
@@ -298,7 +313,7 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaFormat.GetVideoInfo(handle,
                 out mimeTypeValue, out width, out height, out bitRate, out maxBps);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             mimeType = (MediaFormatVideoMimeType)mimeTypeValue;
 
@@ -317,98 +332,75 @@ namespace Tizen.Multimedia
 
             int ret = Interop.MediaFormat.GetVideoFrameRate(handle, out frameRate);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
         }
 
         protected override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Video);
 
-            int ret = Interop.MediaFormat.SetVideoMimeType(handle, (int)_mimeType);
-            MediaToolDebug.AssertNoError(ret);
+            int ret = Interop.MediaFormat.SetVideoMimeType(handle, (int)MimeType);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoWidth(handle, _width);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetVideoWidth(handle, Width);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoHeight(handle, _height);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetVideoHeight(handle, Height);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoAverageBps(handle, _bitRate);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetVideoAverageBps(handle, BitRate);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoFrameRate(handle, _frameRate);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetVideoFrameRate(handle, FrameRate);
+            MultimediaDebug.AssertNoError(ret);
         }
-
-        private readonly MediaFormatVideoMimeType _mimeType;
 
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
-        public MediaFormatVideoMimeType MimeType
-        {
-            get
-            {
-                return _mimeType;
-            }
-        }
-
-        private readonly int _width;
+        public MediaFormatVideoMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the width value of the current format.
         /// </summary>
-        public int Width
-        {
-            get
-            {
-                return _width;
-            }
-        }
-
-        private readonly int _height;
+        public int Width { get; }
 
         /// <summary>
         /// Gets the width value of the current format.
         /// </summary>
-        public int Height
-        {
-            get
-            {
-                return _height;
-            }
-        }
-
-        private readonly int _frameRate;
+        public int Height { get; }
 
         /// <summary>
         /// Gets the frame rate value of the current format.
         /// </summary>
-        public int FrameRate
-        {
-            get
-            {
-                return _frameRate;
-            }
-        }
-
-        private readonly int _bitRate;
+        public int FrameRate { get; }
 
         /// <summary>
         /// Gets the bit rate value of the current format.
         /// </summary>
-        public int BitRate
-        {
-            get
-            {
-                return _bitRate;
-            }
-        }
+        public int BitRate { get; }
 
         public override string ToString()
         {
-            return $"[{ nameof(VideoMediaFormat) }] MimeType : { _mimeType }, Width : { _width }, "
-                +  $"Height : { _height }, FrameRate : { _frameRate }, BitRate : { _bitRate }";
+            return $"MimeType : { MimeType }, Width : { Width }, "
+                + $"Height : { Height }, FrameRate : { FrameRate }, BitRate : { BitRate }";
+        }
+
+        public override bool Equals(object obj)
+        {
+            var rhs = obj as VideoMediaFormat;
+            if (rhs == null)
+            {
+                return false;
+            }
+
+            return MimeType == rhs.MimeType && Width == rhs.Width && Height == rhs.Height &&
+                FrameRate == rhs.FrameRate && BitRate == rhs.BitRate;
+        }
+
+        public override int GetHashCode()
+        {
+            return new { MimeType, Width, Height, FrameRate, BitRate }.GetHashCode();
         }
     }
 
@@ -485,12 +477,12 @@ namespace Tizen.Multimedia
                 throw new ArgumentException("Aac is supported only with aac mime types.");
             }
 
-            _mimeType = mimeType;
-            _channel = channel;
-            _sampleRate = sampleRate;
-            _bit = bit;
-            _bitRate = bitRate;
-            _aacType = aacType;
+            MimeType = mimeType;
+            Channel = channel;
+            SampleRate = sampleRate;
+            Bit = bit;
+            BitRate = bitRate;
+            AacType = aacType;
         }
 
         /// <summary>
@@ -502,17 +494,29 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            GetInfo(handle, out _mimeType, out _channel, out _sampleRate, out _bit, out _bitRate);
+            MediaFormatAudioMimeType mimeType;
+            int channel = 0;
+            int sampleRate = 0;
+            int bit = 0;
+            int bitRate = 0;
+            MediaFormatAacType aacType;
+            GetInfo(handle, out mimeType, out channel, out sampleRate, out bit, out bitRate);
 
-            if (IsAacSupportedMimeType(_mimeType))
+            if (IsAacSupportedMimeType(mimeType))
             {
-                GetAacType(handle, out _aacType);
+                GetAacType(handle, out aacType);
             }
             else
             {
-                _aacType = MediaFormatAacType.None;
+                aacType = MediaFormatAacType.None;
             }
 
+            MimeType = mimeType;
+            Channel = channel;
+            SampleRate = sampleRate;
+            Bit = bit;
+            BitRate = bitRate;
+            AacType = aacType;
         }
 
         /// <summary>
@@ -547,7 +551,7 @@ namespace Tizen.Multimedia
 
             mimeType = (MediaFormatAudioMimeType)mimeTypeValue;
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatAudioMimeType), mimeType),
                 "Invalid audio mime type!");
@@ -566,7 +570,7 @@ namespace Tizen.Multimedia
 
             int ret = Interop.MediaFormat.GetAudioAacType(handle, out aacTypeValue);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             aacType = (MediaFormatAacType)aacTypeValue;
 
@@ -577,107 +581,75 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(Type == MediaFormatType.Audio);
 
-            int ret = Interop.MediaFormat.SetAudioMimeType(handle, (int)_mimeType);
-            MediaToolDebug.AssertNoError(ret);
+            int ret = Interop.MediaFormat.SetAudioMimeType(handle, (int)MimeType);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioChannel(handle, _channel);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetAudioChannel(handle, Channel);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioSampleRate(handle, _sampleRate);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetAudioSampleRate(handle, SampleRate);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioBit(handle, _bit);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetAudioBit(handle, Bit);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioAverageBps(handle, _bitRate);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetAudioAverageBps(handle, BitRate);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioAacType(handle, (int)_aacType);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetAudioAacType(handle, (int)AacType);
+            MultimediaDebug.AssertNoError(ret);
         }
-
-        private readonly MediaFormatAudioMimeType _mimeType;
 
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
-        public MediaFormatAudioMimeType MimeType
-        {
-            get
-            {
-                return _mimeType;
-            }
-        }
-
-        private readonly int _channel;
+        public MediaFormatAudioMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the channel value of the current format.
         /// </summary>
-        public int Channel
-        {
-            get
-            {
-                return _channel;
-            }
-        }
-
-        private readonly int _sampleRate;
+        public int Channel { get; }
 
         /// <summary>
         /// Gets the sample rate value of the current format.
         /// </summary>
-        public int SampleRate
-        {
-            get
-            {
-                return _sampleRate;
-            }
-        }
-
-        private readonly int _bit;
+        public int SampleRate { get; }
 
         /// <summary>
         /// Gets the bit value of the current format.
         /// </summary>
-        public int Bit
-        {
-            get
-            {
-                return _bit;
-            }
-        }
-
-        private readonly int _bitRate;
+        public int Bit { get; }
 
         /// <summary>
         /// Gets the bit rate value of the current format.
         /// </summary>
-        public int BitRate
-        {
-            get
-            {
-                return _bitRate;
-            }
-        }
-
-        private readonly MediaFormatAacType _aacType;
+        public int BitRate { get; }
 
         /// <summary>
         /// Gets the aac type of the current format.
         /// </summary>
-        public MediaFormatAacType AacType
-        {
-            get
-            {
-                return _aacType;
-            }
-        }
-
+        public MediaFormatAacType AacType { get; }
         public override string ToString()
         {
-            return $"[{ nameof(AudioMediaFormat) }] MimeType : { _mimeType }, Channel : { _channel }, "
-                + $"SampleRate : { _sampleRate }, Bit : { _bit }, BitRate : { _bitRate }, AacType : { _aacType }";
+            return $"MimeType : {MimeType }, Channel : { Channel }, SampleRate : { SampleRate }, "
+                + $"Bit : { Bit }, BitRate : { BitRate }, AacType : { AacType }";
+        }
+
+        public override bool Equals(object obj)
+        {
+            var rhs = obj as AudioMediaFormat;
+            if (rhs == null)
+            {
+                return false;
+            }
+
+            return MimeType == rhs.MimeType && Channel == rhs.Channel && SampleRate == rhs.SampleRate &&
+                Bit == rhs.Bit && BitRate == rhs.BitRate;
+        }
+
+        public override int GetHashCode()
+        {
+            return new { MimeType, Channel, SampleRate, Bit, BitRate }.GetHashCode();
         }
     }
 
@@ -705,8 +677,8 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentException($"Invalid text type value : { (int)textType }");
             }
-            _mimeType = mimeType;
-            _textType = textType;
+            MimeType = mimeType;
+            TextType = textType;
         }
 
         /// <summary>
@@ -718,7 +690,13 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            GetInfo(handle, out _mimeType, out _textType);
+            MediaFormatTextMimeType mimeType;
+            MediaFormatTextType textType;
+
+            GetInfo(handle, out mimeType, out textType);
+
+            MimeType = mimeType;
+            TextType = textType;
         }
 
         /// <summary>
@@ -735,7 +713,7 @@ namespace Tizen.Multimedia
 
             int ret = Interop.MediaFormat.GetTextInfo(handle, out mimeTypeValue, out textTypeValue);
 
-            MediaToolDebug.AssertNoError(ret);
+            MultimediaDebug.AssertNoError(ret);
 
             mimeType = (MediaFormatTextMimeType)mimeTypeValue;
             textType = (MediaFormatTextType)textTypeValue;
@@ -750,42 +728,42 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(Type == MediaFormatType.Text);
 
-            int ret = Interop.MediaFormat.SetTextMimeType(handle, (int)_mimeType);
-            MediaToolDebug.AssertNoError(ret);
+            int ret = Interop.MediaFormat.SetTextMimeType(handle, (int)MimeType);
+            MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetTextType(handle, (int)_textType);
-            MediaToolDebug.AssertNoError(ret);
+            ret = Interop.MediaFormat.SetTextType(handle, (int)TextType);
+            MultimediaDebug.AssertNoError(ret);
         }
-
-        private readonly MediaFormatTextMimeType _mimeType;
 
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
-        public MediaFormatTextMimeType MimeType
-        {
-            get
-            {
-                return _mimeType;
-            }
-        }
-
-        private readonly MediaFormatTextType _textType;
+        public MediaFormatTextMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the text type of the current format.
         /// </summary>
-        public MediaFormatTextType TextType
-        {
-            get
-            {
-                return _textType;
-            }
-        }
+        public MediaFormatTextType TextType { get; }
 
         public override string ToString()
         {
-            return $"[{ nameof(TextMediaFormat) }] MimeType : { _mimeType }, TextType : { _textType }";
+            return $"[{ nameof(TextMediaFormat) }] MimeType : { MimeType }, TextType : { TextType }";
+        }
+
+        public override bool Equals(object obj)
+        {
+            var rhs = obj as TextMediaFormat;
+            if (rhs == null)
+            {
+                return false;
+            }
+
+            return MimeType == rhs.MimeType && TextType == rhs.TextType;
+        }
+
+        public override int GetHashCode()
+        {
+            return new { MimeType, TextType }.GetHashCode();
         }
     }
 }

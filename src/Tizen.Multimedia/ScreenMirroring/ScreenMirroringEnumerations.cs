@@ -145,34 +145,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Successful
         /// </summary>
-        None,
+        None = SCMirroringErrorCode.None,
         /// <summary>
         /// Invalid parameter
         /// </summary>
-        InvalidParameter,
-        /// <summary>
-        /// Out of memory
-        /// </summary>
-        OutOfMemory,
+        InvalidParameter = SCMirroringErrorCode.InvalidParameter,
         /// <summary>
         /// Invalid operation
         /// </summary>
-        InvalidOperation,
-        /// <summary>
-        /// Connection timeout
-        /// </summary>
-        ConnectionTimeOut,
-        /// <summary>
-        /// Permission denied
-        /// </summary>
-        PermissionDenied,
-        /// <summary>
-        /// Not supported
-        /// </summary>
-        NotSupported,
-        /// <summary>
-        /// Unknown error
-        /// </summary>
-        Unknown
+        InvalidOperation = SCMirroringErrorCode.InvalidOperation
     }
 }

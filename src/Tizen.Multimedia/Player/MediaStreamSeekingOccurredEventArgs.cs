@@ -13,31 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 using System;
-using System.Diagnostics;
 
-namespace Tizen.Multimedia.MediaCodec
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaCodec.InputProcessed"/> event.
+    /// Provides data for the <see cref="MediaStreamConfiguration.SeekingOccurred"/> event.
     /// </summary>
-    public class InputProcessedEventArgs : EventArgs
+    public class MediaStreamSeekingOccurredEventArgs : EventArgs
     {
-        /// <summary>
-        /// Initializes a new instance of the InputProcessedEventArgs class.
+       /// <summary>
+        /// Initialize a new instance of the MediaStreamSeekingOccurredEventArgs class.
         /// </summary>
-        /// <param name="packet">The packet that the codec has processed.</param>
-        internal InputProcessedEventArgs(MediaPacket packet)
+        /// <param name="status">The value indicating the new position to seek.</param>
+        public MediaStreamSeekingOccurredEventArgs(ulong offset)
         {
-            Debug.Assert(packet != null);
-
-            Packet = packet;
+           Offset = offset;
         }
 
         /// <summary>
-        /// Gets the packet that the codec has processed.
+        /// Gets the offset.
         /// </summary>
-        public MediaPacket Packet { get; }
+		public ulong Offset { get; }
+
+        public override string ToString() => $"Offset : { Offset }";
     }
 }

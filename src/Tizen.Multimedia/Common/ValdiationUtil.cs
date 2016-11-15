@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-using System.Diagnostics;
-using Tizen.Internals.Errors;
+using System;
 
 namespace Tizen.Multimedia
 {
-    internal class MediaToolDebug
+    internal static class ValidationUtil
     {
-
-        [ConditionalAttribute("DEBUG")]
-        internal static void AssertNoError(int errorCode)
+        internal static void ValidateEnum(Type enumType, object value)
         {
-            Debug.Assert(errorCode == (int)ErrorCode.None, "The API is supposed not to return an error!",
-                "Implementation of core may have been changed, modify code to throw if the return code is not zero.");
+            if (!Enum.IsDefined(enumType, value))
+            {
+                throw new ArgumentException($"Invalid { enumType.Name } value : { value }");
+            }
         }
     }
 }

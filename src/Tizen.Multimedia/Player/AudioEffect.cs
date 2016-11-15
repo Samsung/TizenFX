@@ -1,158 +1,117 @@
-﻿/// Audio effect
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
-/// This software is the confidential and proprietary information
-/// of Samsung Electronics, Inc. ("Confidential Information"). You
-/// shall not disclose such Confidential Information and shall use
-/// it only in accordance with the terms of the license agreement
-/// you entered into with Samsung.
-
-
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Audio effect
+    /// Provides the ability to control the audio effects for <see cref="Multimedia.Player"/>.
     /// </summary>
-    /// <remarks>
-    /// This class provides properties and API that are required for setting/getting
-    /// audio effects of a player.
-    /// </remarks>
     public class AudioEffect
     {
-        internal IntPtr _playerHandle;
-        private List<EqualizerBand> _bands;
+        private readonly EqualizerBand[] _bands;
 
-        internal AudioEffect()
+        internal AudioEffect(Player owner)
         {
+            Player = owner;
+
+            bool available = false;
+            int ret = Interop.Player.AudioEffectEqualizerIsAvailable(Player.GetHandle(), out available);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+
+            int count = 0;
+            ret = Interop.Player.AudioEffectGetEqualizerBandsCount(Player.GetHandle(), out count);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+
+            int min = 0;
+            int max = 0;
+            ret = Interop.Player.AudioEffectGetEqualizerLevelRange(Player.GetHandle(), out min, out max);
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+
+            IsAvailable = available;
+            Count = count;
+            MinBandLevel = min;
+            MaxBandLevel = max;
+
+            _bands = new EqualizerBand[count];
         }
 
         /// <summary>
-        /// Set/Get Equalizer band level.
-        /// Get frequency and range.
+        /// Gets a <see cref="EqualizerBand"/> at the specified index.
         /// </summary>
-        /// <value> EqualizerBand </value>
-        public IEnumerable<EqualizerBand> EqualizerBands
+        /// <param name="index">The index of the band to get</param>
+        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     index is less than zero.
+        ///     <para>-or-</para>
+        ///     index is equal to or greater than <see cref="Count"/>.
+        /// </exception>
+        public EqualizerBand this[int index]
         {
-            set
-            {
-                int ret;
-                _bands = value.ToList();
-                foreach(EqualizerBand band in _bands)
-                {
-                    ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_playerHandle, _bands.IndexOf(band), band.Level);
-                    if(ret != (int)PlayerError.None)
-                    {
-                        Log.Error(PlayerLog.LogTag, "Failed to set equalizer band" + (PlayerError)ret);
-                        PlayerErrorFactory.ThrowException(ret, "Failed to set equalizer band");
-                    }
-                }
-            }
             get
             {
-                int ret;
-                int count = 0, level = 0, frequency = 0, range = 0;
+                Player.ValidateNotDisposed();
 
-                if(_bands == null)
+                if (index < 0 || Count <= index)
                 {
-                    _bands = new List<EqualizerBand>();
-                } else
-                {
-                    _bands.Clear();
+                    throw new ArgumentOutOfRangeException(nameof(index), index,
+                        $"Valid index is 0 <= x < { nameof(Count) } ");
                 }
 
-                ret = Interop.Player.AudioEffectGetEqualizerBandsCount(_playerHandle, out count);
-                if(ret == (int)PlayerError.None)
+                if (_bands[index] == null)
                 {
-                    for(int idx = 0; idx < count; idx++)
-                    {
-                        ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_playerHandle, idx, out level);
-                        if(ret != (int)PlayerError.None)
-                        {
-                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band level");
-                        }
-
-                        ret = Interop.Player.AudioEffectGetEqualizerBandFrequency(_playerHandle, idx, out frequency);
-                        if(ret != (int)PlayerError.None)
-                        {
-                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency");
-                        }
-
-                        ret = Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_playerHandle, idx, out range);
-                        if(ret != (int)PlayerError.None)
-                        {
-                            Log.Error(PlayerLog.LogTag, "Failed to get equalizer band frequency range");
-                        }
-
-                        EqualizerBand band = new EqualizerBand(level, frequency, range);
-                        _bands.Add(band);
-                    }
-                } else
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to get equalizer band count");
+                    _bands[index] = new EqualizerBand(this, index);
                 }
-
-                return _bands;
+                return _bands[index];
             }
         }
 
         /// <summary>
-        /// Get Minimum Level of the bands in dB.
+        /// Clears the equalizer effect.
         /// </summary>
-        /// <value> Minimum level </value>
-        public int MinLevel
+        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
+        public void Clear()
         {
-            get
-            {
-                int min, max, ret;
-                ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
-                if(ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to get min level" + (PlayerError)ret);
-                }
-                return min;
-            }
+            Player.ValidateNotDisposed();
+
+            PlayerErrorConverter.ThrowIfError(Interop.Player.AudioEffectEqualizerClear(Player.GetHandle()),
+                "Failed to clear equalizer effect");
         }
 
+        public int Count{ get; }
+
+        // TODO replace with range struct
         /// <summary>
-        /// Get Maximum Level of the bands in dB.
+        /// Get the minimum band level of the bands in dB.
         /// </summary>
-        /// <value> Maximum level </value>
-        public int MaxLevel
-        {
-            get
-            {
-                int min, max, ret;
-                ret = Interop.Player.AudioEffectGetEqualizerLevelRange(_playerHandle, out min, out max);
-                if(ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to get max level" + (PlayerError)ret);
-                }
-                return max;
-            }
-        }
+        public int MinBandLevel { get; }
 
         /// <summary>
-        /// Get Equalizer Avaialbility.
+        /// Gets the maximum band level of the bands in dB.
         /// </summary>
-        /// <value> true, false </value>
-        public bool Available
-        {
-            get
-            {
-                bool available = false;
-                int ret = Interop.Player.AudioEffectEqualizerIsAvailable(_playerHandle, out available);
-                if(ret != (int)PlayerError.None)
-                {
-                    Log.Error(PlayerLog.LogTag, "Failed to get equalizer availability" + (PlayerError)ret);
-                }
-                return available;
-            }
-        }
+        public int MaxBandLevel { get; }
+
+        /// <summary>
+        /// Gets the value whether the AudioEffect is available or not.
+        /// </summary>
+        public bool IsAvailable { get; }
+
+        /// <summary>
+        /// Gets the player that this AudioEffect belongs to.
+        /// </summary>
+        public Player Player { get; }
     }
 }

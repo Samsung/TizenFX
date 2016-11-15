@@ -23,27 +23,19 @@ namespace Tizen.Multimedia.MediaCodec
     /// </summary>
     public class BufferStatusChangedEventArgs : EventArgs
     {
-        private readonly MediaCodecStatus _status;
-
         /// <summary>
         /// Initializes a new instance of the BufferStatusChangedEventArgs class.
         /// </summary>
         /// <param name="status">The value representing new status of the codec.</param>
         public BufferStatusChangedEventArgs(MediaCodecStatus status)
         {
-            _status = status;
+            Status = status;
         }
 
         /// <summary>
         /// Gets the value indicating new status of the codec.
         /// </summary>
-        public MediaCodecStatus Status
-        {
-            get
-            {
-                return _status;
-            }
-        }
+        public MediaCodecStatus Status { get; }
 
     }
 }

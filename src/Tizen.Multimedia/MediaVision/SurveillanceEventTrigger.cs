@@ -56,6 +56,8 @@ namespace Tizen.Multimedia
         internal event EventHandler<PersonAppearanceChangedEventArgs> PersonAppearanceChangedEvent;
         internal event EventHandler<MovementDetectedEventArgs> MovementDetectedEvent;
 
+        private Interop.MediaVision.Surveillance.MvSurveillanceEventOccurredCallback eventOccurredCb;
+
         /// <summary>
         /// Constructor of the SurveillanceEventTrigger class.
         /// </summary>
@@ -153,7 +155,7 @@ namespace Tizen.Multimedia
         /// </code>
         public void Subscribe(int videoStreamId, SurveillanceEngineConfiguration config = null)
         {
-            Interop.MediaVision.Surveillance.MvSurveillanceEventOccurredCallback eventOccurredCb = (IntPtr trigger, IntPtr source, int streamId, IntPtr eventResult, IntPtr userData) =>
+            eventOccurredCb = (IntPtr trigger, IntPtr source, int streamId, IntPtr eventResult, IntPtr userData) =>
             {
                 Tizen.Log.Info(MediaVisionLog.Tag, string.Format("Surveillance event occurred, video stream id : {0}", streamId));
                 if (eventResult != null)
@@ -212,19 +214,12 @@ namespace Tizen.Multimedia
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to push source");
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object.
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
-        /// </summary>
-        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
@@ -250,24 +245,27 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaVision.Surveillance.GetResultCount(handle, _movementNumberOfRegionsKey, out count);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result count");
 
-            resultPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * count);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _movementRegionsKey, resultPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
-
-            for (int i = 0; i < count; i++)
+            if (count > 0)
             {
-                Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(resultPtr, typeof(Interop.MediaVision.Rectangle));
-                regions.Add(new Rectangle()
+                resultPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * count);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _movementRegionsKey, resultPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
+
+                for (int i = 0; i < count; i++)
                 {
-                    Point = new Point()
+                    Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(resultPtr, typeof(Interop.MediaVision.Rectangle));
+                    regions.Add(new Rectangle()
                     {
-                        X = rect.x,
-                        Y = rect.y
-                    },
-                    Width = rect.width,
-                    Height = rect.height
-                });
-                resultPtr = IntPtr.Add(resultPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                        Point = new Point()
+                        {
+                            X = rect.x,
+                            Y = rect.y
+                        },
+                        Width = rect.width,
+                        Height = rect.height
+                    });
+                    resultPtr = IntPtr.Add(resultPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                }
             }
 
             MovementDetectedEventArgs e = new MovementDetectedEventArgs()
@@ -287,44 +285,47 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaVision.Surveillance.GetResultCount(handle, _personsRecognizedNumberKey, out count);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result count");
 
-            IntPtr locationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * count);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedLocationsKey, locationPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get location");
-
-            IntPtr labelPtr = Marshal.AllocHGlobal(sizeof(int) * count);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedLabelsKey, labelPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get label");
-            int[] labelsArray = new int[count];
-            Marshal.Copy(labelPtr, labelsArray, 0, count);
-
-            IntPtr confidencePtr = Marshal.AllocHGlobal(sizeof(double) * count);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedConfidencesKey, confidencePtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get confidence");
-            double[] confidencesArray = new double[count];
-            Marshal.Copy(confidencePtr, confidencesArray, 0, count);
-
-            for (int i = 0; i < count; i++)
+            if (count > 0)
             {
-                Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(locationPtr, typeof(Interop.MediaVision.Rectangle));
-                Rectangle location = new Rectangle()
+                IntPtr locationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * count);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedLocationsKey, locationPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get location");
+
+                IntPtr labelPtr = Marshal.AllocHGlobal(sizeof(int) * count);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedLabelsKey, labelPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get label");
+                int[] labelsArray = new int[count];
+                Marshal.Copy(labelPtr, labelsArray, 0, count);
+
+                IntPtr confidencePtr = Marshal.AllocHGlobal(sizeof(double) * count);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsRecognizedConfidencesKey, confidencePtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get confidence");
+                double[] confidencesArray = new double[count];
+                Marshal.Copy(confidencePtr, confidencesArray, 0, count);
+
+                for (int i = 0; i < count; i++)
                 {
-                    Point = new Point()
+                    Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(locationPtr, typeof(Interop.MediaVision.Rectangle));
+                    Rectangle location = new Rectangle()
                     {
-                        X = rect.x,
-                        Y = rect.y
-                    },
-                    Width = rect.width,
-                    Height = rect.height
-                };
+                        Point = new Point()
+                        {
+                            X = rect.x,
+                            Y = rect.y
+                        },
+                        Width = rect.width,
+                        Height = rect.height
+                    };
 
-                result.Add(new PersonRecognitionResult()
-                {
-                    Location = location,
-                    Label = labelsArray[i],
-                    Confidence = confidencesArray[i]
-                });
+                    result.Add(new PersonRecognitionResult()
+                    {
+                        Location = location,
+                        Label = labelsArray[i],
+                        Confidence = confidencesArray[i]
+                    });
 
-                locationPtr = IntPtr.Add(locationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                    locationPtr = IntPtr.Add(locationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                }
             }
 
             PersonRecognizedEventArgs e = new PersonRecognizedEventArgs()
@@ -347,73 +348,82 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaVision.Surveillance.GetResultCount(handle, _personsAppearedNumber, out numOfAppearedPersons);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-            IntPtr appearedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfAppearedPersons);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsAppearedLocations, appearedLocationPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
-
-            for (int i = 0; i < numOfAppearedPersons; i++)
+            if (numOfAppearedPersons > 0)
             {
-                Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(appearedLocationPtr, typeof(Interop.MediaVision.Rectangle));
-                appearedLocations.Add(new Rectangle()
-                {
-                    Point = new Point()
-                    {
-                        X = rect.x,
-                        Y = rect.y
-                    },
-                    Width = rect.width,
-                    Height = rect.height
-                });
+                IntPtr appearedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfAppearedPersons);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsAppearedLocations, appearedLocationPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-                appearedLocationPtr = IntPtr.Add(appearedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                for (int i = 0; i < numOfAppearedPersons; i++)
+                {
+                    Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(appearedLocationPtr, typeof(Interop.MediaVision.Rectangle));
+                    appearedLocations.Add(new Rectangle()
+                    {
+                        Point = new Point()
+                        {
+                            X = rect.x,
+                            Y = rect.y
+                        },
+                        Width = rect.width,
+                        Height = rect.height
+                    });
+
+                    appearedLocationPtr = IntPtr.Add(appearedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                }
             }
 
             ret = Interop.MediaVision.Surveillance.GetResultCount(handle, _personsDisappearedNumber, out numOfDisappearedPersons);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-            IntPtr disAppearedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfDisappearedPersons);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsDisappearedLocations, disAppearedLocationPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
-
-            for (int i = 0; i < numOfDisappearedPersons; i++)
+            if (numOfDisappearedPersons > 0)
             {
-                Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(disAppearedLocationPtr, typeof(Interop.MediaVision.Rectangle));
-                disappearedLocations.Add(new Rectangle()
-                {
-                    Point = new Point()
-                    {
-                        X = rect.x,
-                        Y = rect.y
-                    },
-                    Width = rect.width,
-                    Height = rect.height
-                });
+                IntPtr disAppearedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfDisappearedPersons);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsDisappearedLocations, disAppearedLocationPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-                disAppearedLocationPtr = IntPtr.Add(disAppearedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                for (int i = 0; i < numOfDisappearedPersons; i++)
+                {
+                    Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(disAppearedLocationPtr, typeof(Interop.MediaVision.Rectangle));
+                    disappearedLocations.Add(new Rectangle()
+                    {
+                        Point = new Point()
+                        {
+                            X = rect.x,
+                            Y = rect.y
+                        },
+                        Width = rect.width,
+                        Height = rect.height
+                    });
+
+                    disAppearedLocationPtr = IntPtr.Add(disAppearedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                }
             }
 
             ret = Interop.MediaVision.Surveillance.GetResultCount(handle, _personsTrackedNumber, out numOfTrackedPersons);
             MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-            IntPtr trackedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfTrackedPersons);
-            ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsTrackedLocations, trackedLocationPtr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
-
-            for (int i = 0; i < numOfTrackedPersons; i++)
+            if (numOfTrackedPersons > 0)
             {
-                Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(trackedLocationPtr, typeof(Interop.MediaVision.Rectangle));
-                trackedLocations.Add(new Rectangle()
-                {
-                    Point = new Point()
-                    {
-                        X = rect.x,
-                        Y = rect.y
-                    },
-                    Width = rect.width,
-                    Height = rect.height
-                });
+                IntPtr trackedLocationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)) * numOfTrackedPersons);
+                ret = Interop.MediaVision.Surveillance.GetResultValue(handle, _personsTrackedLocations, trackedLocationPtr);
+                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to get result");
 
-                trackedLocationPtr = IntPtr.Add(trackedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                for (int i = 0; i < numOfTrackedPersons; i++)
+                {
+                    Interop.MediaVision.Rectangle rect = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(trackedLocationPtr, typeof(Interop.MediaVision.Rectangle));
+                    trackedLocations.Add(new Rectangle()
+                    {
+                        Point = new Point()
+                        {
+                            X = rect.x,
+                            Y = rect.y
+                        },
+                        Width = rect.width,
+                        Height = rect.height
+                    });
+
+                    trackedLocationPtr = IntPtr.Add(trackedLocationPtr, Marshal.SizeOf(typeof(Interop.MediaVision.Rectangle)));
+                }
             }
 
             PersonAppearanceChangedEventArgs e = new PersonAppearanceChangedEventArgs()

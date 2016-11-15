@@ -1,237 +1,256 @@
-﻿using System;
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+using System;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for player state
+    /// Specifies errors.
+    /// </summary>
+    /// <seealso cref="Player.ErrorOccurred"/>
+    /// <seealso cref="PlayerErrorOccurredEventArgs"/>
+    public enum PlayerError
+    {
+        NoSuchFile = ErrorCode.NoSuchFile,
+        InternalError = ErrorCode.InvalidOperation,
+        NoSpaceOnDevice = PlayerErrorCode.NoSpaceOnDevice,
+        FeatureNotSupported = ErrorCode.NotSupported,
+        PermissionDenied = ErrorCode.PermissionDenied,
+        BufferSpace = ErrorCode.BufferSpace,
+        SeekFailed = PlayerErrorCode.SeekFailed,
+        InvalidState = PlayerErrorCode.InvalidState,
+        NotSupportedFile = PlayerErrorCode.NotSupportedFile,
+        InvalidUri = PlayerErrorCode.InvalidUri,
+        SoundPolicy = PlayerErrorCode.SoundPolicyError,
+        ConnectionFailed = PlayerErrorCode.ConnectionFailed,
+        VideoCaptureFailed = PlayerErrorCode.VideoCaptureFailed,
+        DrmExpired = PlayerErrorCode.DrmExpired,
+        DrmNoLicense = PlayerErrorCode.DrmNoLicense,
+        DrmFutureUse = PlayerErrorCode.DrmFutureUse,
+        DrmNotPermitted = PlayerErrorCode.DrmNotPermitted,
+        ResourceLimit = PlayerErrorCode.ResourceLimit,
+        ServiceDisconnected = PlayerErrorCode.ServiceDisconnected
+    }
+
+    /// <summary>
+    /// Specifies states that a <see cref="Player"/> can have.
     /// </summary>
     public enum PlayerState
     {
         /// <summary>
-        /// Player is not created 
+        /// Initial state, unprepared.
         /// </summary>
-        None,
+        /// <see cref="Player.Unprepare"/>
+        Idle = 1,
 
         /// <summary>
-        /// Player is created, but not prepared 
+        /// Prepared.
         /// </summary>
-        Idle,
-
-        /// <summary>
-        /// Player is ready to play media 
-        /// </summary>
+        /// <see cref="Player.PrepareAsync"/>
         Ready,
 
         /// <summary>
-        /// Player is playing media 
+        /// Playing.
         /// </summary>
+        /// <seealso cref="Player.Start"/>
         Playing,
 
         /// <summary>
-        /// Player is paused while playing media 
+        /// Paused while playing media.
         /// </summary>
+        /// <seealso cref="Player.Pause"/>
         Paused,
+
+
+        //TODO is this needed?
+        /// <summary>
+        /// Preparing in progress.
+        /// </summary>
+        /// <seealso cref="Player.PrepareAsync"/>/>
+        Preparing,
     }
 
-    /// <summary>
-    /// Enumeration for player display type
-    /// </summary>
-    public enum DisplayType
+    internal static class PlayerStateExtensions
+    {
+        internal static bool IsAnyOf(this PlayerState thisState, params PlayerState[] states)
+        {
+            return Array.IndexOf(states, thisState) != -1;
+        }
+    }
+
+    internal enum PlayerDisplayType
     {
         /// <summary>
-        /// Overlay surface display  
+        /// Overlay surface display
         /// </summary>
         Overlay,
 
         /// <summary>
-        ///  Evas image object surface display 
+        ///  Evas image object surface display
         /// </summary>
-        Evas,
+        Surface,
 
         /// <summary>
-        /// This disposes off buffers  
+        /// This disposes off buffers
         /// </summary>
         None,
     }
 
-
     /// <summary>
-    /// Enumeration for player audio latency mode
+    /// Specifies audio latency modes for <see cref="Player"/> .
     /// </summary>
+    /// <seealso cref="Player.AudioLatencyMode"/>
     public enum AudioLatencyMode
     {
         /// <summary>
-        /// Low audio latency mode   
+        /// Low audio latency mode.
         /// </summary>
         Low,
 
         /// <summary>
-        ///  Middle audio latency mode 
+        ///  Middle audio latency mode.
         /// </summary>
         Mid,
 
         /// <summary>
-        /// High audio latency mode   
+        /// High audio latency mode.
         /// </summary>
         High,
     }
 
 
     /// <summary>
-    /// Enumeration for player display rotation
+    /// Specifies display rotation modes for <see cref="Player"/>.
     /// </summary>
-    public enum DisplayRotation
+    /// <seealso cref="PlayerDisplay.Rotation"/>
+    public enum PlayerDisplayRotation
     {
         /// <summary>
-        /// Display is not rotated  
+        /// Display is not rotated
         /// </summary>
         RotationNone,
 
         /// <summary>
-        ///  Display is rotated 90 degrees 
+        ///  Display is rotated 90 degrees
         /// </summary>
         Rotation90,
 
         /// <summary>
-        /// Display is rotated 180 degrees  
+        /// Display is rotated 180 degrees
         /// </summary>
         Rotation180,
 
         /// <summary>
-        /// Display is rotated 270 degrees  
+        /// Display is rotated 270 degrees
         /// </summary>
         Rotation270
     }
 
 
     /// <summary>
-    /// Enumeration for player display mode
+    /// Specifies display modes for <see cref="Player"/>
     /// </summary>
-    public enum DisplayMode
+    /// <seealso cref="PlayerDisplay.Mode"/>
+    public enum PlayerDisplayMode
     {
         /// <summary>
-        /// Letter box 
+        /// Letter box.
         /// </summary>
         LetterBox,
 
         /// <summary>
-        ///  Origin size
+        /// Original size.
         /// </summary>
         OriginalSize,
 
         /// <summary>
-        /// Full-screen 
+        /// Full-screen.
         /// </summary>
         FullScreen,
 
         /// <summary>
-        /// Cropped full-screen 
+        /// Cropped full-screen.
         /// </summary>
         CroppedFull,
 
         /// <summary>
-        /// Origin size (if surface size is larger than video size(width/height)) or 
-        /// Letter box (if video size(width/height) is larger than surface size) 
+        /// Origin size (if surface size is larger than video size(width/height)) or
+        /// Letter box (if video size(width/height) is larger than surface size).
         /// </summary>
         OriginalOrFull,
 
     }
 
-
-    /// <summary>
-    /// Enumeration for player stream type
-    /// </summary>
-    public enum StreamType
+    internal enum StreamType
     {
         /// <summary>
-        /// Container type 
+        ///  Audio element stream type
         /// </summary>
-        Default,
+        Audio = 1,
 
         /// <summary>
-        ///  Audio element stream type 
-        /// </summary>
-        Audio,
-
-        /// <summary>
-        /// Video element stream type  
+        /// Video element stream type
         /// </summary>
         Video,
 
         /// <summary>
-        /// Text type  
+        /// Text type
         /// </summary>
         Text
     }
 
-
-
     /// <summary>
-    /// Enumeration for Progressive download message
+    /// Specifies the streaming buffer status.
     /// </summary>
-    public enum ProgressiveDownloadMessage
+    /// <seealso cref="MediaStreamConfiguration.BufferStatusChanged"/>
+    /// <seealso cref="MediaStreamBufferStatusChangedEventArgs"/>
+    public enum MediaStreamBufferStatus
     {
         /// <summary>
-        /// Progressive download is started 
-        /// </summary>
-        Started,
-
-        /// <summary>
-        ///  Progressive download is completed 
-        /// </summary>
-        Completed,
-    }
-
-    /// <summary>
-    /// Streaming buffer status
-    /// </summary>
-    public enum StreamingBufferStatus
-    {
-        /// <summary>
-        /// Underrun
+        /// Underrun.
         /// </summary>
         Underrun,
 
         /// <summary>
-        ///  Completed 
+        ///  Completed.
         /// </summary>
         Overflow,
     }
 
-
     /// <summary>
-    /// Enumeration for source type
+    /// Specifies the reason for the playback interruption.
     /// </summary>
-    public enum PlayerSourceType
+    /// <seealso cref="Player.PlaybackInterrupted"/>
+    public enum PlaybackIntrruptionReason
     {
-        /// <summary>
-        /// Uri source 
-        /// </summary>
-        Uri,
-
-        /// <summary>
-        /// memory buffer source 
-        /// </summary>
-        Memory,
-
-        /// <summary>
-        /// stream source 
-        /// </summary>
-        Stream,
+        ResourceConflict = 4
     }
 
-	/// <summary>
-	/// Enumeration for Content info
-	/// </summary>
-	internal enum ContentInfoKey
-	{
-		Album,
-		Artist,
-		Author,
-		Genre,
-		Title,
-		Year
-	}
-
-
+    /// <summary>
+    /// Specifies keys for the metadata.
+    /// </summary>
+    /// <seealso cref="StreamInfo.GetMetadata(StreamMetadataKey)"/>
+    public enum StreamMetadataKey
+    {
+        Album,
+        Artist,
+        Author,
+        Genre,
+        Title,
+        Year
+    }
 }

@@ -51,6 +51,14 @@ namespace Tizen.Multimedia
         public FaceEngineConfiguration()
             : base()
         {
+            ModelFilePath = _faceDetectionModelFilePathValue;
+            ModelType = _faceRecognitionModelTypeValue; ;
+            MinimumHeight = _faceDetectionMinHeightValue;
+            MinimumWidth = _faceDetectionMinWidthValue;
+            RoiHeight = _faceDetectionRoiHeightValue;
+            RoiWidth = _faceDetectionRoiWidthValue;
+            RoiX = _faceDetectionRoiXValue;
+            RoiY = _faceDetectionRoiYValue;
         }
 
         /// <summary>

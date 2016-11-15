@@ -13,31 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-using System;
 using System.Diagnostics;
 
-namespace Tizen.Multimedia.MediaCodec
+namespace Tizen.Multimedia
 {
+    //TODO we need a better name.
     /// <summary>
-    /// Provides data for the <see cref="MediaCodec.InputProcessed"/> event.
+    /// Represents data for a video frame captured.
     /// </summary>
-    public class InputProcessedEventArgs : EventArgs
+    public class CapturedFrame
     {
-        /// <summary>
-        /// Initializes a new instance of the InputProcessedEventArgs class.
-        /// </summary>
-        /// <param name="packet">The packet that the codec has processed.</param>
-        internal InputProcessedEventArgs(MediaPacket packet)
+        internal CapturedFrame(byte[] imageBuffer, int width, int height)
         {
-            Debug.Assert(packet != null);
+            Debug.Assert(imageBuffer != null, "imageBuffer is null!");
+            Debug.Assert(width > 0, $"Width is invalid : {width}!");
+            Debug.Assert(height > 0, $"height is invalid : {height}!");
 
-            Packet = packet;
+            Buffer = imageBuffer;
+            Size = new Size(width, height);
         }
 
         /// <summary>
-        /// Gets the packet that the codec has processed.
+        /// Gets the raw buffer of the captured image.
         /// </summary>
-        public MediaPacket Packet { get; }
+        /// <remarks>The color space format is RGB888.</remarks>
+        public byte[] Buffer { get; }
+
+        /// <summary>
+        /// Gets the size.
+        /// </summary>
+        public Size Size { get; }
     }
 }

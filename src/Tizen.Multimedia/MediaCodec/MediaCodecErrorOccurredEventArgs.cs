@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 using System;
 
 namespace Tizen.Multimedia.MediaCodec
@@ -21,28 +20,20 @@ namespace Tizen.Multimedia.MediaCodec
     /// <summary>
     /// Provides data for the <see cref="MediaCodec.ErrorOccurred"/> event.
     /// </summary>
-    public class ErrorOccurredEventArgs : EventArgs
+    public class MediaCodecErrorOccurredEventArgs : EventArgs
     {
-        private readonly MediaCodecError _error;
-
         /// <summary>
         /// Initializes a new instance of the ErrorOccurredEventArgs class.
         /// </summary>
         /// <param name="error">The value representing the type of the error.</param>
-        public ErrorOccurredEventArgs(MediaCodecError error)
+        public MediaCodecErrorOccurredEventArgs(MediaCodecError error)
         {
-            _error = error;
+            Error = error;
         }
 
         /// <summary>
         /// Gets the value indicating what kind of the error.
         /// </summary>
-        public MediaCodecError Error
-        {
-            get
-            {
-                return _error;
-            }
-        }
+        public MediaCodecError Error { get; }
     }
 }
