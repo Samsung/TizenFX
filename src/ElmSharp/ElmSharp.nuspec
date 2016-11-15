@@ -3,7 +3,7 @@
 	<metadata>
 		<id>ElmSharp</id>
 		<version>$version$</version>
-		<authors>tizen</authors>
+		<authors>Samsung Electronics</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>https://www.tizen.org/</projectUrl>
