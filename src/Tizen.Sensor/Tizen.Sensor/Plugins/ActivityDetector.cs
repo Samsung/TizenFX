@@ -37,30 +37,8 @@ namespace Tizen.Sensor
         /// </summary>
         public SensorDataAccuracy ActivityAccuracy { get; protected set; }
 
-        internal abstract void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data);
-
         internal ActivityDetector(uint index) : base(index)
         {
-        }
-
-        internal override void EventListenStart()
-        {
-            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error setting event callback for activity detector");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set event callback for activity detector");
-            }
-        }
-
-        internal override void EventListenStop()
-        {
-            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error unsetting event callback for activity detector");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for activity detector");
-            }
         }
     }
 }

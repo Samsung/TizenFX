@@ -89,14 +89,36 @@ namespace Tizen.Sensor
         /// </summary>
         public event EventHandler<StationaryActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        internal override void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
-        {
-            Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
-            Stationary = (DetectorState)sensorData.values[0];
-            ActivityAccuracy = (SensorDataAccuracy) sensorData.accuracy;
+        internal static Interop.SensorListener.SensorEventCallback _callback;
 
-            DataUpdated?.Invoke(this, new StationaryActivityDetectorDataUpdatedEventArgs(sensorData.values[0]));
+        internal override void EventListenStart()
+        {
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
+
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Stationary = (DetectorState)sensorData.values[0];
+                ActivityAccuracy = (SensorDataAccuracy) sensorData.accuracy;
+
+                DataUpdated?.Invoke(this, new StationaryActivityDetectorDataUpdatedEventArgs(sensorData.values[0]));
+            };
+
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error setting event callback for stationary activity detector");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set event callback for stationary activity detector");
+            }
+        }
+
+        internal override void EventListenStop()
+        {
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error unsetting event callback for stationary activity detector");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for stationary activity detector");
+            }
         }
 
         internal override SensorType GetSensorType()

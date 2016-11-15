@@ -143,9 +143,25 @@ namespace Tizen.Sensor
             return count;
         }
 
+        private static Interop.SensorListener.SensorEventCallback _callback;
+
         internal override void EventListenStart()
         {
-            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
+
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                X = sensorData.values[0];
+                Y = sensorData.values[1];
+                Z = sensorData.values[2];
+                BiasX = sensorData.values[3];
+                BiasY = sensorData.values[4];
+                BiasZ = sensorData.values[5];
+
+                DataUpdated?.Invoke(this, new UncalibratedMagnetometerDataUpdatedEventArgs(sensorData.values));
+            };
+
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for uncalibrated magnetometer sensor");
@@ -163,9 +179,16 @@ namespace Tizen.Sensor
             }
         }
 
+        private static Interop.SensorListener.SensorAccuracyCallback _accuracyCallback;
+
         private void AccuracyListenStart()
         {
-            int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, AccuracyEventCallback, IntPtr.Zero);
+            _accuracyCallback = (IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data) => {
+                TimeSpan = new TimeSpan((Int64)timestamp);
+                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
+            };
+
+            int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting accuracy event callback for uncalibrated magnetometer");
@@ -181,26 +204,6 @@ namespace Tizen.Sensor
                 Log.Error(Globals.LogTag, "Error unsetting accuracy event callback for uncalibrated magnetometer");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset accuracy event callback for uncalibrated magnetometer");
             }
-        }
-
-        private void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
-        {
-            Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
-            X = sensorData.values[0];
-            Y = sensorData.values[1];
-            Z = sensorData.values[2];
-            BiasX = sensorData.values[3];
-            BiasY = sensorData.values[4];
-            BiasZ = sensorData.values[5];
-
-            DataUpdated?.Invoke(this, new UncalibratedMagnetometerDataUpdatedEventArgs(sensorData.values));
-        }
-
-        private void AccuracyEventCallback(IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data)
-        {
-            TimeSpan = new TimeSpan((Int64)timestamp);
-            _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
         }
     }
 }

@@ -95,9 +95,20 @@ namespace Tizen.Sensor
             return count;
         }
 
+        private static Interop.SensorListener.SensorEventCallback _callback;
+
         internal override void EventListenStart()
         {
-            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, SensorEventCallback, IntPtr.Zero);
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
+
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Temperature = sensorData.values[0];
+
+                DataUpdated?.Invoke(this, new TemperatureSensorDataUpdatedEventArgs(sensorData.values[0]));
+            };
+
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for temperature sensor");
@@ -113,15 +124,6 @@ namespace Tizen.Sensor
                 Log.Error(Globals.LogTag, "Error unsetting event callback for temperature sensor");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for temperature");
             }
-        }
-
-        private void SensorEventCallback(IntPtr sensorHandle, IntPtr sensorPtr, IntPtr data)
-        {
-            Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(sensorPtr);
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
-            Temperature = sensorData.values[0];
-
-            DataUpdated?.Invoke(this, new TemperatureSensorDataUpdatedEventArgs(sensorData.values[0]));
         }
     }
 }
