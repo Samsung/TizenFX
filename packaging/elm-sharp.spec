@@ -43,7 +43,9 @@ find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
 nuget pack $ASM/$ASM.nuspec -Version %{version} -Properties Configuration=%{BUILDCONF}
 done
 
-edje_cc ElmSharp/theme/%{profile}/elm-sharp-theme-%{profile}.edc ElmSharp/theme/elm-sharp-theme.edj
+edje_cc -id ElmSharp/theme/%{profile}/HD/images/ \
+        -id ElmSharp/theme/%{profile}/HD/images/User_Input_Elements \
+        ElmSharp/theme/%{profile}/elm-sharp-theme-%{profile}.edc ElmSharp/theme/elm-sharp-theme.edj
 
 %install
 # Runtime Binary

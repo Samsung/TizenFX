@@ -86,6 +86,7 @@ collections {
 #include "widgets/colorselector.edc"
 #include "widgets/entry.edc"
 #include "widgets/label.edc"
+#include "widgets/radio.edc"
 
 }
 
