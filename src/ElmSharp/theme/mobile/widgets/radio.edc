@@ -343,13 +343,13 @@ group { "elm/radio/base/default";
             align: 0.0 0.5;
             text {
                style: "radio_default";
-               min: 1 0;
+               min: 0 0;
             }
          }
          desc { "visible";
             inherit: "default" 0.0;
             vis;
-            text.min: 1 1;
+            text.min: 0 1;
          }
          desc { "disabled";
             inherit: "default" 0.0;
