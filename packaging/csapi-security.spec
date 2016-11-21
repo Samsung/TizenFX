@@ -8,11 +8,11 @@
 
 %define Assemblies Tizen.Security Tizen.Security.SecureRepository
 %define version_security          1.0.5
-%define version_secure_repository 1.0.6
+%define version_secure_repository 1.0.7
 
 Name:       csapi-security
 Summary:    Tizen Security API for C#
-Version:    1.0.6
+Version:    1.0.7
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
