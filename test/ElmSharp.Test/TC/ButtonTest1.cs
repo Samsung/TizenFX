@@ -24,40 +24,68 @@ namespace ElmSharp.Test
         public override string TestName => "ButtonTest1";
         public override string TestDescription => "To test basic operation of Button";
 
+        void SetButtonEventHandler(Button button)
+        {
+            button.Clicked += (s, e) =>
+            {
+                Console.WriteLine("{0} Clicked! : {1}", button.Text, button.BackgroundColor);
+                Console.WriteLine("{0} Clicked! : {1}", button.Text, button.ClassName);
+                Console.WriteLine("{0} Clicked! : {1}", button.Text, button.ClassName.ToLower());
+                Console.WriteLine("{0} Clicked! : {1}", button.Text, button.ClassName.ToLower().Replace("elm_", ""));
+                Console.WriteLine("{0} Clicked! : {1}", button.Text, button.ClassName.ToLower().Replace("elm_", "") + "/" + "bg");
+            };
+
+            button.Pressed += (s, e) =>
+            {
+                Console.WriteLine("{0} Pressed!", button.Text);
+            };
+
+            button.Released += (s, e) =>
+            {
+                Console.WriteLine("{0} Released!", button.Text);
+            };
+
+            button.Repeated += (s, e) =>
+            {
+                Console.WriteLine("{0} Repeated!", button.Text);
+            };
+
+            button.Show();
+        }
+
         public override void Run(Window window)
         {
             Button button1 = new Button(window) {
                 Text = "Button 1",
             };
-
             button1.SetPartColor("bg", Color.Red);
-
-            button1.Clicked += (s, e) =>
-            {
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName);
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower());
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("elm_",""));
-                Console.WriteLine("Button1 Clicked! : {0}", button1.ClassName.ToLower().Replace("elm_", "")+ "/" + "bg");
-            };
-
-            button1.Pressed += (s, e) =>
-            {
-                Console.WriteLine("Button1 Pressed!");
-            };
-
-            button1.Released += (s, e) =>
-            {
-                Console.WriteLine("Button1 Released!");
-            };
-
-            button1.Repeated += (s, e) =>
-            {
-                Console.WriteLine("Button1 Repeated!");
-            };
-
-            button1.Show();
+            SetButtonEventHandler(button1);
             button1.Resize(500, 100);
             button1.Move(0, 0);
+
+            Button button2 = new Button(window) {
+                Text = "Button 2",
+                BackgroundColor = Color.Red,
+            };
+            SetButtonEventHandler(button2);
+            button2.Resize(500, 100);
+            button2.Move(0, 200);
+
+            Button button3 = new Button(window) {
+                Text = "Button 3",
+                BackgroundColor = new Color(125,200,255, 150)
+            };
+            SetButtonEventHandler(button3);
+            button3.Resize(500, 100);
+            button3.Move(0, 400);
+
+            Button button4 = new Button(window) {
+                Text = "Button 4",
+                BackgroundColor = new Color(125, 200, 255, 10)
+            };
+            SetButtonEventHandler(button4);
+            button4.Resize(500, 100);
+            button4.Move(0, 600);
         }
 
     }

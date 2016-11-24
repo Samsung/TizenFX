@@ -152,6 +152,9 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_color_class_color_get(IntPtr obj, string colorClass, out int r, out int g, out int b, out int a);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_color_class_color_set(IntPtr obj, string colorClass, int r, int g, int b, int a);
 
         [DllImport(Libraries.Elementary)]

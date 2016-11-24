@@ -102,6 +102,15 @@ namespace ElmSharp
             Interop.Elementary.edje_object_color_class_del(Handle, part);
         }
 
+        public override Color BackgroundColor
+        {
+            set
+            {
+                SetPartColor("bg", value);
+                SetPartColor("bg_pressed", value);
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_button_add(parent.Handle);

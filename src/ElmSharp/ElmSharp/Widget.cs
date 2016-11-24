@@ -87,6 +87,20 @@ namespace ElmSharp
             }
         }
 
+        public virtual Color BackgroundColor
+        {
+            get
+            {
+                int r, g, b, a;
+                Interop.Elementary.elm_object_color_class_color_get(Handle, "bg", out r, out g, out b, out a);
+                return new Color((int)(r/(a/255.0)), (int)(g/(a/255.0)), (int)(b/(a/255.0)), a);
+            }
+            set
+            {
+                SetPartColor("bg", value);
+            }
+        }
+
         public void SetFocus(bool isFocus)
         {
             Interop.Elementary.elm_object_focus_set(Handle, isFocus);
