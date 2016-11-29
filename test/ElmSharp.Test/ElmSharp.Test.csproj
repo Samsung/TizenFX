@@ -64,6 +64,7 @@
     <Compile Include="TC\GenListTest4.cs" />
     <Compile Include="TC\GenListTest6.cs" />
     <Compile Include="TC\TableTest1.cs" />
+    <Compile Include="TC\GenListTest8.cs" />
     <Compile Include="TC\PerformanceTest.cs" />
     <Compile Include="TC\GenListTest5.cs" />
     <Compile Include="TC\IconTest1.cs" />

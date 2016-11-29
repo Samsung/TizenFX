@@ -15,15 +15,18 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
     public class GenItemClass : IDisposable
     {
+        private static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
         public delegate string GetTextDelegate(object data, string part);
         public delegate EvasObject GetContentDelegate(object data, string part);
         public delegate void DeleteDelegate(object data);
+        public delegate EvasObject GetReusableContentDelegate(object data, string part, EvasObject old);
 
         private ItemClass _itemClass;
         private IntPtr _unmanagedPtr = IntPtr.Zero;
@@ -32,16 +35,16 @@ namespace ElmSharp
         public GenItemClass(string style)
         {
             _style = style;
-            _itemClass = new ItemClass()
-            {
-                refCount = 1,
-                deleteMe = 0,
-                itemStyle = style,
-                textCallback = GetTextCallback,
-                contentCallback = GetContentCallback,
-                stateCallback = null,
-                delCallback = DelCallback,
-            };
+            IntPtr unmanaged = Interop.Elementary.elm_genlist_item_class_new();
+            _itemClass = Marshal.PtrToStructure<ItemClass>(unmanaged);
+            _itemClass.itemStyle = style;
+            _itemClass.textCallback = GetTextCallback;
+            _itemClass.contentCallback = GetContentCallback;
+            _itemClass.stateCallback = null;
+            _itemClass.delCallback = DelCallback;
+            _itemClass.reusableContentCallback = GetReusableContentCallback;
+
+            Interop.Elementary.elm_genlist_item_class_free(unmanaged);
         }
 
         ~GenItemClass()
@@ -53,6 +56,7 @@ namespace ElmSharp
         public GetTextDelegate GetTextHandler { get; set; }
         public GetContentDelegate GetContentHandler { get; set; }
         public DeleteDelegate DeleteHandler { get; set; }
+        public GetReusableContentDelegate ReusableContentHandler { get; set; }
 
         internal IntPtr UnmanagedPtr
         {
@@ -99,7 +103,30 @@ namespace ElmSharp
         private IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part)
         {
             GenItem item = ItemObject.GetItemById((int)data) as GenItem;
-            return GetContentHandler?.Invoke(item?.Data, Marshal.PtrToStringAnsi(part));
+            EvasObject evasObject = GetContentHandler?.Invoke(item?.Data, Marshal.PtrToStringAnsi(part));
+            if (evasObject != null)
+            {
+                s_HandleToEvasObject[evasObject.Handle] = evasObject;
+                evasObject.Deleted += EvasObjectDeleted;
+            }
+            return evasObject;
+        }
+
+        private void EvasObjectDeleted(object sender, EventArgs e)
+        {
+            IntPtr handle = (sender as EvasObject).Handle;
+            s_HandleToEvasObject.Remove(handle);
+        }
+
+        private IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old)
+        {
+            IntPtr reusedHandle = IntPtr.Zero;
+            GenItem item = ItemObject.GetItemById((int)data) as GenItem;
+            if (s_HandleToEvasObject.ContainsKey(old))
+            {
+                reusedHandle = ReusableContentHandler?.Invoke(item?.Data, Marshal.PtrToStringAnsi(part), s_HandleToEvasObject[old]);
+            }
+            return reusedHandle;
         }
         private void DelCallback(IntPtr data, IntPtr obj)
         {
@@ -120,8 +147,9 @@ namespace ElmSharp
         public delegate int GetStateCallback(IntPtr data, IntPtr obj, IntPtr part);
         public delegate void DelCallback(IntPtr data, IntPtr obj);
         public delegate int FilterCallback(IntPtr data, IntPtr obj, IntPtr key);
+        public delegate IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old);
 
-        public readonly int version;
+        public int version;
         public uint refCount;
         public int deleteMe;
         public string itemStyle;
@@ -132,6 +160,7 @@ namespace ElmSharp
         public GetStateCallback stateCallback;
         public DelCallback delCallback;
         public FilterCallback filterCallback;
+        public GetReusableContentCallback reusableContentCallback;
     }
 
 }
