@@ -223,6 +223,42 @@ namespace ElmSharp
             }
         }
 
+        public bool RepeatEvents
+        {
+            get
+            {
+                return Interop.Evas.evas_object_repeat_events_get(Handle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_repeat_events_set(Handle, value);
+            }
+        }
+
+        public bool PropagateEvents
+        {
+            get
+            {
+                return Interop.Evas.evas_object_propagate_events_get(Handle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_propagate_events_set(Handle, value);
+            }
+        }
+
+        public bool PassEvents
+        {
+            get
+            {
+                return Interop.Evas.evas_object_pass_events_get(Handle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_pass_events_set(Handle, value);
+            }
+        }
+
         public void SetClip(EvasObject clip)
         {
             Interop.Evas.evas_object_clip_set(Handle, clip);

@@ -286,6 +286,24 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void evas_object_repeat_events_set(IntPtr obj, bool repeat);
 
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool evas_object_repeat_events_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void evas_object_propagate_events_set(IntPtr obj, bool propagate);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool evas_object_propagate_events_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void evas_object_pass_events_set(IntPtr obj, bool propagate);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool evas_object_pass_events_get(IntPtr obj);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_textblock_size_native_get(IntPtr obj, out int w, out int h);
 
