@@ -6,6 +6,8 @@
 %define BUILDCONF Release
 %endif
 
+%define DEV_VERSION beta-001
+
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
 Version:    1.1.0
@@ -40,7 +42,7 @@ find $ASM/*.project.json -exec nuget restore {} \;
 # Build
 find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
 # NuGet Pack
-nuget pack $ASM/$ASM.nuspec -Version %{version} -Properties Configuration=%{BUILDCONF}
+nuget pack $ASM/$ASM.nuspec -Version %{version}%{?DEV_VERSION:-%{DEV_VERSION}} -Properties Configuration=%{BUILDCONF}
 done
 
 edje_cc -id ElmSharp/theme/%{profile}/HD/images/ \
