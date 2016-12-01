@@ -110,7 +110,13 @@ namespace ElmSharp
             Interop.Elementary.elm_progressbar_pulse(Handle, true);
         }
 
+        [Obsolete("use StopPulse instead")]
         public void StopPluse()
+        {
+            Interop.Elementary.elm_progressbar_pulse(Handle, false);
+        }
+
+        public void StopPulse()
         {
             Interop.Elementary.elm_progressbar_pulse(Handle, false);
         }
