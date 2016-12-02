@@ -52,6 +52,7 @@
     <Compile Include="TC\ColorSelectorTest1.cs" />
     <Compile Include="TC\ContextPopupTest1.cs" />
     <Compile Include="TC\DateTimeSelectorTest1.cs" />
+    <Compile Include="TC\EvasMapTest1.cs" />
     <Compile Include="TC\EntryTest1.cs" />
     <Compile Include="TC\GenGridTest1.cs" />
     <Compile Include="TC\GenGridTest2.cs" />
