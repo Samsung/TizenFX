@@ -43,6 +43,11 @@ namespace ElmSharp
         {
             Interop.Elementary.edje_object_signal_emit(_edjeHandle, emission, source);
         }
+
+        public void DeleteColorClass(string part)
+        {
+            Interop.Elementary.edje_object_color_class_del(_edjeHandle, part);
+        }
     }
 
     public class EdjeTextPartObject

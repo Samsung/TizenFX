@@ -97,6 +97,7 @@ namespace ElmSharp
             }
         }
 
+        [Obsolete("DeleteColorClass is obsolete, please use EdjeObject.DeleteColorClass(string)")]
         public void DeleteColorClass(string part)
         {
             Interop.Elementary.edje_object_color_class_del(Handle, part);
