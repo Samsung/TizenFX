@@ -1,4 +1,5 @@
 %{!?dotnet_assembly_path: %define dotnet_assembly_path /opt/usr/share/dotnet.tizen/framework}
+%{!?mono_assembly_path: %define mono_assembly_path /opt/usr/lib/assembly}
 
 %if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
@@ -51,6 +52,7 @@ for ASM in %{Assemblies}; do
 %else
   install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 %endif
+install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{mono_assembly_path}
 done
 # NuGet
 mkdir -p %{buildroot}/nuget
@@ -70,3 +72,15 @@ NuGet package for %{name}
 
 %files nuget
 /nuget/*.nupkg
+
+%package mono
+Summary:   %{name} for Mono Runtime
+Group:     Development/Libraries
+
+%description mono
+%{name} for Mono Runtime
+
+%files mono
+%manifest %{name}.manifest
+%license LICENSE
+%attr(644,root,root) %{mono_assembly_path}/*.dll
