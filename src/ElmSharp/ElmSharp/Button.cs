@@ -107,8 +107,17 @@ namespace ElmSharp
         {
             set
             {
-                SetPartColor("bg", value);
-                SetPartColor("bg_pressed", value);
+                if (value.IsDefault)
+                {
+                    EdjeObject.DeleteColorClass("button/bg");
+                    EdjeObject.DeleteColorClass("button/bg_pressed");
+                }
+                else
+                {
+                    SetPartColor("bg", value);
+                    SetPartColor("bg_pressed", value);
+                }
+                _backgroundColor = value;
             }
         }
 

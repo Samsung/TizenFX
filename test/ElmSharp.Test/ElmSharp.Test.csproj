@@ -45,6 +45,7 @@
     <Compile Include="TC\BackgroundTest3.cs" />
     <Compile Include="TC\BoxLayoutTest1.cs" />
     <Compile Include="TC\BoxTest1.cs" />
+    <Compile Include="TC\BackgroundColorTest1.cs" />
     <Compile Include="TC\ButtonTest1.cs" />
     <Compile Include="TC\CalendarTest1.cs" />
     <Compile Include="TC\CheckTest1.cs" />

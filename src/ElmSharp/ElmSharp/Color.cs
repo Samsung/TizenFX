@@ -26,6 +26,24 @@ namespace ElmSharp
         readonly int _g;
         readonly int _b;
 
+        readonly Mode _mode;
+
+        enum Mode
+        {
+            Default,
+            Rgb
+        }
+
+        public static Color Default
+        {
+            get { return new Color(-1, -1, -1, -1, Mode.Default); }
+        }
+
+        public bool IsDefault
+        {
+            get { return _mode == Mode.Default; }
+        }
+
         public int A
         {
             get { return _a; }
@@ -50,12 +68,24 @@ namespace ElmSharp
         {
         }
 
-        public Color(int r, int g, int b, int a)
+        public Color(int r, int g, int b, int a) : this(r,g,b,a, Mode.Rgb)
         {
-            _r = Clamp(r, 0, 255);
-            _g = Clamp(g, 0, 255);
-            _b = Clamp(b, 0, 255);
-            _a = Clamp(a, 0, 255);
+        }
+
+        Color(int r, int g, int b, int a, Mode mode)
+        {
+            _mode = mode;
+            if (mode == Mode.Rgb)
+            {
+                _r = Clamp(r, 0, 255);
+                _g = Clamp(g, 0, 255);
+                _b = Clamp(b, 0, 255);
+                _a = Clamp(a, 0, 255);
+            }
+            else // Default
+            {
+                _r = _g = _b = _a = -1;
+            }
         }
 
         public override int GetHashCode()
@@ -78,6 +108,8 @@ namespace ElmSharp
 
         static bool EqualsInner(Color color1, Color color2)
         {
+            if (color1._mode == Mode.Default && color2._mode == Mode.Default)
+				return true;
             return color1._r == color2._r && color1._g == color2._g && color1._b == color2._b && color1._a == color2._a;
         }
 

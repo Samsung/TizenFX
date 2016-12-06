@@ -26,6 +26,8 @@ namespace ElmSharp
         SmartEvent _focused;
         SmartEvent _unfocused;
 
+        internal Color _backgroundColor = Color.Default;
+
         protected Widget()
         {
         }
@@ -91,13 +93,23 @@ namespace ElmSharp
         {
             get
             {
-                int r, g, b, a;
-                Interop.Elementary.elm_object_color_class_color_get(Handle, "bg", out r, out g, out b, out a);
-                return new Color((int)(r/(a/255.0)), (int)(g/(a/255.0)), (int)(b/(a/255.0)), a);
+                if(!_backgroundColor.IsDefault)
+                {
+                    _backgroundColor = GetPartColor("bg");
+                }
+                return _backgroundColor;
             }
             set
             {
-                SetPartColor("bg", value);
+                if (value.IsDefault)
+                {
+                    Console.WriteLine("Widget instance doesn't support to set BackgroundColor to Color.Default.");
+                }
+                else
+                {
+                    SetPartColor("bg", value);
+                    _backgroundColor = value;
+                }
             }
         }
 
@@ -154,6 +166,13 @@ namespace ElmSharp
                                                                               color.G * color.A / 255,
                                                                               color.B * color.A / 255,
                                                                               color.A);
+        }
+
+        public Color GetPartColor(string part)
+        {
+            int r, g, b, a;
+            Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
+            return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
         }
 
         internal IntPtr GetPartContent(string part)

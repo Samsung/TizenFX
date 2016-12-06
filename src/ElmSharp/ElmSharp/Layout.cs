@@ -63,6 +63,23 @@ namespace ElmSharp
             Interop.Elementary.elm_layout_file_set(Handle, file, group);
         }
 
+        public override Color BackgroundColor
+        {
+            set
+            {
+                if(value.IsDefault)
+                {
+                    string part = ClassName.ToLower().Replace("elm_", "") + "/" + "bg";
+                    EdjeObject.DeleteColorClass(part);
+                }
+                else
+                {
+                    SetPartColor("bg", value);
+                }
+                _backgroundColor = value;
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_layout_add(parent.Handle);
