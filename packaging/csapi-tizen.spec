@@ -46,6 +46,7 @@ done
 %install
 # Runtime Binary
 mkdir -p %{buildroot}%{dotnet_assembly_path}
+mkdir -p %{buildroot}%{mono_assembly_path}
 for ASM in %{Assemblies}; do
 %if 0%{?_with_corefx}
   install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
