@@ -27,6 +27,22 @@ namespace ElmSharp
         {
         }
 
+       public override Color BackgroundColor
+        {
+            set
+            {
+                if(value.IsDefault)
+                {
+                    SetPartColor("bg", Color.Transparent);
+                }
+                else
+                {
+                    SetPartColor("bg", value);
+                }
+                _backgroundColor = value;
+            }
+        }
+
         protected virtual IntPtr GetRealHandle(IntPtr handle)
         {
             return Interop.Elementary.elm_object_part_content_get(handle, "elm.swallow.content");
