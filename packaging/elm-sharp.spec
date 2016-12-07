@@ -6,7 +6,7 @@
 %define BUILDCONF Release
 %endif
 
-%define DEV_VERSION beta-001
+%define DEV_VERSION beta-002
 
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
