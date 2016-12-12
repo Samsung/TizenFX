@@ -30,41 +30,41 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_box_horizontal_get(GetRealHandle(Handle));
+                return Interop.Elementary.elm_box_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_box_horizontal_set(GetRealHandle(Handle), value);
+                Interop.Elementary.elm_box_horizontal_set(RealHandle, value);
             }
         }
 
         public void PackEnd(EvasObject content)
         {
-            Interop.Elementary.elm_box_pack_end(GetRealHandle(Handle), content);
+            Interop.Elementary.elm_box_pack_end(RealHandle, content);
             AddChild(content);
         }
 
         public void PackStart(EvasObject content)
         {
-            Interop.Elementary.elm_box_pack_start(GetRealHandle(Handle), content);
+            Interop.Elementary.elm_box_pack_start(RealHandle, content);
             AddChild(content);
         }
 
         public void PackAfter(EvasObject content, EvasObject after)
         {
-            Interop.Elementary.elm_box_pack_after(GetRealHandle(Handle), content, after);
+            Interop.Elementary.elm_box_pack_after(RealHandle, content, after);
             AddChild(content);
         }
 
         public void UnPack(EvasObject content)
         {
-            Interop.Elementary.elm_box_unpack(GetRealHandle(Handle), content);
+            Interop.Elementary.elm_box_unpack(RealHandle, content);
             RemoveChild(content);
         }
 
         public void UnPackAll()
         {
-            Interop.Elementary.elm_box_unpack_all(GetRealHandle(Handle));
+            Interop.Elementary.elm_box_unpack_all(RealHandle);
             ClearChildren();
         }
 
@@ -74,7 +74,7 @@ namespace ElmSharp
             {
                 action();
             };
-            Interop.Elementary.elm_box_layout_set(GetRealHandle(Handle), _layoutCallback, IntPtr.Zero, null);
+            Interop.Elementary.elm_box_layout_set(RealHandle, _layoutCallback, IntPtr.Zero, null);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
@@ -82,8 +82,8 @@ namespace ElmSharp
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
 
-            IntPtr realHandle = Interop.Elementary.elm_box_add(handle);
-            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", realHandle);
+            RealHandle = Interop.Elementary.elm_box_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
 
             return handle;
         }
