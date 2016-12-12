@@ -41,7 +41,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_file_get(Handle);
+                return Interop.Elementary.elm_image_file_get(RealHandle);
             }
         }
 
@@ -49,11 +49,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_smooth_get(Handle);
+                return Interop.Elementary.elm_image_smooth_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_smooth_set(Handle, value);
+                Interop.Elementary.elm_image_smooth_set(RealHandle, value);
             }
         }
 
@@ -61,11 +61,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_image_no_scale_get(Handle);
+                return !Interop.Elementary.elm_image_no_scale_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_no_scale_set(Handle, !value);
+                Interop.Elementary.elm_image_no_scale_set(RealHandle, !value);
             }
         }
 
@@ -78,7 +78,7 @@ namespace ElmSharp
             set
             {
                 _canScaleDown = value;
-                Interop.Elementary.elm_image_resizable_set(Handle, _canScaleUp, _canScaleDown);
+                Interop.Elementary.elm_image_resizable_set(RealHandle, _canScaleUp, _canScaleDown);
             }
         }
 
@@ -91,7 +91,7 @@ namespace ElmSharp
             set
             {
                 _canScaleUp = value;
-                Interop.Elementary.elm_image_resizable_set(Handle, _canScaleUp, _canScaleDown);
+                Interop.Elementary.elm_image_resizable_set(RealHandle, _canScaleUp, _canScaleDown);
             }
         }
 
@@ -99,11 +99,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_fill_outside_get(Handle);
+                return Interop.Elementary.elm_image_fill_outside_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_fill_outside_set(Handle, value);
+                Interop.Elementary.elm_image_fill_outside_set(RealHandle, value);
             }
         }
 
@@ -111,11 +111,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_prescale_get(Handle);
+                return Interop.Elementary.elm_image_prescale_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_prescale_set(Handle, value);
+                Interop.Elementary.elm_image_prescale_set(RealHandle, value);
             }
         }
 
@@ -123,11 +123,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_aspect_fixed_get(Handle);
+                return Interop.Elementary.elm_image_aspect_fixed_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_aspect_fixed_set(Handle, value);
+                Interop.Elementary.elm_image_aspect_fixed_set(RealHandle, value);
             }
         }
 
@@ -135,11 +135,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_animated_get(Handle);
+                return Interop.Elementary.elm_image_animated_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_animated_set(Handle, value);
+                Interop.Elementary.elm_image_animated_set(RealHandle, value);
             }
         }
 
@@ -147,7 +147,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_animated_available_get(Handle);
+                return Interop.Elementary.elm_image_animated_available_get(RealHandle);
             }
         }
 
@@ -155,11 +155,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_animated_play_get(Handle);
+                return Interop.Elementary.elm_image_animated_play_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_animated_play_set(Handle, value);
+                Interop.Elementary.elm_image_animated_play_set(RealHandle, value);
             }
         }
 
@@ -167,11 +167,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_image_editable_get(Handle);
+                return Interop.Elementary.elm_image_editable_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_editable_set(Handle, value);
+                Interop.Elementary.elm_image_editable_set(RealHandle, value);
             }
         }
 
@@ -180,7 +180,7 @@ namespace ElmSharp
             get
             {
                 int w, h;
-                Interop.Elementary.elm_image_object_size_get(Handle, out w, out h);
+                Interop.Elementary.elm_image_object_size_get(RealHandle, out w, out h);
                 return new Size(w, h);
             }
         }
@@ -189,7 +189,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                 if (evasObj != IntPtr.Zero)
                 {
                     return !Interop.Evas.evas_object_image_alpha_get(evasObj);
@@ -198,7 +198,7 @@ namespace ElmSharp
             }
             set
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                 if (evasObj != IntPtr.Zero)
                 {
                     Interop.Evas.evas_object_image_alpha_set(evasObj, !value);
@@ -210,11 +210,11 @@ namespace ElmSharp
         {
             get
             {
-                return (ImageOrientation)Interop.Elementary.elm_image_orient_get(Handle);
+                return (ImageOrientation)Interop.Elementary.elm_image_orient_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_image_orient_set(Handle, (int)value);
+                Interop.Elementary.elm_image_orient_set(RealHandle, (int)value);
             }
         }
 
@@ -223,7 +223,7 @@ namespace ElmSharp
             get
             {
                 int r = 255, g = 255, b = 255, a = 255;
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                 if (evasObj != IntPtr.Zero)
                 {
                     Interop.Evas.evas_object_color_get(evasObj, out r, out g, out b, out a);
@@ -232,11 +232,27 @@ namespace ElmSharp
             }
             set
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(Handle);
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                 if (evasObj != IntPtr.Zero)
                 {
                     Interop.Evas.evas_object_color_set(evasObj, value.R, value.G, value.B, value.A);
                 }
+            }
+        }
+
+        public override Color BackgroundColor
+        {
+            set
+            {
+                if (value.IsDefault)
+                {
+                    SetPartColor("bg", Color.Transparent);
+                }
+                else
+                {
+                    SetPartColor("bg", value);
+                }
+                _backgroundColor = value;
             }
         }
 
@@ -245,9 +261,9 @@ namespace ElmSharp
             if (file == null)
                 throw new ArgumentNullException("file");
 
-            Interop.Elementary.elm_image_async_open_set(Handle, false);
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
-            return Interop.Elementary.elm_image_file_set(Handle, file, null);
+            Interop.Elementary.elm_image_async_open_set(RealHandle, false);
+            Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
+            return Interop.Elementary.elm_image_file_set(RealHandle, file, null);
         }
 
         public bool Load(Uri uri)
@@ -265,9 +281,9 @@ namespace ElmSharp
             if (img == null)
                 throw new ArgumentNullException("img");
 
-            Interop.Elementary.elm_image_async_open_set(Handle, false);
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
-            return Interop.Elementary.elm_image_memfile_set(Handle, img, size, IntPtr.Zero, IntPtr.Zero);
+            Interop.Elementary.elm_image_async_open_set(RealHandle, false);
+            Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
+            return Interop.Elementary.elm_image_memfile_set(RealHandle, img, size, IntPtr.Zero, IntPtr.Zero);
         }
 
         public bool Load(Stream stream)
@@ -275,8 +291,8 @@ namespace ElmSharp
             if (stream == null)
                 throw new ArgumentNullException("stream");
 
-            Interop.Elementary.elm_image_async_open_set(Handle, false);
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, true);
+            Interop.Elementary.elm_image_async_open_set(RealHandle, false);
+            Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
             MemoryStream memstream = new MemoryStream();
             stream.CopyTo(memstream);
             unsafe
@@ -284,7 +300,7 @@ namespace ElmSharp
                 byte[] dataArr = memstream.ToArray();
                 fixed (byte* data = &dataArr[0])
                 {
-                    return Interop.Elementary.elm_image_memfile_set(Handle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                    return Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
                 }
             }
         }
@@ -294,8 +310,8 @@ namespace ElmSharp
             if (file == null)
                 throw new ArgumentNullException("file");
 
-            Interop.Elementary.elm_image_async_open_set(Handle, true);
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, false);
+            Interop.Elementary.elm_image_async_open_set(RealHandle, true);
+            Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
 
             var tcs = new TaskCompletionSource<bool>();
 
@@ -329,7 +345,7 @@ namespace ElmSharp
                 }
             };
 
-            bool ret = Interop.Elementary.elm_image_file_set(Handle, file, null);
+            bool ret = Interop.Elementary.elm_image_file_set(RealHandle, file, null);
             if (!ret)
             {
                 throw new InvalidOperationException("Failed to set file to Image");
@@ -351,8 +367,8 @@ namespace ElmSharp
             if (stream == null)
                 throw new ArgumentNullException("stream");
 
-            Interop.Elementary.elm_image_async_open_set(Handle, true);
-            Interop.Elementary.elm_image_preload_disabled_set(Handle, false);
+            Interop.Elementary.elm_image_async_open_set(RealHandle, true);
+            Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
 
             var tcs = new TaskCompletionSource<bool>();
 
@@ -394,7 +410,7 @@ namespace ElmSharp
                 byte[] dataArr = memstream.ToArray();
                 fixed (byte* data = &dataArr[0])
                 {
-                    bool ret = Interop.Elementary.elm_image_memfile_set(Handle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                    bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
                     if (!ret)
                     {
                         return false;
@@ -407,7 +423,13 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_image_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
+
+            RealHandle = Interop.Elementary.elm_image_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 
