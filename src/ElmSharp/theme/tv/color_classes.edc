@@ -1,0 +1,9 @@
+color_classes {
+   /*
+    * Layout
+    */
+   color_class {
+      name: "layout/background/bg";
+      color: 0 0 0 0;
+   }
+}

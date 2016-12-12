@@ -1,0 +1,93 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+// LICENSE NOTE:
+// This file (and only this one) is licenses under public-domain. The reason
+// is that this is meant to serve as a template for making your own themes and
+// Elementary's LGPL license is not intended to follow. The images used do come
+// under LGPL, but this file specifically for the structure of your theme is
+// public-domain. This means you can take, use, re-license and otherwise
+// have zero restrictions on using this file as a base for your theme.
+
+//****************************************************************************************//
+// This is theme body including all widget bodys
+// Define shared descriptions (e.g. sound samples, color classes, textblock styles) in here
+// Do not define size(width, height) in here!!!!
+//****************************************************************************************//
+
+// Include INC (e.g. HD-inc.edc, HVGA-inc.edc for each resolution) file
+#include "HD-inc.edc"
+
+externals {
+   external: "elm";
+}
+
+// BUILD_FIX: Add version to edc as 110.
+data.item: "version" "110";
+//
+
+collections {
+   base_scale: BASE_SCALE_INC;
+   /*plugins {
+      plugin {
+         name: "touch_sound";
+         source: "feedback";
+         param: "FEEDBACK_TYPE_SOUND FEEDBACK_PATTERN_TAP"; // FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_TOUCH_TAP
+
+         /* 2014.06.11 updated from libsvi(feedback)
+          Above plugin will run below external function:
+          int feedback_play_type(feedback_type_e type, feedback_pattern_e pattern);
+
+          param1: feedback_type_e
+          FEEDBACK_TYPE_NONE = 0,
+          FEEDBACK_TYPE_SOUND = 1,
+          FEEDBACK_TYPE_VIBRATION,
+          FEEDBACK_TYPE_LED,
+          FEEDBACK_TYPE_END
+
+          * param2 enumeration:
+          FEEDBACK_PATTERN_TAP = 0,
+          FEEDBACK_PATTERN_SIP,
+          FEEDBACK_PATTERN_SIP_BACKSPACE,
+          FEEDBACK_PATTERN_SIP_FUNCTION,
+          FEEDBACK_PATTERN_SIP_FJKEY,
+          ...
+
+          * For more information please refer libsvi.
+          */
+      }
+   }*/
+
+#include "color_classes.edc"
+
+//#include "widgets/colorselector.edc"
+//#include "widgets/entry.edc"
+//#include "widgets/label.edc"
+//#include "widgets/radio.edc"
+#include "widgets/layout.edc"
+
+}
+
