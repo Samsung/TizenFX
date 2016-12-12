@@ -31,11 +31,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_table_homogeneous_get(GetRealHandle(Handle));
+                return Interop.Elementary.elm_table_homogeneous_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_table_homogeneous_set(GetRealHandle(Handle), value);
+                Interop.Elementary.elm_table_homogeneous_set(RealHandle, value);
             }
         }
 
@@ -48,7 +48,7 @@ namespace ElmSharp
             set
             {
                 _paddingX = value;
-                Interop.Elementary.elm_table_padding_set(GetRealHandle(Handle), _paddingX, _paddingY);
+                Interop.Elementary.elm_table_padding_set(RealHandle, _paddingX, _paddingY);
             }
         }
 
@@ -61,7 +61,7 @@ namespace ElmSharp
             set
             {
                 _paddingY = value;
-                Interop.Elementary.elm_table_padding_set(GetRealHandle(Handle), _paddingX, _paddingY);
+                Interop.Elementary.elm_table_padding_set(RealHandle, _paddingX, _paddingY);
             }
         }
 
@@ -69,7 +69,7 @@ namespace ElmSharp
         {
             if (obj == null)
                 throw new ArgumentNullException("obj");
-            Interop.Elementary.elm_table_pack(GetRealHandle(Handle), obj, col, row, colspan, rowspan);
+            Interop.Elementary.elm_table_pack(RealHandle, obj, col, row, colspan, rowspan);
             AddChild(obj);
         }
 
@@ -77,13 +77,13 @@ namespace ElmSharp
         {
             if (obj == null)
                 throw new ArgumentNullException("obj");
-            Interop.Elementary.elm_table_unpack(GetRealHandle(Handle), obj);
+            Interop.Elementary.elm_table_unpack(RealHandle, obj);
             RemoveChild(obj);
         }
 
         public void Clear()
         {
-            Interop.Elementary.elm_table_clear(GetRealHandle(Handle), false);
+            Interop.Elementary.elm_table_clear(RealHandle, false);
             ClearChildren();
         }
 
@@ -92,8 +92,8 @@ namespace ElmSharp
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
 
-            IntPtr realHandle = Interop.Elementary.elm_table_add(handle);
-            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", realHandle);
+            RealHandle = Interop.Elementary.elm_table_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
 
             return handle;
         }

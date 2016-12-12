@@ -22,8 +22,20 @@ namespace ElmSharp
 {
     public abstract class EvasObject
     {
+        private IntPtr _realHandle = IntPtr.Zero;
         internal IntPtr Handle { get; set; }
         internal EvasObject Parent { get; set; }
+        internal IntPtr RealHandle
+        {
+            get
+            {
+                return _realHandle == IntPtr.Zero ? Handle : _realHandle;
+            }
+            set
+            {
+                _realHandle = value;
+            }
+        }
 
         EvasObjectEvent _deleted;
         EvasObjectEvent<EvasKeyEventArgs> _keyup;
@@ -136,13 +148,13 @@ namespace ElmSharp
             get
             {
                 int w, h;
-                Interop.Evas.evas_object_size_hint_min_get(Handle, out w, out h);
+                Interop.Evas.evas_object_size_hint_min_get(RealHandle, out w, out h);
                 return w;
             }
             set
             {
                 int h = MinimumHeight;
-                Interop.Evas.evas_object_size_hint_min_set(Handle, value, h);
+                Interop.Evas.evas_object_size_hint_min_set(RealHandle, value, h);
             }
         }
 
@@ -151,13 +163,13 @@ namespace ElmSharp
             get
             {
                 int w, h;
-                Interop.Evas.evas_object_size_hint_min_get(Handle, out w, out h);
+                Interop.Evas.evas_object_size_hint_min_get(RealHandle, out w, out h);
                 return h;
             }
             set
             {
                 int w = MinimumWidth;
-                Interop.Evas.evas_object_size_hint_min_set(Handle, w, value);
+                Interop.Evas.evas_object_size_hint_min_set(RealHandle, w, value);
             }
         }
 
@@ -227,11 +239,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_repeat_events_get(Handle);
+                return Interop.Evas.evas_object_repeat_events_get(RealHandle);
             }
             set
             {
-                Interop.Evas.evas_object_repeat_events_set(Handle, value);
+                Interop.Evas.evas_object_repeat_events_set(RealHandle, value);
             }
         }
 
@@ -239,11 +251,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_propagate_events_get(Handle);
+                return Interop.Evas.evas_object_propagate_events_get(RealHandle);
             }
             set
             {
-                Interop.Evas.evas_object_propagate_events_set(Handle, value);
+                Interop.Evas.evas_object_propagate_events_set(RealHandle, value);
             }
         }
 
@@ -251,11 +263,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_pass_events_get(Handle);
+                return Interop.Evas.evas_object_pass_events_get(RealHandle);
             }
             set
             {
-                Interop.Evas.evas_object_pass_events_set(Handle, value);
+                Interop.Evas.evas_object_pass_events_set(RealHandle, value);
             }
         }
 
@@ -318,7 +330,7 @@ namespace ElmSharp
 
         public void MarkChanged()
         {
-            Interop.Evas.evas_object_smart_changed(Handle);
+            Interop.Evas.evas_object_smart_changed(RealHandle);
         }
 
         protected virtual void OnInvalidate()
