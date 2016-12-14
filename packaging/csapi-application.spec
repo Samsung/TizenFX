@@ -1,4 +1,5 @@
 %{!?dotnet_assembly_path: %define dotnet_assembly_path /opt/usr/share/dotnet.tizen/framework}
+%{!?mono_assembly_path: %define mono_assembly_path /opt/usr/lib/assembly}
 
 %if 0%{?tizen_build_devel_mode}
 %define BUILDCONF Debug
@@ -17,6 +18,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
+ExcludeArch: %{ix86} aarch64
 
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
@@ -49,12 +51,14 @@ done
 %install
 # Runtime Binary
 mkdir -p %{buildroot}%{dotnet_assembly_path}
+mkdir -p %{buildroot}%{mono_assembly_path}
 for ASM in %{Assemblies}; do
 %if 0%{?_with_corefx}
   install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 %else
   install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 %endif
+install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{mono_assembly_path}
 done
 # NuGet
 mkdir -p %{buildroot}/nuget
@@ -74,3 +78,15 @@ NuGet package for %{name}
 
 %files nuget
 /nuget/*.nupkg
+
+%package mono
+Summary:   %{name} for Mono Runtime
+Group:     Development/Libraries
+
+%description mono
+%{name} for Mono Runtime
+
+%files mono
+%manifest %{name}.manifest
+%license LICENSE
+%attr(644,root,root) %{mono_assembly_path}/*.dll

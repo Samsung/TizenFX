@@ -185,7 +185,7 @@ namespace Tizen.Applications
             Alarm alarm = null;
             int alarmId;
             Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
-            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmOnceAtDate(appControl.SafeAppControlHandle, time, out alarmId);
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmOnceAtDate(appControl.SafeAppControlHandle, ref time, out alarmId);
             alarm = new Alarm(alarmId);
             if (ret != AlarmError.None)
             {
@@ -215,7 +215,7 @@ namespace Tizen.Applications
             Alarm alarm = null;
             int alarmId;
             Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
-            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmRecurWeek(appControl.SafeAppControlHandle, time, (int)weekFlag, out alarmId);
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmRecurWeek(appControl.SafeAppControlHandle, ref time, (int)weekFlag, out alarmId);
             alarm = new Alarm(alarmId);
             if (ret != AlarmError.None)
             {
