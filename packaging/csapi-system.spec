@@ -25,6 +25,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
+ExcludeArch: %{ix86} aarch64
 
 %description
 Tizen System API for C#
