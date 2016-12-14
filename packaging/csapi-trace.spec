@@ -26,6 +26,9 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
 
+# .NET is only available on armv7l and x86_64
+ExcludeArch: %{ix86} aarch64
+
 %description
 Tizen Tracer API for C#
 
