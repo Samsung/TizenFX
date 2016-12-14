@@ -203,3 +203,9 @@ obj/
 cscope.files
 cscope.out
 tags
+
+# svace files
+warnings.txt
+warn-settings.csharp.txt
+.svace-dir
+CompilationErrors-*.txt

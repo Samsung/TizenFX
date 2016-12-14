@@ -34,8 +34,11 @@ namespace Tizen.Security.SecureRepository
         /// be provided.
         /// </param>
         /// <returns>A key specified by alias.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Alias argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format.
+        /// Alias argument is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key does not exist with the alias or key-protecting password isn't matched.
@@ -90,8 +93,11 @@ namespace Tizen.Security.SecureRepository
         /// <param name="alias">The name of a key to be stored.</param>
         /// <param name="key">The key's binary value to be stored.</param>
         /// <param name="policy">The policy about how to store a key securely.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is null or invalid format. key argument is invalid format.
+        /// Alias argument is invalid format. key argument is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key with alias does already exist.
@@ -130,8 +136,11 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyPolicy">
         /// The policy about how to store a public key securely.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// size is invalid. privateKeyAlias or publicKeyAlias is null or invalid format.
+        /// size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key with privateKeyAlias or publicKeyAlias does already exist.
@@ -173,8 +182,11 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyPolicy">
         /// The policy about how to store a public key securely.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// size is invalid. privateKeyAlias or publicKeyAlias is null or invalid format.
+        /// size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key with privateKeyAlias or publicKeyAlias does already exist.
@@ -213,8 +225,11 @@ namespace Tizen.Security.SecureRepository
         /// <param name="publicKeyPolicy">
         /// The policy about how to store a public key securely.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Any of argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is null or
+        /// Elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is
         /// invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
@@ -247,8 +262,11 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <param name="keyAlias">The name of key to be stored.</param>
         /// <param name="policy">The policy about how to store the key securely.</param>
+        /// <exception cref="ArgumentNullException">
+        /// keyAlias or policy is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Key size is invalid. keyAlias is null or invalid format.
+        /// Key size is invalid. keyAlias is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key with privateKeyAlias or publicKeyAlias does already exist.

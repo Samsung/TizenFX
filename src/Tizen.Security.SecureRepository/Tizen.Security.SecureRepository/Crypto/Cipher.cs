@@ -46,11 +46,18 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Decrypts data using selected key and algorithm.
         /// </summary>
         /// <param name="keyAlias">Alias of the key to be used for decryption.</param>
-        /// <param name="password">The password used in decrypting a key value.
-        /// If password of policy is provided in SaveKey(), the same password should be provided</param>
-        /// <param name="cipherText">Data to be decrypted (some algorithms may require additional
-        /// information embedded in encrypted data.AES GCM is an example).</param>
+        /// <param name="password">
+        /// The password used in decrypting a key value. If password of policy is
+        /// provided in SaveKey(), the same password should be provided
+        /// </param>
+        /// <param name="cipherText">
+        /// Data to be decrypted (some algorithms may require additional information
+        /// embedded in encrypted data.AES GCM is an example).
+        /// </param>
         /// <returns>Decrypted data.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// keyAlias or cipherText is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
         /// Mandatory algorithm parameter is missing or invalid.
         /// Optional algorithm parameter is invalid.
@@ -59,9 +66,15 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Key-protecting password isn't matched.
         /// Key does not exist with keyAlias.
         /// </exception>
-        /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
+        /// <remarks>
+        /// The key type specified by keyAlias should be compatible with the algorithm
+        /// specified in Parameters.
+        /// </remarks>
         public byte[] Decrypt(string keyAlias, string password, byte[] cipherText)
         {
+            if (keyAlias == null || cipherText == null)
+                throw new ArgumentNullException("alias and ciphertxt should not be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try
@@ -86,12 +99,20 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Encrypts data using selected key and algorithm.
         /// </summary>
         /// <param name="keyAlias">Alias of the key to be used for encryption.</param>
-        /// <param name="password">The password used in decrypting a key value.
-        /// If password of policy is provided in SaveKey(), the same password should be provided</param>
-        /// <param name="plainText">Data to be encrypted. In case of AES algorithm there are no restrictions on the size of data.
-        /// For RSA the size must be smaller or equal to (key_size_in bytes - 42).
-        /// Example: for 1024 RSA key the maximum data size is 1024/8 - 42 = 86.</param>
+        /// <param name="password">
+        /// The password used in decrypting a key value. If password of policy is
+        /// provided in SaveKey(), the same password should be provided.
+        /// </param>
+        /// <param name="plainText">
+        /// Data to be encrypted. In case of AES algorithm there are no restrictions on
+        /// the size of data. For RSA the size must be smaller or equal to (key_size_in
+        /// bytes - 42). Example: for 1024 RSA key the maximum data size is
+        /// 1024/8 - 42 = 86.
+        /// </param>
         /// <returns>Encrypted data.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// keyAlias or plainText is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
         /// Mandatory algorithm parameter is missing or invalid.
         /// Optional algorithm parameter is invalid.
@@ -100,9 +121,15 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Key-protecting password isn't matched.
         /// Key does not exist with keyAlias.
         /// </exception>
-        /// <remarks>The key type specified by keyAlias should be compatible with the algorithm specified in Parameters.</remarks>
+        /// <remarks>
+        /// The key type specified by keyAlias should be compatible with the algorithm
+        /// specified in Parameters.
+        /// </remarks>
         public byte[] Encrypt(string keyAlias, string password, byte[] plainText)
         {
+            if (keyAlias == null || plainText == null)
+                throw new ArgumentNullException("alias or plaintxt should not be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             try

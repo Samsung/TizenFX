@@ -30,12 +30,18 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <param name="filePath">The path of certificate file to be loaded.</param>
         /// <returns>Loaded certificate class instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// filePath should not be null
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Invalid certificate file format. Provided file path does not exist or
         /// cannot be accessed.
         /// </exception>
         static public Certificate Load(string filePath)
         {
+            if (filePath == null)
+                throw new ArgumentNullException("filepath should not be null");
+
             IntPtr ptr = IntPtr.Zero;
 
             Interop.CheckNThrowException(

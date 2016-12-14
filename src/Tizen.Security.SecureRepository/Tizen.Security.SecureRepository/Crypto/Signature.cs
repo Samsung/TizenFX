@@ -43,34 +43,51 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Creates a signature on a given message using a private key and returns the signature.
+        /// Creates a signature on a given message using a private key and returns
+        /// the signature.
         /// </summary>
         /// <param name="privateKeyAlias">The name of private key.</param>
-        /// <param name="password">The password used in decrypting a private key value.</param>
+        /// <param name="password">
+        /// The password used in decrypting a private key value.
+        /// </param>
         /// <param name="message">The message that is signed with a private key.</param>
         /// <returns>A newly created signature.</returns>
-        /// <exception cref="ArgumentException">privateKeyAlias is null or invalid format.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// privateKeyAlias or message is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// privateKeyAlias is invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key-protecting password isn't matched.
         /// Key does not exist with privateKeyAlias.
         /// </exception>
-        /// <remarks>The key type specified by privateKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
-        /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
+        /// <remarks>
+        /// The key type specified by privateKeyAlias should be compatible with the
+        /// algorithm specified in Parameters.
+        /// </remarks>
+        /// <remarks>
+        /// If password of policy is provided during storing a key, the same password
+        /// should be provided.
+        /// </remarks>
         public byte[] Sign(string privateKeyAlias, string password, byte[] message)
         {
+            if (privateKeyAlias == null || message == null)
+                throw new ArgumentNullException("alias and message should not be null");
+
             int hash = (int)HashAlgorithm.None;
             try
             {
                 hash = (int)Parameters.Get(SignatureParameterName.HashAlgorithm);
             }
-            catch { }
+            catch {}
 
             int rsaPadding = (int)RsaPaddingAlgorithm.None;
             try
             {
                 rsaPadding = (int)Parameters.Get(SignatureParameterName.RsaPaddingAlgorithm);
             }
-            catch { }
+            catch {}
 
             IntPtr ptr = IntPtr.Zero;
 
@@ -93,35 +110,55 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Verifies a given signature on a given message using a public key and returns the signature status.
+        /// Verifies a given signature on a given message using a public key and returns
+        /// the signature status.
         /// </summary>
         /// <param name="publicKeyAlias">The name of public key.</param>
-        /// <param name="password">The password used in decrypting a public key value.</param>
+        /// <param name="password">
+        /// The password used in decrypting a public key value.
+        /// </param>
         /// <param name="message">The input on which the signature is created.</param>
         /// <param name="signature">The signature that is verified with public key.</param>
-        /// <returns>The signature status. True is returned when the signature is valid.</returns>
-        /// <exception cref="ArgumentException">publicKeyAlias is null or invalid format.</exception>
+        /// <returns>
+        /// The signature status. True is returned when the signature is valid.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// publicKeyAlias, message or signature is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// publicKeyAlias is invalid format.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Key-protecting password isn't matched.
         /// Key does not exist with publicKeyAlias.
         /// </exception>
-        /// <remarks>The key type specified by publicKeyAlias should be compatible with the algorithm specified in Parameters.</remarks>
-        /// <remarks>If password of policy is provided during storing a key, the same password should be provided.</remarks>
-        public bool Verify(string publicKeyAlias, string password, byte[] message, byte[] signature)
+        /// <remarks>
+        /// The key type specified by publicKeyAlias should be compatible with the
+        /// algorithm specified in Parameters.
+        /// </remarks>
+        /// <remarks>
+        /// If password of policy is provided during storing a key, the same password
+        /// should be provided.
+        /// </remarks>
+        public bool Verify(
+            string publicKeyAlias, string password, byte[] message, byte[] signature)
         {
+            if (publicKeyAlias == null || message == null || signature == null)
+                throw new ArgumentNullException("mandatory arg should not be null");
+
             int hash = (int)HashAlgorithm.None;
             try
             {
                 hash = (int)Parameters.Get(SignatureParameterName.HashAlgorithm);
             }
-            catch { }
+            catch {}
 
             int rsaPadding = (int)RsaPaddingAlgorithm.None;
             try
             {
                 rsaPadding = (int)Parameters.Get(SignatureParameterName.RsaPaddingAlgorithm);
             }
-            catch { }
+            catch {}
 
 
             int ret = Interop.CkmcManager.VerifySignature(
