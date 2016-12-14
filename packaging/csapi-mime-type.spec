@@ -8,7 +8,7 @@
 
 Name:       csapi-mime-type
 Summary:    Tizen MimeType API for C#
-Version:    1.0.1
+Version:    1.0.2
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -17,6 +17,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
+ExcludeArch: %{ix86} aarch64
 
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
