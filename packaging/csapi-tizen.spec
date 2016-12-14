@@ -18,6 +18,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
+ExclusiveArch: aarch64 %ix86
 
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
