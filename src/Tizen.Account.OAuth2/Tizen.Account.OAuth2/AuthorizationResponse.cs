@@ -48,11 +48,17 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The state parameter present in authorization request.
         /// </summary>
+        /// <remarks>
+        /// The value can be null depending on the server specifications.
+        /// </remarks>
         public string State { get; internal set; }
 
         /// <summary>
         /// Custom key-value parameter received from service provider
         /// </summary>
+        /// <remarks>
+        /// The return value can be null depending on the server specifications.
+        /// </remarks>
         public string GetCustomValue(string key)
         {
             IntPtr value = IntPtr.Zero;
