@@ -48,6 +48,9 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The state parameter present in authorization request.
         /// </summary>
+        /// <remarks>
+        /// State will be null if user doesn't put credential manually.
+        /// </remarks>
         public string State { get; internal set; }
 
         /// <summary>
@@ -61,6 +64,9 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Custom key-value parameter received from service provider
         /// </summary>
+        /// <remarks>
+        /// GetCustomValue will return null if user doesn't put credential manually.
+        /// </remarks>
         public string GetCustomValue(string key)
         {
             IntPtr value;
