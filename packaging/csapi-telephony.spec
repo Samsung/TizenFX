@@ -16,6 +16,9 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
+# .NET supports only armv7l and x86_64 arch
+ExcludeArch: %{ix86} aarch64
+
 AutoReqProv: no
 
 BuildRequires: mono-compiler
