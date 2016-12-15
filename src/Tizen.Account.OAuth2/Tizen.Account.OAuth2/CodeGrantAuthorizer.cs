@@ -60,7 +60,7 @@ namespace Tizen.Account.OAuth2
         public override async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as CodeGrantTokenRequest);
-            return await Task.Run(() => GetAccessToken(requestHandle) );
+            return await Task.Run(() => GetAccessTokenByCode(requestHandle) );
         }
 
         /// <summary>

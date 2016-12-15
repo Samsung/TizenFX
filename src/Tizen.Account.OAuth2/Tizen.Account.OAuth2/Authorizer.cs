@@ -380,6 +380,102 @@ namespace Tizen.Account.OAuth2
 
             return response;
         }
+
+        internal TokenResponse GetAccessTokenByCode(IntPtr requestHandle)
+        {
+            int ret = (int)OAuth2Error.None;
+            IntPtr error = IntPtr.Zero;
+            TokenResponse response = null;
+            Interop.Manager.Oauth2AccessTokenCallback accessTokenCb = (IntPtr responseHandle, IntPtr usrData) =>
+            {
+                if (responseHandle == IntPtr.Zero)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Error occured");
+                    throw (new ArgumentNullException());
+                }
+
+                Interop.Response.GetError(responseHandle, out error);
+                if (error != IntPtr.Zero)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Server Error occured");
+                }
+                else
+                {
+                    IntPtr accessToken = IntPtr.Zero;
+                    ret = Interop.Response.GetAccessToken(responseHandle, out accessToken);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Error(ErrorFactory.LogTag, "Failed to get access token");
+                        throw ErrorFactory.GetException(ret);
+                    }
+
+                    IntPtr tokenType;
+                    ret = Interop.Response.GetTokenType(responseHandle, out tokenType);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Debug(ErrorFactory.LogTag, "TokenType can't be found");
+                    }
+
+                    long expiresIn = -1;
+                    ret = Interop.Response.GetExpiresIn(responseHandle, out expiresIn);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Debug(ErrorFactory.LogTag, "ExpiresIn can't be found");
+                    }
+
+                    IntPtr refreshToken;
+                    ret = Interop.Response.GetRefreshToken(responseHandle, out refreshToken);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Debug(ErrorFactory.LogTag, "Refresh Token can't be found");
+                    }
+
+                    IntPtr scope;
+                    ret = Interop.Response.GetScope(responseHandle, out scope);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Debug(ErrorFactory.LogTag, "Scope can't be found");
+                    }
+
+                    IntPtr state;
+                    ret = Interop.Response.GetState(responseHandle, out state);
+                    if (ret != (int)OAuth2Error.None)
+                    {
+                        Log.Debug(ErrorFactory.LogTag, "State can't be found");
+                    }
+
+                    IEnumerable<string> scopes = (scope == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(scope)?.Split(' ');
+
+                    var token = new AccessToken();
+                    token.Token = (accessToken == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(accessToken);
+                    token.TokenType = (tokenType == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(tokenType);
+                    token.Scope = scopes;
+                    token.ExpiresIn = expiresIn;
+
+                    response = new TokenResponse(responseHandle);
+                    response.AccessToken = token;
+                    response.State = (state == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(state);
+                    response.RefreshToken = (refreshToken == IntPtr.Zero) ? null : new RefreshToken() { Token = Marshal.PtrToStringAnsi(refreshToken) };
+                }
+            };
+
+            ret = Interop.Manager.RequestAccessToken(_managerHandle, requestHandle, accessTokenCb, IntPtr.Zero);
+            Interop.Request.Destroy(requestHandle);
+            if (ret != (int)OAuth2Error.None || error != IntPtr.Zero)
+            {
+                if (error != IntPtr.Zero)
+                {
+                    throw ErrorFactory.GetException(error);
+                }
+                else
+                {
+                    Log.Error(ErrorFactory.LogTag, "Interop failed : " + ret);
+                    throw ErrorFactory.GetException(ret);
+                }
+            }
+
+            return response;
+        }
     }
 }
 
