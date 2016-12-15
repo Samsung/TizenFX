@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.Uix-Tts</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>TTS Uix API for Tizen.Net</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.0" />
+    </dependencies>
+	</metadata>
+</package>
