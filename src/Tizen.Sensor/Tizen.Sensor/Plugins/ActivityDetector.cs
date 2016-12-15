@@ -18,6 +18,9 @@ using System;
 
 namespace Tizen.Sensor
 {
+    /// <summary>
+    /// Activity Detector class for storing common activity information
+    /// </summary>
     public abstract class ActivityDetector : Sensor
     {
         protected const int ActivityAttribute = (((int)SensorType.InVehicleActivityDetector << 8) | 0x80 | 0x1);
