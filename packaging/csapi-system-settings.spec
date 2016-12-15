@@ -6,6 +6,8 @@
 %define BUILDCONF Release
 %endif
 
+ExcludeArch: %{ix86} aarch64
+
 Name:       csapi-system-settings
 Summary:    Tizen System Settings API for C#
 Version:    1.0.1
