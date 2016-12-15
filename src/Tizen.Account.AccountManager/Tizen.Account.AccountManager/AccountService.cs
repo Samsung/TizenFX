@@ -518,14 +518,14 @@ namespace Tizen.Account.AccountManager
 
         private static readonly Interop.AccountService.SubscribeCallback s_accountUpdatedCallback = (string eventType, int accountId, IntPtr userData) =>
         {
-            AccountSucriberEventArgs eventArgs = new AccountSucriberEventArgs(eventType, accountId);
+            AccountSubscriberEventArgs eventArgs = new AccountSubscriberEventArgs(eventType, accountId);
             s_accountUpdated?.Invoke(null, eventArgs);
             return true;
         };
 
         private static Interop.AccountService.SafeAccountSubscriberHandle s_subscriberHandle;
 
-        private static event EventHandler<AccountSucriberEventArgs> s_accountUpdated;
+        private static event EventHandler<AccountSubscriberEventArgs> s_accountUpdated;
         /// <summary>
         /// ContentUpdated event is triggered when the media item info from DB changes.
         /// </summary>
@@ -538,7 +538,7 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="InvalidOperationException">In case of any DB error </exception>
         /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
-        public static event EventHandler<AccountSucriberEventArgs> AccountUpdated
+        public static event EventHandler<AccountSubscriberEventArgs> AccountUpdated
         {
             add
             {

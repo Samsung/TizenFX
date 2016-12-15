@@ -21,13 +21,13 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Event arguments passed when Event is triggered to notify that account is updated/removed from the account database.
     /// </summary>
-    public class AccountSucriberEventArgs : EventArgs
+    public class AccountSubscriberEventArgs : EventArgs
     {
         private const string NotiInsert = "insert";
         private const string NotiDelete = "delete";
         private const string NotiUpdate = "update";
         private const string NotiSyncUpdate = "sync_update";
-        internal AccountSucriberEventArgs(string eventType, int accountId)
+        internal AccountSubscriberEventArgs(string eventType, int accountId)
         {
             if (eventType.CompareTo(NotiInsert) == 0)
             {

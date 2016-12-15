@@ -63,7 +63,7 @@
     <Compile Include="Tizen.Account.AccountManager\AccountErrorFactory.cs" />
     <Compile Include="Tizen.Account.AccountManager\AccountService.cs" />
     <Compile Include="Tizen.Account.AccountManager\AccountProvider.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountSucriberEventArgs.cs" />
+    <Compile Include="Tizen.Account.AccountManager\AccountSubscriberEventArgs.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
