@@ -20,11 +20,11 @@ AutoReqProv: no
 
 BuildRequires: mono-compiler
 BuildRequires: mono-devel
-
 BuildRequires: dotnet-build-tools
-
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
+
+ExcludeArch: %{ix86} aarch64
 
 %description
 Tizen Location API for C#

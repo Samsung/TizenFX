@@ -3,15 +3,15 @@
   <metadata>
     <id>Tizen.Location</id>
     <version>$version$</version>
-    <authors>tizen</authors>
+    <authors>Samsung Electronics</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://www.tizen.org/</projectUrl>
     <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
-    <description>Provides the basic structures and classes that are used in the other Tizen Device API.</description>
+    <description>Provides the Location API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.1" />
+      <dependency id="Tizen" version="1.0.2" />
     </dependencies>
     </metadata>
   <files>
