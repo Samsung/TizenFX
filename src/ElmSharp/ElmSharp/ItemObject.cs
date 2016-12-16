@@ -109,6 +109,21 @@ namespace ElmSharp
             return Interop.Elementary.elm_object_item_part_text_get(Handle, part);
         }
 
+        public void SetPartColor(string part, Color color)
+        {
+            Interop.Elementary.elm_object_item_color_class_color_set(Handle, part, color.R * color.A / 255,
+                                                                              color.G * color.A / 255,
+                                                                              color.B * color.A / 255,
+                                                                              color.A);
+        }
+
+        public Color GetPartColor(string part)
+        {
+            int r, g, b, a;
+            Interop.Elementary.elm_object_item_color_class_color_get(Handle, part, out r, out g, out b, out a);
+            return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
+        }
+
         public static implicit operator IntPtr(ItemObject obj)
         {
             if (obj == null)

@@ -173,6 +173,15 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_item_color_class_color_set(IntPtr it, string part, int r, int g, int b, int a);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_item_color_class_color_get(IntPtr obj, string part, out int r, out int g, out int b, out int a);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_item_color_class_del(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_item_part_text_set(IntPtr obj, string part, string label);
 
         [DllImport(Libraries.Elementary)]

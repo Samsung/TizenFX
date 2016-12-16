@@ -22,6 +22,7 @@ namespace ElmSharp
     {
         EvasObject _content;
         bool _isPopped;
+        Color _barBackgroundColor = Color.Default;
         Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;
 
         NaviItem(IntPtr handle, EvasObject content) : base(handle)
@@ -53,6 +54,27 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_naviframe_item_title_enabled_set(Handle, value, false);
+            }
+        }
+
+        public Color TitleBarBackgroundColor
+        {
+            get
+            {
+                return _barBackgroundColor;
+            }
+            set
+            {
+                if (value.IsDefault)
+                {
+                    Console.WriteLine("ItemObject instance doesn't support to set TitleBarBackgroundColor to Color.Default.");
+                    //TODO. Soon we will support the "elm_object_item_color_class_del" function in EFL.
+                }
+                else
+                {
+                    SetPartColor("bg_title", value);
+                    _barBackgroundColor = value;
+                }
             }
         }
 

@@ -87,12 +87,20 @@ namespace ElmSharp.Test
                 AlignmentX = -1,
             };
 
+            Button barChange = new Button(parent)
+            {
+                Text = "TitleTextColor & BarColor",
+                WeightX = 1,
+                AlignmentX = -1,
+            };
+
             label.Show();
             push.Show();
             pop.Show();
             insertBeforeTop.Show();
             insertAfterTop.Show();
             removeTop.Show();
+            barChange.Show();
 
             push.Clicked += (s, e) =>
             {
@@ -125,13 +133,24 @@ namespace ElmSharp.Test
                 item.Delete();
                 Console.WriteLine("----- After Call NaviItem.Delete() {0:x} ", nativePointer);
             };
-            
+
+            Random rand = new Random(DateTime.Now.Millisecond);
+            barChange.Clicked += (s, e) =>
+            {
+                int currentIndex = _navi.NavigationStack.Count - 1;
+                if (currentIndex >= 0)
+                {
+                    _navi.NavigationStack[currentIndex].TitleBarBackgroundColor = Color.FromHex(string.Format("#{0:X8}", rand.Next()));
+                }
+            };
+
             box.PackEnd(label);
             box.PackEnd(push);
             box.PackEnd(pop);
             box.PackEnd(insertBeforeTop);
             box.PackEnd(insertAfterTop);
             box.PackEnd(removeTop);
+            box.PackEnd(barChange);
 
             return box;
         }
