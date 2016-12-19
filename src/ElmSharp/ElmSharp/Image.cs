@@ -323,7 +323,7 @@ namespace ElmSharp
                 }
             });
 
-            SmartEvent loadReady = new SmartEvent(this, Handle, "load,ready");
+            SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
                 loadReady.Dispose();
@@ -334,7 +334,7 @@ namespace ElmSharp
                 }
             };
 
-            SmartEvent loadError = new SmartEvent(this, Handle, "load,error");
+            SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
                 loadError.Dispose();
