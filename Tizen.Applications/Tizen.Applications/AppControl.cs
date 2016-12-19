@@ -551,6 +551,50 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sends the terminate request to the application that is launched by AppControl.
+        /// </summary>
+        /// <remarks>
+        /// You are not allowed to terminate other general applications using this API.
+        /// This API can be used to terminate sub-applications which were launched as group mode by caller application.
+        /// Once callee application is being terminated by this API,
+        /// other applications which were launched by callee application as group mode will be terminated as well
+        /// </remarks>
+        /// <param name="terminateRequest">The AppControl</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of arguament is invalid</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <example>
+        /// <code>
+        /// AppControl terminateRequest = new AppControl();
+        /// terminateRequest.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendTerminateRequest(terminateRequest);
+        /// </code>
+        /// </example>
+        public static void SendTerminateRequest(AppControl terminateRequest)
+        {
+            if (terminateRequest == null)
+            {
+                throw new ArgumentNullException("terminateRequest");
+            }
+            Interop.AppControl.ErrorCode err;
+
+            err = Interop.AppControl.SendTerminateRequest(terminateRequest._handle);
+
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppControl.ErrorCode.TimedOut:
+                        throw new TimeoutException("Timed out");
+                    default:
+                        throw new InvalidOperationException("Error = " + err);
+                }
+            }
+        }
+
+        /// <summary>
         /// Class for Extra Data
         /// </summary>
         public class ExtraDataCollection
