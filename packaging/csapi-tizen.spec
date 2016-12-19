@@ -8,11 +8,13 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
+AutoReqProv: no
+ExcludeArch: aarch64 %ix86
+
 BuildRequires: dotnet-build-tools
 
 %define Assemblies Tizen
 
-%dotnet_import_common
 
 %description
 %{summary}
