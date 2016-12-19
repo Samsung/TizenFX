@@ -128,6 +128,7 @@ namespace ElmSharp.Test
         private void CreateFirstPage(IEnumerable<TestCaseBase> testCases)
         {
             _firstPageWindow = CreateWindow();
+            Console.WriteLine("Screen DPI : {0}", _firstPageWindow.ScreenDpi.X);
             Conformant conformant = new Conformant(_firstPageWindow);
             conformant.Show();
             Box box = new Box(_firstPageWindow)
