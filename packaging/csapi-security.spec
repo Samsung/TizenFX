@@ -1,11 +1,3 @@
-%{!?dotnet_assembly_path: %define dotnet_assembly_path /opt/usr/share/dotnet.tizen/framework}
-
-%if 0%{?tizen_build_devel_mode}
-%define BUILDCONF Debug
-%else
-%define BUILDCONF Release
-%endif
-
 %define Assemblies Tizen.Security Tizen.Security.SecureRepository
 %define version_security          1.0.5
 %define version_secure_repository 1.0.7
@@ -21,10 +13,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
-ExcludeArch: %{ix86} aarch64
-
-BuildRequires: mono-compiler
-BuildRequires: mono-devel
+ExcludeArch: aarch64 %ix86
 
 BuildRequires: dotnet-build-tools
 
@@ -33,7 +22,9 @@ BuildRequires: csapi-tizen-nuget
 BuildRequires: csapi-application-nuget
 
 %description
-Tizen Security API for C#
+%{summary}
+
+%dotnet_import_sub_packages
 
 %prep
 %setup -q
@@ -41,45 +32,19 @@ cp %{SOURCE1} .
 
 %build
 for ASM in %{Assemblies}; do
-  # NuGet Restore
-  find $ASM/*.project.json -exec nuget restore {} \;
-  # Build
-  find $ASM/*.csproj -exec xbuild {} /p:Configuration=%{BUILDCONF} \;
-  # NuGet Pack
-  if [ "$ASM" = "Tizen.Security" ]; then
-    nuget pack $ASM/$ASM.nuspec -Version %{version_security} \
-      -Properties Configuration=%{BUILDCONF}
-  elif [ "$ASM" = "Tizen.Security.SecureRepository" ]; then
-    nuget pack $ASM/$ASM.nuspec -Version %{version_secure_repository} \
-      -Properties Configuration=%{BUILDCONF}
-  fi
+%dotnet_build $ASM
+[ "$ASM" = "Tizen.Security" ] &&
+	%dotnet_pack $ASM/$ASM.nuspec %{version_security}
+[ "$ASM" = "Tizen.Security.SecureRepository" ] &&
+	%dotnet_pack $ASM/$ASM.nuspec %{version_secure_repository}
 done
 
 %install
-# Runtime Binary
-mkdir -p %{buildroot}%{dotnet_assembly_path}
 for ASM in %{Assemblies}; do
-%if 0%{?_with_corefx}
-  install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
-%else
-  install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
-%endif
+%dotnet_install $ASM
 done
-# NuGet
-mkdir -p %{buildroot}/nuget
-install -p -m 644 *.nupkg %{buildroot}/nuget
 
 %files
 %manifest %{name}.manifest
 %license LICENSE
-%attr(644,root,root) %{dotnet_assembly_path}/*.dll
-
-%package nuget
-Summary:   NuGet package for %{name}
-Group:     Development/Libraries
-
-%description nuget
-NuGet package for %{name}
-
-%files nuget
-/nuget/*.nupkg
+%attr(644,root,root) %{dotnet_assembly_files}
