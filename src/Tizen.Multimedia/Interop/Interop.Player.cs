@@ -85,7 +85,7 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_volume")]
         internal static extern int GetVolume(IntPtr player, out float left, out float right);
 
-        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_policy_info")]
+        [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern int SetAudioPolicyInfo(IntPtr player, IntPtr streamInfo);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_audio_latency_mode")]
