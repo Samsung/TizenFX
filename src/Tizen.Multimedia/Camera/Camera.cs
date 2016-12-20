@@ -55,6 +55,8 @@ namespace Tizen.Multimedia
         private readonly CameraSetting _cameraSetting;
         private readonly CameraDisplay _cameraDisplay;
         private readonly List<FaceDetectedData> _faces = new List<FaceDetectedData>();
+        private Interop.Camera.PreviewCallback _previewCallback;
+        Interop.Camera.MediaPacketPreviewCallback _mediaPacketCallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Multimedia.Camera"/> Class.
@@ -686,7 +688,7 @@ namespace Tizen.Multimedia
                 CameraErrorFactory.ThrowException(ret, "Failed to get the camera device state.");
             }
 
-            return (CameraDeviceState)ret;
+            return (CameraDeviceState)val;
         }
 
         /// <summary>
@@ -753,17 +755,32 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
         public void StartCapture()
         {
+            Log.Info(CameraLog.Tag, "StartCapture API starting");
+
             _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
             {
-                Interop.Camera.ImageDataStruct _img = Interop.Camera.IntPtrToImageDataStruct(image);
-                Interop.Camera.ImageDataStruct _post = Interop.Camera.IntPtrToImageDataStruct(postview);
-                Interop.Camera.ImageDataStruct _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
+                Interop.Camera.ImageDataStruct _img = new Interop.Camera.ImageDataStruct();
+                Interop.Camera.ImageDataStruct _post = new Interop.Camera.ImageDataStruct();
+                Interop.Camera.ImageDataStruct _thumb = new Interop.Camera.ImageDataStruct();
                 ImageData img = new ImageData();
                 ImageData post = new ImageData();
                 ImageData thumb = new ImageData();
-                CopyImageData(img, _img);
-                CopyImageData(img, _post);
-                CopyImageData(thumb, _thumb);
+
+                if (image != IntPtr.Zero)
+                {
+                    _img = Interop.Camera.IntPtrToImageDataStruct(image);
+                    CopyImageData(img, _img);
+                }
+                if (postview != IntPtr.Zero)
+                {
+                    _post = Interop.Camera.IntPtrToImageDataStruct(postview);
+                    CopyImageData(post, _post);
+                }
+                if (thumbnail != IntPtr.Zero)
+                {
+                    _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
+                    CopyImageData(thumb, _thumb);
+                }
 
                 CapturingEventArgs eventArgs = new CapturingEventArgs(img, post, thumb);
                 Capturing?.Invoke(this, eventArgs);
@@ -780,6 +797,7 @@ namespace Tizen.Multimedia
             {
                 CameraErrorFactory.ThrowException(ret, "Failed to start the camera capture.");
             }
+            Log.Info(CameraLog.Tag, "StartCapture API finished");
         }
 
         /// <summary>
@@ -827,15 +845,28 @@ namespace Tizen.Multimedia
         {
             _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
             {
-                Interop.Camera.ImageDataStruct _img = Interop.Camera.IntPtrToImageDataStruct(image);
-                Interop.Camera.ImageDataStruct _post = Interop.Camera.IntPtrToImageDataStruct(postview);
-                Interop.Camera.ImageDataStruct _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
+                Interop.Camera.ImageDataStruct _img = new Interop.Camera.ImageDataStruct();
+                Interop.Camera.ImageDataStruct _post = new Interop.Camera.ImageDataStruct();
+                Interop.Camera.ImageDataStruct _thumb = new Interop.Camera.ImageDataStruct();
                 ImageData img = new ImageData();
                 ImageData post = new ImageData();
                 ImageData thumb = new ImageData();
-                CopyImageData(img, _img);
-                CopyImageData(img, _post);
-                CopyImageData(thumb, _thumb);
+
+                if (image != IntPtr.Zero)
+                {
+                    _img = Interop.Camera.IntPtrToImageDataStruct(image);
+                    CopyImageData(img, _img);
+                }
+                if (postview != IntPtr.Zero)
+                {
+                    _post = Interop.Camera.IntPtrToImageDataStruct(postview);
+                    CopyImageData(post, _post);
+                }
+                if (thumbnail != IntPtr.Zero)
+                {
+                    _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
+                    CopyImageData(thumb, _thumb);
+                }
 
                 CapturingEventArgs eventArgs = new CapturingEventArgs(img, post, thumb);
                 Capturing?.Invoke(this, eventArgs);
@@ -1049,16 +1080,19 @@ namespace Tizen.Multimedia
         internal static void CopyImageData(ImageData image, Interop.Camera.ImageDataStruct img)
         {
             image._data = new byte[img.size];
-            Marshal.Copy(img.data, image._data, 0, (int)img.size);
+            if(img.data != IntPtr.Zero)
+                Marshal.Copy(img.data, image._data, 0, (int)img.size);
             image._width = img.width;
             image._height = img.height;
             image._format = img.format;
             image._exif = new byte[img.exifSize];
-            Marshal.Copy(img.exif, image._exif, 0, (int)img.exifSize);
+            if (img.exif != IntPtr.Zero)
+                Marshal.Copy(img.exif, image._exif, 0, (int)img.exifSize);
         }
 
         internal static PreviewData CopyPreviewData(Interop.Camera.CameraPreviewDataStruct previewStruct, PlaneType type)
         {
+            Log.Info(CameraLog.Tag, "plane type " + type.ToString());
             if (type == PlaneType.SinglePlane)
             {
                 SinglePlaneData singleData = new SinglePlaneData();
@@ -1068,7 +1102,10 @@ namespace Tizen.Multimedia
                 singleData.Width = previewStruct.width;
                 Interop.Camera.SinglePlane singlePlane = previewStruct.frameData.singlePlane;
                 singleData.YUVData = new byte[singlePlane.yuvsize];
-                Marshal.Copy(singlePlane.yuv, singleData.YUVData, 0, (int)singlePlane.yuvsize);
+
+                if (singlePlane.yuvsize > 0)
+                    Marshal.Copy(singlePlane.yuv, singleData.YUVData, 0, (int)singlePlane.yuvsize);
+
                 return singleData;
             }
             else if (type == PlaneType.DoublePlane)
@@ -1081,8 +1118,15 @@ namespace Tizen.Multimedia
                 Interop.Camera.DoublePlane doublePlane = previewStruct.frameData.doublePlane;
                 doubleData.YData = new byte[doublePlane.ysize];
                 doubleData.UVData = new byte[doublePlane.uvsize];
-                Marshal.Copy(doublePlane.y, doubleData.YData, 0, (int)doublePlane.ysize);
-                Marshal.Copy(doublePlane.uv, doubleData.UVData, (int)doublePlane.ysize, (int)doublePlane.uvsize);
+                Log.Info(CameraLog.Tag, "ysize " + doublePlane.ysize);
+                Log.Info(CameraLog.Tag, "uv size " + doublePlane.uvsize);
+
+                if (doublePlane.ysize > 0)
+                    Marshal.Copy(doublePlane.y, doubleData.YData, 0, (int)doublePlane.ysize);
+
+                if (doublePlane.uvsize > 0)
+                    Marshal.Copy(doublePlane.uv, doubleData.UVData, 0, (int)doublePlane.uvsize);
+
                 return doubleData;
             }
             else if (type == PlaneType.TriplePlane)
@@ -1096,9 +1140,16 @@ namespace Tizen.Multimedia
                 tripleData.YData = new byte[triplePlane.ysize];
                 tripleData.UData = new byte[triplePlane.usize];
                 tripleData.VData = new byte[triplePlane.vsize];
-                Marshal.Copy(triplePlane.y, tripleData.YData, 0, (int)triplePlane.ysize);
-                Marshal.Copy(triplePlane.u, tripleData.UData, (int)triplePlane.ysize, (int)triplePlane.usize);
-                Marshal.Copy(triplePlane.v, tripleData.VData, (int)(triplePlane.ysize + triplePlane.usize), (int)triplePlane.vsize);
+
+                if (triplePlane.ysize > 0)
+                    Marshal.Copy(triplePlane.y, tripleData.YData, 0, (int)triplePlane.ysize);
+
+                if (triplePlane.usize > 0)
+                    Marshal.Copy(triplePlane.u, tripleData.UData, 0, (int)triplePlane.usize);
+
+                if (triplePlane.vsize > 0)
+                    Marshal.Copy(triplePlane.v, tripleData.VData, 0, (int)triplePlane.vsize);
+
                 return tripleData;
             }
             else
@@ -1110,14 +1161,19 @@ namespace Tizen.Multimedia
                 encodedData.Width = previewStruct.width;
                 Interop.Camera.EncodedPlane encodedPlane = previewStruct.frameData.encodedPlane;
                 encodedData.Data = new byte[encodedPlane.size];
-                Marshal.Copy(encodedPlane.data, encodedData.Data, 0, (int)encodedPlane.size);
+
+                if (encodedPlane.size > 0)
+                    Marshal.Copy(encodedPlane.data, encodedData.Data, 0, (int)encodedPlane.size);
+
                 return encodedData;
             }
         }
 
         private void CreatePreviewCallback()
         {
-            Interop.Camera.PreviewCallback _previewCallback = (IntPtr frame, IntPtr userData) =>
+            Log.Info(CameraLog.Tag, "Create preview callback.");
+
+            _previewCallback = (IntPtr frame, IntPtr userData) =>
             {
                 Interop.Camera.CameraPreviewDataStruct _previewStruct = Interop.Camera.IntPtrToCameraPreviewDataStruct(frame);
                 PlaneType _type = PlaneType.SinglePlane;
@@ -1130,6 +1186,7 @@ namespace Tizen.Multimedia
                 }
                 else
                 {
+                    Log.Info(CameraLog.Tag, "Number of plane " + _previewStruct.numOfPlanes);
                     if (_previewStruct.numOfPlanes == 1)
                     {
                         _type = PlaneType.SinglePlane;
@@ -1148,6 +1205,7 @@ namespace Tizen.Multimedia
                 }
 
                 PreviewEventArgs eventArgs = new PreviewEventArgs(_previewData, _type);
+
                 _preview?.Invoke(this, eventArgs);
             };
 
@@ -1160,7 +1218,7 @@ namespace Tizen.Multimedia
 
         private void CreateMediaPacketPreviewCallback()
         {
-            Interop.Camera.MediaPacketPreviewCallback _mediaPacketCallback = (IntPtr mediaPacket, IntPtr userData) =>
+            _mediaPacketCallback = (IntPtr mediaPacket, IntPtr userData) =>
             {
                 MediaPacket packet = MediaPacket.From(mediaPacket);
 

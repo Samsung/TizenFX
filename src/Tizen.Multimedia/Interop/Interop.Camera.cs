@@ -186,7 +186,7 @@ internal static partial class Interop
 
         internal static ImageDataStruct IntPtrToImageDataStruct(IntPtr unmanagedVariable)
         {
-            ImageDataStruct ImageStruct = (ImageDataStruct)Marshal.PtrToStructure(unmanagedVariable, typeof(ImageDataStruct));
+            ImageDataStruct ImageStruct = Marshal.PtrToStructure<ImageDataStruct>(unmanagedVariable);
             return ImageStruct;
         }
 
@@ -261,7 +261,7 @@ internal static partial class Interop
 
         internal static CameraPreviewDataStruct IntPtrToCameraPreviewDataStruct(IntPtr unmanagedVariable)
         {
-            CameraPreviewDataStruct PreviewDataStruct = (CameraPreviewDataStruct)Marshal.PtrToStructure(unmanagedVariable, typeof(CameraPreviewDataStruct));
+            CameraPreviewDataStruct PreviewDataStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(unmanagedVariable);
             return PreviewDataStruct;
         }
     }
