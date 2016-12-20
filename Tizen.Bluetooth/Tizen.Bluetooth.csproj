@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3EE5842E-7004-43BC-825B-29FFDEC18D4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.Bluetooth</RootNamespace>
+    <AssemblyName>Tizen.Bluetooth</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701;1702</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tizen.Bluetooth.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Interop\Interop.Glib.cs" />
+    <Compile Include="Interop\Interop.Libc.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.Bluetooth.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAdapter.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAdapterImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAudio.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAudioImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAvrcp.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothAvrcpImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothData.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothDevice.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothEnumerations.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothError.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothEventArgs.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothGatt.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothGattImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothHid.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothHidImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothLeAdapter.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothLeAdapterImpl.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothProfile.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothServerSocket.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothSocket.cs" />
+    <Compile Include="Tizen.Bluetooth\BluetoothStructs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tizen.Bluetooth.nuspec" />
+    <None Include="Tizen.Bluetooth.project.json" />
+    <None Include="Tizen.Bluetooth.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+    -->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+       to prevent it from outputting a warning (MSB3644).
+    -->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>
