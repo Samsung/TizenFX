@@ -20,46 +20,44 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// RepeatModeUpdated event arguments
-	/// </summary>
-	/// <remarks>
-	/// RepeatModeUpdated event arguments
-	/// </remarks>
-	public class RepeatModeUpdatedEventArgs : EventArgs
-	{
-		internal string _serverName;
-		internal MediaControllerRepeatMode _mode;
+    /// <summary>
+    /// RepeatModeUpdated event arguments
+    /// </summary>
+    /// <remarks>
+    /// RepeatModeUpdated event arguments
+    /// </remarks>
+    public class RepeatModeUpdatedEventArgs : EventArgs
+    {
+        internal string _serverName;
+        internal MediaControllerRepeatMode _mode;
 
-		public RepeatModeUpdatedEventArgs (string name, MediaControllerRepeatMode mode)
-		{
-			_serverName = name;
-			_mode = mode;
-		}
-				
-		/// <summary>
-		/// Get server name.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public string ServerName
-		{
-			get
-			{
-				return _serverName;
-			}
-		}
+        internal RepeatModeUpdatedEventArgs (string name, MediaControllerRepeatMode mode)
+        {
+            _serverName = name;
+            _mode = mode;
+        }
 
-		/// <summary>
-		/// Get repeat mode.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public MediaControllerRepeatMode RepeatMode
-		{
-			get
-			{
-				return _mode;
-			}
-		}
-	}
+        /// <summary>
+        /// Get server name.
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _serverName;
+            }
+        }
+
+        /// <summary>
+        /// Get repeat mode.
+        /// </summary>
+        public MediaControllerRepeatMode RepeatMode
+        {
+            get
+            {
+                return _mode;
+            }
+        }
+    }
 }
 

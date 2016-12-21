@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,158 +14,290 @@
 * limitations under the License.
 */
 
-
-
 using System;
 using System.Collections.Generic;
 
 namespace Tizen.Multimedia.MediaController
 {
-	/// <summary>
-	/// Metadata represents a metadata of media for server application to play
-	/// </summary>
-	public class MediaControllerMetadata
-	{
-		/// <summary>
-		/// The title of media
-		/// </summary>
-		public string Title;
+    /// <summary>
+    /// Metadata represents a metadata of media for server application to play
+    /// </summary>
+    public class MediaControllerMetadata
+    {
+        private string _title;
+        private string _artist;
+        private string _album;
+        private string _author;
+        private string _genre;
+        private string _duration;
+        private string _date;
+        private string _copyright;
+        private string _description;
+        private string _track_number;
+        private string _picture;
 
-		/// <summary>
-		/// The artist of media
-		/// </summary>
-		public string Artist;
-
-		/// <summary>
-		/// The album of media
-		/// </summary>
-		public string Album;
-
-		/// <summary>
-		/// The author of media
-		/// </summary>
-		public string Author;
-
-		/// <summary>
-		/// The genre of media
-		/// </summary>
-		public string Genre;
-
-		/// <summary>
-		/// The duration of media
-		/// </summary>
-		public string Duration;
-
-		/// <summary>
-		/// The date of media
-		/// </summary>
-		public string Date;
-
-		/// <summary>
-		/// The copyright of media
-		/// </summary>
-		public string Copyright;
-
-		/// <summary>
-		/// The description of media
-		/// </summary>
-		public string Description;
-
-		/// <summary>
-		/// The track number of media
-		/// </summary>
-		public string TrackNumber;
-
-		/// <summary>
-		/// The picture of media
-		/// </summary>
-		public string Picture;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MediaControllerMetadata()
         {
-
+            _title = null;
+            _artist = null;
+            _album = null;
+            _author = null;
+            _genre = null;
+            _duration = null;
+            _date = null;
+            _copyright = null;
+            _description = null;
+            _track_number = null;
+            _picture = null;
         }
 
         internal MediaControllerMetadata(IntPtr _metadataHandle) {
-			MediaControllerError res = MediaControllerError.None;
+            MediaControllerError res = MediaControllerError.None;
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Title, out Title);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
-
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Artist, out Artist);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
-
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Album, out Album);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
-
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Author, out Author);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
-
-            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Genre, out Genre);
-            if (res != MediaControllerError.None)
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Title, out _title);
+            if(res != MediaControllerError.None)
             {
-                Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
             }
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Duration, out Duration);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Artist, out _artist);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Date, out Date);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Album, out _album);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Copyright, out Copyright);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Author, out _author);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Description, out Description);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Genre, out _genre);
+            if (res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.TrackNumber, out TrackNumber);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Duration, out _duration);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Picture, out Picture);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
-			}
-		}
-	}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Date, out _date);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
+
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Copyright, out _copyright);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
+
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Description, out _description);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
+
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.TrackNumber, out _track_number);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
+
+            res = (MediaControllerError)Interop.MediaControllerClient.GetMetadata(_metadataHandle, (int)MediaControllerAttributes.Picture, out _picture);
+            if(res != MediaControllerError.None)
+            {
+            Log.Error(MediaControllerLog.LogTag, "Get Metadata failed" + res);
+            MediaControllerErrorFactory.ThrowException(res, "Get Metadata failed");
+            }
+        }
+
+        /// <summary>
+        /// The title of media
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set {
+                _title = value;
+            }
+        }
+
+        /// <summary>
+        /// The artist of media
+        /// </summary>
+        public string Artist
+        {
+            get
+            {
+                return _artist;
+            }
+            set
+            {
+                _artist = value;
+            }
+        }
+
+        /// <summary>
+        /// The album of media
+        /// </summary>
+        public string Album
+        {
+            get
+            {
+                return _album;
+            }
+            set
+            {
+                _album = value;
+            }
+        }
+
+        /// <summary>
+        /// The author of media
+        /// </summary>
+        public string Author
+        {
+            get
+            {
+                return _author;
+            }
+            set
+            {
+                _author = value;
+            }
+        }
+
+        /// <summary>
+        /// The genre of media
+        /// </summary>
+        public string Genre
+        {
+            get
+            {
+                return _genre;
+            }
+            set
+            {
+                _genre = value;
+            }
+        }
+
+        /// <summary>
+        /// The duration of media
+        /// </summary>
+        public string Duration
+        {
+            get
+            {
+                return _duration;
+            }
+            set
+            {
+                _duration = value;
+            }
+        }
+
+        /// <summary>
+        /// The date of media
+        /// </summary>
+        public string Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
+        /// <summary>
+        /// The copyright of media
+        /// </summary>
+        public string Copyright
+        {
+            get
+            {
+                return _copyright;
+            }
+            set
+            {
+                _copyright = value;
+            }
+        }
+
+        /// <summary>
+        /// The description of media
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
+        }
+
+        /// <summary>
+        /// The track number of media
+        /// </summary>
+        public string TrackNumber
+        {
+            get
+            {
+                return _track_number;
+            }
+            set
+            {
+                _track_number = value;
+            }
+        }
+
+        /// <summary>
+        /// The picture of media
+        /// </summary>
+        public string Picture
+        {
+            get
+            {
+                return _picture;
+            }
+            set
+            {
+                _picture = value;
+            }
+        }
+    }
 }
 

@@ -19,35 +19,31 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// ServerUpdated event arguments
-	/// </summary>
-	/// <remarks>
-	/// ServerUpdated event arguments
-	/// </remarks>
-	public class ServerUpdatedEventArgs : EventArgs
-	{
-		internal ServerInformation _serverInfo;
+    /// <summary>
+    /// ServerUpdated event arguments
+    /// </summary>
+    /// <remarks>
+    /// ServerUpdated event arguments
+    /// </remarks>
+    public class ServerUpdatedEventArgs : EventArgs
+    {
+        internal ServerInformation _serverInfo;
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		internal ServerUpdatedEventArgs(string name, MediaControllerServerState state)
-		{
-			_serverInfo = new ServerInformation (name, state);
-		}
+        internal ServerUpdatedEventArgs(string name, MediaControllerServerState state)
+        {
+            _serverInfo = new ServerInformation (name, state);
+        }
 
-		/// <summary>
-		/// Get server information.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public ServerInformation ServerInfo
-		{
-			get
-			{
-				return _serverInfo;
-			}
-		}
-	}
+        /// <summary>
+        /// Get server information.
+        /// </summary>
+        public ServerInformation ServerInfo
+        {
+            get
+            {
+                return _serverInfo;
+            }
+        }
+    }
 }
 

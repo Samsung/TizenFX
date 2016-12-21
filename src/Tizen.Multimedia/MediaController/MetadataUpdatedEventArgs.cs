@@ -20,46 +20,44 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// MetadataUpdated event arguments
-	/// </summary>
-	/// <remarks>
-	/// MetadataUpdated event arguments
-	/// </remarks>
-	public class MetadataUpdatedEventArgs : EventArgs
-	{
-		internal string _serverName;
-		internal MediaControllerMetadata _metadata;
+    /// <summary>
+    /// MetadataUpdated event arguments
+    /// </summary>
+    /// <remarks>
+    /// MetadataUpdated event arguments
+    /// </remarks>
+    public class MetadataUpdatedEventArgs : EventArgs
+    {
+        internal string _serverName;
+        internal MediaControllerMetadata _metadata;
 
-		public MetadataUpdatedEventArgs (string name, IntPtr handle)
-		{
-			_serverName = name;
-			_metadata = new MediaControllerMetadata (handle);
-		}
-				
-		/// <summary>
-		/// Get server name.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public string ServerName
-		{
-			get
-			{
-				return _serverName;
-			}
-		}
+        internal MetadataUpdatedEventArgs (string name, IntPtr handle)
+        {
+            _serverName = name;
+            _metadata = new MediaControllerMetadata (handle);
+        }
 
-		/// <summary>
-		/// Get playback information.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public MediaControllerMetadata Metadata
-		{
-			get
-			{
-				return _metadata;
-			}
-		}
-	}
+        /// <summary>
+        /// Get server name.
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _serverName;
+            }
+        }
+
+        /// <summary>
+        /// Get playback information.
+        /// </summary>
+        public MediaControllerMetadata Metadata
+        {
+            get
+            {
+                return _metadata;
+            }
+        }
+    }
 }
 

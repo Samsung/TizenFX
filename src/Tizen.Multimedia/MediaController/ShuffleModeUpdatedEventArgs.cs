@@ -20,46 +20,44 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// ShuffleModeUpdated event arguments
-	/// </summary>
-	/// <remarks>
-	/// ShuffleModeUpdated event arguments
-	/// </remarks>
-	public class ShuffleModeUpdatedEventArgs : EventArgs
-	{
-		internal string _serverName;
-		internal MediaControllerShuffleMode _mode;
+    /// <summary>
+    /// ShuffleModeUpdated event arguments
+    /// </summary>
+    /// <remarks>
+    /// ShuffleModeUpdated event arguments
+    /// </remarks>
+    public class ShuffleModeUpdatedEventArgs : EventArgs
+    {
+        internal string _serverName;
+        internal MediaControllerShuffleMode _mode;
 
-		public ShuffleModeUpdatedEventArgs (string name, MediaControllerShuffleMode mode)
-		{
-			_serverName = name;
-			_mode = mode;
-		}
-		
-		/// <summary>
-		/// Get server name.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public string ServerName
-		{
-			get
-			{
-				return _serverName;
-			}
-		}
+        internal ShuffleModeUpdatedEventArgs (string name, MediaControllerShuffleMode mode)
+        {
+            _serverName = name;
+            _mode = mode;
+        }
 
-		/// <summary>
-		/// Get shuffle mode.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public MediaControllerShuffleMode ShuffleMode
-		{
-			get
-			{
-				return _mode;
-			}
-		}
-	}
+        /// <summary>
+        /// Get server name.
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _serverName;
+            }
+        }
+
+        /// <summary>
+        /// Get shuffle mode.
+        /// </summary>
+        public MediaControllerShuffleMode ShuffleMode
+        {
+            get
+            {
+                return _mode;
+            }
+        }
+    }
 }
 

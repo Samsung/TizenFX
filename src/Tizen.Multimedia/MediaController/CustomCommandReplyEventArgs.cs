@@ -21,60 +21,57 @@ using Tizen.Applications;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// CustomCommandRecieved event arguments
-	/// </summary>
-	/// <remarks>
-	/// CustomCommandRecieved event arguments
-	/// </remarks>
-	public class CustomCommandReplyEventArgs : EventArgs
-	{
-		internal string _serverName;
-		internal int _result;
-		internal Bundle _bundle;
+    /// <summary>
+    /// CustomCommandRecieved event arguments
+    /// </summary>
+    /// <remarks>
+    /// CustomCommandRecieved event arguments
+    /// </remarks>
+    public class CustomCommandReplyEventArgs : EventArgs
+    {
+        internal string _serverName;
+        internal int _result;
+        internal Bundle _bundle;
 
-		public CustomCommandReplyEventArgs (string serverName, int result, Bundle bundle)
-		{
-			_serverName = serverName;
-			_result = result;
-			_bundle = bundle;
-		}
+        internal CustomCommandReplyEventArgs (string serverName, int result, Bundle bundle)
+        {
+            _serverName = serverName;
+            _result = result;
+            _bundle = bundle;
+        }
 
-		/// <summary>
-		/// Get server name.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public string ServerName
-		{
-			get
-			{
-				return _serverName;
-			}
-		}
+        /// <summary>
+        /// Get server name.
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _serverName;
+            }
+        }
 
-		/// <summary>
-		/// Get playback information.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public int Result
-		{
-			get
-			{
-				return _result;
-			}
-		}
+        /// <summary>
+        /// Get playback information.
+        /// </summary>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
 
-		/// <summary>
-		/// Get bundle data.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public Bundle BundleData
-		{
-			get
-			{
-				return _bundle;
-			}
-		}
-	}
+        /// <summary>
+        /// Get bundle data.
+        /// </summary>
+        public Bundle BundleData
+        {
+            get
+            {
+                return _bundle;
+            }
+        }
+    }
 }
 

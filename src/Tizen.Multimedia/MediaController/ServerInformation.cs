@@ -20,26 +20,40 @@ using System;
 
 namespace Tizen.Multimedia.MediaController
 {
-	/// <summary>
-	/// ServerInformation represents a name and state of server application.
-	/// </summary>
-	public class ServerInformation
-	{
-		internal ServerInformation(string _name, MediaControllerServerState _state)
-		{
-			Name = _name;
-			State = _state;
-		}
+    /// <summary>
+    /// ServerInformation represents a name and state of server application.
+    /// </summary>
+    public class ServerInformation
+    {
+        private string _name;
+        private MediaControllerServerState _state;
+        internal ServerInformation(string name, MediaControllerServerState state)
+        {
+            _name = name;
+            _state = state;
+        }
 
-		/// <summary>
-		/// The name of server
-		/// </summary>
-		public readonly string Name;
+        /// <summary>
+        /// The name of server
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+        }
 
-		/// <summary>
-		/// The state of server
-		/// </summary>
-		public readonly MediaControllerServerState State;
-	}
+        /// <summary>
+        /// The state of server
+        /// </summary>
+        public MediaControllerServerState State
+        {
+            get
+            {
+                return _state;
+            }
+        }
+    }
 }
 

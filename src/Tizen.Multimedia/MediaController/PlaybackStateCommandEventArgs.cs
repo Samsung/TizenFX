@@ -20,46 +20,44 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
 
-	/// <summary>
-	/// PlaybackStateCommand event arguments
-	/// </summary>
-	/// <remarks>
-	/// PlaybackStateCommand event arguments
-	/// </remarks>
-	public class PlaybackStateCommandEventArgs : EventArgs
-	{
-		internal string _clientName;
-		internal MediaControllerPlaybackState _state;
+    /// <summary>
+    /// PlaybackStateCommand event arguments
+    /// </summary>
+    /// <remarks>
+    /// PlaybackStateCommand event arguments
+    /// </remarks>
+    public class PlaybackStateCommandEventArgs : EventArgs
+    {
+        internal string _clientName;
+        internal MediaControllerPlaybackState _state;
 
-		public PlaybackStateCommandEventArgs (string name, MediaControllerPlaybackState state)
-		{
-			_clientName = name;
-			_state = state;
-		}
+        internal PlaybackStateCommandEventArgs (string name, MediaControllerPlaybackState state)
+        {
+            _clientName = name;
+            _state = state;
+        }
 
-		/// <summary>
-		/// Get client name.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public string ClientName
-		{
-			get
-			{
-				return _clientName;
-			}
-		}
+        /// <summary>
+        /// Get client name.
+        /// </summary>
+        public string ClientName
+        {
+            get
+            {
+                return _clientName;
+            }
+        }
 
-		/// <summary>
-		/// Get playback state.
-		/// </summary>
-		/// <value> 0 - 100 </value>
-		public MediaControllerPlaybackState State
-		{
-			get
-			{
-				return _state;
-			}
-		}
-	}
+        /// <summary>
+        /// Get playback state.
+        /// </summary>
+        public MediaControllerPlaybackState State
+        {
+            get
+            {
+                return _state;
+            }
+        }
+    }
 }
 

@@ -20,47 +20,64 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
     /// <summary>
-	/// Playback represents a playback state and playback position.
-	/// </summary>
-	public class MediaControllerPlayback
-	{
-		public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
-			State = state;
-			Position = position;
-		}
+    /// Playback represents a playback state and playback position.
+    /// </summary>
+    public class MediaControllerPlayback
+    {
+        private MediaControllerPlaybackState _state;
+        private ulong _position;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
+            _state = state;
+            _position = position;
+        }
 
-		internal MediaControllerPlayback(IntPtr _playbackHandle) {
-			MediaControllerError res = MediaControllerError.None;
-			int _state = 0;
-			ulong _position = 0L;
+        internal MediaControllerPlayback(IntPtr _playbackHandle) {
+            MediaControllerError res = MediaControllerError.None;
+            int state = 0;
+            ulong position = 0L;
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackState(_playbackHandle, out _state);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Playback state failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Playback state failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackState(_playbackHandle, out state);
+            if(res != MediaControllerError.None)
+            {
+                Log.Error(MediaControllerLog.LogTag, "Get Playback state failed" + res);
+                MediaControllerErrorFactory.ThrowException(res, "Get Playback state failed");
+            }
 
-			res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackPosition(_playbackHandle, out _position);
-			if(res != MediaControllerError.None)
-			{
-				Log.Error(MediaControllerLog.LogTag, "Get Playback position failed" + res);
-				MediaControllerErrorFactory.ThrowException(res, "Get Playback position failed");
-			}
+            res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackPosition(_playbackHandle, out position);
+            if(res != MediaControllerError.None)
+            {
+                Log.Error(MediaControllerLog.LogTag, "Get Playback position failed" + res);
+                MediaControllerErrorFactory.ThrowException(res, "Get Playback position failed");
+            }
 
-			State = (MediaControllerPlaybackState)_state;
-			Position = _position;
-		}
+            _state = (MediaControllerPlaybackState)state;
+            _position = position;
+        }
 
        /// <summary>
        /// The state of playback of media application
        /// </summary>
-		public MediaControllerPlaybackState State;
+        public MediaControllerPlaybackState State
+        {
+            get
+            {
+                return _state;
+            }
+        }
 
-		/// <summary>
-		/// The position of playback of media application
-		/// </summary>
-		public ulong Position;
-	}
+        /// <summary>
+        /// The position of playback of media application
+        /// </summary>
+        public ulong Position
+        {
+            get
+            {
+                return _position;
+            }
+        }
+    }
 }
 
