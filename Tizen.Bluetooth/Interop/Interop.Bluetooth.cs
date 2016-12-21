@@ -589,8 +589,8 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_send_response")]
         internal static extern int BtGattServerSendResponse(int requestId, int requestType, int offset, int status, byte[] value, int valueLen);
 
-        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_notify")]
-        internal static extern int BtGattServerNotify(BluetoothGattAttributeHandle characteristicHandle, bool sendIndication, BtGattServerNotificationSentCallback callback, string clientAddress, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_notify_characteristic_changed_value")]
+        internal static extern int BtGattServerNotify(BluetoothGattAttributeHandle characteristicHandle, BtGattServerNotificationSentCallback callback, string clientAddress, IntPtr userData);
     }
 }
 

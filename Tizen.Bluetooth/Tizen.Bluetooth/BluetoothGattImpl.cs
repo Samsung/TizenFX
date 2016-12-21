@@ -109,7 +109,7 @@ namespace Tizen.Network.Bluetooth
 
         internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), false, null, clientAddress, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), null, clientAddress, IntPtr.Zero);
             GattUtil.ThrowForError(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
         }
 
@@ -125,7 +125,7 @@ namespace Tizen.Network.Bluetooth
                 }
             };
 
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), true, cb, clientAddress, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), cb, clientAddress, IntPtr.Zero);
             GattUtil.ThrowForError(err, string.Format("Failed to send value changed indication for characteristic uuid {0}", characteristic.Uuid));
 
             return tcs.Task;
