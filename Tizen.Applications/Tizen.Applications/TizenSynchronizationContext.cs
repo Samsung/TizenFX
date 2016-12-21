@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading;
 
 namespace Tizen.Applications
@@ -28,7 +28,7 @@ namespace Tizen.Applications
     {
         private readonly Interop.Glib.GSourceFunc _wrapperHandler;
         private readonly Object _transactionLock = new Object();
-        private readonly Dictionary<int, Action> _handlerMap = new Dictionary<int, Action>();
+        private readonly ConcurrentDictionary<int, Action> _handlerMap = new ConcurrentDictionary<int, Action>();
         private int _transactionId = 0;
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Tizen.Applications
             {
                 id = _transactionId++;
             }
-            _handlerMap.Add(id, action);
+            _handlerMap.TryAdd(id, action);
             Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
         }
 
@@ -118,8 +118,9 @@ namespace Tizen.Applications
             int key = (int)userData;
             if (_handlerMap.ContainsKey(key))
             {
-                _handlerMap[key]();
-                _handlerMap.Remove(key);
+                Action action;
+                _handlerMap.TryRemove(key, out action);
+                action?.Invoke();
             }
             return false;
         }
