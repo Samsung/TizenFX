@@ -972,7 +972,7 @@ namespace Tizen.Multimedia
                 IntPtr current = faces;
                 for (int i = 0; i < count; i++)
                 {
-                    Marshal.PtrToStructure(current, faceStruct[i]);
+                    faceStruct[i] = Marshal.PtrToStructure<Interop.Camera.DetectedFaceStruct>(current);
                     FaceDetectedData face = new FaceDetectedData(faceStruct[i].id, faceStruct[i].score, faceStruct[i].x, faceStruct[i].y, faceStruct[i].width, faceStruct[i].height);
                     _faces.Add(face);
                     current = (IntPtr)((long)current + Marshal.SizeOf(faceStruct[i]));
