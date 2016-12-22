@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The name of server
+        /// Get the Name of server
         /// </summary>
         public string Name
         {
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The state of server
+        /// Get the State of server
         /// </summary>
         public MediaControllerServerState State
         {

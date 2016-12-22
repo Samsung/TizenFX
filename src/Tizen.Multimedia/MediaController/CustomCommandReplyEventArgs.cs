@@ -41,7 +41,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get server name.
+        /// Get the Sserver Name.
         /// </summary>
         public string ServerName
         {
@@ -52,7 +52,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get playback information.
+        /// Get the Result.
         /// </summary>
         public int Result
         {
@@ -63,7 +63,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get bundle data.
+        /// Get the Bundle Data.
         /// </summary>
         public Bundle BundleData
         {

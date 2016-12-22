@@ -20,7 +20,7 @@ using System;
 namespace Tizen.Multimedia.MediaController
 {
     /// <summary>
-    /// Enumeration for server state
+    /// Specifies states that a <see cref="ServerInformation"/> can have.
     /// </summary>
     public enum MediaControllerServerState
     {
@@ -119,27 +119,27 @@ namespace Tizen.Multimedia.MediaController
     public enum MediaControllerSubscriptionType
     {
         /// <summary>
-        /// Repeat mode is Off
+        /// The type of subscription is Server state
         /// </summary>
         ServerState,
 
         /// <summary>
-        /// Repeat mode is Off
+        /// The type of subscription is Playback
         /// </summary>
         Playback,
 
         /// <summary>
-        /// Repeat mode is Off
+        /// The type of subscription is Metadata
         /// </summary>
         Metadata,
 
         /// <summary>
-        /// Repeat mode is Off
+        /// The type of subscription is Shuffle mode
         /// </summary>
         ShuffleMode,
 
         /// <summary>
-        /// Repeat mode is Off
+        /// The type of subscription is Repeat mode
         /// </summary>
         RepeatMode,
     }

@@ -39,8 +39,9 @@ namespace Tizen.Multimedia.MediaController
         private Interop.MediaControllerServer.CustomCommandRecievedCallback _customCommandCallback;
 
         /// <summary>
-        /// Constructor
+        /// The constructor of MediaControllerServer class.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerServer ()
         {
             MediaControllerError res = MediaControllerError.None;
@@ -131,9 +132,17 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Update playback state and playback position</summary>
         /// <param name="playback"> playback state and playback position  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdatePlayback(MediaControllerPlayback playback)
         {
             MediaControllerError res = MediaControllerError.None;
+
+            if (playback == null)
+            {
+                MediaControllerErrorFactory.ThrowException(MediaControllerError.InvalidParameter, "playback");
+            }
+
             res = (MediaControllerError)Interop.MediaControllerServer.SetPlaybackState(_handle, (int)playback.State);
             if(res != MediaControllerError.None)
             {
@@ -159,9 +168,17 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Update metadata information </summary>
         /// <param name="metadata"> metadata information  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateMetadata(MediaControllerMetadata metadata)
         {
             MediaControllerError res = MediaControllerError.None;
+
+            if (metadata == null)
+            {
+                MediaControllerErrorFactory.ThrowException(MediaControllerError.InvalidParameter, "metadata");
+            }
+
             res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Title, metadata.Title);
             if(res != MediaControllerError.None)
             {
@@ -250,6 +267,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Update shuffle mode </summary>
         /// <param name="mode"> shuffle mode  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateShuffleMode(MediaControllerShuffleMode mode)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -264,6 +283,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Update repeat mode </summary>
         /// <param name="mode"> repeat mode  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateRepeatMode(MediaControllerRepeatMode mode)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -280,6 +301,8 @@ namespace Tizen.Multimedia.MediaController
         /// <param name="clientName"> client name to recieve reply  </param>
         /// <param name="result"> result to run command  </param>
         /// <param name="bundleData"> Bundle data  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendCustomCommandReply(string clientName, int result, Bundle bundle)
         {
             MediaControllerError res = MediaControllerError.None;

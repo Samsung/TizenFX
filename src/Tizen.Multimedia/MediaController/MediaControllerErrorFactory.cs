@@ -44,8 +44,10 @@ namespace Tizen.Multimedia.MediaController
                 throw new ArgumentException(errorMessage, paramName);
 
             case MediaControllerError.OutOfMemory:
-            case MediaControllerError.InvalidOperation:
             case MediaControllerError.NoSpaceOnDevice:
+                throw new OutOfMemoryException(errorMessage);
+
+            case MediaControllerError.InvalidOperation:
             case MediaControllerError.PermissionDenied:
                 throw new InvalidOperationException(errorMessage);
             }

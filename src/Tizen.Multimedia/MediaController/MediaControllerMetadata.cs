@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.MediaController
         private string _picture;
 
         /// <summary>
-        /// Constructor
+        /// The constructor of MediaControllerMetadata class.
         /// </summary>
         public MediaControllerMetadata()
         {
@@ -136,7 +136,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The title of media
+        /// Set/Get the Title of media
         /// </summary>
         public string Title
         {
@@ -150,7 +150,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The artist of media
+        /// Set/Get the Artist of media
         /// </summary>
         public string Artist
         {
@@ -165,7 +165,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The album of media
+        /// Set/Get the Album of media
         /// </summary>
         public string Album
         {
@@ -180,7 +180,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The author of media
+        /// Set/Get the Author of media
         /// </summary>
         public string Author
         {
@@ -195,7 +195,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The genre of media
+        /// Set/Get the Genre of media
         /// </summary>
         public string Genre
         {
@@ -210,7 +210,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The duration of media
+        /// Set/Get the Duration of media
         /// </summary>
         public string Duration
         {
@@ -225,7 +225,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The date of media
+        /// Set/Get the Date of media
         /// </summary>
         public string Date
         {
@@ -240,7 +240,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The copyright of media
+        /// Set/Get the Copyright of media
         /// </summary>
         public string Copyright
         {
@@ -255,7 +255,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The description of media
+        /// Set/Get the Description of media
         /// </summary>
         public string Description
         {
@@ -270,7 +270,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The track number of media
+        /// Set/Get the Track Number of media
         /// </summary>
         public string TrackNumber
         {
@@ -285,7 +285,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The picture of media
+        /// Set/Get the Picture of media
         /// </summary>
         public string Picture
         {

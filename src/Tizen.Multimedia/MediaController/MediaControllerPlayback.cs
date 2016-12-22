@@ -26,8 +26,9 @@ namespace Tizen.Multimedia.MediaController
     {
         private MediaControllerPlaybackState _state;
         private ulong _position;
+
         /// <summary>
-        /// Constructor
+        /// The constructor of MediaControllerPlayback class.
         /// </summary>
         public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
             _state = state;
@@ -58,7 +59,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
        /// <summary>
-       /// The state of playback of media application
+       /// Set/Get the State of playback information
        /// </summary>
         public MediaControllerPlaybackState State
         {
@@ -69,7 +70,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// The position of playback of media application
+        /// Set/Get the Position of playback information
         /// </summary>
         public ulong Position
         {

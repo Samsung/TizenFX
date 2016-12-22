@@ -38,7 +38,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get server name.
+        /// Get the Server Name.
         /// </summary>
         public string ServerName
         {
@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get shuffle mode.
+        /// Get the Shuffle Mode.
         /// </summary>
         public MediaControllerShuffleMode ShuffleMode
         {

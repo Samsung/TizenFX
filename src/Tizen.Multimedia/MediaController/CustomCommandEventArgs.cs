@@ -40,7 +40,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get client name.
+        /// Get the Client Name.
         /// </summary>
         public string ClientName
         {
@@ -51,7 +51,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get custom command.
+        /// Get the Custom Command.
         /// </summary>
         public string Command
         {
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// Get bundle data.
+        /// Get the Bundle Data.
         /// </summary>
         public Bundle BundleData
         {

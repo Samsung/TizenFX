@@ -47,9 +47,10 @@ namespace Tizen.Multimedia.MediaController
         private EventHandler<CustomCommandReplyEventArgs> _customcommandReply;
         private Interop.MediaControllerClient.CommandReplyRecievedCallback _customcommandReplyCallback;
 
-           /// <summary>
-        /// Constructor
+        /// <summary>
+        /// The constructor of MediaControllerClient class.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerClient ()
         {
             Interop.MediaControllerClient.Create (out _handle);
@@ -235,6 +236,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets latest server information </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public ServerInformation GetLatestServer()
         {
             MediaControllerError res = MediaControllerError.None;
@@ -255,6 +257,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets playback information for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerPlayback GetPlayback(String serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -274,6 +278,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets metadata information for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerMetadata GetMetadata(String serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -293,6 +299,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets shuffle mode for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerShuffleMode GetShuffleMode(String serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -310,6 +318,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets repeat mode for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerRepeatMode GetRepeatMode(String serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -328,6 +338,8 @@ namespace Tizen.Multimedia.MediaController
         /// Send command of playback state to server application </summary>
         /// <param name="serverName"> Server Name  </param>
         /// <param name="state"> Playback State  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendPlaybackStateCommand(string serverName, MediaControllerPlaybackState state)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -344,6 +356,8 @@ namespace Tizen.Multimedia.MediaController
         /// <param name="serverName"> Server Name  </param>
         /// <param name="command"> Command  </param>
         /// <param name="bundle"> Bundle data  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendCustomCommand(string serverName, string command, Bundle bundle)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -359,6 +373,7 @@ namespace Tizen.Multimedia.MediaController
         /// Subscribe subscription type from specific server application </summary>
         /// <param name="type"> Subscription Type  </param>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public void Subscribe(MediaControllerSubscriptionType type, string serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -374,6 +389,7 @@ namespace Tizen.Multimedia.MediaController
         /// Subscribe subscription type from specific server application </summary>
         /// <param name="type"> Subscription Type  </param>
         /// <param name="serverName"> Server Name  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public void Unsubscribe(MediaControllerSubscriptionType type, string serverName)
         {
             MediaControllerError res = MediaControllerError.None;
@@ -400,6 +416,8 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets subscribed server list </summary>
         /// <param name="subscriptionType"> Subscription Type  </param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public Task<IEnumerable<string>> GetSubscribedServerList(MediaControllerSubscriptionType subscriptionType)
         {
             var task = new TaskCompletionSource<IEnumerable<string>>();
