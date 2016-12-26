@@ -6,7 +6,7 @@
 %define BUILDCONF Release
 %endif
 
-Name:       csapi-nfc
+Name:       csapi-network-nfc
 Summary:    Tizen Nfc API for C#
 Version:    1.0.2
 Release:    1
@@ -34,7 +34,7 @@ Tizen Nfc API for C#
 %setup -q
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Nfc
+%define Assemblies Tizen.Network.Nfc
 
 %build
 for ASM in %{Assemblies}; do

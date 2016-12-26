@@ -17,7 +17,6 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using Tizen.Network;
 
 namespace Tizen.Network.Nfc
 {
