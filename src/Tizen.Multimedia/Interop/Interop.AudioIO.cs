@@ -25,7 +25,7 @@ internal static partial class Interop
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_destroy")]
             internal static extern int Destroy(IntPtr handle);
 
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_stream_info")]
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_sound_stream_info")]
             internal static extern int SetStreamInfo(IntPtr handle, IntPtr streamInfoHandle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_prepare")]
@@ -108,7 +108,7 @@ internal static partial class Interop
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_resume")]
             internal static extern int Resume(IntPtr handle);
 
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_set_stream_info")]
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_set_sound_stream_info")]
             internal static extern int SetStreamInfo(IntPtr handle, IntPtr streamInfoHandle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_unprepare")]

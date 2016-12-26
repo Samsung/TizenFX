@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -298,5 +299,25 @@ namespace Tizen.Multimedia
         ///Focus state for acquisition
         /// </summary>
         Acquired
+    }
+
+    /// <summary>
+    /// Enumeration for audio stream behavior
+    /// </summary>
+    [Flags]
+    public enum AudioStreamBehavior
+    {
+        /// <summary>
+        /// Audio Stream Behavior NONE
+        /// </summary>
+        None = 0x0000,
+        /// <summary>
+        /// Audio Stream Behavior No Resume
+        /// </summary>
+        NoResume = 0x0001,
+        /// <summary>
+        /// Audio Stream Behavior Fading
+        /// </summary>
+        Fading = 0x0002
     }
 }

@@ -52,7 +52,8 @@ namespace Tizen.Multimedia
         public AudioStreamPolicy(AudioStreamType streamType)
         {
             _streamType = streamType;
-            _focusStateChangedCallback = (IntPtr streamInfo, int reason, string extraInfo, IntPtr userData) => {
+
+            _focusStateChangedCallback = (IntPtr streamInfo, AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, int reason, int audioStreamBehavior, string extraInfo, IntPtr userData) => {
                 StreamFocusStateChangedEventArgs eventArgs = new StreamFocusStateChangedEventArgs((AudioStreamFocusChangedReason)reason, extraInfo);
                 _focusStateChanged?.Invoke(this, eventArgs);
             };
@@ -213,9 +214,9 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// Do not call this API within event handlers of FocuStateChanged and StreamFocusStateWatch else it will throw and exception
         /// </remarks>
-        public void AcquireFocus(AudioStreamFocusOptions options, string extraInformation)
+        public void AcquireFocus(AudioStreamFocusOptions options, AudioStreamBehavior audioStreamBehavior, string extraInformation)
         {
-            int ret = Interop.AudioStreamPolicy.AcquireFocus(_streamInfo, options, extraInformation);
+            int ret = Interop.AudioStreamPolicy.AcquireFocus(_streamInfo, options, (int)audioStreamBehavior, extraInformation);
             Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Acquire focus return: " + ret);
             AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to acquire focus");
         }
@@ -228,9 +229,9 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// Do not call this API within event handlers of FocuStateChanged and StreamFocusStateWatch else it will throw and exception
         /// </remarks>
-        public void ReleaseFocus(AudioStreamFocusOptions options, string extraInformation)
+        public void ReleaseFocus(AudioStreamFocusOptions options, AudioStreamBehavior audioStreamBehavior, string extraInformation)
         {
-            int ret = Interop.AudioStreamPolicy.ReleaseFocus(_streamInfo, options, extraInformation);
+            int ret = Interop.AudioStreamPolicy.ReleaseFocus(_streamInfo, options, (int)audioStreamBehavior, extraInformation);
             Tizen.Log.Info(AudioStreamPolicyLog.Tag, "Release focus return: " + ret);
             AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to release focus");
         }

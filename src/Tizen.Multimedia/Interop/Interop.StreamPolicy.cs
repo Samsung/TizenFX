@@ -6,7 +6,7 @@ using Tizen.Multimedia;
 internal static partial class Interop
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void SoundStreamFocusStateChangedCallback(IntPtr streamInfo, int reason, string extraInfo, IntPtr userData);
+    internal delegate void SoundStreamFocusStateChangedCallback(IntPtr streamInfo, AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, int reason, int audioStreamBehavior, string extraInfo, IntPtr userData);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void SoundStreamFocusStateWatchCallback(int id, AudioStreamFocusOptions focusMask, AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData);
@@ -29,10 +29,10 @@ internal static partial class Interop
         internal static extern int ApplyStreamRouting(IntPtr streamInfo);
 
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_acquire_focus")]
-        internal static extern int AcquireFocus(IntPtr streamInfo, AudioStreamFocusOptions focusMask, string extraInfo);
+        internal static extern int AcquireFocus(IntPtr streamInfo, AudioStreamFocusOptions focusMask, int audioStreamBehavior, string extraInfo);
 
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_release_focus")]
-        internal static extern int ReleaseFocus(IntPtr streamInfo, AudioStreamFocusOptions focusMask, string extraInfo);
+        internal static extern int ReleaseFocus(IntPtr streamInfo, AudioStreamFocusOptions focusMask, int audioStreamBehavior, string extraInfo);
 
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_focus_state")]
         internal static extern int GetFocusState(IntPtr streaInfo, out AudioStreamFocusState stateForPlayback, out AudioStreamFocusState stateForRecording);

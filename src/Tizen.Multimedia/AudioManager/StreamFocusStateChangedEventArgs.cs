@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class StreamFocusStateChangedEventArgs : EventArgs
     {
+        /* FIXME */
         internal StreamFocusStateChangedEventArgs(AudioStreamFocusChangedReason reason, string extraInformation)
         {
             FocusChangedReason = reason;
