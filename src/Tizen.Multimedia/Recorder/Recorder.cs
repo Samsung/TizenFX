@@ -81,7 +81,7 @@ namespace Tizen.Multimedia
         /// </param>
         public Recorder(Camera camera)
         {
-			int ret = Interop.Recorder.CreateVideo (camera, out _handle);
+			int ret = Interop.Recorder.CreateVideo (camera.GetHandle(), out _handle);
 			if (ret != (int)RecorderError.None)
 			{
 				RecorderErrorFactory.ThrowException (ret, "Failed to create Video recorder");

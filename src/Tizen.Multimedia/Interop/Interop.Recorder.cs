@@ -31,7 +31,7 @@ internal static partial class Interop
         internal delegate void RecorderErrorCallback(RecorderErrorCode error, RecorderState current, IntPtr userData);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_videorecorder")]
-        internal static extern int CreateVideo(Tizen.Multimedia.Camera camera, out IntPtr handle);
+        internal static extern int CreateVideo(IntPtr cameraHandle, out IntPtr handle);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_audiorecorder")]
         internal static extern int Create(out IntPtr handle);

@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
     /// </privilege>
     public class Camera : IDisposable
     {
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private Interop.Camera.CapturingCallback _capturingCallback;
         private Interop.Camera.CaptureCompletedCallback _captureCompletedCallback;
@@ -81,6 +81,12 @@ namespace Tizen.Multimedia
         ~Camera()
         {
             Dispose(false);
+        }
+
+        internal IntPtr GetHandle()
+        {
+            ValidateNotDisposed();
+            return _handle;
         }
 
         /// <summary>
@@ -702,7 +708,6 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -721,7 +726,6 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -749,7 +753,6 @@ namespace Tizen.Multimedia
         /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/>
         /// method.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -806,7 +809,6 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -936,7 +938,6 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -960,7 +961,6 @@ namespace Tizen.Multimedia
         /// The Eventhandler set using <see cref="Tizen.Multimedia.Camera.FaceDetected"/> invoked when the face is detected in preview frame.
         /// Internally it starts continuous focus and focusing on the detected face.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -995,7 +995,6 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
@@ -1071,6 +1070,14 @@ namespace Tizen.Multimedia
                 }
 
                 _disposed = true;
+            }
+        }
+
+        internal void ValidateNotDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(Camera));
             }
         }
 
