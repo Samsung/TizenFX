@@ -1,4 +1,4 @@
-%define DEV_VERSION beta-002
+%define DEV_VERSION beta-003
 
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
@@ -11,7 +11,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
-ExcludeArch: aarch64 %ix86
+ExcludeArch: aarch64
 
 BuildRequires: dotnet-build-tools
 BuildRequires: edje-tools
