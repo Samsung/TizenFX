@@ -6,7 +6,7 @@
 %define BUILDCONF Release
 %endif
 
-Name:       csapi-smartcard
+Name:       csapi-network-smartcard
 Summary:    Tizen Smartcard API for C#
 Version:    1.0.2
 Release:    1
@@ -34,7 +34,7 @@ Tizen Smartcard API for C#
 %setup -q
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Smartcard
+%define Assemblies Tizen.Network.Smartcard
 
 %build
 for ASM in %{Assemblies}; do

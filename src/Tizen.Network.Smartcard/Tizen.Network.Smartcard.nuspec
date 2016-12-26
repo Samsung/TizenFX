@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>Tizen.Smartcard</id>
+		<id>Tizen.Network.Smartcard</id>
 		<version>$version$</version>
 		<authors>Samsung Electronics</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -15,7 +15,7 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="bin/$Configuration$/Tizen.Smartcard.dll" target="lib/netstandard1.3" />
-		<file src="bin/$Configuration$/Net45/Tizen.Smartcard.dll" target="lib/net45" />
+		<file src="bin/$Configuration$/Tizen.Network.Smartcard.dll" target="lib/netstandard1.3" />
+		<file src="bin/$Configuration$/Net45/Tizen.Network.Smartcard.dll" target="lib/net45" />
 	</files>
 </package>
