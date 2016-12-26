@@ -6,7 +6,7 @@
 %define BUILDCONF Release
 %endif
 
-Name:       csapi-bluetooth
+Name:       csapi-network-bluetooth
 Summary:    Tizen Bluetooth API for C#
 Version:    1.0.2
 Release:    1
@@ -34,7 +34,7 @@ Tizen Bluetooth API for C#
 %setup -q
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Bluetooth
+%define Assemblies Tizen.Network.Bluetooth
 
 %build
 for ASM in %{Assemblies}; do
