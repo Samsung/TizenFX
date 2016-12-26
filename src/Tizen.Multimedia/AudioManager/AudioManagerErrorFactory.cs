@@ -19,7 +19,7 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
-	/// <summary>
+    /// <summary>
     /// Enumeration for sound manager's error codes.
     /// </summary>
     internal enum AudioManagerError{
@@ -71,50 +71,50 @@ namespace Tizen.Multimedia
         InvalidState = SoundManagerError | 04
     }
 
-	internal static class AudioManagerErrorFactory
-	{
-		static internal void CheckAndThrowException(int error, string msg)
-		{
-			AudioManagerError e = (AudioManagerError) error;
-			switch (e)
-			{
-			case AudioManagerError.None:
-				return;
-			case AudioManagerError.OutOfMemory:
-				throw new InvalidOperationException("Out of Memory: " + msg);
-			case AudioManagerError.InvalidParameter:
-				throw new ArgumentException("Invalid Parameter: " + msg);
-			case AudioManagerError.InvalidOperation:
-				throw new InvalidOperationException("Invalid Opertation: " + msg);
-			case AudioManagerError.PermissionDenied:
-				throw new InvalidOperationException("Permission Denied: " + msg);
-			case AudioManagerError.NotSupported:
-				throw new InvalidOperationException("Not Supported: " + msg);
-			case AudioManagerError.NoData:
-				throw new InvalidOperationException("No Data: " + msg);
-			case AudioManagerError.Internal:
-				throw new InvalidOperationException("Internal Error: " + msg);
-			case AudioManagerError.Policy:
-				throw new InvalidOperationException("Noncomplaince with System Sound Policy error: " + msg);
-			case AudioManagerError.NoPlayingSound:
-				throw new InvalidOperationException("No playing sound: " + msg);
-			case AudioManagerError.InvalidState:
-				throw new InvalidOperationException("Invalid State: " + msg);
-			default:
-				throw new InvalidOperationException("Unknown Error Code: " + msg);
-			}
-		}
+    internal static class AudioManagerErrorFactory
+    {
+        static internal void CheckAndThrowException(int error, string msg)
+        {
+            AudioManagerError e = (AudioManagerError) error;
+            switch (e)
+            {
+                case AudioManagerError.None:
+                    return;
+                case AudioManagerError.OutOfMemory:
+                    throw new InvalidOperationException("Out of Memory: " + msg);
+                case AudioManagerError.InvalidParameter:
+                    throw new ArgumentException("Invalid Parameter: " + msg);
+                case AudioManagerError.InvalidOperation:
+                    throw new InvalidOperationException("Invalid Opertation: " + msg);
+                case AudioManagerError.PermissionDenied:
+                    throw new InvalidOperationException("Permission Denied: " + msg);
+                case AudioManagerError.NotSupported:
+                    throw new InvalidOperationException("Not Supported: " + msg);
+                case AudioManagerError.NoData:
+                    throw new InvalidOperationException("No Data: " + msg);
+                case AudioManagerError.Internal:
+                    throw new InvalidOperationException("Internal Error: " + msg);
+                case AudioManagerError.Policy:
+                    throw new InvalidOperationException("Noncomplaince with System Sound Policy error: " + msg);
+                case AudioManagerError.NoPlayingSound:
+                    throw new InvalidOperationException("No playing sound: " + msg);
+                case AudioManagerError.InvalidState:
+                    throw new InvalidOperationException("Invalid State: " + msg);
+                default:
+                    throw new InvalidOperationException("Unknown Error Code: " + msg);
+            }
+        }
 
-		static internal void CheckAndThrowException(int error, IntPtr handle, string msg)
-		{
-			if (handle == IntPtr.Zero)
-			{
-				throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
-			}
-			else
-			{
-				CheckAndThrowException(error, msg);
-			}
-		}
-	}
+        static internal void CheckAndThrowException(int error, IntPtr handle, string msg)
+        {
+            if (handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
+            }
+            else
+            {
+                CheckAndThrowException(error, msg);
+            }
+        }
+    }
 }

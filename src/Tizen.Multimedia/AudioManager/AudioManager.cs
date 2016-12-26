@@ -458,10 +458,10 @@ namespace Tizen.Multimedia
             IntPtr deviceListHandle;
             IntPtr handlePosition;
             int ret = Interop.AudioDevice.GetCurrentDeviceList(options, out deviceListHandle);
-			if (ret != (int)AudioManagerError.NoData)
-			{
-				AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
-			}
+            if (ret != (int)AudioManagerError.NoData)
+            {
+                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
+            }
             while (ret == (int)AudioManagerError.None)
             {
                 ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out handlePosition);
@@ -469,10 +469,10 @@ namespace Tizen.Multimedia
                 {
                     audioDeviceList.Add(new AudioDevice(handlePosition));
                 }
-				else if (ret != (int)AudioManagerError.NoData)
-				{
-					AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
-				}
+                else if (ret != (int)AudioManagerError.NoData)
+                {
+                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
+                }
             }
             return audioDeviceList;
         }
