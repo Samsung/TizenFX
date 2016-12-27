@@ -26,6 +26,7 @@ namespace ElmSharp
         bool _canScaleUp = true;
         bool _canScaleDown = true;
         SmartEvent _clicked;
+        Color _color = Color.Default;
 
         public Image(EvasObject parent) : base(parent)
         {
@@ -222,21 +223,25 @@ namespace ElmSharp
         {
             get
             {
-                int r = 255, g = 255, b = 255, a = 255;
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                if (evasObj != IntPtr.Zero)
-                {
-                    Interop.Evas.evas_object_color_get(evasObj, out r, out g, out b, out a);
-                }
-                return Color.FromRgba(r, g, b, a);
+                return _color;
             }
             set
             {
                 IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                 if (evasObj != IntPtr.Zero)
                 {
-                    Interop.Evas.evas_object_color_set(evasObj, value.R, value.G, value.B, value.A);
+                    if (value.IsDefault)
+                    {
+                        // Currently, we assume the Image.Color property as a blending color (actually, multiply blending).
+                        // Thus we are using Color.White (255,255,255,255) as a default color to ensure original image color. (255/255 * original = original)
+                        Interop.Evas.evas_object_color_set(evasObj, 255, 255, 255, 255);
+                    }
+                    else
+                    {
+                        Interop.Evas.SetPremultipliedColor(evasObj, value.R, value.G, value.B, value.A);
+                    }
                 }
+                _color = value;
             }
         }
 

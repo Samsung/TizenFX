@@ -19,9 +19,9 @@ using System.IO;
 
 namespace ElmSharp.Test
 {
-    public class ImageTest2 : TestCaseBase
+    public class ImageTest3 : TestCaseBase
     {
-        public override string TestName => "ImageTest2";
+        public override string TestName => "ImageTest3";
         public override string TestDescription => "To test basic operation of Image";
 
         Image image;
@@ -42,8 +42,15 @@ namespace ElmSharp.Test
             };
             buttonBox1.Show();
 
+            Box buttonBox2 = new Box(window) {
+                IsHorizontal = true,
+                AlignmentX = -1,
+                AlignmentY = 0,
+            };
+            buttonBox2.Show();
+
             Button btnFile1 = new Button(window) {
-                Text = "Blue",
+                Text = "Blue (BG)",
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
@@ -52,7 +59,7 @@ namespace ElmSharp.Test
             btnFile1.Show();
 
             Button btnFile2 = new Button(window) {
-                Text = "Default",
+                Text = "Default (BG)",
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
@@ -61,7 +68,7 @@ namespace ElmSharp.Test
             btnFile2.Show();
 
             Button btnFile3 = new Button(window) {
-                Text = "Aspect",
+                Text = "Blue (FG)",
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
@@ -70,7 +77,7 @@ namespace ElmSharp.Test
             btnFile3.Show();
 
             Button btnFile4 = new Button(window) {
-                Text = "Rotate",
+                Text = "Default (FG)",
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
@@ -80,8 +87,8 @@ namespace ElmSharp.Test
 
             buttonBox1.PackEnd(btnFile1);
             buttonBox1.PackEnd(btnFile2);
-            buttonBox1.PackEnd(btnFile3);
-            buttonBox1.PackEnd(btnFile4);
+            buttonBox2.PackEnd(btnFile3);
+            buttonBox2.PackEnd(btnFile4);
 
             lbInfo = new Label(window) {
                 Color = Color.White,
@@ -99,7 +106,7 @@ namespace ElmSharp.Test
                 WeightY = 1
             };
             image.Show();
-            image.Load(Path.Combine(TestRunner.ResourceDir, "picture.png"));
+            image.Load(Path.Combine(TestRunner.ResourceDir, "btn_delete.png"));
             image.Clicked += (s, e) =>
             {
                 Console.WriteLine("Image has been clicked. (IsFixedAspect = {0}", image.IsFixedAspect);
@@ -108,17 +115,21 @@ namespace ElmSharp.Test
 
             btnFile1.Clicked += (s, e) => { image.BackgroundColor = Color.Blue; UpdateLabelText(image.BackgroundColor.ToString()); };
             btnFile2.Clicked += (s, e) => { image.BackgroundColor = Color.Default; UpdateLabelText(image.BackgroundColor.ToString()); };
-            btnFile3.Clicked += (s, e) => { image.IsFixedAspect = image.IsFixedAspect == true ? false : true; };
-            btnFile4.Clicked += (s, e) => { image.Orientation = image.Orientation == ImageOrientation.None ? ImageOrientation.Rotate270 : ImageOrientation.None; };
+            btnFile3.Clicked += (s, e) => { image.Color = Color.Blue; UpdateLabelText(image.Color.ToString(), false); };
+            btnFile4.Clicked += (s, e) => { image.Color = Color.Default; UpdateLabelText(image.Color.ToString(), false); };
 
             box.PackEnd(buttonBox1);
+            box.PackEnd(buttonBox2);
             box.PackEnd(lbInfo);
             box.PackEnd(image);
         }
 
-        void UpdateLabelText(string text)
+        void UpdateLabelText(string text, bool isBackground = true)
         {
-            lbInfo.Text = "<span color=#ffffff font_size=20> BackgroundColor => " + text + "</span>";
+            if(isBackground)
+                lbInfo.Text = "<span color=#ffffff font_size=20> Background Color => " + text + "</span>";
+            else
+                lbInfo.Text = "<span color=#ffffff font_size=20> Foreground Color => " + text + "</span>";
         }
     }
 }
