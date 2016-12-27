@@ -1,0 +1,59 @@
+﻿/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+using System;
+
+namespace Tizen.Maps
+{
+    /// <summary>
+    /// Place Contact information, used in Place Discovery and Search requests
+    /// </summary>
+    public class PlaceContact
+    {
+        private string _label;
+        private string _type;
+        private string _value;
+
+        internal PlaceContact(IntPtr nativeHandle)
+        {
+            var handle = new Interop.PlaceContactHandle(nativeHandle);
+            var err = Interop.PlaceContact.GetLabel(handle, out _label);
+            err.WarnIfFailed("Failed to get label for this contact");
+
+            err = Interop.PlaceContact.GetType(handle, out _type);
+            err.WarnIfFailed("Failed to get type for this contact");
+
+            err = Interop.PlaceContact.GetValue(handle, out _value);
+            err.WarnIfFailed("Failed to get value for this contact");
+        }
+
+        /// <summary>
+        /// Place contact label
+        /// </summary>
+        public string Id { get { return _label; } }
+
+        /// <summary>
+        /// Place contact type
+        /// </summary>
+        public string Label { get { return _type; } }
+
+        /// <summary>
+        /// Place contact value
+        /// </summary>
+        public string Value { get { return _value; } }
+    }
+}
