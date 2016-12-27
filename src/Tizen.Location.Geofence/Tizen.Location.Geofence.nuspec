@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Tizen.Location.Geofence</id>
+    <version>$version$</version>
+    <authors>Tizen Developers</authors>
+    <description>Geofence management APIs for Tizen.Location</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.0" />
+    </dependencies>
+  </metadata>
+   <files>
+    <file src="bin/$Configuration$/Tizen.Location.Geofence.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/Net45/Tizen.Location.Geofence.dll" target="lib/net45" />
+   </files>
+</package>
