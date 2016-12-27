@@ -22,10 +22,18 @@ using Color = ElmSharp.Color;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Polygon map object
+    /// </summary>
     public class Polygon : MapObject
     {
         private List<Geocoordinates> _coordinateList;
 
+        /// <summary>
+        /// Creates a polygon visual object
+        /// </summary>
+        /// <param name="coordinates">list of geographical coordinates</param>
+        /// <param name="color">background color</param>
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base(CreateNativeHandle(coordinates, color))
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -40,6 +48,9 @@ namespace Tizen.Maps
         {
         }
 
+        /// <summary>
+        /// List of geographical coordinates of polygon vertices
+        /// </summary>
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -74,6 +85,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Background fill color
+        /// </summary>
         public Color FillColor
         {
             get

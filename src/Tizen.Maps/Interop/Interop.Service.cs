@@ -160,8 +160,6 @@ internal static partial class Interop
 
     internal class ServiceHandle : SafeMapsHandle
     {
-        internal ErrorCode DestroyHandle(IntPtr handle) { return Service.Destroy(handle); }
-
-        public ServiceHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = DestroyHandle; }
+        public ServiceHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = Service.Destroy; }
     }
 }

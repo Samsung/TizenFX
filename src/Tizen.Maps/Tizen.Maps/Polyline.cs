@@ -22,10 +22,19 @@ using Color = ElmSharp.Color;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Polyline map object
+    /// </summary>
     public class Polyline : MapObject
     {
         private List<Geocoordinates> _coordinateList;
 
+        /// <summary>
+        /// Creates polyline visual object
+        /// </summary>
+        /// <param name="coordinates">List of geographical coordinates</param>
+        /// <param name="color">Line color</param>
+        /// <param name="width">The width of line [1 ~ 100] (pixels)</param>
         public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base(CreateNativeHandle(coordinates, color, width))
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -40,6 +49,9 @@ namespace Tizen.Maps
         {
         }
 
+        /// <summary>
+        /// List of geographical coordinates for polyline vertices
+        /// </summary>
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -73,6 +85,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Line color
+        /// </summary>
         public Color LineColor
         {
             get
@@ -87,6 +102,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// line width [1 ~ 100 pixels]
+        /// </summary>
         public int Width
         {
             get

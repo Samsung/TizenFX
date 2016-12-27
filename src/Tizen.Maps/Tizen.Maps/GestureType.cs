@@ -14,20 +14,44 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Maps
 {
-    [Flags]
+    /// <summary>
+    /// Enumeration of user gestures over map view
+    /// </summary>
     public enum GestureType
     {
+        /// <summary>
+        /// Indicates empty gesture
+        /// </summary>
         None = Interop.ViewGesture.None,
+        /// <summary>
+        /// Indicates the move map user gesture
+        /// </summary>
         Scroll = Interop.ViewGesture.Scroll,
+        /// <summary>
+        /// Indicates the zoom user gesture
+        /// </summary>
         Zoom = Interop.ViewGesture.Zoom,
+        /// <summary>
+        /// Indicates the tap user gesture
+        /// </summary>
         Tap = Interop.ViewGesture.Tap,
+        /// <summary>
+        /// Indicates the double tap user gesture
+        /// </summary>
         DoubleTap = Interop.ViewGesture.DoubleTap,
+        /// <summary>
+        /// Indicates the two-finger tap user gesture
+        /// </summary>
         TwoFingerTap = Interop.ViewGesture.TwoFingerTap,
+        /// <summary>
+        ///  Indicates the rotation user gesture
+        /// </summary>
         Rotate = Interop.ViewGesture.Rotate,
+        /// <summary>
+        /// Indicates the long press user gesture
+        /// </summary>
         LongPress = Interop.ViewGesture.LongPress,
     }
 }

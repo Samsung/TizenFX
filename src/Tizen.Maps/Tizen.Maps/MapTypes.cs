@@ -16,11 +16,26 @@
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Map View Type (theme)
+    /// </summary>
     public enum MapTypes
     {
+        /// <summary>
+        /// Normal street theme
+        /// </summary>
         Normal = Interop.ViewType.Normal,
+        /// <summary>
+        /// Satellite theme
+        /// </summary>
         Satellite = Interop.ViewType.Satellite,
+        /// <summary>
+        /// Terrain theme
+        /// </summary>
         Terrain = Interop.ViewType.Terrain,
+        /// <summary>
+        /// Hybrid theme, has both satellite and normal theme
+        /// </summary>
         Hybrid = Interop.ViewType.Hybrid,
     }
 }

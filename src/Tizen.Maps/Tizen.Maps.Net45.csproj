@@ -56,7 +56,6 @@
     <Compile Include="Tizen.Maps\MapGestureEventArgs.cs" />
     <Compile Include="Tizen.Maps\MapObjectEventArgs.cs" />
     <Compile Include="Tizen.Maps\MapObject.cs" />
-    <Compile Include="Tizen.Maps\MapObjectType.cs" />
     <Compile Include="Tizen.Maps\MapTypes.cs" />
     <Compile Include="Tizen.Maps\Marker.cs" />
     <Compile Include="Interop\Interop.Address.cs" />

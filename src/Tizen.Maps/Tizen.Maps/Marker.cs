@@ -19,6 +19,9 @@ using ElmSharp;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Marker map object
+    /// </summary>
     public class Marker : MapObject
     {
         internal Marker(Interop.ViewObjectHandle nativeHandle) : base(nativeHandle)
@@ -34,6 +37,11 @@ namespace Tizen.Maps
             }
         }
 
+        // TODO: Need to rename all Geocoordinates type property to Coordinates and all screen coordinates to Position
+
+        /// <summary>
+        /// Geographical coordinates for marker
+        /// </summary>
         public Geocoordinates Position
         {
             get
@@ -58,6 +66,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Image file path for marker
+        /// </summary>
         public string ImagePath
         {
             get
@@ -72,6 +83,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Screen size for marker
+        /// </summary>
         public Size MarkerSize
         {
             get
@@ -86,6 +100,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Z-order for marker
+        /// </summary>
         public int ZOrder
         {
             get
@@ -100,11 +117,19 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Changes marker size
+        /// </summary>
+        /// <param name="newSize">New size</param>
         public void Resize(Size newSize)
         {
             MarkerSize = newSize;
         }
 
+        /// <summary>
+        /// Changes marker coordinates
+        /// </summary>
+        /// <param name="newPosition">New position for marker</param>
         public void Move(Geocoordinates newPosition)
         {
             Position = newPosition;
@@ -127,15 +152,31 @@ namespace Tizen.Maps
         }
     }
 
+    /// <summary>
+    /// Pin type marker map object
+    /// </summary>
     public class Pin : Marker
     {
+        /// <summary>
+        /// Creates Pin type parker
+        /// </summary>
+        /// <param name="coordinates">Marker coordinates</param>
+        /// <param name="imagePath">Image path</param>
         public Pin(Geocoordinates coordinates, string imagePath) : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
         {
         }
     }
 
+    /// <summary>
+    /// Sticker type marker map object
+    /// </summary>
     public class Sticker : Marker
     {
+        /// <summary>
+        /// Creates Sticker type parker
+        /// </summary>
+        /// <param name="coordinates">Marker coordinates</param>
+        /// <param name="imagePath">Image path</param>
         public Sticker(Geocoordinates coordinates, string imagePath) : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
         {
         }

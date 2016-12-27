@@ -46,9 +46,24 @@ namespace Tizen.Maps
             ViewObject = mapObject;
         }
 
+        /// <summary>
+        /// Type of gesture event
+        /// </summary>
         public GestureType GestureType { get; }
+
+        /// <summary>
+        /// Screen coordinates for the event
+        /// </summary>
         public Point Position { get; }
+
+        /// <summary>
+        /// Number of fingers detected in the event
+        /// </summary>
         public int TouchCount { get; }
+
+        /// <summary>
+        /// Map Object on which event has occurred
+        /// </summary>
         public MapObject ViewObject { get; }
     }
 }

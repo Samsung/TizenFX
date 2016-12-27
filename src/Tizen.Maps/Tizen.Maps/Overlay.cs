@@ -19,10 +19,18 @@ using EvasObject = ElmSharp.EvasObject;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Overlay map object
+    /// </summary>
     public class Overlay : MapObject
     {
         private EvasObject _containedObject;
 
+        /// <summary>
+        /// Creates normal overlay map object
+        /// </summary>
+        /// <param name="coordinates"></param>
+        /// <param name="objectToContain"></param>
         public Overlay(Geocoordinates coordinates, EvasObject objectToContain) : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
         {
         }
@@ -42,6 +50,9 @@ namespace Tizen.Maps
             _containedObject = objectToContain;
         }
 
+        /// <summary>
+        /// Geographical coordinates for overlay
+        /// </summary>
         public Geocoordinates Coordinates
         {
             get
@@ -66,6 +77,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Minimum zoom level for overlay
+        /// </summary>
         public int MinimumZoomLevel
         {
             get
@@ -80,6 +94,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Maximum zoom lever for overlay
+        /// </summary>
         public int MaximumZoomLevel
         {
             get
@@ -111,6 +128,9 @@ namespace Tizen.Maps
         }
     }
 
+    /// <summary>
+    /// Bubble overlay map object
+    /// </summary>
     public class BubbleOverlay : Overlay
     {
         public BubbleOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Bubble)
@@ -118,8 +138,14 @@ namespace Tizen.Maps
         }
     }
 
+    /// <summary>
+    /// Box Overlay map object
+    /// </summary>
     public class BoxOverlay : Overlay
     {
+        /// <summary>
+        /// Creates Box overlay
+        /// </summary>
         public BoxOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Box)
         {
         }

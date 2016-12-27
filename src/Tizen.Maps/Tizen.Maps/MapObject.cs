@@ -29,8 +29,15 @@ namespace Tizen.Maps
             handle = nativeHandle;
         }
 
+
+        /// <summary>
+        /// Clicked event
+        /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// Map Object's visibility
+        /// </summary>
         public bool IsVisible
         {
             get

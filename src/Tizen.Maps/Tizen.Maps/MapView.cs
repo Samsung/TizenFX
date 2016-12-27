@@ -22,6 +22,9 @@ using System.Collections.Generic;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Map View
+    /// </summary>
     public class MapView : Layout
     {
         internal Interop.ViewHandle handle;
@@ -42,6 +45,11 @@ namespace Tizen.Maps
         private event EventHandler<MapGestureEventArgs> _longPressedEventHandler;
         private event EventHandler _viewReadyEventHandler;
 
+        /// <summary>
+        /// Creates the View and link it to the instance of map service
+        /// </summary>
+        /// <param name="parent">The evas object to be drawn</param>
+        /// <param name="service">Map service</param>
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             IntPtr nativeHandle;
@@ -58,6 +66,9 @@ namespace Tizen.Maps
             SetObjectEventCallback();
         }
 
+        /// <summary>
+        /// Scrolled gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> Scrolled
         {
             add
@@ -77,6 +88,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// ZoomChanged gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> ZoomChanged
         {
             add
@@ -96,6 +110,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Clicked gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> Clicked
         {
             add
@@ -115,6 +132,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// DoubleClicked gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> DoubleClicked
         {
             add
@@ -134,6 +154,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// TwoFingerPressed gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> TwoFingerPressed
         {
             add
@@ -153,6 +176,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Rotated gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> Rotated
         {
             add
@@ -172,6 +198,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// LongPressed gesture event
+        /// </summary>
         public event EventHandler<MapGestureEventArgs> LongPressed
         {
             add
@@ -191,6 +220,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// ViewReady gesture event
+        /// </summary>
         public event EventHandler ViewReady
         {
             add
@@ -205,6 +237,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Map View's current zoom level
+        /// </summary>
         public int ZoomLevel
         {
             get
@@ -219,6 +254,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Minimum zoom level for map view
+        /// </summary>
         public int MinimumZoomLevel
         {
             get
@@ -233,6 +271,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Maximum zoom level for map view
+        /// </summary>
         public int MaximumZoomLevel
         {
             get
@@ -247,6 +288,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// orientation on the View [0 ~ 360 degrees]
+        /// </summary>
         public double Orientation
         {
             get
@@ -261,6 +305,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Map view type (theme)
+        /// </summary>
         public MapTypes MapType
         {
             get
@@ -275,6 +322,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Indicates whether the map should show the 3D buildings layer
+        /// </summary>
         public bool BuildingsEnabled
         {
             get
@@ -289,6 +339,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Indicates whether the map should show the traffic layer
+        /// </summary>
         public bool TrafficEnabled
         {
             get
@@ -303,6 +356,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Indicates whether the map should show the public transit layer
+        /// </summary>
         public bool PublicTransitEnabled
         {
             get
@@ -317,6 +373,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Gets whether the scale-bar is enabled or not
+        /// </summary>
         public bool ScalebarEnabled
         {
             get
@@ -331,6 +390,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Map view's language
+        /// </summary>
         public string Language
         {
             get
@@ -345,6 +407,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Geographical coordinates for map view's center
+        /// </summary>
         public Geocoordinates Center
         {
             get
@@ -360,6 +425,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// List of map object added to map view
+        /// </summary>
         public IEnumerable<MapObject> Children
         {
             get
@@ -368,6 +436,11 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Changes geographical coordinates to screen coordinates
+        /// </summary>
+        /// <param name="coordinates">Geographical coordinates</param>
+        /// <returns></returns>
         public Point GeolocationToScreen(Geocoordinates coordinates)
         {
             Point screenCoordinates = new Point();
@@ -376,6 +449,11 @@ namespace Tizen.Maps
             return screenCoordinates;
         }
 
+        /// <summary>
+        /// Changes screen coordinates to geographical coordinates
+        /// </summary>
+        /// <param name="screenCoordinates">screen coordinates</param>
+        /// <returns></returns>
         public Geocoordinates ScreenToGeolocation(Point screenCoordinates)
         {
             IntPtr coordinateHandle;
@@ -383,6 +461,10 @@ namespace Tizen.Maps
             return new Geocoordinates(coordinateHandle);
         }
 
+        /// <summary>
+        /// Adds map object to map view
+        /// </summary>
+        /// <param name="child">map object to add</param>
         public void Add(MapObject child)
         {
             child.handle.ReleaseOwnership();
@@ -391,6 +473,10 @@ namespace Tizen.Maps
             Interop.View.AddObject(handle, child.handle);
         }
 
+        /// <summary>
+        /// Removes map object from map view
+        /// </summary>
+        /// <param name="child">map object to remove</param>
         public void Remove(MapObject child)
         {
             _children.Remove(child);
@@ -398,6 +484,9 @@ namespace Tizen.Maps
             Interop.View.RemoveObject(handle, child.handle);
         }
 
+        /// <summary>
+        /// Removes all map objects from map view
+        /// </summary>
         public void RemoveAll()
         {
             foreach (var child in _children)
@@ -408,6 +497,12 @@ namespace Tizen.Maps
             Interop.View.RemoveAllObjects(handle);
         }
 
+        /// <summary>
+        /// Captures a snapshot of the Map View
+        /// </summary>
+        /// <param name="type">type of file format</param>
+        /// <param name="quality">quality for encoding (1~100) </param>
+        /// <param name="path">The file path for snapshot</param>
         public void CaptureSnapshot(SnapshotType type, int quality, string path)
         {
             var err = Interop.ViewSnapshot.ViewCaptureSnapshot(handle, (Interop.ViewSnapshotFormatType)type, quality, path);
