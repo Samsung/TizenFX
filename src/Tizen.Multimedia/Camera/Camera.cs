@@ -439,9 +439,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Resolution of the preview.
         /// </summary>
-        /// <remarks>
-        /// This should be called before StartPreview Method
-        /// </remarks>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>

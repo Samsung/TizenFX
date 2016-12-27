@@ -57,10 +57,8 @@ namespace Tizen.Multimedia
                 case CameraError.InvalidParameter:
                     throw new ArgumentException(errorMessage, paramName);
 
-                case CameraError.InvalidState:
                 case CameraError.OutOfMemory:
                 case CameraError.ErrorDevice:
-                case CameraError.InvalidOperation:
                 case CameraError.DeviceBusy:
                 case CameraError.DeviceNotFound:
                 case CameraError.SoundPolicy:
@@ -72,6 +70,8 @@ namespace Tizen.Multimedia
 		            throw new UnauthorizedAccessException(errorMessage);
                 case CameraError.NotSupported:
                     throw new NotSupportedException(errorMessage);
+                case CameraError.InvalidState:
+                case CameraError.InvalidOperation:
                 case CameraError.ResourceConflict:
                 case CameraError.ServiceDisconnected:
                     throw new InvalidOperationException(errorMessage);
