@@ -23,35 +23,20 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioDeviceConnectionChangedEventArgs : EventArgs
     {
-        private AudioDevice _device;
-        private bool _isConnected;
-
         internal AudioDeviceConnectionChangedEventArgs(AudioDevice device, bool isConnected)
         {
-            _device = device;
-            _isConnected = isConnected;
+            Device = device;
+            IsConnected = isConnected;
         }
 
         /// <summary>
         /// The object of sound device
         /// </summary>
-        public AudioDevice Device
-        {
-            get
-            {
-                return _device;
-            }
-        }
+        public AudioDevice Device { get; }
 
         /// <summary>
         /// The state of device connection: (true = connected, false = disconnected)
         /// </summary>
-        public bool IsConnected
-        {
-            get
-            {
-                return _isConnected;
-            }
-        }
+        public bool IsConnected { get; }
     }
 }

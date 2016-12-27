@@ -23,48 +23,26 @@ namespace Tizen.Multimedia
     /// </summary>
     public class FocusStateChangedEventArgs : EventArgs
     {
-        private AudioStreamFocusState _focusState;
-        private AudioStreamFocusChangedReason _reason;
-        private string _extraInformation;
-
         internal FocusStateChangedEventArgs(AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInformation)
         {
-            _focusState = focusState;
-            _reason = reason;
-            _extraInformation = extraInformation;
+            FocusState = focusState;
+            FocusChangedReason = reason;
+            ExtraInformation = extraInformation;
         }
 
         /// <summary>
         /// The changed focus state
         /// </summary>
-        public AudioStreamFocusState FocusState 
-        {
-            get
-            {
-                return _focusState;
-            }
-        }
+        public AudioStreamFocusState FocusState { get; }
 
         /// <summary>
         /// The reason for state change of the focus
         /// </summary>
-        public AudioStreamFocusChangedReason FocusChangedReason 
-        {
-            get
-            {
-                return _reason;
-            }
-        }
+        public AudioStreamFocusChangedReason FocusChangedReason { get; }
 
         /// <summary>
         /// The extra information
         /// </summary>
-        public string ExtraInformation
-        {
-            get
-            {
-                return _extraInformation;
-            }
-        }
+        public string ExtraInformation { get; }
     }
 }

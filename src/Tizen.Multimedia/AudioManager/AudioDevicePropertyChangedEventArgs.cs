@@ -23,35 +23,20 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioDevicePropertyChangedEventArgs : EventArgs
     {
-        private AudioDevice _device;
-        private AudioDeviceProperty _changedProperty;
-
         internal AudioDevicePropertyChangedEventArgs(AudioDevice device, AudioDeviceProperty changedInfo)
         {
-            _device = device;
-            _changedProperty = changedInfo;
+            Device = device;
+            ChangedInfo = changedInfo;
         }
 
         /// <summary>
         /// The object of sound device
         /// </summary>
-        public AudioDevice Device
-        {
-            get
-            {
-                return _device;
-            }
-        }
+        public AudioDevice Device { get; }
 
         /// <summary>
         /// The entry of sound device information
         /// </summary>
-        public AudioDeviceProperty ChangedInfo
-        {
-            get
-            {
-                return _changedProperty;
-            }
-        }
+        public AudioDeviceProperty ChangedInfo { get; }
     }
 }

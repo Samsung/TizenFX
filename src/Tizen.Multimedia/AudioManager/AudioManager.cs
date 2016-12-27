@@ -441,11 +441,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The VolumeController object (singleton) is-a part of SoundManager and its properties and methods are used via AudioManager
         /// </summary>
-        public static AudioVolume VolumeController
-        {
-            get;
-            private set;
-        }
+        public static AudioVolume VolumeController { get; }
 
         /// <summary>
         /// Gets the list consisting of all devices currently connected.
