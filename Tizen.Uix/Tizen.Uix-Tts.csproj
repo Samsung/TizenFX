@@ -56,12 +56,11 @@
     <Compile Include="Tizen.Uix.Tts\EngineChangedEventArgs.cs" />
     <Compile Include="Tizen.Uix.Tts\ErrorOccuredEventArgs.cs" />
     <Compile Include="Tizen.Uix.Tts\ExceptionFactory.cs" />
-    <Compile Include="Tizen.Uix.Tts\Tts.cs" />
+    <Compile Include="Tizen.Uix.Tts\TtsClient.cs" />
     <Compile Include="Tizen.Uix.Tts\StateChangedEventArgs.cs" />
     <Compile Include="Tizen.Uix.Tts\UtteranceEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings.StyleCop" />
     <None Include="Tizen.Uix-Tts.nuspec" />
     <None Include="Tizen.Uix-Tts.project.json" />
     <None Include="Tizen.Uix-Tts.snk" />

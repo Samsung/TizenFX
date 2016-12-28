@@ -163,7 +163,7 @@ namespace Tizen.Uix.Tts
     /// You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
     /// Applications can add input-text to queue for reading continuously and control the player that can play, pause, and stop sound data synthesized from text.
     /// </summary>
-    public class Tts : IDisposable
+    public class TtsClient : IDisposable
     {
         private IntPtr _handle;
         private event EventHandler<StateChangedEventArgs> _stateChanged;
@@ -192,7 +192,7 @@ namespace Tizen.Uix.Tts
         /// 3. TTS Not Supported
         /// 4. Engine Not Found
         /// </exception>
-        public Tts()
+        public TtsClient()
         {
             IntPtr handle;
             TtsError error = TtsCreate(out handle);
