@@ -59,31 +59,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The Sound Manager has predefined types of sounds.(system, notification, alarm, ringtone, media, call, voip, voice).
-        /// The type of the sound being currently played.
-        /// </summary>
-        public AudioVolumeType CurrentType {
-            get {
-                AudioVolumeType currentType;
-                int ret = Interop.AudioVolume.GetCurrentSoundType(out currentType);
-                if(ret != 0) {
-                    Tizen.Log.Info(AudioVolumeLog.Tag, "Unable to get current sound type" + (AudioManagerError)ret);
-                    return AudioVolumeType.None;
-                }
-                return currentType;
-            }
-            set {
-                int ret = Interop.AudioVolume.SetCurrentSoundType(value);
-                if(ret != 0) {
-                    if(value == AudioVolumeType.None) {
-                        ret = Interop.AudioVolume.UnsetCurrentType();
-                    }
-                }
-                AudioManagerErrorFactory.CheckAndThrowException(ret, "unable to set current sound type");
-            }
-        }
-
-        /// <summary>
         /// The indexer class which is used to get/set volume level specified for a particular sound type.
         /// </summary>
         public VolumeLevel Level;
