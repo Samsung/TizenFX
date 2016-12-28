@@ -63,7 +63,7 @@ internal static partial class Interop
         internal delegate void RecognitionResultCallback(IntPtr handle, Tizen.Uix.Stt.ResultEvent e, IntPtr data, int dataCount, IntPtr msg, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool ResultTimeCallback(IntPtr handle, int index, Tizen.Uix.Stt.TimeEvent e, IntPtr text, long startTime, long endTime, IntPtr userData);
+        internal delegate bool ResultTimeCallback(IntPtr handle, int index, Tizen.Uix.Stt.TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void StateChangedCallback(IntPtr handle, Tizen.Uix.Stt.State previous, Tizen.Uix.Stt.State current, IntPtr userData);

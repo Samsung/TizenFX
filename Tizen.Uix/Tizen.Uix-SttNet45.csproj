@@ -57,11 +57,10 @@
     <Compile Include="Tizen.Uix.Stt\RecognitionResultEventArgs.cs" />
     <Compile Include="Tizen.Uix.Stt\ResultTime.cs" />
     <Compile Include="Tizen.Uix.Stt\StateChangedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.Stt\Stt.cs" />
+    <Compile Include="Tizen.Uix.Stt\SttClient.cs" />
     <Compile Include="Tizen.Uix.Stt\SupportedEngine.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings.StyleCop" />
     <None Include="Tizen.Uix-Stt.nuspec" />
     <None Include="Tizen.Uix-Stt.Net45.project.json" />
     <None Include="Tizen.Uix-Stt.snk" />

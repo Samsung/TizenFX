@@ -263,7 +263,7 @@ namespace Tizen.Uix.Stt
     /// The STT service always works in the background as a server. If the service is not working, client library will invoke it and client will communicate with it.
     /// The service has engines and the recorder so client does not have the recorder itself. Only the client request commands to the STT service for using STT.
     /// </summary>
-    public class Stt : IDisposable
+    public class SttClient : IDisposable
     {
         private IntPtr _handle;
         private Object thisLock = new Object();
@@ -294,7 +294,7 @@ namespace Tizen.Uix.Stt
         /// 3. STT Not Supported
         /// 4. Permission Denied
         /// </exception>
-        public Stt()
+        public SttClient()
         {
             IntPtr handle;
             SttError error = SttCreate(out handle);
@@ -365,7 +365,7 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    Stt obj = this;
+                    SttClient obj = this;
                     _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
                     {
                         StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
@@ -688,9 +688,9 @@ namespace Tizen.Uix.Stt
         public IEnumerable<ResultTime> GetDetailedResult()
         {
             List<ResultTime> list = new List<ResultTime>();
-            _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, long startTime, long endTime, IntPtr userData) =>
+            _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData) =>
             {
-                _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), startTime, endTime);
+                _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), (long)startTime, (long)endTime);
                 list.Add(_result);
                 return true;
             };
