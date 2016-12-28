@@ -21,9 +21,9 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AsyncAudioCapture.DataAvailable"/> event.
     /// </summary>
-    public class AudioDataAvailableEvetnArgs : EventArgs
+    public class AudioDataAvailableEventArgs : EventArgs
     {
-        internal AudioDataAvailableEvetnArgs(byte[] data)
+        internal AudioDataAvailableEventArgs(byte[] data)
         {
             Data = data;
         }

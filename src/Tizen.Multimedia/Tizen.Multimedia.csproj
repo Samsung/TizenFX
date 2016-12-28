@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AudioIO\AudioCapture.cs" />
-    <Compile Include="AudioIO\AudioDataAvailableEvetnArgs.cs" />
+    <Compile Include="AudioIO\AudioDataAvailableEventArgs.cs" />
     <Compile Include="AudioIO\AudioIOEnums.cs" />
     <Compile Include="AudioIO\AudioIOStateChangedEventArgs.cs" />
     <Compile Include="AudioIO\AudioIOUtil.cs" />

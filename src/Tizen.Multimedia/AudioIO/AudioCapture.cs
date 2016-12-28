@@ -352,7 +352,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when audio data is available.
         /// </summary>
-        public event EventHandler<AudioDataAvailableEvetnArgs> DataAvailable;
+        public event EventHandler<AudioDataAvailableEventArgs> DataAvailable;
 
         /// <summary>
         /// Initializes a new instance of the AsyncAudioCapture class with the specified sample rate, channel and sampleType.
@@ -401,7 +401,7 @@ namespace Tizen.Multimedia
 
                 Interop.AudioIO.AudioInput.Drop(_handle);
 
-                DataAvailable?.Invoke(this, new AudioDataAvailableEvetnArgs(buffer));
+                DataAvailable?.Invoke(this, new AudioDataAvailableEventArgs(buffer));
             }
             catch (Exception e)
             {
