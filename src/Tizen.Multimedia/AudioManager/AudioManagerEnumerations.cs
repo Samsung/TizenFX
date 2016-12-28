@@ -77,9 +77,9 @@ namespace Tizen.Multimedia
         /// </summary>
         AudioJack,
         /// <summary>
-        /// Bluetooth
+        /// Bluetooth Media (A2DP)
         /// </summary>
-        Bluetooth,
+        BluetoothMedia,
         /// <summary>
         /// HDMI
         /// </summary>
@@ -91,7 +91,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// USB Audio
         /// </summary>
-        UsbAudio
+        UsbAudio,
+        /// <summary>
+        /// Bluetooth Voice (SCO)
+        /// </summary>
+        BluetoothVoice
     }
 
     /// <summary>
@@ -126,21 +130,6 @@ namespace Tizen.Multimedia
         /// Activated state
         /// </summary>
         Activated
-    }
-
-    /// <summary>
-    /// Enumeration for changed property of audio device.
-    /// </summary>
-    public enum AudioDeviceProperty
-    {
-        /// <summary>
-        /// State of the device was changed
-        /// </summary>
-        State,
-        /// <summary>
-        /// IO direction of the device was changed
-        /// </summary>
-        IoDirection
     }
 
     /// <summary>

@@ -21,12 +21,12 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Class extending EventArgs which contains parameters to be passed to event handler of DeviceInformationChanged event
     /// </summary>
-    public class AudioDevicePropertyChangedEventArgs : EventArgs
+    public class AudioDeviceStateChangedEventArgs : EventArgs
     {
-        internal AudioDevicePropertyChangedEventArgs(AudioDevice device, AudioDeviceProperty changedInfo)
+        internal AudioDeviceStateChangedEventArgs(AudioDevice device, AudioDeviceState changedState)
         {
             Device = device;
-            ChangedInfo = changedInfo;
+            ChangedState = changedState;
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace Tizen.Multimedia
         public AudioDevice Device { get; }
 
         /// <summary>
-        /// The entry of sound device information
+        /// The entry of sound device state
         /// </summary>
-        public AudioDeviceProperty ChangedInfo { get; }
+        public AudioDeviceState ChangedState { get; }
     }
 }

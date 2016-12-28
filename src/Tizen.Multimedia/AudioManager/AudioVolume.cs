@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioVolume
     {
+        private static int _volumeChangedCallbackId = -1;
         private EventHandler<VolumeChangedEventArgs> _volumeChanged;
         private Interop.SoundManagerVolumeChangedCallback _volumeChangedCallback;
 
@@ -50,10 +51,10 @@ namespace Tizen.Multimedia
             }
             remove {
                 Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event removed....");
-                _volumeChanged -= value;
-                if(_volumeChanged == null) {
+                if(_volumeChanged?.GetInvocationList()?.GetLength(0) == 1) {
                     UnregisterVolumeChangedEvent();
                 }
+                _volumeChanged -= value;
             }
         }
 
@@ -98,16 +99,18 @@ namespace Tizen.Multimedia
                 VolumeChangedEventArgs eventArgs = new VolumeChangedEventArgs(type, volume);
                 _volumeChanged.Invoke(this, eventArgs);
             };
-            int error = Interop.AudioVolume.SetVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero);
+            int error = Interop.AudioVolume.AddVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero, out _volumeChangedCallbackId);
             Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event return:" + error);
-            AudioManagerErrorFactory.CheckAndThrowException(error, "unable to set level changed callback");
+            AudioManagerErrorFactory.CheckAndThrowException(error, "unable to add level changed callback");
         }
 
         private void UnregisterVolumeChangedEvent()
         {
-            int error = Interop.AudioVolume.UnsetVolumeChangedCallback();
-            Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Unset Event return: " + error);
-            AudioManagerErrorFactory.CheckAndThrowException(error, "unable to unset level changed callback");
+            if (_volumeChangedCallbackId > 0) {
+                int error = Interop.AudioVolume.RemoveVolumeChangedCallback(_volumeChangedCallbackId);
+                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed remove Event return: " + error);
+                AudioManagerErrorFactory.CheckAndThrowException(error, "unable to remove level changed callback");
+            }
         }
     }
 }

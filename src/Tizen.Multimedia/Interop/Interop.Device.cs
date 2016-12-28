@@ -5,14 +5,14 @@ using Tizen.Multimedia;
 internal static partial class Interop
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void SoundDeviceConnectedCallback(IntPtr device, bool isConnected, IntPtr userData);
+    internal delegate void SoundDeviceConnectionChangedCallback(IntPtr device, bool isConnected, IntPtr userData);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void SoundDeviceInformationChangedCallback(IntPtr device, AudioDeviceProperty changedInfo, IntPtr userData);
+    internal delegate void SoundDeviceStateChangedCallback(IntPtr device, AudioDeviceState changedState, IntPtr userData);
 
     internal static partial class AudioDevice
     {
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_current_device_list")]
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_list")]
         internal static extern int GetCurrentDeviceList(AudioDeviceOptions deviceMask, out IntPtr deviceList);
 
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_free_device_list")]
@@ -36,16 +36,16 @@ internal static partial class Interop
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state")]
         internal static extern int GetDeviceState(IntPtr device, out AudioDeviceState state);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_set_device_connected_cb")]
-        internal static extern int SetDeviceConnectedCallback(AudioDeviceOptions deviceMask, SoundDeviceConnectedCallback callback, IntPtr userData);
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
+        internal static extern int AddDeviceConnectionChangedCallback(AudioDeviceOptions deviceMask, SoundDeviceConnectionChangedCallback callback, IntPtr userData, out int id);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_unset_device_connected_cb")]
-        internal static extern int UnsetDeviceConnectedCallback();
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_connection_changed_cb")]
+        internal static extern int RemoveDeviceConnectionChangedCallback(int id);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_set_device_information_changed_cb")]
-        internal static extern int SetDeviceInformationChangedCallback(AudioDeviceOptions deviceMask, SoundDeviceInformationChangedCallback callback, IntPtr userData);
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_state_changed_cb")]
+        internal static extern int AddDeviceStateChangedCallback(AudioDeviceOptions deviceMask, SoundDeviceStateChangedCallback callback, IntPtr userData, out int id);
 
-        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_unset_device_information_changed_cb")]
-        internal static extern int UnsetDeviceInformationChangedCallback();
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_state_changed_cb")]
+        internal static extern int RemoveDeviceStateChangedCallback(int id);
     }
 }

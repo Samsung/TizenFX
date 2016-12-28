@@ -205,7 +205,7 @@
     <Compile Include="Interop\Interop.RecorderCapability.cs" />
     <Compile Include="AudioManager\AudioDevice.cs" />
     <Compile Include="AudioManager\AudioDeviceConnectionChangedEventArgs.cs" />
-    <Compile Include="AudioManager\AudioDevicePropertyChangedEventArgs.cs" />
+    <Compile Include="AudioManager\AudioDeviceStateChangedEventArgs.cs" />
     <Compile Include="AudioManager\AudioManager.cs" />
     <Compile Include="AudioManager\AudioManagerEnumerations.cs" />
     <Compile Include="AudioManager\AudioManagerErrorFactory.cs" />

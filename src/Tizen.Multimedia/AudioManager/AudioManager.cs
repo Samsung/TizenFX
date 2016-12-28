@@ -29,27 +29,14 @@ namespace Tizen.Multimedia
     /// </summary>
     public static class AudioManager
     {
-        private static int _deviceConnectedCounter = 0;
-        private static int _deviceInformationChanged = 0;
+        private static int _deviceConnectionChangedCallbackId = -1;
+        private static int _deviceStateChangedCallbackId = -1;
 
-        private static Interop.SoundDeviceConnectedCallback _audioDeviceConnectedCallback;
-        private static Interop.SoundDeviceInformationChangedCallback _audioDeviceInformationChangedCallback;
+        private static Interop.SoundDeviceConnectionChangedCallback _audioDeviceConnectionChangedCallback;
+        private static Interop.SoundDeviceStateChangedCallback _audioDeviceStateChangedCallback;
 
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _stateActivatedDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _stateDeactivatedDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _typeExternalDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _typeInternalDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _ioDirectionInDeviceConnected;
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _ioDirectionOutDeviceConnected;
-
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _audioDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _stateActivatedDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _stateDeactivatedDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _typeExternalDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _typeInternalDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _ioDirectionInDeviceInformationChanged;
-        private static EventHandler<AudioDevicePropertyChangedEventArgs> _ioDirectionOutDeviceInformationChanged;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnectionChanged;
+        private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
 
         /// <summary>
         /// Constructor for AudioManager. Initializes the VolumeController property etc.
@@ -66,375 +53,47 @@ namespace Tizen.Multimedia
         {
             add
             {
-                if (_audioDeviceConnected == null)
+                if (_audioDeviceConnectionChanged == null)
                 {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.All);
+                    RegisterAudioDeviceEvent();
                     Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event registered");
                 }
-                _deviceConnectedCounter++;
-                _audioDeviceConnected += value;
+                _audioDeviceConnectionChanged += value;
                 Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event added");
             }
             remove
             {
-                _deviceConnectedCounter--;
-                _audioDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
+                if (_audioDeviceConnectionChanged?.GetInvocationList()?.GetLength(0) == 1)
                 {
-                    UnregisterDeviceConnectedEvent();
+                    UnregisterDeviceConnectionChangedEvent();
                 }
+                _audioDeviceConnectionChanged -= value;
                 Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event removed");
             }
         }
 
         /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an activated audio device is changed.
+        /// Registers/Unregisters a callback function to be invoked when the state of an Audio sound device was changed.
         /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> ActivatedDeviceConnectionChanged
+        public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
             {
-                if (_stateActivatedDeviceConnected == null)
+                if (_audioDeviceStateChanged == null)
                 {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.Activated);
+                    RegisterDeviceStateChangedEvent();
                 }
-                _deviceConnectedCounter++;
-                _stateActivatedDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDeviceConnectionChanged event added");
+                _audioDeviceStateChanged += value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceStateChanged event added");
             }
             remove
             {
-                _deviceConnectedCounter--;
-                _stateActivatedDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
+                if (_audioDeviceStateChanged?.GetInvocationList()?.GetLength(0) == 1)
                 {
-                    UnregisterDeviceConnectedEvent();
+                    UnregisterDeviceStateChangedEvent();
                 }
-                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an deactivated audio device is changed
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeactivatedDeviceConnectionChanged
-        {
-            add
-            {
-                if (_stateDeactivatedDeviceConnected == null)
-                {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.Deactivated);
-                }
-                _deviceConnectedCounter++;
-                _stateDeactivatedDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceConnectionChanged event added");
-            }
-            remove
-            {
-                _deviceConnectedCounter--;
-                _stateDeactivatedDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an external audio device is changed
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> ExternalDeviceConnectionChanged
-        {
-            add
-            {
-                if (_typeExternalDeviceConnected == null)
-                {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.External);
-                }
-                _deviceConnectedCounter++;
-                _typeExternalDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDeviceConnectionChanged event added");
-            }
-            remove
-            {
-                _deviceConnectedCounter--;
-                _typeExternalDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an internal audio device is changed
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> InternalDeviceConnectionChanged
-        {
-            add
-            {
-                if (_typeInternalDeviceConnected == null)
-                {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.Internal);
-                }
-                _deviceConnectedCounter++;
-                _typeInternalDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDeviceConnectionChanged event added");
-            }
-            remove
-            {
-                _deviceConnectedCounter--;
-                _typeInternalDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an input audio device is changed.
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> InputDeviceConnectionChanged
-        {
-            add
-            {
-                if (_ioDirectionInDeviceConnected == null)
-                {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.Input);
-                }
-                _deviceConnectedCounter++;
-                _ioDirectionInDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "InputDeviceConnectionChanged event added");
-            }
-            remove
-            {
-                _deviceConnectedCounter--;
-                _ioDirectionInDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "InputDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a function to be invoked when the connection of an output audio device is changed
-        /// </summary>
-        public static event EventHandler<AudioDeviceConnectionChangedEventArgs> OutputDeviceConnectionChanged
-        {
-            add
-            {
-                if (_ioDirectionOutDeviceConnected == null)
-                {
-                    RegisterAudioDeviceEvent(AudioDeviceOptions.Output);
-                }
-                _deviceConnectedCounter++;
-                _ioDirectionOutDeviceConnected += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDeviceConnectionChanged event added");
-            }
-            remove
-            {
-                _deviceConnectedCounter--;
-                _ioDirectionOutDeviceConnected -= value;
-                if (_deviceConnectedCounter == 0)
-                {
-                    UnregisterDeviceConnectedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of an Audio sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DevicePropertyChanged
-        {
-            add
-            {
-                if (_audioDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.All);
-                }
-                _deviceInformationChanged++;
-                _audioDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _audioDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "DevicePropertyChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a activated audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ActivatedDevicePropertyChanged
-        {
-            add
-            {
-                if (_stateActivatedDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Activated);
-                }
-                _deviceInformationChanged++;
-                _stateActivatedDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _stateActivatedDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "ActivatedDevicePropertyChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a deactivated audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> DeactivatedDevicePropertyChanged
-        {
-            add
-            {
-                if (_stateDeactivatedDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Deactivated);
-                }
-                _deviceInformationChanged++;
-                _stateDeactivatedDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _stateDeactivatedDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeactivatedDeviceProperty Changed event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a external audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> ExternalDevicePropertyChanged
-        {
-            add
-            {
-                if (_typeExternalDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.External);
-                }
-                _deviceInformationChanged++;
-                _typeExternalDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _typeExternalDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "ExternalDevicePropertyChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a internal audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InternalDevicePropertyChanged
-        {
-            add
-            {
-                if (_typeInternalDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Internal);
-                }
-                _deviceInformationChanged++;
-                _typeInternalDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _typeInternalDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "InternalDevicePropertyChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a input audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> InputDevicePropertyChanged
-        {
-            add
-            {
-                if (_ioDirectionInDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Input);
-                }
-                _deviceInformationChanged++;
-                _ioDirectionInDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "InputDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _ioDirectionInDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "InputDevicePropertyChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the property of a output audio device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDevicePropertyChangedEventArgs> OutputDevicePropertyChanged
-        {
-            add
-            {
-                if (_ioDirectionOutDeviceInformationChanged == null)
-                {
-                    RegisterDeviceInformationChangedEvent(AudioDeviceOptions.Output);
-                }
-                _deviceInformationChanged++;
-                _ioDirectionOutDeviceInformationChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDevicePropertyChanged event added");
-            }
-            remove
-            {
-                _deviceInformationChanged--;
-                _ioDirectionOutDeviceInformationChanged -= value;
-                if (_deviceInformationChanged == 0)
-                {
-                    UnregisterDeviceInformationChangedEvent();
-                }
-                Tizen.Log.Info(AudioManagerLog.Tag, "OutputDevicePropertyChanged event removed");
+                _audioDeviceStateChanged -= value;
+                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceStateChanged event removed");
             }
         }
 
@@ -473,98 +132,50 @@ namespace Tizen.Multimedia
             return audioDeviceList;
         }
 
-        private static void RegisterAudioDeviceEvent(AudioDeviceOptions option)
+        private static void RegisterAudioDeviceEvent()
         {
-            _audioDeviceConnectedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
+            _audioDeviceConnectionChangedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
             {
-                int audioOption = (int) userData;
-
                 AudioDeviceConnectionChangedEventArgs eventArgs = new AudioDeviceConnectionChangedEventArgs(new AudioDevice(device), isConnected);
-
-                switch ((AudioDeviceOptions)audioOption)
-                {
-                    case AudioDeviceOptions.All:
-                        _audioDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Activated:
-                        _stateActivatedDeviceConnected?.Invoke(null, eventArgs); ;
-                        break;
-                    case AudioDeviceOptions.Deactivated:
-                        _stateDeactivatedDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.External:
-                        _typeExternalDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Internal:
-                        _typeInternalDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Input:
-                        _ioDirectionInDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Output:
-                        _ioDirectionOutDeviceConnected?.Invoke(null, eventArgs);
-                        break;
-                    default:
-                        return;
-                }
+                _audioDeviceConnectionChanged?.Invoke(null, eventArgs);
             };
-            int ret = Interop.AudioDevice.SetDeviceConnectedCallback(option, _audioDeviceConnectedCallback, (IntPtr) option);
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device connected callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnected Event registered");
+            int ret = Interop.AudioDevice.AddDeviceConnectionChangedCallback(AudioDeviceOptions.All, _audioDeviceConnectionChangedCallback, IntPtr.Zero, out _deviceConnectionChangedCallbackId);
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to add device connection changed callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectionChanged Event registered");
         }
 
-        private static void RegisterDeviceInformationChangedEvent(AudioDeviceOptions option)
+        private static void RegisterDeviceStateChangedEvent()
         {
-            _audioDeviceInformationChangedCallback = (IntPtr device, AudioDeviceProperty property, IntPtr userData) =>
+            _audioDeviceStateChangedCallback = (IntPtr device, AudioDeviceState changedState, IntPtr userData) =>
             {
-                int audioOption = (int)userData;
-
-                AudioDevicePropertyChangedEventArgs eventArgs = new AudioDevicePropertyChangedEventArgs(new AudioDevice(device), property);
-
-                switch ((AudioDeviceOptions)audioOption)
-                {
-                    case AudioDeviceOptions.All:
-                        _audioDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Activated:
-                        _stateActivatedDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Deactivated:
-                        _stateDeactivatedDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.External:
-                        _typeExternalDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Internal:
-                        _typeInternalDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Input:
-                        _ioDirectionInDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    case AudioDeviceOptions.Output:
-                        _ioDirectionOutDeviceInformationChanged?.Invoke(null, eventArgs);
-                        break;
-                    default:
-                        return;
-                }
+                AudioDeviceStateChangedEventArgs eventArgs = new AudioDeviceStateChangedEventArgs(new AudioDevice(device), changedState);
+                _audioDeviceStateChanged?.Invoke(null, eventArgs);
             };
-            int ret = Interop.AudioDevice.SetDeviceInformationChangedCallback(option, _audioDeviceInformationChangedCallback, (IntPtr) option);
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to set device property changed callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDevicePropertyChangedEvent callback registered");
+            int ret = Interop.AudioDevice.AddDeviceStateChangedCallback(AudioDeviceOptions.All, _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId);
+            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to add device state changed callback");
+            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceStateChangedEvent callback registered");
         }
 
-        private static void UnregisterDeviceConnectedEvent()
+        private static void UnregisterDeviceConnectionChangedEvent()
         {
-            int ret = Interop.AudioDevice.UnsetDeviceConnectedCallback();
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device connected callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectedEvent callback unregistered");
+            if (_deviceConnectionChangedCallbackId > 0)
+            {
+                int ret = Interop.AudioDevice.RemoveDeviceConnectionChangedCallback(_deviceConnectionChangedCallbackId);
+                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to remove device connection changed callback");
+                Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectionChangedEvent callback unregistered");
+                _deviceConnectionChangedCallbackId = -1;
+            }
         }
 
-        private static void UnregisterDeviceInformationChangedEvent()
+        private static void UnregisterDeviceStateChangedEvent()
         {
-            int ret = Interop.AudioDevice.UnsetDeviceInformationChangedCallback();
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to unset device property changed callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDevicePropertyChanged callback unregistered");
+            if (_deviceStateChangedCallbackId > 0)
+            {
+                int ret = Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId);
+                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to remove device state changed callback");
+                Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceStateChanged callback unregistered");
+                _deviceStateChangedCallbackId = -1;
+            }
         }
     }
 }
