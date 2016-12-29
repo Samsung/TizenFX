@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using Tizen.Multimedia;
 
@@ -46,6 +46,7 @@ internal static partial class Interop
 		internal static extern int SetMute(IntPtr handle, bool enable);
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_is_muted")]
+		[return: MarshalAs(UnmanagedType.I1)]
 		internal static extern bool GetMute(IntPtr handle);
 
 		[DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_recording_motion_rate")]
