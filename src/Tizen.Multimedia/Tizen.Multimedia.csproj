@@ -48,7 +48,7 @@
     <Compile Include="AudioIO\AudioIOStateChangedEventArgs.cs" />
     <Compile Include="AudioIO\AudioIOUtil.cs" />
     <Compile Include="AudioIO\AudioPlaybackBufferAvailableEventArgs.cs" />
-    <Compile Include="AudioIO\AudioPlyaback.cs" />
+    <Compile Include="AudioIO\AudioPlayback.cs" />
     <Compile Include="Camera\Area.cs" />
     <Compile Include="Camera\Camera.cs" />
     <Compile Include="Camera\CameraDisplay.cs" />

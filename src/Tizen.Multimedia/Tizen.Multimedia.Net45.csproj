@@ -46,12 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioIO\AudioCapture.cs" />
-    <Compile Include="AudioIO\AudioDataAvailableEvetnArgs.cs" />
+    <Compile Include="AudioIO\AudioDataAvailableEventArgs.cs" />
     <Compile Include="AudioIO\AudioIOEnums.cs" />
     <Compile Include="AudioIO\AudioIOStateChangedEventArgs.cs" />
     <Compile Include="AudioIO\AudioIOUtil.cs" />
     <Compile Include="AudioIO\AudioPlaybackBufferAvailableEventArgs.cs" />
-    <Compile Include="AudioIO\AudioPlyaback.cs" />
+    <Compile Include="AudioIO\AudioPlayback.cs" />
     <Compile Include="Camera\Area.cs" />
     <Compile Include="Camera\Camera.cs" />
     <Compile Include="Camera\CameraDisplay.cs" />
