@@ -35,6 +35,7 @@ namespace Tizen.Location
         /// Should be in the range [1~120] seconds.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public int Interval
         {
             get
@@ -45,18 +46,14 @@ namespace Tizen.Location
             set
             {
                 Log.Info(Globals.LogTag, "Setting the Callback Interval");
-                if (value >= 0 && value <= 120)
+                if (value > 0 && value <= 120)
                 {
                     _interval = value;
-                    if (_satelliteStatusChanged != null)
-                    {
-                        SetSatelliteStatusChangeCallback();
-                    }
-                    else
-                    {
-                        Log.Error(Globals.LogTag, "Error Setting the Callback Interval");
-                        throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
-                    }
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error Setting the Callback Interval");
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                 }
             }
         }

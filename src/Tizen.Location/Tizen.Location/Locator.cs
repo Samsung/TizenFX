@@ -100,10 +100,6 @@ namespace Tizen.Location
                 if (value > 0 && value <= 120)
                 {
                     _interval = value;
-                    if (_locationChanged != null)
-                    {
-                        SetLocationChangedCallback();
-                    }
                 }
                 else
                 {
@@ -132,10 +128,6 @@ namespace Tizen.Location
                 if (value > 0 && value <= 120)
                 {
                     _stayInterval = value;
-                    if (_distanceBasedLocationChanged != null)
-                    {
-                        SetDistanceBasedLocationChangedCallback();
-                    }
                 }
                 else
                 {
@@ -164,10 +156,6 @@ namespace Tizen.Location
                 if (value > 0 && value <= 120)
                 {
                     _distance = value;
-                    if (_distanceBasedLocationChanged != null)
-                    {
-                        SetDistanceBasedLocationChangedCallback();
-                    }
                 }
                 else
                 {
@@ -298,9 +286,9 @@ namespace Tizen.Location
             int ret = Interop.Locator.SetMockLocation(_handle, location.Latitude, location.Longitude, location.Altitude, location.Speed, location.Direction, location.HorizontalAccuracy);
             if (((LocationError)ret == LocationError.None))
             {
-                _location.Altitude = location.Altitude;
                 _location.Latitude = location.Latitude;
                 _location.Longitude = location.Longitude;
+                _location.Altitude = location.Altitude;
                 _location.Speed = location.Speed;
                 _location.Direction = location.Direction;
                 _location.HorizontalAccuracy = location.HorizontalAccuracy;
