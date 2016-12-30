@@ -24,22 +24,22 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Audio
         /// </summary>
-        Audio = 0x00100000,
+        Audio = 0x01000000,
 
         /// <summary>
         /// Video
         /// </summary>
-        Video = 0x00200000,
+        Video = 0x02000000,
 
         /// <summary>
         /// Container
         /// </summary>
-        Container = 0x00400000,
+        Container = 0x04000000,
 
         /// <summary>
         /// Text
         /// </summary>
-        Text = 0x00800000,
+        Text = 0x03000000,
     }
 
     /// <summary>
