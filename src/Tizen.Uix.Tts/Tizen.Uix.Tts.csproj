@@ -3,19 +3,26 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54BEC67A-0961-4CC0-8F04-5F49E34D60D8}</ProjectGuid>
+    <ProjectGuid>{B5D7024D-26B7-47F7-8F6A-550FF65B0B74}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tizen.Uix</RootNamespace>
-    <AssemblyName>Tizen.Uix-Tts</AssemblyName>
+    <AssemblyName>Tizen.Uix.Tts</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701;1702</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\Net45\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\Net45\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,18 +41,11 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Tizen.Uix-Tts.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Tizen.Uix.Tts.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.Tts.cs" />
@@ -61,19 +61,13 @@
     <Compile Include="Tizen.Uix.Tts\UtteranceEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tizen.Uix-Tts.nuspec" />
-    <None Include="Tizen.Uix-Tts.Net45.project.json" />
-    <None Include="Tizen.Uix-Tts.snk" />
+    <None Include="Tizen.Uix.Tts.nuspec" />
+    <None Include="Tizen.Uix.Tts.project.json" />
+    <None Include="Tizen.Uix.Tts.snk" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\tizen\Tizen.Internals\Tizen.Internals.csproj">
-      <Project>{b9aa1cb2-f72d-4a30-a33b-a20c850a38a0}</Project>
-      <Name>Tizen.Internals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\tizen\Tizen\Tizen.csproj">
-      <Project>{7659ca59-410d-41a1-9841-586e88bc78c9}</Project>
-      <Name>Tizen</Name>
-    </ProjectReference>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -84,4 +78,16 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+    -->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+       to prevent it from outputting a warning (MSB3644).
+    -->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
 </Project>
