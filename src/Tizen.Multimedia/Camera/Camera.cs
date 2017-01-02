@@ -57,6 +57,11 @@ namespace Tizen.Multimedia
         private readonly List<FaceDetectedData> _faces = new List<FaceDetectedData>();
         private Interop.Camera.PreviewCallback _previewCallback;
         Interop.Camera.MediaPacketPreviewCallback _mediaPacketCallback;
+        private Interop.Camera.FocusChangedCallback _focusCallback;
+        private Interop.Camera.HdrCaptureProgressCallback _hdrProgressCallback;
+        private Interop.Camera.StateChangedCallback _stateChangedCallback;
+        private Interop.Camera.InterruptedCallback _interruptedCallback;
+        private Interop.Camera.ErrorCallback _errorCallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Multimedia.Camera"/> Class.
@@ -98,7 +103,7 @@ namespace Tizen.Multimedia
             {
                 if (_hdrProgress == null)
                 {
-                    Interop.Camera.HdrCaptureProgressCallback _hdrProgressCallback = (int percent, IntPtr userData) =>
+                    _hdrProgressCallback = (int percent, IntPtr userData) =>
                     {
                         HdrCaptureProgressEventArgs eventArgs = new HdrCaptureProgressEventArgs(percent);
                         _hdrProgress?.Invoke(this, eventArgs);
@@ -146,7 +151,7 @@ namespace Tizen.Multimedia
             {
                 if (_cameraStateChanged == null)
                 {
-                    Interop.Camera.StateChangedCallback _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr userData) =>
+                    _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr userData) =>
                     {
                         CameraStateChangedEventArgs eventArgs = new CameraStateChangedEventArgs(previous, current, byPolicy);
                         _cameraStateChanged?.Invoke(this, eventArgs);
@@ -184,7 +189,7 @@ namespace Tizen.Multimedia
             {
                 if (_cameraFocusChanged == null)
                 {
-                    Interop.Camera.FocusChangedCallback _focusCallback = (CameraFocusState state, IntPtr userData) =>
+                    _focusCallback = (CameraFocusState state, IntPtr userData) =>
                     {
                         CameraFocusChangedEventArgs eventArgs = new CameraFocusChangedEventArgs(state);
                         _cameraFocusChanged?.Invoke(this, eventArgs);
@@ -222,7 +227,7 @@ namespace Tizen.Multimedia
             {
                 if (_cameraInterrupted == null)
                 {
-                    Interop.Camera.InterruptedCallback _interruptedCallback = (CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData) =>
+                    _interruptedCallback = (CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData) =>
                     {
                         CameraInterruptedEventArgs eventArgs = new CameraInterruptedEventArgs(policy, previous, current);
                         _cameraInterrupted?.Invoke(this, eventArgs);
@@ -260,7 +265,7 @@ namespace Tizen.Multimedia
             {
                 if (_cameraErrorOccurred == null)
                 {
-                    Interop.Camera.ErrorCallback _errorCallback = (CameraErrorCode error, CameraState current, IntPtr userData) =>
+                    _errorCallback = (CameraErrorCode error, CameraState current, IntPtr userData) =>
                     {
                         CameraErrorOccurredEventArgs eventArgs = new CameraErrorOccurredEventArgs(error, current);
                         _cameraErrorOccurred?.Invoke(this, eventArgs);
