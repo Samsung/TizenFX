@@ -1,12 +1,3 @@
-%{!?dotnet_assembly_path: %define dotnet_assembly_path %{_datadir}/assembly}
-%{!?dotnet_core_path: %define dotnet_core_path %{_datadir}/tizen.net/ref}
-
-%if 0%{?tizen_build_devel_mode}
-%define BUILDCONF Debug
-%else
-%define BUILDCONF Release
-%endif
-
 Name:       csapi-uix-stt
 Summary:    Tizen STT Uix API for C#
 Version:    1.0.0
@@ -17,51 +8,37 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
-# Mono
-BuildRequires: mono-compiler
-BuildRequires: mono-devel
-
-# .NETCore
-%if 0%{?_with_corefx}
-AutoReqProv: no
-BuildRequires: corefx-managed-32b-ref
-%endif
+BuildRequires: dotnet-build-tools
 
 # C# API Requires
-BuildRequires: csapi-tizen
+BuildRequires: csapi-tizen-nuget
 
-# .Net supports only armv7l and x86_64
-ExcludeArch: %{ix86} aarch64
+AutoReqProv: no
+ExcludeArch: aarch64
 
 %description
 Tizen Uix API for C#
+
+%dotnet_import_sub_packages
 
 %prep
 %setup -q
 cp %{SOURCE1} .
 
-%define Assemblies Tizen.Uix
+%define Assemblies Tizen.Uix.Stt
 
 %build
 for ASM in %{Assemblies}; do
-xbuild $ASM/$ASM.csproj \
-%if 0%{?_with_corefx}
-        /p:NoStdLib=True \
-        /p:TargetFrameworkVersion=v5.0 \
-        /p:AddAdditionalExplicitAssemblyReferences=False \
-        /p:CoreFxPath=%{dotnet_core_path} \
-%endif
-        /p:Configuration=%{BUILDCONF} \
-        /p:ReferencePath=%{dotnet_assembly_path}
+%dotnet_build $ASM
+%dotnet_pack $ASM/$ASM.nuspec %{version}
 done
 
 %install
-mkdir -p %{buildroot}%{dotnet_assembly_path}
 for ASM in %{Assemblies}; do
-install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
+%dotnet_install $ASM
 done
 
 %files
 %manifest %{name}.manifest
 %license LICENSE
-%attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{dotnet_assembly_files}
