@@ -115,8 +115,8 @@ namespace Tizen.Multimedia
         /// Adds face image example to be used for face recognition model learning with <see cref="Learn()"/>.
         /// </summary>
         /// <param name="source">Source that contains face image</param>
-        /// <param name="location">The rectangular location of the face image at the source image.</param>
         /// <param name="faceLabel">The label that identifies face for which example is adding. Specify the same labels for the face images of a single person when calling this method. Has to be unique for each face</param>
+        /// <param name="location">The rectangular location of the face image at the source image.</param>
         /// <code>
         /// 
         /// </code>

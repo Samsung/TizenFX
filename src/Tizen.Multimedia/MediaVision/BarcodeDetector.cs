@@ -96,7 +96,7 @@ namespace Tizen.Multimedia
                         tcsBarcodeList.TrySetException(new InvalidOperationException("Failed to set result"));
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
                     tcsBarcodeList.TrySetException(ex);

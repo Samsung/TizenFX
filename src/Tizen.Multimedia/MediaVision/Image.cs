@@ -64,7 +64,7 @@ namespace Tizen.Multimedia
             get
             {
                 int label = 0;
-                MediaVisionError ret = (MediaVisionError) Interop.MediaVision.Image.GetLabel(_imageObjectHandle, out label);
+                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.Image.GetLabel(_imageObjectHandle, out label);
                 if (ret != MediaVisionError.None)
                 {
                     Tizen.Log.Error(MediaVisionLog.Tag, "Failed to get label");
@@ -88,7 +88,7 @@ namespace Tizen.Multimedia
             get
             {
                 double rate = 0;
-                MediaVisionError ret = (MediaVisionError) Interop.MediaVision.Image.GetRecognitionRate(_imageObjectHandle, out rate);
+                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.Image.GetRecognitionRate(_imageObjectHandle, out rate);
                 if (ret != MediaVisionError.None)
                 {
                     Tizen.Log.Error(MediaVisionLog.Tag, "Failed to get recognition rate, error : " + ret);

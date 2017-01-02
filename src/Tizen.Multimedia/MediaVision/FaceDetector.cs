@@ -44,6 +44,7 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentException("Invalid source");
             }
+
             TaskCompletionSource<FaceDetectionResult> tcsResult = new TaskCompletionSource<FaceDetectionResult>();
             // Define native callback
             Interop.MediaVision.Face.MvFaceDetectedCallback faceDetectedCb = (IntPtr sourceHandle, IntPtr engineCfgHandle, IntPtr facesLocations, int numberOfFaces, IntPtr userData) =>
