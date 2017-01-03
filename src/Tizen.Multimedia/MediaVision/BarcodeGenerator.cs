@@ -34,8 +34,10 @@ namespace Tizen.Multimedia
         /// <param name="config">The configuration of the bar code generator engine</param>
         /// <param name="message">The message to be encoded in the barcode</param>
         /// <param name="type">Type of the barcode to be generated</param>
-        /// <param name="source">The media vision source object which will be used to fill by the buffer with generated image</param>
         /// <param name="qrConfig">The QrConfig object - required for QR codes only</param>
+        /// <returns>
+        /// <param name="source">The media vision source object which will be used to fill by the buffer with generated image</param>
+        /// </returns>
         /// <code>
         /// 
         /// </code>
