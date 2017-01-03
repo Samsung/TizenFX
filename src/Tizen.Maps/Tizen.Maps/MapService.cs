@@ -191,8 +191,8 @@ namespace Tizen.Maps
         {
             bool result;
             var err = Interop.Service.ProviderIsServiceSupported(handle, (Interop.ServiceType)type, out result);
-            err.WarnIfFailed(string.Format("Failed to get if {0} is supported", type));
-            return (err.IsSuccess()) ? result : false;
+            err.ThrowIfFailed(string.Format("Failed to get if {0} is supported", type));
+            return result;
         }
 
         /// <summary>
@@ -204,8 +204,8 @@ namespace Tizen.Maps
         {
             bool result;
             var err = Interop.Service.ProviderIsDataSupported(handle, (Interop.ServiceData)data, out result);
-            err.WarnIfFailed(string.Format("Failed to get if {0} data is supported", data));
-            return (err.IsSuccess()) ? result : false;
+            err.ThrowIfFailed(string.Format("Failed to get if {0} data is supported", data));
+            return result;
         }
 
         /// <summary>
