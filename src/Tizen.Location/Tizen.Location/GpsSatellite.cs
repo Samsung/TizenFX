@@ -25,7 +25,7 @@ namespace Tizen.Location
     /// </summary>
     public class GpsSatellite
     {
-        private int _interval = 120;
+        private int _interval = 1;
         private Locator _locator;
         private EventHandler<SatelliteStatusChangedEventArgs> _satelliteStatusChanged;
         private IntPtr _handle = IntPtr.Zero;
@@ -224,7 +224,7 @@ namespace Tizen.Location
             }
             remove
             {
-                Log.Info(Globals.LogTag, "SatelliteStatusUpdated remoove called");
+                Log.Info(Globals.LogTag, "SatelliteStatusUpdated Remove called");
                 _satelliteStatusChanged -= value;
                 if (_satelliteStatusChanged == null)
                 {
@@ -239,6 +239,7 @@ namespace Tizen.Location
             Log.Info(Globals.LogTag, "SetSatelliteStatusChangeCallback");
             GCHandle handle = GCHandle.Alloc(this);
             int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, SatelliteStatusChangedCallback, _interval, GCHandle.ToIntPtr(handle));
+            /* int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, SatelliteStatusChangedCallback, _interval, IntPtr.Zero); */
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in setting satellite status changed callback," + (LocationError)ret);

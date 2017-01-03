@@ -76,13 +76,15 @@ namespace Tizen.Location
             if (_disposed)
                 return;
 
-            DestroyHandle();
+            if (disposing)
+                DestroyHandle();
+
             _disposed = true;
         }
 
         private void DestroyHandle()
         {
-            Log.Info(Globals.LogTag, "DestroyHandle");
+            Log.Info(Globals.LogTag, "DestroyBoundaryHandle");
             int ret = Interop.LocationBoundary.DestroyBoundary(handle);
             if (((LocationError)ret != LocationError.None))
             {
