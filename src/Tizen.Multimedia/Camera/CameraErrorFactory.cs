@@ -58,6 +58,8 @@ namespace Tizen.Multimedia
                     throw new ArgumentException(errorMessage, paramName);
 
                 case CameraError.OutOfMemory:
+                    throw new OutOfMemoryException(errorMessage);
+
                 case CameraError.ErrorDevice:
                 case CameraError.DeviceBusy:
                 case CameraError.DeviceNotFound:
@@ -68,8 +70,10 @@ namespace Tizen.Multimedia
                 case CameraError.Esd:
                 case CameraError.PermissionDenied:
 		            throw new UnauthorizedAccessException(errorMessage);
+
                 case CameraError.NotSupported:
                     throw new NotSupportedException(errorMessage);
+
                 case CameraError.InvalidState:
                 case CameraError.InvalidOperation:
                 case CameraError.ResourceConflict:

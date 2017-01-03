@@ -48,24 +48,32 @@ namespace Tizen.Multimedia
             if(string.IsNullOrEmpty(errorMessage)) {
                 errorMessage = err.ToString();
             }
-            switch((RecorderError)errorCode) {
-            case RecorderError.InvalidParameter:
-                throw new ArgumentException(errorMessage, paramName);
 
-            case RecorderError.InvalidState:
-            case RecorderError.OutOfMemory:
-            case RecorderError.ErrorDevice:
-            case RecorderError.InvalidOperation:
-            case RecorderError.SoundPolicy:
-            case RecorderError.SecurityRestricted:
-            case RecorderError.SoundPolicyByCall:
-            case RecorderError.SoundPolicyByAlarm:
-            case RecorderError.Esd:
-            case RecorderError.OutOfStorage:
-            case RecorderError.PermissionDenied:
-            case RecorderError.NotSupported:
-            case RecorderError.ResourceConflict:
-                throw new InvalidOperationException(errorMessage);
+            switch((RecorderError)errorCode)
+            {
+                case RecorderError.InvalidParameter:
+                    throw new ArgumentException(errorMessage, paramName);
+
+                case RecorderError.OutOfMemory:
+                    throw new OutOfMemoryException(errorMessage);
+
+                case RecorderError.ErrorDevice:
+                case RecorderError.SoundPolicy:
+                case RecorderError.SecurityRestricted:
+                case RecorderError.SoundPolicyByCall:
+                case RecorderError.SoundPolicyByAlarm:
+                case RecorderError.Esd:
+                case RecorderError.OutOfStorage:
+                case RecorderError.PermissionDenied:
+                    throw new UnauthorizedAccessException(errorMessage);
+
+                case RecorderError.NotSupported:
+                    throw new NotSupportedException(errorMessage);
+
+                case RecorderError.InvalidState:
+                case RecorderError.InvalidOperation:
+                case RecorderError.ResourceConflict:
+                    throw new InvalidOperationException(errorMessage);
             }
         }
     }
