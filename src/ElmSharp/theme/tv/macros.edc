@@ -1,0 +1,35 @@
+#define ASPECT_FILL(_ASPECT) \
+   aspect: _ASPECT _ASPECT; aspect_preference: NONE;
+#define TILED_PATTERN(_WIDTH, _HEIGHT) \
+   fill { size { relative: 0.0 0.0; offset: _WIDTH _HEIGHT; } }
+#define TILED_HORIZ(_WIDTH) \
+   fill { size { relative: 0.0 1.0; offset: _WIDTH 0; } }
+#define FIXED_SIZE(_WIDTH, _HEIGHT) \
+   min: _WIDTH _HEIGHT; max: _WIDTH _HEIGHT; fixed: 1 1;
+
+#define ADD_COLOR_CLASS color_classes { \
+                           color_class { \
+                              name: "open_ux_theme"; \
+                              color: 69 143 255 255; \
+                              color2: 69 143 255 255; \
+                              color3: 69 143 255 255; \
+                           } \
+                           color_class { \
+                              name: "open_ux_theme_alpha"; \
+                              color: 69 143 255 102; \
+                              color2: 69 143 255 102; \
+                              color3: 69 143 255 102; \
+                           } \
+                           color_class { \
+                              name: "open_ux_theme_alpha20"; \
+                              color: 69 143 255 50; \
+                              color2: 69 143 255 51; \
+                              color3: 69 143 255 51; \
+                           } \
+                           color_class { \
+                              name: "open_ux_theme_white"; \
+                              color: 255 255 255 255; \
+                              color2: 255 255 255 255; \
+                              color3: 255 255 255 255; \
+                           } \
+                        }

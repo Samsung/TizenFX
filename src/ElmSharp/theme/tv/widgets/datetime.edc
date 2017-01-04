@@ -1,0 +1,759 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*********************************************************************
+Doc: Tizen TV_General Guide_GUI Guideline_v1.0_140709.ppt page:93
+**********************************************************************/
+
+group { name: "elm/datetime/base/default";
+   alias: "elm/datetime/base/date_layout";
+   parts {
+      part { name: "base_bg";
+        type: RECT;
+        scale: 1;
+        description { state: "default" 0.0;
+           color: 250 250 250 255;
+        }
+      }
+      part { name: "base";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 646 406;
+         }
+      }
+      part { name: "bg.top.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: -1 0;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "base";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "base";
+            }
+            align: 0.5 0.0;
+         }
+      }
+      part { name: "bg.bottom.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: -1 0;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "base";
+            }
+            rel2 {
+               relative: 1.0 1.0;
+               to: "base";
+            }
+            align: 0.5 1.0;
+         }
+      }
+      part { name: "bg";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 646 348;
+            max: 646 348;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "bg.top.padding";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "bg.bottom.padding";
+            }
+            color: 250 250 250 255;
+         }
+      }
+      part { name: "left.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 0.0 1.0;
+               to: "bg";
+            }
+            align: 0.0 0.0;
+         }
+      }
+      part { name: "right.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel2.to: "bg";
+            rel1 {
+               relative: 1.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 1.0 1.0;
+               to: "bg";
+            }
+            align: 1.0 1.0;
+         }
+      }
+      part { name: "field0";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 206 0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "left.padding";
+            }
+            rel2.to: "left.padding";
+            align: 0.0 0.5;
+         }
+      }
+      part { name: "center.padding1";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 14 0;
+            max: 14 -1;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "field0";
+            }
+            rel2.to: "field0";
+            align: 0.0 0.5;
+         }
+      }
+      part { name: "field1";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 206 0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "center.padding1";
+            }
+            rel2 {
+               relative: 0.0 1.0;
+               to_x: "center.padding2";
+               to_y: "center.padding1";
+            }
+         }
+      }
+      part { name: "center.padding2";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 14 0;
+            max: 14 -1;
+            rel1.to: "field2";
+            rel2 {
+               relative: 0.0 1.0;
+               to: "field2";
+            }
+            align: 1.0 0.5;
+         }
+      }
+      part { name: "field2";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 206 0;
+            rel1.to: "right.padding";
+            rel2 {
+               relative: 0.0 1.0;
+               to: "right.padding";
+            }
+            align: 1.0 0.5;
+         }
+      }
+      part { name: "field3";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part { name: "field4";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part { name: "field5";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part {
+         name: "event_area";
+         type: RECT;
+         description { state: "default" 0.0;
+            color: 0 0 0 0;
+            visible: 0;
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+      }
+      part { name: "access";
+         type: RECT;
+         repeat_events: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "bg";
+            rel2.to: "bg";
+            color: 0 0 0 0;
+         }
+      }
+   }
+}
+
+group { name: "elm/datetime/base/time_layout";
+   parts {
+      part { name: "base_bg";
+        type: RECT;
+        scale: 1;
+        description { state: "default" 0.0;
+           color: 250 250 250 255;
+        }
+      }
+      part { name: "base";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 603 406;
+         }
+      }
+      part { name: "bg.top.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: -1 0;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "base";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "base";
+            }
+            align: 0.5 0.0;
+         }
+      }
+      part { name: "bg.bottom.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: -1 0;
+            fixed: 0 1;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "base";
+            }
+            rel2 {
+               relative: 1.0 1.0;
+               to: "base";
+            }
+            align: 0.5 1.0;
+         }
+      }
+      part { name: "bg";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 603 348;
+            max: 603 348;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "bg.top.padding";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "bg.bottom.padding";
+            }
+            color: 250 250 250 255;
+         }
+      }
+      part { name: "left.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 0.0 1.0;
+               to: "bg";
+            }
+            align: 0.0 0.0;
+         }
+      }
+      part { name: "right.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 1.0 1.0;
+               to: "bg";
+            }
+            align: 1.0 1.0;
+         }
+      }
+      part { name: "field3";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 146 0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "left.padding";
+            }
+            rel2.to: "left.padding";
+            align: 0.0 0.5;
+         }
+      }
+      part { name: "center.padding1";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 39 0;
+            max: 39 -1;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "field3";
+            }
+            rel2.to: "field3";
+            align: 0.0 0.5;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 55 0;
+            max: 55 -1;
+         }
+      }
+      part { name: "text_bg";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "center.padding1";
+            }
+            rel2.to: "center.padding1";
+            align: 0.0 0.5;
+            min: 18 0;
+            max: 18 -1;
+            fixed: 1 0;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 0 0;
+            max: 0 0;
+         }
+      }
+      part { name: "hour.minute.colon";
+         type: TEXT;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "text_bg";
+            rel2.to: "text_bg";
+            color: 0 0 0 255;
+            fixed: 1 1;
+            text {
+               min: 1 0;
+               font: "TizenSans:style=Light";
+               size: "106";
+               text: ":";
+               align: 0.5 0.44;
+            }
+            visible: 1;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "center.padding2";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 39 0;
+            max: 39 -1;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "text_bg";
+            }
+            rel2.to: "text_bg";
+            align: 0.0 0.5;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 0 0;
+            max: 0 0;
+         }
+      }
+      part { name: "field4";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 146 0;
+             rel1 {
+               relative: 1.0 0.0;
+               to: "center.padding2";
+            }
+            rel2.to: "center.padding2";
+            align: 0.0 0.5;
+         }
+      }
+      part { name: "center.padding3";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 39 0;
+            max: 39 -1;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "field4";
+            }
+            rel2.to: "field4";
+            align: 0.0 0.5;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 55 0;
+            max: 55 -1;
+         }
+      }
+      part { name: "text_bg2";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "center.padding3";
+            }
+            rel2.to: "center.padding3";
+            align: 0.0 0.5;
+            min: 18 0;
+            max: 18 -1;
+            fixed: 1 0;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 0 0;
+            max: 0 0;
+         }
+      }
+      part { name: "hour.minute.colon2";
+         type: TEXT;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "text_bg2";
+            rel2.to: "text_bg2";
+            color: 0 0 0 255;
+            fixed: 1 1;
+            text {
+               min: 1 0;
+               font: "TizenSans:style=Light";
+               size: "106";
+               text: ":";
+               align: 0.5 0.44;
+            }
+            visible: 1;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "center.padding4";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 39 0;
+            max: 39 -1;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "text_bg2";
+            }
+            rel2.to: "text_bg2";
+            align: 0.0 0.5;
+         }
+         description { state: "invisible" 0.0;
+            inherit: default 0.0;
+            min: 0 0;
+            max: 0 0;
+         }
+      }
+      part { name: "field5";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            min: 160 0;
+            max: 160 -1;
+             rel1 {
+               relative: 1.0 0.0;
+               to: "center.padding4";
+            }
+            rel2.to: "center.padding4";
+            align: 0.0 0.5;
+         }
+      }
+      part { name: "field0";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part { name: "field1";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part { name: "field2";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 0 0;
+            max: 0 0;
+            visible: 0;
+         }
+      }
+      part {
+         name: "event_area";
+         type: RECT;
+         description { state: "default" 0.0;
+            color: 0 0 0 0;
+            visible: 0;
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+      }
+      part { name: "access";
+         type: RECT;
+         repeat_events: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "bg";
+            rel2.to: "bg";
+            color: 0 0 0 0;
+         }
+      }
+   }
+   programs {
+      program { name: "colon_field3_visible";
+         signal: "elm,state,colon,visible,field3";
+         source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "center.padding1";
+         target: "hour.minute.colon";
+         target: "text_bg";
+         target: "center.padding2";
+      }
+      program { name: "colon_field3_invisible";
+         signal: "elm,state,colon,invisible,field3";
+         source: "elm";
+         action: STATE_SET "invisible" 0.0;
+         target: "center.padding1";
+         target: "hour.minute.colon";
+         target: "text_bg";
+         target: "center.padding2";
+      }
+      program { name: "colon_field4_visible";
+         signal: "elm,state,colon,visible,field4";
+         source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "center.padding3";
+         target: "hour.minute.colon2";
+         target: "text_bg2";
+         target: "center.padding4";
+      }
+      program { name: "colon_field4_invisible";
+         signal: "elm,state,colon,invisible,field4";
+         source: "elm";
+         action: STATE_SET "invisible" 0.0;
+         target: "center.padding3";
+         target: "hour.minute.colon2";
+         target: "text_bg2";
+         target: "center.padding4";
+      }
+   }
+}
+
+group { name: "elm/datetime/base/time_layout_24hr";
+   inherit: "elm/datetime/base/time_layout";
+
+   parts {
+      part { name: "base";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 388 406;
+         }
+      }
+      part { name: "left.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel1 {
+               relative: 0.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 0.0 1.0;
+               to: "bg";
+            }
+            align: 0.0 0.0;
+         }
+      }
+      part { name: "right.padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            rel1 {
+               relative: 1.0 0.0;
+               to: "bg";
+            }
+            rel2 {
+               relative: 1.0 1.0;
+               to: "bg";
+            }
+            align: 1.0 1.0;
+         }
+      }
+      part { name: "bg";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 388 348;
+            max: 388 348;
+            rel1 {
+               relative: 0.0 1.0;
+               to: "bg.top.padding";
+            }
+            rel2 {
+               relative: 1.0 0.0;
+               to: "bg.bottom.padding";
+            }
+            color: 250 250 250 255;
+         }
+      }
+      part { name: "field5";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 -1;
+            visible: 0;
+            rel1.to: "right.padding";
+            rel2.to: "right.padding";
+         }
+      }
+      part { name: "access";
+         type: RECT;
+         repeat_events: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "bg";
+            rel2.to: "bg";
+            color: 0 0 0 0;
+         }
+      }
+   }
+}

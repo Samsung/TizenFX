@@ -49,12 +49,32 @@ externals {
 data.item: "version" "110";
 //
 
+#include "common.edc"
+#include "macros.edc"
+
+ADD_COLOR_CLASS
+
 collections {
    base_scale: BASE_SCALE_INC;
 
 #include "color_classes.edc"
-
+#include "widgets/scroller.edc"
+#include "widgets/button.edc"
+#include "widgets/check.edc"
+#include "widgets/ctxpopup.edc"
+#include "widgets/datetime.edc"
+#include "widgets/spinner.edc"
+#include "widgets/entry.edc"
+#include "widgets/gengrid.edc"
+#include "widgets/genlist_common.edc"
+#include "widgets/genlist.edc"
+#include "widgets/hover.edc"
+#include "widgets/hoversel.edc"
 #include "widgets/layout.edc"
-
+#include "widgets/list.edc"
+#include "widgets/popup.edc"
+#include "widgets/progressbar.edc"
+#include "widgets/radio.edc"
+#include "widgets/slider.edc"
+#include "widgets/tooltip.edc"
 }
-

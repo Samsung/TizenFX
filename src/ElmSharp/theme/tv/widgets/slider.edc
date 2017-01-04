@@ -1,0 +1,939 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*********************************************************************************
+Document: Tizen TV_General Guide_GUI Guideline_v1.0_140508_1.ppt, Page no.94,
+style name: default
+*********************************************************************************/
+
+//ADD_COLOR_CLASS
+
+#define SLIDER_FONT_SIZE 26
+
+group { name: "elm/slider/horizontal/default";
+   data.item: "focus_highlight" "on";
+   styles {
+      style { name: "slider_style";
+         base: "font="FONT_M" font_size="26" align=centre color=#458fff left_margin=21 right_margin=21";
+         tag: "hilight" "+ font_weight=Bold";
+         tag: "em" "+ font_style=Bold";
+      }
+   }
+   parts {
+      alias: "default" "elm.text";
+      part { name: "base"; type: RECT; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            max: -1 8;
+            min: 0 8;
+            rel1 { to_y: "bg";
+               to_x: "pad.level.left";
+               relative: 1 0;
+            }
+            rel2 { to: "bg";
+               to_x: "pad.level.right";
+               relative: 0 1;
+            }
+         }
+      }
+      part { name: "pad.level.left"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1 { to: "elm.swallow.bar";
+               relative: 0 1;
+            }
+            rel2 { to: "elm.swallow.bar";
+               relative: 0 1;
+            }
+            min: 12 0;
+            max: 12 0;
+            fixed: 1 0;
+            align: 0 0;
+         }
+      }
+      part { name: "pad.level.right"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1 { to: "elm.swallow.bar";
+               relative: 0 1;
+            }
+            rel2.to: "elm.swallow.bar";
+            min: 12 0;
+            max: 12 0;
+            align: 1 0;
+            fixed: 1 0;
+         }
+      }
+      part { name: "level"; type: RECT; mouse_events: 0;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "base";
+            rel2 { to_y: "base";
+               to_x: "elm.dragable.slider";
+               relative: 0.5 1.0;
+            }
+            color: 255 255 255 255;
+         }
+         description { state: "inverted" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color: 255 0 0 100;
+         }
+         description { state: "disabled_inverted" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "over"; type: RECT; mouse_events: 0;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1 { to_y: "base";
+               to_x: "elm.dragable.slider";
+               relative: 0.5 0.0;
+            }
+            rel2.to: "base";
+            color: 0 0 0 65;
+         }
+      }
+      part { name: "level2"; type: RECT; mouse_events: 0;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            visible: 1;
+            rel1 { to_y: "base";
+               to_x: "elm.dragable.slider";
+               relative: 0.5 0.0;
+            }
+            rel2.to: "base";
+            color: 255 255 255 65;
+         }
+         description { state: "inverted" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+         }
+         description { state: "disabled_inverted" 0.0;
+            inherit: "default" 0.0;
+            color: 255 0 0 100;
+            visible: 1;
+         }
+      }
+      part { name: "pad.bg"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "elm.swallow.bar";
+            rel2.to: "elm.swallow.bar";
+            min: 12 0;
+            max: 12 0;
+            align: 0 0;
+         }
+      }
+      part { name: "pad.bg.right"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "elm.swallow.bar";
+            rel2.to: "elm.swallow.bar";
+            min: 12 2;
+            max: 12 2;
+            align: 1 1;
+         }
+      }
+      part { name: "bg"; type: RECT; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            align: 0.5 0.5;
+            rel1.to: "pad.bg";
+            rel1.relative: 1 0;
+            rel2.to: "pad.bg.right";
+            rel2.relative: 0 1;
+            color: 255 0 0 255;
+         }
+      }
+      part { name: "pad.swallow.left"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            align: 0 0;
+            min: 20 0;
+            max: 20 0;
+            rel1 {
+               to_x: "elm.text";
+               relative: 1.0 0.0;
+            }
+         }
+      }
+      part { name: "pad.swallow.right"; type: SPACER; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 20 0;
+            max: 20 0;
+            fixed: 1 1;
+            align: 1 1;
+            rel2 {
+               to_x: "elm.units";
+               relative: 0.0 1.0;
+            }
+         }
+      }
+      part { name: "elm.swallow.bar"; type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 48 24;
+            max: -1 24;
+            align: 1.0 0.5;
+            rel1 {
+               to: "pad.swallow.left";
+               relative: 1.0 0.0;
+            }
+            rel2 {
+               to_x: "pad.swallow.right";
+               relative: 0.0 1.0;
+            }
+         }
+      }
+      part { name: "elm.swallow.icon"; type: SWALLOW;
+         description { state: "default" 0.0;
+            visible: 0;
+            align: 0.0 0.5;
+            rel1 {
+               to_y: "elm.swallow.bar";
+            }
+            rel2 {
+               relative: 0.0 1.0;
+               to_y: "elm.swallow.bar";
+            }
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            aspect: 1.0 1.0;
+            aspect_preference: VERTICAL;
+         }
+      }
+      part { name: "elm.text"; type: TEXT; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            fixed: 1 1;
+            align: 1.0 0.5;
+            rel1.to_x: "elm.swallow.icon";
+            rel1.relative: 1.0 0.0;
+            rel2.to_x: "elm.swallow.icon";
+            rel2.relative: 1.0 1.0;
+            text {
+               font: "FONT_M";
+               size: SLIDER_FONT_SIZE;
+               min: 0 0;
+               align: 0.0 0.5;
+            }
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            text.min: 1 1;
+            text.ellipsis: -1;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color: 255 128 128 128;
+            visible: 0;
+         }
+         description { state: "disabled_visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            text.min: 1 1;
+            text.ellipsis: -1;
+         }
+      }
+      part { name: "elm.swallow.end"; type: SWALLOW;
+         description { state: "default" 0.0;
+            visible: 0;
+            align: 1.0 0.5;
+            rel1 {
+               relative: 1.0 0.0;
+               to_y: "elm.swallow.bar";
+            }
+            rel2 {
+               to_y: "elm.swallow.bar";
+            }
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            aspect: 1.0 1.0;
+            aspect_preference: VERTICAL;
+         }
+      }
+      part { name: "elm.units"; type: TEXT; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            fixed: 1 1;
+            rel1.to_x: "elm.swallow.end";
+            rel2.to_x: "elm.swallow.end";
+            color: 255 255 255 255;
+            align: 0 0.5;
+            text {
+               font: FONT_M;
+               size: SLIDER_FONT_SIZE;
+               min: 0 0;
+               align: 0.0 0.5;
+            }
+         }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            text.min: 1 1;
+            text.ellipsis: -1;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color: 255 128 128 128;
+            visible: 0;
+         }
+         description { state: "disabled_visible" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+            text.min: 1 1;
+            text.ellipsis: -1;
+         }
+      }
+      part { name: "button"; type: GROUP; mouse_events: 0;
+         source:"elm/slider/horizontal/indicator/default";
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "elm.dragable.slider";
+            rel2.to: "elm.dragable.slider";
+         }
+         description { state: "hidden" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "elm.dragable.slider"; type: RECT;
+         scale: 1;
+         dragable {
+            x: 1 1 0;
+            y: 0 0 0;
+            confine: "bg";
+         }
+         description { state: "default" 0.0;
+            min: 0 0;
+            max: 0 0;
+            fixed: 1 1;
+            rel1 {
+               relative: 0.5 0.0;
+               to_x: "bg";
+            }
+            rel2 {
+               relative: 0.5 1.0;
+               to_x: "bg";
+            }
+            color: 0 0 0 0;
+         }
+      }
+      part { name: "slideevent"; type: RECT; mouse_events: 0;
+         scale: 1;
+         dragable.events: "elm.dragable.slider";
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: 24 24;
+            max: 24 24;
+            rel1.to: "elm.dragable.slider";
+            rel2.to: "elm.dragable.slider";
+            color: 0 0 0 0;
+         }
+      }
+      part { name: "elm.track.slider"; type: SWALLOW; mouse_events: 0;
+         description { state: "default" 0.0;
+            max: 0 0;
+            rel1.to: "elm.dragable.slider";
+            rel2.to: "elm.dragable.slider";
+         }
+      }
+      part { name: "disabler"; type: RECT;
+         description { state: "default" 0.0;
+            color: 0 0 0 0;
+            visible: 0;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+      }
+   }
+   programs {
+      program { name: "mouse_down_bar";
+         signal: "mouse,down,*"; source:"elm.swallow.bar";
+         action: SIGNAL_EMIT "popup,show" "elm";
+      }
+      program { name: "mouse_up_bar";
+         signal: "mouse,up,*"; source:"elm.swallow.bar";
+         action: SIGNAL_EMIT "popup,hide" "elm";
+      }
+
+      program { name: "indicator_show";
+         signal: "elm,state,indicator,show"; source:"elm";
+         action: SIGNAL_EMIT "popup,show" "elm";
+      }
+      program { name: "indicator_hide";
+         signal: "elm,state,indicator,hide"; source:"elm";
+         action: SIGNAL_EMIT "highlight,hide" "elm";
+      }
+      program { name: "popup_show";
+         signal: "mouse,down,1"; source:"slideevent";
+         action: SIGNAL_EMIT "popup,show" "elm";
+      }
+      program { name: "popup_hide";
+         signal: "mouse,up,1"; source:"slideevent";
+         action: SIGNAL_EMIT "highlight,hide" "elm";
+      }
+      program { name: "text_show";
+         signal: "elm,state,text,visible"; source:"elm";
+         action:  STATE_SET "visible" 0.0;
+         target: "elm.text";
+      }
+      program { name: "text_hide";
+         signal: "elm,state,text,hidden"; source:"elm";
+         action:  STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program { name: "icon_show";
+         signal: "elm,state,icon,visible"; source:"elm";
+         action:  STATE_SET "visible" 0.0;
+         target: "elm.swallow.icon";
+      }
+      program { name: "icon_hide";
+         signal: "elm,state,icon,hidden"; source:"elm";
+         action:  STATE_SET "default" 0.0;
+         target: "elm.swallow.icon";
+      }
+      program { name: "end_show";
+         signal: "elm,state,end,visible"; source:"elm";
+         action:  STATE_SET "visible" 0.0;
+         target: "elm.swallow.end";
+      }
+      program { name: "end_hide";
+         signal: "elm,state,end,hidden"; source:"elm";
+         action:  STATE_SET "default" 0.0;
+         target: "elm.swallow.end";
+      }
+      program { name: "units_show";
+         signal: "elm,state,units,visible"; source:"elm";
+         action:  STATE_SET "visible" 0.0;
+         target: "elm.units";
+         after: "limits,children,visible";
+      }
+      program { name: "limits,children,visible";
+         action: SIGNAL_EMIT "limits:limits,visible" "elm";
+      }
+      program { name: "units_hide";
+         signal: "elm,state,units,hidden"; source:"elm";
+         action:  STATE_SET "default" 0.0;
+         target: "elm.units";
+         after: "limits,children,hide";
+      }
+      program { name: "limits,children,hide";
+         action: SIGNAL_EMIT "limits:limits,hide" "elm";
+      }
+      program { name: "invert_on";
+         signal: "elm,state,inverted,on"; source:"elm";
+         action:  STATE_SET "inverted" 0.0;
+         target: "level";
+         target: "level2";
+      }
+      program { name: "invert_off";
+         signal: "elm,state,inverted,off"; source:"elm";
+         action:  STATE_SET "default" 0.0;
+         target: "level";
+         target: "level2";
+      }
+      program {
+         name:   "go_disabled";
+         signal: "elm,state,disabled"; source:"elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "disabler";
+         after: "disable_text";
+         after: "disable_ind";
+      }
+      program { name: "disable_ind";
+         action: SIGNAL_EMIT "elm.dragable.slider:elm,state,disabled" "elm";
+      }
+      program { name: "disable_text";
+         script {
+            new st[31];
+            new Float:vl;
+            get_state(PART:"elm.text", st, 30, vl);
+            if (!strcmp(st, "visible"))
+               set_state(PART:"elm.text", "disabled_visible", 0.0);
+            else
+               set_state(PART:"elm.text", "disabled", 0.0);
+
+            get_state(PART:"elm.units", st, 30, vl);
+            if (!strcmp(st, "visible"))
+               set_state(PART:"elm.units", "disabled_visible", 0.0);
+            else
+               set_state(PART:"elm.units", "disabled", 0.0);
+
+            get_state(PART:"level2", st, 30, vl);
+            if (!strcmp(st, "inverted"))
+            {
+               set_state(PART:"level", "disabled_inverted", 0.0);
+               set_state(PART:"level2", "disabled_inverted", 0.0);
+            }
+            else
+            {
+               set_state(PART:"level", "disabled", 0.0);
+               set_state(PART:"level2", "disabled", 0.0);
+            }
+         }
+      }
+      program { name: "enable";
+         signal: "elm,state,enabled"; source:"elm";
+         action: STATE_SET "default" 0.0;
+         target: "disabler";
+         after: "enable_text";
+         after: "enable_ind";
+      }
+      program { name: "enable_ind";
+         action: SIGNAL_EMIT "elm.dragable.slider:elm,state,enabled" "elm";
+      }
+      program { name: "enable_text";
+         script {
+            new st[31];
+            new Float:vl;
+            get_state(PART:"elm.text", st, 30, vl);
+            if (!strcmp(st, "disabled_visible"))
+               set_state(PART:"elm.text", "visible", 0.0);
+            else
+               set_state(PART:"elm.text", "default", 0.0);
+
+            get_state(PART:"elm.units", st, 30, vl);
+            if (!strcmp(st, "disabled_visible"))
+               set_state(PART:"elm.units", "visible", 0.0);
+            else
+               set_state(PART:"elm.units", "default", 0.0);
+
+            get_state(PART:"level2", st, 30, vl);
+            if (!strcmp(st, "disabled_inverted"))
+            {
+               set_state(PART:"level", "inverted", 0.0);
+               set_state(PART:"level2", "inverted", 0.0);
+            }
+            else
+            {
+               set_state(PART:"level", "default", 0.0);
+               set_state(PART:"level2", "default", 0.0);
+            }
+         }
+      }
+   }
+}
+
+group { name: "elm/slider/horizontal/indicator/default";
+   alias: "elm/slider/horizontal/popup/default";
+   images{
+      image: "tooltip_bg.png" COMP;
+      image: "tooltip_arrow.png" COMP;
+      image: "slider_thumb_stroke.png" COMP;
+      image: "slider_thumb_fill.png" COMP;
+   }
+   script {
+      public popup_show = 0;
+      public is_in_focuse = 0;
+      public is_mouse_in = 0;
+      public is_focus = 0;
+      public setcol;
+
+      public set_value_show() {
+         set_int(popup_show, 0);
+      }
+
+      public set_value_hide() {
+         set_int(popup_show, 1);
+      }
+
+      public mouse_down()
+      {
+         if (get_int(popup_show) == 0)
+         {
+            set_state(PART:"progress_balloon", "clicked", 0.0);
+            set_state(PART:"progress_balloon_arrow", "clicked", 0.0);
+            set_state(PART:"elm.indicator", "clicked", 0.0);
+            set_state(PART:"knob_fill", "clicked", 0.0);
+            set_state(PART:"knob", "clicked", 0.0);
+         }
+         set_int(is_in_focuse, 1);
+      }
+      public mouse_up()
+      {
+         set_state(PART:"progress_balloon", "default", 0.0);
+         set_state(PART:"progress_balloon_arrow", "default", 0.0);
+         set_state(PART:"elm.indicator", "default", 0.0);
+         set_state(PART:"knob_fill", "default", 0.0);
+         set_state(PART:"knob", "clicked", 0.0);
+      }
+      public mouse_in_knob()
+      {
+         set_state(PART:"knob", "over", 0.0);
+         set_int(is_mouse_in, 1);
+      }
+      public mouse_out_knob()
+      {
+         set_int(is_mouse_in, 0);
+         if (get_int(is_in_focuse))
+         {
+            set_state(PART:"knob", "clicked", 0.0);
+         }
+         else
+           set_state(PART:"knob", "default", 0.0);
+      }
+   }
+   parts{
+      part { name: "knob_fill";
+         repeat_events: 1;
+         scale: 1;
+         description { state: "default" 0.0;
+            image.normal: "slider_thumb_fill.png";
+            min: 38 38;
+            max: 38 38;
+            align:0.5 0.5;
+            fixed: 1 1;
+            color_class: "open_ux_theme";
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+            color_class: "open_ux_theme";
+         }
+      }
+      part { name: "knob";
+         repeat_events: 1;
+         scale: 1;
+         description { state: "default" 0.0;
+            image.normal: "slider_thumb_stroke.png";
+            min: 38 38;
+            max: 38 38;
+            fixed: 1 1;
+            color: 255 255 255 255;
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+         }
+         description { state: "over" 0.0;
+            inherit: "clicked" 0.0;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+         }
+      }
+      part { name: "progress_balloon";
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            align: 0.5 1;
+            rel1.to: "pad.text_top.left";
+            rel2.to: "pad.text_bottom.right";
+            fixed: 1 1;
+            image.normal: "tooltip_bg.png";
+            image.border: 6 6 7 7;
+            image.border_scale: 1;
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+      }
+      part { name: "pad.baloon_arrow_align"; type:SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            rel1.to: "knob";
+            rel2{
+               to: "knob";
+               relative: 1 0;
+            }
+            min: 0 2;
+            max: 0 2;
+            fixed: 1 1;
+            align: 0.5 0;
+         }
+      }
+      part { name: "progress_balloon_arrow";
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            rel1 { to: "pad.baloon_arrow_align";
+               relative: 0 1;
+            }
+            rel2.to: "pad.baloon_arrow_align";
+            min: 12 10;
+            max: 12 10;
+            align: 0.5 1;
+            fixed: 1 1;
+            image.normal: "tooltip_arrow.png";
+            image.border: 6 6 7 7;
+            image.border_scale: 1;
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+            image.normal: "tooltip_arrow.png";
+            visible: 1;
+         }
+      }
+      part { name: "pad.text_top.left"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 11 11;
+            max: 11 11;
+            fixed: 1 1;
+            align: 1 0;
+            rel1.to: "elm.indicator";
+            rel2 { to: "elm.indicator";
+               relative: 0 0;
+            }
+         }
+      }
+      part { name: "pad.text_bottom.right"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 11 11;
+            max: 11 11;
+            fixed: 1 1;
+            align: 0 0;
+            rel1 { to: "elm.indicator";
+               relative: 1 1;
+            }
+            rel2.to: "elm.indicator";
+         }
+      }
+      part { name: "pad.text_align"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            min: 0 6;
+            max: 0 6;
+            fixed: 1 1;
+            align: 0.5 1;
+            rel1 { to: "progress_balloon_arrow";
+               relative: 0.5 0;
+            }
+            rel2 { to: "progress_balloon_arrow";
+               relative: 0.5 0;
+            }
+         }
+      }
+      part { name: "elm.indicator"; type: TEXTBLOCK; mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            visible: 0;
+            fixed: 1 1;
+            rel1.to: "pad.text_align";
+            rel2 { to: "pad.text_align";
+               relative: 0 0;
+            }
+            align: 0.5 1;
+            text {
+               style: "slider_style";
+               min: 1 1;
+               ellipsis: -1;
+            }
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+            visible: 1;
+         }
+      }
+   }
+
+   programs {
+      program { name: "mouse_down_bar";
+         signal: "mouse,down,*"; source:"knob";
+         script {
+             mouse_down();
+         }
+      }
+      program { name: "mouse_up_bar";
+         signal: "mouse,up,*"; source:"knob";
+         script {
+            mouse_up();
+         }
+      }
+      program { name: "popup_show";
+         signal: "popup,show"; source:"elm";
+         script {
+             mouse_down();
+         }
+      }
+      program { name: "popup_hide";
+         signal: "popup,hide"; source:"elm";
+         action: SIGNAL_EMIT "popup,hide,done" "elm";
+      }
+      program { name: "popup_hide2";
+         signal: "popup,hide"; source:"elm";
+         script {
+            mouse_up();
+         }
+      }
+      program { name: "set_val_show";
+         signal: "elm,state,val,show"; source:"elm";
+         script {
+            set_value_show();
+         }
+      }
+      program { name: "set_val_hide";
+         signal: "elm,state,val,hide"; source:"elm";
+         script {
+            set_value_hide();
+         }
+      }
+      program { name: "val_show";
+         signal: "mouse,down,*"; source:"knob";
+         script {
+            mouse_down();
+         }
+      }
+      program { name: "val_hide";
+         signal: "mouse,up,*"; source:"knob";
+         script {
+            mouse_up();
+         }
+      }
+
+
+   }
+}
+
+/*********************************************************************************
+Document: Tizen TV_General Guide_GUI Guideline_v1.0_140508_1.ppt, Page no.96,
+style name: default
+*********************************************************************************/
+group { name: "elm/slider/horizontal/progress";
+   inherit: "elm/slider/horizontal/default";
+   parts{
+      part { name: "level"; type: RECT; mouse_events: 0;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "base";
+            rel2 {
+               to_y: "base";
+               to_x: "elm.dragable.slider";
+               relative: 0.5 1.0;
+            }
+            color_class: "open_ux_theme";
+         }
+         description { state: "focus" 0.0;
+            inherit: "default" 0.0;
+	    color_class: "open_ux_theme";            
+         }
+      }
+      part { name: "button"; type: GROUP; mouse_events: 0;
+         source:"elm/slider/horizontal/indicator/progress";
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            rel1.to: "elm.dragable.slider";
+            rel2.to: "elm.dragable.slider";
+         }
+         description { state: "hidden" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+  }
+  programs {
+    program { name: "Focus";
+    signal: "elm,action,focus"; source: "elm";
+    action:  STATE_SET "focus" 0.0;
+    target: "level";
+    }
+    program { name: "Unfocus";
+    signal: "elm,action,unfocus"; source: "elm";
+    action:  STATE_SET "default" 0.0;
+    target: "level";
+    }
+  }
+}
+
+group { name: "elm/slider/horizontal/indicator/progress";
+   inherit: "elm/slider/horizontal/indicator/default";
+   alias: "elm/slider/horizontal/popup/progress";
+   parts {
+      part { name: "knob_fill";
+         repeat_events: 1;
+         scale: 1;
+         description { state: "default" 0.0;
+            image.normal: "slider_thumb_fill.png";
+            min: 38 38;
+            max: 38 38;
+            align:0.5 0.5;
+            fixed: 1 1;
+            color: 0 0 0 255;
+         }
+         description { state: "clicked" 0.0;
+            inherit: "default" 0.0;
+         }
+      }
+      part { name: "knob";
+         repeat_events: 1;
+         scale: 1;
+         description { state: "default" 0.0;
+            image.normal: "slider_thumb_stroke.png";
+            min: 38 38;
+            max: 38 38;
+            fixed: 1 1;
+            color: 255 255 255 255;
+         }
+         description { state: "over" 0.0;
+            inherit: "clicked" 0.0;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+         }
+         description { state: "focus" 0.0;
+            inherit: "default" 0.0;
+            color_class: "open_ux_theme";
+         }
+         description { state: "clicked" 0.0;
+            inherit: "focus" 0.0;
+            color_class: "open_ux_theme";
+         }
+     }
+
+  }
+  programs {
+    program { name: "Focus";
+       signal: "elm,action,focus"; source: "elm";
+       action:  STATE_SET "focus" 0.0;
+       target: "knob";
+    }
+    program { name: "Unfocus";
+       signal: "elm,action,unfocus"; source: "elm";
+       action:  STATE_SET "default" 0.0;
+       target: "knob";
+    }
+  }
+}

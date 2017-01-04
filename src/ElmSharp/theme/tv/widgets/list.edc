@@ -1,0 +1,445 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+group { name: "elm/list/item/default";
+   alias: "elm/list/item_odd/default";
+   data.item: "texts" "elm.text";
+   data.item: "focus_highlight" "on";
+   parts {
+      part { name: "base"; type: RECT;
+         scale: 1;
+         ignore_flags: ON_HOLD;
+         description { state: "default" 0.0;
+            min: 0 96;
+            color: 0 0 0 0;
+         }
+      }
+      part { name: "border_down"; type: RECT;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            min: 64 2;
+            rel1.relative: 0.0 1.0;
+            color: 222 222 222 222;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "border_up"; type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            min: 64 2;
+            rel2.relative: 1.0 0.0;
+            color: 222 222 222 222;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "base_highlight_bg"; type: IMAGE;
+         mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            image {
+               normal: "round_rectangle_4X4.png";
+               border: 4 4 4 4;
+               border_scale: 1;
+            }
+            color: 255 255 255 255;
+         }
+      }
+      part { name: "base_highlight"; type: RECT;
+         mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color_class: "open_ux_theme";
+         }
+      }
+      part { name: "pad.text.1_right"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 1.0 0.5;
+            min: 32 96;
+            max: 32 96;
+         }
+      }
+      part { name: "pad.text.1_left"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.0 0.5;
+            min: 32 96;
+            max: 32 96;
+         }
+      }
+      part { name: "elm.text"; type: TEXT; mouse_events: 0;
+         effect: SHADOW BOTTOM;
+         ignore_flags: ON_HOLD;
+         scale: 1;
+         description { state: "default" 0.0;
+            align: 0.0 0.5;
+            min: 0 40;
+            rel1.to: "pad.text.1_left";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "pad.text.1_right";
+            rel2.relative: 0.0 1.0;
+            color: 89 89 89 255;
+            text { font: FONT_M; size: 30;
+               min: 1 1;
+               max: 1 0;
+               ellipsis: -1;
+            }
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color: 89 89 89 51;
+         }
+      }
+   }
+   programs {
+      program {
+         signal: "elm,state,default"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program { name: "select_text.1";
+         signal: "elm,state,focused"; source: "elm";
+         action: STATE_SET "focused" 0.0;
+         target: "elm.text";
+         target: "base_highlight";
+         target: "border_up";
+         target: "border_down";
+      }
+      program { name: "unselect_text.1";
+         signal: "elm,state,unfocused"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+         target: "base_highlight";
+         target: "border_up";
+         target: "border_down";
+      }
+      program {
+         signal: "elm,state,disabled"; source: "elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,enabled"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+   }
+}
+
+/******************************************************************
+Tizen TV_General Guide_GUI Guideline_v1.0_140508.ppt 90 1text
+*******************************************************************/
+
+group { name: "elm/list/item/1text";
+   alias: "elm/list/item_odd/1text";
+   data.item: "texts" "elm.text";
+   data.item: "focus_highlight" "on";
+   inherit: "elm/list/item/default";
+   parts {
+      part { name: "border_down"; type: RECT;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            min: 64 2;
+            rel1.relative: 0.0 1.0;
+            color: 222 222 222 222;
+         }
+         description { state: "last" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+         description { state: "single" 0.0;
+            inherit: "last" 0.0;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "border_up"; type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            min: 64 2;
+            rel2.relative: 1.0 0.0;
+            color: 222 222 222 222;
+         }
+         description { state: "first" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+         description { state: "single" 0.0;
+            inherit: "first" 0.0;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            visible: 0;
+         }
+      }
+      part { name: "base_highlight_bg"; type: IMAGE;
+         mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            image {
+               normal: "round_rectangle_4X4.png";
+               border: 4 4 4 4;
+               border_scale: 1;
+            }
+            color: 255 255 255 255;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color_class: "open_ux_theme";
+         }
+      }
+      part { name: "base_highlight"; type: RECT;
+         mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         description { state: "first" 0.0;
+            inherit: "default" 0.0;
+            rel1.offset: 0 10;
+         }
+         description { state: "last" 0.0;
+            inherit: "default" 0.0;
+            rel2.offset: 0 -11;
+         }
+         description { state: "single" 0.0;
+            inherit: "default" 0.0;
+            rel1.offset: 0 10;
+            rel2.offset: 0 -11;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color_class: "open_ux_theme";
+         }
+         description { state: "first_focused" 0.0;
+            inherit: "first" 0.0;
+            color_class: "open_ux_theme";
+         }
+         description { state: "last_focused" 0.0;
+            inherit: "last" 0.0;
+            color_class: "open_ux_theme";
+         }
+         description { state: "single_focused" 0.0;
+            inherit: "single" 0.0;
+            color_class: "open_ux_theme";
+         }
+      }
+      part { name: "pad.text.1_right"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 1.0 0.5;
+            min: 32 96;
+            max: 32 96;
+         }
+      }
+      part { name: "pad.text.1_left"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.0 0.5;
+            min: 32 96;
+            max: 32 96;
+         }
+      }
+      part { name: "elm.text"; type: TEXT; mouse_events: 0;
+         effect: SHADOW BOTTOM;
+         ignore_flags: ON_HOLD;
+         scale: 1;
+         description { state: "default" 0.0;
+            align: 0.0 0.5;
+            min: 0 40;
+            rel1.to: "pad.text.1_left";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "pad.text.1_right";
+            rel2.relative: 0.0 1.0;
+            color: 89 89 89 255;
+            text { font: FONT_M; size: 30;
+               min: 1 1;
+               max: 1 0;
+               ellipsis: -1;
+            }
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color: 89 89 89 51;
+         }
+      }
+   }
+   programs {
+      program {
+         signal: "elm,state,default"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program { name: "select_text.1";
+         signal: "elm,state,focused"; source: "invalidation";
+      }
+      program {
+         signal: "elm,state,focused"; source: "elm";
+         script {
+             new st[31], Float:vl;
+             get_state(PART:"base_highlight", st, 30, vl);
+             if (!strncmp(st, "first", 5))
+                 set_state(PART:"base_highlight", "first_focused", 0.0);
+             else if (!strncmp(st, "last", 4))
+                 set_state(PART:"base_highlight", "last_focused", 0.0);
+             else if (!strncmp(st, "single", 6))
+                 set_state(PART:"base_highlight", "single_focused", 0.0);
+             else
+                 set_state(PART:"base_highlight", "focused", 0.0);
+             set_state(PART:"elm.text", "focused", 0.0);
+             set_state(PART:"base_highlight_bg", "focused", 0.0);
+         }
+      }
+      program { name: "unselect_text.1";
+         signal: "elm,state,unfocused"; source: "invalidation";
+      }
+      program {
+         signal: "elm,state,unfocused"; source: "elm";
+         script {
+             new st[31], Float:vl;
+             get_state(PART:"base_highlight", st, 30, vl);
+             if (!strncmp(st, "first", 5))
+                 set_state(PART:"base_highlight", "first", 0.0);
+             else if (!strncmp(st, "last", 4))
+                 set_state(PART:"base_highlight", "last", 0.0);
+             else if (!strncmp(st, "single", 6))
+                 set_state(PART:"base_highlight", "single", 0.0);
+             else
+                 set_state(PART:"base_highlight", "default", 0.0);
+             set_state(PART:"elm.text", "default", 0.0);
+             set_state(PART:"base_highlight_bg", "default", 0.0);
+         }
+      }
+      program {
+         signal: "elm,state,disabled"; source: "elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,enabled"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,list,first"; source: "elm";
+         action: STATE_SET "first" 0.0;
+         target: "base_highlight";
+         target: "border_up";
+      }
+      program {
+         signal: "elm,state,list,last"; source: "elm";
+         action: STATE_SET "last" 0.0;
+         target: "base_highlight";
+         target: "border_down";
+      }
+      program {
+         signal: "elm,state,list,single"; source: "elm";
+         action: STATE_SET "single" 0.0;
+         target: "base_highlight";
+         target: "border_up";
+         target: "border_down";
+      }
+   }
+}
+
+/******************************************************************
+Tizen TV_General Guide_GUI Guideline_v1.0_140508.ppt 91 1text.1icon
+*******************************************************************/
+
+group { name: "elm/list/item/1text.1icon";
+   alias: "elm/list/item_odd/1text.1icon";
+   data.item: "texts" "elm.text";
+   data.item: "contents" "elm.swallow.icon";
+   inherit: "elm/list/item/1text";
+   parts{
+      part { name: "elm.swallow.icon"; type: SWALLOW;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            visible: 1;
+            align: 0.0 0.5;
+            rel1.to: "pad.text.1_left";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "pad.text.1_left";
+            rel2.relative: 1.0 1.0;
+         }
+      }
+      part { name: "pad.text.1_middle"; type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.0 0.5;
+            min: 20 96;
+            max: 20 96;
+            rel1.to: "elm.swallow.icon";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "elm.swallow.icon";
+            rel2.relative: 1.0 1.0;
+         }
+      }
+      part { name: "elm.text";
+         description { state: "default" 0.0;
+            rel1.to: "pad.text.1_middle";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "pad.text.1_right";
+            rel2.relative: 0.0 1.0;
+         }
+         description { state: "focused" 0.0;
+            inherit: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+         }
+      }
+   }
+}
+

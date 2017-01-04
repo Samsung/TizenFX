@@ -1,0 +1,267 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define GENLIST_TREEPAD 19
+#define IMGP() \
+   images.image: "list_highlight.png" COMP;
+#define BASEP(vert_align) \
+      rect { "base"; mouse; \
+         scale; \
+         ignore_flags: ON_HOLD; \
+         desc { "default"; \
+            min: vert_align; \
+            color: 0 0 0 0; \
+         } \
+         desc { "odd"; \
+            min: vert_align; \
+            color: 0 0 0 0; \
+         } \
+      } \
+      program { \
+         signal: "elm,state,odd"; source: "elm"; \
+         action: STATE_SET "odd" 1.0; \
+         target: "base"; \
+      } \
+      program { \
+         signal: "elm,state,even"; source: "elm"; \
+         action: STATE_SET "default" 0.0; \
+         target: "base"; \
+      }
+#define TOPP() \
+      rect { "event_block"; \
+         desc { "default"; \
+            color: 0 0 0 0; \
+            hid; \
+         } \
+         desc { "disabled"; \
+            inherit: "default" 0.0; \
+            vis; \
+         } \
+      } \
+      program { \
+         signal: "elm,state,disabled"; source: "elm"; \
+         action: STATE_SET "disabled" 0.0; \
+         target: "event_block"; \
+      } \
+      program { \
+         signal: "elm,state,enabled"; source: "elm"; \
+         action: STATE_SET "default" 0.0; \
+         target: "event_block"; \
+      }
+
+#define GENLIST_BASE(COLOR, COLOR2) \
+      rect { "event"; mouse; \
+         desc { "default"; \
+            color: 0 0 0 0; \
+         } \
+         desc { "disabled"; \
+            inherit: "default"; \
+            hid; \
+         } \
+      } \
+      rect { "base"; \
+         scale; \
+         desc { "default"; \
+            color: COLOR; \
+         } \
+         desc { "selected"; \
+            inherit: "default"; \
+            color: COLOR2; \
+         } \
+         desc { "focused"; \
+            inherit: "default"; \
+            color: COLOR2; \
+         } \
+      }
+
+#define GENLIST_PAD(LEFT, RIGHT, TOP, BOTTOM) \
+      spacer { "pad.top.left"; \
+         scale; \
+         desc { "default"; \
+            rel2.relative: 0.0 0.0; \
+            min: LEFT TOP; \
+            fixed: 1 1; \
+            align: 0.0 0.0; \
+         } \
+      } \
+      spacer { "pad.bottom.right"; \
+         scale; \
+         desc { "default"; \
+            rel1.relative: 1.0 1.0; \
+            min: RIGHT BOTTOM; \
+            fixed: 1 1; \
+            align: 1.0 1.0; \
+         } \
+      }
+
+#define GENLIST_BOTTOM_LINE(COLOR) \
+      rect { "bottom_line"; \
+         desc { "default"; \
+            fixed: 0 1; \
+            min: 0 1; \
+            rel1.relative: 0.0 1.0; \
+            align: 0.5 1.0; \
+            color: COLOR; \
+         } \
+         desc { "focused"; \
+            inherit: "default"; \
+            hid; \
+         } \
+      }
+
+#define GENLIST_PROGRAMS(TARGET, TARGET_DISABLE) \
+      program { name: "selected"; \
+         signal: "elm,state,selected"; \
+         action: STATE_SET "selected"; \
+         target_groups: TARGET; \
+      } \
+      program { name: "unselected"; \
+         signal: "elm,state,unselected"; \
+         action: STATE_SET "default"; \
+         target_groups: TARGET; \
+      } \
+      program { name: "focused"; \
+         signal: "elm,state,focused"; \
+         action: STATE_SET "focused"; \
+         target_groups: TARGET; \
+      } \
+      program { name: "unfocused"; \
+         signal: "elm,state,unfocused"; \
+         action: STATE_SET "default"; \
+         target_groups: TARGET; \
+      } \
+      program { name: "disabled"; \
+         signal: "elm,state,disabled"; \
+         action: STATE_SET "disabled"; \
+         target_groups: TARGET_DISABLE; \
+      } \
+      program { name: "enabled"; \
+         signal: "elm,state,enabled"; \
+         action: STATE_SET "default"; \
+         target_groups: TARGET_DISABLE; \
+      }
+
+/*
+group { "elm/genlist/item/no_icon/default";
+   data.item: "selectraise" "on";
+   data.item: "texts" "elm.text";
+   data.item: "treesize" GENLIST_TREEPAD;
+   data.item: "flips" "elm.text.flip";
+   IMGP()
+   parts {
+      BASEP(0 100)
+
+      text { "elm.text"; mouse_events: 0;
+         effect: SHADOW BOTTOM;
+         scale;
+         desc { "default";
+            rel1.offset: 2 3;
+            rel1.relative: 1.0 0.0;
+            rel1.to_x: "elm.padding.start";
+            rel2.offset: -3 -3;
+            color: 255 255 255 255;
+            color3: 0 0 0 128;
+            color_class: "list_item";
+            text { font: FN; size: GENLIST_FONT_SIZE_36;
+               min: 1 1;
+               align: 0.0 0.5;
+               text_class: "list_item";
+            }
+         }
+         desc { "selected";
+            inherit: "default" 0.0;
+            color: 51 153 255 255;
+            color2: 51 153 255 24;
+            color3: 51 153 255 18;
+         }
+         desc { "focused";
+            inherit: "default" 0.0;
+            color: 51 153 255 255;
+            color2: 51 153 255 24;
+            color3: 51 153 255 18;
+         }
+         desc { "disabled";
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         desc { "flip_enabled";
+            inherit: "default" 0.0;
+            hid;
+         }
+      }
+      swallow { "elm.text.flip";
+         scale;
+         desc { "default";
+            hid;
+            rel1.to_y: "elm.text";
+            rel2.to_y: "elm.text";
+         }
+         desc { "flip_enabled";
+            inherit: "default" 0.0;
+            vis;
+         }
+      }
+      program {
+         signal: "elm,state,default"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,disabled"; source: "elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,enabled"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+      }
+      program {
+         signal: "elm,state,flip,enabled"; source: "elm";
+         action: STATE_SET "flip_enabled" 0.0;
+         target: "elm.text";
+         target: "elm.text.flip";
+      }
+      program {
+         signal: "elm,state,flip,disabled"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.text";
+         target: "elm.text.flip";
+      }
+      spacer { "elm.padding.start";
+         scale;
+         desc { "default";
+            fixed: 1 1;
+            align: 0.0 0.5;
+            min: 10 10;
+            max: 10 10;
+         }
+      }
+
+      TOPP()
+   }
+}
+*/

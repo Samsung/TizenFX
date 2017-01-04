@@ -1,0 +1,44 @@
+/***************** efl-theme-tizen-tv *************************
+ * Example of use of color code:-
+ *
+ *    color: [color_name] [alpha] ;
+ *
+ *
+/****************** Color-Codes *******************************/
+
+#define      BLACK      0    0    0
+#define      RED        255  0    0
+#define      GREEN      0    255  0
+#define      BLUE       0    0    255
+#define      WHITE      255  255  255
+#define      YELLOW     255  255  0
+#define      GRAY       105  105  105
+#define      AQUA       0    255  255
+#define      MAGENTA    255  0    255
+#define      SILVER     192  192  192
+#define      MAROON     128  0    0
+#define      OLIVE      128  128  0
+#define      PURPLE     128  0    128
+#define      TEAL       0    128  128
+#define      NAVY       0    0    128
+#define      PINK       255  192  203
+#define      PLUM       221  160  221
+#define      VOILET     238  130  238
+#define      BROWN      165  42   42
+#define      ORANGE     255  165  0
+#define      GOLD       218  165  32
+#define      LIME       50   205  50
+
+//#define FONT_NAME "FONT_FILE_NAME.ttf"
+
+#define FONT_M "SVD_Medium"
+#define FONT_L "SVD_Light"
+#define FONT_S "SCD_Script"
+#define FONT_R "XXXX"
+
+#define PART_RECT(COLOR) \
+   part { type: RECT; \
+      description { state: "default" 0.0; \
+         color: COLOR; \
+      } \
+   }
