@@ -100,8 +100,8 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _filterHandle = IntPtr.Zero;
         private bool _disposedValue = false;
-        private ContentOrder _order = ContentOrder.Asc;
-        private string _orderKey = "MEDIA_ID";
+        //private ContentOrder _order = ContentOrder.Asc;
+        //private string _orderKey = "MEDIA_ID";
         private ContentCollation _collationType = ContentCollation.Default;
         internal IntPtr Handle
         {

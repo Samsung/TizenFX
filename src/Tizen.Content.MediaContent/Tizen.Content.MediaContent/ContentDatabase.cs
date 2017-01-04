@@ -279,7 +279,7 @@ namespace Tizen.Content.MediaContent
             return (contentCollection != null) ? (T)contentCollection : null;
         }
 
-        private static List<MediaFolder> ForEachFolder(ContentFilter filter)
+        private static IEnumerable<MediaFolder> ForEachFolder(ContentFilter filter)
         {
             MediaContentError res = MediaContentError.None;
             List<MediaFolder> folderCollections = new List<MediaFolder>();
@@ -306,7 +306,7 @@ namespace Tizen.Content.MediaContent
             return folderCollections;
         }
 
-        private static List<Album> ForEachAlbum(ContentFilter filter)
+        private static IEnumerable<Album> ForEachAlbum(ContentFilter filter)
         {
             MediaContentError res = MediaContentError.None;
             List<Album> albumCollections = new List<Album>();
@@ -332,7 +332,7 @@ namespace Tizen.Content.MediaContent
             return albumCollections;
         }
 
-        private static List<Group> ForEachGroup(ContentFilter filter)
+        private static IEnumerable<Group> ForEachGroup(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaGroupType groupType;
@@ -359,7 +359,7 @@ namespace Tizen.Content.MediaContent
             return groupCollections;
         }
 
-        private static List<Storage> ForEachStorage(ContentFilter filter)
+        private static IEnumerable<Storage> ForEachStorage(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = MediaContentError.None;
@@ -385,7 +385,7 @@ namespace Tizen.Content.MediaContent
             return storageCollections;
         }
 
-        private static List<Tag> ForEachTag(ContentFilter filter)
+        private static IEnumerable<Tag> ForEachTag(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = MediaContentError.None;
@@ -411,7 +411,7 @@ namespace Tizen.Content.MediaContent
             return tagCollections;
         }
 
-        private static List<PlayList> ForEachPlayList(ContentFilter filter)
+        private static IEnumerable<PlayList> ForEachPlayList(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentError res = MediaContentError.None;
@@ -456,32 +456,32 @@ namespace Tizen.Content.MediaContent
             }
             else if (typeof(T) == typeof(Album))
             {
-                List<Album> collectionList = ForEachAlbum(filter);
+                IEnumerable<Album> collectionList = ForEachAlbum(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             else if (typeof(T) == typeof(MediaFolder))
             {
-                List<MediaFolder> collectionList = ForEachFolder(filter);
+                IEnumerable<MediaFolder> collectionList = ForEachFolder(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             else if (typeof(T) == typeof(Group))
             {
-                List<Group> collectionList = ForEachGroup(filter);
+                IEnumerable<Group> collectionList = ForEachGroup(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             else if (typeof(T) == typeof(Storage))
             {
-                List<Storage> collectionList = ForEachStorage(filter);
+                IEnumerable<Storage> collectionList = ForEachStorage(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             else if (typeof(T) == typeof(Tag))
             {
-                List<Tag> collectionList = ForEachTag(filter);
+                IEnumerable<Tag> collectionList = ForEachTag(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             else if (typeof(T) == typeof(PlayList))
             {
-                List<PlayList> collectionList = ForEachPlayList(filter);
+                IEnumerable<PlayList> collectionList = ForEachPlayList(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
             return task.Task;
