@@ -653,7 +653,11 @@ namespace Tizen.Network.Bluetooth
                 BluetoothHid hid = new BluetoothHid();
                 profile = (hid as T);
             }
-            profile.RemoteAddress = RemoteDeviceAddress;
+
+            if (profile != null)
+            {
+                profile.RemoteAddress = RemoteDeviceAddress;
+            }
             return profile;
         }
 
