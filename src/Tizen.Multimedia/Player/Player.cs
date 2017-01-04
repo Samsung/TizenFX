@@ -350,11 +350,7 @@ namespace Tizen.Multimedia
 
         private void ReplaceDisplay(PlayerDisplay newDisplay)
         {
-            if (_display != null)
-            {
-                _display.Player = null;
-            }
-
+            _display.Player = null;
             _display = newDisplay;
             _display.Player = this;
         }
