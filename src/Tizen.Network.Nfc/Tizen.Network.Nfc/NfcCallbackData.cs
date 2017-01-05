@@ -24,6 +24,10 @@ namespace Tizen.Network.Nfc
     /// </summary>
     public class NfcTagInformation
     {
+        internal NfcTagInformation()
+        {
+
+        }
         /// <summary>
         /// Key value.
         /// </summary>
@@ -39,6 +43,10 @@ namespace Tizen.Network.Nfc
     /// </summary>
     public class NfcRegisteredAidInformation
     {
+        internal NfcRegisteredAidInformation()
+        {
+
+        }
         /// <summary>
         /// Secure Element Type value.
         /// </summary>

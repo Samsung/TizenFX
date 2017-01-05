@@ -33,7 +33,14 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.IsSupported;
+                try
+                {
+                    return NfcManagerImpl.Instance.IsSupported;
+                }
+                catch (TypeInitializationException)
+                {
+                    return false;
+                }
             }
         }
 
@@ -44,7 +51,14 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.IsActivated;
+                try
+                {
+                    return NfcManagerImpl.Instance.IsActivated;
+                }
+                catch (TypeInitializationException)
+                {
+                    return false;
+                }
             }
         }
 
@@ -55,11 +69,24 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.TagFilterType;
+                try
+                {
+                    return NfcManagerImpl.Instance.TagFilterType;
+                }
+                catch (TypeInitializationException)
+                {
+                    return NfcTagFilterType.AllDisable;
+                }
             }
             set
             {
-                NfcManagerImpl.Instance.TagFilterType = value;
+                try
+                {
+                    NfcManagerImpl.Instance.TagFilterType = value;
+                }
+                catch (TypeInitializationException)
+                {
+                }
             }
         }
 
@@ -70,11 +97,24 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.SecureElementType;
+                try
+                {
+                    return NfcManagerImpl.Instance.SecureElementType;
+                }
+                catch (TypeInitializationException)
+                {
+                    return NfcSecureElementType.Disable;
+                }
             }
             set
             {
-                NfcManagerImpl.Instance.SecureElementType = value;
+                try
+                {
+                    NfcManagerImpl.Instance.SecureElementType = value;
+                }
+                catch (TypeInitializationException)
+                {
+                }
             }
         }
 
@@ -85,11 +125,24 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.SystemHandlerEnabled;
+                try
+                {
+                    return NfcManagerImpl.Instance.SystemHandlerEnabled;
+                }
+                catch (TypeInitializationException)
+                {
+                    return false;
+                }
             }
             set
             {
-                NfcManagerImpl.Instance.SystemHandlerEnabled = value;
+                try
+                {
+                    NfcManagerImpl.Instance.SystemHandlerEnabled = value;
+                }
+                catch (TypeInitializationException)
+                {
+                }
             }
         }
 
@@ -100,7 +153,14 @@ namespace Tizen.Network.Nfc
         {
             get
             {
-                return NfcManagerImpl.Instance.CachedNdefMessage;
+                try
+                {
+                    return NfcManagerImpl.Instance.CachedNdefMessage;
+                }
+                catch (TypeInitializationException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -109,7 +169,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcTagAdapter GetTagAdapter()
         {
-            return NfcManagerImpl.Instance.TagAdapter;
+            try
+            {
+                return NfcManagerImpl.Instance.TagAdapter;
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
 
         /// <summary>
@@ -117,7 +184,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcP2pAdapter GetP2pAdapter()
         {
-            return NfcManagerImpl.Instance.P2pAdapter;
+            try
+            {
+                return NfcManagerImpl.Instance.P2pAdapter;
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
 
         /// <summary>
@@ -125,7 +199,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcCardEmulationAdapter GetCardEmulationAdapter()
         {
-            return NfcManagerImpl.Instance.CardEmulationAdapter;
+            try
+            {
+                return NfcManagerImpl.Instance.CardEmulationAdapter;
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
 
         /// <summary>
@@ -134,7 +215,14 @@ namespace Tizen.Network.Nfc
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
         static public Task SetActivateAsync(bool activation)
         {
-            return NfcManagerImpl.Instance.SetActivateAsync(activation);
+            try
+            {
+                return NfcManagerImpl.Instance.SetActivateAsync(activation);
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
 
         /// <summary>
@@ -144,11 +232,25 @@ namespace Tizen.Network.Nfc
         {
             add
             {
-                NfcManagerImpl.Instance.ActivationChanged += value;
+                try
+                {
+                    NfcManagerImpl.Instance.ActivationChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                NfcManagerImpl.Instance.ActivationChanged -= value;
+                try
+                {
+                    NfcManagerImpl.Instance.ActivationChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
@@ -159,11 +261,25 @@ namespace Tizen.Network.Nfc
         {
             add
             {
-                NfcManagerImpl.Instance.NdefMessageDiscovered += value;
+                try
+                {
+                    NfcManagerImpl.Instance.NdefMessageDiscovered += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                NfcManagerImpl.Instance.NdefMessageDiscovered -= value;
+                try
+                {
+                    NfcManagerImpl.Instance.NdefMessageDiscovered -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
     }

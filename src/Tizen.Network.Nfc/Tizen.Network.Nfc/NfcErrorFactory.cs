@@ -75,6 +75,10 @@ namespace Tizen.Network.Nfc
             {
                 throw new ArgumentException(err.ToString());
             }
+            else if (err == NfcError.NotSupportedError)
+            {
+                throw new NotSupportedException();
+            }
             else
             {
                 throw new InvalidOperationException(err.ToString());

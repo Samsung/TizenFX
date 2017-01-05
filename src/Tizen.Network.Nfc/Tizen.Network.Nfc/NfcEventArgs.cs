@@ -106,7 +106,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// P2p object
         /// </summary>
-        public NfcP2p P2pTaget
+        public NfcP2p P2pTarget
         {
             get
             {
@@ -240,7 +240,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The Nfc hce event.
         /// </summary>
-        public NfcHceEvent HcdEvent
+        public NfcHceEvent HceEvent
         {
             get
             {

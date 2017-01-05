@@ -47,26 +47,6 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The serial bytes array of NDEF message.
-        /// </summary>
-        public byte[] Rawdata
-        {
-            get
-            {
-                IntPtr rawData;
-                uint rawDataSize;
-                int ret = Interop.Nfc.NdefMessage.GetRawData(_messageHandle, out rawData, out rawDataSize);
-                if (ret != (int)NfcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get rawdata, Error - " + (NfcError)ret);
-                    return null;
-                }
-
-                return NfcConvertUtil.UintLengthIntPtrToByteArray(rawData, rawDataSize);
-            }
-        }
-
-        /// <summary>
         /// Creates a object for the access point.
         /// </summary>
         public NfcNdefMessage()
@@ -76,22 +56,6 @@ namespace Tizen.Network.Nfc
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to create Ndef message, Error - " + (NfcError)ret);
-                NfcErrorFactory.ThrowNfcException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Creates NDEF message handle from raw serial bytes.
-        /// </summary>
-        /// <param name="rawData">The NDEF message in form of bytes array.</param>
-        /// <param name="rawData">The size of bytes array.</param>
-        public NfcNdefMessage(byte[] rawData, uint rawDataSize)
-        {
-            int ret = Interop.Nfc.NdefMessage.CreateRawData(out _messageHandle, rawData, rawDataSize);
-
-            if (ret != (int)NfcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to create Ndef Rawdata message, Error - " + (NfcError)ret);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -108,7 +72,6 @@ namespace Tizen.Network.Nfc
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to destroy ndef message, Error - " + (NfcError)ret);
-                NfcErrorFactory.ThrowNfcException(ret);
             }
 
             Dispose(false);

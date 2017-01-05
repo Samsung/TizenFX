@@ -60,29 +60,6 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'Disable' type.
-        /// </summary>
-        public event EventHandler<SecureElementTranscationEventArgs> DisableSecureElementTransactionEvent
-        {
-            add
-            {
-                if (_secureElementTransactionEvent == null)
-                {
-                    RegisterSecureElementTransactionEvent(NfcSecureElementType.Disable);
-                }
-                _secureElementTransactionEvent += value;
-            }
-            remove
-            {
-                _secureElementTransactionEvent -= value;
-                if (_secureElementTransactionEvent == null)
-                {
-                    UnregisterSecureElementTransactionEvent(NfcSecureElementType.Disable);
-                }
-            }
-        }
-
-        /// <summary>
         /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'ESE(SmartMX)' type.
         /// </summary>
         public event EventHandler<SecureElementTranscationEventArgs> EseSecureElementTransactionEvent
@@ -124,52 +101,6 @@ namespace Tizen.Network.Nfc
                 if (_secureElementTransactionEvent == null)
                 {
                     UnregisterSecureElementTransactionEvent(NfcSecureElementType.Uicc);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'SDCard' type.
-        /// </summary>
-        public event EventHandler<SecureElementTranscationEventArgs> SdcardSecureElementTransactionEvent
-        {
-            add
-            {
-                if (_secureElementTransactionEvent == null)
-                {
-                    RegisterSecureElementTransactionEvent(NfcSecureElementType.Sdcard);
-                }
-                _secureElementTransactionEvent += value;
-            }
-            remove
-            {
-                _secureElementTransactionEvent -= value;
-                if (_secureElementTransactionEvent == null)
-                {
-                    UnregisterSecureElementTransactionEvent(NfcSecureElementType.Sdcard);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'HCE(Host based card emulation)' type.
-        /// </summary>
-        public event EventHandler<SecureElementTranscationEventArgs> HceSecureElementTransactionEvent
-        {
-            add
-            {
-                if (_secureElementTransactionEvent == null)
-                {
-                    RegisterSecureElementTransactionEvent(NfcSecureElementType.Hce);
-                }
-                _secureElementTransactionEvent += value;
-            }
-            remove
-            {
-                _secureElementTransactionEvent -= value;
-                if (_secureElementTransactionEvent == null)
-                {
-                    UnregisterSecureElementTransactionEvent(NfcSecureElementType.Hce);
                 }
             }
         }
@@ -289,22 +220,6 @@ namespace Tizen.Network.Nfc
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to disable foreground dispatch, Error - " + (NfcError)ret);
-                NfcErrorFactory.ThrowNfcException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Set the default route for each device status.
-        /// </summary>
-        /// <param name="seTypeInPoweredOn">The type of default Secure Element when device is powered on.</param>
-        /// <param name="seTypeInPoweredOff">The type of default Secure Element when device is powered off.</param>
-        /// <param name="seTypeInLowBattery">The type of default Secure Element when battery is low.</param>
-        public void SetDefaultRoute(NfcSecureElementType seTypeInPoweredOn, NfcSecureElementType seTypeInPoweredOff, NfcSecureElementType seTypeInLowBattery)
-        {
-            int ret = Interop.Nfc.CardEmulation.SetDefaultRoute((int)seTypeInPoweredOn, (int)seTypeInPoweredOff, (int)seTypeInLowBattery);
-            if (ret != (int)NfcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to set default route, Error - " + (NfcError)ret);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -497,6 +412,7 @@ namespace Tizen.Network.Nfc
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set host card emulation event callback, Error - " + (NfcError)ret);
+                NfcErrorFactory.ThrowNfcException(ret);
             }
         }
 

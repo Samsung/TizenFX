@@ -233,7 +233,6 @@ namespace Tizen.Network.Nfc
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deinitialize Nfc, Error - " + (NfcError)ret);
-                NfcErrorFactory.ThrowNfcException(ret);
             }
         }
 
