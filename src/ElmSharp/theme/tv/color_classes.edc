@@ -265,6 +265,21 @@ color_classes {
       color: 0 0 0 0;
    }
    /*
+    * Naviframe
+    */
+   color_class { "naviframe_item/default/bg_title";
+      color: 61 185 204 255;
+   }
+   color_class { "naviframe_item/default/text_maintitle";
+      color: 250 250 250 255;
+   }
+   color_class { "naviframe_item/default/text_maintitle_subtitle_enabled";
+      color: 250 250 250 255;
+   }
+   color_class { "naviframe_item/default/text_subtitle";
+      color: 250 250 250 255;
+   }
+   /*
     * Popup
     */
    color_class { "popup/default/bg_content";

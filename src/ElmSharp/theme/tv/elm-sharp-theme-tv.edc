@@ -73,6 +73,7 @@ collections {
 #include "widgets/index.edc"
 #include "widgets/layout.edc"
 #include "widgets/list.edc"
+#include "widgets/naviframe.edc"
 #include "widgets/popup.edc"
 #include "widgets/progressbar.edc"
 #include "widgets/radio.edc"

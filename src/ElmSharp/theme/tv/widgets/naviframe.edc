@@ -1,0 +1,945 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+
+styles {
+   style { "naviframe_default_maintitle_text";
+      base: "font=Tizen:width=Condensed align=center font_size="NAVIFRAME_TITLE_TEXT_FONT_SIZE_INC" color=#FFFFFFFF wrap=none ellipsis=1.0 text_class=tizen color_class=naviframe_item/default/text_maintitle";
+      tag:  "br" "\n";
+      tag:  "tab" "\t";
+   }
+   style { "naviframe_default_maintitle_text_subtitle_enabled";
+      base: "font=Tizen:width=Condensed align=center font_size="NAVIFRAME_SUBTITLE_VISIBLE_TEXT_FONT_SIZE_INC" color=#FFFFFFFF wrap=none ellipsis=1.0 text_class=tizen color_class=naviframe_item/default/text_maintitle_subtitle_enabled";
+      tag:  "br" "\n";
+      tag:  "tab" "\t";
+   }
+   style { "naviframe_default_subtitle_text";
+      base: "font=Tizen:width=Condensed align=center font_size="NAVIFRAME_VISIBLE_TEXT_FONT_SIZE_INC" color=#FFFFFFFF wrap=none ellipsis=1.0 text_class=tizen color_class=naviframe_item/default/text_subtitle";
+      tag:  "br" "\n";
+      tag:  "tab" "\t";
+   }
+}
+
+group { "elm/naviframe/base/default";
+   parts {
+      spacer { "base";
+         desc { "default";
+         }
+      }
+      rect { "bg";
+         desc { "default";
+            color: 0 0 0 0;
+         }
+      }
+   }
+}
+
+group { "elm/naviframe/item/event/default";
+   inherit_only: 1;
+   programs {
+      program { "deferred_pushed_new";
+         signal: "elm,state,new,pushed,deferred";
+         source: "elm";
+         after: "on_deferred_pushed_new";
+      }
+      program { "deferred_pushed_cur";
+         signal: "elm,state,cur,pushed,deferred";
+         source: "elm";
+         after: "on_deferred_pushed_cur";
+      }
+      program { "deferred_popped_prev";
+         signal: "elm,state,prev,popped,deferred";
+         source: "elm";
+         after: "on_deferred_popped_prev";
+      }
+      program { "deferred_popped_cur";
+         signal: "elm,state,cur,popped,deferred";
+         source: "elm";
+         after: "on_deferred_popped_cur";
+      }
+      program { "pushed_new";
+         signal: "elm,state,new,pushed";
+         source: "elm";
+         after: "on_pushed_new";
+      }
+      program { "popped_prev";
+         signal: "elm,state,prev,popped";
+         source: "elm";
+         after: "on_popped_prev";
+      }
+      program { "finished_show";
+         action: SIGNAL_EMIT "elm,action,show,finished" "";
+      }
+      program { "finished_pushed";
+         action: SIGNAL_EMIT "elm,action,pushed,finished" "";
+      }
+      program { "finished_popped";
+         action: SIGNAL_EMIT "elm,action,popped,finished" "";
+      }
+      program { "visible";
+         signal: "elm,state,visible";
+         source: "elm";
+         after: "on_visible";
+      }
+      program { "invisible";
+         signal: "elm,state,invisible";
+         source: "elm";
+         after: "on_invisible";
+      }
+      program { "orient_90";
+         source: "elm";
+         signal: "elm,state,orient,90";
+         after: "on_orient_90";
+      }
+      program { "orient_270";
+         source: "elm";
+         signal: "elm,state,orient,270";
+         after: "on_orient_270";
+      }
+      program { "orient_0";
+         source: "elm";
+         signal: "elm,state,orient,0";
+         after: "on_orient_0";
+      }
+      program { "orient_180";
+         source: "elm";
+         signal: "elm,state,orient,180";
+         after: "on_orient_180";
+      }
+   }
+}
+
+group { "elm/naviframe/item/default/default";
+   alias: "elm/naviframe/item/basic/default";
+   inherit: "elm/naviframe/item/event/default";
+   data.item: "tizen_effect" 1;
+   images {
+      set {
+         name: "core_icon_badge_container.#";
+         image {
+            image: "core_icon_badge_container.#.png" COMP;
+         }
+      }
+      set {
+         name: "core_theme_bg_01";
+         image {
+            image: "core_theme_bg_01.png" COMP;
+         }
+      }
+   }
+   script {
+      public is_landscape = 0;               //Landscape status
+      public is_prev_btn_visible = 0;        //Previous button visible status
+      public is_title_left_btn_visible = 0;  //Title left button visible status
+      public is_title_right_btn_visible = 0; //Title right button visible status
+      public is_tabbar_visible = 0;          //Tabbar visible status (This value is used for tabbar group)
+   }
+   parts {
+      spacer { "base";
+         desc { "default";
+         }
+      }
+      rect { "clipper";
+         nomouse;
+         desc { "default";
+            vis;
+         }
+         desc { "hidden";
+            hid;
+         }
+      }
+      image { "bg_image";
+         scale;
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+            rel.to: "base";
+            align: 0.5 0.0;
+            fixed: 0 1;
+            min: 0 NAVIFRAME_BG_PORTRAIT_HEIGHT_INC;
+            image.normal: "core_theme_bg_01";
+         }
+         desc { "landscape";
+            inherit: "default";
+            min: 0 NAVIFRAME_BG_LANDSCAPE_HEIGHT_INC;
+         }
+      }
+      rect { "bg_title";
+         scale;
+         nomouse;
+         desc { "default";
+            min: 0 NAVIFRAME_TITLE_HEIGHT_INC;
+            max: -1 NAVIFRAME_TITLE_HEIGHT_INC;
+            align: 0.0 0.0;
+            fixed: 0 1;
+            rel1 { to: "base"; relative: 0.0 0.0; }
+            rel2 { to: "base"; relative: 1.0 0.0; }
+            color_class: "naviframe_item/default/bg_title";
+         }
+         desc { "hidden";
+            inherit: "default";
+            min: 0 0;
+            max: -1 0;
+         }
+      }
+      rect { "clipper_title";
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+            rel.to_y: "bg_title";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      spacer { "padding_left_title_text";
+         scale;
+         desc { "default";
+            rel1.to: "bg_title";
+            rel2.to: "bg_title_left_btn";
+         }
+         desc { "visible_title_badge";
+            rel1.to: "bg_title";
+            rel2.to: "padding_title_badge2";
+         }
+         desc { "visible_prev_btn";
+            rel1.to: "bg_title";
+            rel2 { to_x: "elm.swallow.prev_btn"; to_y: "bg_title"; relative: 1.0 1.0; }
+         }
+      }
+      spacer { "padding_right_title_text";
+         scale;
+         desc { "default";
+            rel1.to: "bg_title_right_btn";
+            rel2.to: "bg_title";
+         }
+         desc { "visible_title_badge";
+            rel1.to: "padding_left_icon_badge";
+            rel2.to: "bg_title";
+         }
+         desc { "visible_prev_btn";
+            rel1.to: "padding_right_prev_btn";
+            rel2.to: "bg_title";
+         }
+      }
+      textblock { "elm.text.title";
+         scale;
+         nomouse;
+         clip: "clipper_title_text";
+         desc { "default";
+            text {
+               style: "naviframe_default_maintitle_text";
+               size: NAVIFRAME_TITLE_TEXT_FONT_SIZE_INC;
+               size_range: NAVIFRAME_TITLE_TEXT_FONT_RANGE_INC;
+               fit: 1 0;
+            }
+            fixed: 1 1;
+            rel1 { to_x: "padding_left_title_text"; to_y: "bg_title"; relative: 1.0 0.0; }
+            rel2 { to_x: "padding_right_title_text"; to_y: "bg_title"; relative: 0.0 1.0; }
+         }
+         desc { "visible_subtitle";
+            text {
+               style: "naviframe_default_maintitle_text_subtitle_enabled";
+               size: NAVIFRAME_SUBTITLE_VISIBLE_TEXT_FONT_SIZE_INC;
+               size_range: NAVIFRAME_SUBTITLE_VISIBLE_TEXT_FONT_RANGE_INC;
+               fit: 1 0;
+            }
+            fixed: 1 1;
+            rel1 { to_x: "padding_left_title_text"; to_y: "padding_top_title"; relative: 1.0 1.0; }
+            rel2 { to_x: "padding_right_title_text"; to_y: "elm.text.subtitle"; relative: 0.0 0.0; }
+         }
+      }
+      rect { "clipper_title_text";
+         nomouse;
+         clip: "clipper_title";
+         desc { "default";
+            rel.to: "elm.text.title";
+         }
+      }
+      spacer { "padding_top_title";
+         desc { "default";
+            min: 0 NAVIFRAME_TITLE_TOP_PADDING_HEIGHT_INC;
+            max: -1 NAVIFRAME_TITLE_TOP_PADDING_HEIGHT_INC;
+            fixed: 0 1;
+            align: 0.5 0.0;
+            rel1 { to: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to: "bg_title"; relative: 1.0 0.0; }
+         }
+      }
+      textblock { "elm.text.subtitle";
+         scale;
+         nomouse;
+         clip: "clipper_subtitle_text";
+         desc { "default";
+            text {
+               style: "naviframe_default_subtitle_text";
+            }
+            min: 0 NAVIFRAME_SUBTITLE_HEIGHT_INC;
+            max: -1 NAVIFRAME_SUBTITLE_HEIGHT_INC;
+            fixed: 1 1;
+            align: 0.5 1.0;
+            rel1 { to_x: "padding_left_title_text"; to_y: "padding_bottom_subtitle"; relative: 1.0 0.0; }
+            rel2 { to_x: "padding_right_title_text"; to_y: "padding_bottom_subtitle"; relative: 0.0 0.0; }
+         }
+      }
+      rect { "clipper_subtitle_text";
+         nomouse;
+         clip: "clipper_title";
+         desc { "default";
+            rel.to: "elm.text.subtitle";
+         }
+      }
+      spacer { "padding_bottom_subtitle";
+         desc { "default";
+            min: 0 NAVIFRAME_SUBTITLE_BOTTOM_PADDING_HEIGHT_INC;
+            max: -1 NAVIFRAME_SUBTITLE_BOTTOM_PADDING_HEIGHT_INC;
+            fixed: 0 1;
+            align: 0.5 1.0;
+            rel1 { to: "bg_title"; relative: 0.0 1.0; }
+            rel2 { to: "bg_title"; relative: 1.0 1.0; }
+         }
+      }
+      rect { "event";
+         ignore: ON_HOLD;
+         desc { "default";
+            rel.to: "bg_title";
+            color: 0 0 0 0;
+         }
+      }
+      rect { "access.title";
+         repeat;
+         desc { "default";
+            rel1 { to_x: "padding_left_title_text"; to_y: "bg_title"; relative: 1.0 0.0; }
+            rel2 { to_x: "padding_right_title_text"; to_y: "bg_title"; relative: 0.0 1.0; }
+            color: 0 0 0 0;
+         }
+      }
+      swallow { "elm.swallow.icon";
+         scale;
+         clip: "clipper_title";
+         desc { "default";
+            max: 0 0;
+            fixed: 1 0;
+            align: 0.0 0.5;
+            rel1 { relative: 1.0 0.0; to: "padding_left_title"; }
+            rel2 { relative: 1.0 1.0; to: "padding_left_title"; }
+            hid;
+         }
+      }
+      spacer { "padding_left_icon_badge";
+         scale;
+         desc { "default";
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "padding_left_badge_text"; to_y: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to_x: "padding_left_badge_text"; to_y: "bg_title"; relative: 0.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_BADGE_ICON_LEFT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BADGE_ICON_LEFT_PADDING_WIDTH_INC -1;
+         }
+      }
+      image { "icon_badge";
+         scale;
+         nomouse;
+         clip: "clipper_title";
+         desc { "default";
+            min: 0 0;
+            max: 0 0;
+            fixed: 1 1;
+            rel1 { to_x: "padding_left_badge_text"; to_y: "title_badge"; }
+            rel2 { to_x: "padding_right_badge_text"; to_y: "title_badge"; }
+            color: 195 219 226 255;
+               image.normal: "core_icon_badge_container.#";
+            hid;
+         }
+         desc { "visible";
+            rel1 { to_x: "padding_left_badge_text"; to_y: "title_badge"; }
+            rel2 { to_x: "padding_right_badge_text"; to_y: "title_badge"; }
+            color: 195 219 226 255;
+               image.normal: "core_icon_badge_container.#";
+            vis;
+         }
+      }
+      spacer { "padding_left_badge_text";
+         scale;
+         desc { "default";
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "title_badge"; to_y: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to_x: "title_badge"; to_y: "bg_title"; relative: 0.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_BADGE_TEXT_LEFT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BADGE_TEXT_LEFT_PADDING_WIDTH_INC -1;
+         }
+      }
+      spacer { "padding_right_badge_text";
+         scale;
+         desc { "default";
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "padding_right_title"; to_y: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to_x: "padding_right_title"; to_y: "bg_title"; relative: 0.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_BADGE_TEXT_LEFT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BADGE_TEXT_LEFT_PADDING_WIDTH_INC -1;
+         }
+      }
+      text { "title_badge";
+         scale;
+         nomouse;
+         clip: "clipper_title";
+         desc { "default";
+            text {
+               font: "Tizen:weight=Normal"; size: "32";
+               text_class: "tizen";
+               min: 1 0;
+               max: 1 0;
+               align: 1.0 0.5;
+               ellipsis: -1;
+            }
+            color: 7 7 7 255;
+            min: 0 NAVIFRAME_BADGE_HEIGHT_INC;
+            max: -1 NAVIFRAME_BADGE_HEIGHT_INC;
+            fixed: 1 1;
+            align: 1.0 0.5;
+            rel1 { to_x: "padding_right_badge_text"; to_y: "elm.text.title"; relative: 0.0 0.0; }
+            rel2 { to_x: "padding_right_badge_text"; to_y: "elm.text.title"; relative: 0.0 1.0; }
+         }
+      }
+      text { "title_badge2";
+         scale;
+         nomouse;
+         clip: "clipper_title";
+         desc { "default";
+            text {
+               font: "Tizen:weight=Normal"; size: "32";
+               text_class: "tizen";
+               min: 1 0;
+               max: 1 0;
+               align: 0.0 0.5;
+               ellipsis: -1;
+            }
+            color: 7 7 7 255;
+            min: 0 NAVIFRAME_BADGE_HEIGHT_INC;
+            max: -1 NAVIFRAME_BADGE_HEIGHT_INC;
+            fixed: 1 1;
+            align: 0.0 0.5;
+            rel1 { to_x: "padding_left_title"; to_y: "elm.text.title"; relative: 1.0 0.0; }
+            rel2 { to_x: "padding_left_title"; to_y: "elm.text.title"; relative: 1.0 1.0; }
+            hid;
+         }
+      }
+      spacer { "padding_title_badge2";
+         scale;
+         desc { "default";
+            min: 0 0;
+            max: 0 -1;
+            fixed: 1 0;
+            align: 0.0 0.5;
+            rel1 { to_x: "title_badge2"; to_y: "bg_title"; relative: 1.0 0.0; }
+            rel2 { to_x: "title_badge2"; to_y: "bg_title"; relative: 1.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_BADGE2_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BADGE2_PADDING_WIDTH_INC -1;
+         }
+      }
+      spacer { "padding_left_title";
+         scale;
+         desc { "default";
+            min: NAVIFRAME_TITLE_LEFT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_TITLE_LEFT_PADDING_WIDTH_INC -1;
+            fixed: 1 0;
+            align: 0.0 0.0;
+            rel1 { to: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to: "bg_title"; relative: 0.0 1.0; }
+         }
+         desc { "hidden";
+            inherit: "default";
+            min: 0 0;
+            max: 0 -1;
+         }
+      }
+      spacer { "bg_title_left_btn";
+         scale;
+         desc { "default";
+            min: 0 0;
+            fixed: 1 0;
+            align: 0.0 0.5;
+            rel1 { to: "padding_left_title"; relative: 1.0 0.0; }
+            rel2 { to: "padding_left_title"; relative: 1.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_TITLE_FUNC_BTN_SIZE_INC;
+            max: NAVIFRAME_TITLE_FUNC_BTN_SIZE_INC;
+         }
+      }
+      swallow { "title_left_btn";
+         scale;
+         clip: "clipper_title";
+         desc { "default";
+            fixed: 1 1;
+            rel.to: "bg_title_left_btn";
+            hid;
+         }
+         desc { "visible";
+            inherit: "default";
+            vis;
+         }
+      }
+      spacer { "bg_title_right_btn";
+         scale;
+         desc { "default";
+            min: 0 0;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to: "padding_right_title"; relative: 0.0 0.0; }
+            rel2 { to: "padding_right_title"; relative: 0.0 1.0; }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: NAVIFRAME_TITLE_FUNC_BTN_SIZE_INC;
+            max: NAVIFRAME_TITLE_FUNC_BTN_SIZE_INC;
+         }
+      }
+      spacer { "padding_right_title";
+         scale;
+         desc { "default";
+            min: NAVIFRAME_TITLE_RIGHT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_TITLE_RIGHT_PADDING_WIDTH_INC -1;
+            fixed: 1 0;
+            align: 1.0 0.0;
+            rel1 { to: "bg_title"; relative: 1.0 0.0; }
+            rel2 { to: "bg_title"; relative: 1.0 1.0; }
+         }
+         desc { "hidden";
+            inherit: "default";
+            min: 0 0;
+            max: 0 -1;
+         }
+      }
+      swallow { "title_right_btn";
+         scale;
+         clip: "clipper_title";
+         desc { "default";
+            fixed: 1 1;
+            rel.to: "bg_title_right_btn";
+            hid;
+         }
+         desc { "visible";
+            inherit: "default";
+            vis;
+         }
+      }
+      swallow { "elm.swallow.content";
+         scale;
+         norepeat;
+         clip: "clipper_content";
+         desc { "default";
+            align: 0.0 0.0;
+            rel1 { to_x: "base"; to_y: "bg_title"; relative: 0.0 1.0; }
+            rel2 { to_x: "base"; to_y: "toolbar"; relative: 1.0 0.0; }
+         }
+      }
+      rect { "clipper_content";
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+            rel.to_y: "elm.swallow.content";
+         }
+      }
+      rect { "bg_toolbar";
+         scale;
+         clip: "clipper_toolbar";
+         desc { "default";
+            rel.to: "toolbar";
+            color: NAVIFRAME_TOOLBAR_COLOR_INC;
+         }
+      }
+      swallow { "toolbar";
+         scale;
+         clip: "clipper_toolbar";
+         desc { "default";
+            min: 0 0;
+            max: -1 0;
+            fixed: 0 1;
+            align: 0.5 1.0;
+            rel1 { to: "base"; relative: 0.0 1.0; }
+            rel2 { to: "base"; relative: 1.0 1.0; }
+            hid;
+         }
+         desc { "visible";
+            inherit: "default";
+            min: 0 NAVIFRAME_TOOLBAR_HEIGHT_INC;
+            max: -1 NAVIFRAME_TOOLBAR_HEIGHT_INC;
+            vis;
+         }
+      }
+      rect { "clipper_toolbar";
+         nomouse;
+         clip: "clipper";
+         desc { "default";
+            rel.to: "toolbar";
+         }
+      }
+      spacer { "padding_left_prev_btn";
+         scale;
+         desc { "default";
+            min: NAVIFRAME_BACK_BUTTON_LR_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BACK_BUTTON_LR_PADDING_WIDTH_INC -1;
+            align: 0.0 0.0;
+            fixed: 1 1;
+            rel1 { to: "bg_title"; relative: 0.0 0.0; }
+            rel2 { to: "bg_title"; relative: 0.0 1.0; }
+         }
+      }
+      swallow { "elm.swallow.prev_btn";
+         clip: "clipper_title";
+         scale;
+         desc { "default";
+            min: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+            max: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+            align: 0.0 0.5;
+            fixed: 1 1;
+            rel1 { to: "padding_left_prev_btn"; relative: 1.0 0.0; }
+            rel2 { to: "padding_left_prev_btn"; relative: 1.0 1.0; }
+            vis;
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      spacer { "padding_right_prev_btn";
+         scale;
+         desc { "default";
+            min: NAVIFRAME_BACK_BUTTON_TITLE_RIGHT_PADDING_WIDTH_INC 0;
+            max: NAVIFRAME_BACK_BUTTON_TITLE_RIGHT_PADDING_WIDTH_INC -1;
+            align: 1.0 0.0;
+            fixed: 1 1;
+            rel1 { to: "bg_title"; relative: 1.0 0.0; }
+            rel2 { to: "bg_title"; relative: 1.0 1.0; }
+         }
+      }
+      swallow { "toolbar_more_btn";
+         clip: "clipper_title";
+         desc { "default";
+            min: 0 0;
+            max: 0 0;
+            align: 0.0 0.0;
+            fixed: 1 1;
+            rel.to: "base";
+            hid;
+         }
+      }
+   }
+   programs {
+      program { "on_deferred_pushed_new";
+         after: "finished_show";
+      }
+      program { "on_deferred_pushed_cur";
+         after: "finished_pushed";
+      }
+      program { "on_deferred_popped_prev";
+         after: "finished_show";
+      }
+      program { "on_deferred_popped_cur";
+         after: "finished_popped";
+      }
+      program { "on_pushed_new";
+      }
+      program { "on_popped_prev";
+      }
+      program { "on_visible";
+      }
+      program { "on_invisible";
+      }
+      program { "clicked_title";
+         signal: "mouse,clicked,1";
+         source: "event";
+         action: SIGNAL_EMIT "elm,action,title,clicked" "";
+      }
+      program { "show_title";
+         signal: "elm,state,title,show";
+         source: "elm";
+         script {
+            set_state(PART:"bg_title", "default", 0.0);
+            set_state(PART:"clipper_title", "default", 0.0);
+            if (get_int(is_title_left_btn_visible)) {
+               set_state(PART:"padding_left_title", "hidden", 0.0);
+               set_state(PART:"bg_title_left_btn", "visible", 0.0);
+               set_state(PART:"title_left_btn", "visible", 0.0);
+               set_state(PART:"bg_title_right_btn", "visible", 0.0);
+               set_state(PART:"padding_right_title", "hidden", 0.0);
+            }
+            else if (get_int(is_prev_btn_visible)) {
+               set_state(PART:"elm.swallow.prev_btn", "default", 0.0);
+               set_state(PART:"padding_left_title_text", "visible_prev_btn", 0.0);
+               set_state(PART:"padding_right_title_text", "visible_prev_btn", 0.0);
+            }
+            if (get_int(is_title_right_btn_visible)) {
+               set_state(PART:"padding_right_title", "hidden", 0.0);
+               set_state(PART:"bg_title_right_btn", "visible", 0.0);
+               set_state(PART:"title_right_btn", "visible", 0.0);
+               set_state(PART:"bg_title_left_btn", "visible", 0.0);
+               set_state(PART:"padding_left_title", "hidden", 0.0);
+               if (get_int(is_prev_btn_visible) == 1) {
+                  set_state(PART:"padding_left_title_text", "default", 0.0);
+                  set_state(PART:"padding_right_title_text", "default", 0.0);
+               }
+            }
+         }
+      }
+      program { "show_title_anim";
+         signal: "elm,action,title,show";
+         source: "elm";
+         after: "show_title";
+      }
+      program { "hide_title";
+         signal: "elm,state,title,hide";
+         source: "elm";
+         script {
+            set_state(PART:"bg_title", "hidden", 0.0);
+            set_state(PART:"clipper_title", "hidden", 0.0);
+            set_state(PART:"padding_left_title", "default", 0.0);
+            set_state(PART:"bg_title_left_btn", "default", 0.0);
+            set_state(PART:"title_left_btn", "default", 0.0);
+            set_state(PART:"bg_title_right_btn", "default", 0.0);
+            set_state(PART:"padding_right_title", "default", 0.0);
+            set_state(PART:"title_right_btn", "default", 0.0);
+            set_state(PART:"elm.swallow.prev_btn", "hidden", 0.0);
+            if (get_int(is_prev_btn_visible) == 1) {
+               set_state(PART:"padding_left_title_text", "visible_prev_btn", 0.0);
+               set_state(PART:"padding_right_title_text", "visible_prev_btn", 0.0);
+            }
+         }
+      }
+      program { "hide_title_anim";
+         signal: "elm,action,title,hide";
+         source: "elm";
+         after: "hide_title";
+      }
+      program { "show_subtitle";
+         signal: "elm,state,subtitle,show";
+         source: "elm";
+         script {
+            set_state(PART:"elm.text.title", "visible_subtitle", 0.0);
+         }
+      }
+      program { "hide_subtitle";
+         signal: "elm,state,subtitle,hide";
+         source: "elm";
+         script {
+            set_state(PART:"elm.text.title", "default", 0.0);
+         }
+      }
+      program { "show_prev_btn";
+         signal: "elm,state,prev_btn,show";
+         source: "elm";
+         script {
+            set_int(is_prev_btn_visible, 1);
+            if (get_int(is_title_left_btn_visible) == 0) {
+               set_state(PART:"elm.swallow.prev_btn", "default", 0.0);
+               set_state(PART:"padding_left_title_text", "visible_prev_btn", 0.0);
+               set_state(PART:"padding_right_title_text", "visible_prev_btn", 0.0);
+            }
+         }
+      }
+      program { "hide_prev_btn";
+         signal: "elm,state,prev_btn,hide";
+         source: "elm";
+         script {
+            set_state(PART:"elm.swallow.prev_btn", "hidden", 0.0);
+            set_state(PART:"padding_left_title_text", "default", 0.0);
+            set_state(PART:"padding_right_title_text", "default", 0.0);
+            set_int(is_prev_btn_visible, 0);
+         }
+      }
+      program { "show_title_left_btn";
+         signal: "elm,state,title_left_btn,show";
+         source: "elm";
+         script {
+            set_state(PART:"padding_left_title", "hidden", 0.0);
+            set_state(PART:"bg_title_left_btn", "visible", 0.0);
+            set_state(PART:"title_left_btn", "visible", 0.0);
+            set_state(PART:"bg_title_right_btn", "visible", 0.0);
+            set_state(PART:"padding_right_title", "hidden", 0.0);
+            set_state(PART:"elm.swallow.prev_btn", "hidden", 0.0);
+            set_state(PART:"padding_left_title_text", "default", 0.0);
+            set_state(PART:"padding_right_title_text", "default", 0.0);
+            set_int(is_title_left_btn_visible, 1);
+         }
+      }
+      program { "hide_title_left_btn";
+         signal: "elm,state,title_left_btn,hide";
+         source: "elm";
+         script {
+            set_state(PART:"title_left_btn", "default", 0.0);
+            if (get_int(is_title_right_btn_visible) == 0) {
+               set_state(PART:"padding_left_title", "default", 0.0);
+               set_state(PART:"bg_title_left_btn", "default", 0.0);
+               set_state(PART:"padding_right_title", "default", 0.0);
+               set_state(PART:"bg_title_right_btn", "default", 0.0);
+
+               if (get_int(is_prev_btn_visible) == 1) {
+                  set_state(PART:"elm.swallow.prev_btn", "default", 0.0);
+                  set_state(PART:"padding_left_title_text", "visible_prev_btn", 0.0);
+                  set_state(PART:"padding_right_title_text", "visible_prev_btn", 0.0);
+               }
+            }
+            set_int(is_title_left_btn_visible, 0);
+         }
+      }
+      program { "show_title_right_btn";
+         signal: "elm,state,title_right_btn,show";
+         source: "elm";
+         script {
+            set_state(PART:"padding_right_title", "hidden", 0.0);
+            set_state(PART:"bg_title_right_btn", "visible", 0.0);
+            set_state(PART:"title_right_btn", "visible", 0.0);
+            set_state(PART:"bg_title_left_btn", "visible", 0.0);
+            set_state(PART:"padding_left_title", "hidden", 0.0);
+            if (get_int(is_prev_btn_visible) == 1) {
+               set_state(PART:"padding_left_title_text", "default", 0.0);
+               set_state(PART:"padding_right_title_text", "default", 0.0);
+            }
+            set_int(is_title_right_btn_visible, 1);
+         }
+      }
+      program { "hide_title_right_btn";
+         signal: "elm,state,title_right_btn,hide";
+         source: "elm";
+         script {
+            set_state(PART:"title_right_btn", "default", 0.0);
+            if (get_int(is_title_left_btn_visible) == 0) {
+               set_state(PART:"padding_right_title", "default", 0.0);
+               set_state(PART:"bg_title_right_btn", "default", 0.0);
+               set_state(PART:"padding_left_title", "default", 0.0);
+               set_state(PART:"bg_title_left_btn", "default", 0.0);
+
+               if (get_int(is_prev_btn_visible) == 1) {
+                  set_state(PART:"elm.swallow.prev_btn", "default", 0.0);
+                  set_state(PART:"padding_left_title_text", "visible_prev_btn", 0.0);
+                  set_state(PART:"padding_right_title_text", "visible_prev_btn", 0.0);
+               }
+            }
+            set_int(is_title_right_btn_visible, 0);
+         }
+      }
+      program { "show_title_badge";
+         signal: "elm,state,title_badge,show";
+         source: "elm";
+         script {
+            new buf[128];
+
+            set_state(PART:"padding_left_badge_text", "visible", 0.0);
+            set_state(PART:"padding_right_badge_text", "visible", 0.0);
+            set_state(PART:"icon_badge", "visible", 0.0);
+            set_state(PART:"padding_left_icon_badge", "visible", 0.0);
+
+            get_text(PART:"title_badge", buf, 128);
+            set_text(PART:"title_badge2", buf);
+            set_state(PART:"padding_title_badge2", "visible", 0.0);
+            set_state(PART:"padding_left_title_text", "visible_title_badge", 0.0);
+            set_state(PART:"padding_right_title_text", "visible_title_badge", 0.0);
+         }
+      }
+      program { "hide_title_badge";
+         signal: "elm,state,title_badge,hide";
+         source: "elm";
+         script {
+            set_state(PART:"padding_left_badge_text", "default", 0.0);
+            set_state(PART:"padding_right_badge_text", "default", 0.0);
+            set_state(PART:"icon_badge", "default", 0.0);
+            set_state(PART:"padding_left_icon_badge", "default", 0.0);
+
+            set_text(PART:"title_badge2", "");
+            set_state(PART:"padding_title_badge2", "default", 0.0);
+            set_state(PART:"padding_left_title_text", "default", 0.0);
+            set_state(PART:"padding_right_title_text", "default", 0.0);
+         }
+      }
+      program { "show_toolbar";
+         signal: "elm,state,toolbar,show";
+         source: "elm";
+         script {
+            set_state(PART:"toolbar", "visible", 0.0);
+         }
+      }
+      program { "hide_toolbar";
+         signal: "elm,state,toolbar,hide";
+         source: "elm";
+         script {
+            set_state(PART:"toolbar", "default", 0.0);
+         }
+      }
+      program { "landscape";
+         script {
+            if (!get_int(is_landscape)) {
+               set_int(is_landscape, 1);
+            }
+            set_state(PART:"bg_image", "landscape", 0.0);
+         }
+      }
+      program { "portrait";
+         script {
+            if (get_int(is_landscape)) {
+               set_int(is_landscape, 0);
+            }
+            set_state(PART:"bg_image", "default", 0.0);
+         }
+      }
+      program { "on_orient_90";
+         after: "landscape";
+      }
+      program { "on_orient_270";
+         after: "landscape";
+      }
+      program { "on_orient_0";
+         after: "portrait";
+      }
+      program { "on_orient_180";
+         after: "portrait";
+      }
+   }
+}
+
+
