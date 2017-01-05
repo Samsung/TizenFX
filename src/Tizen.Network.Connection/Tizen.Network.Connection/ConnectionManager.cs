@@ -106,7 +106,7 @@ namespace Tizen.Network.Connection
                 _EthernetCableStateChanged -= value;
                 if (_EthernetCableStateChanged == null)
                 {
-                    EthernetCableStateChangedtop();
+                    EthernetCableStateChangedStop();
                 }
             }
         }
@@ -117,15 +117,17 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register ethernet cable state changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
-        static private void EthernetCableStateChangedtop()
+        static private void EthernetCableStateChangedStop()
         {
             int ret = Interop.Connection.UnsetEthernetCableStateChagedCallback(ConnectionInternalManager.GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister ethernet cable state changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -274,7 +276,7 @@ namespace Tizen.Network.Connection
             }
             ProxyAddressChangedStop();
             ConnectionTypeChangedStop();
-            EthernetCableStateChangedtop();
+            EthernetCableStateChangedStop();
             IpAddressChangedStop();
             disposed = true;
         }
