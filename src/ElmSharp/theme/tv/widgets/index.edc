@@ -1,0 +1,680 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+   group { "elm/index/event/default";
+      alias: "elm/index/event/level0";
+      inherit_only: 1;
+      parts {
+         /* Swallow for event rectangle */
+         swallow { "elm.swallow.event.0";
+            mouse;
+            desc { "default";
+               fixed: 1 1;
+               rel.to: "elm.swallow.index.0";
+            }
+         }
+      }
+      programs {
+         /* Program for index show */
+         program { "active";
+            signal: "elm,state,active";
+            source: "elm";
+            after: "on_active";
+         }
+         /* Program for index autohide */
+         program { "inactive";
+            signal: "elm,state,inactive";
+            source: "elm";
+            after: "on_inactive";
+         }
+         /* Program for indicator show */
+         program { "active_indicator";
+            signal: "elm,indicator,state,active";
+            source: "elm";
+            after: "on_active_indicator";
+         }
+         /* Program for indicator hide */
+         program { "inactive_indicator";
+            signal: "elm,indicator,state,inactive";
+            source: "elm";
+            after: "on_inactive_indicator";
+         }
+         /* Program for access active */
+         program { "active_access";
+            signal: "elm,access,state,active";
+            source: "elm";
+            after: "on_active_access";
+         }
+         /* Program for access inactive */
+         program { "inactive_access";
+            signal: "elm,access,state,inactive";
+            source: "elm";
+            after: "on_inactive_access";
+         }
+      }
+   }
+   /* Event for index with level1 */
+   group { "elm/index/event/level1";
+      inherit_only: 1;
+      mouse;
+      parts {
+         swallow { "elm.swallow.event.1";
+            desc { "default";
+               fixed: 1 1;
+               rel.to: "elm.swallow.index.1";
+            }
+         }
+      }
+      programs {
+         /* Program for level changed to 0 */
+         program { "level_0";
+            signal: "elm,state,level,0";
+            source: "elm";
+            after: "on_level_0";
+         }
+         /* Program for level changed to 1 */
+         program { "level_1";
+            signal: "elm,state,level,1";
+            source: "elm";
+            after: "on_level_1";
+         }
+      }
+   }
+   group { "elm/index/base/template";
+      inherit_only: 1;
+      nomouse;
+      parts {
+         spacer { "base";
+         }
+         /* Swallow for index item box for level 0 */
+         swallow { "elm.swallow.index.0";
+         }
+         /* Swallow for index item box for level 1 */
+         // swallow { "elm.swallow.index.1";
+         // }
+         /* Rect for accessibility */
+         rect { "access";
+         }
+      }
+      /* Event for index level 0 */
+      inherit: "elm/index/event/default";
+      /* Event for index level 1 */
+      // inherit: "elm/index/event/level1";
+      programs {
+         /* Program for index show */
+         program { "on_active";
+         }
+         /* Program for index autohide */
+         program { "on_inactive";
+         }
+         /* Program for indicator show */
+         program { "on_active_indicator";
+         }
+         /* Program for indicator hide */
+         program { "on_inactive_indicator";
+         }
+         /* Program for access active */
+         program { "on_active_access";
+         }
+         /* Program for access inactive */
+         program { "on_inactive_access";
+         }
+         /* Program for level changed to 0 */
+         // program { "on_level_0";        // level 0
+         // }
+         /* Program for level changed to 1 */
+         // program { "on_level_1";        // level 1
+         // }
+      }
+   }
+   /* Event for index item */
+   group { "elm/index/item/event/default";
+      inherit_only: 1;
+      programs {
+         /* Program for index item activate */
+         program { "active";
+            signal: "elm,state,active";
+            source: "elm";
+            after: "on_active";
+         }
+         /* Program for index item inactivate */
+         program { "inactive";
+            signal: "elm,state,inactive";
+            source: "elm";
+            after: "on_inactive";
+         }
+      }
+   }
+   group { "elm/index/item/template";
+      inherit_only: 1;
+      nomouse;
+      parts {
+         /* Base part for index item */
+         spacer { "base";
+            desc { "default";
+            }
+         }
+         /* Text for index item */
+         text { "elm.text";
+         }
+      }
+      inherit: "elm/index/item/event/default";
+      programs {
+         /* Program for index item activate */
+         program { "on_active";
+         }
+         /* Program for index item inactivate */
+         program { "on_inactive";
+         }
+      }
+   }
+   group { "elm/index/base/vertical/default";
+      alias: "elm/index/base/vertical/fastscroll";
+      nomouse;
+      images {
+         set {
+            name: "core_index_scroll_popup_bg";
+            image {
+               image: "core_index_scroll_popup_bg.png" COMP;
+            }
+         }
+      }
+      parts {
+         spacer { "base";
+            desc { "default";
+            }
+         }
+         rect { "clipper";
+            desc { "default";
+               hid;
+               rel.to: "base";
+               color: 255 255 255 0;
+            }
+            desc { "active";
+               vis;
+               rel.to: "base";
+               color: 255 255 255 255;
+            }
+         }
+         rect { "clipper_indicator";
+            clip: "clipper";
+            desc { "default";
+               hid;
+               rel.to: "base";
+               color: 255 255 255 0;
+            }
+            desc { "active";
+               vis;
+               rel.to: "base";
+               color: 255 255 255 255;
+            }
+         }
+         rect { "bg";
+            clip: "clipper";
+            desc { "default";
+               rel.to_x: "elm.swallow.index.0";
+               rel.to_y: "base";
+               color_class: "index/default/bg";
+            }
+         }
+         swallow { "elm.swallow.index.0";
+            clip: "clipper";
+            desc { "default";
+               align: 1.0 0.5;
+               fixed: 1 1;
+               rel.to:"base";
+               rel1.relative: 1.0 0.0;
+            }
+         }
+         // Popup Indicator group: "clipper_indicator "popup_bg" "sizer_text"
+         //        "elm.text" "padding_text_left" "padding_text_bottom_right"
+         image { "popup_bg";
+            clip: "clipper_indicator";
+            desc { "default";
+               fixed: 1 1;
+               image.normal: "core_index_scroll_popup_bg";
+               rel1.to: "padding_text_left";
+               rel2.to: "padding_text_bottom_right";
+               color_class: "index/default/bg_popup";
+            }
+         }
+         spacer { "sizer_text";
+            scale;
+            clip: "clipper_indicator";
+            desc { "default";
+               min: 1 1;
+               fixed: 1 1;
+               rel.to: "base";
+               rel1.relative: 0.5 0.5;
+               rel2.relative: 0.5 0.5;
+            }
+         }
+         text { "elm.text";
+            scale;
+            clip: "clipper_indicator";
+            desc { "default";
+               min: INDEX_SCROLL_TEXT1_DEFAULT_SIZE_INC;
+               fixed: 1 1;
+               rel.to: "sizer_text";
+               rel1.relative: 1.0 0.0;
+               text {
+                  font: "BreezeSans:weight=Light";
+                  size: 112;
+                  size_range: 50 112;
+                  fit: 1 0;
+               }
+               color_class: "index/default/text_popup";
+            }
+         }
+         spacer { "padding_text_left";
+            scale;
+            clip: "clipper_indicator";
+            desc { "default";
+               min: INDEX_TEXT_LEFT_PADDING_SIZE_INC 0;
+               fixed: 1 0;
+               rel.to: "elm.text";
+               rel2.relative: 0.0 1.0;
+               align: 1.0 0.5;
+            }
+         }
+         spacer { "padding_text_bottom_right";
+            scale;
+            clip: "clipper_indicator";
+            desc { "default";
+               min: INDEX_TEXT_RIGHT_PADDING_SIZE_INC INDEX_TEXT_BOTTOM_PADDING_SIZE_INC;
+               fixed: 1 1;
+               rel.to: "elm.text";
+               rel1.relative: 1.0 1.0;
+               align: 0.0 0.0;
+            }
+         }
+         rect { "access";
+            desc { "default";
+               fixed: 1 1;
+               rel.to: "elm.swallow.index.0";
+               rel1.offset: -3 0;
+               color: 0 0 0 0;
+               hid;
+            }
+            desc { "active";
+               inherit: "default";
+               vis;
+            }
+         }
+      }
+      inherit: "elm/index/event/default";
+      script {
+         public animate = 0;
+      }
+      programs {
+         program { "on_active";
+            action: STATE_SET "active";
+            target: "clipper";
+         }
+         program { "on_inactive";
+            action: STATE_SET "default";
+            target: "clipper";
+         }
+         program { "on_active_indicator";
+            script {
+               if (get_int(animate) == 0) {
+                 set_int(animate, 1);
+               }
+               else {
+                 set_state(PART:"clipper_indicator", "default", 0.0);
+               }
+            }
+            after: "anim_active";
+         }
+         program { "anim_active";
+            action: STATE_SET "active";
+            target: "clipper_indicator";
+            transition: GLIDE_EASE_OUT(0.15);
+            after: "anim_finished";
+         }
+         program { "on_inactive_indicator";
+            script {
+               if (get_int(animate) == 0) {
+                 set_int(animate, 1);
+               }
+               else {
+                 set_state(PART:"clipper_indicator", "active", 0.0);
+               }
+            }
+            after: "anim_inactive";
+         }
+         program { "anim_inactive";
+            action: STATE_SET "default";
+            target: "clipper_indicator";
+            transition: GLIDE_EASE_OUT(0.45);
+            after: "anim_finished";
+         }
+         program { "anim_finished";
+            script {
+               set_int(animate, 0);
+            }
+         }
+         program { "on_active_access";
+            action: STATE_SET "active";
+            target: "access";
+         }
+         program { "on_inactive_access";
+            action: STATE_SET "default";
+            target: "access";
+         }
+      }
+   }
+   group { "elm/index/item/vertical/default";
+      alias: "elm/index/item_odd/vertical/default";
+      data.item: "stacking" "above";
+      data.item: "selectraise" "on";
+      nomouse;
+      images {
+         image: "core_index_fastscroll_rollover_line_focus.#.png" COMP;
+      }
+      parts {
+         rect { "base";
+            scale;
+            desc { "default";
+               min: INDEX_ITEM_WIDTH_INC INDEX_ITEM_HEIGHT_INC;
+               color: 255 255 255 255;
+               hid;
+            }
+            desc { "active";
+               inherit: "default";
+               vis;
+            }
+         }
+         spacer { "padding_right";
+            scale;
+            desc { "default";
+               align: 1.0 0.5;
+               min: INDEX_SCROLL_BG_LINE_WIDTH_INC 0;
+               fixed: 1 0;
+               rel.to: "base";
+               rel1.relative: 1.0 0.0;
+            }
+         }
+         spacer { "padding_top_bg_item";
+            scale;
+            desc { "default";
+               align: 0.5 1.0;
+               rel.to: "base";
+               rel2.relative: 1.0 0.0;
+               min: 0 INDEX_SCROLL_BG_LINE_WIDTH_INC;
+               fixed: 0 1;
+            }
+         }
+         text { "elm.text";
+            scale;
+            desc { "default";
+               min: INDEX_ITEM_TEXT_WIDTH_INC INDEX_ITEM_TEXT_HEIGHT_INC;
+               fixed: 1 1;
+               rel1 {
+                  to_x: "bg_line_left";
+                  to_y: "base";
+               }
+               rel2 {
+                  to_x: "base";
+                  to_y: "bg_divider";
+                  relative: 1.0 0.0;
+               }
+               text {
+                  font: "Tizen:weight=Light";
+                  size: 24;
+                  size_range: 18 24;
+                  fit: 1 0;
+                  text_class: "tizen";
+               }
+               color_class: "index_item/default/text";
+            }
+            desc { "active";
+               inherit: "default";
+               color_class: "index_item/default/text_pressed";
+            }
+         }
+         rect { "bg_line_left";
+            scale;
+            desc { "default";
+               align: 0.0 0.5;
+               min: INDEX_SCROLL_BG_LINE_WIDTH_INC 0;
+               fixed: 1 0;
+               rel.to: "base";
+               rel2.relative: 0.0 1.0;
+               color_class: "index_item/default/line";
+            }
+            desc { "active";
+               inherit: "default";
+            }
+         }
+         rect { "bg_divider";
+            scale;
+            desc { "default";
+               align: 0.5 1.0;
+               min: 0 INDEX_DIVIDER_HEIGHT_INC;
+               fixed: 0 1;
+               rel.to: "base";
+               rel1.relative: 0.0 1.0;
+               color_class: "index_item/default/divider";
+            }
+            desc { "inactive";
+               inherit: "default";
+               hid;
+            }
+         }
+         image { "bg_item";
+            scale;
+            desc { "default";
+               image.normal: "core_index_fastscroll_rollover_line_focus.#.png";
+               rel1.to: "padding_top_bg_item";
+               rel2.to: "bg_divider";
+               fixed: 1 1;
+               color_class: "index_item/default/border";
+               hid;
+            }
+            desc { "active";
+               inherit: "default";
+               vis;
+            }
+         }
+      }
+      inherit: "elm/index/item/event/default";
+      programs {
+         program { "on_active";
+            action: STATE_SET "active";
+            transition: DECELERATE 0.0;
+            target: "elm.text";
+            target: "bg_line_left";
+            target: "bg_item";
+            target: "base";
+         }
+         program { "on_inactive";
+            action: STATE_SET "default";
+            transition: DECELERATE 0.0;
+            target: "elm.text";
+            target: "bg_line_left";
+            target: "bg_item";
+            target: "base";
+         }
+         program { "item_last";
+            signal: "elm,last,item";
+            source: "elm";
+            action: STATE_SET "inactive";
+            target: "bg_divider";
+         }
+      }
+   }
+   group { "elm/index/base/vertical/pagecontrol";
+      alias: "elm/index/base/horizontal/pagecontrol";
+      nomouse;
+      parts {
+         spacer { "base";
+            desc { "default";
+            }
+         }
+         rect { "clipper";
+            desc { "default";
+               hid;
+               rel.to: "base";
+               color: 255 255 255 0;
+            }
+            desc { "active";
+               vis;
+               rel.to: "base";
+               color: 255 255 255 255;
+            }
+         }
+         swallow { "elm.swallow.index.0";
+            scale;
+            clip: "clipper";
+            desc { "default";
+               rel.to: "base";
+               rel1.relative: 0.5 0.5;
+               rel2.relative: 0.5 0.5;
+               fixed: 1 1;
+            }
+         }
+      }
+      inherit: "elm/index/event/default";
+      programs {
+         program { "on_active";
+            action: STATE_SET "active";
+            transition: DECELERATE 0.5;
+            target: "clipper";
+         }
+         program { "on_inactive";
+            action: STATE_SET "default";
+            transition: DECELERATE 0.5;
+            target: "clipper";
+         }
+         program { "on_active_indicator";
+         }
+         program { "on_inactive_indicator";
+         }
+         program { "on_priority_up";
+         }
+         program { "on_priority_down";
+         }
+         program { "on_active_access";
+         }
+         program { "on_inactive_access";
+         }
+      }
+   }
+   group { "elm/index/item/vertical/pagecontrol";
+      alias: "elm/index/item_odd/vertical/pagecontrol";
+      alias: "elm/index/item/horizontal/pagecontrol";
+      alias: "elm/index/item_odd/horizontal/pagecontrol";
+      images {
+         image: "core_page_indicator_on.png" COMP;
+         image: "core_page_indicator_on_ef.png" COMP;
+         image: "core_page_indicator_off.png" COMP;
+         image: "core_page_indicator_off_ef.png" COMP;
+      }
+      nomouse;
+      parts {
+         spacer { "base";
+            scale;
+            desc { "default";
+               min: INDEX_PAGECONTROL_IND_INC;
+               max: INDEX_PAGECONTROL_IND_INC;
+            }
+         }
+         image { "bg_indicator_off";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               rel.to: "base";
+               min: INDEX_PAGECONTROL_IND_MIN_INC;
+               max: INDEX_PAGECONTROL_IND_MIN_INC;
+               image.normal: "core_page_indicator_off.png";
+               color_class: "index_item/pagecontrol/icon";
+            }
+            desc { "active";
+               inherit: "default";
+               hid;
+            }
+         }
+         image { "bg_indicator_off_shadow";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               image.normal: "core_page_indicator_off_ef.png";
+               rel.to: "bg_indicator_off";
+            }
+            desc { "active";
+               inherit: "default";
+               hid;
+            }
+         }
+         image { "bg_indicator_on";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               min: INDEX_PAGECONTROL_IND_MIN_INC;
+               max: INDEX_PAGECONTROL_IND_MIN_INC;
+               image.normal: "core_page_indicator_on.png";
+               color_class: "index_item/pagecontrol/icon_on";
+               hid;
+            }
+            desc { "active";
+               inherit: "default";
+               vis;
+            }
+         }
+         image { "bg_indicator_on_shadow";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               image.normal: "core_page_indicator_on_ef.png";
+               rel.to: "bg_indicator_on";
+               hid;
+            }
+            desc { "active";
+               inherit: "default";
+               vis;
+            }
+         }
+      }
+      inherit: "elm/index/item/event/default";
+      programs {
+         program { "on_active";
+            action: STATE_SET "active";
+            target: "bg_indicator_off";
+            target: "bg_indicator_off_shadow";
+            target: "bg_indicator_on";
+            target: "bg_indicator_on_shadow";
+         }
+         program { "on_inactive";
+            action: STATE_SET "default";
+            target: "bg_indicator_off";
+            target: "bg_indicator_off_shadow";
+            target: "bg_indicator_on";
+            target: "bg_indicator_on_shadow";
+         }
+      }
+   }
+

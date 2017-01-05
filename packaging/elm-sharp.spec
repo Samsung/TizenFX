@@ -35,6 +35,7 @@ done
 
 edje_cc -id ElmSharp/theme/%{profile}/HD/images/ \
         -id ElmSharp/theme/%{profile}/HD/images/User_Input_Elements \
+        -id ElmSharp/theme/%{profile}/HD/images/Navigation_elements \
         ElmSharp/theme/%{profile}/elm-sharp-theme-%{profile}.edc ElmSharp/theme/elm-sharp-theme.edj
 
 %install

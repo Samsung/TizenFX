@@ -47,6 +47,27 @@
 #define CHECK_ONOFF_ICON_SIZE_INC 32 32
 #define CHECK_PAD_BEFORE_TEXT_INC 32 0
 
+//****************************************************************************//
+// Index
+//****************************************************************************//
+// FastScrol
+#define INDEX_ITEM_WIDTH_INC                        42 // 40 + 2(left line)
+#define INDEX_ITEM_HEIGHT_INC                       42 // 40 + 2(divider)
+#define INDEX_ITEM_TEXT_WIDTH_INC                   40
+#define INDEX_ITEM_TEXT_HEIGHT_INC                  40
+#define INDEX_DIVIDER_HEIGHT_INC                    2
+#define INDEX_SCROLL_BG_LINE_WIDTH_INC              2
+#define INDEX_TEXT_LEFT_PADDING_SIZE_INC            18
+#define INDEX_TEXT_RIGHT_PADDING_SIZE_INC           18
+#define INDEX_TEXT_BOTTOM_PADDING_SIZE_INC          10
+#define INDEX_PADDING_SIZE_INC                      7
+#define INDEX_ITEM_PADDING_SIZE_INC                 0
+#define INDEX_SCROLL_TEXT1_DEFAULT_SIZE_INC         132 158
+
+// Page Control
+#define INDEX_PAGECONTROL_IND_INC 42 40
+#define INDEX_PAGECONTROL_IND_MIN_INC 40 40
+
 #define STYLE_TAGS \
    tag:  "br" "\n";\
    tag:  "ps" "ps";\

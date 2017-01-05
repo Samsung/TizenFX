@@ -70,6 +70,7 @@ collections {
 #include "widgets/genlist.edc"
 #include "widgets/hover.edc"
 #include "widgets/hoversel.edc"
+#include "widgets/index.edc"
 #include "widgets/layout.edc"
 #include "widgets/list.edc"
 #include "widgets/popup.edc"

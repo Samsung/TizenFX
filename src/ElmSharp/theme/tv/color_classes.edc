@@ -225,6 +225,39 @@ color_classes {
       color: 255 255 255 255;
    }
    /*
+    * Index
+    */
+   color_class { "index/default/bg";
+      color: 250 250 250 255;
+   }
+   color_class { "index/default/bg_popup";
+      color: 61 185 204 255;
+   }
+   color_class { "index/default/text_popup";
+      color: 250 250 250 255;
+   }
+   color_class { "index_item/default/border";
+      color: 61 185 204 77;
+   }
+   color_class { "index_item/default/line";
+      color: 61 185 204 26;
+   }
+   color_class { "index_item/default/divider";
+      color: 61 185 204 26;
+   }
+   color_class { "index_item/default/text";
+      color: 61 185 204 222;
+   }
+   color_class { "index_item/default/text_pressed";
+      color: 61 185 204 222;
+   }
+   color_class { "index_item/pagecontrol/icon";
+      color: 250 250 250 128;
+   }
+   color_class { "index_item/pagecontrol/icon_on";
+      color: 250 250 250 255;
+   }
+   /*
     * Layout
     */
    color_class {
