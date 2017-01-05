@@ -40,6 +40,7 @@ group { name: "elm/check/base/default";
    data.item: "focus_highlight" "on";
    script {
       public is_focus=0;
+      public is_disabled=0;
       public set_focus() {
          set_int(is_focus, 1);
       }
@@ -55,6 +56,12 @@ group { name: "elm/check/base/default";
             set_state(PART:"check", "visible", 0.0);
             set_state(PART:"bg", "default", 0.0);
          }
+         if (get_int(is_disabled)) {
+            set_state(PART:"background", "on_disabled", 0.0);
+         }
+         else {
+            set_state(PART:"background", "on", 0.0);
+         }
       }
       public set_check_unset() {
          set_state(PART:"check", "default", 0.0);
@@ -64,9 +71,34 @@ group { name: "elm/check/base/default";
          else {
             set_state(PART:"bg", "default", 0.0);
          }
+         if (get_int(is_disabled)) {
+            set_state(PART:"background", "disabled", 0.0);
+         }
+         else {
+            set_state(PART:"background", "default", 0.0);
+         }
       }
    }
    parts {
+      part { name: "background"; mouse_events: 0;
+         type: RECT;
+         description { state: "default" 0.0;
+            rel.to: "bg";
+            color_class: "check/default/bg";
+         }
+         description { state: "disabled";
+            inherit: "default" 0.0;
+            color_class: "check/default/bg_disabled";
+         }
+         description { state: "on";
+            inherit: "default" 0.0;
+            color_class: "check/default/bg_on";
+         }
+         description { state: "on_disabled";
+            inherit: "default" 0.0;
+            color_class: "check/default/bg_on_disabled";
+         }
+      }
       part { name: "bg"; mouse_events: 0;
          scale: 1;
          description { state: "default" 0.0;
@@ -156,7 +188,7 @@ group { name: "elm/check/base/default";
             rel1.relative: 1.0 0.0;
             rel2.to: "pad.elm.text";
             rel2.relative: 0.0 1.0;
-            color: 0 0 0 255;
+            color_class: "check/default/text";
             text {
                font: FONT_L;
                size: CHECK_FONT_SIZE;
@@ -172,13 +204,11 @@ group { name: "elm/check/base/default";
          }
          description { state: "disabled" 0.0;
             inherit: "default" 0.0;
-            color: 0 0 0 128;
-            color3: 0 0 0 0;
+            color_class: "check/default/text_disabled";
          }
          description { state: "disabled_visible" 0.0;
             inherit: "default" 0.0;
-            color: 0 0 0 128;
-            color3: 0 0 0 0;
+            color_class: "check/default/text_disabled";
             visible: 1;
             text.min: 1 1;
             text.ellipsis: -1;
@@ -305,6 +335,8 @@ group { name: "elm/check/base/default";
          script {
             new st[31];
             new Float:vl;
+            set_int(is_disabled, 1);
+
             get_state(PART:"elm.text", st, 30, vl);
             if (!strcmp(st, "visible"))
                set_state(PART:"elm.text", "disabled_visible", 0.0);
@@ -318,10 +350,14 @@ group { name: "elm/check/base/default";
                set_state(PART:"elm.swallow.content", "disabled", 0.0);
 
             get_state(PART:"check", st, 30, vl);
-            if (!strcmp(st, "visible"))
+            if (!strcmp(st, "visible")) {
                set_state(PART:"check", "disabled_visible", 0.0);
-            else
+               set_state(PART:"background", "on_disabled", 0.0);
+            }
+            else {
                set_state(PART:"check", "disabled", 0.0);
+               set_state(PART:"background", "disabled", 0.0);
+            }
          }
       }
       program { name: "enable";
@@ -335,6 +371,7 @@ group { name: "elm/check/base/default";
          script {
             new st[31];
             new Float:vl;
+            set_int(is_disabled, 0);
             get_state(PART:"elm.text", st, 30, vl);
             if (!strcmp(st, "disabled_visible"))
                set_state(PART:"elm.text", "visible", 0.0);
@@ -348,10 +385,14 @@ group { name: "elm/check/base/default";
                set_state(PART:"elm.swallow.content", "default", 0.0);
 
             get_state(PART:"check", st, 30, vl);
-            if (!strcmp(st, "disabled_visible"))
+            if (!strcmp(st, "disabled_visible")) {
                set_state(PART:"check", "visible", 0.0);
-            else
+               set_state(PART:"background", "on", 0.0);
+            }
+            else {
                set_state(PART:"check", "default", 0.0);
+               set_state(PART:"background", "default", 0.0);
+            }
          }
       }
    }

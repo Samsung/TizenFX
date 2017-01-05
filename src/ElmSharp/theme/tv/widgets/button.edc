@@ -73,7 +73,7 @@ group { name: "elm/button/base/default";
             rel1.to: "base";
             rel2.to: "base";
             min: BUTTON_DEFAULT_MIN_SIZE;
-            color: 204 204 204 255;
+            color_class: "button/default/bg";
             image {
                normal: "round_rectangle_4X4.png";
                border: BUTTON_BORDER;
@@ -82,11 +82,11 @@ group { name: "elm/button/base/default";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
+            color_class: "button/default/bg_focused";
          }
          description { state: "dim" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme_alpha";
+            color_class: "button/default/bg_disabled";
          }
       }
       part { name: "elm.swallow.content"; type: SWALLOW;
@@ -109,7 +109,7 @@ group { name: "elm/button/base/default";
             rel1.relative: 1.0 0.0;
             rel2.to_x: "pad.right";
             rel2.relative: 0.0 1.0;
-            color: 89 89 89 255;
+            color_class: "button/default/text";
             text {
                font: FONT_M;//TODO Tizen Sans regular
                size: BUTTON_DEFAULT_FONT_SIZE;
@@ -121,12 +121,12 @@ group { name: "elm/button/base/default";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color: WHITE 255;
+            color_class: "button/default/text_focused";
             text.min: 1 1;
          }
          description { state: "dim" 0.0;
             inherit: "default" 0.0;
-            color: 89 89 89 102;
+            color_class: "button/default/text_disabled";
          }
       }
       part { name: "event"; type: RECT;
@@ -1577,6 +1577,37 @@ styles {
                run_program(PROGRAM:"disabled_effect");
                run_program(PROGRAM:"disabled_effect2");
                run_program(PROGRAM:"disabled_effect3");
+            }
+         }
+      }
+      program { name: "disable";
+         signal: "elm,state,disabled";
+         source: "elm";
+         script {
+            set_int(disabled, 1);
+            if (get_int(animate) == 1) return;
+            if (get_int(selected) == 1) {
+              set_state(PART:"clipper", "disabled", 0.0);
+              set_state(PART:"tizen_vg_shape_clipper", "disabled", 0.0);
+              set_state(PART:"elm.text", "disabled", 0.0);
+            }
+            else {
+              set_state(PART:"elm.text", "disabled", 0.0);
+            }
+         }
+      }
+      program { name: "enable";
+         signal: "elm,state,enabled";
+         source: "elm";
+         script {
+            set_int(disabled, 0);
+            if (get_int(selected) == 1){
+              set_state(PART:"clipper", "default", 0.0);
+              set_state(PART:"tizen_vg_shape_clipper", "default", 0.0);
+              set_state(PART:"elm.text", "default", 0.0);
+            }
+            else {
+              set_state(PART:"elm.text", "default", 0.0);
             }
          }
       }

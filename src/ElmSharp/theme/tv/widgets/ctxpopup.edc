@@ -69,7 +69,7 @@ group { name: "elm/ctxpopup/base/default";
       part { name: "base"; type: RECT;
          clip_to: "clip";
          description { state: "default" 0.0;
-            color: 0 0 0 0;
+            color_class: "ctxpopup/default/bg";
          }
       }
       part { name: "elm.swallow.content"; type: SWALLOW;
@@ -321,6 +321,7 @@ group {
          description { state: "clicked" 0.0;
             inherit: "default" 0.0;
             color: 255 255 255 255;
+            color_class: "ctxpopup_item/default/effect";
          }
       }
       part { name: "elm.proxy1.icon";
@@ -380,7 +381,7 @@ group {
             rel1.to_x: "elm.swallow.icon";
             rel2.to_x: "elm.proxy2.icon";
             rel2.relative: 1.0 1.0;
-            color: 89 89 89 255;
+            color_class: "ctxpopup_item/default/text";
             text {
                font: "FONT_M";
                size: 30;
@@ -391,11 +392,11 @@ group {
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color: 255 255 255 255;
+            color_class: "ctxpopup_item/default/text_focused";
          }
          description { state: "clicked" 0.0;
             inherit: "default" 0.0;
-            color: 0 0 0 255;
+            color_class: "ctxpopup_item/default/text_disabled";
          }
       }
       part { name: "over1"; type: RECT; mouse_events: 1;
@@ -419,7 +420,7 @@ group {
             rel1.relative: 0 1;
             rel1.offset: -32 0;
             rel2.to:"over1";
-            color: 222 222 222 255;
+            color_class: "ctxpopup_item/default/divider";
          }
 
       }

@@ -92,7 +92,7 @@ group { name: "elm/button/base/hoversel_vertical/default";
          description { state: "default" 0.0;
             rel1.to: "base";
             rel2.to: "base";
-            color: 0 0 0 76;
+            color_class: "hoversel/default/bg";
             image {
                normal: "round_rectangle_4X4.png";
                border: 4 4 4 4;
@@ -101,12 +101,11 @@ group { name: "elm/button/base/hoversel_vertical/default";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
-            color: 255 255 255 255;
+            color_class: "hoversel/default/bg_focused";
          }
          description { state: "disabled" 0.0;
             inherit: "default" 0.0;
-            color: 0 0 0 25;
+            color_class: "hoversel/default/bg_disabled";
          }
       }
       part { name: "down_icon";
@@ -131,7 +130,7 @@ group { name: "elm/button/base/hoversel_vertical/default";
             rel2.relative: 0.0 1.0;
             align: 0 0.5;
             fixed: 1 1;
-            color: 175 175 175 255;
+            color_class: "hoversel/default/text";
             text {
                size: HOVERSEL_FONT_SIZE;
                max: 1 0;
@@ -141,7 +140,7 @@ group { name: "elm/button/base/hoversel_vertical/default";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color: 255 255 255 255;
+            color_class: "hoversel/default/text_focused";
          }
          description { state: "visible" 0.0;
             inherit: "default" 0.0;
@@ -149,11 +148,11 @@ group { name: "elm/button/base/hoversel_vertical/default";
          description { state: "disabled" 0.0;
             inherit: "default" 0.0;
             color: 175 175 175 102;
+            color_class: "hoversel/default/text_disabled";
          }
          description { state: "disabled_visible" 0.0;
             inherit: "default" 0.0;
-            color: 158 158 158 102;
-            color3: 0 0 0 0;
+            color_class: "hoversel/default/text_disabled_visible";
          }
       }
       part { name: "pad.text"; type: SPACER;
@@ -393,20 +392,23 @@ group { name: "elm/button/base/hoversel_vertical_entry/default";
          description { state: "default" 0.0;
             rel1.to: "base";
             rel2.to: "base";
+            color_class: "hoversel_item/default/bg";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
+            color_class: "hoversel_item/default/bg_focused";
          }
          description { state: "highlight" 0.0;
             inherit: "default" 0.0;
+            color_class: "hoversel_item/default/bg_highlight";
          }
          description { state: "highlight_focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
+            color_class: "hoversel_item/default/bg_focused_highlight";
          }
          description { state: "disabled" 0.0;
             inherit: "default" 0.0;
+            color_class: "hoversel_item/default/bg_disabled";
          }
       }
       part { name: "pad.last_item"; type: SPACER;
@@ -424,8 +426,7 @@ group { name: "elm/button/base/hoversel_vertical_entry/default";
       part { name: "button_image_last";
          scale: 1;
          clip_to: "clipper.last_item";
-         description
-          { state: "default" 0.0;
+         description { state: "default" 0.0;
             rel1.to: "pad.last_item";
             rel2.to: "base";
             image {
@@ -433,20 +434,23 @@ group { name: "elm/button/base/hoversel_vertical_entry/default";
                border: 4 4 4 4;
                border_scale: 1;
             }
+            color_class: "open_ux_theme";
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
+            color_class: "hoversel_item/default/bg_focused";
          }
          description { state: "highlight" 0.0;
             inherit: "default" 0.0;
+            color_class: "hoversel_item/default/bg_highlight";
          }
          description { state: "highlight_focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "open_ux_theme";
+            color_class: "hoversel_item/default/bg_focused_highlight";
          }
          description { state: "disabled" 0.0;
             inherit: "default" 0.0;
+            color_class: "hoversel_item/default/bg_disabled";
          }
       }
       part { name: "list_division"; type: RECT;

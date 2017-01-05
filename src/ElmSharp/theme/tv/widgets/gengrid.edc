@@ -39,7 +39,7 @@ group { name: "elm/gengrid/item/default/default";
       part { name: "base"; type: RECT;
          scale: 1;
          description { state: "default" 0.0;
-            color: 0 0 0 179;
+            color_class: "gengrid_item/default/bg";
             rel1 {
                relative: 1.0 1.0;
                to: "top.left.pad";
@@ -51,7 +51,7 @@ group { name: "elm/gengrid/item/default/default";
          }
          description { state: "focused" 0.0;
             inherit: "default" 0.0;
-            color: 147 170 0 255;
+            color_class: "gengrid_item/default/effect";
          }
       }
       part { name: "top.left.pad"; type: SPACER;

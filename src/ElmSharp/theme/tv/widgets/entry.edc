@@ -37,7 +37,7 @@
 styles
 {
    style { name: "entry_single_textblock_style";
-      base: "font="FONT_M" font_size="32" align=left color=#cccccc wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_edit";
       tag:  "br" "";
       tag:  "ps" "";
       tag:  "em" "+ font_style=Oblique";
@@ -47,7 +47,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#FFFFFF";
    }
    style { name: "entry_single_textblock_selected_style";
-      base: "font="FONT_M" font_size="32" align=left color=#3d3d3d wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_edit_focused";
       tag:  "br" "";
       tag:  "ps" "";
       tag:  "em" "+ font_style=Oblique";
@@ -57,7 +57,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#FFFFFF";
    }
    style { name: "entry_single_textblock_disabled_style";
-      base: "font="FONT_M" font_size="32" align=left color=#919191 wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_edit_disabled";
       tag:  "br" "";
       tag:  "ps" "";
       tag:  "em" "+ font_style=Oblique";
@@ -67,7 +67,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#FFFFFF";
    }
    style { name: "entry_single_textblock_guide_style";
-      base: "font="FONT_M" font_size="32" align=left color=#7f7f7f wrap=none text_class=entry left_margin=0 right_margin=0 ellipsis=0.0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 ellipsis=0.0 color_class=entry/default/text_guide";
       tag:  "br" "";
       tag:  "ps" "";
       tag:  "em" "+ font_style=Oblique";
@@ -77,7 +77,7 @@ styles
 styles
 {
    style { name: "entry_textblock_style";
-      base: "font="FONT_M" font_size="32" align=left color=#cccccc wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_edit";
       tag:  "em" "+ font_style=Oblique";
       tag:  "link" "+ color=#800 underline=on underline_color=#8008";
       tag:  "hilight" "+ font_weight=Bold";
@@ -85,7 +85,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#000";
    }
    style { name: "entry_textblock_selected_style";
-      base: "font="FONT_M" font_size="32" align=left color=#3d3d3d wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_focused";
       tag:  "em" "+ font_style=Oblique";
       tag:  "link" "+ color=#800 underline=on underline_color=#8008";
       tag:  "hilight" "+ font_weight=Bold";
@@ -93,7 +93,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#000";
    }
    style { name: "entry_textblock_disabled_style";
-      base: "font="FONT_M" font_size="32" align=left color=#3d3d3d wrap=none text_class=entry left_margin=0 right_margin=0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 color_class=entry/default/text_edit_disabled";
       tag:  "em" "+ font_style=Oblique";
       tag:  "link" "+ color=#00000080 underline=on underline_color=#00000080";
       tag:  "hilight" "+ font_weight=Bold";
@@ -101,7 +101,7 @@ styles
       tag:  "preedit_sel" "+ backing=on backing_color=#000 color=#000";
    }
    style { name: "entry_textblock_guide_style";
-      base: "font="FONT_M" font_size="32" align=left color=#7f7f7f wrap=none text_class=entry left_margin=0 right_margin=0 ellipsis=0.0";
+      base: "font="FONT_M" font_size="32" align=left color=#FFF wrap=none text_class=entry left_margin=0 right_margin=0 ellipsis=0.0 color_class=entry/default/text_guide";
       tag:  "em" "+ font_style=Oblique";
       tag:  "hilight" "+ font_weight=Bold";
    }

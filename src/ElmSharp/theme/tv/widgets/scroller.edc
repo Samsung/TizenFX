@@ -29,8 +29,6 @@ DOC: Tizen TV_General Guide_GUI Guideline_v1.0_140430.ppt page : 61 style: black
 ****************************************************************************/
 group { name: "elm/scroller/base/default";
    alias: "elm/list/base/default";
-   alias: "elm/genlist/base/default";
-   alias: "elm/gengrid/base/default";
    alias: "elm/scroller/base/map_bubble";
    alias: "elm/genscroller/base/default";
 
@@ -562,6 +560,31 @@ group { name: "elm/scroller/base/default";
       }
    }
 }
+
+group { name: "elm/genlist/base/default";
+   inherit: "elm/scroller/base/default";
+   parts {
+      part { name: "bg"; type: RECT;
+         description { state: "default" 0.0;
+            color: 255 255 255 255;
+            color_class: "genlist/default/bg";
+         }
+      }
+   }
+}
+
+group { name: "elm/gengrid/base/default";
+   inherit: "elm/scroller/base/default";
+   parts {
+      part { name: "bg"; type: RECT;
+         description { state: "default" 0.0;
+            color: 255 255 255 255;
+            color_class: "gengrid/default/bg";
+         }
+      }
+   }
+}
+
 /********************************************************************************
 DOC: Tizen TV_General Guide_GUI Guideline_v1.0_140430.ppt page : 61 style: white
 * ******************************************************************************/
@@ -587,16 +610,82 @@ group { name: "elm/scroller/base/white";
    }
 }
 
+group { name: "elm/genlist/base/white";
+   inherit: "elm/genlist/base/default";
+
+   parts {
+      part { name: "elm.dragable.vbar";
+         description { state: "default" 0.0;
+           color: 255 255 255 25;
+        }
+      }
+      part { name: "elm.dragable.hbar";
+         description { state: "default" 0.0;
+            color: 255 255 255 25;
+         }
+      }
+   }
+}
+
+group { name: "elm/gengrid/base/white";
+   inherit: "elm/gengrid/base/default";
+
+   parts {
+      part { name: "elm.dragable.vbar";
+         description { state: "default" 0.0;
+           color: 255 255 255 25;
+        }
+      }
+      part { name: "elm.dragable.hbar";
+         description { state: "default" 0.0;
+            color: 255 255 255 25;
+         }
+      }
+   }
+}
+
 /********************************************************************************
 DOC: Tizen TV_General Guide_GUI Guideline_v1.0_140430.ppt page : 70 style: white
 ********************************************************************************/
 group { name: "elm/scroller/base/no_bar";
    inherit: "elm/scroller/base/default";
    alias: "elm/list/base/no_bar";
-   alias: "elm/genlist/base/no_bar";
-   alias: "elm/gengrid/base/no_bar";
    alias: "elm/scroller/base/map_bubble";
    alias: "elm/genscroller/base/no_bar";
+
+   parts {
+      part { name: "elm.dragable.vbar";
+         description { state: "default" 0.0;
+            visible: 0;
+        }
+      }
+      part { name: "elm.dragable.hbar";
+         description { state: "default" 0.0;
+            visible: 0;
+         }
+      }
+   }
+}
+
+group { name: "elm/genlist/base/no_bar";
+   inherit: "elm/genlist/base/default";
+
+   parts {
+      part { name: "elm.dragable.vbar";
+         description { state: "default" 0.0;
+            visible: 0;
+        }
+      }
+      part { name: "elm.dragable.hbar";
+         description { state: "default" 0.0;
+            visible: 0;
+         }
+      }
+   }
+}
+
+group { name: "elm/gengrid/base/no_bar";
+   inherit: "elm/gengrid/base/default";
 
    parts {
       part { name: "elm.dragable.vbar";

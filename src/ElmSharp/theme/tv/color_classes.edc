@@ -1,9 +1,245 @@
 color_classes {
    /*
+    * Button
+    */
+   color_class { "button/default/bg";
+      color: 204 204 204 255;
+   }
+   color_class { "button/default/bg_focused";
+      color: 69 143 255 255;
+      color2: 69 143 255 255;
+      color3: 69 143 255 255;
+   }
+   color_class { "button/default/bg_disabled";
+      color: 69 143 255 102;
+      color2: 69 143 255 102;
+      color3: 69 143 255 102;
+   }
+   color_class { "button/default/text";
+      color: 89 89 89 255;
+   }
+   color_class { "button/default/text_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "button/default/text_disabled";
+      color: 89 89 89 102;
+   }
+   /*
+    * Check
+    */
+   color_class { "check/default/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "check/default/bg_disabled";
+      color: 0 0 0 0;
+   }
+   color_class { "check/default/bg_on";
+      color: 0 0 0 0;
+   }
+   color_class { "check/default/bg_on_disabled";
+      color: 0 0 0 0;
+   }
+   color_class { "check/default/text";
+      color: 0 0 0 255;
+   }
+   color_class { "check/default/text_disabled";
+      color: 0 0 0 128;
+      color3: 0 0 0 0;
+   }
+   /*
+    * Ctxpopup
+    */
+   color_class { "ctxpopup/default/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "ctxpopup_item/default/effect";
+      color: 61 185 204 77;
+   }
+   color_class { "ctxpopup_item/default/divider";
+      color: 222 222 222 255;
+   }
+   color_class { "ctxpopup_item/default/text";
+      color: 89 89 89 255;
+   }
+   color_class { "ctxpopup_item/default/text_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "ctxpopup_item/default/text_disabled";
+      color: 0 0 0 255;
+   }
+   /*
+    * Datetime
+    */
+   color_class { "datetime/default/bg";
+      color: 250 250 250 255;
+   }
+   color_class { "datetime/date_layout/bg";
+      color: 250 250 250 255;
+   }
+   color_class { "datetime/time_layout/bg";
+      color: 250 250 250 255;
+   }
+   color_class { "datetime/time_layout_24hr/bg";
+      color: 250 250 250 255;
+   }
+   /*
+    * Entry
+    */
+   color_class { "entry/default/text_edit";
+      color: 204 204 204 255;
+   }
+   color_class { "entry/default/text_edit_focused";
+      color: 61 61 61 255;
+   }
+   color_class { "entry/default/text_edit_disabled";
+      color: 145 145 145 255;
+   }
+   color_class { "entry/default/text_edit_guide";
+      color: 127 127 127 255;
+   }
+   /*
+    * Gengrid
+    */
+   color_class { "gengrid/default/bg";
+      color: 255 255 255 0;
+   }
+   color_class { "gengrid_item/default/bg";
+      color: 0 0 0 179;
+   }
+   color_class { "gengrid_item/default/effect";
+      color: 147 170 0 255;
+   }
+   /*
+    * Genlist
+    */
+   color_class { "genlist/default/bg";
+      color: 255 255 255 0;
+   }
+   color_class { "genlist_item/default/bg";
+      color: 255 255 255 255;
+   }
+   color_class { "genlist_item/default/bg_selected";
+      color: 69 143 255 255;
+   }
+   color_class { "genlist_item/default/bg_focused";
+      color: 69 143 255 255;
+   }
+   color_class { "genlist_item/default/bottomline";
+      color: 222 222 222 222;
+   }
+   /*
+    * Hoversel
+    */
+   color_class { "hoversel/default/bg";
+      color: 0 0 0 76;
+   }
+   color_class { "hoversel/default/bg_focused";
+      color: 69 143 255 255;
+      color2: 69 143 255 255;
+      color3: 69 143 255 255;
+   }
+   color_class { "hoversel/default/bg_disabled";
+      color: 0 0 0 25;
+   }
+   color_class { "hoversel/default/text";
+      color: 175 175 175 255;
+   }
+   color_class { "hoversel/default/text_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "hoversel/default/text_disabled";
+      color: 175 175 175 102;
+   }
+   // FIXME: temporarily add new color_class because of
+   //        diff between disabled texts.
+   color_class { "hoversel/default/text_disabled_visible";
+      color: 158 158 158 102;
+      color3: 0 0 0 0;
+   }
+   color_class { "hoversel_item/default/bg";
+      color: 255 255 255 255;
+   }
+   color_class { "hoversel_item/default/bg_focused";
+      color: 69 143 255 255;
+      color2: 69 143 255 255;
+      color3: 69 143 255 255;
+   }
+   color_class { "hoversel_item/default/bg_highlight";
+      color: 255 255 255 255;
+   }
+   color_class { "hoversel_item/default/bg_focused_highlight";
+      color: 69 143 255 255;
+      color2: 69 143 255 255;
+      color3: 69 143 255 255;
+   }
+   color_class { "hoversel_item/default/bg_disabled";
+      color: 255 255 255 255;
+   }
+   /*
     * Layout
     */
    color_class {
       name: "layout/background/bg";
       color: 0 0 0 0;
+   }
+   /*
+    * Popup
+    */
+   color_class { "popup/default/bg_content";
+      color: 255 255 255 255;
+   }
+   color_class { "popup/default/bg_title";
+      color: 42 76 130 255;
+   }
+   color_class { "popup/default/text_maintitle";
+      color: 255 255 255 255;
+   }
+   color_class { "popup/default/text_content";
+      color: 0 0 0 255;
+   }
+   /*
+    * Progressbar
+    */
+   color_class { "progressbar/default/bg";
+      color: 255 255 255 26;
+   }
+   color_class { "progressbar/default/bar";
+      color: 255 255 255 178;
+   }
+   /*
+    * Radio
+    */
+   color_class { "radio/default/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "radio/default/stroke";
+      color: 255 255 255 255;
+   }
+   color_class { "radio/default/stroke_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "radio/default/stroke_disabled";
+      color: 255 255 255 51;
+   }
+   color_class { "radio/default/icon";
+      color: 255 255 255 255;
+   }
+   color_class { "radio/default/icon_focused";
+      color: 255 255 255 255;
+   }
+   /*
+    * Slider
+    */
+   color_class { "slider/default/bg";
+      color: 255 255 255 255;
+   }
+   /*
+    * Spinner
+    */
+   color_class { "spinner/default/bg";
+      color: 255 255 255 255;
+   }
+   color_class { "spinner/vertical/bg";
+      color: 250 250 250 255;
    }
 }

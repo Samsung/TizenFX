@@ -35,7 +35,7 @@ group { name: "elm/spinner/base/default";
          type: RECT;
          scale: 1;
          description { state: "default" 0.0;
-            color: 255 255 255 255;
+            color_class: "spinner/default/bg";
          }
       }
       part { name: "access";
@@ -181,7 +181,7 @@ group { name: "elm/spinner/base/vertical";
          scale: 1;
          description { state: "default" 0.0;
             min: 146 348;
-            color: 250 250 250 255;
+            color_class: "spinner/vertical/bg";
          }
       }
       part { name: "access";

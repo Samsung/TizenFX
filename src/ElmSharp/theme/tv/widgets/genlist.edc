@@ -34,9 +34,9 @@ group { "elm/genlist/item/1text/default"; nomouse; program_source: "elm";
    target_group: "default" "base" "bottom_line" "elm.text";
    target_group: "disabled" "event" "elm.text";
    parts {
-      GENLIST_BASE(255 255 255 255, 69 143 255 255)
+      GENLIST_BASE_COLOR_CLASS("genlist_item/default/bg", "genlist_item/default/bg_selected", "genlist_item/default/bg_focused")
       GENLIST_PAD(40, 40, 20, 20)
-      GENLIST_BOTTOM_LINE(222 222 222 222)
+      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/default/bottomline")
       text { "elm.text"; scale;
          desc { "default";
             rel1.to: "pad.top.left";

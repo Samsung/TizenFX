@@ -35,7 +35,7 @@ group { name: "elm/datetime/base/default";
         type: RECT;
         scale: 1;
         description { state: "default" 0.0;
-           color: 250 250 250 255;
+           color_class: "datetime/default/bg";
         }
       }
       part { name: "base";
@@ -264,6 +264,18 @@ group { name: "elm/datetime/base/default";
       }
    }
 }
+group { name:  "elm/datetime/base/date_layout";
+   inherit: "elm/datetime/base/default";
+   parts {
+      part { name: "base_bg";
+        type: RECT;
+        scale: 1;
+        description { state: "default" 0.0;
+           color_class: "datetime/date_layout/bg";
+        }
+      }
+   }
+}
 
 group { name: "elm/datetime/base/time_layout";
    parts {
@@ -271,7 +283,7 @@ group { name: "elm/datetime/base/time_layout";
         type: RECT;
         scale: 1;
         description { state: "default" 0.0;
-           color: 250 250 250 255;
+           color_class: "datetime/time_layout/bg";
         }
       }
       part { name: "base";
@@ -674,6 +686,13 @@ group { name: "elm/datetime/base/time_layout_24hr";
    inherit: "elm/datetime/base/time_layout";
 
    parts {
+      part { name: "base_bg";
+        type: RECT;
+        scale: 1;
+        description { state: "default" 0.0;
+           color_class: "datetime/time_layout_24hr/bg";
+        }
+      }
       part { name: "base";
          type: SPACER;
          scale: 1;

@@ -57,6 +57,7 @@ group { name: "elm/slider/horizontal/default";
                to_x: "pad.level.right";
                relative: 0 1;
             }
+            color_class: "slider/default/bg";
          }
       }
       part { name: "pad.level.left"; type: SPACER; mouse_events: 0;

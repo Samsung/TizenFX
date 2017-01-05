@@ -97,6 +97,31 @@
          } \
       }
 
+#define GENLIST_BASE_COLOR_CLASS(COLOR_CLASS, COLOR_CLASS_SELECTED, COLOR_CLASS_FOCUSED) \
+      rect { "event"; mouse; \
+         desc { "default"; \
+            color: 0 0 0 0; \
+         } \
+         desc { "disabled"; \
+            inherit: "default"; \
+            hid; \
+         } \
+      } \
+      rect { "base"; \
+         scale; \
+         desc { "default"; \
+            color_class: COLOR_CLASS; \
+         } \
+         desc { "selected"; \
+            inherit: "default"; \
+            color_class: COLOR_CLASS_SELECTED; \
+         } \
+         desc { "focused"; \
+            inherit: "default"; \
+            color_class: COLOR_CLASS_FOCUSED; \
+         } \
+      }
+
 #define GENLIST_PAD(LEFT, RIGHT, TOP, BOTTOM) \
       spacer { "pad.top.left"; \
          scale; \
@@ -125,6 +150,21 @@
             rel1.relative: 0.0 1.0; \
             align: 0.5 1.0; \
             color: COLOR; \
+         } \
+         desc { "focused"; \
+            inherit: "default"; \
+            hid; \
+         } \
+      }
+
+#define GENLIST_BOTTOM_LINE_COLOR_CLASS(COLOR_CLASS) \
+      rect { "bottom_line"; \
+         desc { "default"; \
+            fixed: 0 1; \
+            min: 0 1; \
+            rel1.relative: 0.0 1.0; \
+            align: 0.5 1.0; \
+            color_class: COLOR_CLASS; \
          } \
          desc { "focused"; \
             inherit: "default"; \
