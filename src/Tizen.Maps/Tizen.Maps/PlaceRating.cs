@@ -30,11 +30,8 @@ namespace Tizen.Maps
         {
             var handle = new Interop.PlaceRatingHandle(nativeHandle);
 
-            var err = Interop.PlaceRating.GetCount(handle, out _count);
-            err.WarnIfFailed("Failed to get count value for this rating");
-
-            err = Interop.PlaceRating.GetAverage(handle, out _average);
-            err.WarnIfFailed("Failed to get average value for this rating");
+            Interop.PlaceRating.GetCount(handle, out _count);
+            Interop.PlaceRating.GetAverage(handle, out _average);
         }
 
         /// <summary>

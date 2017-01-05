@@ -30,18 +30,14 @@ namespace Tizen.Maps
         internal PlaceEditorial(IntPtr nativeHandle)
         {
             var handle = new Interop.PlaceEditorialHandle(nativeHandle);
-            var err = Interop.PlaceEditorial.GetDescription(handle, out _description);
-            err.WarnIfFailed("Failed to get description for this editorial");
 
-            err = Interop.PlaceEditorial.GetLanguage(handle, out _language);
-            err.WarnIfFailed("Failed to get language for this editorial");
+            Interop.PlaceEditorial.GetDescription(handle, out _description);
+            Interop.PlaceEditorial.GetLanguage(handle, out _language);
 
             IntPtr mediaHandle;
-            err = Interop.PlaceEditorial.GetMedia(handle, out mediaHandle);
-            if (err.WarnIfFailed("Failed to get media for this editorial"))
-            {
+            var err = Interop.PlaceEditorial.GetMedia(handle, out mediaHandle);
+            if (err.IsSuccess())
                 _media = new PlaceMedia(mediaHandle);
-            }
         }
 
         /// <summary>

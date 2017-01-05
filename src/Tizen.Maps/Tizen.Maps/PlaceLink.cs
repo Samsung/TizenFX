@@ -33,17 +33,10 @@ namespace Tizen.Maps
         {
             var handle = new Interop.PlaceLinkObjectHandle(nativeHandle);
 
-            var err = Interop.PlaceLinkObject.GetId(handle, out _id);
-            err.WarnIfFailed("Failed to get id for this link");
-
-            err = Interop.PlaceLinkObject.GetName(handle, out _name);
-            err.WarnIfFailed("Failed to get name for this link");
-
-            err = Interop.PlaceLinkObject.GetString(handle, out _string);
-            err.WarnIfFailed("Failed to get string for this link");
-
-            err = Interop.PlaceLinkObject.GetType(handle, out _type);
-            err.WarnIfFailed("Failed to get type for this link");
+            Interop.PlaceLinkObject.GetId(handle, out _id);
+            Interop.PlaceLinkObject.GetName(handle, out _name);
+            Interop.PlaceLinkObject.GetString(handle, out _string);
+            Interop.PlaceLinkObject.GetType(handle, out _type);
         }
 
         /// <summary>

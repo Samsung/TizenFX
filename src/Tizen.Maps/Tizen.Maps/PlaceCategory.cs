@@ -106,14 +106,9 @@ namespace Tizen.Maps
 
         internal void Initialize()
         {
-            var err = Interop.PlaceCategory.GetId(handle, out _id);
-            err.WarnIfFailed("Failed to get id for place category");
-
-            err = Interop.PlaceCategory.GetName(handle, out _name);
-            err.WarnIfFailed("Failed to get name for place category");
-
-            err = Interop.PlaceCategory.GetUrl(handle, out _url);
-            err.WarnIfFailed("Failed to get URL for place category");
+            Interop.PlaceCategory.GetId(handle, out _id);
+            Interop.PlaceCategory.GetName(handle, out _name);
+            Interop.PlaceCategory.GetUrl(handle, out _url);
         }
     }
 }

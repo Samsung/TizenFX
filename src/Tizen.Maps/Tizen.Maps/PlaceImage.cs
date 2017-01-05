@@ -33,31 +33,21 @@ namespace Tizen.Maps
         internal PlaceImage(IntPtr nativeHandle)
         {
             var handle = new Interop.PlaceImageHandle(nativeHandle);
-            var err = Interop.PlaceImage.GetId(handle, out _id);
-            err.WarnIfFailed("Failed to get id for this image");
 
-            err = Interop.PlaceImage.GetUrl(handle, out _url);
-            err.WarnIfFailed("Failed to get URL for this image");
-
-            err = Interop.PlaceImage.GetWidth(handle, out _width);
-            err.WarnIfFailed("Failed to get width for this image");
-
-            err = Interop.PlaceImage.GetHeight(handle, out _height);
-            err.WarnIfFailed("Failed to get height for this image");
+            Interop.PlaceImage.GetId(handle, out _id);
+            Interop.PlaceImage.GetUrl(handle, out _url);
+            Interop.PlaceImage.GetWidth(handle, out _width);
+            Interop.PlaceImage.GetHeight(handle, out _height);
 
             IntPtr userHandle;
-            err = Interop.PlaceImage.GetUserLink(handle, out userHandle);
-            if (err.WarnIfFailed("Failed to get user link for this image"))
-            {
+            var err = Interop.PlaceImage.GetUserLink(handle, out userHandle);
+            if (err.IsSuccess())
                 _userLink = new PlaceLink(userHandle);
-            }
 
             IntPtr mediaHandle;
             err = Interop.PlaceImage.GetMedia(handle, out mediaHandle);
-            if (err.WarnIfFailed("Failed to get media for this image"))
-            {
+            if (err.IsSuccess())
                 _media = new PlaceMedia(mediaHandle);
-            }
         }
 
         /// <summary>

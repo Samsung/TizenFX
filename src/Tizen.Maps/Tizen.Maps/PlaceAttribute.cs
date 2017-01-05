@@ -30,14 +30,10 @@ namespace Tizen.Maps
         internal PlaceAttribute(IntPtr nativeHandle)
         {
             var handle = new Interop.PlaceAttributeHandle(nativeHandle);
-            var err = Interop.PlaceAttribute.GetId(handle, out _id);
-            err.WarnIfFailed("Failed to get id for this attribute");
 
-            err = Interop.PlaceAttribute.GetLabel(handle, out _label);
-            err.WarnIfFailed("Failed to get label for this attribute");
-
-            err = Interop.PlaceAttribute.GetText(handle, out _text);
-            err.WarnIfFailed("Failed to get text for this attribute");
+            Interop.PlaceAttribute.GetId(handle, out _id);
+            Interop.PlaceAttribute.GetLabel(handle, out _label);
+            Interop.PlaceAttribute.GetText(handle, out _text);
         }
 
         /// <summary>

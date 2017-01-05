@@ -31,14 +31,10 @@ namespace Tizen.Maps
         internal PlaceContact(IntPtr nativeHandle)
         {
             var handle = new Interop.PlaceContactHandle(nativeHandle);
-            var err = Interop.PlaceContact.GetLabel(handle, out _label);
-            err.WarnIfFailed("Failed to get label for this contact");
 
-            err = Interop.PlaceContact.GetType(handle, out _type);
-            err.WarnIfFailed("Failed to get type for this contact");
-
-            err = Interop.PlaceContact.GetValue(handle, out _value);
-            err.WarnIfFailed("Failed to get value for this contact");
+            Interop.PlaceContact.GetLabel(handle, out _label);
+            Interop.PlaceContact.GetType(handle, out _type);
+            Interop.PlaceContact.GetValue(handle, out _value);
         }
 
         /// <summary>

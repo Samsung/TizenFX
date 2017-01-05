@@ -37,8 +37,6 @@ namespace Tizen.Maps
             }
         }
 
-        // TODO: Need to rename all Geocoordinates type property to Coordinates and all screen coordinates to Position
-
         /// <summary>
         /// Geographical coordinates for marker
         /// </summary>

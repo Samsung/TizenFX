@@ -31,22 +31,17 @@ namespace Tizen.Maps
         {
             var handle = new Interop.PlaceMediaHandle(nativeHandle);
 
-            var err = Interop.PlaceMedia.GetAttribution(handle, out _attribution);
-            err.WarnIfFailed("Failed to get attribution for this media");
+            Interop.PlaceMedia.GetAttribution(handle, out _attribution);
 
             IntPtr supplierHandle;
-            err = Interop.PlaceMedia.GetSupplier(handle, out supplierHandle);
-            if (err.WarnIfFailed("Failed to get supplier object for this media"))
-            {
+            var err = Interop.PlaceMedia.GetSupplier(handle, out supplierHandle);
+            if (err.IsSuccess())
                 _supplier = new PlaceLink(supplierHandle);
-            }
 
             IntPtr viaHandle;
             err = Interop.PlaceMedia.GetVia(handle, out viaHandle);
-            if (err.WarnIfFailed("Failed to get via object for this media"))
-            {
+            if (err.IsSuccess())
                 _via = new PlaceLink(viaHandle);
-            }
         }
 
         /// <summary>

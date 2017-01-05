@@ -39,7 +39,7 @@ namespace Tizen.Maps
         {
             IntPtr nativeHandle;
             var err = Interop.Preference.Create(out nativeHandle);
-            err.WarnIfFailed("Failed to create native preference handle");
+            err.ThrowIfFailed("Failed to create native preference handle");
 
             handle = new Interop.PreferenceHandle(nativeHandle);
         }

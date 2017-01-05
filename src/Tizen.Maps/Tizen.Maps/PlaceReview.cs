@@ -33,10 +33,11 @@ namespace Tizen.Maps
 
         internal PlaceReview(IntPtr nativeHandle)
         {
-            string date;
             var handle = new Interop.PlaceReviewHandle(nativeHandle);
+
+            string date;
             var err = Interop.PlaceReview.GetDate(handle, out date);
-            if (err.WarnIfFailed("Failed to get date for this review"))
+            if (err.IsSuccess())
             {
                 if (DateTime.TryParse(date, out _date) == false)
                 {
@@ -44,31 +45,20 @@ namespace Tizen.Maps
                 }
             }
 
-            err = Interop.PlaceReview.GetTitle(handle, out _title);
-            err.WarnIfFailed("Failed to get title for this review");
-
-            err = Interop.PlaceReview.GetRating(handle, out _rating);
-            err.WarnIfFailed("Failed to get rating for this review");
-
-            err = Interop.PlaceReview.GetDescription(handle, out _description);
-            err.WarnIfFailed("Failed to get description for this review");
-
-            err = Interop.PlaceReview.GetLanguage(handle, out _language);
-            err.WarnIfFailed("Failed to get language for this review");
+            Interop.PlaceReview.GetTitle(handle, out _title);
+            Interop.PlaceReview.GetRating(handle, out _rating);
+            Interop.PlaceReview.GetDescription(handle, out _description);
+            Interop.PlaceReview.GetLanguage(handle, out _language);
 
             IntPtr mediaHandle;
             err = Interop.PlaceReview.GetMedia(handle, out mediaHandle);
-            if (err.WarnIfFailed("Failed to get media for this review"))
-            {
+            if (err.IsSuccess())
                 _media = new PlaceMedia(mediaHandle);
-            }
 
             IntPtr userHandle;
             err = Interop.PlaceReview.GetUserLink(handle, out userHandle);
-            if (err.WarnIfFailed("Failed to get user link for this review"))
-            {
+            if (err.IsSuccess())
                 _userLink = new PlaceLink(userHandle);
-            }
         }
 
         /// <summary>

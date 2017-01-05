@@ -49,22 +49,17 @@ namespace Tizen.Maps
         {
             handle = new Interop.PlaceHandle(nativeHandle);
 
-            var err = Interop.Place.GetDistance(handle, out _distance);
-            err.WarnIfFailed("Failed to get distance for this place");
+            Interop.Place.GetDistance(handle, out _distance);
 
             IntPtr supplierHandle;
-            err = Interop.Place.GetSupplierLink(handle, out supplierHandle);
-            if (err.WarnIfFailed("Failed to get supplier link for this image"))
-            {
+            var err = Interop.Place.GetSupplierLink(handle, out supplierHandle);
+            if (err.IsSuccess())
                 _supplier = new PlaceLink(supplierHandle);
-            }
 
             IntPtr relatedHandle;
             err = Interop.Place.GetRelatedLink(handle, out relatedHandle);
-            if (err.WarnIfFailed("Failed to get related link for this image"))
-            {
+            if (err.IsSuccess())
                 _related = new PlaceLink(relatedHandle);
-            }
         }
 
         /// <summary>

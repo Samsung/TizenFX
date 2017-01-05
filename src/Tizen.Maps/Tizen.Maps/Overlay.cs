@@ -46,7 +46,6 @@ namespace Tizen.Maps
             {
                 err.ThrowIfFailed("given coordinates or parent evas object is null");
             }
-
             _containedObject = objectToContain;
         }
 

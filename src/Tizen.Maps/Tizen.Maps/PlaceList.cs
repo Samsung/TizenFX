@@ -36,8 +36,7 @@ namespace Tizen.Maps
                 return true;
             };
 
-            var err = Interop.Place.ListForeach(handle, callback, IntPtr.Zero);
-            err.WarnIfFailed("Failed to create address to the list from native handle");
+            Interop.Place.ListForeach(handle, callback, IntPtr.Zero);
         }
 
         /// <summary>
