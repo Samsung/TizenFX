@@ -39,3 +39,34 @@
 //****************************************************************************//
 
 #define BASE_SCALE_INC 2.6
+
+//****************************************************************************//
+// Check
+//****************************************************************************//
+#define CHECK_ONOFF_SIZE_INC 72 72
+#define CHECK_ONOFF_ICON_SIZE_INC 32 32
+#define CHECK_PAD_BEFORE_TEXT_INC 32 0
+
+#define STYLE_TAGS \
+   tag:  "br" "\n";\
+   tag:  "ps" "ps";\
+   tag:  "tab" "\t";\
+   tag:  "b" "+ font_weight=Bold";
+
+#define STYLE_TAG_MATCH \
+   tag:  "match" "+ color=#3db8cc";
+
+styles {
+   style { name: "check_on&off";
+      base: "color=#FFF color_class=check/on&off/text font=Tizen:weight=Light font_size=40 text_class=tizen ellipsis=1.0";
+      STYLE_TAGS
+   }
+   style { name: "check_on&off_dim";
+      base: "color=#FFF color_class=check/on&off/text_disabled font=Tizen:weight=Light font_size=40 text_class=tizen ellipsis=1.0";
+      STYLE_TAGS
+   }
+   style { name: "check_on&off_press";
+      base: "color=#FFF color_class=check/on&off/text_pressed font=Tizen:weight=Light font_size=40 text_class=tizen ellipsis=1.0";
+      STYLE_TAGS
+   }
+}

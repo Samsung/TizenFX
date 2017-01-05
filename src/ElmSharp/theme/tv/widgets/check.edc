@@ -397,3 +397,571 @@ group { name: "elm/check/base/default";
       }
    }
 }
+
+group { "elm/check/event/default";
+   inherit_only: 1;
+   parts {
+      rect { "event";
+         mouse;
+         desc { "default";
+            color: 0 0 0 0;
+            rel.to: "base";
+         }
+         desc { "disabled";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+   programs {
+      program { "clicked";
+         signal: "mouse,clicked,1";
+         source: "event";
+         action: SIGNAL_EMIT "elm,action,click" "";
+         after: "on_clicked";
+      }
+      program { "pressed";
+         signal: "mouse,down,1*";
+         source: "event";
+         action: SIGNAL_EMIT "elm,action,press" "";
+         after: "on_pressed";
+      }
+      program { "unpressed";
+         signal: "mouse,up,1";
+         source: "event";
+         action: SIGNAL_EMIT "elm,action,unpress" "";
+         after: "on_unpressed";
+      }
+      program { "set_check";
+         signal: "elm,state,check,on";
+         source: "elm";
+         after: "on_set_check";
+      }
+      program { "unset_check";
+         signal: "elm,state,check,off";
+         source: "elm";
+         after: "on_unset_check";
+      }
+      program { "disabled";
+         signal: "elm,state,disabled";
+         source: "elm";
+         after: "on_disabled";
+      }
+      program { "enabled";
+         signal: "elm,state,enabled";
+         source: "elm";
+         after: "on_enabled";
+      }
+   }
+}
+
+group { "elm/check/base/on&off";
+   nomouse;
+   images{
+      vector: "core_toggle_bg_green.svg";
+      vector: "core_toggle_bg_gray.svg";
+      vector: "core_toggle_icon_on.svg";
+      vector: "core_toggle_icon_off.svg";
+   }
+   target_group: "vector_group" "clipper_bg_vector" "clipper_icon_on" "clipper_icon_off" "icon_on" "icon_off";
+   target_group: "vector_group_base" "clipper_bg_vector";
+   target_group: "vector_group_phase1" "clipper_icon_on" "icon_on";
+   target_group: "vector_group_phase2" "clipper_icon_off" "icon_off";
+   target_group: "programs_set_anim" "set_check_with_anim" "set_check_with_anim_phase1" "set_check_with_anim_phase2" "set_check_with_anim_base";
+   target_group: "programs_unset_anim" "unset_check_with_anim" "unset_check_with_anim_phase1" "unset_check_with_anim_phase2" "unset_check_with_anim_base";
+   parts {
+      spacer { "base";
+         scale;
+         desc { "default";
+           min: CHECK_ONOFF_SIZE_INC;
+         }
+      }
+      vector { name:"bg_vector";
+         scale;
+         clip: "clipper_bg_vector";
+         desc { "default";
+            image.normal: "core_toggle_bg_green.svg";
+            min: CHECK_ONOFF_SIZE_INC;
+            rel1.relative: 0 0.5;
+            rel2.relative: 0 0.5;
+            align: 0 0.5;
+            fixed: 1 1;
+         }
+      }
+      rect { name:"clipper_bg_vector";
+         desc { "default";
+            color_class: "check/on&off/bg";
+         }
+         desc { "on";
+            color_class: "check/on&off/bg_on";
+         }
+         desc { "off";
+            inherit: "default";
+         }
+         desc { "disabled_on";
+            color_class: "check/on&off/bg_disabled";
+         }
+         desc { "disabled_off";
+            inherit: "disabled_on";
+         }
+      }
+      rect { name:"clipper_icon_on";
+         desc { "default";
+            color_class: "check/on&off/icon_on";
+         }
+         desc { "on";
+            inherit: "default" ;
+         }
+         desc { "off";
+            inherit: "default";
+        }
+         desc { "disabled_on";
+            inherit:"default";
+         }
+         desc { "disabled_off";
+            inherit:"default";
+         }
+      }
+      vector { "icon_on";
+         scale;
+         clip: "clipper_icon_on";
+         desc { "default";
+            image.normal: "core_toggle_icon_on.svg";
+            rel.to: "bg_vector";
+            rel1.relative: 0.5 0.5;
+            rel2.relative: 0.5 0.5;
+         }
+         desc { "on";
+            inherit: "default";
+            rel1.relative: 0.0 0.0;
+            rel2.relative: 1.0 1.0;
+         }
+         desc { "off";
+            inherit: "default";
+         }
+         desc { "disabled_on";
+            inherit: "on";
+         }
+         desc { "disabled_off";
+            inherit: "off";
+         }
+      }
+      rect { name:"clipper_icon_off";
+         desc { "default";
+            color_class: "check/on&off/icon";
+         }
+         desc { "on";
+            inherit: "default" ;
+         }
+         desc { "off";
+            inherit: "default";
+        }
+         desc { "disabled_on";
+            inherit:"default";
+         }
+         desc { "disabled_off";
+            inherit:"default";
+         }
+      }
+      vector { "icon_off";
+         scale;
+         clip: "clipper_icon_off";
+         desc { "default";
+            image.normal: "core_toggle_icon_off.svg";
+            rel.to: "bg_vector";
+            rel1.relative: 0.0 0.0;
+            rel2.relative: 1.0 1.0;
+         }
+         desc { "on";
+            inherit: "default";
+            rel1.relative: 0.5 0.5;
+            rel2.relative: 0.5 0.5;
+         }
+         desc { "off";
+            inherit: "default";
+         }
+         desc { "disabled_on";
+            inherit: "on";
+         }
+         desc { "disabled_off";
+            inherit:"default";
+         }
+      }
+      spacer { "padding_before_text";
+         scale;
+         desc { "default";
+            align: 0.0 0.5;
+            min: 0 0;
+            rel1 {
+               to: "bg_vector";
+               relative: 1.0 0.0;
+            }
+            rel2 {
+               to: "bg_vector";
+               relative: 1.0 1.0;
+            }
+         }
+         desc { "visible";
+            inherit: "default";
+            min: CHECK_PAD_BEFORE_TEXT_INC;
+            fixed: 1 1;
+         }
+      }
+      textblock { "elm.text";
+         nomouse;
+         scale;
+         desc { "default";
+            hid;
+            fixed: 0 1;
+            rel1 {
+               relative: 1.0 0.5;
+               to_x : "padding_before_text";
+            }
+            rel2 {
+               relative: 1.0 0.5;
+            }
+            align: 0.0 0.5;
+            text {
+               style: "check_on&off";
+               min: 0 0;
+            }
+         }
+         desc { "visible";
+            inherit: "default";
+            vis;
+            text.min: 0 1;
+         }
+         desc { "disabled";
+            inherit: "default";
+            vis;
+            text {
+               style: "check_on&off_dim";
+               min: 0 1;
+            }
+         }
+         desc { "pressed";
+            inherit: "default";
+            vis;
+            text {
+               style: "check_on&off_press";
+               min: 0 1;
+            }
+         }
+      }
+   }
+   inherit: "elm/check/event/default";
+   script {
+      public check_state;
+      public disabled;
+      public text;
+      public animate = 0;
+   }
+   programs {
+      program { "on_clicked";
+         script {
+            if (get_int(disabled) == 0) {
+               emit("elm,action,check,toggle", "");
+               run_program(PROGRAM:"touch_sound");
+            }
+         }
+      }
+      program { "on_pressed";
+         script {
+            if (get_int(disabled) == 1) return;
+            if (get_int(text) == 1) {
+               set_state(PART:"elm.text", "pressed", 0.0);
+            }
+         }
+      }
+      program { "on_unpressed";
+         script {
+            if (get_int(disabled) == 1) return;
+            if (get_int(text) == 1) {
+               set_state(PART:"elm.text", "visible", 0.0);
+            }
+         }
+      }
+      program { "on_disabled";
+         script {
+            set_int(disabled, 1);
+            if (get_int(check_state) == 0) {
+               run_program(PROGRAM:"disabled_off");
+            } else {
+               run_program(PROGRAM:"disabled_on");
+            }
+            if (get_int(text) == 1) {
+               set_state(PART:"elm.text", "disabled", 0.0);
+            }
+         }
+      }
+      program { "on_enabled";
+         script {
+            set_int(disabled, 0);
+            if (get_int(check_state) == 0) {
+               run_program(PROGRAM:"enabled_off");
+            } else {
+               run_program(PROGRAM:"enabled_on");
+            }
+            if (get_int(text) == 1) {
+               set_state(PART:"elm.text", "visible", 0.0);
+            }
+         }
+      }
+      program { "on_set_check";
+         script {
+            if (get_int(disabled) == 0) {
+               if (get_int(animate) == 0) {
+                  run_program(PROGRAM:"set_check_without_anim");
+               } else {
+                  run_program(PROGRAM:"set_check_with_anim");
+               }
+            } else {
+               run_program(PROGRAM:"disabled_on");
+            }
+         }
+      }
+      program { "on_unset_check";
+         script {
+            if (get_int(disabled) == 0) {
+               if (get_int(animate) == 0) {
+                  run_program(PROGRAM:"unset_check_without_anim");
+               } else {
+                  run_program(PROGRAM:"unset_check_with_anim");
+               }
+            } else {
+               run_program(PROGRAM:"disabled_off");
+            }
+         }
+      }
+      program { "touch_sound";
+         action: RUN_PLUGIN "touch_sound";
+      }
+      program { "check_on_activate";
+         signal: "elm,activate,check,on";
+         source: "elm";
+         script {
+            set_int(animate, 1);
+         }
+      }
+      program { "check_off_activate";
+         signal: "elm,activate,check,off";
+         source: "elm";
+         script {
+            set_int(animate, 1);
+         }
+      }
+      program { "post_set_check";
+         script{
+            set_int(animate, 0);
+            set_int(check_state, 1);
+         }
+      }
+      program { "post_unset_check";
+         script{
+            set_int(animate, 0);
+            set_int(check_state, 0);
+         }
+      }
+      program { "set_check_without_anim";
+         action: STATE_SET "on";
+         target_groups: "vector_group";
+         after: "post_set_check";
+      }
+      program { "set_check_with_anim";
+         action: ACTION_STOP;
+         target_groups: "programs_set_anim";
+         target_groups: "programs_unset_anim";
+         after: "set_check_with_anim_phase1";
+         after: "set_check_with_anim_base";
+      }
+      program { "set_check_with_anim_phase1";
+         action: STATE_SET "on";
+         transition: LINEAR 0.15;
+         target_groups: "vector_group_phase2";
+         after: "set_check_with_anim_phase2";
+      }
+      program { "set_check_with_anim_phase2";
+         action: STATE_SET "on";
+         transition: LINEAR 0.15;
+         target_groups: "vector_group_phase1";
+         after: "post_set_check";
+         after: "finished_animation";
+      }
+      program { "set_check_with_anim_base";
+         action: STATE_SET "on";
+         transition: LINEAR 0.3;
+         target_groups: "vector_group_base";
+      }
+      program { "unset_check_without_anim";
+         action: STATE_SET "off";
+         target_groups: "vector_group";
+         after: "post_unset_check";
+      }
+      program { "unset_check_with_anim";
+         action: ACTION_STOP;
+         target_groups: "programs_set_anim";
+         target_groups: "programs_unset_anim";
+         after: "unset_check_with_anim_phase1";
+         after: "unset_check_with_anim_base";
+      }
+      program { "unset_check_with_anim_phase1";
+         action: STATE_SET "off";
+         transition: LINEAR 0.15;
+         target_groups: "vector_group_phase1";
+         after: "unset_check_with_anim_phase2";
+      }
+      program { "unset_check_with_anim_phase2";
+         action: STATE_SET "off";
+         transition: LINEAR 0.15;
+         target_groups: "vector_group_phase2";
+         after: "post_unset_check";
+         after: "finished_animation";
+      }
+      program { "unset_check_with_anim_base";
+         action: STATE_SET "off";
+         transition: LINEAR 0.3;
+         target_groups: "vector_group_base";
+      }
+      program { "disabled_on";
+         action: STATE_SET "disabled_on";
+         target_groups: "vector_group";
+      }
+      program { "disabled_off";
+         action: STATE_SET "disabled_off";
+         target_groups: "vector_group";
+      }
+      program { "enabled_on";
+         action: STATE_SET "on";
+         target_groups: "vector_group";
+      }
+      program { "enabled_off";
+         action: STATE_SET "off";
+         target_groups: "vector_group";
+      }
+      program { "visible_text";
+         signal: "elm,state,text,visible";
+         source: "elm";
+         script {
+            set_int(text, 1);
+            set_state(PART:"padding_before_text", "visible", 0.0);
+            if (get_int(disabled) == 1) {
+               set_state(PART:"elm.text", "disabled", 0.0);
+            }else {
+               set_state(PART:"elm.text", "visible", 0.0);
+            }
+         }
+      }
+      program { "hidden_text";
+         signal: "elm,state,text,hidden";
+         source: "elm";
+         script {
+            set_int(text, 0);
+            set_state(PART:"padding_before_text", "default", 0.0);
+            set_state(PART:"elm.text", "default", 0.0);
+         }
+      }
+      program { "finished_animation";
+         action: SIGNAL_EMIT "animation,finished" "";
+      }
+      program { "enabled_event_pass";
+         signal: "elm,event,pass,enabled";
+         source: "elm";
+         script {
+            set_mouse_events(PART:"event", 0);
+         }
+      }
+      program { "disabled_event_pass";
+         signal: "elm,event,pass,disabled";
+         source: "elm";
+         script {
+            set_mouse_events(PART:"event", 1);
+         }
+      }
+      program { "enabled_event_repeat";
+         signal: "elm,event,repeat,enabled";
+         source: "elm";
+         script {
+            set_repeat_events(PART:"event", 1);
+         }
+      }
+      program { "disabled_event_repeat";
+         signal: "elm,event,repeat,disabled";
+         source: "elm";
+         script {
+            set_repeat_events(PART:"event", 0);
+         }
+      }
+   }
+}
+
+group { "elm/check/base/toggle";
+   inherit: "elm/check/base/on&off";
+
+   parts {
+      rect { name:"clipper_bg_vector";
+         desc { "default";
+            color_class: "check/toggle/bg";
+         }
+         desc { "on";
+            color_class: "check/toggle/bg_on";
+         }
+         desc { "off";
+            inherit: "default";
+         }
+         desc { "disabled_on";
+            color_class: "check/toggle/bg_disabled";
+         }
+         desc { "disabled_off";
+            inherit: "disabled_on";
+         }
+      }
+      rect { name:"clipper_icon_on";
+         desc { "default";
+            color_class: "check/toggle/icon_on";
+         }
+         desc { "on";
+            inherit: "default" ;
+         }
+         desc { "off";
+            inherit: "default";
+        }
+         desc { "disabled_on";
+            inherit:"default";
+         }
+         desc { "disabled_off";
+            inherit:"default";
+         }
+      }
+      rect { name:"clipper_icon_off";
+         desc { "default";
+            color_class: "check/toggle/icon";
+         }
+         desc { "on";
+            inherit: "default" ;
+         }
+         desc { "off";
+            inherit: "default";
+        }
+         desc { "disabled_on";
+            inherit:"default";
+         }
+         desc { "disabled_off";
+            inherit:"default";
+         }
+      }
+      textblock { "elm.text";
+         desc { "default"
+            text.style: "check_toggle";
+         }
+         desc { "visible"
+            text.style: "check_toggle";
+         }
+         desc { "disabled"
+            text.style: "check_toggle_dim";
+         }
+         desc { "pressed"
+            text.style: "check_toggle_press";
+         }
+      }
+   }
+}
