@@ -174,14 +174,12 @@ namespace Tizen.Network.Smartcard
 
             foreach (SmartcardChannel channel in _basicChannelList)
             {
-                channel.Dispose();
-                _basicChannelList.Remove(channel);
+                channel.Close();
             }
 
             foreach (SmartcardChannel channel in _logicalChannelList)
             {
-                channel.Dispose();
-                _logicalChannelList.Remove(channel);
+                channel.Close();
             }
         }
 

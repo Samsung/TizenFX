@@ -32,7 +32,14 @@ namespace Tizen.Network.Smartcard
         /// <returns>List of SmartcardReader objects.</returns>
         static public IEnumerable<SmartcardReader> GetReaders()
         {
-            return SmartcardManagerImpl.Instance.GetReaders();
+            try
+            {
+                return SmartcardManagerImpl.Instance.GetReaders();
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
     }
 }

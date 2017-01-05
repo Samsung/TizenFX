@@ -60,6 +60,10 @@ namespace Tizen.Network.Smartcard
             {
                 throw new ArgumentException(err.ToString());
             }
+            else if (err == SmartcardError.NotSupportedError)
+            {
+                throw new NotSupportedException(err.ToString());
+            }
             else
             {
                 throw new InvalidOperationException(err.ToString());

@@ -91,7 +91,6 @@ namespace Tizen.Network.Smartcard
             if (ret != (int)SmartcardError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deinitialize smartcard, Error - " + (SmartcardError)ret);
-                SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
         }
 

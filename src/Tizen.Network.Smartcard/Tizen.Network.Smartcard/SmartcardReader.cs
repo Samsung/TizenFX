@@ -141,8 +141,7 @@ namespace Tizen.Network.Smartcard
 
             foreach (SmartcardSession session in _sessionList)
             {
-                session.Dispose();
-                _sessionList.Remove(session);
+                session.Close();
             }
         }
     }
