@@ -233,7 +233,7 @@ namespace Tizen.Maps
             remove
             {
                 _viewReadyEventHandler -= value;
-                UnsetGestureEventCallback();
+                UnsetViewReadyEventCallback();
             }
         }
 
