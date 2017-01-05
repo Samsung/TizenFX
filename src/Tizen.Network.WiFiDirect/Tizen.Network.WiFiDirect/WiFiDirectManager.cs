@@ -78,6 +78,7 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// If there is any error, null will be returned.
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when the wifidirect is not supported</exception>
         public static string Ssid
         {
             get
@@ -192,6 +193,7 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// If there is any error, null will be returned.
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when the wifidirect is not supported</exception>
         public static string MacAddress
         {
             get
@@ -311,6 +313,7 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// If there is any error, -1 will be returned.
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when the wifidirect is not supported</exception>
         public static int WpsMode
         {
             get
