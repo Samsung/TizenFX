@@ -1,3 +1,4 @@
+/// Video Information
 /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -48,9 +49,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedVideoCodec(ref _handle, out _codec);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get video codec" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get video codec" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get video codec");
                 }
 
@@ -68,9 +69,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedVideoResolution(ref _handle, out _width, out _height);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get height" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get height" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get video height");
                 }
 
@@ -88,9 +89,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedVideoResolution(ref _handle, out _width, out _height);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get width" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get width" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get video width");
                 }
 
@@ -108,9 +109,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedVideoFrameRate(ref _handle, out _frameRate);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get frame rate" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get frame rate" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get video frame rate");
                 }
 

@@ -105,7 +105,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for screen mirroring sink state
     /// </summary>
-    public enum SCMirroringSinkState
+    public enum ScreenMirroringSinkState
     {
         /// <summary>
         /// Screen mirroring is not created yet
@@ -140,19 +140,15 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for screen mirroring error.
     /// </summary>
-    public enum SCMirroringError
+    public enum ScreenMirroringErrorCode
     {
         /// <summary>
         /// Successful
         /// </summary>
-        None = SCMirroringErrorCode.None,
-        /// <summary>
-        /// Invalid parameter
-        /// </summary>
-        InvalidParameter = SCMirroringErrorCode.InvalidParameter,
+        None = ScreenMirroringError.None,
         /// <summary>
         /// Invalid operation
         /// </summary>
-        InvalidOperation = SCMirroringErrorCode.InvalidOperation
+        InvalidOperation = ScreenMirroringError.InvalidOperation
     }
 }

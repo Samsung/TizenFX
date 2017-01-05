@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-﻿using System;
+using System;
 using Tizen.Internals.Errors;
 namespace Tizen.Multimedia
 {
-    internal enum SCMirroringErrorCode
+    internal enum ScreenMirroringError
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
@@ -33,23 +33,23 @@ namespace Tizen.Multimedia
     {
         internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
         {
-            SCMirroringErrorCode err = (SCMirroringErrorCode)errorCode;
+            ScreenMirroringError err = (ScreenMirroringError)errorCode;
             if (string.IsNullOrEmpty(errorMessage))
             {
                 errorMessage = err.ToString();
             }
 
-            switch ((SCMirroringErrorCode)errorCode)
+            switch ((ScreenMirroringError)errorCode)
             {
-                case SCMirroringErrorCode.InvalidParameter:
+                case ScreenMirroringError.InvalidParameter:
                 throw new ArgumentException(errorMessage, paramName);
 
-                case SCMirroringErrorCode.OutOfMemory:
-                case SCMirroringErrorCode.InvalidOperation:
-                case SCMirroringErrorCode.ConnectionTimeOut:
-                case SCMirroringErrorCode.PermissionDenied:
-                case SCMirroringErrorCode.NotSupported:
-                case SCMirroringErrorCode.Unknown:
+                case ScreenMirroringError.OutOfMemory:
+                case ScreenMirroringError.InvalidOperation:
+                case ScreenMirroringError.ConnectionTimeOut:
+                case ScreenMirroringError.PermissionDenied:
+                case ScreenMirroringError.NotSupported:
+                case ScreenMirroringError.Unknown:
                 throw new InvalidOperationException(errorMessage);
             }
         }
