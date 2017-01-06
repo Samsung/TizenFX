@@ -22,7 +22,7 @@ internal static partial class Interop
         internal delegate bool MediaTagCallback(IntPtr tagHandle, IntPtr UserData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool MediaBookMarkCallback(IntPtr bookmarkHandle, IntPtr UserData);
+        internal delegate bool MediaBookmarkCallback(IntPtr bookmarkHandle, IntPtr UserData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool MediaFaceCallback(IntPtr bookmarkHandle, IntPtr UserData);
@@ -73,7 +73,7 @@ internal static partial class Interop
         internal static extern int GetBookmarkCount(string mediaId, IntPtr filter, out int bookmarkCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_bookmark_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAllBookmarks(string mediaId, IntPtr filter, MediaBookMarkCallback callback, IntPtr userData);
+        internal static extern int GetAllBookmarks(string mediaId, IntPtr filter, MediaBookmarkCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetFaceCount(string mediaId, IntPtr filter, out int bookmarkCount);

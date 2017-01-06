@@ -346,13 +346,13 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the number of MediaBookMark for the passed filter in the given media ID from the media database.
+        /// Gets the number of MediaBookmark for the passed filter in the given media ID from the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
         /// int count</returns>
-        /// <param name="filter">The Filter for matching BookMarks</param>
-        public int GetMediaBookMarkCount(ContentFilter filter)
+        /// <param name="filter">The Filter for matching Bookmarks</param>
+        public int GetMediaBookmarkCount(ContentFilter filter)
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
@@ -369,7 +369,7 @@ namespace Tizen.Content.MediaContent
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
         /// <returns>
-        /// Task to get all the BookMarks
+        /// Task to get all the Bookmarks
         /// </returns>
         /// <param name="filter"> filter for the Tags</param>
         public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
@@ -378,7 +378,7 @@ namespace Tizen.Content.MediaContent
             MediaContentError result;
             Collection<MediaBookmark> coll = new Collection<MediaBookmark>();
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            Interop.MediaInformation.MediaBookMarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
+            Interop.MediaInformation.MediaBookmarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
             {
                 IntPtr newHandle;
                 result = (MediaContentError)Interop.MediaBookmark.Clone(out newHandle, handle);
@@ -400,11 +400,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds a MediaBookMark to the audio
+        /// Adds a MediaBookmark to the audio
         /// </summary>
         /// <param name="offset">Offset of the audio in seconds</param>
         /// <returns>
-        /// Task with newly added MediaBookMark instance.
+        /// Task with newly added MediaBookmark instance.
         /// </returns>
         public async Task<MediaBookmark> AddBookmark(uint offset)
         {
@@ -427,9 +427,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Deletes a MediaBookMark item from the media database.
+        /// Deletes a MediaBookmark item from the media database.
         /// </summary>
-        /// <param name="bookmark">The MediaBookMark instance to be deleted</param>
+        /// <param name="bookmark">The MediaBookmark instance to be deleted</param>
         public void DeleteBookmark(MediaBookmark bookmark)
         {
             ContentManager.Database.Delete(bookmark);

@@ -321,8 +321,8 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>
         /// int count</returns>
-        /// <param name="filter">The Filter for matching BookMarks</param>
-        public int GetMediaBookMarkCount(ContentFilter filter)
+        /// <param name="filter">The Filter for matching Bookmarks</param>
+        public int GetMediaBookmarkCount(ContentFilter filter)
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
@@ -338,7 +338,7 @@ namespace Tizen.Content.MediaContent
         /// Iterates through the media bookmark in the given media info from the media database.
         /// </summary>
         /// <returns>
-        /// Task to get all the BookMarks </returns>
+        /// Task to get all the Bookmarks </returns>
         /// <param name="filter"> filter for the Tags</param>
         public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
         {
@@ -346,7 +346,7 @@ namespace Tizen.Content.MediaContent
             MediaContentError result;
             Collection<MediaBookmark> coll = new Collection<MediaBookmark>();
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            Interop.MediaInformation.MediaBookMarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
+            Interop.MediaInformation.MediaBookmarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
             {
                 IntPtr newHandle;
                 result = (MediaContentError)Interop.MediaBookmark.Clone(out newHandle, handle);
