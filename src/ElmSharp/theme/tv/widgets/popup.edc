@@ -44,6 +44,15 @@
 // notify
 group { name: "elm/notify/center/popup/default";
    alias: "elm/notify/bottom/popup/default";
+   alias: "elm/notify/top/popup/default";
+   alias: "elm/notify/left/popup/default";
+   alias: "elm/notify/right/popup/default";
+   alias: "elm/notify/top_left/popup/default";
+   alias: "elm/notify/top_right/popup/default";
+   alias: "elm/notify/bottom_left/popup/default";
+   alias: "elm/notify/bottom_right/popup/default";
+
+   data.item: "hide_finished_signal" "on";
    parts {
       part { name: "base";
          type: SPACER;
@@ -64,6 +73,26 @@ group { name: "elm/notify/center/popup/default";
             rel1.to: "base";
             rel2.to: "base";
          }
+      }
+   }
+   programs {
+      /* Program for show animation */
+      program { "show_animation";
+         signal: "elm,state,show,animation";
+         source: "elm";
+         action: SIGNAL_EMIT "elm,action,show,finished" "";
+      }
+      /* Program for show animation */
+      program { "show";
+         signal: "show";
+         source: "";
+         action: SIGNAL_EMIT "elm,action,show,finished" "";
+      }
+      /* Program for hide animation */
+      program { "hide";
+         signal: "elm,state,hide";
+         source: "elm";
+         action: SIGNAL_EMIT "elm,action,hide,finished" "elm";
       }
    }
 }
