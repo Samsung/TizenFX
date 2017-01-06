@@ -131,6 +131,18 @@
 #define PROGRESSBAR_MEDIUM_SIZE_INC 56 54
 #define PROGRESSBAR_SMALL_SIZE_INC 44 44
 
+//****************************************************************************//
+// SPINNER
+//****************************************************************************//
+#define SPINNER_LEFT_RIGHT_ARROW_IMAGE_SIZE_INC 80 146
+#define SPINNER_LEFT_RIGHT_BG_IMAGE_SIZE_INC 80 146
+#define SPINNER_LEFT_RIGHT_EFFECT_MIN_SIZE_INC 56 102
+#define SPINNER_VERTICAL_DATE_PICKER_TEXT_BUTTON_SIZE_INC 206 188
+#define SPINNER_TEXT_HEIGHT_INC 146
+#define SPINNER_BUTTON_CORNER_RADIUS 10
+
+
+
 #define STYLE_TAGS \
    tag:  "br" "\n";\
    tag:  "ps" "ps";\
