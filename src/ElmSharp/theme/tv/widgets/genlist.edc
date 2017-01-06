@@ -773,3 +773,886 @@ group { "elm/genlist/item/2text_2icon/default"; nomouse; program_source: "elm";
 #undef TOPP
 #undef IMGP
 #undef TREEIMGS
+
+group { "elm/genlist/item/full/default"; nomouse; program_source: "elm";
+   alias: "elm/genlist/item_compress/full/default";
+   alias: "elm/genlist/tree/full/default";
+   alias: "elm/genlist/tree_compress/full/default";
+   data.item: "contents" "elm.swallow.content";
+   data.item: "focus_highlight" "on";
+
+   target_group: "default" "base" "bottom_line" "elm.text";
+   target_group: "disabled" "event" "elm.text";
+   parts {
+      GENLIST_BASE_COLOR_CLASS("genlist_item/full/bg", "genlist_item/full/bg_selected", "genlist_item/full/bg_focused")
+      GENLIST_PAD(40, 40, 20, 20)
+      swallow { "elm.swallow.content"; scale;
+         desc { "default";
+            rel1 { to: "base"; relative: 0.0 0.0; }
+            rel2 { to: "base"; relative: 1.0 1.0; }
+         }
+      }
+      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/full/bottomline")
+   }
+}
+
+group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
+   alias: "elm/genlist/item_compress/group_index/default";
+   alias: "elm/genlist/tree/group_index/default";
+   alias: "elm/genlist/tree_compress/group_index/default";
+
+   data.item: "texts" "elm.text elm.text.end";
+   data.item: "contents" "elm.swallow.end";
+   data.item: "focus_highlight" "on";
+
+   target_group: "default" "base" "bottom_line" "elm.text" "elm.text.end";
+   target_group: "disabled" "event" "elm.text" "elm.text.end";
+   parts {
+      GENLIST_BASE_COLOR_CLASS("genlist_item/group_index/bg", "genlist_item/group_index/bg_selected", "genlist_item/group_index/bg_focused")
+      GENLIST_PAD(38, 32, 32, 37)
+      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/group_index/bottomline")
+      swallow { "elm.swallow.end"; mouse; scale;
+         desc { "default";
+            rel1.to_x: "pad.bottom.right";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "pad.bottom.right";
+            rel2.relative: 0.0 0.5;
+            min: 80 80;
+            fixed: 1 1;
+            align: 1.0 0.5;
+         }
+      }
+      spacer { "pad.center"; scale;
+         desc { "default";
+            rel1.to_x: "elm.swallow.end";
+            rel1.relative: 0.0 0.0;
+            rel2.to_x: "elm.swallow.end";
+            rel2.relative: 0.0 1.0;
+            min: 32 0;
+            fixed: 1 0;
+            align: 1.0 0.5;
+         }
+      }
+      text { "elm.text"; scale;
+         desc { "default";
+            rel1.to: "pad.top.left";
+            rel1.relative: 1.0 1.0;
+            rel2.to_x: "pad.center";
+            rel2.to_y: "pad.top.left";
+            rel2.relative: 0.0 1.0;
+            fixed: 0 1;
+            align: 0.5 0.0;
+            color: 165 167 175 255;
+            text { font: FONT_M; size: 32;
+               min: 1 1;
+               ellipsis: -1;
+               align: 0.0 0.5;
+            }
+         }
+         desc { "selected"; inherit: "default";
+            color: 255 255 255 255;
+         }
+         desc { "focused"; inherit: "default";
+            color: 255 255 255 255;
+         }
+         desc { "disabled"; inherit: "default";
+            color: 50 50 50 255;
+         }
+      }
+      text { "elm.text.end"; scale;
+         desc { "default";
+            rel1.to: "elm.text";
+            rel1.relative: 0.0 1.0;
+            rel2.to_x: "elm.text";
+            rel2.to_y: "pad.bottom.right";
+            rel2.relative: 1.0 0.0;
+            fixed: 0 0;
+            align: 0.5 0.5;
+            color: 164 167 174 255;
+            text { font: FONT_R; size: 22;
+               min: 1 1;
+               ellipsis: -1;
+               align: 0.0 0.5;
+            }
+         }
+         desc { "selected"; inherit: "default";
+            color: 255 255 255 255;
+         }
+         desc { "focused"; inherit: "default";
+            color: 255 255 255 255;
+         }
+         desc { "disabled"; inherit: "default";
+            color: 50 50 50 255;
+         }
+      }
+   }
+   programs {
+      GENLIST_PROGRAMS("default", "disabled")
+   }
+}
+
+group { "elm/genlist/item/double_label/default"; nomouse; program_source: "elm";
+   alias: "elm/genlist/item_compress/double_label/default";
+   alias: "elm/genlist/tree/double_label/default";
+   alias: "elm/genlist/tree_compress/double_label/default";
+
+   data.item: "texts" "elm.text elm.text.sub";
+   data.item: "contents" "elm.swallow.icon elm.swallow.end";
+   data.item: "focus_highlight" "on";
+   target_group: "default" "base" "bottom_line" "elm.text" "elm.text.sub";
+   target_group: "disabled" "event" "elm.text" "elm.text.sub";
+
+   parts {
+      GENLIST_BASE_COLOR_CLASS("genlist_item/double_label/bg", "genlist_item/double_label/bg_selected", "genlist_item/double_label/bg_focused")
+      GENLIST_PAD(32, 32, 29, 19)
+      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/double_label/bottomline")
+      swallow { "elm.swallow.icon"; mouse; scale;
+         desc { "default";
+            rel1.to: "pad.top.left";
+            rel1.relative: 1.0 1.0;
+            rel2.to: "pad.top.left";
+            rel2.relative: 1.0 1.0;
+            min: 44 44;
+            fixed: 1 1;
+            align: 0.0 0.0;
+         }
+      }
+      spacer { "pad.left.center"; scale;
+         desc { "default";
+            rel1.to: "elm.swallow.icon";
+            rel1.relative: 0.0 1.0;
+            rel2.to: "elm.swallow.icon";
+            min: 0 3;
+            fixed: 0 1;
+            align: 0.5 0.0;
+         }
+      }
+      text { "elm.text.sub"; scale;
+         desc { "default";
+            rel1.to: "pad.left.center";
+            rel1.relative: 0.0 1.0;
+            rel2.to_x: "pad.left.center";
+            rel2.to_y: "pad.bottom.right";
+            rel2.relative: 1.0 0.0;
+            color: 211 211 211 255;
+            min: 0 20;
+            text { font: FONT_M; size: 24;
+               min: 0 1;
+            }
+         }
+         desc { "focused"; inherit: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         desc { "disabled"; inherit: "default" 0.0;
+            color: 50 50 50 255;
+         }
+      }
+      spacer { "pad.center"; scale;
+         desc { "default";
+            rel1.to: "elm.swallow.icon";
+            rel1.relative: 1.0 0.0;
+            rel2.to: "elm.swallow.icon";
+            rel2.relative: 1.0 1.0;
+            min: 19 0;
+            fixed: 1 0;
+            align: 0.0 0.5;
+         }
+      }
+      text { "elm.text"; scale;
+         desc { "default";
+            rel1.to_x: "pad.center";
+            rel1.relative: 1.0 0.5;
+            rel2.to_x: "pad.center";
+            rel2.relative: 1.0 0.5;
+            align: 0.0 0.5;
+            fixed: 1 1;
+            color: 211 211 211 255;
+            text { font: FONT_M; size: 24;
+               min: 1 1;
+               ellipsis: -1;
+            }
+         }
+         desc { "focused"; inherit: "default" 0.0;
+            color: 255 255 255 255;
+         }
+         desc { "disabled"; inherit: "default" 0.0;
+            color: 50 50 50 255;
+         }
+      }
+      spacer { "pad.center2"; scale;
+         desc { "default";
+            rel1.to_x: "elm.text";
+            rel1.relative: 1.0 0.0;
+            rel2.to_x: "elm.text";
+            rel2.relative: 1.0 1.0;
+            min: 14 0;
+            fixed: 1 0;
+            align: 0.0 0.5;
+         }
+      }
+      //FIXME: with icon
+      swallow { "elm.swallow.end"; mouse; scale;
+         desc { "default";
+            rel1.to_x: "pad.center2";
+            rel1.relative: 1.0 0.0;
+            rel2.to_x: "pad.bottom.right";
+            rel2.relative: 0.0 1.0;
+            min: 40 30;
+            max: 40 30;
+            fixed: 0 1;
+            align: 0.0 0.5;
+         }
+      }
+   }
+   programs {
+      GENLIST_PROGRAMS("default", "disabled")
+   }
+}
+
+
+
+group { "elm/genlist/item/event/default"
+   inherit_only: 1;
+   parts {
+      rect { "event"; nomouse; repeat; scale;
+         desc { "default";
+            color: 0 0 0 0;
+            rel.to: "base";
+         }
+         desc { "disabled";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+   programs {
+      /* Program for enabled event */
+      program { "enabled";
+         signal: "elm,state,enabled";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "event";
+         after: "on_enabled";
+      }
+      /* Program for disabled event */
+      program { "disabled";
+         signal: "elm,state,disabled";
+         source: "elm";
+         action: STATE_SET "disabled";
+         target: "event";
+         after: "on_disabled";
+      }
+      program { "enable_event_pass";
+         signal: "elm,event,pass,enabled";
+         source: "elm";
+         script {
+            set_mouse_events(PART:"event", 0);
+         }
+      }
+      program { "disable_event_pass";
+         signal: "elm,event,pass,disabled";
+         source:"elm";
+         script {
+            set_mouse_events(PART:"event", 1);
+         }
+      }
+      program { "enable_event_repeat";
+         signal: "elm,event,repeat,enabled";
+         source: "elm";
+         script {
+            set_repeat_events(PART:"event", 1);
+         }
+      }
+      program { "disable_event_repeat";
+         signal: "elm,event,repeat,disabled";
+         source:"elm";
+         script {
+            set_repeat_events(PART:"event", 0);
+         }
+      }
+   }
+}
+
+
+group { "elm/genlist/item/type1/default";
+   alias: "elm/genlist/item_compress/type1/default";
+   alias: "elm/genlist/tree/type1/default";
+   alias: "elm/genlist/tree_compress/type1/default";
+   inherit: "elm/genlist/item/event/default";
+
+   data.item: "banded_bg_area" "elm.swallow.bg";
+
+   data.item: "texts" "elm.text elm.text.end elm.text.sub elm.text.sub.end";
+   data.item: "contents" "elm.swallow.icon elm.swallow.icon.0 elm.swallow.icon.1 elm.swallow.icon.2 elm.swallow.end";
+
+   script {
+      public end_icon_visible = 0;
+      public sub_end_text_visible = 0;
+   }
+   parts {
+      // base spacer for item min height
+      spacer { "base"; scale;
+         desc { "default";
+            min: 0 GENLIST_ITEM_1LINE_HEIGHT_INC;
+         }
+         desc { "sub_text_visible";
+            min: 0 GENLIST_ITEM_2LINE_HEIGHT_INC;
+         }
+      }
+      // background of item
+      rect { "bg"; scale;
+         desc { "default";
+            rel.to: "base";
+            color_class: "genlist_item/type1/bg";
+         }
+         desc { "pressed"; inherit: "default";
+            color_class: "genlist_item/type1/bg_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            color_class: "genlist_item/type1/bg_disabled";
+         }
+      }
+      // swallow area for banded color
+      swallow { "elm.swallow.bg"; scale;
+         desc { "default";
+            rel.to: "bg";
+         }
+      }
+      // left outside padding
+      spacer { "elm.padding.left"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: GENLIST_ITEM_LR_PADDING_INC 0;
+            align: 0.0 0.5;
+            rel1 { to: "elm.swallow.bg"; relative: 0.0 0.0; }
+            rel2 { to: "elm.swallow.bg"; relative: 0.0 1.0; }
+         }
+      }
+      // right outside padding
+      spacer { "elm.padding.right"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: GENLIST_ITEM_LR_PADDING_INC 0;
+            align: 1.0 0.5;
+            rel1 { to: "elm.swallow.bg"; relative: 1.0 0.0; }
+            rel2 { to: "elm.swallow.bg"; relative: 1.0 1.0; }
+         }
+      }
+      // top outside padding
+      spacer { "elm.padding.top"; scale;
+         desc { "default";
+            fixed: 0 1;
+            min: 0 GENLIST_ITEM_TOP_PADDING_INC;
+            max: -1 GENLIST_ITEM_TOP_PADDING_INC;
+            align: 0.5 0.0;
+            rel1 { to: "elm.swallow.bg"; relative: 0.0 0.0; }
+            rel2 { to: "elm.swallow.bg"; relative: 1.0 0.0; }
+         }
+      }
+      // bottom outside padding
+      spacer { "elm.padding.bottom"; scale;
+         desc { "default";
+            fixed: 0 1;
+            min: 0 GENLIST_ITEM_BOTTOM_PADDING_INC;
+            max: -1 GENLIST_ITEM_BOTTOM_PADDING_INC;
+            align: 0.5 1.0;
+            rel1 { to: "elm.swallow.bg"; relative: 0.0 1.0; }
+            rel2 { to: "elm.swallow.bg"; relative: 1.0 1.0; }
+         }
+      }
+      // left swallow (Type B)
+      swallow { "elm.swallow.icon"; scale;
+         desc { "default";
+            fixed: 1 0;
+            align: 0.0 0.5;
+            rel1 { to_x: "elm.padding.left"; to_y: "elm.padding.top"; relative: 1.0 1.0; }
+            rel2 { to_x: "elm.padding.left"; to_y: "elm.padding.bottom"; relative: 1.0 0.0; }
+         }
+      }
+      // padding between Type B & Type A
+      spacer { "elm.padding.B.A"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 0.0 0.5;
+            rel1 { to_x: "elm.swallow.icon"; to_y: "elm.padding.top"; relative: 1.0 1.0; }
+            rel2 { to_x: "elm.swallow.icon"; to_y: "elm.padding.bottom"; relative: 1.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_TYPE_BA_PADDING_INC 0;
+         }
+      }
+      // right swallow (Type C)
+      swallow { "elm.swallow.end"; scale;
+         desc { "default";
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.padding.right"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.padding.right"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+      }
+      // padding between Type D & Type C
+      spacer { "elm.padding.D.C"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.swallow.end"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.swallow.end"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_TYPE_DC_PADDING_INC 0;
+         }
+      }
+      // right swallow 2 (Type D)
+      swallow { "elm.swallow.icon.2"; scale;
+         desc { "default";
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.padding.D.C"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.padding.D.C"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+      }
+      // padding between Type A & Type D
+      spacer { "elm.padding.A.D"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.swallow.icon.2"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.swallow.icon.2"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_TYPE_AD_PADDING_INC 0;
+         }
+      }
+      // main text line
+      swallow { "elm.swallow.icon.0"; scale;
+         desc { "default";
+            fixed: 1 0;
+            align: 0.0 0.5;
+            rel1 { to_x: "elm.padding.B.A"; to_y: "elm.padding.top"; relative: 1.0 1.0; }
+            rel2 { to_x: "elm.padding.B.A"; to_y: "elm.text"; relative: 1.0 1.0; }
+         }
+      }
+      swallow { "elm.swallow.icon.1"; scale;
+         desc { "default";
+            fixed: 1 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.padding.A.D"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.padding.A.D"; to_y: "elm.text"; relative: 0.0 1.0; }
+         }
+      }
+      spacer { "elm.padding.main.icon.text"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 0.0 0.5;
+            rel1 { to: "elm.swallow.icon.0"; to_y: "elm.padding.top"; relative: 1.0 1.0; }
+            rel2 { to: "elm.swallow.icon.0"; to_y: "elm.padding.bottom"; relative: 1.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_MAIN_LINE_ICON_TEXT_PADDING_INC 0;
+         }
+      }
+      textblock { "elm.text.end"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 GENLIST_ITEM_MAIN_LINE_HEIGHT_INC;
+            max: GENLIST_ITEM_END_TEXT_WIDTH_INC -1;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.swallow.icon.1"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.swallow.icon.1"; to_y: "elm.text"; relative: 0.0 1.0; }
+            text.style: "list_type1_text_end";
+            text.min: 1 1;
+            text.max: 0 1;
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_type1_text_end_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_type1_text_end_disabled";
+         }
+      }
+      spacer { "elm.padding.main.text.end"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.text.end"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.text.end"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_MAIN_LINE_TEXT_END_PADDING_INC 0;
+         }
+         desc { "text_visible"; inherit: "default";
+            min: GENLIST_ITEM_MAIN_LINE_TEXT_END_PADDING_INC 0;
+         }
+      }
+      textblock { "elm.text"; scale;
+         desc { "default";
+            fixed: 0 1;
+            min: 0 GENLIST_ITEM_MAIN_LINE_HEIGHT_INC;
+            align: 0.5 0.0;
+            rel1 { to_x: "elm.padding.main.icon.text"; to_y: "elm.padding.top"; relative: 1.0 1.0; }
+            rel2 { to_x: "elm.padding.main.text.end"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            text.style: "list_type1_text";
+            text.min: 0 1;
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_type1_text_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_type1_text_disabled";
+         }
+      }
+      // sub text line
+      textblock { "elm.text.sub.end"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 GENLIST_ITEM_SUB_LINE_HEIGHT_INC;
+            max: GENLIST_ITEM_END_TEXT_WIDTH_INC -1;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.padding.A.D"; to_y: "elm.text.sub"; relative: 0.0 0.0; }
+            rel2 { to_x: "elm.padding.A.D"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+            text.style: "list_type1_text_sub_end";
+            text.min: 1 1;
+            text.max: 0 1;
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_type1_text_sub_end_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_type1_text_sub_end_disabled";
+         }
+      }
+      spacer { "elm.padding.sub.text.end"; scale;
+         desc { "default";
+            fixed: 1 0;
+            min: 0 0;
+            align: 1.0 0.5;
+            rel1 { to_x: "elm.text.sub.end"; to_y: "elm.padding.top"; relative: 0.0 1.0; }
+            rel2 { to_x: "elm.text.sub.end"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+         }
+         desc { "icon_visible"; inherit: "default";
+            min: GENLIST_ITEM_SUB_LINE_TEXT_END_PADDING_INC 0;
+         }
+         desc { "text_visible"; inherit: "default";
+            min: GENLIST_ITEM_SUB_LINE_TEXT_END_PADDING_INC 0;
+         }
+      }
+      textblock { "elm.text.sub"; scale;
+         desc { "default";
+            fixed: 0 1;
+            min: 0 GENLIST_ITEM_SUB_LINE_HEIGHT_INC;
+            align: 0.5 1.0;
+            rel1 { to_x: "elm.padding.B.A"; to_y: "elm.padding.bottom"; relative: 1.0 0.0; }
+            rel2 { to_x: "elm.padding.sub.text.end"; to_y: "elm.padding.bottom"; relative: 0.0 0.0; }
+            text.style: "list_type1_text_sub";
+            text.min: 0 1;
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_type1_text_sub_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_type1_text_sub_disabled";
+         }
+      }
+      // bottom base of main text line
+      spacer { "base_line";
+         desc { "default";
+            fixed: 0 0;
+            rel1 { to_y: "elm.text"; relative: 0.0 1.0; }
+            rel2 { to_y: "elm.padding.bottom"; relative: 1.0 0.0; }
+         }
+         desc { "sub_text_visible"; inherit: "default";
+            rel1 { to_y: "elm.text"; relative: 0.0 1.0; }
+            rel2 { to_y: "elm.text.sub"; relative: 1.0 0.0; }
+         }
+      }
+      rect { "elm.bottomline"; scale;
+         desc { "default";
+            vis;
+            fixed: 0 1;
+            min: 0 LIST_BOTTOMLINE_HEIGHT;
+            max: -1  LIST_BOTTOMLINE_HEIGHT;
+            align: 0.5 0.0;
+            rel1.relative: 0.0 0.0;
+            rel2.relative: 1.0 0.0;
+            color_class: "genlist_item/type1/bottomline";
+         }
+         desc { "hidden"; inherit: "default";
+            hid;
+         }
+      }
+      rect { "event";
+         after: "elm.bottomline";
+         desc { "default";
+            rel.to: "base";
+         }
+         desc { "disabled";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+   programs {
+      program {
+         signal: "elm,state,elm.swallow.bg,visible";
+         source: "elm";
+         action: STATE_SET "hidden";
+         target: "elm.bottomline";
+      }
+      program {
+         signal: "elm,state,elm.swallow.bg,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.bottomline";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon,visible";
+         source: "elm";
+         action: STATE_SET "icon_visible";
+         target: "elm.padding.B.A";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.padding.B.A";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.2,visible";
+         source: "elm";
+         action: STATE_SET "icon_visible";
+         target: "elm.padding.A.D";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.2,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.padding.A.D";
+      }
+      program {
+         signal: "elm,state,elm.swallow.end,visible";
+         source: "elm";
+         action: STATE_SET "icon_visible";
+         target: "elm.padding.D.C";
+      }
+      program {
+         signal: "elm,state,elm.swallow.end,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.padding.D.C";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.0,visible";
+         source: "elm";
+         action: STATE_SET "icon_visible";
+         target: "elm.padding.main.icon.text";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.0,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "elm.padding.main.icon.text";
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.1,visible";
+         source: "elm";
+         script {
+            if (get_int(sub_end_text_visible) == 0) {
+               set_state(PART:"elm.padding.main.text.end", "icon_visible", 0.0);
+               set_state(PART:"elm.padding.sub.text.end", "icon_visible", 0.0);
+            }
+            else {
+               set_state(PART:"elm.padding.main.text.end", "sub_text_visible", 0.0);
+               set_state(PART:"elm.padding.sub.text.end", "text_visible", 0.0);
+            }
+            set_int(end_icon_visible, 1);
+         }
+      }
+      program {
+         signal: "elm,state,elm.swallow.icon.1,hidden";
+         source: "elm";
+         script {
+            set_state(PART:"elm.padding.main.text.end", "default", 0.0);
+            set_state(PART:"elm.padding.sub.text.end", "default", 0.0);
+            set_int(end_icon_visible, 1);
+         }
+      }
+      program {
+         signal: "elm,state,elm.text.sub,visible";
+         source: "elm";
+         action: STATE_SET "sub_text_visible";
+         target: "base";
+         target: "base_line";
+      }
+      program {
+         signal: "elm,state,elm.text.sub,hidden";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "base";
+         target: "base_line";
+      }
+      program {
+         signal: "elm,state,elm.text.end,visible";
+         source: "elm";
+         script {
+            if (get_int(end_icon_visible) == 1 && get_int(sub_end_text_visible) == 1) {
+               set_state(PART:"elm.padding.main.text.end", "sub_text_visible", 0.0);
+            }
+            else {
+               set_state(PART:"elm.padding.main.text.end", "text_visible", 0.0);
+            }
+         }
+      }
+      program {
+         signal: "elm,state,elm.text.end,hidden";
+         source: "elm";
+         script {
+            set_state(PART:"elm.padding.main.text.end", "default", 0.0);
+         }
+      }
+      program {
+         signal: "elm,state,elm.text.sub.end,visible";
+         source: "elm";
+         script {
+            set_int(sub_end_text_visible, 1);
+            set_state(PART:"elm.padding.sub.text.end", "text_visible", 0.0);
+         }
+      }
+      program {
+         signal: "elm,state,elm.text.sub.end,hidden";
+         source: "elm";
+         script {
+            set_int(sub_end_text_visible, 0);
+            set_state(PART:"elm.padding.sub.text.end", "default", 0.0);
+         }
+      }
+      program { "default";
+         signal: "elm,state,default";
+         source: "elm";
+         script {
+            set_state(PART:"base", "default", 0.0);
+            set_state(PART:"base_line", "default", 0.0);
+            set_state(PART:"elm.swallow.icon.1", "default", 0.0);
+            set_state(PART:"elm.padding.B.A", "default", 0.0);
+            set_state(PART:"elm.padding.A.D", "default", 0.0);
+            set_state(PART:"elm.padding.D.C", "default", 0.0);
+            set_state(PART:"elm.padding.main.icon.text", "default", 0.0);
+            set_state(PART:"elm.padding.main.text.end", "default", 0.0);
+            set_state(PART:"elm.padding.sub.text.end", "default", 0.0);
+            set_state(PART:"elm.bottomline", "default", 0.0);
+            set_state(PART:"bg", "default", 0.0);
+            set_state(PART:"elm.text", "default", 0.0);
+            set_state(PART:"elm.text.end", "default", 0.0);
+            set_state(PART:"elm.text.sub", "default", 0.0);
+            set_state(PART:"elm.text.sub.end", "default", 0.0);
+            set_state(PART:"event", "default", 0.0);
+            set_int(sub_end_text_visible, 0);
+         }
+      }
+      program { "pressed";
+         signal: "elm,state,selected";
+         source: "elm";
+         action: STATE_SET "pressed";
+         target: "bg";
+         target: "elm.text";
+         target: "elm.text.end";
+         target: "elm.text.sub";
+         target: "elm.text.sub.end";
+      }
+      program { "unpressed";
+         signal: "elm,state,unselected";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "bg";
+         target: "elm.text";
+         target: "elm.text.end";
+         target: "elm.text.sub";
+         target: "elm.text.sub.end";
+      }
+      program { "on_enabled";
+         action: STATE_SET "default";
+         target: "bg";
+         target: "elm.text";
+         target: "elm.text.end";
+         target: "elm.text.sub";
+         target: "elm.text.sub.end";
+      }
+      program { "on_disabled";
+         action: STATE_SET "disabled";
+         target: "bg";
+         target: "elm.text";
+         target: "elm.text.end";
+         target: "elm.text.sub";
+         target: "elm.text.sub.end";
+      }
+   }
+}
+
+group { "elm/genlist/item/end_icon/default"; nomouse; program_source: "elm";
+   alias: "elm/genlist/item_compress/end_icon/default";
+   alias: "elm/genlist/tree/end_icon/default";
+   alias: "elm/genlist/tree_compress/end_icon/default";
+
+   data.item: "texts" "elm.text";
+   data.item: "contents" "elm.swallow.end";
+   data.item: "focus_highlight" "on";
+   target_group: "default" "base" "bottom_line" "elm.text";
+   target_group: "disabled" "event" "elm.text";
+   parts {
+      GENLIST_BASE_COLOR_CLASS("genlist_item/end_icon/bg", "genlist_item/end_icon/bg_selected", "genlist_item/end_icon/bg_focused")
+      GENLIST_PAD(40, 40, 20, 20)
+      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/end_icon/bottomline")
+
+      text { "elm.text"; scale;
+         desc { "default";
+            rel1.to: "pad.top.left";
+            rel1.relative: 1.0 1.0;
+            rel2.to_x: "pad.center";
+            rel2.to_y: "pad.bottom.right";
+            rel2.relative: 0.0 0.0;
+            color: 89 89 89 255;
+            text { font: FONT_M; size: 30;
+               min: 1 1;
+               ellipsis: -1;
+               align: 0.0 0.5;
+            }
+         }
+         desc { "focused"; inherit: "default";
+            color: 255 255 255 255;
+         }
+         desc { "disabled"; inherit: "default";
+            color: 50 50 50 255;
+         }
+      }
+      swallow { "elm.swallow.end"; mouse;
+         desc { "default";
+            rel1.to_x: "pad.bottom.right";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "pad.bottom.right";
+            rel2.relative: 0.0 0.5;
+            min: 40 40;
+            fixed: 1 1;
+            align: 1.0 0.5;
+         }
+      }
+      // a padding between elm.text, elm.swallow.end
+      spacer { "pad.center"; scale;
+         desc { "default";
+            rel1.to_x: "elm.swallow.end";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "elm.swallow.end";
+            rel2.relative: 0.0 0.5;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            min: 40 0;
+         }
+      }
+   }
+   programs {
+      GENLIST_PROGRAMS("default", "disabled")
+   }
+}

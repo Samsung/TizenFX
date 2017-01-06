@@ -48,6 +48,34 @@
 #define CHECK_PAD_BEFORE_TEXT_INC 32 0
 
 //****************************************************************************//
+// Genlist
+//****************************************************************************//
+// Tizen 2.4
+#define GENLIST_ITEM_1LINE_HEIGHT_INC                      120
+#define GENLIST_ITEM_2LINE_HEIGHT_INC                      144
+#define GENLIST_ITEM_LR_PADDING_INC                        32
+#define GENLIST_ITEM_TOP_PADDING_INC                       23
+#define GENLIST_ITEM_BOTTOM_PADDING_INC                    24 // including bottom line
+#define GENLIST_ITEM_TYPE_BA_PADDING_INC                   32
+#define GENLIST_ITEM_TYPE_DC_PADDING_INC                   32
+#define GENLIST_ITEM_TYPE_AD_PADDING_INC                   32
+#define GENLIST_ITEM_MAIN_LINE_HEIGHT_INC                  54
+#define GENLIST_ITEM_MAIN_LINE_ICON_TEXT_PADDING_INC       12
+#define GENLIST_ITEM_MAIN_LINE_TEXT_END_PADDING_INC        32
+#define GENLIST_ITEM_SUB_LINE_HEIGHT_INC                   43
+#define GENLIST_ITEM_SUB_LINE_TEXT_END_PADDING_INC         32
+#define GENLIST_ITEM_END_TEXT_WIDTH_INC                    121
+#define GENLIST_ITEM_GROUP_INDEX_HEIGHT_INC                64
+#define GENLIST_ITEM_GROUP_INDEX_TOP_PADDING_INC           10
+#define GENLIST_ITEM_GROUP_INDEX_BOTTOM_PADDING_INC        11
+#define GENLIST_ITEM_GROUP_INDEX_RIGHT_PADDING_INC         17
+#define GENLIST_ITEM_GROUP_INDEX_END_TEXT_WIDTH_INC        218
+#define GENLIST_ITEM_GROUP_INDEX_EXPAND_TOP_PADDING_INC    12
+#define GENLIST_ITEM_GROUP_INDEX_EXPAND_BOTTOM_PADDING_INC 12
+#define GENLIST_ITEM_GROUP_INDEX_EXPAND_ICON_SIZE_INC      64 64
+#define GENLIST_ITEM_MULTILINE_1LINE_HEIGHT_INC            120
+
+//****************************************************************************//
 // Index
 //****************************************************************************//
 // FastScrol
