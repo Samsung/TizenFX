@@ -401,6 +401,34 @@ color_classes {
    color_class { "progressbar/default/bar";
       color: 255 255 255 178;
    }
+   color_class { "progressbar/process_large/icon_bottom";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_large/icon_middle";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_large/icon_top";
+      color: 61 185 204 255;
+   }
+   color_class { "progressbar/process_medium/icon_bottom";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_medium/icon_middle";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_medium/icon_top";
+      color: 61 185 204 255;
+   }
+   color_class { "progressbar/process_small/icon_bottom";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_small/icon_middle";
+      color: 61 185 204 102;
+   }
+   color_class { "progressbar/process_small/icon_top";
+      color: 61 185 204 255;
+   }
+
    /*
     * Radio
     */

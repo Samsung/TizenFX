@@ -124,6 +124,12 @@
 
 #define BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC 80 80
 
+//****************************************************************************//
+// Progressbar
+//****************************************************************************//
+#define PROGRESSBAR_LARGE_SIZE_INC 102 102
+#define PROGRESSBAR_MEDIUM_SIZE_INC 56 54
+#define PROGRESSBAR_SMALL_SIZE_INC 44 44
 
 #define STYLE_TAGS \
    tag:  "br" "\n";\

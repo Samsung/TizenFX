@@ -757,3 +757,147 @@ group { name: "elm/progressbar/vertical/default";
       }
    }
 }
+
+   group { "elm/progressbar/horizontal/process_large";
+      data.item: "vector_ux" "process_large";
+      parts {
+         rect { "access";
+            type: RECT;
+            desc { "default";
+               fixed: 1 1;
+               color: 0 0 0 0;
+            }
+         }
+         swallow { "elm.swallow.bar";
+            desc { "default";
+               hid;
+            }
+         }
+         rect { "bg";
+            scale;
+            desc { "default";
+               rel1.to: "clipper";
+               rel2.to: "clipper";
+               color: 0 0 0 0;
+            }
+         }
+         rect { "clipper";
+            scale;
+            desc { "default";
+               min: PROGRESSBAR_LARGE_SIZE_INC;
+               max: PROGRESSBAR_LARGE_SIZE_INC;
+               color_class: "progressbar/process_large/icon_bottom";
+            }
+         }
+         swallow { "tizen_vg_shape1";
+            scale;
+            clip: "clipper";
+            desc { "default";
+               rel1.to: "clipper";
+               rel2.to: "clipper";
+            }
+         }
+         swallow { "tizen_vg_shape2";
+            scale;
+            clip: "tizen_vg_shape2_clipper";
+            desc { "default";
+               rel1.to: "clipper";
+               rel2.to: "clipper";
+            }
+         }
+         rect { "tizen_vg_shape2_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_large/icon_middle";
+            }
+         }
+         swallow { "tizen_vg_shape3";
+            scale;
+            clip: "tizen_vg_shape3_clipper";
+            desc { "default";
+               rel1.to: "clipper";
+               rel2.to: "clipper";
+            }
+         }
+         rect { "tizen_vg_shape3_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_large/icon_top";
+            }
+         }
+      }
+      programs {
+         program { "start_pulse";
+            signal: "elm,state,pulse,start";
+            source: "elm";
+            action: STATE_SET "default";
+            target: "clipper";
+         }
+         program { "stop_pulse";
+            signal: "elm,state,pulse,stop";
+            source: "elm";
+            action: ACTION_STOP;
+            target: "start_pulse";
+            after: "init_pulse";
+         }
+         program { "init_pulse";
+            action: STATE_SET "default";
+            target: "clipper";
+         }
+      }
+   }
+
+   group { "elm/progressbar/horizontal/process_medium";
+      inherit: "elm/progressbar/horizontal/process_large";
+      data.item: "vector_ux" "process_medium";
+      parts {
+         rect { "clipper";
+            scale;
+            desc { "default";
+               min: PROGRESSBAR_MEDIUM_SIZE_INC;
+               max: PROGRESSBAR_MEDIUM_SIZE_INC;
+               color_class: "progressbar/process_medium/icon_bottom";
+            }
+         }
+         rect { "tizen_vg_shape2_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_medium/icon_middle";
+            }
+         }
+         rect { "tizen_vg_shape3_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_medium/icon_top";
+            }
+         }
+      }
+   }
+
+   group { "elm/progressbar/horizontal/process_small";
+      inherit: "elm/progressbar/horizontal/process_large";
+      data.item: "vector_ux" "process_small";
+      parts {
+         rect { "clipper";
+            scale;
+            desc { "default";
+               min: PROGRESSBAR_SMALL_SIZE_INC;
+               max: PROGRESSBAR_SMALL_SIZE_INC;
+               color_class: "progressbar/process_small/icon_bottom";
+            }
+         }
+         rect { "tizen_vg_shape2_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_small/icon_middle";
+            }
+         }
+         rect { "tizen_vg_shape3_clipper";
+            scale;
+            desc { "default";
+               color_class: "progressbar/process_small/icon_top";
+            }
+         }
+      }
+   }
+
