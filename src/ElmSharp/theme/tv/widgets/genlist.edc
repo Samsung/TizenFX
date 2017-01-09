@@ -807,50 +807,25 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
 
    target_group: "default" "base" "bottom_line" "elm.text" "elm.text.end";
    target_group: "disabled" "event" "elm.text" "elm.text.end";
+
    parts {
       GENLIST_BASE_COLOR_CLASS("genlist_item/group_index/bg", "genlist_item/group_index/bg_selected", "genlist_item/group_index/bg_focused")
-      GENLIST_PAD(38, 32, 32, 37)
+      GENLIST_PAD(70, 70, 20, 20)
       GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/group_index/bottomline")
-      swallow { "elm.swallow.end"; mouse; scale;
-         desc { "default";
-            rel1.to_x: "pad.bottom.right";
-            rel1.relative: 0.0 0.5;
-            rel2.to_x: "pad.bottom.right";
-            rel2.relative: 0.0 0.5;
-            min: 80 80;
-            fixed: 1 1;
-            align: 1.0 0.5;
-         }
-      }
-      spacer { "pad.center"; scale;
-         desc { "default";
-            rel1.to_x: "elm.swallow.end";
-            rel1.relative: 0.0 0.0;
-            rel2.to_x: "elm.swallow.end";
-            rel2.relative: 0.0 1.0;
-            min: 32 0;
-            fixed: 1 0;
-            align: 1.0 0.5;
-         }
-      }
+
       text { "elm.text"; scale;
          desc { "default";
             rel1.to: "pad.top.left";
             rel1.relative: 1.0 1.0;
             rel2.to_x: "pad.center";
-            rel2.to_y: "pad.top.left";
-            rel2.relative: 0.0 1.0;
-            fixed: 0 1;
-            align: 0.5 0.0;
-            color: 165 167 175 255;
-            text { font: FONT_M; size: 32;
+            rel2.to_y: "pad.bottom.right";
+            rel2.relative: 0.0 0.0;
+            color: 255 255 255 204; // 80%
+            text { font: FONT_M; size: 30;
                min: 1 1;
                ellipsis: -1;
                align: 0.0 0.5;
             }
-         }
-         desc { "selected"; inherit: "default";
-            color: 255 255 255 255;
          }
          desc { "focused"; inherit: "default";
             color: 255 255 255 255;
@@ -859,36 +834,69 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
             color: 50 50 50 255;
          }
       }
+
       text { "elm.text.end"; scale;
          desc { "default";
-            rel1.to: "elm.text";
-            rel1.relative: 0.0 1.0;
-            rel2.to_x: "elm.text";
-            rel2.to_y: "pad.bottom.right";
-            rel2.relative: 1.0 0.0;
-            fixed: 0 0;
-            align: 0.5 0.5;
-            color: 164 167 174 255;
-            text { font: FONT_R; size: 22;
+            rel1.to_x: "pad.center.right";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "pad.center.right";
+            rel2.relative: 0.0 0.5;
+            align: 1.0 0.5;
+            color: 255 255 255 204; // 80%
+            fixed: 1 1;
+            text { font: FONT_M; size: 30;
                min: 1 1;
                ellipsis: -1;
-               align: 0.0 0.5;
+               align: 1.0 0.5;
             }
-         }
-         desc { "selected"; inherit: "default";
-            color: 255 255 255 255;
          }
          desc { "focused"; inherit: "default";
             color: 255 255 255 255;
          }
          desc { "disabled"; inherit: "default";
             color: 50 50 50 255;
+         }
+      }
+      swallow { "elm.swallow.end"; mouse;
+         desc { "default";
+            rel1.to_x: "pad.bottom.right";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "pad.bottom.right";
+            rel2.relative: 0.0 0.5;
+            min: 40 40;
+            fixed: 1 1;
+            align: 1.0 0.5;
+         }
+      }
+
+      // a padding between elm.text, elm.swallow.end
+      spacer { "pad.center"; scale;
+         desc { "default";
+            rel1.to_x: "elm.text.end";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "elm.text.end";
+            rel2.relative: 0.0 0.5;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            min: 30 0;
+         }
+      }
+      spacer { "pad.center.right"; scale;
+         desc { "default";
+            rel1.to_x: "elm.swallow.end";
+            rel1.relative: 0.0 0.5;
+            rel2.to_x: "elm.swallow.end";
+            rel2.relative: 0.0 0.5;
+            fixed: 1 0;
+            align: 1.0 0.5;
+            min: 30 0;
          }
       }
    }
    programs {
       GENLIST_PROGRAMS("default", "disabled")
    }
+
 }
 
 group { "elm/genlist/item/double_label/default"; nomouse; program_source: "elm";
@@ -1374,8 +1382,8 @@ group { "elm/genlist/item/type1/default";
          desc { "default";
             vis;
             fixed: 0 1;
-            min: 0 LIST_BOTTOMLINE_HEIGHT;
-            max: -1  LIST_BOTTOMLINE_HEIGHT;
+            min: 0 2;
+            max: -1 2;
             align: 0.5 0.0;
             rel1.relative: 0.0 0.0;
             rel2.relative: 1.0 0.0;
