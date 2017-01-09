@@ -491,4 +491,143 @@ color_classes {
    color_class { "spinner/default/text_disabled";
       color: 0 0 0 163;
    }
+   /*
+    * Toolbar
+    */
+   color_class { "toolbar/default/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar_item/default/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar_item/default/effect";
+      color: 0 0 0 77;
+   }
+   color_class { "toolbar_item/default/underline";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/default/icon";
+      color: 249 249 249 99;
+   }
+   color_class { "toolbar_item/default/icon_selected";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/default/icon_pressed";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/default/icon_disabled";
+      color: 249 249 249 76;
+   }
+   color_class { "toolbar_item/default/text";
+      color: 250 250 250 184;
+   }
+   color_class { "toolbar_item/default/text_pressed";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/default/text_selected";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/default/text_disabled";
+      color: 250 250 250 115;
+   }
+   color_class { "toolbar_item/default/text_under_icon";
+      color: 250 250 250 184;
+   }
+   color_class { "toolbar_item/default/text_under_icon_pressed";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/default/text_under_icon_selected";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/default/text_under_icon_disabled";
+      color: 250 250 250 115;
+   }
+   color_class { "toolbar/tabbar_with_title/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/effect";
+      color: 0 0 0 77;
+   }
+   color_class { "toolbar_item/tabbar_with_title/underline";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/icon";
+      color: 249 249 249 99;
+   }
+   color_class { "toolbar_item/tabbar_with_title/icon_selected";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/icon_pressed";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/icon_disabled";
+      color: 249 249 249 76;
+   }
+   color_class { "toolbar_item/tabbar_with_title/text";
+      color: 250 250 250 184;
+   }
+   color_class { "toolbar_item/tabbar_with_title/text_pressed";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/text_selected";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/tabbar_with_title/text_disabled";
+      color: 250 250 250 115;
+   }
+   color_class { "toolbar/navigationbar/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar/navigationbar/divider";
+      color: 249 249 249 38;
+   }
+   color_class { "toolbar_item/navigationbar/bg";
+      color: 61 185 204 255;
+   }
+   color_class { "toolbar_item/navigationbar/effect";
+      color: 0 0 0 77;
+   }
+   color_class { "toolbar_item/navigationbar/icon";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/navigationbar/text";
+      color: 250 250 250 184;
+   }
+   color_class { "toolbar_item/navigationbar/text_pressed";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/navigationbar/text_disabled";
+      color: 250 250 250 163;
+   }
+   color_class { "toolbar_item/navigationbar/text_selected";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar/light_view/bg";
+      color: 150 154 158 255;
+   }
+   color_class { "toolbar_item/light_view/bg";
+      color: 150 154 158 255;
+   }
+   color_class { "toolbar_item/light_view/effect";
+      color: 0 0 0 77;
+   }
+   color_class { "toolbar_item/light_view/underline";
+      color: 249 249 249 255;
+   }
+   color_class { "toolbar_item/light_view/text";
+      color: 250 250 250 184;
+   }
+   color_class { "toolbar_item/light_view/text_pressed";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/light_view/text_selected";
+      color: 250 250 250 255;
+   }
+   color_class { "toolbar_item/light_view/text_disabled";
+      color: 250 250 250 115;
+   }
+
 }

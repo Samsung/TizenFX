@@ -78,5 +78,6 @@ collections {
 #include "widgets/progressbar.edc"
 #include "widgets/radio.edc"
 #include "widgets/slider.edc"
+#include "widgets/toolbar.edc"
 #include "widgets/tooltip.edc"
 }
