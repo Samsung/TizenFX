@@ -67,13 +67,6 @@ namespace Tizen.Network.Nfc
 
         ~NfcNdefMessage()
         {
-            int ret = Interop.Nfc.NdefMessage.Destroy(_messageHandle);
-
-            if (ret != (int)NfcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to destroy ndef message, Error - " + (NfcError)ret);
-            }
-
             Dispose(false);
         }
 
@@ -91,6 +84,12 @@ namespace Tizen.Network.Nfc
             if (disposing)
             {
                 // Free managed objects.
+                int ret = Interop.Nfc.NdefMessage.Destroy(_messageHandle);
+
+                if (ret != (int)NfcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to destroy ndef message, Error - " + (NfcError)ret);
+                }
             }
             //Free unmanaged objects
             disposed = true;

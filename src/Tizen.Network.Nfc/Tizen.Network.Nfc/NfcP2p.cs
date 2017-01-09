@@ -40,25 +40,18 @@ namespace Tizen.Network.Nfc
         {
             add
             {
-                if (_p2pDataReceived == null)
-                {
-                    RegisterP2pDataReceivedEvent();
-                }
                 _p2pDataReceived += value;
             }
             remove
             {
                 _p2pDataReceived -= value;
-                if (_p2pDataReceived == null)
-                {
-                    UnregisterP2pDataReceivedEvent();
-                }
             }
         }
 
         internal NfcP2p(IntPtr handle)
         {
             _p2pTargetHandle = handle;
+            RegisterP2pDataReceivedEvent();
         }
 
         ~NfcP2p()
@@ -80,6 +73,7 @@ namespace Tizen.Network.Nfc
             if (disposing)
             {
                 // Free managed objects.
+                UnregisterP2pDataReceivedEvent();
             }
             //Free unmanaged objects
             disposed = true;

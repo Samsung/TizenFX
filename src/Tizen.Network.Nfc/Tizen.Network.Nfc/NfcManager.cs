@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tizen.System;
 
 namespace Tizen.Network.Nfc
 {
@@ -33,6 +34,13 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    return false;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.IsSupported;
@@ -51,6 +59,13 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    return false;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.IsActivated;
@@ -69,6 +84,14 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                bool isTagSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+
+                if (!isNfcSupported || !isTagSupported)
+                {
+                    return NfcTagFilterType.AllDisable;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.TagFilterType;
@@ -80,12 +103,21 @@ namespace Tizen.Network.Nfc
             }
             set
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                bool isTagSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+
+                if (!isNfcSupported || !isTagSupported)
+                {
+                    return;
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.TagFilterType = value;
                 }
                 catch (TypeInitializationException)
                 {
+                    return;
                 }
             }
         }
@@ -97,6 +129,14 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                bool isCeSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
+
+                if (!isNfcSupported || !isCeSupported)
+                {
+                    return NfcSecureElementType.Disable;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.SecureElementType;
@@ -125,6 +165,13 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    return false;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.SystemHandlerEnabled;
@@ -136,12 +183,20 @@ namespace Tizen.Network.Nfc
             }
             set
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    return;
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.SystemHandlerEnabled = value;
                 }
                 catch (TypeInitializationException)
                 {
+                    return;
                 }
             }
         }
@@ -153,6 +208,13 @@ namespace Tizen.Network.Nfc
         {
             get
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    return null;
+                }
+
                 try
                 {
                     return NfcManagerImpl.Instance.CachedNdefMessage;
@@ -169,6 +231,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcTagAdapter GetTagAdapter()
         {
+            bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            bool isTagSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+
+            if (!isNfcSupported || !isTagSupported)
+            {
+                throw new NotSupportedException();
+            }
+
             try
             {
                 return NfcManagerImpl.Instance.TagAdapter;
@@ -184,6 +254,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcP2pAdapter GetP2pAdapter()
         {
+            bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            bool isP2pSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.p2p", out isP2pSupported);
+
+            if (!isNfcSupported || !isP2pSupported)
+            {
+                throw new NotSupportedException();
+            }
+
             try
             {
                 return NfcManagerImpl.Instance.P2pAdapter;
@@ -199,6 +277,14 @@ namespace Tizen.Network.Nfc
         /// </summary>
         static public NfcCardEmulationAdapter GetCardEmulationAdapter()
         {
+            bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            bool isCeSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
+
+            if (!isNfcSupported || !isCeSupported)
+            {
+                throw new NotSupportedException();
+            }
+
             try
             {
                 return NfcManagerImpl.Instance.CardEmulationAdapter;
@@ -215,6 +301,13 @@ namespace Tizen.Network.Nfc
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
         static public Task SetActivateAsync(bool activation)
         {
+            bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+            if (!isNfcSupported)
+            {
+                throw new NotSupportedException();
+            }
+
             try
             {
                 return NfcManagerImpl.Instance.SetActivateAsync(activation);
@@ -232,6 +325,13 @@ namespace Tizen.Network.Nfc
         {
             add
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    throw new NotSupportedException();
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.ActivationChanged += value;
@@ -243,6 +343,13 @@ namespace Tizen.Network.Nfc
             }
             remove
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    throw new NotSupportedException();
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.ActivationChanged -= value;
@@ -261,6 +368,13 @@ namespace Tizen.Network.Nfc
         {
             add
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    throw new NotSupportedException();
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.NdefMessageDiscovered += value;
@@ -272,6 +386,13 @@ namespace Tizen.Network.Nfc
             }
             remove
             {
+                bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+
+                if (!isNfcSupported)
+                {
+                    throw new NotSupportedException();
+                }
+
                 try
                 {
                     NfcManagerImpl.Instance.NdefMessageDiscovered -= value;

@@ -40,24 +40,17 @@ namespace Tizen.Network.Nfc
         {
             add
             {
-                if (_tagDiscovered == null)
-                {
-                    RegisterTagDiscoveredEvent();
-                }
                 _tagDiscovered += value;
             }
             remove
             {
                 _tagDiscovered -= value;
-                if (_tagDiscovered == null)
-                {
-                    UnregisterTagDiscoveredEvent();
-                }
             }
         }
 
         internal NfcTagAdapter()
         {
+            RegisterTagDiscoveredEvent();
         }
 
         ~NfcTagAdapter()
@@ -79,6 +72,7 @@ namespace Tizen.Network.Nfc
             if (disposing)
             {
                 // Free managed objects.
+                UnregisterTagDiscoveredEvent();
             }
             //Free unmanaged objects
             disposed = true;
