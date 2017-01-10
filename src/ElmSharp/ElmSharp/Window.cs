@@ -90,6 +90,16 @@ namespace ElmSharp
             }
         }
 
+        public Point ScreenDpi
+        {
+            get
+            {
+                Point point = default(Point);
+                Interop.Elementary.elm_win_screen_dpi_get(Handle, out point.X, out point.Y);
+                return point;
+            }
+        }
+
         public int Rotation
         {
             get
@@ -150,7 +160,6 @@ namespace ElmSharp
                 Interop.Elementary.elm_win_indicator_opacity_set(Handle, (int)value);
             }
         }
-
 
         public void Active()
         {

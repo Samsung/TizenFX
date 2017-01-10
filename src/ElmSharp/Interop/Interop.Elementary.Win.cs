@@ -115,5 +115,8 @@ internal static partial class Interop
             rotations = null;
             return false;
         }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_screen_dpi_get(IntPtr obj, out int xdpi, out int ydpi);
     }
 }
