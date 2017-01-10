@@ -89,7 +89,14 @@ namespace ElmSharp.Test
 
             Button barChange = new Button(parent)
             {
-                Text = "TitleTextColor & BarColor",
+                Text = "TitleBarColor Change",
+                WeightX = 1,
+                AlignmentX = -1,
+            };
+
+            Button barColorDefault = new Button(parent)
+            {
+                Text = "TitleBarColor - Default",
                 WeightX = 1,
                 AlignmentX = -1,
             };
@@ -101,6 +108,7 @@ namespace ElmSharp.Test
             insertAfterTop.Show();
             removeTop.Show();
             barChange.Show();
+            barColorDefault.Show();
 
             push.Clicked += (s, e) =>
             {
@@ -144,6 +152,15 @@ namespace ElmSharp.Test
                 }
             };
 
+            barColorDefault.Clicked += (s, e) =>
+            {
+                int currentIndex = _navi.NavigationStack.Count - 1;
+                if (currentIndex >= 0)
+                {
+                    _navi.NavigationStack[currentIndex].TitleBarBackgroundColor = Color.Default;
+                }
+            };
+
             box.PackEnd(label);
             box.PackEnd(push);
             box.PackEnd(pop);
@@ -151,6 +168,7 @@ namespace ElmSharp.Test
             box.PackEnd(insertAfterTop);
             box.PackEnd(removeTop);
             box.PackEnd(barChange);
+            box.PackEnd(barColorDefault);
 
             return box;
         }

@@ -67,8 +67,7 @@ namespace ElmSharp
             {
                 if (value.IsDefault)
                 {
-                    Console.WriteLine("ItemObject instance doesn't support to set TitleBarBackgroundColor to Color.Default.");
-                    //TODO. Soon we will support the "elm_object_item_color_class_del" function in EFL.
+                    Interop.Elementary.elm_object_item_color_class_del(Handle, "bg_title");
                 }
                 else
                 {
