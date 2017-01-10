@@ -32,6 +32,40 @@
 #define BUTTON_TEXT_FONT_SIZE 20
 #define BUTTON_BORDER 4 4 4 4
 
+#define STYLE_TAGS \
+   tag:  "br" "\n";\
+   tag:  "ps" "ps";\
+   tag:  "tab" "\t";\
+   tag:  "b" "+ font_weight=Bold";
+
+// ************* button text ********** //
+styles {
+   style { name: "button_default";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text";
+      STYLE_TAGS
+   }
+   style { name: "button_default_focused";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_focused";
+      STYLE_TAGS
+   }
+   style { name: "button_default_dim";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_disabled";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm_dim";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm_press";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+}
+
 /*********************************************************************************
 Document: Tizen TV_General Guide_GUI Guideline_v1.0_140430.ppt
 Button
@@ -102,31 +136,28 @@ group { name: "elm/button/base/default";
             max: 37 37;
          }
       }
-      part { name: "elm.text"; type: TEXT; mouse_events: 0;
+      part { name: "elm.text"; type: TEXTBLOCK; mouse_events: 0;
          scale: 1;
          description { state: "default" 0.0;
             rel1.to_x: "pad.left";
             rel1.relative: 1.0 0.0;
             rel2.to_x: "pad.right";
             rel2.relative: 0.0 1.0;
-            color_class: "button/default/text";
             text {
-               font: FONT_M;//TODO Tizen Sans regular
-               size: BUTTON_DEFAULT_FONT_SIZE;
                min: 1 1;
                max: 1 1;
                ellipsis: -1;
-               text_class: "button";
+               style: "button_default";
             }
          }
          description { state: "focus" 0.0;
             inherit: "default" 0.0;
-            color_class: "button/default/text_focused";
             text.min: 1 1;
+            text.style: "button_default_focused";
          }
          description { state: "dim" 0.0;
             inherit: "default" 0.0;
-            color_class: "button/default/text_disabled";
+            text.style: "button_default_disabled";
          }
       }
       part { name: "event"; type: RECT;
@@ -960,29 +991,6 @@ group { name: "elm/button/base/spinner/vertical_date_picker";
    }
 }
 
-// ************* button text ********** //
-#define STYLE_TAGS \
-   tag:  "br" "\n";\
-   tag:  "ps" "ps";\
-   tag:  "tab" "\t";\
-   tag:  "b" "+ font_weight=Bold";
-
-styles {
-   style { name: "button_ampm";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-   style { name: "button_ampm_dim";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-   style { name: "button_ampm_press";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-}
-
-
    group { name: "elm/button/base/datetime/default";
       data.item: "vector_ux" "default";
       data.item: "corner_radius" "39";
@@ -1622,3 +1630,4 @@ styles {
 #undef BUTTON_TEXT_MIN_SIZE
 #undef BUTTON_TEXT_FONT_SIZE
 #undef BUTTON_BORDER
+#undef STYLE_TAGS
