@@ -27,25 +27,40 @@ namespace Tizen.Multimedia
     public class StateChangedEventArgs : EventArgs
     {
         internal int _state;
+        internal int _error;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="state"> State Changed </param>
-        internal StateChangedEventArgs(int state)
+        /// <param name="error"> Error Occurred </param>
+        internal StateChangedEventArgs(int state, int error)
         {
             _state = state;
+            _error = error;
+        }
+
+        /// <summary>
+        /// Get the error.
+        /// </summary>
+        /// <value> error code </value>
+        public ScreenMirroringErrorCode Error
+        {
+            get
+            {
+                return (ScreenMirroringErrorCode)_error;
+            }
         }
 
         /// <summary>
         /// Get the current state.
         /// </summary>
         /// <value> current state </value>
-        public SCMirroringSinkState State
+        public ScreenMirroringSinkState State
         {
             get
             {
-                return (SCMirroringSinkState)_state;
+                return (ScreenMirroringSinkState)_state;
             }
         }
     }

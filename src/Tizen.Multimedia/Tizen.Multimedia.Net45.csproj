@@ -240,7 +240,6 @@
     <Compile Include="MediaController\MediaControllerServer.cs" />
     <Compile Include="MediaController\CustomCommandReplyEventArgs.cs" />
     <Compile Include="ScreenMirroring\AudioInformation.cs" />
-    <Compile Include="ScreenMirroring\ErrorOccurredEventArgs.cs" />
     <Compile Include="ScreenMirroring\ScreenMirroring.cs" />
     <Compile Include="ScreenMirroring\ScreenMirroringEnumerations.cs" />
     <Compile Include="ScreenMirroring\StateChangedEventArgs.cs" />

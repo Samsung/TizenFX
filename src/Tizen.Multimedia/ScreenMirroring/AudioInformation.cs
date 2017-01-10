@@ -48,9 +48,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedAudioCodec(ref _handle, out _codec);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio codec" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio codec" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get audio codec");
                 }
 
@@ -68,9 +68,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedAudioChannel(ref _handle, out _channel);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio channel" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio channel" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get audio channel");
                 }
 
@@ -88,9 +88,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedAudioSampleRate(ref _handle, out _sampleRate);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio sample rate" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio sample rate" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get audio sample rate");
                 }
 
@@ -108,9 +108,9 @@ namespace Tizen.Multimedia
             {
                 int ret;
                 ret = Interop.ScreenMirroring.GetNegotiatedAudioBitwidth(ref _handle, out _bitWidth);
-                if (ret != (int)SCMirroringError.None)
+                if (ret != (int)ScreenMirroringError.None)
                 {
-                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio bitwidth" + (SCMirroringError)ret);
+                    Log.Error(ScreenMirroringLog.LogTag, "Failed to get audio bitwidth" + (ScreenMirroringError)ret);
                     ScreenMirroringErrorFactory.ThrowException(ret, "failed to get audio bitwidth");
                 }
 
