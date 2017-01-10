@@ -42,8 +42,8 @@ namespace Tizen.Network.Connection
             Log.Debug(Globals.LogTag, "RequestWiFiProfile : " + keyword);
             ProfileHandle = ConnectionInternalManager.CreateRequestProfile(ConnectionProfileType.WiFi, keyword);
 
-            Ipv4 = AddressFactory.CreateAddressInformation(ProfileHandle, AddressFamily.Ipv4, AddressInformationType.Connection);
-            Ipv6 = AddressFactory.CreateAddressInformation(ProfileHandle, AddressFamily.Ipv6, AddressInformationType.Connection);
+            Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
+            Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
         }
 
         /// <summary>

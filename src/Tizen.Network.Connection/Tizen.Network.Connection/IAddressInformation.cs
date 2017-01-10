@@ -60,14 +60,6 @@ namespace Tizen.Network.Connection
         IpConfigType IpConfigType { get; set; }
     }
 
-    public static class AddressFactory
-    {
-        public static IAddressInformation CreateAddressInformation(IntPtr handle, AddressFamily family, AddressInformationType infoType)
-        {
-            return new ConnectionAddressInformation(handle, family);
-        }
-    }
-
     internal class ConnectionAddressInformation : IAddressInformation
     {
         private IntPtr _profileHandle;

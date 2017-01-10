@@ -85,8 +85,8 @@ namespace Tizen.Network.Connection
         public ConnectionProfile(IntPtr handle)
         {
             ProfileHandle = handle;
-            Ipv4 = AddressFactory.CreateAddressInformation(handle, AddressFamily.Ipv4, AddressInformationType.Connection);
-            Ipv6 = AddressFactory.CreateAddressInformation(handle, AddressFamily.Ipv6, AddressInformationType.Connection);
+            Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
+            Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
         }
 
         ~ConnectionProfile()

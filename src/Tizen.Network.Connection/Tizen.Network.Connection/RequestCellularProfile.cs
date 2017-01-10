@@ -46,8 +46,8 @@ namespace Tizen.Network.Connection
             ProfileHandle = ConnectionInternalManager.CreateRequestProfile(ConnectionProfileType.Cellular, keyword);
             Log.Debug(Globals.LogTag, "RequestCellularProfile is created : " + ProfileHandle);
 
-            Ipv4 = AddressFactory.CreateAddressInformation(ProfileHandle, AddressFamily.Ipv4, AddressInformationType.Connection);
-            Ipv6 = AddressFactory.CreateAddressInformation(ProfileHandle, AddressFamily.Ipv6, AddressInformationType.Connection);
+            Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
+            Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
 
             AuthInfo = new CellularAuthInformation(ProfileHandle);
         }
