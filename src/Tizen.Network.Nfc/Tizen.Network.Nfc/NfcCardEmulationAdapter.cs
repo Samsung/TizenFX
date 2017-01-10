@@ -333,11 +333,7 @@ namespace Tizen.Network.Nfc
             {
                 if (aid != IntPtr.Zero)
                 {
-                    NfcRegisteredAidInformation aidInfo = new NfcRegisteredAidInformation();
-
-                    aidInfo.SeType = (NfcSecureElementType)type;
-                    aidInfo.Aid = Marshal.PtrToStringAnsi(aid);
-                    aidInfo.ReadOnly = readOnly;
+                    NfcRegisteredAidInformation aidInfo = new NfcRegisteredAidInformation((NfcSecureElementType)type, Marshal.PtrToStringAnsi(aid), readOnly);
 
                     infoList.Add(aidInfo);
                 }

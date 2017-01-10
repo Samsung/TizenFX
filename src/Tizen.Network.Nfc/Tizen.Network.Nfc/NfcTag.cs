@@ -138,10 +138,8 @@ namespace Tizen.Network.Nfc
             {
                 if (key != IntPtr.Zero && infoValue != IntPtr.Zero)
                 {
-                    NfcTagInformation tagInfo = new NfcTagInformation();
+                    NfcTagInformation tagInfo = new NfcTagInformation(Marshal.PtrToStringAnsi(key), new byte[valueSize]);
 
-                    tagInfo.Key = Marshal.PtrToStringAnsi(key);
-                    tagInfo.InformationValue = new byte[valueSize];
                     Marshal.Copy(infoValue, tagInfo.InformationValue, 0, valueSize);
 
                     infoList.Add(tagInfo);

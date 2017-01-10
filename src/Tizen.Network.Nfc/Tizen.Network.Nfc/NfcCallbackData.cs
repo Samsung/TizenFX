@@ -24,18 +24,35 @@ namespace Tizen.Network.Nfc
     /// </summary>
     public class NfcTagInformation
     {
-        internal NfcTagInformation()
-        {
+        private string _key;
+        private byte[] _informationValue;
 
+        internal NfcTagInformation(string key, byte[] informationValue)
+        {
+            _key = key;
+            _informationValue = informationValue;
         }
+
         /// <summary>
         /// Key value.
         /// </summary>
-        public string Key;
+        public string Key
+        {
+            get
+            {
+                return _key;
+            }
+        }
         /// <summary>
         /// Information value.
         /// </summary>
-        public byte[] InformationValue;
+        public byte[] InformationValue
+        {
+            get
+            {
+                return _informationValue;
+            }
+        }
     }
 
     /// <summary>
@@ -43,21 +60,49 @@ namespace Tizen.Network.Nfc
     /// </summary>
     public class NfcRegisteredAidInformation
     {
-        internal NfcRegisteredAidInformation()
-        {
+        private NfcSecureElementType _seType;
+        private string _aid;
+        private bool _readOnly;
 
+        internal NfcRegisteredAidInformation(NfcSecureElementType seType, string aid, bool readOnly)
+        {
+            _seType = seType;
+            _aid = aid;
+            _readOnly = readOnly;
         }
+
         /// <summary>
         /// Secure Element Type value.
         /// </summary>
-        public NfcSecureElementType SeType;
+        public NfcSecureElementType SeType
+        {
+            get
+            {
+                return _seType;
+            }
+        }
+
         /// <summary>
-        /// Aid value.
+        /// 
+        /// The targeted Aid (Application Identifier) value.
         /// </summary>
-        public string Aid;
+        public string Aid
+        {
+            get
+            {
+                return _aid;
+            }
+        }
+
         /// <summary>
-        /// Read-only value.
+        /// Read-only value. If this value is false, there are restrictions to the operation on this Aid.
         /// </summary>
-        public bool ReadOnly;
+        public bool ReadOnly
+        {
+            get
+            {
+                return _readOnly;
+            }
+        }
     }
 }
