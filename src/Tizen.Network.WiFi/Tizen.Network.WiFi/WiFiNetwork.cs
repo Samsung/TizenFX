@@ -245,8 +245,8 @@ namespace Tizen.Network.WiFi
         internal WiFiNetwork(IntPtr apHandle)
         {
             _apHandle = apHandle;
-            _ipv4 = AddressFactory.CreateAddressInformation(apHandle, AddressFamily.Ipv4, AddressInformationType.WiFi);
-            _ipv6 = AddressFactory.CreateAddressInformation(apHandle, AddressFamily.Ipv6, AddressInformationType.WiFi);
+            _ipv4 = new WiFiAddressInformation(apHandle, AddressFamily.Ipv4);
+            _ipv6 = new WiFiAddressInformation(apHandle, AddressFamily.Ipv6);
 
             IntPtr strPtr;
             int ret = Interop.WiFi.Ap.GetEssid(_apHandle, out strPtr);
