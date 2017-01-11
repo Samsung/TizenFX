@@ -210,16 +210,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            int ret = Interop.AudioIO.AudioInput.Pause(_handle);
-
-            // Here, we convert the not supported error into InvalidOperationException.
-            // It is because this exception is more appropriate in C# for this kind of situation.
-            if ((int)AudioIOError.NotSupported == ret)
-            {
-                throw new InvalidOperationException("Cannot change the state in event handlers.");
-            }
-
-            MultimediaDebug.AssertNoError(ret);
+            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Pause(_handle));
         }
         /// <summary>
         /// Resumes buffering audio data from the device.
@@ -238,16 +229,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            int ret = Interop.AudioIO.AudioInput.Resume(_handle);
-
-            // Here, we convert the not supported error into InvalidOperationException.
-            // It is because this exception is more appropriate in C# for this kind of situation.
-            if ((int)AudioIOError.NotSupported == ret)
-            {
-                throw new InvalidOperationException("Cannot change the state in event handlers.");
-            }
-
-            MultimediaDebug.AssertNoError(ret);
+            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Resume(_handle));
         }
         /// <summary>
         /// Flushes and discards buffered audio data from the input stream.
