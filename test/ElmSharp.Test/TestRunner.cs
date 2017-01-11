@@ -27,11 +27,13 @@ namespace ElmSharp.Test
     public class TestRunner : CoreUIApplication
     {
         private Window _firstPageWindow;
+        private static bool s_terminated;
 
         public static string ResourceDir { get; private set; }
 
         public TestRunner()
         {
+            s_terminated = false;
         }
 
         protected override void OnCreate()
@@ -43,12 +45,15 @@ namespace ElmSharp.Test
             base.OnCreate();
         }
 
+        protected override void OnTerminate()
+        {
+            s_terminated = true;
+            base.OnTerminate();
+        }
+
         public void RunStandalone(string[] args)
         {
             ResourceDir = Path.Combine(Path.GetDirectoryName(typeof(TestRunner).GetTypeInfo().Assembly.Location), "res");
-
-            Elementary.Initialize();
-            Elementary.ThemeOverlay();
 
             EcoreSynchronizationContext.Initialize();
 
@@ -193,11 +198,17 @@ namespace ElmSharp.Test
 
         static void Main(string[] args)
         {
+            Elementary.Initialize();
+            Elementary.ThemeOverlay();
+
             TestRunner testRunner = new TestRunner();
             testRunner.Run(args);
 
             // if running with appfw is failed, below line will be executed.
-            testRunner.RunStandalone(args);
+            if (!s_terminated)
+            {
+                testRunner.RunStandalone(args);
+            }
         }
     }
 }
