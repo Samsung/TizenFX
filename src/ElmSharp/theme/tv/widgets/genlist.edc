@@ -781,8 +781,8 @@ group { "elm/genlist/item/full/default"; nomouse; program_source: "elm";
    data.item: "contents" "elm.swallow.content";
    data.item: "focus_highlight" "on";
 
-   target_group: "default" "base" "bottom_line" "elm.text";
-   target_group: "disabled" "event" "elm.text";
+   target_group: "default" "base" "bottom_line";
+   target_group: "disabled" "event";
    parts {
       GENLIST_BASE_COLOR_CLASS("genlist_item/full/bg", "genlist_item/full/bg_selected", "genlist_item/full/bg_focused")
       GENLIST_PAD(40, 40, 20, 20)
@@ -813,7 +813,7 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
       GENLIST_PAD(70, 70, 20, 20)
       GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/group_index/bottomline")
 
-      text { "elm.text"; scale;
+      textblock { "elm.text"; scale;
          desc { "default";
             rel1.to: "pad.top.left";
             rel1.relative: 1.0 1.0;
@@ -821,21 +821,22 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
             rel2.to_y: "pad.bottom.right";
             rel2.relative: 0.0 0.0;
             color: 255 255 255 204; // 80%
-            text { font: FONT_M; size: 30;
+            text {
                min: 1 1;
-               ellipsis: -1;
-               align: 0.0 0.5;
+               style: "list_group_index_text";
             }
          }
          desc { "focused"; inherit: "default";
             color: 255 255 255 255;
+            text.style: "list_group_index_text_focused";
          }
          desc { "disabled"; inherit: "default";
             color: 50 50 50 255;
+            text.style: "list_group_index_text_disabled";
          }
       }
 
-      text { "elm.text.end"; scale;
+      textblock { "elm.text.end"; scale;
          desc { "default";
             rel1.to_x: "pad.center.right";
             rel1.relative: 0.0 0.5;
@@ -844,17 +845,18 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
             align: 1.0 0.5;
             color: 255 255 255 204; // 80%
             fixed: 1 1;
-            text { font: FONT_M; size: 30;
+            text {
                min: 1 1;
-               ellipsis: -1;
-               align: 1.0 0.5;
+               style: "list_group_index_text_end";
             }
          }
          desc { "focused"; inherit: "default";
             color: 255 255 255 255;
+            text.style: "list_group_index_text_end_focused";
          }
          desc { "disabled"; inherit: "default";
             color: 50 50 50 255;
+            text.style: "list_group_index_text_end_disabled";
          }
       }
       swallow { "elm.swallow.end"; mouse;
@@ -896,128 +898,7 @@ group { "elm/genlist/item/group_index/default"; nomouse; program_source: "elm";
    programs {
       GENLIST_PROGRAMS("default", "disabled")
    }
-
 }
-
-group { "elm/genlist/item/double_label/default"; nomouse; program_source: "elm";
-   alias: "elm/genlist/item_compress/double_label/default";
-   alias: "elm/genlist/tree/double_label/default";
-   alias: "elm/genlist/tree_compress/double_label/default";
-
-   data.item: "texts" "elm.text elm.text.sub";
-   data.item: "contents" "elm.swallow.icon elm.swallow.end";
-   data.item: "focus_highlight" "on";
-   target_group: "default" "base" "bottom_line" "elm.text" "elm.text.sub";
-   target_group: "disabled" "event" "elm.text" "elm.text.sub";
-
-   parts {
-      GENLIST_BASE_COLOR_CLASS("genlist_item/double_label/bg", "genlist_item/double_label/bg_selected", "genlist_item/double_label/bg_focused")
-      GENLIST_PAD(32, 32, 29, 19)
-      GENLIST_BOTTOM_LINE_COLOR_CLASS("genlist_item/double_label/bottomline")
-      swallow { "elm.swallow.icon"; mouse; scale;
-         desc { "default";
-            rel1.to: "pad.top.left";
-            rel1.relative: 1.0 1.0;
-            rel2.to: "pad.top.left";
-            rel2.relative: 1.0 1.0;
-            min: 44 44;
-            fixed: 1 1;
-            align: 0.0 0.0;
-         }
-      }
-      spacer { "pad.left.center"; scale;
-         desc { "default";
-            rel1.to: "elm.swallow.icon";
-            rel1.relative: 0.0 1.0;
-            rel2.to: "elm.swallow.icon";
-            min: 0 3;
-            fixed: 0 1;
-            align: 0.5 0.0;
-         }
-      }
-      text { "elm.text.sub"; scale;
-         desc { "default";
-            rel1.to: "pad.left.center";
-            rel1.relative: 0.0 1.0;
-            rel2.to_x: "pad.left.center";
-            rel2.to_y: "pad.bottom.right";
-            rel2.relative: 1.0 0.0;
-            color: 211 211 211 255;
-            min: 0 20;
-            text { font: FONT_M; size: 24;
-               min: 0 1;
-            }
-         }
-         desc { "focused"; inherit: "default" 0.0;
-            color: 255 255 255 255;
-         }
-         desc { "disabled"; inherit: "default" 0.0;
-            color: 50 50 50 255;
-         }
-      }
-      spacer { "pad.center"; scale;
-         desc { "default";
-            rel1.to: "elm.swallow.icon";
-            rel1.relative: 1.0 0.0;
-            rel2.to: "elm.swallow.icon";
-            rel2.relative: 1.0 1.0;
-            min: 19 0;
-            fixed: 1 0;
-            align: 0.0 0.5;
-         }
-      }
-      text { "elm.text"; scale;
-         desc { "default";
-            rel1.to_x: "pad.center";
-            rel1.relative: 1.0 0.5;
-            rel2.to_x: "pad.center";
-            rel2.relative: 1.0 0.5;
-            align: 0.0 0.5;
-            fixed: 1 1;
-            color: 211 211 211 255;
-            text { font: FONT_M; size: 24;
-               min: 1 1;
-               ellipsis: -1;
-            }
-         }
-         desc { "focused"; inherit: "default" 0.0;
-            color: 255 255 255 255;
-         }
-         desc { "disabled"; inherit: "default" 0.0;
-            color: 50 50 50 255;
-         }
-      }
-      spacer { "pad.center2"; scale;
-         desc { "default";
-            rel1.to_x: "elm.text";
-            rel1.relative: 1.0 0.0;
-            rel2.to_x: "elm.text";
-            rel2.relative: 1.0 1.0;
-            min: 14 0;
-            fixed: 1 0;
-            align: 0.0 0.5;
-         }
-      }
-      //FIXME: with icon
-      swallow { "elm.swallow.end"; mouse; scale;
-         desc { "default";
-            rel1.to_x: "pad.center2";
-            rel1.relative: 1.0 0.0;
-            rel2.to_x: "pad.bottom.right";
-            rel2.relative: 0.0 1.0;
-            min: 40 30;
-            max: 40 30;
-            fixed: 0 1;
-            align: 0.0 0.5;
-         }
-      }
-   }
-   programs {
-      GENLIST_PROGRAMS("default", "disabled")
-   }
-}
-
-
 
 group { "elm/genlist/item/event/default"
    inherit_only: 1;
@@ -1596,6 +1477,55 @@ group { "elm/genlist/item/type1/default";
          target: "elm.text.end";
          target: "elm.text.sub";
          target: "elm.text.sub.end";
+      }
+   }
+}
+
+group { "elm/genlist/item/double_label/default";
+   alias: "elm/genlist/item_compress/double_label/default";
+   alias: "elm/genlist/tree/double_label/default";
+   alias: "elm/genlist/tree_compress/double_label/default";
+   inherit: "elm/genlist/item/type1/default";
+   data.item: "texts" "elm.text elm.text.sub";
+   data.item: "contents" "elm.swallow.icon elm.swallow.end";
+   parts {
+      rect { "bg"; scale;
+         desc { "default";
+            color_class: "genlist_item/double_label/bg";
+         }
+         desc { "pressed"; inherit: "default";
+            color_class: "genlist_item/double_label/bg_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            color_class: "genlist_item/double_label/bg_disabled";
+         }
+      }
+      textblock { "elm.text.sub"; scale;
+         desc { "default";
+            text.style: "list_double_label_text_sub";
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_double_label_text_sub_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_double_label_text_sub_disabled";
+         }
+      }
+      textblock { "elm.text"; scale;
+         desc { "default";
+            text.style: "list_double_label_text";
+         }
+         desc { "pressed"; inherit: "default";
+            text.style: "list_double_label_text_pressed";
+         }
+         desc { "disabled"; inherit: "default";
+            text.style: "list_double_label_text_disabled";
+         }
+      }
+      rect { "elm.bottomline"; scale;
+         desc { "default";
+            color_class: "genlist_item/double_label/bottomline";
+         }
       }
    }
 }

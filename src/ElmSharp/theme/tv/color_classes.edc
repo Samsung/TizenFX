@@ -197,19 +197,25 @@ color_classes {
    color_class { "genlist_item/group_index/bg_focused";
       color: 69 143 255 255;
    }
+   color_class { "genlist_item/group_index/text";
+      color: 255 255 255 204;
+   }
+   color_class { "genlist_item/group_index/text_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "genlist_item/group_index/text_disabled";
+      color: 50 50 50 255;
+   }
+   color_class { "genlist_item/group_index/text_end";
+      color: 255 255 255 204;
+   }
+   color_class { "genlist_item/group_index/text_end_focused";
+      color: 255 255 255 255;
+   }
+   color_class { "genlist_item/group_index/text_end_disabled";
+      color: 50 50 50 255;
+   }
    color_class { "genlist_item/group_index/bottomline";
-      color: 222 222 222 222;
-   }
-   color_class { "genlist_item/double_label/bg";
-      color: 42 50 64 255;
-   }
-   color_class { "genlist_item/double_label/bg_selected";
-      color: 69 143 255 255;
-   }
-   color_class { "genlist_item/double_label/bg_focused";
-      color: 69 143 255 255;
-   }
-   color_class { "genlist_item/double_label/bottomline";
       color: 222 222 222 222;
    }
    // Genlist-Type1
@@ -259,6 +265,37 @@ color_classes {
       color: 115 115 115 163;
    }
    color_class { "genlist_item/type1/bottomline";
+      color: 204 204 204 255;
+   }
+   // Genlist-Double_Label
+   color_class { "genlist_item/double_label/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "genlist_item/double_label/bg_pressed";
+      color: 0 0 0 10;
+   }
+   color_class { "genlist_item/double_label/bg_disabled";
+      color: 0 0 0 0;
+   }
+   color_class { "genlist_item/double_label/text";
+      color: 7 7 7 255;
+   }
+   color_class { "genlist_item/double_label/text_pressed";
+      color: 7 7 7 255;
+   }
+   color_class { "genlist_item/double_label/text_disabled";
+      color: 7 7 7 255;
+   }
+   color_class { "genlist_item/double_label/text_sub";
+      color: 115 115 115 255;
+   }
+   color_class { "genlist_item/double_label/text_sub_pressed";
+      color: 115 115 115 255;
+   }
+   color_class { "genlist_item/double_label/text_sub_disabled";
+      color: 115 115 115 163;
+   }
+   color_class { "genlist_item/double_label/bottomline";
       color: 204 204 204 255;
    }
    color_class { "genlist_item/end_icon/bg";
