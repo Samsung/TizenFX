@@ -1,6 +1,6 @@
 Name:       csapi-account-manager
 Summary:    Tizen account manager API for C#
-Version:    1.0.2
+Version:    1.0.3
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -9,7 +9,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
-ExcludeArch: aarch64 %ix86
+ExcludeArch: aarch64
 
 BuildRequires: dotnet-build-tools
 
