@@ -41,6 +41,21 @@
 #define BASE_SCALE_INC 2.0
 
 //****************************************************************************//
+// Button
+//****************************************************************************//
+#define BUTTON_DEFAULT_PAD_SIZE 20 70
+#define BUTTON_DEFAULT_MIN_SIZE 196 70
+#define BUTTON_DEFAULT_FONT_SIZE 28
+#define BUTTON_TEXT_PAD_SIZE 20 45
+#define BUTTON_TEXT_MIN_SIZE 147 45
+#define BUTTON_TEXT_FONT_SIZE 28
+#define BUTTON_BORDER 4 4 4 4
+
+#define BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC 80 80
+#define BUTTON_NAVIFRAME_BACK_BUTTON_EFFECT_MAX_SIZE_INC 80 80
+#define BUTTON_NAVIFRAME_BACK_CORNER_RADIUS 10
+
+//****************************************************************************//
 // Check
 //****************************************************************************//
 #define CHECK_ONOFF_SIZE_INC 72 72
@@ -206,6 +221,31 @@
    tag:  "match" "+ color=#3db8cc";
 
 styles {
+   style { name: "button_default";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text";
+      STYLE_TAGS
+   }
+   style { name: "button_default_focused";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_focused";
+      STYLE_TAGS
+   }
+   style { name: "button_default_disabled";
+      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_disabled";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm_dim";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+   style { name: "button_ampm_press";
+      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
+      STYLE_TAGS
+   }
+
    style { name: "check_on&off";
       base: "color=#FFF color_class=check/on&off/text font=Tizen:weight=Light font_size=40 text_class=tizen ellipsis=1.0";
       STYLE_TAGS

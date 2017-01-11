@@ -24,6 +24,27 @@ color_classes {
    color_class { "button/default/text_disabled";
       color: 89 89 89 102;
    }
+   color_class { "button/naviframe/back_btn/bg";
+      color: 0 0 0 0;
+   }
+   color_class { "button/naviframe/back_btn/bg_pressed";
+      color: 0 0 0 0;
+   }
+   color_class { "button/naviframe/back_btn/bg_disabled";
+      color: 0 0 0 0;
+   }
+   color_class { "button/naviframe/back_btn/effect";
+      color: 0 0 0 77;
+   }
+   color_class { "button/naviframe/back_btn/icon";
+      color: 250 250 250 255;
+   }
+   color_class { "button/naviframe/back_btn/icon_pressed";
+      color: 34 104 115 255;
+   }
+   color_class { "button/naviframe/back_btn/icon_disabled";
+      color: 250 250 250 77;
+   }
    /*
     * Check
     */

@@ -24,48 +24,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define BUTTON_DEFAULT_PAD_SIZE 20 70
-#define BUTTON_DEFAULT_MIN_SIZE 196 70
-#define BUTTON_DEFAULT_FONT_SIZE 28
-#define BUTTON_TEXT_PAD_SIZE 20 45
-#define BUTTON_TEXT_MIN_SIZE 147 45
-#define BUTTON_TEXT_FONT_SIZE 20
-#define BUTTON_BORDER 4 4 4 4
-
-#define STYLE_TAGS \
-   tag:  "br" "\n";\
-   tag:  "ps" "ps";\
-   tag:  "tab" "\t";\
-   tag:  "b" "+ font_weight=Bold";
-
-// ************* button text ********** //
-styles {
-   style { name: "button_default";
-      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text";
-      STYLE_TAGS
-   }
-   style { name: "button_default_focused";
-      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_focused";
-      STYLE_TAGS
-   }
-   style { name: "button_default_dim";
-      base: "align=center color=#ffffffff font="FONT_M" font_size="BUTTON_TEXT_FONT_SIZE" text_class=button ellipsis=1.0 color_class=button/default/text_disabled";
-      STYLE_TAGS
-   }
-   style { name: "button_ampm";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-   style { name: "button_ampm_dim";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-   style { name: "button_ampm_press";
-      base: "align=center color=#ffffffff font=Tizen:style=Light font_size=40 text_class=tizen";
-      STYLE_TAGS
-   }
-}
-
 /*********************************************************************************
 Document: Tizen TV_General Guide_GUI Guideline_v1.0_140430.ppt
 Button
@@ -1623,11 +1581,417 @@ group { name: "elm/button/base/spinner/vertical_date_picker";
 
 /***********************SPINNER BUTTONS STYLES******************************/
 
-#undef BUTTON_DEFAULT_PAD_SIZE
-#undef BUTTON_DEFAULT_MIN_SIZE
-#undef BUTTON_DEFAULT_FONT_SIZE
-#undef BUTTON_TEXT_PAD_SIZE
-#undef BUTTON_TEXT_MIN_SIZE
-#undef BUTTON_TEXT_FONT_SIZE
-#undef BUTTON_BORDER
-#undef STYLE_TAGS
+   group { "elm/button/event/default";
+      inherit_only: 1;
+      parts {
+         rect { "event";
+            mouse;
+            desc { "default";
+               color: 0 0 0 0;
+               rel.to: "base";
+            }
+            desc { "disabled";
+               inherit: "default";
+               hid;
+            }
+         }
+      }
+      programs {
+         /* Program for pressed event */
+         program { "pressed";
+            signal: "mouse,down,1*";
+            source: "event";
+            action: SIGNAL_EMIT "elm,action,press" "";
+            after: "on_pressed";
+         }
+         /* Program for unpressed event */
+         program { "unpressed";
+             signal: "mouse,up,1*";
+             source: "event";
+             action: SIGNAL_EMIT "elm,action,unpress" "";
+             after: "on_unpressed";
+         }
+         /* Program for clicked event */
+         program { "clicked";
+             signal: "mouse,clicked,1";
+             source: "event";
+             action: SIGNAL_EMIT "elm,action,click" "";
+             after: "on_clicked";
+         }
+         /* Program for enabled event */
+         program { "enabled";
+             signal: "elm,state,enabled";
+             source: "elm";
+             action: STATE_SET "default";
+             target: "event";
+             after: "on_enabled";
+         }
+         /* Program for disabled event */
+         program { "disabled";
+            signal: "elm,state,disabled";
+            source: "elm";
+            action: STATE_SET "disabled";
+            target: "event";
+            after: "on_disabled";
+         }
+         program { "enable_event_pass";
+            signal: "elm,event,pass,enabled";
+            source: "elm";
+            script {
+               set_mouse_events(PART:"event", 0);
+            }
+         }
+         program { "disable_event_pass";
+            signal: "elm,event,pass,disabled";
+            source:"elm";
+               script {
+                  set_mouse_events(PART:"event", 1);
+            }
+         }
+         program { "enable_event_repeat";
+            signal: "elm,event,repeat,enabled";
+            source: "elm";
+            script {
+               set_repeat_events(PART:"event", 1);
+            }
+         }
+         program { "disable_event_repeat";
+            signal: "elm,event,repeat,disabled";
+            source:"elm";
+            script {
+               set_repeat_events(PART:"event", 0);
+            }
+         }
+      }
+   }
+
+
+   group { "elm/button/base/naviframe/back_btn/default";
+      alias: "elm/button/base/tizen_view/prev_btn";
+      alias: "elm/button/base/naviframe/end_btn/default";
+      images {
+         vector: "core_press_top_left.svg";
+         vector: "core_press_top_right.svg";
+         vector: "core_press_bottom_left.svg";
+         vector: "core_press_bottom_right.svg";
+         vector: "core_press_center.svg";
+      }
+      target_group: "bg_effect_vector" "bg_effect_top_left" "bg_effect_top_right" "bg_effect_bottom_left" "bg_effect_bottom_right";
+
+      images {
+         set {
+            name: "core_icon_back";
+            image {
+               image: "core_icon_back.png" COMP;
+            }
+         }
+      }
+      parts {
+         spacer { "base";
+            scale;
+            nomouse;
+            desc { "default";
+               min: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+               max: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+               fixed: 1 1;
+            }
+         }
+         spacer { "bg_spacer";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               rel1.relative: 0.5 0.5;
+               rel2.relative: 0.5 0.5;
+               min: BUTTON_NAVIFRAME_BACK_BUTTON_EFFECT_MAX_SIZE_INC;
+               max: BUTTON_NAVIFRAME_BACK_BUTTON_EFFECT_MAX_SIZE_INC;
+            }
+         }
+         BUTTON_VECTOR_PART(BUTTON_NAVIFRAME_BACK_CORNER_RADIUS
+                           , 0.7
+                           , "bg", "clipper_bg"
+                           , "core_press_top_left.svg", "core_press_top_right.svg"
+                           , "core_press_center.svg"
+                           , "core_press_bottom_left.svg", "core_press_bottom_right.svg");
+         swallow { "bg";
+            scale;
+            nomouse;
+            clip: "clipper_bg";
+            desc { "default";
+               rel.to: "bg_spacer";
+            }
+         }
+         rect { "clipper_bg";
+            scale;
+            desc { "default";
+               color_class: "button/naviframe/back_btn/bg";
+            }
+            desc { "pressed";
+               color_class: "button/naviframe/back_btn/bg_pressed";
+            }
+            desc { "disabled";
+               color_class: "button/naviframe/back_btn/bg_disabled";
+            }
+         }
+         spacer { "effect_spacer";
+            scale;
+            desc { "default";
+               rel.to: "bg";
+            }
+         }
+         BUTTON_VECTOR_PART(BUTTON_NAVIFRAME_BACK_CORNER_RADIUS
+                           , 0.7
+                           , "bg_effect", "clipper_bg_effect"
+                           , "core_press_top_left.svg", "core_press_top_right.svg"
+                           , "core_press_center.svg"
+                           , "core_press_bottom_left.svg", "core_press_bottom_right.svg");
+         //Effect Shape Part
+         swallow { "bg_effect";
+            clip: "clipper_bg_effect";
+            scale;
+            desc { "default";
+               fixed: 1 1;
+               rel1.to: "effect_spacer";
+               rel2.to: "effect_spacer";
+               rel1.relative: 0.5 0.5;
+               rel2.relative: 0.5 0.5;
+            }
+            desc { "ready";
+               inherit: "default";
+            }
+            desc { "pressed";
+               inherit: "default";
+               rel1.relative: 0.0 0.0;
+               rel2.relative: 1.0 1.0;
+            }
+         }
+         rect { "clipper_bg_effect";
+            desc { "default";
+               fixed: 1 1;
+               rel.to: "bg_effect";
+               color: 0 0 0 0;
+               color_class: "button/naviframe/back_btn/effect";
+               hid;
+            }
+            desc { "ready";
+               inherit: "default";
+               vis;
+            }
+            desc { "pressed";
+               inherit: "ready";
+               color: 255 255 255 255;
+            }
+         }
+         image { "icon";
+            scale;
+            nomouse;
+            clip: "clipper_icon";
+            desc { "default";
+               min: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+               max: BUTTON_NAVIFRAME_BACK_BUTTON_SIZE_INC;
+               fixed: 1 1;
+               image.normal: "core_icon_back";
+            }
+            desc { "rtl";
+               inherit: "default";
+               map.on: 1;
+               map.rotation.y: 180.0;
+            }
+         }
+         rect { "clipper_icon";
+            scale;
+            desc { "default";
+               color_class: "button/naviframe/back_btn/icon";
+            }
+            desc { "pressed";
+               color_class: "button/naviframe/back_btn/icon_pressed";
+            }
+            desc { "disabled";
+               color_class: "button/naviframe/back_btn/icon_disabled";
+            }
+         }
+      }
+      inherit: "elm/button/event/default";
+      script {
+         public mouse_down = 0;
+         public multi_down = 0;
+         public animate = 0;
+         public disabled = 0;
+         public minw = 0;
+         public minh = 0;
+         public get_effect_min_size(base_effect, Float:ratio, min_w, min_h) {
+            new x, y, w, h;
+            get_geometry(base_effect, x, y, w, h);
+            if (w > h) {
+               set_float(min_w, (w - h * (1 - ratio)) / w);
+               set_float(min_h, ratio);
+            } else {
+               set_float(min_w, ratio);
+               set_float(min_h, (h - w * (1 - ratio)) / h);
+            }
+         }
+         BUTTON_VECTOR_PART_MIRRORED_VALUE
+      }
+      program_remove: "unpressed";
+      program_remove: "clicked";
+      programs {
+         program { "on_pressed";
+            script {
+               if ((get_int(multi_down) == 0) && (get_int(mouse_down) == 0) && (get_int(disabled) == 0)) {
+                  new Float:rel_w, Float:rel_h;
+                  stop_program(PROGRAM:"delay_unpressed_effect");
+                  set_int(mouse_down, 1);
+                  set_int(animate, 1);
+                  custom_state(PART:"bg_effect", "ready", 0.0);
+                  get_effect_min_size(PART:"effect_spacer", 0.7, minw, minh);
+                  rel_w = (1 - get_float(minw)) / 2;
+                  rel_h = (1 - get_float(minh)) / 2;
+                  set_state_val(PART:"bg_effect", STATE_REL1, rel_w, rel_h);
+                  set_state_val(PART:"bg_effect", STATE_REL2, 1 - rel_w, 1 - rel_h);
+                  run_program(PROGRAM:"pressed_effect");
+               }
+            }
+         }
+         program { "unpressed";
+            signal: "mouse,up,1";
+            source: "event";
+            script {
+               if (get_int(mouse_down) == 1) {
+                  set_int(mouse_down, 0);
+                  if (get_int(disabled) == 0) {
+                     if (get_int(animate) == 0) {
+                        run_program(PROGRAM:"unpressed_effect");
+                     } else {
+                        set_state(PART:"bg_effect", "pressed", 0.0);
+                        set_state(PART:"clipper_bg_effect", "pressed", 0.0);
+                        set_int(animate, 0);
+                        run_program(PROGRAM:"delay_unpressed_effect");
+                     }
+                     emit("elm,action,unpress", "");
+                  }
+               }
+            }
+         }
+         program { "clicked";
+            signal: "mouse,clicked,1";
+            source: "event";
+            script {
+               if ((get_int(multi_down) == 0) && (get_int(disabled) == 0)) {
+                 run_program(PROGRAM:"play_sound");
+                 run_program(PROGRAM:"clicked_signal");
+               }
+            }
+         }
+         program { "on_enabled";
+            script {
+               set_int(disabled, 0);
+               set_state(PART:"clipper_bg", "default", 0.0);
+               set_state(PART:"clipper_icon", "default", 0.0);
+            }
+         }
+         program { "on_disabled";
+            script {
+               set_int(disabled, 1);
+               if (get_int(animate) == 1) return;
+               set_state(PART:"clipper_bg", "disabled", 0.0);
+               set_state(PART:"clipper_icon", "disabled", 0.0);
+            }
+         }
+         program { "pressed_effect";
+            script {
+               if(get_int(rtl_mode) == 0) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","","default")
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","_rtl","hidden")
+               }
+               else if(get_int(rtl_mode) == 1) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","_rtl","default")
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","","hidden")
+               }
+               set_state(PART:"clipper_bg_effect", "ready", 0.0);
+               set_state(PART:"bg_effect", "custom", 0.0);
+               run_program(PROGRAM:"pressed_effect2");
+            }
+         }
+         program { "pressed_effect2";
+            script {
+               if(get_int(rtl_mode) == 0) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","","pressed")
+               }
+               else if(get_int(rtl_mode) == 1) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","_rtl","pressed")
+               }
+               run_program(PROGRAM:"pressed_effect2_1");
+            }
+         }
+         program { "pressed_effect2_1";
+            action: STATE_SET "pressed";
+            target: "clipper_bg_effect";
+            target: "bg_effect";
+            target: "clipper_icon";
+            transition: GLIDE_EASE_OUT(0.15);
+            after: "pressed_effect3";
+         }
+         program { "pressed_effect3";
+            script {
+               set_state(PART:"clipper_bg", "pressed", 0.0);
+               set_int(animate, 0);
+            }
+         }
+         program { "delay_unpressed_effect";
+            in: 0.1 0.0;
+            after: "unpressed_effect";
+         }
+         program { "unpressed_effect";
+            script {
+               run_program(PROGRAM:"unpressed_effect2");
+               run_program(PROGRAM:"unpressed_effect2_1");
+            }
+         }
+         program { "unpressed_effect2";
+            action: STATE_SET "ready";
+            target: "clipper_bg_effect";
+            transition: GLIDE_EASE_OUT(0.45);
+            after: "unpressed_effect3";
+         }
+         program { "unpressed_effect2_1";
+            action: STATE_SET "default";
+            target: "clipper_icon";
+            transition: GLIDE_EASE_OUT(0.45);
+         }
+         program { "unpressed_effect3";
+            script {
+               if(get_int(rtl_mode) == 0) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","","default")
+               }
+               else if(get_int(rtl_mode) == 1) {
+                  BUTTON_VECTOR_PART_MIRRORED_SET_STATE("bg_effect","_rtl","default")
+               }
+               set_state(PART:"clipper_bg_effect", "default", 0.0);
+               set_state(PART:"clipper_bg", "default", 0.0);
+               set_state(PART:"bg_effect", "default", 0.0);
+            }
+         }
+         program { "play_sound";
+            action: RUN_PLUGIN "touch_sound";
+         }
+         program { "clicked_signal";
+            in: 0.001 0.0;
+            action: SIGNAL_EMIT "elm,action,click" "";
+         }
+         program { "multi_down";
+            signal: "elm,action,multi,down";
+            source: "elm";
+            script {
+               set_int(multi_down, 1);
+            }
+         }
+         program { "multi_up";
+            signal: "elm,action,multi,up";
+            source: "elm";
+            script {
+               set_int(multi_down, 0);
+            }
+         }
+         BUTTON_VECTOR_PART_MIRRORED_PROGRAM("icon")
+      }
+   }
+

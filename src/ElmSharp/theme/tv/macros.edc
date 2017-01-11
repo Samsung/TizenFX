@@ -33,3 +33,343 @@
                               color3: 255 255 255 255; \
                            } \
                         }
+
+#define BUTTON_VECTOR_PART(min_size, ratio, vector_base, clipper_vector_base, left_top, right_top, mid, left_bottom, right_bottom) \
+      vector { vector_base"_top_left"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 0.0 0.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: left_top; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_top_right"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 1.0 0.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: right_top; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_top_mid"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_top_left"; \
+            rel1.relative: 1.0 0.0; \
+            rel2.to: vector_base"_top_right"; \
+            rel2.relative: 0.0 1.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_mid"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_top_left"; \
+            rel1.relative: 0.0 1.0; \
+            rel2.to: vector_base"_bottom_right"; \
+            rel2.relative: 1.0 0.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_left"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 0.0 1.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: left_bottom; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_right"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 1.0 1.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: right_bottom; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_mid"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_bottom_left"; \
+            rel1.relative: 1.0 0.0; \
+            rel2.to: vector_base"_bottom_right"; \
+            rel2.relative: 0.0 1.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_top_left_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 0.0 0.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: right_top; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_top_right_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 1.0 0.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: left_top; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_top_mid_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_top_left_rtl"; \
+            rel1.relative: 1.0 0.0; \
+            rel2.to: vector_base"_top_right_rtl"; \
+            rel2.relative: 0.0 1.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_mid_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_top_left_rtl"; \
+            rel1.relative: 0.0 1.0; \
+            rel2.to: vector_base"_bottom_right_rtl"; \
+            rel2.relative: 1.0 0.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_left_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 0.0 1.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: right_bottom; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_right_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            align: 1.0 1.0; \
+            max: (min_size)*ratio (min_size)*ratio; \
+            rel1.to: vector_base; \
+            rel2.to: vector_base; \
+            rel1.relative: 0.0 0.0; \
+            rel2.relative: 1.0 1.0; \
+            image.normal: left_bottom; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+            min: (min_size)-1 (min_size)-1; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      } \
+      vector { vector_base"_bottom_mid_rtl"; \
+         clip: clipper_vector_base; \
+         desc { "default"; \
+            vis; \
+            rel1.to: vector_base"_bottom_left_rtl"; \
+            rel1.relative: 1.0 0.0; \
+            rel2.to: vector_base"_bottom_right_rtl"; \
+            rel2.relative: 0.0 1.0; \
+            image.normal: mid; \
+         } \
+         desc { "ready"; \
+            inherit: "default"; \
+         } \
+         desc { "pressed"; \
+            inherit: "ready"; \
+         } \
+         desc { "hidden" \
+           hid; \
+         } \
+      }
+
+#define BUTTON_VECTOR_PART_MIRRORED_VALUE \
+      public rtl_mode = 0;
+
+#define BUTTON_VECTOR_PART_MIRRORED_SET_STATE(vector_base, _rtl, _state) \
+      set_state(PART:vector_base"_top_left"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_top_right"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_bottom_left"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_bottom_right"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_top_mid"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_mid"_rtl, _state, 0.0); \
+      set_state(PART:vector_base"_bottom_mid"_rtl, _state, 0.0);
+
+#define BUTTON_VECTOR_PART_MIRRORED_PROGRAM( _icon ) \
+      program { "rtl_mirrored"; \
+         signal: "edje,state,rtl"; \
+         source: "edje"; \
+         script { \
+            set_int(rtl_mode, 1); \
+            if( strcmp(#_icon, "icon")) { \
+               set_state(PART:_icon, "rtl", 0.0); \
+            } \
+         } \
+      } \
+      program { "ltr_mirrored"; \
+         signal: "edje,state,ltr"; \
+         source: "edje"; \
+         script { \
+            set_int(rtl_mode, 0); \
+            if( strcmp(#_icon, "icon")) { \
+               set_state(PART:_icon, "default", 0.0); \
+            } \
+         } \
+      }
