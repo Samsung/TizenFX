@@ -218,4 +218,65 @@ styles {
       base: "color=#FFF color_class=check/on&off/text_pressed font=Tizen:weight=Light font_size=40 text_class=tizen ellipsis=1.0";
       STYLE_TAGS
    }
+   style { name: "list_group_index_text";
+      base: "color=#ffffff color_class=genlist_item/group_index/text font="FONT_M" font_size=30 text_class=list_item align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_group_index_text_focused";
+      base: "color=#ffffff color_class=genlist_item/group_index/text_focused font="FONT_M" font_size=30 text_class=list_item align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_group_index_text_disabled";
+      base: "color=#ffffff color_class=genlist_item/group_index/text_disabled font="FONT_M" font_size=30 text_class=list_item align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_group_index_text_end";
+      base: "color=#ffffff color_class=genlist_item/group_index/text_end font="FONT_M" font_size=30 text_class=list_item align=right";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_group_index_text_end_focused";
+      base: "color=#ffffff color_class=genlist_item/group_index/text_end_focused font="FONT_M" font_size=30 text_class=list_item align=right";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_group_index_text_end_disabled";
+      base: "color=#ffffff color_class=genlist_item/group_index/text_end_disabled font="FONT_M" font_size=30 text_class=list_item align=right";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   // ************* list double_label ********** //
+   style { name: "list_double_label_text";
+      base: "color=#ffffff color_class=genlist_item/double_label/text font=Tizen:weight=Light font_size=40 text_class=list_item ellipsis=1.0";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_double_label_text_pressed";
+      base: "color=#ffffff color_class=genlist_item/double_label/text_pressed font=Tizen:weight=Light font_size=40 text_class=list_item ellipsis=1.0";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_double_label_text_disabled";
+      base: "color=#ffffff color_class=genlist_item/double_label/text_disabled font=Tizen:weight=Light font_size=40 text_class=list_item ellipsis=1.0";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_double_label_text_sub";
+      base: "color=#ffffff color_class=genlist_item/double_label/text_sub font=Tizen:weight=Normal font_size=30 text_class=tizen ellipsis=1.0 align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_double_label_text_sub_pressed";
+      base: "color=#ffffff color_class=genlist_item/double_label/text_sub_pressed font=Tizen:weight=Normal font_size=30 text_class=tizen ellipsis=1.0 align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
+   style { name: "list_double_label_text_sub_disabled";
+      base: "color=#ffffff color_class=genlist_item/double_label/text_sub_disabled font=Tizen:weight=Normal font_size=30 text_class=tizen ellipsis=1.0 align=left";
+      STYLE_TAGS
+      STYLE_TAG_MATCH
+   }
 }
