@@ -27,17 +27,15 @@ namespace Tizen.Maps
         private string _language;
         private PlaceMedia _media;
 
-        internal PlaceEditorial(IntPtr nativeHandle)
+        internal PlaceEditorial(Interop.PlaceEditorialHandle handle)
         {
-            var handle = new Interop.PlaceEditorialHandle(nativeHandle);
+            _description = handle.Description;
+            _language = handle.Language;
+            _media = new PlaceMedia(handle.Media);
+        }
 
-            Interop.PlaceEditorial.GetDescription(handle, out _description);
-            Interop.PlaceEditorial.GetLanguage(handle, out _language);
-
-            IntPtr mediaHandle;
-            var err = Interop.PlaceEditorial.GetMedia(handle, out mediaHandle);
-            if (err.IsSuccess())
-                _media = new PlaceMedia(mediaHandle);
+        internal PlaceEditorial(IntPtr nativeHandle, bool needToRelease) : this(new Interop.PlaceEditorialHandle(nativeHandle, needToRelease))
+        {
         }
 
         /// <summary>
@@ -54,5 +52,10 @@ namespace Tizen.Maps
         /// Place editorial value
         /// </summary>
         public PlaceMedia Media { get { return _media; } }
+
+        public override string ToString()
+        {
+            return $"{Description}";
+        }
     }
 }

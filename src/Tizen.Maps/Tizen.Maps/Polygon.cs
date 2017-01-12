@@ -25,8 +25,9 @@ namespace Tizen.Maps
     /// <summary>
     /// Polygon map object
     /// </summary>
-    public class Polygon : MapObject
+    public class Polygon : MapObject, IDisposable
     {
+        internal Interop.PolygonHandle handle;
         private List<Geocoordinates> _coordinateList;
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">list of geographical coordinates</param>
         /// <param name="color">background color</param>
-        public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base(CreateNativeHandle(coordinates, color))
+        public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
             if (coordinates == null || coordinates.Count() < 3)
@@ -42,10 +43,19 @@ namespace Tizen.Maps
                 err.ThrowIfFailed("given coordinates list should contain at least 3 coordinates");
             }
             _coordinateList = coordinates.ToList();
+            var geocoordinateList = new GeocoordinatesList(_coordinateList, false);
+            handle = new Interop.PolygonHandle(geocoordinateList.handle, color);
         }
 
-        internal Polygon(Interop.ViewObjectHandle nativeHandle) : base(nativeHandle)
+        /// <summary>
+        /// Clicked event
+        /// </summary>
+        public event EventHandler Clicked;
+
+        public override bool IsVisible
         {
+            get { return handle.IsVisible; }
+            set { handle.IsVisible = value; }
         }
 
         /// <summary>
@@ -55,30 +65,19 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_coordinateList == null)
-                {
-                    _coordinateList = new List<Geocoordinates>();
-                    Interop.ViewObject.CoordinatesCallback callback = (index, nativeHandle, userData) =>
-                    {
-                        _coordinateList.Add(new Geocoordinates(nativeHandle));
-                        return true;
-                    };
-                    Interop.ViewObject.PolygonForeachPoint(handle, callback, IntPtr.Zero);
-                }
                 return _coordinateList;
             }
             set
             {
                 var coordinates = value.ToList();
-
                 var err = Interop.ErrorCode.InvalidParameter;
                 if (coordinates == null || coordinates.Count() < 3)
                 {
                     err.ThrowIfFailed("given coordinates list should contain at least 3 coordinates");
                 }
 
-                var coordinateList = new GeocoordinatesList(coordinates, false);
-                if (Interop.ViewObject.PolygonSetPolygon(handle, coordinateList.handle).IsSuccess())
+                var geocoordinateList = new GeocoordinatesList(coordinates, false);
+                if (handle.SetPolygon(geocoordinateList.handle).IsSuccess())
                 {
                     _coordinateList = coordinates;
                 }
@@ -92,25 +91,49 @@ namespace Tizen.Maps
         {
             get
             {
-                byte r, g, b, a;
-                Interop.ViewObject.PolygonGetFillColor(handle, out r, out g, out b, out a);
-                return new Color(r, g, b, a);
+                return handle.FillColor;
             }
             set
             {
-                Interop.ViewObject.PolygonSetFillColor(handle, (byte)value.R, (byte)value.G, (byte)value.B, (byte)value.A);
+                handle.FillColor = value;
             }
         }
 
-        private static Interop.ViewObjectHandle CreateNativeHandle(IEnumerable<Geocoordinates> coordinates, Color color)
+        internal override void HandleClickedEvent()
         {
-            if (coordinates == null || coordinates.Count() < 3) return new Interop.ViewObjectHandle(IntPtr.Zero);
-
-            IntPtr nativeHandle;
-            var geocoordinateList = new GeocoordinatesList(coordinates.ToList(), false);
-            var err = Interop.ViewObject.CreatePolygon(geocoordinateList.handle, (byte)color.R, (byte)color.G, (byte)color.B, (byte)color.A, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for polygon");
-            return new Interop.ViewObjectHandle(nativeHandle);
+            Clicked?.Invoke(this, EventArgs.Empty);
         }
+
+        internal override void InvalidateMapObject()
+        {
+            handle = null;
+        }
+
+        internal override Interop.ViewObjectHandle GetHandle()
+        {
+            return handle;
+        }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _coordinateList.Clear();
+                }
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

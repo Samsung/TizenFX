@@ -47,14 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interop\Interop.AddressList.cs" />
+    <Compile Include="Interop\Interop.CoordinatesList.cs" />
+    <Compile Include="Interop\Interop.PlaceList.cs" />
     <Compile Include="Interop\Interop.SafeMapsHandle.cs" />
+    <Compile Include="Interop\Interop.View.Marker.cs" />
+    <Compile Include="Interop\Interop.View.Overlay.cs" />
+    <Compile Include="Interop\Interop.View.Polygon.cs" />
+    <Compile Include="Interop\Interop.View.Polyline.cs" />
+    <Compile Include="Tizen.Maps\IGeocodePreference.cs" />
+    <Compile Include="Tizen.Maps\IPlaceSearchPreference.cs" />
+    <Compile Include="Tizen.Maps\IRouteSearchPreference.cs" />
     <Compile Include="Tizen.Maps\MapView.cs" />
     <Compile Include="Tizen.Maps\GestureType.cs" />
     <Compile Include="Tizen.Maps\Overlay.cs" />
     <Compile Include="Tizen.Maps\Polygon.cs" />
     <Compile Include="Tizen.Maps\Polyline.cs" />
     <Compile Include="Tizen.Maps\MapGestureEventArgs.cs" />
-    <Compile Include="Tizen.Maps\MapObjectEventArgs.cs" />
     <Compile Include="Tizen.Maps\MapObject.cs" />
     <Compile Include="Tizen.Maps\MapTypes.cs" />
     <Compile Include="Tizen.Maps\Marker.cs" />
@@ -91,7 +100,6 @@
     <Compile Include="Tizen.Maps\GeocoordinatesList.cs" />
     <Compile Include="Tizen.Maps\Direction.cs" />
     <Compile Include="Tizen.Maps\DistanceUnit.cs" />
-    <Compile Include="Tizen.Maps\GeocodePreference.cs" />
     <Compile Include="Tizen.Maps\GeocodeRequest.cs" />
     <Compile Include="Tizen.Maps\MapService.cs" />
     <Compile Include="Tizen.Maps\MapServiceRequest.cs" />
@@ -107,7 +115,6 @@
     <Compile Include="Tizen.Maps\PlaceList.cs" />
     <Compile Include="Tizen.Maps\PlaceMedia.cs" />
     <Compile Include="Tizen.Maps\PlaceRating.cs" />
-    <Compile Include="Tizen.Maps\PlaceSearchPreference.cs" />
     <Compile Include="Tizen.Maps\PlaceSearchRequest.cs" />
     <Compile Include="Tizen.Maps\PlaceReview.cs" />
     <Compile Include="Tizen.Maps\ReverseGeocodeRequest.cs" />
@@ -116,9 +123,9 @@
     <Compile Include="Tizen.Maps\RouteFeatureWeight.cs" />
     <Compile Include="Tizen.Maps\RouteManeuver.cs" />
     <Compile Include="Tizen.Maps\RouteOptimization.cs" />
-    <Compile Include="Tizen.Maps\RouteSearchPreference.cs" />
     <Compile Include="Tizen.Maps\RouteSearchRequest.cs" />
     <Compile Include="Tizen.Maps\RouteSegment.cs" />
+    <Compile Include="Tizen.Maps\SearchPreference.cs" />
     <Compile Include="Tizen.Maps\ServiceRequestType.cs" />
     <Compile Include="Tizen.Maps\ServiceData.cs" />
     <Compile Include="Tizen.Maps\SnapshotType.cs" />

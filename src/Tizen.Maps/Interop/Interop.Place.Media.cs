@@ -19,26 +19,42 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceMedia
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_attribution")]
+    internal static extern ErrorCode GetAttribution(this PlaceMediaHandle /* maps_place_media_h */ media, out string attribution);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_supplier")]
+    internal static extern ErrorCode GetSupplier(this PlaceMediaHandle /* maps_place_media_h */ media, out IntPtr /* maps_place_link_object_h */ supplier);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_via")]
+    internal static extern ErrorCode GetVia(this PlaceMediaHandle /* maps_place_media_h */ media, out IntPtr /* maps_place_link_object_h */ via);
+
+    internal class PlaceMediaHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_media_h */ media);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_clone")]
-        internal static extern ErrorCode Clone(PlaceMediaHandle /* maps_place_media_h */ origin, out IntPtr /* maps_place_media_h */ cloned);
+        internal string Attribution
+        {
+            get { return NativeGet(this.GetAttribution); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_attribution")]
-        internal static extern ErrorCode GetAttribution(PlaceMediaHandle /* maps_place_media_h */ media, out string attribution);
+        internal PlaceLinkObjectHandle Supplier
+        {
+            get { return NativeGet(this.GetSupplier, PlaceLinkObjectHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_supplier")]
-        internal static extern ErrorCode GetSupplier(PlaceMediaHandle /* maps_place_media_h */ media, out IntPtr /* maps_place_link_object_h */ supplier);
+        internal PlaceLinkObjectHandle Via
+        {
+            get { return NativeGet(this.GetVia, PlaceLinkObjectHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_media_get_via")]
-        internal static extern ErrorCode GetVia(PlaceMediaHandle /* maps_place_media_h */ media, out IntPtr /* maps_place_link_object_h */ via);
-    }
+        public PlaceMediaHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
 
-    internal class PlaceMediaHandle : SafeMapsHandle
-    {
-        public PlaceMediaHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceMedia.Destroy; }
+        internal static PlaceMediaHandle Create(IntPtr nativeHandle)
+        {
+            return new PlaceMediaHandle(nativeHandle, true);
+        }
     }
 }

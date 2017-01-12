@@ -21,7 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Class representing geographical area
     /// </summary>
-    public class Area
+    public class Area : IDisposable
     {
         internal Interop.AreaHandle handle;
 
@@ -40,11 +40,7 @@ namespace Tizen.Maps
                 err.ThrowIfFailed("Need valid coordinates, given null");
             }
 
-            IntPtr nativeHandle;
-            err = Interop.Area.CreateRectangle(topLeft.handle, bottomRight.handle, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native rectangular area handle");
-
-            handle = new Interop.AreaHandle(nativeHandle);
+            handle = new Interop.AreaHandle(topLeft.handle, bottomRight.handle);
         }
 
         /// <summary>
@@ -62,16 +58,30 @@ namespace Tizen.Maps
                 err.ThrowIfFailed("Need valid center coordinates, given null");
             }
 
-            IntPtr nativeHandle;
-            err = Interop.Area.CreateCircle(center.handle, radius, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native circular area handle");
-
-            handle = new Interop.AreaHandle(nativeHandle);
+            handle = new Interop.AreaHandle(center.handle, radius);
         }
 
-        internal Area(IntPtr nativeHandle)
+        internal Area(Interop.AreaHandle nativeHandle)
         {
-            handle = new Interop.AreaHandle(nativeHandle);
+            handle = nativeHandle;
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,77 +15,85 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Address information for the map point used in Geocode and Reverse Geocode requests.
+    /// Preferences for route search requests
     /// </summary>
-    public class PlaceAddress : IDisposable
+    public class SearchPreference : IGeocodePreference, IPlaceSearchPreference, IRouteSearchPreference, IDisposable
     {
-        internal Interop.AddressHandle handle;
+        internal Interop.PreferenceHandle handle;
+        private IReadOnlyDictionary<string, string> _properties = new Dictionary<string, string>();
 
         /// <summary>
-        /// Construct map address object
+        /// Constructor for search preference
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
-        public PlaceAddress()
+        public SearchPreference()
         {
-            handle = new Interop.AddressHandle();
+            handle = new Interop.PreferenceHandle();
         }
 
-        internal PlaceAddress(Interop.AddressHandle nativeHandle)
+        /// <summary>
+        /// Constructor for search preference
+        /// </summary>
+        internal SearchPreference(Interop.PreferenceHandle nativeHandle)
         {
             handle = nativeHandle;
         }
 
         /// <summary>
-        /// Building number for this address
+        /// Preferred language
         /// </summary>
-        public string Building
+        /// <remarks>
+        /// Language should be specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code e.g. "ko-KR"
+        /// </remarks>
+        public string Language
         {
             get
             {
-                return handle.Building;
+                return handle.Language;
             }
             set
             {
-                handle.Building = value;
+                handle.Language = value;
             }
         }
 
         /// <summary>
-        /// City name for this address
+        /// Maximum result count for a service request
         /// </summary>
-        public string City
+        /// <remarks>Setting negative value will not have any effect on MaxResults value</remarks>
+        public int MaxResults
         {
             get
             {
-                return handle.City;
+                return handle.MaxResult;
             }
             set
             {
-                handle.City = value;
+                handle.MaxResult = value;
             }
         }
 
         /// <summary>
-        /// Country name for this address
+        /// Distance unit
         /// </summary>
-        public string Country
+        public DistanceUnit Unit
         {
             get
             {
-                return handle.Country;
+                return (DistanceUnit)handle.Unit;
             }
             set
             {
-                handle.Country = value;
+                handle.Unit = (Interop.DistanceUnit)value;
             }
         }
 
         /// <summary>
-        /// Country code for this address
+        /// Preferred country
         /// </summary>
         public string CountryCode
         {
@@ -100,98 +108,93 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// County for this address
+        /// Search properties as key value pair
         /// </summary>
-        public string County
+        public IReadOnlyDictionary<string, string> Properties
         {
             get
             {
-                return handle.County;
+                return _properties;
             }
             set
             {
-                handle.County = value;
+                _properties = value;
             }
         }
 
         /// <summary>
-        /// District name for this address
+        /// Selected route optimization
         /// </summary>
-        public string District
+        public RouteOptimization Optimization
         {
             get
             {
-                return handle.District;
+                return (RouteOptimization)handle.Optimization;
             }
             set
             {
-                handle.District = value;
+                handle.Optimization = (Interop.RouteOptimization)value;
             }
         }
 
         /// <summary>
-        /// Free text associated with this address
+        /// Route transport mode
         /// </summary>
-        public string Freetext
+        public TransportMode Mode
         {
             get
             {
-                return handle.Freetext;
+                return (TransportMode)handle.TransportMode;
             }
             set
             {
-                handle.Freetext = value;
+                handle.TransportMode = (Interop.RouteTransportMode)value;
             }
         }
 
         /// <summary>
-        /// Postal code for this address
+        /// Route feature weight
         /// </summary>
-        public string PostalCode
+        public RouteFeatureWeight RouteFeatureWeight
         {
             get
             {
-                return handle.PostalCode;
+                return (RouteFeatureWeight)handle.FeatureWeight;
             }
             set
             {
-                handle.PostalCode = value;
+                handle.FeatureWeight = (Interop.RouteFeatureWeight)value;
             }
         }
 
         /// <summary>
-        /// State name for this address
+        /// Route feature
         /// </summary>
-        public string State
+        public RouteFeature RouteFeature
         {
             get
             {
-                return handle.State;
+                return (RouteFeature)handle.Feature;
             }
             set
             {
-                handle.State = value;
+                handle.Feature = (Interop.RouteRequestFeature)value;
             }
         }
 
         /// <summary>
-        /// Street name for this address
+        /// Indicate if search for alternative routes is enabled.
         /// </summary>
-        public string Street
+        public bool SearchAlternativeRoutes
         {
             get
             {
-                return handle.Street;
+                return handle.AlternativesEnabled;
             }
             set
             {
-                handle.Street = value;
+                handle.AlternativesEnabled = value;
             }
-        }
-
-        public override string ToString()
-        {
-            return $"{Freetext}";
         }
 
         #region IDisposable Support

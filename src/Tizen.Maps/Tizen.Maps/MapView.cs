@@ -25,16 +25,16 @@ namespace Tizen.Maps
     /// <summary>
     /// Map View
     /// </summary>
-    public class MapView : Layout
+    public class MapView : Layout, IDisposable
     {
         internal Interop.ViewHandle handle;
-        private Interop.ServiceHandle _service;
+        private MapService _service;
 
-        private HashSet<MapObject> _children = new HashSet<MapObject>();
+        private Dictionary<IntPtr, MapObject> _handleToObjectTable = new Dictionary<IntPtr, MapObject>();
 
-        private Interop.View.ViewOnEventCallback _gestureEventCallback;
-        private Interop.View.ViewOnEventCallback _objectEventCallback;
-        private Interop.View.ViewOnEventCallback _viewReadyEventCallback;
+        private Interop.ViewOnEventCallback _gestureEventCallback;
+        private Interop.ViewOnEventCallback _objectEventCallback;
+        private Interop.ViewOnEventCallback _viewReadyEventCallback;
 
         private event EventHandler<MapGestureEventArgs> _scrolledEventHandler;
         private event EventHandler<MapGestureEventArgs> _zoomedEventHandler;
@@ -52,17 +52,11 @@ namespace Tizen.Maps
         /// <param name="service">Map service</param>
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
-            IntPtr nativeHandle;
-            var err = Interop.View.Create(service.handle, this, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native map view handle");
-
-            handle = new Interop.ViewHandle(nativeHandle);
-            _service = service.handle;
-
-            Console.WriteLine($"MapView Created: ServiceHandle: {(IntPtr)_service}, ViewHandle: {(IntPtr)handle}");
+            handle = new Interop.ViewHandle(service.handle, this);
+            _service = service;
 
             // We need to keep Gesture Tap event enabled for object event to work
-            Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Tap, true);
+            handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
             SetObjectEventCallback();
         }
 
@@ -74,7 +68,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Scroll, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.Scroll, true);
                 _scrolledEventHandler += value;
             }
             remove
@@ -82,7 +76,7 @@ namespace Tizen.Maps
                 _scrolledEventHandler -= value;
                 if (_scrolledEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Scroll, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.Scroll, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -96,7 +90,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Zoom, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.Zoom, true);
                 _zoomedEventHandler += value;
             }
             remove
@@ -104,7 +98,7 @@ namespace Tizen.Maps
                 _zoomedEventHandler -= value;
                 if (_zoomedEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Zoom, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.Zoom, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -118,7 +112,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                //Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Tap, true);
+                //handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
                 _tappedEventHandler += value;
             }
             remove
@@ -126,7 +120,7 @@ namespace Tizen.Maps
                 _tappedEventHandler -= value;
                 if (_tappedEventHandler == null)
                 {
-                    //Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Tap, false);
+                    //handle.SetGestureEnabled(Interop.ViewGesture.Tap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -140,7 +134,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.DoubleTap, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, true);
                 _doubleTappedEventHandler += value;
             }
             remove
@@ -148,7 +142,7 @@ namespace Tizen.Maps
                 _doubleTappedEventHandler -= value;
                 if (_doubleTappedEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.DoubleTap, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -162,7 +156,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.TwoFingerTap, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, true);
                 _twoFingerTappedEventHandler += value;
             }
             remove
@@ -170,7 +164,7 @@ namespace Tizen.Maps
                 _twoFingerTappedEventHandler -= value;
                 if (_twoFingerTappedEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.TwoFingerTap, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -184,7 +178,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Rotate, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.Rotate, true);
                 _rotatedEventHandler += value;
             }
             remove
@@ -192,7 +186,7 @@ namespace Tizen.Maps
                 _rotatedEventHandler -= value;
                 if (_rotatedEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.Rotate, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.Rotate, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -206,7 +200,7 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.LongPress, true);
+                handle.SetGestureEnabled(Interop.ViewGesture.LongPress, true);
                 _longPressedEventHandler += value;
             }
             remove
@@ -214,7 +208,7 @@ namespace Tizen.Maps
                 _longPressedEventHandler -= value;
                 if (_longPressedEventHandler == null)
                 {
-                    Interop.View.SetGestureEnabled(handle, Interop.ViewGesture.LongPress, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.LongPress, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -233,7 +227,7 @@ namespace Tizen.Maps
             remove
             {
                 _viewReadyEventHandler -= value;
-                UnsetViewReadyEventCallback();
+                UnsetGestureEventCallback();
             }
         }
 
@@ -244,13 +238,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.View.GetZoomLevel(handle, out value);
-                return value;
+                return handle.ZoomLevel;
             }
             set
             {
-                Interop.View.SetZoomLevel(handle, value);
+                handle.ZoomLevel = value;
             }
         }
 
@@ -261,13 +253,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.View.GetMinZoomLevel(handle, out value);
-                return value;
+                return handle.MinimumZoomLevel;
             }
             set
             {
-                Interop.View.SetMinZoomLevel(handle, value);
+                handle.MinimumZoomLevel = value;
             }
         }
 
@@ -278,13 +268,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.View.GetMaxZoomLevel(handle, out value);
-                return value;
+                return handle.MaximumZoomLevel;
             }
             set
             {
-                Interop.View.SetMaxZoomLevel(handle, value);
+                handle.MaximumZoomLevel = value;
             }
         }
 
@@ -295,13 +283,11 @@ namespace Tizen.Maps
         {
             get
             {
-                double value;
-                Interop.View.GetOrientation(handle, out value);
-                return value;
+                return handle.Orientation;
             }
             set
             {
-                Interop.View.SetOrientation(handle, value);
+                handle.Orientation = value;
             }
         }
 
@@ -312,13 +298,11 @@ namespace Tizen.Maps
         {
             get
             {
-                Interop.ViewType value;
-                Interop.View.GetType(handle, out value);
-                return (MapTypes)value;
+                return (MapTypes)handle.MapType;
             }
             set
             {
-                Interop.View.SetType(handle, (Interop.ViewType)value);
+                handle.MapType = (Interop.ViewType)value;
             }
         }
 
@@ -329,13 +313,11 @@ namespace Tizen.Maps
         {
             get
             {
-                bool value;
-                Interop.View.GetBuildingsEnabled(handle, out value);
-                return value;
+                return handle.BuildingsEnabled;
             }
             set
             {
-                Interop.View.SetBuildingsEnabled(handle, value);
+                handle.BuildingsEnabled = value;
             }
         }
 
@@ -346,13 +328,11 @@ namespace Tizen.Maps
         {
             get
             {
-                bool value;
-                Interop.View.GetTrafficEnabled(handle, out value);
-                return value;
+                return handle.TrafficEnabled;
             }
             set
             {
-                Interop.View.SetTrafficEnabled(handle, value);
+                handle.TrafficEnabled = value;
             }
         }
 
@@ -363,13 +343,11 @@ namespace Tizen.Maps
         {
             get
             {
-                bool value;
-                Interop.View.GetPublicTransitEnabled(handle, out value);
-                return value;
+                return handle.PublicTransitEnabled;
             }
             set
             {
-                Interop.View.SetPublicTransitEnabled(handle, value);
+                handle.PublicTransitEnabled = value;
             }
         }
 
@@ -380,13 +358,11 @@ namespace Tizen.Maps
         {
             get
             {
-                bool value;
-                Interop.View.GetScalebarEnabled(handle, out value);
-                return value;
+                return handle.ScalebarEnabled;
             }
             set
             {
-                Interop.View.SetScalebarEnabled(handle, value);
+                handle.ScalebarEnabled = value;
             }
         }
 
@@ -397,13 +373,11 @@ namespace Tizen.Maps
         {
             get
             {
-                string value;
-                Interop.View.GetLanguage(handle, out value);
-                return value;
+                return handle.Language;
             }
             set
             {
-                Interop.View.SetLanguage(handle, value);
+                handle.Language = value;
             }
         }
 
@@ -414,14 +388,11 @@ namespace Tizen.Maps
         {
             get
             {
-                IntPtr coordinateHandle;
-                Interop.View.GetCenter(handle, out coordinateHandle);
-                return new Geocoordinates(coordinateHandle);
+                return new Geocoordinates(handle.Center);
             }
             set
             {
-                Geocoordinates geocoordinate = value;
-                Interop.View.SetCenter(handle, geocoordinate.handle);
+                handle.Center = value.handle;
             }
         }
 
@@ -432,7 +403,7 @@ namespace Tizen.Maps
         {
             get
             {
-                return _children;
+                return _handleToObjectTable.Values;
             }
         }
 
@@ -443,10 +414,7 @@ namespace Tizen.Maps
         /// <returns></returns>
         public Point GeolocationToScreen(Geocoordinates coordinates)
         {
-            Point screenCoordinates = new Point();
-            Geocoordinates geocoordinate = coordinates;
-            Interop.View.GeolocationToScreen(handle, geocoordinate.handle, out screenCoordinates.X, out screenCoordinates.Y);
-            return screenCoordinates;
+            return handle.GeolocationToScreen(coordinates.handle);
         }
 
         /// <summary>
@@ -456,9 +424,7 @@ namespace Tizen.Maps
         /// <returns></returns>
         public Geocoordinates ScreenToGeolocation(Point screenCoordinates)
         {
-            IntPtr coordinateHandle;
-            Interop.View.ScreenToGeolocation(handle, screenCoordinates.X, screenCoordinates.Y, out coordinateHandle);
-            return new Geocoordinates(coordinateHandle);
+            return new Geocoordinates(handle.ScreenToGeolocation(screenCoordinates));
         }
 
         /// <summary>
@@ -467,21 +433,32 @@ namespace Tizen.Maps
         /// <param name="child">map object to add</param>
         public void Add(MapObject child)
         {
-            child.handle.ReleaseOwnership();
-            _children.Add(child);
-            child.AddToMapObjectTable();
-            Interop.View.AddObject(handle, child.handle);
+            var objectHandle = child.GetHandle();
+            if (!_handleToObjectTable.ContainsKey(objectHandle))
+            {
+                _handleToObjectTable[objectHandle] = child;
+                handle.AddObject(objectHandle);
+
+                // MapView take ownership of added map objects
+                objectHandle.HasOwnership = false;
+            }
         }
 
         /// <summary>
         /// Removes map object from map view
         /// </summary>
         /// <param name="child">map object to remove</param>
+        /// <remarks>Once removed, child object will be become invalid</remarks>
         public void Remove(MapObject child)
         {
-            _children.Remove(child);
-            child.RemoveFromMapObjectTable();
-            Interop.View.RemoveObject(handle, child.handle);
+            var objectHandle = child.GetHandle();
+            if (_handleToObjectTable.Remove(objectHandle))
+            {
+                handle.RemoveObject(child.GetHandle());
+
+                // The object handle will be released automatically by the View, once RemoveObject call is successful
+                child.InvalidateMapObject();
+            }
         }
 
         /// <summary>
@@ -489,12 +466,12 @@ namespace Tizen.Maps
         /// </summary>
         public void RemoveAll()
         {
-            foreach (var child in _children)
+            foreach (var child in _handleToObjectTable.Values)
             {
-                child.RemoveFromMapObjectTable();
+                child.InvalidateMapObject();
             }
-            _children.Clear();
-            Interop.View.RemoveAllObjects(handle);
+            _handleToObjectTable.Clear();
+            handle.RemoveAllObjects();
         }
 
         /// <summary>
@@ -516,7 +493,7 @@ namespace Tizen.Maps
                 _gestureEventCallback = (type, eventData, userData) =>
                 {
                     if (type != Interop.ViewEventType.Gesture) return;
-                    var eventArg = MapGestureEventArgs.Create(eventData);
+                    var eventArg = new MapGestureEventArgs(eventData);
                     switch (eventArg.GestureType)
                     {
                         case GestureType.Scroll: _scrolledEventHandler?.Invoke(this, eventArg); break;
@@ -528,7 +505,7 @@ namespace Tizen.Maps
                         case GestureType.LongPress: _longPressedEventHandler?.Invoke(this, eventArg); break;
                     }
                 };
-                Interop.View.SetEventCb(handle, Interop.ViewEventType.Gesture, _gestureEventCallback, IntPtr.Zero);
+                handle.SetEventCb(Interop.ViewEventType.Gesture, _gestureEventCallback, IntPtr.Zero);
             }
         }
 
@@ -542,7 +519,7 @@ namespace Tizen.Maps
                 return;
             }
 
-            Interop.View.UnsetEventCb(handle, Interop.ViewEventType.Gesture);
+            handle.UnsetEventCb(Interop.ViewEventType.Gesture);
             _gestureEventCallback = null;
         }
 
@@ -553,13 +530,18 @@ namespace Tizen.Maps
                 _objectEventCallback = (type, eventData, userData) =>
                 {
                     if (type != Interop.ViewEventType.Object) return;
-                    var eventArg = MapObjectEventArgs.Create(eventData);
+                    var eventArg = new Interop.ObjectEventDataHandle(eventData);
                     switch (eventArg.GestureType)
                     {
-                        case GestureType.Tap: eventArg.ViewObject.HandleClickedEvent(); break;
+                        case Interop.ViewGesture.Tap:
+                            {
+                                var mapObject = _handleToObjectTable[eventArg.ViewObject];
+                                mapObject?.HandleClickedEvent();
+                                break;
+                            }
                     }
                 };
-                Interop.View.SetEventCb(handle, Interop.ViewEventType.Object, _objectEventCallback, IntPtr.Zero);
+                handle.SetEventCb(Interop.ViewEventType.Object, _objectEventCallback, IntPtr.Zero);
             }
         }
 
@@ -571,7 +553,7 @@ namespace Tizen.Maps
                 {
                     _viewReadyEventHandler?.Invoke(this, EventArgs.Empty);
                 };
-                Interop.View.SetEventCb(handle, Interop.ViewEventType.Ready, _viewReadyEventCallback, IntPtr.Zero);
+                handle.SetEventCb(Interop.ViewEventType.Ready, _viewReadyEventCallback, IntPtr.Zero);
             }
         }
 
@@ -579,9 +561,31 @@ namespace Tizen.Maps
         {
             if (_viewReadyEventHandler == null)
             {
-                Interop.View.UnsetEventCb(handle, Interop.ViewEventType.Ready);
+                handle.UnsetEventCb(Interop.ViewEventType.Ready);
                 _viewReadyEventCallback = null;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _service.Dispose();
+                }
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

@@ -25,65 +25,25 @@ namespace Tizen.Maps
     /// </summary>
     public class RouteSegment
     {
-        internal Interop.RouteSegmentHandle handle;
-        private Area _bondingBox;
+        private Geocoordinates _origin;
         private Geocoordinates _destination;
         private double _distance;
-        private long _duration;
-        private List<RouteManeuver> _manuevers;
-        private Geocoordinates _origin;
-        private List<Geocoordinates> _path;
+        private double _duration;
+        private Area _boundingBox;
 
-        internal RouteSegment(IntPtr nativeHandle)
+        private List<RouteManeuver> _maneuvers = new List<RouteManeuver>();
+        private List<Geocoordinates> _path = new List<Geocoordinates>();
+
+        internal RouteSegment(Interop.RouteSegmentHandle handle)
         {
-            handle = new Interop.RouteSegmentHandle(nativeHandle);
+            _origin = new Geocoordinates(handle.Origin);
+            _destination = new Geocoordinates(handle.Destination);
+            _distance = handle.Distance;
+            _duration = handle.Duration;
+            _boundingBox = new Area(handle.BoundingBox);
 
-            var err = Interop.RouteSegment.GetDistance(handle, out _distance);
-            err.WarnIfFailed("Failed to get distance for the segment");
-
-            err = Interop.RouteSegment.GetDuration(handle, out _duration);
-            err.WarnIfFailed("Failed to get duration for the segment");
-
-            IntPtr areaHandle;
-            err = Interop.RouteSegment.GetBoundingBox(handle, out areaHandle);
-            if (err.WarnIfFailed("Failed to get bonding box for the segment"))
-            {
-                _bondingBox = new Area(areaHandle);
-            }
-
-            IntPtr originHandle;
-            err = Interop.RouteSegment.GetOrigin(handle, out originHandle);
-            if (err.WarnIfFailed("Failed to get origin for the segment"))
-            {
-                _origin = new Geocoordinates(originHandle);
-            }
-
-            IntPtr destinationHandle;
-            err = Interop.RouteSegment.GetDestination(handle, out destinationHandle);
-            if (err.WarnIfFailed("Failed to get destination for the segment"))
-            {
-                _destination = new Geocoordinates(destinationHandle);
-            }
-
-            _manuevers = new List<RouteManeuver>();
-            Interop.RouteSegment.SegmentManeuverCallback maneuvarCallback = (index, total, maneuverHandle, userData) =>
-            {
-                _manuevers.Add(new RouteManeuver(maneuverHandle));
-                return true;
-            };
-
-            err = Interop.RouteSegment.ForeachManeuver(handle, maneuvarCallback, IntPtr.Zero);
-            err.WarnIfFailed("Failed to get path maneuver for this segment");
-
-            _path = new List<Geocoordinates>();
-            Interop.RouteSegment.SegmentPathCallback pathcallback = (index, total, coordinateHandle, userData) =>
-            {
-                _path.Add(new Geocoordinates(coordinateHandle));
-                return true;
-            };
-
-            err = Interop.RouteSegment.ForeachPath(handle, pathcallback, IntPtr.Zero);
-            err.WarnIfFailed("Failed to get path coordinates for this segment");
+            handle.ForeachManeuver(maneuverHandle => _maneuvers.Add(new RouteManeuver(maneuverHandle)));
+            handle.ForeachPath(pathHandle => _path.Add(new Geocoordinates(pathHandle)));
         }
 
         /// <summary>
@@ -109,7 +69,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Maneuver list for this segment path
         /// </summary>
-        public IEnumerable<RouteManeuver> Maneuvers { get { return _manuevers; } }
+        public IEnumerable<RouteManeuver> Maneuvers { get { return _maneuvers; } }
 
         /// <summary>
         /// Coordinates list for this segment path
@@ -119,6 +79,6 @@ namespace Tizen.Maps
         /// <summary>
         /// Bounding area for this segment
         /// </summary>
-        private Area BoundingBox { get { return _bondingBox; } }
+        private Area BoundingBox { get { return _boundingBox; } }
     }
 }

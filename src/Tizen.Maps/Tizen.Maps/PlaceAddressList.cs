@@ -22,7 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// List of <see cref="PlaceAddress"/> objects to be used in <see cref="ServiceData.MapService"/> APIs
     /// </summary>
-    internal class PlaceAddressList
+    internal class PlaceAddressList : IDisposable
     {
         internal Interop.AddressListHandle handle;
         private List<PlaceAddress> _list;
@@ -33,16 +33,12 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public PlaceAddressList()
         {
-            IntPtr nativeHandle;
-            var err = Interop.Address.ListCreate(out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for address list");
-
-            handle = new Interop.AddressListHandle(nativeHandle);
+            handle = new Interop.AddressListHandle();
         }
 
-        internal PlaceAddressList(IntPtr nativeHandle)
+        internal PlaceAddressList(Interop.AddressListHandle nativeHandle)
         {
-            handle = new Interop.AddressListHandle(nativeHandle);
+            handle = nativeHandle;
         }
 
         /// <summary>
@@ -55,22 +51,28 @@ namespace Tizen.Maps
                 if (_list == null)
                 {
                     _list = new List<PlaceAddress>();
-                    Interop.Address.AddressCallback callback = (index, handle, userData) =>
-                    {
-                        IntPtr cloned;
-                        // we need to clone handle as it will not be there once this callback returns
-                        if (Interop.Address.Clone(handle, out cloned).IsSuccess())
-                        {
-                            _list.Add(new PlaceAddress(cloned));
-                        }
-                        return true;
-                    };
-
-                    var err = Interop.Address.ListForeach(handle, callback, IntPtr.Zero);
-                    err.WarnIfFailed("Failed to get address list from native handle");
+                    handle.Foreach(addressHandle => _list.Add(new PlaceAddress(addressHandle)));
                 }
                 return _list;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

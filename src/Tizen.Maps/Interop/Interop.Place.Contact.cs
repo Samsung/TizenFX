@@ -19,26 +19,37 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceContact
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_label")]
+    internal static extern ErrorCode GetLabel(this PlaceContactHandle /* maps_place_contact_h */ contact, out string label);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_type")]
+    internal static extern ErrorCode GetType(this PlaceContactHandle /* maps_place_contact_h */ contact, out string type);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_value")]
+    internal static extern ErrorCode GetValue(this PlaceContactHandle /* maps_place_contact_h */ contact, out string value);
+
+    internal class PlaceContactHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_contact_h */ contact);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_clone")]
-        internal static extern ErrorCode Clone(PlaceContactHandle /* maps_place_contact_h */ origin, out IntPtr /* maps_place_contact_h */ cloned);
+        internal string Label
+        {
+            get { return NativeGet(this.GetLabel); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_label")]
-        internal static extern ErrorCode GetLabel(PlaceContactHandle /* maps_place_contact_h */ contact, out string label);
+        internal string Type
+        {
+            get { return NativeGet(this.GetType); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_type")]
-        internal static extern ErrorCode GetType(PlaceContactHandle /* maps_place_contact_h */ contact, out string type);
+        internal string Value
+        {
+            get { return NativeGet(this.GetValue); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_contact_get_value")]
-        internal static extern ErrorCode GetValue(PlaceContactHandle /* maps_place_contact_h */ contact, out string value);
-    }
-
-    internal class PlaceContactHandle : SafeMapsHandle
-    {
-        public PlaceContactHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceContact.Destroy; }
+        public PlaceContactHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
     }
 }

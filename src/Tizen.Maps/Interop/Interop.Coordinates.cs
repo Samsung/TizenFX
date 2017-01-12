@@ -19,11 +19,14 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Coordinates
-    {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool CoordinatesCallback(int index, IntPtr /* maps_coordinates_h */ coordinates, IntPtr /* void */ userData);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_get_latitude")]
+    internal static extern ErrorCode GetLatitude(this CoordinatesHandle /* maps_coordinates_h */ coordinates, out double latitude);
 
+    [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_get_longitude")]
+    internal static extern ErrorCode GetLongitude(this CoordinatesHandle /* maps_coordinates_h */ coordinates, out double longitude);
+
+    internal class CoordinatesHandle : SafeMapsHandle
+    {
         [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_create")]
         internal static extern ErrorCode Create(double latitude, double longitude, out IntPtr /* maps_coordinates_h */ coordinates);
 
@@ -33,50 +36,35 @@ internal static partial class Interop
         [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_clone")]
         internal static extern ErrorCode Clone(IntPtr /* maps_coordinates_h */ origin, out IntPtr /* maps_coordinates_h */ cloned);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_get_latitude")]
-        internal static extern ErrorCode GetLatitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, out double latitude);
+        internal double Latitude
+        {
+            get { return NativeGet<double>(this.GetLatitude); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_get_longitude")]
-        internal static extern ErrorCode GetLongitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, out double longitude);
+        internal double Longitude
+        {
+            get { return NativeGet<double>(this.GetLongitude); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_get_latitude_longitude")]
-        internal static extern ErrorCode GetLatitudeLongitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, out double latitude, out double longitude);
+        internal CoordinatesHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_set_latitude")]
-        internal static extern ErrorCode SetLatitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, double latitude);
+        internal CoordinatesHandle(double latitude, double longitude) : this(IntPtr.Zero, true)
+        {
+            Create(latitude, longitude, out handle).ThrowIfFailed("Failed to create native handle");
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_set_longitude")]
-        internal static extern ErrorCode SetLongitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, double longitude);
+        internal static CoordinatesHandle CloneFrom(IntPtr nativeHandle)
+        {
+            IntPtr handle;
+            Clone(nativeHandle, out handle).ThrowIfFailed("Failed to clone native handle");
+            return new CoordinatesHandle(handle, true);
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_set_latitude_longitude")]
-        internal static extern ErrorCode SetLatitudeLongitude(CoordinatesHandle /* maps_coordinates_h */ coordinates, double latitude, double longitude);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_create")]
-        internal static extern ErrorCode ListCreate(out IntPtr /* maps_coordinates_list_h */ coordinatesList);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_destroy")]
-        internal static extern ErrorCode ListDestroy(IntPtr /* maps_coordinates_list_h */ coordinatesList);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_append")]
-        internal static extern ErrorCode ListAppend(CoordinatesListHandle /* maps_coordinates_list_h */ coordinatesList, IntPtr /* maps_coordinates_h */ coordinates);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_remove")]
-        internal static extern ErrorCode ListRemove(CoordinatesListHandle /* maps_coordinates_list_h */ coordinatesList, CoordinatesHandle /* maps_coordinates_h */ coordinates);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_get_length")]
-        internal static extern ErrorCode ListGetLength(CoordinatesListHandle /* maps_coordinates_list_h */ coordinatesList, out int length);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_coordinates_list_foreach")]
-        internal static extern ErrorCode ListForeach(CoordinatesListHandle /* maps_coordinates_list_h */ coordinatesList, CoordinatesCallback callback, IntPtr /* void */ userData);
-    }
-
-    internal class CoordinatesHandle : SafeMapsHandle
-    {
-        public CoordinatesHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = Coordinates.Destroy; }
-    }
-
-    internal class CoordinatesListHandle : SafeMapsHandle
-    {
-        public CoordinatesListHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = Coordinates.ListDestroy; }
+        internal static CoordinatesHandle Create(IntPtr nativeHandle)
+        {
+            return new CoordinatesHandle(nativeHandle, true);
+        }
     }
 }

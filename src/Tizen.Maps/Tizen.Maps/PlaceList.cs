@@ -22,21 +22,14 @@ namespace Tizen.Maps
     /// <summary>
     /// List of <see cref="Place"/> objects to be used in <see cref="ServiceData.MapService"/> APIs
     /// </summary>
-    internal class PlaceList
+    internal class PlaceList : IDisposable
     {
         internal Interop.PlaceListHandle handle;
         private List<Place> _list;
 
-        internal PlaceList(IntPtr nativeHandle)
+        internal PlaceList(Interop.PlaceListHandle nativeHandle)
         {
-            handle = new Interop.PlaceListHandle(nativeHandle);
-            Interop.Place.PlaceCallback callback = (index, placeHandle, userData) =>
-            {
-                _list.Add(new Place(placeHandle));
-                return true;
-            };
-
-            Interop.Place.ListForeach(handle, callback, IntPtr.Zero);
+            handle = nativeHandle;
         }
 
         /// <summary>
@@ -49,17 +42,28 @@ namespace Tizen.Maps
                 if (_list == null)
                 {
                     _list = new List<Place>();
-                    Interop.Place.PlaceCallback callback = (index, handle, userData) =>
-                    {
-                        _list.Add(new Place(handle));
-                        return true;
-                    };
-
-                    var err = Interop.Place.ListForeach(handle, callback, IntPtr.Zero);
-                    err.WarnIfFailed("Failed to get place list from native handle");
+                    handle.Foreach(placeHandle => _list.Add(new Place(placeHandle)));
                 }
                 return _list;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

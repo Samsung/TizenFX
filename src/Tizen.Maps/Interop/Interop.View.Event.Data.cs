@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using ElmSharp;
 
 internal static partial class Interop
 {
@@ -52,43 +53,127 @@ internal static partial class Interop
 
     internal static partial class ViewEventData
     {
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_destroy")]
-        internal static extern ErrorCode Destroy(IntPtr /* maps_view_event_data_h */ viewEvent);
-
         [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_clone")]
         internal static extern ErrorCode Clone(IntPtr /* maps_view_event_data_h */ origin, out IntPtr /* maps_view_event_data_h */ cloned);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_type")]
-        internal static extern ErrorCode GetType(IntPtr /* maps_view_event_data_h */ viewEvent, out ViewEventType /* maps_view_event_type_e */ eventType);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_gesture_type")]
-        internal static extern ErrorCode GetGestureType(IntPtr /* maps_view_event_data_h */ viewEvent, out ViewGesture /* maps_view_gesture_e */ gestureType);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_action_type")]
-        internal static extern ErrorCode GetActionType(IntPtr /* maps_view_event_data_h */ viewEvent, out ViewAction /* maps_view_action_e */ actionType);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_center")]
         internal static extern ErrorCode GetCenter(IntPtr /* maps_view_event_data_h */ viewEvent, out IntPtr /* maps_coordinates_h */ center);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_delta")]
         internal static extern ErrorCode GetDelta(IntPtr /* maps_view_event_data_h */ viewEvent, out int deltaX, out int deltaY);
+    }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_position")]
-        internal static extern ErrorCode GetPosition(IntPtr /* maps_view_event_data_h */ viewEvent, out int x, out int y);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_type")]
+    internal static extern ErrorCode GetType(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out ViewEventType /* maps_view_event_type_e */ eventType);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_coordinates")]
-        internal static extern ErrorCode GetCoordinates(IntPtr /* maps_view_event_data_h */ viewEvent, out IntPtr /* maps_coordinates_h */ coordinates);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_gesture_type")]
+    internal static extern ErrorCode GetGestureType(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out ViewGesture /* maps_view_gesture_e */ gestureType);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_fingers")]
-        internal static extern ErrorCode GetFingers(IntPtr /* maps_view_event_data_h */ viewEvent, out int fingers);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_action_type")]
+    internal static extern ErrorCode GetActionType(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out ViewAction /* maps_view_action_e */ actionType);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_zoom_factor")]
-        internal static extern ErrorCode GetZoomFactor(IntPtr /* maps_view_event_data_h */ viewEvent, out double zoomFactor);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_position")]
+    internal static extern ErrorCode GetPosition(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out int x, out int y);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_rotation_angle")]
-        internal static extern ErrorCode GetRotationAngle(IntPtr /* maps_view_event_data_h */ viewEvent, out double rotationAngle);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_fingers")]
+    internal static extern ErrorCode GetFingers(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out int fingers);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_object")]
-        internal static extern ErrorCode GetObject(IntPtr /* maps_view_event_data_h */ viewEvent, out IntPtr /* maps_view_object_h */ viewEventDataObject);
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_object")]
+    internal static extern ErrorCode GetObject(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out IntPtr /* maps_view_object_h */ viewEventDataObject);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_coordinates")]
+    internal static extern ErrorCode GetCoordinates(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out IntPtr /* maps_coordinates_h */ coordinates);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_zoom_factor")]
+    internal static extern ErrorCode GetZoomFactor(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out double zoomFactor);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_get_rotation_angle")]
+    internal static extern ErrorCode GetRotationAngle(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out double rotationAngle);
+
+    internal static ErrorCode GetPosition(this EventDataHandle /* maps_view_event_data_h */ viewEvent, out Point position)
+    {
+        position = new Point();
+        return GetPosition(viewEvent, out position.X, out position.Y);
+    }
+
+    internal class EventDataHandle : SafeMapsHandle
+    {
+        [DllImport(Libraries.MapService, EntryPoint = "maps_view_event_data_destroy")]
+        internal static extern ErrorCode Destroy(IntPtr /* maps_view_event_data_h */ viewEvent);
+
+        internal ViewEventType Type
+        {
+            get { return NativeGet<ViewEventType>(this.GetType); }
+        }
+
+        // event_data will be released automatically after this callback is terminated.
+        internal EventDataHandle(IntPtr handle) : base(handle, false, Destroy)
+        {
+        }
+    }
+
+    internal class ObjectEventDataHandle : EventDataHandle
+    {
+        internal ViewGesture GestureType
+        {
+            get { return NativeGet<ViewGesture>(this.GetGestureType); }
+        }
+
+        internal Point Position
+        {
+            get { return NativeGet<Point>(this.GetPosition); }
+        }
+
+        internal int FingerCount
+        {
+            get { return NativeGet<int>(this.GetFingers); }
+        }
+
+        internal ViewObjectHandle ViewObject
+        {
+            get { return NativeGet(this.GetObject, ViewObjectHandle.Create); }
+        }
+
+        // event_data will be released automatically after this callback is terminated.
+        internal ObjectEventDataHandle(IntPtr handle) : base(handle)
+        {
+        }
+    }
+
+    internal class GestureEventDataHandle : EventDataHandle
+    {
+        internal ViewGesture GestureType
+        {
+            get { return NativeGet<ViewGesture>(this.GetGestureType); }
+        }
+
+        internal Point Position
+        {
+            get { return NativeGet<Point>(this.GetPosition); }
+        }
+
+        internal int FingerCount
+        {
+            get { return NativeGet<int>(this.GetFingers); }
+        }
+
+        internal double ZoomFactor
+        {
+            get { return NativeGet<double>(this.GetZoomFactor); }
+        }
+
+        internal double RotationAngle
+        {
+            get { return NativeGet<double>(this.GetRotationAngle); }
+        }
+
+        internal CoordinatesHandle Coordinates
+        {
+            get { return NativeGet(this.GetCoordinates, CoordinatesHandle.Create); }
+        }
+
+        internal GestureEventDataHandle(IntPtr handle) : base(handle)
+        {
+        }
     }
 }

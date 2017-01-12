@@ -27,14 +27,12 @@ namespace Tizen.Maps
     {
         internal Interop.ServiceHandle handle;
 
-        internal PlaceFilter _filter = new PlaceFilter();
-        internal GeocodePreference _geocodePreference = new GeocodePreference();
-        internal PlaceSearchPreference _placePreference = new PlaceSearchPreference();
-        internal RouteSearchPreference _routePreference = new RouteSearchPreference();
+        private PlaceFilter _filter;
+        private SearchPreference _searchPreference;
 
         private static List<string> s_providers;
         private string _serviceProvider;
-        private string _serviceProviderKey;
+
 
         /// <summary>
         /// Creates a new Maps Service object for given service provider
@@ -45,14 +43,11 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Throws if user does not have privilege to access this API</exception>
         public MapService(string serviceProvider, string serviceProviderKey)
         {
-            IntPtr nativeHandle;
-            var err = Interop.Service.Create(serviceProvider, out nativeHandle);
-            if (err.ThrowIfFailed("Failed to create native service handle"))
-            {
-                handle = new Interop.ServiceHandle(nativeHandle);
-                _serviceProvider = serviceProvider;
-                ProviderKey = serviceProviderKey;
-            }
+            _serviceProvider = serviceProvider;
+            handle = new Interop.ServiceHandle(serviceProvider);
+            ProviderKey = serviceProviderKey;
+            PlaceSearchFilter = new PlaceFilter();
+            Preferences = new SearchPreference();
         }
 
         /// <summary>
@@ -65,14 +60,7 @@ namespace Tizen.Maps
                 if (s_providers != null) return s_providers;
 
                 s_providers = new List<string>();
-                Interop.Service.ProviderInfoCallback callback = (mapsProvider, userData) =>
-                {
-                    s_providers.Add(mapsProvider);
-                    return true;
-                };
-                var err = Interop.Service.ForeachProvider(callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get map service providers list");
-
+                Interop.ServiceHandle.ForeachProvider(provider => s_providers.Add(provider));
                 return s_providers;
             }
         }
@@ -90,15 +78,11 @@ namespace Tizen.Maps
         {
             get
             {
-                return _serviceProviderKey;
+                return handle.ProviderKey;
             }
             set
             {
-                var err = Interop.Service.SetProviderKey(handle, value);
-                if (err.WarnIfFailed("Failed to set service provider key"))
-                {
-                    _serviceProviderKey = value;
-                }
+                handle.ProviderKey = value;
             }
         }
 
@@ -113,52 +97,66 @@ namespace Tizen.Maps
             }
             set
             {
-                _filter = value;
+                if (value != null)
+                {
+                    _filter = value;
+                }
             }
         }
 
         /// <summary>
         /// Search preferences used for Geocode/ ReverseGeocode request
         /// </summary>
-        public GeocodePreference GeocodePreferences
+        public IGeocodePreference GeocodePreferences
         {
             get
             {
-                return _geocodePreference;
-            }
-            set
-            {
-                _geocodePreference = value;
+                return Preferences as IGeocodePreference;
             }
         }
 
         /// <summary>
         /// Search preferences used for <see cref="Place"/> search request
         /// </summary>
-        public PlaceSearchPreference PlaceSearchPreferences
+        public IPlaceSearchPreference PlaceSearchPreferences
         {
             get
             {
-                return _placePreference;
-            }
-            set
-            {
-                _placePreference = value;
+                return Preferences as IPlaceSearchPreference;
             }
         }
 
         /// <summary>
         /// Search preferences used for <see cref="Route"/> search request
         /// </summary>
-        public RouteSearchPreference RouteSearchPreferences
+        public IRouteSearchPreference RouteSearchPreferences
         {
             get
             {
-                return _routePreference;
+                return Preferences as IRouteSearchPreference;
+            }
+        }
+
+        /// <summary>
+        /// Search preferences
+        /// </summary>
+        public SearchPreference Preferences
+        {
+            get
+            {
+                if (_searchPreference == null)
+                {
+                    _searchPreference = new SearchPreference(handle.Preferences);
+                }
+                return _searchPreference;
             }
             set
             {
-                _routePreference = value;
+                if (value != null)
+                {
+                    handle.Preferences = value.handle;
+                    _searchPreference = value;
+                }
             }
         }
 
@@ -169,12 +167,12 @@ namespace Tizen.Maps
         public static async Task<bool> RequestUserConsent(string provider)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Interop.Service.RequestUserConsentCallback cb = (consented, serviceProvider, userData) =>
+            Interop.ServiceHandle.RequestUserConsentCallback cb = (consented, serviceProvider, userData) =>
             {
                 tcs.TrySetResult(consented);
             };
 
-            var err = Interop.Service.RequestUserConsent(provider, cb, IntPtr.Zero);
+            var err = Interop.ServiceHandle.RequestUserConsent(provider, cb, IntPtr.Zero);
             if (err.IsFailed())
             {
                 tcs.TrySetException(err.GetException("Failed to get user consent"));
@@ -190,9 +188,9 @@ namespace Tizen.Maps
         public bool IsSupported(ServiceRequestType type)
         {
             bool result;
-            var err = Interop.Service.ProviderIsServiceSupported(handle, (Interop.ServiceType)type, out result);
-            err.ThrowIfFailed(string.Format("Failed to get if {0} is supported", type));
-            return result;
+            var err = handle.IsServiceSupported((Interop.ServiceType)type, out result);
+            err.WarnIfFailed($"Failed to get if {type} is supported");
+            return (err.IsSuccess()) ? result : false;
         }
 
         /// <summary>
@@ -203,9 +201,9 @@ namespace Tizen.Maps
         public bool IsSupported(ServiceData data)
         {
             bool result;
-            var err = Interop.Service.ProviderIsDataSupported(handle, (Interop.ServiceData)data, out result);
-            err.ThrowIfFailed(string.Format("Failed to get if {0} data is supported", data));
-            return result;
+            var err = handle.IsDataSupported((Interop.ServiceData)data, out result);
+            err.WarnIfFailed($"Failed to get if {data} data is supported");
+            return (err.IsSuccess()) ? result : false;
         }
 
         /// <summary>
@@ -274,12 +272,12 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates place search request  for specified search radius around a given coordinates position
         /// </summary>
-        /// <param name="position">Interested position</param>
+        /// <param name="coordinates">Interested position</param>
         /// <param name="distance">Search radius</param>
         /// <returns>Returns PlaceSearchRequest object created with location coordinates and search radius</returns>
-        public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates position, int distance)
+        public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates coordinates, int distance)
         {
-            return new PlaceSearchRequest(this, position, distance);
+            return new PlaceSearchRequest(this, coordinates, distance);
         }
 
         /// <summary>
@@ -304,20 +302,18 @@ namespace Tizen.Maps
         }
 
         #region IDisposable Support
-        private bool disposedValue = false;
+        private bool _disposedValue = false;
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
-                    //_filter.Dispose();
-                    //_geocodePreference.Dispose();
-                    //_placePreference.Dispose();
-                    //_routePreference.Dispose();
+                    _filter.Dispose();
+                    _searchPreference.Dispose();
                 }
                 handle.Dispose();
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

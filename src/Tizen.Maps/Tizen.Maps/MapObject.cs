@@ -14,67 +14,20 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
 
 namespace Tizen.Maps
 {
     /// <summary>
     /// Map object
     /// </summary>
-    public class MapObject
+    public abstract class MapObject
     {
-        internal Interop.ViewObjectHandle handle;
-        private static Dictionary<IntPtr, MapObject> s_HandleToItemTable = new Dictionary<IntPtr, MapObject>();
-
-        internal MapObject(Interop.ViewObjectHandle nativeHandle)
-        {
-            handle = nativeHandle;
-        }
-
-
-        /// <summary>
-        /// Clicked event
-        /// </summary>
-        public event EventHandler Clicked;
-
         /// <summary>
         /// Map Object's visibility
         /// </summary>
-        public bool IsVisible
-        {
-            get
-            {
-                bool value;
-                Interop.ViewObject.GetVisible(handle, out value);
-                return value;
-            }
-            set
-            {
-                Interop.ViewObject.SetVisible(handle, value);
-            }
-        }
-
-        internal void AddToMapObjectTable()
-        {
-            s_HandleToItemTable[handle] = this;
-        }
-
-        internal void RemoveFromMapObjectTable()
-        {
-            s_HandleToItemTable.Remove(handle);
-        }
-
-        internal static MapObject GetItemByHandle(IntPtr handle)
-        {
-            MapObject value;
-            s_HandleToItemTable.TryGetValue(handle, out value);
-            return value;
-        }
-
-        internal void HandleClickedEvent()
-        {
-            Clicked?.Invoke(this, EventArgs.Empty);
-        }
+        public abstract bool IsVisible { get; set; }
+        internal abstract void HandleClickedEvent();
+        internal abstract void InvalidateMapObject();
+        internal abstract Interop.ViewObjectHandle GetHandle();
     }
 }

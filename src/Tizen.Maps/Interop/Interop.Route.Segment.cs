@@ -19,44 +19,106 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class RouteSegment
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_origin")]
+    internal static extern ErrorCode GetOrigin(this RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_coordinates_h */ origin);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_destination")]
+    internal static extern ErrorCode GetDestination(this RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_coordinates_h */ destination);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_bounding_box")]
+    internal static extern ErrorCode GetBoundingBox(this RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_area_h */ boundingBox);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_distance")]
+    internal static extern ErrorCode GetDistance(this RouteSegmentHandle /* maps_route_segment_h */ segment, out double distance);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_duration")]
+    internal static extern ErrorCode GetDuration(this RouteSegmentHandle /* maps_route_segment_h */ segment, out long duration);
+
+    internal class RouteSegmentHandle : SafeMapsHandle
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool SegmentPathCallback(int index, int total, IntPtr /* maps_coordinates_h */ coordinates, IntPtr /* void */ userData);
+        internal delegate bool PathCallback(int index, int total, IntPtr /* maps_coordinates_h */ coordinates, IntPtr /* void */ userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool SegmentManeuverCallback(int index, int total, IntPtr /* maps_route_maneuver_h */ maneuver, IntPtr /* void */ userData);
+        internal delegate bool ManeuverCallback(int index, int total, IntPtr /* maps_route_maneuver_h */ maneuver, IntPtr /* void */ userData);
+
+        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_foreach_path")]
+        internal static extern ErrorCode ForeachPath(IntPtr /* maps_route_segment_h */ segment, PathCallback callback, IntPtr /* void */ userData);
+
+        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_foreach_maneuver")]
+        internal static extern ErrorCode ForeachManeuver(IntPtr /* maps_route_segment_h */ segment, ManeuverCallback callback, IntPtr /* void */ userData);
+
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_route_segment_h */ segment);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_clone")]
-        internal static extern ErrorCode Clone(RouteSegmentHandle /* maps_route_segment_h */ origin, out IntPtr /* maps_route_segment_h */ cloned);
+        internal static extern ErrorCode Clone(IntPtr /* maps_route_segment_h */ origin, out IntPtr /* maps_route_segment_h */ cloned);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_origin")]
-        internal static extern ErrorCode GetOrigin(RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_coordinates_h */ origin);
+        internal double Distance
+        {
+            get { return NativeGet<double>(this.GetDistance); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_destination")]
-        internal static extern ErrorCode GetDestination(RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_coordinates_h */ destination);
+        internal long Duration
+        {
+            get { return NativeGet<long>(this.GetDuration); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_bounding_box")]
-        internal static extern ErrorCode GetBoundingBox(RouteSegmentHandle /* maps_route_segment_h */ segment, out IntPtr /* maps_area_h */ boundingBox);
+        internal CoordinatesHandle Origin
+        {
+            get { return NativeGet(this.GetOrigin, CoordinatesHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_distance")]
-        internal static extern ErrorCode GetDistance(RouteSegmentHandle /* maps_route_segment_h */ segment, out double distance);
+        internal CoordinatesHandle Destination
+        {
+            get { return NativeGet(this.GetDestination, CoordinatesHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_get_duration")]
-        internal static extern ErrorCode GetDuration(RouteSegmentHandle /* maps_route_segment_h */ segment, out long duration);
+        internal AreaHandle BoundingBox
+        {
+            get { return NativeGet(this.GetBoundingBox, AreaHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_foreach_path")]
-        internal static extern ErrorCode ForeachPath(RouteSegmentHandle /* maps_route_segment_h */ segment, SegmentPathCallback callback, IntPtr /* void */ userData);
+        public RouteSegmentHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_segment_foreach_maneuver")]
-        internal static extern ErrorCode ForeachManeuver(RouteSegmentHandle /* maps_route_segment_h */ segment, SegmentManeuverCallback callback, IntPtr /* void */ userData);
-    }
+        internal static RouteSegmentHandle CloneFrom(IntPtr nativeHandle)
+        {
+            IntPtr handle;
+            Clone(nativeHandle, out handle).ThrowIfFailed("Failed to clone native handle");
+            return new RouteSegmentHandle(handle, true);
+        }
 
-    internal class RouteSegmentHandle : SafeMapsHandle
-    {
-        public RouteSegmentHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = RouteSegment.Destroy; }
+        internal void ForeachPath(Action<CoordinatesHandle> action)
+        {
+            PathCallback callback = (index, total, nativeHandle, userData) =>
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    action(CoordinatesHandle.CloneFrom(nativeHandle));
+                    //Destroy(nativeHandle);
+                }
+                return true;
+            };
+
+            ForeachPath(handle, callback, IntPtr.Zero).WarnIfFailed("Failed to get path coordinates list from native handle");
+        }
+
+        internal void ForeachManeuver(Action<RouteManeuverHandle> action)
+        {
+            ManeuverCallback callback = (index, total, nativeHandle, userData) =>
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    action(RouteManeuverHandle.CloneFrom(nativeHandle));
+                    //Destroy(nativeHandle);
+                }
+                return true;
+            };
+
+            ForeachManeuver(handle, callback, IntPtr.Zero).WarnIfFailed("Failed to get segment list from native handle");
+        }
     }
 }

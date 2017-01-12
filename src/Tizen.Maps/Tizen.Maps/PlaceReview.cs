@@ -31,34 +31,20 @@ namespace Tizen.Maps
         private PlaceMedia _media;
         private PlaceLink _userLink;
 
-        internal PlaceReview(IntPtr nativeHandle)
+        internal PlaceReview(Interop.PlaceReviewHandle handle)
         {
-            var handle = new Interop.PlaceReviewHandle(nativeHandle);
-
-            string date;
-            var err = Interop.PlaceReview.GetDate(handle, out date);
-            if (err.IsSuccess())
+            string date = handle.Date;
+            if (DateTime.TryParse(date, out _date) == false)
             {
-                if (DateTime.TryParse(date, out _date) == false)
-                {
-                    Interop.ErrorCode.InvalidParameter.WarnIfFailed(string.Format("Wrong date format: {0}", date));
-                }
+                Interop.ErrorCode.InvalidParameter.WarnIfFailed($"Wrong date format: {date}");
             }
 
-            Interop.PlaceReview.GetTitle(handle, out _title);
-            Interop.PlaceReview.GetRating(handle, out _rating);
-            Interop.PlaceReview.GetDescription(handle, out _description);
-            Interop.PlaceReview.GetLanguage(handle, out _language);
-
-            IntPtr mediaHandle;
-            err = Interop.PlaceReview.GetMedia(handle, out mediaHandle);
-            if (err.IsSuccess())
-                _media = new PlaceMedia(mediaHandle);
-
-            IntPtr userHandle;
-            err = Interop.PlaceReview.GetUserLink(handle, out userHandle);
-            if (err.IsSuccess())
-                _userLink = new PlaceLink(userHandle);
+            _title = handle.Title;
+            _rating = handle.Rating;
+            _description = handle.Description;
+            _language = handle.Language;
+            _media = new PlaceMedia(handle.Media);
+            _userLink = new PlaceLink(handle.User);
         }
 
         /// <summary>

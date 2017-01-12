@@ -24,21 +24,20 @@ namespace Tizen.Maps
     /// </summary>
     public class MultiReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
-        private Interop.Service.MultiReverseGeocodeCallback _responseCallback;
+        private Interop.MultiReverseGeocodeCallback _geocodeCallback;
         private List<PlaceAddress> _addressesList = new List<PlaceAddress>();
-        private GeocodePreference _preferences;
 
         internal MultiReverseGeocodeRequest(MapService service, IEnumerable<Geocoordinates> coordinates) : base(service, ServiceRequestType.ReverseGeocode)
         {
-            var coordinateList = new GeocoordinatesList(coordinates, true);
-            _preferences = service.GeocodePreferences;
-            _responseCallback = (result, id, total, addressListHandle, userData) =>
+            // The Maps Service invokes this callback once when gets the response from map service provider
+            // The value of total is same with requested coordinates list size. Even though one of address is not provided valid address handle is retrieved.
+            _geocodeCallback = (result, id, total, handle, userData) =>
             {
                 errorCode = result;
                 if (result.IsSuccess())
                 {
+                    var addressListHandle = new Interop.AddressListHandle(handle, needToRelease: true);
                     var addressList = new PlaceAddressList(addressListHandle);
-                    addressList.handle.ReleaseOwnership();
                     _addressesList = addressList.Addresses as List<PlaceAddress>;
                     _requestTask?.TrySetResult(_addressesList);
                     return true;
@@ -50,11 +49,12 @@ namespace Tizen.Maps
                 }
             };
 
+            var coordinateList = new GeocoordinatesList(coordinates);
             startExecutionAction = new Action(() =>
             {
                 int requestID;
                 errMessage = "Failed to get address list for given co-ordinate list";
-                errorCode = Interop.Service.MultiReverseGeocode(_service, coordinateList.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errorCode = _service.handle.MultiReverseGeocode(coordinateList.handle, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));

@@ -19,59 +19,136 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Route
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_route_id")]
+    internal static extern ErrorCode GetRouteId(this RouteHandle /* maps_route_h */ route, out string routeId);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_origin")]
+    internal static extern ErrorCode GetOrigin(this RouteHandle /* maps_route_h */ route, out IntPtr /* maps_coordinates_h */ origin);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_destination")]
+    internal static extern ErrorCode GetDestination(this RouteHandle /* maps_route_h */ route, out IntPtr /* maps_coordinates_h */ destination);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_bounding_box")]
+    internal static extern ErrorCode GetBoundingBox(this RouteHandle /* maps_route_h */ route, out IntPtr /* maps_area_h */ boundingBox);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_transport_mode")]
+    internal static extern ErrorCode GetTransportMode(this RouteHandle /* maps_route_h */ route, out RouteTransportMode /* maps_route_transport_mode_e */ transportMode);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_total_distance")]
+    internal static extern ErrorCode GetTotalDistance(this RouteHandle /* maps_route_h */ route, out double totalDistance);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_total_duration")]
+    internal static extern ErrorCode GetTotalDuration(this RouteHandle /* maps_route_h */ route, out long totalDuration);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_distance_unit")]
+    internal static extern ErrorCode GetDistanceUnit(this RouteHandle /* maps_route_h */ route, out DistanceUnit /* maps_distance_unit_e */ distanceUnit);
+
+    internal class RouteHandle : SafeMapsHandle
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool RoutePropertiesCallback(int index, int total, string key, string /* void */ value, IntPtr /* void */ userData);
+        internal delegate bool PropertiesCallback(int index, int total, string key, string /* void */ value, IntPtr /* void */ userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool RoutePathCallback(int index, int total, IntPtr /* maps_coordinates_h */ coordinates, IntPtr /* void */ userData);
+        internal delegate bool PathCallback(int index, int total, IntPtr /* maps_coordinates_h */ coordinates, IntPtr /* void */ userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool RouteSegmentCallback(int index, int total, IntPtr /* maps_route_segment_h */ segment, IntPtr /* void */ userData);
+        internal delegate bool SegmentCallback(int index, int total, IntPtr /* maps_route_segment_h */ segment, IntPtr /* void */ userData);
+
+        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_property")]
+        internal static extern ErrorCode ForeachProperty(IntPtr /* maps_route_h */ route, PropertiesCallback callback, IntPtr /* void */ userData);
+
+        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_path")]
+        internal static extern ErrorCode ForeachPath(IntPtr /* maps_route_h */ route, PathCallback callback, IntPtr /* void */ userData);
+
+        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_segment")]
+        internal static extern ErrorCode ForeachSegment(IntPtr /* maps_route_h */ route, SegmentCallback callback, IntPtr /* void */ userData);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_route_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_route_h */ route);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_clone")]
-        internal static extern ErrorCode Clone(RouteHandle /* maps_route_h */ origin, out IntPtr /* maps_route_h */ cloned);
+        internal string Id
+        {
+            get { return NativeGet(this.GetRouteId); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_route_id")]
-        internal static extern ErrorCode GetRouteId(RouteHandle /* maps_route_h */ route, out string routeId);
+        internal double Distance
+        {
+            get { return NativeGet<double>(this.GetTotalDistance); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_origin")]
-        internal static extern ErrorCode GetOrigin(RouteHandle /* maps_route_h */ route, out IntPtr /* maps_coordinates_h */ origin);
+        internal long Duration
+        {
+            get { return NativeGet<long>(this.GetTotalDuration); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_destination")]
-        internal static extern ErrorCode GetDestination(RouteHandle /* maps_route_h */ route, out IntPtr /* maps_coordinates_h */ destination);
+        internal DistanceUnit Unit
+        {
+            get { return NativeGet<DistanceUnit>(this.GetDistanceUnit); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_bounding_box")]
-        internal static extern ErrorCode GetBoundingBox(RouteHandle /* maps_route_h */ route, out IntPtr /* maps_area_h */ boundingBox);
+        internal RouteTransportMode TransportMode
+        {
+            get { return NativeGet<RouteTransportMode>(this.GetTransportMode); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_transport_mode")]
-        internal static extern ErrorCode GetTransportMode(RouteHandle /* maps_route_h */ route, out RouteTransportMode /* maps_route_transport_mode_e */ transportMode);
+        internal CoordinatesHandle Origin
+        {
+            get { return NativeGet(this.GetOrigin, CoordinatesHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_total_distance")]
-        internal static extern ErrorCode GetTotalDistance(RouteHandle /* maps_route_h */ route, out double totalDistance);
+        internal CoordinatesHandle Destination
+        {
+            get { return NativeGet(this.GetDestination, CoordinatesHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_total_duration")]
-        internal static extern ErrorCode GetTotalDuration(RouteHandle /* maps_route_h */ route, out long totalDuration);
+        internal AreaHandle BoundingBox
+        {
+            get { return NativeGet(this.GetBoundingBox, AreaHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_get_distance_unit")]
-        internal static extern ErrorCode GetDistanceUnit(RouteHandle /* maps_route_h */ route, out DistanceUnit /* maps_distance_unit_e */ distanceUnit);
+        public RouteHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_property")]
-        internal static extern ErrorCode ForeachProperty(RouteHandle /* maps_route_h */ route, RoutePropertiesCallback callback, IntPtr /* void */ userData);
+        internal void ForeachProperty(Action<string, string> action)
+        {
+            PropertiesCallback callback = (index, total, key, value, userData) =>
+            {
+                action(key, value);
+                return true;
+            };
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_path")]
-        internal static extern ErrorCode ForeachPath(RouteHandle /* maps_route_h */ route, RoutePathCallback callback, IntPtr /* void */ userData);
+            ForeachProperty(handle, callback, IntPtr.Zero).WarnIfFailed("Failed to get property list from native handle");
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_foreach_segment")]
-        internal static extern ErrorCode ForeachSegment(RouteHandle /* maps_route_h */ route, RouteSegmentCallback callback, IntPtr /* void */ userData);
-    }
+        internal void ForeachPath(Action<CoordinatesHandle> action)
+        {
+            PathCallback callback = (index, total, nativeHandle, userData) =>
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    action(CoordinatesHandle.CloneFrom(nativeHandle));
+                    //Destroy(nativeHandle);
+                }
+                return true;
+            };
 
-    internal class RouteHandle : SafeMapsHandle
-    {
-        public RouteHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = Route.Destroy; }
+            ForeachPath(handle, callback, IntPtr.Zero).WarnIfFailed("Failed to get path coordinates list from native handle");
+        }
+
+        internal void ForeachSegment(Action<RouteSegmentHandle> action)
+        {
+            SegmentCallback callback = (index, total, nativeHandle, userData) =>
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    action(RouteSegmentHandle.CloneFrom(nativeHandle));
+                    //Destroy(nativeHandle);
+                }
+                return true;
+            };
+
+            ForeachSegment(handle, callback, IntPtr.Zero).WarnIfFailed("Failed to get segment list from native handle");
+        }
     }
 }

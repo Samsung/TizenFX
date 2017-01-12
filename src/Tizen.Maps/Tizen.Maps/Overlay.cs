@@ -22,8 +22,9 @@ namespace Tizen.Maps
     /// <summary>
     /// Overlay map object
     /// </summary>
-    public class Overlay : MapObject
+    public class Overlay : MapObject, IDisposable
     {
+        internal Interop.OverlayHandle handle;
         private EvasObject _containedObject;
 
         /// <summary>
@@ -35,18 +36,22 @@ namespace Tizen.Maps
         {
         }
 
-        internal Overlay(Interop.ViewObjectHandle nativeHandle) : base(nativeHandle)
-        {
-        }
-
-        internal Overlay(Geocoordinates coordinates, EvasObject objectToContain, Interop.ViewOverlayType type) : base(CreateNativeHandle(coordinates, objectToContain, type))
+        internal Overlay(Geocoordinates coordinates, EvasObject objectToContain, Interop.ViewOverlayType type)
         {
             var err = Interop.ErrorCode.InvalidParameter;
             if (coordinates == null || objectToContain == null)
             {
                 err.ThrowIfFailed("given coordinates or parent evas object is null");
             }
+
             _containedObject = objectToContain;
+            handle = new Interop.OverlayHandle(coordinates.handle, objectToContain, Interop.ViewOverlayType.Normal);
+        }
+
+        public override bool IsVisible
+        {
+            get { return handle.IsVisible; }
+            set { handle.IsVisible = value; }
         }
 
         /// <summary>
@@ -56,23 +61,13 @@ namespace Tizen.Maps
         {
             get
             {
-                IntPtr nativeHandle;
-                Interop.ViewObject.OverlayGetCoordinates(handle, out nativeHandle);
-                return new Geocoordinates(nativeHandle);
+                return new Geocoordinates(handle.Coordinates);
             }
             set
             {
                 // Overlay takes ownership of the native handle.
-                IntPtr nativeHandle;
-                var err = Interop.Coordinates.Clone(value.handle, out nativeHandle);
-                err.WarnIfFailed("Failed to clone native handle for coordinates");
-
-                Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(nativeHandle);
-                err = Interop.ViewObject.OverlaySetCoordinates(handle, clonedHandle);
-                if (err.WarnIfFailed("Failed to set coordinates to overlay"))
-                {
-                    clonedHandle.ReleaseOwnership();
-                }
+                handle.Coordinates = value.handle;
+                value.handle.HasOwnership = false;
             }
         }
 
@@ -83,13 +78,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.ViewObject.OverlayGetMinZoomLevel(handle, out value);
-                return value;
+                return handle.MinZoomLevel;
             }
             set
             {
-                Interop.ViewObject.OverlaySetMinZoomLevel(handle, value);
+                handle.MinZoomLevel = value;
             }
         }
 
@@ -100,31 +93,47 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.ViewObject.OverlayGetMaxZoomLevel(handle, out value);
-                return value;
+                return handle.MaxZoomLevel;
             }
             set
             {
-                Interop.ViewObject.OverlaySetMaxZoomLevel(handle, value);
+                handle.MaxZoomLevel = value;
             }
         }
 
-        private static Interop.ViewObjectHandle CreateNativeHandle(Geocoordinates coordinates, EvasObject objectToContain, Interop.ViewOverlayType type)
+        // Overlay object does not support click events
+        internal override void HandleClickedEvent()
         {
-            if (coordinates == null || objectToContain == null) return new Interop.ViewObjectHandle(IntPtr.Zero);
-
-            IntPtr nativeHandle;
-            var err = Interop.Coordinates.Clone(coordinates.handle, out nativeHandle);
-            err.ThrowIfFailed("Failed to clone native handle for coordinates");
-
-            Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(nativeHandle);
-            err = Interop.ViewObject.CreateOverlay(clonedHandle, objectToContain, type, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for Overlay");
-
-            clonedHandle.ReleaseOwnership();
-            return new Interop.ViewObjectHandle(nativeHandle);
+            throw new NotSupportedException("Overlay object does not support click events");
         }
+
+        internal override void InvalidateMapObject()
+        {
+            handle = null;
+        }
+
+        internal override Interop.ViewObjectHandle GetHandle()
+        {
+            return handle;
+        }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 
     /// <summary>

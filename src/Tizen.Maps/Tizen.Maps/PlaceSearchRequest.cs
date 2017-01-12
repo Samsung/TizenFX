@@ -24,18 +24,16 @@ namespace Tizen.Maps
     /// </summary>
     public class PlaceSearchRequest : MapServiceRequest<Place>
     {
-        private Interop.Service.SearchPlaceCallback _responseCallback;
+        private Interop.SearchPlaceCallback _placeCallback;
         private List<Place> _placeList = new List<Place>();
-        private PlaceFilter _filter;
-        private PlaceSearchPreference _preferences;
 
         internal PlaceSearchRequest(MapService service, Geocoordinates position, int distance) : this(service, ServiceRequestType.SearchPlace)
         {
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get place list for given co-ordinate {0} and distance {1}", position, distance);
-                errorCode = Interop.Service.SearchPlace(_service, position.handle, distance, _filter.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get place list for given co-ordinate {position} and distance {distance}";
+                errorCode = _service.handle.SearchPlace(position.handle, distance, _service.PlaceSearchFilter.handle, _service.Preferences.handle, _placeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -49,8 +47,8 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get place list for given boundary {0}", boundary);
-                errorCode = Interop.Service.SearchPlaceByArea(_service, boundary.handle, _filter.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get place list for given boundary";
+                errorCode = _service.handle.SearchPlaceByArea(boundary.handle, _service.PlaceSearchFilter.handle, _service.Preferences.handle, _placeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -64,8 +62,8 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get co-ordinates for given address {0} and boundary {1}", address, boundary);
-                errorCode = Interop.Service.SearchPlaceByAddress(_service, address, boundary.handle, _filter.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get co-ordinates for address {address} in given boundary";
+                errorCode = _service.handle.SearchPlaceByAddress(address, boundary.handle, _service.PlaceSearchFilter.handle, _service.Preferences.handle, _placeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -76,13 +74,14 @@ namespace Tizen.Maps
 
         private PlaceSearchRequest(MapService service, ServiceRequestType type) : base(service, type)
         {
-            _filter = service._filter;
-            _preferences = service.PlaceSearchPreferences;
-            _responseCallback = (result, id, index, total, placeHandle, userData) =>
+            // The Maps Service invokes this callback while iterating through the set of obtained Place data.
+            _placeCallback = (result, id, index, total, place, userData) =>
             {
                 errorCode = result;
                 if (result.IsSuccess())
                 {
+                    // The parameter place must be released using maps_place_destroy().
+                    var placeHandle = new Interop.PlaceHandle(place, needToRelease: true);
                     _placeList.Add(new Place(placeHandle));
                     if (_placeList.Count == total)
                     {
@@ -92,6 +91,7 @@ namespace Tizen.Maps
                 }
                 else
                 {
+                    // If search is failed, the value of total is 0 and place is NULL
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
                     return false;
                 }

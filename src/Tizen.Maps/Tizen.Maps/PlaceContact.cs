@@ -28,28 +28,35 @@ namespace Tizen.Maps
         private string _type;
         private string _value;
 
-        internal PlaceContact(IntPtr nativeHandle)
+        internal PlaceContact(Interop.PlaceContactHandle handle)
         {
-            var handle = new Interop.PlaceContactHandle(nativeHandle);
-
-            Interop.PlaceContact.GetLabel(handle, out _label);
-            Interop.PlaceContact.GetType(handle, out _type);
-            Interop.PlaceContact.GetValue(handle, out _value);
+            _label = handle.Label;
+            _type = handle.Type;
+            _value = handle.Value;
         }
 
-        /// <summary>
-        /// Place contact label
-        /// </summary>
-        public string Id { get { return _label; } }
+        internal PlaceContact(IntPtr nativeHandle, bool needToRelease) : this(new Interop.PlaceContactHandle(nativeHandle, needToRelease))
+        {
+        }
 
         /// <summary>
         /// Place contact type
         /// </summary>
-        public string Label { get { return _type; } }
+        public string Id { get { return _type; } }
+
+        /// <summary>
+        /// Place contact label
+        /// </summary>
+        public string Label { get { return _label; } }
 
         /// <summary>
         /// Place contact value
         /// </summary>
         public string Value { get { return _value; } }
+
+        public override string ToString()
+        {
+            return $"{Label}: {Value}";
+        }
     }
 }

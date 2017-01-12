@@ -26,17 +26,15 @@ namespace Tizen.Maps
     {
         private string _id;
         private string _name;
-        private string _string;
+        private string _link;
         private string _type;
 
-        internal PlaceLink(IntPtr nativeHandle)
+        internal PlaceLink(Interop.PlaceLinkObjectHandle handle)
         {
-            var handle = new Interop.PlaceLinkObjectHandle(nativeHandle);
-
-            Interop.PlaceLinkObject.GetId(handle, out _id);
-            Interop.PlaceLinkObject.GetName(handle, out _name);
-            Interop.PlaceLinkObject.GetString(handle, out _string);
-            Interop.PlaceLinkObject.GetType(handle, out _type);
+            _id = handle.Id;
+            _name = handle.Name;
+            _link = handle.Link;
+            _type = handle.Type;
         }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Place link string
         /// </summary>
-        public string LinkString { get { return _string; } }
+        public string Link { get { return _link; } }
 
         /// <summary>
         /// Place link type

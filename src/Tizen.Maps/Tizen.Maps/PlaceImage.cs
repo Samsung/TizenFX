@@ -30,24 +30,14 @@ namespace Tizen.Maps
         private PlaceLink _userLink;
         private PlaceMedia _media;
 
-        internal PlaceImage(IntPtr nativeHandle)
+        internal PlaceImage(Interop.PlaceImageHandle handle)
         {
-            var handle = new Interop.PlaceImageHandle(nativeHandle);
-
-            Interop.PlaceImage.GetId(handle, out _id);
-            Interop.PlaceImage.GetUrl(handle, out _url);
-            Interop.PlaceImage.GetWidth(handle, out _width);
-            Interop.PlaceImage.GetHeight(handle, out _height);
-
-            IntPtr userHandle;
-            var err = Interop.PlaceImage.GetUserLink(handle, out userHandle);
-            if (err.IsSuccess())
-                _userLink = new PlaceLink(userHandle);
-
-            IntPtr mediaHandle;
-            err = Interop.PlaceImage.GetMedia(handle, out mediaHandle);
-            if (err.IsSuccess())
-                _media = new PlaceMedia(mediaHandle);
+            _id = handle.Id;
+            _url = handle.Url;
+            _width = handle.Width;
+            _height = handle.Height;
+            _userLink = new PlaceLink(handle.User);
+            _media = new PlaceMedia(handle.Media);
         }
 
         /// <summary>

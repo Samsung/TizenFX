@@ -25,27 +25,25 @@ namespace Tizen.Maps
     /// </summary>
     public class RouteSearchRequest : MapServiceRequest<Route>
     {
-        private Interop.Service.SearchRouteCallback _responseCallback;
+        private Interop.SearchRouteCallback _routeCallback;
         private List<Route> _routeList = new List<Route>();
 
-
-        private Geocoordinates _from;
         private Geocoordinates _to;
+        private Geocoordinates _from;
         private List<Geocoordinates> _waypoints = new List<Geocoordinates>();
-        private RouteSearchPreference _preferences;
 
         internal RouteSearchRequest(MapService service, Geocoordinates from, Geocoordinates to) : this(service, ServiceRequestType.SearchByEndPoint)
         {
-            _from = from;
             _to = to;
+            _from = from;
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get route list for given origin {0} and destination {1}", _from, _to);
+                errMessage = $"Failed to get route list for given origin {_from} and destination {_to}";
                 if (_waypoints?.Count == 0)
                 {
                     _type = ServiceRequestType.SearchByEndPoint;
-                    errorCode = Interop.Service.SearchRoute(_service, _from.handle, _to.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                    errorCode = _service.handle.SearchRoute(_from.handle, _to.handle, _service.Preferences.handle, _routeCallback, IntPtr.Zero, out requestID);
                     if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                     {
                         _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -56,7 +54,7 @@ namespace Tizen.Maps
                     _type = ServiceRequestType.SearchWithWaypoints;
 
                     var waypoints = GetCoordinateListForWaypoints();
-                    errorCode = Interop.Service.SearchRouteWaypoints(_service, waypoints, waypoints.Length, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                    errorCode = _service.handle.SearchRouteWaypoints(waypoints, waypoints.Length, _service.Preferences.handle, _routeCallback, IntPtr.Zero, out requestID);
                     if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                     {
                         _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -69,12 +67,14 @@ namespace Tizen.Maps
 
         private RouteSearchRequest(MapService service, ServiceRequestType type) : base(service, type)
         {
-            _preferences = service.RouteSearchPreferences;
-            _responseCallback = (result, id, index, total, routeHandle, userData) =>
+            // The Maps Service invokes this callback while iterating through the set of obtained Routes.
+            _routeCallback = (result, id, index, total, route, userData) =>
             {
                 errorCode = result;
                 if (result.IsSuccess())
                 {
+                    // The parameter route must be released using maps_route_destroy().
+                    var routeHandle = new Interop.RouteHandle(route, needToRelease: true);
                     _routeList.Add(new Route(routeHandle));
                     if (_routeList.Count == total)
                     {
@@ -84,6 +84,7 @@ namespace Tizen.Maps
                 }
                 else
                 {
+                    // If search is failed, the value of total is 0 and route is NULL.
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
                     return false;
                 }

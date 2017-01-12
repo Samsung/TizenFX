@@ -24,17 +24,16 @@ namespace Tizen.Maps
     /// </summary>
     public class GeocodeRequest : MapServiceRequest<Geocoordinates>
     {
-        private Interop.Service.GeocodeCallback _responseCallback;
+        private Interop.GeocodeCallback _geocodeCallback;
         private List<Geocoordinates> _coordinateList = new List<Geocoordinates>();
-        private GeocodePreference _preferences = new GeocodePreference();
 
         internal GeocodeRequest(MapService service, string address) : this(service, ServiceRequestType.Geocode)
         {
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get co-ordinates for given address {0}", address);
-                errorCode = Interop.Service.Geocode(_service, address, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errorCode = _service.handle.Geocode(address, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -48,8 +47,8 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get co-ordinates for given address {0}", address);
-                errorCode = Interop.Service.GeocodeInsideArea(_service, address, boundry.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errorCode = _service.handle.GeocodeInsideArea(address, boundry.handle, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -63,8 +62,8 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get co-ordinates for given address {0}", address);
-                errorCode = Interop.Service.GeocodeByStructuredAddress(_service, address.handle, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errorCode = _service.handle.GeocodeByStructuredAddress(address.handle, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
@@ -75,12 +74,14 @@ namespace Tizen.Maps
 
         private GeocodeRequest(MapService service, ServiceRequestType type) : base(service, type)
         {
-            _preferences = service.GeocodePreferences;
-            _responseCallback = (result, id, index, total, coordinatesHandle, userData) =>
+            // The Maps Service invokes this callback while iterating through the list of obtained coordinates of the specified place.
+            _geocodeCallback = (result, id, index, total, coordinates, userData) =>
             {
                 errorCode = result;
                 if (result.IsSuccess())
                 {
+                    // The parameter coordinates must be released using maps_coordinates_destroy()
+                    var coordinatesHandle = new Interop.CoordinatesHandle(coordinates, needToRelease: true);
                     _coordinateList.Add(new Geocoordinates(coordinatesHandle));
                     if (_coordinateList.Count == total)
                     {
@@ -90,7 +91,8 @@ namespace Tizen.Maps
                 }
                 else
                 {
-                    _requestTask?.TrySetException(errorCode.GetException(errMessage));
+                    // If search is failed, the value of total is 0 and coordinates is NULL
+                    _requestTask?.TrySetException(result.GetException(errMessage));
                     return false;
                 }
             };

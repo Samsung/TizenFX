@@ -22,29 +22,16 @@ namespace Tizen.Maps
     /// <summary>
     /// List of <see cref="Geocoordinates"/> objects to be used in <see cref="MapService"/> APIs
     /// </summary>
-    internal class GeocoordinatesList
+    internal class GeocoordinatesList : IDisposable
     {
         internal Interop.CoordinatesListHandle handle;
 
-        internal GeocoordinatesList(IEnumerable<Geocoordinates> coordinateList, bool ownsHandle)
+        internal GeocoordinatesList(IEnumerable<Geocoordinates> coordinateList, bool ownerShip = false)
         {
-            IntPtr nativeHandle;
-            var err = Interop.Coordinates.ListCreate(out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for coordinate list");
-
-            handle = new Interop.CoordinatesListHandle(nativeHandle, ownsHandle);
+            handle = new Interop.CoordinatesListHandle(ownerShip);
             foreach (var coordinates in coordinateList)
             {
-                IntPtr clonedNativeHandle;
-                err = Interop.Coordinates.Clone(coordinates.handle, out clonedNativeHandle);
-                err.WarnIfFailed("Failed to clone native handle for coordinates");
-
-                Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(clonedNativeHandle);
-                err = Interop.Coordinates.ListAppend(handle, clonedHandle);
-                if (err.WarnIfFailed("Failed to add coordinate to the list"))
-                {
-                    clonedHandle.ReleaseOwnership();
-                }
+                handle.Add(coordinates.handle);
             }
         }
 
@@ -56,22 +43,27 @@ namespace Tizen.Maps
             get
             {
                 List<Geocoordinates> list = new List<Geocoordinates>();
-                Interop.Coordinates.CoordinatesCallback callback = (index, handle, userData) =>
-                {
-                    IntPtr clonedNativeHandle;
-                    var result = Interop.Coordinates.Clone(handle, out clonedNativeHandle);
-                    if (result.WarnIfFailed("Failed to add coordinate to the list"))
-                    {
-                        Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(clonedNativeHandle);
-                        list.Add(new Geocoordinates(clonedHandle));
-                    }
-                    return true;
-                };
-
-                var err = Interop.Coordinates.ListForeach(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get coordinates list from native handle");
+                handle.ForEach(coordinateHandle => list.Add(new Geocoordinates(coordinateHandle)));
                 return list;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

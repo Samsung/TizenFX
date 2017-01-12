@@ -21,7 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Class representing geographical co-ordinates
     /// </summary>
-    public class Geocoordinates
+    public class Geocoordinates : IDisposable
     {
         internal Interop.CoordinatesHandle handle;
 
@@ -34,42 +34,57 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public Geocoordinates(double latitude, double longitude)
         {
-            IntPtr nativeHandle;
-            var err = Interop.Coordinates.Create(latitude, longitude, out nativeHandle);
-            if (err.ThrowIfFailed("Failed to create native coordinate handle"))
-            {
-                handle = new Interop.CoordinatesHandle(nativeHandle);
-                Latitude = latitude;
-                Longitude = longitude;
-            }
+            handle = new Interop.CoordinatesHandle(latitude, longitude);
         }
 
-        internal Geocoordinates(IntPtr nativeHandle)
+        internal Geocoordinates(Interop.CoordinatesHandle nativeHandle)
         {
-            double latitude;
-            double longitude;
-            handle = new Interop.CoordinatesHandle(nativeHandle);
-            var err = Interop.Coordinates.GetLatitudeLongitude(handle, out latitude, out longitude);
-            if (err.ThrowIfFailed("Failed to get coordinate value using native handle"))
-            {
-                Latitude = latitude;
-                Longitude = longitude;
-            }
+            handle = nativeHandle;
         }
 
         /// <summary>
         /// Latitude for this coordinate
         /// </summary>
-        public double Latitude { get; }
+        public double Latitude
+        {
+            get
+            {
+                return handle.Latitude;
+            }
+        }
 
         /// <summary>
         /// Longitude for this coordinate
         /// </summary>
-        public double Longitude { get; }
+        public double Longitude
+        {
+            get
+            {
+                return handle.Longitude;
+            }
+        }
 
         public override string ToString()
         {
-            return string.Format("Geocoordinates(Lat: {0}, Lon: {1})", Latitude, Longitude);
+            return $"[{Latitude}, {Longitude}]";
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

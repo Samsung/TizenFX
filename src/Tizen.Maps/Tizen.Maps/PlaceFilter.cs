@@ -21,13 +21,9 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Filter information, used in Place Discovery and Search requests
     /// </summary>
-    public class PlaceFilter
+    public class PlaceFilter : IDisposable
     {
         internal Interop.PlaceFilterHandle handle;
-        private string _address;
-        private PlaceCategory _category;
-        private string _keyword;
-        private string _name;
 
         /// <summary>
         /// Constructs new place filter
@@ -35,11 +31,7 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public PlaceFilter()
         {
-            IntPtr nativeHandle;
-            var err = Interop.PlaceFilter.Create(out nativeHandle);
-            err.ThrowIfFailed("Failed to create native place filter handle");
-
-            handle = new Interop.PlaceFilterHandle(nativeHandle);
+            handle = new Interop.PlaceFilterHandle();
         }
 
         /// <summary>
@@ -49,20 +41,11 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_address))
-                {
-                    var err = Interop.PlaceFilter.GetPlaceAddress(handle, out _address);
-                    err.WarnIfFailed("Failed to get filter string for place addresses");
-                }
-                return _address;
+                return handle.PlaceAddress;
             }
             set
             {
-                var err = Interop.PlaceFilter.SetPlaceAddress(handle, value);
-                if (err.WarnIfFailed("Failed to set filter string for place addresses"))
-                {
-                    _address = value;
-                }
+                handle.PlaceAddress = value;
             }
         }
 
@@ -73,24 +56,11 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_category == null)
-                {
-                    IntPtr nativeHandle;
-                    var err = Interop.PlaceFilter.GetCategory(handle, out nativeHandle);
-                    if (err.WarnIfFailed("Failed to get category filter for places"))
-                    {
-                        _category = new PlaceCategory(nativeHandle);
-                    }
-                }
-                return _category;
+                return new PlaceCategory(handle.Category);
             }
             set
             {
-                var err = Interop.PlaceFilter.SetCategory(handle, value.handle);
-                if (err.WarnIfFailed("Failed to set category filter for places"))
-                {
-                    _category = value;
-                }
+                handle.Category = value.handle;
             }
         }
 
@@ -101,20 +71,11 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_keyword))
-                {
-                    var err = Interop.PlaceFilter.GetKeyword(handle, out _keyword);
-                    err.WarnIfFailed("Failed to get filter keywords for places");
-                }
-                return _keyword;
+                return handle.Keyword;
             }
             set
             {
-                var err = Interop.PlaceFilter.SetKeyword(handle, value);
-                if (err.WarnIfFailed("Failed to set filter keywords for places"))
-                {
-                    _keyword = value;
-                }
+                handle.Keyword = value;
             }
         }
 
@@ -125,21 +86,30 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_name))
-                {
-                    var err = Interop.PlaceFilter.GetPlaceName(handle, out _name);
-                    err.WarnIfFailed("Failed to get filter string for place names");
-                }
-                return _name;
+                return handle.PlaceName;
             }
             set
             {
-                var err = Interop.PlaceFilter.SetPlaceName(handle, value);
-                if (err.WarnIfFailed("Failed to set filter string for place names"))
-                {
-                    _name = value;
-                }
+                handle.PlaceName = value;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

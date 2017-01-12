@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,39 +14,42 @@
  * limitations under the License.
  */
 
-using System;
 
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Media information, used in Place Discovery and Search requests
+    /// Preferences for route searches
     /// </summary>
-    public class PlaceMedia
+    public interface IRouteSearchPreference
     {
-        private string _attribution;
-        private PlaceLink _supplier;
-        private PlaceLink _via;
-
-        internal PlaceMedia(Interop.PlaceMediaHandle handle)
-        {
-            _attribution = handle.Attribution;
-            _supplier = new PlaceLink(handle.Supplier);
-            _via = new PlaceLink(handle.Via);
-        }
+        /// <summary>
+        /// Distance unit
+        /// </summary>
+        DistanceUnit Unit { get; set; }
 
         /// <summary>
-        /// Place media attribution
+        /// Selected route optimization
         /// </summary>
-        public string Attribution { get { return _attribution; } }
+        RouteOptimization Optimization { get; set; }
 
         /// <summary>
-        /// Place media supplier value
+        /// Route transport mode
         /// </summary>
-        public PlaceLink Supplier { get { return _supplier; } }
+        TransportMode Mode { get; set; }
 
         /// <summary>
-        /// Place media via value
+        /// Route feature weight
         /// </summary>
-        public PlaceLink Via { get { return _via; } }
+        RouteFeatureWeight RouteFeatureWeight { get; set; }
+
+        /// <summary>
+        /// Route feature
+        /// </summary>
+        RouteFeature RouteFeature { get; set; }
+
+        /// <summary>
+        /// Indicate if search for alternative routes is enabled.
+        /// </summary>
+        bool SearchAlternativeRoutes { get; set; }
     }
 }

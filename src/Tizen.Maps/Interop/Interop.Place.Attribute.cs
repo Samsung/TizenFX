@@ -19,26 +19,37 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceAttribute
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_id")]
+    internal static extern ErrorCode GetId(this PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string id);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_label")]
+    internal static extern ErrorCode GetLabel(this PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string label);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_text")]
+    internal static extern ErrorCode GetText(this PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string text);
+
+    internal class PlaceAttributeHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_attribute_h */ attribute);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_clone")]
-        internal static extern ErrorCode Clone(PlaceAttributeHandle /* maps_place_attribute_h */ origin, out IntPtr /* maps_place_attribute_h */ cloned);
+        internal string Id
+        {
+            get { return NativeGet(this.GetId); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_id")]
-        internal static extern ErrorCode GetId(PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string id);
+        internal string Label
+        {
+            get { return NativeGet(this.GetLabel); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_label")]
-        internal static extern ErrorCode GetLabel(PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string label);
+        internal string Text
+        {
+            get { return NativeGet(this.GetText); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_attribute_get_text")]
-        internal static extern ErrorCode GetText(PlaceAttributeHandle /* maps_place_attribute_h */ attribute, out string text);
-    }
-
-    internal class PlaceAttributeHandle : SafeMapsHandle
-    {
-        public PlaceAttributeHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceAttribute.Destroy; }
+        public PlaceAttributeHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
     }
 }

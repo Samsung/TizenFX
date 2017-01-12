@@ -34,6 +34,7 @@ internal static partial class Interop
         ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
         Canceled = Tizen.Internals.Errors.ErrorCode.Canceled,
         Unknown = Tizen.Internals.Errors.ErrorCode.Unknown,
+        UserNotConsented = Tizen.Internals.Errors.ErrorCode.UserNotConsented,
         ServiceNotAvailable = -0x02C20000 | 0x01, // MAPS_ERROR_SERVICE_NOT_AVAILABLE
         NotFound = -0x02C20000 | 0x02, // MAPS_ERROR_NOT_FOUND
     }
@@ -61,7 +62,7 @@ internal static class ErrorCodeExtensions
     {
         if (err.IsFailed())
         {
-            Log.Debug(LogTag, string.Format("{0}, err: {1}", msg, err.ToString()), file, func, line);
+            Log.Debug(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
             return false;
         }
         return true;
@@ -75,7 +76,7 @@ internal static class ErrorCodeExtensions
     {
         if (err.IsFailed())
         {
-            Log.Error(LogTag, string.Format("{0}, err: {1}", msg, err.ToString()), file, func, line);
+            Log.Error(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
             throw err.GetException(msg);
         }
         return true;
@@ -83,7 +84,7 @@ internal static class ErrorCodeExtensions
 
     internal static Exception GetException(this Interop.ErrorCode err, string message)
     {
-        string errMessage = string.Format("{0}, err: {1}", message, err.ToString());
+        string errMessage = $"{message}, err: {err.ToString()}";
         switch (err)
         {
             //case ErrorCode.None:

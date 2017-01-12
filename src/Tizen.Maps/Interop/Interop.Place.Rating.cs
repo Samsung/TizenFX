@@ -19,23 +19,35 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceRating
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_get_count")]
+    internal static extern ErrorCode GetCount(this PlaceRatingHandle /* maps_place_rating_h */ rating, out int count);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_get_average")]
+    internal static extern ErrorCode GetAverage(this PlaceRatingHandle /* maps_place_rating_h */ rating, out double average);
+
+    internal class PlaceRatingHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_rating_h */ rating);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_clone")]
-        internal static extern ErrorCode Clone(PlaceRatingHandle /* maps_place_rating_h */ origin, out IntPtr /* maps_place_rating_h */ cloned);
+        internal int Count
+        {
+            get { return NativeGet<int>(this.GetCount); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_get_count")]
-        internal static extern ErrorCode GetCount(PlaceRatingHandle /* maps_place_rating_h */ rating, out int count);
+        internal double Average
+        {
+            get { return NativeGet<double>(this.GetAverage); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_rating_get_average")]
-        internal static extern ErrorCode GetAverage(PlaceRatingHandle /* maps_place_rating_h */ rating, out double average);
-    }
 
-    internal class PlaceRatingHandle : SafeMapsHandle
-    {
-        public PlaceRatingHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceRating.Destroy; }
+        public PlaceRatingHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
+
+        internal static PlaceRatingHandle Create(IntPtr nativeHandle)
+        {
+            return new PlaceRatingHandle(nativeHandle, true);
+        }
     }
 }

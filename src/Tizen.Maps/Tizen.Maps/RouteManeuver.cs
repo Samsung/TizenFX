@@ -25,56 +25,23 @@ namespace Tizen.Maps
     {
         private Interop.RouteDirection _direction;
         private Interop.RouteTurnType _turntype;
-        private Geocoordinates _position;
-        private string _road = string.Empty;
-        private string _instruction = string.Empty;
-        private string _locale = string.Empty;
+        private Geocoordinates _coordinates;
+        private string _road;
+        private string _instruction;
+        private string _locale;
         private int _timeToNextInstruction;
         private double _distanceToNextInstruction;
 
-        internal RouteManeuver(IntPtr nativeHandle)
+        internal RouteManeuver(Interop.RouteManeuverHandle handle)
         {
-            var handle = new Interop.RouteManeuverHandle(nativeHandle);
-
-            var err = Interop.RouteManeuver.GetDirectionId(handle, out _direction);
-            err.WarnIfFailed("Failed to get direction type for this maneuver");
-
-            err = Interop.RouteManeuver.GetTurnType(handle, out _turntype);
-            err.WarnIfFailed("Failed to get turn type for this maneuver");
-
-            err = Interop.RouteManeuver.GetTimeToNextInstruction(handle, out _timeToNextInstruction);
-            err.WarnIfFailed("Failed to get time to next instruction for this maneuver");
-
-            err = Interop.RouteManeuver.GetDistanceToNextInstruction(handle, out _distanceToNextInstruction);
-            err.WarnIfFailed("Failed to get distance to next instruction for this maneuver");
-
-            string instruction;
-            err = Interop.RouteManeuver.GetInstructionText(handle, out instruction);
-            if (err.WarnIfFailed("Failed to get instruction text for this maneuver"))
-            {
-                _instruction = instruction;
-            }
-
-            string locale;
-            err = Interop.RouteManeuver.GetLocale(handle, out locale);
-            if (err.WarnIfFailed("Failed to get locale for this maneuver"))
-            {
-                _locale = locale;
-            }
-
-            string road;
-            err = Interop.RouteManeuver.GetRoadName(handle, out road);
-            if (err.WarnIfFailed("Failed to get road name for this maneuver"))
-            {
-                _road = road;
-            }
-
-            IntPtr positionHandle;
-            err = Interop.RouteManeuver.GetPosition(handle, out positionHandle);
-            if (err.WarnIfFailed("Failed to get position for this maneuver"))
-            {
-                _position = new Geocoordinates(positionHandle);
-            }
+            _direction = handle.Direction;
+            _turntype = handle.TurnType;
+            _coordinates = new Geocoordinates(handle.Coordinates);
+            _road = handle.RoadName;
+            _instruction = handle.Instruction;
+            _locale = handle.Locale;
+            _timeToNextInstruction = handle.TimeToNextInstruction;
+            _distanceToNextInstruction = handle.DistanceToNextInstruction;
         }
 
         /// <summary>
@@ -90,22 +57,22 @@ namespace Tizen.Maps
         /// <summary>
         /// Position for this maneuver
         /// </summary>
-        public Geocoordinates Position { get { return _position; } }
+        public Geocoordinates Position { get { return _coordinates; } }
 
         /// <summary>
         /// Name of the road for this maneuver
         /// </summary>
-        public string Road { get { return string.IsNullOrEmpty(_road) ? "" : _road; } }
+        public string Road { get { return _road; } }
 
         /// <summary>
         /// Instruction text for this maneuver
         /// </summary>
-        public string Instruction { get { return string.IsNullOrEmpty(_instruction) ? "" : _instruction; } }
+        public string Instruction { get { return _instruction; } }
 
         /// <summary>
         /// Locale for this maneuver
         /// </summary>
-        public string Locale { get { return string.IsNullOrEmpty(_locale) ? "" : _locale; } }
+        public string Locale { get { return _locale; } }
 
         /// <summary>
         /// Time to next instruction for this maneuver

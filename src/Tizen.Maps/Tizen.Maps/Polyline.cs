@@ -25,8 +25,9 @@ namespace Tizen.Maps
     /// <summary>
     /// Polyline map object
     /// </summary>
-    public class Polyline : MapObject
+    public class Polyline : MapObject, IDisposable
     {
+        internal Interop.PolylineHandle handle;
         private List<Geocoordinates> _coordinateList;
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Tizen.Maps
         /// <param name="coordinates">List of geographical coordinates</param>
         /// <param name="color">Line color</param>
         /// <param name="width">The width of line [1 ~ 100] (pixels)</param>
-        public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base(CreateNativeHandle(coordinates, color, width))
+        public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
             if (coordinates == null || coordinates.Count() < 2)
@@ -43,10 +44,19 @@ namespace Tizen.Maps
                 err.ThrowIfFailed("given coordinates list should contain at least 2 coordinates");
             }
             _coordinateList = coordinates.ToList();
+            var geocoordinateList = new GeocoordinatesList(_coordinateList);
+            handle = new Interop.PolylineHandle(geocoordinateList.handle, color, width);
         }
 
-        internal Polyline(Interop.ViewObjectHandle nativeHandle) : base(nativeHandle)
+        /// <summary>
+        /// Clicked event
+        /// </summary>
+        public event EventHandler Clicked;
+
+        public override bool IsVisible
         {
+            get { return handle.IsVisible; }
+            set { handle.IsVisible = value; }
         }
 
         /// <summary>
@@ -56,16 +66,6 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_coordinateList == null)
-                {
-                    _coordinateList = new List<Geocoordinates>();
-                    Interop.ViewObject.CoordinatesCallback callback = (index, nativeHandle, userData) =>
-                    {
-                        _coordinateList.Add(new Geocoordinates(nativeHandle));
-                        return true;
-                    };
-                    Interop.ViewObject.PolylineForeachPoint(handle, callback, IntPtr.Zero);
-                }
                 return _coordinateList;
             }
             set
@@ -77,8 +77,8 @@ namespace Tizen.Maps
                     err.ThrowIfFailed("given coordinates list should contain at least 2 coordinates");
                 }
 
-                var coordinateList = new GeocoordinatesList(coordinates, false);
-                if (Interop.ViewObject.PolylineSetPolyline(handle, coordinateList.handle).IsSuccess())
+                var geocoordinateList = new GeocoordinatesList(coordinates, false);
+                if (handle.SetPolyline(geocoordinateList.handle).IsSuccess())
                 {
                     _coordinateList = coordinates;
                 }
@@ -92,13 +92,11 @@ namespace Tizen.Maps
         {
             get
             {
-                byte r, g, b, a;
-                Interop.ViewObject.PolylineGetColor(handle, out r, out g, out b, out a);
-                return new Color(r, g, b, a);
+                return handle.LineColor;
             }
             set
             {
-                Interop.ViewObject.PolylineSetColor(handle, (byte)value.R, (byte)value.G, (byte)value.B, (byte)value.A);
+                handle.LineColor = value;
             }
         }
 
@@ -109,25 +107,49 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.ViewObject.PolylineGetWidth(handle, out value);
-                return value;
+                return handle.LineWidth;
             }
             set
             {
-                Interop.ViewObject.PolylineSetWidth(handle, value);
+                handle.LineWidth = value;
             }
         }
 
-        private static Interop.ViewObjectHandle CreateNativeHandle(IEnumerable<Geocoordinates> coordinates, Color color, int width)
+        internal override void HandleClickedEvent()
         {
-            if (coordinates == null || coordinates.Count() < 2) return new Interop.ViewObjectHandle(IntPtr.Zero);
-
-            IntPtr nativeHandle;
-            var coordinateList = new GeocoordinatesList(coordinates.ToList(), false);
-            var err = Interop.ViewObject.CreatePolyline(coordinateList.handle, (byte)color.R, (byte)color.G, (byte)color.B, (byte)color.A, width, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for polyline");
-            return new Interop.ViewObjectHandle(nativeHandle);
+            Clicked?.Invoke(this, EventArgs.Empty);
         }
+
+        internal override void InvalidateMapObject()
+        {
+            handle = null;
+        }
+
+        internal override Interop.ViewObjectHandle GetHandle()
+        {
+            return handle;
+        }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _coordinateList.Clear();
+                }
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

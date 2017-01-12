@@ -22,44 +22,13 @@ namespace Tizen.Maps
     /// <summary>
     /// Place information, used in Place Discovery and Search
     /// </summary>
-    public class Place
+    public class Place : IDisposable
     {
         internal Interop.PlaceHandle handle;
 
-        private string _id;
-        private string _name;
-        private string _uri;
-        private Geocoordinates _location;
-        private int _distance;
-        private PlaceAddress _address;
-        private PlaceRating _rating;
-
-        private Dictionary<string, string> _properties;
-        private List<PlaceCategory> _categories = new List<PlaceCategory>();
-        private List<PlaceAttribute> _attributes = new List<PlaceAttribute>();
-        private List<PlaceContact> _contacts = new List<PlaceContact>();
-        private List<PlaceEditorial> _editorials = new List<PlaceEditorial>();
-        private List<PlaceImage> _images = new List<PlaceImage>();
-        private List<PlaceReview> _reviews = new List<PlaceReview>();
-
-        private PlaceLink _supplier;
-        private PlaceLink _related;
-
-        internal Place(IntPtr nativeHandle)
+        internal Place(Interop.PlaceHandle nativeHandle)
         {
-            handle = new Interop.PlaceHandle(nativeHandle);
-
-            Interop.Place.GetDistance(handle, out _distance);
-
-            IntPtr supplierHandle;
-            var err = Interop.Place.GetSupplierLink(handle, out supplierHandle);
-            if (err.IsSuccess())
-                _supplier = new PlaceLink(supplierHandle);
-
-            IntPtr relatedHandle;
-            err = Interop.Place.GetRelatedLink(handle, out relatedHandle);
-            if (err.IsSuccess())
-                _related = new PlaceLink(relatedHandle);
+            handle = nativeHandle;
         }
 
         /// <summary>
@@ -69,12 +38,7 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_id))
-                {
-                    var err = Interop.Place.GetId(handle, out _id);
-                    err.WarnIfFailed("Failed to get id for this place");
-                }
-                return _id;
+                return handle.Id;
             }
         }
 
@@ -85,12 +49,7 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_name))
-                {
-                    var err = Interop.Place.GetName(handle, out _name);
-                    err.WarnIfFailed("Failed to get name for this place");
-                }
-                return _name;
+                return handle.Name;
             }
         }
 
@@ -101,36 +60,31 @@ namespace Tizen.Maps
         {
             get
             {
-                if (string.IsNullOrEmpty(_uri))
-                {
-                    var err = Interop.Place.GetUri(handle, out _uri);
-                    err.WarnIfFailed("Failed to get URI for this place");
-                }
-                return _uri;
+                return handle.Uri;
+            }
+        }
+
+        /// <summary>
+        /// Distance from the center of the search area
+        /// </summary>
+        public int Distance
+        {
+            get
+            {
+                return handle.Distance;
             }
         }
 
         /// <summary>
         /// Place location
         /// </summary>
-        public Geocoordinates Location
+        public Geocoordinates Coordinates
         {
             get
             {
-                if (_location == null)
-                {
-                    IntPtr locationHandle;
-                    var err = Interop.Place.GetLocation(handle, out locationHandle);
-                    if (err.WarnIfFailed("Failed to get coordinates for this place"))
-                    {
-                        _location = new Geocoordinates(locationHandle);
-                    }
-                }
-                return _location;
+                return new Geocoordinates(handle.Coordinates);
             }
         }
-
-        public int Distance { get { return _distance; } }
 
         /// <summary>
         /// Place address
@@ -139,16 +93,7 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_address == null)
-                {
-                    IntPtr addressHandle;
-                    var err = Interop.Place.GetAddress(handle, out addressHandle);
-                    if (err.WarnIfFailed("Failed to get address for this place"))
-                    {
-                        _address = new PlaceAddress(addressHandle);
-                    }
-                }
-                return _address;
+                return new PlaceAddress(handle.Address);
             }
         }
 
@@ -159,16 +104,29 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_rating == null)
-                {
-                    IntPtr ratingHandle;
-                    var err = Interop.Place.GetRating(handle, out ratingHandle);
-                    if (err.WarnIfFailed("Failed to get rating for this place"))
-                    {
-                        _rating = new PlaceRating(ratingHandle);
-                    }
-                }
-                return _rating;
+                return new PlaceRating(handle.Rating);
+            }
+        }
+
+        /// <summary>
+        /// Place image supplier link
+        /// </summary>
+        public PlaceLink Supplier
+        {
+            get
+            {
+                return new PlaceLink(handle.Supplier);
+            }
+        }
+
+        /// <summary>
+        /// Place image related link
+        /// </summary>
+        public PlaceLink Related
+        {
+            get
+            {
+                return new PlaceLink(handle.Related);
             }
         }
 
@@ -179,18 +137,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_properties != null) return _properties;
-                _properties = new Dictionary<string, string>();
-                Interop.Place.PropertiesCallback callback = (index, total, key, value, userData) =>
-                {
-                    _properties[key] = value;
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachProperty(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all properties for this place");
-
-                return _properties;
+                var properties = new Dictionary<string, string>();
+                handle.ForeachProperty((key, value) => properties[key] = value);
+                return properties;
             }
         }
 
@@ -201,18 +150,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_categories != null) return _categories;
-                _categories = new List<PlaceCategory>();
-                Interop.Place.CategoriesCallback callback = (index, total, categoryHandle, userData) =>
-                {
-                    _categories.Add(new PlaceCategory(categoryHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachCategory(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all categories for this place");
-
-                return _categories;
+                var categories = new List<PlaceCategory>();
+                handle.ForeachCategory((categoryHandle) => categories.Add(new PlaceCategory(categoryHandle)));
+                return categories;
             }
         }
 
@@ -223,18 +163,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_attributes != null) return _attributes;
-                _attributes = new List<PlaceAttribute>();
-                Interop.Place.AttributesCallback callback = (index, total, attributeHandle, userData) =>
-                {
-                    _attributes.Add(new PlaceAttribute(attributeHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachAttribute(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all attributes for this place");
-
-                return _attributes;
+                var attributes = new List<PlaceAttribute>();
+                handle.ForeachAttribute((attributeHandle) => attributes.Add(new PlaceAttribute(attributeHandle)));
+                return attributes;
             }
         }
 
@@ -245,18 +176,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_contacts != null) return _contacts;
-                _contacts = new List<PlaceContact>();
-                Interop.Place.ContactsCallback callback = (index, total, contactHandle, userData) =>
-                {
-                    _contacts.Add(new PlaceContact(contactHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachContact(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all contacts for this place");
-
-                return _contacts;
+                var contacts = new List<PlaceContact>();
+                handle.ForeachContact((contactHandle) => contacts.Add(new PlaceContact(contactHandle)));
+                return contacts;
             }
         }
 
@@ -267,18 +189,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_editorials != null) return _editorials;
-                _editorials = new List<PlaceEditorial>();
-                Interop.Place.EditorialsCallback callback = (index, total, editorialHandle, userData) =>
-                {
-                    _editorials.Add(new PlaceEditorial(editorialHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachEditorial(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all editorials for this place");
-
-                return _editorials;
+                var editorials = new List<PlaceEditorial>();
+                handle.ForeachEditorial((editorialHandle) => editorials.Add(new PlaceEditorial(editorialHandle)));
+                return editorials;
             }
         }
 
@@ -289,18 +202,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_images != null) return _images;
-                _images = new List<PlaceImage>();
-                Interop.Place.ImagesCallback callback = (index, total, imageHandle, userData) =>
-                {
-                    _images.Add(new PlaceImage(imageHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachImage(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all images for this place");
-
-                return _images;
+                var images = new List<PlaceImage>();
+                handle.ForeachImage((imageHandle) => images.Add(new PlaceImage(imageHandle)));
+                return images;
             }
         }
 
@@ -311,29 +215,28 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_reviews != null) return _reviews;
-                _reviews = new List<PlaceReview>();
-                Interop.Place.ReviewsCallback callback = (index, total, reviewHandle, userData) =>
-                {
-                    _reviews.Add(new PlaceReview(reviewHandle));
-                    return true;
-                };
-
-                var err = Interop.Place.ForeachReview(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all reviews for this place");
-
-                return _reviews;
+                var reviews = new List<PlaceReview>();
+                handle.ForeachReview((reviewHandle) => reviews.Add(new PlaceReview(reviewHandle)));
+                return reviews;
             }
         }
 
-        /// <summary>
-        /// Place image supplier link
-        /// </summary>
-        public PlaceLink Supplier { get { return _supplier; } }
+        #region IDisposable Support
+        private bool _disposedValue = false;
 
-        /// <summary>
-        /// Place image related link
-        /// </summary>
-        public PlaceLink Related { get { return _related; } }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

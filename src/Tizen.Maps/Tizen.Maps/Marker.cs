@@ -22,45 +22,55 @@ namespace Tizen.Maps
     /// <summary>
     /// Marker map object
     /// </summary>
-    public class Marker : MapObject
+    public class Marker : MapObject, IDisposable
     {
-        internal Marker(Interop.ViewObjectHandle nativeHandle) : base(nativeHandle)
-        {
-        }
+        internal Interop.MarkerHandle handle;
 
-        internal Marker(Geocoordinates coordinates, string imagePath, Interop.ViewMarkerType type) : this(CreateNativeHandle(coordinates, imagePath, type))
+        internal Marker(Geocoordinates coordinates, string imagePath, Interop.ViewMarkerType type)
         {
             var err = Interop.ErrorCode.InvalidParameter;
             if (coordinates == null || imagePath == null)
             {
                 err.ThrowIfFailed("given coordinates or imagePath is null");
             }
+            handle = new Interop.MarkerHandle(coordinates.handle, imagePath, type);
+        }
+
+        /// <summary>
+        /// Clicked event
+        /// </summary>
+        public event EventHandler Clicked;
+
+        /// <summary>
+        /// Marker's visibility
+        /// </summary>
+        public override bool IsVisible
+        {
+            get
+            {
+                return handle.IsVisible;
+            }
+            set
+            {
+                handle.IsVisible = value;
+            }
         }
 
         /// <summary>
         /// Geographical coordinates for marker
         /// </summary>
-        public Geocoordinates Position
+        public Geocoordinates Coordinates
         {
             get
             {
-                IntPtr nativeHandle;
-                Interop.ViewObject.MarkerGetCoordinates(handle, out nativeHandle);
-                return new Geocoordinates(nativeHandle);
+                return new Geocoordinates(handle.Coordinates);
             }
             set
             {
-                // Marker takes ownership of the native handle.
-                IntPtr nativeHandle;
-                var err = Interop.Coordinates.Clone(value.handle, out nativeHandle);
-                err.WarnIfFailed("Failed to clone native handle for coordinates");
+                handle.Coordinates = value.handle;
 
-                Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(nativeHandle);
-                err = Interop.ViewObject.MarkerSetCoordinates(handle, clonedHandle);
-                if (err.WarnIfFailed("Failed to set coordinates to marker"))
-                {
-                    clonedHandle.ReleaseOwnership();
-                }
+                // Marker takes ownership of the native handle.
+                value.handle.HasOwnership = false;
             }
         }
 
@@ -71,13 +81,11 @@ namespace Tizen.Maps
         {
             get
             {
-                string value;
-                Interop.ViewObject.MarkerGetImageFile(handle, out value);
-                return value;
+                return handle.ImageFile;
             }
             set
             {
-                Interop.ViewObject.MarkerSetImageFile(handle, value);
+                handle.ImageFile = value;
             }
         }
 
@@ -88,13 +96,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int w, h;
-                Interop.ViewObject.MarkerGetSize(handle, out w, out h);
-                return new Size(w, h);
+                return handle.MarkerSize;
             }
             set
             {
-                Interop.ViewObject.MarkerResize(handle, value.Width, value.Height);
+                handle.MarkerSize = value;
             }
         }
 
@@ -105,13 +111,11 @@ namespace Tizen.Maps
         {
             get
             {
-                int value;
-                Interop.ViewObject.MarkerGetZOrder(handle, out value);
-                return value;
+                return handle.ZOrder;
             }
             set
             {
-                Interop.ViewObject.MarkerSetZOrder(handle, value);
+                handle.ZOrder = value;
             }
         }
 
@@ -130,24 +134,43 @@ namespace Tizen.Maps
         /// <param name="newPosition">New position for marker</param>
         public void Move(Geocoordinates newPosition)
         {
-            Position = newPosition;
+            Coordinates = newPosition;
         }
 
-        private static Interop.ViewObjectHandle CreateNativeHandle(Geocoordinates coordinates, string imagePath, Interop.ViewMarkerType type)
+        internal override void HandleClickedEvent()
         {
-            if (coordinates == null || imagePath == null) return new Interop.ViewObjectHandle(IntPtr.Zero);
-
-            IntPtr nativeHandle;
-            var err = Interop.Coordinates.Clone(coordinates.handle, out nativeHandle);
-            err.WarnIfFailed("Failed to clone native handle for coordinates");
-
-            Interop.CoordinatesHandle clonedHandle = new Interop.CoordinatesHandle(nativeHandle);
-            err = Interop.ViewObject.CreateMarker(clonedHandle, imagePath, type, out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for marker");
-
-            clonedHandle.ReleaseOwnership();
-            return new Interop.ViewObjectHandle(nativeHandle);
+            Clicked?.Invoke(this, EventArgs.Empty);
         }
+
+        internal override void InvalidateMapObject()
+        {
+            handle = null;
+        }
+
+        internal override Interop.ViewObjectHandle GetHandle()
+        {
+            return handle;
+        }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+
+        #endregion
     }
 
     /// <summary>

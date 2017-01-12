@@ -24,7 +24,7 @@ namespace Tizen.Maps
     /// Base class for map service request
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class MapServiceRequest<T>
+    public abstract class MapServiceRequest<T> : IDisposable
     {
         protected TaskCompletionSource<IEnumerable<T>> _requestTask;
         protected string errMessage;
@@ -33,7 +33,8 @@ namespace Tizen.Maps
 
         internal Action startExecutionAction;
         internal Interop.ErrorCode errorCode;
-        internal Interop.ServiceHandle _service;
+
+        internal MapService _service;
 
         /// <summary>
         /// Creates map service request
@@ -42,7 +43,7 @@ namespace Tizen.Maps
         /// <param name="type">Request type</param>
         internal MapServiceRequest(MapService service, ServiceRequestType type)
         {
-            _service = service.handle;
+            _service = service;
             _type = type;
         }
 
@@ -74,12 +75,34 @@ namespace Tizen.Maps
                 _requestTask?.SetCanceled();
                 if (_requestID != null)
                 {
-                    var err = Interop.Service.CancelRequest(_service, (int)_requestID);
-                    err.ThrowIfFailed(string.Format("Unable to cancel service request, Type: {0}, ID: {1}", _type, _requestID));
+                    var err = Interop.CancelRequest(_service.handle, (int)_requestID);
+                    err.ThrowIfFailed($"Unable to cancel service request, Type: {_type}, ID: {_requestID}");
                 }
 
                 errorCode = Interop.ErrorCode.Canceled;
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    Cancel();
+                    _service.Dispose();
+                }
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

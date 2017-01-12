@@ -19,38 +19,66 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceReview
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_date")]
+    internal static extern ErrorCode GetDate(this PlaceReviewHandle /* maps_place_review_h */ review, out string date);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_title")]
+    internal static extern ErrorCode GetTitle(this PlaceReviewHandle /* maps_place_review_h */ review, out string title);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_rating")]
+    internal static extern ErrorCode GetRating(this PlaceReviewHandle /* maps_place_review_h */ review, out double rating);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_description")]
+    internal static extern ErrorCode GetDescription(this PlaceReviewHandle /* maps_place_review_h */ review, out string description);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_language")]
+    internal static extern ErrorCode GetLanguage(this PlaceReviewHandle /* maps_place_review_h */ review, out string language);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_media")]
+    internal static extern ErrorCode GetMedia(this PlaceReviewHandle /* maps_place_review_h */ review, out IntPtr /* maps_place_media_h */ media);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_user_link")]
+    internal static extern ErrorCode GetUserLink(this PlaceReviewHandle /* maps_place_review_h */ review, out IntPtr /* maps_place_link_object_h */ user);
+
+    internal class PlaceReviewHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_review_h */ review);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_clone")]
-        internal static extern ErrorCode Clone(PlaceReviewHandle /* maps_place_review_h */ origin, out IntPtr /* maps_place_review_h */ cloned);
+        internal string Date
+        {
+            get { return NativeGet(this.GetDate); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_date")]
-        internal static extern ErrorCode GetDate(PlaceReviewHandle /* maps_place_review_h */ review, out string date);
+        internal string Title
+        {
+            get { return NativeGet(this.GetTitle); }
+        }
+        internal string Language
+        {
+            get { return NativeGet(this.GetLanguage); }
+        }
+        internal string Description
+        {
+            get { return NativeGet(this.GetDescription); }
+        }
+        internal double Rating
+        {
+            get { return NativeGet<double>(this.GetRating); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_title")]
-        internal static extern ErrorCode GetTitle(PlaceReviewHandle /* maps_place_review_h */ review, out string title);
+        internal PlaceLinkObjectHandle User
+        {
+            get { return NativeGet(this.GetUserLink, PlaceLinkObjectHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_rating")]
-        internal static extern ErrorCode GetRating(PlaceReviewHandle /* maps_place_review_h */ review, out double rating);
+        internal PlaceMediaHandle Media
+        {
+            get { return NativeGet(this.GetMedia, PlaceMediaHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_description")]
-        internal static extern ErrorCode GetDescription(PlaceReviewHandle /* maps_place_review_h */ review, out string description);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_language")]
-        internal static extern ErrorCode GetLanguage(PlaceReviewHandle /* maps_place_review_h */ review, out string language);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_media")]
-        internal static extern ErrorCode GetMedia(PlaceReviewHandle /* maps_place_review_h */ review, out IntPtr /* maps_place_media_h */ media);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_review_get_user_link")]
-        internal static extern ErrorCode GetUserLink(PlaceReviewHandle /* maps_place_review_h */ review, out IntPtr /* maps_place_link_object_h */ user);
-    }
-
-    internal class PlaceReviewHandle : SafeMapsHandle
-    {
-        public PlaceReviewHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceReview.Destroy; }
+        public PlaceReviewHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
     }
 }

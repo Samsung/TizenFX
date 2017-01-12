@@ -24,18 +24,19 @@ namespace Tizen.Maps
     /// </summary>
     public class ReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
-        private Interop.Service.ReverseGeocodeCallback _responseCallback;
+        private Interop.ReverseGeocodeCallback _geocodeCallback;
         private List<PlaceAddress> _addressList = new List<PlaceAddress>();
-        private GeocodePreference _preferences;
 
         internal ReverseGeocodeRequest(MapService service, double latitude, double longitute) : base(service, ServiceRequestType.ReverseGeocode)
         {
-            _preferences = service.GeocodePreferences;
-            _responseCallback = (result, id, index, total, addressHandle, userData) =>
+            // The Maps Service invokes this callback when the address is obtained from the specified coordinates.
+            _geocodeCallback = (result, id, index, total, address, userData) =>
             {
                 errorCode = result;
                 if (result.IsSuccess())
                 {
+                    // The parameter address must be released using maps_address_destroy().
+                    var addressHandle = new Interop.AddressHandle(address, needToRelease: true);
                     _addressList.Add(new PlaceAddress(addressHandle));
                     if (_addressList.Count == total)
                     {
@@ -44,6 +45,7 @@ namespace Tizen.Maps
                 }
                 else
                 {
+                    // If search is failed, the value of total is 0 and address is NULL
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));
                 }
             };
@@ -51,8 +53,8 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = string.Format("Failed to get co-ordinates for given Coordinate: {0}:{1}", latitude, longitute);
-                errorCode = Interop.Service.ReverseGeocode(_service, latitude, longitute, _preferences.handle, _responseCallback, IntPtr.Zero, out requestID);
+                errMessage = $"Failed to get co-ordinates for given Coordinate: {latitude}:{longitute}";
+                errorCode = _service.handle.ReverseGeocode(latitude, longitute, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
                     _requestTask?.TrySetException(errorCode.GetException(errMessage));

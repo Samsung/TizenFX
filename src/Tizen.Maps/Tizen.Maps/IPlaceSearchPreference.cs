@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,39 +14,42 @@
  * limitations under the License.
  */
 
-using System;
+
+using System.Collections.Generic;
 
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Media information, used in Place Discovery and Search requests
+    /// Preferences for place searches
     /// </summary>
-    public class PlaceMedia
+    public interface IPlaceSearchPreference
     {
-        private string _attribution;
-        private PlaceLink _supplier;
-        private PlaceLink _via;
-
-        internal PlaceMedia(Interop.PlaceMediaHandle handle)
-        {
-            _attribution = handle.Attribution;
-            _supplier = new PlaceLink(handle.Supplier);
-            _via = new PlaceLink(handle.Via);
-        }
+        /// <summary>
+        /// Distance unit
+        /// </summary>
+        DistanceUnit Unit { get; set; }
 
         /// <summary>
-        /// Place media attribution
+        /// Preferred language
         /// </summary>
-        public string Attribution { get { return _attribution; } }
+        /// <remarks>
+        /// Language should be specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code e.g. "ko-KR"
+        /// </remarks>
+        string Language { get; set; }
 
         /// <summary>
-        /// Place media supplier value
+        /// Maximum result count for a service request
         /// </summary>
-        public PlaceLink Supplier { get { return _supplier; } }
+        int MaxResults { get; set; }
 
         /// <summary>
-        /// Place media via value
+        /// Preferred country
         /// </summary>
-        public PlaceLink Via { get { return _via; } }
+        string CountryCode { get; set; }
+
+        /// <summary>
+        /// Search properties as key value pair
+        /// </summary>
+        IReadOnlyDictionary<string, string> Properties { get; set; }
     }
 }

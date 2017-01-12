@@ -27,13 +27,15 @@ namespace Tizen.Maps
         private string _label;
         private string _text;
 
-        internal PlaceAttribute(IntPtr nativeHandle)
+        internal PlaceAttribute(Interop.PlaceAttributeHandle nativeHandle)
         {
-            var handle = new Interop.PlaceAttributeHandle(nativeHandle);
+            _id = nativeHandle.Id;
+            _label = nativeHandle.Label;
+            _text = nativeHandle.Text;
+        }
 
-            Interop.PlaceAttribute.GetId(handle, out _id);
-            Interop.PlaceAttribute.GetLabel(handle, out _label);
-            Interop.PlaceAttribute.GetText(handle, out _text);
+        internal PlaceAttribute(IntPtr nativeHandle, bool needToRelease) : this(new Interop.PlaceAttributeHandle(nativeHandle, needToRelease))
+        {
         }
 
         /// <summary>
@@ -50,5 +52,10 @@ namespace Tizen.Maps
         /// Place attribute text
         /// </summary>
         public string Text { get { return _text; } }
+
+        public override string ToString()
+        {
+            return $"{Label}: {Text}";
+        }
     }
 }

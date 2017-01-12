@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,37 +14,26 @@
  * limitations under the License.
  */
 
-using System;
 
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Rating information, used in Place Discovery and Search requests
+    /// Preferences for geocode searches
     /// </summary>
-    public class PlaceRating
+    public interface IGeocodePreference
     {
-        private int _count;
-        private double _average;
-
-        internal PlaceRating(Interop.PlaceRatingHandle handle)
-        {
-            _count = handle.Count;
-            _average = handle.Average;
-        }
+        /// <summary>
+        /// Preferred language
+        /// </summary>
+        /// <remarks>
+        /// Language should be specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code e.g. "ko-KR"
+        /// </remarks>
+        string Language { get; set; }
 
         /// <summary>
-        /// Number of users rated for this rating
+        /// Maximum result count for a service request
         /// </summary>
-        public int UserCount { get { return _count; } }
-
-        /// <summary>
-        /// Average value of user rating
-        /// </summary>
-        public double Average { get { return _average; } }
-
-        public override string ToString()
-        {
-            return $"{Average}({UserCount} reviews)";
-        }
+        /// <remarks>Setting negative value will not have any effect on MaxResults value</remarks>
+        int MaxResults { get; set; }
     }
 }

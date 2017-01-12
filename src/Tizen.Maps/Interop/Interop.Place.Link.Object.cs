@@ -19,29 +19,50 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceLinkObject
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_id")]
+    internal static extern ErrorCode GetId(this PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string id);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_name")]
+    internal static extern ErrorCode GetName(this PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string name);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_string")]
+    internal static extern ErrorCode GetLink(this PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string linkString);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_type")]
+    internal static extern ErrorCode GetType(this PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string type);
+
+    internal class PlaceLinkObjectHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_link_object_h */ link);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_clone")]
-        internal static extern ErrorCode Clone(PlaceLinkObjectHandle /* maps_place_link_object_h */ origin, out IntPtr /* maps_place_link_object_h */ cloned);
+        internal string Id
+        {
+            get { return NativeGet(this.GetId); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_id")]
-        internal static extern ErrorCode GetId(PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string id);
+        internal string Name
+        {
+            get { return NativeGet(this.GetName); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_name")]
-        internal static extern ErrorCode GetName(PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string name);
+        internal string Link
+        {
+            get { return NativeGet(this.GetLink); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_string")]
-        internal static extern ErrorCode GetString(PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string linkString);
+        internal string Type
+        {
+            get { return NativeGet(this.GetType); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_link_object_get_type")]
-        internal static extern ErrorCode GetType(PlaceLinkObjectHandle /* maps_place_link_object_h */ link, out string type);
-    }
+        public PlaceLinkObjectHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
 
-    internal class PlaceLinkObjectHandle : SafeMapsHandle
-    {
-        public PlaceLinkObjectHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceLinkObject.Destroy; }
+        internal static PlaceLinkObjectHandle Create(IntPtr nativeHandle)
+        {
+            return new PlaceLinkObjectHandle(nativeHandle, true);
+        }
     }
 }

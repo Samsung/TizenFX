@@ -51,41 +51,87 @@ internal static partial class Interop
         StraightFork, // MAPS_ROUTE_TURN_TYPE_STRAIGHT_FORK
     }
 
-    internal static partial class RouteManeuver
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_direction_id")]
+    internal static extern ErrorCode GetDirectionId(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out RouteDirection /* maps_route_direction_e */ directionId);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_turn_type")]
+    internal static extern ErrorCode GetTurnType(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out RouteTurnType /* maps_route_turn_type_e */ turnType);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_position")]
+    internal static extern ErrorCode GetPosition(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out IntPtr /* maps_coordinates_h */ position);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_road_name")]
+    internal static extern ErrorCode GetRoadName(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string roadName);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_instruction_text")]
+    internal static extern ErrorCode GetInstructionText(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string instructionText);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_locale")]
+    internal static extern ErrorCode GetLocale(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string locale);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_time_to_next_instruction")]
+    internal static extern ErrorCode GetTimeToNextInstruction(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out int timeToNextInstruction);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_distance_to_next_instruction")]
+    internal static extern ErrorCode GetDistanceToNextInstruction(this RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out double distanceToNextInstruction);
+
+    internal class RouteManeuverHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_route_maneuver_h */ maneuver);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_clone")]
-        internal static extern ErrorCode Clone(RouteManeuverHandle /* maps_route_maneuver_h */ origin, out IntPtr /* maps_route_maneuver_h */ cloned);
+        internal static extern ErrorCode Clone(IntPtr /* maps_route_maneuver_h */ origin, out IntPtr /* maps_route_maneuver_h */ cloned);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_direction_id")]
-        internal static extern ErrorCode GetDirectionId(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out RouteDirection /* maps_route_direction_e */ directionId);
+        internal string RoadName
+        {
+            get { return NativeGet(this.GetRoadName); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_turn_type")]
-        internal static extern ErrorCode GetTurnType(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out RouteTurnType /* maps_route_turn_type_e */ turnType);
+        internal string Instruction
+        {
+            get { return NativeGet(this.GetInstructionText); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_position")]
-        internal static extern ErrorCode GetPosition(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out IntPtr /* maps_coordinates_h */ position);
+        internal string Locale
+        {
+            get { return NativeGet(this.GetLocale); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_road_name")]
-        internal static extern ErrorCode GetRoadName(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string roadName);
+        internal int TimeToNextInstruction
+        {
+            get { return NativeGet<int>(this.GetTimeToNextInstruction); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_instruction_text")]
-        internal static extern ErrorCode GetInstructionText(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string instructionText);
+        internal double DistanceToNextInstruction
+        {
+            get { return NativeGet<double>(this.GetDistanceToNextInstruction); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_locale")]
-        internal static extern ErrorCode GetLocale(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out string locale);
+        internal RouteDirection Direction
+        {
+            get { return NativeGet<RouteDirection>(this.GetDirectionId); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_time_to_next_instruction")]
-        internal static extern ErrorCode GetTimeToNextInstruction(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out int timeToNextInstruction);
+        internal RouteTurnType TurnType
+        {
+            get { return NativeGet<RouteTurnType>(this.GetTurnType); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_route_maneuver_get_distance_to_next_instruction")]
-        internal static extern ErrorCode GetDistanceToNextInstruction(RouteManeuverHandle /* maps_route_maneuver_h */ maneuver, out double distanceToNextInstruction);
-    }
+        internal CoordinatesHandle Coordinates
+        {
+            get { return NativeGet(this.GetPosition, CoordinatesHandle.Create); }
+        }
 
-    internal class RouteManeuverHandle : SafeMapsHandle
-    {
-        public RouteManeuverHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = RouteManeuver.Destroy; }
+        public RouteManeuverHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
+
+        internal static RouteManeuverHandle CloneFrom(IntPtr nativeHandle)
+        {
+            IntPtr handle;
+            Clone(nativeHandle, out handle).ThrowIfFailed("Failed to clone native handle");
+            return new RouteManeuverHandle(handle, true);
+        }
     }
 }

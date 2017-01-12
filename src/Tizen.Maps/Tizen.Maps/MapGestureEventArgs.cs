@@ -24,35 +24,17 @@ namespace Tizen.Maps
     /// </summary>
     public class MapGestureEventArgs : EventArgs
     {
-        internal static MapGestureEventArgs Create(IntPtr nativeHandle)
+        internal MapGestureEventArgs(IntPtr nativeHandle)
         {
-            Interop.ViewGesture type;
-            Point screenCoordinate = new Point();
-            int touchCount;
-            double zoomFactor;
-            double rotationAngle;
-            Geocoordinates coordinates;
-
-            Interop.ViewEventData.GetGestureType(nativeHandle, out type);
-            Interop.ViewEventData.GetPosition(nativeHandle, out screenCoordinate.X, out screenCoordinate.Y);
-            Interop.ViewEventData.GetFingers(nativeHandle, out touchCount);
-            Interop.ViewEventData.GetZoomFactor(nativeHandle, out zoomFactor);
-            Interop.ViewEventData.GetRotationAngle(nativeHandle, out rotationAngle);
-
-            IntPtr coordinate;
-            Interop.ViewEventData.GetCoordinates(nativeHandle, out coordinate);
-            coordinates = new Geocoordinates(coordinate);
-            return new MapGestureEventArgs((GestureType)type, screenCoordinate, coordinates, touchCount, zoomFactor, rotationAngle);
-        }
-
-        internal MapGestureEventArgs(GestureType type, Point screenCoordinate, Geocoordinates geocoordinates, int touchCount, double zoomFactor, double rotationAngle)
-        {
-            GestureType = type;
-            Position = screenCoordinate;
-            Geocoordinates = geocoordinates;
-            TouchCount = touchCount;
-            ZoomFactor = zoomFactor;
-            RotationAngle = rotationAngle;
+            using (var handle = new Interop.GestureEventDataHandle(nativeHandle))
+            {
+                GestureType = (GestureType)handle.GestureType;
+                Position = handle.Position;
+                TouchCount = handle.FingerCount;
+                ZoomFactor = handle.ZoomFactor;
+                RotationAngle = handle.RotationAngle;
+                Geocoordinates = new Geocoordinates(handle.Coordinates);
+            }
         }
 
         /// <summary>

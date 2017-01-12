@@ -21,12 +21,9 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Category information, used in Place Discovery and Search requests
     /// </summary>
-    public class PlaceCategory
+    public class PlaceCategory : IDisposable
     {
         internal Interop.PlaceCategoryHandle handle;
-        protected string _id;
-        protected string _name;
-        protected string _url;
 
         /// <summary>
         /// Constructs search category object
@@ -34,36 +31,22 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public PlaceCategory()
         {
-            IntPtr nativeHandle;
-            var err = Interop.PlaceCategory.Create(out nativeHandle);
-            err.ThrowIfFailed("Failed to create native handle for Place Category");
-
-            handle = new Interop.PlaceCategoryHandle(nativeHandle);
+            handle = new Interop.PlaceCategoryHandle();
         }
 
-        internal PlaceCategory(IntPtr nativeHandle)
+        internal PlaceCategory(Interop.PlaceCategoryHandle nativeHandle)
         {
-            handle = new Interop.PlaceCategoryHandle(nativeHandle);
-            Initialize();
+            handle = nativeHandle;
         }
+
 
         /// <summary>
         /// ID for this category
         /// </summary>
         public string Id
         {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                var err = Interop.PlaceCategory.SetId(handle, value);
-                if (err.WarnIfFailed("Failed to set id for place category"))
-                {
-                    _id = value;
-                }
-            }
+            get { return handle.Id; }
+            set { handle.Id = value; }
         }
 
         /// <summary>
@@ -71,18 +54,8 @@ namespace Tizen.Maps
         /// </summary>
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                var err = Interop.PlaceCategory.SetName(handle, value);
-                if (err.WarnIfFailed("Failed to set name for place category"))
-                {
-                    _name = value;
-                }
-            }
+            get { return handle.Name; }
+            set { handle.Name = value; }
         }
 
         /// <summary>
@@ -90,25 +63,31 @@ namespace Tizen.Maps
         /// </summary>
         public string Url
         {
-            get
+            get { return handle.Url; }
+            set { handle.Url = value; }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
             {
-                return _url;
-            }
-            set
-            {
-                var err = Interop.PlaceCategory.SetUrl(handle, value);
-                if (err.WarnIfFailed("Failed to set URL for place category"))
-                {
-                    _url = value;
-                }
+                handle.Dispose();
+                _disposedValue = true;
             }
         }
 
-        internal void Initialize()
+        public void Dispose()
         {
-            Interop.PlaceCategory.GetId(handle, out _id);
-            Interop.PlaceCategory.GetName(handle, out _name);
-            Interop.PlaceCategory.GetUrl(handle, out _url);
+            Dispose(true);
         }
+        #endregion
     }
 }

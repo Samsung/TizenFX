@@ -19,26 +19,37 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class PlaceEditorial
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_description")]
+    internal static extern ErrorCode GetDescription(this PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out string description);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_language")]
+    internal static extern ErrorCode GetLanguage(this PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out string language);
+
+    [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_media")]
+    internal static extern ErrorCode GetMedia(this PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out IntPtr /* maps_place_media_h */ media);
+
+    internal class PlaceEditorialHandle : SafeMapsHandle
     {
         [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_place_editorial_h */ editorial);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_clone")]
-        internal static extern ErrorCode Clone(PlaceEditorialHandle /* maps_place_editorial_h */ origin, out IntPtr /* maps_place_editorial_h */ cloned);
+        internal string Description
+        {
+            get { return NativeGet(this.GetDescription); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_description")]
-        internal static extern ErrorCode GetDescription(PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out string description);
+        internal string Language
+        {
+            get { return NativeGet(this.GetLanguage); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_language")]
-        internal static extern ErrorCode GetLanguage(PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out string language);
+        internal PlaceMediaHandle Media
+        {
+            get { return NativeGet(this.GetMedia, PlaceMediaHandle.Create); }
+        }
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_place_editorial_get_media")]
-        internal static extern ErrorCode GetMedia(PlaceEditorialHandle /* maps_place_editorial_h */ editorial, out IntPtr /* maps_place_media_h */ media);
-    }
-
-    internal class PlaceEditorialHandle : SafeMapsHandle
-    {
-        public PlaceEditorialHandle(IntPtr handle, bool ownsHandle = true) : base(handle, ownsHandle) { Destroy = PlaceEditorial.Destroy; }
+        public PlaceEditorialHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)
+        {
+        }
     }
 }

@@ -23,37 +23,13 @@ namespace Tizen.Maps
     /// <summary>
     /// Route information, used in Route Search requests
     /// </summary>
-    public class Route
+    public class Route : IDisposable
     {
         internal Interop.RouteHandle handle;
-        private Area _bondingBox;
-        private Geocoordinates _destination;
-        private double _distance;
-        private long _duration;
-        private string _id = string.Empty;
-        private Geocoordinates _origin;
-        private List<Geocoordinates> _path;
 
-        private Dictionary<string, string> _properties;
-        private List<RouteSegment> _segments;
-        private Interop.RouteTransportMode _transportMode;
-        private Interop.DistanceUnit _unit;
-
-        internal Route(IntPtr nativeHandle)
+        internal Route(Interop.RouteHandle nativeHandle)
         {
-            handle = new Interop.RouteHandle(nativeHandle);
-
-            var err = Interop.Route.GetTransportMode(handle, out _transportMode);
-            err.WarnIfFailed("Failed to get transport mode for the segment");
-
-            err = Interop.Route.GetTotalDistance(handle, out _distance);
-            err.WarnIfFailed("Failed to get distance for the segment");
-
-            err = Interop.Route.GetDistanceUnit(handle, out _unit);
-            err.WarnIfFailed("Failed to get distance for the segment");
-
-            err = Interop.Route.GetTotalDuration(handle, out _duration);
-            err.WarnIfFailed("Failed to get duration for the segment");
+            handle = nativeHandle;
         }
 
         /// <summary>
@@ -63,49 +39,50 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_destination != null) return _destination;
-
-                IntPtr destinationHandle;
-                var err = Interop.Route.GetDestination(handle, out destinationHandle);
-                if (err.WarnIfFailed("Failed to get destination for the route"))
-                {
-                    _destination = new Geocoordinates(destinationHandle);
-                }
-                return _destination;
+                return new Geocoordinates(handle.Destination);
             }
         }
 
         /// <summary>
         /// Total distance for this route
         /// </summary>
-        public double Distance { get { return _distance; } }
+        public double Distance
+        {
+            get
+            {
+                return handle.Distance;
+            }
+        }
 
         /// <summary>
         /// Total duration to cover this route
         /// </summary>
-        public double Duration { get { return _duration; } }
+        public double Duration
+        {
+            get
+            {
+                return handle.Duration;
+            }
+        }
 
         public string Id
         {
             get
             {
-                if (string.IsNullOrEmpty(_id))
-                {
-                    string id;
-                    var err = Interop.Route.GetRouteId(handle, out id);
-                    if (err.WarnIfFailed("Failed to get route id"))
-                    {
-                        _id = id;
-                    }
-                }
-                return _id;
+                return handle.Id;
             }
         }
 
         /// <summary>
         /// Transport Mode for this route
         /// </summary>
-        public TransportMode Mode { get { return (TransportMode)_transportMode; } }
+        public TransportMode Mode
+        {
+            get
+            {
+                return (TransportMode)handle.TransportMode;
+            }
+        }
 
         /// <summary>
         /// Origin coordinates for this route
@@ -114,15 +91,7 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_origin != null) return _origin;
-
-                IntPtr originHandle;
-                var err = Interop.Route.GetOrigin(handle, out originHandle);
-                if (err.WarnIfFailed("Failed to get origin for the route"))
-                {
-                    _origin = new Geocoordinates(originHandle);
-                }
-                return _origin;
+                return new Geocoordinates(handle.Origin);
             }
         }
 
@@ -133,39 +102,9 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_path != null) return _path;
-
-                _path = new List<Geocoordinates>();
-                Interop.Route.RoutePathCallback callback = (index, total, coordinateHandle, userData) =>
-                {
-                    _path.Add(new Geocoordinates(coordinateHandle));
-                    return true;
-                };
-
-                var err = Interop.Route.ForeachPath(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get path coordinates for this route");
-                return _path;
-            }
-        }
-
-        /// <summary>
-        /// All properties attached with this route
-        /// </summary>
-        public IDictionary<string, string> Properties
-        {
-            get
-            {
-                if (_properties != null) return _properties;
-                _properties = new Dictionary<string, string>();
-                Interop.Route.RoutePropertiesCallback callback = (index, total, key, value, userData) =>
-                {
-                    _properties[key] = value;
-                    return true;
-                };
-                var err = Interop.Route.ForeachProperty(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get all properties for this route");
-
-                return _properties;
+                var path = new List<Geocoordinates>();
+                handle.ForeachPath(coordinateHandle => path.Add(new Geocoordinates(coordinateHandle)));
+                return path;
             }
         }
 
@@ -176,25 +115,22 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_segments != null) return _segments;
-
-                _segments = new List<RouteSegment>();
-                Interop.Route.RouteSegmentCallback callback = (index, total, segmentHandle, userData) =>
-                {
-                    _segments.Add(new RouteSegment(segmentHandle));
-                    return true;
-                };
-
-                var err = Interop.Route.ForeachSegment(handle, callback, IntPtr.Zero);
-                err.WarnIfFailed("Failed to get path segments for this route");
-                return _segments;
+                var segments = new List<RouteSegment>();
+                handle.ForeachSegment(segmentHandle => segments.Add(new RouteSegment(segmentHandle)));
+                return segments;
             }
         }
 
         /// <summary>
         /// Distance unit for this route
         /// </summary>
-        public DistanceUnit Unit { get { return (DistanceUnit)_unit; } }
+        public DistanceUnit Unit
+        {
+            get
+            {
+                return (DistanceUnit)handle.Unit;
+            }
+        }
 
         /// <summary>
         /// Bounding area for this route
@@ -203,16 +139,26 @@ namespace Tizen.Maps
         {
             get
             {
-                if (_bondingBox != null) return _bondingBox;
-
-                IntPtr areaHandle;
-                var err = Interop.Route.GetBoundingBox(handle, out areaHandle);
-                if (err.WarnIfFailed("Failed to get bonding box for the route"))
-                {
-                    _bondingBox = new Area(areaHandle);
-                }
-                return _bondingBox;
+                return new Area(handle.BoundingBox);
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                handle.Dispose();
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }
