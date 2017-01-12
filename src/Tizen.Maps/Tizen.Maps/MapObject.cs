@@ -19,6 +19,9 @@ using System.Collections.Generic;
 
 namespace Tizen.Maps
 {
+    /// <summary>
+    /// Map object
+    /// </summary>
     public class MapObject
     {
         internal Interop.ViewObjectHandle handle;
