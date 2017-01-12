@@ -13,6 +13,7 @@
 		<dependencies>
 			<dependency id="Tizen" version="1.0.2" />
 			<dependency id="Tizen.Applications" version="1.0.2" />
+			<dependency id="ElmSharp" version="1.0.14" />
 		</dependencies>
 	</metadata>
 	<files>

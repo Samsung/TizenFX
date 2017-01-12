@@ -57,14 +57,12 @@
     <Compile Include="Tizen.Applications\WidgetBase.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\WidgetCoreBackend.cs" />
     <Compile Include="Tizen.Applications\WidgetType.cs" />
+    <Compile Include="Tizen.Applications\WidgetWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.WidgetApplication.Net45.project.json" />
     <None Include="Tizen.Applications.WidgetApplication.nuspec" />
     <None Include="Tizen.Applications.WidgetApplication.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -57,6 +57,7 @@
     <Compile Include="Tizen.Applications\WidgetBase.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\WidgetCoreBackend.cs" />
     <Compile Include="Tizen.Applications\WidgetType.cs" />
+    <Compile Include="Tizen.Applications\WidgetWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

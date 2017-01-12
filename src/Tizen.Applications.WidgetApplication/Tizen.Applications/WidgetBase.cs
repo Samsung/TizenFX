@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using ElmSharp;
 using System;
 
 namespace Tizen.Applications
@@ -26,6 +27,12 @@ namespace Tizen.Applications
         internal IntPtr Handle;
         internal string Id;
         protected static readonly string LogTag = typeof(WidgetBase).Namespace;
+
+        /// <summary>
+        /// Window object for this widget instance.
+        /// It wii be created after OnCreate method is invoked.
+        /// </summary>
+        protected Widget Window;
 
         /// <summary>
         /// Delete type
@@ -153,8 +160,9 @@ namespace Tizen.Applications
             IntPtr win;
 
             Interop.Widget.GetWin(Handle, out win);
-
-            OnPreCreate(win, w, h);
+            Window = new WidgetWindow(win);
+            Window.Resize(w, h);
+            Window.Show();
         }
 
         /// <summary>
@@ -198,13 +206,5 @@ namespace Tizen.Applications
         {
         }
 
-        /// <summary>
-        /// Overrides this method if want to handle behavior before OnCreate() is completed.
-        /// <param name="w">The pixel value for widget width</param>
-        /// <param name="h">The pixel value for widget height</param>
-        /// </summary>
-        protected virtual void OnPreCreate(IntPtr window, int w, int h)
-        {
-        }
     }
 }

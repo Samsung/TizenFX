@@ -1,6 +1,6 @@
 Name:       csapi-widget-application
 Summary:    Tizen widget application API for C#
-Version:    1.0.2
+Version:    1.0.3
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -16,6 +16,7 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
 BuildRequires: csapi-application-nuget
+BuildRequires: elm-sharp-nuget
 
 %define Assemblies Tizen.Applications.WidgetApplication
 
