@@ -93,11 +93,16 @@ group { name: "elm/button/base/default";
             min: 0 0;
             max: 37 37;
          }
+         description { state: "visible" 0.0;
+            inherit: "default" 0.0;
+            min: 37 37;
+            fixed: 1 1;
+         }
       }
       part { name: "elm.text"; type: TEXTBLOCK; mouse_events: 0;
          scale: 1;
          description { state: "default" 0.0;
-            rel1.to_x: "pad.left";
+            rel1.to_x: "elm.swallow.content";
             rel1.relative: 1.0 0.0;
             rel2.to_x: "pad.right";
             rel2.relative: 0.0 1.0;
@@ -163,6 +168,16 @@ group { name: "elm/button/base/default";
          action: STATE_SET "default" 0.0;
          target: "button_base";
          target: "elm.text";
+      }
+      program { name: "icon_show";
+         signal: "elm,state,icon,visible"; source: "elm";
+         action: STATE_SET "visible" 0.0;
+         target: "elm.swallow.content";
+      }
+      program { name: "icon_hide";
+         signal: "elm,state,icon,hidden"; source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.swallow.content";
       }
       program { name: "text_show";
          signal: "elm,state,text,visible"; source: "elm";
