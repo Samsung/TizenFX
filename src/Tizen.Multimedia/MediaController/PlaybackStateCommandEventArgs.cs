@@ -28,36 +28,21 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class PlaybackStateCommandEventArgs : EventArgs
     {
-        internal string _clientName;
-        internal MediaControllerPlaybackState _state;
-
         internal PlaybackStateCommandEventArgs (string name, MediaControllerPlaybackState state)
         {
-            _clientName = name;
-            _state = state;
+            ClientName = name;
+            State = state;
         }
 
         /// <summary>
         /// Get the Client Name.
         /// </summary>
-        public string ClientName
-        {
-            get
-            {
-                return _clientName;
-            }
-        }
+        public string ClientName { get; }
 
         /// <summary>
         /// Get the State of playback.
         /// </summary>
-        public MediaControllerPlaybackState State
-        {
-            get
-            {
-                return _state;
-            }
-        }
+        public MediaControllerPlaybackState State { get; }
     }
 }
 

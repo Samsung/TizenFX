@@ -28,36 +28,21 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class PlaybackUpdatedEventArgs : EventArgs
     {
-        internal string _serverName;
-        internal MediaControllerPlayback _playback;
-
         internal PlaybackUpdatedEventArgs (string name, IntPtr handle)
         {
-            _serverName = name;
-            _playback = new MediaControllerPlayback (handle);
+            ServerName = name;
+            PlaybackInfo = new MediaControllerPlayback (handle);
         }
 
         /// <summary>
         /// Get the Server Name.
         /// </summary>
-        public string ServerName
-        {
-            get
-            {
-                return _serverName;
-            }
-        }
+        public string ServerName { get; }
 
         /// <summary>
         /// Get the Playback Information.
         /// </summary>
-        public MediaControllerPlayback PlaybackInfo
-        {
-            get
-            {
-                return _playback;
-            }
-        }
+        public MediaControllerPlayback PlaybackInfo { get; }
     }
 }
 

@@ -28,36 +28,21 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class ShuffleModeUpdatedEventArgs : EventArgs
     {
-        internal string _serverName;
-        internal MediaControllerShuffleMode _mode;
-
         internal ShuffleModeUpdatedEventArgs (string name, MediaControllerShuffleMode mode)
         {
-            _serverName = name;
-            _mode = mode;
+            ServerName = name;
+            ShuffleMode = mode;
         }
 
         /// <summary>
         /// Get the Server Name.
         /// </summary>
-        public string ServerName
-        {
-            get
-            {
-                return _serverName;
-            }
-        }
+        public string ServerName { get; }
 
         /// <summary>
         /// Get the Shuffle Mode.
         /// </summary>
-        public MediaControllerShuffleMode ShuffleMode
-        {
-            get
-            {
-                return _mode;
-            }
-        }
+        public MediaControllerShuffleMode ShuffleMode { get; }
     }
 }
 

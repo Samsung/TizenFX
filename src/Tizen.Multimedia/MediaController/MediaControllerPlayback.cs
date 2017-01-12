@@ -24,15 +24,12 @@ namespace Tizen.Multimedia.MediaController
     /// </summary>
     public class MediaControllerPlayback
     {
-        private MediaControllerPlaybackState _state;
-        private ulong _position;
-
         /// <summary>
         /// The constructor of MediaControllerPlayback class.
         /// </summary>
         public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
-            _state = state;
-            _position = position;
+            State = state;
+            Position = position;
         }
 
         internal MediaControllerPlayback(IntPtr _playbackHandle) {
@@ -54,31 +51,19 @@ namespace Tizen.Multimedia.MediaController
                 MediaControllerErrorFactory.ThrowException(res, "Get Playback position failed");
             }
 
-            _state = (MediaControllerPlaybackState)state;
-            _position = position;
+            State = (MediaControllerPlaybackState)state;
+            Position = position;
         }
 
        /// <summary>
        /// Set/Get the State of playback information
        /// </summary>
-        public MediaControllerPlaybackState State
-        {
-            get
-            {
-                return _state;
-            }
-        }
+        public MediaControllerPlaybackState State { get; }
 
         /// <summary>
         /// Set/Get the Position of playback information
         /// </summary>
-        public ulong Position
-        {
-            get
-            {
-                return _position;
-            }
-        }
+        public ulong Position { get; }
     }
 }
 

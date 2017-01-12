@@ -25,35 +25,21 @@ namespace Tizen.Multimedia.MediaController
     /// </summary>
     public class ServerInformation
     {
-        private string _name;
-        private MediaControllerServerState _state;
         internal ServerInformation(string name, MediaControllerServerState state)
         {
-            _name = name;
-            _state = state;
+            Name = name;
+            State = state;
         }
 
         /// <summary>
         /// Get the Name of server
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-        }
+        public string Name { get; }
 
         /// <summary>
         /// Get the State of server
         /// </summary>
-        public MediaControllerServerState State
-        {
-            get
-            {
-                return _state;
-            }
-        }
+        public MediaControllerServerState State { get; }
     }
 }
 

@@ -28,36 +28,21 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class RepeatModeUpdatedEventArgs : EventArgs
     {
-        internal string _serverName;
-        internal MediaControllerRepeatMode _mode;
-
         internal RepeatModeUpdatedEventArgs (string name, MediaControllerRepeatMode mode)
         {
-            _serverName = name;
-            _mode = mode;
+            ServerName = name;
+            RepeatMode = mode;
         }
 
         /// <summary>
         /// Get the Server Name.
         /// </summary>
-        public string ServerName
-        {
-            get
-            {
-                return _serverName;
-            }
-        }
+        public string ServerName { get; }
 
         /// <summary>
         /// Get the Repeat Mode.
         /// </summary>
-        public MediaControllerRepeatMode RepeatMode
-        {
-            get
-            {
-                return _mode;
-            }
-        }
+        public MediaControllerRepeatMode RepeatMode { get; }
     }
 }
 

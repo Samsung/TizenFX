@@ -29,49 +29,27 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class CustomCommandReplyEventArgs : EventArgs
     {
-        internal string _serverName;
-        internal int _result;
-        internal Bundle _bundle;
-
         internal CustomCommandReplyEventArgs (string serverName, int result, Bundle bundle)
         {
-            _serverName = serverName;
-            _result = result;
-            _bundle = bundle;
+            ServerName = serverName;
+            Result = result;
+            BundleData = bundle;
         }
 
         /// <summary>
         /// Get the Sserver Name.
         /// </summary>
-        public string ServerName
-        {
-            get
-            {
-                return _serverName;
-            }
-        }
+        public string ServerName { get; }
 
         /// <summary>
         /// Get the Result.
         /// </summary>
-        public int Result
-        {
-            get
-            {
-                return _result;
-            }
-        }
+        public int Result { get; }
 
         /// <summary>
         /// Get the Bundle Data.
         /// </summary>
-        public Bundle BundleData
-        {
-            get
-            {
-                return _bundle;
-            }
-        }
+        public Bundle BundleData { get; }
     }
 }
 
