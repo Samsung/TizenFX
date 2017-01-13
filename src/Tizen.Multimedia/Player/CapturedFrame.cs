@@ -31,6 +31,7 @@ namespace Tizen.Multimedia
 
             Buffer = imageBuffer;
             Size = new Size(width, height);
+            Log.Debug(PlayerLog.Tag, "width : " + width + ", height : " + height);
         }
 
         /// <summary>

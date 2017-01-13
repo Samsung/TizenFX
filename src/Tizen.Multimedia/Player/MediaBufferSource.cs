@@ -42,6 +42,7 @@ namespace Tizen.Multimedia
         {
             if (length <= 0)
             {
+                Log.Error(PlayerLog.Tag, "invalid length : " + length);
                 throw new ArgumentOutOfRangeException(nameof(length), length,
                     "length can't be equal to or less than zero.");
             }
@@ -76,18 +77,22 @@ namespace Tizen.Multimedia
         {
             if (buffer == null)
             {
+                Log.Error(PlayerLog.Tag, "invalid buffer");
                 throw new ArgumentNullException(nameof(buffer));
             }
             if (offset < 0)
             {
+                Log.Error(PlayerLog.Tag, "invalid offset : " + offset);
                 throw new ArgumentOutOfRangeException(nameof(offset), offset, "offset can't be less than zero.");
             }
             if (length <= 0)
             {
+                Log.Error(PlayerLog.Tag, "invalid length : " + length);
                 throw new ArgumentOutOfRangeException(nameof(length), length, "length can't be equal to or less than zero.");
             }
             if (length + offset > buffer.Length)
             {
+                Log.Error(PlayerLog.Tag, "invalid total length : " + (int)(length + offset));
                 throw new ArgumentOutOfRangeException($"length + offset can't be greater than the length of the { nameof(buffer) }.");
             }
 
@@ -109,6 +114,7 @@ namespace Tizen.Multimedia
         {
             if (buffer == null)
             {
+                Log.Error(PlayerLog.Tag, "invalid buffer");
                 throw new ArgumentNullException(nameof(buffer));
             }
 
@@ -126,6 +132,10 @@ namespace Tizen.Multimedia
         {
             // TODO test buffer if we need to use GCHandle
             int ret = Interop.Player.SetMemoryBuffer(player.GetHandle(), _buffer, _buffer.Length);
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to set the memory buffer, " + (PlayerError)ret);
+            }
             PlayerErrorConverter.ThrowIfError(ret, "Failed to set the memory buffer");
         }
     }

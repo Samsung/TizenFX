@@ -29,6 +29,7 @@ namespace Tizen.Multimedia
 
         internal EqualizerBand(AudioEffect owner, int index)
         {
+            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Debug.Assert(owner != null);
 
             _owner = owner;
@@ -45,6 +46,7 @@ namespace Tizen.Multimedia
 
             Frequency = frequency;
             FrequencyRange = range;
+            Log.Debug(PlayerLog.Tag, "frequency : " + frequency + ", range : " + range);
         }
 
         /// <summary>
@@ -59,16 +61,22 @@ namespace Tizen.Multimedia
         /// </exception>
         public void SetLevel(int value)
         {
+            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             _owner.Player.ValidateNotDisposed();
 
             if (value < _owner.MinBandLevel || _owner.MaxBandLevel < value)
             {
+                Log.Error(PlayerLog.Tag, "invalid level : " + value);
                 throw new ArgumentOutOfRangeException(nameof(value), value,
                     $"valid value range is { nameof(AudioEffect.MinBandLevel) } <= level <= { nameof(AudioEffect.MaxBandLevel) }. " +
                     $"but got {value}.");
             }
 
             int ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_owner.Player.GetHandle(), _index, value);
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to set the level of the equalizer band, " + (PlayerError)ret);
+            }
             PlayerErrorConverter.ThrowIfError(ret, "Failed to set the level of the equalizer band");
         }
 
@@ -78,13 +86,18 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player that this EqualuzerBand belongs to has already been disposed of.</exception>
         public int GetLevel()
         {
+            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             _owner.Player.ValidateNotDisposed();
 
             int value = 0;
             int ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_owner.Player.GetHandle(),
                 _index, out value);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize equalizer band");
-
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to get the level of the equalizer band, " + (PlayerError)ret);
+            }
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the level of the equalizer band");
+            Log.Info(PlayerLog.Tag, "get level : " + value);
             return value;
         }
 

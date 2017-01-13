@@ -39,6 +39,7 @@ namespace Tizen.Multimedia
         {
             if (uri == null)
             {
+                Log.Error(PlayerLog.Tag, "uri is null");
                 throw new ArgumentNullException(nameof(uri));
             }
             Uri = uri;

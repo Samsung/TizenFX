@@ -59,6 +59,7 @@ namespace Tizen.Multimedia
 
             if (!SupportedAudioTypes.Contains(format.MimeType))
             {
+                Log.Error(PlayerLog.Tag, "The audio format is not supported : " + format.MimeType);
                 throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
             }
 
@@ -74,6 +75,7 @@ namespace Tizen.Multimedia
 
             if (!SupportedVideoTypes.Contains(format.MimeType))
             {
+                Log.Error(PlayerLog.Tag, "The video format is not supported : " + format.MimeType);
                 throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
             }
 
@@ -184,39 +186,50 @@ namespace Tizen.Multimedia
         {
             if (_player == null)
             {
+                Log.Error(PlayerLog.Tag, "The source is not set as a source to a player yet.");
                 throw new InvalidOperationException("The source is not set as a source to a player yet.");
             }
             if (packet == null)
             {
+                Log.Error(PlayerLog.Tag, "packet is null");
                 throw new ArgumentNullException(nameof(packet));
             }
             if (packet.IsDisposed)
             {
+                Log.Error(PlayerLog.Tag, "packet is disposed");
                 throw new ObjectDisposedException(nameof(packet));
             }
 
             if (packet.Format.Type == MediaFormatType.Text || packet.Format.Type == MediaFormatType.Container)
             {
+                Log.Error(PlayerLog.Tag, "The format of the packet is invalid : " + packet.Format.Type);
                 throw new ArgumentException($"The format of the packet is invalid : { packet.Format.Type }.");
             }
 
             if (!packet.Format.Equals(_audioMediaFormat) && !packet.Format.Equals(_videoMediaFormat))
             {
+                Log.Error(PlayerLog.Tag, "The format of the packet is invalid : Unmatched format.");
                 throw new ArgumentException($"The format of the packet is invalid : Unmatched format.");
             }
 
             if (packet.Format.Type == MediaFormatType.Video && _videoMediaFormat == null)
             {
+                Log.Error(PlayerLog.Tag, "Video is not configured with the current source.");
                 throw new ArgumentException("Video is not configured with the current source.");
             }
             if (packet.Format.Type == MediaFormatType.Audio && _audioMediaFormat == null)
             {
+                Log.Error(PlayerLog.Tag, "Audio is not configured with the current source.");
                 throw new ArgumentException("Audio is not configured with the current source.");
             }
 
             _player.ValidatePlayerState(PlayerState.Paused, PlayerState.Playing, PlayerState.Ready);
 
             int ret = Interop.Player.PushMediaStream(_player.GetHandle(), packet.GetHandle());
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to push the packet to the player, " + (PlayerError)ret);
+            }
 
             PlayerErrorConverter.ThrowIfError(ret, "Failed to push the packet to the player");
         }
@@ -225,6 +238,7 @@ namespace Tizen.Multimedia
         {
             if (mediaFormat == null)
             {
+                Log.Error(PlayerLog.Tag, "invalid media format");
                 return;
             }
 
@@ -234,6 +248,10 @@ namespace Tizen.Multimedia
             {
                 ptr = mediaFormat.AsNativeHandle();
                 int ret = Interop.Player.SetMediaStreamInfo(_player.GetHandle(), (int)streamType, ptr);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to set the media stream info, " + (PlayerError)ret);
+                }
 
                 PlayerErrorConverter.ThrowIfError(ret, "Failed to set the media stream info");
             }
@@ -249,6 +267,7 @@ namespace Tizen.Multimedia
 
             if (_player != null)
             {
+                Log.Error(PlayerLog.Tag, "The source is has already been assigned to another player.");
                 throw new InvalidOperationException("The source is has already been assigned to another player.");
             }
 

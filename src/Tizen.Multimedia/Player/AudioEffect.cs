@@ -26,6 +26,7 @@ namespace Tizen.Multimedia
 
         internal AudioEffect(Player owner)
         {
+            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player = owner;
 
             bool available = false;
@@ -47,6 +48,7 @@ namespace Tizen.Multimedia
             MaxBandLevel = max;
 
             _bands = new EqualizerBand[count];
+            Log.Debug(PlayerLog.Tag, "available : " + available + ", count : " + count + ", min : " + min + ", max : " + max);
         }
 
         /// <summary>
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia
         {
             get
             {
+                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 Player.ValidateNotDisposed();
 
                 if (index < 0 || Count <= index)
@@ -75,6 +78,7 @@ namespace Tizen.Multimedia
                 {
                     _bands[index] = new EqualizerBand(this, index);
                 }
+                Log.Info(PlayerLog.Tag, "get equalizer band : " + _bands[index]);
                 return _bands[index];
             }
         }
@@ -85,10 +89,12 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         public void Clear()
         {
+            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player.ValidateNotDisposed();
 
             PlayerErrorConverter.ThrowIfError(Interop.Player.AudioEffectEqualizerClear(Player.GetHandle()),
                 "Failed to clear equalizer effect");
+            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         public int Count{ get; }

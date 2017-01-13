@@ -33,6 +33,7 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(player != null);
 
+            Log.Debug(PlayerLog.Tag, "streamType : " + streamType);
             _streamType = (int)streamType;
             _owner = player;
         }
@@ -50,8 +51,8 @@ namespace Tizen.Multimedia
 
             int count = 0;
             int ret = Interop.Player.GetTrackCount(_owner.GetHandle(), _streamType, out count);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the track of the player");
-
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to get count of the track");
+            Log.Info(PlayerLog.Tag, "get count : " + count);
             return count;
         }
 
@@ -76,6 +77,7 @@ namespace Tizen.Multimedia
 
             if (index < 0 || GetCount() <= index)
             {
+                Log.Error(PlayerLog.Tag, "invalid index");
                 throw new ArgumentOutOfRangeException(nameof(index), index,
                     $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
             }
@@ -87,15 +89,16 @@ namespace Tizen.Multimedia
                 int ret = Interop.Player.GetTrackLanguageCode(
                     _owner.GetHandle(), _streamType, index, out code);
 
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to get the selected index of the player");
+                PlayerErrorConverter.ThrowIfError(ret, "Failed to get the selected language of the player");
 
                 string result = Marshal.PtrToStringAnsi(code);
 
                 if (result == "und")
                 {
+                    Log.Error(PlayerLog.Tag, "not defined code");
                     return null;
                 }
-
+                Log.Info(PlayerLog.Tag, "get language code : " + result);
                 return result;
             }
             finally
@@ -118,7 +121,7 @@ namespace Tizen.Multimedia
             int value = 0;
             int ret = Interop.Player.GetCurrentTrack(_owner.GetHandle(), _streamType, out value);
             PlayerErrorConverter.ThrowIfError(ret, "Failed to get the selected index of the player");
-
+            Log.Debug(PlayerLog.Tag, "get selected index : " + value);
             return value;
         }
 
@@ -138,6 +141,7 @@ namespace Tizen.Multimedia
         {
             if (index < 0 || GetCount() <= index)
             {
+                Log.Error(PlayerLog.Tag, "invalid index");
                 throw new ArgumentOutOfRangeException(nameof(index), index,
                     $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
             }
@@ -145,6 +149,10 @@ namespace Tizen.Multimedia
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int ret = Interop.Player.SelectTrack(_owner.GetHandle(), _streamType, index);
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to set the selected index of the player, " + (PlayerError)ret);
+            }
             PlayerErrorConverter.ThrowIfError(ret, "Failed to set the selected index of the player");
         }
 

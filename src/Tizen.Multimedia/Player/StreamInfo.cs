@@ -31,6 +31,7 @@ namespace Tizen.Multimedia
             SampleRate = sampleRate;
             Channels = channels;
             BitRate = bitRate;
+            Log.Debug(PlayerLog.Tag, "sampleRate : " + sampleRate + ", channels : " + channels + ", bitRate : " + bitRate);
         }
 
         /// <summary>
@@ -81,6 +82,8 @@ namespace Tizen.Multimedia
             Fps = fps;
             BitRate = bitRate;
             Size = size;
+            Log.Debug(PlayerLog.Tag, "fps : " + fps + ", bitrate : " + bitRate +
+                ", width : " + size.Width + ", height : "+ size.Height);
         }
         /// <summary>
         /// Initialize a new instance of the VideoStreamProperties struct with the specified fps, bit rate, width and height.
@@ -90,6 +93,8 @@ namespace Tizen.Multimedia
             Fps = fps;
             BitRate = bitRate;
             Size = new Size(width, height);
+            Log.Debug(PlayerLog.Tag, "fps : " + fps + ", bitrate : " + bitRate +
+                ", width : " + width + ", height : " + height);
         }
 
         /// <summary>
@@ -152,6 +157,7 @@ namespace Tizen.Multimedia
 
             if (art == IntPtr.Zero || size == 0)
             {
+                Log.Error(PlayerLog.Tag, "art is null or size is 0 : " + size);
                 return null;
             }
 
@@ -169,14 +175,20 @@ namespace Tizen.Multimedia
             try
             {
                 int ret = Interop.Player.GetCodecInfo(Player.GetHandle(), out audioPtr, out videoPtr);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to get codec info, " + (PlayerError)ret);
+                }
                 PlayerErrorConverter.ThrowIfError(ret, "Failed to get codec info");
 
                 if (audioInfo)
                 {
+                    Log.Debug(PlayerLog.Tag, "it is audio case");
                     return Marshal.PtrToStringAnsi(audioPtr);
                 }
                 else
                 {
+                    Log.Debug(PlayerLog.Tag, "it is video case");
                     return Marshal.PtrToStringAnsi(videoPtr);
                 }
             }
@@ -217,6 +229,8 @@ namespace Tizen.Multimedia
             int duration = 0;
             PlayerErrorConverter.ThrowIfError(Interop.Player.GetDuration(Player.GetHandle(), out duration),
                 "Failed to get the duration");
+
+            Log.Info(PlayerLog.Tag, "get duration : " + duration);
             return duration;
         }
 
@@ -236,6 +250,10 @@ namespace Tizen.Multimedia
 
             int ret = Interop.Player.GetAudioStreamInfo(Player.GetHandle(),
                 out sampleRate, out channels, out bitRate);
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to auido stream info, " + (PlayerError)ret);
+            }
             PlayerErrorConverter.ThrowIfError(ret, "Failed to get audio stream info");
 
             // TODO should we check value is zero and return null?
@@ -256,8 +274,11 @@ namespace Tizen.Multimedia
             int fps = 0;
             int bitRate = 0;
             int ret = Interop.Player.GetVideoStreamInfo(Player.GetHandle(), out fps, out bitRate);
-
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the video info");
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to video stream info, " + (PlayerError)ret);
+            }
+            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the video stream info");
 
             // TODO should we check value is zero and return null?
 
@@ -271,7 +292,10 @@ namespace Tizen.Multimedia
             int height = 0;
             int width = 0;
             int ret = Interop.Player.GetVideoSize(Player.GetHandle(), out width, out height);
-
+            if (ret != (int)PlayerErrorCode.None)
+            {
+                Log.Error(PlayerLog.Tag, "Failed to video size, " + (PlayerError)ret);
+            }
             PlayerErrorConverter.ThrowIfError(ret, "Failed to get the video size");
 
             return new Size(width, height);
@@ -295,6 +319,10 @@ namespace Tizen.Multimedia
             try
             {
                 int ret = Interop.Player.GetContentInfo(Player.GetHandle(), (int)key, out ptr);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to get the meta data with the key" + key + ", " + (PlayerError)ret);
+                }
                 PlayerErrorConverter.ThrowIfError(ret, $"Failed to get the meta data with the key '{ key }'");
 
 

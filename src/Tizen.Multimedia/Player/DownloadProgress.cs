@@ -30,6 +30,7 @@ namespace Tizen.Multimedia
         {
             Start = start;
             Current = current;
+            Log.Debug(PlayerLog.Tag, "start : " + start + ", current : " + current);
         }
 
         /// <summary>

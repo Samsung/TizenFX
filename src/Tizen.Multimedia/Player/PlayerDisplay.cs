@@ -30,11 +30,13 @@ namespace Tizen.Multimedia
         {
             if (evasObject == null)
             {
+                Log.Error(PlayerLog.Tag, "evas object is null");
                 throw new ArgumentNullException(nameof(evasObject));
             }
 
             if (evasObject == IntPtr.Zero)
             {
+                Log.Error(PlayerLog.Tag, "The evas object is not realized.");
                 throw new ArgumentException("The evas object is not realized.");
             }
 
@@ -73,6 +75,7 @@ namespace Tizen.Multimedia
         {
             if (Player == null)
             {
+                Log.Error(PlayerLog.Tag, "The display is not assigned, yet.");
                 throw new InvalidOperationException("The display is not assigned, yet.");
             }
 
@@ -110,6 +113,10 @@ namespace Tizen.Multimedia
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
 
                 int ret = Interop.Player.SetDisplayMode(Player.GetHandle(), (int)value);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to set display mode, " + (PlayerError)ret);
+                }
                 PlayerErrorConverter.ThrowIfError(ret, "Failed to set display mode");
 
                 _displayMode = value;
@@ -144,6 +151,10 @@ namespace Tizen.Multimedia
                 }
 
                 int ret = Interop.Player.SetDisplayVisible(Player.GetHandle(), value);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to set the visible state of the display, " + (PlayerError)ret);
+                }
                 PlayerErrorConverter.ThrowIfError(ret, "Failed to set the visible state of the display");
 
                 _isVisible = value;
@@ -181,6 +192,10 @@ namespace Tizen.Multimedia
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayRotation), value);
 
                 int ret = Interop.Player.SetDisplayRotation(Player.GetHandle(), (int)value);
+                if (ret != (int)PlayerErrorCode.None)
+                {
+                    Log.Error(PlayerLog.Tag, "Failed to set the rotation state of the display, " + (PlayerError)ret);
+                }
                 PlayerErrorConverter.ThrowIfError(ret, "Failed to set the rotation state of the display");
 
                 _rotation = value;
