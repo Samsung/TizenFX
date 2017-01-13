@@ -243,6 +243,15 @@
     <Compile Include="ScreenMirroring\ScreenMirroringErrorFactory.cs" />
     <Compile Include="ScreenMirroring\VideoInformation.cs" />
     <Compile Include="Interop\Interop.ScreenMirroring.cs" />
+    <Compile Include="StreamRecorder\StreamRecordingBufferConsumedEventArgs.cs" />
+    <Compile Include="StreamRecorder\StreamRecorder.cs" />
+    <Compile Include="StreamRecorder\StreamRecorderEnums.cs" />
+    <Compile Include="StreamRecorder\StreamRecorderErrorFactory.cs" />
+    <Compile Include="StreamRecorder\StreamRecorderNotifiedEventArgs.cs" />
+    <Compile Include="StreamRecorder\StreamRecorderVideoResolution.cs" />
+    <Compile Include="StreamRecorder\StreamRecordingErrorOccurredEventArgs.cs" />
+    <Compile Include="StreamRecorder\StreamRecordingLimitReachedEventArgs.cs" />
+    <Compile Include="Interop\Interop.StreamRecorder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Multimedia.nuspec" />
