@@ -257,12 +257,13 @@ namespace Tizen.Network.Nfc
                         _callback_map.Remove(key);
                     }
                 };
-            }
-            int ret = Interop.Nfc.SetActivation(activation, _callback_map[id], id);
-            if (ret != (int)NfcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to activate nfc, Error - " + (NfcError)ret);
-                NfcErrorFactory.ThrowNfcException(ret);
+
+                int ret = Interop.Nfc.SetActivation(activation, _callback_map[id], id);
+                if (ret != (int)NfcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to activate nfc, Error - " + (NfcError)ret);
+                    NfcErrorFactory.ThrowNfcException(ret);
+                }
             }
             return task.Task;
         }
