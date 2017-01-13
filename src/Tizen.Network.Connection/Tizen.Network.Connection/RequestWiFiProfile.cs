@@ -37,11 +37,11 @@ namespace Tizen.Network.Connection
         /// The constructor of WiFiProfile class with profile type and keyword.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public RequestWiFiProfile(string keyword)
+        internal RequestWiFiProfile(IntPtr handle)
         {
-            Log.Debug(Globals.LogTag, "RequestWiFiProfile : " + keyword);
-            ProfileHandle = ConnectionInternalManager.CreateRequestProfile(ConnectionProfileType.WiFi, keyword);
+            Log.Debug(Globals.LogTag, "RequestWiFiProfile is created : " + handle);
 
+            ProfileHandle = handle;
             Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
             Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
         }

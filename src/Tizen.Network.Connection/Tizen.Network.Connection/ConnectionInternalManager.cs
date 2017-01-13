@@ -59,42 +59,71 @@ namespace Tizen.Network.Connection
             if (disposing)
             {
                 // Free managed objects.
+                Interop.Connection.Destroy(Handle);
             }
-            Interop.Connection.Destroy(Handle);
             disposed = true;
         }
     }
 
-    static class ConnectionInternalManager
+    internal class ConnectionInternalManager
     {
-        private static HandleHolder Holder = new HandleHolder();
+        private HandleHolder Holder = null;
+        private bool disposed = false;
 
-        static public IntPtr GetHandle()
+        internal ConnectionInternalManager()
+        {
+            Holder = new HandleHolder();
+        }
+
+        ~ConnectionInternalManager()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                Holder.Dispose();
+            }
+            disposed = true;
+        }
+
+        public IntPtr GetHandle()
         {
             return Holder.GetHandle();
         }
 
-        static internal int GetProfileIterator(ProfileListType type, out IntPtr iterator)
+        internal int GetProfileIterator(ProfileListType type, out IntPtr iterator)
         {
             return Interop.Connection.GetProfileIterator(Holder.GetHandle(), (int)type, out iterator);
         }
 
-        static internal bool HasNext(IntPtr iterator)
+        internal bool HasNext(IntPtr iterator)
         {
             return Interop.Connection.HasNextProfileIterator(iterator);
         }
 
-        static internal int NextProfileIterator(IntPtr iterator, out IntPtr profileHandle)
+        internal int NextProfileIterator(IntPtr iterator, out IntPtr profileHandle)
         {
             return Interop.Connection.GetNextProfileIterator(iterator, out profileHandle);
         }
 
-        static internal int DestoryProfileIterator(IntPtr iterator)
+        internal int DestoryProfileIterator(IntPtr iterator)
         {
             return Interop.Connection.DestroyProfileIterator(iterator);
         }
 
-        static public string GetIpAddress(AddressFamily family)
+        public string GetIpAddress(AddressFamily family)
         {
             IntPtr ip;
             int ret = Interop.Connection.GetIpAddress(Holder.GetHandle(), (int)family, out ip);
@@ -108,7 +137,7 @@ namespace Tizen.Network.Connection
             return result;
         }
 
-        static public string GetProxy(AddressFamily family)
+        public string GetProxy(AddressFamily family)
         {
             IntPtr ip;
             int ret = Interop.Connection.GetProxy(Holder.GetHandle(), (int)family, out ip);
@@ -122,7 +151,7 @@ namespace Tizen.Network.Connection
             return result;
         }
 
-        static public string GetMacAddress(ConnectionType type)
+        public string GetMacAddress(ConnectionType type)
         {
             IntPtr ip;
             int ret = Interop.Connection.GetMacAddress(Holder.GetHandle(), (int)type, out ip);
@@ -136,7 +165,7 @@ namespace Tizen.Network.Connection
             return result;
         }
 
-        static public ConnectionType ConnectionType
+        public ConnectionType ConnectionType
         {
             get
             {
@@ -146,26 +175,29 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get connection type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (ConnectionType)type;
             }
         }
 
-        static public CellularState CellularState
+        public CellularState CellularState
         {
             get
             {
                 int type = 0;
+                Log.Debug(Globals.LogTag, "CellularState Handle: " + Holder.GetHandle());
                 int ret = Interop.Connection.GetCellularState(Holder.GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get cellular state, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (CellularState)type;
             }
         }
 
-        static public ConnectionState WiFiState
+        public ConnectionState WiFiState
         {
             get
             {
@@ -174,12 +206,13 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get wifi state, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (ConnectionState)type;
             }
         }
 
-        static public ConnectionState BluetoothState
+        public ConnectionState BluetoothState
         {
             get
             {
@@ -188,12 +221,13 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get bluetooth state, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (ConnectionState)type;
             }
         }
 
-        static public ConnectionState EthernetState
+        public ConnectionState EthernetState
         {
             get
             {
@@ -202,12 +236,13 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ethernet state, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (ConnectionState)type;
             }
         }
 
-        static public EthernetCableState EthernetCableState
+        public EthernetCableState EthernetCableState
         {
             get
             {
@@ -216,6 +251,7 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ethernet cable state, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (EthernetCableState)type;
             }
@@ -224,7 +260,6 @@ namespace Tizen.Network.Connection
         static public IntPtr CreateRequestProfile(ConnectionProfileType type, string keyword)
         {
             Log.Error(Globals.LogTag, "CreateRequestProfile, " + type + ", " + keyword);
-            Log.Debug(Globals.LogTag, "Handle: " + GetHandle());
             IntPtr handle = IntPtr.Zero;
             int ret = Interop.ConnectionProfile.Create((int)type, keyword, out handle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -236,7 +271,7 @@ namespace Tizen.Network.Connection
             return handle;
         }
 
-        static public int AddProfile(RequestProfile profile)
+        public int AddProfile(RequestProfile profile)
         {
             int ret = 0;
             if (profile.Type == ConnectionProfileType.Cellular)
@@ -260,7 +295,7 @@ namespace Tizen.Network.Connection
             return ret;
         }
 
-        static public int RemoveProfile(ConnectionProfile profile)
+        public int RemoveProfile(ConnectionProfile profile)
         {
             int ret = Interop.Connection.RemoveProfile(Holder.GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -271,7 +306,7 @@ namespace Tizen.Network.Connection
             return ret;
         }
 
-        static public int UpdateProfile(ConnectionProfile profile)
+        public int UpdateProfile(ConnectionProfile profile)
         {
             int ret = Interop.Connection.UpdateProfile(Holder.GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -282,7 +317,7 @@ namespace Tizen.Network.Connection
             return ret;
         }
 
-        static public ConnectionProfile GetCurrentProfile()
+        public ConnectionProfile GetCurrentProfile()
         {
             IntPtr ProfileHandle;
             int ret = Interop.Connection.GetCurrentProfile(Holder.GetHandle(), out ProfileHandle);
@@ -295,7 +330,7 @@ namespace Tizen.Network.Connection
             return Profile;
         }
 
-        static public ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
+        public ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
             IntPtr ProfileHandle;
             int ret = Interop.Connection.GetDefaultCellularServiceProfile(Holder.GetHandle(), (int)type, out ProfileHandle);
@@ -309,7 +344,7 @@ namespace Tizen.Network.Connection
             return Profile;
         }
 
-        static public Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
+        public Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
             var task = new TaskCompletionSource<ConnectionError>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
@@ -327,7 +362,7 @@ namespace Tizen.Network.Connection
         }
 
 
-        static public Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
+        public Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
             var task = new TaskCompletionSource<IEnumerable<ConnectionProfile>>();
 
@@ -369,7 +404,7 @@ namespace Tizen.Network.Connection
             return task.Task;
         }
 
-        static public Task<ConnectionError> OpenProfileAsync(ConnectionProfile profile)
+        public Task<ConnectionError> OpenProfileAsync(ConnectionProfile profile)
         {
             var task = new TaskCompletionSource<ConnectionError>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
@@ -386,7 +421,7 @@ namespace Tizen.Network.Connection
             return task.Task;
         }
 
-        static public Task<ConnectionError> CloseProfileAsync(ConnectionProfile profile)
+        public Task<ConnectionError> CloseProfileAsync(ConnectionProfile profile)
         {
             var task = new TaskCompletionSource<ConnectionError>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>

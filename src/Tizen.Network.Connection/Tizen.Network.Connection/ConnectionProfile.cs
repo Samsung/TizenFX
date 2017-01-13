@@ -33,6 +33,11 @@ namespace Tizen.Network.Connection
         private bool disposed = false;
         private EventHandler _ProfileStateChanged;
 
+        internal IntPtr GetHandle()
+        {
+            return ProfileHandle;
+        }
+
         /// <summary>
         /// The event that is called when the state of profile is changed.
         /// </summary>
@@ -82,7 +87,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-        public ConnectionProfile(IntPtr handle)
+        internal ConnectionProfile(IntPtr handle)
         {
             ProfileHandle = handle;
             Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
@@ -108,9 +113,9 @@ namespace Tizen.Network.Connection
             if (disposing)
             {
                 // Free managed objects.
+//                ProfileStateChangedStop();
+                Interop.ConnectionProfile.Destroy(ProfileHandle);
             }
-            Interop.ConnectionProfile.Destroy(ProfileHandle);
-            ProfileStateChangedStop();
             disposed = true;
         }
 

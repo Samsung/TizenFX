@@ -40,15 +40,13 @@ namespace Tizen.Network.Connection
         /// The constructor of CellularProfile class with profile type and keyword.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public RequestCellularProfile(string keyword)
+        internal RequestCellularProfile(IntPtr handle)
         {
-            Log.Debug(Globals.LogTag, "RequestCellularProfile : " + keyword);
-            ProfileHandle = ConnectionInternalManager.CreateRequestProfile(ConnectionProfileType.Cellular, keyword);
-            Log.Debug(Globals.LogTag, "RequestCellularProfile is created : " + ProfileHandle);
+            Log.Debug(Globals.LogTag, "RequestCellularProfile is created : " + handle);
 
+            ProfileHandle = handle;
             Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
             Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
-
             AuthInfo = new CellularAuthInformation(ProfileHandle);
         }
 
