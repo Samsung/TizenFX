@@ -138,6 +138,7 @@ namespace Tizen.Applications
         /// </summary>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
+            System.GC.Collect();
             LowMemory?.Invoke(this, e);
         }
 
