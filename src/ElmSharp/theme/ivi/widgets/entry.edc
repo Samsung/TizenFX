@@ -1,0 +1,1077 @@
+/*
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice, this
+ *      list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define ENTRY_DEFAULT_TAGS \
+   tag:  "em" "+ font_style=Oblique"; \
+   tag:  "b" "+ font_weight=Bold"; \
+   tag:  "link" "+ color=#800 underline=on underline_color=#8008"; \
+   tag:  "hilight" "+ font_weight=Bold";
+
+#define ENTRY_SINGLELINE_TAGS \
+   tag:  "br" ""; \
+   tag:  "em" "+ font_style=Oblique"; \
+   tag:  "b" "+ font_weight=Bold"; \
+   tag:  "link" "+ color=#800 underline=on underline_color=#8008"; \
+   tag:  "hilight" "+ font_weight=Bold";
+
+#define ENTRY_PREEDIT_TAGS \
+   tag:  "preedit" "+ underline=on underline_color="ENTRY_PREEDIT_UNDERLINE_COLOR_INC; \
+   tag:  "preedit_sel" "+ backing=on backing_color="ENTRY_PREEDIT_BACKGROUND_COLOR_INC" color="ENTRY_PREEDIT_TEXT_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_TEXT_COLOR_INC; \
+   tag:  "preedit_highlight" "+ backing=on backing_color="ENTRY_PREEDIT_HIGHLIGHT_BACKGROUND_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_TEXT_COLOR_INC; \
+   tag:  "preedit_sub1" "+ backing=on backing_color="ENTRY_PREEDIT_SUB1_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_UNDERLINE_COLOR_INC; \
+   tag:  "preedit_sub2" "+ backing=on backing_color="ENTRY_PREEDIT_SUB2_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_UNDERLINE_COLOR_INC; \
+   tag:  "preedit_sub3" "+ backing=on backing_color="ENTRY_PREEDIT_SUB3_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_UNDERLINE_COLOR_INC; \
+   tag:  "preedit_sub4" "+ backing=on backing_color="ENTRY_PREEDIT_SUB4_COLOR_INC" underline=on underline_color="ENTRY_PREEDIT_UNDERLINE_COLOR_INC;
+
+styles {
+   style { "entry_textblock_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_edit";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_edit_focused";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_edit_disabled";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_guide_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_guide";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_textblock_guide_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_guide_focused";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_textblock_guide_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=mixed text_class=entry color_class=entry/default/text_guide_disabled";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_textblock_char_wrap_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_edit";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_char_wrap_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_edit_focused";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_char_wrap_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_edit_disabled";
+      ENTRY_DEFAULT_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_textblock_char_wrap_guide_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_guide";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_textblock_char_wrap_guide_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_guide_focused";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_textblock_char_wrap_guide_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=char text_class=entry color_class=entry/default/text_guide_disabled";
+      ENTRY_DEFAULT_TAGS
+   }
+   style { "entry_single_textblock_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_edit";
+      ENTRY_SINGLELINE_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_single_textblock_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_edit_focused";
+      ENTRY_SINGLELINE_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_single_textblock_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_edit_disabled";
+      ENTRY_SINGLELINE_TAGS
+      ENTRY_PREEDIT_TAGS
+   }
+   style { "entry_single_textblock_guide_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_guide";
+      ENTRY_SINGLELINE_TAGS
+   }
+   style { "entry_single_textblock_guide_focused_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_guide_focused";
+      ENTRY_SINGLELINE_TAGS
+   }
+   style { "entry_single_textblock_guide_disabled_style";
+      base: "font=Tizen:weight=Light font_size="ENTRY_FONT_SIZE_INC" color=#fff left_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" right_margin="ENTRY_LEFT_RIGHT_MARGIN_INC" wrap=none text_class=entry color_class=entry/default/text_guide_disabled";
+      ENTRY_SINGLELINE_TAGS
+   }
+}
+
+group { "elm/entry/event/default";
+   inherit_only: 1;
+   parts {
+      rect { "event";
+         mouse;
+         repeat;
+         desc { "default";
+            color: 0 0 0 0;
+         }
+         desc { "disabled";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+   programs {
+      program { "clicked";
+         signal: "mouse,clicked,1";
+         source: "event";
+         after: "on_clicked";
+      }
+      program { "load";
+         signal: "load";
+         source: "";
+         after: "on_load";
+      }
+      program { "disabled";
+         signal: "elm,state,disabled";
+         source: "elm";
+         action: STATE_SET "disabled";
+         target: "event";
+         after: "on_disabled";
+      }
+      program { "enabled";
+         signal: "elm,state,disabled";
+         source: "elm";
+         action: STATE_SET "default";
+         target: "event";
+         after: "on_enabled";
+      }
+      program { "focus";
+         signal: "elm,action,focus";
+         source: "elm";
+         after: "on_focus";
+      }
+      program { "unfocus";
+         signal: "elm,action,unfocus";
+         source: "elm";
+         after: "on_unfocus";
+      }
+      program { "disabled_guide";
+         signal: "elm,guide,disabled";
+         source: "elm";
+         after: "on_disabled_guide";
+      }
+      program { "enabled_guide";
+         signal: "elm,guide,enabled";
+         source: "elm";
+         after: "on_enabled_guide";
+      }
+   }
+}
+
+group { "elm/entry/base/template";
+   inherit_only: 1;
+   data.item: "default_font_size" ENTRY_FONT_SIZE_INC;
+   data.item: "focus_highlight" "on";
+   data.item: context_menu_orientation "horizontal";
+   parts {
+      rect { "bg";
+         nomouse;
+         desc { "default";
+            color_class: "entry/default/bg";
+         }
+      }
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text.style: "entry_textblock_guide_style";
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: EDITABLE;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text.style: "entry_textblock_style";
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_disabled_style";
+         }
+      }
+   }
+   inherit: "elm/entry/event/default";
+   script {
+      public focused = 0;
+      public disabled = 0;
+      public guide_disabled = 0;
+   }
+   programs {
+      program { "on_load";
+         action: FOCUS_SET;
+         target: "elm.text";
+      }
+      program { "on_clicked";
+         action: RUN_PLUGIN "touch_sound";
+      }
+      program { "on_focus";
+         script {
+            set_int(focused, 1);
+            if (get_int(disabled) == 0) {
+               set_state(PART:"elm.text", "focused", 0.0);
+               if (get_int(guide_disabled) == 0)
+                  set_state(PART:"elm.guide", "focused", 0.0);
+            }
+         }
+      }
+      program { "on_unfocus";
+         script {
+            set_int(focused, 0);
+            if (get_int(disabled) == 0) {
+               set_state(PART:"elm.text", "default", 0.0);
+               if (get_int(guide_disabled) == 0)
+                  set_state(PART:"elm.guide", "default", 0.0);
+            }
+         }
+      }
+      program { "on_disabled";
+         script {
+            set_int(disabled, 1);
+            set_state(PART:"elm.text", "disabled", 0.0);
+            if (get_int(guide_disabled) == 0)
+               set_state(PART:"elm.guide", "disabled", 0.0);
+         }
+      }
+      program { "on_enabled";
+         script {
+            set_int(disabled, 0);
+            if (get_int(focused))
+               set_state(PART:"elm.text", "focused", 0.0);
+            else
+               set_state(PART:"elm.text", "default", 0.0);
+            if (get_int(guide_disabled) == 0) {
+               if (get_int(focused))
+                  set_state(PART:"elm.guide", "focused", 0.0);
+               else
+                  set_state(PART:"elm.guide", "default", 0.0);
+            }
+         }
+      }
+      program { "on_disabled_guide";
+         script {
+            set_int(guide_disabled, 1);
+            set_state(PART:"elm.guide", "hidden", 0.0);
+         }
+      }
+      program { "on_enabled_guide";
+         script {
+            set_int(guide_disabled, 0);
+            if (get_int(disabled))
+               set_state(PART:"elm.guide", "disabled", 0.0);
+            else if (get_int(focused))
+               set_state(PART:"elm.guide", "focused", 0.0);
+            else
+               set_state(PART:"elm.guide", "default", 0.0);
+         }
+      }
+   }
+}
+
+group { "elm/entry/cursor/event/default";
+   inherit_only: 1;
+   programs {
+      program { "selection_start";
+         signal: "selection,start";
+         source: "elm.text";
+         after: "on_selection_start";
+      }
+      program { "selection_cleared";
+         signal: "selection,cleared";
+         source: "elm.text";
+         after: "on_selection_cleared";
+      }
+      program { "focus";
+         signal: "elm,action,focus";
+         source: "elm";
+         after: "on_focus";
+      }
+      program { "unfocus";
+         signal: "elm,action,unfocus";
+         source: "elm";
+         after: "on_unfocus";
+      }
+      program { "show_cursor";
+         signal: "elm,action,show,cursor";
+         source: "elm";
+         after: "on_show_cursor";
+      }
+   }
+}
+
+group { "elm/entry/cursor/template";
+   inherit: "elm/entry/cursor/event/default";
+   inherit_only: 1;
+   parts {
+      rect { "cursor";
+         clip: "clipper";
+         desc { "default";
+            hid;
+         }
+         desc { "visible";
+            inherit: "default";
+            vis;
+         }
+      }
+      rect { "clipper";
+         desc { "default";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+   programs {
+      program { "on_selection_start";
+         action: STATE_SET "hidden";
+         target: "clipper";
+      }
+      program { "on_selection_cleared";
+         action: STATE_SET "default";
+         target: "clipper";
+      }
+      program { "on_focus";
+         action: ACTION_STOP;
+         target: "cursor_visible";
+         target: "cursor_hidden";
+         target: "cursor_visible_timer";
+         target: "cursor_hidden_timer";
+         after: "cursor_visible";
+      }
+      program { "on_unfocus";
+         action: ACTION_STOP;
+         target: "cursor_visible";
+         target: "cursor_hidden";
+         target: "cursor_visible_timer";
+         target: "cursor_hidden_timer";
+         after: "cursor_hidden_stop";
+      }
+      program { "on_show_cursor";
+         action: ACTION_STOP;
+         target: "cursor_visible";
+         target: "cursor_hidden";
+         target: "cursor_visible_timer";
+         target: "cursor_hidden_timer";
+         after: "cursor_visible";
+      }
+      program { "cursor_hidden_stop";
+         action: STATE_SET "default";
+         target: "cursor";
+      }
+      program { "cursor_visible";
+         action: STATE_SET "visible";
+         target: "cursor";
+         after: "cursor_visible_timer";
+      }
+      program { "cursor_hidden";
+         action: STATE_SET "default";
+         target: "cursor";
+         after: "cursor_hidden_timer";
+      }
+      program { "cursor_visible_timer";
+         in: 0.6 0.0;
+         after: "cursor_hidden";
+      }
+      program { "cursor_hidden_timer";
+         in: 0.6 0.0;
+         after: "cursor_visible";
+      }
+   }
+}
+
+group { "elm/entry/cursor/default";
+   inherit: "elm/entry/cursor/template";
+   parts {
+      rect { "cursor";
+         nomouse;
+         scale;
+         clip: "clipper";
+         desc { "default";
+            min: ENTRY_CURSOR_SIZE_INC;
+            color_class: "entry/default/cursor";
+            hid;
+         }
+         desc { "visible";
+            inherit: "default";
+            vis;
+         }
+      }
+      rect { "clipper";
+         desc { "default";
+            rel.to: "cursor";
+            fixed: 1 1;
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+   }
+}
+
+group { "elm/entry/base/default";
+   inherit: "elm/entry/base/template";
+   alias: "elm/entry/base-mixedwrap/default";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: EDITABLE;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            fixed: 1 0;
+            text {
+               style: "entry_textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text {
+               style: "entry_textblock_focused_style";
+               min: 0 1;
+            }
+         }
+         desc { "disabled";
+            inherit: "default";
+            text {
+               style: "entry_textblock_disabled_style";
+               min: 0 1;
+            }
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-charwrap/default";
+   alias: "elm/entry/base/char_wrap";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_char_wrap_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: EDITABLE;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            fixed: 1 0;
+            text {
+               style: "entry_textblock_char_wrap_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text {
+               style: "entry_textblock_char_wrap_focused_style";
+               min: 0 1;
+            }
+         }
+         desc { "disabled";
+            inherit: "default";
+            text {
+               style: "entry_textblock_char_wrap_disabled_style";
+               min: 0 1;
+            }
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-nowrap/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: EDITABLE;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text {
+               style: "entry_textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text {
+               style: "entry_textblock_focused_style";
+               min: 1 1;
+            }
+         }
+         desc { "disabled";
+            inherit: "default";
+            text {
+               style: "entry_textblock_disabled_style";
+               min: 0 1;
+            }
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-single/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            fixed: 1 1;
+            rel.to: "elm.text";
+            text {
+               style: "entry_single_textblock_guide_style";
+               min: 0 1;
+               max: 0 0;
+               align: 0.0 0.5;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: EDITABLE;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 0;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text {
+               style: "entry_single_textblock_style";
+               min: 1 1;
+               max: 0 0;
+               align: 0.0 0.5;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-single-noedit/default";
+   inherit: "elm/entry/base/template";
+   alias: "elm/entry/base-single-noedit/vcenter_align";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            fixed: 1 1;
+            rel.to: "elm.text";
+            text {
+               style: "entry_single_textblock_guide_style";
+               min: 0 1;
+               max: 0 1;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PLAIN;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 0;
+         source: "elm/entry/selection/default"; // selection under
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text {
+               style: "entry_single_textblock_style";
+               min: 1 1;
+               max: 0 1;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-noedit/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PLAIN;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            fixed: 1 0;
+            text {
+               style: "entry_textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-noedit-charwrap/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_char_wrap_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PLAIN;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            fixed: 1 0;
+            text {
+               style: "entry_textblock_char_wrap_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_char_wrap_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-noedit-mixedwrap/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      part { "elm.guide";
+         type: TEXTBLOCK;
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PLAIN;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            fixed: 1 0;
+            text {
+               style: "entry_textblock_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-nowrap-noedit/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         type: TEXTBLOCK;
+         nomouse;
+         scale;
+         desc { "default";
+            rel.to: "elm.text";
+            text {
+               style: "entry_textblock_guide_style";
+               min: 0 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PLAIN;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 1;
+         source: "elm/entry/selection/default"; // selection under
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text {
+               style: "entry_textblock_style";
+               min: 1 1;
+               align: 0.0 0.0;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/base-password/default";
+   inherit: "elm/entry/base/template";
+   parts {
+      textblock { "elm.guide";
+         nomouse;
+         scale;
+         desc { "default";
+            fixed: 1 1;
+            rel.to: "elm.text";
+            text {
+               style: "entry_single_textblock_guide_style";
+               min: 0 1;
+               max: 0 1;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_guide_disabled_style";
+         }
+         desc { "hidden";
+            inherit: "default";
+            hid;
+         }
+      }
+      textblock { "elm.text";
+         mouse;
+         scale;
+         entry_mode: PASSWORD;
+         select_mode: EXPLICIT;
+         cursor_mode: BEFORE;
+         multiline: 0;
+         source: "elm/entry/selection/default"; // selection under
+         source4: "elm/entry/cursor/default"; // cursorover
+         source5: "elm/entry/anchor/default"; // anchor under
+         desc { "default";
+            text {
+               style: "entry_single_textblock_style";
+               repch: "•";
+               min: 1 1;
+               max: 0 1;
+            }
+         }
+         desc { "focused";
+            inherit: "default";
+            text.style: "entry_single_textblock_focused_style";
+         }
+         desc { "disabled";
+            inherit: "default";
+            text.style: "entry_single_textblock_disabled_style";
+         }
+      }
+   }
+}
+
+group { "elm/entry/selection/default";
+   parts {
+      rect { "bg";
+         scale;
+         nomouse;
+         desc { "default";
+            color: 0 221 255 153;
+         }
+      }
+   }
+}
+
+group { "elm/entry/anchor/default";
+   parts {
+      spacer { "bg";
+         desc { "default"; }
+      }
+   }
+}
