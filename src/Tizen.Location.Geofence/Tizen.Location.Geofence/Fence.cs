@@ -32,12 +32,13 @@ namespace Tizen.Location.Geofence
     /// </summary>
     public class Fence : IDisposable
     {
+        private bool _disposed = false;
+
         internal IntPtr Handle
         {
             get;
             set;
         }
-
 
         internal Fence(IntPtr handle)
         {
@@ -140,42 +141,6 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// Gets the state of geofence.
-        /// </summary>
-        public GeofenceState FenceState
-        {
-            get
-            {
-                GeofenceState state;
-                GeofenceError ret = (GeofenceError)Interop.Geofence.FenceState(Handle, out state);
-                if (ret != GeofenceError.None)
-                {
-                    Tizen.Log.Error(GeofenceErrorFactory.LogTag, "Failed to get GeofenceState");
-                }
-
-                return state;
-            }
-        }
-
-        /// <summary>
-        /// Gets the amount of seconds geofence is in the current state.
-        /// </summary>
-        public int Duration
-        {
-            get
-            {
-                int result = -1;
-                GeofenceError ret = (GeofenceError)Interop.Geofence.FenceDuration(Handle, out result);
-                if (ret != GeofenceError.None)
-                {
-                    Tizen.Log.Error(GeofenceErrorFactory.LogTag, "Failed to get Duration");
-                }
-
-                return result;
-            }
-        }
-
-        /// <summary>
         /// Gets the address of geofence.
         /// </summary>
         public string Address
@@ -245,7 +210,7 @@ namespace Tizen.Location.Geofence
         public static Fence CreateGPSFence(int placeId, int latitude, int longitude, int radius, string address)
         {
             IntPtr handle = IntPtr.Zero;
-            GeofenceError ret = (GeofenceError)Interop.Geofence.CreateGPSFence(placeId,latitude, longitude, radius,address,out handle);
+            GeofenceError ret = (GeofenceError)Interop.Geofence.CreateGPSFence(placeId, latitude, longitude, radius,address, out handle);
             if (ret != GeofenceError.None)
             {
                 throw GeofenceErrorFactory.CreateException(ret, "Failed to create Geofence from GPS Data for " + placeId);
@@ -311,14 +276,16 @@ namespace Tizen.Location.Geofence
 
         private void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (_disposed)
+                return;
+
+            if (Handle != IntPtr.Zero)
             {
-                if (Handle != IntPtr.Zero)
-                {
-                    Interop.Geofence.Destroy(Handle);
-                    Handle = IntPtr.Zero;
-                }
+                Interop.Geofence.Destroy(Handle);
+                Handle = IntPtr.Zero;
             }
+
+            _disposed = true;
         }
     }
 }

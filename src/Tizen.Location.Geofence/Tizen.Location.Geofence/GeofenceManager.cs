@@ -23,11 +23,11 @@ namespace Tizen.Location.Geofence
     /// A geofence is a virtual perimeter for a real-world geographic area.
     /// This API provides functions to set geofence with geopoint, MAC address of Wi-Fi and Bluetooth address.
     /// And, notifications on events like changing in service status are provided.
-    /// <list type="ul" There are two kinds of places and fences:>
+    /// <list type="ul">There are two kinds of places and fences:
     /// <item>Public places and fences that are created by MyPlace app can be used by all apps.</item>
     /// <item>Private places and fences that are created by specified app can be used by the same app.</item>
     /// </list>
-    /// <list >Notifications can be received about the following events:
+    /// <list>Notifications can be received about the following events:
     /// <item>Zone in when a device enters a specific area</item>
     /// <item>Zone out when a device exits a specific area</item>
     /// <item>Results and errors for each event requested to geofence module</item>
@@ -35,6 +35,8 @@ namespace Tizen.Location.Geofence
     /// </summary>
     public class GeofenceManager : IDisposable
     {
+        private bool _disposed = false;
+
         internal IntPtr Handle
         {
             get;
@@ -170,6 +172,96 @@ namespace Tizen.Location.Geofence
             }
         }
 
+        private static readonly Interop.GeofenceManager.ProximityStateChangedCallback s_proximityChangedCallback = (int fenceId, ProximityState state, ProximityProvider provider, IntPtr data) =>
+        {
+            ProximityStateEventArgs evenArgs = new ProximityStateEventArgs(fenceId, state, provider);
+            s_proximityChanged?.Invoke(null, evenArgs);
+            return true;
+        };
+
+        private static event EventHandler<ProximityStateEventArgs> s_proximityChanged;
+
+        /// <summary>
+        /// Called when a proximity state of device is changed.
+        /// </summary>
+        /// <remarks>
+        /// Call to Start() will invoke this event.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Incase of feature Not supported</exception>
+        public event EventHandler<ProximityStateEventArgs> ProximityChanged
+        {
+            add
+            {
+                if (s_proximityChanged == null)
+                {
+                    GeofenceError ret = (GeofenceError)Interop.GeofenceManager.SetProximityStateCB(Handle, s_proximityChangedCallback, IntPtr.Zero);
+                    if (ret != GeofenceError.None)
+                    {
+                        throw GeofenceErrorFactory.CreateException(ret, "Failed to register proximity change callback");
+                    }
+                    s_proximityChanged += value;
+                }
+            }
+            remove
+            {
+                s_proximityChanged -= value;
+                if (s_proximityChanged == null)
+                {
+                    GeofenceError ret = (GeofenceError)Interop.GeofenceManager.UnsetProximityStateCB(Handle);
+                    if (ret != GeofenceError.None)
+                    {
+                        throw GeofenceErrorFactory.CreateException(ret, "Failed to un register proximity change callback");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.GeofenceManager.GeofenceEventCallback s_geofenceEventCallback = (int placeId, int fenceId, GeofenceError error, GeoFenceEventType eventType, IntPtr data) =>
+        {
+            GeofenceResponseEventArgs evenArgs = new GeofenceResponseEventArgs(placeId, fenceId, error, eventType);
+            s_geofenceEventChanged?.Invoke(null, evenArgs);
+            return true;
+        };
+
+        private static event EventHandler<GeofenceResponseEventArgs> s_geofenceEventChanged;
+
+        /// <summary>
+        /// Called when the some event occurs in geofence and place such as add, update, etc..
+        /// The events of public geofence is also received if there are public geofences.
+        /// </summary>
+        /// <remarks>
+        /// Call to Start() will invoke this event.
+        /// The value of place_id or geofence_id is -1 when the place id or geofence id is not assigned.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Incase of feature Not supported</exception>
+        public event EventHandler<GeofenceResponseEventArgs> GeoFenceEventChanged
+        {
+            add
+            {
+                if (s_geofenceEventChanged == null)
+                {
+                    GeofenceError ret = (GeofenceError)Interop.GeofenceManager.SetGeofenceEventCB(Handle, s_geofenceEventCallback, IntPtr.Zero);
+                    if (ret != GeofenceError.None)
+                    {
+                        throw GeofenceErrorFactory.CreateException(ret, "Failed to register geofence event change callback");
+                    }
+                    s_geofenceEventChanged += value;
+                }
+            }
+            remove
+            {
+                s_geofenceEventChanged -= value;
+                if (s_geofenceEventChanged == null)
+                {
+                    GeofenceError ret = (GeofenceError)Interop.GeofenceManager.UnsetGeofenceEventCB(Handle);
+                    if (ret != GeofenceError.None)
+                    {
+                        throw GeofenceErrorFactory.CreateException(ret, "Failed to unregister geofence event change callback");
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Overloaded Dispose API for destroying the GeofenceManager Handle.
         /// </summary>
@@ -181,14 +273,16 @@ namespace Tizen.Location.Geofence
 
         private void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (_disposed)
+                return;
+
+            if (Handle != IntPtr.Zero)
             {
-                if (Handle != IntPtr.Zero)
-                {
-                    Interop.GeofenceManager.Destroy(Handle);
-                    Handle = IntPtr.Zero;
-                }
+                Interop.GeofenceManager.Destroy(Handle);
+                Handle = IntPtr.Zero;
             }
+
+            _disposed = true;
         }
     }
 }

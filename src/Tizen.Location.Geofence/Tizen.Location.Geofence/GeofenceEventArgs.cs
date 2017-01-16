@@ -21,7 +21,7 @@ namespace Tizen.Location.Geofence
     /// <summary>
     /// Event arguments passed when Event is triggered to notify proximity state change.
     /// </summary>
-    public class ProximityStateEventArgs: EventArgs
+    public class ProximityStateEventArgs : EventArgs
     {
         /// <summary>
         /// Internal constructor
@@ -64,7 +64,7 @@ namespace Tizen.Location.Geofence
     /// <summary>
     /// Event arguments passed when Event is triggered to notify Geofence state change.
     /// </summary>
-    public class GeofenceStateEventArgs :EventArgs
+    public class GeofenceStateEventArgs : EventArgs
     {
         /// <summary>
         /// Internal constructor

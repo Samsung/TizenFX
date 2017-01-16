@@ -38,7 +38,7 @@ namespace Tizen.Location.Geofence
     };
 
     /// <summary>
-    /// Enumerations for the state of geofence manager.
+    /// Enumerations for the state of geofence.
     /// </summary>
     public enum GeofenceState
     {
@@ -117,12 +117,12 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Proximity is specified by geospatial coordinate
         /// </summary>
-        Location,
+        Location = 0,
 
         /// <summary>
         /// Proximity is specified by Wi-Fi access point
         /// </summary>
-        WiFi,
+        Wifi,
 
         /// <summary>
         /// Proximity is specified by Bluetooth device
@@ -148,7 +148,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Uncertain state of proximity
         /// </summary>
-        Uncertain,
+        Uncertain = 0,
 
         /// <summary>
         /// Far state of proximity
