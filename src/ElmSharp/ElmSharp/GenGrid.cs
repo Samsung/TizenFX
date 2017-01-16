@@ -232,6 +232,11 @@ namespace ElmSharp
             Interop.Elementary.elm_gengrid_realized_items_update(Handle);
         }
 
+        public void Clear()
+        {
+            Interop.Elementary.elm_gengrid_clear(Handle);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_gengrid_add(parent);
