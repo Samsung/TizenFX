@@ -6,7 +6,7 @@
         <authors>Tizen Developers</authors>
         <description>Map Services API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.4" />
+      <dependency id="Tizen" version="1.0.2" />
     </dependencies>
     </metadata>
     <files>
