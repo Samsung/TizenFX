@@ -116,7 +116,7 @@ namespace Tizen.Account.OAuth2
             }
             else if ((OAuth2Error)error == OAuth2Error.ValueNotFound)
             {
-                return new Exception("Value not found");
+                return new ArgumentException("Value not found");
             }
             else
             {

@@ -62,11 +62,10 @@ namespace Tizen.Account.OAuth2
         public RefreshToken RefreshToken { get; internal set; }
 
         /// <summary>
-        /// Custom key-value parameter received from service provider
+        /// Gets the value of the key received from service provider
         /// </summary>
-        /// <remarks>
-        /// The return value can be null depending on the server specifications.
-        /// </remarks>
+        /// <returns>The value of respecitve key </returns>
+        /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
         public string GetCustomValue(string key)
         {
             IntPtr value;
