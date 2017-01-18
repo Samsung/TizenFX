@@ -293,6 +293,16 @@ namespace ElmSharp
             Interop.Elementary.elm_entry_input_panel_return_key_type_set(Handle, (Interop.Elementary.ReturnKeyType)keyType);
         }
 
+        public void SelectAll()
+        {
+            Interop.Elementary.elm_entry_select_all(Handle);
+        }
+
+        public void SelectNone()
+        {
+            Interop.Elementary.elm_entry_select_none(Handle);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_entry_add(parent.Handle);

@@ -142,6 +142,11 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern InputPanelLayout elm_entry_input_panel_layout_get(IntPtr obj);
 
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_select_all(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_select_none(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_text_style_user_pop(IntPtr obj);
