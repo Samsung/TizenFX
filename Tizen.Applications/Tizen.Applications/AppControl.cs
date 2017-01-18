@@ -70,6 +70,29 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Initializes the instance of the AppControl class with parameter.
+        /// </summary>
+        /// <param name="enableAppStartedResultEvent">The flag value to receive an additional launch result event on launch request.</param>
+        /// <exception cref="InvalidOperationException">Thrown when failed to create AppControl handle.</exception>
+        public AppControl(bool enableAppStartedResultEvent)
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to create the appcontrol handle. Err = " + err);
+            }
+
+            if (enableAppStartedResultEvent)
+            {
+                err = Interop.AppControl.EnableAppStartedResultEvent(_handle);
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to set EnableAppStartedResultEvent");
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes the instance of the AppControl class with the SafeAppControlHandle.
         /// </summary>
         /// <param name="handle"></param>
@@ -500,10 +523,6 @@ namespace Tizen.Applications
 
             Interop.AppControl.ErrorCode err;
 
-            err = Interop.AppControl.EnableAppStartedResultEvent(launchRequest._handle);
-            if (err == Interop.AppControl.ErrorCode.InvalidParameter)
-                throw new ArgumentException("Invalid parameter of EnableAppStartedResultEvent()");
-
             if (replyAfterLaunching != null)
             {
                 int id = 0;
@@ -512,19 +531,16 @@ namespace Tizen.Applications
                     id = s_replyNativeCallbackId++;
                     s_replyNativeCallbackMaps[id] = (launchRequestHandle, replyRequestHandle, result, userData) =>
                     {
-                        if (result == Interop.AppControl.AppStartedStatus)
-                        {
-                            Log.Debug(LogTag, "Callee App is started");
-                            return;
-                        }
-
                         if (replyAfterLaunching != null)
                         {
                             Log.Debug(LogTag, "Reply Callback is launched");
                             replyAfterLaunching(new AppControl(launchRequestHandle), new AppControl(replyRequestHandle), (AppControlReplyResult)result);
-                            lock (s_replyNativeCallbackMaps)
+                            if (result != Interop.AppControl.AppStartedStatus)
                             {
-                                s_replyNativeCallbackMaps.Remove(id);
+                                lock (s_replyNativeCallbackMaps)
+                                {
+                                    s_replyNativeCallbackMaps.Remove(id);
+                                }
                             }
                         }
                     };

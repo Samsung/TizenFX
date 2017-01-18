@@ -22,6 +22,11 @@ namespace Tizen.Applications
     public enum AppControlReplyResult
     {
         /// <summary>
+        /// Callee application launched actually
+        /// </summary>
+        AppStarted = 1,
+
+        /// <summary>
         /// Operation is succeeded
         /// </summary>
         Succeeded = 0,
