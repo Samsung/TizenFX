@@ -71,6 +71,7 @@
     <Compile Include="ElmSharp\EvasMap.cs" />
     <Compile Include="ElmSharp\EvasObject.cs" />
     <Compile Include="ElmSharp\EvasObjectEvent.cs" />
+    <Compile Include="ElmSharp\FloatingButton.cs" />
     <Compile Include="ElmSharp\GenGrid.cs" />
     <Compile Include="ElmSharp\GenGridItem.cs" />
     <Compile Include="ElmSharp\GenItem.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Interop\Interop.Elementary.CtxPopup.cs" />
     <Compile Include="Interop\Interop.Elementary.DateTimePicker.cs" />
     <Compile Include="Interop\Interop.Elementary.Entry.cs" />
+    <Compile Include="Interop\Interop.Elementary.FloatingButton.cs" />
     <Compile Include="Interop\Interop.Elementary.GenGridView.cs" />
     <Compile Include="Interop\Interop.Elementary.GenListView.cs" />
     <Compile Include="Interop\Interop.Elementary.GestureLayer.cs" />

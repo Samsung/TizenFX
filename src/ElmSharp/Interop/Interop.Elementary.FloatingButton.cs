@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
-    private static class Libraries
+    internal static partial class Eext
     {
-        internal const string Libc = "libc.so.6";
-        internal const string Evas = "libevas.so.1";
-        internal const string Elementary = "libelementary.so.1";
-        internal const string Eina = "libeina.so.1";
-        internal const string Ecore = "libecore.so.1";
-        internal const string Eo = "libeo.so.1";
-        internal const string Eext = "libefl-extension.so.0";
+        [DllImport(Libraries.Eext)]
+        internal static extern IntPtr eext_floatingbutton_add(IntPtr obj);
     }
 }

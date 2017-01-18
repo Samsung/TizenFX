@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-internal static partial class Interop
+using System;
+
+namespace ElmSharp
 {
-    private static class Libraries
+    public class FloatingButton : Layout
     {
-        internal const string Libc = "libc.so.6";
-        internal const string Evas = "libevas.so.1";
-        internal const string Elementary = "libelementary.so.1";
-        internal const string Eina = "libeina.so.1";
-        internal const string Ecore = "libecore.so.1";
-        internal const string Eo = "libeo.so.1";
-        internal const string Eext = "libefl-extension.so.0";
+        public FloatingButton(EvasObject parent) : base(parent)
+        {
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
+        {
+            return Interop.Eext.eext_floatingbutton_add(parent.Handle);
+        }
     }
 }
