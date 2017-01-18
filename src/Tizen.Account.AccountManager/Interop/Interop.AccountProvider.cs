@@ -39,8 +39,8 @@ internal static partial class Interop
         internal static extern int GetAppId(IntPtr handle, out string appId);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_query_supported_feature", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern bool IsFeatureSupported(string appId, string capabilty);
-
+	[return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool IsFeatureSupported(string appId, string capability);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_service_provider_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetServiceProviderId(IntPtr handle, out string providerId);
