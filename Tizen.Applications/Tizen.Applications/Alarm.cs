@@ -47,10 +47,9 @@ namespace Tizen.Applications
         /// <summary>
         /// The alarm ID uniquely identifies an alarm.
         /// </summary>
-        internal int AlarmId
+        public int AlarmId
         {
-            get;
-            set;
+            get; private set;
         }
 
         /// <summary>
