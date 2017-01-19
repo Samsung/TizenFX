@@ -96,9 +96,9 @@ namespace Tizen.Network.WiFi
             {
                 _network.Dispose();
                 _security.Dispose();
+                Interop.WiFi.Ap.Destroy(_apHandle);
+                _apHandle = IntPtr.Zero;
             }
-            Interop.WiFi.Ap.Destroy(_apHandle);
-            _apHandle = IntPtr.Zero;
             disposed = true;
         }
 

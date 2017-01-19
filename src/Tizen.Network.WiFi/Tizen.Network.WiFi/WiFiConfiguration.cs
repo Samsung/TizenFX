@@ -160,9 +160,9 @@ namespace Tizen.Network.WiFi
             if (disposing)
             {
                 _eapConfig.Dispose();
+                Interop.WiFi.Config.Destroy(_configHandle);
+                _configHandle = IntPtr.Zero;
             }
-            Interop.WiFi.Config.Destroy(_configHandle);
-            _configHandle = IntPtr.Zero;
             disposed = true;
         }
 
