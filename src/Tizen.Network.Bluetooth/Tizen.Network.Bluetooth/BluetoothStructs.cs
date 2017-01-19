@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -274,14 +274,19 @@ namespace Tizen.Network.Bluetooth
             scanData.AddressType = structScanData.AddressType;
             scanData.Rssi = structScanData.Rssi;
 
-            scanData.AdvDataLength = structScanData.AdvDataLength;
-            scanData.AdvData = new byte[scanData.AdvDataLength];
-            Marshal.Copy (structScanData.AdvData, scanData.AdvData, 0, scanData.AdvDataLength);
+            if (structScanData.AdvDataLength > 0)
+            {
+                scanData.AdvDataLength = structScanData.AdvDataLength;
+                scanData.AdvData = new byte[scanData.AdvDataLength];
+                Marshal.Copy (structScanData.AdvData, scanData.AdvData, 0, scanData.AdvDataLength);
+            }
 
-            scanData.ScanDataLength = structScanData.ScanDataLength;
-            scanData.ScanData = new byte[scanData.ScanDataLength];
-            Marshal.Copy (structScanData.ScanData, scanData.ScanData, 0, scanData.ScanDataLength);
-
+            if (structScanData.ScanDataLength > 0)
+            {
+                scanData.ScanDataLength = structScanData.ScanDataLength;
+                scanData.ScanData = new byte[scanData.ScanDataLength];
+                Marshal.Copy (structScanData.ScanData, scanData.ScanData, 0, scanData.ScanDataLength);
+            }
             return scanData;
         }
 
@@ -291,13 +296,19 @@ namespace Tizen.Network.Bluetooth
             scanDataStruct.AddressType = scanData.AddressType;
             scanDataStruct.Rssi = scanData.Rssi;
 
-            scanDataStruct.AdvDataLength = scanData.AdvDataLength;
-            scanDataStruct.AdvData = Marshal.AllocHGlobal (scanData.AdvDataLength);
-            Marshal.Copy (scanData.AdvData, 0, scanDataStruct.AdvData, scanData.AdvDataLength);
+            if (scanData.AdvDataLength > 0)
+            {
+                scanDataStruct.AdvDataLength = scanData.AdvDataLength;
+                scanDataStruct.AdvData = Marshal.AllocHGlobal(scanData.AdvDataLength);
+                Marshal.Copy (scanData.AdvData, 0, scanDataStruct.AdvData, scanData.AdvDataLength);
+            }
 
-            scanDataStruct.ScanDataLength = scanData.ScanDataLength;
-            scanDataStruct.ScanData = Marshal.AllocHGlobal (scanData.ScanDataLength);
-            Marshal.Copy (scanData.ScanData, 0, scanDataStruct.ScanData, scanData.ScanDataLength);
+            if (scanData.ScanDataLength > 0)
+            {
+                scanDataStruct.ScanDataLength = scanData.ScanDataLength;
+                scanDataStruct.ScanData = Marshal.AllocHGlobal(scanData.ScanDataLength);
+                Marshal.Copy (scanData.ScanData, 0, scanDataStruct.ScanData, scanData.ScanDataLength);
+            }
 
             return scanDataStruct;
         }
