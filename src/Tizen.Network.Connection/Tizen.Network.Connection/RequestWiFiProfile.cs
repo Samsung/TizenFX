@@ -61,15 +61,21 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
+            Log.Debug(Globals.LogTag, ">>> RequestWiFiProfile Dispose with " + disposing);
             if (disposed)
                 return;
 
             if (disposing)
             {
                 // Free managed objects.
+                Destroy();
             }
-            Interop.ConnectionProfile.Destroy(ProfileHandle);
             disposed = true;
+        }
+
+        private void Destroy()
+        {
+            Interop.ConnectionProfile.Destroy(ProfileHandle);
         }
 
         /// <summary>

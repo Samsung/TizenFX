@@ -59,12 +59,14 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
+            Log.Debug(Globals.LogTag, ">>> ConnectionManager Dispose with disposing " + disposing + ", disposed " + disposed);
             if (disposed)
                 return;
 
             if (disposing)
             {
                 // Free managed objects.
+                UnregisterEvents();
                 _internalManager.Dispose();
             }
             disposed = true;
@@ -281,6 +283,26 @@ namespace Tizen.Network.Connection
                 Interop.Libc.Free(Ipv6);
 
                 _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
+            }
+        }
+
+        private void UnregisterEvents()
+        {
+            if (_ConnectionTypeChanged != null)
+            {
+                ConnectionTypeChangedStop();
+            }
+            if (_IPAddressChanged != null)
+            {
+                IpAddressChangedStop();
+            }
+            if (_EthernetCableStateChanged != null)
+            {
+                EthernetCableStateChangedStop();
+            }
+            if (_ProxyAddressChanged != null)
+            {
+                ProxyAddressChangedStop();
             }
         }
 

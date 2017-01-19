@@ -53,15 +53,22 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
+            Log.Debug(Globals.LogTag, ">>> HandleHolder Dispose with " + disposing);
+            Log.Debug(Globals.LogTag, ">>> Handle: " + Handle);
             if (disposed)
                 return;
 
             if (disposing)
             {
                 // Free managed objects.
-                Interop.Connection.Destroy(Handle);
+                Destroy();
             }
             disposed = true;
+        }
+
+        private void Destroy()
+        {
+            Interop.Connection.Destroy(Handle);
         }
     }
 
@@ -88,6 +95,8 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
+            Log.Debug(Globals.LogTag, ">>> ConnectionInternalManager Dispose with disposing " + disposing + ", disposed " + disposed);
+            Log.Debug(Globals.LogTag, ">>> Handle: " + GetHandle());
             if (disposed)
                 return;
 

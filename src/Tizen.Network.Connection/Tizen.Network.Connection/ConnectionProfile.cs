@@ -107,16 +107,30 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
+            Log.Debug(Globals.LogTag, ">>> ConnectionProfile Dispose with " + disposing);
             if (disposed)
                 return;
 
             if (disposing)
             {
                 // Free managed objects.
-//                ProfileStateChangedStop();
-                Interop.ConnectionProfile.Destroy(ProfileHandle);
+                UnregisterEvents();
+                Destroy();
             }
             disposed = true;
+        }
+
+        private void UnregisterEvents()
+        {
+            if (_ProfileStateChanged != null)
+            {
+                ProfileStateChangedStop();
+            }
+        }
+
+        private void Destroy()
+        {
+            Interop.ConnectionProfile.Destroy(ProfileHandle);
         }
 
         /// <summary>

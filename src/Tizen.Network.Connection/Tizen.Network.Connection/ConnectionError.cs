@@ -27,6 +27,7 @@ namespace Tizen.Network.Connection
         static public void ThrowConnectionException(int errno)
         {
             ConnectionError error = (ConnectionError)errno;
+            Log.Debug(Globals.LogTag, "ThrowConnectionException " + error);
             if (error == ConnectionError.AddressFamilyNotSupported)
             {
                 throw new InvalidOperationException("Address Family Not Supported");
