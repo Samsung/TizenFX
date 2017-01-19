@@ -21,7 +21,7 @@ namespace ElmSharp
 {
     public static class Elementary
     {
-        private static readonly string _themeFilePath = "/usr/share/edje/elm-sharp/elm-sharp-theme.edj";
+        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
 
         public static void Initialize()
         {
