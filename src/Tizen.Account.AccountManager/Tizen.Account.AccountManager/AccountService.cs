@@ -570,6 +570,7 @@ namespace Tizen.Account.AccountManager
                     {
                         throw AccountErrorFactory.CreateException(ret, "Error in callback handling");
                     }
+                    s_subscriberHandle = null;
                 }
             }
         }
