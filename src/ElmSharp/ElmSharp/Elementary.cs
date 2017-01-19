@@ -21,7 +21,7 @@ namespace ElmSharp
 {
     public static class Elementary
     {
-        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private static readonly string _themeFilePath = "/usr/share/edje/elm-sharp/elm-sharp-theme.edj";
 
         public static void Initialize()
         {
@@ -54,6 +54,11 @@ namespace ElmSharp
         public static void SetSystemScrollFriction(double timeSet)
         {
             Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_set(timeSet);
+        }
+
+        public static string GetProfile()
+        {
+            return Interop.Elementary.elm_config_profile_get();
         }
     }
 }

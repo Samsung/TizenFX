@@ -201,6 +201,8 @@ namespace ElmSharp.Test
             Elementary.Initialize();
             Elementary.ThemeOverlay();
 
+            Console.WriteLine("ELM_PROFILE : {0}", Elementary.GetProfile());
+
             TestRunner testRunner = new TestRunner();
             testRunner.Run(args);
 
