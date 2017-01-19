@@ -58,6 +58,7 @@ internal static partial class Interop
         internal static extern int RefreshAccessToken(IntPtr /* oauth2_manager_h */ handle, IntPtr /* oauth2_request_h */ request, Oauth2RefreshTokenCallback callback, IntPtr /* void */ userData);
 
         [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_manager_is_request_in_progress")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsRequestInProgress(IntPtr /* oauth2_manager_h */ handle);
 
         [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_manager_clear_cookies")]

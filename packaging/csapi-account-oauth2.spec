@@ -1,6 +1,6 @@
 Name:       csapi-account-oauth2
 Summary:    OAuth2.0 C# API for Tizen
-Version:    1.0.4
+Version:    1.0.5
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
