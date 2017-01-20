@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "..\..\Tizen.NUI\ClassLibrary1.csproj", "{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUISamples.Tizen", "NUISamples\NUISamples.Tizen\NUISamples.Tizen.csproj", "{316BF936-F063-4C33-9499-F4F472CD3EA7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23} = {5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5037EB12-A7D9-47B4-A79C-4B2B0C8F0E23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{316BF936-F063-4C33-9499-F4F472CD3EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316BF936-F063-4C33-9499-F4F472CD3EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316BF936-F063-4C33-9499-F4F472CD3EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316BF936-F063-4C33-9499-F4F472CD3EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+		<id>Tizen.NUI</id>
+		<version>$version$</version>
+		<authors>Tizen Developers</authors>
+		<description>Tizen NUI dll (dali c#) </description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.1" />
+    </dependencies>
+	</metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.NUI.dll" target="lib/netstandard1.3" />
+  </files>
+</package>

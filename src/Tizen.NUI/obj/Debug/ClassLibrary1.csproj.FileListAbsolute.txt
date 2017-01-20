@@ -1,0 +1,10 @@
+D:\ssong2best\work\2017\dali-csharp\VS_WorkSpace\dali-csharp-0102\ClassLibrary1\bin\Debug\dali-csharp-binder.dll
+D:\ssong2best\work\2017\dali-csharp\VS_WorkSpace\dali-csharp-0102\ClassLibrary1\bin\Debug\dali-csharp-binder.pdb
+D:\ssong2best\work\2017\dali-csharp\VS_WorkSpace\dali-csharp-0102\ClassLibrary1\obj\Debug\dali-csharp-binder.dll
+D:\ssong2best\work\2017\dali-csharp\VS_WorkSpace\dali-csharp-0102\ClassLibrary1\obj\Debug\dali-csharp-binder.pdb
+D:\ssong2best\work\2017\dali-csharp\VS_WorkSpace\dali-csharp-0102\ClassLibrary1\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
+L:\work\git\csharp\2\refer\test-dali-1\dali-test\bin\Debug\dali-csharp-binder.dll
+L:\work\git\csharp\2\refer\test-dali-1\dali-test\bin\Debug\dali-csharp-binder.pdb
+L:\work\git\csharp\2\refer\test-dali-1\dali-test\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
+L:\work\git\csharp\2\refer\test-dali-1\dali-test\obj\Debug\dali-csharp-binder.dll
+L:\work\git\csharp\2\refer\test-dali-1\dali-test\obj\Debug\dali-csharp-binder.pdb
