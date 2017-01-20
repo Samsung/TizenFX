@@ -63,6 +63,15 @@ namespace ElmSharp.Test
             };
             entry2.SetPartText("guide", "<span color=#999999>Password</span>");
 
+            Entry entry3 = new Entry(window)
+            {
+                IsSingleLine = true,
+                Scrollable = true,
+            };
+            entry3.SetPartText("guide", "<span color=#808080FF font_size=28 align=left valign=top wrap=mixed>Enter a System.Double</span>");
+            entry3.Geometry = new Rect(0, 163, 720, 37);
+            entry3.Show();
+
             box.PackEnd(entry1);
             box.PackEnd(entry2);
 
