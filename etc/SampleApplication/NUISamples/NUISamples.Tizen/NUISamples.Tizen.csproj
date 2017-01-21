@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="NUISamples.Tizen.project.json" />
+    <None Include="res\style\control-dashboard-theme.json" />
     <None Include="tizen-manifest.xml" />
     <None Include="shared\res\NUISamples.Tizen.png" />
   </ItemGroup>

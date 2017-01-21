@@ -200,7 +200,7 @@ public class BaseHandle : global::System.IDisposable {
     return ret;
   }
 
-  internal void Reset() {
+  public void Reset() {
     NDalicPINVOKE.BaseHandle_Reset(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }

@@ -73,7 +73,7 @@ namespace MyCSharpExample
             topLabel.SizeModeFactor = new Vector3( 0.0f, 0.1f, 0.0f );
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             topLabel.TextColor = NDalic.WHITE;
-            topLabel.Text = " DALi Views";
+            topLabel.Text = " DALi Views V.0121";
             topLabel.HorizontalAlignment = "BEGIN";
             topLabel.VerticalAlignment = "CENTER";
             topLabel.SetStyleName("TextLabelFontSize4");
@@ -364,9 +364,9 @@ namespace MyCSharpExample
         [STAThread]
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Mono World");
+            Console.WriteLine("dali c# control-dashboard! main() is called!");
 
-            Example example = new Example(Application.NewApplication());
+            Example example = new Example(Application.NewApplication("/home/owner/apps_rw/NUISamples.Tizen/res/style/control-dashboard-theme.json"));
             example.MainLoop();
         }
     }
