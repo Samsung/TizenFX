@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -69,6 +70,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static void Deinitialize()
         {
+            _resources.Clear();
             Interop.IoTConnectivity.Client.IoTCon.Deinitialize();
         }
 
@@ -107,6 +109,7 @@ namespace Tizen.Network.IoTConnectivity
             {
                 resource.ResourceHandle = handle;
             }
+            _resources.Add(resource);
         }
 
         /// <summary>
@@ -201,5 +204,6 @@ namespace Tizen.Network.IoTConnectivity
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
         }
+        private static List<Resource> _resources = new List<Resource>();
     }
 }

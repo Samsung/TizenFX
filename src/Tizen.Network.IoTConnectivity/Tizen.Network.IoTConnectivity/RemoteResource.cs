@@ -576,6 +576,8 @@ namespace Tizen.Network.IoTConnectivity
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType type = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None;
 
+            Log.Info(IoTConnectivityErrorFactory.LogTag, hostAddress);
+
             if (hostAddress == IoTConnectivityClientManager.MulticastAddress)
             {
                 type = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ipv4;
@@ -592,6 +594,23 @@ namespace Tizen.Network.IoTConnectivity
                         hostName = hostParts[0];
                     }
                 }
+                if (hostAddress.Contains("%"))
+                {
+                    string[] hostParts = hostAddress.Split('%');
+                    if (hostParts.Length == 2)
+                    {
+                        hostName = hostParts[0];
+                    }
+                }
+                if (hostName.Contains("["))
+                {
+                    string[] hostParts = hostName.Split('[');
+                    if (hostParts.Length == 2)
+                    {
+                        hostName = hostParts[1];
+                    }
+                }
+                Log.Info(IoTConnectivityErrorFactory.LogTag, hostName);
                 if (IPAddress.TryParse(hostName, out address))
                 {
                     switch (address.AddressFamily)
@@ -606,6 +625,10 @@ namespace Tizen.Network.IoTConnectivity
                             Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to parse for Ipv4 or Ipv6");
                             break;
                     }
+                }
+                else
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to parse hostname " + hostName);
                 }
             }
             return type;

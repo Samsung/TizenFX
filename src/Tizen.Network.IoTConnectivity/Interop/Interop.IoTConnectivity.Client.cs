@@ -85,7 +85,9 @@ internal static partial class Interop
 
                 internal enum ConnectivityType
                 {
-                    None = 0,
+                    None = -1,
+                    All,
+                    Ip,
                     Ipv4,
                     Ipv6
                 }

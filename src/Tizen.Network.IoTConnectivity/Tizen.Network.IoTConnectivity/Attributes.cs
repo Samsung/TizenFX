@@ -796,7 +796,8 @@ namespace Tizen.Network.IoTConnectivity
                         Interop.IoTConnectivity.Common.List.ListCallback cb = (int pos, IntPtr value, IntPtr userData) =>
                         {
                             object childList = GetList(value);
-                            list.Add(childList);
+                            if (childList != null)
+                                list.Add(childList);
                             return true;
                         };
                         ret = Interop.IoTConnectivity.Common.List.ForeachList(listHandle, cb, IntPtr.Zero);

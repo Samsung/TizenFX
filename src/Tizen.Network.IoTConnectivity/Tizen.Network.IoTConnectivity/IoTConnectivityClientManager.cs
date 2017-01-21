@@ -196,6 +196,21 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static void Deinitialize()
         {
+            s_presenceListenerId = 1;
+            s_presenceCallbacksMap.Clear();
+            s_presenceHandlesMap.Clear();
+
+            s_requestId = 1;
+            s_resourceFoundCallbacksMap.Clear();
+            s_deviceInformationCallbacksMap.Clear();
+            s_platformInformationCallbacksMap.Clear();
+
+            PresenceReceived = delegate{};
+            ResourceFound = delegate{};
+            PlatformInformationFound = delegate{};
+            DeviceInformationFound = delegate{};
+            FindingErrorOccurred = delegate{};
+
             Interop.IoTConnectivity.Client.IoTCon.Deinitialize();
         }
 
@@ -262,12 +277,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static int StartReceivingPresence(string hostAddress, string resourceType)
         {
-            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
-            if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Unable to parse host address");
-                throw new ArgumentException("Unable to parse host address");
-            }
+            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
 
             if (resourceType != null && !ResourceTypes.IsValid(resourceType))
             {
@@ -426,12 +436,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static int StartFindingResource(string hostAddress, ResourceQuery query = null)
         {
-            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
-            if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Unable to parse host address");
-                throw new ArgumentException("Unable to parse host address");
-            }
+            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
 
             IntPtr id = IntPtr.Zero;
             lock (s_resourceFoundCallbacksMap)
@@ -532,12 +537,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)
         {
-            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
-            if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Unable to parse host address");
-                throw new ArgumentException("Unable to parse host address");
-            }
+            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
 
             IntPtr id = IntPtr.Zero;
             lock (s_deviceInformationCallbacksMap)
@@ -630,12 +630,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)
         {
-            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = RemoteResource.GetConnectivityType(hostAddress);
-            if (connectivityType == Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Unable to parse host address");
-                throw new ArgumentException("Unable to parse host address");
-            }
+            Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
 
             IntPtr id = IntPtr.Zero;
             lock (s_platformInformationCallbacksMap)

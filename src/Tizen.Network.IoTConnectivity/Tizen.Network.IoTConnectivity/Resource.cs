@@ -348,7 +348,7 @@ namespace Tizen.Network.IoTConnectivity
                         break;
                     }
                     default:
-                    break;
+                    	break;
                 }
                 if (response == null)
                 {
