@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -43,6 +43,8 @@ namespace Tizen.Network.Bluetooth
     {
         private event EventHandler<SocketDataReceivedEventArgs> _dataReceived;
         private event EventHandler<SocketConnectionStateChangedEventArgs> _connectionStateChanged;
+        private Interop.Bluetooth.DataReceivedCallback _dataReceivedCallback;
+        private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
         private bool disposed = false;
         internal int connectedSocket;
         internal string remoteAddress;
@@ -96,7 +98,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterDataReceivedEvent()
         {
-            Interop.Bluetooth.DataReceivedCallback DataReceivedCallback = (ref SocketDataStruct socketData, IntPtr userData) =>
+            _dataReceivedCallback = (ref SocketDataStruct socketData, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "DataReceivedCallback is called");
                 if (_dataReceived != null)
@@ -107,7 +109,7 @@ namespace Tizen.Network.Bluetooth
             };
             GCHandle handle1 = GCHandle.Alloc (this);
             IntPtr uData = (IntPtr) handle1;
-            int ret = Interop.Bluetooth.SetDataReceivedCallback(DataReceivedCallback, uData);
+            int ret = Interop.Bluetooth.SetDataReceivedCallback(_dataReceivedCallback, uData);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set data received callback, Error - " + (BluetoothError)ret);
@@ -127,7 +129,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterConnectionStateChangedEvent()
         {
-            Interop.Bluetooth.SocketConnectionStateChangedCallback ConnectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
+            _connectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "ConnectionStateChangedCallback is called");
                 if (_connectionStateChanged != null)
@@ -139,7 +141,7 @@ namespace Tizen.Network.Bluetooth
             };
             GCHandle handle1 = GCHandle.Alloc(this);
             IntPtr data = (IntPtr) handle1;
-            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(ConnectionStateChangedCallback, data);
+            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, data);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (BluetoothError)ret);

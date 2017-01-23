@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -26,6 +26,7 @@ namespace Tizen.Network.Bluetooth
     public class BluetoothServerSocket : IDisposable
     {
         private event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
+        private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
         internal int socketFd;
         private bool disposed = false;
 
@@ -54,7 +55,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterAcceptStateChangedEvent()
         {
-            Interop.Bluetooth.SocketConnectionStateChangedCallback ConnectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
+            _connectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "AcceptStateChanged cb is called");
                 if (_acceptStateChanged != null)
@@ -67,7 +68,7 @@ namespace Tizen.Network.Bluetooth
             };
             GCHandle handle1 = GCHandle.Alloc(this);
             IntPtr data = (IntPtr) handle1;
-            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(ConnectionStateChangedCallback, data);
+            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, data);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set accept state changed callback, Error - " + (BluetoothError)ret);

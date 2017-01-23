@@ -154,7 +154,7 @@ namespace Tizen.Network.Bluetooth
     {
         internal int SocketFd;
         internal int DataSize;
-        internal string Data;
+        internal IntPtr Data;
     }
 
     internal struct SocketConnectionStruct
@@ -327,7 +327,7 @@ namespace Tizen.Network.Bluetooth
             SocketData data = new SocketData();
             data.Fd = structInfo.SocketFd;
             data.Size = structInfo.DataSize;
-            data.RecvData = structInfo.Data;
+            data.RecvData = Marshal.PtrToStringAnsi(structInfo.Data);
             return data;
         }
 
