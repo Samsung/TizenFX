@@ -47,6 +47,12 @@ namespace Tizen.Location
         private int _requestId = 0;
         private Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback> _callback_map = new Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback>();
 
+        private Interop.LocatorEvent.ServiceStatechangedCallback _serviceStateChangedCallback;
+        private Interop.LocatorEvent.ZonechangedCallback _zoneChangedCallback;
+        private Interop.LocatorEvent.SettingchangedCallback _settingChangedCallback;
+        private Interop.LocatorEvent.LocationchangedCallback _distanceBasedLocationChangedCallback;
+        private Interop.LocatorEvent.LocationchangedCallback _locationChangedCallback;
+
         private EventHandler<ZoneChangedEventArgs> _zoneChanged;
         private EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
         private EventHandler<SettingChangedEventArgs> _settingChanged;
@@ -514,7 +520,16 @@ namespace Tizen.Location
         private void SetServiceStateChangedCallback()
         {
             Log.Info(Globals.LogTag, "Calling Interop.LocatorEvent.SetServiceStateChangedCallback");
-            int ret = Interop.LocatorEvent.SetServiceStateChangedCallback(_handle, ServiceStateChangedCallback, IntPtr.Zero);
+            if (_serviceStateChangedCallback == null)
+            {
+                _serviceStateChangedCallback = (state, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "Inside ServiceStateChangedCallback");
+                    _serviceStateChanged?.Invoke(this, new ServiceStateChangedEventArgs(state));
+                };
+            }
+
+            int ret = Interop.LocatorEvent.SetServiceStateChangedCallback(_handle, _serviceStateChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Service State Changed Callback," + (LocationError)ret);
@@ -531,12 +546,6 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error in UnSetting Service State Changed Callback," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-        }
-
-        private void ServiceStateChangedCallback(ServiceState state, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "Inside ServiceStateChangedCallback");
-            _serviceStateChanged?.Invoke(this, new ServiceStateChangedEventArgs(state));
         }
 
         /// <summary>
@@ -572,7 +581,22 @@ namespace Tizen.Location
         private void SetZoneChangedCallback()
         {
             Log.Info(Globals.LogTag, "Inside SetZoneChangedCallback");
-            int ret = Interop.LocatorEvent.SetZoneChangedCallback(_handle, ZoneChangedCallback, IntPtr.Zero);
+            if (_zoneChangedCallback == null)
+            {
+                _zoneChangedCallback = (state, latitude, longitude, altitude, timestamp, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "Inside ZoneChangedCallback");
+                    DateTime timeStamp = DateTime.Now;
+                    if (timestamp != 0)
+                    {
+                        DateTime start = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(timestamp), DateTimeKind.Utc);
+                        timeStamp = start.ToLocalTime();
+                    }
+                    _zoneChanged?.Invoke(this, new ZoneChangedEventArgs(state, latitude, longitude, altitude, timeStamp));
+                };
+            }
+
+            int ret = Interop.LocatorEvent.SetZoneChangedCallback(_handle, _zoneChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Zone Changed Callback," + (LocationError)ret);
@@ -588,18 +612,6 @@ namespace Tizen.Location
             {
                 Log.Error(Globals.LogTag, "Error in UnSetting Zone Changed Callback," + (LocationError)ret);
             }
-        }
-
-        private void ZoneChangedCallback(BoundaryState state, double latitude, double longitude, double altitude, int timestamp, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "Inside ZoneChangedCallback");
-            DateTime timeStamp = DateTime.Now;
-            if (timestamp != 0)
-            {
-                DateTime start = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(timestamp), DateTimeKind.Utc);
-                timeStamp = start.ToLocalTime();
-            }
-            _zoneChanged?.Invoke(this, new ZoneChangedEventArgs(state, latitude, longitude, altitude, timeStamp));
         }
 
         /// <summary>
@@ -636,7 +648,16 @@ namespace Tizen.Location
         private void SetSettingChangedCallback()
         {
             Log.Info(Globals.LogTag, "Calling SetSettingChangedCallback");
-            int ret = Interop.LocatorEvent.SetSettingChangedCallback((int)_locationType, SettingChangedCallback, IntPtr.Zero);
+            if (_settingChangedCallback == null)
+            {
+                _settingChangedCallback = (method, enable, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "Calling SettingChangedCallback");
+                    _settingChanged?.Invoke(this, new SettingChangedEventArgs(method, enable));
+                };
+            }
+
+            int ret = Interop.LocatorEvent.SetSettingChangedCallback((int)_locationType, _settingChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Changed Callback," + (LocationError)ret);
@@ -655,12 +676,6 @@ namespace Tizen.Location
             }
         }
 
-        private void SettingChangedCallback(LocationType method, bool enable, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "Calling SettingChangedCallback");
-            _settingChanged?.Invoke(this, new SettingChangedEventArgs(method, enable));
-        }
-
         /// <summary>
         /// (event) DistanceBasedLocationChanged is raised with updated location information.
         /// The callback will be invoked at minimum interval or minimum distance with updated position information.
@@ -672,7 +687,7 @@ namespace Tizen.Location
             add
             {
                 Log.Info(Globals.LogTag, "Adding DistanceBasedLocationChanged EventHandler");
-                if (_distanceBasedLocationChanged == null)
+                //if (_distanceBasedLocationChanged == null)
                 {
                     Log.Info(Globals.LogTag, "Calling function SetDistanceBasedLocationChangedCallback");
                     SetDistanceBasedLocationChangedCallback();
@@ -695,7 +710,18 @@ namespace Tizen.Location
         private void SetDistanceBasedLocationChangedCallback()
         {
             Log.Info(Globals.LogTag, "SetDistanceBasedLocationChangedCallback");
-            int ret = Interop.LocatorEvent.SetDistanceBasedLocationChangedCallback(_handle, DistanceBasedLocationChangedCallback, _stayInterval, _distance, IntPtr.Zero);
+            if (_distanceBasedLocationChangedCallback == null) {
+                _distanceBasedLocationChangedCallback = (latitude, longitude, altitude, speed, direction, horizontalAccuracy, timestamp, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #1");
+                    Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
+                    Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #2");
+                    _distanceBasedLocationChanged?.Invoke(this, new LocationChangedEventArgs(location));
+                    Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #3");
+                };
+            }
+            
+            int ret = Interop.LocatorEvent.SetDistanceBasedLocationChangedCallback(_handle, _distanceBasedLocationChangedCallback, _stayInterval, _distance, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting Distance based location changed Callback," + (LocationError)ret);
@@ -712,13 +738,7 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error in UnSetting Distance based location changed Callback," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-        }
-
-        private void DistanceBasedLocationChangedCallback(double latitude, double longitude, double altitude, double speed, double direction, double horizontalAccuracy, int timestamp, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback");
-            Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
-            _distanceBasedLocationChanged?.Invoke(this, new LocationChangedEventArgs(location));
+            _distanceBasedLocationChanged = null;
         }
 
         /// <summary>
@@ -755,7 +775,18 @@ namespace Tizen.Location
         private void SetLocationChangedCallback()
         {
             Log.Info(Globals.LogTag, "Calling SetLocationChangedCallback");
-            int ret = Interop.LocatorEvent.SetLocationChangedCallback(_handle, LocationChangedCallback, _interval, IntPtr.Zero);
+
+            if (_locationChangedCallback == null) {
+                _locationChangedCallback = (latitude, longitude, altitude, speed, direction, horizontalAccuracy, timestamp, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "LocationChangedCallback has been called");
+                    Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
+                    _location = location;
+                    _locationChanged?.Invoke(this, new LocationChangedEventArgs(location));
+                };
+            }
+
+            int ret = Interop.LocatorEvent.SetLocationChangedCallback(_handle, _locationChangedCallback, _interval, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in Setting location changed Callback," + (LocationError)ret);
@@ -772,14 +803,6 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error in UnSetting location changed Callback," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-        }
-
-        private void LocationChangedCallback(double latitude, double longitude, double altitude, double speed, double direction, double horizontalAccuracy, int timestamp, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "LocationChangedCallback has been called");
-            Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
-            _location = location;
-            _locationChanged?.Invoke(this, new LocationChangedEventArgs(location));
         }
     }
 }

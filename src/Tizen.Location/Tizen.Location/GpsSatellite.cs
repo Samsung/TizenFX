@@ -30,6 +30,9 @@ namespace Tizen.Location
         private EventHandler<SatelliteStatusChangedEventArgs> _satelliteStatusChanged;
         private IntPtr _handle = IntPtr.Zero;
 
+        private Interop.GpsSatellite.SatelliteStatuschangedCallback _satelliteStatuschangedCallback;
+        private Interop.GpsSatellite.SatelliteStatusinfomationCallback _satelliteStatusinfomationCallback;
+
         /// <summary>
         /// The time interval between callback updates.
         /// Should be in the range [1~120] seconds.
@@ -167,13 +170,18 @@ namespace Tizen.Location
         {
             List<SatelliteInformation> satelliteList = new List<SatelliteInformation>();
             Log.Info(Globals.LogTag, "Getting the list of satellites");
-            Interop.GpsSatellite.SatelliteStatusinfomationCallback callback = (uint azimuth, uint elevation, uint prn, uint snr, bool isActive, IntPtr userData) =>
+
+            if (_satelliteStatusinfomationCallback == null)
             {
-                SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, isActive);
-                satelliteList.Add(satellite);
-                return true;
-            };
-            int ret = Interop.GpsSatellite.GetForEachSatelliteInView(_handle, callback, IntPtr.Zero);
+                _satelliteStatusinfomationCallback = (azimuth, elevation, prn, snr, isActive, userData) =>
+                {
+                    SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, isActive);
+                    satelliteList.Add(satellite);
+                    return true;
+                };
+            }
+
+            int ret = Interop.GpsSatellite.GetForEachSatelliteInView(_handle, _satelliteStatusinfomationCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
@@ -237,9 +245,24 @@ namespace Tizen.Location
         private void SetSatelliteStatusChangeCallback()
         {
             Log.Info(Globals.LogTag, "SetSatelliteStatusChangeCallback");
+            if (_satelliteStatuschangedCallback == null)
+            {
+                _satelliteStatuschangedCallback = (numActive, numInView, timestamp, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "Inside SatelliteStatusChangedCallback");
+                    DateTime timeStamp = DateTime.Now;
+
+                    if (timestamp != 0)
+                    {
+                        DateTime start = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(timestamp), DateTimeKind.Utc);
+                        timeStamp = start.ToLocalTime();
+                    }
+                    _satelliteStatusChanged?.Invoke(_handle, new SatelliteStatusChangedEventArgs(numActive, numInView, timeStamp));
+                };
+            }
+
             GCHandle handle = GCHandle.Alloc(this);
-            int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, SatelliteStatusChangedCallback, _interval, GCHandle.ToIntPtr(handle));
-            /* int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, SatelliteStatusChangedCallback, _interval, IntPtr.Zero); */
+            int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, _satelliteStatuschangedCallback, _interval, GCHandle.ToIntPtr(handle));
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in setting satellite status changed callback," + (LocationError)ret);
@@ -256,20 +279,6 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error in Getting Unsetting satellite status changed callback," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-        }
-
-        private void SatelliteStatusChangedCallback(uint numActive, uint numInView, int timestamp, IntPtr userData)
-        {
-            Log.Info(Globals.LogTag, "Inside SatelliteStatusChangedCallback");
-            DateTime timeStamp = DateTime.Now;
-
-            if (timestamp != 0)
-            {
-                DateTime start = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(timestamp), DateTimeKind.Utc);
-                timeStamp = start.ToLocalTime();
-            }
-
-            _satelliteStatusChanged?.Invoke(_handle, new SatelliteStatusChangedEventArgs(numActive, numInView, timeStamp));
         }
     }
 
