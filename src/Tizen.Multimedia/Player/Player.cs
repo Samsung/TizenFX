@@ -409,8 +409,8 @@ namespace Tizen.Multimedia
             if (_display != null)
             {
                 _display.Player = this;
+                Log.Info(PlayerLog.Tag, "replace display to " + newDisplay.Type + " (" + newDisplay.EvasObject + ")");
             }
-            Log.Info(PlayerLog.Tag, "replace display to " + newDisplay.Type + " (" + newDisplay.EvasObject + ")");
         }
 
         /// <summary>
