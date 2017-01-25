@@ -134,41 +134,44 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for audio type.
+    /// Enumeration for audio volume type.
     /// </summary>
     public enum AudioVolumeType
     {
         /// <summary>
-        /// Audio type for system
+        /// Volume type for system
         /// </summary>
         System,
         /// <summary>
-        /// Audio type for notifications
+        /// Volume type for notification
         /// </summary>
         Notification,
         /// <summary>
-        /// Audio type for alarm
+        /// Volume type for alarm
         /// </summary>
         Alarm,
         /// <summary>
-        /// Audio type for ringtones
+        /// Volume type for ringtone
         /// </summary>
         Ringtone,
         /// <summary>
-        /// Audio type for media
+        /// Volume type for media
         /// </summary>
         Media,
+        /// <summary>
+        /// Volume type for call
+        /// </summary>
         Call,
         /// <summary>
-        /// Audio type for voip
+        /// Volume type for voip
         /// </summary>
         Voip,
         /// <summary>
-        /// Audio type for voice
+        /// Volume type for voice
         /// </summary>
         Voice,
         /// <summary>
-        /// Audio type None
+        /// Volume type None
         /// </summary>
         None
     }

@@ -18,6 +18,9 @@ internal static partial class Interop
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_volume")]
         internal static extern int GetVolume(AudioVolumeType type, out int volume);
 
+        [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_get_current_sound_type")]
+        internal static extern int GetCurrentSoundType(out AudioVolumeType type);
+
         [DllImportAttribute(Libraries.SoundManager, EntryPoint = "sound_manager_add_volume_changed_cb")]
         internal static extern int AddVolumeChangedCallback(SoundManagerVolumeChangedCallback callback, IntPtr userData, out int id);
 

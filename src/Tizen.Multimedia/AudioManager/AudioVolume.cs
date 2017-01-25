@@ -59,6 +59,22 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// The Audio Manager has predefined volume types.(system, notification, alarm, ringtone, media, call, voip, voice).
+        /// The volume type of the sound being currently played.
+        /// </summary>
+        public AudioVolumeType CurrentPlaybackType {
+            get {
+                AudioVolumeType currentType;
+                int ret = Interop.AudioVolume.GetCurrentSoundType(out currentType);
+                if(ret != 0) {
+                    Tizen.Log.Info(AudioVolumeLog.Tag, "Unable to get current playback sound type" + (AudioManagerError)ret);
+                    return AudioVolumeType.None;
+                }
+                return currentType;
+            }
+        }
+
+        /// <summary>
         /// The indexer class which is used to get/set volume level specified for a particular sound type.
         /// </summary>
         public VolumeLevel Level;
@@ -75,7 +91,7 @@ namespace Tizen.Multimedia
                 _volumeChanged.Invoke(this, eventArgs);
             };
             int error = Interop.AudioVolume.AddVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero, out _volumeChangedCallbackId);
-            Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event return:" + error);
+            Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Add Changed Event return id:" + _volumeChangedCallbackId + "error:" + error);
             AudioManagerErrorFactory.CheckAndThrowException(error, "unable to add level changed callback");
         }
 
@@ -83,7 +99,7 @@ namespace Tizen.Multimedia
         {
             if (_volumeChangedCallbackId > 0) {
                 int error = Interop.AudioVolume.RemoveVolumeChangedCallback(_volumeChangedCallbackId);
-                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed remove Event return: " + error);
+                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Remove Changed Event(id:" + _volumeChangedCallbackId + ") return error: " + error);
                 AudioManagerErrorFactory.CheckAndThrowException(error, "unable to remove level changed callback");
             }
         }
