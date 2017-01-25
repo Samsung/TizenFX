@@ -40,6 +40,10 @@ namespace Tizen.Network.Connection
         private EventHandler _EthernetCableStateChanged = null;
         private EventHandler _ProxyAddressChanged = null;
 
+        private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
+        private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
+        private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
+
         public ConnectionManager()
         {
             _internalManager = new ConnectionInternalManager();
@@ -97,7 +101,14 @@ namespace Tizen.Network.Connection
 
         private void ConnectionTypeChangedStart()
         {
-            int ret = Interop.Connection.SetTypeChangedCallback(_internalManager.GetHandle(), TypeChangedCallback, IntPtr.Zero);
+            _connectionTypeChangedCallback = (ConnectionType type, IntPtr user_data) =>
+            {
+                if (_ConnectionTypeChanged != null)
+                {
+                    _ConnectionTypeChanged(null, new ConnectionTypeEventArgs(type));
+                }
+            };
+            int ret = Interop.Connection.SetTypeChangedCallback(_internalManager.GetHandle(), _connectionTypeChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register connection type changed callback, " + (ConnectionError)ret);
@@ -112,14 +123,6 @@ namespace Tizen.Network.Connection
             {
                 Log.Error(Globals.LogTag, "It failed to unregister connection type changed callback, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        private void TypeChangedCallback(ConnectionType type, IntPtr user_data)
-        {
-            if (_ConnectionTypeChanged != null)
-            {
-                _ConnectionTypeChanged(null, new ConnectionTypeEventArgs(type));
             }
         }
 
@@ -199,8 +202,21 @@ namespace Tizen.Network.Connection
 
         private void IpAddressChangedStart()
         {
+            _connectionAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            {
+                if (_IPAddressChanged != null)
+                {
+                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+
+                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
+                    {
+                        _IPAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
+                    }
+                }
+            };
             Log.Debug(Globals.LogTag, "Handle: " + _internalManager.GetHandle());
-            int ret = Interop.Connection.SetIpAddressChangedCallback(_internalManager.GetHandle(), IPAddressChangedCallback, IntPtr.Zero);
+            int ret = Interop.Connection.SetIpAddressChangedCallback(_internalManager.GetHandle(), _connectionAddressChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing IP address, " + (ConnectionError)ret);
@@ -213,20 +229,6 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister callback for changing IP address, " + (ConnectionError)ret);
-            }
-        }
-
-        private void IPAddressChangedCallback(IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData)
-        {
-            if (_IPAddressChanged != null)
-            {
-                string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
-
-                if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
-                {
-                    _IPAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
-                }
             }
         }
 
@@ -257,7 +259,20 @@ namespace Tizen.Network.Connection
 
         private void ProxyAddressChangedStart()
         {
-            int ret = Interop.Connection.SetProxyAddressChangedCallback(_internalManager.GetHandle(), IPAddressChangedCallback, IntPtr.Zero);
+            _proxyAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            {
+                if (_ProxyAddressChanged != null)
+                {
+                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+
+                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
+                    {
+                        _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
+                    }
+                }
+            };
+            int ret = Interop.Connection.SetProxyAddressChangedCallback(_internalManager.GetHandle(), _proxyAddressChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing proxy address, " + (ConnectionError)ret);
@@ -270,19 +285,6 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister callback for changing proxy address, " + (ConnectionError)ret);
-            }
-        }
-
-        private void ProxyAddressChangedCallback(IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData)
-        {
-            if (_ProxyAddressChanged != null)
-            {
-                string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
-                Interop.Libc.Free(Ipv4);
-                Interop.Libc.Free(Ipv6);
-
-                _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
             }
         }
 

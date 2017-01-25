@@ -22,9 +22,13 @@ internal static partial class Interop
 {
     internal static partial class Connection
     {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ConnectionTypeChangedCallback(ConnectionType type, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void EthernetCableStateChangedCallback(EthernetCableState state, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ConnectionAddressChangedCallback(IntPtr ipv4, IntPtr ipv6, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ConnectionCallback(ConnectionError result, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_create")]
