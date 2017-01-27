@@ -137,19 +137,28 @@ namespace Tizen.Network.Bluetooth {
             _scanData = new BluetoothLeScanData ();
             _scanData = scanData;
 
-            Log.Info (Globals.LogTag, "scanData.Rssi" + _scanData.Rssi);
+            Log.Info (Globals.LogTag, "Rssi" + _scanData.Rssi);
             _rssi = scanData.Rssi;
-            Log.Info (Globals.LogTag, "scanData.RemoteAddress" + _scanData.RemoteAddress);
+            Log.Info (Globals.LogTag, "RemoteAddress" + _scanData.RemoteAddress);
             if (scanData.RemoteAddress != null)
                 _remoteAddress = scanData.RemoteAddress;
-            Log.Info (Globals.LogTag, "scanData.AddressType" + _scanData.AddressType);
+            Log.Info (Globals.LogTag, "AddressType" + _scanData.AddressType);
             _addressType = scanData.AddressType;
-            Log.Info (Globals.LogTag, "scanData.AdvData" + _scanData.AdvData);
-            _advDataValue = new byte[_scanData.AdvDataLength];
-            scanData.AdvData.CopyTo(_advDataValue, 0);
-            Log.Info (Globals.LogTag, "scanData.ScanData" + _scanData.ScanData);
-            _scanDataValue = new byte[_scanData.ScanDataLength];
-            scanData.ScanData.CopyTo(_scanDataValue, 0);
+
+            Log.Info (Globals.LogTag, "AdvDataLength" + _scanData.AdvDataLength);
+            if (_scanData.AdvDataLength > 0)
+            {
+                _advDataValue = new byte[_scanData.AdvDataLength];
+                scanData.AdvData.CopyTo(_advDataValue, 0);
+            }
+
+            Log.Info(Globals.LogTag, "ScanDataLength" + _scanData.ScanDataLength);
+            //  Check length before copying
+            if (_scanData.ScanDataLength > 0)
+            {
+                _scanDataValue = new byte[_scanData.ScanDataLength];
+                scanData.ScanData.CopyTo(_scanDataValue, 0);
+            }
         }
 
         ~BluetoothLeDevice()

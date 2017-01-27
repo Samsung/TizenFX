@@ -268,8 +268,10 @@ namespace Tizen.Network.Bluetooth
             return resultData;
         }
 
-        internal static BluetoothLeScanData ConvertStructToLeScanData(BluetoothLeScanDataStruct structScanData, BluetoothLeScanData scanData)
+        internal static BluetoothLeScanData ConvertStructToLeScanData(BluetoothLeScanDataStruct structScanData)
         {
+            BluetoothLeScanData scanData = new BluetoothLeScanData();
+
             scanData.RemoteAddress = structScanData.RemoteAddress;
             scanData.AddressType = structScanData.AddressType;
             scanData.Rssi = structScanData.Rssi;
@@ -290,8 +292,10 @@ namespace Tizen.Network.Bluetooth
             return scanData;
         }
 
-        internal static BluetoothLeScanDataStruct ConvertLeScanDataToStruct(BluetoothLeScanData scanData, BluetoothLeScanDataStruct scanDataStruct)
+        internal static BluetoothLeScanDataStruct ConvertLeScanDataToStruct(BluetoothLeScanData scanData)
         {
+            BluetoothLeScanDataStruct scanDataStruct = new BluetoothLeScanDataStruct();
+
             scanDataStruct.RemoteAddress = scanData.RemoteAddress;
             scanDataStruct.AddressType = scanData.AddressType;
             scanDataStruct.Rssi = scanData.Rssi;
@@ -313,12 +317,15 @@ namespace Tizen.Network.Bluetooth
             return scanDataStruct;
         }
 
-        internal static BluetoothLeServiceData ConvertStructToLeServiceData(BluetoothLeServiceDataStruct structServiceData, BluetoothLeServiceData serviceData)
+        internal static BluetoothLeServiceData ConvertStructToLeServiceData(BluetoothLeServiceDataStruct structServiceData)
         {
-            serviceData.Data = structServiceData.ServiceData;
-            serviceData.Uuid = structServiceData.ServiceUuid;
-            serviceData.Length = structServiceData.ServiceDataLength;
-
+            BluetoothLeServiceData serviceData = new BluetoothLeServiceData();
+            if (structServiceData.ServiceDataLength > 0)
+            {
+                serviceData.Uuid = structServiceData.ServiceUuid;
+                serviceData.Length = structServiceData.ServiceDataLength;
+                serviceData.Data = structServiceData.ServiceData;
+            }
             return serviceData;
         }
 
