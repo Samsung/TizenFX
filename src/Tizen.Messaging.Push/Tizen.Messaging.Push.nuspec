@@ -1,14 +1,19 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-		<id>Tizen.Messaging.Push</id>
-		<version>$version$</version>
-		<authors>Tizen Developers</authors>
-		<description>Push API for Tizen.Net</description>
+    <id>Tizen.Messaging.Push</id>
+    <version>$version$</version>
+    <authors>Samsung Electronics</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://www.tizen.org/</projectUrl>
+    <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+    <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
+    <description>Push API for Tizen.Net</description>
     <dependencies>
       <dependency id="Tizen" version="1.0.1" />
     </dependencies>
-	</metadata>
+  </metadata>
   <files>
     <file src="bin/$Configuration$/Tizen.Messaging.Push.dll" target="lib/netstandard1.3" />
     <file src="bin/$Configuration$/Net45/Tizen.Messaging.Push.dll" target="lib/net45" />
