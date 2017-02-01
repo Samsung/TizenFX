@@ -30,5 +30,6 @@ internal static partial class Interop
         public const string MediaVision = "libcapi-media-vision.so.0";
         public const string Libc = "libc.so.6";
         public const string Camera = "libcapi-media-camera.so.0";
+        public const string StreamRecorder = "libcapi-media-streamrecorder.so.0";
     }
 }
