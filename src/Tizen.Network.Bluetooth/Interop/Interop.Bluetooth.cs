@@ -413,19 +413,19 @@ internal static partial class Interop
         internal delegate bool BtGattForeachCallback(int total, int index, IntPtr gattHandle, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerReadValueRequestedCallback(string clientAddress, int requestId, BluetoothGattServerHandle serverHandle, BluetoothGattAttributeHandle gattHandle, int offset, IntPtr userData);
+        internal delegate void BtGattServerReadValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, BluetoothGattServerHandle serverHandle, BluetoothGattAttributeHandle gattHandle, int offset, byte[] value, int len, IntPtr userData);
+        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, bool response_needed, byte[] value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtClientCharacteristicValueChangedCallback(BluetoothGattAttributeHandle characteristicHandle, byte[] value, int len, IntPtr userData);
+        internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, byte[] value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerNotificationStateChangeCallback(bool notify, BluetoothGattServerHandle serverHandle, BluetoothGattAttributeHandle characteristicHandle, IntPtr userData);
+        internal delegate void BtGattServerNotificationStateChangeCallback(bool notify, IntPtr serverHandle, IntPtr characteristicHandle, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerNotificationSentCallback(int result, string clientAddress, BluetoothGattServerHandle serverHandle, BluetoothGattAttributeHandle characteristicHandle, bool completed, IntPtr userData);
+        internal delegate void BtGattServerNotificationSentCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattClientRequestCompletedCallback(int result, IntPtr requestHandle, IntPtr userData);
@@ -562,10 +562,10 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_read_value_requested_cb")]
         internal static extern int BtGattServerSetReadValueRequestedCallback(BluetoothGattAttributeHandle gattHandle, BtGattServerReadValueRequestedCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_read_value_requested_cb")]
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_write_value_requested_cb")]
         internal static extern int BtGattServerSetWriteValueRequestedCallback(BluetoothGattAttributeHandle gattHandle, BtGattServerWriteValueRequestedCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_notification_state_change_cb")]
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_characteristic_notification_state_change_cb")]
         internal static extern int BtGattServeSetNotificationStateChangeCallback(BluetoothGattAttributeHandle characteristicHandle, BtGattServerNotificationStateChangeCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_start")]
