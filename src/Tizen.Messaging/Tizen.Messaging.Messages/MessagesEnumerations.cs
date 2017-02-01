@@ -55,7 +55,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// WAP Push type
         /// </summary>
-        Push = Mms | 10 << 4
+        Push = Sms | 10 << 4
     }
 
     /// <summary>
@@ -97,11 +97,11 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// SIM Slot 1
         /// </summary>
-        SimSlotId1 = 1,
+        Sim1 = 1,
         /// <summary>
         /// SIM Slot 2
         /// </summary>
-        SimSlotId2 = 2
+        Sim2 = 2
     }
 
     /// <summary>
