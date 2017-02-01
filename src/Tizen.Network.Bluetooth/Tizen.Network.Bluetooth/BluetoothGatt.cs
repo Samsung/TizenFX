@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Tizen.Network.Bluetooth
@@ -27,7 +29,6 @@ namespace Tizen.Network.Bluetooth
     {
         private static BluetoothGattServer _instance;
         private BluetoothGattServerImpl _impl;
-
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
@@ -157,12 +158,13 @@ namespace Tizen.Network.Bluetooth
         /// Sends a response to the remote device as a result of a read/ write request
         /// </summary>
         /// <param name="requestId">The identification of a read/ write request</param>
+        /// <param name="type">The request type for read/write</param>
         /// <param name="status">error value in case of failure, 0 for success</param>
         /// <param name="value">Value to be sent</param>
         /// <param name="offset">Fffset from where the value is read</param>
-        public void SendResponse(int requestId, int status, byte[] value, int offset)
+        public void SendResponse(int requestId, BluetoothGattRequestType type, int status, byte[] value, int offset)
         {
-            _impl.SendResponse(requestId, status, value, offset);
+            _impl.SendResponse(requestId, (int)type, status, value, offset);
         }
 
         internal bool IsValid()
@@ -189,6 +191,11 @@ namespace Tizen.Network.Bluetooth
         {
             BluetoothGattClient client = new BluetoothGattClient(remoteAddress);
             return client.Isvalid() ? client : null;
+        }
+
+        public void DestroyClient()
+        {
+            _impl.GetHandle().Dispose();
         }
 
         /// <summary>
@@ -788,9 +795,9 @@ namespace Tizen.Network.Bluetooth
                 if (Server == null) return;
                 if (_writeValueRequested == null)
                 {
-                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, offset, valueToWrite, len, userData) =>
+                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, offset, response_needed, valueToWrite, len, userData) =>
                     {
-                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset));
+                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
                     };
                     Impl.SetWriteValueRequestedEventCallback(_writeValueRequestedCallback);
                 }
@@ -847,11 +854,14 @@ namespace Tizen.Network.Bluetooth
         /// Sets string value as specified offset
         /// </summary>
         /// <param name="value">value to set</param>
-        /// <param name="offset">offset in the attribute value buffer</param>
-        /// <exception cref="InvalidOperationException">Throws excetion if (offset + size of string value) is greater then length of value buffer</exception>
-        public void SetValue(string value, int offset)
+        /// <exception cref="InvalidOperationException">Throws excetion if value is null</exception>
+        public void SetValue(string value)
         {
-            Impl.SetValue(value, offset);
+            if (value.Equals(null))
+                GattUtil.ThrowForError((int)BluetoothError.InvalidParameter, "value should not be null");
+
+            byte[] val = Encoding.UTF8.GetBytes(value);
+            Impl.SetValue(val);
         }
 
         /// <summary>

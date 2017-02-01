@@ -1184,4 +1184,19 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         WriteWithResponse
     }
+
+    /// <summary>
+    /// Enumerations of the remote device request types for attributes
+    /// </summary>
+    public enum BluetoothGattRequestType
+    {
+        /// <summary>
+        /// Read Requested.
+        /// </summary>
+        Read = 0,
+        /// <summary>
+        /// Write Requested.
+        /// </summary>
+        Write = 1,
+    }
 }

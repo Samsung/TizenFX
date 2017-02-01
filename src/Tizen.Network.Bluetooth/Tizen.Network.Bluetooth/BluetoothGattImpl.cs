@@ -101,9 +101,9 @@ namespace Tizen.Network.Bluetooth
             return attribututeList;
         }
 
-        internal void SendResponse(int requestId, int status, byte[] value, int offset)
+        internal void SendResponse(int requestId, int request_type, int status, byte[] value, int offset)
         {
-            int err = Interop.Bluetooth.BtGattServerSendResponse(requestId, 0, offset, status, value, value.Length);
+            int err = Interop.Bluetooth.BtGattServerSendResponse(requestId, request_type, offset, status, value, value.Length);
             GattUtil.ThrowForError(err, string.Format("Failed to send response for request Id {0}", requestId));
         }
 
@@ -197,7 +197,10 @@ namespace Tizen.Network.Bluetooth
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             Interop.Bluetooth.BtGattClientRequestCompletedCallback cb = (result, requestHandle, userData) =>
             {
-                tcs.SetResult(true);
+                if (result == (int)BluetoothError.None)
+                    tcs.SetResult(true);
+                else
+                    tcs.SetResult(false);
             };
 
             int err = Interop.Bluetooth.BtGattClientReadValue(handle, cb, IntPtr.Zero);
@@ -215,7 +218,10 @@ namespace Tizen.Network.Bluetooth
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             Interop.Bluetooth.BtGattClientRequestCompletedCallback cb = (result, requestHandle, userData) =>
             {
-                tcs.SetResult(true);
+                if (result == (int)BluetoothError.None)
+                    tcs.SetResult(true);
+                else
+                    tcs.SetResult(false);
             };
 
             int err = Interop.Bluetooth.BtGattClientWriteValue(handle, cb, IntPtr.Zero);
@@ -539,21 +545,6 @@ namespace Tizen.Network.Bluetooth
             return strValue;
         }
 
-        internal void SetValue(string value, int offset)
-        {
-            byte[] byteValue = GetValue();
-            byte[] strValue = Encoding.UTF8.GetBytes(value);
-            int length = offset + strValue.Length;
-            if (length >= byteValue.Length)
-            {
-                GattUtil.ThrowForError((int)BluetoothError.InvalidParameter, "Can not fit value to buffer");
-            }
-
-            Buffer.BlockCopy(strValue, 0, byteValue, offset, strValue.Length);
-            byteValue[length] = (byte)'\0';
-            SetValue(byteValue);
-        }
-
         internal int GetValue(IntDataType type, int offset)
         {
             int value;
@@ -634,7 +625,6 @@ namespace Tizen.Network.Bluetooth
             if (_hasOwnership == true)
             {
                 Interop.Bluetooth.BtGattClientDestroy(handle);
-                Interop.Bluetooth.BtGattServerDeinitialize();
             }
             SetHandle(IntPtr.Zero);
             return true;
@@ -647,6 +637,7 @@ namespace Tizen.Network.Bluetooth
         {
             if (_hasOwnership == true)
             {
+                Interop.Bluetooth.BtGattServerDeinitialize();
                 Interop.Bluetooth.BtGattServerDestroy(handle);
             }
             SetHandle(IntPtr.Zero);
