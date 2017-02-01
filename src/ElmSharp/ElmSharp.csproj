@@ -115,6 +115,7 @@
     <Compile Include="ElmSharp\Widget.cs" />
     <Compile Include="ElmSharp\Window.cs" />
     <Compile Include="ElmSharp\WrapType.cs" />
+    <Compile Include="Interop\Interop.Eext.FloatingButton.cs" />
     <Compile Include="Interop\Interop.Eina.cs" />
     <Compile Include="Interop\Interop.Elementary.FlipSelector.cs" />
     <Compile Include="Interop\Interop.Eo.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Interop\Interop.Elementary.CtxPopup.cs" />
     <Compile Include="Interop\Interop.Elementary.DateTimePicker.cs" />
     <Compile Include="Interop\Interop.Elementary.Entry.cs" />
-    <Compile Include="Interop\Interop.Elementary.FloatingButton.cs" />
     <Compile Include="Interop\Interop.Elementary.GenGridView.cs" />
     <Compile Include="Interop\Interop.Elementary.GenListView.cs" />
     <Compile Include="Interop\Interop.Elementary.GestureLayer.cs" />

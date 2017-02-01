@@ -20,8 +20,46 @@ namespace ElmSharp
 {
     public class FloatingButton : Layout
     {
+        SmartEvent _clicked;
+
         public FloatingButton(EvasObject parent) : base(parent)
         {
+            _clicked = new SmartEvent(this, Handle, "clicked");
+            _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler Clicked;
+
+        public FloatingButtonMode Mode
+        {
+            get
+            {
+                return (FloatingButtonMode)Interop.Eext.eext_floatingbutton_mode_get(Handle);
+            }
+            set
+            {
+                Interop.Eext.eext_floatingbutton_mode_set(Handle, (int)value);
+            }
+        }
+
+        public FloatingButtonPosition Position
+        {
+            get
+            {
+                return (FloatingButtonPosition)Interop.Eext.eext_floatingbutton_pos_get(Handle);
+            }
+        }
+
+        public bool MovementBlock
+        {
+            get
+            {
+                return Interop.Eext.eext_floatingbutton_movement_block_get(Handle);
+            }
+            set
+            {
+                Interop.Eext.eext_floatingbutton_movement_block_set(Handle, value);
+            }
         }
 
         public override int Opacity
@@ -37,9 +75,36 @@ namespace ElmSharp
             }
         }
 
+        public void SetPosition(FloatingButtonPosition position, bool animated)
+        {
+            if (animated)
+            {
+                Interop.Eext.eext_floatingbutton_pos_bring_in(Handle, (int)position);
+            }
+            else
+            {
+                Interop.Eext.eext_floatingbutton_pos_set(Handle, (int)position);
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);
+        }
+
+        public enum FloatingButtonMode
+        {
+            All,
+            LeftRightOnly,
+        }
+
+        public enum FloatingButtonPosition
+        {
+            LeftOut,
+            Left,
+            Center,
+            Right,
+            RightOut,
         }
     }
 }
