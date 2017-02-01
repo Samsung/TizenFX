@@ -18,6 +18,9 @@ using System;
 
 namespace Tizen.Messaging.Messages
 {
+    /// <summary>
+    /// An extended EventArgs class which contains a received message.
+    /// </summary>
     public class MessageReceivedEventArgs : EventArgs
     {
         private Message _message;
