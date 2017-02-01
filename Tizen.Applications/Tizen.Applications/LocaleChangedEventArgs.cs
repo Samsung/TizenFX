@@ -38,9 +38,5 @@ namespace Tizen.Applications
         /// </summary>
         public string Locale { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Region { get; internal set; }
     }
 }
