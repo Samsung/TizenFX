@@ -26,25 +26,25 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class is ConnectionManager
     /// </summary>
-    public partial class ConnectionManager
+    public static partial class ConnectionManager
     {
         /// <summary>
         /// Adds a new profile
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public int AddProfile(RequestProfile profile)
+        public static int AddProfile(RequestProfile profile)
         {
-            return _internalManager.AddProfile(profile);
+            return ConnectionInternalManager.Instance.AddProfile(profile);
         }
 
         /// <summary>
         /// Gets the list of profile with profile list type
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
+        public static Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
-            return _internalManager.GetProfileListAsync(type);
+            return ConnectionInternalManager.Instance.GetProfileListAsync(type);
         }
 
         /// <summary>
@@ -52,18 +52,18 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
-        public Task<ConnectionError> ConnectProfileAsync(ConnectionProfile profile)
+        public static Task<ConnectionError> ConnectProfileAsync(ConnectionProfile profile)
         {
-            return _internalManager.OpenProfileAsync(profile);
+            return ConnectionInternalManager.Instance.OpenProfileAsync(profile);
         }
 
         /// <summary>
         /// Closes a connection of profile.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
-        public Task<ConnectionError> DisconnectProfileAsync(ConnectionProfile profile)
+        public static Task<ConnectionError> DisconnectProfileAsync(ConnectionProfile profile)
         {
-            return _internalManager.CloseProfileAsync(profile);
+            return ConnectionInternalManager.Instance.CloseProfileAsync(profile);
         }
 
         /// <summary>
@@ -72,10 +72,10 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public int RemoveProfile(ConnectionProfile profile)
+        public static int RemoveProfile(ConnectionProfile profile)
         {
             Log.Debug(Globals.LogTag, "RemoveProfile. Id: " + profile.Id + ", Name: " + profile.Name + ", Type: " + profile.Type);
-            return _internalManager.RemoveProfile(profile);
+            return ConnectionInternalManager.Instance.RemoveProfile(profile);
         }
 
         /// <summary>
@@ -86,9 +86,9 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public int UpdateProfile(ConnectionProfile profile)
+        public static int UpdateProfile(ConnectionProfile profile)
         {
-            return _internalManager.UpdateProfile(profile);
+            return ConnectionInternalManager.Instance.UpdateProfile(profile);
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public ConnectionProfile GetCurrentProfile()
+        public static ConnectionProfile GetCurrentProfile()
         {
-            return _internalManager.GetCurrentProfile();
+            return ConnectionInternalManager.Instance.GetCurrentProfile();
         }
 
         /// <summary>
@@ -106,9 +106,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
+        public static ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
-            return _internalManager.GetDefaultCellularProfile(type);
+            return ConnectionInternalManager.Instance.GetDefaultCellularProfile(type);
         }
 
         /// <summary>
@@ -117,12 +117,12 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
+        public static Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
-            return _internalManager.SetDefaultCellularProfile(type, profile);
+            return ConnectionInternalManager.Instance.SetDefaultCellularProfile(type, profile);
         }
     }
-    
+
     /// <summary>
     /// An extended EventArgs class which contains the state of changed connection profile.
     /// </summary>

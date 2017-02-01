@@ -21,6 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Threading;
 
 namespace Tizen.Network.Connection
 {
@@ -43,6 +44,7 @@ namespace Tizen.Network.Connection
 
         internal IntPtr GetHandle()
         {
+            Log.Debug(Globals.LogTag, "handleholder handle = " + Handle);
             return Handle;
         }
         public void Dispose()
@@ -74,12 +76,40 @@ namespace Tizen.Network.Connection
 
     internal class ConnectionInternalManager
     {
-        private HandleHolder Holder = null;
         private bool disposed = false;
+        private static ConnectionInternalManager s_instance = null;
 
-        internal ConnectionInternalManager()
+        private EventHandler _ConnectionTypeChanged = null;
+        private EventHandler _IPAddressChanged = null;
+        private EventHandler _EthernetCableStateChanged = null;
+        private EventHandler _ProxyAddressChanged = null;
+
+        private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
+        private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
+        private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
+
+        internal static ConnectionInternalManager Instance
         {
-            Holder = new HandleHolder();
+            get
+            {
+                if (s_instance == null)
+                {
+                    s_instance = new ConnectionInternalManager();
+                }
+
+                return s_instance;
+            }
+        }
+
+        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
+        {
+            Log.Info(Globals.LogTag, "In threadlocal delegate");
+            return new HandleHolder();
+        });
+
+        private ConnectionInternalManager()
+        {
+
         }
 
         ~ConnectionInternalManager()
@@ -102,19 +132,247 @@ namespace Tizen.Network.Connection
 
             if (disposing)
             {
-                Holder.Dispose();
+                // Free managed objects.
             }
+
+            UnregisterEvents();
             disposed = true;
         }
 
-        public IntPtr GetHandle()
+        internal IntPtr GetHandle()
         {
-            return Holder.GetHandle();
+            Log.Debug(Globals.LogTag, "GetHandle, Thread Id = " + Thread.CurrentThread.ManagedThreadId);
+            return s_threadName.Value.GetHandle();
+        }
+
+        internal event EventHandler ConnectionTypeChanged
+        {
+            add
+            {
+                if (_ConnectionTypeChanged == null)
+                {
+                    ConnectionTypeChangedStart();
+                }
+
+                _ConnectionTypeChanged += value;
+            }
+            remove
+            {
+                _ConnectionTypeChanged -= value;
+                if (_ConnectionTypeChanged == null)
+                {
+                    ConnectionTypeChangedStop();
+                }
+            }
+        }
+
+        private void ConnectionTypeChangedStart()
+        {
+            _connectionTypeChangedCallback = (ConnectionType type, IntPtr user_data) =>
+            {
+                if (_ConnectionTypeChanged != null)
+                {
+                    _ConnectionTypeChanged(null, new ConnectionTypeEventArgs(type));
+                }
+            };
+
+            int ret = Interop.Connection.SetTypeChangedCallback(GetHandle(), _connectionTypeChangedCallback, IntPtr.Zero);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to register connection type changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        private void ConnectionTypeChangedStop()
+        {
+            int ret = Interop.Connection.UnsetTypeChangedCallback(GetHandle());
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to unregister connection type changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        internal event EventHandler EthernetCableStateChanged
+        {
+            add
+            {
+                if (_EthernetCableStateChanged == null)
+                {
+                    EthernetCableStateChangedStart();
+                }
+                _EthernetCableStateChanged += value;
+            }
+            remove
+            {
+                _EthernetCableStateChanged -= value;
+                if (_EthernetCableStateChanged == null)
+                {
+                    EthernetCableStateChangedStop();
+                }
+            }
+        }
+
+        private void EthernetCableStateChangedStart()
+        {
+            int ret = Interop.Connection.SetEthernetCableStateChagedCallback(GetHandle(), EthernetCableStateChangedCallback, IntPtr.Zero);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to register ethernet cable state changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        private void EthernetCableStateChangedStop()
+        {
+            int ret = Interop.Connection.UnsetEthernetCableStateChagedCallback(GetHandle());
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to unregister ethernet cable state changed callback, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        private void EthernetCableStateChangedCallback(EthernetCableState state, IntPtr user_data)
+        {
+            if (_EthernetCableStateChanged != null)
+            {
+                _EthernetCableStateChanged(null, new EthernetCableStateEventArgs(state));
+            }
+        }
+
+        internal event EventHandler IpAddressChanged
+        {
+            add
+            {
+                if (_IPAddressChanged == null)
+                {
+                    IpAddressChangedStart();
+                }
+                _IPAddressChanged += value;
+            }
+
+            remove
+            {
+                _IPAddressChanged -= value;
+                if (_IPAddressChanged == null)
+                {
+                    IpAddressChangedStop();
+                }
+            }
+        }
+
+        private void IpAddressChangedStart()
+        {
+            _connectionAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            {
+                if (_IPAddressChanged != null)
+                {
+                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+
+                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
+                    {
+                        _IPAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
+                    }
+                }
+            };
+
+            int ret = Interop.Connection.SetIpAddressChangedCallback(GetHandle(), _connectionAddressChangedCallback, IntPtr.Zero);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to register callback for changing IP address, " + (ConnectionError)ret);
+            }
+        }
+
+        private void IpAddressChangedStop()
+        {
+            int ret = Interop.Connection.UnsetIpAddressChangedCallback(GetHandle());
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to unregister callback for changing IP address, " + (ConnectionError)ret);
+            }
+        }
+
+        public event EventHandler ProxyAddressChanged
+        {
+            add
+            {
+                //Console.WriteLine("ProxyAddressChanged Add **");
+                if (_ProxyAddressChanged == null)
+                {
+                    ProxyAddressChangedStart();
+                }
+
+                _ProxyAddressChanged += value;
+            }
+            remove
+            {
+                //Console.WriteLine("ProxyAddressChanged Remove");
+                _ProxyAddressChanged -= value;
+                if (_ProxyAddressChanged == null)
+                {
+                    ProxyAddressChangedStop();
+                }
+            }
+        }
+
+        private void ProxyAddressChangedStart()
+        {
+            _proxyAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            {
+                if (_ProxyAddressChanged != null)
+                {
+                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+
+                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
+                    {
+                        _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
+                    }
+                }
+            };
+
+            int ret = Interop.Connection.SetProxyAddressChangedCallback(GetHandle(), _proxyAddressChangedCallback, IntPtr.Zero);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to register callback for changing proxy address, " + (ConnectionError)ret);
+            }
+        }
+
+        private void ProxyAddressChangedStop()
+        {
+            int ret = Interop.Connection.UnsetProxyAddressChangedCallback(GetHandle());
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to unregister callback for changing proxy address, " + (ConnectionError)ret);
+            }
+        }
+
+        private void UnregisterEvents()
+        {
+            if (_ConnectionTypeChanged != null)
+            {
+                ConnectionTypeChangedStop();
+            }
+            if (_IPAddressChanged != null)
+            {
+                IpAddressChangedStop();
+            }
+            if (_EthernetCableStateChanged != null)
+            {
+                EthernetCableStateChangedStop();
+            }
+            if (_ProxyAddressChanged != null)
+            {
+                ProxyAddressChangedStop();
+            }
         }
 
         internal int GetProfileIterator(ProfileListType type, out IntPtr iterator)
         {
-            return Interop.Connection.GetProfileIterator(Holder.GetHandle(), (int)type, out iterator);
+            return Interop.Connection.GetProfileIterator(GetHandle(), (int)type, out iterator);
         }
 
         internal bool HasNext(IntPtr iterator)
@@ -135,7 +393,7 @@ namespace Tizen.Network.Connection
         public string GetIpAddress(AddressFamily family)
         {
             IntPtr ip;
-            int ret = Interop.Connection.GetIpAddress(Holder.GetHandle(), (int)family, out ip);
+            int ret = Interop.Connection.GetIpAddress(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get IP address, " + (ConnectionError)ret);
@@ -149,7 +407,7 @@ namespace Tizen.Network.Connection
         public string GetProxy(AddressFamily family)
         {
             IntPtr ip;
-            int ret = Interop.Connection.GetProxy(Holder.GetHandle(), (int)family, out ip);
+            int ret = Interop.Connection.GetProxy(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get proxy, " + (ConnectionError)ret);
@@ -163,7 +421,7 @@ namespace Tizen.Network.Connection
         public string GetMacAddress(ConnectionType type)
         {
             IntPtr ip;
-            int ret = Interop.Connection.GetMacAddress(Holder.GetHandle(), (int)type, out ip);
+            int ret = Interop.Connection.GetMacAddress(GetHandle(), (int)type, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get mac address, " + (ConnectionError)ret);
@@ -179,8 +437,8 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                Log.Debug(Globals.LogTag, "Handle: " + Holder.GetHandle());
-                int ret = Interop.Connection.GetType(Holder.GetHandle(), out type);
+                Log.Debug(Globals.LogTag, "Handle: " + GetHandle());
+                int ret = Interop.Connection.GetType(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get connection type, " + (ConnectionError)ret);
@@ -195,8 +453,8 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                Log.Debug(Globals.LogTag, "CellularState Handle: " + Holder.GetHandle());
-                int ret = Interop.Connection.GetCellularState(Holder.GetHandle(), out type);
+                Log.Debug(Globals.LogTag, "CellularState Handle: " + GetHandle());
+                int ret = Interop.Connection.GetCellularState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get cellular state, " + (ConnectionError)ret);
@@ -211,7 +469,7 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                int ret = Interop.Connection.GetWiFiState(Holder.GetHandle(), out type);
+                int ret = Interop.Connection.GetWiFiState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get wifi state, " + (ConnectionError)ret);
@@ -226,7 +484,7 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                int ret = Interop.Connection.GetBtState(Holder.GetHandle(), out type);
+                int ret = Interop.Connection.GetBtState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get bluetooth state, " + (ConnectionError)ret);
@@ -241,7 +499,7 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                int ret = Interop.Connection.GetEthernetState(Holder.GetHandle(), out type);
+                int ret = Interop.Connection.GetEthernetState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ethernet state, " + (ConnectionError)ret);
@@ -256,7 +514,7 @@ namespace Tizen.Network.Connection
             get
             {
                 int type = 0;
-                int ret = Interop.Connection.GetEthernetCableState(Holder.GetHandle(), out type);
+                int ret = Interop.Connection.GetEthernetCableState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ethernet cable state, " + (ConnectionError)ret);
@@ -285,7 +543,7 @@ namespace Tizen.Network.Connection
             int ret = 0;
             if (profile.Type == ConnectionProfileType.Cellular)
             {
-                ret = Interop.Connection.AddProfile(Holder.GetHandle(), ((RequestCellularProfile)profile).ProfileHandle);
+                ret = Interop.Connection.AddProfile(GetHandle(), ((RequestCellularProfile)profile).ProfileHandle);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to add profile, " + (ConnectionError)ret);
@@ -294,7 +552,7 @@ namespace Tizen.Network.Connection
             }
             else if (profile.Type == ConnectionProfileType.WiFi)
             {
-                ret = Interop.Connection.AddProfile(Holder.GetHandle(), ((RequestWiFiProfile)profile).ProfileHandle);
+                ret = Interop.Connection.AddProfile(GetHandle(), ((RequestWiFiProfile)profile).ProfileHandle);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to add profile, " + (ConnectionError)ret);
@@ -306,7 +564,7 @@ namespace Tizen.Network.Connection
 
         public int RemoveProfile(ConnectionProfile profile)
         {
-            int ret = Interop.Connection.RemoveProfile(Holder.GetHandle(), profile.ProfileHandle);
+            int ret = Interop.Connection.RemoveProfile(GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to remove profile, " + (ConnectionError)ret);
@@ -317,7 +575,7 @@ namespace Tizen.Network.Connection
 
         public int UpdateProfile(ConnectionProfile profile)
         {
-            int ret = Interop.Connection.UpdateProfile(Holder.GetHandle(), profile.ProfileHandle);
+            int ret = Interop.Connection.UpdateProfile(GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to update profile, " + (ConnectionError)ret);
@@ -329,7 +587,7 @@ namespace Tizen.Network.Connection
         public ConnectionProfile GetCurrentProfile()
         {
             IntPtr ProfileHandle;
-            int ret = Interop.Connection.GetCurrentProfile(Holder.GetHandle(), out ProfileHandle);
+            int ret = Interop.Connection.GetCurrentProfile(GetHandle(), out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get current profile, " + (ConnectionError)ret);
@@ -342,7 +600,7 @@ namespace Tizen.Network.Connection
         public ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
             IntPtr ProfileHandle;
-            int ret = Interop.Connection.GetDefaultCellularServiceProfile(Holder.GetHandle(), (int)type, out ProfileHandle);
+            int ret = Interop.Connection.GetDefaultCellularServiceProfile(GetHandle(), (int)type, out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "Error: " + ret);
@@ -361,7 +619,7 @@ namespace Tizen.Network.Connection
                 task.SetResult((ConnectionError)Result);
                 return;
             };
-            int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(Holder.GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
+            int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
@@ -377,7 +635,7 @@ namespace Tizen.Network.Connection
 
             List<ConnectionProfile> Result = new List<ConnectionProfile>();
             IntPtr iterator;
-            int ret = Interop.Connection.GetProfileIterator(Holder.GetHandle(), (int)type, out iterator);
+            int ret = Interop.Connection.GetProfileIterator(GetHandle(), (int)type, out iterator);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get profile iterator, " + (ConnectionError)ret);
@@ -421,7 +679,7 @@ namespace Tizen.Network.Connection
                 task.SetResult((ConnectionError)Result);
                 return;
             };
-            int ret = Interop.Connection.OpenProfile(Holder.GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+            int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to oepn profile, " + (ConnectionError)ret);
@@ -438,7 +696,7 @@ namespace Tizen.Network.Connection
                 task.SetResult((ConnectionError)Result);
                 return;
             };
-            int ret = Interop.Connection.CloseProfile(Holder.GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+            int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to close profile, " + (ConnectionError)ret);

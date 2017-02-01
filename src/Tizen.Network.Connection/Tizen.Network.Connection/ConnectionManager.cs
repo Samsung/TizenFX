@@ -29,282 +29,71 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class is ConnectionManager
     /// </summary>
-    public partial class ConnectionManager : IDisposable
+    public static partial class ConnectionManager
     {
-        private ConnectionInternalManager _internalManager = null;
-        private ConnectionItem _currentConnection = null;
-        private bool disposed = false;
-
-        private EventHandler _ConnectionTypeChanged = null;
-        private EventHandler _IPAddressChanged = null;
-        private EventHandler _EthernetCableStateChanged = null;
-        private EventHandler _ProxyAddressChanged = null;
-
-        private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
-        private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
-        private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
-
-        public ConnectionManager()
-        {
-            _internalManager = new ConnectionInternalManager();
-            _currentConnection = new ConnectionItem(_internalManager);
-        }
-
-        ~ConnectionManager()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            Log.Debug(Globals.LogTag, ">>> ConnectionManager Dispose with disposing " + disposing + ", disposed " + disposed);
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-                UnregisterEvents();
-                _internalManager.Dispose();
-            }
-            disposed = true;
-        }
+        private static ConnectionItem _currentConnection = null;
 
         /// <summary>
         /// Event that is called when the type of the current connection is changed.
         /// </summary>
-        public event EventHandler ConnectionTypeChanged
+        public static event EventHandler ConnectionTypeChanged
         {
             add
             {
-                if (_ConnectionTypeChanged == null)
-                {
-                    ConnectionTypeChangedStart();
-                }
-                _ConnectionTypeChanged += value;
+                ConnectionInternalManager.Instance.ConnectionTypeChanged += value;
             }
+
             remove
             {
-                _ConnectionTypeChanged -= value;
-                if (_ConnectionTypeChanged == null)
-                {
-                    ConnectionTypeChangedStop();
-                }
-            }
-        }
-
-        private void ConnectionTypeChangedStart()
-        {
-            _connectionTypeChangedCallback = (ConnectionType type, IntPtr user_data) =>
-            {
-                if (_ConnectionTypeChanged != null)
-                {
-                    _ConnectionTypeChanged(null, new ConnectionTypeEventArgs(type));
-                }
-            };
-            int ret = Interop.Connection.SetTypeChangedCallback(_internalManager.GetHandle(), _connectionTypeChangedCallback, IntPtr.Zero);
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to register connection type changed callback, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        private void ConnectionTypeChangedStop()
-        {
-            int ret = Interop.Connection.UnsetTypeChangedCallback(_internalManager.GetHandle());
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to unregister connection type changed callback, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
+                ConnectionInternalManager.Instance.ConnectionTypeChanged -= value;
             }
         }
 
         /// <summary>
         /// Event for ethernet cable is plugged [in/out] event.
         /// </summary>
-        public event EventHandler EthernetCableStateChanged
+        public static event EventHandler EthernetCableStateChanged
         {
             add
             {
-                if (_EthernetCableStateChanged == null)
-                {
-                    EthernetCableStateChangedStart();
-                }
-                _EthernetCableStateChanged += value;
+                ConnectionInternalManager.Instance.EthernetCableStateChanged += value;
             }
+
             remove
             {
-                _EthernetCableStateChanged -= value;
-                if (_EthernetCableStateChanged == null)
-                {
-                    EthernetCableStateChangedStop();
-                }
-            }
-        }
-
-        private void EthernetCableStateChangedStart()
-        {
-            int ret = Interop.Connection.SetEthernetCableStateChagedCallback(_internalManager.GetHandle(), EthernetCableStateChangedCallback, IntPtr.Zero);
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to register ethernet cable state changed callback, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        private void EthernetCableStateChangedStop()
-        {
-            int ret = Interop.Connection.UnsetEthernetCableStateChagedCallback(_internalManager.GetHandle());
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to unregister ethernet cable state changed callback, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        private void EthernetCableStateChangedCallback(EthernetCableState state, IntPtr user_data)
-        {
-            if (_EthernetCableStateChanged != null)
-            {
-                _EthernetCableStateChanged(null, new EthernetCableStateEventArgs(state));
+                ConnectionInternalManager.Instance.EthernetCableStateChanged -= value;
             }
         }
 
         /// <summary>
         /// Event that is called when the IP address is changed.
         /// </summary>
-        public event EventHandler IpAddressChanged
+        public static event EventHandler IpAddressChanged
         {
             add
             {
-                if (_IPAddressChanged == null)
-                {
-                    IpAddressChangedStart();
-                }
-                _IPAddressChanged += value;
+                ConnectionInternalManager.Instance.IpAddressChanged += value;
             }
+
             remove
             {
-                _IPAddressChanged -= value;
-                if (_IPAddressChanged == null)
-                {
-                    IpAddressChangedStop();
-                }
-            }
-        }
-
-        private void IpAddressChangedStart()
-        {
-            _connectionAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
-            {
-                if (_IPAddressChanged != null)
-                {
-                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
-
-                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
-                    {
-                        _IPAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
-                    }
-                }
-            };
-            Log.Debug(Globals.LogTag, "Handle: " + _internalManager.GetHandle());
-            int ret = Interop.Connection.SetIpAddressChangedCallback(_internalManager.GetHandle(), _connectionAddressChangedCallback, IntPtr.Zero);
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to register callback for changing IP address, " + (ConnectionError)ret);
-            }
-        }
-
-        private void IpAddressChangedStop()
-        {
-            int ret = Interop.Connection.UnsetIpAddressChangedCallback(_internalManager.GetHandle());
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to unregister callback for changing IP address, " + (ConnectionError)ret);
+                ConnectionInternalManager.Instance.IpAddressChanged -= value;
             }
         }
 
         /// <summary>
         /// Event that is called when the proxy address is changed.
         /// </summary>
-        public event EventHandler ProxyAddressChanged
+        public static event EventHandler ProxyAddressChanged
         {
             add
             {
-                //Console.WriteLine("ProxyAddressChanged Add **");
-                if (_ProxyAddressChanged == null)
-                {
-                    ProxyAddressChangedStart();
-                }
-                _ProxyAddressChanged += value;
+                ConnectionInternalManager.Instance.ProxyAddressChanged += value;
             }
+
             remove
             {
-                //Console.WriteLine("ProxyAddressChanged Remove");
-                _ProxyAddressChanged -= value;
-                if (_ProxyAddressChanged == null)
-                {
-                    ProxyAddressChangedStop();
-                }
-            }
-        }
-
-        private void ProxyAddressChangedStart()
-        {
-            _proxyAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
-            {
-                if (_ProxyAddressChanged != null)
-                {
-                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
-
-                    if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
-                    {
-                        _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
-                    }
-                }
-            };
-            int ret = Interop.Connection.SetProxyAddressChangedCallback(_internalManager.GetHandle(), _proxyAddressChangedCallback, IntPtr.Zero);
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to register callback for changing proxy address, " + (ConnectionError)ret);
-            }
-        }
-
-        private void ProxyAddressChangedStop()
-        {
-            int ret = Interop.Connection.UnsetProxyAddressChangedCallback(_internalManager.GetHandle());
-            if ((ConnectionError)ret != ConnectionError.None)
-            {
-                Log.Error(Globals.LogTag, "It failed to unregister callback for changing proxy address, " + (ConnectionError)ret);
-            }
-        }
-
-        private void UnregisterEvents()
-        {
-            if (_ConnectionTypeChanged != null)
-            {
-                ConnectionTypeChangedStop();
-            }
-            if (_IPAddressChanged != null)
-            {
-                IpAddressChangedStop();
-            }
-            if (_EthernetCableStateChanged != null)
-            {
-                EthernetCableStateChangedStop();
-            }
-            if (_ProxyAddressChanged != null)
-            {
-                ProxyAddressChangedStop();
+                ConnectionInternalManager.Instance.ProxyAddressChanged -= value;
             }
         }
 
@@ -312,41 +101,46 @@ namespace Tizen.Network.Connection
         /// Gets the IP address of the current connection.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public string GetIpAddress(AddressFamily family)
+        public static string GetIpAddress(AddressFamily family)
         {
-            return _internalManager.GetIpAddress(family);
+            return ConnectionInternalManager.Instance.GetIpAddress(family);
         }
 
         /// <summary>
         /// Gets the proxy address of the current connection.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public string GetProxy(AddressFamily family)
+        public static string GetProxy(AddressFamily family)
         {
-            return _internalManager.GetProxy(family);
+            return ConnectionInternalManager.Instance.GetProxy(family);
         }
 
         /// <summary>
         /// Gets the MAC address of the Wi-Fi or ethernet.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public string GetMacAddress(ConnectionType type)
+        public static string GetMacAddress(ConnectionType type)
         {
-            return _internalManager.GetMacAddress(type);
+            return ConnectionInternalManager.Instance.GetMacAddress(type);
         }
 
         /// <summary>
         /// Gets type and state of the current profile for data connection
         /// </summary>
-        public ConnectionItem CurrentConnection
+        public static ConnectionItem CurrentConnection
         {
             get
             {
+                if (_currentConnection == null)
+                {
+                    _currentConnection = new ConnectionItem();
+                }
+
                 return _currentConnection;
             }
         }
 
-        public RequestProfile CreateRequestProfile(ConnectionProfileType type, string keyword)
+        public static RequestProfile CreateRequestProfile(ConnectionProfileType type, string keyword)
         {
             IntPtr ProfileHandle = ConnectionInternalManager.CreateRequestProfile(type, keyword);
             if (type == ConnectionProfileType.WiFi)
@@ -368,11 +162,11 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the state of cellular connection.
         /// </summary>
-        public CellularState CellularState
+        public static CellularState CellularState
         {
             get
             {
-                return _internalManager.CellularState;
+                return ConnectionInternalManager.Instance.CellularState;
             }
         }
 
@@ -380,11 +174,11 @@ namespace Tizen.Network.Connection
         /// Gets the state of the Wi-Fi.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public ConnectionState WiFiState
+        public static ConnectionState WiFiState
         {
             get
             {
-                return _internalManager.WiFiState;
+                return ConnectionInternalManager.Instance.WiFiState;
             }
         }
 
@@ -392,11 +186,11 @@ namespace Tizen.Network.Connection
         /// The state of the Bluetooth.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public ConnectionState BluetoothState
+        public static ConnectionState BluetoothState
         {
             get
             {
-                return _internalManager.BluetoothState;
+                return ConnectionInternalManager.Instance.BluetoothState;
             }
         }
 
@@ -404,11 +198,11 @@ namespace Tizen.Network.Connection
         /// The Ethernet connection state.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public ConnectionState EthernetState
+        public static ConnectionState EthernetState
         {
             get
             {
-                return _internalManager.EthernetState;
+                return ConnectionInternalManager.Instance.EthernetState;
             }
         }
 
@@ -416,11 +210,11 @@ namespace Tizen.Network.Connection
         /// Checks for ethernet cable is attached or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        public EthernetCableState EthernetCableState
+        public static EthernetCableState EthernetCableState
         {
             get
             {
-                return _internalManager.EthernetCableState;
+                return ConnectionInternalManager.Instance.EthernetCableState;
             }
         }
 
@@ -431,10 +225,8 @@ namespace Tizen.Network.Connection
     /// </summary>
     public class ConnectionItem
     {
-        ConnectionInternalManager _internalManager = null;
-        internal ConnectionItem(ConnectionInternalManager manager)
+        internal ConnectionItem()
         {
-            _internalManager = manager;
         }
 
         /// <summary>
@@ -444,7 +236,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                return _internalManager.ConnectionType;
+                return ConnectionInternalManager.Instance.ConnectionType;
             }
         }
 
@@ -455,13 +247,13 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                if (_internalManager.ConnectionType == ConnectionType.Cellular)
+                if (ConnectionInternalManager.Instance.ConnectionType == ConnectionType.Cellular)
                 {
-                    if (_internalManager.CellularState == CellularState.Connected)
+                    if (ConnectionInternalManager.Instance.CellularState == CellularState.Connected)
                     {
                         return ConnectionState.Connected;
                     }
-                    else if (_internalManager.CellularState == CellularState.Available)
+                    else if (ConnectionInternalManager.Instance.CellularState == CellularState.Available)
                     {
                         return ConnectionState.Disconnected;
                     }
@@ -469,17 +261,17 @@ namespace Tizen.Network.Connection
                         return ConnectionState.Deactivated;
                     }
                 }
-                else if (_internalManager.ConnectionType == ConnectionType.Bluetooth)
+                else if (ConnectionInternalManager.Instance.ConnectionType == ConnectionType.Bluetooth)
                 {
-                    return _internalManager.BluetoothState;
+                    return ConnectionInternalManager.Instance.BluetoothState;
                 }
-                else if (_internalManager.ConnectionType == ConnectionType.WiFi)
+                else if (ConnectionInternalManager.Instance.ConnectionType == ConnectionType.WiFi)
                 {
-                    return _internalManager.WiFiState;
+                    return ConnectionInternalManager.Instance.WiFiState;
                 }
-                else if (_internalManager.ConnectionType == ConnectionType.Ethernet)
+                else if (ConnectionInternalManager.Instance.ConnectionType == ConnectionType.Ethernet)
                 {
-                    return _internalManager.EthernetState;
+                    return ConnectionInternalManager.Instance.EthernetState;
                 }
                 else { // TO DO : Add Net Proxy
                     return ConnectionState.Disconnected;
