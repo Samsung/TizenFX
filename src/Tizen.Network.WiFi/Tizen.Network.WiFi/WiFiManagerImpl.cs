@@ -23,11 +23,24 @@ namespace Tizen.Network.WiFi
     static internal class Globals
     {
         internal const string LogTag = "Tizen.Network.WiFi";
+        internal static bool s_isInitialize = false;
+
+        internal static bool IsInitialize
+        {
+            get
+            {
+                if (!Globals.s_isInitialize)
+                {
+                    WiFiManagerImpl.Instance.Initialize();
+                }
+                return Globals.s_isInitialize;
+            }
+        }
     }
 
     internal partial class WiFiManagerImpl : IDisposable
     {
-        private static readonly WiFiManagerImpl _instance = new WiFiManagerImpl();
+        private static WiFiManagerImpl _instance;
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
         private string _macAddress;
@@ -100,13 +113,17 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                if (_instance == null)
+                {
+                    _instance = new WiFiManagerImpl();
+                }
+
                 return _instance;
             }
         }
 
         private WiFiManagerImpl()
         {
-            initialize();
         }
 
         ~WiFiManagerImpl()
@@ -135,7 +152,7 @@ namespace Tizen.Network.WiFi
             disposed = true;
         }
 
-        private void initialize()
+        internal void Initialize()
         {
             int ret = Interop.WiFi.Initialize();
             if (ret != (int)WiFiError.None)
@@ -143,6 +160,7 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to initialize wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
+            Globals.s_isInitialize = true;
             string address;
             ret = Interop.WiFi.GetMacAddress(out address);
             if (ret != (int)WiFiError.None)
@@ -161,6 +179,7 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to deinitialize wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
+            Globals.s_isInitialize = false;
         }
 
         internal IEnumerable<WiFiAp> GetFoundAps()
