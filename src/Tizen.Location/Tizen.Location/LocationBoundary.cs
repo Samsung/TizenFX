@@ -265,14 +265,11 @@ namespace Tizen.Location
         {
             Log.Info(Globals.LogTag, "Calling PolygonBoundary Constructor");
             BoundaryType = BoundaryType.Polygon;
-            IntPtr[] pointers = new IntPtr[coordinates.Count];
             IntPtr listPointer = Marshal.AllocHGlobal(Marshal.SizeOf(coordinates[0]) * coordinates.Count);
             IntPtr boundsHandle;
             for (int i = 0; i < coordinates.Count; i++)
             {
-                pointers[i] = Marshal.AllocHGlobal(Marshal.SizeOf(coordinates[0]));
-                Marshal.StructureToPtr(coordinates[i], pointers[i], true);
-                Marshal.WriteIntPtr(listPointer, i * Marshal.SizeOf(coordinates[0]), pointers[i]);
+                Marshal.StructureToPtr(coordinates[i], listPointer + i * Marshal.SizeOf(coordinates[0]), false);
             }
             int ret = Interop.LocationBoundary.CreatePolygonBoundary(listPointer, coordinates.Count, out boundsHandle);
             if ((LocationBoundError)ret != LocationBoundError.None)
