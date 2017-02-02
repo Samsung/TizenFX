@@ -28,7 +28,7 @@ namespace Tizen.Messaging.Messages
         protected IntPtr _messageHandle = IntPtr.Zero;
         private bool disposed = false;
 
-        private MessagesAddress _from = null;
+        private ICollection<MessagesAddress> _from = new Collection<MessagesAddress>();
         protected ICollection<MessagesAddress> _to = new Collection<MessagesAddress>();
         protected ICollection<MessagesAddress> _cc = new Collection<MessagesAddress>();
         protected ICollection<MessagesAddress> _bcc = new Collection<MessagesAddress>();
@@ -134,6 +134,7 @@ namespace Tizen.Messaging.Messages
             var To = new Collection<MessagesAddress>();
             var Cc = new Collection<MessagesAddress>();
             var Bcc = new Collection<MessagesAddress>();
+            var From = new Collection<MessagesAddress>();
 
             for (int i = 0; i < count; i++)
             {
@@ -157,7 +158,7 @@ namespace Tizen.Messaging.Messages
                         Bcc.Add(addressItem);
                         break;
                     default:
-                        _from = addressItem;
+                        From.Add(addressItem);
                         break;
                 }
             }
@@ -165,6 +166,7 @@ namespace Tizen.Messaging.Messages
             _to = To;
             _cc = Cc;
             _bcc = Bcc;
+            _from = From;
         }
 
         public int Id
@@ -293,11 +295,11 @@ namespace Tizen.Messaging.Messages
             }
         }
 
-        public MessagesAddress From
+        public IReadOnlyCollection<MessagesAddress> From
         {
             get
             {
-                return _from;
+                return _from as IReadOnlyCollection<MessagesAddress>;
             }
         }
     }
