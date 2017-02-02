@@ -236,7 +236,7 @@ namespace Tizen.Network.Nfc
             }
         }
 
-        internal Task SetActivateAsync(bool activation)
+        internal Task SetActivationAsync(bool activation)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id = IntPtr.Zero;

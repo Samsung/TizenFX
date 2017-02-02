@@ -46,14 +46,6 @@ namespace Tizen.Network.Nfc
 
                 return NfcConvertUtil.IntLengthIntPtrToByteArray(id, idLength);
             }
-            set
-            {
-                int ret = Interop.Nfc.NdefRecord.SetId(_recordHandle, value, value.Length);
-                if (ret != (int)NfcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set id, Error - " + (NfcError)ret);
-                }
-            }
         }
 
         /// <summary>

@@ -305,10 +305,10 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Activates Nfc asynchronously. 
+        /// Activates Nfc asynchronously.
         /// </summary>
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
-        static public Task SetActivateAsync(bool activation)
+        static public Task SetActivationAsync(bool activation)
         {
             bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
@@ -319,7 +319,7 @@ namespace Tizen.Network.Nfc
 
             try
             {
-                return NfcManagerImpl.Instance.SetActivateAsync(activation);
+                return NfcManagerImpl.Instance.SetActivationAsync(activation);
             }
             catch (TypeInitializationException e)
             {

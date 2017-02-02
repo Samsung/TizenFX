@@ -326,7 +326,7 @@ namespace Tizen.Network.Nfc
         /// <returns>List of NfcRegisteredAidInformation objects.</returns>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="category">Enumeration value of category.</param>
-        public IEnumerable<NfcRegisteredAidInformation> ForeachRegisteredAidInformations(NfcSecureElementType seType, NfcCardEmulationCategoryType category)
+        public IEnumerable<NfcRegisteredAidInformation> GetRegisteredAidInformation(NfcSecureElementType seType, NfcCardEmulationCategoryType category)
         {
             List<NfcRegisteredAidInformation> infoList = new List<NfcRegisteredAidInformation>();
             Interop.Nfc.SecureElementRegisteredAidCallback callback = (int type, IntPtr aid, bool readOnly, IntPtr userData) =>

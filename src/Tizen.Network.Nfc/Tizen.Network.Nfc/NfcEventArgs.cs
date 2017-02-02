@@ -126,9 +126,9 @@ namespace Tizen.Network.Nfc
         {
             _ndef = new NfcNdefMessage(messageHandle);
         }
-        
+
         /// <summary>
-        /// Tag object
+        /// The NdefMessage object that is most recently received via NFC p2p mode or tag mode
         /// </summary>
         public NfcNdefMessage NdefMessage
         {
