@@ -18,7 +18,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Geofence = "libcapi-geofence-manager.so.0";
-        public const string Libc = "libc.so.6";
+        internal const string Geofence = "libcapi-geofence-manager.so.0";
+        internal const string Libc = "libc.so.6";
     }
 }
