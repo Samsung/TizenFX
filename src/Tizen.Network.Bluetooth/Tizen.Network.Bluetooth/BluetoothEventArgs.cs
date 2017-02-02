@@ -954,13 +954,14 @@ namespace Tizen.Network.Bluetooth
     /// </summary>
     public class WriteRequestedEventArgs : EventArgs
     {
-        internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int offset)
+        internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int offset, bool response_needed)
         {
             Server = server;
             ClientAddress = clientAddress;
             RequestId = requestId;
             Value = value;
             Offset = offset;
+            Response_needed = response_needed;
         }
 
         /// <summary>
@@ -983,6 +984,10 @@ namespace Tizen.Network.Bluetooth
         /// The offset.
         /// </summary>
         public int Offset { get; }
+        /// <summary>
+        /// Indicates whether a response is required by the remote device.
+        /// </summary>
+        public bool Response_needed { get; }
     }
 
     /// <summary>
