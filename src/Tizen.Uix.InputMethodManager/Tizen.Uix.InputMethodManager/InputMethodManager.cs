@@ -1,0 +1,160 @@
+﻿/*
+* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+
+using static Interop.InputMethodManager;
+
+namespace Tizen.Uix.InputMethodManager
+{
+    /// <summary>
+    /// This class provides the functions for launching input method editor (IME) list and selector settings. A user can manage the installed IMEs in the system.
+    /// </summary>
+    /// <overview>
+    /// Input method editor (IME) is an input panel that lets users provide input and the platform receives the text data entered.
+    /// Manager is a module for managing the installed IMEs.
+    /// IME developers can use this module to open the installed IME list or selector menu after their IME installation and then guide to select the installed IME.
+    /// </overview>
+    public static class Manager
+    {
+        /// <summary>
+        /// Requests to open the installed IME list menu.
+        /// This api provides the installed IME list menu for the IME developers who might want to open it to enable their IME.
+        /// </summary>
+        /// <Privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </Privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This Exception can occur if:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation failed
+        /// </exception>
+        public static void ShowIMEList()
+        {
+            ErrorCode error = ImeManagerShowImeList();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "ShowIMEList Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Requests to open the IME selector menu.
+        /// This api provides the IME selector menu for the IME or other application developers who might want to change the default IME.
+        /// </summary>
+        /// <Privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </Privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This Exception can occur if:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation failed
+        /// </exception>
+        public static void ShowIMESelector()
+        {
+            ErrorCode error = ImeManagerShowImeSelector();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "ShowIMESelector Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the specific IME is enabled or disabled in the system keyboard setting.
+        /// The IME developers can use this property to check if their IME is enabled or not.
+        /// </summary>
+        /// <Privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </Privilege>
+        /// <param name="appId">The application ID of the IME</param>
+        /// <returns>The On (enabled) and Off (disabled) state of the IME</returns>
+        /// <exception cref="ArgumentException">
+        /// This Exception can occur if Invalid parameter is provided
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// This Exception can occur if:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation failed
+        /// </exception>
+        public static bool IsIMEEnabled(string appId)
+        {
+            bool isIMEEnabled;
+            ErrorCode error = ImeManagerIsImeEnabled(appId, out isIMEEnabled);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "IsIMEEnabled Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+
+            return isIMEEnabled;
+        }
+
+        /// <summary>
+        /// Checks which IME is the current activated (selected) IME.
+        /// </summary>
+        /// <Privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </Privilege>
+        /// <returns>
+        /// Current activated (selected) IME
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// This Exception can occur if:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation failed
+        /// </exception>
+        public static string GetActiveIME()
+        {
+            string activeIME;
+            ErrorCode error = ImeManagerGetActiveIme(out activeIME);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "GetActiveIME Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+
+            return activeIME;
+        }
+
+        /// <summary>
+        /// Gets the number of IMEs which are enabled (usable).
+        /// </summary>
+        /// <Privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </Privilege>
+        /// <returns>
+        /// The number of enabled IMEs
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// This Exception can occur if:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation failed
+        /// </exception>
+        public static int GetEnabledIMECount()
+        {
+            int activeIME = ImeManagerGetEnabledImeCount();
+            ErrorCode error = (ErrorCode)Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "GetEnabledIMECount Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+
+            return activeIME;
+        }
+    }
+}
