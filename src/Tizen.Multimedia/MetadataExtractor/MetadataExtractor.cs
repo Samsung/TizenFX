@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,470 +14,285 @@
 * limitations under the License.
 */
 
-
 using System;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
-	static internal class MetadataExtractorLog
-	{
-		internal const string LogTag = "Tizen.Multimedia.MetadataExtractor";
-	}
-	/// <summary>
-	/// The Metadata extractor class provides a set of functions to get the metadata of the input media file
-	/// </summary>
-	public class MetadataExtractor : IDisposable
-	{
-		private bool _disposed = false;
-		internal IntPtr _handle = IntPtr.Zero;
-		/// <summary>
-		/// Metadata extractor constructor
-		/// </summary>
-		/// <param name="path"> the path to extract metadata </param>
-		public MetadataExtractor(string path)
-		{
-			int ret;
+    static internal class MetadataExtractorLog
+    {
+        internal const string Tag = "Tizen.Multimedia.MetadataExtractor";
+    }
 
-			if (path == null)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Path is NULL");
-				MetadataExtractorErrorFactory.ThrowException((int)MetadataExtractorError.InvalidParameter, "Path is NULL");
-			}
-			else
-			{
-				ret = Interop.MetadataExtractor.Create(out _handle);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to create metadata" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to create metadata");
-				}
-				ret = Interop.MetadataExtractor.SetPath(_handle, path);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to set path" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to set path");
-				}
-			}
-		}
-		/// <summary>
-		/// Metadata extractor constructor
-		/// </summary>
-		/// <param name="buffer"> the buffer to extract metadata </param>
-		public MetadataExtractor(byte[] buffer)
-		{
-			int ret;
+    /// <summary>
+    /// Provides a set of functions to get the metadata from a media file.
+    /// </summary>
+    public class MetadataExtractor : IDisposable
+    {
+        private bool _disposed = false;
+        private IntPtr _handle = IntPtr.Zero;
+        private IntPtr _buffer = IntPtr.Zero;
 
-			if (buffer == null || buffer.Length == 0)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "buffer is null");
-				MetadataExtractorErrorFactory.ThrowException((int)MetadataExtractorError.InvalidParameter, "buffer is null");
-			}
-			else
+        private void Create(Func<MetadataExtractorError> initFunc)
+        {
+            MetadataExtractorRetValidator.ThrowIfError(
+                Interop.MetadataExtractor.Create(out _handle), "Failed to create metadata");
+
+            try
             {
-                int size = buffer.Length;
-                IntPtr buf = Marshal.AllocHGlobal(size);
-                Marshal.Copy(buffer, 0, buf, size);
+                MetadataExtractorRetValidator.ThrowIfError(initFunc(), "Failed to init");
 
-				ret = Interop.MetadataExtractor.Create(out _handle);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to create metadata" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to create metadata");
-				}
+                _metadata = new Lazy<Metadata>(() => new Metadata(Handle));
+            }
+            catch
+            {
+                Release();
+                throw;
+            }
+        }
 
-				ret = Interop.MetadataExtractor.SetBuffer(_handle, buf, size);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to set buffer" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to set buffer");
-				}
-			}
-			
-		}
-		/// <summary>
-		/// Gets metadata
-		/// </summary>
-		/// <value> Metadata object </value>
-		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-		public Metadata GetMetadata()
-		{
-			int ret;
-			Metadata _metadata;
-			MetadataBundle _metaBundle = new MetadataBundle();
+        /// <summary>
+        /// Initialize a new instance of the MetadataExtractor class with the specified path.
+        /// </summary>
+        /// <param name="path">The path for the file to extract metadata.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        public MetadataExtractor(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
 
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_DURATION, out _metaBundle.Duration);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_HAS_VIDEO, out _metaBundle.Videostreamcount);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			if (_metaBundle.Videostreamcount == null || (_metaBundle.Videostreamcount != null && !_metaBundle.Videostreamcount.Equals("0")))
-			{
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_VIDEO_BITRATE, out _metaBundle.VideoBitrate);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_VIDEO_FPS, out _metaBundle.VideoFPS);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_VIDEO_WIDTH, out _metaBundle.VideoWidth);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_VIDEO_HEIGHT, out _metaBundle.VideoHeight);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_VIDEO_CODEC, out _metaBundle.VideoCodec);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-			}
+            Create(()=> Interop.MetadataExtractor.SetPath(_handle, path));
+        }
 
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_HAS_AUDIO, out _metaBundle.Audiostreamcount);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			if (_metaBundle.Audiostreamcount == null || (_metaBundle.Audiostreamcount != null && !_metaBundle.Audiostreamcount.Equals("0")))
-			{
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUDIO_BITRATE, out _metaBundle.AudioBitrate);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUDIO_CHANNELS, out _metaBundle.AudioChannels);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUDIO_SAMPLERATE, out _metaBundle.AudioSamplerate);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUDIO_BITPERSAMPLE, out _metaBundle.Audiobitpersample);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-				ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUDIO_CODEC, out _metaBundle.AudioCodec);
-				if (ret != (int)MetadataExtractorError.None)
-				{
-					Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-					MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-				}
-			}
+        /// <summary>
+        /// Initialize a new instance of the MetadataExtractor class with the specified buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer to extract metadata.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+        /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
+        public MetadataExtractor(byte[] buffer)
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException(nameof(buffer));
+            }
 
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_ARTIST, out _metaBundle.Artist);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_TITLE, out _metaBundle.Title);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_ALBUM, out _metaBundle.Album);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_ALBUM_ARTIST, out _metaBundle.AlbumArtist);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_GENRE, out _metaBundle.Genre);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_AUTHOR, out _metaBundle.Author);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_COPYRIGHT, out _metaBundle.Copyright);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_DATE, out _metaBundle.Date);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_DESCRIPTION, out _metaBundle.Description);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_COMMENT, out _metaBundle.Comment);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_TRACK_NUM, out _metaBundle.Tracknumber);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_CLASSIFICATION, out _metaBundle.Classification);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_RATING, out _metaBundle.Rating);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_LONGITUDE, out _metaBundle.Longitude);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_LATITUDE, out _metaBundle.Latitude);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_ALTITUDE, out _metaBundle.Altitude);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_CONDUCTOR, out _metaBundle.Conductor);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_UNSYNCLYRICS, out _metaBundle.Unsynclyric);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_SYNCLYRICS_NUM, out _metaBundle.SyncLyricNumber);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_RECDATE, out _metaBundle.Recordingdate);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_ROTATE, out _metaBundle.Rotate);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
-			ret = Interop.MetadataExtractor.GetMetadata(_handle, (int)MetadataExtractorAttr.METADATA_360, out _metaBundle.content360);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
+            if (buffer.Length == 0)
+            {
+                throw new ArgumentException("buffer length is zero.", nameof(buffer));
+            }
 
-			_metadata = new Metadata(_metaBundle);
+            _buffer = Marshal.AllocHGlobal(buffer.Length);
+            Marshal.Copy(buffer, 0, _buffer, buffer.Length);
 
-			return _metadata;
-		}
-		/// <summary>
-		/// Gets the artwork image in a media file
-		/// </summary>
-		/// <value> Artwork object </value>
-		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-		public Artwork GetArtwork()
-		{
-			int ret;
-			Artwork _artwork;
-			IntPtr getArtworkData;
-			int getSize;
-			byte[] tmpBuf;
-			string getMimeType;
+            Create(() => Interop.MetadataExtractor.SetBuffer(_handle, _buffer, buffer.Length));
+        }
 
-			ret = Interop.MetadataExtractor.GetArtwork(_handle, out getArtworkData, out getSize, out getMimeType);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
+        private IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(MetadataExtractor));
+                }
 
-			if (getSize > 0)
-			{
-				tmpBuf = new byte[getSize];
-				Marshal.Copy(getArtworkData, tmpBuf, 0, getSize);
+                return _handle;
+            }
+        }
 
-				_artwork = new Artwork(tmpBuf, getMimeType);
-			}
-			else
-			{
-				_artwork = new Artwork(null, null);
-			}
+        private Lazy<Metadata> _metadata;
 
-			return _artwork;
-		}
-		/// <summary>
-		/// Gets the synclyrics of a media file
-		/// </summary>
-		/// <param name="index"> The index of time/lyrics to set </param>
-		/// <value> Synclyrics object </value>
-		/// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-		public Synclyrics GetSynclyrics(int index)
-		{
-			int ret;
-			Synclyrics _lyrics;
-			uint getTimestamp;
-			string getLyrics;
+        /// <summary>
+        /// Retrieves the <see cref="Metadata"/>.
+        /// </summary>
+        /// <returns>A <see cref="Metadata"/> for the give source.</returns>
+        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
+        public Metadata GetMetadata()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(MetadataExtractor));
+            }
 
-			ret = Interop.MetadataExtractor.GetSynclyrics(_handle, index, out getTimestamp, out getLyrics);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
+            return _metadata.Value;
+        }
 
-			_lyrics = new Synclyrics(getLyrics, getTimestamp);
+        /// <summary>
+        /// Gets the artwork image in the source.
+        /// </summary>
+        /// <returns>A <see cref="Artwork"/> if it exists, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
+        public Artwork GetArtwork()
+        {
+            IntPtr data = IntPtr.Zero;
+            IntPtr mimeType = IntPtr.Zero;
 
-			return _lyrics;
-		}
-		/// <summary>
-		/// Gets the frame of a video media file
-		/// </summary>
-		/// <value> Frame object </value>
-		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-		public Frame GetFrame()
-		{
-			int ret;
-			Frame _frame;
-			IntPtr getFameData;
-			int getSize;
-			byte[] tmpBuf;
+            try
+            {
+                int size = 0;
 
-			ret = Interop.MetadataExtractor.GetFrame(_handle, out getFameData, out getSize);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
+                var ret = Interop.MetadataExtractor.GetArtwork(Handle, out data, out size, out mimeType);
+                MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
 
-			tmpBuf = new byte[getSize];
-			Marshal.Copy(getFameData, tmpBuf, 0, getSize);
+                if (size > 0)
+                {
+                    var buf = new byte[size];
+                    Marshal.Copy(data, buf, 0, size);
 
-			_frame = new Frame(tmpBuf);
+                    return new Artwork(buf, Marshal.PtrToStringAnsi(mimeType));
+                }
 
-			return _frame;
-		}
-		/// <summary>
-		/// Gets the frame of a video media
-		/// </summary>
-		/// <param name="timeStamp"> The timestamp in milliseconds </param>
-		/// <param name="accurate"> If @c true the user can get an accurate frame for the given timestamp,\n
-		///						 otherwise @c false if the user can only get the nearest i-frame of the video rapidly </param>
-		/// <value> Frame object </value>
-		/// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-		/// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-		public Frame GetFrameAtTime(uint timeStamp, bool accurate)
-		{
-			int ret;
-			Frame _frame;
-			IntPtr getFameData;
-			int getSize;
-			byte[] tmpBuf;
+                return null;
+            }
+            finally
+            {
+                Interop.Libc.Free(data);
+                Interop.Libc.Free(mimeType);
+            }
+        }
 
-			ret = Interop.MetadataExtractor.GetFrameAtTime(_handle, timeStamp, accurate, out getFameData, out getSize);
-			if (ret != (int)MetadataExtractorError.None)
-			{
-				Log.Error(MetadataExtractorLog.LogTag, "Failed to get value" + (MetadataExtractorError)ret);
-				MetadataExtractorErrorFactory.ThrowException(ret, "Failed to get value");
-			}
+        /// <summary>
+        /// Gets the sync lyrics of the source.
+        /// </summary>
+        /// <param name="index">The index of lyrics to retrieve.</param>
+        /// <returns>A <see cref="SyncLyrics"/> object if <paramref name="index"/> is valid, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
+        public SyncLyrics GetSyncLyrics(int index)
+        {
+            IntPtr lyrics = IntPtr.Zero;
 
-			tmpBuf = new byte[getSize];
-			Marshal.Copy(getFameData, tmpBuf, 0, getSize);
+            try
+            {
+                uint timestamp = 0;
 
-			_frame = new Frame(tmpBuf);
+                var ret = Interop.MetadataExtractor.GetSynclyrics(Handle, index, out timestamp, out lyrics);
+                MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get sync lyrics");
 
-			return _frame;
-		}
-		
-		/// <summary>
-		/// Metadata Extractor destructor
-		/// </summary>
-		~MetadataExtractor()
-		{
-			Dispose(false);
-		}
+                if (lyrics == IntPtr.Zero)
+                {
+                    return null;
+                }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!_disposed)
-			{
-				if (disposing)
-				{
-					// To be used if there are any other disposable objects
-				}
-				if (_handle != IntPtr.Zero)
-				{
-					Interop.MetadataExtractor.Destroy(_handle);
-					_handle = IntPtr.Zero;
-				}
-				_disposed = true;
-			}
-		}
+                return new SyncLyrics(Marshal.PtrToStringAnsi(lyrics), timestamp);
+            }
+            finally
+            {
+                Interop.Libc.Free(lyrics);
+            }
+        }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-	}
+        /// <summary>
+        /// Gets the frame of a video media.
+        /// </summary>
+        /// <returns>The raw thumbnail data in RGB888 if it exists, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
+        public byte[] GetVideoThumbnail()
+        {
+            IntPtr data = IntPtr.Zero;
+
+            try
+            {
+                int size = 0;
+
+                var ret = Interop.MetadataExtractor.GetFrame(Handle, out data, out size);
+                MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
+
+                if (size == 0)
+                {
+                    return null;
+                }
+
+                var buf = new byte[size];
+                Marshal.Copy(data, buf, 0, size);
+
+                return buf;
+            }
+            finally
+            {
+                Interop.Libc.Free(data);
+            }
+        }
+
+        /// <summary>
+        /// Gets the frame of a video media.
+        /// </summary>
+        /// <param name="timeStamp">The timestamp in milliseconds.</param>
+        /// <param name="accurate">true to get an accurate frame for the given timestamp,
+        ///     otherwise false to get the nearest i-frame of the video rapidly.</param>
+        /// <returns>The raw frame data in RGB888 if a frame at specified time exists, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
+        public byte[] GetFrameAt(uint timeStamp, bool accurate)
+        {
+            IntPtr data = IntPtr.Zero;
+
+            try
+            {
+                int size = 0;
+
+                var ret = Interop.MetadataExtractor.GetFrameAtTime(Handle, timeStamp, accurate, out data, out size);
+                MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
+
+                if (size == 0)
+                {
+                    return null;
+                }
+
+                var buf = new byte[size];
+                Marshal.Copy(data, buf, 0, size);
+
+                return buf;
+            }
+            finally
+            {
+                Interop.Libc.Free(data);
+            }
+        }
+
+        /// <summary>
+        /// Metadata Extractor destructor
+        /// </summary>
+        ~MetadataExtractor()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                Release();
+                _disposed = true;
+            }
+        }
+
+        private void Release()
+        {
+            if (_buffer != IntPtr.Zero)
+            {
+                Marshal.FreeHGlobal(_buffer);
+            }
+
+            if (_handle != IntPtr.Zero)
+            {
+                var ret = Interop.MetadataExtractor.Destroy(_handle);
+                Log.Error(MetadataExtractorLog.Tag, $"DestroyHandle failed : {ret}.");
+
+                _handle = IntPtr.Zero;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+    }
 }

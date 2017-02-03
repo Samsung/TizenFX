@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,32 +14,30 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class provides properties of the synchronized lyrics information of the given media
+    /// Represents synchronized lyrics information of media.
     /// </summary>
-    public class Synclyrics
-	{
-		internal Synclyrics(string lyrics, uint timestamp)
-		{
-			Lyrics = lyrics;
-			Timestamp = timestamp;
-		}
+    public class SyncLyrics
+    {
+        /// <summary>
+        /// Initialize a new instance of the MetadataExtractor class with the specified lyrics and timestamp.
+        /// </summary>
+        public SyncLyrics(string lyrics, uint timestamp)
+        {
+            Lyrics = lyrics;
+            Timestamp = timestamp;
+        }
+
         /// <summary>
         /// The lyrics of the index
         /// </summary>
-        public readonly string Lyrics;
+        public string Lyrics { get; }
+
         /// <summary>
         /// The time information of the index
         /// </summary>
-        public readonly uint Timestamp;
-	}
+        public uint Timestamp { get; }
+    }
 }

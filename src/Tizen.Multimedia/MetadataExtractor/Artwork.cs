@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,32 +14,30 @@
 * limitations under the License.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class provides properties of the artwork information of the given media
+    /// Represents artwork information of media.
     /// </summary>
     public class Artwork
-	{
-		internal Artwork(byte[] artworkData, string mimeType)
-		{
-            ArtworkData = artworkData;
-			MimeType = mimeType;
-		}
+    {
         /// <summary>
-        /// The encoded artwork image
+        /// Initialize a new instance of the Artwork class with the specified data and mimeType.
         /// </summary>
-        public readonly byte[] ArtworkData;
+        public Artwork(byte[] data, string mimeType)
+        {
+            Data = data;
+            MimeType = mimeType;
+        }
 
         /// <summary>
-        /// The mime type of artwork
+        /// The encoded artwork image.
         /// </summary>
-        public readonly string MimeType;
-	}
+        public byte[] Data { get; }
+
+        /// <summary>
+        /// The mime type of artwork.
+        /// </summary>
+        public string MimeType { get; }
+    }
 }
