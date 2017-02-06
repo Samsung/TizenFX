@@ -44,6 +44,7 @@
     <Compile Include="TC\BackgroundTest2.cs" />
     <Compile Include="TC\BackgroundTest3.cs" />
     <Compile Include="TC\EntryTest2.cs" />
+    <Compile Include="TC\GenListTest9.cs" />
     <Compile Include="TC\ScreenInformationTest.cs" />
     <Compile Include="TC\BoxLayoutTest1.cs" />
     <Compile Include="TC\BoxTest1.cs" />

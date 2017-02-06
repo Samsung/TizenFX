@@ -26,6 +26,16 @@ namespace ElmSharp
         DisplayOnly
     }
 
+    [Flags]
+    public enum GenListItemFieldType
+    {
+        All = 0,
+        Text = (1 << 0),
+        Content = (1 << 1),
+        State = (1 << 2),
+        None = (1 << 3)
+    };
+
     public class GenListItem : GenItem
     {
         internal GenListItem(object data, GenItemClass itemClass)
@@ -48,6 +58,11 @@ namespace ElmSharp
         public override void Update()
         {
             Interop.Elementary.elm_genlist_item_update(Handle);
+        }
+
+        public void UpdateField(string part, GenListItemFieldType type)
+        {
+            Interop.Elementary.elm_genlist_item_fields_update(Handle, part, (uint)type);
         }
 
         public GenListSelectionMode SelectionMode
