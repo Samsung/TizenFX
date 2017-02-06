@@ -821,9 +821,9 @@ namespace Tizen.Network.Bluetooth
     public class AdapterLeScanResultChangedEventArgs : EventArgs
     {
         private BluetoothLeDevice _deviceData;
-        private int _result;
+        private BluetoothError _result;
 
-        internal AdapterLeScanResultChangedEventArgs(int result, BluetoothLeDevice deviceData)
+        internal AdapterLeScanResultChangedEventArgs(BluetoothError result, BluetoothLeDevice deviceData)
         {
             _deviceData = deviceData;
             _result = result;
@@ -832,7 +832,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
-        public int Result
+        public BluetoothError Result
         {
             get
             {
