@@ -23,6 +23,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// A class for message management. It allows applications to use message service.
     /// </summary>
+    /// <privilege>http://tizen.org/privilege/message.read</privilege>
     public static class MessagesManager
     {
         /// <summary>
@@ -57,6 +58,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// (event) MessageReceived is raised when receiving a message.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/message.read</privilege>
         static public event EventHandler<MessageReceivedEventArgs> MessageReceived
         {
             add
