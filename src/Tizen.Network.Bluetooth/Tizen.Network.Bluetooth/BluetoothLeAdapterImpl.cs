@@ -168,8 +168,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothLeScanData scanDataInfo = BluetoothUtils.ConvertStructToLeScanData(scanData);
 
                 BluetoothLeDevice device = new BluetoothLeDevice(scanDataInfo);
+                BluetoothError res = (BluetoothError)result;
 
-                AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (result,
+                AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (res,
                                                                     device);
                 _adapterLeScanResultChanged (null, e);
             };
@@ -425,7 +426,7 @@ namespace Tizen.Network.Bluetooth
             {
                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
                 // TODO: check if this conversion is required
-                //BluetoothLeAdvertiser leAdvertiser = (BluetoothLeAdvertiser)Marshal.PtrToStructure(advertiserHandle, typeof(BluetoothLeAdvertiser));
+                BluetoothLeAdvertiser leAdvertiser = (BluetoothLeAdvertiser)Marshal.PtrToStructure(advertiserHandle, typeof(BluetoothLeAdvertiser));
                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
                 _advertisingStateChanged(null, e);
             };
