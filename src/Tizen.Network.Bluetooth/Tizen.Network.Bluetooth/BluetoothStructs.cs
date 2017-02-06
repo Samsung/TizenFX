@@ -166,6 +166,42 @@ namespace Tizen.Network.Bluetooth
         internal string ServiceUuid;
     }
 
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct BluetoothLeScanDataStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+
+        internal BluetoothLeDeviceAddressType AddressType;
+
+        internal int Rssi;
+
+        internal int AdvDataLength;
+
+        internal IntPtr AdvData;
+
+        internal int ScanDataLength;
+
+        internal IntPtr ScanData;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct BluetoothLeServiceDataStruct
+    {
+        /// <summary>
+        /// Bluetooth Le service uuid.
+        /// </summary>
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string ServiceUuid;
+        /// <summary>
+        /// Bluetooth Le service data
+        /// </summary>
+        internal IntPtr ServiceData;
+
+        internal int ServiceDataLength;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
@@ -320,11 +356,14 @@ namespace Tizen.Network.Bluetooth
         internal static BluetoothLeServiceData ConvertStructToLeServiceData(BluetoothLeServiceDataStruct structServiceData)
         {
             BluetoothLeServiceData serviceData = new BluetoothLeServiceData();
+            Log.Info(Globals.LogTag, "ServiceDataLength" + structServiceData.ServiceDataLength);
+
             if (structServiceData.ServiceDataLength > 0)
             {
                 serviceData.Uuid = structServiceData.ServiceUuid;
                 serviceData.Length = structServiceData.ServiceDataLength;
-                serviceData.Data = structServiceData.ServiceData;
+                serviceData.Data = new byte[serviceData.Length];
+                Marshal.Copy(structServiceData.ServiceData, serviceData.Data, 0, serviceData.Length);
             }
             return serviceData;
         }
