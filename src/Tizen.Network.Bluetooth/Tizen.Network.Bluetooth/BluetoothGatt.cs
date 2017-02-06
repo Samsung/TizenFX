@@ -214,7 +214,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Gets service with given UUID that belongs to this client.
+        /// Gets service with given UUID that belongs to the remote device.
         /// </summary>
         /// <param name="uuid">UUID for the service to get</param>
         /// <returns>service with given uuid if it exists, null otherwise</returns>
@@ -224,9 +224,9 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Gets list of services that belongs to this client.
+        /// Gets list of services that belongs to the remote device.
         /// </summary>
-        /// <returns>list of services that belongs to this client</returns>
+        /// <returns>list of services that belongs to the remote device</returns>
         public IEnumerable<BluetoothGattService> GetServices()
         {
             return _impl.GetServices(this);
