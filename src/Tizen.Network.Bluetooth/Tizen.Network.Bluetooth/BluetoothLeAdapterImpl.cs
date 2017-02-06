@@ -305,13 +305,14 @@ namespace Tizen.Network.Bluetooth
                 return null;
             }
 
-            IntPtr[] svcList = new IntPtr[_serviceListCount];
-            Marshal.Copy(serviceListArray, svcList, 0, _serviceListCount);
-            foreach (IntPtr svcs in svcList)
+            BluetoothLeServiceDataStruct[] svcList = new BluetoothLeServiceDataStruct[_serviceListCount];
+            int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
+            for (int i = 0; i < _serviceListCount; i++)
             {
-                BluetoothLeServiceDataStruct svcstruct = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(svcs, typeof(BluetoothLeServiceDataStruct));
-                _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svcstruct));
-                Interop.Libc.Free(svcs);
+                svcList[i] = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
+                Log.Info(Globals.LogTag, " Uuid : " + svcList[i].ServiceUuid + "length :  " + svcList[i].ServiceDataLength);
+
+                _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svcList[i]));
             }
 
             serviceCount = _serviceListCount;
@@ -374,7 +375,8 @@ namespace Tizen.Network.Bluetooth
 
             data.Id = dataId;
             data.DataLength = dataLength;
-            Marshal.Copy(manufData, data.Data, 0, data.DataLength);
+            if (data.DataLength > 0)
+                Marshal.Copy(manufData, data.Data, 0, data.DataLength);
 
             return data;
         }

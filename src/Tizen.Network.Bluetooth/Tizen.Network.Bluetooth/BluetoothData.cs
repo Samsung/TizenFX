@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -247,26 +247,6 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct BluetoothLeScanDataStruct
-    {
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string RemoteAddress;
-
-        internal BluetoothLeDeviceAddressType AddressType;
-
-        internal int Rssi;
-
-        internal int AdvDataLength;
-
-        internal IntPtr AdvData;
-
-        internal int ScanDataLength;
-
-        internal IntPtr ScanData;
-    }
-
     /// <summary>
     /// A class containing the information of Manufacturer data.
     /// </summary>
@@ -344,22 +324,6 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal struct BluetoothLeServiceDataStruct
-    {
-        /// <summary>
-        /// Bluetooth Le service uuid.
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=16)]
-        internal string ServiceUuid;
-        /// <summary>
-        /// Bluetooth Le service data
-        /// </summary>
-        [MarshalAs(UnmanagedType.LPStr)]
-        internal string ServiceData;
-
-        internal int ServiceDataLength;
-    }
-
     /// <summary>
     /// A class containing the information of Bluetooth service data.
     /// </summary>
@@ -404,7 +368,7 @@ namespace Tizen.Network.Bluetooth
     public class BluetoothLeServiceData
     {
         internal string Uuid;
-        internal string Data;
+        internal byte[] Data;
         internal int Length;
 
         internal BluetoothLeServiceData()
@@ -424,7 +388,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Bluetooth Le service data
         /// </summary>
-        public string ServiceData
+        public byte[] ServiceData
         {
             get
             {
