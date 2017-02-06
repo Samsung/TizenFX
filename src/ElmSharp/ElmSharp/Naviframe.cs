@@ -77,9 +77,15 @@ namespace ElmSharp
         {
             return Push(content, null);
         }
+
         public NaviItem Push(EvasObject content, string title)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_push(Handle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, null);
+            return Push(content, title, null);
+        }
+
+        public NaviItem Push(EvasObject content, string title, string style)
+        {
+            IntPtr item = Interop.Elementary.elm_naviframe_item_push(Handle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, style);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             _itemStack.Add(naviItem);
             naviItem.Popped += ItemPoppedHandler;
@@ -90,9 +96,15 @@ namespace ElmSharp
         {
             return InsertBefore(before, content, "");
         }
+
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(Handle, before, title, IntPtr.Zero, IntPtr.Zero, content, null);
+            return InsertBefore(before, content, title, null);
+        }
+
+        public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)
+        {
+            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(Handle, before, title, IntPtr.Zero, IntPtr.Zero, content, style);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(before);
             _itemStack.Insert(idx, naviItem);
@@ -104,9 +116,15 @@ namespace ElmSharp
         {
             return InsertAfter(after, content, "");
         }
+
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(Handle, after, title, IntPtr.Zero, IntPtr.Zero, content, null);
+            return InsertAfter(after, content, title, null);
+        }
+
+        public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)
+        {
+            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(Handle, after, title, IntPtr.Zero, IntPtr.Zero, content, style);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(after);
             _itemStack.Insert(idx + 1, naviItem);
