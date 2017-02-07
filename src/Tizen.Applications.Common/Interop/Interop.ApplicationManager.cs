@@ -121,10 +121,6 @@ internal static partial class Interop
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
         //int app_context_destroy(app_context_h app_context)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_package")]
-        internal static extern ErrorCode AppContextGetPackage(IntPtr handle, out string package);
-        //int app_context_get_package (app_context_h app_context, char **package);
-
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_app_id")]
         internal static extern ErrorCode AppContextGetAppId(IntPtr handle, out string applicationId);
         //int app_context_get_app_id(app_context_h app_context, char **app_id)
