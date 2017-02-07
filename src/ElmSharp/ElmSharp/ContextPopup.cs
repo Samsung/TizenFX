@@ -66,7 +66,7 @@ namespace ElmSharp
             }
             set
             {
-                Interop.Elementary.elm_box_horizontal_set(Handle, value);
+                Interop.Elementary.elm_ctxpopup_horizontal_set(Handle, value);
             }
         }
 
