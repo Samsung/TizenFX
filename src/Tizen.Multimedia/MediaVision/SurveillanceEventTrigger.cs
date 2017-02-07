@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -120,11 +120,6 @@ namespace Tizen.Multimedia
                 IntPtr[] ptrArray = new IntPtr[value.Count];
                 for (int i = 0; i < value.Count; i++)
                 {
-                    if (value[i] == null)
-                    {
-                        throw new ArgumentException("Invalid parameter");
-                    }
-
                     Interop.MediaVision.Point point = new Interop.MediaVision.Point()
                     {
                         x = value[i].X,

@@ -193,9 +193,8 @@ namespace Tizen.Multimedia
     /// </summary>
     public sealed class VideoMediaFormat : MediaFormat
     {
-        private const int DEFAULT_FRAME_RATE = 0;
-        private const int DEFAULT_BIT_RATE = 0;
-
+        private const int DefaultFrameRate = 0;
+        private const int DefaultBitRate = 0;
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type, width and height.
@@ -206,7 +205,19 @@ namespace Tizen.Multimedia
         /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">width, or height is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height)
-            : this(mimeType, width, height, DEFAULT_FRAME_RATE)
+            : this(mimeType, width, height, DefaultFrameRate)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type, width and height.
+        /// </summary>
+        /// <param name="mimeType">The mime type of the format.</param>
+        /// <param name="size">The size of the format.</param>
+        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">width, or height is less than zero.</exception>
+        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size)
+            : this(mimeType, size, DefaultFrameRate)
         {
         }
 
@@ -222,7 +233,23 @@ namespace Tizen.Multimedia
         /// <exception cref="System.ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate)
-            : this(mimeType, width, height, frameRate, DEFAULT_BIT_RATE)
+            : this(mimeType, width, height, frameRate, DefaultBitRate)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
+        /// width, height and frame rate.
+        /// </summary>
+        /// <param name="mimeType">The mime type of the format.</param>
+        /// <param name="size">The video size of the format.</param>
+        /// <param name="height">The height value of the format</param>
+        /// <param name="frameRate">The frame rate of the format.</param>
+        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
+        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
+            int frameRate)
+            : this(mimeType, size, frameRate, DefaultBitRate)
         {
         }
 
@@ -239,32 +266,47 @@ namespace Tizen.Multimedia
         /// <exception cref="System.ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate, int bitRate)
+            : this(mimeType, new Size(width, height), frameRate, bitRate)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
+        /// width, height, frame rate and bit rate.
+        /// </summary>
+        /// <param name="mimeType">The mime type of the format.</param>
+        /// <param name="size">The size of the format.</param>
+        /// <param name="frameRate">The frame rate of the format.</param>
+        /// <param name="bitRate">The bit rate of the format.</param>
+        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
+        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
+            int frameRate, int bitRate)
             : base(MediaFormatType.Video)
         {
             if (!Enum.IsDefined(typeof(MediaFormatVideoMimeType), mimeType))
             {
                 throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
             }
-            if (width < 0)
+            if (size.Width < 0)
             {
-                throw new ArgumentOutOfRangeException("Width value can't be less than zero.");
+                throw new ArgumentOutOfRangeException(nameof(size), size.Width, "Size.Width value can't be less than zero.");
             }
-            if (height < 0)
+            if (size.Height < 0)
             {
-                throw new ArgumentOutOfRangeException("Height value can't be less than zero.");
+                throw new ArgumentOutOfRangeException(nameof(size), size.Height, "Size.Height value can't be less than zero.");
             }
             if (frameRate < 0)
             {
-                throw new ArgumentOutOfRangeException("Frame rate can't be less than zero.");
+                throw new ArgumentOutOfRangeException(nameof(frameRate), frameRate, "Frame rate can't be less than zero.");
             }
             if (bitRate < 0)
             {
-                throw new ArgumentOutOfRangeException("Bit rate value can't be less than zero.");
+                throw new ArgumentOutOfRangeException(nameof(bitRate), bitRate, "Bit rate value can't be less than zero.");
             }
 
             MimeType = mimeType;
-            Width = width;
-            Height = height;
+            Size = size;
             FrameRate = frameRate;
             BitRate = bitRate;
         }
@@ -288,8 +330,7 @@ namespace Tizen.Multimedia
             GetFrameRate(handle, out frameRate);
 
             MimeType = mimeType;
-            Width = width;
-            Height = height;
+            Size = new Size(width, height);
             FrameRate = frameRate;
             BitRate = bitRate;
         }
@@ -342,10 +383,10 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaFormat.SetVideoMimeType(handle, (int)MimeType);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoWidth(handle, Width);
+            ret = Interop.MediaFormat.SetVideoWidth(handle, Size.Width);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetVideoHeight(handle, Height);
+            ret = Interop.MediaFormat.SetVideoHeight(handle, Size.Height);
             MultimediaDebug.AssertNoError(ret);
 
             ret = Interop.MediaFormat.SetVideoAverageBps(handle, BitRate);
@@ -361,14 +402,9 @@ namespace Tizen.Multimedia
         public MediaFormatVideoMimeType MimeType { get; }
 
         /// <summary>
-        /// Gets the width value of the current format.
+        /// Gets the size of the current format.
         /// </summary>
-        public int Width { get; }
-
-        /// <summary>
-        /// Gets the width value of the current format.
-        /// </summary>
-        public int Height { get; }
+        public Size Size { get; }
 
         /// <summary>
         /// Gets the frame rate value of the current format.
@@ -382,8 +418,8 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"MimeType : { MimeType }, Width : { Width }, "
-                + $"Height : { Height }, FrameRate : { FrameRate }, BitRate : { BitRate }";
+            return $"MimeType : { MimeType }, Size : ({ Size }), "
+                + $"FrameRate : { FrameRate }, BitRate : { BitRate }";
         }
 
         public override bool Equals(object obj)
@@ -394,13 +430,13 @@ namespace Tizen.Multimedia
                 return false;
             }
 
-            return MimeType == rhs.MimeType && Width == rhs.Width && Height == rhs.Height &&
+            return MimeType == rhs.MimeType && Size == rhs.Size &&
                 FrameRate == rhs.FrameRate && BitRate == rhs.BitRate;
         }
 
         public override int GetHashCode()
         {
-            return new { MimeType, Width, Height, FrameRate, BitRate }.GetHashCode();
+            return new { MimeType, Size, FrameRate, BitRate }.GetHashCode();
         }
     }
 
@@ -629,6 +665,7 @@ namespace Tizen.Multimedia
         /// Gets the aac type of the current format.
         /// </summary>
         public MediaFormatAacType AacType { get; }
+
         public override string ToString()
         {
             return $"MimeType : {MimeType }, Channel : { Channel }, SampleRate : { SampleRate }, "

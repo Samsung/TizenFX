@@ -306,14 +306,14 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (encoder)
             {
-                int ret = Interop.MediaCodec.SetVideoEncoderInfo(_handle, format.Width,
-                    format.Height, format.FrameRate, format.BitRate / 1000);
+                int ret = Interop.MediaCodec.SetVideoEncoderInfo(_handle, format.Size.Width,
+                    format.Size.Height, format.FrameRate, format.BitRate / 1000);
 
                 MultimediaDebug.AssertNoError(ret);
             }
             else
             {
-                int ret = Interop.MediaCodec.SetVideoDecoderInfo(_handle, format.Width, format.Height);
+                int ret = Interop.MediaCodec.SetVideoDecoderInfo(_handle, format.Size.Width, format.Size.Height);
 
                 MultimediaDebug.AssertNoError(ret);
             }

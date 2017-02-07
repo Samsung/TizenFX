@@ -16,61 +16,65 @@
 
 namespace Tizen.Multimedia
 {
-    public struct Size
+    /// <summary>
+    /// Represents a point in 2D space.
+    /// </summary>
+    public struct Point
     {
+
         /// <summary>
-        /// Initializes a new instance of the Size with the specified values.
+        /// Initializes a new instance of the Point with the specified coordinates.
         /// </summary>
-        /// <param name="width">Width of the size.</param>
-        /// <param name="height">Height of the size.</param>
-        public Size(int width, int height)
+        /// <param name="x">X-axis coordinate of the point in 2D space.</param>
+        /// <param name="y">Y-axis coordinate of the point in 2D space.</param>
+        public Point(int x, int y)
         {
-            Width = width;
-            Height = height;
+            X = x;
+            Y = y;
         }
 
         /// <summary>
-        /// Gets or sets the width of the Size.
+        /// Gets or sets X-axis coordinate of the point in 2D space.
         /// </summary>
-        public int Width
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the height of the Size.
-        /// </summary>
-        public int Height
+        public int X
         {
             get;
             set;
         }
 
-        public override string ToString() => $"Width={ Width }, Height={ Height }";
+        /// <summary>
+        /// Gets or sets Y-axis coordinate of the point in 2D space.
+        /// </summary>
+        public int Y
+        {
+            get;
+            set;
+        }
+
+        public override string ToString() => $"X={X}, Y={Y}";
 
         public override int GetHashCode()
         {
-            return new { Width, Height }.GetHashCode();
+            return new { X, Y }.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
-            if ((obj is Size) == false)
+            if ((obj is Point) == false)
             {
                 return false;
             }
 
-            Size rhs = (Size)obj;
-            return Width == rhs.Width && Height == rhs.Height;
+            Point rhs = (Point)obj;
+            return X == rhs.X && Y == rhs.Y;
         }
 
-        public static bool operator ==(Size lhs, Size rhs)
+        public static bool operator ==(Point lhs, Point rhs)
         {
             return lhs.Equals(rhs);
         }
 
-        public static bool operator !=(Size lhs, Size rhs)
+        public static bool operator !=(Point lhs, Point rhs)
         {
             return !lhs.Equals(rhs);
         }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
         /// <param name="config">The configuration of engine will be used for detecting. If NULL, then default settings will be used.</param>
         /// <returns>Returns the FaceDetectionResult asynchronously</returns>
         /// <code>
-        /// 
+        ///
         /// </code>
         public static async Task<FaceDetectionResult> DetectAsync(MediaVisionSource source, FaceEngineConfiguration config = null)
         {
@@ -59,7 +59,8 @@ namespace Tizen.Multimedia
                         for (int i = 0; i < numberOfFaces; i++)
                         {
                             Interop.MediaVision.Rectangle location = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(facesLocations, typeof(Interop.MediaVision.Rectangle));
-                            Rectangle rect = new Rectangle(new Point(location.x, location.y), location.width, location.height);
+                            Rectangle rect = new Rectangle(new Point(location.x, location.y),
+                                new Size(location.width, location.height));
                             Log.Info(MediaVisionLog.Tag, String.Format("Face {0} detected at : ({1}, {2})", i + 1, rect.Point.X, rect.Point.Y));
                             locations.Add(rect);
                             facesLocations = IntPtr.Add(facesLocations, sizeof(int) * 4);
