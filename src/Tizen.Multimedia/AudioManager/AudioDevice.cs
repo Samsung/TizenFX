@@ -29,12 +29,12 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioDevice
     {
-        private int _id;
-        private string _name;
-        private AudioDeviceType _type;
-        private AudioDeviceIoDirection _ioDirection;
-        private AudioDeviceState _state;
-        private IntPtr _handle;
+        private readonly int _id;
+        private readonly string _name;
+        private readonly AudioDeviceType _type;
+        private readonly AudioDeviceIoDirection _ioDirection;
+        private readonly AudioDeviceState _state;
+        private readonly IntPtr _handle;
 
         internal AudioDevice(IntPtr deviceHandle)
         {
@@ -83,64 +83,28 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The id of the device.
         /// </summary>
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id => _id;
 
         /// <summary>
         /// The name of the device.
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-        }
+        public string Name => _name;
 
         /// <summary>
         /// The type of the device.
         /// </summary>
-        public AudioDeviceType Type
-        {
-            get
-            {
-                return _type;
-            }
-        }
+        public AudioDeviceType Type => _type;
 
         /// <summary>
         /// The io direction of the device.
         /// </summary>
-        public AudioDeviceIoDirection IoDirection
-        {
-            get
-            {
-                return _ioDirection;
-            }
-        }
+        public AudioDeviceIoDirection IoDirection => _ioDirection;
 
         /// <summary>
         /// The state of the device.
         /// </summary>
-        public AudioDeviceState State
-        {
-            get
-            {
-                return _state;
-            }
-        }
+        public AudioDeviceState State => _state;
 
-        internal IntPtr Handle
-        {
-            get
-            {
-                return _handle;
-            }
-        }
+        internal IntPtr Handle => _handle;
     }
 }

@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
         internal StreamFocusStateChangedEventArgs(AudioStreamFocusChangedReason reason, string extraInformation)
         {
             FocusChangedReason = reason;
-            ExtraInfoformation = extraInformation;
+            ExtraInformation = extraInformation;
         }
 
         /// <summary>
@@ -38,6 +38,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The extra information
         /// </summary>
-        public string ExtraInfoformation { get; }
+        public string ExtraInformation { get; }
     }
 }

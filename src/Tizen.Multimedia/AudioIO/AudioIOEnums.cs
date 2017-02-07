@@ -61,4 +61,20 @@ namespace Tizen.Multimedia
         /// </summary>
         Paused = 2
     }
+
+    /// <summary>
+    /// Enumeration for audio sample type.
+    /// </summary>
+    public enum AudioSampleType
+    {
+        /// <summary>
+        /// Unsigned 8-bit audio samples.
+        /// </summary>
+        U8 = 0x70,
+        /// <summary>
+        /// Signed 16-bit audio samples.
+        /// </summary>
+        S16Le
+    }
+
 }
