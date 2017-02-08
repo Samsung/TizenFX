@@ -23,6 +23,7 @@ BuildRequires: csapi-tizen-nuget
 
 %dotnet_import_sub_packages
 
+
 %package -n csapi-application-common
 Summary:  An Application Common library in Tizen C# API
 Group:  Development/Libraries
