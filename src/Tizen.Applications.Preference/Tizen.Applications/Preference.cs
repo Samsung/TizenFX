@@ -427,7 +427,7 @@ namespace Tizen.Applications
             None = ErrorCode.None,
             OutOfMemory = ErrorCode.OutOfMemory,
             InvalidParameter = ErrorCode.InvalidParameter,
-            KeyNotAvailable = ErrorCode.KeyNotAvailable,
+            KeyNotAvailable = -0x01100000 | 0x30,
             IoError = ErrorCode.IoError
         }
 

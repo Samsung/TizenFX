@@ -100,7 +100,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Exits the main loop of the application. 
+        /// Exits the main loop of the application.
         /// </summary>
         public override void Exit()
         {
