@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is ConnectionProfile
+    /// This Class is ConnectionProfile. It provides event and propeties of the connection profile.
     /// </summary>
     public class ConnectionProfile : IDisposable
     {
@@ -31,7 +31,9 @@ namespace Tizen.Network.Connection
         private IAddressInformation Ipv4;
         private IAddressInformation Ipv6;
         private bool disposed = false;
-        private EventHandler _ProfileStateChanged;
+        private EventHandler _ProfileStateChanged = null;
+
+        private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
 
         internal IntPtr GetHandle()
         {
@@ -61,17 +63,17 @@ namespace Tizen.Network.Connection
             }
         }
 
-        private void TypeChangedCallback(ProfileState state, IntPtr userData)
-        {
-            if (_ProfileStateChanged != null)
-            {
-                _ProfileStateChanged(null, new ProfileStateEventArgs(state));
-            }
-        }
-
         private void ProfileStateChangedStart()
         {
-            int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, TypeChangedCallback, IntPtr.Zero);
+            _profileChangedCallback = (ProfileState state, IntPtr userData) =>
+            {
+                if (_ProfileStateChanged != null)
+                {
+                    _ProfileStateChanged(null, new ProfileStateEventArgs(state));
+                }
+            };
+
+            int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, _profileChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing profile state, " + (ConnectionError)ret);
@@ -134,7 +136,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the profile ID.
+        /// The profile ID.
         /// </summary>
         public string Id
         {
@@ -153,7 +155,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the profile name.
+        /// The profile name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public string Name
@@ -173,7 +175,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the network type.
+        /// The network type.
         /// </summary>
         public ConnectionProfileType Type
         {
@@ -190,7 +192,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the name of the network interface, e.g. eth0 and pdp0.
+        /// The name of the network interface, e.g. eth0 and pdp0.
         /// </summary>
         public string InterfaceName
         {
@@ -209,7 +211,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the profile state.
+        /// The profile state.
         /// </summary>
         public ProfileState State
         {
@@ -226,7 +228,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the Proxy type.
+        /// The Proxy type.
         /// </summary>
         public ProxyType ProxyType
         {

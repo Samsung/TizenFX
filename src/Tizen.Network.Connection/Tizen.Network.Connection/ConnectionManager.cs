@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,9 +27,9 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This class is ConnectionManager
+    /// This class is ConnectionManager. It provides functions to manage data connections.
     /// </summary>
-    public static partial class ConnectionManager
+    public static class ConnectionManager
     {
         private static ConnectionItem _currentConnection = null;
 
@@ -100,6 +100,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the IP address of the current connection.
         /// </summary>
+        /// <param name="family">The address family</param>
+        /// <returns>IP address of the connection.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static string GetIpAddress(AddressFamily family)
         {
@@ -109,6 +111,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the proxy address of the current connection.
         /// </summary>
+        /// <param name="family">The address family</param>
+        /// <returns>Proxy address of the connection.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static string GetProxy(AddressFamily family)
         {
@@ -118,6 +122,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the MAC address of the Wi-Fi or ethernet.
         /// </summary>
+        /// <param name="type">The type of current network connection</param>
+        /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static string GetMacAddress(ConnectionType type)
         {
@@ -125,7 +131,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets type and state of the current profile for data connection
+        /// Type and state of the current profile for data connection
         /// </summary>
         public static ConnectionItem CurrentConnection
         {
@@ -140,27 +146,31 @@ namespace Tizen.Network.Connection
             }
         }
 
-        public static RequestProfile CreateRequestProfile(ConnectionProfileType type, string keyword)
+        /// <summary>
+        /// Creates a cellular profile handle.
+        /// </summary>
+        /// <param name="type">The type of profile. Cellular profile type is supported.</param>
+        /// <param name="keyword">The keyword included in profile name.</param>
+        /// <returns>CellularProfile object</returns>
+        public static CellularProfile CreateCellularProfile(ConnectionProfileType type, string keyword)
         {
-            IntPtr ProfileHandle = ConnectionInternalManager.CreateRequestProfile(type, keyword);
-            if (type == ConnectionProfileType.WiFi)
+            IntPtr profileHandle = IntPtr.Zero;
+            if (type == ConnectionProfileType.Cellular)
             {
-                return new RequestWiFiProfile(ProfileHandle);
+                profileHandle = ConnectionInternalManager.Instance.CreateCellularProfile(type, keyword);
             }
-            else if (type == ConnectionProfileType.Cellular)
-            {
-                return new RequestCellularProfile(ProfileHandle);
-            }
+
             else
             {
-                Log.Error(Globals.LogTag, "Nut supported profile type");
+                Log.Error(Globals.LogTag, "ConnectionProfile Type is not supported");
                 ConnectionErrorFactory.ThrowConnectionException((int)ConnectionError.InvalidParameter);
             }
-            return null;
+
+            return new CellularProfile(profileHandle);
         }
 
         /// <summary>
-        /// Gets the state of cellular connection.
+        /// The state of cellular connection.
         /// </summary>
         public static CellularState CellularState
         {
@@ -171,7 +181,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the state of the Wi-Fi.
+        /// The state of the Wi-Fi.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState WiFiState
@@ -221,7 +231,7 @@ namespace Tizen.Network.Connection
     } // class ConnectionManager
 
     /// <summary>
-    /// class which contains connection information such as connection type and state
+    /// This class contains connection information such as connection type and state.
     /// </summary>
     public class ConnectionItem
     {
@@ -230,7 +240,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the type of the current profile for data connection.
+        /// The type of the current profile for data connection.
         /// </summary>
         public ConnectionType Type
         {
@@ -241,7 +251,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the state of the current profile for data connection.
+        /// The state of the current profile for data connection.
         /// </summary>
         public ConnectionState State
         {

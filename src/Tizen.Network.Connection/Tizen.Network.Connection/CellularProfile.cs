@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is CellularProfile
+    /// This Class is CellularProfile. It provides functions to manage the cellular profile.
     /// </summary>
     public class CellularProfile : ConnectionProfile
     {
@@ -39,7 +39,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the APN (access point name).
+        /// The APN (access point name).
         /// </summary>
         public string Apn
         {
@@ -67,7 +67,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the home URL.
+        /// The home URL.
         /// </summary>
         public string HomeUri
         {
@@ -96,7 +96,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the service type.
+        /// The service type.
         /// </summary>
         public CellularServiceType ServiceType
         {
@@ -185,7 +185,7 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// The authentication information.
+    /// This Class is CellularAuthInformation. It provides the properties to get and set the cellular authentication information.
     /// </summary>
     public class CellularAuthInformation
     {

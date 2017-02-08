@@ -130,7 +130,8 @@ internal static partial class Interop
 
     internal static partial class ConnectionProfile
     {
-        public delegate void profile_state_changed_cb(ProfileState type, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void ProfileStateChangedCallback(ProfileState type, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_create")]
         public static extern int Create(int ProfileType, string Keyword, out IntPtr profileHandle);
@@ -199,7 +200,7 @@ internal static partial class Interop
         public static extern int SetProxyAddress(IntPtr profileHandle, int family, string address);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_state_changed_cb")]
-        public static extern int SetStateChangeCallback(IntPtr profileHandle, profile_state_changed_cb callback, IntPtr userData);
+        public static extern int SetStateChangeCallback(IntPtr profileHandle, ProfileStateChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_unset_state_changed_cb")]
         public static extern int UnsetStateChangeCallback(IntPtr profileHandle);

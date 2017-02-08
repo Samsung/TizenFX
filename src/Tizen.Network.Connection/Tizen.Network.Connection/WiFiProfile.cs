@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is WiFiProfile
+    /// This Class is WiFiProfile. It provides functions to manage the WiFi profile.
     /// </summary>
     public class WiFiProfile : ConnectionProfile
     {
@@ -36,7 +36,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the ESSID (Extended Service Set Identifier).
+        /// The ESSID (Extended Service Set Identifier).
         /// </summary>
         public string Essid
         {
@@ -55,7 +55,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        ///  Gets the BSSID (Basic Service Set Identifier).
+        /// The BSSID (Basic Service Set Identifier).
         /// </summary>
         public string Bssid
         {
@@ -74,7 +74,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the RSSI.
+        /// The RSSI.
         /// </summary>
         public int Rssi
         {
@@ -91,7 +91,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the frequency (MHz).
+        /// The frequency (MHz).
         /// </summary>
         public int Frequency
         {
@@ -108,7 +108,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the max speed (Mbps).
+        /// The max speed (Mbps).
         /// </summary>
         public int MaxSpeed
         {
@@ -125,7 +125,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the security type of Wi-Fi.
+        /// The security type of Wi-Fi.
         /// </summary>
         public WiFiSecureType SecureType
         {
@@ -142,7 +142,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Gets the encryption type of Wi-Fi.
+        /// The encryption type of Wi-Fi.
         /// </summary>
         public WiFiEncryptionType EncryptionType
         {
@@ -195,10 +195,13 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Sets the passphrase of the Wi-Fi WPA.
         /// </summary>
+        /// <param name="passphrase">The passphrase of Wi-Fi security</param>
+        /// <returns>0 on success, else exception is thrown.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public int SetPassphrase(string passphrase)
         {
             int ret = Interop.ConnectionWiFiProfile.SetPassphrase(ProfileHandle, (string)passphrase);
-            if ((ConnectionError)ret != ConnectionError.NoConnection)
+            if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to set passphrase, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);

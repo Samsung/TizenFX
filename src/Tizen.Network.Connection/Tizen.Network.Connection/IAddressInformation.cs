@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is ConnectionAddress
+    /// This interface provides properties to manage address information of the connection.
     /// </summary>
     public interface IAddressInformation : IDisposable
     {

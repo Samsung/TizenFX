@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,24 +24,28 @@ using System.Collections;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This class is ConnectionManager
+    /// This class is ConnectionProfileManager. It provides functions to add, get, connect or modify the connection profile.
     /// </summary>
-    public static partial class ConnectionManager
+    public static class ConnectionProfileManager
     {
         /// <summary>
         /// Adds a new profile
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <param name="profile">The cellular profile object</param>
+        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static int AddProfile(RequestProfile profile)
+        public static int AddCellularProfile(CellularProfile profile)
         {
-            return ConnectionInternalManager.Instance.AddProfile(profile);
+            return ConnectionInternalManager.Instance.AddCellularProfile(profile);
         }
 
         /// <summary>
         /// Gets the list of profile with profile list type
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <param name="type">The type of profile</param>
+        /// <returns>List of connection profile objects.</returns>
         public static Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
             return ConnectionInternalManager.Instance.GetProfileListAsync(type);
@@ -52,6 +56,8 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <param name="profile">The connection profile object</param>
+        /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
         public static Task<ConnectionError> ConnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.OpenProfileAsync(profile);
@@ -61,6 +67,8 @@ namespace Tizen.Network.Connection
         /// Closes a connection of profile.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <param name="profile">The connection profile object</param>
+        /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
         public static Task<ConnectionError> DisconnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.CloseProfileAsync(profile);
@@ -71,6 +79,8 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <param name="profile">The connection profile object</param>
+        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static int RemoveProfile(ConnectionProfile profile)
         {
@@ -85,6 +95,8 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <param name="profile">The connection profile object</param>
+        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static int UpdateProfile(ConnectionProfile profile)
         {
@@ -95,6 +107,7 @@ namespace Tizen.Network.Connection
         /// Gets the name of the default profile.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <returns>Connection profile object.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static ConnectionProfile GetCurrentProfile()
         {
@@ -105,6 +118,8 @@ namespace Tizen.Network.Connection
         /// Gets the default profile which provides the given cellular service.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <param name="type">The cellular service type</param>
+        /// <returns>Connection profile object.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
@@ -116,6 +131,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <param name="type">The cellular service type</param>
+        /// <param name="profile">The connection profile object</param>
+        /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {

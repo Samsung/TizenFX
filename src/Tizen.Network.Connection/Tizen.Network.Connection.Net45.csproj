@@ -56,9 +56,6 @@
     <Compile Include="Tizen.Network.Connection\ConnectionProfileManager.cs" />
     <Compile Include="Tizen.Network.Connection\ConnectionTypes.cs" />
     <Compile Include="Tizen.Network.Connection\IAddressInformation.cs" />
-    <Compile Include="Tizen.Network.Connection\RequestCellularProfile.cs" />
-    <Compile Include="Tizen.Network.Connection\RequestProfile.cs" />
-    <Compile Include="Tizen.Network.Connection\RequestWiFiProfile.cs" />
     <Compile Include="Tizen.Network.Connection\WiFiProfile.cs" />
   </ItemGroup>
   <ItemGroup>
