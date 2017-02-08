@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Tizen.Account.FidoClient</id>
+    <version>$version$</version>
+    <authors>Tizen Developers</authors>
+    <description>FIDO UAF API for Tizen.Net</description>
+    <dependencies>
+      <dependency id="Tizen" version="1.0.1" />
+    </dependencies>
+	</metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.Account.FidoClient.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/Net45/Tizen.Account.FidoClient.dll" target="lib/net45" />
+  </files>
+</package>
