@@ -133,7 +133,7 @@ namespace Tizen.Network.WiFi
 
         public WiFiConfiguration(string name, string passPhrase, WiFiSecureType type)
         {
-            int ret = Interop.WiFi.Config.Create(name, passPhrase, (int)type, out _configHandle);
+            int ret = Interop.WiFi.Config.Create(WiFiManagerImpl.Instance.GetHandle(), name, passPhrase, (int)type, out _configHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to create config handle, Error - " + (WiFiError)ret);

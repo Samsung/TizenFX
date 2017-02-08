@@ -18,7 +18,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string WiFi = "libcapi-network-wifi.so.1";
+        public const string WiFi = "libcapi-network-wifi-manager.so.1";
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
     }

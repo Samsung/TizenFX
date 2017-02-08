@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tizen.Network.WiFi
@@ -23,24 +24,55 @@ namespace Tizen.Network.WiFi
     static internal class Globals
     {
         internal const string LogTag = "Tizen.Network.WiFi";
-        internal static bool s_isInitialize = false;
+    }
 
-        internal static bool IsInitialize
+    internal class HandleHolder : IDisposable
+    {
+        private IntPtr _handle = IntPtr.Zero;
+        private bool disposed = false;
+
+        internal HandleHolder()
         {
-            get
+            Log.Debug(Globals.LogTag, "HandleHolder() Constructor");
+            _handle = WiFiManagerImpl.Instance.Initialize();
+            Log.Debug(Globals.LogTag, "Handle: " + _handle);
+        }
+
+        ~HandleHolder()
+        {
+            Dispose(false);
+        }
+
+        internal IntPtr GetHandle()
+        {
+            Log.Debug(Globals.LogTag, "Handleholder handle = " + _handle);
+            return _handle;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            Log.Debug(Globals.LogTag, ">>> HandleHolder Dispose with " + disposing);
+            Log.Debug(Globals.LogTag, ">>> Handle: " + _handle);
+            if (disposed)
+                return;
+
+            if (disposing)
             {
-                if (!Globals.s_isInitialize)
-                {
-                    WiFiManagerImpl.Instance.Initialize();
-                }
-                return Globals.s_isInitialize;
+                // Free managed objects.
+                WiFiManagerImpl.Instance.Deinitialize(_handle);
             }
+            disposed = true;
         }
     }
 
     internal partial class WiFiManagerImpl : IDisposable
     {
-        private static WiFiManagerImpl _instance;
+        private static WiFiManagerImpl _instance = null;
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
         private string _macAddress;
@@ -53,7 +85,7 @@ namespace Tizen.Network.WiFi
                 if (String.IsNullOrEmpty(_macAddress))
                 {
                     string address;
-                    int ret = Interop.WiFi.GetMacAddress(out address);
+                    int ret = Interop.WiFi.GetMacAddress(GetHandle(), out address);
                     if (ret != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
@@ -72,7 +104,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 string name;
-                int ret = Interop.WiFi.GetNetworkInterfaceName(out name);
+                int ret = Interop.WiFi.GetNetworkInterfaceName(GetHandle(), out name);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get interface name, Error - " + (WiFiError)ret);
@@ -86,7 +118,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int state;
-                int ret = Interop.WiFi.GetConnectionState(out state);
+                int ret = Interop.WiFi.GetConnectionState(GetHandle(), out state);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get connection state, Error - " + (WiFiError)ret);
@@ -100,7 +132,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool active;
-                int ret = Interop.WiFi.IsActivated(out active);
+                int ret = Interop.WiFi.IsActivated(GetHandle(), out active);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isActive, Error - " + (WiFiError)ret);
@@ -113,14 +145,22 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                Log.Debug(Globals.LogTag, "Instance getter");
                 if (_instance == null)
                 {
+                    Log.Debug(Globals.LogTag, "Instance is null");
                     _instance = new WiFiManagerImpl();
                 }
 
                 return _instance;
             }
         }
+
+        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
+        {
+            Log.Info(Globals.LogTag, "In threadlocal delegate");
+            return new HandleHolder();
+        });
 
         private WiFiManagerImpl()
         {
@@ -147,39 +187,36 @@ namespace Tizen.Network.WiFi
                 // Free managed objects.
             }
             //Free unmanaged objects
-            deinitialize();
             RemoveAllRegisteredEvent();
             disposed = true;
         }
 
-        internal void Initialize()
+        internal IntPtr GetHandle()
         {
-            int ret = Interop.WiFi.Initialize();
+            Log.Debug(Globals.LogTag, "GetHandle, Thread Id = " + Thread.CurrentThread.ManagedThreadId);
+            return s_threadName.Value.GetHandle();
+        }
+
+        internal IntPtr Initialize()
+        {
+            IntPtr handle;
+            int ret = Interop.WiFi.Initialize(out handle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to initialize wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
-            Globals.s_isInitialize = true;
-            string address;
-            ret = Interop.WiFi.GetMacAddress(out address);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
-                _macAddress = "";
-            }
-            _macAddress = address;
+            return handle;
         }
 
-        private void deinitialize()
+        internal void Deinitialize(IntPtr handle)
         {
-            int ret = Interop.WiFi.Deinitialize();
+            int ret = Interop.WiFi.Deinitialize(handle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deinitialize wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
-            Globals.s_isInitialize = false;
         }
 
         internal IEnumerable<WiFiAp> GetFoundAps()
@@ -198,7 +235,7 @@ namespace Tizen.Network.WiFi
                 return false;
             };
 
-            int ret = Interop.WiFi.GetForeachFoundAps(callback, IntPtr.Zero);
+            int ret = Interop.WiFi.GetForeachFoundAps(GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get all APs, Error - " + (WiFiError)ret);
@@ -225,7 +262,7 @@ namespace Tizen.Network.WiFi
 
             };
 
-            int ret = Interop.WiFi.GetForeachFoundSpecificAps(callback, IntPtr.Zero);
+            int ret = Interop.WiFi.GetForeachFoundSpecificAps(GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get specific APs, Error - " + (WiFiError)ret);
@@ -251,7 +288,7 @@ namespace Tizen.Network.WiFi
                 return false;
             };
 
-            int ret = Interop.WiFi.Config.GetForeachConfiguration(callback, IntPtr.Zero);
+            int ret = Interop.WiFi.Config.GetForeachConfiguration(GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get configurations, Error - " + (WiFiError)ret);
@@ -264,7 +301,7 @@ namespace Tizen.Network.WiFi
         internal void SaveWiFiNetworkConfiguration(WiFiConfiguration config)
         {
             IntPtr configHandle = config.GetHandle();
-            int ret = Interop.WiFi.Config.SaveConfiguration(configHandle);
+            int ret = Interop.WiFi.Config.SaveConfiguration(GetHandle(), configHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to save configuration, Error - " + (WiFiError)ret);
@@ -276,7 +313,7 @@ namespace Tizen.Network.WiFi
         {
             IntPtr apHandle;
 
-            int ret = Interop.WiFi.GetConnectedAp(out apHandle);
+            int ret = Interop.WiFi.GetConnectedAp(GetHandle(), out apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect with AP, Error - " + (WiFiError)ret);
@@ -289,7 +326,7 @@ namespace Tizen.Network.WiFi
         internal void RemoveAp(WiFiAp ap)
         {
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.RemoveAp(apHandle);
+            int ret = Interop.WiFi.RemoveAp(GetHandle(), apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);
@@ -319,7 +356,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Activate(_callback_map[id], id);
+            int ret = Interop.WiFi.Activate(GetHandle(), _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
@@ -350,7 +387,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ActivateWithWiFiPickerTested(_callback_map[id], id);
+            int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetHandle(), _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
@@ -381,7 +418,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Deactivate(_callback_map[id], id);
+            int ret = Interop.WiFi.Deactivate(GetHandle(), _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
@@ -412,7 +449,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Scan(_callback_map[id], id);
+            int ret = Interop.WiFi.Scan(GetHandle(), _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
@@ -443,7 +480,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ScanSpecificAp(essid, _callback_map[id], id);
+            int ret = Interop.WiFi.ScanSpecificAp(GetHandle(), essid, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
@@ -475,7 +512,7 @@ namespace Tizen.Network.WiFi
                 };
             }
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.Connect(apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.Connect(GetHandle(), apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
@@ -507,7 +544,7 @@ namespace Tizen.Network.WiFi
                 };
             }
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.Disconnect(apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.Disconnect(GetHandle(), apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
@@ -539,7 +576,7 @@ namespace Tizen.Network.WiFi
                 };
             }
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.ConnectByWpsPbc(apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.ConnectByWpsPbc(GetHandle(), apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
@@ -571,7 +608,7 @@ namespace Tizen.Network.WiFi
                 };
             }
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.ConnectByWpsPin(apHandle, pin, _callback_map[id], id);
+            int ret = Interop.WiFi.ConnectByWpsPin(GetHandle(), apHandle, pin, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);

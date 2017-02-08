@@ -33,11 +33,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (Globals.IsInitialize)
-                {
-                    return WiFiManagerImpl.Instance.MacAddress;
-                }
-                return null;
+                return WiFiManagerImpl.Instance.MacAddress;
             }
         }
         /// <summary>
@@ -47,11 +43,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (Globals.IsInitialize)
-                {
-                    return WiFiManagerImpl.Instance.InterfaceName;
-                }
-                return null;
+                return WiFiManagerImpl.Instance.InterfaceName;
             }
         }
         /// <summary>
@@ -61,11 +53,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (Globals.IsInitialize)
-                {
-                    return WiFiManagerImpl.Instance.ConnectionState;
-                }
-                return default(WiFiConnectionState);
+                return WiFiManagerImpl.Instance.ConnectionState;
             }
         }
         /// <summary>
@@ -75,11 +63,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (Globals.IsInitialize)
-                {
-                    return WiFiManagerImpl.Instance.IsActivated;
-                }
-                return false;
+                return WiFiManagerImpl.Instance.IsActivated;
             }
         }
 
@@ -90,17 +74,11 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.DeviceStateChanged += value;
-                }
+                WiFiManagerImpl.Instance.DeviceStateChanged += value;
             }
             remove
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.DeviceStateChanged -= value;
-                }
+                WiFiManagerImpl.Instance.DeviceStateChanged -= value;
             }
         }
         /// <summary>
@@ -110,17 +88,11 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.ConnectionStateChanged += value;
-                }
+                WiFiManagerImpl.Instance.ConnectionStateChanged += value;
             }
             remove
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.ConnectionStateChanged -= value;
-                }
+                WiFiManagerImpl.Instance.ConnectionStateChanged -= value;
             }
         }
         /// <summary>
@@ -130,17 +102,11 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.RssiLevelChanged += value;
-                }
+                WiFiManagerImpl.Instance.RssiLevelChanged += value;
             }
             remove
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.RssiLevelChanged -= value;
-                }
+                WiFiManagerImpl.Instance.RssiLevelChanged -= value;
             }
         }
         /// <summary>
@@ -151,17 +117,11 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.BackgroundScanFinished += value;
-                }
+                WiFiManagerImpl.Instance.BackgroundScanFinished += value;
             }
             remove
             {
-                if (Globals.IsInitialize)
-                {
-                    WiFiManagerImpl.Instance.BackgroundScanFinished -= value;
-                }
+                WiFiManagerImpl.Instance.BackgroundScanFinished -= value;
             }
         }
         /// <summary>
@@ -170,11 +130,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task contains the lisf for WiFiApInformation objects.</returns>
         static public IEnumerable<WiFiAp> GetFoundAps()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.GetFoundAps();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.GetFoundAps();
         }
         /// <summary>
         /// Gets the result of specific ap scan asynchronously.
@@ -182,11 +138,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task contains the WiFiApInformation object.</returns>
         static public IEnumerable<WiFiAp> GetFoundSpecificAps()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.GetFoundSpecificAps();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.GetFoundSpecificAps();
         }
         /// <summary>
         /// Gets the list of wifi configuration.
@@ -194,11 +146,7 @@ namespace Tizen.Network.WiFi
         /// <returns>A task contains the lisf for WiFiConfiguration objects.</returns>
         static public IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.GetWiFiConfigurations();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.GetWiFiConfigurations();
         }
         /// <summary>
         /// Saves Wi-Fi configuration of access point.
@@ -206,14 +154,7 @@ namespace Tizen.Network.WiFi
         /// <param name="configuration">The configuration to be stored</param>
         static public void SaveWiFiNetworkConfiguration(WiFiConfiguration configuration)
         {
-            if (Globals.IsInitialize)
-            {
-                WiFiManagerImpl.Instance.SaveWiFiNetworkConfiguration(configuration);
-            }
-            else
-            {
-                throw new InvalidOperationException("Not initialized");
-            }
+            WiFiManagerImpl.Instance.SaveWiFiNetworkConfiguration(configuration);
         }
         /// <summary>
         /// Gets the handle of the connected access point.
@@ -221,11 +162,7 @@ namespace Tizen.Network.WiFi
         /// <returns> The connected wifi access point(AP) information.</returns>
         static public WiFiAp GetConnectedAp()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.GetConnectedAp();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.GetConnectedAp();
         }
         /// <summary>
         /// Deletes the information of stored access point and disconnects it when it connected.<br>
@@ -234,14 +171,7 @@ namespace Tizen.Network.WiFi
         /// <param name="ap">The access point to be removed</param>
         static public void RemoveAP(WiFiAp ap)
         {
-            if (Globals.IsInitialize)
-            {
-                WiFiManagerImpl.Instance.RemoveAp(ap);
-            }
-            else
-            {
-                throw new InvalidOperationException("Not initialized");
-            }
+            WiFiManagerImpl.Instance.RemoveAp(ap);
         }
         /// <summary>
         /// Activates Wi-Fi asynchronously.
@@ -249,11 +179,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the Activate method is done or not.</returns>
         static public Task ActivateAsync()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.ActivateAsync();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ActivateAsync();
         }
         /// <summary>
         /// Activates Wi-Fi asynchronously and displays Wi-Fi picker (popup) when Wi-Fi is not automatically connected.
@@ -261,11 +187,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the ActivateWithPickerTeated method is done or not.</returns>
         static public Task ActivateWithPickerTeatedAsync()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.ActivateWithWiFiPickerTestedAsync();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ActivateWithWiFiPickerTestedAsync();
         }
         /// <summary>
         /// Deactivates Wi-Fi asynchronously.
@@ -273,11 +195,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the Deactivate method is done or not.</returns>
         static public Task DeactivateAsync()
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.DeactivateAsync();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.DeactivateAsync();
         }
         /// <summary>
         /// Starts scan asynchronously.
@@ -285,12 +203,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the Scan method is done or not.</returns>
         static public Task ScanAsync()
         {
-            if (Globals.IsInitialize)
-            {
-                Log.Debug(Globals.LogTag, "ScanAsync");
-                return WiFiManagerImpl.Instance.ScanAsync();
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ScanAsync();
         }
         /// <summary>
         /// Starts specific ap scan, asynchronously.
@@ -299,11 +212,7 @@ namespace Tizen.Network.WiFi
         /// <param name="essid">The essid of hidden ap</param>
         static public Task ScanSpecificApAsync(string essid)
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.ScanSpecificApAsync(essid);
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ScanSpecificApAsync(essid);
         }
         /// <summary>
         /// Connects the access point asynchronously.
@@ -312,12 +221,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the Connect method is done or not.</returns>
         static public Task ConnectAsync(WiFiAp ap)
         {
-            if (Globals.IsInitialize)
-            {
-                Log.Debug(Globals.LogTag, "ConnectAsync");
-                return WiFiManagerImpl.Instance.ConnectAsync(ap);
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ConnectAsync(ap);
         }
         /// <summary>
         /// Connects the access point with WPS PBC asynchronously.
@@ -326,12 +230,7 @@ namespace Tizen.Network.WiFi
         /// <param name="ap">The access point(AP)</param>
         static public Task ConnectByWpsPbcAsync(WiFiAp ap)
         {
-            if (Globals.IsInitialize)
-            {
-                Log.Debug(Globals.LogTag, "ConnectByWpsPbcAsync");
-                return WiFiManagerImpl.Instance.ConnectByWpsPbcAsync(ap);
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.ConnectByWpsPbcAsync(ap);
         }
         /// <summary>
         /// Connects the access point with WPS PIN asynchronously.
@@ -341,12 +240,8 @@ namespace Tizen.Network.WiFi
         /// <param name="pin">The WPS PIN is a non-NULL string with length greater than 0 and less than or equal to 8.</param>
         static public Task ConnectByWpsPinAsync(WiFiAp ap, string pin)
         {
-            if (Globals.IsInitialize)
-            {
-                Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
-                return WiFiManagerImpl.Instance.ConnectByWpsPinAsync(ap, pin);
-            }
-            throw new InvalidOperationException("Not initialized");
+            Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
+            return WiFiManagerImpl.Instance.ConnectByWpsPinAsync(ap, pin);
         }
         /// <summary>
         /// Disconnects the access point asynchronously.
@@ -354,11 +249,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the Disconnect method is done or not.</returns>
         static public Task DisconnectAsync(WiFiAp ap)
         {
-            if (Globals.IsInitialize)
-            {
-                return WiFiManagerImpl.Instance.DisconnectAsync(ap);
-            }
-            throw new InvalidOperationException("Not initialized");
+            return WiFiManagerImpl.Instance.DisconnectAsync(ap);
         }
     }
 }

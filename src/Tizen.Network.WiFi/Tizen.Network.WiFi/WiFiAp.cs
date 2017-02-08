@@ -107,11 +107,11 @@ namespace Tizen.Network.WiFi
             int ret = -1;
             if (hidden)
             {
-                ret = Interop.WiFi.Ap.Create(id, out _apHandle);
+                ret = Interop.WiFi.Ap.Create(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
             }
             else
             {
-                ret = Interop.WiFi.Ap.CreateHiddenAp(id, out _apHandle);
+                ret = Interop.WiFi.Ap.CreateHiddenAp(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
             }
 
             if (ret != (int)WiFiError.None)
