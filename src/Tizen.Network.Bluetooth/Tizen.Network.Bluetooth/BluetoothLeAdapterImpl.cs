@@ -359,8 +359,8 @@ namespace Tizen.Network.Bluetooth
 
         internal ManufacturerData GetScanResultManufacturerData(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            int dataId;
-            int dataLength;
+            int dataId = 0;
+            int dataLength = 0;
             IntPtr manufData;
 
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
@@ -377,7 +377,10 @@ namespace Tizen.Network.Bluetooth
             data.Id = dataId;
             data.DataLength = dataLength;
             if (data.DataLength > 0)
+            {
+                data.Data = new byte[data.DataLength];
                 Marshal.Copy(manufData, data.Data, 0, data.DataLength);
+            }
 
             return data;
         }
@@ -425,8 +428,6 @@ namespace Tizen.Network.Bluetooth
                             BluetoothLeAdvertisingState state, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
-                // TODO: check if this conversion is required
-                BluetoothLeAdvertiser leAdvertiser = (BluetoothLeAdvertiser)Marshal.PtrToStructure(advertiserHandle, typeof(BluetoothLeAdvertiser));
                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
                 _advertisingStateChanged(null, e);
             };
