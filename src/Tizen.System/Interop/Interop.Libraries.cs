@@ -18,7 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        internal const string RuntimeInfo = "libcapi-system-runtime-info.so.0";
-        internal const string SystemInfo = "libcapi-system-info.so.0";
+        internal const string Device = "libcapi-system-device.so.0";
     }
 }
