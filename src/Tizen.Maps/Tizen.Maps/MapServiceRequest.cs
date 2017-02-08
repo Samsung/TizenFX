@@ -65,10 +65,7 @@ namespace Tizen.Maps
             return await _requestTask.Task;
         }
 
-        /// <summary>
-        /// Cancel this map service request
-        /// </summary>
-        public void Cancel()
+        internal void Cancel()
         {
             if (_requestTask?.Task.IsCompleted == false)
             {

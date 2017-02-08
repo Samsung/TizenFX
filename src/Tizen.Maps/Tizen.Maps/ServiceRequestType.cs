@@ -66,11 +66,11 @@ namespace Tizen.Maps
         /// <summary>
         /// Service request to query <see cref="Route"/> information from a given origin <see cref="Geocoordinates"/> and destination <see cref="Geocoordinates"/> is allowed
         /// </summary>
-        SearchByEndPoint = Interop.ServiceType.SearchRoute,
+        SearchRoute = Interop.ServiceType.SearchRoute,
         /// <summary>
         /// Service request to query <see cref="Route"/> information passing through specified way-points <see cref="GeocoordinatesList"/> is allowed
         /// </summary>
-        SearchWithWaypoints = Interop.ServiceType.SearchRouteWaypoints,
+        SearchRouteWithWaypoints = Interop.ServiceType.SearchRouteWaypoints,
 
         /// <summary>
         /// Map view service is allowed

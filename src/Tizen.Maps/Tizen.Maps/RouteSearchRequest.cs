@@ -32,7 +32,7 @@ namespace Tizen.Maps
         private Geocoordinates _from;
         private List<Geocoordinates> _waypoints = new List<Geocoordinates>();
 
-        internal RouteSearchRequest(MapService service, Geocoordinates from, Geocoordinates to) : this(service, ServiceRequestType.SearchByEndPoint)
+        internal RouteSearchRequest(MapService service, Geocoordinates from, Geocoordinates to) : this(service, ServiceRequestType.SearchRoute)
         {
             _to = to;
             _from = from;
@@ -42,7 +42,7 @@ namespace Tizen.Maps
                 errMessage = $"Failed to get route list for given origin {_from} and destination {_to}";
                 if (_waypoints?.Count == 0)
                 {
-                    _type = ServiceRequestType.SearchByEndPoint;
+                    _type = ServiceRequestType.SearchRoute;
                     errorCode = _service.handle.SearchRoute(_from.handle, _to.handle, _service.Preferences.handle, _routeCallback, IntPtr.Zero, out requestID);
                     if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                     {
@@ -51,7 +51,7 @@ namespace Tizen.Maps
                 }
                 else
                 {
-                    _type = ServiceRequestType.SearchWithWaypoints;
+                    _type = ServiceRequestType.SearchRouteWithWaypoints;
 
                     var waypoints = GetCoordinateListForWaypoints();
                     errorCode = _service.handle.SearchRouteWaypoints(waypoints, waypoints.Length, _service.Preferences.handle, _routeCallback, IntPtr.Zero, out requestID);
