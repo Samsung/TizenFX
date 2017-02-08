@@ -53,6 +53,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Enumeration for the Application State.
+        /// </summary>
+        public enum AppState
+        {
+            /// <summary>
+            /// The undefined state
+            /// </summary>
+            Undefined = 0,
+
+            /// <summary>
+            /// The UI application is running in the foreground.
+            /// </summary>
+            Foreground,
+
+            /// <summary>
+            /// The UI application is running in the background.
+            /// </summary>
+            Background,
+
+            /// <summary>
+            /// The Service application is running.
+            /// </summary>
+            Service,
+
+            /// <summary>
+            /// The application is terminated.
+            /// </summary>
+            Terminated,
+        }
+
+        /// <summary>
         /// Gets the application id.
         /// </summary>
         public string ApplicationId
@@ -407,6 +438,39 @@ namespace Tizen.Applications
                 label = Label;
             }
             return label;
+        }
+
+        /// <summary>
+        /// Gets the state of the application.
+        /// </summary>
+        public AppState State
+        {
+            get
+            {
+                int value = 0;
+                IntPtr contextHandle = IntPtr.Zero;
+                try
+                {
+                    err = Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the context handle. err = " + err);
+                    }
+                    err = Interop.ApplicationManager.AppContextGetAppState(contextHandle, out value);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the app state. err = " + err);
+                    }
+                }
+                finally
+                {
+                    if (contextHandle != IntPtr.Zero)
+                    {
+                        Interop.ApplicationManager.AppContextDestroy(contextHandle);
+                    }
+                }
+                return (AppState)value;
+            }
         }
 
         private IntPtr GetInfoHandle()

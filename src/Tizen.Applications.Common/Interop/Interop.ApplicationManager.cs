@@ -129,6 +129,10 @@ internal static partial class Interop
         internal static extern ErrorCode AppContextGetPid(IntPtr handle, out int processId);
         //int app_context_get_pid (app_context_h app_context, pid_t *pid)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_app_state")]
+        internal static extern ErrorCode AppContextGetAppState(IntPtr handle, out int state);
+        //int app_context_get_app_state (app_context_h app_context, app_state_e *state)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_terminated")]
         internal static extern ErrorCode AppContextIsTerminated(IntPtr handle, out bool terminated);
         //int app_context_is_terminated (app_context_h app_context, bool *terminated);
