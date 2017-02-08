@@ -21,8 +21,12 @@ BuildRequires: csapi-tizen-nuget
 %description
 %{summary}
 
-%dotnet_import_sub_packages
+%package -n %{name}-nuget
+Summary:  An Application library in Tizen C# API
+Group:  Development/Libraries
 
+%description -n %{name}-nuget
+An Application library in Tizen C# API package.
 
 %package -n csapi-application-common
 Summary:  An Application Common library in Tizen C# API
@@ -180,7 +184,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Common.dll
 
 %files -n csapi-application-common-nuget
-/nuget/Tizen.Applications.Common*.nupkg
+/nuget/Tizen.Applications.Common.%{version}.nupkg
 
 %files -n csapi-application-message-port
 %manifest %{name}.manifest
@@ -188,7 +192,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.MessagePort.dll
 
 %files -n csapi-application-message-port-nuget
-/nuget/Tizen.Applications.MessagePort*.nupkg
+/nuget/Tizen.Applications.MessagePort.%{version}.nupkg
 
 %files -n csapi-application-package-manager
 %manifest %{name}.manifest
@@ -196,7 +200,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.PackageManager.dll
 
 %files -n csapi-application-package-manager-nuget
-/nuget/Tizen.Applications.PackageManager*.nupkg
+/nuget/Tizen.Applications.PackageManager.%{version}.nupkg
 
 %files -n csapi-application-notification
 %manifest %{name}.manifest
@@ -204,7 +208,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Notification.dll
 
 %files -n csapi-application-notification-nuget
-/nuget/Tizen.Applications.Notification*.nupkg
+/nuget/Tizen.Applications.Notification.%{version}.nupkg
 
 %files -n csapi-application-preference
 %manifest %{name}.manifest
@@ -212,7 +216,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Preference.dll
 
 %files -n csapi-application-preference-nuget
-/nuget/Tizen.Applications.Preference*.nupkg
+/nuget/Tizen.Applications.Preference.%{version}.nupkg
 
 %files -n csapi-application-alarm
 %manifest %{name}.manifest
@@ -220,7 +224,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Alarm.dll
 
 %files -n csapi-application-alarm-nuget
-/nuget/Tizen.Applications.Alarm*.nupkg
+/nuget/Tizen.Applications.Alarm.%{version}.nupkg
 
 %files -n csapi-application-service
 %manifest %{name}.manifest
@@ -228,7 +232,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Service.dll
 
 %files -n csapi-application-service-nuget
-/nuget/Tizen.Applications.Service*.nupkg
+/nuget/Tizen.Applications.Service.%{version}.nupkg
 
 %files -n csapi-application-ui
 %manifest %{name}.manifest
@@ -236,11 +240,13 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.UI.dll
 
 %files -n csapi-application-ui-nuget
-/nuget/Tizen.Applications.UI*.nupkg
+/nuget/Tizen.Applications.UI.%{version}.nupkg
 
 %files
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.dll
 
+%files -n %{name}-nuget
+/nuget/Tizen.Applications.%{version}.nupkg
 
