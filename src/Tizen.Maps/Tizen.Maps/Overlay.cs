@@ -25,7 +25,6 @@ namespace Tizen.Maps
     public class Overlay : MapObject, IDisposable
     {
         internal Interop.OverlayHandle handle;
-        private EvasObject _containedObject;
 
         /// <summary>
         /// Creates normal overlay map object
@@ -43,8 +42,6 @@ namespace Tizen.Maps
             {
                 err.ThrowIfFailed("given coordinates or parent evas object is null");
             }
-
-            _containedObject = objectToContain;
             handle = new Interop.OverlayHandle(coordinates.handle, objectToContain, Interop.ViewOverlayType.Normal);
         }
 
