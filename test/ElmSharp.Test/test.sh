@@ -47,7 +47,7 @@ install_res() {
 
 run() {
   sdb root on
-  sdb_cmd "/opt/usr/share/tizen.net/corerun $TARGET_DIR/ElmSharp.Test.exe $1"
+  sdb_cmd "/usr/share/tizen.net/corerun $TARGET_DIR/ElmSharp.Test.exe $1"
   exit_on_error $?
 }
 
