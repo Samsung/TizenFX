@@ -60,5 +60,15 @@ namespace ElmSharp
         {
             return Interop.Elementary.elm_config_profile_get();
         }
+
+        public static void SetScale(double scale)
+        {
+            Interop.Elementary.elm_config_scale_set(scale);
+        }
+
+        public static double GetScale()
+        {
+            return Interop.Elementary.elm_config_scale_get();
+        }
     }
 }
