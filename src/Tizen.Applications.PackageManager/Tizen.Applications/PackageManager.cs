@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Tizen.Applications
 {
@@ -276,11 +277,44 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Install(string packagePath, string expansionPackagePath)
         {
+            PackageType type;
+            string extension = Path.GetExtension(packagePath);
+
+            if (extension.Contains("tpk"))
+            {
+                type = PackageType.TPK;
+            }
+            else
+            {
+                type = PackageType.WGT;
+            }
+
+            return Install(packagePath, expansionPackagePath, type);
+        }
+
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
+        /// <param name="type">Package type for the package to be installed</param>
+        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, string expansionPackagePath, PackageType type)
+        {
             IntPtr requestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out requestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to install package. Error in creating request handle. err = {0}", err));
+                return false;
+            }
+
+            err = Interop.PackageManager.PackageManagerRequestSetType(requestHandle, type.ToString().ToLower());
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
+                Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
                 return false;
             }
 
