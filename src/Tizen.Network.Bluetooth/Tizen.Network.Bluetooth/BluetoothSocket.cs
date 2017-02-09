@@ -27,7 +27,7 @@ namespace Tizen.Network.Bluetooth
     {
         event EventHandler<SocketDataReceivedEventArgs> DataReceived;
         event EventHandler<SocketConnectionStateChangedEventArgs> ConnectionStateChanged;
-        void SendData(string data);
+        int SendData(string data);
     }
 
     /// <summary>
@@ -203,14 +203,15 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <param name="socketFd">The file descriptor of connected socket.</param>
         /// <param name="data">The data to be sent.</param>
-        public void SendData(string data)
+        public int SendData(string data)
         {
             int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);
-            if (ret != (int)BluetoothError.None)
+            if (ret < 0)
             {
                 Log.Error(Globals.LogTag, "Failed to send data, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
+            return ret;
         }
 
         ~BluetoothSocket()
