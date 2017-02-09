@@ -132,5 +132,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_clear(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_fields_update(IntPtr item, string part, uint type);
     }
 }
