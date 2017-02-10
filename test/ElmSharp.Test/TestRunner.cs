@@ -202,6 +202,7 @@ namespace ElmSharp.Test
             Elementary.ThemeOverlay();
 
             Console.WriteLine("ELM_PROFILE : {0}", Elementary.GetProfile());
+            Console.WriteLine("ELM_SCALE : {0}", Elementary.GetScale());
 
             TestRunner testRunner = new TestRunner();
             testRunner.Run(args);

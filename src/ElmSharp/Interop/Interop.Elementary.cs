@@ -31,6 +31,12 @@ internal static partial class Interop
         internal static extern IntPtr elm_config_accel_preference_set(string preference);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_config_scale_set(double scale);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_config_scale_get();
+
+        [DllImport(Libraries.Elementary)]
         internal static extern string elm_config_profile_get();
 
         [DllImport(Libraries.Elementary)]
