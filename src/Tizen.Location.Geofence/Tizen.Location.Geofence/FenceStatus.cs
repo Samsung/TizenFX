@@ -39,7 +39,6 @@ namespace Tizen.Location.Geofence
         /// Creates a new geofence status.
         /// </summary>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public FenceStatus(int fenceId)
         {
@@ -61,7 +60,6 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the state of geofence.
         /// </summary>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public GeofenceState State
         {
@@ -81,7 +79,6 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the amount of seconds geofence is in the current state.
         /// </summary>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public int Duration
         {

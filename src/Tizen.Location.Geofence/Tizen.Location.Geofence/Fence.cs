@@ -205,7 +205,7 @@ namespace Tizen.Location.Geofence
         /// <returns>Newly created geofence instance </returns>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public static Fence CreateGPSFence(int placeId, int latitude, int longitude, int radius, string address)
         {
@@ -228,7 +228,7 @@ namespace Tizen.Location.Geofence
         /// <returns>Newly created geofence instance </returns>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public static Fence CreateWifiFence(int placeId, string bssid, string ssid)
         {
@@ -251,7 +251,7 @@ namespace Tizen.Location.Geofence
         /// <returns>Newly created geofence instance </returns>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public static Fence CreateBTFence(int placeId, string bssid, string ssid)
         {

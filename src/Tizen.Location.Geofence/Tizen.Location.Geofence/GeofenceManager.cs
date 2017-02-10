@@ -48,7 +48,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <exception cref="OutOfMemoryException">Incase of OutOfMemory condition</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public GeofenceManager()
         {
@@ -95,7 +95,7 @@ namespace Tizen.Location.Geofence
         /// </remarks>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public void Start(int geofenceId)
         {
@@ -117,7 +117,7 @@ namespace Tizen.Location.Geofence
         /// </remarks>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Pvivileges are not defined</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
         public void Stop(int geofenceId)
         {
