@@ -68,5 +68,16 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_naviframe_item_pop_to(IntPtr item);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_naviframe_item_style_set(IntPtr item, string style);
+
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_naviframe_item_style_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr _elm_naviframe_item_style_get(IntPtr item);
+        internal static string elm_naviframe_item_style_get(IntPtr item)
+        {
+            var text = _elm_naviframe_item_style_get(item);
+            return Marshal.PtrToStringAnsi(text);
+        }
     }
 }

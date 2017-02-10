@@ -77,6 +77,18 @@ namespace ElmSharp
             }
         }
 
+        public string Style
+        {
+            get
+            {
+                return Interop.Elementary.elm_naviframe_item_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_naviframe_item_style_set(Handle, value);
+            }
+        }
+
         protected override void OnInvalidate()
         {
             if (!_isPopped)
