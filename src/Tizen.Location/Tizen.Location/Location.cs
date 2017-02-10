@@ -28,9 +28,9 @@ namespace Tizen.Location
         private double _latitude;
         private double _longitude;
         private double _altitude;
-        private double _horizontal;
-        private double _direction;
         private double _speed;
+        private double _direction;
+        private double _accuracy;
         internal int _timestamp;
 
         /// <summary>
@@ -45,19 +45,19 @@ namespace Tizen.Location
         /// <param name="latitude"> Latitude component of the device co-ordinate [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude"> Longitude component of the device co-ordinate[-180.0 ~ 180.0] (degrees).</param>
         /// <param name="altitude"> Altitude value.</param>
-        /// <param name="horizontalAccuracy"> Horizontal Accuracy in meters.</param>
+        /// <param name="accuracy"> Accuracy in meters.</param>
         /// <param name="speed"> Devie Speed.</param>
         /// <param name="direction"> Device direction with respect to north.</param>
         /// <param name="timestamp"> Time when the measurement took place.</param>
         /// </summary>
-        public Location(double latitude, double longitude, double altitude, double horizontalAccuracy, double direction, double speed, int timestamp)
+        public Location(double latitude, double longitude, double altitude, double speed, double direction, double accuracy, int timestamp)
         {
             _latitude = latitude;
             _longitude = longitude;
             _altitude = altitude;
-            _horizontal = horizontalAccuracy;
-            _direction = direction;
             _speed = speed;
+            _direction = direction;
+            _accuracy = accuracy;
             _timestamp = timestamp;
         }
 
@@ -107,17 +107,17 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The horizontal accuracy.
+        /// The Device Speed (km/h).
         /// </summary>
-        public double HorizontalAccuracy
+        public double Speed
         {
             get
             {
-                return _horizontal;
+                return _speed;
             }
             set
             {
-                _horizontal = value;
+                _speed = value;
             }
         }
 
@@ -137,17 +137,17 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The Device Speed (km/h).
+        /// The accuracy.
         /// </summary>
-        public double Speed
+        public double Accuracy
         {
             get
             {
-                return _speed;
+                return _accuracy;
             }
             set
             {
-                _speed = value;
+                _accuracy = value;
             }
         }
 

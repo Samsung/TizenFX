@@ -26,11 +26,11 @@ namespace Tizen.Location
         /// <param name="activeCount"> The number of active satellites.</param>
         /// <param name="inviewCount"> The number of satellites in view.</param>
         /// <param name="timestamp"> The time at which the data has been extracted.</param>
-        public SatelliteStatusChangedEventArgs(uint activeCount, uint inviewCount, DateTime timeStamp)
+        public SatelliteStatusChangedEventArgs(uint activeCount, uint inviewCount, DateTime timestamp)
         {
             ActiveCount = activeCount;
             InViewCount = inviewCount;
-            TimeStamp = timeStamp;
+            Timestamp = timestamp;
         }
 
         /// <summary>
@@ -46,6 +46,6 @@ namespace Tizen.Location
         /// <summary>
         /// Get the timestamp.
         /// </summary>
-        public DateTime TimeStamp { get; private set; }
+        public DateTime Timestamp { get; private set; }
     }
 }

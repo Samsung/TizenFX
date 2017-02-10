@@ -47,10 +47,10 @@ internal static partial class Interop
         internal static extern int GetLocationType(IntPtr handle, out LocationType method);
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_get_location")]
-        internal static extern int GetLocation(IntPtr handle, out double altitude, out double latitude, out double longitude, out double climb, out double direction, out double speed, out LocationAccuracy level, out double horizontal, out double vertical, out int timestamp);
+        internal static extern int GetLocation(IntPtr handle, out double altitude, out double latitude, out double longitude, out double climb, out double direction, out double speed, out int level, out double horizontal, out double vertical, out int timestamp);
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_get_last_location")]
-        internal static extern int GetLastLocation(IntPtr handle, out double altitude, out double latitude, out double longitude, out double climb, out double direction, out double speed, out LocationAccuracy level, out double horizontal, out double vertical, out int timestamp);
+        internal static extern int GetLastLocation(IntPtr handle, out double altitude, out double latitude, out double longitude, out double climb, out double direction, out double speed, out int level, out double horizontal, out double vertical, out int timestamp);
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_add_boundary")]
         internal static extern int AddBoundary(IntPtr managerHandle, IntPtr boundsHandle);
@@ -86,7 +86,7 @@ internal static partial class Interop
         internal delegate void SettingchangedCallback(LocationType method, bool enable, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void LocationchangedCallback(double latitude, double longitude, double altitude, double speed, double direction, double horizontalAcc, int timeStamp, IntPtr userData);
+        internal delegate void LocationchangedCallback(double latitude, double longitude, double altitude, double speed, double direction, double accuracy, int timeStamp, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void LocationUpdatedCallback(LocationError error, double latitude, double longitude, double altitude, int timestamp, double speed, double direction, double climb, IntPtr userData);
@@ -161,7 +161,7 @@ internal static partial class Interop
         internal delegate void SatelliteStatuschangedCallback(uint numActive, uint numInView, int timeStamp, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool SatelliteStatusinfomationCallback(uint azimuth, uint elevation, uint prn, uint snr, bool isActive, IntPtr userData);
+        internal delegate bool SatelliteStatusinfomationCallback(uint azimuth, uint elevation, uint prn, uint snr, bool active, IntPtr userData);
 
         [DllImport(Libraries.Location, EntryPoint = "gps_status_get_nmea")]
         internal static extern int GetNMEAData(IntPtr handle, out string nmea);

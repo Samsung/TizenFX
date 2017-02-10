@@ -34,7 +34,7 @@ namespace Tizen.Location
             Latitude = latitude;
             Longitude = longitude;
             Altitude = altitude;
-            TimeStamp = timestamp;
+            Timestamp = timestamp;
         }
 
         /// <summary>
@@ -60,6 +60,6 @@ namespace Tizen.Location
         /// <summary>
         /// Method to get the timestamp.
         /// </summary>
-        public DateTime TimeStamp { get; private set; }
+        public DateTime Timestamp { get; private set; }
     }
 }

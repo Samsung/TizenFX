@@ -27,10 +27,10 @@ namespace Tizen.Location
         /// <summary>
         /// Class Constructor for LocationUpdatedEventArgs class.
         /// </summary>
-        /// <param name="locationUpdate"> Object of Location class.</param>
-        public LocationChangedEventArgs(Location locationUpdate)
+        /// <param name="location"> Object of Location class.</param>
+        public LocationChangedEventArgs(Location location)
         {
-            Location = locationUpdate;
+            Location = location;
         }
 
         /// <summary>

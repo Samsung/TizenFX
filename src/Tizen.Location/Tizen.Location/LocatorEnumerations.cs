@@ -39,30 +39,6 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// Enumeration for Approximate accuracy level of given information.
-    /// </summary>
-    public enum LocationAccuracy
-    {
-        None = 0, /**< Invalid Data */
-        Country, /**< Country accuracy level */
-        Region, /**< Regional accuracy level */
-        Locality, /**< Local accuracy level*/
-        PostalCode, /**< Postal accuracy level */
-        Street, /**< Street accuracy level */
-        Detailed /**< Detailed accuracy level*/
-    }
-
-    /// <summary>
-    /// Enumeration for the location service accessibility state.
-    /// </summary>
-    public enum AccessibilityState
-    {
-        None = 0, /**< Access state is not determined */
-        Denied, /**< Access denied */
-        Allowed /**< Access authorized */
-    }
-
-    /// <summary>
     /// Enumeration for the created boundary type.
     /// </summary>
     public enum BoundaryType

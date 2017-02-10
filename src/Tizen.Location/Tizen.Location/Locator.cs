@@ -36,15 +36,15 @@ namespace Tizen.Location
     {
         private int _interval = 1;
         private int _stayInterval = 120;
+        private int _requestId = 0;
         private double _distance = 120.0;
         private bool _isEnableMock;
+        private bool _disposed = false;
+        private bool _isStarted = false;
         private IntPtr _handle;
         private LocationType _locationType;
         private Location _location = null;
-        private bool _disposed = false;
-        private bool _isStarted = false;
         private static Locator s_locatorReference;
-        private int _requestId = 0;
         private Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback> _callback_map = new Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback>();
 
         private Interop.LocatorEvent.ServiceStatechangedCallback _serviceStateChangedCallback;
@@ -289,7 +289,7 @@ namespace Tizen.Location
         public void SetMockLocation(Location location)
         {
             Log.Info(Globals.LogTag, "Setting mock location");
-            int ret = Interop.Locator.SetMockLocation(_handle, location.Latitude, location.Longitude, location.Altitude, location.Speed, location.Direction, location.HorizontalAccuracy);
+            int ret = Interop.Locator.SetMockLocation(_handle, location.Latitude, location.Longitude, location.Altitude, location.Speed, location.Direction, location.Accuracy);
             if (((LocationError)ret == LocationError.None))
             {
                 _location.Latitude = location.Latitude;
@@ -297,7 +297,7 @@ namespace Tizen.Location
                 _location.Altitude = location.Altitude;
                 _location.Speed = location.Speed;
                 _location.Direction = location.Direction;
-                _location.HorizontalAccuracy = location.HorizontalAccuracy;
+                _location.Accuracy = location.Accuracy;
             }
             else
             {
@@ -349,7 +349,7 @@ namespace Tizen.Location
                     else
                     {
                         Log.Info(Globals.LogTag, "Creating a current location object");
-                        _location = new Location(latitude, longitude, altitude, 0.0, direction, speed, timestamp);
+                        _location = new Location(latitude, longitude, altitude, speed, direction, 0.0, timestamp);
                         task.SetResult(_location);
                     }
                     lock (_callback_map)
@@ -379,21 +379,21 @@ namespace Tizen.Location
         /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
         public Location GetLocation()
         {
-            double altitude = 0;
             double latitude = 0;
             double longitude = 0;
+            double altitude = 0;
             double climb = 0;
-            double direction = 0;
             double speed = 0;
-            LocationAccuracy level = LocationAccuracy.None;
-            double horizontal = 0;
+            double direction = 0;
+            int level = 0;
+            double accuracy = 0;
             double vertical = 0;
             int timestamp = 0;
 
             if (_isStarted)
             {
                 Log.Info(Globals.LogTag, "Get current location information");
-                int ret = Interop.Locator.GetLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out horizontal, out vertical, out timestamp);
+                int ret = Interop.Locator.GetLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
                 if (((LocationError)ret != LocationError.None))
                 {
                     Log.Error(Globals.LogTag, "Error in get current location infomation," + (LocationError)ret);
@@ -403,7 +403,7 @@ namespace Tizen.Location
             else
             {
                 Log.Info(Globals.LogTag, "Get last location information");
-                int ret = Interop.Locator.GetLastLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out horizontal, out vertical, out timestamp);
+                int ret = Interop.Locator.GetLastLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
                 if (((LocationError)ret != LocationError.None))
                 {
                     Log.Error(Globals.LogTag, "Error in get last location information," + (LocationError)ret);
@@ -411,7 +411,7 @@ namespace Tizen.Location
                 }
             }
 
-            Location location = new Location(latitude, longitude, altitude, horizontal, direction, speed, timestamp);
+            Location location = new Location(latitude, longitude, altitude, speed, direction, accuracy, timestamp);
             _location = location;
 
             return location;
@@ -711,16 +711,16 @@ namespace Tizen.Location
         {
             Log.Info(Globals.LogTag, "SetDistanceBasedLocationChangedCallback");
             if (_distanceBasedLocationChangedCallback == null) {
-                _distanceBasedLocationChangedCallback = (latitude, longitude, altitude, speed, direction, horizontalAccuracy, timestamp, userData) =>
+                _distanceBasedLocationChangedCallback = (latitude, longitude, altitude, speed, direction, accuracy, timestamp, userData) =>
                 {
                     Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #1");
-                    Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
+                    Location location = new Location(latitude, longitude, altitude, speed, direction, accuracy, timestamp);
                     Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #2");
                     _distanceBasedLocationChanged?.Invoke(this, new LocationChangedEventArgs(location));
                     Log.Info(Globals.LogTag, "DistanceBasedLocationChangedCallback #3");
                 };
             }
-            
+
             int ret = Interop.LocatorEvent.SetDistanceBasedLocationChangedCallback(_handle, _distanceBasedLocationChangedCallback, _stayInterval, _distance, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
@@ -777,10 +777,10 @@ namespace Tizen.Location
             Log.Info(Globals.LogTag, "Calling SetLocationChangedCallback");
 
             if (_locationChangedCallback == null) {
-                _locationChangedCallback = (latitude, longitude, altitude, speed, direction, horizontalAccuracy, timestamp, userData) =>
+                _locationChangedCallback = (latitude, longitude, altitude, speed, direction, accuracy, timestamp, userData) =>
                 {
                     Log.Info(Globals.LogTag, "LocationChangedCallback has been called");
-                    Location location = new Location(latitude, longitude, altitude, horizontalAccuracy, direction, speed, timestamp);
+                    Location location = new Location(latitude, longitude, altitude, speed, direction, accuracy, timestamp);
                     _location = location;
                     _locationChanged?.Invoke(this, new LocationChangedEventArgs(location));
                 };

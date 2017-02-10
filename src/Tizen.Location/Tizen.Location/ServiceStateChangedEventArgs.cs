@@ -29,7 +29,6 @@ namespace Tizen.Location
         /// <param name="state"> An enumeration of type LocationServiceState.</param>
         public ServiceStateChangedEventArgs(ServiceState state)
         {
-
             ServiceState = state;
         }
 

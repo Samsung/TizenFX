@@ -31,16 +31,15 @@ namespace Tizen.Location
     public enum LocationError
     {
         None = ErrorCode.None,/**< Successful */
-        OutOfMemoryError = ErrorCode.OutOfMemory,/**< Out of memory error */
+        OutOfMemory = ErrorCode.OutOfMemory,/**< Out of memory error */
         InvalidParameter = ErrorCode.InvalidParameter,/**< Invalid parameter */
         AcessibilityNotallowed = ErrorCode.PermissionDenied,/**< Permission denied */
         NotSupported = ErrorCode.NotSupported,/**< Address family not supported */
         IncorrectMethod = LocationManagerError.Base | 0x01,/**< Location manager contains incorrect method for a given call */
         NetworkFailed = LocationManagerError.Base | 0x02,/**< Network unavailable */
         ServiceNotAvailable = LocationManagerError.Base | 0x03,/**< Location service is not available */
-        GPSSettingOff = LocationManagerError.Base | 0x04,/**< GPS/WPS, or MOCK setting is not enabled */
+        SettingOff = LocationManagerError.Base | 0x04,/**< GPS/WPS, or MOCK setting is not enabled */
         SecuirtyRestricted = LocationManagerError.Base | 0x05,/**< Restricted by security system policy */
-        SettingOff = GPSSettingOff/**< GPS/WPS, or MOCK setting is not enabled */
     }
 
     /// <summary>
@@ -49,7 +48,7 @@ namespace Tizen.Location
     public enum LocationBoundError
     {
         None = ErrorCode.None,/**< Successful */
-        OutOfMemoryError = ErrorCode.OutOfMemory,/**< Out of memory error */
+        OutOfMemory = ErrorCode.OutOfMemory,/**< Out of memory error */
         InvalidParameter = ErrorCode.InvalidParameter,/**< Invalid parameter */
         NotSupported = ErrorCode.NotSupported,/**< Not supported */
         IncorrectType = LocationManagerError.BoundsBase | 0x01,/**< Incorrect bounds type for a given call */
@@ -64,8 +63,8 @@ namespace Tizen.Location
             LocationError error = (LocationError)errCode;
             switch (error)
             {
-                case LocationError.OutOfMemoryError:
-                    return new InvalidOperationException("Out of memory error");
+                case LocationError.OutOfMemory:
+                    return new InvalidOperationException("Out of memory");
                 case LocationError.InvalidParameter:
                     return new ArgumentException("Invalid Parameter passed");
                 case LocationError.AcessibilityNotallowed:
@@ -92,7 +91,7 @@ namespace Tizen.Location
             LocationBoundError error = (LocationBoundError)errCode;
             switch (error)
             {
-                case LocationBoundError.OutOfMemoryError:
+                case LocationBoundError.OutOfMemory:
                     return new InvalidOperationException("Out of memory exception");
                 case LocationBoundError.InvalidParameter:
                     return new ArgumentException("Invalid parameter passed");

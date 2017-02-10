@@ -173,9 +173,9 @@ namespace Tizen.Location
 
             if (_satelliteStatusinfomationCallback == null)
             {
-                _satelliteStatusinfomationCallback = (azimuth, elevation, prn, snr, isActive, userData) =>
+                _satelliteStatusinfomationCallback = (azimuth, elevation, prn, snr, active, userData) =>
                 {
-                    SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, isActive);
+                    SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, active);
                     satelliteList.Add(satellite);
                     return true;
                 };
@@ -294,14 +294,14 @@ namespace Tizen.Location
         /// <param name="elevation"> The elevation of the satellite in meters.</param>
         /// <param name="prn"> The Prn value of the satellite.</param>
         /// <param name="snr"> The SNR value of the satellite in dB.</param>
-        /// <param name="isActive"> The flag signaling if satellite is in use.</param>
-        public SatelliteInformation(uint azimuth, uint elevation, uint prn, uint snr, bool isActive)
+        /// <param name="active"> The flag signaling if satellite is in use.</param>
+        public SatelliteInformation(uint azimuth, uint elevation, uint prn, uint snr, bool active)
         {
             Azimuth = azimuth;
             Elevation = elevation;
             Prn = prn;
             Snr = snr;
-            Active = isActive;
+            Active = active;
         }
 
         /// <summary>

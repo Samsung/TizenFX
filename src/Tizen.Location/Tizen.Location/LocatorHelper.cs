@@ -27,9 +27,9 @@ namespace Tizen.Location
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
         public static bool IsSupportedType(LocationType locationType)
         {
-            bool initStatus = Interop.LocatorHelper.IsSupported((int)locationType);
-            Log.Info(Globals.LogTag, "Checking if the Location Manager type is supported ," + initStatus);
-            return initStatus;
+            bool status = Interop.LocatorHelper.IsSupported((int)locationType);
+            Log.Info(Globals.LogTag, "Checking if the Location Manager type is supported ," + status);
+            return status;
         }
 
         /// <summary>
@@ -43,14 +43,14 @@ namespace Tizen.Location
         public static bool IsEnabledType(LocationType locationType)
         {
             Log.Info(Globals.LogTag, "Checking if the Location Manager type is Enabled");
-            bool initStatus;
-            int ret = Interop.LocatorHelper.IsEnabled((int)locationType, out initStatus);
+            bool status;
+            int ret = Interop.LocatorHelper.IsEnabled((int)locationType, out status);
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error Checking the Location Manager type is Enabled," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-            return initStatus;
+            return status;
         }
     }
 }
