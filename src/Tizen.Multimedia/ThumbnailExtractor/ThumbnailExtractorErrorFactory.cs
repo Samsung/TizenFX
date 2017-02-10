@@ -36,18 +36,22 @@ namespace Tizen.Multimedia
 
     internal static class ThumbnailExtractorErrorFactory
     {
-        internal static void ThrowException(ThumbnailExtractorError errorCode, string errorMessage = null, string paramName = null)
+        internal static void ThrowIfError(ThumbnailExtractorError errorCode, string errorMessage)
         {
             switch (errorCode)
             {
                 case ThumbnailExtractorError.InvalidParameter:
-                    throw new ArgumentException("[" + errorCode.ToString() + "]" + errorMessage, paramName);
+                    throw new ArgumentException("[" + errorCode.ToString() + "]" + errorMessage);
+
                 case ThumbnailExtractorError.OutOfMemory:
                     throw new OutOfMemoryException("[" + errorCode.ToString() + "]" + errorMessage);
+
                 case ThumbnailExtractorError.InvalidOperation:
                     throw new InvalidOperationException("[" + errorCode.ToString() + "]" + errorMessage);
+
                 case ThumbnailExtractorError.FileNoSpaceOnDevice:
                     throw new IOException("[" + errorCode.ToString() + "] No space to write on the device");
+
                 case ThumbnailExtractorError.PermissionDenied:
                     throw new UnauthorizedAccessException("[" + errorCode.ToString() + "]" + errorMessage);
             }

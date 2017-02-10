@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     {
         internal const string LogTag = "Tizen.Multimedia.ThumbnailExtractor";
     }
+
     /// <summary>
     /// The Thumbnail extractor class provides a set of functions to extract the thumbnail data of the input media file
     /// </summary>
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia
     {
         private bool _disposed = false;
         internal IntPtr _handle = IntPtr.Zero;
+
         /// <summary>
         /// Thumbnail extractor constructor
         /// </summary>
@@ -41,31 +43,63 @@ namespace Tizen.Multimedia
         /// <param name="path"> The path of the media file to extract the thumbnail data </param>
         public ThumbnailExtractor(string path)
         {
-            ThumbnailExtractorError ret = ThumbnailExtractorError.None;
-
             if (path == null)
             {
-                Log.Error(ThumbnailExtractorLog.LogTag, "Path is NULL");
                 throw new ArgumentNullException(nameof(path));
             }
-            else
+
+            ThumbnailExtractorError ret = Interop.ThumbnailExtractor.Create(out _handle);
+            ThumbnailExtractorErrorFactory.ThrowIfError(ret, "Failed to create constructor");
+
+            try
             {
-                ret = Interop.ThumbnailExtractor.Create(out _handle);
-                if (ret != ThumbnailExtractorError.None)
-                {
-                    Log.Error(ThumbnailExtractorLog.LogTag, "Failed to create constructor" + ret);
-                    ThumbnailExtractorErrorFactory.ThrowException(ret, "Failed to create constructor");
-                }
-                ret = Interop.ThumbnailExtractor.SetPath(_handle, path);
-                if (ret != ThumbnailExtractorError.None)
-                {
-                    Log.Error(ThumbnailExtractorLog.LogTag, "Failed to set path" + ret);
-                    Interop.ThumbnailExtractor.Destroy(_handle);
-                    _handle = IntPtr.Zero;
-                    ThumbnailExtractorErrorFactory.ThrowException(ret, "Failed to set path");
-                }
+                ThumbnailExtractorErrorFactory.ThrowIfError(
+                    Interop.ThumbnailExtractor.SetPath(_handle, path), "Failed to set the path");
+            }
+            catch (Exception)
+            {
+                Interop.ThumbnailExtractor.Destroy(_handle);
+                _handle = IntPtr.Zero;
+                throw;
             }
         }
+
+        private void Create(String path, int width, int height)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(width), "The width must be greater than zero:[" + width + "]");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(height), "The height must be greater than zero:[" + height + "]");
+            }
+
+            ThumbnailExtractorError ret = Interop.ThumbnailExtractor.Create(out _handle);
+            ThumbnailExtractorErrorFactory.ThrowIfError(ret, "Failed to create constructor");
+
+            try
+            {
+                ThumbnailExtractorErrorFactory.ThrowIfError(
+                    Interop.ThumbnailExtractor.SetPath(_handle, path), "Failed to set the path");
+
+                ThumbnailExtractorErrorFactory.ThrowIfError(
+                    Interop.ThumbnailExtractor.SetSize(_handle, width, height), "Failed to set the size");
+            }
+            catch (Exception)
+            {
+                Interop.ThumbnailExtractor.Destroy(_handle);
+                _handle = IntPtr.Zero;
+                throw;
+            }
+        }
+
         /// <summary>
         /// Thumbnail extractor constructor
         /// </summary>
@@ -79,58 +113,35 @@ namespace Tizen.Multimedia
         /// <param name="height"> The height of the thumbnail </param>
         public ThumbnailExtractor(string path, int width, int height)
         {
-            ThumbnailExtractorError ret = ThumbnailExtractorError.None;
-
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path), "Path is NULL");
-            }
-            else if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(width), "Wrong width [" + width + "]");
-            }
-            else if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(height), "Wrong width [" + height + "]");
-            }
-
-            ret = Interop.ThumbnailExtractor.Create(out _handle);
-            if (ret != ThumbnailExtractorError.None)
-            {
-                Log.Error(ThumbnailExtractorLog.LogTag, "Failed to create constructor" + ret);
-                ThumbnailExtractorErrorFactory.ThrowException(ret, "Failed to create constructor");
-            }
-
-            try
-            {
-                ret = Interop.ThumbnailExtractor.SetPath(_handle, path);
-                if (ret != ThumbnailExtractorError.None)
-                {
-                    Log.Error(ThumbnailExtractorLog.LogTag, "Failed to set path" + ret);
-                    ThumbnailExtractorErrorFactory.ThrowException(ret, "Failed to set path");
-                }
-                ret = Interop.ThumbnailExtractor.SetSize(_handle, width, height);
-                if (ret != ThumbnailExtractorError.None)
-                {
-                    Log.Error(ThumbnailExtractorLog.LogTag, "Failed to set size" + ret);
-                    ThumbnailExtractorErrorFactory.ThrowException(ret, "Failed to set size");
-                }
-            }
-            catch (Exception)
-            {
-                Interop.ThumbnailExtractor.Destroy(_handle);
-                _handle = IntPtr.Zero;
-            }
+            Create(path, width, height);
         }
 
-        private Task<ThumbnailData> ExtractRequest()
+        /// <summary>
+        /// Thumbnail extractor constructor
+        /// </summary>
+        /// <remarks>
+        /// If you need default size thumbnail, use ThumbnailExtractor(path). Default size is 320x240.
+        /// If the set width is not a multiple of 8, it can be changed by inner process.
+        /// The width will be a multiple of 8 greater than the set value.
+        /// </remarks>
+        /// <param name="path"> The path of the media file to extract the thumbnail data </param>
+        /// <param name="size"> The size of the media file to extract the thumbnail data </param>
+        public ThumbnailExtractor(string path, Size size)
+        {
+            Create(path, size.Width, size.Height);
+        }
+
+        /// <summary>
+        /// Extract thumbnail
+        /// </summary>
+        /// <value> ThumbData object </value>
+        public Task<ThumbnailData> Extract()
         {
             if (_handle == IntPtr.Zero)
             {
                 throw new ObjectDisposedException(nameof(ThumbnailExtractor), "Failed to extract thumbnail");
             }
 
-            IntPtr id = IntPtr.Zero;
             var task = new TaskCompletionSource<ThumbnailData>();
 
             Interop.ThumbnailExtractor.ThumbnailExtractCallback extractCallback = (ThumbnailExtractorError error,
@@ -143,38 +154,39 @@ namespace Tizen.Multimedia
             {
                 if (error == ThumbnailExtractorError.None)
                 {
-                    byte[] tmpBuf = new byte[thumbSize];
-                    Marshal.Copy(thumbData, tmpBuf, 0, thumbSize);
-                    Interop.Libc.Free(thumbData);
-                    task.TrySetResult(new ThumbnailData(tmpBuf, thumbWidth, thumbHeight));
+                    try
+                    {
+                        byte[] tmpBuf = new byte[thumbSize];
+                        Marshal.Copy(thumbData, tmpBuf, 0, thumbSize);
+
+                        task.SetResult(new ThumbnailData(tmpBuf, thumbWidth, thumbHeight));
+                    }
+                    catch (Exception)
+                    {
+                        task.SetException(new InvalidOperationException("[" + error + "] Fail to copy data"));
+                    }
+                    finally
+                    {
+                        Interop.Libc.Free(thumbData);
+                    }
                 }
                 else
                 {
-                    Log.Error(ThumbnailExtractorLog.LogTag, "Failed to extract thumbnail" + error);
                     task.SetException(new InvalidOperationException("["+ error +"] Fail to create thumbnail"));
                 }
             };
+
+            IntPtr id = IntPtr.Zero;
             ThumbnailExtractorError res = Interop.ThumbnailExtractor.Extract(_handle, extractCallback, IntPtr.Zero, out id);
             if (id != IntPtr.Zero)
             {
                 Interop.Libc.Free(id);
                 id = IntPtr.Zero;
             }
-            if (res != ThumbnailExtractorError.None)
-            {
-                Log.Error(ThumbnailExtractorLog.LogTag, "Failed to extract thumbnail" + res);
-                ThumbnailExtractorErrorFactory.ThrowException(res, "Failed to extract thumbnail");
-            }
+
+            ThumbnailExtractorErrorFactory.ThrowIfError(res, "Failed to extract thumbnail");
 
             return task.Task;
-        }
-        /// <summary>
-        /// Extract thumbnail
-        /// </summary>
-        /// <value> ThumbData object </value>
-        public async Task<ThumbnailData> Extract()
-        {
-            return await ExtractRequest();
         }
 
         /// <summary>
@@ -193,6 +205,7 @@ namespace Tizen.Multimedia
                 {
                     // To be used if there are any other disposable objects
                 }
+
                 if (_handle != IntPtr.Zero)
                 {
                     Interop.ThumbnailExtractor.Destroy(_handle);
