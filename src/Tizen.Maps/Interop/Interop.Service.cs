@@ -34,7 +34,7 @@ internal static partial class Interop
         MultiReverseGeocode, // MAPS_SERVICE_MULTI_REVERSE_GEOCODE
         SearchPlaceList, // MAPS_SERVICE_SEARCH_PLACE_LIST
         SearchGetPlaceDetails, // MAPS_SERVICE_SEARCH_GET_PLACE_DETAILS
-        View, // MAPS_SERVICE_VIEW
+        View = 0x100, // MAPS_SERVICE_VIEW
         ViewSnapshot, // MAPS_SERVICE_VIEW_SNAPSHOT
     }
 
@@ -53,7 +53,7 @@ internal static partial class Interop
         RoutePath, // MAPS_ROUTE_PATH
         RouteSegmentsPath, // MAPS_ROUTE_SEGMENTS_PATH
         RouteSegmentsManeuvers, // MAPS_ROUTE_SEGMENTS_MANEUVERS
-        ViewTraffic, // MAPS_VIEW_TRAFFIC
+        ViewTraffic = 0x100, // MAPS_VIEW_TRAFFIC
         ViewPublicTransit, // MAPS_VIEW_PUBLIC_TRANSIT
         ViewBuilding, // MAPS_VIEW_BUILDING
         ViewScalebar, // MAPS_VIEW_SCALEBAR
