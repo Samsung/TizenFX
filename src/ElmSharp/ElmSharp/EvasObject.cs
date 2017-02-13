@@ -91,7 +91,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(Handle));
+                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(RealHandle));
             }
         }
 
@@ -201,12 +201,12 @@ namespace ElmSharp
             get
             {
                 int r, g, b, a;
-                Interop.Evas.evas_object_color_get(Handle, out r, out g, out b, out a);
+                Interop.Evas.evas_object_color_get(RealHandle, out r, out g, out b, out a);
                 return Color.FromRgba(r, g, b, a);
             }
             set
             {
-                Interop.Evas.SetPremultipliedColor(Handle, value.R, value.G, value.B, value.A);
+                Interop.Evas.SetPremultipliedColor(RealHandle, value.R, value.G, value.B, value.A);
             }
         }
 

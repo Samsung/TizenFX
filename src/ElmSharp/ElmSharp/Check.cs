@@ -25,7 +25,7 @@ namespace ElmSharp
 
         public Check(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (sender, e) =>
             {
                 StateChanged?.Invoke(this, new CheckStateChangedEventArgs(_currentState, IsChecked));
@@ -38,18 +38,24 @@ namespace ElmSharp
         {
             get
             {
-                _currentState = Interop.Elementary.elm_check_state_get(Handle);
+                _currentState = Interop.Elementary.elm_check_state_get(RealHandle);
                 return _currentState;
             }
             set
             {
-                Interop.Elementary.elm_check_state_set(Handle, value);
+                Interop.Elementary.elm_check_state_set(RealHandle, value);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_check_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_check_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

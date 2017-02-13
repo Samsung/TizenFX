@@ -113,16 +113,16 @@ namespace ElmSharp
 
         public Entry(EvasObject parent) : base(parent)
         {
-            _clicked = new SmartEvent(this, "clicked");
+            _clicked = new SmartEvent(this, this.RealHandle, "clicked");
             _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
 
-            _changedByUser = new SmartEvent(this, "changed,user");
+            _changedByUser = new SmartEvent(this, this.RealHandle, "changed,user");
             _changedByUser.On += (s, e) => ChangedByUser?.Invoke(this, EventArgs.Empty);
 
-            _cursorChanged = new SmartEvent(this, "cursor,changed");
+            _cursorChanged = new SmartEvent(this, this.RealHandle, "cursor,changed");
             _cursorChanged.On += (s, e) => CursorChanged?.Invoke(this, EventArgs.Empty);
 
-            _activated = new SmartEvent(this, "activated");
+            _activated = new SmartEvent(this, this.RealHandle, "activated");
             _activated.On += (s, e) => Activated?.Invoke(this, EventArgs.Empty);
         }
 
@@ -138,11 +138,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_single_line_get(Handle);
+                return Interop.Elementary.elm_entry_single_line_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_single_line_set(Handle, value);
+                Interop.Elementary.elm_entry_single_line_set(RealHandle, value);
             }
         }
 
@@ -150,11 +150,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_password_get(Handle);
+                return Interop.Elementary.elm_entry_password_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_password_set(Handle, value);
+                Interop.Elementary.elm_entry_password_set(RealHandle, value);
             }
         }
 
@@ -162,11 +162,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_editable_get(Handle);
+                return Interop.Elementary.elm_entry_editable_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_editable_set(Handle, value);
+                Interop.Elementary.elm_entry_editable_set(RealHandle, value);
             }
         }
 
@@ -174,7 +174,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_is_empty(Handle);
+                return Interop.Elementary.elm_entry_is_empty(RealHandle);
             }
         }
 
@@ -182,11 +182,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_entry_get(Handle);
+                return Interop.Elementary.elm_entry_entry_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_entry_set(Handle, value);
+                Interop.Elementary.elm_entry_entry_set(RealHandle, value);
             }
         }
 
@@ -194,11 +194,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_text_style_user_peek(Handle);
+                return Interop.Elementary.elm_entry_text_style_user_peek(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_text_style_user_push(Handle, value);
+                Interop.Elementary.elm_entry_text_style_user_push(RealHandle, value);
             }
         }
 
@@ -206,11 +206,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_cursor_pos_get(Handle);
+                return Interop.Elementary.elm_entry_cursor_pos_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_entry_cursor_pos_set(Handle, value);
+                Interop.Elementary.elm_entry_cursor_pos_set(RealHandle, value);
             }
         }
 
@@ -218,7 +218,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_entry_scrollable_get(Handle);
+                return Interop.Elementary.elm_entry_scrollable_get(RealHandle);
             }
             set
             {
@@ -229,7 +229,7 @@ namespace ElmSharp
                 {
                     var dummy = EdjeObject;
                 }
-                Interop.Elementary.elm_entry_scrollable_set(Handle, value);
+                Interop.Elementary.elm_entry_scrollable_set(RealHandle, value);
             }
         }
 
@@ -240,72 +240,78 @@ namespace ElmSharp
 
         public bool MoveCursorNext()
         {
-            return Interop.Elementary.elm_entry_cursor_next(Handle);
+            return Interop.Elementary.elm_entry_cursor_next(RealHandle);
         }
 
         public bool MoveCursorPrev()
         {
-            return Interop.Elementary.elm_entry_cursor_prev(Handle);
+            return Interop.Elementary.elm_entry_cursor_prev(RealHandle);
         }
 
         public bool MoveCursorUp()
         {
-            return Interop.Elementary.elm_entry_cursor_up(Handle);
+            return Interop.Elementary.elm_entry_cursor_up(RealHandle);
         }
 
         public bool MoveCursorDown()
         {
-            return Interop.Elementary.elm_entry_cursor_down(Handle);
+            return Interop.Elementary.elm_entry_cursor_down(RealHandle);
         }
 
         public void MoveCursorBegin()
         {
-            Interop.Elementary.elm_entry_cursor_begin_set(Handle);
+            Interop.Elementary.elm_entry_cursor_begin_set(RealHandle);
         }
 
         public void MoveCursorEnd()
         {
-            Interop.Elementary.elm_entry_cursor_end_set(Handle);
+            Interop.Elementary.elm_entry_cursor_end_set(RealHandle);
         }
 
         public void MoveCursorLineBegin()
         {
-            Interop.Elementary.elm_entry_cursor_line_begin_set(Handle);
+            Interop.Elementary.elm_entry_cursor_line_begin_set(RealHandle);
         }
 
         public void MoveCursorLineEnd()
         {
-            Interop.Elementary.elm_entry_cursor_line_end_set(Handle);
+            Interop.Elementary.elm_entry_cursor_line_end_set(RealHandle);
         }
 
         public void SetInputPanelLayout(InputPanelLayout layout)
         {
-            Interop.Elementary.elm_entry_input_panel_layout_set(Handle, (Interop.Elementary.InputPanelLayout)layout);
+            Interop.Elementary.elm_entry_input_panel_layout_set(RealHandle, (Interop.Elementary.InputPanelLayout)layout);
         }
 
         public void SetInputPanelEnabled(bool enabled)
         {
-            Interop.Elementary.elm_entry_input_panel_enabled_set(Handle, enabled);
+            Interop.Elementary.elm_entry_input_panel_enabled_set(RealHandle, enabled);
         }
 
         public void SetInputPanelReturnKeyType(InputPanelReturnKeyType keyType)
         {
-            Interop.Elementary.elm_entry_input_panel_return_key_type_set(Handle, (Interop.Elementary.ReturnKeyType)keyType);
+            Interop.Elementary.elm_entry_input_panel_return_key_type_set(RealHandle, (Interop.Elementary.ReturnKeyType)keyType);
         }
 
         public void SelectAll()
         {
-            Interop.Elementary.elm_entry_select_all(Handle);
+            Interop.Elementary.elm_entry_select_all(RealHandle);
         }
 
         public void SelectNone()
         {
-            Interop.Elementary.elm_entry_select_none(Handle);
+            Interop.Elementary.elm_entry_select_none(RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_entry_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_entry_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

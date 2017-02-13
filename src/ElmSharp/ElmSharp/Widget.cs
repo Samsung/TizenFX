@@ -27,6 +27,7 @@ namespace ElmSharp
         SmartEvent _unfocused;
 
         internal Color _backgroundColor = Color.Default;
+        internal int _opacity = Color.Default.A;
 
         protected Widget()
         {
@@ -49,11 +50,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_object_disabled_get(Handle);
+                return !Interop.Elementary.elm_object_disabled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_object_disabled_set(Handle, !value);
+                Interop.Elementary.elm_object_disabled_set(RealHandle, !value);
             }
         }
 
@@ -61,11 +62,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_object_style_get(Handle);
+                return Interop.Elementary.elm_object_style_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_object_style_set(Handle, value);
+                Interop.Elementary.elm_object_style_set(RealHandle, value);
             }
         }
 
@@ -73,7 +74,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_object_focus_get(Handle);
+                return Interop.Elementary.elm_object_focus_get(RealHandle);
             }
         }
 
@@ -81,11 +82,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_object_part_text_get(Handle);
+                return Interop.Elementary.elm_object_part_text_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_object_part_text_set(Handle, IntPtr.Zero, value);
+                Interop.Elementary.elm_object_part_text_set(RealHandle, IntPtr.Zero, value);
             }
         }
 
@@ -93,7 +94,7 @@ namespace ElmSharp
         {
             get
             {
-                if(!_backgroundColor.IsDefault)
+                if (!_backgroundColor.IsDefault)
                 {
                     _backgroundColor = GetPartColor("bg");
                 }
@@ -113,9 +114,26 @@ namespace ElmSharp
             }
         }
 
+        public virtual int Opacity
+        {
+            get
+            {
+                if (_opacity != Color.Default.A)
+                {
+                    _opacity = GetPartOpacity("opacity");
+                }
+                return _opacity;
+            }
+            set
+            {
+                SetPartOpacity("opacity", value);
+                _opacity = value;
+            }
+        }
+
         public void SetFocus(bool isFocus)
         {
-            Interop.Elementary.elm_object_focus_set(Handle, isFocus);
+            Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
         }
 
         public void SetPartContent(string part, EvasObject content)
@@ -127,9 +145,9 @@ namespace ElmSharp
         {
             if (preserveOldContent)
             {
-                Interop.Elementary.elm_object_part_content_unset(Handle, part);
+                Interop.Elementary.elm_object_part_content_unset(RealHandle, part);
             }
-            Interop.Elementary.elm_object_part_content_set(Handle, part, content);
+            Interop.Elementary.elm_object_part_content_set(RealHandle, part, content);
 
             _partContents[part ?? "__default__"] = content;
         }
@@ -143,41 +161,53 @@ namespace ElmSharp
         {
             if (preserveOldContent)
             {
-                Interop.Elementary.elm_object_content_unset(Handle);
+                Interop.Elementary.elm_object_content_unset(RealHandle);
             }
 
-            Interop.Elementary.elm_object_content_set(Handle, content);
-            _partContents["___default__"] = content;
+            Interop.Elementary.elm_object_content_set(RealHandle, content);
+            _partContents["__default__"] = content;
         }
 
         public void SetPartText(string part, string text)
         {
-            Interop.Elementary.elm_object_part_text_set(Handle, part, text);
+            Interop.Elementary.elm_object_part_text_set(RealHandle, part, text);
         }
 
         public string GetPartText(string part)
         {
-            return Interop.Elementary.elm_object_part_text_get(Handle, part);
+            return Interop.Elementary.elm_object_part_text_get(RealHandle, part);
         }
 
-        public void SetPartColor(string part, Color color)
+        public virtual void SetPartColor(string part, Color color)
         {
-            Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
+            Interop.Elementary.elm_object_color_class_color_set(RealHandle, part, color.R * color.A / 255,
                                                                               color.G * color.A / 255,
                                                                               color.B * color.A / 255,
                                                                               color.A);
         }
 
-        public Color GetPartColor(string part)
+        public virtual Color GetPartColor(string part)
+        {
+            int r, g, b, a;
+            Interop.Elementary.elm_object_color_class_color_get(RealHandle, part, out r, out g, out b, out a);
+            return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
+        }
+
+        public void SetPartOpacity(string part, int opacity)
+        {
+            Interop.Elementary.elm_object_color_class_color_set(Handle, part, 255, 255, 255, opacity);
+        }
+
+        public int GetPartOpacity(string part)
         {
             int r, g, b, a;
             Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
-            return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
+            return a;
         }
 
         internal IntPtr GetPartContent(string part)
         {
-            return Interop.Elementary.elm_object_part_content_get(Handle, part);
+            return Interop.Elementary.elm_object_part_content_get(RealHandle, part);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ElmSharp
 
         public Calendar(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (sender, e) =>
             {
                 DateTime selectedDate = SelectedDate;
@@ -38,7 +38,7 @@ namespace ElmSharp
                 _cacheSelectedDate = selectedDate;
             };
 
-            _displayedMonthChanged = new SmartEvent(this, "display,changed");
+            _displayedMonthChanged = new SmartEvent(this, this.RealHandle, "display,changed");
             _displayedMonthChanged.On += (sender, e) =>
             {
                 int currentDisplayedMonth = SelectedDate.Month;
@@ -57,15 +57,15 @@ namespace ElmSharp
             {
                 int minimumYear;
                 int unused;
-                Interop.Elementary.elm_calendar_min_max_year_get(Handle, out minimumYear, out unused);
+                Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out minimumYear, out unused);
                 return minimumYear;
             }
             set
             {
                 int maximumYear;
                 int unused;
-                Interop.Elementary.elm_calendar_min_max_year_get(Handle, out unused, out maximumYear);
-                Interop.Elementary.elm_calendar_min_max_year_set(Handle, value, maximumYear);
+                Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out unused, out maximumYear);
+                Interop.Elementary.elm_calendar_min_max_year_set(RealHandle, value, maximumYear);
             }
         }
 
@@ -75,15 +75,15 @@ namespace ElmSharp
             {
                 int maximumYear;
                 int unused;
-                Interop.Elementary.elm_calendar_min_max_year_get(Handle, out unused, out maximumYear);
+                Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out unused, out maximumYear);
                 return maximumYear;
             }
             set
             {
                 int minimumYear;
                 int unused;
-                Interop.Elementary.elm_calendar_min_max_year_get(Handle, out minimumYear, out unused);
-                Interop.Elementary.elm_calendar_min_max_year_set(Handle, minimumYear, value);
+                Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out minimumYear, out unused);
+                Interop.Elementary.elm_calendar_min_max_year_set(RealHandle, minimumYear, value);
             }
         }
 
@@ -91,11 +91,11 @@ namespace ElmSharp
         {
             get
             {
-                return (DayOfWeek)Interop.Elementary.elm_calendar_first_day_of_week_get(Handle);
+                return (DayOfWeek)Interop.Elementary.elm_calendar_first_day_of_week_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_calendar_first_day_of_week_set(Handle, (int)value);
+                Interop.Elementary.elm_calendar_first_day_of_week_set(RealHandle, (int)value);
             }
         }
 
@@ -103,7 +103,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr stringArrayPtr = Interop.Elementary.elm_calendar_weekdays_names_get(Handle);
+                IntPtr stringArrayPtr = Interop.Elementary.elm_calendar_weekdays_names_get(RealHandle);
                 string[] stringArray;
                 IntPtrToStringArray(stringArrayPtr, 7, out stringArray);
                 return stringArray;
@@ -112,7 +112,7 @@ namespace ElmSharp
             {
                 if (value != null && value.Count == 7)
                 {
-                    Interop.Elementary.elm_calendar_weekdays_names_set(Handle, value.ToArray());
+                    Interop.Elementary.elm_calendar_weekdays_names_set(RealHandle, value.ToArray());
                 }
             }
         }
@@ -122,13 +122,13 @@ namespace ElmSharp
             get
             {
                 var tm = new Interop.Libc.SystemTime();
-                Interop.Elementary.elm_calendar_selected_time_get(Handle, ref tm);
+                Interop.Elementary.elm_calendar_selected_time_get(RealHandle, ref tm);
                 return tm;
             }
             set
             {
                 Interop.Libc.SystemTime tm = value;
-                Interop.Elementary.elm_calendar_selected_time_set(Handle, ref tm);
+                Interop.Elementary.elm_calendar_selected_time_set(RealHandle, ref tm);
                 _cacheSelectedDate = value;
             }
         }
@@ -137,17 +137,23 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_calendar_interval_get(Handle);
+                return Interop.Elementary.elm_calendar_interval_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_calendar_interval_set(Handle, value);
+                Interop.Elementary.elm_calendar_interval_set(RealHandle, value);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_calendar_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_calendar_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)

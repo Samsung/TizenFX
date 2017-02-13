@@ -36,7 +36,7 @@ namespace ElmSharp
 
         public ContextPopup(EvasObject parent) : base(parent)
         {
-            _dismissed = new SmartEvent(this, "dismissed");
+            _dismissed = new SmartEvent(this, this.RealHandle, "dismissed");
             _dismissed.On += (sender, e) =>
             {
                 Dismissed?.Invoke(this, EventArgs.Empty);
@@ -54,7 +54,7 @@ namespace ElmSharp
         {
             get
             {
-                return (ContextPopupDirection)Interop.Elementary.elm_ctxpopup_direction_get(Handle);
+                return (ContextPopupDirection)Interop.Elementary.elm_ctxpopup_direction_get(RealHandle);
             }
         }
 
@@ -62,11 +62,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_ctxpopup_horizontal_get(Handle);
+                return Interop.Elementary.elm_ctxpopup_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_ctxpopup_horizontal_set(Handle, value);
+                Interop.Elementary.elm_ctxpopup_horizontal_set(RealHandle, value);
             }
         }
 
@@ -74,17 +74,17 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_ctxpopup_auto_hide_disabled_get(Handle);
+                return !Interop.Elementary.elm_ctxpopup_auto_hide_disabled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_ctxpopup_auto_hide_disabled_set(Handle, !value);
+                Interop.Elementary.elm_ctxpopup_auto_hide_disabled_set(RealHandle, !value);
             }
         }
 
         public void SetDirectionPriorty(ContextPopupDirection first, ContextPopupDirection second, ContextPopupDirection third, ContextPopupDirection fourth)
         {
-            Interop.Elementary.elm_ctxpopup_direction_priority_set(Handle, (int)first, (int)second, (int)third, (int)fourth);
+            Interop.Elementary.elm_ctxpopup_direction_priority_set(RealHandle, (int)first, (int)second, (int)third, (int)fourth);
         }
 
         public ContextPopupItem Append(string label)
@@ -95,19 +95,32 @@ namespace ElmSharp
         public ContextPopupItem Append(string label, EvasObject icon)
         {
             ContextPopupItem item = new ContextPopupItem(label, icon);
-            item.Handle = Interop.Elementary.elm_ctxpopup_item_append(Handle, label, icon, _onSelected, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_ctxpopup_item_append(RealHandle, label, icon, _onSelected, (IntPtr)item.Id);
             AddInternal(item);
             return item;
         }
 
         public void Dismiss()
         {
-            Interop.Elementary.elm_ctxpopup_dismiss(Handle);
+            Interop.Elementary.elm_ctxpopup_dismiss(RealHandle);
         }
 
         public bool IsAvailableDirection(ContextPopupDirection direction)
         {
-            return Interop.Elementary.elm_ctxpopup_direction_available_get(Handle, (int)direction);
+            return Interop.Elementary.elm_ctxpopup_direction_available_get(RealHandle, (int)direction);
+        }
+
+        public override int Opacity
+        {
+            get
+            {
+                return Color.Default.A;
+            }
+
+            set
+            {
+                Console.WriteLine("ContextPopup instance doesn't support to set Opacity.");
+            }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)

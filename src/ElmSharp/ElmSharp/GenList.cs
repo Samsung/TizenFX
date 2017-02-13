@@ -81,11 +81,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_genlist_homogeneous_get(Handle);
+                return Interop.Elementary.elm_genlist_homogeneous_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_genlist_homogeneous_set(Handle, value);
+                Interop.Elementary.elm_genlist_homogeneous_set(RealHandle, value);
             }
         }
 
@@ -93,11 +93,11 @@ namespace ElmSharp
         {
             get
             {
-                return (GenListMode)Interop.Elementary.elm_genlist_mode_get(Handle);
+                return (GenListMode)Interop.Elementary.elm_genlist_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_genlist_mode_set(Handle, (int)value);
+                Interop.Elementary.elm_genlist_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_genlist_first_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_genlist_first_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as GenListItem;
             }
         }
@@ -114,7 +114,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_genlist_last_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_genlist_last_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as GenListItem;
             }
         }
@@ -161,7 +161,7 @@ namespace ElmSharp
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_genlist_item_append(Handle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_genlist_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             item.Handle = handle;
             AddInternal(item);
             return item;
@@ -180,7 +180,7 @@ namespace ElmSharp
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_genlist_item_prepend(Handle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_genlist_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             item.Handle = handle;
             AddInternal(item);
             return item;
@@ -199,7 +199,7 @@ namespace ElmSharp
             GenListItem item = new GenListItem(data, itemClass);
             // insert before the `before` list item
             IntPtr handle = Interop.Elementary.elm_genlist_item_insert_before(
-                Handle, // genlist handle
+                RealHandle, // genlist handle
                 itemClass.UnmanagedPtr, // item class
                 (IntPtr)item.Id, // data
                 parent, // parent
@@ -226,34 +226,40 @@ namespace ElmSharp
 
         public void UpdateRealizedItems()
         {
-            Interop.Elementary.elm_genlist_realized_items_update(Handle);
+            Interop.Elementary.elm_genlist_realized_items_update(RealHandle);
         }
 
         public void Clear()
         {
-            Interop.Elementary.elm_genlist_clear(Handle);
+            Interop.Elementary.elm_genlist_clear(RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_genlist_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_genlist_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         void InitializeSmartEvent()
         {
-            _selected = new SmartEvent<GenListItemEventArgs>(this, "selected", GenListItemEventArgs.CreateFromSmartEvent);
-            _unselected = new SmartEvent<GenListItemEventArgs>(this, "unselected", GenListItemEventArgs.CreateFromSmartEvent);
-            _activated = new SmartEvent<GenListItemEventArgs>(this, "activated", GenListItemEventArgs.CreateFromSmartEvent);
-            _pressed = new SmartEvent<GenListItemEventArgs>(this, "pressed", GenListItemEventArgs.CreateFromSmartEvent);
-            _released = new SmartEvent<GenListItemEventArgs>(this, "released", GenListItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new SmartEvent<GenListItemEventArgs>(this, "clicked,double", GenListItemEventArgs.CreateFromSmartEvent);
-            _expanded = new SmartEvent<GenListItemEventArgs>(this, "expanded", GenListItemEventArgs.CreateFromSmartEvent);
-            _realized = new SmartEvent<GenListItemEventArgs>(this, "realized", GenListItemEventArgs.CreateFromSmartEvent);
-            _unrealized = new SmartEvent<GenListItemEventArgs>(this, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new SmartEvent<GenListItemEventArgs>(this, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
-            _scrollAnimationStarted = new SmartEvent(this, "scroll,anim,start");
-            _scrollAnimationStopped = new SmartEvent(this, "scroll,anim,stop");
-            _changed = new SmartEvent(this, "changed");
+            _selected = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "selected", GenListItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "unselected", GenListItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "activated", GenListItemEventArgs.CreateFromSmartEvent);
+            _pressed = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "pressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _released = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "released", GenListItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "clicked,double", GenListItemEventArgs.CreateFromSmartEvent);
+            _expanded = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "expanded", GenListItemEventArgs.CreateFromSmartEvent);
+            _realized = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "realized", GenListItemEventArgs.CreateFromSmartEvent);
+            _unrealized = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _scrollAnimationStarted = new SmartEvent(this, this.RealHandle, "scroll,anim,start");
+            _scrollAnimationStopped = new SmartEvent(this, this.RealHandle, "scroll,anim,stop");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };

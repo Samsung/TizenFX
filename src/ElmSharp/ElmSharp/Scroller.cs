@@ -41,10 +41,10 @@ namespace ElmSharp
 
         public Scroller(EvasObject parent) : base(parent)
         {
-            _scroll = new SmartEvent(this, "scroll");
-            _dragStart = new SmartEvent(this, "scroll,drag,start");
-            _dragStop = new SmartEvent(this, "scroll,drag,stop");
-            _scrollpage = new SmartEvent(this, "scroll,page,changed");
+            _scroll = new SmartEvent(this, this.RealHandle, "scroll");
+            _dragStart = new SmartEvent(this, this.RealHandle, "scroll,drag,start");
+            _dragStop = new SmartEvent(this, this.RealHandle, "scroll,drag,stop");
+            _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
         }
 
         public event EventHandler Scrolled
@@ -97,7 +97,7 @@ namespace ElmSharp
             get
             {
                 int x, y, w, h;
-                Interop.Elementary.elm_scroller_region_get(Handle, out x, out y, out w, out h);
+                Interop.Elementary.elm_scroller_region_get(RealHandle, out x, out y, out w, out h);
                 return new Rect(x, y, w, h);
             }
         }
@@ -107,13 +107,13 @@ namespace ElmSharp
             get
             {
                 int policy;
-                Interop.Elementary.elm_scroller_policy_get(Handle, out policy, IntPtr.Zero);
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out policy, IntPtr.Zero);
                 return (ScrollBarVisiblePolicy)policy;
             }
             set
             {
                 ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
-                Interop.Elementary.elm_scroller_policy_set(Handle, (int)value, (int)v);
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
             }
         }
 
@@ -122,13 +122,13 @@ namespace ElmSharp
             get
             {
                 int policy;
-                Interop.Elementary.elm_scroller_policy_get(Handle, IntPtr.Zero, out policy);
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out policy);
                 return (ScrollBarVisiblePolicy)policy;
             }
             set
             {
                 ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
-                Interop.Elementary.elm_scroller_policy_set(Handle, (int)h, (int)value);
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
             }
         }
 
@@ -136,11 +136,11 @@ namespace ElmSharp
         {
             get
             {
-                return (ScrollBlock)Interop.Elementary.elm_scroller_movement_block_get(Handle);
+                return (ScrollBlock)Interop.Elementary.elm_scroller_movement_block_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_scroller_movement_block_set(Handle, (int)value);
+                Interop.Elementary.elm_scroller_movement_block_set(RealHandle, (int)value);
             }
         }
 
@@ -149,7 +149,7 @@ namespace ElmSharp
             get
             {
                 int v, h;
-                Interop.Elementary.elm_scroller_current_page_get(Handle, out h, out v);
+                Interop.Elementary.elm_scroller_current_page_get(RealHandle, out h, out v);
                 return v;
             }
         }
@@ -159,7 +159,7 @@ namespace ElmSharp
             get
             {
                 int v, h;
-                Interop.Elementary.elm_scroller_current_page_get(Handle, out h, out v);
+                Interop.Elementary.elm_scroller_current_page_get(RealHandle, out h, out v);
                 return h;
             }
         }
@@ -169,13 +169,13 @@ namespace ElmSharp
             get
             {
                 int v, h;
-                Interop.Elementary.elm_scroller_page_scroll_limit_get(Handle, out h, out v);
+                Interop.Elementary.elm_scroller_page_scroll_limit_get(RealHandle, out h, out v);
                 return v;
             }
             set
             {
                 int h = HorizontalPageScrollLimit;
-                Interop.Elementary.elm_scroller_page_scroll_limit_set(Handle, h, value);
+                Interop.Elementary.elm_scroller_page_scroll_limit_set(RealHandle, h, value);
             }
         }
 
@@ -184,35 +184,35 @@ namespace ElmSharp
             get
             {
                 int v, h;
-                Interop.Elementary.elm_scroller_page_scroll_limit_get(Handle, out h, out v);
+                Interop.Elementary.elm_scroller_page_scroll_limit_get(RealHandle, out h, out v);
                 return h;
             }
             set
             {
                 int v = VerticalPageScrollLimit;
-                Interop.Elementary.elm_scroller_page_scroll_limit_set(Handle, value, v);
+                Interop.Elementary.elm_scroller_page_scroll_limit_set(RealHandle, value, v);
             }
         }
 
         public void SetPageSize(int width, int height)
         {
-            Interop.Elementary.elm_scroller_page_size_set(Handle, width, height);
+            Interop.Elementary.elm_scroller_page_size_set(RealHandle, width, height);
         }
 
         public void SetPageSize(double width, double height)
         {
-            Interop.Elementary.elm_scroller_page_relative_set(Handle, width, height);
+            Interop.Elementary.elm_scroller_page_relative_set(RealHandle, width, height);
         }
 
         public void ScrollTo(int horizontalPageIndex, int verticalPageIndex, bool animated)
         {
             if (animated)
             {
-                Interop.Elementary.elm_scroller_page_bring_in(Handle, horizontalPageIndex, verticalPageIndex);
+                Interop.Elementary.elm_scroller_page_bring_in(RealHandle, horizontalPageIndex, verticalPageIndex);
             }
             else
             {
-                Interop.Elementary.elm_scroller_page_show(Handle, horizontalPageIndex, verticalPageIndex);
+                Interop.Elementary.elm_scroller_page_show(RealHandle, horizontalPageIndex, verticalPageIndex);
             }
         }
 
@@ -220,17 +220,23 @@ namespace ElmSharp
         {
             if (animated)
             {
-                Interop.Elementary.elm_scroller_region_bring_in(Handle, region.X, region.Y, region.Width, region.Height);
+                Interop.Elementary.elm_scroller_region_bring_in(RealHandle, region.X, region.Y, region.Width, region.Height);
             }
             else
             {
-                Interop.Elementary.elm_scroller_region_show(Handle, region.X, region.Y, region.Width, region.Height);
+                Interop.Elementary.elm_scroller_region_show(RealHandle, region.X, region.Y, region.Width, region.Height);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_scroller_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_scroller_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

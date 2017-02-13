@@ -35,11 +35,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_icon_standard_get(Handle);
+                return Interop.Elementary.elm_icon_standard_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_icon_standard_set(Handle, value);
+                Interop.Elementary.elm_icon_standard_set(RealHandle, value);
             }
         }
 
@@ -47,22 +47,28 @@ namespace ElmSharp
         {
             get
             {
-                return (IconLookupOrder)Interop.Elementary.elm_icon_order_lookup_get(Handle);
+                return (IconLookupOrder)Interop.Elementary.elm_icon_order_lookup_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_icon_order_lookup_set(Handle, (int)value);
+                Interop.Elementary.elm_icon_order_lookup_set(RealHandle, (int)value);
             }
         }
 
         public void SetThumb(string file, string group)
         {
-            Interop.Elementary.elm_icon_thumb_set(Handle, file, group);
+            Interop.Elementary.elm_icon_thumb_set(RealHandle, file, group);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_icon_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
+
+            RealHandle = Interop.Elementary.elm_icon_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

@@ -72,13 +72,13 @@ namespace ElmSharp
             get
             {
                 double align;
-                Interop.Elementary.elm_gengrid_align_get(Handle, out align, IntPtr.Zero);
+                Interop.Elementary.elm_gengrid_align_get(RealHandle, out align, IntPtr.Zero);
                 return align;
             }
             set
             {
                 double aligny = ItemAlignmentY;
-                Interop.Elementary.elm_gengrid_align_set(Handle, value, aligny);
+                Interop.Elementary.elm_gengrid_align_set(RealHandle, value, aligny);
             }
         }
 
@@ -87,13 +87,13 @@ namespace ElmSharp
             get
             {
                 double align;
-                Interop.Elementary.elm_gengrid_align_get(Handle, IntPtr.Zero, out align);
+                Interop.Elementary.elm_gengrid_align_get(RealHandle, IntPtr.Zero, out align);
                 return align;
             }
             set
             {
                 double alignx = ItemAlignmentX;
-                Interop.Elementary.elm_gengrid_align_set(Handle, alignx, value);
+                Interop.Elementary.elm_gengrid_align_set(RealHandle, alignx, value);
             }
         }
 
@@ -101,11 +101,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_gengrid_filled_get(Handle);
+                return Interop.Elementary.elm_gengrid_filled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_gengrid_filled_set(Handle, value);
+                Interop.Elementary.elm_gengrid_filled_set(RealHandle, value);
             }
         }
 
@@ -113,11 +113,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_gengrid_multi_select_get(Handle);
+                return Interop.Elementary.elm_gengrid_multi_select_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_gengrid_multi_select_set(Handle, value);
+                Interop.Elementary.elm_gengrid_multi_select_set(RealHandle, value);
             }
         }
 
@@ -126,13 +126,13 @@ namespace ElmSharp
             get
             {
                 int width;
-                Interop.Elementary.elm_gengrid_item_size_get(Handle, out width, IntPtr.Zero);
+                Interop.Elementary.elm_gengrid_item_size_get(RealHandle, out width, IntPtr.Zero);
                 return width;
             }
             set
             {
                 int height = ItemHeight;
-                Interop.Elementary.elm_gengrid_item_size_set(Handle, value, height);
+                Interop.Elementary.elm_gengrid_item_size_set(RealHandle, value, height);
 
             }
         }
@@ -142,13 +142,13 @@ namespace ElmSharp
             get
             {
                 int height;
-                Interop.Elementary.elm_gengrid_item_size_get(Handle, IntPtr.Zero, out height);
+                Interop.Elementary.elm_gengrid_item_size_get(RealHandle, IntPtr.Zero, out height);
                 return height;
             }
             set
             {
                 int width = ItemWidth;
-                Interop.Elementary.elm_gengrid_item_size_set(Handle, width, value);
+                Interop.Elementary.elm_gengrid_item_size_set(RealHandle, width, value);
             }
         }
 
@@ -156,11 +156,11 @@ namespace ElmSharp
         {
             get
             {
-                return (GenGridSelectionMode)Interop.Elementary.elm_gengrid_select_mode_get(Handle);
+                return (GenGridSelectionMode)Interop.Elementary.elm_gengrid_select_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_gengrid_select_mode_set(Handle, (int)value);
+                Interop.Elementary.elm_gengrid_select_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -168,11 +168,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_gengrid_horizontal_get(Handle);
+                return Interop.Elementary.elm_gengrid_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_gengrid_horizontal_set(Handle, value);
+                Interop.Elementary.elm_gengrid_horizontal_set(RealHandle, value);
             }
         }
 
@@ -180,18 +180,18 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_gengrid_highlight_mode_get(Handle);
+                return Interop.Elementary.elm_gengrid_highlight_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_gengrid_highlight_mode_set(Handle, value);
+                Interop.Elementary.elm_gengrid_highlight_mode_set(RealHandle, value);
             }
         }
 
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_gengrid_item_append(Handle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
             item.Handle = handle;
             AddInternal(item);
             return item;
@@ -200,7 +200,7 @@ namespace ElmSharp
         public GenGridItem Prepend(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_gengrid_item_prepend(Handle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
             item.Handle = handle;
             AddInternal(item);
             return item;
@@ -209,7 +209,7 @@ namespace ElmSharp
         public GenGridItem InsertBefore(GenItemClass itemClass, object data, GenGridItem before)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_gengrid_item_insert_before(Handle, itemClass.UnmanagedPtr, (IntPtr)item.Id, before, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_insert_before(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, before, null, (IntPtr)item.Id);
             item.Handle = handle;
             AddInternal(item);
             return item;
@@ -229,30 +229,36 @@ namespace ElmSharp
 
         public void UpdateRealizedItems()
         {
-            Interop.Elementary.elm_gengrid_realized_items_update(Handle);
+            Interop.Elementary.elm_gengrid_realized_items_update(RealHandle);
         }
 
         public void Clear()
         {
-            Interop.Elementary.elm_gengrid_clear(Handle);
+            Interop.Elementary.elm_gengrid_clear(RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_gengrid_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_gengrid_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         void InitializeSmartEvent()
         {
-            _selected = new SmartEvent<GenGridItemEventArgs>(this, "selected", GenGridItemEventArgs.CreateFromSmartEvent);
-            _unselected = new SmartEvent<GenGridItemEventArgs>(this, "unselected", GenGridItemEventArgs.CreateFromSmartEvent);
-            _activated = new SmartEvent<GenGridItemEventArgs>(this,"activated", GenGridItemEventArgs.CreateFromSmartEvent);
-            _pressed = new SmartEvent<GenGridItemEventArgs>(this, "pressed", GenGridItemEventArgs.CreateFromSmartEvent);
-            _released = new SmartEvent<GenGridItemEventArgs>(this, "released", GenGridItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new SmartEvent<GenGridItemEventArgs>(this, "clicked,double", GenGridItemEventArgs.CreateFromSmartEvent);
-            _realized = new SmartEvent<GenGridItemEventArgs>(this, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
-            _unrealized = new SmartEvent<GenGridItemEventArgs>(this, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new SmartEvent<GenGridItemEventArgs>(this, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "selected", GenGridItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "unselected", GenGridItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "activated", GenGridItemEventArgs.CreateFromSmartEvent);
+            _pressed = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "pressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _released = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "released", GenGridItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "clicked,double", GenGridItemEventArgs.CreateFromSmartEvent);
+            _realized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
+            _unrealized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };

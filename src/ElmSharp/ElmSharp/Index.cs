@@ -26,7 +26,7 @@ namespace ElmSharp
 
         public Index(EvasObject parent) : base(parent)
         {
-            _delayedChanged = new SmartEvent(this, "delay,changed");
+            _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
             _delayedChanged.On += _delayedChanged_On;
         }
 
@@ -36,11 +36,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_index_autohide_disabled_get(Handle);
+                return !Interop.Elementary.elm_index_autohide_disabled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_index_autohide_disabled_set(Handle, !value);
+                Interop.Elementary.elm_index_autohide_disabled_set(RealHandle, !value);
             }
         }
 
@@ -48,11 +48,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_index_horizontal_get(Handle);
+                return Interop.Elementary.elm_index_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_index_horizontal_set(Handle, value);
+                Interop.Elementary.elm_index_horizontal_set(RealHandle, value);
             }
         }
 
@@ -60,11 +60,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_index_indicator_disabled_get(Handle);
+                return !Interop.Elementary.elm_index_indicator_disabled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_index_indicator_disabled_set(Handle, !value);
+                Interop.Elementary.elm_index_indicator_disabled_set(RealHandle, !value);
             }
         }
 
@@ -72,11 +72,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_index_omit_enabled_get(Handle);
+                return Interop.Elementary.elm_index_omit_enabled_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_index_omit_enabled_set(Handle, value);
+                Interop.Elementary.elm_index_omit_enabled_set(RealHandle, value);
             }
         }
 
@@ -84,7 +84,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_index_selected_item_get(Handle, 0);
+                IntPtr handle = Interop.Elementary.elm_index_selected_item_get(RealHandle, 0);
                 return ItemObject.GetItemByHandle(handle) as IndexItem;
             }
         }
@@ -92,32 +92,38 @@ namespace ElmSharp
         public IndexItem Append(string label)
         {
             IndexItem item = new IndexItem(label);
-            item.Handle = Interop.Elementary.elm_index_item_append(Handle, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_index_item_append(RealHandle, label, null, (IntPtr)item.Id);
             return item;
         }
 
         public IndexItem Prepend(string label)
         {
             IndexItem item = new IndexItem(label);
-            item.Handle = Interop.Elementary.elm_index_item_prepend(Handle, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_index_item_prepend(RealHandle, label, null, (IntPtr)item.Id);
             return item;
         }
 
         public IndexItem InsertBefore(string label, IndexItem before)
         {
             IndexItem item = new IndexItem(label);
-            item.Handle = Interop.Elementary.elm_index_item_insert_before(Handle, before, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_index_item_insert_before(RealHandle, before, label, null, (IntPtr)item.Id);
             return item;
         }
 
         public void Update(int level)
         {
-            Interop.Elementary.elm_index_level_go(Handle, level);
+            Interop.Elementary.elm_index_level_go(RealHandle, level);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_index_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_index_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         void _delayedChanged_On(object sender, EventArgs e)

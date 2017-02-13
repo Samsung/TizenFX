@@ -24,7 +24,7 @@ namespace ElmSharp
 
         public Label(EvasObject parent) : base(parent)
         {
-            _slideCompleted = new SmartEvent(this, "slide,end");
+            _slideCompleted = new SmartEvent(this, this.RealHandle, "slide,end");
             _slideCompleted.On += (s, e) =>
             {
                 SlideCompleted?.Invoke(this, EventArgs.Empty);
@@ -37,11 +37,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_label_wrap_width_get(Handle);
+                return Interop.Elementary.elm_label_wrap_width_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_label_wrap_width_set(Handle, value);
+                Interop.Elementary.elm_label_wrap_width_set(RealHandle, value);
             }
         }
 
@@ -49,11 +49,11 @@ namespace ElmSharp
         {
             get
             {
-                return (WrapType)Interop.Elementary.elm_label_line_wrap_get(Handle);
+                return (WrapType)Interop.Elementary.elm_label_line_wrap_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_label_line_wrap_set(Handle, (int)value);
+                Interop.Elementary.elm_label_line_wrap_set(RealHandle, (int)value);
             }
         }
 
@@ -61,11 +61,11 @@ namespace ElmSharp
         {
             get
             {
-                return (LabelSlideMode)Interop.Elementary.elm_label_slide_mode_get(Handle);
+                return (LabelSlideMode)Interop.Elementary.elm_label_slide_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_label_slide_mode_set(Handle, (int)value);
+                Interop.Elementary.elm_label_slide_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -73,11 +73,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_label_slide_duration_get(Handle);
+                return Interop.Elementary.elm_label_slide_duration_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_label_slide_duration_set(Handle, value);
+                Interop.Elementary.elm_label_slide_duration_set(RealHandle, value);
             }
         }
 
@@ -85,22 +85,28 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_label_ellipsis_get(Handle);
+                return Interop.Elementary.elm_label_ellipsis_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_label_ellipsis_set(Handle, value);
+                Interop.Elementary.elm_label_ellipsis_set(RealHandle, value);
             }
         }
 
         public void PlaySlide()
         {
-            Interop.Elementary.elm_label_slide_go(Handle);
+            Interop.Elementary.elm_label_slide_go(RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_label_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_label_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 

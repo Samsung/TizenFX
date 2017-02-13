@@ -30,16 +30,16 @@ namespace ElmSharp
 
         public Slider(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _delayedChanged = new SmartEvent(this, "delay,changed");
+            _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
             _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _dragStarted = new SmartEvent(this, "slider,drag,start");
+            _dragStarted = new SmartEvent(this, this.RealHandle, "slider,drag,start");
             _dragStarted.On += (s, e) => DragStarted?.Invoke(this, EventArgs.Empty);
 
-            _dragStopped = new SmartEvent(this, "slider,drag,stop");
+            _dragStopped = new SmartEvent(this, this.RealHandle, "slider,drag,stop");
             _dragStopped.On += (s, e) => DragStopped?.Invoke(this, EventArgs.Empty);
         }
 
@@ -55,11 +55,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_span_size_get(Handle);
+                return Interop.Elementary.elm_slider_span_size_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_span_size_set(Handle, value);
+                Interop.Elementary.elm_slider_span_size_set(RealHandle, value);
             }
         }
 
@@ -67,11 +67,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_unit_format_get(Handle);
+                return Interop.Elementary.elm_slider_unit_format_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_unit_format_set(Handle, value);
+                Interop.Elementary.elm_slider_unit_format_set(RealHandle, value);
             }
         }
 
@@ -79,11 +79,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_indicator_format_get(Handle);
+                return Interop.Elementary.elm_slider_indicator_format_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_indicator_format_set(Handle, value);
+                Interop.Elementary.elm_slider_indicator_format_set(RealHandle, value);
             }
         }
 
@@ -91,11 +91,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_horizontal_get(Handle);
+                return Interop.Elementary.elm_slider_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_horizontal_set(Handle, value);
+                Interop.Elementary.elm_slider_horizontal_set(RealHandle, value);
             }
         }
 
@@ -108,7 +108,7 @@ namespace ElmSharp
             set
             {
                 _minimum = value;
-                Interop.Elementary.elm_slider_min_max_set(Handle, _minimum, _maximum);
+                Interop.Elementary.elm_slider_min_max_set(RealHandle, _minimum, _maximum);
             }
         }
 
@@ -121,7 +121,7 @@ namespace ElmSharp
             set
             {
                 _maximum = value;
-                Interop.Elementary.elm_slider_min_max_set(Handle, _minimum, _maximum);
+                Interop.Elementary.elm_slider_min_max_set(RealHandle, _minimum, _maximum);
             }
         }
 
@@ -129,11 +129,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_value_get(Handle);
+                return Interop.Elementary.elm_slider_value_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_value_set(Handle, value);
+                Interop.Elementary.elm_slider_value_set(RealHandle, value);
             }
         }
 
@@ -141,11 +141,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_step_get(Handle);
+                return Interop.Elementary.elm_slider_step_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_step_set(Handle, value);
+                Interop.Elementary.elm_slider_step_set(RealHandle, value);
             }
         }
 
@@ -153,11 +153,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_inverted_get(Handle);
+                return Interop.Elementary.elm_slider_inverted_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_inverted_set(Handle, value);
+                Interop.Elementary.elm_slider_inverted_set(RealHandle, value);
             }
         }
 
@@ -165,17 +165,23 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_slider_indicator_show_get(Handle);
+                return Interop.Elementary.elm_slider_indicator_show_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_slider_indicator_show_set(Handle, value);
+                Interop.Elementary.elm_slider_indicator_show_set(RealHandle, value);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_slider_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_slider_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

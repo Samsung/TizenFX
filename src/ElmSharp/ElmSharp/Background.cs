@@ -45,7 +45,7 @@ namespace ElmSharp
                 var swallowContent = GetPartContent("elm.swallow.rectangle");
                 if(swallowContent == IntPtr.Zero)
                 {
-                    Interop.Elementary.elm_bg_color_set(Handle, value.R, value.G, value.B);
+                    Interop.Elementary.elm_bg_color_set(RealHandle, value.R, value.G, value.B);
                     swallowContent = GetPartContent("elm.swallow.rectangle");
                 }
                 Interop.Evas.evas_object_color_set(swallowContent, value.R, value.G, value.B, value.A);
@@ -56,11 +56,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.BackgroundFileGet(Handle);
+                return Interop.Elementary.BackgroundFileGet(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_bg_file_set(Handle, value, IntPtr.Zero);
+                Interop.Elementary.elm_bg_file_set(RealHandle, value, IntPtr.Zero);
             }
         }
 
@@ -68,17 +68,23 @@ namespace ElmSharp
         {
             get
             {
-                return (BackgroundOptions) Interop.Elementary.elm_bg_option_get(Handle);
+                return (BackgroundOptions) Interop.Elementary.elm_bg_option_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_bg_option_set(Handle, (Interop.Elementary.BackgroundOptions) value);
+                Interop.Elementary.elm_bg_option_set(RealHandle, (Interop.Elementary.BackgroundOptions) value);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_bg_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_bg_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 

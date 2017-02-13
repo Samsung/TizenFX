@@ -426,6 +426,21 @@ namespace ElmSharp
             return await tcs.Task;
         }
 
+        public override void SetPartColor(string part, Color color)
+        {
+            Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
+                                                                              color.G * color.A / 255,
+                                                                              color.B * color.A / 255,
+                                                                              color.A);
+        }
+
+        public override Color GetPartColor(string part)
+        {
+            int r, g, b, a;
+            Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
+            return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);

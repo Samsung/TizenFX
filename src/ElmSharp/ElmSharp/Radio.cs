@@ -24,7 +24,7 @@ namespace ElmSharp
 
         public Radio(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -34,11 +34,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_radio_state_value_get(Handle);
+                return Interop.Elementary.elm_radio_state_value_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_radio_state_value_set(Handle, value);
+                Interop.Elementary.elm_radio_state_value_set(RealHandle, value);
             }
         }
 
@@ -46,11 +46,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_radio_value_get(Handle);
+                return Interop.Elementary.elm_radio_value_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_radio_value_set(Handle, value);
+                Interop.Elementary.elm_radio_value_set(RealHandle, value);
             }
         }
 
@@ -60,12 +60,18 @@ namespace ElmSharp
             {
                 throw new ArgumentNullException("group");
             }
-            Interop.Elementary.elm_radio_group_add(Handle, group.Handle);
+            Interop.Elementary.elm_radio_group_add(RealHandle, group.RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_radio_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_radio_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

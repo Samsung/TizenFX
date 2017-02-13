@@ -27,12 +27,12 @@ namespace ElmSharp
 
         public Layout(EvasObject parent) : base(parent)
         {
-            _languageChanged = new SmartEvent(this, "language,changed");
+            _languageChanged = new SmartEvent(this, this.RealHandle, "language,changed");
             _languageChanged.On += (s, e) => {
                 LanguageChanged?.Invoke(this, EventArgs.Empty);
             };
 
-            _themeChanged = new SmartEvent(this, "theme,changed");
+            _themeChanged = new SmartEvent(this, this.RealHandle, "theme,changed");
             _themeChanged.On += (s, e) =>
             {
                 ThemeChanged?.Invoke(this, EventArgs.Empty);
@@ -48,19 +48,19 @@ namespace ElmSharp
             get
             {
                 if (_edjeHandle == IntPtr.Zero)
-                    _edjeHandle = Interop.Elementary.elm_layout_edje_get(Handle);
+                    _edjeHandle = Interop.Elementary.elm_layout_edje_get(RealHandle);
                 return new EdjeObject(_edjeHandle);
             }
         }
 
         public void SetTheme(string klass, string group, string style)
         {
-            Interop.Elementary.elm_layout_theme_set(Handle, klass, group, style);
+            Interop.Elementary.elm_layout_theme_set(RealHandle, klass, group, style);
         }
 
         public void SetFile(string file, string group)
         {
-            Interop.Elementary.elm_layout_file_set(Handle, file, group);
+            Interop.Elementary.elm_layout_file_set(RealHandle, file, group);
         }
 
         public override Color BackgroundColor

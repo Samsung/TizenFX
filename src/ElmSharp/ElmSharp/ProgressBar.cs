@@ -24,7 +24,7 @@ namespace ElmSharp
 
         public ProgressBar(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (s, e) =>
             {
                 ValueChanged?.Invoke(this, EventArgs.Empty);
@@ -37,11 +37,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_pulse_get(Handle);
+                return Interop.Elementary.elm_progressbar_pulse_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_pulse_set(Handle, value);
+                Interop.Elementary.elm_progressbar_pulse_set(RealHandle, value);
             }
         }
 
@@ -49,11 +49,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_value_get(Handle);
+                return Interop.Elementary.elm_progressbar_value_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_value_set(Handle, value);
+                Interop.Elementary.elm_progressbar_value_set(RealHandle, value);
             }
         }
 
@@ -61,11 +61,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_span_size_get(Handle);
+                return Interop.Elementary.elm_progressbar_span_size_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_span_size_set(Handle, value);
+                Interop.Elementary.elm_progressbar_span_size_set(RealHandle, value);
             }
         }
 
@@ -73,11 +73,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_horizontal_get(Handle);
+                return Interop.Elementary.elm_progressbar_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_horizontal_set(Handle, value);
+                Interop.Elementary.elm_progressbar_horizontal_set(RealHandle, value);
             }
         }
 
@@ -85,11 +85,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_inverted_get(Handle);
+                return Interop.Elementary.elm_progressbar_inverted_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_inverted_set(Handle, value);
+                Interop.Elementary.elm_progressbar_inverted_set(RealHandle, value);
             }
         }
 
@@ -97,33 +97,39 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_progressbar_unit_format_get(Handle);
+                return Interop.Elementary.elm_progressbar_unit_format_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_progressbar_unit_format_set(Handle, value);
+                Interop.Elementary.elm_progressbar_unit_format_set(RealHandle, value);
             }
         }
 
         public void PlayPulse()
         {
-            Interop.Elementary.elm_progressbar_pulse(Handle, true);
+            Interop.Elementary.elm_progressbar_pulse(RealHandle, true);
         }
 
         [Obsolete("use StopPulse instead")]
         public void StopPluse()
         {
-            Interop.Elementary.elm_progressbar_pulse(Handle, false);
+            Interop.Elementary.elm_progressbar_pulse(RealHandle, false);
         }
 
         public void StopPulse()
         {
-            Interop.Elementary.elm_progressbar_pulse(Handle, false);
+            Interop.Elementary.elm_progressbar_pulse(RealHandle, false);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_progressbar_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_progressbar_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

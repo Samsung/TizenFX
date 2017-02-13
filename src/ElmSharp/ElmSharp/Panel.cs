@@ -43,7 +43,7 @@ namespace ElmSharp
         SmartEvent _toggled;
         public Panel(EvasObject parent) : base(parent)
         {
-            _toggled = new SmartEvent(this, "toggled");
+            _toggled = new SmartEvent(this, this.RealHandle, "toggled");
             _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
         }
 
@@ -51,11 +51,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_panel_hidden_get(Handle);
+                return !Interop.Elementary.elm_panel_hidden_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_panel_hidden_set(Handle, !value);
+                Interop.Elementary.elm_panel_hidden_set(RealHandle, !value);
             }
         }
 
@@ -63,11 +63,11 @@ namespace ElmSharp
         {
             get
             {
-                return (PanelDirection)Interop.Elementary.elm_panel_orient_get(Handle);
+                return (PanelDirection)Interop.Elementary.elm_panel_orient_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_panel_orient_set(Handle, (int)value);
+                Interop.Elementary.elm_panel_orient_set(RealHandle, (int)value);
             }
         }
 
@@ -75,22 +75,28 @@ namespace ElmSharp
 
         public void SetScrollable(bool enable)
         {
-            Interop.Elementary.elm_panel_scrollable_set(Handle, enable);
+            Interop.Elementary.elm_panel_scrollable_set(RealHandle, enable);
         }
 
         public void SetScrollableArea(double ratio)
         {
-            Interop.Elementary.elm_panel_scrollable_content_size_set(Handle, ratio);
+            Interop.Elementary.elm_panel_scrollable_content_size_set(RealHandle, ratio);
         }
 
         public void Toggle()
         {
-            Interop.Elementary.elm_panel_toggle(Handle);
+            Interop.Elementary.elm_panel_toggle(RealHandle);
         }
-
+        
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_panel_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_panel_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

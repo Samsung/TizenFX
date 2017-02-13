@@ -24,8 +24,8 @@ namespace ElmSharp
         SmartEvent _unpressed;
         public Panes(EvasObject parent) : base(parent)
         {
-            _press = new SmartEvent(this, "press");
-            _unpressed = new SmartEvent(this, "unpressed");
+            _press = new SmartEvent(this, this.RealHandle, "press");
+            _unpressed = new SmartEvent(this, this.RealHandle, "unpressed");
 
             _press.On += (s, e) => Pressed?.Invoke(this, e);
             _unpressed.On += (s, e) => Unpressed?.Invoke(this, e);
@@ -37,11 +37,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_panes_fixed_get(Handle);
+                return Interop.Elementary.elm_panes_fixed_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_panes_fixed_set(Handle, value);
+                Interop.Elementary.elm_panes_fixed_set(RealHandle, value);
             }
         }
 
@@ -49,11 +49,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_panes_content_left_size_get(Handle);
+                return Interop.Elementary.elm_panes_content_left_size_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_panes_content_left_size_set(Handle, value);
+                Interop.Elementary.elm_panes_content_left_size_set(RealHandle, value);
             }
         }
 
@@ -61,17 +61,23 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_panes_horizontal_get(Handle);
+                return Interop.Elementary.elm_panes_horizontal_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_panes_horizontal_set(Handle, value);
+                Interop.Elementary.elm_panes_horizontal_set(RealHandle, value);
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_panes_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_panes_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

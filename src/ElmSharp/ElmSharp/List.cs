@@ -48,11 +48,11 @@ namespace ElmSharp
 
         public List(EvasObject parent) : base(parent)
         {
-            _selected = new SmartEvent<ListItemEventArgs>(this, "selected", ListItemEventArgs.CreateFromSmartEvent);
-            _unselected = new SmartEvent<ListItemEventArgs>(this, "unselected", ListItemEventArgs.CreateFromSmartEvent);
-            _doubleClicked = new SmartEvent<ListItemEventArgs>(this, "clicked,double", ListItemEventArgs.CreateFromSmartEvent);
-            _longpressed = new SmartEvent<ListItemEventArgs>(this, "longpressed", ListItemEventArgs.CreateFromSmartEvent);
-            _activated = new SmartEvent<ListItemEventArgs>(this, "activated", ListItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "selected", ListItemEventArgs.CreateFromSmartEvent);
+            _unselected = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "unselected", ListItemEventArgs.CreateFromSmartEvent);
+            _doubleClicked = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "clicked,double", ListItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "longpressed", ListItemEventArgs.CreateFromSmartEvent);
+            _activated = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "activated", ListItemEventArgs.CreateFromSmartEvent);
             _selected.On += (s, e) => { ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { ItemUnselected?.Invoke(this, e); };
             _doubleClicked.On += (s, e) => { ItemDoubleClicked?.Invoke(this, e); };
@@ -64,11 +64,11 @@ namespace ElmSharp
         {
             get
             {
-                return (ListMode)Interop.Elementary.elm_list_mode_get(Handle);
+                return (ListMode)Interop.Elementary.elm_list_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_list_mode_set(Handle, (Interop.Elementary.Elm_List_Mode)value);
+                Interop.Elementary.elm_list_mode_set(RealHandle, (Interop.Elementary.Elm_List_Mode)value);
             }
         }
 
@@ -76,7 +76,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr item = Interop.Elementary.elm_list_selected_item_get(Handle);
+                IntPtr item = Interop.Elementary.elm_list_selected_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(item) as ListItem;
             }
         }
@@ -89,7 +89,7 @@ namespace ElmSharp
 
         public void Update()
         {
-            Interop.Elementary.elm_list_go(Handle);
+            Interop.Elementary.elm_list_go(RealHandle);
         }
 
         public ListItem Append(string label)
@@ -100,7 +100,7 @@ namespace ElmSharp
         public ListItem Append(string label, EvasObject leftIcon, EvasObject rightIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rightIcon);
-            item.Handle = Interop.Elementary.elm_list_item_append(Handle, label, leftIcon, rightIcon, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_list_item_append(RealHandle, label, leftIcon, rightIcon, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
         }
@@ -113,14 +113,14 @@ namespace ElmSharp
         public ListItem Prepend(string label, EvasObject leftIcon, EvasObject rigthIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rigthIcon);
-            item.Handle = Interop.Elementary.elm_list_item_prepend(Handle, label, leftIcon, rigthIcon, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_list_item_prepend(RealHandle, label, leftIcon, rigthIcon, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
         }
 
         public void Clear()
         {
-            Interop.Elementary.elm_list_clear(Handle);
+            Interop.Elementary.elm_list_clear(RealHandle);
             foreach (var item in _children)
             {
                 item.Deleted -= Item_Deleted;
@@ -130,7 +130,13 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_list_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_list_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         void AddInternal(ListItem item)

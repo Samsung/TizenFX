@@ -53,7 +53,7 @@ namespace ElmSharp
         SmartEvent<ToolbarItemEventArgs> _longpressed;
         public Toolbar(EvasObject parent) : base(parent)
         {
-            _selected = new SmartEvent<ToolbarItemEventArgs>(this, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _selected = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
             _selected.On += (s, e) =>
             {
                 if (e.Item != null)
@@ -62,12 +62,12 @@ namespace ElmSharp
                     e.Item.SendSelected();
                 }
             };
-            _longpressed = new SmartEvent<ToolbarItemEventArgs>(this, "longpressed", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _longpressed = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "longpressed", ToolbarItemEventArgs.CreateFromSmartEvent);
             _longpressed.On += (s, e) =>
             {
                 e.Item?.SendLongPressed();
             };
-            _clicked = new SmartEvent<ToolbarItemEventArgs>(this, "clicked", ToolbarItemEventArgs.CreateFromSmartEvent);
+            _clicked = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "clicked", ToolbarItemEventArgs.CreateFromSmartEvent);
             _clicked.On += (s, e) =>
             {
                 e.Item?.SendClicked();
@@ -80,11 +80,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_toolbar_homogeneous_get(Handle);
+                return Interop.Elementary.elm_toolbar_homogeneous_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_toolbar_homogeneous_set(Handle, value);
+                Interop.Elementary.elm_toolbar_homogeneous_set(RealHandle, value);
             }
         }
 
@@ -92,11 +92,11 @@ namespace ElmSharp
         {
             get
             {
-                return (ToolbarSelectionMode)Interop.Elementary.elm_toolbar_select_mode_get(Handle);
+                return (ToolbarSelectionMode)Interop.Elementary.elm_toolbar_select_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_toolbar_select_mode_set(Handle, (int)value);
+                Interop.Elementary.elm_toolbar_select_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -104,11 +104,11 @@ namespace ElmSharp
         {
             get
             {
-                return (ToolbarShrinkMode)Interop.Elementary.elm_toolbar_shrink_mode_get(Handle);
+                return (ToolbarShrinkMode)Interop.Elementary.elm_toolbar_shrink_mode_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_toolbar_shrink_mode_set(Handle, (int)value);
+                Interop.Elementary.elm_toolbar_shrink_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -116,11 +116,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_toolbar_align_get(Handle);
+                return Interop.Elementary.elm_toolbar_align_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_toolbar_align_set(Handle, value);
+                Interop.Elementary.elm_toolbar_align_set(RealHandle, value);
             }
         }
 
@@ -128,11 +128,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_toolbar_transverse_expanded_get(Handle);
+                return Interop.Elementary.elm_toolbar_transverse_expanded_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_toolbar_transverse_expanded_set(Handle, value);
+                Interop.Elementary.elm_toolbar_transverse_expanded_set(RealHandle, value);
             }
         }
 
@@ -143,7 +143,7 @@ namespace ElmSharp
         public ToolbarItem Append(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
-            item.Handle = Interop.Elementary.elm_toolbar_item_append(Handle, icon, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_toolbar_item_append(RealHandle, icon, label, null, (IntPtr)item.Id);
             return item;
         }
 
@@ -155,7 +155,7 @@ namespace ElmSharp
         public ToolbarItem Prepend(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
-            item.Handle = Interop.Elementary.elm_toolbar_item_prepend(Handle, icon, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_toolbar_item_prepend(RealHandle, icon, label, null, (IntPtr)item.Id);
             return item;
         }
 
@@ -167,7 +167,7 @@ namespace ElmSharp
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
-            item.Handle = Interop.Elementary.elm_toolbar_item_insert_before(Handle, before, icon, label, null, (IntPtr)item.Id);
+            item.Handle = Interop.Elementary.elm_toolbar_item_insert_before(RealHandle, before, icon, label, null, (IntPtr)item.Id);
             return item;
         }
 
@@ -175,14 +175,20 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_toolbar_selected_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_toolbar_selected_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as ToolbarItem;
             }
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_toolbar_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_toolbar_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

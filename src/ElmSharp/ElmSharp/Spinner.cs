@@ -28,10 +28,10 @@ namespace ElmSharp
 
         public Spinner(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, "changed");
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
 
-            _delayedChanged = new SmartEvent(this, "delay,changed");
+            _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
             _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -43,11 +43,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_label_format_get(Handle);
+                return Interop.Elementary.elm_spinner_label_format_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_label_format_set(Handle, value);
+                Interop.Elementary.elm_spinner_label_format_set(RealHandle, value);
             }
         }
 
@@ -60,7 +60,7 @@ namespace ElmSharp
             set
             {
                 _minimum = value;
-                Interop.Elementary.elm_spinner_min_max_set(Handle, _minimum, _maximum);
+                Interop.Elementary.elm_spinner_min_max_set(RealHandle, _minimum, _maximum);
             }
         }
 
@@ -73,7 +73,7 @@ namespace ElmSharp
             set
             {
                 _maximum = value;
-                Interop.Elementary.elm_spinner_min_max_set(Handle, _minimum, _maximum);
+                Interop.Elementary.elm_spinner_min_max_set(RealHandle, _minimum, _maximum);
             }
         }
 
@@ -81,11 +81,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_step_get(Handle);
+                return Interop.Elementary.elm_spinner_step_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_step_set(Handle, value);
+                Interop.Elementary.elm_spinner_step_set(RealHandle, value);
             }
         }
 
@@ -93,11 +93,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_value_get(Handle);
+                return Interop.Elementary.elm_spinner_value_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_value_set(Handle, value);
+                Interop.Elementary.elm_spinner_value_set(RealHandle, value);
             }
         }
 
@@ -105,11 +105,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_interval_get(Handle);
+                return Interop.Elementary.elm_spinner_interval_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_interval_set(Handle, value);
+                Interop.Elementary.elm_spinner_interval_set(RealHandle, value);
             }
         }
 
@@ -117,11 +117,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_base_get(Handle);
+                return Interop.Elementary.elm_spinner_base_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_base_set(Handle, value);
+                Interop.Elementary.elm_spinner_base_set(RealHandle, value);
             }
         }
 
@@ -129,11 +129,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_round_get(Handle);
+                return Interop.Elementary.elm_spinner_round_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_round_set(Handle, value);
+                Interop.Elementary.elm_spinner_round_set(RealHandle, value);
             }
         }
 
@@ -141,11 +141,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_wrap_get(Handle);
+                return Interop.Elementary.elm_spinner_wrap_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_wrap_set(Handle, value);
+                Interop.Elementary.elm_spinner_wrap_set(RealHandle, value);
             }
         }
 
@@ -153,33 +153,39 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_spinner_editable_get(Handle);
+                return Interop.Elementary.elm_spinner_editable_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_spinner_editable_set(Handle, value);
+                Interop.Elementary.elm_spinner_editable_set(RealHandle, value);
             }
         }
 
 
         public void AddSpecialValue(double value, string label)
         {
-            Interop.Elementary.elm_spinner_special_value_add(Handle, value, label);
+            Interop.Elementary.elm_spinner_special_value_add(RealHandle, value, label);
         }
 
         public void RemoveSpecialValue(double value)
         {
-            Interop.Elementary.elm_spinner_special_value_del(Handle, value);
+            Interop.Elementary.elm_spinner_special_value_del(RealHandle, value);
         }
 
         public string GetSpecialValue(double value)
         {
-            return Interop.Elementary.elm_spinner_special_value_get(Handle, value);
+            return Interop.Elementary.elm_spinner_special_value_get(RealHandle, value);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_spinner_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_spinner_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

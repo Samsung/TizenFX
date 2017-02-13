@@ -29,7 +29,7 @@ namespace ElmSharp
         readonly List<NaviItem> _itemStack = new List<NaviItem>();
         public Naviframe(EvasObject parent) : base(parent)
         {
-            _transitionFinished = new SmartEvent(this, "transition,finished");
+            _transitionFinished = new SmartEvent(this, this.RealHandle, "transition,finished");
             _transitionFinished.On += (s, e) => AnimationFinished?.Invoke(this, EventArgs.Empty);
         }
 
@@ -53,11 +53,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_naviframe_content_preserve_on_pop_get(Handle);
+                return Interop.Elementary.elm_naviframe_content_preserve_on_pop_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_naviframe_content_preserve_on_pop_set(Handle, value);
+                Interop.Elementary.elm_naviframe_content_preserve_on_pop_set(RealHandle, value);
             }
         }
 
@@ -65,11 +65,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_naviframe_prev_btn_auto_pushed_get(Handle);
+                return Interop.Elementary.elm_naviframe_prev_btn_auto_pushed_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_naviframe_prev_btn_auto_pushed_set(Handle, value);
+                Interop.Elementary.elm_naviframe_prev_btn_auto_pushed_set(RealHandle, value);
             }
         }
 
@@ -85,7 +85,7 @@ namespace ElmSharp
 
         public NaviItem Push(EvasObject content, string title, string style)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_push(Handle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, style);
+            IntPtr item = Interop.Elementary.elm_naviframe_item_push(RealHandle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, null);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             _itemStack.Add(naviItem);
             naviItem.Popped += ItemPoppedHandler;
@@ -104,7 +104,7 @@ namespace ElmSharp
 
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(Handle, before, title, IntPtr.Zero, IntPtr.Zero, content, style);
+            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(RealHandle, before, title, IntPtr.Zero, IntPtr.Zero, content, null);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(before);
             _itemStack.Insert(idx, naviItem);
@@ -124,7 +124,7 @@ namespace ElmSharp
 
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(Handle, after, title, IntPtr.Zero, IntPtr.Zero, content, style);
+            IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(RealHandle, after, title, IntPtr.Zero, IntPtr.Zero, content, null);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             int idx = _itemStack.IndexOf(after);
             _itemStack.Insert(idx + 1, naviItem);
@@ -134,12 +134,18 @@ namespace ElmSharp
 
         public void Pop()
         {
-            Interop.Elementary.elm_naviframe_item_pop(Handle);
+            Interop.Elementary.elm_naviframe_item_pop(RealHandle);
         }
-
+        
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_naviframe_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_naviframe_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
 
         void ItemPoppedHandler(object sender, EventArgs e)

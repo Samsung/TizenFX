@@ -24,6 +24,19 @@ namespace ElmSharp
         {
         }
 
+        public override int Opacity
+        {
+            get
+            {
+                return Color.Default.A;
+            }
+
+            set
+            {
+                Console.WriteLine("FloatingButton instance doesn't support to set Opacity.");
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);

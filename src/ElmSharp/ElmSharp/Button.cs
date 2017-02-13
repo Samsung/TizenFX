@@ -27,10 +27,10 @@ namespace ElmSharp
 
         public Button(EvasObject parent) : base(parent)
         {
-            _clicked = new SmartEvent(this, "clicked");
-            _repeated = new SmartEvent(this, "repeated");
-            _pressed = new SmartEvent(this, "pressed");
-            _released = new SmartEvent(this, "unpressed");
+            _clicked = new SmartEvent(this, this.RealHandle, "clicked");
+            _repeated = new SmartEvent(this, this.RealHandle, "repeated");
+            _pressed = new SmartEvent(this, this.RealHandle, "pressed");
+            _released = new SmartEvent(this, this.RealHandle, "unpressed");
 
             _clicked.On += (sender, e) =>
             {
@@ -65,11 +65,11 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_button_autorepeat_get(Handle);
+                return !Interop.Elementary.elm_button_autorepeat_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_button_autorepeat_set(Handle, value);
+                Interop.Elementary.elm_button_autorepeat_set(RealHandle, value);
             }
         }
 
@@ -77,11 +77,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_button_autorepeat_initial_timeout_get(Handle);
+                return Interop.Elementary.elm_button_autorepeat_initial_timeout_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_button_autorepeat_initial_timeout_set(Handle, value);
+                Interop.Elementary.elm_button_autorepeat_initial_timeout_set(RealHandle, value);
             }
         }
 
@@ -89,11 +89,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_button_autorepeat_gap_timeout_get(Handle);
+                return Interop.Elementary.elm_button_autorepeat_gap_timeout_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_button_autorepeat_gap_timeout_set(Handle, value);
+                Interop.Elementary.elm_button_autorepeat_gap_timeout_set(RealHandle, value);
             }
         }
 
@@ -123,7 +123,13 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_button_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_button_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

@@ -136,6 +136,19 @@ namespace ElmSharp
             }
         }
 
+        public override int Opacity
+        {
+            get
+            {
+                return Color.Default.A;
+            }
+
+            set
+            {
+                Console.WriteLine("Popup instance doesn't support to set Opacity.");
+            }
+        }
+
         public PopupItem Append(string label)
         {
             return Append(label, null);

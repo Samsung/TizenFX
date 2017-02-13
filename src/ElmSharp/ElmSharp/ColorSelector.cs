@@ -64,6 +64,19 @@ namespace ElmSharp
             }
         }
 
+        public override int Opacity
+        {
+            get
+            {
+                return Color.Default.A;
+            }
+
+            set
+            {
+                Console.WriteLine("ColorSelector instance doesn't support to set Opacity.");
+            }
+        }
+
         public ColorSelectorMode Mode
         {
             get
