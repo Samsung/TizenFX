@@ -30,6 +30,9 @@ namespace Tizen.Messaging.Messages
             _message = message;
         }
 
+        /// <summary>
+        /// The received message
+        /// </summary>
         public Message ReceivedMessage
         {
             get

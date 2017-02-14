@@ -35,6 +35,9 @@ namespace Tizen.Messaging.Messages
         {
         }
 
+        /// <summary>
+        /// Collection of normal message recipients
+        /// </summary>
         public ICollection<MessagesAddress> To
         {
             get

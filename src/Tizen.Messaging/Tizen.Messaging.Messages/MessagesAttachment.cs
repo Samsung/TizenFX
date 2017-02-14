@@ -21,8 +21,14 @@ namespace Tizen.Messaging.Messages
     /// </summary>
     public class MessagesAttachment
     {
+        /// <summary>
+        /// The media type of attachment
+        /// </summary>
         public MediaType Type { get; }
 
+        /// <summary>
+        /// The file path of attachment
+        /// </summary>
         public string FilePath { get; }
 
         /// <summary>

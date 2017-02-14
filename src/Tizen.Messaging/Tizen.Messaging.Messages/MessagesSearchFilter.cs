@@ -21,9 +21,21 @@ namespace Tizen.Messaging.Messages
     /// </summary>
     public class MessagesSearchFilter
     {
+        /// <summary>
+        /// The message box type
+        /// </summary>
         public MessageBoxType MessageBoxType { get; set; }
+        /// <summary>
+        /// The message type
+        /// </summary>
         public MessageType MessageType { get; set; }
+        /// <summary>
+        /// The keyword to search in the text and subject
+        /// </summary>
         public string TextKeyword { get; set; }
+        /// <summary>
+        /// The recipient address
+        /// </summary>
         public string AddressKeyword { get; set; }
     }
 }

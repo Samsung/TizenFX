@@ -22,6 +22,9 @@ namespace Tizen.Messaging.Messages
     public class MessagesAddress
     {
         internal RecipientType Type;
+        /// <summary>
+        /// The address of the sender/recipient
+        /// </summary>
         public string Number { get; }
 
         /// <summary>

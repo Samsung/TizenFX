@@ -169,6 +169,9 @@ namespace Tizen.Messaging.Messages
             _from = From;
         }
 
+        /// <summary>
+        /// The message ID
+        /// </summary>
         public int Id
         {
             get
@@ -184,6 +187,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The destination port of the message
+        /// </summary>
         public int Port
         {
             get
@@ -199,6 +205,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The message box type
+        /// </summary>
         public MessageBoxType BoxType
         {
             get
@@ -223,6 +232,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The text of the message
+        /// </summary>
         public string Text
         {
             get
@@ -247,6 +259,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The time of the message
+        /// </summary>
         public DateTime Time
         {
             get
@@ -271,6 +286,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The SIM slot index of the message
+        /// </summary>
         public SimSlotId SimId
         {
             get
@@ -295,6 +313,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// Indicates sender of the message
+        /// </summary>
         public IReadOnlyCollection<MessagesAddress> From
         {
             get

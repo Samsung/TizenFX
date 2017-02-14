@@ -38,6 +38,9 @@ namespace Tizen.Messaging.Messages
             GetAllAttachments();
         }
 
+        /// <summary>
+        /// The subject of the multimedia message
+        /// </summary>
         public string Subject
         {
             get
@@ -62,6 +65,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// Collection of normal message recipients
+        /// </summary>
         public ICollection<MessagesAddress> To
         {
             get
@@ -70,6 +76,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// Collection of CC(carbon copy) message recipients
+        /// </summary>
         public ICollection<MessagesAddress> Cc
         {
             get
@@ -78,6 +87,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// Collection of BCC(blind carbon copy) message recipients
+        /// </summary>
         public ICollection<MessagesAddress> Bcc
         {
             get
@@ -86,6 +98,9 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        /// <summary>
+        /// The list of attachment files
+        /// </summary>
         public IList<MessagesAttachment> Attachments
         {
             get
