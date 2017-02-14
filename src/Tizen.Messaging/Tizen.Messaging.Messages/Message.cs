@@ -25,15 +25,15 @@ namespace Tizen.Messaging.Messages
     /// </summary>
     public abstract class Message : IDisposable
     {
-        protected IntPtr _messageHandle = IntPtr.Zero;
+        internal IntPtr _messageHandle = IntPtr.Zero;
         private bool disposed = false;
 
         private ICollection<MessagesAddress> _from = new Collection<MessagesAddress>();
-        protected ICollection<MessagesAddress> _to = new Collection<MessagesAddress>();
-        protected ICollection<MessagesAddress> _cc = new Collection<MessagesAddress>();
-        protected ICollection<MessagesAddress> _bcc = new Collection<MessagesAddress>();
+        internal ICollection<MessagesAddress> _to = new Collection<MessagesAddress>();
+        internal ICollection<MessagesAddress> _cc = new Collection<MessagesAddress>();
+        internal ICollection<MessagesAddress> _bcc = new Collection<MessagesAddress>();
 
-        protected Message(MessageType type)
+        internal Message(MessageType type)
         {
             int ret = Interop.Messages.CreateMessage((int)type, out _messageHandle);
             if (ret != (int)MessagesError.None)
@@ -43,7 +43,7 @@ namespace Tizen.Messaging.Messages
             }
         }
 
-        protected Message(IntPtr messageHandle)
+        internal Message(IntPtr messageHandle)
         {
             _messageHandle = messageHandle;
             GetAllAddresses();
