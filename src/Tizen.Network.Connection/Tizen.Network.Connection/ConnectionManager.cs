@@ -68,16 +68,16 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the IP address is changed.
         /// </summary>
-        public static event EventHandler IpAddressChanged
+        public static event EventHandler IPAddressChanged
         {
             add
             {
-                ConnectionInternalManager.Instance.IpAddressChanged += value;
+                ConnectionInternalManager.Instance.IPAddressChanged += value;
             }
 
             remove
             {
-                ConnectionInternalManager.Instance.IpAddressChanged -= value;
+                ConnectionInternalManager.Instance.IPAddressChanged -= value;
             }
         }
 
@@ -103,9 +103,9 @@ namespace Tizen.Network.Connection
         /// <param name="family">The address family</param>
         /// <returns>IP address of the connection.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static string GetIpAddress(AddressFamily family)
+        public static string GetIPAddress(AddressFamily family)
         {
-            return ConnectionInternalManager.Instance.GetIpAddress(family);
+            return ConnectionInternalManager.Instance.GetIPAddress(family);
         }
 
         /// <summary>
@@ -343,34 +343,34 @@ namespace Tizen.Network.Connection
     /// </summary>
     public class AddressEventArgs : EventArgs
     {
-        private string Ipv4 = "";
-        private string Ipv6 = "";
+        private string IPv4 = "";
+        private string IPv6 = "";
 
         internal AddressEventArgs(string ipv4, string ipv6)
         {
-            Ipv4 = ipv4;
-            Ipv6 = ipv6;
+            IPv4 = ipv4;
+            IPv6 = ipv6;
         }
 
         /// <summary>
         /// The  IPV4 address.
         /// </summary>
-        public string Ipv4Address
+        public string IPv4Address
         {
             get
             {
-                return Ipv4;
+                return IPv4;
             }
         }
 
         /// <summary>
         /// The  IPV6 address.
         /// </summary>
-        public string Ipv6Address
+        public string IPv6Address
         {
             get
             {
-                return Ipv6;
+                return IPv6;
             }
         }
     }

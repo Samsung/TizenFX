@@ -52,12 +52,12 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The IP address.
         /// </summary>
-        System.Net.IPAddress Ip { get; set; }
+        System.Net.IPAddress IP { get; set; }
 
         /// <summary>
         /// The type of IP config.
         /// </summary>
-        IpConfigType IpConfigType { get; set; }
+        IPConfigType IPConfigType { get; set; }
     }
 
     internal class ConnectionAddressInformation : IAddressInformation
@@ -208,12 +208,12 @@ namespace Tizen.Network.Connection
         }
 
 
-        public System.Net.IPAddress Ip
+        public System.Net.IPAddress IP
         {
             get
             {
                 IntPtr Value;
-                int ret = Interop.ConnectionProfile.GetIpAddress(_profileHandle, (int)_family, out Value);
+                int ret = Interop.ConnectionProfile.GetIPAddress(_profileHandle, (int)_family, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ip, " + (ConnectionError)ret);
@@ -227,7 +227,7 @@ namespace Tizen.Network.Connection
             }
             set
             {
-                int ret = Interop.ConnectionProfile.SetIpAddress(_profileHandle, (int)_family, value.ToString());
+                int ret = Interop.ConnectionProfile.SetIPAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set ip, " + (ConnectionError)ret);
@@ -236,22 +236,22 @@ namespace Tizen.Network.Connection
             }
         }
 
-        public IpConfigType IpConfigType
+        public IPConfigType IPConfigType
         {
             get
             {
                 int Value;
-                int ret = Interop.ConnectionProfile.GetIpConfigType(_profileHandle, (int)_family, out Value);
+                int ret = Interop.ConnectionProfile.GetIPConfigType(_profileHandle, (int)_family, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ip config type, " + (ConnectionError)ret);
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
-                return (IpConfigType)Value;
+                return (IPConfigType)Value;
             }
             set
             {
-                int ret = Interop.ConnectionProfile.SetIpConfigType(_profileHandle, (int)_family, (int)value);
+                int ret = Interop.ConnectionProfile.SetIPConfigType(_profileHandle, (int)_family, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set ip config type, " + (ConnectionError)ret);

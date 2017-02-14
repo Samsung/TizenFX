@@ -41,8 +41,8 @@ namespace Tizen.Network.Connection
     /// </summary>
     public enum AddressFamily
     {
-        Ipv4 = 0,
-        Ipv6 = 1
+        IPv4 = 0,
+        IPv6 = 1
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for IP configuration type.
     /// </summary>
-    public enum IpConfigType
+    public enum IPConfigType
     {
         None = 0,  /**< Not defined */
         Static = 1,  /**< Manual IP configuration */

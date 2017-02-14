@@ -242,13 +242,13 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal event EventHandler IpAddressChanged
+        internal event EventHandler IPAddressChanged
         {
             add
             {
                 if (_IPAddressChanged == null)
                 {
-                    IpAddressChangedStart();
+                    IPAddressChangedStart();
                 }
                 _IPAddressChanged += value;
             }
@@ -258,19 +258,19 @@ namespace Tizen.Network.Connection
                 _IPAddressChanged -= value;
                 if (_IPAddressChanged == null)
                 {
-                    IpAddressChangedStop();
+                    IPAddressChangedStop();
                 }
             }
         }
 
-        private void IpAddressChangedStart()
+        private void IPAddressChangedStart()
         {
-            _connectionAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            _connectionAddressChangedCallback = (IntPtr IPv4, IntPtr IPv6, IntPtr UserData) =>
             {
                 if (_IPAddressChanged != null)
                 {
-                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+                    string ipv4 = Marshal.PtrToStringAnsi(IPv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(IPv6);
 
                     if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
                     {
@@ -279,16 +279,16 @@ namespace Tizen.Network.Connection
                 }
             };
 
-            int ret = Interop.Connection.SetIpAddressChangedCallback(GetHandle(), _connectionAddressChangedCallback, IntPtr.Zero);
+            int ret = Interop.Connection.SetIPAddressChangedCallback(GetHandle(), _connectionAddressChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing IP address, " + (ConnectionError)ret);
             }
         }
 
-        private void IpAddressChangedStop()
+        private void IPAddressChangedStop()
         {
-            int ret = Interop.Connection.UnsetIpAddressChangedCallback(GetHandle());
+            int ret = Interop.Connection.UnsetIPAddressChangedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister callback for changing IP address, " + (ConnectionError)ret);
@@ -320,12 +320,12 @@ namespace Tizen.Network.Connection
 
         private void ProxyAddressChangedStart()
         {
-            _proxyAddressChangedCallback = (IntPtr Ipv4, IntPtr Ipv6, IntPtr UserData) =>
+            _proxyAddressChangedCallback = (IntPtr IPv4, IntPtr IPv6, IntPtr UserData) =>
             {
                 if (_ProxyAddressChanged != null)
                 {
-                    string ipv4 = Marshal.PtrToStringAnsi(Ipv4);
-                    string ipv6 = Marshal.PtrToStringAnsi(Ipv6);
+                    string ipv4 = Marshal.PtrToStringAnsi(IPv4);
+                    string ipv6 = Marshal.PtrToStringAnsi(IPv6);
 
                     if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
                     {
@@ -358,7 +358,7 @@ namespace Tizen.Network.Connection
             }
             if (_IPAddressChanged != null)
             {
-                IpAddressChangedStop();
+                IPAddressChangedStop();
             }
             if (_EthernetCableStateChanged != null)
             {
@@ -390,10 +390,10 @@ namespace Tizen.Network.Connection
             return Interop.Connection.DestroyProfileIterator(iterator);
         }
 
-        internal string GetIpAddress(AddressFamily family)
+        internal string GetIPAddress(AddressFamily family)
         {
             IntPtr ip;
-            int ret = Interop.Connection.GetIpAddress(GetHandle(), (int)family, out ip);
+            int ret = Interop.Connection.GetIPAddress(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get IP address, " + (ConnectionError)ret);

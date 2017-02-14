@@ -28,8 +28,8 @@ namespace Tizen.Network.Connection
     public class ConnectionProfile : IDisposable
     {
         internal IntPtr ProfileHandle = IntPtr.Zero;
-        private IAddressInformation Ipv4;
-        private IAddressInformation Ipv6;
+        private IAddressInformation IPv4;
+        private IAddressInformation IPv6;
         private bool disposed = false;
         private EventHandler _ProfileStateChanged = null;
 
@@ -92,8 +92,8 @@ namespace Tizen.Network.Connection
         internal ConnectionProfile(IntPtr handle)
         {
             ProfileHandle = handle;
-            Ipv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv4);
-            Ipv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.Ipv6);
+            IPv4 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.IPv4);
+            IPv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.IPv6);
         }
 
         ~ConnectionProfile()
@@ -262,7 +262,7 @@ namespace Tizen.Network.Connection
             get
             {
                 IntPtr Value;
-                int ret = Interop.ConnectionProfile.GetProxyAddress(ProfileHandle, (int)AddressFamily.Ipv4, out Value);
+                int ret = Interop.ConnectionProfile.GetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get proxy address, " + (ConnectionError)ret);
@@ -274,7 +274,7 @@ namespace Tizen.Network.Connection
             }
             set
             {
-                int ret = Interop.ConnectionProfile.SetProxyAddress(ProfileHandle, (int)AddressFamily.Ipv4, value.ToString());
+                int ret = Interop.ConnectionProfile.SetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set proxy address, " + (ConnectionError)ret);
@@ -284,25 +284,25 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The subnet mask address(Ipv4).
+        /// The subnet mask address(IPv4).
         /// </summary>
-        public IAddressInformation Ipv4Settings
+        public IAddressInformation IPv4Settings
         {
             get
             {
-                return Ipv4;
+                return IPv4;
 
             }
         }
 
         /// <summary>
-        /// The subnet mask address(Ipv4).
+        /// The subnet mask address(IPv4).
         /// </summary>
-        public IAddressInformation Ipv6Settings
+        public IAddressInformation IPv6Settings
         {
             get
             {
-                return Ipv6;
+                return IPv6;
             }
         }
     }

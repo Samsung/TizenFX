@@ -41,7 +41,7 @@ internal static partial class Interop
         public static extern int GetType(IntPtr handle, out int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_ip_address")]
-        public static extern int GetIpAddress(IntPtr handle, int family, out IntPtr address);
+        public static extern int GetIPAddress(IntPtr handle, int family, out IntPtr address);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_proxy")]
         public static extern int GetProxy(IntPtr handle, int family, out IntPtr address);
@@ -68,7 +68,7 @@ internal static partial class Interop
         public static extern int SetTypeChangedCallback(IntPtr handle, ConnectionTypeChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_set_ip_address_changed_cb")]
-        public static extern int SetIpAddressChangedCallback(IntPtr handle, ConnectionAddressChangedCallback callback, IntPtr userData);
+        public static extern int SetIPAddressChangedCallback(IntPtr handle, ConnectionAddressChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_set_ethernet_cable_state_chaged_cb")]
         public static extern int SetEthernetCableStateChagedCallback(IntPtr handle, EthernetCableStateChangedCallback callback, IntPtr userData);
@@ -80,7 +80,7 @@ internal static partial class Interop
         public static extern int UnsetTypeChangedCallback(IntPtr handle);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_unset_ip_address_changed_cb")]
-        public static extern int UnsetIpAddressChangedCallback(IntPtr handle);
+        public static extern int UnsetIPAddressChangedCallback(IntPtr handle);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_unset_ethernet_cable_state_chaged_cb")]
         public static extern int UnsetEthernetCableStateChagedCallback(IntPtr handle);
@@ -158,13 +158,13 @@ internal static partial class Interop
         public static extern int GetState(IntPtr profileHandle, out int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_ip_config_type")]
-        public static extern int GetIpConfigType(IntPtr profileHandle, int family, out int type);
+        public static extern int GetIPConfigType(IntPtr profileHandle, int family, out int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_proxy_type")]
         public static extern int GetProxyType(IntPtr profileHandle, out int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_ip_address")]
-        public static extern int GetIpAddress(IntPtr profileHandle, int family, out IntPtr address);
+        public static extern int GetIPAddress(IntPtr profileHandle, int family, out IntPtr address);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_subnet_mask")]
         public static extern int GetSubnetMask(IntPtr profileHandle, int family, out IntPtr address);
@@ -179,13 +179,13 @@ internal static partial class Interop
         public static extern int GetProxyAddress(IntPtr profileHandle, int family, out IntPtr address);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_ip_config_type")]
-        public static extern int SetIpConfigType(IntPtr profileHandle, int family, int type);
+        public static extern int SetIPConfigType(IntPtr profileHandle, int family, int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_proxy_type")]
         public static extern int SetProxyType(IntPtr profileHandle, int type);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_ip_address")]
-        public static extern int SetIpAddress(IntPtr profileHandle, int family, string address);
+        public static extern int SetIPAddress(IntPtr profileHandle, int family, string address);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_subnet_mask")]
         public static extern int SetSubnetMask(IntPtr profileHandle, int family, string address);
