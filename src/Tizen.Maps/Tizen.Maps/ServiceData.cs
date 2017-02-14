@@ -65,15 +65,15 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates that the Route Data Structure is defined as a Path (a list of geographical coordinates)
         /// </summary>
-        RouteAsPath = Interop.ServiceData.RoutePath,
+        RoutePath = Interop.ServiceData.RoutePath,
         /// <summary>
         /// Indicates that the Route Data Structure is defined as a list of Segments while each segment is defined as a Path
         /// </summary>
-        SegmentsAsPath = Interop.ServiceData.RouteSegmentsPath,
+        RouteSegmentsPath = Interop.ServiceData.RouteSegmentsPath,
         /// <summary>
         /// Indicates that the Route Data Structure is defined as a list of Segments while each segment is defined as a list of Maneuvers
         /// </summary>
-        SegmentsAsManeuvers = Interop.ServiceData.RouteSegmentsManeuvers,
+        RouteSegmentsManeuvers = Interop.ServiceData.RouteSegmentsManeuvers,
 
         /// <summary>
         /// Indicates availability of traffic information on the Map

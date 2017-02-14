@@ -19,7 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route types
     /// </summary>
-    public enum TransportMode
+    public enum RouteTransportMode
     {
         /// <summary>
         /// Route is to be traveled by car

@@ -130,11 +130,11 @@
     <Compile Include="Tizen.Maps\RouteOptimization.cs" />
     <Compile Include="Tizen.Maps\RouteSearchRequest.cs" />
     <Compile Include="Tizen.Maps\RouteSegment.cs" />
+    <Compile Include="Tizen.Maps\RouteTransportMode.cs" />
     <Compile Include="Tizen.Maps\SearchPreference.cs" />
     <Compile Include="Tizen.Maps\ServiceRequestType.cs" />
     <Compile Include="Tizen.Maps\ServiceData.cs" />
     <Compile Include="Tizen.Maps\SnapshotType.cs" />
-    <Compile Include="Tizen.Maps\TransportMode.cs" />
     <Compile Include="Tizen.Maps\TurnInstruction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
