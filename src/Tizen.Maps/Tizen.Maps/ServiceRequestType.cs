@@ -80,10 +80,5 @@ namespace Tizen.Maps
         /// Map view snapshot service is allowed
         /// </summary>
         ViewSnapshot = Interop.ServiceType.ViewSnapshot,
-
-        /// <summary>
-        /// Canceling a request is allowed
-        /// </summary>
-        CancelRequest = Interop.ServiceType.CancelRequest,
     }
 }
