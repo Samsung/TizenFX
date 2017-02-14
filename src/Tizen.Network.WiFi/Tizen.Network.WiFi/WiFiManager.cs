@@ -59,11 +59,11 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to Check whether Wi-Fi is activated.
         /// </summary>
-        static public bool IsActivated
+        static public bool IsActive
         {
             get
             {
-                return WiFiManagerImpl.Instance.IsActivated;
+                return WiFiManagerImpl.Instance.IsActive;
             }
         }
 
@@ -127,18 +127,18 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the result of the scan asynchronously.
         /// </summary>
-        /// <returns> A task contains the lisf for WiFiApInformation objects.</returns>
-        static public IEnumerable<WiFiAp> GetFoundAps()
+        /// <returns> A task contains the lisf for WiFiAPInformation objects.</returns>
+        static public IEnumerable<WiFiAP> GetFoundAPs()
         {
-            return WiFiManagerImpl.Instance.GetFoundAps();
+            return WiFiManagerImpl.Instance.GetFoundAPs();
         }
         /// <summary>
         /// Gets the result of specific ap scan asynchronously.
         /// </summary>
-        /// <returns> A task contains the WiFiApInformation object.</returns>
-        static public IEnumerable<WiFiAp> GetFoundSpecificAps()
+        /// <returns> A task contains the WiFiAPInformation object.</returns>
+        static public IEnumerable<WiFiAP> GetFoundSpecificAPs()
         {
-            return WiFiManagerImpl.Instance.GetFoundSpecificAps();
+            return WiFiManagerImpl.Instance.GetFoundSpecificAPs();
         }
         /// <summary>
         /// Gets the list of wifi configuration.
@@ -160,18 +160,18 @@ namespace Tizen.Network.WiFi
         /// Gets the handle of the connected access point.
         /// </summary>
         /// <returns> The connected wifi access point(AP) information.</returns>
-        static public WiFiAp GetConnectedAp()
+        static public WiFiAP GetConnectedAP()
         {
-            return WiFiManagerImpl.Instance.GetConnectedAp();
+            return WiFiManagerImpl.Instance.GetConnectedAP();
         }
         /// <summary>
         /// Deletes the information of stored access point and disconnects it when it connected.<br>
         /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
         /// </summary>
         /// <param name="ap">The access point to be removed</param>
-        static public void RemoveAP(WiFiAp ap)
+        static public void RemoveAP(WiFiAP ap)
         {
-            WiFiManagerImpl.Instance.RemoveAp(ap);
+            WiFiManagerImpl.Instance.RemoveAP(ap);
         }
         /// <summary>
         /// Activates Wi-Fi asynchronously.
@@ -184,8 +184,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Activates Wi-Fi asynchronously and displays Wi-Fi picker (popup) when Wi-Fi is not automatically connected.
         /// </summary>
-        /// <returns> A task indicates whether the ActivateWithPickerTeated method is done or not.</returns>
-        static public Task ActivateWithPickerTeatedAsync()
+        /// <returns> A task indicates whether the ActivateWithPickerTested method is done or not.</returns>
+        static public Task ActivateWithPickerTestedAsync()
         {
             return WiFiManagerImpl.Instance.ActivateWithWiFiPickerTestedAsync();
         }
@@ -208,18 +208,18 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Starts specific ap scan, asynchronously.
         /// </summary>
-        /// <returns> A task contains WiFiApInformation object.</returns>
+        /// <returns> A task contains WiFiAPInformation object.</returns>
         /// <param name="essid">The essid of hidden ap</param>
-        static public Task ScanSpecificApAsync(string essid)
+        static public Task ScanSpecificAPAsync(string essid)
         {
-            return WiFiManagerImpl.Instance.ScanSpecificApAsync(essid);
+            return WiFiManagerImpl.Instance.ScanSpecificAPAsync(essid);
         }
         /// <summary>
         /// Connects the access point asynchronously.
         /// </summary>
         /// <param name="ap">The access point</param>
         /// <returns> A task indicates whether the Connect method is done or not.</returns>
-        static public Task ConnectAsync(WiFiAp ap)
+        static public Task ConnectAsync(WiFiAP ap)
         {
             return WiFiManagerImpl.Instance.ConnectAsync(ap);
         }
@@ -228,7 +228,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <returns> A task indicates whether the ConnectByWpsPbs method is done or not.</returns>
         /// <param name="ap">The access point(AP)</param>
-        static public Task ConnectByWpsPbcAsync(WiFiAp ap)
+        static public Task ConnectByWpsPbcAsync(WiFiAP ap)
         {
             return WiFiManagerImpl.Instance.ConnectByWpsPbcAsync(ap);
         }
@@ -238,7 +238,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicates whether the ConnectByWpsPin method is done or not.</returns>
         /// <param name="ap">The access point(AP)</param>
         /// <param name="pin">The WPS PIN is a non-NULL string with length greater than 0 and less than or equal to 8.</param>
-        static public Task ConnectByWpsPinAsync(WiFiAp ap, string pin)
+        static public Task ConnectByWpsPinAsync(WiFiAP ap, string pin)
         {
             Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
             return WiFiManagerImpl.Instance.ConnectByWpsPinAsync(ap, pin);
@@ -247,7 +247,7 @@ namespace Tizen.Network.WiFi
         /// Disconnects the access point asynchronously.
         /// </summary>
         /// <returns> A task indicates whether the Disconnect method is done or not.</returns>
-        static public Task DisconnectAsync(WiFiAp ap)
+        static public Task DisconnectAsync(WiFiAP ap)
         {
             return WiFiManagerImpl.Instance.DisconnectAsync(ap);
         }

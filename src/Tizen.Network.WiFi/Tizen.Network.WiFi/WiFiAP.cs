@@ -19,9 +19,9 @@ using System;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for manager the network information of the access point(AP). It allows applications to manager netowrk informaiton.
+    /// A class for manager the network information of the access point(AP). It allows applications to manager network informaiton.
     /// </summary>
-    public class WiFiAp : IDisposable
+    public class WiFiAP : IDisposable
     {
         private IntPtr _apHandle = IntPtr.Zero;
         private WiFiNetwork _network;
@@ -29,7 +29,7 @@ namespace Tizen.Network.WiFi
         private bool disposed = false;
 
         /// <summary>
-        /// The network information of the acces point(AP).
+        /// The network information of the access point(AP).
         /// </summary>
         public WiFiNetwork NetworkInformation
         {
@@ -49,9 +49,9 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal WiFiAp(IntPtr handle)
+        internal WiFiAP(IntPtr handle)
         {
-            Log.Debug(Globals.LogTag, "New WiFiAp. Handle: " + handle);
+            Log.Debug(Globals.LogTag, "New WiFiAP. Handle: " + handle);
             _apHandle = handle;
             Initialize();
         }
@@ -59,9 +59,9 @@ namespace Tizen.Network.WiFi
         /// Creates a object for the access point.
         /// </summary>
         /// <param name="essid">The ESSID (Extended Service Set Identifier) can be UTF-8 encoded </param>
-        public WiFiAp(string essid)
+        public WiFiAP(string essid)
         {
-            Log.Debug(Globals.LogTag, "New WiFiAp. Essid: " + essid);
+            Log.Debug(Globals.LogTag, "New WiFiAP. Essid: " + essid);
             createHandle(essid, true);
             Initialize();
         }
@@ -70,13 +70,13 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <param name="essid">The ESSID (Extended Service Set Identifier) can be UTF-8 encoded </param>
         /// <param name="hidden">The value to set hidden AP</param>
-        public WiFiAp(string essid, bool hidden)
+        public WiFiAP(string essid, bool hidden)
         {
             createHandle(essid, hidden);
             Initialize();
         }
 
-        ~WiFiAp()
+        ~WiFiAP()
         {
             Dispose(false);
         }
@@ -96,7 +96,7 @@ namespace Tizen.Network.WiFi
             {
                 _network.Dispose();
                 _security.Dispose();
-                Interop.WiFi.Ap.Destroy(_apHandle);
+                Interop.WiFi.AP.Destroy(_apHandle);
                 _apHandle = IntPtr.Zero;
             }
             disposed = true;
@@ -107,11 +107,11 @@ namespace Tizen.Network.WiFi
             int ret = -1;
             if (hidden)
             {
-                ret = Interop.WiFi.Ap.Create(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
+                ret = Interop.WiFi.AP.Create(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
             }
             else
             {
-                ret = Interop.WiFi.Ap.CreateHiddenAp(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
+                ret = Interop.WiFi.AP.CreateHiddenAP(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
             }
 
             if (ret != (int)WiFiError.None)
@@ -132,7 +132,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         public void Refresh()
         {
-            int ret = Interop.WiFi.Ap.Refresh(_apHandle);
+            int ret = Interop.WiFi.AP.Refresh(_apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to refresh ap handle, Error - " + (WiFiError)ret);

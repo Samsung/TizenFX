@@ -44,7 +44,7 @@ namespace Tizen.Network.WiFi
                 if (string.IsNullOrEmpty(_essid))
                 {
                     IntPtr strPtr;
-                    int ret = Interop.WiFi.Ap.GetEssid(_apHandle, out strPtr);
+                    int ret = Interop.WiFi.AP.GetEssid(_apHandle, out strPtr);
                     if (ret != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
@@ -66,7 +66,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr strPtr;
-                int ret = Interop.WiFi.Ap.GetBssid(_apHandle, out strPtr);
+                int ret = Interop.WiFi.AP.GetBssid(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get bssid, Error - " + (WiFiError)ret);
@@ -76,9 +76,9 @@ namespace Tizen.Network.WiFi
             }
         }
         /// <summary>
-        /// The address informaiton for Ipv4.
+        /// The address informaiton for IPv4.
         /// </summary>
-        public IAddressInformation Ipv4Setting
+        public IAddressInformation IPv4Setting
         {
             get
             {
@@ -86,9 +86,9 @@ namespace Tizen.Network.WiFi
             }
         }
         /// <summary>
-        /// The address ainformation for Ipv6.
+        /// The address ainformation for IPv6.
         /// </summary>
-        public IAddressInformation Ipv6Setting
+        public IAddressInformation IPv6Setting
         {
             get
             {
@@ -103,7 +103,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr strPtr;
-                int ret = Interop.WiFi.Ap.GetProxyAddress(_apHandle, (int)AddressFamily.Ipv4, out strPtr);
+                int ret = Interop.WiFi.AP.GetProxyAddress(_apHandle, (int)AddressFamily.IPv4, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
@@ -113,7 +113,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetProxyAddress(_apHandle, (int)AddressFamily.Ipv4, value);
+                int ret = Interop.WiFi.AP.SetProxyAddress(_apHandle, (int)AddressFamily.IPv4, value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
@@ -121,14 +121,14 @@ namespace Tizen.Network.WiFi
             }
         }
         /// <summary>
-        /// The proxy type(Ipv6).
+        /// The proxy type(IPv6).
         /// </summary>
         public WiFiProxyType ProxyType
         {
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetProxyType(_apHandle, out type);
+                int ret = Interop.WiFi.AP.GetProxyType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get proxy type, Error - " + (WiFiError)ret);
@@ -137,7 +137,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetProxyType(_apHandle, (int)value);
+                int ret = Interop.WiFi.AP.SetProxyType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set proxy type, Error - " + (WiFiError)ret);
@@ -152,7 +152,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int freq;
-                int ret = Interop.WiFi.Ap.GetFrequency(_apHandle, out freq);
+                int ret = Interop.WiFi.AP.GetFrequency(_apHandle, out freq);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get frequency, Error - " + (WiFiError)ret);
@@ -168,7 +168,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int rssi;
-                int ret = Interop.WiFi.Ap.GetRssi(_apHandle, out rssi);
+                int ret = Interop.WiFi.AP.GetRssi(_apHandle, out rssi);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get rssi, Error - " + (WiFiError)ret);
@@ -184,7 +184,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int maxSpeed;
-                int ret = Interop.WiFi.Ap.GetMaxSpeed(_apHandle, out maxSpeed);
+                int ret = Interop.WiFi.AP.GetMaxSpeed(_apHandle, out maxSpeed);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get max speed, Error - " + (WiFiError)ret);
@@ -200,7 +200,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool isFavorite;
-                int ret = Interop.WiFi.Ap.IsFavorite(_apHandle, out isFavorite);
+                int ret = Interop.WiFi.AP.IsFavorite(_apHandle, out isFavorite);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get favorite, Error - " + (WiFiError)ret);
@@ -217,7 +217,7 @@ namespace Tizen.Network.WiFi
             {
                 bool isPasspoint;
                 Log.Debug(Globals.LogTag, "Handle: " + _apHandle);
-                int ret = Interop.WiFi.Ap.IsPasspoint(_apHandle, out isPasspoint);
+                int ret = Interop.WiFi.AP.IsPasspoint(_apHandle, out isPasspoint);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isPassport, Error - " + (WiFiError)ret);
@@ -233,7 +233,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int state;
-                int ret = Interop.WiFi.Ap.GetConnectionState(_apHandle, out state);
+                int ret = Interop.WiFi.AP.GetConnectionState(_apHandle, out state);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get connection state, Error - " + (WiFiError)ret);
@@ -245,11 +245,11 @@ namespace Tizen.Network.WiFi
         internal WiFiNetwork(IntPtr apHandle)
         {
             _apHandle = apHandle;
-            _ipv4 = new WiFiAddressInformation(apHandle, AddressFamily.Ipv4);
-            _ipv6 = new WiFiAddressInformation(apHandle, AddressFamily.Ipv6);
+            _ipv4 = new WiFiAddressInformation(apHandle, AddressFamily.IPv4);
+            _ipv6 = new WiFiAddressInformation(apHandle, AddressFamily.IPv6);
 
             IntPtr strPtr;
-            int ret = Interop.WiFi.Ap.GetEssid(_apHandle, out strPtr);
+            int ret = Interop.WiFi.AP.GetEssid(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);

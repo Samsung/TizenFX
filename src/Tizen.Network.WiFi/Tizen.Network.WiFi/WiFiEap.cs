@@ -40,7 +40,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr strPtr;
-                int ret = Interop.WiFi.Ap.GetEapCaCertFile(_apHandle, out strPtr);
+                int ret = Interop.WiFi.AP.GetEapCaCertFile(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get caCertFile, Error - " + (WiFiError)ret);
@@ -51,7 +51,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetEapCaCertFile(_apHandle, value);
+                int ret = Interop.WiFi.AP.SetEapCaCertFile(_apHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set caCertFile, Error - " + (WiFiError)ret);
@@ -67,7 +67,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetEapType(_apHandle, out type);
+                int ret = Interop.WiFi.AP.GetEapType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get eap type, Error - " + (WiFiError)ret);
@@ -77,7 +77,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetEapType(_apHandle, (int)value);
+                int ret = Interop.WiFi.AP.SetEapType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set eap type, Error - " + (WiFiError)ret);
@@ -93,7 +93,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetEapAuthType(_apHandle, out type);
+                int ret = Interop.WiFi.AP.GetEapAuthType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get auth type, Error - " + (WiFiError)ret);
@@ -103,7 +103,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetEapAuthType(_apHandle, (int)value);
+                int ret = Interop.WiFi.AP.SetEapAuthType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set eap auth type, Error - " + (WiFiError)ret);
@@ -148,7 +148,7 @@ namespace Tizen.Network.WiFi
         public string GetPrivateKeyFile()
         {
             IntPtr strPtr;
-            int ret = Interop.WiFi.Ap.GetEapPrivateKeyFile(_apHandle, out strPtr);
+            int ret = Interop.WiFi.AP.GetEapPrivateKeyFile(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get private key file, Error - " + (WiFiError)ret);
@@ -164,7 +164,7 @@ namespace Tizen.Network.WiFi
         /// <param name="password">The password.</param>
         public void SetPrivateKeyInfo(string privateKeyFile, string password)
         {
-            int ret = Interop.WiFi.Ap.SetEapPrivateKeyInfo(_apHandle, privateKeyFile, password);
+            int ret = Interop.WiFi.AP.SetEapPrivateKeyInfo(_apHandle, privateKeyFile, password);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set private key info, Error - " + (WiFiError)ret);
@@ -179,7 +179,7 @@ namespace Tizen.Network.WiFi
         public string GetClientCertFile()
         {
             IntPtr strPtr;
-            int ret = Interop.WiFi.Ap.GetEapClientCertFile(_apHandle, out strPtr);
+            int ret = Interop.WiFi.AP.GetEapClientCertFile(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
@@ -194,7 +194,7 @@ namespace Tizen.Network.WiFi
         /// <param name="clientCertFile">The file path of Client Certificate.</param>
         public void SetClientCertFile(string clientCertFile)
         {
-            int ret = Interop.WiFi.Ap.SetEapClientCertFile(_apHandle, clientCertFile);
+            int ret = Interop.WiFi.AP.SetEapClientCertFile(_apHandle, clientCertFile);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set client cert file, Error - " + (WiFiError)ret);
@@ -210,7 +210,7 @@ namespace Tizen.Network.WiFi
         {
             IntPtr strptr;
             bool passwordSet;
-            int ret = Interop.WiFi.Ap.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
+            int ret = Interop.WiFi.AP.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get user name in eap passphrase, Error - " + (WiFiError)ret);
@@ -226,7 +226,7 @@ namespace Tizen.Network.WiFi
         {
             IntPtr strptr;
             bool passwordSet;
-            int ret = Interop.WiFi.Ap.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
+            int ret = Interop.WiFi.AP.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get IsPasswordSet in passphrase, Error - " + (WiFiError)ret);
@@ -244,7 +244,7 @@ namespace Tizen.Network.WiFi
         /// <param name="password">The password</param>
         public void SetEapPassphrase(string userName, string password)
         {
-            int ret = Interop.WiFi.Ap.SetEapPassphrase(_apHandle, userName, password);
+            int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, userName, password);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set passphrase, Error - " + (WiFiError)ret);

@@ -83,7 +83,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Config.SetProxyAddress(_configHandle, (int)AddressFamily.Ipv4, value);
+                int ret = Interop.WiFi.Config.SetProxyAddress(_configHandle, (int)AddressFamily.IPv4, value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
@@ -98,7 +98,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool hidden;
-                int ret = Interop.WiFi.Config.GetHiddenApProperty(_configHandle, out hidden);
+                int ret = Interop.WiFi.Config.GetHiddenAPProperty(_configHandle, out hidden);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isHidden, Error - " + (WiFiError)ret);
@@ -107,7 +107,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Config.SetHiddenApProperty(_configHandle, value);
+                int ret = Interop.WiFi.Config.SetHiddenAPProperty(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set IsHidden, Error - " + (WiFiError)ret);

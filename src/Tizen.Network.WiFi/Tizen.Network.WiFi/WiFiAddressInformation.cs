@@ -60,7 +60,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr addrPtr;
-                int ret = Interop.WiFi.Ap.GetDnsAddress(_handle, 1, (int)_family, out addrPtr);
+                int ret = Interop.WiFi.AP.GetDnsAddress(_handle, 1, (int)_family, out addrPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get first dns address, Error - " + (WiFiError)ret);
@@ -73,7 +73,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetDnsAddress(_handle, 1, (int)_family, value.ToString());
+                int ret = Interop.WiFi.AP.SetDnsAddress(_handle, 1, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set first dns address, Error - " + (WiFiError)ret);
@@ -85,7 +85,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr addrPtr;
-                int ret = Interop.WiFi.Ap.GetDnsAddress(_handle, 2, (int)_family, out addrPtr);
+                int ret = Interop.WiFi.AP.GetDnsAddress(_handle, 2, (int)_family, out addrPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get second dns address, Error - " + (WiFiError)ret);
@@ -98,7 +98,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetDnsAddress(_handle, 2, (int)_family, value.ToString());
+                int ret = Interop.WiFi.AP.SetDnsAddress(_handle, 2, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set second dns address, Error - " + (WiFiError)ret);
@@ -110,7 +110,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr addrPtr;
-                int ret = Interop.WiFi.Ap.GetGatewayAddress(_handle, (int)_family, out addrPtr);
+                int ret = Interop.WiFi.AP.GetGatewayAddress(_handle, (int)_family, out addrPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get gateway address, Error - " + (WiFiError)ret);
@@ -123,7 +123,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetGatewayAddress(_handle, (int)_family, value.ToString());
+                int ret = Interop.WiFi.AP.SetGatewayAddress(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set gateway address, Error - " + (WiFiError)ret);
@@ -135,7 +135,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 IntPtr addrPtr;
-                int ret = Interop.WiFi.Ap.GetSubnetMask(_handle, (int)_family, out addrPtr);
+                int ret = Interop.WiFi.AP.GetSubnetMask(_handle, (int)_family, out addrPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get subnet mask, Error - " + (WiFiError)ret);
@@ -148,19 +148,19 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetSubnetMask(_handle, (int)_family, value.ToString());
+                int ret = Interop.WiFi.AP.SetSubnetMask(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set subnet mask, Error - " + (WiFiError)ret);
                 }
             }
         }
-        public System.Net.IPAddress Ip
+        public System.Net.IPAddress IP
         {
             get
             {
                 IntPtr addrPtr;
-                int ret = Interop.WiFi.Ap.GetIpAddress(_handle, (int)_family, out addrPtr);
+                int ret = Interop.WiFi.AP.GetIPAddress(_handle, (int)_family, out addrPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get ip address, Error - " + (WiFiError)ret);
@@ -173,28 +173,28 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetIpAddress(_handle, (int)_family, value.ToString());
+                int ret = Interop.WiFi.AP.SetIPAddress(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set ip address, Error - " + (WiFiError)ret);
                 }
             }
         }
-        public IpConfigType IpConfigType
+        public IPConfigType IPConfigType
         {
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetIpConfigType(_handle, (int)_family, out type);
+                int ret = Interop.WiFi.AP.GetIPConfigType(_handle, (int)_family, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get ip config type, Error - " + (WiFiError)ret);
                 }
-                return (IpConfigType)type;
+                return (IPConfigType)type;
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetIpConfigType(_handle, (int)_family, (int)value);
+                int ret = Interop.WiFi.AP.SetIPConfigType(_handle, (int)_family, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set ip config type, Error - " + (WiFiError)ret);

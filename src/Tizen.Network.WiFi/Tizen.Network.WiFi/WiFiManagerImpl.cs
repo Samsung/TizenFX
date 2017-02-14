@@ -127,12 +127,12 @@ namespace Tizen.Network.WiFi
                 return (WiFiConnectionState)state;
             }
         }
-        internal bool IsActivated
+        internal bool IsActive
         {
             get
             {
                 bool active;
-                int ret = Interop.WiFi.IsActivated(GetHandle(), out active);
+                int ret = Interop.WiFi.IsActive(GetHandle(), out active);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isActive, Error - " + (WiFiError)ret);
@@ -219,23 +219,23 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal IEnumerable<WiFiAp> GetFoundAps()
+        internal IEnumerable<WiFiAP> GetFoundAPs()
         {
-            List<WiFiAp> apList = new List<WiFiAp>();
+            List<WiFiAP> apList = new List<WiFiAP>();
             Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
             {
                 if (apHandle != IntPtr.Zero)
                 {
                     IntPtr clonedHandle;
-                    Interop.WiFi.Ap.Clone(out clonedHandle, apHandle);
-                    WiFiAp apItem = new WiFiAp(clonedHandle);
+                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
+                    WiFiAP apItem = new WiFiAP(clonedHandle);
                     apList.Add(apItem);
                     return true;
                 }
                 return false;
             };
 
-            int ret = Interop.WiFi.GetForeachFoundAps(GetHandle(), callback, IntPtr.Zero);
+            int ret = Interop.WiFi.GetForeachFoundAPs(GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get all APs, Error - " + (WiFiError)ret);
@@ -245,16 +245,16 @@ namespace Tizen.Network.WiFi
             return apList;
         }
 
-        internal IEnumerable<WiFiAp> GetFoundSpecificAps()
+        internal IEnumerable<WiFiAP> GetFoundSpecificAPs()
         {
-            List<WiFiAp> apList = new List<WiFiAp>();
+            List<WiFiAP> apList = new List<WiFiAP>();
             Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
             {
                 if (apHandle != IntPtr.Zero)
                 {
                     IntPtr clonedHandle;
-                    Interop.WiFi.Ap.Clone(out clonedHandle, apHandle);
-                    WiFiAp apItem = new WiFiAp(clonedHandle);
+                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
+                    WiFiAP apItem = new WiFiAP(clonedHandle);
                     apList.Add(apItem);
                     return true;
                 }
@@ -262,7 +262,7 @@ namespace Tizen.Network.WiFi
 
             };
 
-            int ret = Interop.WiFi.GetForeachFoundSpecificAps(GetHandle(), callback, IntPtr.Zero);
+            int ret = Interop.WiFi.GetForeachFoundSpecificAPs(GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get specific APs, Error - " + (WiFiError)ret);
@@ -309,24 +309,24 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal WiFiAp GetConnectedAp()
+        internal WiFiAP GetConnectedAP()
         {
             IntPtr apHandle;
 
-            int ret = Interop.WiFi.GetConnectedAp(GetHandle(), out apHandle);
+            int ret = Interop.WiFi.GetConnectedAP(GetHandle(), out apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect with AP, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
-            WiFiAp ap = new WiFiAp(apHandle);
+            WiFiAP ap = new WiFiAP(apHandle);
             return ap;
         }
 
-        internal void RemoveAp(WiFiAp ap)
+        internal void RemoveAP(WiFiAP ap)
         {
             IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.RemoveAp(GetHandle(), apHandle);
+            int ret = Interop.WiFi.RemoveAP(GetHandle(), apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);
@@ -458,7 +458,7 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
-        internal Task ScanSpecificApAsync(string essid)
+        internal Task ScanSpecificAPAsync(string essid)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
@@ -480,7 +480,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ScanSpecificAp(GetHandle(), essid, _callback_map[id], id);
+            int ret = Interop.WiFi.ScanSpecificAP(GetHandle(), essid, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
@@ -489,7 +489,7 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
-        internal Task ConnectAsync(WiFiAp ap)
+        internal Task ConnectAsync(WiFiAP ap)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
@@ -521,7 +521,7 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
-        internal Task DisconnectAsync(WiFiAp ap)
+        internal Task DisconnectAsync(WiFiAP ap)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
@@ -553,7 +553,7 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
-        internal Task ConnectByWpsPbcAsync(WiFiAp ap)
+        internal Task ConnectByWpsPbcAsync(WiFiAP ap)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
@@ -585,7 +585,7 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
-        internal Task ConnectByWpsPinAsync(WiFiAp ap, string pin)
+        internal Task ConnectByWpsPinAsync(WiFiAP ap, string pin)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;

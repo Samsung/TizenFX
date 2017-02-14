@@ -37,7 +37,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetSecurityType(_apHandle, out type);
+                int ret = Interop.WiFi.AP.GetSecurityType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
@@ -47,7 +47,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetSecurityType(_apHandle, (int)value);
+                int ret = Interop.WiFi.AP.SetSecurityType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set security type, Error - " + (WiFiError)ret);
@@ -63,7 +63,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 int type;
-                int ret = Interop.WiFi.Ap.GetEncryptionType(_apHandle, out type);
+                int ret = Interop.WiFi.AP.GetEncryptionType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get encryption type, Error - " + (WiFiError)ret);
@@ -73,7 +73,7 @@ namespace Tizen.Network.WiFi
             }
             set
             {
-                int ret = Interop.WiFi.Ap.SetEncryptionType(_apHandle, (int)value);
+                int ret = Interop.WiFi.AP.SetEncryptionType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set encryption type, Error - " + (WiFiError)ret);
@@ -100,7 +100,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool required;
-                int ret = Interop.WiFi.Ap.IsPassphraseRequired(_apHandle, out required);
+                int ret = Interop.WiFi.AP.IsPassphraseRequired(_apHandle, out required);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isPassportRequired, Error - " + (WiFiError)ret);
@@ -117,7 +117,7 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool supported;
-                int ret = Interop.WiFi.Ap.IsWpsSupported(_apHandle, out supported);
+                int ret = Interop.WiFi.AP.IsWpsSupported(_apHandle, out supported);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isWapSupported, Error - " + (WiFiError)ret);
@@ -162,7 +162,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         public void SetPassphrase(string passphrase)
         {
-            int ret = Interop.WiFi.Ap.SetPassphrase(_apHandle, passphrase);
+            int ret = Interop.WiFi.AP.SetPassphrase(_apHandle, passphrase);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set passphrase, Error - " + (WiFiError)ret);

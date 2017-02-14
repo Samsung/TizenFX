@@ -49,7 +49,7 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deactivate")]
         internal static extern int Deactivate(IntPtr wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_is_activated")]
-        internal static extern int IsActivated(IntPtr wifi, out bool activated);
+        internal static extern int IsActive(IntPtr wifi, out bool activated);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_mac_address")]
         internal static extern int GetMacAddress(IntPtr wifi, out string macAddress);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_network_interface_name")]
@@ -57,13 +57,13 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_scan")]
         internal static extern int Scan(IntPtr wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_scan_specific_ap")]
-        internal static extern int ScanSpecificAp(IntPtr wifi, string essid, VoidCallback callback, IntPtr userData);
+        internal static extern int ScanSpecificAP(IntPtr wifi, string essid, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_connected_ap")]
-        internal static extern int GetConnectedAp(IntPtr wifi, out IntPtr ap);
+        internal static extern int GetConnectedAP(IntPtr wifi, out IntPtr ap);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_ap")]
-        internal static extern int GetForeachFoundAps(IntPtr wifi, HandleCallback callback, IntPtr userData);
+        internal static extern int GetForeachFoundAPs(IntPtr wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_specific_ap")]
-        internal static extern int GetForeachFoundSpecificAps(IntPtr wifi, HandleCallback callback, IntPtr userData);
+        internal static extern int GetForeachFoundSpecificAPs(IntPtr wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect")]
         internal static extern int Connect(IntPtr wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_disconnect")]
@@ -73,7 +73,7 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_by_wps_pin")]
         internal static extern int ConnectByWpsPin(IntPtr wifi, IntPtr ap, string pin, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
-        internal static extern int RemoveAp(IntPtr wifi, IntPtr ap);
+        internal static extern int RemoveAP(IntPtr wifi, IntPtr ap);
 
         //Wi-Fi Monitor
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_connection_state")]
@@ -95,12 +95,12 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_unset_rssi_level_changed_cb")]
         internal static extern int UnsetRssiLevelchangedCallback(IntPtr wifi);
 
-        internal static class Ap
+        internal static class AP
         {
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_create")]
             internal static extern int Create(IntPtr wifi, string essid, out IntPtr ap);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_hidden_create")]
-            internal static extern int CreateHiddenAp(IntPtr wifi, string essid, out IntPtr ap);
+            internal static extern int CreateHiddenAP(IntPtr wifi, string essid, out IntPtr ap);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_destroy")]
             internal static extern int Destroy(IntPtr ap);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_clone")]
@@ -126,13 +126,13 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_connection_state")]
             internal static extern int GetConnectionState(IntPtr ap, out int connectionState);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_ip_config_type")]
-            internal static extern int GetIpConfigType(IntPtr ap, int addressFamily, out int ipConfigType);
+            internal static extern int GetIPConfigType(IntPtr ap, int addressFamily, out int ipConfigType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_ip_config_type")]
-            internal static extern int SetIpConfigType(IntPtr ap, int addressFamily, int ipConfigType);
+            internal static extern int SetIPConfigType(IntPtr ap, int addressFamily, int ipConfigType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_ip_address")]
-            internal static extern int GetIpAddress(IntPtr ap, int addressFamily, out IntPtr ipAddress);
+            internal static extern int GetIPAddress(IntPtr ap, int addressFamily, out IntPtr ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_ip_address")]
-            internal static extern int SetIpAddress(IntPtr ap, int addressFamily, string ipAddress);
+            internal static extern int SetIPAddress(IntPtr ap, int addressFamily, string ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_subnet_mask")]
             internal static extern int GetSubnetMask(IntPtr ap, int addressFamily, out IntPtr subnetMask);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_subnet_mask")]
@@ -218,9 +218,9 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_proxy_address")]
             internal static extern int GetProxyAddress(IntPtr config, out int addressFamily, out IntPtr proxyAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_hidden_ap_property")]
-            internal static extern int SetHiddenApProperty(IntPtr config, bool isHidden);
+            internal static extern int SetHiddenAPProperty(IntPtr config, bool isHidden);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_hidden_ap_property")]
-            internal static extern int GetHiddenApProperty(IntPtr config, out bool isHidden);
+            internal static extern int GetHiddenAPProperty(IntPtr config, out bool isHidden);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_eap_anonymous_identity")]
             internal static extern int GetEapAnonymousIdentity(IntPtr config, out IntPtr anonymousIdentify);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_eap_anonymous_identity")]

@@ -24,12 +24,12 @@ namespace Tizen.Network.WiFi
     public class ConnectionStateChangedEventArgs : EventArgs
     {
         private WiFiConnectionState _state = WiFiConnectionState.Disconnected;
-        private WiFiAp _ap;
+        private WiFiAP _ap;
 
         internal ConnectionStateChangedEventArgs(WiFiConnectionState s, IntPtr _apHandle)
         {
             _state = s;
-            _ap = new WiFiAp(_apHandle);
+            _ap = new WiFiAP(_apHandle);
         }
         /// <summary>
         /// The wifi connection state.
@@ -44,7 +44,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The access point
         /// </summary>
-        public WiFiAp Ap
+        public WiFiAP AP
         {
             get
             {
