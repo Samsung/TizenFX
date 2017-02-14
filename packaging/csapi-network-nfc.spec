@@ -26,7 +26,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requries
 BuildRequires: csapi-tizen-nuget
-BuildRequires: csapi-system-nuget
+BuildRequires: csapi-information-nuget
 
 %description
 Tizen Nfc API for C#
