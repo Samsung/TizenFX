@@ -34,7 +34,7 @@ namespace Tizen.Telephony
 
                 case Interop.Telephony.TelephonyError.NotSupported:
                     {
-                        exp = new InvalidOperationException("Not Supported");
+                        exp = new NotSupportedException("Not Supported");
                         break;
                     }
 
@@ -46,13 +46,13 @@ namespace Tizen.Telephony
 
                 case Interop.Telephony.TelephonyError.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new OutOfMemoryException("Out Of Memory");
                         break;
                     }
 
                 case Interop.Telephony.TelephonyError.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 

@@ -86,12 +86,11 @@ namespace Tizen.Telephony
         /// <returns>
         /// List of CallHandle for existing calls.
         /// </returns>
-        /// <exception cref="InvalidOperationException">
-        /// This exception can occur due to one of the following reasons:
-        /// 1. Permission Denied
-        /// 2. Not Supported
-        /// 3. Operation Failed
-        /// </exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
+        /// <exception cref="NotSupportedException">Incase of Telephony is not supported</exception>>
+        /// <exception cref="OutOfMemoryException">Incase of Out of Memory</exception>>
         public List<CallHandle> GetCallHandleList()
         {
             uint count;
