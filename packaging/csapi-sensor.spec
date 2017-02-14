@@ -15,7 +15,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
-BuildRequires: csapi-system-nuget
+BuildRequires: csapi-information-nuget
 
 %define Assemblies Tizen.Sensor
 

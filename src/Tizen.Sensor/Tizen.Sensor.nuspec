@@ -12,7 +12,7 @@
 		<description>Provides the classes to control and get data from the sensors supported by the device.</description>
     <dependencies>
       <dependency id="Tizen" version="1.0.2" />
-      <dependency id="Tizen.System" version="1.0.5" />
+      <dependency id="Tizen.System.Information" version="1.0.1" />
     </dependencies>
 	</metadata>
   <files>
