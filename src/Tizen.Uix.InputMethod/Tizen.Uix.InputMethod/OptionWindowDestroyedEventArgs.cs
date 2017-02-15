@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This class contains information related to the OptionWindowDestroyed event
     /// </summary>
-    internal static class EinaList
+    public class OptionWindowDestroyedEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal OptionWindowDestroyedEventArgs(EditorWindow window)
+        {
+            Window = window;
+        }
+
+        /// <summary>
+        /// The window object to destroy
+        /// </summary>
+        public EditorWindow Window
+        {
+            get;
+            internal set;
+        }
     }
 }

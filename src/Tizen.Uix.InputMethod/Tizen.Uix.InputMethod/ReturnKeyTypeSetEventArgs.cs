@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to ReturnKeyTypeSet Event
     /// </summary>
-    internal static class EinaList
+    public class ReturnKeyTypeSetEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal ReturnKeyTypeSetEventArgs(EcoreIMFInputPanelReturnKeyType type)
+        {
+            Type = type;
+        }
+
+        /// <summary>
+        /// The type of Return key on the input panel
+        /// </summary>
+        public EcoreIMFInputPanelReturnKeyType Type
+        {
+            get;
+            internal set;
+        }
     }
 }

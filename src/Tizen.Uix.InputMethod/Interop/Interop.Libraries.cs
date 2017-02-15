@@ -25,6 +25,7 @@ internal static partial class Interop
     /// </summary>
     internal static partial class Libraries
     {
-        public const string InputMethod = "libcapi-ui-inputmethod.so";
+        internal const string InputMethod = "libcapi-ui-inputmethod.so";
+        internal const string Eina = "libeina.so.1";
     }
 }

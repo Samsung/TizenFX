@@ -14,22 +14,22 @@
 * limitations under the License.
 */
 
-
 using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
+using ElmSharp;
 
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
-    /// <summary>
-    /// EinaList Interop Class
-    /// </summary>
-    internal static class EinaList
+    public class EditorWindow : EvasObject
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal IntPtr _handle;
+        internal EditorWindow(IntPtr handle)
+        {
+            _handle = handle;
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
+        {
+            return IntPtr.Zero;
+        }
     }
 }

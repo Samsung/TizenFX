@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to LangaugeSet Event
     /// </summary>
-    internal static class EinaList
+    public class LangaugeSetEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal LangaugeSetEventArgs(EcoreIMFInputPanelLang language)
+        {
+            Language = language;
+        }
+
+        /// <summary>
+        /// The preferred language that the client application wants
+        /// </summary>
+        public EcoreIMFInputPanelLang Language
+        {
+            get;
+            internal set;
+        }
     }
 }

@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to RotationDegreeChanged Event
     /// </summary>
-    internal static class EinaList
+    public class RotationDegreeChangedEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal RotationDegreeChangedEventArgs(int degree)
+        {
+            Degree = degree;
+        }
+
+        /// <summary>
+        /// The rotation degree
+        /// </summary>
+        public int Degree
+        {
+            get;
+            internal set;
+        }
     }
 }

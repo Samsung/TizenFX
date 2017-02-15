@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to ReturnKeyStateSet Event
     /// </summary>
-    internal static class EinaList
+    public class ReturnKeyStateSetEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal ReturnKeyStateSetEventArgs(bool state)
+        {
+            State = state;
+        }
+
+        /// <summary>
+        /// The bool state to disable Return key. The Return key is enabled by default
+        /// </summary>
+        public bool State
+        {
+            get;
+            internal set;
+        }
     }
 }

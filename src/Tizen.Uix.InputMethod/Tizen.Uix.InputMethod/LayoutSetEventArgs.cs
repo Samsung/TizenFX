@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to LayoutSet Event
     /// </summary>
-    internal static class EinaList
+    public class LayoutSetEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal LayoutSetEventArgs(EcoreIMFInputPanelLayout layout)
+        {
+            Layout = layout;
+        }
+
+        /// <summary>
+        /// The input panel layout
+        /// </summary>
+        public EcoreIMFInputPanelLayout Layout
+        {
+            get;
+            internal set;
+        }
     }
 }

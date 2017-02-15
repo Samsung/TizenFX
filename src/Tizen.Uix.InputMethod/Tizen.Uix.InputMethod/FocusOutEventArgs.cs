@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to FocusOut Event
     /// </summary>
-    internal static class EinaList
+    public class FocusOutEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal FocusOutEventArgs(int contextId)
+        {
+            ContextId = contextId;
+        }
+
+        /// <summary>
+        /// The input context identification value of an associated text input UI control
+        /// </summary>
+        public int ContextId
+        {
+            get;
+            internal set;
+        }
     }
 }

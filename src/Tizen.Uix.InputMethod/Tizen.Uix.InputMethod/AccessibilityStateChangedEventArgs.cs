@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to AccessibilityStateChanged Event
     /// </summary>
-    internal static class EinaList
+    public class AccessibilityStateChangedEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal AccessibilityStateChangedEventArgs(bool state)
+        {
+            State = state;
+        }
+
+        /// <summary>
+        /// Accessibility option state
+        /// </summary>
+        public bool State
+        {
+            get;
+            internal set;
+        }
     }
 }

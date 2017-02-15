@@ -21,32 +21,167 @@ using static Interop.InputMethod;
 
 namespace Tizen.Uix.InputMethod
 {
+    /// <summary>
+    /// Enumeration for Device Class
+    /// </summary>
     public enum EcoreIMFDeviceClass
     {
+        /// <summary>
+        /// None
+        /// </summary>
         None,
+        /// <summary>
+        /// Seat
+        /// </summary>
         Seat,
+        /// <summary>
+        /// Keyboard
+        /// </summary>
         Keyboard,
+        /// <summary>
+        /// Mouse
+        /// </summary>
         Mouse,
+        /// <summary>
+        /// Touch
+        /// </summary>
         Touch,
+        /// <summary>
+        /// Pen
+        /// </summary>
         Pen,
+        /// <summary>
+        /// Pointer
+        /// </summary>
         Pointer,
+        /// <summary>
+        /// Gamepad
+        /// </summary>
         Gamepad,
+        /// <summary>
+        /// Undefined
+        /// </summary>
         Undefined
     };
 
+    /// <summary>
+    /// Enumeration for Device SubClass
+    /// </summary>
     public enum EcoreIMFDeviceSubclass
     {
+        /// <summary>
+        /// None
+        /// </summary>
         None,
+        /// <summary>
+        /// Finger
+        /// </summary>
         Finger,
+        /// <summary>
+        /// FingerNail
+        /// </summary>
         FingerNail,
+        /// <summary>
+        /// Knuckle
+        /// </summary>
         Knuckle,
+        /// <summary>
+        /// Palm
+        /// </summary>
         Palm,
+        /// <summary>
+        /// HandSIze
+        /// </summary>
         HandSIze,
+        /// <summary>
+        /// HandFlat
+        /// </summary>
         HandFlat,
+        /// <summary>
+        /// PenTip
+        /// </summary>
         PenTip,
+        /// <summary>
+        /// Trackpad
+        /// </summary>
         Trackpad,
+        /// <summary>
+        /// Trackpoint
+        /// </summary>
         Trackpoint,
+        /// <summary>
+        /// Trackball
+        /// </summary>
         Trackball,
+        /// <summary>
+        /// Undefined
+        /// </summary>
         Undefined
     };
+
+    /// <summary>
+    /// this class gives the device information
+    /// </summary>
+    public class VoiceControlDeviceInformation
+    {
+        private IntPtr _handle;
+        internal VoiceControlDeviceInformation(IntPtr handle)
+        {
+            _handle = handle;
+        }
+
+        /// <summary>
+        /// Gets the device name of the key event.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                string name;
+                ErrorCode error = ImeDeviceInfoGetName(_handle, out name);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "GetName Failed with error " + error);
+                    return "";
+                }
+                return name;
+            }
+        }
+
+        /// <summary>
+        /// Gets the device class of the key event.
+        /// </summary>
+        public EcoreIMFDeviceClass DeviceClass
+        {
+            get
+            {
+                EcoreIMFDeviceClass devClass;
+                ErrorCode error = ImeDeviceInfoGetClass(_handle, out devClass);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "GetClass Failed with error " + error);
+                    return EcoreIMFDeviceClass.Undefined;
+                }
+                return devClass;
+            }
+        }
+
+        /// <summary>
+        /// Gets the device subclass of the key event.
+        /// </summary>
+        public EcoreIMFDeviceSubclass Subclass
+        {
+            get
+            {
+                EcoreIMFDeviceSubclass subclass;
+                ErrorCode error = ImeDeviceInfoGetSubclass(_handle, out subclass);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "GetSubclass Failed with error " + error);
+                    return EcoreIMFDeviceSubclass.Undefined;
+                }
+                return subclass;
+            }
+        }
+    }
 }

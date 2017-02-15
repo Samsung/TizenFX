@@ -14,22 +14,25 @@
 * limitations under the License.
 */
 
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
-
-/// <summary>
-/// Partial Interop Class
-/// </summary>
-internal static partial class Interop
+namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// EinaList Interop Class
+    /// This Class contains data related to CursorPositionUpdated Event
     /// </summary>
-    internal static class EinaList
+    public class CursorPositionUpdatedEventArgs
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        internal CursorPositionUpdatedEventArgs(int cursorPos)
+        {
+            CursorPos = cursorPos;
+        }
+
+        /// <summary>
+        /// The cursor position
+        /// </summary>
+        public int CursorPos
+        {
+            get;
+            internal set;
+        }
     }
 }
