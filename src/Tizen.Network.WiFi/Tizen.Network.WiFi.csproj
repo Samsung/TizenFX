@@ -50,7 +50,7 @@
     <Compile Include="Tizen.Network.WiFi\IWiFiEap.cs" />
     <Compile Include="Tizen.Network.WiFi\RssiLevelChangedEventArgs.cs" />
     <Compile Include="Tizen.Network.WiFi\WiFiAddressInformation.cs" />
-    <Compile Include="Tizen.Network.WiFi\WiFiAp.cs" />
+    <Compile Include="Tizen.Network.WiFi\WiFiAP.cs" />
     <Compile Include="Tizen.Network.WiFi\WiFiConfiguration.cs" />
     <Compile Include="Tizen.Network.WiFi\WiFiEap.cs" />
     <Compile Include="Tizen.Network.WiFi\WiFiEapConfiguration.cs" />
