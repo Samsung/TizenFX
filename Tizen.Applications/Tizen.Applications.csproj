@@ -106,6 +106,7 @@
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/Package.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageCertificate.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageEventState.cs" />
+    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageEventType.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageFilter.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageManagerEventArgs.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/SafeAppControlHandle.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/SafeBundleHandle.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/SafePackageManagerHandle.cs" />
+    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/SafePackageManagerRequestHandle.cs" />
     <Compile Include="../Tizen.Applications.Service/Tizen.Applications/ServiceApplication.cs" />
     <Compile Include="../Tizen.Applications.Service/Tizen.Applications.CoreBackend/ServiceCoreBackend.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/StorageType.cs" />

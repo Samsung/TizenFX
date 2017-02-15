@@ -30,15 +30,21 @@ namespace Tizen.Applications
     /// </remarks>
     public static class PackageManager
     {
-        private const string LogTag = "Tizen.Applications";
-        private static SafePackageManagerHandle s_handle = new SafePackageManagerHandle();
+        private const string LogTag = "Tizen.Applications.PackageManager";
 
-        private static Interop.PackageManager.EventStatus s_eventStatus;
+        private static SafePackageManagerHandle s_handle = new SafePackageManagerHandle();
+        private static Interop.PackageManager.EventStatus s_eventStatus = Interop.PackageManager.EventStatus.All;
         private static event EventHandler<PackageManagerEventArgs> s_installEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_uninstallEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_updateEventHandler;
+        private static event EventHandler<PackageManagerEventArgs> s_moveEventHandler;
+        private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
+
+        public delegate void RequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress);
+        private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
+        private static Dictionary<int, SafePackageManagerRequestHandle> RequestHandles = new Dictionary<int, SafePackageManagerRequestHandle>();
 
         /// <summary>
         /// InstallProgressChanged event. This event is occurred when a package is getting installed and the progress of the request to the package manager changes.
@@ -47,7 +53,7 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus();
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
                 RegisterPackageManagerEventIfNeeded();
                 s_installEventHandler += value;
             }
@@ -55,7 +61,7 @@ namespace Tizen.Applications
             {
                 s_installEventHandler -= value;
                 UnregisterPackageManagerEventIfNeeded();
-                SetPackageManagerEventStatus();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -66,7 +72,7 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus();
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
                 RegisterPackageManagerEventIfNeeded();
                 s_uninstallEventHandler += value;
             }
@@ -74,7 +80,7 @@ namespace Tizen.Applications
             {
                 s_uninstallEventHandler -= value;
                 UnregisterPackageManagerEventIfNeeded();
-                SetPackageManagerEventStatus();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -85,7 +91,7 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus();
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
                 RegisterPackageManagerEventIfNeeded();
                 s_updateEventHandler += value;
             }
@@ -93,7 +99,45 @@ namespace Tizen.Applications
             {
                 s_updateEventHandler -= value;
                 UnregisterPackageManagerEventIfNeeded();
-                SetPackageManagerEventStatus();
+                UnsetPackageManagerEventStatus();
+            }
+        }
+
+        /// <summary>
+        /// MoveProgressChanged event. This event is occurred when a package is getting moved and the progress of the request to the package manager changes.
+        /// </summary>
+        public static event EventHandler<PackageManagerEventArgs> MoveProgressChanged
+        {
+            add
+            {
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
+                RegisterPackageManagerEventIfNeeded();
+                s_moveEventHandler += value;
+            }
+            remove
+            {
+                s_moveEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
+            }
+        }
+
+        /// <summary>
+        /// ClearDataProgressChanged event. This event is occurred when data directories are cleared in the given package.
+        /// </summary>
+        public static event EventHandler<PackageManagerEventArgs> ClearDataProgressChanged
+        {
+            add
+            {
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
+                RegisterPackageManagerEventIfNeeded();
+                s_clearDataEventHandler += value;
+            }
+            remove
+            {
+                s_clearDataEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -112,6 +156,19 @@ namespace Tizen.Applications
                 return s_handle;
             }
         }
+
+        private static Interop.PackageManager.PackageManagerRequestEventCallback internalRequestEventCallback = (id, packageType, packageId, eventType, eventState, progress, error, userData) =>
+        {
+            if (RequestCallbacks.ContainsKey(id))
+            {
+                RequestCallbacks[id](packageType, packageId, (PackageEventType)eventType, (PackageEventState)eventState, progress);
+                if (eventState == Interop.PackageManager.PackageEventState.Completed || eventState == Interop.PackageManager.PackageEventState.Failed)
+                {
+                    Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
+                    RequestHandles[id].Dispose();
+                }
+            }
+        };
 
         /// <summary>
         /// Gets the package ID for the given app ID.
@@ -303,11 +360,47 @@ namespace Tizen.Applications
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Install(string packagePath)
         {
-            return Install(packagePath, null);
+            return Install(packagePath, null, PackageType.UNKNOWN, null);
+        }
+
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, RequestEventCallback eventCallback)
+        {
+            return Install(packagePath, null, PackageType.UNKNOWN, eventCallback);
+        }
+
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, PackageType type)
+        {
+            return Install(packagePath, null, type, null);
         }
 
         /// <summary>
@@ -315,23 +408,32 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
         /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
-        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Install(string packagePath, string expansionPackagePath)
         {
-            PackageType type;
-            string extension = Path.GetExtension(packagePath);
+            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, null);
+        }
 
-            if (extension.Contains("tpk"))
-            {
-                type = PackageType.TPK;
-            }
-            else
-            {
-                type = PackageType.WGT;
-            }
-
-            return Install(packagePath, expansionPackagePath, type);
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, PackageType type, RequestEventCallback eventCallback)
+        {
+            return Install(packagePath, null, type, eventCallback);
         }
 
         /// <summary>
@@ -339,53 +441,107 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
         /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
-        /// <param name="type">Package type for the package to be installed</param>
-        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, string expansionPackagePath, RequestEventCallback eventCallback)
+        {
+            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, eventCallback);
+        }
+
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
+        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type)
         {
-            IntPtr requestHandle;
-            var err = Interop.PackageManager.PackageManagerRequestCreate(out requestHandle);
+            return Install(packagePath, expansionPackagePath, type, null);
+        }
+
+        /// <summary>
+        /// Installs package located at the given path
+        /// </summary>
+        /// <param name="packagePath">Absolute path for the package to be installed</param>
+        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
+        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of installation is seccessful.
+        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback)
+        {
+            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to install package. Error in creating request handle. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
                 return false;
             }
 
-            err = Interop.PackageManager.PackageManagerRequestSetType(requestHandle, type.ToString().ToLower());
-            if (err != Interop.PackageManager.ErrorCode.None)
+            if (type != PackageType.UNKNOWN)
             {
-                Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
-                Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
-                return false;
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
+                    RequestHandle.Dispose();
+                    return false;
+                }
             }
 
             if (!string.IsNullOrEmpty(expansionPackagePath))
             {
-                err = Interop.PackageManager.PackageManagerRequestSetTepPath(requestHandle, expansionPackagePath);
+                err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
-                    Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
+                    RequestHandle.Dispose();
                     return false;
                 }
             }
 
             int requestId;
-            err = Interop.PackageManager.PackageManagerRequestInstall(requestHandle, packagePath, out requestId);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            if (eventCallback != null)
             {
-                Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
-                Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
-                return false;
+                err = Interop.PackageManager.PackageManagerRequestInstallWithCB(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                if (err == Interop.PackageManager.ErrorCode.None)
+                {
+                    RequestCallbacks.Add(requestId, eventCallback);
+                    RequestHandles.Add(requestId, RequestHandle);
+                }
+                else
+                {
+                    Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                    RequestHandle.Dispose();
+                    return false;
+                }
+            }
+            else
+            {
+                err = Interop.PackageManager.PackageManagerRequestInstall(RequestHandle, packagePath, out requestId);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                    return false;
+                }
+                RequestHandle.Dispose();
             }
 
-            err = Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to destroy package manager request handle. err = {0}", err));
-                // This method returns true if all other operations are completed and error occured in destroying request handle.
-            }
             return true;
         }
 
@@ -393,42 +549,106 @@ namespace Tizen.Applications
         /// Uninstalls package with the given name.
         /// </summary>
         /// <param name="packageId">Id of the package to be uninstalled</param>
-        /// <param name="type">Package type for the package to be uninstalled</param>
-        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <returns>Returns true if uninstallation request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of uninstallation is seccessful.
+        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Uninstall(string packageId)
+        {
+            return Uninstall(packageId, PackageType.UNKNOWN, null);
+        }
+
+        /// <summary>
+        /// Uninstalls package with the given name.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be uninstalled</param>
+        /// <param name="type">Optional - Package type for the package to be uninstalled</param>
+        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of uninstallation is seccessful.
+        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Uninstall(string packageId, PackageType type)
         {
-            IntPtr requestHandle;
-            var err = Interop.PackageManager.PackageManagerRequestCreate(out requestHandle);
+            return Uninstall(packageId, type, null);
+        }
+
+        /// <summary>
+        /// Uninstalls package with the given name.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be uninstalled</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of uninstallation is seccessful.
+        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Uninstall(string packageId, RequestEventCallback eventCallback)
+        {
+            return Uninstall(packageId, PackageType.UNKNOWN, eventCallback);
+        }
+
+        /// <summary>
+        /// Uninstalls package with the given name.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be uninstalled</param>
+        /// <param name="type">Optional - Package type for the package to be uninstalled</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of uninstallation is seccessful.
+        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Uninstall(string packageId, PackageType type, RequestEventCallback eventCallback)
+        {
+            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to uninstall package. Error in creating request handle. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
                 return false;
             }
 
-            err = Interop.PackageManager.PackageManagerRequestSetType(requestHandle, type.ToString().ToLower());
+            err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to uninstall package. Error in setting request package type. err = {0}", err));
-                Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
+                RequestHandle.Dispose();
                 return false;
             }
 
             int requestId;
-            err = Interop.PackageManager.PackageManagerRequestUninstall(requestHandle, packageId, out requestId);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            if (eventCallback != null)
             {
-                Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
-                Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
-                return false;
+                err = Interop.PackageManager.PackageManagerRequestUninstallWithCB(RequestHandle, packageId, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                if (err == Interop.PackageManager.ErrorCode.None)
+                {
+                    RequestCallbacks.Add(requestId, eventCallback);
+                    RequestHandles.Add(requestId, RequestHandle);
+                }
+                else
+                {
+                    Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                    RequestHandle.Dispose();
+                    return false;
+                }
+            }
+            else
+            {
+                err = Interop.PackageManager.PackageManagerRequestUninstall(RequestHandle, packageId, out requestId);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                    return false;
+                }
+                RequestHandle.Dispose();
             }
 
-            err = Interop.PackageManager.PackageManagerRequestDestroy(requestHandle);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to destroy package manager request handle. err = {0}", err));
-                // This method returns true if all other operations are completed and error occured in destroying request handle.
-            }
             return true;
         }
 
@@ -436,41 +656,109 @@ namespace Tizen.Applications
         /// Move package to given storage.
         /// </summary>
         /// <param name="packageId">Id of the package to be moved</param>
-        /// <param name="type">Package type for the package to be moved</param>
         /// <param name="newStorage">Storage, package should be moved to</param>
-        /// <returns>Returns true if installtion is successful, false otherwise.</returns>
+        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of move is seccessful.
+        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Move(string packageId, StorageType newStorage)
+        {
+            return Move(packageId, PackageType.UNKNOWN, newStorage, null);
+        }
+
+        /// <summary>
+        /// Move package to given storage.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be moved</param>
+        /// <param name="type">Optional - Package type for the package to be moved</param>
+        /// <param name="newStorage">Storage, package should be moved to</param>
+        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of move is seccessful.
+        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Move(string packageId, PackageType type, StorageType newStorage)
         {
-            IntPtr request;
-            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerRequestCreate(out request);
+            return Move(packageId, type, newStorage, null);
+        }
+
+        /// <summary>
+        /// Move package to given storage.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be moved</param>
+        /// <param name="newStorage">Storage, package should be moved to</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of move is seccessful.
+        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Move(string packageId, StorageType newStorage, RequestEventCallback eventCallback)
+        {
+            return Move(packageId, PackageType.UNKNOWN, newStorage, eventCallback);
+        }
+
+        /// <summary>
+        /// Move package to given storage.
+        /// </summary>
+        /// <param name="packageId">Id of the package to be moved</param>
+        /// <param name="type">Optional - Package type for the package to be moved</param>
+        /// <param name="newStorage">Storage, package should be moved to</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that just the request of move is seccessful.
+        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static bool Move(string packageId, PackageType type, StorageType newStorage, RequestEventCallback eventCallback)
+        {
+            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create request handle. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
                 return false;
             }
 
-            err = Interop.PackageManager.PackageManagerRequestSetType(request, type.ToString().ToLower());
+            err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
-                Interop.PackageManager.PackageManagerRequestDestroy(request);
+                RequestHandle.Dispose();
                 return false;
             }
 
             bool result = true;
-            err = Interop.PackageManager.PackageManagerRequestMove(request, packageId, (Interop.PackageManager.StorageType)newStorage);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            if (eventCallback != null)
             {
-                Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
-                result = false;
+                int requestId;
+                err = Interop.PackageManager.PackageManagerRequestMoveWithCB(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                if (err == Interop.PackageManager.ErrorCode.None)
+                {
+                    RequestCallbacks.Add(requestId, eventCallback);
+                    RequestHandles.Add(requestId, RequestHandle);
+                }
+                else
+                {
+                    Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                    RequestHandle.Dispose();
+                    result = false;
+                }
             }
-
-            err = Interop.PackageManager.PackageManagerRequestDestroy(request);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            else
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy package manager request handle. err = {0}", err));
-                // This method returns true if all other operations are completed and error occured in destroying request handle.
+                err = Interop.PackageManager.PackageManagerRequestMove(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                    result = false;
+                }
+                RequestHandle.Dispose();
             }
 
             return result;
@@ -621,14 +909,41 @@ namespace Tizen.Applications
             }
         }
 
-        private static void SetPackageManagerEventStatus()
+        private static void SetPackageManagerEventStatus(Interop.PackageManager.EventStatus status)
+        {
+            if (Handle.IsInvalid) return;
+
+            Interop.PackageManager.EventStatus eventStatus = s_eventStatus;
+            eventStatus |= status;
+            if (eventStatus != Interop.PackageManager.EventStatus.All)
+                eventStatus |= Interop.PackageManager.EventStatus.Progress;
+
+            var err = Interop.PackageManager.ErrorCode.None;
+            if (s_eventStatus != eventStatus)
+            {
+                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                if (err == Interop.PackageManager.ErrorCode.None)
+                {
+                    s_eventStatus = eventStatus;
+                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
+                    return;
+                }
+                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
+            }
+        }
+
+        private static void UnsetPackageManagerEventStatus()
         {
             if (Handle.IsInvalid) return;
 
             Interop.PackageManager.EventStatus eventStatus = Interop.PackageManager.EventStatus.All;
             if (s_installEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Install;
-            if (s_uninstallEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Unstall;
+            if (s_uninstallEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Uninstall;
             if (s_updateEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Upgrade;
+            if (s_moveEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Move;
+            if (s_clearDataEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearData;
+            if (eventStatus != Interop.PackageManager.EventStatus.All)
+                eventStatus |= Interop.PackageManager.EventStatus.Progress;
 
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
@@ -646,7 +961,7 @@ namespace Tizen.Applications
 
         private static void RegisterPackageManagerEventIfNeeded()
         {
-            if (s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null)
+            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null)
             {
                 return;
             }
@@ -668,6 +983,14 @@ namespace Tizen.Applications
                     {
                         s_updateEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
                     }
+                    else if (eventType == Interop.PackageManager.EventType.Move)
+                    {
+                        s_moveEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                    }
+                    else if (eventType == Interop.PackageManager.EventType.ClearData)
+                    {
+                        s_clearDataEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                    }
                 }
                 catch (Exception e)
                 {
@@ -677,6 +1000,13 @@ namespace Tizen.Applications
 
             if (!Handle.IsInvalid)
             {
+                Log.Debug(LogTag, "Reset Package Event");
+                err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                }
+
                 err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
             }
             if (err != Interop.PackageManager.ErrorCode.None)
@@ -687,7 +1017,7 @@ namespace Tizen.Applications
 
         private static void UnregisterPackageManagerEventIfNeeded()
         {
-            if (Handle.IsInvalid || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null)
+            if (Handle.IsInvalid || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null)
             {
                 return;
             }

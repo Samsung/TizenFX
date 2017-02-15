@@ -55,6 +55,7 @@
     <Compile Include="Tizen.Applications\PackageEventState.cs" />
     <Compile Include="Tizen.Applications\Package.cs" />
     <Compile Include="Tizen.Applications\PackageCertificate.cs" />
+    <Compile Include="Tizen.Applications\PackageEventType.cs" />
     <Compile Include="Tizen.Applications\PackageFilter.cs" />
     <Compile Include="Tizen.Applications\PackageManager.cs" />
     <Compile Include="Tizen.Applications\PackageManagerEventArgs.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Tizen.Applications\PackageType.cs" />
     <Compile Include="Tizen.Applications\PermissionType.cs" />
     <Compile Include="Tizen.Applications\SafePackageManagerHandle.cs" />
+    <Compile Include="Tizen.Applications\SafePackageManagerRequestHandle.cs" />
     <Compile Include="Tizen.Applications\StorageType.cs" />
   </ItemGroup>
   <ItemGroup>

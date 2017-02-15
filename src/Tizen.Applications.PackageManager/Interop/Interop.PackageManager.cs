@@ -34,6 +34,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void PackageManagerTotalSizeInfoCallback(IntPtr sizeInfoHandle, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void PackageManagerRequestEventCallback(int requestId, string type, string packageId, EventType eventType, PackageEventState eventState, int progress, ErrorCode error, IntPtr userData);
+
         // Any change here might require changes in Tizen.Applications.PackageManagerEventError enum
         internal enum ErrorCode
         {
@@ -60,15 +63,20 @@ internal static partial class Interop
         {
             All = 0x00,
             Install = 0x01,
-            Unstall = 0x02,
-            Upgrade = 0x24,
+            Uninstall = 0x02,
+            Upgrade = 0x04,
+            Move = 0x08,
+            ClearData = 0x10,
+            Progress = 0x20,
         }
 
         internal enum EventType
         {
             Install = 0,
             Uninstall = 1,
-            Update = 2
+            Update = 2,
+            Move = 3,
+            ClearData = 4
         }
 
         internal enum CertCompareResultType
@@ -164,25 +172,25 @@ internal static partial class Interop
         internal static extern ErrorCode PackageSizeInfoGetExtAppSize(IntPtr handle, out long extAppSize);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_create")]
-        internal static extern ErrorCode PackageManagerRequestCreate(out IntPtr request);
+        internal static extern ErrorCode PackageManagerRequestCreate(out SafePackageManagerRequestHandle requestHandle);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_destroy")]
-        internal static extern ErrorCode PackageManagerRequestDestroy(IntPtr request);
+        internal static extern ErrorCode PackageManagerRequestDestroy(IntPtr requestHandle);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_type")]
-        internal static extern ErrorCode PackageManagerRequestSetType(IntPtr request, string type);
+        internal static extern ErrorCode PackageManagerRequestSetType(SafePackageManagerRequestHandle requestHandle, string type);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_tep")]
-        internal static extern ErrorCode PackageManagerRequestSetTepPath(IntPtr request, string tepPath);
+        internal static extern ErrorCode PackageManagerRequestSetTepPath(SafePackageManagerRequestHandle requestHandle, string tepPath);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install")]
-        internal static extern ErrorCode PackageManagerRequestInstall(IntPtr request, string path, out int id);
+        internal static extern ErrorCode PackageManagerRequestInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall")]
-        internal static extern ErrorCode PackageManagerRequestUninstall(IntPtr request, string name, out int id);
+        internal static extern ErrorCode PackageManagerRequestUninstall(SafePackageManagerRequestHandle requestHandle, string name, out int id);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move")]
-        internal static extern ErrorCode PackageManagerRequestMove(IntPtr request, string name, StorageType moveToStorageType);
+        internal static extern ErrorCode PackageManagerRequestMove(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info")]
         internal static extern ErrorCode PackageManagerCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
@@ -204,5 +212,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_decrypt_package")]
         internal static extern ErrorCode PackageManagerDrmDecryptPackage(string drmFilePath, string decryptedFilePath);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestUninstallWithCB(SafePackageManagerRequestHandle requestHandle, string name, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestMoveWithCB(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
     }
 }
