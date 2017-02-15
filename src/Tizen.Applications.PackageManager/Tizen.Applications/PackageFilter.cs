@@ -19,7 +19,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class is a parameter of PackageManager::GetPackagesAsync method.
+    /// This class is a parameter of PackageManager::GetPackages method.
     /// </summary>
     public class PackageFilter
     {
@@ -42,7 +42,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Filters to be used in the GetPackagesAsync method.
+        /// Filters to be used in the GetPackages method.
         /// </summary>
         public IDictionary<string, bool> Filters
         {
@@ -53,7 +53,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// This class contains possible keys for filter to be used in the GetPackagesAsync method.
+        /// This class contains possible keys for filter to be used in the GetPackages method.
         /// </summary>
         public static class Keys
         {

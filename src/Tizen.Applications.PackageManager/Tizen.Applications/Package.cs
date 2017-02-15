@@ -139,7 +139,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Retrieves all application IDs of this package.
         /// </summary>
-        /// <returns>Returns a dictionary containing all application info for given application type asynchronously.</returns>
+        /// <returns>Returns a dictionary containing all application info for given application type.</returns>
         public IEnumerable<ApplicationInfo> GetApplications()
         {
             return GetApplications(ApplicationType.All);
@@ -149,7 +149,7 @@ namespace Tizen.Applications
         /// Retrieves all application IDs of this package.
         /// </summary>
         /// <param name="type">Optional: AppType enum value</param>
-        /// <returns>Returns a dictionary containing all application info for given application type asynchronously.</returns>
+        /// <returns>Returns a dictionary containing all application info for given application type.</returns>
         public IEnumerable<ApplicationInfo> GetApplications(ApplicationType type)
         {
             List<ApplicationInfo> appInfoList = new List<ApplicationInfo>();

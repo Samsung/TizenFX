@@ -172,7 +172,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Retrieves package information of all installed packages.
         /// </summary>
-        /// <returns>Returns the list of packages asynchronously.</returns>
+        /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static IEnumerable<Package> GetPackages()
         {
@@ -183,7 +183,7 @@ namespace Tizen.Applications
         /// Retrieves package information of all installed packages satisfying filter conditions.
         /// </summary>
         /// <param name="filter">Optional - package filters</param>
-        /// <returns>Returns the list of packages asynchronously.</returns>
+        /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static IEnumerable<Package> GetPackages(PackageFilter filter)
         {
