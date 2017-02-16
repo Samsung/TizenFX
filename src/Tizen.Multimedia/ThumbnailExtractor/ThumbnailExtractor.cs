@@ -38,9 +38,9 @@ namespace Tizen.Multimedia
         /// Thumbnail extractor constructor
         /// </summary>
         /// <remarks>
-        /// If you need a thumbnail of a specified size, use ThumbnailExtractor(path, width, height).
+        /// If you need the thumbnail of the specified size, use ThumbnailExtractor(path, width, height) or ThumbnailExtractor(path, size).
         /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail data </param>
+        /// <param name="path"> The path of the media file to extract the thumbnail </param>
         public ThumbnailExtractor(string path)
         {
             if (path == null)
@@ -104,11 +104,11 @@ namespace Tizen.Multimedia
         /// Thumbnail extractor constructor
         /// </summary>
         /// <remarks>
-        /// If you need default size thumbnail, use ThumbnailExtractor(path). Default size is 320x240.
-        /// If the set width is not a multiple of 8, it can be changed by inner process.
+        /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
+        /// If the set width is not a multiple of 8, it can be changed by inner process. \n
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail data </param>
+        /// <param name="path"> The path of the media file to extract the thumbnail </param>
         /// <param name="width"> The width of the thumbnail </param>
         /// <param name="height"> The height of the thumbnail </param>
         public ThumbnailExtractor(string path, int width, int height)
@@ -120,21 +120,23 @@ namespace Tizen.Multimedia
         /// Thumbnail extractor constructor
         /// </summary>
         /// <remarks>
-        /// If you need default size thumbnail, use ThumbnailExtractor(path). Default size is 320x240.
-        /// If the set width is not a multiple of 8, it can be changed by inner process.
+        /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
+        /// If the set width is not a multiple of 8, it can be changed by inner process. \n
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail data </param>
-        /// <param name="size"> The size of the media file to extract the thumbnail data </param>
+        /// <param name="path"> The path of the media file to extract the thumbnail </param>
+        /// <param name="size"> The size to extract the thumbnail </param>
         public ThumbnailExtractor(string path, Size size)
         {
             Create(path, size.Width, size.Height);
         }
 
         /// <summary>
-        /// Extract thumbnail
+        /// Extracts the thumbnail for the given media, asynchronously
         /// </summary>
-        /// <value> ThumbData object </value>
+        /// <returns>
+        /// Task for creation of Thumbnail. See <see cref="ThumbnailData"/> details.
+        /// </returns>
         public Task<ThumbnailData> Extract()
         {
             if (_handle == IntPtr.Zero)
