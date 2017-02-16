@@ -23,6 +23,11 @@ namespace Tizen.Applications
     /// </summary>
     public class BadgeEventArgs : EventArgs
     {
+
+        internal BadgeEventArgs()
+        {
+        }
+
         /// <summary>
         /// Enumeration for badge action.
         /// </summary>
