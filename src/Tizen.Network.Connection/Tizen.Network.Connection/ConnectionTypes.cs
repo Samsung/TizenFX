@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -178,7 +178,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for security type of Wi-Fi.
     /// </summary>
-    public enum WiFiSecureType
+    public enum WiFiSecurityType
     {
         None  =  0,       /**< Security disabled */
         Wep = 1,          /**< WEP */

@@ -127,7 +127,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The security type of Wi-Fi.
         /// </summary>
-        public WiFiSecureType SecureType
+        public WiFiSecurityType SecurityType
         {
             get
             {
@@ -137,7 +137,7 @@ namespace Tizen.Network.Connection
                 {
                     Log.Error(Globals.LogTag, "It failed to get security type, " + (ConnectionError)ret);
                 }
-                return (WiFiSecureType)value;
+                return (WiFiSecurityType)value;
             }
         }
 
@@ -196,9 +196,8 @@ namespace Tizen.Network.Connection
         /// Sets the passphrase of the Wi-Fi WPA.
         /// </summary>
         /// <param name="passphrase">The passphrase of Wi-Fi security</param>
-        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public int SetPassphrase(string passphrase)
+        public void SetPassphrase(string passphrase)
         {
             int ret = Interop.ConnectionWiFiProfile.SetPassphrase(ProfileHandle, (string)passphrase);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -206,7 +205,6 @@ namespace Tizen.Network.Connection
                 Log.Error(Globals.LogTag, "It failed to set passphrase, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
-            return ret;
         }
     }
 }

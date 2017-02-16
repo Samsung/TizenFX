@@ -33,11 +33,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <param name="profile">The cellular profile object</param>
-        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static int AddCellularProfile(CellularProfile profile)
+        public static void AddCellularProfile(CellularProfile profile)
         {
-            return ConnectionInternalManager.Instance.AddCellularProfile(profile);
+            ConnectionInternalManager.Instance.AddCellularProfile(profile);
         }
 
         /// <summary>
@@ -58,7 +57,8 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
-        public static Task<ConnectionError> ConnectProfileAsync(ConnectionProfile profile)
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        public static Task ConnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.OpenProfileAsync(profile);
         }
@@ -69,7 +69,8 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
-        public static Task<ConnectionError> DisconnectProfileAsync(ConnectionProfile profile)
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        public static Task DisconnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.CloseProfileAsync(profile);
         }
@@ -80,12 +81,11 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <param name="profile">The connection profile object</param>
-        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static int RemoveProfile(ConnectionProfile profile)
+        public static void RemoveProfile(ConnectionProfile profile)
         {
             Log.Debug(Globals.LogTag, "RemoveProfile. Id: " + profile.Id + ", Name: " + profile.Name + ", Type: " + profile.Type);
-            return ConnectionInternalManager.Instance.RemoveProfile(profile);
+            ConnectionInternalManager.Instance.RemoveProfile(profile);
         }
 
         /// <summary>
@@ -96,11 +96,10 @@ namespace Tizen.Network.Connection
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <param name="profile">The connection profile object</param>
-        /// <returns>0 on success, else exception is thrown.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static int UpdateProfile(ConnectionProfile profile)
+        public static void UpdateProfile(ConnectionProfile profile)
         {
-            return ConnectionInternalManager.Instance.UpdateProfile(profile);
+            ConnectionInternalManager.Instance.UpdateProfile(profile);
         }
 
         /// <summary>
@@ -135,7 +134,7 @@ namespace Tizen.Network.Connection
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public static Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
+        public static Task SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.SetDefaultCellularProfile(type, profile);
         }

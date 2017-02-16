@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -545,18 +545,16 @@ namespace Tizen.Network.Connection
             return handle;
         }
 
-        internal int AddCellularProfile(CellularProfile profile)
+        internal void AddCellularProfile(CellularProfile profile)
         {
-            int ret = -1;
             if (profile.Type == ConnectionProfileType.Cellular)
             {
-                ret = Interop.Connection.AddProfile(GetHandle(), profile.ProfileHandle);
+                int ret = Interop.Connection.AddProfile(GetHandle(), profile.ProfileHandle);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to add cellular profile, " + (ConnectionError)ret);
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
-                return ret;
             }
 
             else
@@ -565,7 +563,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal int RemoveProfile(ConnectionProfile profile)
+        internal void RemoveProfile(ConnectionProfile profile)
         {
             int ret = Interop.Connection.RemoveProfile(GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -573,10 +571,9 @@ namespace Tizen.Network.Connection
                 Log.Error(Globals.LogTag, "It failed to remove profile, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
-            return ret;
         }
 
-        internal int UpdateProfile(ConnectionProfile profile)
+        internal void UpdateProfile(ConnectionProfile profile)
         {
             int ret = Interop.Connection.UpdateProfile(GetHandle(), profile.ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -584,7 +581,6 @@ namespace Tizen.Network.Connection
                 Log.Error(Globals.LogTag, "It failed to update profile, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
-            return ret;
         }
 
         internal ConnectionProfile GetCurrentProfile()
@@ -614,20 +610,27 @@ namespace Tizen.Network.Connection
             return Profile;
         }
 
-        internal Task<ConnectionError> SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
+        internal Task SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
-            var task = new TaskCompletionSource<ConnectionError>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
             {
-                task.SetResult((ConnectionError)Result);
-                return;
+                if (Result != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + Result);
+                    task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + Result));
+                }
+
+                task.SetResult(true);
             };
+
             int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
+
             return task.Task;
         }
 
@@ -674,37 +677,51 @@ namespace Tizen.Network.Connection
             return task.Task;
         }
 
-        internal Task<ConnectionError> OpenProfileAsync(ConnectionProfile profile)
+        internal Task OpenProfileAsync(ConnectionProfile profile)
         {
-            var task = new TaskCompletionSource<ConnectionError>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
             {
-                task.SetResult((ConnectionError)Result);
-                return;
+                if (Result != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + Result);
+                    task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + Result));
+                }
+
+                task.SetResult(true);
             };
+
             int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to oepn profile, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
+
             return task.Task;
         }
 
-        internal Task<ConnectionError> CloseProfileAsync(ConnectionProfile profile)
+        internal Task CloseProfileAsync(ConnectionProfile profile)
         {
-            var task = new TaskCompletionSource<ConnectionError>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
             {
-                task.SetResult((ConnectionError)Result);
-                return;
+                if (Result != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + Result);
+                    task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + Result));
+                }
+
+                task.SetResult(true);
             };
+
             int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to close profile, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
+
             return task.Task;
         }
     }

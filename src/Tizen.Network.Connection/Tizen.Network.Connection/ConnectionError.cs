@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -22,71 +22,44 @@ using System.Threading.Tasks;
 
 namespace Tizen.Network.Connection
 {
-    internal class ConnectionErrorFactory
+    internal static class ConnectionErrorFactory
     {
-        static public void ThrowConnectionException(int errno)
+        internal static void ThrowConnectionException(int errno)
         {
-            ConnectionError error = (ConnectionError)errno;
-            Log.Debug(Globals.LogTag, "ThrowConnectionException " + error);
-            if (error == ConnectionError.AddressFamilyNotSupported)
+            ConnectionError _error = (ConnectionError)errno;
+            Log.Debug(Globals.LogTag, "ThrowConnectionException " + _error);
+            switch (_error)
             {
-                throw new InvalidOperationException("Address Family Not Supported");
-            }
-            else if (error == ConnectionError.AlreadyExists)
-            {
-                throw new InvalidOperationException("Already Exists");
-            }
-            else if (error == ConnectionError.DhcpFailed)
-            {
-                throw new InvalidOperationException("DHCP Failed");
-            }
-            else if (error == ConnectionError.EndOfIteration)
-            {
-                throw new InvalidOperationException("End Of Iteration");
-            }
-            else if (error == ConnectionError.InvalidKey)
-            {
-                throw new InvalidOperationException("Invalid Key");
-            }
-            else if (error == ConnectionError.InvalidOperation)
-            {
-                throw new InvalidOperationException("Invalid Operation");
-            }
-            else if (error == ConnectionError.InvalidParameter)
-            {
-                throw new InvalidOperationException("Invalid Parameter");
-            }
-            else if (error == ConnectionError.NoConnection)
-            {
-                throw new InvalidOperationException("No Connection");
-            }
-            else if (error == ConnectionError.NoReply)
-            {
-                throw new InvalidOperationException("No Reply");
-            }
-            else if (error == ConnectionError.NotSupported)
-            {
-                throw new NotSupportedException("Not Supported");
-            }
-            else if (error == ConnectionError.NowInProgress)
-            {
-                throw new InvalidOperationException("Now In Progress");
-            }
-            else if (error == ConnectionError.OperationAborted)
-            {
-                throw new InvalidOperationException("Operation Aborted");
-            }
-            else if (error == ConnectionError.OperationFailed)
-            {
-                throw new InvalidOperationException("Operation Failed");
-            }
-            else if (error == ConnectionError.OutOfMemoryError)
-            {
-                throw new InvalidOperationException("Out Of Memory Error");
-            }
-            else if (error == ConnectionError.PermissionDenied)
-            {
-                throw new InvalidOperationException("Permission Denied");
+                case ConnectionError.AddressFamilyNotSupported:
+                    throw new InvalidOperationException("Address Family Not Supported");
+                case ConnectionError.AlreadyExists:
+                    throw new InvalidOperationException("Already Exists");
+                case ConnectionError.DhcpFailed:
+                    throw new InvalidOperationException("DHCP Failed");
+                case ConnectionError.EndOfIteration:
+                    throw new InvalidOperationException("End Of Iteration");
+                case ConnectionError.InvalidKey:
+                    throw new InvalidOperationException("Invalid Key");
+                case ConnectionError.InvalidOperation:
+                    throw new InvalidOperationException("Invalid Operation");
+                case ConnectionError.InvalidParameter:
+                    throw new InvalidOperationException("Invalid Parameter");
+                case ConnectionError.NoConnection:
+                    throw new InvalidOperationException("No Connection");
+                case ConnectionError.NoReply:
+                    throw new InvalidOperationException("No Reply");
+                case ConnectionError.NotSupported:
+                    throw new NotSupportedException("Not Supported");
+                case ConnectionError.NowInProgress:
+                    throw new InvalidOperationException("Now In Progress");
+                case ConnectionError.OperationAborted:
+                    throw new InvalidOperationException("Operation Aborted");
+                case ConnectionError.OperationFailed:
+                    throw new InvalidOperationException("Operation Failed");
+                case ConnectionError.OutOfMemoryError:
+                    throw new InvalidOperationException("Out Of Memory Error");
+                case ConnectionError.PermissionDenied:
+                    throw new InvalidOperationException("Permission Denied");
             }
         }
     }
