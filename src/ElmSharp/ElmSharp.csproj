@@ -56,6 +56,7 @@
     <Compile Include="ElmSharp\Conformant.cs" />
     <Compile Include="ElmSharp\Container.cs" />
     <Compile Include="ElmSharp\ContextPopup.cs" />
+    <Compile Include="ElmSharp\ColorSelectorItem.cs" />
     <Compile Include="ElmSharp\ContextPopupItem.cs" />
     <Compile Include="ElmSharp\DateChangedEventArgs.cs" />
     <Compile Include="ElmSharp\DateTimeSelector.cs" />

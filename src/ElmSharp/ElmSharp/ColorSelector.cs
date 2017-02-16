@@ -88,6 +88,18 @@ namespace ElmSharp
             }
         }
 
+        public ColorSelectorItem AddPaletteColor(Color color)
+        {
+            ColorSelectorItem item = new ColorSelectorItem();
+            item.Handle = Interop.Elementary.elm_colorselector_palette_color_add(Handle, color.R, color.G, color.B, color.A);
+            return item;
+        }
+
+        public void ClearPalette()
+        {
+            Interop.Elementary.elm_colorselector_palette_clear(Handle);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_colorselector_add(parent.Handle);

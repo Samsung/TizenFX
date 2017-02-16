@@ -70,7 +70,7 @@ internal static partial class Interop
         internal static extern void elm_colorselector_palette_item_color_get(IntPtr obj, out int r, out int g, out int b, out int a);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern int elm_colorselector_palette_item_color_set(IntPtr obj, int r, int g, int b, int a);
+        internal static extern void elm_colorselector_palette_item_color_set(IntPtr obj, int r, int g, int b, int a);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_colorselector_palette_item_selected_get(IntPtr obj);
