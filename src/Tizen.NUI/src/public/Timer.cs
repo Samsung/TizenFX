@@ -24,96 +24,136 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI
+{
 
-public class Timer : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    public class Timer : BaseHandle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Timer() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Timer(swigCPtr);
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~Timer()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Timer(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+
+        public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Timer Assign(Timer timer)
+        {
+            Timer ret = new Timer(NDalicPINVOKE.Timer_Assign(swigCPtr, Timer.getCPtr(timer)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Timer DownCast(BaseHandle handle)
+        {
+            Timer ret = new Timer(NDalicPINVOKE.Timer_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Start()
+        {
+            NDalicPINVOKE.Timer_Start(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Stop()
+        {
+            NDalicPINVOKE.Timer_Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public uint Interval
+        {
+            set
+            {
+                SetInterval(value);
+            }
+            get
+            {
+                return GetInterval();
+            }
+        }
+
+        internal void SetInterval(uint milliSec)
+        {
+            NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetInterval()
+        {
+            uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool Running
+        {
+            get
+            {
+                return IsRunning();
+            }
+        }
+
+        internal bool IsRunning()
+        {
+            bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal BoolSignal TickSignal()
+        {
+            BoolSignal ret = new BoolSignal(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public Timer (uint milliSec) : this (NDalicPINVOKE.Timer_New(milliSec), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Timer Assign(Timer timer) {
-    Timer ret = new Timer(NDalicPINVOKE.Timer_Assign(swigCPtr, Timer.getCPtr(timer)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static Timer DownCast(BaseHandle handle) {
-    Timer ret = new Timer(NDalicPINVOKE.Timer_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void Start() {
-    NDalicPINVOKE.Timer_Start(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Stop() {
-    NDalicPINVOKE.Timer_Stop(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetInterval(uint milliSec) {
-    NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public uint GetInterval() {
-    uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool IsRunning() {
-    bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public BoolSignal TickSignal() {
-    BoolSignal ret = new BoolSignal(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class CustomActorImpl : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -61,8 +61,8 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void OnPropertySet(int index, Property.Value propertyValue) {
-    NDalicPINVOKE.CustomActorImpl_OnPropertySet(swigCPtr, index, Property.Value.getCPtr(propertyValue));
+  public virtual void OnPropertySet(int index, PropertyValue propertyValue) {
+    NDalicPINVOKE.CustomActorImpl_OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -76,26 +76,26 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual bool OnTouchEvent(TouchEvent arg0) {
-    bool ret = NDalicPINVOKE.CustomActorImpl_OnTouchEvent(swigCPtr, TouchEvent.getCPtr(arg0));
+  public virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0) {
+    bool ret = NDalicPINVOKE.CustomActorImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public virtual bool OnHoverEvent(HoverEvent arg0) {
-    bool ret = NDalicPINVOKE.CustomActorImpl_OnHoverEvent(swigCPtr, HoverEvent.getCPtr(arg0));
+  public virtual bool OnHoverEvent(Hover arg0) {
+    bool ret = NDalicPINVOKE.CustomActorImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public virtual bool OnKeyEvent(KeyEvent arg0) {
-    bool ret = NDalicPINVOKE.CustomActorImpl_OnKeyEvent(swigCPtr, KeyEvent.getCPtr(arg0));
+  public virtual bool OnKeyEvent(Key arg0) {
+    bool ret = NDalicPINVOKE.CustomActorImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public virtual bool OnWheelEvent(WheelEvent arg0) {
-    bool ret = NDalicPINVOKE.CustomActorImpl_OnWheelEvent(swigCPtr, WheelEvent.getCPtr(arg0));
+  public virtual bool OnWheelEvent(Wheel arg0) {
+    bool ret = NDalicPINVOKE.CustomActorImpl_OnWheelEvent(swigCPtr, Wheel.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

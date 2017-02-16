@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class RenderTask : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -378,7 +378,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.VIEWPORT_POSITION, new NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.VIEWPORT_POSITION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ViewportSize
@@ -391,7 +391,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.VIEWPORT_SIZE, new NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.VIEWPORT_SIZE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector4 ClearColor
@@ -404,7 +404,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.CLEAR_COLOR, new NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.CLEAR_COLOR, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool RequiresSync
@@ -417,7 +417,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.REQUIRES_SYNC, new NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.REQUIRES_SYNC, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

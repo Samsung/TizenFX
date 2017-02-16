@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class ItemLayout : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -56,26 +56,15 @@ public class ItemLayout : RefObject {
     return ret;
   }
 
-  public void SetLayoutProperties(Property.Map properties) {
-    NDalicPINVOKE.ItemLayout_SetLayoutProperties(swigCPtr, Property.Map.getCPtr(properties));
+  public void SetLayoutProperties(PropertyMap properties) {
+    NDalicPINVOKE.ItemLayout_SetLayoutProperties(swigCPtr, PropertyMap.getCPtr(properties));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Property.Map GetLayoutProperties() {
-    Property.Map ret = new Property.Map(NDalicPINVOKE.ItemLayout_GetLayoutProperties(swigCPtr), true);
+  public PropertyMap GetLayoutProperties() {
+    PropertyMap ret = new PropertyMap(NDalicPINVOKE.ItemLayout_GetLayoutProperties(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
-  }
-
-  public bool HasLayoutChanged() {
-    bool ret = NDalicPINVOKE.ItemLayout_HasLayoutChanged(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ResetLayoutChangedFlag() {
-    NDalicPINVOKE.ItemLayout_ResetLayoutChangedFlag(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void GetItemSize(uint itemId, Vector3 layoutSize, Vector3 itemSize) {
@@ -153,7 +142,7 @@ public class ItemLayout : RefObject {
     return ret;
   }
 
-  public virtual int GetNextFocusItemID(int itemID, int maxItems, View.KeyboardFocus.Direction direction, bool loopEnabled) {
+  public virtual int GetNextFocusItemID(int itemID, int maxItems, View.FocusDirection direction, bool loopEnabled) {
     int ret = NDalicPINVOKE.ItemLayout_GetNextFocusItemID(swigCPtr, itemID, maxItems, (int)direction, loopEnabled);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

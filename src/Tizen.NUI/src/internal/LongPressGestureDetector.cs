@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 using System;
 using System.Runtime.InteropServices;
@@ -139,7 +139,7 @@ public class DetectedEventArgs : EventArgs
 
    // Populate all members of "e" (LongPressGestureEventArgs) with real data
    e.Actor = Actor.GetActorFromPtr(actor);
-   e.LongPressGesture = NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
+   e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
    if (_longPressGestureEventHandler != null)
    {

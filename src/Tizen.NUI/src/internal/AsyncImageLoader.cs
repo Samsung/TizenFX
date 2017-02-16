@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AsyncImageLoader : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -55,62 +55,62 @@ public class AsyncImageLoader : BaseHandle {
     }
   }
 
-  internal AsyncImageLoader () : this (NDalicPINVOKE.AsyncImageLoader_New(), true) {
+  public AsyncImageLoader () : this (NDalicPINVOKE.AsyncImageLoader_New(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  internal AsyncImageLoader(AsyncImageLoader handle) : this(NDalicPINVOKE.new_AsyncImageLoader__SWIG_1(AsyncImageLoader.getCPtr(handle)), true) {
+  public AsyncImageLoader(AsyncImageLoader handle) : this(NDalicPINVOKE.new_AsyncImageLoader__SWIG_1(AsyncImageLoader.getCPtr(handle)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal AsyncImageLoader Assign(AsyncImageLoader handle) {
+  public AsyncImageLoader Assign(AsyncImageLoader handle) {
     AsyncImageLoader ret = new AsyncImageLoader(NDalicPINVOKE.AsyncImageLoader_Assign(swigCPtr, AsyncImageLoader.getCPtr(handle)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal static AsyncImageLoader DownCast(BaseHandle handle) {
+  public static AsyncImageLoader DownCast(BaseHandle handle) {
     AsyncImageLoader ret = new AsyncImageLoader(NDalicPINVOKE.AsyncImageLoader_DownCast(BaseHandle.getCPtr(handle)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint Load(string url) {
+  public uint Load(string url) {
     uint ret = NDalicPINVOKE.AsyncImageLoader_Load__SWIG_0(swigCPtr, url);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint Load(string url, Uint16Pair dimensions) {
+  public uint Load(string url, Uint16Pair dimensions) {
     uint ret = NDalicPINVOKE.AsyncImageLoader_Load__SWIG_1(swigCPtr, url, Uint16Pair.getCPtr(dimensions));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint Load(string url, Uint16Pair dimensions, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection) {
+  public uint Load(string url, Uint16Pair dimensions, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection) {
     uint ret = NDalicPINVOKE.AsyncImageLoader_Load__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool Cancel(uint loadingTaskId) {
+  public bool Cancel(uint loadingTaskId) {
     bool ret = NDalicPINVOKE.AsyncImageLoader_Cancel(swigCPtr, loadingTaskId);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void CancelAll() {
+  public void CancelAll() {
     NDalicPINVOKE.AsyncImageLoader_CancelAll(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ImageLoadedSignal() {
+  public SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ImageLoadedSignal() {
     SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(NDalicPINVOKE.AsyncImageLoader_ImageLoadedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal AsyncImageLoader(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader impl) : this(NDalicPINVOKE.new_AsyncImageLoader__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader.getCPtr(impl)), true) {
+  public AsyncImageLoader(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader impl) : this(NDalicPINVOKE.new_AsyncImageLoader__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader.getCPtr(impl)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

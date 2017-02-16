@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NUI
+namespace Tizen.NUI
 {
 
     public class DisposeQueue

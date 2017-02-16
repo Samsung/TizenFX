@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class NDalic {
   public static uint int_to_uint(int x) {
@@ -16,6 +16,11 @@ public class NDalic {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
+
+
+  public static readonly int VISUAL_PROPERTY_TRANSFORM = NDalicManualPINVOKE.Visual_Property_TRANSFORM_get();
+  public static readonly int VISUAL_PROPERTY_PREMULTIPLIED_ALPHA = NDalicManualPINVOKE.Visual_Property_PREMULTIPLIED_ALPHA_get();
+  public static readonly int VISUAL_PROPERTY_MIX_COLOR = NDalicManualPINVOKE.Visual_Property_MIX_COLOR_get();
 
   public static void DaliAssertMessage(string location, string condition) {
     NDalicPINVOKE.DaliAssertMessage(location, condition);
@@ -310,7 +315,7 @@ public class NDalic {
     return ret;
   }
 
-  public static string GetName(Property.Type type) {
+  public static string GetName(PropertyType type) {
     string ret = NDalicPINVOKE.GetName((int)type);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -382,6 +387,25 @@ public class NDalic {
     Handle ret = new Handle(NDalicPINVOKE.New(), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public static bool RegisterType(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f) {
+System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(f); 
+    {
+      bool ret = NDalicPINVOKE.RegisterType(name, SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip));
+      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+  }
+
+  public static bool RegisterProperty(string objectName, string name, int index, PropertyType type, System.Delegate setFunc, System.Delegate getFunc) {
+System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(setFunc); 
+System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(getFunc); 
+    {
+      bool ret = NDalicPINVOKE.RegisterProperty(objectName, name, index, (int)type, new System.Runtime.InteropServices.HandleRef(null, ip), new System.Runtime.InteropServices.HandleRef(null, ip2));
+      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
   }
 
   public static float ParentOriginTop {
@@ -968,26 +992,26 @@ public class NDalic {
   public static readonly int VISUAL_PROPERTY_TYPE = NDalicPINVOKE.VISUAL_PROPERTY_TYPE_get();
   public static readonly int VISUAL_PROPERTY_SHADER = NDalicPINVOKE.VISUAL_PROPERTY_SHADER_get();
 
-  public static readonly int VERTEX_SHADER = NDalicPINVOKE.VERTEX_SHADER_get();
-  public static readonly int FRAGMENT_SHADER = NDalicPINVOKE.FRAGMENT_SHADER_get();
-  public static readonly int SUBDIVIDE_GRID_X = NDalicPINVOKE.SUBDIVIDE_GRID_X_get();
-  public static readonly int SUBDIVIDE_GRID_Y = NDalicPINVOKE.SUBDIVIDE_GRID_Y_get();
-  public static readonly int HINTS = NDalicPINVOKE.HINTS_get();
+  public static readonly int VISUAL_SHADER_VERTEX = NDalicPINVOKE.VISUAL_SHADER_VERTEX_get();
+  public static readonly int VISUAL_SHADER_FRAGMENT = NDalicPINVOKE.VISUAL_SHADER_FRAGMENT_get();
+  public static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_X = NDalicPINVOKE.VISUAL_SHADER_SUBDIVIDE_GRID_X_get();
+  public static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_Y = NDalicPINVOKE.VISUAL_SHADER_SUBDIVIDE_GRID_Y_get();
+  public static readonly int VISUAL_SHADER_HINTS = NDalicPINVOKE.VISUAL_SHADER_HINTS_get();
 
-  public static readonly int COLOR = NDalicPINVOKE.COLOR_get();
-  public static readonly int SIZE = NDalicPINVOKE.SIZE_get();
-  public static readonly int ANTI_ALIASING = NDalicPINVOKE.ANTI_ALIASING_get();
+  public static readonly int BORDER_VISUAL_COLOR = NDalicPINVOKE.BORDER_VISUAL_COLOR_get();
+  public static readonly int BORDER_VISUAL_SIZE = NDalicPINVOKE.BORDER_VISUAL_SIZE_get();
+  public static readonly int BORDER_VISUAL_ANTI_ALIASING = NDalicPINVOKE.BORDER_VISUAL_ANTI_ALIASING_get();
 
-  public static readonly int MIX_COLOR = NDalicPINVOKE.MIX_COLOR_get();
+  public static readonly int COLOR_VISUAL_MIX_COLOR = NDalicPINVOKE.COLOR_VISUAL_MIX_COLOR_get();
 
-  public static readonly int START_POSITION = NDalicPINVOKE.START_POSITION_get();
-  public static readonly int END_POSITION = NDalicPINVOKE.END_POSITION_get();
-  public static readonly int CENTER = NDalicPINVOKE.CENTER_get();
-  public static readonly int RADIUS = NDalicPINVOKE.RADIUS_get();
-  public static readonly int STOP_OFFSET = NDalicPINVOKE.STOP_OFFSET_get();
-  public static readonly int STOP_COLOR = NDalicPINVOKE.STOP_COLOR_get();
-  public static readonly int UNITS = NDalicPINVOKE.UNITS_get();
-  public static readonly int SPREAD_METHOD = NDalicPINVOKE.SPREAD_METHOD_get();
+  public static readonly int GRADIENT_VISUAL_START_POSITION = NDalicPINVOKE.GRADIENT_VISUAL_START_POSITION_get();
+  public static readonly int GRADIENT_VISUAL_END_POSITION = NDalicPINVOKE.GRADIENT_VISUAL_END_POSITION_get();
+  public static readonly int GRADIENT_VISUAL_CENTER = NDalicPINVOKE.GRADIENT_VISUAL_CENTER_get();
+  public static readonly int GRADIENT_VISUAL_RADIUS = NDalicPINVOKE.GRADIENT_VISUAL_RADIUS_get();
+  public static readonly int GRADIENT_VISUAL_STOP_OFFSET = NDalicPINVOKE.GRADIENT_VISUAL_STOP_OFFSET_get();
+  public static readonly int GRADIENT_VISUAL_STOP_COLOR = NDalicPINVOKE.GRADIENT_VISUAL_STOP_COLOR_get();
+  public static readonly int GRADIENT_VISUAL_UNITS = NDalicPINVOKE.GRADIENT_VISUAL_UNITS_get();
+  public static readonly int GRADIENT_VISUAL_SPREAD_METHOD = NDalicPINVOKE.GRADIENT_VISUAL_SPREAD_METHOD_get();
 
   public static readonly int IMAGE_VISUAL_URL = NDalicPINVOKE.IMAGE_VISUAL_URL_get();
   public static readonly int IMAGE_VISUAL_FITTING_MODE = NDalicPINVOKE.IMAGE_VISUAL_FITTING_MODE_get();
@@ -1001,36 +1025,53 @@ public class NDalic {
   public static readonly int IMAGE_VISUAL_WRAP_MODE_U = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_U_get();
   public static readonly int IMAGE_VISUAL_WRAP_MODE_V = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_V_get();
 
-  public static readonly int OBJECT_URL = NDalicPINVOKE.OBJECT_URL_get();
-  public static readonly int MATERIAL_URL = NDalicPINVOKE.MATERIAL_URL_get();
-  public static readonly int TEXTURES_PATH = NDalicPINVOKE.TEXTURES_PATH_get();
-  public static readonly int SHADING_MODE = NDalicPINVOKE.SHADING_MODE_get();
-  public static readonly int USE_MIPMAPPING = NDalicPINVOKE.USE_MIPMAPPING_get();
-  public static readonly int USE_SOFT_NORMALS = NDalicPINVOKE.USE_SOFT_NORMALS_get();
-  public static readonly int LIGHT_POSITION = NDalicPINVOKE.LIGHT_POSITION_get();
+  public static readonly int MESH_VISUAL_OBJECT_URL = NDalicPINVOKE.MESH_VISUAL_OBJECT_URL_get();
+  public static readonly int MESH_VISUAL_MATERIAL_URL = NDalicPINVOKE.MESH_VISUAL_MATERIAL_URL_get();
+  public static readonly int MESH_VISUAL_TEXTURES_PATH = NDalicPINVOKE.MESH_VISUAL_TEXTURES_PATH_get();
+  public static readonly int MESH_VISUAL_SHADING_MODE = NDalicPINVOKE.MESH_VISUAL_SHADING_MODE_get();
+  public static readonly int MESH_VISUAL_USE_MIPMAPPING = NDalicPINVOKE.MESH_VISUAL_USE_MIPMAPPING_get();
+  public static readonly int MESH_VISUAL_USE_SOFT_NORMALS = NDalicPINVOKE.MESH_VISUAL_USE_SOFT_NORMALS_get();
+  public static readonly int MESH_VISUAL_LIGHT_POSITION = NDalicPINVOKE.MESH_VISUAL_LIGHT_POSITION_get();
 
-  public static readonly int SHAPE = NDalicPINVOKE.SHAPE_get();
+  public static readonly int PRIMITIVE_VISUAL_SHAPE = NDalicPINVOKE.PRIMITIVE_VISUAL_SHAPE_get();
   public static readonly int PRIMITIVE_VISUAL_MIX_COLOR = NDalicPINVOKE.PRIMITIVE_VISUAL_MIX_COLOR_get();
-  public static readonly int SLICES = NDalicPINVOKE.SLICES_get();
-  public static readonly int STACKS = NDalicPINVOKE.STACKS_get();
-  public static readonly int SCALE_TOP_RADIUS = NDalicPINVOKE.SCALE_TOP_RADIUS_get();
-  public static readonly int SCALE_BOTTOM_RADIUS = NDalicPINVOKE.SCALE_BOTTOM_RADIUS_get();
-  public static readonly int SCALE_HEIGHT = NDalicPINVOKE.SCALE_HEIGHT_get();
-  public static readonly int SCALE_RADIUS = NDalicPINVOKE.SCALE_RADIUS_get();
-  public static readonly int SCALE_DIMENSIONS = NDalicPINVOKE.SCALE_DIMENSIONS_get();
-  public static readonly int BEVEL_PERCENTAGE = NDalicPINVOKE.BEVEL_PERCENTAGE_get();
-  public static readonly int BEVEL_SMOOTHNESS = NDalicPINVOKE.BEVEL_SMOOTHNESS_get();
+  public static readonly int PRIMITIVE_VISUAL_SLICES = NDalicPINVOKE.PRIMITIVE_VISUAL_SLICES_get();
+  public static readonly int PRIMITIVE_VISUAL_STACKS = NDalicPINVOKE.PRIMITIVE_VISUAL_STACKS_get();
+  public static readonly int PRIMITIVE_VISUAL_SCALE_TOP_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS_get();
+  public static readonly int PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS_get();
+  public static readonly int PRIMITIVE_VISUAL_SCALE_HEIGHT = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_HEIGHT_get();
+  public static readonly int PRIMITIVE_VISUAL_SCALE_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_RADIUS_get();
+  public static readonly int PRIMITIVE_VISUAL_SCALE_DIMENSIONS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_DIMENSIONS_get();
+  public static readonly int PRIMITIVE_VISUAL_BEVEL_PERCENTAGE = NDalicPINVOKE.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE_get();
+  public static readonly int PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS = NDalicPINVOKE.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS_get();
   public static readonly int PRIMITIVE_VISUAL_LIGHT_POSITION = NDalicPINVOKE.PRIMITIVE_VISUAL_LIGHT_POSITION_get();
 
-  public static readonly int TEXT = NDalicPINVOKE.TEXT_get();
-  public static readonly int FONT_FAMILY = NDalicPINVOKE.FONT_FAMILY_get();
-  public static readonly int FONT_STYLE = NDalicPINVOKE.FONT_STYLE_get();
-  public static readonly int POINT_SIZE = NDalicPINVOKE.POINT_SIZE_get();
-  public static readonly int MULTI_LINE = NDalicPINVOKE.MULTI_LINE_get();
-  public static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.HORIZONTAL_ALIGNMENT_get();
-  public static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.VERTICAL_ALIGNMENT_get();
-  public static readonly int TEXT_COLOR = NDalicPINVOKE.TEXT_COLOR_get();
-  public static readonly int ENABLE_MARKUP = NDalicPINVOKE.ENABLE_MARKUP_get();
+  public static readonly int TEXT_VISUAL_TEXT = NDalicPINVOKE.TEXT_VISUAL_TEXT_get();
+  public static readonly int TEXT_VISUAL_FONT_FAMILY = NDalicPINVOKE.TEXT_VISUAL_FONT_FAMILY_get();
+  public static readonly int TEXT_VISUAL_FONT_STYLE = NDalicPINVOKE.TEXT_VISUAL_FONT_STYLE_get();
+  public static readonly int TEXT_VISUAL_POINT_SIZE = NDalicPINVOKE.TEXT_VISUAL_POINT_SIZE_get();
+  public static readonly int TEXT_VISUAL_MULTI_LINE = NDalicPINVOKE.TEXT_VISUAL_MULTI_LINE_get();
+  public static readonly int TEXT_VISUAL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TEXT_VISUAL_HORIZONTAL_ALIGNMENT_get();
+  public static readonly int TEXT_VISUAL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TEXT_VISUAL_VERTICAL_ALIGNMENT_get();
+  public static readonly int TEXT_VISUAL_TEXT_COLOR = NDalicPINVOKE.TEXT_VISUAL_TEXT_COLOR_get();
+  public static readonly int TEXT_VISUAL_ENABLE_MARKUP = NDalicPINVOKE.TEXT_VISUAL_ENABLE_MARKUP_get();
+
+  public static readonly int TOOLTIP_CONTENT = NDalicPINVOKE.TOOLTIP_CONTENT_get();
+  public static readonly int TOOLTIP_LAYOUT = NDalicPINVOKE.TOOLTIP_LAYOUT_get();
+  public static readonly int TOOLTIP_WAIT_TIME = NDalicPINVOKE.TOOLTIP_WAIT_TIME_get();
+  public static readonly int TOOLTIP_BACKGROUND = NDalicPINVOKE.TOOLTIP_BACKGROUND_get();
+  public static readonly int TOOLTIP_TAIL = NDalicPINVOKE.TOOLTIP_TAIL_get();
+  public static readonly int TOOLTIP_POSITION = NDalicPINVOKE.TOOLTIP_POSITION_get();
+  public static readonly int TOOLTIP_HOVER_POINT_OFFSET = NDalicPINVOKE.TOOLTIP_HOVER_POINT_OFFSET_get();
+  public static readonly int TOOLTIP_MOVEMENT_THRESHOLD = NDalicPINVOKE.TOOLTIP_MOVEMENT_THRESHOLD_get();
+  public static readonly int TOOLTIP_DISAPPEAR_ON_MOVEMENT = NDalicPINVOKE.TOOLTIP_DISAPPEAR_ON_MOVEMENT_get();
+
+  public static readonly int TOOLTIP_BACKGROUND_VISUAL = NDalicPINVOKE.TOOLTIP_BACKGROUND_VISUAL_get();
+  public static readonly int TOOLTIP_BACKGROUND_BORDER = NDalicPINVOKE.TOOLTIP_BACKGROUND_BORDER_get();
+
+  public static readonly int TOOLTIP_TAIL_VISIBILITY = NDalicPINVOKE.TOOLTIP_TAIL_VISIBILITY_get();
+  public static readonly int TOOLTIP_TAIL_ABOVE_VISUAL = NDalicPINVOKE.TOOLTIP_TAIL_ABOVE_VISUAL_get();
+  public static readonly int TOOLTIP_TAIL_BELOW_VISUAL = NDalicPINVOKE.TOOLTIP_TAIL_BELOW_VISUAL_get();
 
 }
 

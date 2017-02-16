@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AngleThresholdPair : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -40,19 +40,19 @@ public class AngleThresholdPair : global::System.IDisposable {
     }
   }
 
-  internal AngleThresholdPair() : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_0(), true) {
+  public AngleThresholdPair() : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal AngleThresholdPair(Radian t, Radian u) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_1(Radian.getCPtr(t), Radian.getCPtr(u)), true) {
+  public AngleThresholdPair(Radian t, Radian u) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_1(Radian.getCPtr(t), Radian.getCPtr(u)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal AngleThresholdPair(AngleThresholdPair p) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_2(AngleThresholdPair.getCPtr(p)), true) {
+  public AngleThresholdPair(AngleThresholdPair p) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_2(AngleThresholdPair.getCPtr(p)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Radian first {
+  public Radian first {
     set {
       NDalicPINVOKE.AngleThresholdPair_first_set(swigCPtr, Radian.getCPtr(value));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -65,7 +65,7 @@ public class AngleThresholdPair : global::System.IDisposable {
     } 
   }
 
-  internal Radian second {
+  public Radian second {
     set {
       NDalicPINVOKE.AngleThresholdPair_second_set(swigCPtr, Radian.getCPtr(value));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

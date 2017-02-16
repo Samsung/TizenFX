@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AnimatablePropertyComponentRegistration : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -40,7 +40,7 @@ public class AnimatablePropertyComponentRegistration : global::System.IDisposabl
     }
   }
 
-  internal AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(NDalicPINVOKE.new_AnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true) {
+  public AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(NDalicPINVOKE.new_AnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

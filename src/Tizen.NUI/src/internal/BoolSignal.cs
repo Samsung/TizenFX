@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class BoolSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -40,38 +40,38 @@ public class BoolSignal : global::System.IDisposable {
     }
   }
 
-  internal BoolSignal() : this(NDalicPINVOKE.new_BoolSignal(), true) {
+  public BoolSignal() : this(NDalicPINVOKE.new_BoolSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.BoolSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicPINVOKE.BoolSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(SWIGTYPE_p_f___bool func) {
+  public void Connect(SWIGTYPE_p_f___bool func) {
     NDalicPINVOKE.BoolSignal_Connect__SWIG_0(swigCPtr, SWIGTYPE_p_f___bool.getCPtr(func));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Disconnect(SWIGTYPE_p_f___bool func) {
+  public void Disconnect(SWIGTYPE_p_f___bool func) {
     NDalicPINVOKE.BoolSignal_Disconnect(swigCPtr, SWIGTYPE_p_f___bool.getCPtr(func));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1) {
+  public void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1) {
     NDalicPINVOKE.BoolSignal_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal bool Emit() {
+  public bool Emit() {
     bool ret = NDalicPINVOKE.BoolSignal_Emit(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

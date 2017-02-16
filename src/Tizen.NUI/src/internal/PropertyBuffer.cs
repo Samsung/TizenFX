@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class PropertyBuffer : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -61,7 +61,7 @@ public class PropertyBuffer : BaseHandle {
   }
 
 
-  public PropertyBuffer (Property.Map bufferFormat) : this (NDalicPINVOKE.PropertyBuffer_New(Property.Map.getCPtr(bufferFormat)), true) {
+  public PropertyBuffer (PropertyMap bufferFormat) : this (NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }

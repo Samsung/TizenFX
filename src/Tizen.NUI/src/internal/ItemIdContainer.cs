@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class ItemIdContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IList<uint>

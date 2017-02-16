@@ -17,11 +17,11 @@
 
 using System;
 
-namespace NUI {
+namespace Tizen.NUI {
 
-internal delegate IntPtr SwigDelegatePreFocusChangeSignal(IntPtr current, IntPtr proposed, View.KeyboardFocus.Direction direction);
+internal delegate IntPtr SwigDelegatePreFocusChangeSignal(IntPtr current, IntPtr proposed, View.FocusDirection direction);
 
-public class PreFocusChangeSignal : global::System.IDisposable {
+internal class PreFocusChangeSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -56,24 +56,24 @@ public class PreFocusChangeSignal : global::System.IDisposable {
     }
   }
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicManualPINVOKE.PreFocusChangeSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicManualPINVOKE.PreFocusChangeSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(FocusManager.PreFocusChangeEventCallback func) {
+  public void Connect(FocusManager.PreFocusChangeEventCallback func) {
      NDalicManualPINVOKE.PreFocusChangeSignal_Connect(swigCPtr, func);
      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
  }
 
-  internal void Disconnect(System.Delegate func) {
+  public void Disconnect(System.Delegate func) {
     System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
     {
       NDalicManualPINVOKE.PreFocusChangeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -81,13 +81,13 @@ public class PreFocusChangeSignal : global::System.IDisposable {
     }
   }
 
-  internal Actor Emit(Actor arg1, Actor arg2, View.KeyboardFocus.Direction arg3) {
+  public Actor Emit(Actor arg1, Actor arg2, View.FocusDirection arg3) {
     Actor ret = new Actor(NDalicManualPINVOKE.PreFocusChangeSignal_Emit(swigCPtr, Actor.getCPtr(arg1), Actor.getCPtr(arg2), (int)arg3), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal PreFocusChangeSignal() : this(NDalicManualPINVOKE.new_PreFocusChangeSignal(), true) {
+  public PreFocusChangeSignal() : this(NDalicManualPINVOKE.new_PreFocusChangeSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

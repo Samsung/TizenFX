@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class BaseObject : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -35,25 +35,25 @@ public class BaseObject : RefObject {
     }
   }
 
-  internal bool DoAction(string actionName, Property.Map attributes) {
-    bool ret = NDalicPINVOKE.BaseObject_DoAction(swigCPtr, actionName, Property.Map.getCPtr(attributes));
+  public bool DoAction(string actionName, PropertyMap attributes) {
+    bool ret = NDalicPINVOKE.BaseObject_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal string GetTypeName() {
+  public string GetTypeName() {
     string ret = NDalicPINVOKE.BaseObject_GetTypeName(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool GetTypeInfo(TypeInfo info) {
+  public bool GetTypeInfo(TypeInfo info) {
     bool ret = NDalicPINVOKE.BaseObject_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
+  public bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
     bool ret = NDalicPINVOKE.BaseObject_DoConnectSignal(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

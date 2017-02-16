@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class ActorContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IEnumerable<Actor>
@@ -42,7 +42,7 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     }
   }
 
-  internal ActorContainer(global::System.Collections.ICollection c) : this() {
+  public ActorContainer(global::System.Collections.ICollection c) : this() {
     if (c == null)
       throw new global::System.ArgumentNullException("c");
     foreach (Actor element in c) {
@@ -50,19 +50,19 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     }
   }
 
-  internal bool IsFixedSize {
+  public bool IsFixedSize {
     get {
       return false;
     }
   }
 
-  internal bool IsReadOnly {
+  public bool IsReadOnly {
     get {
       return false;
     }
   }
 
-  internal Actor this[int index]  {
+  public Actor this[int index]  {
     get {
       return getitem(index);
     }
@@ -71,7 +71,7 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     }
   }
 
-  internal int Capacity {
+  public int Capacity {
     get {
       return (int)capacity();
     }
@@ -82,29 +82,29 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     }
   }
 
-  internal int Count {
+  public int Count {
     get {
       return (int)size();
     }
   }
 
-  internal bool IsSynchronized {
+  public bool IsSynchronized {
     get {
       return false;
     }
   }
 
-  internal void CopyTo(Actor[] array)
+  public void CopyTo(Actor[] array)
   {
     CopyTo(0, array, 0, this.Count);
   }
 
-  internal void CopyTo(Actor[] array, int arrayIndex)
+  public void CopyTo(Actor[] array, int arrayIndex)
   {
     CopyTo(0, array, arrayIndex, this.Count);
   }
 
-  internal void CopyTo(int index, Actor[] array, int arrayIndex, int count)
+  public void CopyTo(int index, Actor[] array, int arrayIndex, int count)
   {
     if (array == null)
       throw new global::System.ArgumentNullException("array");
@@ -130,7 +130,7 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     return new ActorContainerEnumerator(this);
   }
 
-  internal ActorContainerEnumerator GetEnumerator() {
+  public ActorContainerEnumerator GetEnumerator() {
     return new ActorContainerEnumerator(this);
   }
 
@@ -200,12 +200,12 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     }
   }
 
-  internal void Clear() {
+  public void Clear() {
     NDalicPINVOKE.ActorContainer_Clear(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Add(Actor x) {
+  public void Add(Actor x) {
     NDalicPINVOKE.ActorContainer_Add(swigCPtr, Actor.getCPtr(x));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -227,15 +227,15 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal ActorContainer() : this(NDalicPINVOKE.new_ActorContainer__SWIG_0(), true) {
+  public ActorContainer() : this(NDalicPINVOKE.new_ActorContainer__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal ActorContainer(ActorContainer other) : this(NDalicPINVOKE.new_ActorContainer__SWIG_1(ActorContainer.getCPtr(other)), true) {
+  public ActorContainer(ActorContainer other) : this(NDalicPINVOKE.new_ActorContainer__SWIG_1(ActorContainer.getCPtr(other)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal ActorContainer(int capacity) : this(NDalicPINVOKE.new_ActorContainer__SWIG_2(capacity), true) {
+  public ActorContainer(int capacity) : this(NDalicPINVOKE.new_ActorContainer__SWIG_2(capacity), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -256,56 +256,56 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void AddRange(ActorContainer values) {
+  public void AddRange(ActorContainer values) {
     NDalicPINVOKE.ActorContainer_AddRange(swigCPtr, ActorContainer.getCPtr(values));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal ActorContainer GetRange(int index, int count) {
+  public ActorContainer GetRange(int index, int count) {
     global::System.IntPtr cPtr = NDalicPINVOKE.ActorContainer_GetRange(swigCPtr, index, count);
     ActorContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ActorContainer(cPtr, true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Insert(int index, Actor x) {
+  public void Insert(int index, Actor x) {
     NDalicPINVOKE.ActorContainer_Insert(swigCPtr, index, Actor.getCPtr(x));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void InsertRange(int index, ActorContainer values) {
+  public void InsertRange(int index, ActorContainer values) {
     NDalicPINVOKE.ActorContainer_InsertRange(swigCPtr, index, ActorContainer.getCPtr(values));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void RemoveAt(int index) {
+  public void RemoveAt(int index) {
     NDalicPINVOKE.ActorContainer_RemoveAt(swigCPtr, index);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void RemoveRange(int index, int count) {
+  public void RemoveRange(int index, int count) {
     NDalicPINVOKE.ActorContainer_RemoveRange(swigCPtr, index, count);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal static ActorContainer Repeat(Actor value, int count) {
+  public static ActorContainer Repeat(Actor value, int count) {
     global::System.IntPtr cPtr = NDalicPINVOKE.ActorContainer_Repeat(Actor.getCPtr(value), count);
     ActorContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ActorContainer(cPtr, true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Reverse() {
+  public void Reverse() {
     NDalicPINVOKE.ActorContainer_Reverse__SWIG_0(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Reverse(int index, int count) {
+  public void Reverse(int index, int count) {
     NDalicPINVOKE.ActorContainer_Reverse__SWIG_1(swigCPtr, index, count);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void SetRange(int index, ActorContainer values) {
+  public void SetRange(int index, ActorContainer values) {
     NDalicPINVOKE.ActorContainer_SetRange(swigCPtr, index, ActorContainer.getCPtr(values));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }

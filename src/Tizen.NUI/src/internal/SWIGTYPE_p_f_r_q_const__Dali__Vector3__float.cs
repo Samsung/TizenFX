@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class SWIGTYPE_p_f_r_q_const__Dali__Vector3__float {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class ApplicationExtensions : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -40,35 +40,35 @@ public class ApplicationExtensions : global::System.IDisposable {
     }
   }
 
-  internal ApplicationExtensions() : this(NDalicPINVOKE.new_ApplicationExtensions__SWIG_0(), true) {
+  public ApplicationExtensions() : this(NDalicPINVOKE.new_ApplicationExtensions__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal ApplicationExtensions(Application application) : this(NDalicPINVOKE.new_ApplicationExtensions__SWIG_1(Application.getCPtr(application)), true) {
+  public ApplicationExtensions(Application application) : this(NDalicPINVOKE.new_ApplicationExtensions__SWIG_1(Application.getCPtr(application)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Init() {
+  public void Init() {
     NDalicPINVOKE.ApplicationExtensions_Init(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Terminate() {
+  public void Terminate() {
     NDalicPINVOKE.ApplicationExtensions_Terminate(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Pause() {
+  public void Pause() {
     NDalicPINVOKE.ApplicationExtensions_Pause(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void Resume() {
+  public void Resume() {
     NDalicPINVOKE.ApplicationExtensions_Resume(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void LanguageChange() {
+  public void LanguageChange() {
     NDalicPINVOKE.ApplicationExtensions_LanguageChange(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }

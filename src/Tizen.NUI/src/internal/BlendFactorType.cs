@@ -8,9 +8,9 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
-internal enum BlendFactorType {
+public enum BlendFactorType {
   ZERO = 0,
   ONE = 1,
   SRC_COLOR = 0x0300,

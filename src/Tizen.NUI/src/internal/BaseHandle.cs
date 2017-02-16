@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class BaseHandle : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -158,43 +158,43 @@ public class BaseHandle : global::System.IDisposable {
   }
 
 
-  internal BaseHandle(BaseObject handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_0(BaseObject.getCPtr(handle)), true) {
+  public BaseHandle(BaseObject handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_0(BaseObject.getCPtr(handle)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1(), true) {
+  public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)), true) {
+  public BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal BaseHandle Assign(BaseHandle rhs) {
+  public BaseHandle Assign(BaseHandle rhs) {
     BaseHandle ret = new BaseHandle(NDalicPINVOKE.BaseHandle_Assign(swigCPtr, BaseHandle.getCPtr(rhs)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool DoAction(string actionName, Property.Map attributes) {
-    bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, Property.Map.getCPtr(attributes));
+  public bool DoAction(string actionName, PropertyMap attributes) {
+    bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal string GetTypeName() {
+  public string GetTypeName() {
     string ret = NDalicPINVOKE.BaseHandle_GetTypeName(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool GetTypeInfo(TypeInfo info) {
+  public bool GetTypeInfo(TypeInfo info) {
     bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal BaseObject GetBaseObject() {
+  public BaseObject GetBaseObject() {
     BaseObject ret = new BaseObject(NDalicPINVOKE.BaseHandle_GetBaseObject__SWIG_0(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -205,32 +205,32 @@ public class BaseHandle : global::System.IDisposable {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal bool EqualTo(BaseHandle rhs) {
+  public bool EqualTo(BaseHandle rhs) {
     bool ret = NDalicPINVOKE.BaseHandle_EqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool NotEqualTo(BaseHandle rhs) {
+  public bool NotEqualTo(BaseHandle rhs) {
     bool ret = NDalicPINVOKE.BaseHandle_NotEqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal RefObject GetObjectPtr() {
+  public RefObject GetObjectPtr() {
     global::System.IntPtr cPtr = NDalicPINVOKE.BaseHandle_GetObjectPtr(swigCPtr);
     RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool HasBody() {
+  public bool HasBody() {
     bool ret = NDalicPINVOKE.BaseHandle_HasBody(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool IsEqual(BaseHandle rhs) {
+  public bool IsEqual(BaseHandle rhs) {
     bool ret = NDalicPINVOKE.BaseHandle_IsEqual(swigCPtr, BaseHandle.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

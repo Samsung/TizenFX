@@ -8,9 +8,9 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
-internal enum BlendEquationType {
+public enum BlendEquationType {
   ADD = 0x8006,
   SUBTRACT = 0x800A,
   REVERSE_SUBTRACT = 0x800B

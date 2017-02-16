@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class TouchSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -68,8 +68,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(TouchData arg) {
-    NDalicPINVOKE.TouchSignal_Emit(swigCPtr, TouchData.getCPtr(arg));
+  public void Emit(Touch arg) {
+    NDalicPINVOKE.TouchSignal_Emit(swigCPtr, Touch.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
