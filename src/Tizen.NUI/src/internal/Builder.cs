@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
     using System;
     using System.Runtime.InteropServices;
@@ -66,7 +66,7 @@ public class Builder : BaseHandle {
 
 
 
-    internal class QuitEventArgs : EventArgs
+    public class QuitEventArgs : EventArgs
     {
     }
 
@@ -75,7 +75,7 @@ public class Builder : BaseHandle {
     private DaliEventHandler<object,QuitEventArgs> _builderQuitEventHandler;
     private QuitEventCallbackDelegate _builderQuitEventCallbackDelegate;
 
-    internal event DaliEventHandler<object,QuitEventArgs> Quit
+    public event DaliEventHandler<object,QuitEventArgs> Quit
     {
       add
       {
@@ -118,143 +118,166 @@ public class Builder : BaseHandle {
       }
     }
 
+    ///
+  public void LoadFromFile( string fileName )
+  {
+    try
+    {
+      string json = System.IO.File.ReadAllText( fileName );
+      if( json.Length > 0 )
+      {
+        LoadFromString( json );
+      }
+      else
+      {
+        throw new global::System.InvalidOperationException("Failed to load file " +fileName);
+
+      }
+    }
+    catch ( System.Exception e)
+    {
+      throw new global::System.InvalidOperationException("Failed to parse " +fileName);
+    }
+  }
+
+
     
-  internal Builder () : this (NDalicPINVOKE.Builder_New(), true) {
+  public Builder () : this (NDalicPINVOKE.Builder_New(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  internal void LoadFromString(string data, Builder.UIFormat format) {
+  public void LoadFromString(string data, Builder.UIFormat format) {
     NDalicPINVOKE.Builder_LoadFromString__SWIG_0(swigCPtr, data, (int)format);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void LoadFromString(string data) {
+  public void LoadFromString(string data) {
     NDalicPINVOKE.Builder_LoadFromString__SWIG_1(swigCPtr, data);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void AddConstants(Property.Map map) {
-    NDalicPINVOKE.Builder_AddConstants(swigCPtr, Property.Map.getCPtr(map));
+  public void AddConstants(PropertyMap map) {
+    NDalicPINVOKE.Builder_AddConstants(swigCPtr, PropertyMap.getCPtr(map));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void AddConstant(string key, Property.Value value) {
-    NDalicPINVOKE.Builder_AddConstant(swigCPtr, key, Property.Value.getCPtr(value));
+  public void AddConstant(string key, PropertyValue value) {
+    NDalicPINVOKE.Builder_AddConstant(swigCPtr, key, PropertyValue.getCPtr(value));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Property.Map GetConstants() {
-    Property.Map ret = new Property.Map(NDalicPINVOKE.Builder_GetConstants(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  internal Property.Value GetConstant(string key) {
-    Property.Value ret = new Property.Value(NDalicPINVOKE.Builder_GetConstant(swigCPtr, key), false);
+  public PropertyMap GetConstants() {
+    PropertyMap ret = new PropertyMap(NDalicPINVOKE.Builder_GetConstants(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Animation CreateAnimation(string animationName) {
+  public PropertyValue GetConstant(string key) {
+    PropertyValue ret = new PropertyValue(NDalicPINVOKE.Builder_GetConstant(swigCPtr, key), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public Animation CreateAnimation(string animationName) {
     Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_0(swigCPtr, animationName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Animation CreateAnimation(string animationName, Property.Map map) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_1(swigCPtr, animationName, Property.Map.getCPtr(map)), true);
+  public Animation CreateAnimation(string animationName, PropertyMap map) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_1(swigCPtr, animationName, PropertyMap.getCPtr(map)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Animation CreateAnimation(string animationName, Actor sourceActor) {
+  public Animation CreateAnimation(string animationName, Actor sourceActor) {
     Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_2(swigCPtr, animationName, Actor.getCPtr(sourceActor)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Animation CreateAnimation(string animationName, Property.Map map, Actor sourceActor) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, Property.Map.getCPtr(map), Actor.getCPtr(sourceActor)), true);
+  public Animation CreateAnimation(string animationName, PropertyMap map, Actor sourceActor) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, PropertyMap.getCPtr(map), Actor.getCPtr(sourceActor)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal BaseHandle Create(string templateName) {
+  public BaseHandle Create(string templateName) {
     BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_0(swigCPtr, templateName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal BaseHandle Create(string templateName, Property.Map map) {
-    BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_1(swigCPtr, templateName, Property.Map.getCPtr(map)), true);
+  public BaseHandle Create(string templateName, PropertyMap map) {
+    BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_1(swigCPtr, templateName, PropertyMap.getCPtr(map)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal BaseHandle CreateFromJson(string json) {
+  public BaseHandle CreateFromJson(string json) {
     BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_CreateFromJson(swigCPtr, json), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool ApplyStyle(string styleName, Handle handle) {
+  public bool ApplyStyle(string styleName, Handle handle) {
     bool ret = NDalicPINVOKE.Builder_ApplyStyle(swigCPtr, styleName, Handle.getCPtr(handle));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool ApplyFromJson(Handle handle, string json) {
+  public bool ApplyFromJson(Handle handle, string json) {
     bool ret = NDalicPINVOKE.Builder_ApplyFromJson(swigCPtr, Handle.getCPtr(handle), json);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void AddActors(Actor toActor) {
+  public void AddActors(Actor toActor) {
     NDalicPINVOKE.Builder_AddActors__SWIG_0(swigCPtr, Actor.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void AddActors(string sectionName, Actor toActor) {
+  public void AddActors(string sectionName, Actor toActor) {
     NDalicPINVOKE.Builder_AddActors__SWIG_1(swigCPtr, sectionName, Actor.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal void CreateRenderTask(string name) {
+  public void CreateRenderTask(string name) {
     NDalicPINVOKE.Builder_CreateRenderTask(swigCPtr, name);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal FrameBufferImage GetFrameBufferImage(string name) {
+  public FrameBufferImage GetFrameBufferImage(string name) {
     FrameBufferImage ret = new FrameBufferImage(NDalicPINVOKE.Builder_GetFrameBufferImage(swigCPtr, name), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Path GetPath(string name) {
+  public Path GetPath(string name) {
     Path ret = new Path(NDalicPINVOKE.Builder_GetPath(swigCPtr, name), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal PathConstrainer GetPathConstrainer(string pathConstrainerName) {
+  public PathConstrainer GetPathConstrainer(string pathConstrainerName) {
     PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.Builder_GetPathConstrainer(swigCPtr, pathConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
+  public LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
     LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.Builder_GetLinearConstrainer(swigCPtr, linearConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal VoidSignal QuitSignal() {
+  public VoidSignal QuitSignal() {
     VoidSignal ret = new VoidSignal(NDalicPINVOKE.Builder_QuitSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal enum UIFormat {
+  public enum UIFormat {
     JSON
   }
 

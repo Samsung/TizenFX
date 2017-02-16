@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class TypeInfo : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -73,13 +73,6 @@ public class TypeInfo : BaseHandle {
 
   public BaseHandle CreateInstance() {
     BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_f___Dali__BaseHandle GetCreator() {
-    global::System.IntPtr cPtr = NDalicPINVOKE.TypeInfo_GetCreator(swigCPtr);
-    SWIGTYPE_p_f___Dali__BaseHandle ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f___Dali__BaseHandle(cPtr, false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

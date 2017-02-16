@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class Any : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,32 +46,32 @@ public class Any : global::System.IDisposable {
   }
 
 
-  internal Any() : this(NDalicPINVOKE.new_Any__SWIG_0(), true) {
+  public Any() : this(NDalicPINVOKE.new_Any__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal static void AssertAlways(string assertMessage) {
+  public static void AssertAlways(string assertMessage) {
     NDalicPINVOKE.Any_AssertAlways(assertMessage);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Any(Any any) : this(NDalicPINVOKE.new_Any__SWIG_2(Any.getCPtr(any)), true) {
+  public Any(Any any) : this(NDalicPINVOKE.new_Any__SWIG_2(Any.getCPtr(any)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Any Assign(Any any) {
+  public Any Assign(Any any) {
     Any ret = new Any(NDalicPINVOKE.Any_Assign(swigCPtr, Any.getCPtr(any)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal SWIGTYPE_p_std__type_info GetType() {
+  public SWIGTYPE_p_std__type_info GetType() {
     SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_GetType(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.Any_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -81,7 +81,7 @@ public class Any : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
   
-    public AnyContainerBase(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    internal AnyContainerBase(global::System.IntPtr cPtr, bool cMemoryOwn) {
       swigCMemOwn = cMemoryOwn;
       swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
     }
@@ -107,17 +107,17 @@ public class Any : global::System.IDisposable {
       }
     }
   
-    internal AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(NDalicPINVOKE.new_Any_AnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true) {
+    public AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(NDalicPINVOKE.new_Any_AnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   
-    internal SWIGTYPE_p_std__type_info GetType() {
+    public SWIGTYPE_p_std__type_info GetType() {
       SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_AnyContainerBase_GetType(swigCPtr), false);
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
   
-    internal SWIGTYPE_p_std__type_info mType {
+    public SWIGTYPE_p_std__type_info mType {
       get {
         SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_AnyContainerBase_mType_get(swigCPtr), false);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -125,7 +125,7 @@ public class Any : global::System.IDisposable {
       } 
     }
   
-    internal SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase mCloneFunc {
+    public SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase mCloneFunc {
       set {
         NDalicPINVOKE.Any_AnyContainerBase_mCloneFunc_set(swigCPtr, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(value));
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -138,7 +138,7 @@ public class Any : global::System.IDisposable {
       } 
     }
   
-    internal SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void mDeleteFunc {
+    public SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void mDeleteFunc {
       set {
         NDalicPINVOKE.Any_AnyContainerBase_mDeleteFunc_set(swigCPtr, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(value));
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -153,7 +153,7 @@ public class Any : global::System.IDisposable {
   
   }
 
-  internal Any.AnyContainerBase mContainer {
+  public Any.AnyContainerBase mContainer {
     set {
       NDalicPINVOKE.Any_mContainer_set(swigCPtr, Any.AnyContainerBase.getCPtr(value));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

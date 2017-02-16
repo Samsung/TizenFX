@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class StringValuePair : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,7 +44,7 @@ public class StringValuePair : global::System.IDisposable {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public StringValuePair(string t, Property.Value u) : this(NDalicPINVOKE.new_StringValuePair__SWIG_1(t, Property.Value.getCPtr(u)), true) {
+  public StringValuePair(string t, PropertyValue u) : this(NDalicPINVOKE.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -64,14 +64,14 @@ public class StringValuePair : global::System.IDisposable {
     } 
   }
 
-  public Property.Value second {
+  public PropertyValue second {
     set {
-      NDalicPINVOKE.StringValuePair_second_set(swigCPtr, Property.Value.getCPtr(value));
+      NDalicPINVOKE.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     } 
     get {
       global::System.IntPtr cPtr = NDalicPINVOKE.StringValuePair_second_get(swigCPtr);
-      Property.Value ret = (cPtr == global::System.IntPtr.Zero) ? null : new Property.Value(cPtr, false);
+      PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 

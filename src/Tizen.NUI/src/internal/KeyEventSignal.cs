@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class KeyEventSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -68,8 +68,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(KeyEvent arg) {
-    NDalicPINVOKE.KeyEventSignal_Emit(swigCPtr, KeyEvent.getCPtr(arg));
+  public void Emit(Key arg) {
+    NDalicPINVOKE.KeyEventSignal_Emit(swigCPtr, Key.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

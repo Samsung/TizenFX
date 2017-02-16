@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class PropertyCondition : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

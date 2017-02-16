@@ -1,0 +1,13 @@
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\NUISamples.dll
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\NUISamples.pdb
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Core.dll
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Platform.dll
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Xaml.dll
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Core.pdb
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Core.xml
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Platform.pdb
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Xaml.pdb
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\bin\Debug\Xamarin.Forms.Xaml.xml
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\obj\Debug\NUISamples.csprojResolveAssemblyReference.cache
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\obj\Debug\NUISamples.dll
+D:\ssong2best\work\2017\workspace\csharp-0217\Tizen.NUI\NUISamples\NUISamples\obj\Debug\NUISamples.pdb

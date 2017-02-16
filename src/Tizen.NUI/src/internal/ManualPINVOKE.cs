@@ -15,7 +15,7 @@
  *
  */
 
-namespace NUI
+namespace Tizen.NUI
 {
     class NDalicManualPINVOKE
     {
@@ -187,5 +187,61 @@ namespace NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_MakeCallback")]
         public static extern global::System.IntPtr MakeCallback(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Actor_Property_BATCH_PARENT_get")]
+        public static extern int Actor_Property_BATCH_PARENT_get();
+        
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Actor_Property_SIBLING_ORDER_get")]
+        public static extern int Actor_Property_SIBLING_ORDER_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Renderer_Property_BATCHING_ENABLED_get")]
+        public static extern int Renderer_Property_BATCHING_ENABLED_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_View_Property_TOOLTIP_get")]
+        public static extern int View_Property_TOOLTIP_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_ItemView_Property_LAYOUT_get")]
+        public static extern int ItemView_Property_LAYOUT_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_UNSELECTED_VISUAL_get")]
+        public static extern int Button_Property_UNSELECTED_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_SELECTED_VISUAL_get")]
+        public static extern int Button_Property_SELECTED_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_DISABLED_SELECTED_VISUAL_get")]
+        public static extern int Button_Property_DISABLED_SELECTED_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_DISABLED_UNSELECTED_VISUAL_get")]
+        public static extern int Button_Property_DISABLED_UNSELECTED_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_UNSELECTED_BACKGROUND_VISUAL_get")]
+        public static extern int Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_SELECTED_BACKGROUND_VISUAL_get")]
+        public static extern int Button_Property_SELECTED_BACKGROUND_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get")]
+        public static extern int Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get")]
+        public static extern int Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_LABEL_RELATIVE_ALIGNMENT_get")]
+        public static extern int Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_LABEL_PADDING_get")]
+        public static extern int Button_Property_LABEL_PADDING_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Button_Property_VISUAL_PADDING_get")]
+        public static extern int Button_Property_VISUAL_PADDING_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Visual_Property_TRANSFORM_get")]
+        public static extern int Visual_Property_TRANSFORM_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Visual_Property_PREMULTIPLIED_ALPHA_get")]
+        public static extern int Visual_Property_PREMULTIPLIED_ALPHA_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Visual_Property_MIX_COLOR_get")]
+        public static extern int Visual_Property_MIX_COLOR_get();
     }
 }

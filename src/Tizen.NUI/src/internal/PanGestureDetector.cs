@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 using System;
 using System.Runtime.InteropServices;
@@ -140,7 +140,7 @@ public class DetectedEventArgs : EventArgs
 
    // Populate all members of "e" (PanGestureEventArgs) with real data
    e.Actor = Actor.GetActorFromPtr(actor);
-   e.PanGesture = NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+   e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
    if (_panGestureEventHandler != null)
    {

@@ -8,7 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+#if true
+using System.Reflection;
+#endif
+
+namespace Tizen.NUI {
 
 public class ItemFactory : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -59,10 +63,67 @@ public class ItemFactory : global::System.IDisposable {
   }
 
   public virtual void ItemReleased(uint itemId, Actor actor) {
-    NDalicPINVOKE.ItemFactory_ItemReleased(swigCPtr, itemId, Actor.getCPtr(actor));
+    if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) NDalicPINVOKE.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, Actor.getCPtr(actor)); else NDalicPINVOKE.ItemFactory_ItemReleased(swigCPtr, itemId, Actor.getCPtr(actor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public ItemFactory() : this(NDalicPINVOKE.new_ItemFactory(), true) {
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    SwigDirectorConnect();
+  }
+
+  private void SwigDirectorConnect() {
+    if (SwigDerivedClassHasMethod("GetNumberOfItems", swigMethodTypes0))
+      swigDelegate0 = new SwigDelegateItemFactory_0(SwigDirectorGetNumberOfItems);
+    if (SwigDerivedClassHasMethod("NewItem", swigMethodTypes1))
+      swigDelegate1 = new SwigDelegateItemFactory_1(SwigDirectorNewItem);
+    if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2))
+      swigDelegate2 = new SwigDelegateItemFactory_2(SwigDirectorItemReleased);
+    NDalicPINVOKE.ItemFactory_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
+  }
+
+
+
+#if true
+        private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
+        {
+            global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
+            bool hasDerivedMethod = methodInfo.GetType().GetTypeInfo().IsSubclassOf(typeof(ItemFactory));
+            return hasDerivedMethod;
+        }
+#else
+//original
+   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
+    global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
+    bool hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(ItemFactory));
+    return hasDerivedMethod;
+  }
+#endif
+
+
+        private uint SwigDirectorGetNumberOfItems() {
+    return GetNumberOfItems();
+  }
+
+  private global::System.IntPtr SwigDirectorNewItem(uint itemId) {
+    return Actor.getCPtr(NewItem(itemId)).Handle;
+  }
+
+  private void SwigDirectorItemReleased(uint itemId, global::System.IntPtr actor) {
+    ItemReleased(itemId, new Actor(actor, true));
+  }
+
+  public delegate uint SwigDelegateItemFactory_0();
+  public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
+  public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
+
+  private SwigDelegateItemFactory_0 swigDelegate0;
+  private SwigDelegateItemFactory_1 swigDelegate1;
+  private SwigDelegateItemFactory_2 swigDelegate2;
+
+  private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] {  };
+  private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };
+  private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(uint), typeof(Actor) };
 }
 
 }

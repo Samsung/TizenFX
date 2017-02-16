@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public enum PropertyRanges {
   DEFAULT_OBJECT_PROPERTY_START_INDEX = 0,

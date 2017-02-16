@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 using System;
 using System.Runtime.InteropServices;
@@ -139,7 +139,7 @@ public class DetectedEventArgs : EventArgs
 
    // Populate all members of "e" (DetectedEventArgs) with real data
    e.Actor = Actor.GetActorFromPtr(actor);
-   e.TapGesture = NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
+   e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
    if (_tapGestureEventHandler != null)
    {

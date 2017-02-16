@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class RulerDomain : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

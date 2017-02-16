@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class Alignment : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -65,7 +65,7 @@ public class Alignment : View {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
   
-    public Padding(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    internal Padding(global::System.IntPtr cPtr, bool cMemoryOwn) {
       swigCMemOwn = cMemoryOwn;
       swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
     }
@@ -91,15 +91,15 @@ public class Alignment : View {
       }
     }
   
-    internal Padding() : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_0(), true) {
+    public Padding() : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_0(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   
-    internal Padding(float l, float r, float t, float b) : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_1(l, r, t, b), true) {
+    public Padding(float l, float r, float t, float b) : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_1(l, r, t, b), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   
-    internal float left {
+    public float left {
       set {
         NDalicPINVOKE.Alignment_Padding_left_set(swigCPtr, value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -111,7 +111,7 @@ public class Alignment : View {
       } 
     }
   
-    internal float right {
+    public float right {
       set {
         NDalicPINVOKE.Alignment_Padding_right_set(swigCPtr, value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -123,7 +123,7 @@ public class Alignment : View {
       } 
     }
   
-    internal float top {
+    public float top {
       set {
         NDalicPINVOKE.Alignment_Padding_top_set(swigCPtr, value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -135,7 +135,7 @@ public class Alignment : View {
       } 
     }
   
-    internal float bottom {
+    public float bottom {
       set {
         NDalicPINVOKE.Alignment_Padding_bottom_set(swigCPtr, value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -149,68 +149,68 @@ public class Alignment : View {
   
   }
 
-  internal Alignment (Alignment.Type horizontal, Alignment.Type vertical) : this (NDalicPINVOKE.Alignment_New__SWIG_0((int)horizontal, (int)vertical), true) {
+  public Alignment (Alignment.Type horizontal, Alignment.Type vertical) : this (NDalicPINVOKE.Alignment_New__SWIG_0((int)horizontal, (int)vertical), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  internal Alignment (Alignment.Type horizontal) : this (NDalicPINVOKE.Alignment_New__SWIG_1((int)horizontal), true) {
+  public Alignment (Alignment.Type horizontal) : this (NDalicPINVOKE.Alignment_New__SWIG_1((int)horizontal), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  internal Alignment () : this (NDalicPINVOKE.Alignment_New__SWIG_2(), true) {
+  public Alignment () : this (NDalicPINVOKE.Alignment_New__SWIG_2(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  internal Alignment(Alignment alignment) : this(NDalicPINVOKE.new_Alignment__SWIG_1(Alignment.getCPtr(alignment)), true) {
+  public Alignment(Alignment alignment) : this(NDalicPINVOKE.new_Alignment__SWIG_1(Alignment.getCPtr(alignment)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal new static Alignment DownCast(BaseHandle handle) {
+  public new static Alignment DownCast(BaseHandle handle) {
     Alignment ret = new Alignment(NDalicPINVOKE.Alignment_DownCast(BaseHandle.getCPtr(handle)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void SetAlignmentType(Alignment.Type type) {
+  public void SetAlignmentType(Alignment.Type type) {
     NDalicPINVOKE.Alignment_SetAlignmentType(swigCPtr, (int)type);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Alignment.Type GetAlignmentType() {
+  public Alignment.Type GetAlignmentType() {
     Alignment.Type ret = (Alignment.Type)NDalicPINVOKE.Alignment_GetAlignmentType(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void SetScaling(Alignment.Scaling scaling) {
+  public void SetScaling(Alignment.Scaling scaling) {
     NDalicPINVOKE.Alignment_SetScaling(swigCPtr, (int)scaling);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Alignment.Scaling GetScaling() {
+  public Alignment.Scaling GetScaling() {
     Alignment.Scaling ret = (Alignment.Scaling)NDalicPINVOKE.Alignment_GetScaling(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void SetPadding(Alignment.Padding padding) {
+  public void SetPadding(Alignment.Padding padding) {
     NDalicPINVOKE.Alignment_SetPadding(swigCPtr, Alignment.Padding.getCPtr(padding));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal Alignment.Padding GetPadding() {
+  public Alignment.Padding GetPadding() {
     Alignment.Padding ret = new Alignment.Padding(NDalicPINVOKE.Alignment_GetPadding(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal Alignment Assign(Alignment alignment) {
+  public Alignment Assign(Alignment alignment) {
     Alignment ret = new Alignment(NDalicPINVOKE.Alignment_Assign(swigCPtr, Alignment.getCPtr(alignment)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal enum Type {
+  public enum Type {
     HorizontalLeft = 1,
     HorizontalCenter = 2,
     HorizontalRight = 4,
@@ -219,7 +219,7 @@ public class Alignment : View {
     VerticalBottom = 32
   }
 
-  internal enum Scaling {
+  public enum Scaling {
     ScaleNone,
     ScaleToFill,
     ScaleToFitKeepAspect,

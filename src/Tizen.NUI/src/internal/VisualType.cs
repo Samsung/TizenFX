@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public enum VisualType {
   BORDER,
@@ -18,6 +18,9 @@ public enum VisualType {
   MESH,
   PRIMITIVE,
   WIREFRAME
+
+  ,
+  TEXT
 }
 
 }

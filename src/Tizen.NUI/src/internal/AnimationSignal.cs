@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AnimationSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,19 +46,19 @@ public class AnimationSignal : global::System.IDisposable {
   }
 
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.AnimationSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicPINVOKE.AnimationSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(System.Delegate func) {
+  public void Connect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AnimationSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -66,7 +66,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Disconnect(System.Delegate func) {
+  public void Disconnect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AnimationSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -74,12 +74,12 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Emit(Animation arg) {
+  public void Emit(Animation arg) {
     NDalicPINVOKE.AnimationSignal_Emit(swigCPtr, Animation.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal AnimationSignal() : this(NDalicPINVOKE.new_AnimationSignal(), true) {
+  public AnimationSignal() : this(NDalicPINVOKE.new_AnimationSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

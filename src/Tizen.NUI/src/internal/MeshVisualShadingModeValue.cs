@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public enum MeshVisualShadingModeValue {
   TEXTURELESS_WITH_DIFFUSE_LIGHTING,

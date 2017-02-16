@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AccessibilityFocusOvershotSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,19 +46,19 @@ public class AccessibilityFocusOvershotSignal : global::System.IDisposable {
   }
 
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.AccessibilityFocusOvershotSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicPINVOKE.AccessibilityFocusOvershotSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(System.Delegate func) {
+  public void Connect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AccessibilityFocusOvershotSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -66,7 +66,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Disconnect(System.Delegate func) {
+  public void Disconnect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AccessibilityFocusOvershotSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -74,12 +74,12 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Emit(Actor arg1, AccessibilityManager.FocusOvershotDirection arg2) {
+  public void Emit(Actor arg1, AccessibilityManager.FocusOvershotDirection arg2) {
     NDalicPINVOKE.AccessibilityFocusOvershotSignal_Emit(swigCPtr, Actor.getCPtr(arg1), (int)arg2);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  internal AccessibilityFocusOvershotSignal() : this(NDalicPINVOKE.new_AccessibilityFocusOvershotSignal(), true) {
+  public AccessibilityFocusOvershotSignal() : this(NDalicPINVOKE.new_AccessibilityFocusOvershotSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

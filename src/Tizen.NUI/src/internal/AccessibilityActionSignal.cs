@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class AccessibilityActionSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,19 +46,19 @@ public class AccessibilityActionSignal : global::System.IDisposable {
   }
 
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.AccessibilityActionSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicPINVOKE.AccessibilityActionSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(System.Delegate func) {
+  public void Connect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AccessibilityActionSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -66,7 +66,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Disconnect(System.Delegate func) {
+  public void Disconnect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.AccessibilityActionSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -74,13 +74,13 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal bool Emit(AccessibilityManager arg) {
+  public bool Emit(AccessibilityManager arg) {
     bool ret = NDalicPINVOKE.AccessibilityActionSignal_Emit(swigCPtr, AccessibilityManager.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal AccessibilityActionSignal() : this(NDalicPINVOKE.new_AccessibilityActionSignal(), true) {
+  public AccessibilityActionSignal() : this(NDalicPINVOKE.new_AccessibilityActionSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class PixelData : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

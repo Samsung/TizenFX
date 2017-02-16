@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class SWIGTYPE_p_Configuration__ContextLoss {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

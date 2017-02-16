@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public class ActorTouchDataSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -40,19 +40,19 @@ public class ActorTouchDataSignal : global::System.IDisposable {
     }
   }
 
-  internal bool Empty() {
+  public bool Empty() {
     bool ret = NDalicPINVOKE.ActorTouchDataSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal uint GetConnectionCount() {
+  public uint GetConnectionCount() {
     uint ret = NDalicPINVOKE.ActorTouchDataSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal void Connect(System.Delegate func) {
+  public void Connect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.ActorTouchDataSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -60,7 +60,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal void Disconnect(System.Delegate func) {
+  public void Disconnect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
     {
       NDalicPINVOKE.ActorTouchDataSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -68,13 +68,13 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  internal bool Emit(Actor arg1, TouchData arg2) {
-    bool ret = NDalicPINVOKE.ActorTouchDataSignal_Emit(swigCPtr, Actor.getCPtr(arg1), TouchData.getCPtr(arg2));
+  public bool Emit(Actor arg1, Touch arg2) {
+    bool ret = NDalicPINVOKE.ActorTouchDataSignal_Emit(swigCPtr, Actor.getCPtr(arg1), Touch.getCPtr(arg2));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  internal ActorTouchDataSignal() : this(NDalicPINVOKE.new_ActorTouchDataSignal(), true) {
+  public ActorTouchDataSignal() : this(NDalicPINVOKE.new_ActorTouchDataSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

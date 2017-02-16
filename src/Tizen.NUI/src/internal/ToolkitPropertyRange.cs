@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace NUI {
+namespace Tizen.NUI {
 
 public enum ToolkitPropertyRange {
   VISUAL_PROPERTY_BASE_START_INDEX = PropertyRanges.CORE_PROPERTY_MAX_INDEX+1,
