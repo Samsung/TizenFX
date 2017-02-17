@@ -15,15 +15,19 @@
  */
 
 using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for manager the network information of the access point(AP). It allows applications to manager network informaiton.
+    /// A class for managing the network information of the access point(AP).
     /// </summary>
     public class WiFiAP : IDisposable
     {
         private IntPtr _apHandle = IntPtr.Zero;
+        private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
+        private int _requestId = 0;
         private WiFiNetwork _network;
         private WiFiSecurity _security;
         private bool disposed = false;
@@ -38,6 +42,7 @@ namespace Tizen.Network.WiFi
                 return _network;
             }
         }
+
         /// <summary>
         /// The security information of the access point(AP).
         /// </summary>
@@ -55,20 +60,22 @@ namespace Tizen.Network.WiFi
             _apHandle = handle;
             Initialize();
         }
+
         /// <summary>
-        /// Creates a object for the access point.
+        /// Creates an object for the access point.
         /// </summary>
-        /// <param name="essid">The ESSID (Extended Service Set Identifier) can be UTF-8 encoded </param>
+        /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
         public WiFiAP(string essid)
         {
             Log.Debug(Globals.LogTag, "New WiFiAP. Essid: " + essid);
             createHandle(essid, true);
             Initialize();
         }
+
         /// <summary>
-        /// Creates a object for the hidden access point.
+        /// Creates an object for the hidden access point.
         /// </summary>
-        /// <param name="essid">The ESSID (Extended Service Set Identifier) can be UTF-8 encoded </param>
+        /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
         /// <param name="hidden">The value to set hidden AP</param>
         public WiFiAP(string essid, bool hidden)
         {
@@ -81,6 +88,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy the managed WiFiAP objects.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -143,6 +153,161 @@ namespace Tizen.Network.WiFi
         internal IntPtr GetHandle()
         {
             return _apHandle;
+        }
+
+        /// <summary>
+        /// Connects the access point asynchronously.
+        /// </summary>
+        /// <returns> A task indicating whether the Connect method is done or not.</returns>
+        public Task ConnectAsync()
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Debug(Globals.LogTag, "Connecting finished : " + (WiFiError)error);
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                    }
+                    task.SetResult(true);
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+            int ret = Interop.WiFi.Connect(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret);
+            }
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Connects the access point with WPS PBC asynchronously.
+        /// </summary>
+        /// <returns> A task indicating whether the ConnectByWpsPbs method is done or not.</returns>
+        public Task ConnectByWpsPbcAsync()
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Debug(Globals.LogTag, "Connecting by WPS PBC finished");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                    }
+                    task.SetResult(true);
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+            int ret = Interop.WiFi.ConnectByWpsPbc(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret);
+            }
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Connects the access point with WPS PIN asynchronously.
+        /// </summary>
+        /// <returns> A task indicating whether the ConnectByWpsPin method is done or not.</returns>
+        /// <param name="pin">The WPS PIN is a non-null string with length greater than 0 and less than or equal to 8.</param>
+        public Task ConnectByWpsPinAsync(string pin)
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Debug(Globals.LogTag, "Connecting by WPS PIN finished");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                    }
+                    task.SetResult(true);
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+            int ret = Interop.WiFi.ConnectByWpsPin(WiFiManagerImpl.Instance.GetHandle(), _apHandle, pin, _callback_map[id], id);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret);
+            }
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Disconnects the access point asynchronously.
+        /// </summary>
+        /// <returns> A task indicating whether the Disconnect method is done or not.</returns>
+        public Task DisconnectAsync()
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Debug(Globals.LogTag, "Disconnecting finished");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
+                    }
+                    task.SetResult(true);
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+            int ret = Interop.WiFi.Disconnect(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret);
+            }
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Deletes the information of stored access point and disconnects it when it is connected.<br>
+        /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
+        /// </summary>
+        public void RemoveAP()
+        {
+            int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetHandle(), _apHandle);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret);
+            }
         }
     }
 }

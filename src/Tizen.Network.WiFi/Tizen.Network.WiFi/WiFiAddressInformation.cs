@@ -80,6 +80,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         public System.Net.IPAddress Dns2
         {
             get
@@ -105,6 +106,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         public System.Net.IPAddress Gateway
         {
             get
@@ -130,6 +132,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         public System.Net.IPAddress SubnetMask
         {
             get
@@ -155,6 +158,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         public System.Net.IPAddress IP
         {
             get
@@ -180,6 +184,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         public IPConfigType IPConfigType
         {
             get

@@ -27,12 +27,14 @@ namespace Tizen.Network.WiFi
         /// The file path of CA Certificate of EAP.
         /// </summary>
         string CaCertificationFile { get; set; }
+
         /// <summary>
         /// The EAP type of wifi.
         /// </summary>
         WiFiEapType EapType { get; set; }
+
         /// <summary>
-        /// The type of EAP phase2 authentication of Wi-Fi. 
+        /// The type of EAP phase2 authentication of Wi-Fi.
         /// </summary>
         WiFiAuthenticationType AuthenticationType { get; set; }
     } //WiFiEap

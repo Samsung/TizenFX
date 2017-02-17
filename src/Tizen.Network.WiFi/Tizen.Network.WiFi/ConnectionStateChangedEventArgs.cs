@@ -31,6 +31,7 @@ namespace Tizen.Network.WiFi
             _state = s;
             _ap = new WiFiAP(_apHandle);
         }
+
         /// <summary>
         /// The wifi connection state.
         /// </summary>
@@ -41,6 +42,7 @@ namespace Tizen.Network.WiFi
                 return _state;
             }
         }
+
         /// <summary>
         /// The access point
         /// </summary>

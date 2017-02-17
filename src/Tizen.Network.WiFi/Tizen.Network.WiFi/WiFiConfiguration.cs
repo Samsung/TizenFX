@@ -23,7 +23,7 @@ using Tizen.Network.Connection;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the configuration of Wi-Fi. It allows applications to manage the configuration information of Wi-Fi.
+    /// A class for managing the configuration of Wi-Fi.
     /// </summary>
     public class WiFiConfiguration : IDisposable
     {
@@ -48,10 +48,11 @@ namespace Tizen.Network.WiFi
                 return Marshal.PtrToStringAnsi(strPtr);
             }
         }
+
         /// <summary>
         /// The security type of access point(AP).
         /// </summary>
-        public WiFiSecureType SecurityType
+        public WiFiSecurityType SecurityType
         {
             get
             {
@@ -61,9 +62,10 @@ namespace Tizen.Network.WiFi
                 {
                     Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
                 }
-                return (WiFiSecureType)type;
+                return (WiFiSecurityType)type;
             }
         }
+
         /// <summary>
         /// The proxy address.
         /// </summary>
@@ -90,6 +92,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// A property check whether the access point(AP) is hidden or not.
         /// </summary>
@@ -114,6 +117,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The EAP Configuration.
         /// </summary>
@@ -131,7 +135,13 @@ namespace Tizen.Network.WiFi
             _eapConfig = new WiFiEapConfiguration(_configHandle);
         }
 
-        public WiFiConfiguration(string name, string passPhrase, WiFiSecureType type)
+        /// <summary>
+        /// Creates a WiFiConfiguration object with the given name, passphrase and securetype.
+        /// </summary>
+        /// <param name="name">Name of the WiFi.</param>
+        /// <param name="passPhrase">Password to access the WiFi.</param>
+        /// <param name="type">Security type of the WiFi.</param>
+        public WiFiConfiguration(string name, string passPhrase, WiFiSecurityType type)
         {
             int ret = Interop.WiFi.Config.Create(WiFiManagerImpl.Instance.GetHandle(), name, passPhrase, (int)type, out _configHandle);
             if (ret != (int)WiFiError.None)
@@ -146,6 +156,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy the managed objects in WiFiConfiguration.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

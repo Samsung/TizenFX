@@ -36,6 +36,7 @@ namespace Tizen.Network.WiFi
                 return WiFiManagerImpl.Instance.MacAddress;
             }
         }
+
         /// <summary>
         /// The name of the network interface.
         /// </summary>
@@ -46,8 +47,9 @@ namespace Tizen.Network.WiFi
                 return WiFiManagerImpl.Instance.InterfaceName;
             }
         }
+
         /// <summary>
-        /// The networtk connection state.
+        /// The network connection state.
         /// </summary>
         static public WiFiConnectionState ConnectionState
         {
@@ -56,6 +58,7 @@ namespace Tizen.Network.WiFi
                 return WiFiManagerImpl.Instance.ConnectionState;
             }
         }
+
         /// <summary>
         /// A property to Check whether Wi-Fi is activated.
         /// </summary>
@@ -68,7 +71,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// (event) DeviceStateChanged is raised when the device state is changed.
+        /// DeviceStateChanged is raised when the device state is changed.
         /// </summary>
         static public event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
@@ -81,8 +84,9 @@ namespace Tizen.Network.WiFi
                 WiFiManagerImpl.Instance.DeviceStateChanged -= value;
             }
         }
+
         /// <summary>
-        /// (event) ConnectionStateChanged is rasied when the connection state is changed.
+        /// ConnectionStateChanged is raised when the connection state is changed.
         /// </summary>
         static public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
         {
@@ -95,8 +99,9 @@ namespace Tizen.Network.WiFi
                 WiFiManagerImpl.Instance.ConnectionStateChanged -= value;
             }
         }
+
         /// <summary>
-        /// (event) RssiLevelChanged is rasied when the RSSI of connected Wi-Fi is changed.
+        /// RssiLevelChanged is raised when the RSSI of connected Wi-Fi is changed.
         /// </summary>
         static public event EventHandler<RssiLevelChangedEventArgs> RssiLevelChanged
         {
@@ -109,8 +114,9 @@ namespace Tizen.Network.WiFi
                 WiFiManagerImpl.Instance.RssiLevelChanged -= value;
             }
         }
+
         /// <summary>
-        /// (event) BackgroundScanFinished is rasied when the background scan is finished.
+        /// BackgroundScanFinished is raised when the background scan is finished.
         /// The background scan starts automatically when wifi is activated. The callback will be invoked periodically.
         /// </summary>
         static public event EventHandler BackgroundScanFinished
@@ -124,132 +130,96 @@ namespace Tizen.Network.WiFi
                 WiFiManagerImpl.Instance.BackgroundScanFinished -= value;
             }
         }
+
         /// <summary>
-        /// Gets the result of the scan asynchronously.
+        /// Gets the result of the scan.
         /// </summary>
-        /// <returns> A task contains the lisf for WiFiAPInformation objects.</returns>
+        /// <returns> A list of WiFiAP objects.</returns>
         static public IEnumerable<WiFiAP> GetFoundAPs()
         {
             return WiFiManagerImpl.Instance.GetFoundAPs();
         }
+
         /// <summary>
-        /// Gets the result of specific ap scan asynchronously.
+        /// Gets the result of specific AP scan.
         /// </summary>
-        /// <returns> A task contains the WiFiAPInformation object.</returns>
+        /// <returns> A list contains the WiFiAP objects.</returns>
         static public IEnumerable<WiFiAP> GetFoundSpecificAPs()
         {
             return WiFiManagerImpl.Instance.GetFoundSpecificAPs();
         }
+
         /// <summary>
-        /// Gets the list of wifi configuration.
+        /// Gets the list of wifi configurations.
         /// </summary>
-        /// <returns>A task contains the lisf for WiFiConfiguration objects.</returns>
+        /// <returns>A list contains the WiFiConfiguration objects.</returns>
         static public IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
         {
             return WiFiManagerImpl.Instance.GetWiFiConfigurations();
         }
+
         /// <summary>
         /// Saves Wi-Fi configuration of access point.
         /// </summary>
         /// <param name="configuration">The configuration to be stored</param>
-        static public void SaveWiFiNetworkConfiguration(WiFiConfiguration configuration)
+        static public void SaveWiFiConfiguration(WiFiConfiguration configuration)
         {
             WiFiManagerImpl.Instance.SaveWiFiNetworkConfiguration(configuration);
         }
+
         /// <summary>
-        /// Gets the handle of the connected access point.
+        /// Gets the object of the connected WiFiAP.
         /// </summary>
         /// <returns> The connected wifi access point(AP) information.</returns>
         static public WiFiAP GetConnectedAP()
         {
             return WiFiManagerImpl.Instance.GetConnectedAP();
         }
-        /// <summary>
-        /// Deletes the information of stored access point and disconnects it when it connected.<br>
-        /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
-        /// </summary>
-        /// <param name="ap">The access point to be removed</param>
-        static public void RemoveAP(WiFiAP ap)
-        {
-            WiFiManagerImpl.Instance.RemoveAP(ap);
-        }
+
         /// <summary>
         /// Activates Wi-Fi asynchronously.
         /// </summary>
-        /// <returns> A task indicates whether the Activate method is done or not.</returns>
+        /// <returns> A task indicating whether the Activate method is done or not.</returns>
         static public Task ActivateAsync()
         {
             return WiFiManagerImpl.Instance.ActivateAsync();
         }
+
         /// <summary>
         /// Activates Wi-Fi asynchronously and displays Wi-Fi picker (popup) when Wi-Fi is not automatically connected.
         /// </summary>
-        /// <returns> A task indicates whether the ActivateWithPickerTested method is done or not.</returns>
-        static public Task ActivateWithPickerTestedAsync()
+        /// <returns> A task indicating whether the ActivateWithPicker method is done or not.</returns>
+        static public Task ActivateWithPickerAsync()
         {
             return WiFiManagerImpl.Instance.ActivateWithWiFiPickerTestedAsync();
         }
+
         /// <summary>
         /// Deactivates Wi-Fi asynchronously.
         /// </summary>
-        /// <returns> A task indicates whether the Deactivate method is done or not.</returns>
+        /// <returns> A task indicating whether the Deactivate method is done or not.</returns>
         static public Task DeactivateAsync()
         {
             return WiFiManagerImpl.Instance.DeactivateAsync();
         }
+
         /// <summary>
         /// Starts scan asynchronously.
         /// </summary>
-        /// <returns> A task indicates whether the Scan method is done or not.</returns>
+        /// <returns> A task indicating whether the Scan method is done or not.</returns>
         static public Task ScanAsync()
         {
             return WiFiManagerImpl.Instance.ScanAsync();
         }
+
         /// <summary>
-        /// Starts specific ap scan, asynchronously.
+        /// Starts specific access point scan, asynchronously.
         /// </summary>
-        /// <returns> A task contains WiFiAPInformation object.</returns>
+        /// <returns> A task indicating whether the ScanSpecificAP method is done or not.</returns>
         /// <param name="essid">The essid of hidden ap</param>
         static public Task ScanSpecificAPAsync(string essid)
         {
             return WiFiManagerImpl.Instance.ScanSpecificAPAsync(essid);
-        }
-        /// <summary>
-        /// Connects the access point asynchronously.
-        /// </summary>
-        /// <param name="ap">The access point</param>
-        /// <returns> A task indicates whether the Connect method is done or not.</returns>
-        static public Task ConnectAsync(WiFiAP ap)
-        {
-            return WiFiManagerImpl.Instance.ConnectAsync(ap);
-        }
-        /// <summary>
-        /// Connects the access point with WPS PBC asynchronously.
-        /// </summary>
-        /// <returns> A task indicates whether the ConnectByWpsPbs method is done or not.</returns>
-        /// <param name="ap">The access point(AP)</param>
-        static public Task ConnectByWpsPbcAsync(WiFiAP ap)
-        {
-            return WiFiManagerImpl.Instance.ConnectByWpsPbcAsync(ap);
-        }
-        /// <summary>
-        /// Connects the access point with WPS PIN asynchronously.
-        /// </summary>
-        /// <returns> A task indicates whether the ConnectByWpsPin method is done or not.</returns>
-        /// <param name="ap">The access point(AP)</param>
-        /// <param name="pin">The WPS PIN is a non-NULL string with length greater than 0 and less than or equal to 8.</param>
-        static public Task ConnectByWpsPinAsync(WiFiAP ap, string pin)
-        {
-            Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
-            return WiFiManagerImpl.Instance.ConnectByWpsPinAsync(ap, pin);
-        }
-        /// <summary>
-        /// Disconnects the access point asynchronously.
-        /// </summary>
-        /// <returns> A task indicates whether the Disconnect method is done or not.</returns>
-        static public Task DisconnectAsync(WiFiAP ap)
-        {
-            return WiFiManagerImpl.Instance.DisconnectAsync(ap);
         }
     }
 }

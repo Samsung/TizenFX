@@ -99,6 +99,7 @@ namespace Tizen.Network.WiFi
                 return _macAddress;
             }
         }
+
         internal string InterfaceName
         {
             get
@@ -113,6 +114,7 @@ namespace Tizen.Network.WiFi
                 return name;
             }
         }
+
         internal WiFiConnectionState ConnectionState
         {
             get
@@ -127,6 +129,7 @@ namespace Tizen.Network.WiFi
                 return (WiFiConnectionState)state;
             }
         }
+
         internal bool IsActive
         {
             get
@@ -323,17 +326,6 @@ namespace Tizen.Network.WiFi
             return ap;
         }
 
-        internal void RemoveAP(WiFiAP ap)
-        {
-            IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.RemoveAP(GetHandle(), apHandle);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
-            }
-        }
-
         internal Task ActivateAsync()
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
@@ -484,134 +476,6 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
-            }
-            return task.Task;
-        }
-
-        internal Task ConnectAsync(WiFiAP ap)
-        {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Debug(Globals.LogTag, "Connecting finished : " + (WiFiError)error);
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
-                    }
-                    task.SetResult(true);
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-            IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.Connect(GetHandle(), apHandle, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
-            }
-            return task.Task;
-        }
-
-        internal Task DisconnectAsync(WiFiAP ap)
-        {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Debug(Globals.LogTag, "Disconnecting finished");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
-                    }
-                    task.SetResult(true);
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-            IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.Disconnect(GetHandle(), apHandle, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
-            }
-            return task.Task;
-        }
-
-        internal Task ConnectByWpsPbcAsync(WiFiAP ap)
-        {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Debug(Globals.LogTag, "Connecting by WPS PBC finished");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
-                    }
-                    task.SetResult(true);
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-            IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.ConnectByWpsPbc(GetHandle(), apHandle, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
-            }
-            return task.Task;
-        }
-
-        internal Task ConnectByWpsPinAsync(WiFiAP ap, string pin)
-        {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Debug(Globals.LogTag, "Connecting by WPS PIN finished");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
-                    }
-                    task.SetResult(true);
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-            IntPtr apHandle = ap.GetHandle();
-            int ret = Interop.WiFi.ConnectByWpsPin(GetHandle(), apHandle, pin, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
             return task.Task;

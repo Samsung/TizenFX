@@ -24,8 +24,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the EAP information of access point(AP). It allows applications to manager EAP information.
-    /// This class is not intended to create instance directly from applications.
+    /// A class for managing the EAP information of access point(AP).
     /// </summary>
     public class WiFiEap : IWiFiEap, IDisposable
     {
@@ -59,6 +58,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The EAP type of wifi.
         /// </summary>
@@ -85,6 +85,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The type of EAP phase2 authentication of Wi-Fi.
         /// </summary>
@@ -122,6 +123,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy the managed objects in WiFiEap.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -162,12 +166,12 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <param name="privateKeyFile">The file path of private key.</param>
         /// <param name="password">The password.</param>
-        public void SetPrivateKeyInfo(string privateKeyFile, string password)
+        public void SetPrivateKeyFile(string privateKeyFile, string password)
         {
-            int ret = Interop.WiFi.AP.SetEapPrivateKeyInfo(_apHandle, privateKeyFile, password);
+            int ret = Interop.WiFi.AP.SetEapPrivateKeyFile(_apHandle, privateKeyFile, password);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set private key info, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, "Failed to set private key file, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
             }
         }
@@ -206,7 +210,7 @@ namespace Tizen.Network.WiFi
         /// Gets the username of EAP passphrase.
         /// </summary>
         /// <returns>The user name</returns>
-        public string GetEapPassphraseUserName()
+        public string GetUserName()
         {
             IntPtr strptr;
             bool passwordSet;
@@ -218,11 +222,12 @@ namespace Tizen.Network.WiFi
             }
             return Marshal.PtrToStringAnsi(strptr);
         }
+
         /// <summary>
-        /// Returns whether the password is set for not set.
+        /// Returns whether the password is set or not.
         /// </summary>
-        /// <returns>ture if password is set, otherwise flase if password is not set.</returns>
-        public bool IsEapPassphrasePasswordSet()
+        /// <returns>True if password is set, false if password is not set.</returns>
+        public bool IsPasswordSet()
         {
             IntPtr strptr;
             bool passwordSet;
@@ -236,18 +241,29 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the passphrase of EAP.
-        /// You can set one of user_name and password as NULL.<br>
-        /// In this case, the value of a parameter which is set as NULL will be the previous value. But it is not allowed that both user_name and password are set as NULL.
+        /// Sets the user name of EAP.
         /// </summary>
         /// <param name="userName">The user name</param>
-        /// <param name="password">The password</param>
-        public void SetEapPassphrase(string userName, string password)
+        public void SetUserName(string userName)
         {
-            int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, userName, password);
+            int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, userName, null);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set passphrase, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, "Failed to set username, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+            }
+        }
+
+        /// <summary>
+        /// Sets the password of EAP.
+        /// </summary>
+        /// <param name="password">The password</param>
+        public void SetPassword(string password)
+        {
+            int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, null, password);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set password, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
             }
         }

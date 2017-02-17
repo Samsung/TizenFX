@@ -44,6 +44,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         Aka = 4
     }
+
     /// <summary>
     /// Enumeration for Wi-Fi RSSI level.
     /// </summary>
@@ -70,6 +71,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         Level4 = 4
     }
+
     /// <summary>
     /// Enumeration for Wi-Fi connection state.
     /// </summary>
@@ -96,6 +98,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         Connected = 3
     }
+
     /// <summary>
     /// Enumeration for Wi-Fi device state.
     /// </summary>
@@ -110,6 +113,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         Activated = 1
     }
+
     /// <summary>
     /// Enumeration for Wi-Fi proxy type.
     /// </summary>
@@ -128,6 +132,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         Manual = 2
     }
+
     /// <summary>
     /// Enumeration for Wi-Fi authentication type.
     /// </summary>

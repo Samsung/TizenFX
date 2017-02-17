@@ -21,7 +21,6 @@ namespace Tizen.Network.WiFi
 {
     /// <summary>
     /// A class for managing the EAP configuration.
-    /// This class is not intended to create instance directly from applications.
     /// </summary>
     public class WiFiEapConfiguration : IWiFiEap, IDisposable
     {
@@ -54,6 +53,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The EAP type of wifi.
         /// </summary>
@@ -80,6 +80,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The type of EAP phase2 authentication of Wi-Fi.
         /// </summary>
@@ -106,6 +107,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The anonymous identity of access point(AP).
         /// </summary>
@@ -133,6 +135,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The identity of access point(AP).
         /// </summary>
@@ -160,6 +163,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The subject match of access point(AP).
         /// </summary>
@@ -198,6 +202,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy the managed objects in WiFiEapConfiguration.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -232,6 +239,7 @@ namespace Tizen.Network.WiFi
             }
             return Marshal.PtrToStringAnsi(strPtr);
         }
+
         /// <summary>
         /// Sets access point client cert file to configuration.
         /// </summary>

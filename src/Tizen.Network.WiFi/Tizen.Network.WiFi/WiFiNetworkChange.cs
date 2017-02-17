@@ -29,6 +29,7 @@ namespace Tizen.Network.WiFi
                 handler(sender, e);
             }
         }
+
         internal static void SafeInvoke<T>(this EventHandler<T> evt, object sender, T e) where T : EventArgs
         {
             var handler = evt;

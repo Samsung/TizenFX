@@ -23,8 +23,7 @@ using Tizen.Network.Connection;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the Wi-Fi information. It allows applications to manager network information.
-    /// This class is not intended to create instance directly from applications.
+    /// A class for managing the Wi-Fi network information.
     /// </summary>
     public class WiFiNetwork : IDisposable
     {
@@ -58,6 +57,7 @@ namespace Tizen.Network.WiFi
                 return _essid;
             }
         }
+
         /// <summary>
         /// The Basic Service Set Identifier(BSSID).
         /// </summary>
@@ -75,6 +75,7 @@ namespace Tizen.Network.WiFi
                 return Marshal.PtrToStringAnsi(strPtr);
             }
         }
+
         /// <summary>
         /// The address informaiton for IPv4.
         /// </summary>
@@ -85,6 +86,7 @@ namespace Tizen.Network.WiFi
                 return _ipv4;
             }
         }
+
         /// <summary>
         /// The address ainformation for IPv6.
         /// </summary>
@@ -95,6 +97,7 @@ namespace Tizen.Network.WiFi
                 return _ipv6;
             }
         }
+
         /// <summary>
         /// The proxy address.
         /// </summary>
@@ -120,6 +123,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The proxy type(IPv6).
         /// </summary>
@@ -144,6 +148,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The frequency band(MHz).
         /// </summary>
@@ -160,10 +165,11 @@ namespace Tizen.Network.WiFi
                 return freq;
             }
         }
+
         /// <summary>
         /// The Received signal strength indication(RSSI).
         /// </summary>
-        public int Rssi
+        public WiFiRssiLevel Rssi
         {
             get
             {
@@ -173,11 +179,12 @@ namespace Tizen.Network.WiFi
                 {
                     Log.Error(Globals.LogTag, "Failed to get rssi, Error - " + (WiFiError)ret);
                 }
-                return rssi;
+                return (WiFiRssiLevel)rssi;
             }
         }
+
         /// <summary>
-        /// Rhe max speed (Mbps).
+        /// The max speed (Mbps).
         /// </summary>
         public int MaxSpeed
         {
@@ -192,6 +199,7 @@ namespace Tizen.Network.WiFi
                 return maxSpeed;
             }
         }
+
         /// <summary>
         /// A property to check whether the access point is favorite or not.
         /// </summary>
@@ -208,6 +216,7 @@ namespace Tizen.Network.WiFi
                 return isFavorite;
             }
         }
+
         /// <summary>
         /// A property to check whether the access point is passpoint or not.
         /// </summary>
@@ -225,6 +234,7 @@ namespace Tizen.Network.WiFi
                 return isPasspoint;
             }
         }
+
         /// <summary>
         /// The connection state.
         /// </summary>
@@ -262,6 +272,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy managed WiFiNetwork objects.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

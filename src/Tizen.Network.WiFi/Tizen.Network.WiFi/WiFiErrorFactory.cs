@@ -80,6 +80,5 @@ namespace Tizen.Network.WiFi
                 throw new InvalidOperationException(err.ToString());
             }
         }
-
     }
 }

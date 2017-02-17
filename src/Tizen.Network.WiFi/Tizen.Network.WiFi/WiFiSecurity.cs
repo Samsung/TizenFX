@@ -20,8 +20,7 @@ using Tizen.Network.Connection;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the security information. It allows applications to manager security information.
-    /// This class is not intended to create instance directly from applications.
+    /// A class for managing the WiFi security information.
     /// </summary>
     public class WiFiSecurity : IDisposable
     {
@@ -32,7 +31,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of Wi-Fi security.
         /// </summary>
-        public WiFiSecureType SecurityType
+        public WiFiSecurityType SecurityType
         {
             get
             {
@@ -43,7 +42,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret);
                 }
-                return (WiFiSecureType)type;
+                return (WiFiSecurityType)type;
             }
             set
             {
@@ -55,6 +54,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The type of Wi-Fi encryption
         /// </summary>
@@ -81,6 +81,7 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
         /// <summary>
         /// The EAP information
         /// </summary>
@@ -109,6 +110,7 @@ namespace Tizen.Network.WiFi
                 return required;
             }
         }
+
         /// <summary>
         /// A property to check whether the Wi-Fi Protected Setup(WPS) is supported or not.
         /// </summary>
@@ -138,6 +140,9 @@ namespace Tizen.Network.WiFi
             Dispose(false);
         }
 
+        /// <summary>
+        /// A method to destroy managed WiFiSecurity objects.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

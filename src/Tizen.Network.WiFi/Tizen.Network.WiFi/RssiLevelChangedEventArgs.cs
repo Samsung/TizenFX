@@ -29,6 +29,7 @@ namespace Tizen.Network.WiFi
         {
             _level = l;
         }
+
         /// <summary>
         /// The wifi RSSI level.
         /// </summary>

@@ -186,7 +186,7 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_eap_private_key_file")]
             internal static extern int GetEapPrivateKeyFile(IntPtr ap, out IntPtr file);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_eap_private_key_info")]
-            internal static extern int SetEapPrivateKeyInfo(IntPtr ap, string file, string password);
+            internal static extern int SetEapPrivateKeyFile(IntPtr ap, string file, string password);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_eap_type")]
             internal static extern int GetEapType(IntPtr ap, out int eapType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_eap_type")]
