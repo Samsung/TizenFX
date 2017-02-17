@@ -41,6 +41,7 @@ namespace Tizen.Multimedia
         /// If you need the thumbnail of the specified size, use ThumbnailExtractor(path, width, height) or ThumbnailExtractor(path, size).
         /// </remarks>
         /// <param name="path"> The path of the media file to extract the thumbnail </param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         public ThumbnailExtractor(string path)
         {
             if (path == null)
@@ -111,6 +112,10 @@ namespace Tizen.Multimedia
         /// <param name="path"> The path of the media file to extract the thumbnail </param>
         /// <param name="width"> The width of the thumbnail </param>
         /// <param name="height"> The height of the thumbnail </param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <paramref name="width"/> or <paramref name="height"/> is less than zero.
+        /// </exception>
         public ThumbnailExtractor(string path, int width, int height)
         {
             Create(path, width, height);
@@ -126,6 +131,10 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <param name="path"> The path of the media file to extract the thumbnail </param>
         /// <param name="size"> The size to extract the thumbnail </param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// A value of <paramref name="size"/> is less than zero.
+        /// </exception>
         public ThumbnailExtractor(string path, Size size)
         {
             Create(path, size.Width, size.Height);
@@ -137,6 +146,10 @@ namespace Tizen.Multimedia
         /// <returns>
         /// Task for creation of Thumbnail. See <see cref="ThumbnailData"/> details.
         /// </returns>
+        /// <exception cref="ArgumentException">Requested <paramref name="path"/> does not exist.</exception>
+        /// <exception cref="OutOfMemoryException">Memory allocation failed.</exception>
+        /// <exception cref="InvalidOperationException">Internal processing failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Inaccessible for the requested <paramref name="path"/>.</exception>
         public Task<ThumbnailData> Extract()
         {
             if (_handle == IntPtr.Zero)
