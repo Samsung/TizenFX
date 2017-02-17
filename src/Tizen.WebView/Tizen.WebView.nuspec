@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Tizen.WebView</id>
+    <version>$version$</version>
+    <authors>Samsung Electronics</authors>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Tizen WebView API for C#</description>
+    <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
+    <dependencies>
+      <dependency id="ElmSharp" version="1.1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin/$Configuration$/Tizen.WebView.dll" target="lib/netstandard1.3" />
+  </files>
+</package>
