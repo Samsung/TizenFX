@@ -21,6 +21,24 @@ internal static partial class Interop
 {
     internal static partial class Elementary
     {
+        internal enum Elm_Calendar_Mark_Repeat_Type
+        {
+            ELM_CALENDAR_UNIQUE = 0, /* Default value. Marks will be displayed only on event day. */
+            ELM_CALENDAR_DAILY, /* Marks will be displayed every day after event day (inclusive). */
+            ELM_CALENDAR_WEEKLY, /* Marks will be displayed every week after event day (inclusive) */
+            ELM_CALENDAR_MONTHLY, /* Marks will be displayed every month day that coincides to event day. */
+            ELM_CALENDAR_ANNUALLY, /* Marks will be displayed every year that coincides to event day (and month). */
+            LM_CALENDAR_LAST_DAY_OF_MONTH /* Marks will be displayed every last day of month after event day (inclusive). */
+        };
+
+        internal enum Elm_Calendar_Select_Mode
+        {
+            ELM_CALENDAR_SELECT_MODE_DEFAULT = 0, /* Default value. a day is always selected. */
+            ELM_CALENDAR_SELECT_MODE_ALWAYS, /* a day is always selected. */
+            ELM_CALENDAR_SELECT_MODE_NONE, /* None of the days can be selected. */
+            ELM_CALENDAR_SELECT_MODE_ONDEMAND /* User may have selected a day or not. */
+        }
+
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_calendar_add(IntPtr parent);
 
@@ -62,5 +80,23 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern double elm_calendar_interval_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_calendar_select_mode_set(IntPtr obj, Elm_Calendar_Select_Mode mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_calendar_select_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_calendar_mark_add(IntPtr obj, string type, ref Libc.SystemTime date, Elm_Calendar_Mark_Repeat_Type repeatType);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_calendar_mark_del(IntPtr markItem);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_calendar_marks_draw(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_calendar_marks_clear(IntPtr obj);
     }
 }

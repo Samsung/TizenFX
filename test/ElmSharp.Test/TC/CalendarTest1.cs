@@ -36,19 +36,92 @@ namespace ElmSharp.Test
             Calendar calendar = new Calendar(window)
             {
                 FirstDayOfWeek = DayOfWeek.Monday,
-                WeekDayNames = new List<string>() { "S", "M", "T", "W", "T", "F", "S" }
+                WeekDayNames = new List<string>() { "S", "M", "T", "W", "T", "F", "S" },
+                MinimumYear = DateTime.MinValue.Year,
+                MaximumYear = DateTime.MaxValue.Year
             };
 
-            Label label1 = new Label(window) {
+            IList<CalendarMark> marks = new List<CalendarMark>();
+
+            var mark = calendar.AddMark("holiday", DateTime.Today, CalendarMarkRepeatType.Unique);
+            marks.Add(mark);
+
+            Label label1 = new Label(window)
+            {
                 Text = string.Format("WeekDayLabel.Count={0}", calendar.WeekDayNames.Count),
+                Color = Color.Black,
             };
 
-            Label label2 = new Label(window) {
+            Label label2 = new Label(window)
+            {
                 Text = string.Format("WeekDayLabel.FirstDayOfWeek={0}", calendar.FirstDayOfWeek),
+                Color = Color.Black,
             };
 
-            Label label3 = new Label(window) {
+            Label label3 = new Label(window)
+            {
                 Text = string.Format("WeekDayLabel.SelectedDate={0}", calendar.SelectedDate),
+                Color = Color.Black,
+            };
+
+            var selectMode = new Label(window)
+            {
+                Text = string.Format("SelectMode = {0}", calendar.SelectMode),
+                Color = Color.Black,
+            };
+
+            var addMark = new Button(window)
+            {
+                Text = "Add Mark"
+            };
+
+            var i = 1;
+
+            addMark.Clicked += (s, e) =>
+            {
+                var newMark = calendar.AddMark("holiday", DateTime.Today.AddDays(i), CalendarMarkRepeatType.Unique);
+
+                Console.WriteLine("Call Add Mark : " + DateTime.Today.AddDays(i));
+                marks.Add(newMark);
+                calendar.DrawMarks();
+                i++;
+            };
+
+            var delMark = new Button(window)
+            {
+                Text = "Delete Mark"
+            };
+
+            delMark.Clicked += (s, e) =>
+            {
+                if (marks.Count > 0)
+                {
+                    calendar.DeleteMark(marks[0]);
+                    marks.Remove(marks[0]);
+                    calendar.DrawMarks();
+                }
+            };
+
+            var changeMode = new Button(window)
+            {
+                Text = "Change Select Mode"
+            };
+
+            changeMode.Clicked += (s, e) =>
+            {
+                if (calendar.SelectMode == CalendarSelectMode.Always || calendar.SelectMode == CalendarSelectMode.Default)
+                {
+                    calendar.SelectMode = CalendarSelectMode.None;
+                }
+                else if (calendar.SelectMode == CalendarSelectMode.None)
+                {
+                    calendar.SelectMode = CalendarSelectMode.OnDemand;
+                }
+                else
+                {
+                    calendar.SelectMode = CalendarSelectMode.Always;
+                }
+                selectMode.Text = string.Format("SelectMode = {0}", calendar.SelectMode);
             };
 
             calendar.DateChanged += (object sender, DateChangedEventArgs e) =>
@@ -63,7 +136,7 @@ namespace ElmSharp.Test
             };
 
             calendar.Resize(600, 600);
-            calendar.Move(0, 300);
+            calendar.Move(0, 250);
             calendar.Show();
 
             label1.Resize(600, 100);
@@ -71,13 +144,28 @@ namespace ElmSharp.Test
             label1.Show();
 
             label2.Resize(600, 100);
-            label2.Move(0, 100);
+            label2.Move(0, 50);
             label2.Show();
 
             label3.Resize(600, 100);
-            label3.Move(0, 200);
+            label3.Move(0, 100);
             label3.Show();
-        }
 
+            selectMode.Resize(600, 100);
+            selectMode.Move(0, 150);
+            selectMode.Show();
+
+            addMark.Resize(600, 100);
+            addMark.Move(0, 900);
+            addMark.Show();
+
+            delMark.Resize(600, 100);
+            delMark.Move(0, 1000);
+            delMark.Show();
+
+            changeMode.Resize(600, 100);
+            changeMode.Move(0, 1100);
+            changeMode.Show();
+        }
     }
 }

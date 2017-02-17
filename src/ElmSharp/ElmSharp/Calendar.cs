@@ -22,14 +22,69 @@ using System.Runtime.InteropServices;
 namespace ElmSharp
 {
     /// <summary>
+    /// Event periodicity, used to define if a mark should be repeated beyond event's day. It's set when a mark is added.
+    /// </summary>
+    public enum CalendarMarkRepeatType
+    {
+        Unique, ///Default value. Marks will be displayed only on event day.
+        Daily, ///Marks will be displayed every day after event day.
+        Weekly, ///Marks will be displayed every week after event day.
+        Monthly, ///Marks will be displayed every month day that coincides to event day.
+        Annually, ///Marks will be displayed every year that coincides to event day.
+        LastDayOfMonth ///Marks will be displayed every last day of month after event day.
+    }
+
+    /// <summary>
+    /// The mode, who determine how user could select a day
+    /// </summary>
+    public enum CalendarSelectMode
+    {
+        Default, ///Default value. a day is always selected.
+        Always, ///a day is always selected.
+        None, ///None of the days can be selected.
+        OnDemand ///User may have selected a day or not.
+    }
+
+    /// <summary>
+    /// Item for a calendar mark.
+    /// </summary>
+    public class CalendarMark
+    {
+        internal IntPtr Handle;
+
+        /// <summary>
+        /// A string used to define the type of mark.
+        /// </summary>
+        public string Type;
+
+        /// <summary>
+        /// A time struct to represent the date of inclusion of the mark.
+        /// </summary>
+        public DateTime Date;
+
+        /// <summary>
+        /// Repeat the event following this periodicity.
+        /// </summary>
+        public CalendarMarkRepeatType Repeat;
+
+        public CalendarMark(string type, DateTime date, CalendarMarkRepeatType repeat)
+        {
+            Handle = IntPtr.Zero;
+            Type = type;
+            Date = date;
+            Repeat = repeat;
+        }
+    }
+
+    /// <summary>
     /// The Calendar is a widget that helps applications to flexibly display a calender with day of the week, date, year and month.
     /// </summary>
     public class Calendar : Layout
     {
-        private SmartEvent _changed;
-        private DateTime _cacheSelectedDate;
-        private SmartEvent _displayedMonthChanged;
-        private int _cacheDisplayedMonth;
+        SmartEvent _changed;
+        DateTime _cacheSelectedDate;
+        SmartEvent _displayedMonthChanged;
+        int _cacheDisplayedMonth;
 
         /// <summary>
         /// Creates and initializes a new instance of the Calendar class.
@@ -50,7 +105,7 @@ namespace ElmSharp
             _displayedMonthChanged = new SmartEvent(this, this.RealHandle, "display,changed");
             _displayedMonthChanged.On += (sender, e) =>
             {
-                int currentDisplayedMonth = SelectedDate.Month;
+                int currentDisplayedMonth = DisplayedTime.Month;
                 DisplayedMonthChanged?.Invoke(this, new DisplayedMonthChangedEventArgs(_cacheDisplayedMonth, currentDisplayedMonth));
                 _cacheDisplayedMonth = currentDisplayedMonth;
             };
@@ -83,6 +138,10 @@ namespace ElmSharp
                 int maximumYear;
                 int unused;
                 Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out unused, out maximumYear);
+                if (maximumYear < 1902)
+                {
+                    maximumYear = DateTime.MaxValue.Year;
+                }
                 Interop.Elementary.elm_calendar_min_max_year_set(RealHandle, value, maximumYear);
             }
         }
@@ -105,6 +164,31 @@ namespace ElmSharp
                 int unused;
                 Interop.Elementary.elm_calendar_min_max_year_get(RealHandle, out minimumYear, out unused);
                 Interop.Elementary.elm_calendar_min_max_year_set(RealHandle, minimumYear, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the first day of week, who are used on Calendar.
+        /// </summary>
+        public DateTime DisplayedTime
+        {
+            get
+            {
+                var tm = new Interop.Libc.SystemTime();
+                Interop.Elementary.elm_calendar_displayed_time_get(RealHandle, out tm);
+                ///TODO
+                ///If the defect is fixed, it will be removed.
+                var daysInMonth = DateTime.DaysInMonth(tm.tm_year + 1900, tm.tm_mon + 1);
+                var day = tm.tm_mday;
+
+                if (day > daysInMonth)
+                {
+                    day = daysInMonth;
+                }
+
+                DateTime date = new DateTime(tm.tm_year + 1900, tm.tm_mon + 1, day, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+                return date;
             }
         }
 
@@ -161,6 +245,10 @@ namespace ElmSharp
             {
                 var tm = new Interop.Libc.SystemTime();
                 Interop.Elementary.elm_calendar_selected_time_get(RealHandle, ref tm);
+                if (tm.tm_year == 0 && tm.tm_mon == 0 && tm.tm_mday == 0)
+                {
+                    return DateTime.Now;
+                }
                 return tm;
             }
             set
@@ -187,6 +275,63 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the select day mode used.
+        /// </summary>
+        public CalendarSelectMode SelectMode
+        {
+            get
+            {
+                return (CalendarSelectMode)Interop.Elementary.elm_calendar_select_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_calendar_select_mode_set(RealHandle, (Interop.Elementary.Elm_Calendar_Select_Mode)value);
+            }
+        }
+
+        /// <summary>
+        /// Add a new mark to the calendar.
+        /// </summary>
+        /// <param name="type">A string used to define the type of mark. It will be emitted to the theme, that should display a related modification on these days representation.</param>
+        /// <param name="date">A time struct to represent the date of inclusion of the mark. For marks that repeats it will just be displayed after the inclusion date in the calendar.</param>
+        /// <param name="repeat">Repeat the event following this periodicity. Can be a unique mark (that don't repeat), daily, weekly, monthly or annually.</param>
+        /// <returns>Item for a calendar mark.</returns>
+        public CalendarMark AddMark(string type, DateTime date, CalendarMarkRepeatType repeat)
+        {
+            CalendarMark mark = new CalendarMark(type, date, repeat);
+            Interop.Libc.SystemTime tm = date;
+            IntPtr nativeHandle = Interop.Elementary.elm_calendar_mark_add(RealHandle, type, ref tm, (Interop.Elementary.Elm_Calendar_Mark_Repeat_Type)repeat);
+            mark.Handle = nativeHandle;
+
+            return mark;
+        }
+
+        /// <summary>
+        /// Delete mark from the calendar.
+        /// </summary>
+        /// <param name="mark">Item for a calendar mark</param>
+        public void DeleteMark(CalendarMark mark)
+        {
+            Interop.Elementary.elm_calendar_mark_del(mark.Handle);
+        }
+
+        /// <summary>
+        /// Draw calendar marks.
+        /// </summary>
+        public void DrawMarks()
+        {
+            Interop.Elementary.elm_calendar_marks_draw(RealHandle);
+        }
+
+        /// <summary>
+        /// Remove all calendar's marks.
+        /// </summary>
+        public void ClearMarks()
+        {
+            Interop.Elementary.elm_calendar_marks_clear(RealHandle);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
@@ -198,7 +343,7 @@ namespace ElmSharp
             return handle;
         }
 
-        static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
+        static void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
         {
             managedArray = new string[size];
             IntPtr[] IntPtrArray = new IntPtr[size];
