@@ -160,26 +160,6 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Posts a message on a toast popup
-        /// </summary>
-        /// <param name="text">Text to display on popup</param>
-        /// <exception cref="ArgumentNullException">Thrown when argument is null</exception>
-        /// <example>
-        /// <code>
-        /// string msg = "hey there!!";
-        /// NotificationManager.PostToastMessage(msg);
-        /// </code>
-        /// </example>
-        public static void PostToastMessage(string text)
-        {
-            int ret = Interop.Notification.PostMessage(text);
-            if(ret != (int)NotificationError.None)
-            {
-                throw NotificationErrorFactory.GetException((NotificationError)ret, "post toast message failed");
-            }
-        }
-
-        /// <summary>
         /// Searches for a posted notification which has the inputted tag
         /// </summary>
         /// <remarks>

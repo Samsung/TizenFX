@@ -146,9 +146,6 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_tag")]
         internal static extern int GetTag(SafeNotificationHandle handle, out IntPtr tag);
 
-        [DllImport(Libraries.Notification, EntryPoint = "notification_status_message_post")]
-        internal static extern int PostMessage(string text);
-
         [DllImport(Libraries.Notification, EntryPoint = "notification_load_by_tag")]
         internal static extern SafeNotificationHandle Load(string text);
 

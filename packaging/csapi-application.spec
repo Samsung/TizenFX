@@ -16,7 +16,7 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
 
-%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications
+%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications Tizen.Applications.ToastMessage
 
 %description
 %{summary}
@@ -91,6 +91,22 @@ Group:  Development/Libraries
 
 %description -n csapi-application-notification-nuget
 A notification library in Tizen C# API package.
+
+%package -n csapi-application-toastmessage
+Summary:  A toastmessage library in Tizen C# API
+Group:  Development/Libraries
+AutoReqProv: no
+ExcludeArch: aarch64
+
+%description -n csapi-application-toastmessage
+A toastmessage library in Tizen C# API package.
+
+%package -n csapi-application-toastmessage-nuget
+Summary:  A toastmessage library in Tizen C# API
+Group:  Development/Libraries
+
+%description -n csapi-application-toastmessage-nuget
+A toastmessage library in Tizen C# API package.
 
 %package -n csapi-application-preference
 Summary:  A preference library in Tizen C# API
@@ -209,6 +225,14 @@ done
 
 %files -n csapi-application-notification-nuget
 /nuget/Tizen.Applications.Notification.%{version}.nupkg
+
+%files -n csapi-application-toastmessage
+%manifest %{name}.manifest
+%license LICENSE
+%attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.ToastMessage.dll
+
+%files -n csapi-application-toastmessage-nuget
+/nuget/Tizen.Applications.ToastMessage.%{version}.nupkg
 
 %files -n csapi-application-preference
 %manifest %{name}.manifest

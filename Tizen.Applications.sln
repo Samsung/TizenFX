@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.UI", "Tizen.Applications.UI\Tizen.Applications.UI.csproj", "{9AFFA998-5065-487E-BEDB-8B290AD2138F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications", "Tizen.Applications\Tizen.Applications.csproj", "{6209641F-4B03-4DAD-84D8-4775AD72AD75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.ToastMessage", "Tizen.Applications.ToastMessage\Tizen.Applications.ToastMessage.csproj", "{C35F85FC-A095-4356-8F17-DD248FB1C9AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6209641F-4B03-4DAD-84D8-4775AD72AD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6209641F-4B03-4DAD-84D8-4775AD72AD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6209641F-4B03-4DAD-84D8-4775AD72AD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35F85FC-A095-4356-8F17-DD248FB1C9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35F85FC-A095-4356-8F17-DD248FB1C9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35F85FC-A095-4356-8F17-DD248FB1C9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35F85FC-A095-4356-8F17-DD248FB1C9AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -92,6 +92,7 @@
     <Compile Include="../Tizen.Applications.PackageManager/Interop/Interop.PackageManager.cs" />
     <Compile Include="../Tizen.Applications.Preference/Interop/Interop.Preference.cs" />
     <Compile Include="../Tizen.Applications.Service/Interop/Interop.Service.cs" />
+    <Compile Include="../Tizen.Applications.ToastMessage/Interop/Interop.ToastMessage.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LocaleChangedEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowBatteryEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowBatteryStatus.cs" />
@@ -134,6 +135,8 @@
     <Compile Include="../Tizen.Applications.UI/Tizen.Applications.CoreBackend/UICoreBackend.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientationEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientation.cs" />
+    <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessage.cs" />
+    <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessageErrorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.project.json" />
