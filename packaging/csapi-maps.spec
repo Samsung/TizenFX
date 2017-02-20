@@ -8,7 +8,7 @@
 
 Name:       csapi-maps
 Summary:    Tizen Map Service API for C#
-Version:    1.0.7
+Version:    1.0.8
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -48,12 +48,14 @@ done
 %install
 # Runtime Binary
 mkdir -p %{buildroot}%{dotnet_assembly_path}
+mkdir -p %{buildroot}%{dotnet_assembly_path}/res
 for ASM in %{Assemblies}; do
 %if 0%{?_with_corefx}
   install -p -m 644 $ASM/bin/%{BUILDCONF}/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 %else
   install -p -m 644 $ASM/bin/%{BUILDCONF}/Net45/$ASM.dll %{buildroot}%{dotnet_assembly_path}
 %endif
+  install -p -m 644 $ASM/res/*.png %{buildroot}%{dotnet_assembly_path}/res
 done
 # NuGet
 mkdir -p %{buildroot}/nuget
@@ -63,6 +65,7 @@ install -p -m 644 *.nupkg %{buildroot}/nuget
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{dotnet_assembly_path}/*.dll
+%attr(644,root,root) %{dotnet_assembly_path}/res/*.png
 
 %package nuget
 Summary:   NuGet package for %{name}

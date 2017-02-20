@@ -179,12 +179,25 @@ namespace Tizen.Maps
     /// </summary>
     public class Pin : Marker
     {
+        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin.png";
+
+        /// <summary>
+        /// Creates Pin type parker
+        /// </summary>
+        /// <param name="coordinates">Marker coordinates</param>
+        public Pin(Geocoordinates coordinates)
+            : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Pin)
+        {
+            Resize(new Size(48, 48));
+        }
+
         /// <summary>
         /// Creates Pin type parker
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image path</param>
-        public Pin(Geocoordinates coordinates, string imagePath) : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
+        public Pin(Geocoordinates coordinates, string imagePath)
+            : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
         {
         }
     }
@@ -194,12 +207,25 @@ namespace Tizen.Maps
     /// </summary>
     public class Sticker : Marker
     {
+        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker.png";
+
+        /// <summary>
+        /// Creates Sticker type parker
+        /// </summary>
+        /// <param name="coordinates">Marker coordinates</param>
+        public Sticker(Geocoordinates coordinates)
+            : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Sticker)
+        {
+            Resize(new Size(48, 48));
+        }
+
         /// <summary>
         /// Creates Sticker type parker
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image path</param>
-        public Sticker(Geocoordinates coordinates, string imagePath) : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
+        public Sticker(Geocoordinates coordinates, string imagePath)
+            : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
         {
         }
     }
