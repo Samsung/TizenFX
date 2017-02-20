@@ -42,6 +42,7 @@ namespace MyCSharpExample
         private TableView _contentContainer;
         private Stage _stage;
         private Popup _popup;
+        private Timer _timer;
 
         // List of items
         private Item[] mViewList = {
@@ -107,6 +108,11 @@ namespace MyCSharpExample
 
             FocusManager.Instance.PreFocusChange += OnPreFocusChange;
 
+            _timer = new Timer(500);
+            _timer.Tick += OnTimerTick;
+            _timer.Start();
+
+
             View _testView = new View();
             Tizen.Log.Debug("NUI", "1) test view sizewidth = " + _testView.SizeWidth + "  sizeHeight= " + _testView.SizeHeight);
             _testView.Size = new Size(1.0f, 2.0f, 0.0f);
@@ -124,6 +130,12 @@ namespace MyCSharpExample
             _win.SetIndicatorBgOpacity(Window.IndicatorBgOpacity.OPAQUE);
             Any _any = _win.GetNativeHandle();
 #endif
+        }
+
+        private bool OnTimerTick(object sender, EventArgs e)
+        {
+            Tizen.Log.Debug("NUI", "OnTimerTick() is called!");
+            return true;
         }
 
         // Callback for KeyboardFocusManager
