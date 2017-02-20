@@ -25,5 +25,12 @@ namespace Tizen.Messaging.Email
         /// The absolute full path of the file to be attached
         /// </summary>
         public string FilePath { get; set; }
+        /// <summary>
+        /// The constructor
+        /// </summary>
+        public EmailAttachment()
+        {
+
+        }
     }
 }

@@ -25,5 +25,12 @@ namespace Tizen.Messaging.Email
         /// The email address of the recipient
         /// </summary>
         public string Address { get; set; }
+        /// <summary>
+        /// The constructor
+        /// </summary>
+        public EmailRecipient()
+        {
+
+        }
     }
 }

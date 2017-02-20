@@ -30,10 +30,11 @@ namespace Tizen.Messaging.Email
         /// <param name="email">The email message</param>
         /// <param name="saveToSentBox">true to save the message in the sentbox</param>
         /// <returns> Failure if email sending failed otherwise Success</returns>
-        public static async Task<EmailSendResult> SendAsync(EmailMessage email, bool saveToSentBox)
+        public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
             var task = new TaskCompletionSource<EmailSendResult>();
             int ret = (int)EmailError.None;
+            bool saveToSentBox = false;
 
             email.FillHandle();
             email.Save();

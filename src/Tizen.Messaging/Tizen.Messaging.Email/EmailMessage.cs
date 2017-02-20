@@ -93,9 +93,6 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// List of file attachments
         /// </summary>
-        /// <remarks>
-        /// The maximum attachment file size is 10 MB.
-        /// </remarks>
         public IList<EmailAttachment> Attachments
         {
             get
@@ -146,10 +143,8 @@ namespace Tizen.Messaging.Email
             }
         }
 
-        /// <summary>
-        /// Saves the email message
-        /// </summary>
-        public void Save()
+
+        internal void Save()
         {
             int ret;
             FillHandle();
