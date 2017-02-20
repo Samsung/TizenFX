@@ -82,9 +82,24 @@ namespace ElmSharp
             }
         }
 
+        public void Clear()
+        {
+            Interop.Elementary.elm_ctxpopup_clear(Handle);
+        }
+
         public void SetDirectionPriorty(ContextPopupDirection first, ContextPopupDirection second, ContextPopupDirection third, ContextPopupDirection fourth)
         {
             Interop.Elementary.elm_ctxpopup_direction_priority_set(RealHandle, (int)first, (int)second, (int)third, (int)fourth);
+        }
+
+        public void GetDirectionPriority(out ContextPopupDirection first, out ContextPopupDirection second, out ContextPopupDirection third, out ContextPopupDirection fourth)
+        {
+            int firstOut, secondOut, thirdOut, fourthOut;
+            Interop.Elementary.elm_ctxpopup_direction_priority_get(Handle, out firstOut, out secondOut, out thirdOut, out fourthOut);
+            first = (ContextPopupDirection)firstOut;
+            second = (ContextPopupDirection)secondOut;
+            third = (ContextPopupDirection)thirdOut;
+            fourth = (ContextPopupDirection)fourthOut;
         }
 
         public ContextPopupItem Append(string label)
