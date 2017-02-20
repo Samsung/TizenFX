@@ -108,9 +108,6 @@ internal static partial class Interop
         [DllImport(Libraries.Messages, EntryPoint = "messages_set_message_incoming_cb")]
         internal static extern int SetMessageIncomingCb(IntPtr serviceHandle, MessageIncomingCallback cb, IntPtr userData);
 
-        [DllImport(Libraries.Messages, EntryPoint = "messages_unset_message_incoming_cb")]
-        internal static extern int UnsetMessageIncomingCb(IntPtr serviceHandle);
-
         [DllImport(Libraries.Messages, EntryPoint = "messages_send_message")]
         internal static extern int SendMessage(IntPtr serviceHandle, IntPtr messageHandle, bool saveToSentbox, MessageSentCallback cb, IntPtr userData);
 

@@ -24,11 +24,13 @@ namespace Tizen.Messaging.Messages
 
         private Interop.Messages.MessageIncomingCallback _messageReceivedCallback;
 
+        private bool _registered = false;
+
         internal event EventHandler<MessageReceivedEventArgs> _MessageReceived
         {
             add
             {
-                if (_messageReceived == null)
+                if (_registered == false && _messageReceived == null)
                 {
                     RegisterMessageReceivedEvent();
                 }
@@ -37,10 +39,6 @@ namespace Tizen.Messaging.Messages
             remove
             {
                 _messageReceived -= value;
-                if (_messageReceived == null)
-                {
-                    UnregisterMessageReceivedEvent();
-                }
             }
         }
 
@@ -111,15 +109,8 @@ namespace Tizen.Messaging.Messages
             {
                 Log.Error(Globals.LogTag, "Failed to set message incoming callback, Error - " + (MessagesError)ret);
             }
-        }
 
-        private void UnregisterMessageReceivedEvent()
-        {
-            int ret = Interop.Messages.UnsetMessageIncomingCb(_MessageServiceHandle);
-            if (ret != (int)MessagesError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to unset message incoming callback, Error - " + (MessagesError)ret);
-            }
+            _registered = true;
         }
     }
 }
