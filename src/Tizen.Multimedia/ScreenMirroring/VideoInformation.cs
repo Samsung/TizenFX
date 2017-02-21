@@ -43,6 +43,7 @@ namespace Tizen.Multimedia
         /// Get video Codec.
         /// </summary>
         /// <value> Video Codec </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public VideoCodec Codec
         {
             get
@@ -63,6 +64,7 @@ namespace Tizen.Multimedia
         /// Get height of video resolution.
         /// </summary>
         /// <value> Video Resolution Height </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Height
         {
             get
@@ -83,6 +85,7 @@ namespace Tizen.Multimedia
         /// Get width of video resolution.
         /// </summary>
         /// <value> Video Resolution Width </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Width
         {
             get
@@ -103,6 +106,7 @@ namespace Tizen.Multimedia
         /// Get width of video frame rate.
         /// </summary>
         /// <value> Video FrameRate </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int FrameRate
         {
             get

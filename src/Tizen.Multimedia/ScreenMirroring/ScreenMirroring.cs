@@ -50,7 +50,6 @@ namespace Tizen.Multimedia
         /// <param name="ip">Ip.</param>
         /// <param name="port">Port.</param>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public ScreenMirroring(SurfaceType type, MediaView display, string ip, string port)
         {
             int ret = Interop.ScreenMirroring.Create(out _handle);
@@ -135,7 +134,6 @@ namespace Tizen.Multimedia
         /// <param name="ip">Ip.</param>
         /// <param name="port">Port.</param>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public void SetIpAndPort(string ip, string port)
         {
             int ret = Interop.ScreenMirroring.SetIpAndPort(_handle, ip, port);
@@ -152,10 +150,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="resolution"> example: (R1920x1080P30 | R1280x720P30) </param>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
-        public void SetResolution(int resolution)
+        public void SetResolution(ResolutionType resolution)
         {
-            int ret = Interop.ScreenMirroring.SetResolution(_handle, resolution);
+            int ret = Interop.ScreenMirroring.SetResolution(_handle, (int)resolution);
             if (ret != (int)ScreenMirroringError.None)
             {
                 Log.Error(ScreenMirroringLog.LogTag, "Set resolution failed" + (ScreenMirroringError)ret);
@@ -174,7 +171,6 @@ namespace Tizen.Multimedia
         /// <param name="display">Display.</param>
         /// <remarks> Display Handle creates using mediaview class </remarks>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public void SetDisplay(SurfaceType type, MediaView display)
         {
             int ret = Interop.ScreenMirroring.SetDisplay(_handle, (int)type, display);
@@ -189,6 +185,7 @@ namespace Tizen.Multimedia
         /// Prepare this instance.
         /// This must be called after Create().
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public void Prepare()
         {
             int ret = Interop.ScreenMirroring.Prepare(_handle);
@@ -360,7 +357,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method fail due to no connection between devices</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public void Disconnect()
         {
             int ret = Interop.ScreenMirroring.Disconnect(_handle);

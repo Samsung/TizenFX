@@ -42,6 +42,7 @@ namespace Tizen.Multimedia
         /// Get Audio Codec.
         /// </summary>
         /// <value> Audio Codec </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public AudioCodec Codec
         {
             get
@@ -62,6 +63,7 @@ namespace Tizen.Multimedia
         /// Get audio channel.
         /// </summary>
         /// <value> AudioChannel </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Channel
         {
             get
@@ -82,6 +84,7 @@ namespace Tizen.Multimedia
         /// Get audio sample rate.
         /// </summary>
         /// <value> AudioSampleRate </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int SampleRate
         {
             get
@@ -102,6 +105,7 @@ namespace Tizen.Multimedia
         /// Get audio bitwidth.
         /// </summary>
         /// <value> AudioBitwidth </value>
+        /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int BitWidth
         {
             get
