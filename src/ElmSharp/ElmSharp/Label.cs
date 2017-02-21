@@ -100,13 +100,8 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
-            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
-
-            RealHandle = Interop.Elementary.elm_label_add(handle);
-            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
-
-            return handle;
+            //TODO: Fix this to use layout
+            return Interop.Elementary.elm_label_add(parent.Handle);
         }
     }
 
