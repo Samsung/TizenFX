@@ -215,6 +215,11 @@ namespace Tizen.Applications
                     throw PreferenceErrorFactory.GetException(ret);
                 }
             }
+            else
+            {
+                Log.Error(LogTag, "Failed to Set");
+                throw new ArgumentException("Invalid parameter");
+            }
         }
 
         /// <summary>
