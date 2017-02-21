@@ -93,9 +93,18 @@ namespace Tizen.Applications
             _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
 
-            string[] argsClone = new string[args.Length + 1];
+            string[] argsClone = null;
+
+            if (args == null)
+            {
+                argsClone = new string[1];
+            }
+            else
+            {
+                argsClone = new string[args.Length + 1];
+                args.CopyTo(argsClone, 1);
+            }
             argsClone[0] = string.Empty;
-            args.CopyTo(argsClone, 1);
             _backend.Run(argsClone);
         }
 
