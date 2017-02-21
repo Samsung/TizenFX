@@ -22,6 +22,13 @@ namespace Tizen.Messaging.Messages
     public class MessagesSearchFilter
     {
         /// <summary>
+        /// Create a search filter for searching messages.
+        /// </summary>
+        public MessagesSearchFilter()
+        {
+        }
+
+        /// <summary>
         /// The message box type
         /// </summary>
         public MessageBoxType MessageBoxType { get; set; }

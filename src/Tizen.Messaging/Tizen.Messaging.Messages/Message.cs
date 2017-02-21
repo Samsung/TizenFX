@@ -172,6 +172,9 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The message ID
         /// </summary>
+        /// <remarks>
+        /// After creating Message object, default value of this property is 0. After sending, this value is changed.
+        /// </remarks>
         public int Id
         {
             get
