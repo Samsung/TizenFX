@@ -37,29 +37,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The Latitude data.
         /// </summary>
-        public double Latitude
-        {
-            get;
-            private set;
-        }
+        public double Latitude { get; }
 
         /// <summary>
         /// The Longitude data.
         /// </summary>
-        public double Longitude
-        {
-            get;
-            private set;
-        }
+        public double Longitude { get; }
 
         /// <summary>
         /// The Altitude data.
         /// </summary>
-        public double Altitude
-        {
-            get;
-            private set;
-        }
+        public double Altitude { get; }
     }
 }
 

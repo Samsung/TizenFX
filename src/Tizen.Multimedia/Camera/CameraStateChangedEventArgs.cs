@@ -34,30 +34,18 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Previous state of the camera.
         /// </summary>
-        public CameraState Previous
-        {
-            get;
-            private set;
-        }
+        public CameraState Previous { get; }
 
         /// <summary>
         /// Current state of the camera.
         /// </summary>
-        public CameraState Current
-        {
-            get;
-            private set;
-        }
+        public CameraState Current { get; }
 
         /// <summary>
         /// true if the state changed by policy such as Resource Conflict or Security, otherwise false
         /// in normal state change.
         /// </summary>
-        public bool ByPolicy
-        {
-            get;
-            private set;
-        }
+        public bool ByPolicy { get; }
     }
 }
 

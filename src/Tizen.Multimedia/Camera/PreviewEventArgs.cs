@@ -32,20 +32,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// PreviewData frame.
         /// </summary>
-        public PreviewData Frame
-        {
-            get;
-            internal set;
-        }
+        public PreviewData Frame { get; }
 
         /// <summary>
         /// Number of planes in image data.
         /// </summary>
-        public PlaneType Type
-        {
-            get;
-            internal set;
-        }
+        public PlaneType Type { get; }
     }
 }
 

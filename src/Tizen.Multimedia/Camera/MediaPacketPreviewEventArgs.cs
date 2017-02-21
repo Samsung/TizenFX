@@ -31,11 +31,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Media Packet data.
         /// </summary>
-        public MediaPacket Packet
-        {
-            get;
-            internal set;
-        }
+        public MediaPacket Packet { get; }
     }
 }
 

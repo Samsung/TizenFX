@@ -31,11 +31,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Hdr Capture progress in percent.
         /// </summary>
-        public int Percent
-        {
-            get;
-            internal set;
-        }
+        public int Percent { get; }
     }
 }
 

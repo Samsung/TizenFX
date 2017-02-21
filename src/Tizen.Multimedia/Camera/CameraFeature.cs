@@ -72,7 +72,7 @@ namespace Tizen.Multimedia
         /// Gets continuous capture feature's supported state.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool ContinuousCapture
+        public bool ContinuousCaptureSupport
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Tizen.Multimedia
         /// Gets the face detection feature's supported state.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool FaceDetectionSupported
+        public bool FaceDetectionSupport
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Tizen.Multimedia
         /// Gets the zero shutter lag feature's supported state.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool ZeroShutterLag
+        public bool ZeroShutterLagSupport
         {
             get
             {
@@ -138,7 +138,7 @@ namespace Tizen.Multimedia
         /// Gets the media packet preview callback feature's supported state.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool MediaPacketPreviewCallback
+        public bool MediaPacketPreviewCallbackSupport
         {
             get
             {
@@ -160,7 +160,7 @@ namespace Tizen.Multimedia
         /// Gets the support state of HDR capture.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool HdrCapture
+        public bool HdrCaptureSupport
         {
             get
             {
@@ -182,7 +182,7 @@ namespace Tizen.Multimedia
         /// Gets the support state of the anti-shake feature.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool AntiShake
+        public bool AntiShakeSupport
         {
             get
             {
@@ -204,7 +204,7 @@ namespace Tizen.Multimedia
         /// Gets the support state of the video stabilization feature.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool VideoStabilization
+        public bool VideoStabilizationSupport
         {
             get
             {
@@ -226,7 +226,7 @@ namespace Tizen.Multimedia
         /// Gets state of support of auto contrast feature.
         /// true if supported, otherwise false.
         /// </summary>
-        public bool AutoContrast
+        public bool AutoContrastSupport
         {
             get
             {

@@ -33,29 +33,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The image data of the captured picture.
         /// </summary>
-        public ImageData Image
-        {
-            get;
-            internal set;
-        }
+        public ImageData Image { get; }
 
         /// <summary>
         /// The image data of the postview.
         /// </summary>
-        public ImageData PostView
-        {
-            get;
-            internal set;
-        }
+        public ImageData PostView { get; }
 
         /// <summary>
         /// The image data of the thumbnail.
         /// </summary>
-        public ImageData Thumbnail
-        {
-            get;
-            internal set;
-        }
+        public ImageData Thumbnail { get; }
     }
 }
 

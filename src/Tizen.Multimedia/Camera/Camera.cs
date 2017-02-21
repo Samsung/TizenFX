@@ -683,7 +683,7 @@ namespace Tizen.Multimedia
         /// http://tizen.org/privilege/camera
         /// </privilege>
         /// <param name="device">The device to get state.</param>
-        /// <returns>Returns the camera's horizontal position</returns>
+        /// <returns>Returns the state of camera device</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
