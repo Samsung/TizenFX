@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 using Tizen;
 
@@ -28,10 +29,16 @@ internal static partial class Interop
         InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
         PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+        ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
+        NoSuchFile = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
 
+        // Radio
         InvalidState = -0x019A0000 | 0x01, // RADIO_ERROR_INVALID_STATE
         SoundPolicy = -0x019A0000 | 0x02, // RADIO_ERROR_SOUND_POLICY
         NoAntenna = -0x019A0000 | 0x03, // RADIO_ERROR_NO_ANTENNA
+
+        // Image/ Video Utility
+        NotSupportedFormat = -0x01980000 | 0x01, // VIDEO_UTIL_ERROR_NOT_SUPPORTED_FORMAT
     }
 }
 
@@ -85,12 +92,14 @@ internal static class ErrorCodeExtensions
             //case ErrorCode.None:
             case Interop.ErrorCode.PermissionDenied: return new UnauthorizedAccessException(errMessage);
             case Interop.ErrorCode.InvalidParameter: return new ArgumentException(errMessage);
+            case Interop.ErrorCode.NoSuchFile: return new FileNotFoundException(errMessage);
             case Interop.ErrorCode.OutOfMemory: return new OutOfMemoryException(errMessage);
             case Interop.ErrorCode.NotSupported: return new NotSupportedException(errMessage);
             case Interop.ErrorCode.NoAntenna: return new NotSupportedException(errMessage);
             case Interop.ErrorCode.InvalidOperation:
             case Interop.ErrorCode.InvalidState:
             case Interop.ErrorCode.SoundPolicy:
+            case Interop.ErrorCode.ResourceBusy:
             default: return new InvalidOperationException(errMessage);
         }
     }
