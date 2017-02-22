@@ -1,0 +1,4 @@
+L:\work\git\csharp\2\dali\nui\Tizen.NUI\bin\Debug\Tizen.NUI.dll
+L:\work\git\csharp\2\dali\nui\Tizen.NUI\bin\Debug\Tizen.NUI.pdb
+L:\work\git\csharp\2\dali\nui\Tizen.NUI\obj\Debug\Tizen.NUI.dll
+L:\work\git\csharp\2\dali\nui\Tizen.NUI\obj\Debug\Tizen.NUI.pdb

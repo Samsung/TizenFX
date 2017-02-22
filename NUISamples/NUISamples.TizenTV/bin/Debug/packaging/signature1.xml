@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="DistributorSignature">
+  <SignedInfo>
+    <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+    <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+    <Reference URI="author-signature.xml">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>MY6TtGs4/apN9OhW73J71HDh9ZTBzcoK7TsiHk8oyFA=</DigestValue>
+    </Reference>
+    <Reference URI="tizen-manifest.xml">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>V9sScyerDI6RtkjTWHAjyhKM8VPn5B/GQ7IRzy28sLU=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FNUISamples.TizenTV.exe">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>thNF6MFFzVULESNQI0S1YcEa/fM5dzJwgV0txFWCSG8=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FTizen.NUI.pdb">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>F5Mrj5iQLRJKjOKtswJas0hfLCgh2BpBMcD+t5b617I=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FNUISamples.TizenTV.pdb">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>r1ZK8g3jZ8Ij1My0atf7A2P6dnb/13KoS3KbbAF5Hlg=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FTizen.NUI.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>Fq+cQ/6JqRNcPdpldIJTnVLRSkHZnQvQlnU65KDEmrA=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fjson%2Fdate-picker-template.json">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>dX7ZaZ/bxLY/BVVkA2/vFh9fqZ4cqQeN7EnNYsZaTQU=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fjson%2Fspin.json">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>iQz46/QpAX6Tyzc0RK6xdmwAW1iYBqbt+ko553+NGcU=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fjson%2Fcontrol-dashboard.json">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>FUp8vBzfDnWamomjwBvomdFyZ9wUnc8LF5GxGG13iEI=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fjson%2Fdate-picker.json">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>3rF8uBava19ldhICLIbWc3EWXsPD10BrVFdc4ZB+lYU=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fjson%2Fcontrol-dashboard-theme.json">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>SmwupxdLkZnJJgHyxyD6u/uk2+OFHzQm9YBa2cCmMg0=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fimage-1.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>H3m1Mhum7eNGy92N7GHLnDAf+C2XCpZRI0NMPNeP3KE=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fstar-highlight.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>EuykjGu0txee1e+sHqWXHcjvstqaZib36ex3lKBs0UE=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-3.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>p21ooeacAXRXbFt8QVRcGiZ9vibuTFQOW1JEBvwM+uE=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-0.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>iplChqWLCeRXwcHjAQHHng9wTTdcIyN7QcirzikSghM=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-2.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>IioEZNhxjdS3exXMqPSwCXu1AGUUyeBTTfHzl0fYcH4=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fnot_yet_sign.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>0sh04RLqvY6mhaH2UcczPxOeem6yjMLwC+tuelhqnF0=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-1.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>zg8hoG6e3oNlIHtlGXhaS1lKp/eeJTILvjrcukNRDGQ=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-4.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>TiErSfuYo4r4hso39zfnTMqRp6e3DukUP5jnOWpBDzM=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Farrow.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>XICCnMMUXe21Fcra57k/Yw6kInGnLCIP9bk5BD8EBZU=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fimage-3.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>PP86fX8TWNzTurodT2RWRcvsAfm7AVvXrs4jw+hH4vo=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fstar-dim.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>DxsYsmQWYvm2ObZXr6SqMt1AtR/BGEQLFYwCHvqxfaA=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fimage-2.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>Jh6FwU4ocIHZjbhICW2OPR9GuLKnNjSmB8BZVaUtMHw=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fgallery-5.jpg">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>sMDw/4TLGZnbIibo7eixVIEefwHgJLy4c9xKVsuv8h0=</DigestValue>
+    </Reference>
+    <Reference URI="res%2Fimages%2Fstar-mod.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>Qal0KOp1gy3CCYXusXstvbRXWJ7FFotr/NDmyjIpRDM=</DigestValue>
+    </Reference>
+    <Reference URI="shared%2Fres%2FNUISamples.TizenTV.png">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=</DigestValue>
+    </Reference>
+    <Reference URI="lib%2FTizen.NUI.pdb">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>F5Mrj5iQLRJKjOKtswJas0hfLCgh2BpBMcD+t5b617I=</DigestValue>
+    </Reference>
+    <Reference URI="lib%2FNUISamples.TizenTV.pdb">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>r1ZK8g3jZ8Ij1My0atf7A2P6dnb/13KoS3KbbAF5Hlg=</DigestValue>
+    </Reference>
+    <Reference URI="lib%2FTizen.NUI.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>Fq+cQ/6JqRNcPdpldIJTnVLRSkHZnQvQlnU65KDEmrA=</DigestValue>
+    </Reference>
+    <Reference URI="#prop">
+      <Transforms>
+        <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      </Transforms>
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>os+YMpwSX7sS+xb9tWwMhnDUXkFu7tMmCA4q6M7jMaI=</DigestValue>
+    </Reference>
+  </SignedInfo>
+  <SignatureValue>Ap4IYLH2nLZIGj5laCPrGyWbAiebl9SpMUWXGUzbRPOeYX7Ya5qnplBO01C+3t+B
+LqzBRopoZFllzjmsQfaZx6/tXVmEPtWHhGIfqDCgctG89dwA8BYfeecew3VlxYS0
+ShhQORkaMocELFA4FX1DyaEwESh2e9ZgUAL7v5DjpY8=</SignatureValue>
+  <KeyInfo>
+    <X509Data>
+<X509Certificate>MIICtDCCAh2gAwIBAgIJAMDbehElPNKvMA0GCSqGSIb3DQEBBQUAMIGVMQswCQYD
+VQQGEwJLUjEOMAwGA1UECAwFU3V3b24xDjAMBgNVBAcMBVN1d29uMRYwFAYDVQQK
+DA1UaXplbiBUZXN0IENBMSMwIQYDVQQLDBpUVGl6ZW4gRGlzdHJpYnV0b3IgVGVz
+dCBDQTEpMCcGA1UEAwwgVGl6ZW4gUHVibGljIERpc3RyaWJ1dG9yIFJvb3QgQ0Ew
+HhcNMTIxMDI5MTMwMjUwWhcNMjIxMDI3MTMwMjUwWjCBjzELMAkGA1UEBhMCS1Ix
+DjAMBgNVBAgMBVN1d29uMQ4wDAYDVQQHDAVTdXdvbjEWMBQGA1UECgwNVGl6ZW4g
+VGVzdCBDQTEiMCAGA1UECwwZVGl6ZW4gRGlzdHJpYnV0b3IgVGVzdCBDQTEkMCIG
+A1UEAwwbVGl6ZW4gUHVibGljIERpc3RyaWJ1dG9yIENBMIGfMA0GCSqGSIb3DQEB
+AQUAA4GNADCBiQKBgQDeOTS/3nXvkDEmsFCJIvRlQ3RKDcxdWJJp625pFqHdmoJB
+dV+x6jl1raGK2Y1sp2Gdvpjc/z92yzApbE/UVLPh/tRNZPeGhzU4ejDDm7kzdr2f
+7Ia0U98K+OoY12ucwg7TYNItj9is7Cj4blGfuMDzd2ah2AgnCGlwNwV/pv+uVQID
+AQABoxAwDjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBACqJKO33YdoG
+udwanZIxMdXuxnnD9R6u72ltKk1S4zPfMJJv482CRGCI4FK6djhlsI4i0Lt1SVIJ
+Eed+yc3qckGm19dW+4xdlkekon7pViEBWuyHw8OWv3RXtTum1+PGHjBJ2eYY4ZKI
+pz73U/1NC16sTB/0VhfnkHwPltmrpYVe</X509Certificate>
+<X509Certificate>MIICmzCCAgQCCQDXI7WLdVZwiTANBgkqhkiG9w0BAQUFADCBjzELMAkGA1UEBhMC
+S1IxDjAMBgNVBAgMBVN1d29uMQ4wDAYDVQQHDAVTdXdvbjEWMBQGA1UECgwNVGl6
+ZW4gVGVzdCBDQTEiMCAGA1UECwwZVGl6ZW4gRGlzdHJpYnV0b3IgVGVzdCBDQTEk
+MCIGA1UEAwwbVGl6ZW4gUHVibGljIERpc3RyaWJ1dG9yIENBMB4XDTEyMTAyOTEz
+MDMwNFoXDTIyMTAyNzEzMDMwNFowgZMxCzAJBgNVBAYTAktSMQ4wDAYDVQQIDAVT
+dXdvbjEOMAwGA1UEBwwFU3V3b24xFjAUBgNVBAoMDVRpemVuIFRlc3QgQ0ExIjAg
+BgNVBAsMGVRpemVuIERpc3RyaWJ1dG9yIFRlc3QgQ0ExKDAmBgNVBAMMH1RpemVu
+IFB1YmxpYyBEaXN0cmlidXRvciBTaWduZXIwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBALtMvlc5hENK90ZdA+y66+Sy0enD1gpZDBh5T9RP0oRsptJv5jjNTseQ
+bQi0SZOdOXb6J7iQdlBCtR343RpIEz8HmrBy7mSY7mgwoU4EPpp4CTSUeAuKcmvr
+NOngTp5Hv7Ngf02TTHOLK3hZLpGayaDviyNZB5PdqQdBhokKjzAzAgMBAAEwDQYJ
+KoZIhvcNAQEFBQADgYEAvGp1gxxAIlFfhJH1efjb9BJK/rtRkbYn9+EzGEbEULg1
+svsgnyWisFimI3uFvgI/swzr1eKVY3Sc8MQ3+Fdy3EkbDZ2+WAubhcEkorTWjzWz
+2fL1vKaYjeIsuEX6TVRUugHWudPzcEuQRLQf8ibZWjbQdBmpeQYBMg5x+xKLCJc=</X509Certificate>
+</X509Data>
+  </KeyInfo>
+  <Object Id="prop">
+    <dsp:SignatureProperties xmlns:dsp="http://www.w3.org/2009/xmldsig-properties">
+      <dsp:SignatureProperty Id="profile" Target="#DistributorSignature">
+        <dsp:Profile URI="http://www.w3.org/ns/widgets-digsig#profile"/>
+      </dsp:SignatureProperty>
+      <dsp:SignatureProperty Id="role" Target="#DistributorSignature">
+        <dsp:Role URI="http://www.w3.org/ns/widgets-digsig#role-distributor"/>
+      </dsp:SignatureProperty>
+      <dsp:SignatureProperty Id="identifier" Target="#DistributorSignature">
+        <dsp:Identifier/>
+      </dsp:SignatureProperty>
+    </dsp:SignatureProperties>
+  </Object>
+</Signature>

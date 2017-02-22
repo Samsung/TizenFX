@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.NUI</RootNamespace>
+    <AssemblyName>Tizen.NUI</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Tizen.NUI.project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="devel-src\AccessibilityActionSignal.cs" />
+    <Compile Include="devel-src\AccessibilityFocusOvershotSignal.cs" />
+    <Compile Include="devel-src\AccessibilityManager.cs" />
+    <Compile Include="devel-src\Actor.cs" />
+    <Compile Include="devel-src\ActorContainer.cs" />
+    <Compile Include="devel-src\ActorHoverSignal.cs" />
+    <Compile Include="devel-src\ActorSignal.cs" />
+    <Compile Include="devel-src\ActorTouchDataSignal.cs" />
+    <Compile Include="devel-src\ActorWheelSignal.cs" />
+    <Compile Include="devel-src\Alignment.cs" />
+    <Compile Include="devel-src\AlphaFunction.cs" />
+    <Compile Include="devel-src\AngleAxis.cs" />
+    <Compile Include="devel-src\AngleThresholdPair.cs" />
+    <Compile Include="devel-src\AnimatablePropertyComponentRegistration.cs" />
+    <Compile Include="devel-src\AnimatablePropertyRegistration.cs" />
+    <Compile Include="devel-src\Animation.cs" />
+    <Compile Include="devel-src\AnimationSignal.cs" />
+    <Compile Include="devel-src\Any.cs" />
+    <Compile Include="devel-src\Application.cs" />
+    <Compile Include="devel-src\ApplicationControlSignal.cs" />
+    <Compile Include="devel-src\ApplicationExtensions.cs" />
+    <Compile Include="devel-src\ApplicationSignal.cs" />
+    <Compile Include="devel-src\AsyncImageLoader.cs" />
+    <Compile Include="devel-src\BaseHandle.cs" />
+    <Compile Include="devel-src\BaseObject.cs" />
+    <Compile Include="devel-src\BlendEquationType.cs" />
+    <Compile Include="devel-src\BlendFactorType.cs" />
+    <Compile Include="devel-src\BlendModeType.cs" />
+    <Compile Include="devel-src\BoolSignal.cs" />
+    <Compile Include="devel-src\BufferImage.cs" />
+    <Compile Include="devel-src\Builder.cs" />
+    <Compile Include="devel-src\Button.cs" />
+    <Compile Include="devel-src\ButtonSignal.cs" />
+    <Compile Include="devel-src\CameraActor.cs" />
+    <Compile Include="devel-src\CameraType.cs" />
+    <Compile Include="devel-src\CheckBoxButton.cs" />
+    <Compile Include="devel-src\ChildPropertyRegistration.cs" />
+    <Compile Include="devel-src\ClampState.cs" />
+    <Compile Include="devel-src\ClampState2D.cs" />
+    <Compile Include="devel-src\ClippingModeType.cs" />
+    <Compile Include="devel-src\Color.cs" />
+    <Compile Include="devel-src\ColorMode.cs" />
+    <Compile Include="devel-src\ConnectionTracker.cs" />
+    <Compile Include="devel-src\ConnectionTrackerInterface.cs" />
+    <Compile Include="devel-src\ControlKeySignal.cs" />
+    <Compile Include="devel-src\ControlOrientationType.cs" />
+    <Compile Include="devel-src\CustomActor.cs" />
+    <Compile Include="devel-src\CustomActorImpl.cs" />
+    <Compile Include="devel-src\CustomView.cs" />
+    <Compile Include="devel-src\DaliApplication.cs" />
+    <Compile Include="devel-src\DaliEnumConstants.cs" />
+    <Compile Include="devel-src\DaliEventHandler.cs" />
+    <Compile Include="devel-src\DaliException.cs" />
+    <Compile Include="devel-src\DefaultItemLayoutProperty.cs" />
+    <Compile Include="devel-src\DefaultItemLayoutType.cs" />
+    <Compile Include="devel-src\DefaultRuler.cs" />
+    <Compile Include="devel-src\Degree.cs" />
+    <Compile Include="devel-src\DepthFunctionType.cs" />
+    <Compile Include="devel-src\DepthTestModeType.cs" />
+    <Compile Include="devel-src\DepthWriteModeType.cs" />
+    <Compile Include="devel-src\DimensionType.cs" />
+    <Compile Include="devel-src\DirectionBias.cs" />
+    <Compile Include="devel-src\DisposeQueue.cs" />
+    <Compile Include="devel-src\dotnetcore\addedManually.cs" />
+    <Compile Include="devel-src\dotnetcore\handleref.cs" />
+    <Compile Include="devel-src\doublep.cs" />
+    <Compile Include="devel-src\DragAndDropDetector.cs" />
+    <Compile Include="devel-src\DrawModeType.cs" />
+    <Compile Include="devel-src\EncodedBufferImage.cs" />
+    <Compile Include="devel-src\FaceCullingModeType.cs" />
+    <Compile Include="devel-src\FilterModeType.cs" />
+    <Compile Include="devel-src\FittingModeType.cs" />
+    <Compile Include="devel-src\FixedRuler.cs" />
+    <Compile Include="devel-src\FlexContainer.cs" />
+    <Compile Include="devel-src\floatp.cs" />
+    <Compile Include="devel-src\FloatSignal.cs" />
+    <Compile Include="devel-src\FocusChangedSignal.cs" />
+    <Compile Include="devel-src\FocusGroupChangedSignal.cs" />
+    <Compile Include="devel-src\FocusManager.cs" />
+    <Compile Include="devel-src\FrameBuffer.cs" />
+    <Compile Include="devel-src\FrameBufferImage.cs" />
+    <Compile Include="devel-src\GaussianBlurView.cs" />
+    <Compile Include="devel-src\GaussianBlurViewSignal.cs" />
+    <Compile Include="devel-src\Geometry.cs" />
+    <Compile Include="devel-src\Gesture.cs" />
+    <Compile Include="devel-src\GestureDetector.cs" />
+    <Compile Include="devel-src\GradientVisualSpreadMethodType.cs" />
+    <Compile Include="devel-src\GradientVisualUnitsType.cs" />
+    <Compile Include="devel-src\Handle.cs" />
+    <Compile Include="devel-src\HorizontalAlignmentType.cs" />
+    <Compile Include="devel-src\Hover.cs" />
+    <Compile Include="devel-src\Image.cs" />
+    <Compile Include="devel-src\ImageSignal.cs" />
+    <Compile Include="devel-src\ImageView.cs" />
+    <Compile Include="devel-src\intp.cs" />
+    <Compile Include="devel-src\Item.cs" />
+    <Compile Include="devel-src\ItemContainer.cs" />
+    <Compile Include="devel-src\ItemFactory.cs" />
+    <Compile Include="devel-src\ItemIdContainer.cs" />
+    <Compile Include="devel-src\ItemLayout.cs" />
+    <Compile Include="devel-src\ItemRange.cs" />
+    <Compile Include="devel-src\ItemView.cs" />
+    <Compile Include="devel-src\Key.cs" />
+    <Compile Include="devel-src\KeyboardPreFocusChangeSignal.cs" />
+    <Compile Include="devel-src\KeyEventSignal.cs" />
+    <Compile Include="devel-src\KeyFrames.cs" />
+    <Compile Include="devel-src\KeyInputFocusManager.cs" />
+    <Compile Include="devel-src\KeyInputFocusSignal.cs" />
+    <Compile Include="devel-src\Layer.cs" />
+    <Compile Include="devel-src\LinearConstrainer.cs" />
+    <Compile Include="devel-src\LoadingState.cs" />
+    <Compile Include="devel-src\LongPressGesture.cs" />
+    <Compile Include="devel-src\LongPressGestureDetectedSignal.cs" />
+    <Compile Include="devel-src\LongPressGestureDetector.cs" />
+    <Compile Include="devel-src\ManualPINVOKE.cs" />
+    <Compile Include="devel-src\Matrix.cs" />
+    <Compile Include="devel-src\Matrix3.cs" />
+    <Compile Include="devel-src\MeshVisualShadingModeValue.cs" />
+    <Compile Include="devel-src\Meta.cs" />
+    <Compile Include="devel-src\Model3dView.cs" />
+    <Compile Include="devel-src\NativeImage.cs" />
+    <Compile Include="devel-src\NativeImageInterface.cs" />
+    <Compile Include="devel-src\NDalic.cs" />
+    <Compile Include="devel-src\NDalicPINVOKE.cs" />
+    <Compile Include="devel-src\NinePatchImage.cs" />
+    <Compile Include="devel-src\ObjectCreatedSignal.cs" />
+    <Compile Include="devel-src\ObjectDestroyedSignal.cs" />
+    <Compile Include="devel-src\ObjectRegistry.cs" />
+    <Compile Include="devel-src\PaddingType.cs" />
+    <Compile Include="devel-src\PageFactory.cs" />
+    <Compile Include="devel-src\PagePanSignal.cs" />
+    <Compile Include="devel-src\PageTurnLandscapeView.cs" />
+    <Compile Include="devel-src\PageTurnPortraitView.cs" />
+    <Compile Include="devel-src\PageTurnSignal.cs" />
+    <Compile Include="devel-src\PageTurnView.cs" />
+    <Compile Include="devel-src\PanGesture.cs" />
+    <Compile Include="devel-src\PanGestureDetectedSignal.cs" />
+    <Compile Include="devel-src\PanGestureDetector.cs" />
+    <Compile Include="devel-src\Path.cs" />
+    <Compile Include="devel-src\PathConstrainer.cs" />
+    <Compile Include="devel-src\PinchGesture.cs" />
+    <Compile Include="devel-src\PinchGestureDetectedSignal.cs" />
+    <Compile Include="devel-src\PinchGestureDetector.cs" />
+    <Compile Include="devel-src\PixelData.cs" />
+    <Compile Include="devel-src\PixelFormat.cs" />
+    <Compile Include="devel-src\PointStateType.cs" />
+    <Compile Include="devel-src\Popup.cs" />
+    <Compile Include="devel-src\Position.cs" />
+    <Compile Include="devel-src\PositionInheritanceMode.cs" />
+    <Compile Include="devel-src\PrimitiveVisualShapeType.cs" />
+    <Compile Include="devel-src\ProgressBar.cs" />
+    <Compile Include="devel-src\ProjectionMode.cs" />
+    <Compile Include="devel-src\Property.cs" />
+    <Compile Include="devel-src\PropertyBuffer.cs" />
+    <Compile Include="devel-src\PropertyCondition.cs" />
+    <Compile Include="devel-src\PropertyNotification.cs" />
+    <Compile Include="devel-src\PropertyNotifySignal.cs" />
+    <Compile Include="devel-src\PropertyRangeManager.cs" />
+    <Compile Include="devel-src\PropertyRanges.cs" />
+    <Compile Include="devel-src\PropertyRegistration.cs" />
+    <Compile Include="devel-src\PushButton.cs" />
+    <Compile Include="devel-src\Quaternion.cs" />
+    <Compile Include="devel-src\Radian.cs" />
+    <Compile Include="devel-src\RadioButton.cs" />
+    <Compile Include="devel-src\Rectangle.cs" />
+    <Compile Include="devel-src\RefObject.cs" />
+    <Compile Include="devel-src\RelayoutContainer.cs" />
+    <Compile Include="devel-src\RenderBufferFormat.cs" />
+    <Compile Include="devel-src\Renderer.cs" />
+    <Compile Include="devel-src\RenderingType.cs" />
+    <Compile Include="devel-src\RenderModeType.cs" />
+    <Compile Include="devel-src\RenderTask.cs" />
+    <Compile Include="devel-src\RenderTaskList.cs" />
+    <Compile Include="devel-src\RenderTaskSignal.cs" />
+    <Compile Include="devel-src\ResizePolicyType.cs" />
+    <Compile Include="devel-src\ResourceImage.cs" />
+    <Compile Include="devel-src\ResourceImageSignal.cs" />
+    <Compile Include="devel-src\Ruler.cs" />
+    <Compile Include="devel-src\RulerDomain.cs" />
+    <Compile Include="devel-src\RulerPtr.cs" />
+    <Compile Include="devel-src\Sampler.cs" />
+    <Compile Include="devel-src\SamplingModeType.cs" />
+    <Compile Include="devel-src\Scrollable.cs" />
+    <Compile Include="devel-src\ScrollableSignal.cs" />
+    <Compile Include="devel-src\ScrollBar.cs" />
+    <Compile Include="devel-src\ScrollView.cs" />
+    <Compile Include="devel-src\ScrollViewEffect.cs" />
+    <Compile Include="devel-src\ScrollViewPagePathEffect.cs" />
+    <Compile Include="devel-src\ScrollViewSnapStartedSignal.cs" />
+    <Compile Include="devel-src\Shader.cs" />
+    <Compile Include="devel-src\SignalConnectorType.cs" />
+    <Compile Include="devel-src\SignalObserver.cs" />
+    <Compile Include="devel-src\Size.cs" />
+    <Compile Include="devel-src\SizeScalePolicyType.cs" />
+    <Compile Include="devel-src\Slider.cs" />
+    <Compile Include="devel-src\SliderMarkReachedSignal.cs" />
+    <Compile Include="devel-src\SliderValueChangedSignal.cs" />
+    <Compile Include="devel-src\SlotObserver.cs" />
+    <Compile Include="devel-src\SnapType.cs" />
+    <Compile Include="devel-src\spin.cs" />
+    <Compile Include="devel-src\Stage.cs" />
+    <Compile Include="devel-src\StageWheelSignal.cs" />
+    <Compile Include="devel-src\StencilFunctionType.cs" />
+    <Compile Include="devel-src\StencilOperationType.cs" />
+    <Compile Include="devel-src\StringValuePair.cs" />
+    <Compile Include="devel-src\StyleChangedSignal.cs" />
+    <Compile Include="devel-src\StyleChangeType.cs" />
+    <Compile Include="devel-src\StyleManager.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_CallbackBase.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Configuration__ContextLoss.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__CallbackBase.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Constraint.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__CustomActorImpl__Extension.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__FunctorDelegate.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Internal__TypeRegistry.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__RectT_unsigned_int_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fboolF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__ProgressBar_float_floatF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__ClampState.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__Internal__Control__Extension.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__Internal__Visual__Base.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__Toolkit__ItemFactory__Extension.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_Dali__TouchEvent.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_double.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_float.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_FunctorDelegate.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_float__float.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_p_Dali__BaseObject_Dali__Property__Index__Dali__Property__Value.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_r_Dali__Vector2__bool.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f_r_q_const__Dali__Vector3__float.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_f___bool.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_int.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_PropertyInputContainer.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_std__type_info.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_uint8_t.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_unsigned_char.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_unsigned_int.cs" />
+    <Compile Include="devel-src\SWIGTYPE_p_unsigned_short.cs" />
+    <Compile Include="devel-src\TableView.cs" />
+    <Compile Include="devel-src\TapGesture.cs" />
+    <Compile Include="devel-src\TapGestureDetectedSignal.cs" />
+    <Compile Include="devel-src\TapGestureDetector.cs" />
+    <Compile Include="devel-src\TextEditor.cs" />
+    <Compile Include="devel-src\TextEditorSignal.cs" />
+    <Compile Include="devel-src\TextField.cs" />
+    <Compile Include="devel-src\TextFieldSignal.cs" />
+    <Compile Include="devel-src\TextLabel.cs" />
+    <Compile Include="devel-src\Texture.cs" />
+    <Compile Include="devel-src\TextureSet.cs" />
+    <Compile Include="devel-src\TextureType.cs" />
+    <Compile Include="devel-src\TimePeriod.cs" />
+    <Compile Include="devel-src\Timer.cs" />
+    <Compile Include="devel-src\TimerSignalType.cs" />
+    <Compile Include="devel-src\ToggleButton.cs" />
+    <Compile Include="devel-src\ToolkitPropertyRange.cs" />
+    <Compile Include="devel-src\TooltipPositionType.cs" />
+    <Compile Include="devel-src\Touch.cs" />
+    <Compile Include="devel-src\TouchPoint.cs" />
+    <Compile Include="devel-src\TouchPointContainer.cs" />
+    <Compile Include="devel-src\TouchSignal.cs" />
+    <Compile Include="devel-src\TransitionData.cs" />
+    <Compile Include="devel-src\TypeAction.cs" />
+    <Compile Include="devel-src\TypeInfo.cs" />
+    <Compile Include="devel-src\TypeRegistration.cs" />
+    <Compile Include="devel-src\TypeRegistry.cs" />
+    <Compile Include="devel-src\Uint16Pair.cs" />
+    <Compile Include="devel-src\uintp.cs" />
+    <Compile Include="devel-src\ushortp.cs" />
+    <Compile Include="devel-src\Vector2.cs" />
+    <Compile Include="devel-src\Vector3.cs" />
+    <Compile Include="devel-src\Vector4.cs" />
+    <Compile Include="devel-src\VectorBase.cs" />
+    <Compile Include="devel-src\VectorFloat.cs" />
+    <Compile Include="devel-src\VectorInteger.cs" />
+    <Compile Include="devel-src\VectorUint16Pair.cs" />
+    <Compile Include="devel-src\VectorUnsignedChar.cs" />
+    <Compile Include="devel-src\VerticalAlignmentType.cs" />
+    <Compile Include="devel-src\VideoView.cs" />
+    <Compile Include="devel-src\VideoViewSignal.cs" />
+    <Compile Include="devel-src\View.cs" />
+    <Compile Include="devel-src\ViewImpl.cs" />
+    <Compile Include="devel-src\ViewMode.cs" />
+    <Compile Include="devel-src\ViewRegistry.cs" />
+    <Compile Include="devel-src\ViewRegistryHelper.cs" />
+    <Compile Include="devel-src\ViewWrapper.cs" />
+    <Compile Include="devel-src\ViewWrapperImpl.cs" />
+    <Compile Include="devel-src\visual-high-level\ImageVisual.cs" />
+    <Compile Include="devel-src\visual-high-level\TextVisual.cs" />
+    <Compile Include="devel-src\visual-high-level\VisualCommon.cs" />
+    <Compile Include="devel-src\visual-high-level\VisualView.cs" />
+    <Compile Include="devel-src\VisualBase.cs" />
+    <Compile Include="devel-src\VisualFactory.cs" />
+    <Compile Include="devel-src\VisualTransformPropertyType.cs" />
+    <Compile Include="devel-src\VisualType.cs" />
+    <Compile Include="devel-src\VoidSignal.cs" />
+    <Compile Include="devel-src\Wheel.cs" />
+    <Compile Include="devel-src\Window.cs" />
+    <Compile Include="devel-src\WrapModeType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Tizen.Applications, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4aa249e9db245e88, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Tizen.Applications.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+			 https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+		-->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+			 properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+			 to prevent it from outputting a warning (MSB3644).
+		-->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
+        <ProjectCorporateFlavorCfg />
+      </FlavorProperties>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
+        <ProjectCorporateFlavorCfg />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
