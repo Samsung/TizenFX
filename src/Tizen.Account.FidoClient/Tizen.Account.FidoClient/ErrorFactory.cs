@@ -72,7 +72,7 @@ namespace Tizen.Account.FidoClient
             }
             else if ((FidoErrorCode)error == FidoErrorCode.ProtocolError)
             {
-                return new Exception("Protocol error, the interaction may have timed out, or the UAF message is malformed.");
+                return new ArgumentException("Protocol error, the interaction may have timed out, or the UAF message is malformed.");
             }
             else if ((FidoErrorCode)error == FidoErrorCode.UserCancelled)
             {

@@ -8,7 +8,7 @@
 
 Name:       csapi-account-fido-client
 Summary:    FIDO UAF C# API for Tizen
-Version:    1.0.0
+Version:    1.0.1
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0

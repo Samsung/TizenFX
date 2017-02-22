@@ -22,6 +22,13 @@ namespace Tizen.Account.FidoClient
     public class UafResponse
     {
         /// <summary>
+        /// The constructor
+        /// </summary>
+        public UafResponse()
+        {
+        }
+
+        /// <summary>
         /// FIDO response message in JSON format
         /// </summary>
         public string Response { set; get; }
