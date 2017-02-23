@@ -33,6 +33,7 @@ internal static partial class Interop
         public const string StreamRecorder = "libcapi-media-streamrecorder.so.0";
         public const string Radio = "libcapi-media-radio.so.0";
         public const string VideoUtil = "libcapi-media-video-util.so.0";
+        public const string ImageUtil = "libcapi-media-image-util.so.0";
         public const string ThumbnailExtractor = "libcapi-media-thumbnail-util.so";
         public const string WavPlayer = "libcapi-media-wav-player.so.0";
         public const string TonePlayer = "libcapi-media-tone-player.so.0";
