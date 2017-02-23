@@ -34,6 +34,9 @@ internal static partial class Interop
         [DllImport(Libraries.Location, EntryPoint = "location_manager_stop")]
         internal static extern int Stop(IntPtr handle);
 
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_is_enabled_mock_location")]
+        internal static extern int IsEnabledMock(out bool status);
+
         [DllImport(Libraries.Location, EntryPoint = "location_manager_enable_mock_location")]
         internal static extern int EnableMock(bool enable);
 
@@ -42,9 +45,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_clear_mock_location")]
         internal static extern int ClearMock(IntPtr handle);
-
-        [DllImport(Libraries.Location, EntryPoint = "location_manager_get_method")]
-        internal static extern int GetLocationType(IntPtr handle, out LocationType method);
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_get_location")]
         internal static extern int GetLocation(IntPtr handle, out double altitude, out double latitude, out double longitude, out double climb, out double direction, out double speed, out int level, out double horizontal, out double vertical, out int timestamp);

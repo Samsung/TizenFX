@@ -36,6 +36,7 @@ namespace Tizen.Location
         Hybrid = 0, /**<This method selects the best method available at the moment.*/
         Gps, /**<This method uses Global Positioning System.*/
         Wps, /**<This method uses WiFi Positioning System.*/
+        Passive, /**<This method uses passive mode.*/
     }
 
     /// <summary>

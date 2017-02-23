@@ -38,13 +38,12 @@ namespace Tizen.Location
         private int _stayInterval = 120;
         private int _requestId = 0;
         private double _distance = 120.0;
-        private bool _isEnableMock;
+        private bool _isEnableMock = false;
         private bool _disposed = false;
         private bool _isStarted = false;
         private IntPtr _handle;
         private LocationType _locationType;
         private Location _location = null;
-        private static Locator s_locatorReference;
         private Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback> _callback_map = new Dictionary<IntPtr, Interop.LocatorEvent.LocationUpdatedCallback>();
 
         private Interop.LocatorEvent.ServiceStatechangedCallback _serviceStateChangedCallback;
@@ -205,6 +204,7 @@ namespace Tizen.Location
             get
             {
                 Log.Info(Globals.LogTag, "Getting getting Mock");
+                _isEnableMock = GetEnableMock();
                 return _isEnableMock;
             }
             set
@@ -219,12 +219,24 @@ namespace Tizen.Location
             return _handle;
         }
 
+        private bool GetEnableMock()
+        {
+			bool status = false;
+            int ret = Interop.Locator.IsEnabledMock(out status);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error Get Enable Mock Status," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
+			return status;
+        }
+
         private void SetEnableMock()
         {
             int ret = Interop.Locator.EnableMock(_isEnableMock);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error Set Enable Mock Type," + (LocationError)ret);
+                Log.Error(Globals.LogTag, "Error Set Enable Mock Status," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -239,23 +251,13 @@ namespace Tizen.Location
         public void Start()
         {
             Log.Info(Globals.LogTag, "Starting Location Manager");
-            if (Locator.s_locatorReference == null)
+            int ret = Interop.Locator.Start(_handle);
+            if (((LocationError)ret != LocationError.None))
             {
-                int ret = Interop.Locator.Start(_handle);
-                if (((LocationError)ret != LocationError.None))
-                {
-                    Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
-                    throw LocationErrorFactory.ThrowLocationException(ret);
-                }
-                Locator.s_locatorReference = this;
-                _isStarted = true;
-                Log.Info(Globals.LogTag, "Locator reference set");
+                Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
-            else
-            {
-                Log.Error(Globals.LogTag, "Error, previous instance of Locator should be stopped before starting a new one," + LocationError.NotSupported);
-                throw LocationErrorFactory.ThrowLocationException((int)LocationError.NotSupported);
-            }
+            _isStarted = true;
         }
 
         /// <summary>
@@ -274,7 +276,6 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-            Locator.s_locatorReference = null;
             _isStarted = false;
        }
 
