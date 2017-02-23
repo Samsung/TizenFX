@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class is a parameter of InstallerApplicationApplicationsAsync method.
+    /// This class is a parameter of GetInstalledApplicationsAsync method.
     /// </summary>
     public class ApplicationInfoMetadataFilter : ApplicationInfoFilter
     {
