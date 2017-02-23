@@ -36,7 +36,10 @@ namespace Tizen.Multimedia.Utility
         /// <param name="size">Buffer size</param>
         public ImageData(byte[] buffer, int width, int height)
         {
-            Buffer = buffer ?? throw new ArgumentNullException("buffer");
+            if (buffer == null || buffer.Length == 0)
+                throw new ArgumentNullException("buffer");
+
+            Buffer = buffer;
             Width = width;
             Height = height;
 
