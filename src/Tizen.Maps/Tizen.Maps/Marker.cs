@@ -179,7 +179,7 @@ namespace Tizen.Maps
     /// </summary>
     public class Pin : Marker
     {
-        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin.png";
+        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin_48.png";
 
         /// <summary>
         /// Creates Pin type parker
@@ -188,7 +188,6 @@ namespace Tizen.Maps
         public Pin(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Pin)
         {
-            Resize(new Size(48, 48));
         }
 
         /// <summary>
@@ -207,7 +206,7 @@ namespace Tizen.Maps
     /// </summary>
     public class Sticker : Marker
     {
-        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker.png";
+        private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker_48.png";
 
         /// <summary>
         /// Creates Sticker type parker
@@ -216,7 +215,6 @@ namespace Tizen.Maps
         public Sticker(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Sticker)
         {
-            Resize(new Size(48, 48));
         }
 
         /// <summary>
