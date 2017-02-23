@@ -26,6 +26,9 @@
 
 namespace Tizen.NUI
 {
+    using System;
+    using System.Runtime.InteropServices;
+
 
     public class Timer : BaseHandle
     {
@@ -147,12 +150,51 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal BoolSignal TickSignal()
+
+
+
+        public TimerSignalType TickSignal()
         {
-            BoolSignal ret = new BoolSignal(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
+            TimerSignalType ret = new TimerSignalType(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        private DaliEventHandlerWithReturnType<object, EventArgs, bool> _tickEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        internal delegate bool TickCallbackType();
+        private TickCallbackType _tickCallBack;
+
+        public event DaliEventHandlerWithReturnType<object, EventArgs, bool> Tick
+        {
+            add
+            {
+                if (_tickCallBack == null)
+                {
+                    _tickCallBack = OnTick;
+                    this.TickSignal().Connect(_tickCallBack);
+                }
+                _tickEventHandler += value;
+            }
+            remove
+            {
+                if (_tickCallBack != null)
+                {
+                    this.TickSignal().Disconnect(_tickCallBack);
+                    _tickCallBack = null;
+                }
+                _tickEventHandler -= value;
+            }
+        }
+        private bool OnTick()
+        {
+            if (_tickEventHandler != null)
+            {
+                return _tickEventHandler(this, null);
+            }
+            return false;
+        }
+
 
     }
 
