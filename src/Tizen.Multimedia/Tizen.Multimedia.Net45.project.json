@@ -2,7 +2,7 @@
   "dependencies": {
     "ElmSharp": "1.1.0-*",
     "Tizen": "1.0.2",
-    "Tizen.Applications": "1.0.2"
+    "Tizen.Applications": "1.2.0"
   },
   "frameworks": {
     "net45": {}
