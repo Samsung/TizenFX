@@ -85,7 +85,6 @@ namespace ElmSharp
             {
                 Interop.Elementary.elm_popup_orient_set(Handle, (int)value);
             }
-
         }
 
         public WrapType ContentTextWrapType
@@ -109,6 +108,18 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_popup_timeout_set(Handle, value);
+            }
+        }
+
+        public bool AllowEvents
+        {
+            get
+            {
+                return Interop.Elementary.elm_popup_allow_events_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_popup_allow_events_set(Handle, value);
             }
         }
 
