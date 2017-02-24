@@ -27,23 +27,42 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// The stream recorder class provides methods to create stream recorder,
-    /// to start, stop and save the pushed content.
+    /// Provides methods to control stream recorder.
     /// </summary>
+    /// <remarks>
+    /// StreamRecorder class provides functions to record raw image frame
+    /// also provides recording start, stop and save the content etc.
+    /// </remarks>
     public class StreamRecorder : IDisposable
     {
         private IntPtr _handle;
         private bool _disposed = false;
+        /// <summary>
+        /// Occurred when recording is progressing for recording status.
+        /// </summary>
         private EventHandler<RecordingStatusChangedEventArgs> _recordingStatusChanged;
         private Interop.StreamRecorder.RecordingStatusCallback _recordingStatusCallback;
+        /// <summary>
+        /// Occurred when recording time or size reach limit.
+        /// </summary>
         private EventHandler<StreamRecordingLimitReachedEventArgs> _recordingLimitReached;
         private Interop.StreamRecorder.RecordingLimitReachedCallback _recordingLimitReachedCallback;
+        /// <summary>
+        /// Occurred when streamrecorder complete to use pushed buffer.
+        /// </summary>
         private EventHandler<StreamRecordingBufferConsumedEventArgs> _bufferConsumed;
         private Interop.StreamRecorder.BufferConsumedCallback _bufferConsumedCallback;
+        /// <summary>
+        /// Occurred when streamrecorder state is changed.
+        /// </summary>
         private EventHandler<StreamRecorderNotifiedEventArgs> _recorderNotified;
         private Interop.StreamRecorder.NotifiedCallback _notifiedCallback;
+        /// <summary>
+        /// Occurred when error is occured.
+        /// </summary>
         private EventHandler<StreamRecordingErrorOccurredEventArgs> _recordingErrorOccurred;
         private Interop.StreamRecorder.RecorderErrorCallback _recorderErrorCallback;
+
         private List<StreamRecorderFileFormat> _formats;
         private List<StreamRecorderAudioCodec> _audioCodec;
         private List<StreamRecorderVideoCodec> _videoCodec;
@@ -76,7 +95,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Event that occurs when recorder is interrupted.
+        /// Event that occurs when streamrecorder state is changed.
         /// </summary>
         public event EventHandler<StreamRecorderNotifiedEventArgs> RecorderNotified
         {
@@ -122,7 +141,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Event that occurs when recording information changes.
+        /// Event that occurs when recording status changed.
         /// </summary>
         public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged
         {
@@ -168,7 +187,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Event that occurs when an error occurs during recorder operation.
+        /// Event that occurs when an error occured during recorder operation.
         /// </summary>
         public event EventHandler<StreamRecordingErrorOccurredEventArgs> RecordingErrorOccurred
         {
@@ -223,8 +242,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The current state of the stream recorder.
+        /// Get the current state of the stream recorder.
         /// </summary>
+        /// <value> The current state of stream recorder.
         public StreamRecorderState State
         {
             get
@@ -241,8 +261,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The file format for recording media stream.
+        /// Get/Set the file format for recording media stream.
         /// </summary>
+        /// <remarks>
+        /// Must set <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>.
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// </remarks>
+        /// <exception cref="ArgumentException">The format does not valid.</exception>
+        /// <seealso cref="SupportedFileFormats"/>
         public StreamRecorderFileFormat FileFormat
         {
             get
@@ -270,6 +296,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio codec for encoding an audio stream.
         /// </summary>
+        /// <remarks>
+        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// </remarks>
+        /// <exception cref="ArgumentException">The codec does not valid.</exception>
+        /// <seealso cref="SupportedAudioEncodings"/>
         public StreamRecorderAudioCodec AudioCodec
         {
             get
@@ -297,6 +329,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The video codec for encoding video stream.
         /// </summary>
+        /// <remarks>
+        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// </remarks>
+        /// <exception cref="ArgumentException">The codec does not valid.</exception>
+        /// <seealso cref="SupportedVideoEncodings"/>
         public StreamRecorderVideoCodec VideoCodec
         {
             get
@@ -329,9 +367,10 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
         /// be discarded and not written to the file.
-        /// The recorder state must be in 'Prepared' or 'Created' state.
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
         /// </remarks>
-        ///
+        /// <exception cref="ArgumentException">The value set to below 0.</exception>
+        /// <seealso cref="StreamRecordingLimitReachedEventArgs"/>
         public int SizeLimit
         {
             get
@@ -363,8 +402,10 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
         /// be discarded and not written to the file.
-        /// The recorder state must be in 'Prepared' or 'Created' state.
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
         /// </remarks>
+        /// <exception cref="ArgumentException">The value set to below 0.</exception>
+        /// <seealso cref="StreamRecordingLimitReachedEventArgs"/>
         public int TimeLimit
         {
             get
@@ -392,6 +433,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The sampling rate of an audio stream in hertz.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>.
+        /// </remarks>
+        /// <exception cref="ArgumentException">The value set to below 0.</exception>
         public int AudioSampleRate
         {
             get
@@ -419,6 +466,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an audio encoder in bits per second.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// </remarks>
+        /// <exception cref="ArgumentException">The value set to below 0.</exception>
         public int AudioBitRate
         {
             get
@@ -446,6 +499,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an video encoder in bits per second.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// </remarks>
+        /// <exception cref="ArgumentException">The value set to below 0.</exception>
         public int VideoBitRate
         {
             get
@@ -473,6 +532,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The video frame rate for recording media stream.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// </remarks>
+        /// <exception cref="NotSupportedException">The value set to below 0.</exception>
         public int VideoFrameRate
         {
             get
@@ -498,8 +563,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The video frame rate for recording media stream.
+        /// Get or Set the video source format for recording media stream.
         /// </summary>
+        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
+        /// <seealso cref="StreamRecorderVideoSourceFormat"/>
         public StreamRecorderVideoSourceFormat VideoSourceFormat
         {
             get
@@ -531,7 +598,9 @@ namespace Tizen.Multimedia
         /// The attribute is applied only in Created state.
         /// For mono recording, set channel to 1.
         /// For stereo recording, set channel to 2.
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
         /// </remarks>
+        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
         public int AudioChannel
         {
             get
@@ -559,6 +628,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Video resolution of the video recording.
         /// </summary>
+        /// <remarks>
+        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
+        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
+        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
+        /// </remarks>
+        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
+        /// <seealso cref="SupportedVideoResolutions"/>
         public StreamRecorderVideoResolution Resolution
         {
             get
@@ -574,6 +650,7 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported file
         /// formats by Stream recorder.
         /// </returns>
+        /// <seealso cref="StreamRecorderFileFormat"/>
         public IEnumerable<StreamRecorderFileFormat> SupportedFileFormats
         {
             get
@@ -602,6 +679,7 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported audio encoders
         /// by recorder.
         /// </returns>
+        /// <seealso cref="StreamRecorderAudioCodec"/>
         public IEnumerable<StreamRecorderAudioCodec> SupportedAudioEncodings
         {
             get
@@ -630,6 +708,7 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported video encoders
         /// by recorder.
         /// </returns>
+        /// <seealso cref="StreamRecorderVideoCodec"/>
         public IEnumerable<StreamRecorderVideoCodec> SupportedVideoEncodings
         {
             get
@@ -658,6 +737,7 @@ namespace Tizen.Multimedia
         /// It returns videoresolution list containing the width and height of
         /// different resolutions supported by recorder.
         /// </returns>
+        /// <seealso cref="StreamRecorderVideoResolution"/>
         public IEnumerable<StreamRecorderVideoResolution> SupportedVideoResolutions
         {
             get
@@ -684,9 +764,11 @@ namespace Tizen.Multimedia
         /// Prepare the stream recorder.
         /// </summary>
         /// <remarks>
-        /// Before calling the function, it is required to set AudioEncoder,
-        /// videoencoder and fileformat properties of recorder.
+        /// Before calling the function, it is required to set <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>,
+        /// <see cref="StreamRecorderAudioCodec"/>, <see cref="StreamRecorderVideoCodec"/> and <see cref="StreamRecorderFileFormat"/> properties of recorder.
         /// </remarks>
+        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <seealso cref="Unprepare"/>
         public void Prepare()
         {
             int ret = Interop.StreamRecorder.Prepare (_handle);
@@ -699,6 +781,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Resets the stream recorder.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Prepared"/> state by <see cref="Prepare"/>, <see cref="Cancel"/> and <see cref="Commit"/>.
+        /// The StreamRecorder state will be <see cref="StreamRecorderState.Created"/>.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <seealso cref="Prepare"/>
         public void Unprepare()
         {
             int ret = Interop.StreamRecorder.Unprepare (_handle);
@@ -714,7 +802,17 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// If file path has been set to an existing file, this file is removed automatically and updated by new one.
         ///	The filename should be set before this function is invoked.
+        ///	The recorder state must be <see cref="StreamRecorderState.Prepared"/> state by <see cref="Prepare"/> or
+        ///	<see cref="StreamRecorderState.Paused"/> state by <see cref="Pause"/>.
+        ///	The filename shuild be set by <see cref="FilePath"/>
         /// </remarks>
+        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access ot the resources can not be granted.</exception>
+        /// <seealso cref="Pause"/>
+        /// <seealso cref="Commit"/>
+        /// <seealso cref="Cancel"/>
+        /// <seealso cref="FilePath"/>
+        /// <seealso cref="FileFormat"/>
         public void Start()
         {
             int ret = Interop.StreamRecorder.Start (_handle);
@@ -728,8 +826,12 @@ namespace Tizen.Multimedia
         /// Pause the recording.
         /// </summary>
         /// <remarks>
-        /// Recording can be resumed with Start().
+        /// Recording can be resumed with <see cref="Start"/>.
         /// </remarks>
+        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <seealso cref="Start"/>
+        /// <seealso cref="Commit"/>
+        /// <seealso cref="Cancel"/>
         public void Pause()
         {
             int ret = Interop.StreamRecorder.Pause (_handle);
@@ -742,6 +844,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Stops recording and saves the result.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="StreamRecorderState.Recording"/> state by <see cref="Start"/> or
+        ///  <see cref="StreamRecorderState.Paused"/> state by <see cref="Pause"/>
+        /// When you want to record audio or video file, you need to add privilege according to rules below additionally.
+        /// <para>
+        /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access ot the resources can not be granted.</exception>
+        /// <seealso cref="Start"/>
+        /// <seealso cref="Pause"/>
         public void Commit()
         {
             int ret = Interop.StreamRecorder.Commit (_handle);
@@ -755,6 +870,8 @@ namespace Tizen.Multimedia
         /// Cancels the recording.
         /// The recording data is discarded and not written in the recording file.
         /// </summary>
+        /// <seealso cref="Start"/>
+        /// <seealso cref="Pause"/>
         public void Cancel()
         {
             int ret = Interop.StreamRecorder.Cancel (_handle);
