@@ -26,10 +26,9 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the EAP information of access point(AP).
     /// </summary>
-    public class WiFiEap : IWiFiEap, IDisposable
+    public class WiFiEap : IWiFiEap
     {
-        private IntPtr _apHandle = IntPtr.Zero;
-        private bool disposed = false;
+        private Interop.WiFi.SafeWiFiAPHandle _apHandle;
 
         /// <summary>
         /// The file path of CA Certificate of EAP.
@@ -113,36 +112,9 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal WiFiEap(IntPtr apHandle)
+        internal WiFiEap(Interop.WiFi.SafeWiFiAPHandle apHandle)
         {
             _apHandle = apHandle;
-        }
-
-        ~WiFiEap()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
-        /// A method to destroy the managed objects in WiFiEap.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-            }
-            _apHandle = IntPtr.Zero;
-            disposed = true;
         }
 
         /// <summary>
@@ -156,7 +128,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get private key file, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
             return Marshal.PtrToStringAnsi(strPtr);
         }
@@ -172,7 +144,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set private key file, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
 
@@ -187,7 +159,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
             return Marshal.PtrToStringAnsi(strPtr);
         }
@@ -202,7 +174,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set client cert file, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
 
@@ -218,7 +190,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get user name in eap passphrase, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
             return Marshal.PtrToStringAnsi(strptr);
         }
@@ -235,7 +207,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get IsPasswordSet in passphrase, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
             return passwordSet;
         }
@@ -250,7 +222,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set username, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
 
@@ -264,7 +236,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set password, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
     } //WiFiEapInformation

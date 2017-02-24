@@ -22,11 +22,10 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the WiFi security information.
     /// </summary>
-    public class WiFiSecurity : IDisposable
+    public class WiFiSecurity
     {
-        private IntPtr _apHandle = IntPtr.Zero;
+        private Interop.WiFi.SafeWiFiAPHandle _apHandle;
         private WiFiEap _eap;
-        private bool disposed = false;
 
         /// <summary>
         /// The type of Wi-Fi security.
@@ -129,37 +128,10 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal WiFiSecurity(IntPtr apHandle)
+        internal WiFiSecurity(Interop.WiFi.SafeWiFiAPHandle apHandle)
         {
             _apHandle = apHandle;
             _eap = new WiFiEap(apHandle);
-        }
-
-        ~WiFiSecurity()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
-        /// A method to destroy managed WiFiSecurity objects.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                _eap.Dispose();
-            }
-            _apHandle = IntPtr.Zero;
-            disposed = true;
         }
 
         /// <summary>
@@ -171,7 +143,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set passphrase, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
     } //WiFiSecurityInformation

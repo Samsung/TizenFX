@@ -30,7 +30,7 @@ namespace Tizen.Network.WiFi
         private int _requestId = 0;
         private WiFiNetwork _network;
         private WiFiSecurity _security;
-        private bool disposed = false;
+        private bool _disposed = false;
 
         /// <summary>
         /// The network information of the access point(AP).
@@ -99,17 +99,15 @@ namespace Tizen.Network.WiFi
 
         private void Dispose(bool disposing)
         {
-            if (disposed)
+            if (_disposed)
                 return;
 
             if (disposing)
             {
-                _network.Dispose();
-                _security.Dispose();
                 Interop.WiFi.AP.Destroy(_apHandle);
                 _apHandle = IntPtr.Zero;
             }
-            disposed = true;
+            _disposed = true;
         }
 
         private void createHandle(string id, bool hidden)
@@ -117,11 +115,12 @@ namespace Tizen.Network.WiFi
             int ret = -1;
             if (hidden)
             {
-                ret = Interop.WiFi.AP.CreateHiddenAP(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
+                ret = Interop.WiFi.AP.CreateHiddenAP(WiFiManagerImpl.Instance.GetSafeHandle(), id, out _apHandle);
             }
+
             else
             {
-                ret = Interop.WiFi.AP.Create(WiFiManagerImpl.Instance.GetHandle(), id, out _apHandle);
+                ret = Interop.WiFi.AP.Create(WiFiManagerImpl.Instance.GetSafeHandle(), id, out _apHandle);
             }
 
             if (ret != (int)WiFiError.None)
@@ -133,8 +132,9 @@ namespace Tizen.Network.WiFi
 
         private void Initialize()
         {
-            _network = new WiFiNetwork(_apHandle);
-            _security = new WiFiSecurity(_apHandle);
+            Interop.WiFi.SafeWiFiAPHandle apHandle = new Interop.WiFi.SafeWiFiAPHandle(_apHandle);
+            _network = new WiFiNetwork(apHandle);
+            _security = new WiFiSecurity(apHandle);
         }
 
         /// <summary>
@@ -148,11 +148,6 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to refresh ap handle, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle);
             }
-        }
-
-        internal IntPtr GetHandle()
-        {
-            return _apHandle;
         }
 
         /// <summary>
@@ -181,7 +176,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Connect(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.Connect(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
@@ -216,7 +211,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ConnectByWpsPbc(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.ConnectByWpsPbc(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
@@ -252,7 +247,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ConnectByWpsPin(WiFiManagerImpl.Instance.GetHandle(), _apHandle, pin, _callback_map[id], id);
+            int ret = Interop.WiFi.ConnectByWpsPin(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, pin, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
@@ -287,7 +282,7 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Disconnect(WiFiManagerImpl.Instance.GetHandle(), _apHandle, _callback_map[id], id);
+            int ret = Interop.WiFi.Disconnect(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
@@ -302,7 +297,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         public void RemoveAP()
         {
-            int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetHandle(), _apHandle);
+            int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);

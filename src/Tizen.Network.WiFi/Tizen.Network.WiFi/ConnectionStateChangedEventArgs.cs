@@ -26,10 +26,10 @@ namespace Tizen.Network.WiFi
         private WiFiConnectionState _state = WiFiConnectionState.Disconnected;
         private WiFiAP _ap;
 
-        internal ConnectionStateChangedEventArgs(WiFiConnectionState s, IntPtr _apHandle)
+        internal ConnectionStateChangedEventArgs(WiFiConnectionState s, IntPtr apHandle)
         {
             _state = s;
-            _ap = new WiFiAP(_apHandle);
+            _ap = new WiFiAP(apHandle);
         }
 
         /// <summary>

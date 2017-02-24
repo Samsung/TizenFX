@@ -25,12 +25,11 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the Wi-Fi network information.
     /// </summary>
-    public class WiFiNetwork : IDisposable
+    public class WiFiNetwork
     {
-        private IntPtr _apHandle = IntPtr.Zero;
+        private Interop.WiFi.SafeWiFiAPHandle _apHandle;
         private IAddressInformation _ipv4;
         private IAddressInformation _ipv6;
-        private bool disposed = false;
         private string _essid;
 
         /// <summary>
@@ -252,7 +251,7 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal WiFiNetwork(IntPtr apHandle)
+        internal WiFiNetwork(Interop.WiFi.SafeWiFiAPHandle apHandle)
         {
             _apHandle = apHandle;
             _ipv4 = new WiFiAddressInformation(apHandle, AddressFamily.IPv4);
@@ -266,34 +265,5 @@ namespace Tizen.Network.WiFi
             }
             _essid = Marshal.PtrToStringAnsi(strPtr);
         }
-
-        ~WiFiNetwork()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
-        /// A method to destroy managed WiFiNetwork objects.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                _ipv4.Dispose();
-                _ipv6.Dispose();
-            }
-            _apHandle = IntPtr.Zero;
-            disposed = true;
-        }
-
     } //WiFiNetworkInformation
 }

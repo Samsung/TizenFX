@@ -132,30 +132,6 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal void RemoveAllRegisteredEvent()
-        {
-            //unregister all remaining events when this object is released.
-            if (_deviceStateChanged != null)
-            {
-                UnregisterDeviceStateChangedEvent();
-            }
-
-            if (_connectionStateChanged != null)
-            {
-                UnregisterConnectionStateChangedEvent();
-            }
-
-            if (_rssiLevelChanged != null)
-            {
-                UnregisterRssiLevelChangedEvent();
-            }
-
-            if (_backgroundScanFinished != null)
-            {
-                UnregisterBackgroundScanFinishedEvent();
-            }
-        }
-
         private void RegisterDeviceStateChangedEvent()
         {
             _deviceChangedCallback = (int deviceState, IntPtr userDate) =>
@@ -164,7 +140,7 @@ namespace Tizen.Network.WiFi
                 DeviceStateChangedEventArgs e = new DeviceStateChangedEventArgs(state);
                 _deviceStateChanged.SafeInvoke(null, e);
             };
-            int ret = Interop.WiFi.SetDeviceStateChangedCallback(GetHandle(), _deviceChangedCallback, IntPtr.Zero);
+            int ret = Interop.WiFi.SetDeviceStateChangedCallback(GetSafeHandle(), _deviceChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set device state changed callback, Error - " + (WiFiError)ret);
@@ -173,7 +149,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterDeviceStateChangedEvent()
         {
-            int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetHandle());
+            int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset device state changed callback, Error - " + (WiFiError)ret);
@@ -182,13 +158,16 @@ namespace Tizen.Network.WiFi
 
         private void RegisterConnectionStateChangedEvent()
         {
-            _connectionChangedCallback = (int connectionState, IntPtr ap, IntPtr userDate) =>
+            _connectionChangedCallback = (int connectionState, IntPtr ap, IntPtr userData) =>
             {
-                WiFiConnectionState state = (WiFiConnectionState)connectionState;
-                ConnectionStateChangedEventArgs e = new ConnectionStateChangedEventArgs(state, ap);
-                _connectionStateChanged.SafeInvoke(null, e);
+                if (ap != IntPtr.Zero)
+                {
+                    WiFiConnectionState state = (WiFiConnectionState)connectionState;
+                    ConnectionStateChangedEventArgs e = new ConnectionStateChangedEventArgs(state, ap);
+                    _connectionStateChanged.SafeInvoke(null, e);
+                }
             };
-            int ret = Interop.WiFi.SetConnectionStateChangedCallback(GetHandle(), _connectionChangedCallback, IntPtr.Zero);
+            int ret = Interop.WiFi.SetConnectionStateChangedCallback(GetSafeHandle(), _connectionChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set copnnection state changed callback, Error - " + (WiFiError)ret);
@@ -197,7 +176,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterConnectionStateChangedEvent()
         {
-            int ret = Interop.WiFi.UnsetConnectionStateChangedCallback(GetHandle());
+            int ret = Interop.WiFi.UnsetConnectionStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset device state changed callback, Error - " + (WiFiError)ret);
@@ -213,7 +192,7 @@ namespace Tizen.Network.WiFi
                 RssiLevelChangedEventArgs e = new RssiLevelChangedEventArgs(level);
                 _rssiLevelChanged.SafeInvoke(null, e);
             };
-            int ret = Interop.WiFi.SetRssiLevelchangedCallback(GetHandle(), _rssiChangedCallback, IntPtr.Zero);
+            int ret = Interop.WiFi.SetRssiLevelchangedCallback(GetSafeHandle(), _rssiChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set rssi level changed callback, Error - " + (WiFiError)ret);
@@ -222,7 +201,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterRssiLevelChangedEvent()
         {
-            int ret = Interop.WiFi.UnsetRssiLevelchangedCallback(GetHandle());
+            int ret = Interop.WiFi.UnsetRssiLevelchangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset rssi level changed callback, Error - " + (WiFiError)ret);
@@ -236,7 +215,7 @@ namespace Tizen.Network.WiFi
                 EventArgs e = new EventArgs();
                 _backgroundScanFinished.SafeInvoke(null, e);
             };
-            int ret = Interop.WiFi.SetBackgroundScanCallback(GetHandle(), _backgroundScanFinishedCallback, IntPtr.Zero);
+            int ret = Interop.WiFi.SetBackgroundScanCallback(GetSafeHandle(), _backgroundScanFinishedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set background scan callback, Error - " + (WiFiError)ret);
@@ -245,7 +224,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterBackgroundScanFinishedEvent()
         {
-            int ret = Interop.WiFi.UnsetBackgroundScanCallback(GetHandle());
+            int ret = Interop.WiFi.UnsetBackgroundScanCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset background scan callback, Error - " + (WiFiError)ret);

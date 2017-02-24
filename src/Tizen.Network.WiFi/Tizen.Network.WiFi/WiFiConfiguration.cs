@@ -28,7 +28,7 @@ namespace Tizen.Network.WiFi
     public class WiFiConfiguration : IDisposable
     {
         private IntPtr _configHandle = IntPtr.Zero;
-        private bool disposed = false;
+        private bool _disposed = false;
         private WiFiEapConfiguration _eapConfig;
 
         /// <summary>
@@ -132,7 +132,8 @@ namespace Tizen.Network.WiFi
         internal WiFiConfiguration(IntPtr handle)
         {
             _configHandle = handle;
-            _eapConfig = new WiFiEapConfiguration(_configHandle);
+            Interop.WiFi.SafeWiFiConfigHandle configHandle = new Interop.WiFi.SafeWiFiConfigHandle(handle);
+            _eapConfig = new WiFiEapConfiguration(configHandle);
         }
 
         /// <summary>
@@ -143,12 +144,13 @@ namespace Tizen.Network.WiFi
         /// <param name="type">Security type of the WiFi.</param>
         public WiFiConfiguration(string name, string passPhrase, WiFiSecurityType type)
         {
-            int ret = Interop.WiFi.Config.Create(WiFiManagerImpl.Instance.GetHandle(), name, passPhrase, (int)type, out _configHandle);
+            int ret = Interop.WiFi.Config.Create(WiFiManagerImpl.Instance.GetSafeHandle(), name, passPhrase, (int)type, out _configHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to create config handle, Error - " + (WiFiError)ret);
             }
-            _eapConfig = new WiFiEapConfiguration(_configHandle);
+            Interop.WiFi.SafeWiFiConfigHandle configHandle = new Interop.WiFi.SafeWiFiConfigHandle(_configHandle);
+            _eapConfig = new WiFiEapConfiguration(configHandle);
         }
 
         ~WiFiConfiguration()
@@ -167,16 +169,15 @@ namespace Tizen.Network.WiFi
 
         private void Dispose(bool disposing)
         {
-            if (disposed)
+            if (_disposed)
                 return;
 
             if (disposing)
             {
-                _eapConfig.Dispose();
                 Interop.WiFi.Config.Destroy(_configHandle);
                 _configHandle = IntPtr.Zero;
             }
-            disposed = true;
+            _disposed = true;
         }
 
         internal IntPtr GetHandle()

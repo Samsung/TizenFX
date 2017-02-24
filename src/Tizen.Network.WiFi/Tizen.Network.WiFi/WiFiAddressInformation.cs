@@ -22,37 +22,13 @@ namespace Tizen.Network.WiFi
 {
     internal class WiFiAddressInformation : IAddressInformation
     {
-        private IntPtr _handle;
+        private Interop.WiFi.SafeWiFiAPHandle _handle;
         private AddressFamily _family;
-        private bool _disposed = false;
 
-        internal WiFiAddressInformation(IntPtr handle, AddressFamily family)
+        internal WiFiAddressInformation(Interop.WiFi.SafeWiFiAPHandle handle, AddressFamily family)
         {
             _handle = handle;
             _family = family;
-        }
-
-        ~WiFiAddressInformation()
-        {
-            Dispose(false);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-            }
-            _handle = IntPtr.Zero;
-            _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
 
         public System.Net.IPAddress Dns1
