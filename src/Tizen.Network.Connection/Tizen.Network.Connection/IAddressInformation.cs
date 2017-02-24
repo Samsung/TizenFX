@@ -27,7 +27,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This interface provides properties to manage address information of the connection.
     /// </summary>
-    public interface IAddressInformation : IDisposable
+    public interface IAddressInformation
     {
         /// <summary>
         /// The DNS address.
@@ -64,35 +64,11 @@ namespace Tizen.Network.Connection
     {
         private IntPtr _profileHandle;
         private AddressFamily _family;
-        private bool _disposed = false;
 
         internal ConnectionAddressInformation(IntPtr handle, AddressFamily family)
         {
             _profileHandle = handle;
             _family = family;
-        }
-
-        ~ConnectionAddressInformation()
-        {
-            Dispose(false);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                // Release managed resources.
-            }
-            // Release unmanaged resources.
-            _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
 
         public System.Net.IPAddress Dns1
