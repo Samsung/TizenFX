@@ -28,6 +28,10 @@ namespace Tizen.Applications.CoreBackend
         private IntPtr _localeChangedEventHandle = IntPtr.Zero;
         private IntPtr _regionChangedEventHandle = IntPtr.Zero;
         private bool _disposedValue = false;
+        private Interop.Application.AppEventCallback _onLowMemoryNative;
+        private Interop.Application.AppEventCallback _onLowBatteryNative;
+        private Interop.Application.AppEventCallback _onLocaleChangedNative;
+        private Interop.Application.AppEventCallback _onRegionChangedNative;
 
         public UICoreBackend()
         {
@@ -36,6 +40,11 @@ namespace Tizen.Applications.CoreBackend
             _callbacks.OnAppControl = new Interop.Application.AppControlCallback(OnAppControlNative);
             _callbacks.OnResume = new Interop.Application.AppResumeCallback(OnResumeNative);
             _callbacks.OnPause = new Interop.Application.AppPauseCallback(OnPauseNative);
+
+            _onLowMemoryNative = new Interop.Application.AppEventCallback(OnLowMemoryNative);
+            _onLowBatteryNative = new Interop.Application.AppEventCallback(OnLowBatteryNative);
+            _onLocaleChangedNative = new Interop.Application.AppEventCallback(OnLocaleChangedNative);
+            _onRegionChangedNative = new Interop.Application.AppEventCallback(OnRegionChangedNative);
         }
 
         public override void Exit()
@@ -48,24 +57,24 @@ namespace Tizen.Applications.CoreBackend
             base.Run(args);
 
             ErrorCode err = ErrorCode.None;
-            err = Interop.Application.AddEventHandler(out _lowMemoryEventHandle, AppEventType.LowMemory, OnLowMemoryNative, IntPtr.Zero);
+            err = Interop.Application.AddEventHandler(out _lowMemoryEventHandle, AppEventType.LowMemory, _onLowMemoryNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to add event handler for LowMemory event. Err = " + err);
             }
-            err = Interop.Application.AddEventHandler(out _lowBatteryEventHandle, AppEventType.LowBattery, OnLowBatteryNative, IntPtr.Zero);
+            err = Interop.Application.AddEventHandler(out _lowBatteryEventHandle, AppEventType.LowBattery, _onLowBatteryNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to add event handler for LowBattery event. Err = " + err);
             }
 
-            err = Interop.Application.AddEventHandler(out _localeChangedEventHandle, AppEventType.LanguageChanged, OnLocaleChangedNative, IntPtr.Zero);
+            err = Interop.Application.AddEventHandler(out _localeChangedEventHandle, AppEventType.LanguageChanged, _onLocaleChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to add event handler for LocaleChanged event. Err = " + err);
             }
 
-            err = Interop.Application.AddEventHandler(out _regionChangedEventHandle, AppEventType.RegionFormatChanged, OnRegionChangedNative, IntPtr.Zero);
+            err = Interop.Application.AddEventHandler(out _regionChangedEventHandle, AppEventType.RegionFormatChanged, _onRegionChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to add event handler for RegionFormatChanged event. Err = " + err);
