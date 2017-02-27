@@ -44,7 +44,6 @@ namespace Tizen.Network.WiFiDirect
         internal int _peerChannel;
         internal bool _isPeerConnected;
         internal bool _isPeerGroupOwner;
-        internal bool _isPeerPersistentGroupOwner;
         internal bool _peerP2PSupport;
         internal WiFiDirectPrimaryDeviceType _peerPrimaryType;
         internal WiFiDirectSecondaryDeviceType _peerSecondaryType;
@@ -132,17 +131,6 @@ namespace Tizen.Network.WiFiDirect
             get
             {
                 return _isPeerGroupOwner;
-            }
-        }
-
-        /// <summary>
-        /// Persistent group state of the peer device.
-        /// </summary>
-        public bool IsPersistentGroupOwner
-        {
-            get
-            {
-                return _isPeerPersistentGroupOwner;
             }
         }
 
@@ -387,6 +375,36 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
+        /// <summary>
+        /// WiFi RSSI value of the peer device.
+        /// </summary>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// If there is any error, -1 will be returned.
+        /// </remarks>
+        public int Rssi
+        {
+            get
+            {
+                if (Globals.IsActivated)
+                {
+                    int rssi;
+                    int ret = Interop.WiFiDirect.GetRssi(_peerMacAddress, out rssi);
+                    if (ret != (int)WiFiDirectError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to get the peer RSSI, Error - " + (WiFiDirectError)ret);
+                        return -1;
+                    }
+
+                    return rssi;
+                }
+
+                else
+                {
+                    return -1;
+                }
+            }
+        }
         /// <summary>
         /// (event) ConnectionStateChanged event is raised when the connection state of the peer device changes.
         /// </summary>

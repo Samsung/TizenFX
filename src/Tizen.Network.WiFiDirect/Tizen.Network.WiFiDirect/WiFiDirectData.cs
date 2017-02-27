@@ -40,9 +40,6 @@ namespace Tizen.Network.WiFiDirect
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool _isGroupOwner;
 
-        [MarshalAsAttribute(UnmanagedType.I1)]
-        internal bool _isPersistentGroupOwner;
-
         internal WiFiDirectPrimaryDeviceType _primaryType;
 
         internal WiFiDirectSecondaryDeviceType _secondaryType;
@@ -103,7 +100,6 @@ namespace Tizen.Network.WiFiDirect
             resultPeer._peerChannel = peer._channel;
             resultPeer._isPeerConnected = peer._isConnected;
             resultPeer._isPeerGroupOwner = peer._isGroupOwner;
-            resultPeer._isPeerPersistentGroupOwner = peer._isPersistentGroupOwner;
             resultPeer._peerPrimaryType = peer._primaryType;
             resultPeer._peerSecondaryType = peer._secondaryType;
             resultPeer._peerWpsTypes = peer._wpsTypes;

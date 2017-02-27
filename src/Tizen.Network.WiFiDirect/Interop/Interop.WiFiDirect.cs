@@ -219,6 +219,8 @@ internal static partial class Interop
         internal static extern int GetDisplayPort(string address, out int port);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_throughput")]
         internal static extern int GetDisplayThroughput(string address, out int throughput);
+        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_rssi")]
+        internal static extern int GetRssi(string address, out int rssi);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_session_timer")]
         internal static extern int GetSessionTimer(out int seconds);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_session_timer")]
