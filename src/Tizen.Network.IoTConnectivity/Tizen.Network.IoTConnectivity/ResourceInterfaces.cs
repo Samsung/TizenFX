@@ -63,6 +63,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
         /// </code>
@@ -80,6 +83,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Constructor of ResourceInterfaces using list of interfaces
         /// </summary>
         /// <param name="ifaces">List of resource interfaces</param>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
@@ -161,6 +167,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </remarks>
         /// <param name="item">The string data to insert into the resource interfaces</param>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
         /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
@@ -189,6 +198,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="item">The string data to delete from the resource ifaces</param>
         /// <seealso cref="Add()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.BatchInterface });
         /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
@@ -201,7 +213,7 @@ namespace Tizen.Network.IoTConnectivity
                 int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Remove(_resourceInterfacesHandle, item);
                 if (ret != (int)IoTConnectivityError.None)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to add interface");
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove interface");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
             }

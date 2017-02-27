@@ -38,6 +38,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The Attributes constructor
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// </code>
@@ -85,25 +88,6 @@ namespace Tizen.Network.IoTConnectivity
             get
             {
                 return _attributes.Count;
-            }
-        }
-
-        /// <summary>
-        /// Represents whether attribute is readonly
-        /// </summary>
-        /// <code>
-        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
-        ///     { "state", "ON" },
-        ///     { "dim", 10 }
-        /// };
-        /// if (attributes.IsReadOnly)
-        ///     Console.WriteLine("Read only attribute");
-        /// </code>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _attributes.IsReadOnly;
             }
         }
 
@@ -278,6 +262,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears attributes collection
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// attributes.Add("brightness", 50);
@@ -377,6 +364,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="item">The attributes element to remove</param>
         /// <returns>true if operation is success. Otherwise, false</returns>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
@@ -395,6 +385,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="key">The attributes element to remove</param>
         /// <returns>true if operation is successful, Otherwise, false</returns>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },

@@ -166,6 +166,9 @@ namespace Tizen.Network.IoTConnectivity
         /// You must call Deinitialize() if IoTCon API is no longer needed.
         /// </post>
         /// <seealso cref="Deinitialize()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <code>
         /// string filePath = "../../res/iotcon-test-svr-db-client.dat";
         /// IoTConnectivityClientManager.Initialize(filePath);
@@ -224,6 +227,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <code>
         /// IoTConnectivityClientManager.InvokePolling();
         /// </code>
@@ -263,6 +267,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="IoTConnectivityServerManager.StopSendingPresence()"/>
         /// <seealso cref="StopReceivingPresence()"/>
         /// <seealso cref="PresenceReceived"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
         /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
         ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
@@ -354,6 +363,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="IoTConnectivityServerManager.StopSendingPresence()"/>
         /// <seealso cref="StartReceivingPresence()"/>
         /// <seealso cref="PresenceReceived"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
         /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
         ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
@@ -420,6 +434,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourceFound"/>
         /// <seealso cref="ResourceFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
         /// EventHandler<ResourceFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("Found resource at host address :" + e.Resource.HostAddress + ", uri :" + e.Resource.UriPath);
@@ -523,6 +542,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="DeviceInformationFound"/>
         /// <seealso cref="DeviceInformationFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
         /// EventHandler<DeviceInformationFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("Device information found, id : " + e.RequestId + ", name : " + e.Name);
@@ -616,6 +640,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="PlatformInformationFound"/>
         /// <seealso cref="PlatformInformationFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
         /// EventHandler<PlatformInformationFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("PlatformInformationFound :" + e.RequestId);

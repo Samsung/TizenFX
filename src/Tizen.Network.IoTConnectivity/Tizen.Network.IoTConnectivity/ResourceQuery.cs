@@ -37,6 +37,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// </code>
@@ -84,6 +87,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets and sets the resource type of the query
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Type = "org.tizen.light";
@@ -98,7 +104,7 @@ namespace Tizen.Network.IoTConnectivity
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
+                    return "";
                 }
                 return Marshal.PtrToStringAnsi(type);
             }
@@ -122,6 +128,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// Setter value could be a value such as <see cref="ResourceInterfaces.DefaultInterface"/>
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Interface = ResourceInterfaces.LinkInterface;
@@ -135,7 +144,7 @@ namespace Tizen.Network.IoTConnectivity
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
+                    return "";
                 }
                 return Marshal.PtrToStringAnsi(iface);
             }
@@ -208,22 +217,6 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Represents whether the collection is readonly
-        /// </summary>
-        /// <code>
-        /// ResourceQuery query = new ResourceQuery();
-        /// if (query.IsReadOnly)
-        ///     Console.WriteLine("Read only query");
-        /// </code>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _query.IsReadOnly;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the query data
         /// </summary>
         /// <param name="key">The query key to get or set.</param>
@@ -271,6 +264,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The key of the query to insert</param>
         /// <param name="value">The string data to insert into the query</param>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
@@ -300,6 +296,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The id of the query to delete</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
         /// <seealso cref="Add()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
@@ -356,6 +355,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears the Query collection
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");

@@ -43,6 +43,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// </code>
@@ -143,22 +146,6 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Represents whether the collection is readonly
-        /// </summary>
-        /// <code>
-        /// ResourceOptions options = new ResourceOptions();
-        /// if (options.IsReadOnly)
-        ///     Console.WriteLine("Read only options");
-        /// </code>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _options.IsReadOnly;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the option data
         /// </summary>
         /// <remarks>
@@ -208,6 +195,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The id of the option to insert</param>
         /// <param name="value">The string data to insert into the options</param>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
@@ -238,6 +227,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The id of the option to delete</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
         /// <seealso cref="Add()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
@@ -294,6 +285,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears the Options collection
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");

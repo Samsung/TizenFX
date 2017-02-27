@@ -38,6 +38,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes();
         /// </code>
@@ -130,6 +133,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </remarks>
         /// <param name="item">The string data to insert into the resource types</param>
         /// <seealso cref="Remove()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes();
         /// resourceTypes.Add("org.tizen.light");
@@ -158,6 +164,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <param name="item">The string data to delete from the resource types</param>
         /// <seealso cref="Add()"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// resourceTypes.Remove("oic.if.room");

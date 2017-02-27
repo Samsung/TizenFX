@@ -37,6 +37,9 @@ namespace Tizen.Network.IoTConnectivity
         /// The Representation constructor
         /// </summary>
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// </code>
@@ -83,6 +86,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// Setter can throw exceptions
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// repr.UriPath = "/a/light";
@@ -118,6 +124,9 @@ namespace Tizen.Network.IoTConnectivity
         /// The type of resource
         /// </summary>
         /// <seealso cref="ResourceTypes"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// ResourceTypes types = new ResourceTypes (new List<string>(){ "org.tizen.light" });
@@ -137,10 +146,6 @@ namespace Tizen.Network.IoTConnectivity
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
-                }
-                if (typeHandle == IntPtr.Zero)
-                {
                     return null;
                 }
                 return new ResourceTypes(typeHandle);
@@ -162,6 +167,9 @@ namespace Tizen.Network.IoTConnectivity
         /// The interface of the resource
         /// </summary>
         /// <seealso cref="ResourceInterfaces"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// ResourceInterfaces ifaces = new ResourceInterfaces (new List<string>(){ ResourceInterfaces.DefaultInterface });
@@ -181,10 +189,6 @@ namespace Tizen.Network.IoTConnectivity
                 if (ret != (int)IoTConnectivityError.None)
                 {
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
-                }
-                if (interfaceHandle == IntPtr.Zero)
-                {
                     return null;
                 }
                 return new ResourceInterfaces(interfaceHandle);
@@ -206,6 +210,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Current attributes of the resource
         /// </summary>
         /// <seealso cref="Attributes"/>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// Attributes attributes = new Attributes() {

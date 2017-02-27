@@ -59,6 +59,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="policy">The policies of the resource</param>
         /// <param name="resourceTypes">The resource types of the resource</param>
         /// <param name="resourceInterfaces">The resource interfaces of the resource</param>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         public RemoteResource(string hostAddress, string uriPath, ResourcePolicy policy, ResourceTypes resourceTypes, ResourceInterfaces resourceInterfaces)
         {
             if (hostAddress == null || uriPath == null || resourceTypes == null || resourceInterfaces == null)
@@ -162,6 +165,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The header options of the resource
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         public ResourceOptions Options
         {
             get
@@ -189,6 +194,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// Client can start caching only when this is set true. Set it to false to stop caching the resource attributes.
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         public bool CacheEnabled
         {
             get
@@ -212,6 +222,8 @@ namespace Tizen.Network.IoTConnectivity
         /// Default time interval is 10 seconds.\n
         /// Seconds for time interval (must be in range from 1 to 3600)
         /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         public int TimeInterval
         {
             get
@@ -273,6 +285,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </privilege>
         /// <param name="policy">The type to specify how client wants to observe</param>
         /// <param name="query">The query to send to server</param>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         public void StartObserving(ObservePolicy policy, ResourceQuery query = null)
         {
             _observeCallback = (IntPtr resource, int err, int sequenceNumber, IntPtr response, IntPtr userData) =>
@@ -309,7 +326,7 @@ namespace Tizen.Network.IoTConnectivity
                     Representation = repr,
                     Result = (ResponseCode)result
                 };
-                ObserverNotified?.Invoke(null, e);
+                ObserverNotified?.Invoke(this, e);
             };
 
             IntPtr queryHandle = IntPtr.Zero;
@@ -332,6 +349,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         public void StopObserving()
         {
             int ret = Interop.IoTConnectivity.Client.RemoteResource.DeregisterObserve(_remoteResourceHandle);
@@ -675,7 +696,7 @@ namespace Tizen.Network.IoTConnectivity
                         {
                             Representation = repr
                         };
-                        CacheUpdated?.Invoke(null, e);
+                        CacheUpdated?.Invoke(this, e);
                     }
                 };
 
