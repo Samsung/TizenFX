@@ -113,6 +113,42 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Unregisters a resource in IoTCon server
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/internet
+        /// </privilege>
+        /// <param name="resource">The resource to unregister</param>
+        /// <pre>
+        /// Initialize() should be called to initialize.
+        /// </pre>
+        /// <seealso cref="Resource"/>
+        /// <seealso cref="LiteResource"/>
+        /// <code>
+        /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });
+        /// Attributes attributes = new Attributes { { "state", "ON" }};
+        /// Resource res = new LiteResource("/room/1", types, ResourcePolicy.Discoverable, attributes);
+        /// IoTConnectivityServerManager.RegisterResource(res);
+        /// try {
+        ///     IoTConnectivityServerManager.UnregisterResource(res);
+        /// } catch(Exception ex) {
+        ///     Console.Log("Exception caught : " + ex.Message);
+        /// }
+        /// </code>
+        public static void UnregisterResource(Resource resource)
+        {
+            if (resource != null)
+            {
+                if (resource.ResourceHandle != IntPtr.Zero)
+                {
+                    Interop.IoTConnectivity.Server.Resource.Destroy(resource.ResourceHandle);
+                }
+
+                _resources.Remove(resource);
+            }
+        }
+
+        /// <summary>
         /// Starts presence of a server
         /// </summary>
         /// <remarks>
