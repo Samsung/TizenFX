@@ -68,6 +68,9 @@ namespace ElmSharp
         SmartEvent<GenListItemEventArgs> _realized;
         SmartEvent<GenListItemEventArgs> _unrealized;
         SmartEvent<GenListItemEventArgs> _longpressed;
+        SmartEvent<GenListItemEventArgs> _moved;
+        SmartEvent<GenListItemEventArgs> _movedAfter;
+        SmartEvent<GenListItemEventArgs> _movedBefore;
         SmartEvent _scrollAnimationStarted;
         SmartEvent _scrollAnimationStopped;
         SmartEvent _changed;
@@ -119,6 +122,18 @@ namespace ElmSharp
             }
         }
 
+        public bool ReorderMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_reorder_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_reorder_mode_set(RealHandle, value);
+            }
+        }
+
         public event EventHandler<GenListItemEventArgs> ItemSelected;
         public event EventHandler<GenListItemEventArgs> ItemUnselected;
         public event EventHandler<GenListItemEventArgs> ItemPressed;
@@ -129,6 +144,9 @@ namespace ElmSharp
         public event EventHandler<GenListItemEventArgs> ItemRealized;
         public event EventHandler<GenListItemEventArgs> ItemUnrealized;
         public event EventHandler<GenListItemEventArgs> ItemLongPressed;
+        public event EventHandler<GenListItemEventArgs> ItemMoved;
+        public event EventHandler<GenListItemEventArgs> ItemMovedAfter;
+        public event EventHandler<GenListItemEventArgs> ItemMovedBefore;
 
         public event EventHandler Changed
         {
@@ -257,6 +275,9 @@ namespace ElmSharp
             _realized = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "realized", GenListItemEventArgs.CreateFromSmartEvent);
             _unrealized = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "unrealized", GenListItemEventArgs.CreateFromSmartEvent);
             _longpressed = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "longpressed", GenListItemEventArgs.CreateFromSmartEvent);
+            _moved = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "moved", GenListItemEventArgs.CreateFromSmartEvent);
+            _movedAfter = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "moved,after", GenListItemEventArgs.CreateFromSmartEvent);
+            _movedBefore = new SmartEvent<GenListItemEventArgs>(this, this.RealHandle, "moved,before", GenListItemEventArgs.CreateFromSmartEvent);
             _scrollAnimationStarted = new SmartEvent(this, this.RealHandle, "scroll,anim,start");
             _scrollAnimationStopped = new SmartEvent(this, this.RealHandle, "scroll,anim,stop");
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -271,6 +292,9 @@ namespace ElmSharp
             _realized.On += (s, e) => { if (e.Item != null) ItemRealized?.Invoke(this, e); };
             _unrealized.On += (s, e) => { if (e.Item != null) ItemUnrealized?.Invoke(this, e); };
             _longpressed.On += (s, e) => { if (e.Item != null) ItemLongPressed?.Invoke(this, e); };
+            _moved.On += (s, e) => { if (e.Item != null) ItemMoved?.Invoke(this, e); };
+            _movedAfter.On += (s, e) => { if (e.Item != null) ItemMovedAfter?.Invoke(this, e); };
+            _movedBefore.On += (s, e) => { if (e.Item != null) ItemMovedBefore?.Invoke(this, e); };
         }
 
         void AddInternal(GenListItem item)

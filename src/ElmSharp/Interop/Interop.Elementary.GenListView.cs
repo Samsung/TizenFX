@@ -135,5 +135,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_fields_update(IntPtr item, string part, uint type);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_reorder_mode_set(IntPtr obj, bool mode);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool elm_genlist_reorder_mode_get(IntPtr obj);
     }
 }
