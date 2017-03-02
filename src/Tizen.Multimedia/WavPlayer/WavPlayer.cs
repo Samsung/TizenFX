@@ -63,7 +63,7 @@ namespace Tizen.Multimedia
             {
                 task.TrySetResult(playerId);
             };
-            GCHandle callbackHandle = GCHandle.Alloc(_playerCompletedCallback, GCHandleType.Pinned);
+            GCHandle callbackHandle = GCHandle.Alloc(_playerCompletedCallback);
 
             int ret = Interop.WavPlayer.WavPlayerStart(inputFilePath, streamPolicy.Handle, _playerCompletedCallback, IntPtr.Zero, out id);
             if (ret != (int)WavPlayerError.None)
