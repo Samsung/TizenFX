@@ -92,6 +92,25 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Represents whether attribute is readonly
+        /// </summary>
+        /// <code>
+        /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
+        ///     { "state", "ON" },
+        ///     { "dim", 10 }
+        /// };
+        /// if (attributes.IsReadOnly)
+        ///     Console.WriteLine("Read only attribute");
+        /// </code>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _attributes.IsReadOnly;
+            }
+        }
+
+        /// <summary>
         /// Contains all the attribute keys
         /// </summary>
         /// <code>

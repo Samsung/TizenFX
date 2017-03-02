@@ -217,6 +217,22 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Represents whether the collection is readonly
+        /// </summary>
+        /// <code>
+        /// ResourceQuery query = new ResourceQuery();
+        /// if (query.IsReadOnly)
+        ///     Console.WriteLine("Read only query");
+        /// </code>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _query.IsReadOnly;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the query data
         /// </summary>
         /// <param name="key">The query key to get or set.</param>

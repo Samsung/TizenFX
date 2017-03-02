@@ -146,6 +146,22 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
+        /// Represents whether the collection is readonly
+        /// </summary>
+        /// <code>
+        /// ResourceOptions options = new ResourceOptions();
+        /// if (options.IsReadOnly)
+        ///     Console.WriteLine("Read only options");
+        /// </code>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _options.IsReadOnly;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the option data
         /// </summary>
         /// <remarks>
