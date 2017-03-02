@@ -28,7 +28,6 @@ namespace Tizen.Messaging.Email
         /// Sends the email message.
         /// </summary>
         /// <param name="email">The email message</param>
-        /// <param name="saveToSentBox">true to save the message in the sentbox</param>
         /// <returns> Failure if email sending failed otherwise Success</returns>
         public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
