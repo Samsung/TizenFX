@@ -77,6 +77,30 @@ namespace ElmSharp
             }
         }
 
+        public GenListItem Next
+        {
+            get
+            {
+                IntPtr next = Interop.Elementary.elm_genlist_item_next_get(Handle);
+                if (next == IntPtr.Zero)
+                    return null;
+                else
+                    return GetItemByHandle(next) as GenListItem;
+            }
+        }
+
+        public GenListItem Previous
+        {
+            get
+            {
+                IntPtr prev = Interop.Elementary.elm_genlist_item_prev_get(Handle);
+                if (prev == IntPtr.Zero)
+                    return null;
+                else
+                    return GetItemByHandle(prev) as GenListItem;
+            }
+        }
+
         public void UpdateItemClass(GenItemClass itemClass, object data)
         {
             Data = data;
