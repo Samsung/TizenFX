@@ -19,19 +19,20 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the Media packet preview frame.
+    /// An extended EventArgs class which contains details about focus state of the
+    /// camera.
     /// </summary>
-    public class MediaPacketPreviewEventArgs : EventArgs
+    public class CameraFocusStateChangedEventArgs : EventArgs
     {
-        internal MediaPacketPreviewEventArgs(MediaPacket packet)
+        internal CameraFocusStateChangedEventArgs(CameraFocusState state)
         {
-            Packet = packet;
+            State = state;
         }
 
         /// <summary>
-        /// Media Packet data.
+        /// Focus state of the camera.
         /// </summary>
-        public MediaPacket Packet { get; }
+        public CameraFocusState State { get; }
     }
 }
 

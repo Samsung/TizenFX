@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -18,21 +18,36 @@ using System;
 
 namespace Tizen.Multimedia
 {
-    /// <summary>
-    /// An extended EventArgs class which contains details about focus state of the
-    /// camera.
-    /// </summary>
-    public class CameraFocusChangedEventArgs : EventArgs
+    public class CameraException : Exception
     {
-        internal CameraFocusChangedEventArgs(CameraFocusState state)
+        public CameraException() : base()
         {
-            State = state;
         }
 
-        /// <summary>
-        /// Focus state of the camera.
-        /// </summary>
-        public CameraFocusState State { get; }
+        public CameraException(string message) : base(message)
+        {
+        }
+    }
+
+    public class CameraDeviceException : CameraException
+    {
+        public CameraDeviceException() : base()
+        {
+        }
+
+        public CameraDeviceException(string message) : base(message)
+        {
+        }
+    }
+
+    public class CameraDeviceNotFoundException : CameraException
+    {
+        public CameraDeviceNotFoundException() : base()
+        {
+        }
+
+        public CameraDeviceNotFoundException(string message) : base(message)
+        {
+        }
     }
 }
-

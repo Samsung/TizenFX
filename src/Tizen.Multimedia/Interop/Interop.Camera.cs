@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using Tizen.Multimedia;
@@ -17,7 +17,7 @@ internal static partial class Interop
         internal delegate void InterruptedCallback(CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void FocusChangedCallback(CameraFocusState state, IntPtr userData);
+        internal delegate void FocusStateChangedCallback(CameraFocusState state, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ErrorCallback(CameraErrorCode error, CameraState current, IntPtr userData);
@@ -37,6 +37,8 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void HdrCaptureProgressCallback(int percent, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DeviceStateChangedCallback(CameraDevice device, CameraDeviceState state, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
         internal static extern int Create(int device, out IntPtr handle);
@@ -71,16 +73,13 @@ internal static partial class Interop
         internal static extern int StopContinuousCapture(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_state")]
-        internal static extern int GetState(IntPtr handle, out int state);
+        internal static extern int GetState(IntPtr handle, out CameraState state);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_focusing")]
         internal static extern int StartFocusing(IntPtr handle, bool continuous);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_cancel_focusing")]
         internal static extern int CancelFocusing(IntPtr handle);
-
-        [DllImport(Libraries.Camera, EntryPoint = "camera_set_display")]
-        internal static extern int SetDisplay(IntPtr handle, int displayType, IntPtr displayHandle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_preview_resolution")]
         internal static extern int SetPreviewResolution(IntPtr handle, int width, int height);
@@ -110,22 +109,22 @@ internal static partial class Interop
         internal static extern int GetCaptureResolution(IntPtr handle, out int width, out int height);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_capture_format")]
-        internal static extern int SetCaptureFormat(IntPtr handle, int format);
+        internal static extern int SetCaptureFormat(IntPtr handle, CameraPixelFormat format);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_capture_format")]
-        internal static extern int GetCaptureFormat(IntPtr handle, out int format);
+        internal static extern int GetCaptureFormat(IntPtr handle, out CameraPixelFormat format);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_preview_format")]
-        internal static extern int SetPreviewFormat(IntPtr handle, int format);
+        internal static extern int SetPreviewPixelFormat(IntPtr handle, CameraPixelFormat format);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_preview_format")]
-        internal static extern int GetPreviewFormat(IntPtr handle, out int format);
+        internal static extern int GetPreviewPixelFormat(IntPtr handle, out CameraPixelFormat format);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_facing_direction")]
-        internal static extern int GetFacingDirection(IntPtr handle, out int direction);
+        internal static extern int GetFacingDirection(IntPtr handle, out CameraFacingDirection direction);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_flash_state")]
-        internal static extern int GetFlashState(IntPtr handle, out int state);
+        internal static extern int GetFlashState(CameraDevice device, out CameraFlashState state);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_preview_cb")]
         internal static extern int SetPreviewCallback(IntPtr handle, PreviewCallback callback, IntPtr userData);
@@ -142,6 +141,9 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_state_changed_cb")]
         internal static extern int SetStateChangedCallback(IntPtr handle, StateChangedCallback callback, IntPtr userData);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
+        internal static extern int SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_state_changed_cb")]
         internal static extern int UnsetStateChangedCallback(IntPtr handle);
 
@@ -155,7 +157,7 @@ internal static partial class Interop
         internal static extern int UnsetInterruptedCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_focus_changed_cb")]
-        internal static extern int SetFocusChangedCallback(IntPtr handle, FocusChangedCallback callback, IntPtr userData);
+        internal static extern int SetFocusStateChangedCallback(IntPtr handle, FocusStateChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_focus_changed_cb")]
         internal static extern int UnsetFocusChangedCallback(IntPtr handle);
@@ -175,94 +177,82 @@ internal static partial class Interop
         [StructLayout(LayoutKind.Sequential)]
         internal struct ImageDataStruct
         {
-            internal IntPtr data;
-            internal uint size;
-            internal int width;
-            internal int height;
-            internal CameraPixelFormat format;
-            internal IntPtr exif;
-            internal uint exifSize;
-        }
-
-        internal static ImageDataStruct IntPtrToImageDataStruct(IntPtr unmanagedVariable)
-        {
-            ImageDataStruct ImageStruct = Marshal.PtrToStructure<ImageDataStruct>(unmanagedVariable);
-            return ImageStruct;
+            internal IntPtr Data;
+            internal uint DataLength;
+            internal int Width;
+            internal int Height;
+            internal CameraPixelFormat Format;
+            internal IntPtr Exif;
+            internal uint ExifLength;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct DetectedFaceStruct
         {
-            internal int id;
-            internal int score;
-            internal int x;
-            internal int y;
-            internal int width;
-            internal int height;
+            internal int Id;
+            internal int Score;
+            internal int X;
+            internal int Y;
+            internal int Width;
+            internal int Height;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct SinglePlane
+        internal struct SinglePlaneStruct
         {
-            internal IntPtr yuv;
-            internal uint yuvsize;
+            internal IntPtr Data;
+            internal uint DataLength;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct DoublePlane
+        internal struct DoublePlaneStruct
         {
-            internal IntPtr y;
-            internal IntPtr uv;
-            internal uint ysize;
-            internal uint uvsize;
+            internal IntPtr Y;
+            internal IntPtr UV;
+            internal uint YLength;
+            internal uint UVLength;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct TriplePlane
+        internal struct TriplePlaneStruct
         {
-            internal IntPtr y;
-            internal IntPtr u;
-            internal IntPtr v;
-            internal uint ysize;
-            internal uint usize;
-            internal uint vsize;
+            internal IntPtr Y;
+            internal IntPtr U;
+            internal IntPtr V;
+            internal uint YLength;
+            internal uint ULength;
+            internal uint VLength;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct EncodedPlane
+        internal struct EncodedPlaneStruct
         {
-            internal IntPtr data;
-            internal uint size;
+            internal IntPtr Data;
+            internal uint DataLength;
         }
 
         [StructLayout(LayoutKind.Explicit)]
-        internal struct PlaneData
+        internal struct PreviewPlaneStruct
         {
             [FieldOffsetAttribute(0)]
-            internal SinglePlane singlePlane;
+            internal SinglePlaneStruct SinglePlane;
             [FieldOffsetAttribute(0)]
-            internal DoublePlane doublePlane;
+            internal DoublePlaneStruct DoublePlane;
             [FieldOffsetAttribute(0)]
-            internal TriplePlane triplePlane;
+            internal TriplePlaneStruct TriplePlane;
             [FieldOffsetAttribute(0)]
-            internal EncodedPlane encodedPlane;
+            internal EncodedPlaneStruct EncodedPlane;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct CameraPreviewDataStruct
         {
-            internal CameraPixelFormat format;
-            internal int width;
-            internal int height;
-            internal int numOfPlanes;
-            internal uint timestamp;
-            internal PlaneData frameData;
-        }
-
-        internal static CameraPreviewDataStruct IntPtrToCameraPreviewDataStruct(IntPtr unmanagedVariable)
-        {
-            CameraPreviewDataStruct PreviewDataStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(unmanagedVariable);
-            return PreviewDataStruct;
+            internal CameraPixelFormat Format;
+            internal int Width;
+            internal int Height;
+            internal int NumOfPlanes;
+            internal uint TimeStamp;
+            internal PreviewPlaneStruct Plane;
         }
     }
 }

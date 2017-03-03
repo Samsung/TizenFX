@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,38 +19,31 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Camera resolution class.
+    /// An extended EventArgs class which contains details about the captured image.
     /// </summary>
-    public class CameraResolution
+    public class CameraCapturingEventArgs : EventArgs
     {
-        /// <summary>
-        /// public constructor.
-        /// </summary>
-        /// <param name="width">Resolution width</param>
-        /// <param name="height">Resolution height</param>
-        public CameraResolution(int width, int height)
+        internal CameraCapturingEventArgs(ImageData img, ImageData post, ImageData thumbnail)
         {
-            Width = width;
-            Height = height;
+            Image = img;
+            PostView = post;
+            Thumbnail = thumbnail;
         }
 
         /// <summary>
-        /// The resolution width.
+        /// The image data of the captured picture.
         /// </summary>
-        public int Width
-        {
-            get;
-            private set;
-        }
+        public ImageData Image { get; }
 
         /// <summary>
-        /// The resolution height.
+        /// The image data of the postview.
         /// </summary>
-        public int Height
-        {
-            get;
-            private set;
-        }
+        public ImageData PostView { get; }
+
+        /// <summary>
+        /// The image data of the thumbnail.
+        /// </summary>
+        public ImageData Thumbnail { get; }
     }
 }
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -23,21 +23,15 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PreviewEventArgs : EventArgs
     {
-        internal PreviewEventArgs(PreviewData frame, PlaneType type)
+        internal PreviewEventArgs(PreviewData preview)
         {
-            Frame = frame;
-            Type = type;
+            Preview = preview;
         }
 
         /// <summary>
         /// PreviewData frame.
         /// </summary>
-        public PreviewData Frame { get; }
-
-        /// <summary>
-        /// Number of planes in image data.
-        /// </summary>
-        public PlaneType Type { get; }
+        public PreviewData Preview { get; }
     }
 }
 

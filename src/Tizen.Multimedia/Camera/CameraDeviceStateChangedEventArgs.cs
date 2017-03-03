@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,22 +19,26 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing Encoded image data.
+    /// An extended EventArgs class which contains details about previous and current state
+    /// of the camera when its state is changed.
     /// </summary>
-    public class EncodedPlaneData : PreviewData
+    public class CameraDeviceStateChangedEventArgs : EventArgs
     {
-        internal EncodedPlaneData()
+        internal CameraDeviceStateChangedEventArgs(CameraDevice device, CameraDeviceState state)
         {
+            Device = device;
+            State = state;
         }
 
         /// <summary>
-        /// The buffer containing encoded image data.
+        /// Camera device type.
         /// </summary>
-        public byte[] Data
-        {
-            get;
-            internal set;
-        }
+        public CameraDevice Device { get; }
+
+        /// <summary>
+        /// Current state of the camera device.
+        /// </summary>
+        public CameraDeviceState State { get; }
     }
 }
 

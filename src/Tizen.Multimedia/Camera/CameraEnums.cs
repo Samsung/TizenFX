@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -41,7 +41,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Not opened.
         /// </summary>
-        Null,
+        NotOpened,
         /// <summary>
         /// Opened.
         /// </summary>
@@ -79,11 +79,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Rear direction.
         /// </summary>
-        RearDirection,
+        Rear,
         /// <summary>
         /// Front direction
         /// </summary>
-        FrontDirection
+        Front
     }
 
     /// <summary>
@@ -230,7 +230,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Security policy
         /// </summary>
-        Security,
+        Security = 4,
         /// <summary>
         /// Resource conflict
         /// </summary>
@@ -766,19 +766,19 @@ namespace Tizen.Multimedia
         /// </summary>
         Disable,
         /// <summary>
-        /// Enable theater mode - Preview image is displayed on external display with full screen mode, but preview image is not shown on device display.
-        /// </summary>
-        Enable,
-        /// <summary>
         /// Clone mode - Preview image is displayed on external display with full screen mode. Also preview image is shown by the UI on device display.
         /// </summary>
-        Clone
+        Clone,
+        /// <summary>
+        /// Enable theater mode - Preview image is displayed on external display with full screen mode, but preview image is not shown on device display.
+        /// </summary>
+        Enable
     }
 
     /// <summary>
     ///Enumeration for the white balance levels of the camera.
     /// </summary>
-    public enum CameraWhitebalance
+    public enum CameraWhiteBalance
     {
         /// <summary>
         /// None.
@@ -861,7 +861,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Device Error.
         /// </summary>
-        DeviceError = CameraError.ErrorDevice,
+        DeviceError = CameraError.DeviceError,
         /// <summary>
         /// Internal error.
         /// </summary>
@@ -869,7 +869,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Out of memory.
         /// </summary>
-        OutOfMemory = CameraError.OutOfMemory
+        OutOfMemory = CameraError.OutOfMemory,
+        /// <summary>
+        /// Service is disconnected.
+        /// </summary>
+        ServiceDisconnected = CameraError.ServiceDisconnected
     }
 
     /// <summary>

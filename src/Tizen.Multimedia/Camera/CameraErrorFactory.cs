@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,20 +21,17 @@ namespace Tizen.Multimedia
 {
     internal enum CameraError
     {
-        None = ErrorCode.None,
-        InvalidParameter = ErrorCode.InvalidParameter,
         TizenErrorCamera = -0x01910000,
         CameraErrorClass = TizenErrorCamera,
+        None = ErrorCode.None,
+        InvalidParameter = ErrorCode.InvalidParameter,
         InvalidState = CameraErrorClass | 0x02,
         OutOfMemory = ErrorCode.OutOfMemory,
-        ErrorDevice = CameraErrorClass | 0x04,
+        DeviceError = CameraErrorClass | 0x04,
         InvalidOperation = ErrorCode.InvalidOperation,
-        SoundPolicy = CameraErrorClass | 0x06,
         SecurityRestricted = CameraErrorClass | 0x07,
         DeviceBusy = CameraErrorClass | 0x08,
         DeviceNotFound = CameraErrorClass | 0x09,
-        SoundPolicyByCall = CameraErrorClass | 0x0a,
-        SoundPolicyByAlarm = CameraErrorClass | 0x0b,
         Esd = CameraErrorClass | 0x0c,
         PermissionDenied = ErrorCode.PermissionDenied,
         NotSupported = ErrorCode.NotSupported,
@@ -44,30 +41,33 @@ namespace Tizen.Multimedia
 
     internal static class CameraErrorFactory
     {
-        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
+        internal static void ThrowIfError(int errorCode, string errorMessage = null)
         {
             CameraError err = (CameraError)errorCode;
-            if (string.IsNullOrEmpty(errorMessage))
+            if (err == CameraError.None)
             {
-                errorMessage = err.ToString();
+                return;
             }
 
-            switch ((CameraError)errorCode)
+            Log.Info(CameraLog.Tag, "errorCode : " + err.ToString());
+
+            switch (err)
             {
                 case CameraError.InvalidParameter:
-                    throw new ArgumentException(errorMessage, paramName);
+                    throw new ArgumentException(errorMessage);
 
                 case CameraError.OutOfMemory:
                     throw new OutOfMemoryException(errorMessage);
 
-                case CameraError.ErrorDevice:
+                case CameraError.DeviceError:
                 case CameraError.DeviceBusy:
-                case CameraError.DeviceNotFound:
-                case CameraError.SoundPolicy:
-                case CameraError.SecurityRestricted:
-                case CameraError.SoundPolicyByCall:
-                case CameraError.SoundPolicyByAlarm:
                 case CameraError.Esd:
+                    throw new CameraDeviceException(errorMessage);
+
+                case CameraError.DeviceNotFound:
+                    throw new CameraDeviceNotFoundException(errorMessage);
+
+                case CameraError.SecurityRestricted:
                 case CameraError.PermissionDenied:
 		            throw new UnauthorizedAccessException(errorMessage);
 
@@ -76,9 +76,12 @@ namespace Tizen.Multimedia
 
                 case CameraError.InvalidState:
                 case CameraError.InvalidOperation:
-                case CameraError.ResourceConflict:
+                    case CameraError.ResourceConflict:
                 case CameraError.ServiceDisconnected:
                     throw new InvalidOperationException(errorMessage);
+
+                default:
+                    throw new Exception("Unknown error : " + errorCode);
             }
         }
     }

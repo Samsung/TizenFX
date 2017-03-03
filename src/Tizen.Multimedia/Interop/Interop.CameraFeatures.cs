@@ -4,7 +4,7 @@ using Tizen.Multimedia;
 
 internal static partial class Interop
 {
-    internal static partial class CameraFeature
+    internal static partial class CameraFeatures
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PreviewResolutionCallback(int Width, int Height, IntPtr userData);
@@ -37,7 +37,7 @@ internal static partial class Interop
         internal delegate bool TheaterModeCallback(CameraTheaterMode mode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool WhitebalanceCallback(CameraWhitebalance whitebalance, IntPtr userData);
+        internal delegate bool WhitebalanceCallback(CameraWhiteBalance whitebalance, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool EffectCallback(CameraEffectMode effect, IntPtr userData);
@@ -60,35 +60,35 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_continuous_capture")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool ContinuousCaptureSupport(IntPtr handle);
+        internal static extern bool IsContinuousCaptureSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_face_detection")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool FaceDetectionSupport(IntPtr handle);
+        internal static extern bool IsFaceDetectionSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_zero_shutter_lag")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool ZeroShutterLagSupport(IntPtr handle);
+        internal static extern bool IsZeroShutterLagSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_media_packet_preview_cb")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool MediaPacketPreviewCallbackSupport(IntPtr handle);
+        internal static extern bool IsMediaPacketPreviewCallbackSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_hdr_capture")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool HdrCaptureSupport(IntPtr handle);
+        internal static extern bool IsHdrCaptureSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_anti_shake")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool AntiShakeSupport(IntPtr handle);
+        internal static extern bool IsAntiShakeSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_video_stabilization")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool VideoStabilizationSupport(IntPtr handle);
+        internal static extern bool IsVideoStabilizationSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_auto_contrast")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool AutoContrastSupport(IntPtr handle);
+        internal static extern bool IsAutoContrastSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_resolution")]
         internal static extern int SupportedPreviewResolutions(IntPtr handle, PreviewResolutionCallback callback, IntPtr userData);
@@ -97,16 +97,16 @@ internal static partial class Interop
         internal static extern int SupportedCaptureResolutions(IntPtr handle, CaptureResolutionCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_capture_format")]
-        internal static extern int SupportedCaptureFormats(IntPtr handle, CaptureFormatCallback callback, IntPtr userData);
+        internal static extern int SupportedCapturePixelFormats(IntPtr handle, CaptureFormatCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_format")]
-        internal static extern int SupportedPreviewFormats(IntPtr handle, PreviewFormatCallback callback, IntPtr userData);
+        internal static extern int SupportedPreviewPixelFormats(IntPtr handle, PreviewFormatCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_fps")]
-        internal static extern int SupportedFps(IntPtr handle, FpsCallback callback, IntPtr userData);
+        internal static extern int SupportedPreviewFps(IntPtr handle, FpsCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_fps_by_resolution")]
-        internal static extern int SupportedFpsByResolution(IntPtr handle, int width, int height, FpsByResolutionCallback callback, IntPtr userData);
+        internal static extern int SupportedPreviewFpsByResolution(IntPtr handle, int width, int height, FpsByResolutionCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_af_mode")]
         internal static extern int SupportedAfModes(IntPtr handle, AfModeCallback callback, IntPtr userData);

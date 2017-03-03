@@ -14,40 +14,39 @@
  * limitations under the License.
  */
 
+using System.Runtime.InteropServices;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Location class containing GPS data details.
+    /// The class containing image data which has three planes.
     /// </summary>
-    public class Location
+    public class TriplePlane : IPreviewPlane
     {
-        /// <summary>
-        /// Public constructor.
-        /// </summary
-        /// <param name="latitude">Latitude data</param>
-        /// <param name="longitude">Longitude data</param>
-        /// <param name="altitude">Altitude data</param>
-        public Location(double latitude, double longitude, double altitude)
+        internal TriplePlane(Interop.Camera.TriplePlaneStruct unmanaged)
         {
-            Latitude = latitude;
-            Longitude = longitude;
-            Altitude = altitude;
+            Y = new byte[unmanaged.YLength];
+            U = new byte[unmanaged.ULength];
+            V = new byte[unmanaged.VLength];
+            Marshal.Copy(unmanaged.Y, Y, 0, (int)unmanaged.YLength);
+            Marshal.Copy(unmanaged.U, U, 0, (int)unmanaged.ULength);
+            Marshal.Copy(unmanaged.V, V, 0, (int)unmanaged.VLength);
         }
 
         /// <summary>
-        /// The Latitude data.
+        /// The Y plane data.
         /// </summary>
-        public double Latitude { get; }
+        public byte[] Y { get; }
 
         /// <summary>
-        /// The Longitude data.
+        /// The U plane data.
         /// </summary>
-        public double Longitude { get; }
+        public byte[] U { get; }
 
         /// <summary>
-        /// The Altitude data.
+        /// The V plane data.
         /// </summary>
-        public double Altitude { get; }
+        public byte[] V { get; }
     }
 }
 

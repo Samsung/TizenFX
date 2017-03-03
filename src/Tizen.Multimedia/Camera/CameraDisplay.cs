@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -25,11 +25,56 @@ namespace Tizen.Multimedia
     /// </summary>
     public class CameraDisplay
     {
-        internal readonly IntPtr _displayHandle;
+        internal readonly Camera _camera;
 
-        internal CameraDisplay(IntPtr handle)
+        internal CameraDisplay(Camera camera)
         {
-            _displayHandle = handle;
+            _camera = camera;
+        }
+
+        /// <summary>
+        /// The display mode.
+        /// </summary>
+        public CameraDisplayMode Mode
+        {
+            get
+            {
+                CameraDisplayMode val = CameraDisplayMode.LetterBox;
+
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.GetMode(_camera.GetHandle(), out val),
+                    "Failed to get camera display mode");
+
+                return val;
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetMode(_camera.GetHandle(), value),
+                    "Failed to set camera display mode.");
+            }
+        }
+
+        /// <summary>
+        /// The display visibility.
+        /// True if camera display visible, otherwise false.
+        /// </summary>
+        public bool Visible
+        {
+            get
+            {
+                bool val = false;
+
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.GetVisible(_camera.GetHandle(), out val),
+                    "Failed to get visible value");
+
+                return val;
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetVisible(_camera.GetHandle(), value),
+                    "Failed to set display visible.");
+            }
         }
 
         /// <summary>
@@ -42,24 +87,18 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int val = 0;
-                int ret = Interop.CameraDisplay.GetDisplayRotation(_displayHandle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get display rotation " + (CameraError)ret);
-                }
+                CameraRotation val = CameraRotation.None;
 
-                return (CameraRotation)val;
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.GetRotation(_camera.GetHandle(), out val),
+                    "Failed to get display rotation");
+
+                return val;
             }
 
             set
             {
-                int ret = Interop.CameraDisplay.SetDisplayRotation(_displayHandle, (int)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set display rotation, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set display rotation.");
-                }
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetRotation(_camera.GetHandle(), value),
+                    "Failed to set display rotation.");
             }
         }
 
@@ -73,82 +112,67 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int val = 0;
-                int ret = Interop.CameraDisplay.GetDisplayFlip(_displayHandle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get display flip, " + (CameraError)ret);
-                }
+                CameraFlip val = CameraFlip.None;
 
-                return (CameraFlip)val;
-            }
-
-            set
-            {
-                int ret = Interop.CameraDisplay.SetDisplayFlip(_displayHandle, (int)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set display flip, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set display flip.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The display mode.
-        /// </summary>
-        public CameraDisplayMode Mode
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.CameraDisplay.GetDisplayMode(_displayHandle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera display mode, " + (CameraError)ret);
-                }
-
-                return (CameraDisplayMode)val;
-            }
-
-            set
-            {
-                int ret = Interop.CameraDisplay.SetDisplayMode(_displayHandle, (int)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set camera display mode, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set camera display mode.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The display visibility.
-        /// True if camera display visible, otherwise false.
-        /// </summary>
-        public bool Visible
-        {
-            get
-            {
-                bool val = false;
-                int ret = Interop.CameraDisplay.GetDisplayVisible(_displayHandle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get visible value, " + (CameraError)ret);
-                }
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.GetFlip(_camera.GetHandle(), out val),
+                    "Failed to get display flip");
 
                 return val;
             }
 
             set
             {
-                int ret = Interop.CameraDisplay.SetDisplayVisible(_displayHandle, (bool)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set display visible, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set display visible.");
-                }
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetFlip(_camera.GetHandle(), value),
+                    "Failed to set display flip.");
             }
+        }
+
+        /// <summary>
+        /// the ROI(Region Of Interest) area of display.
+        /// </summary>
+        public Rectangle RoiArea
+        {
+            get
+            {
+                int x = 0;
+                int y = 0;
+                int width = 0;
+                int height = 0;
+
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.GetRoiArea(_camera.GetHandle(), out x, out y, out width, out height),
+                    "Failed to get display roi area");
+
+                return new Rectangle(x, y, width, height);
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetRoiArea(_camera.GetHandle(),
+                    value.X, value.Y, value.Width, value.Height), "Failed to set display roi area.");
+            }
+        }
+
+        /// <summary>
+        /// Sets the display type and handle to show preview images.
+        /// </summary>
+        /// <param name="displayType">Display type.</param>
+        /// <param name="preview">MediaView object to display preview.</param>
+        /// <remarks>
+        /// This method must be called before StartPreview() method.
+        /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void SetInfo(CameraDisplayType displayType, MediaView displayHandle)
+        {
+            _camera.ValidateState(CameraState.Created);
+
+            ValidationUtil.ValidateEnum(typeof(CameraDisplayType), displayType);
+
+            CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetInfo(_camera.GetHandle(), displayType, displayHandle),
+                "Failed to set the camera display.");
         }
     }
 }

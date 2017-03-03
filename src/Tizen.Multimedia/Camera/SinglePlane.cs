@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,45 +14,25 @@
  * limitations under the License.
  */
 
-using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing image data which has three planes.
+    /// The class containing image data which has single plane.
     /// </summary>
-    public class TriplePlaneData : PreviewData
+    public class SinglePlane : IPreviewPlane
     {
-        internal TriplePlaneData()
+        internal SinglePlane(Interop.Camera.SinglePlaneStruct unmanaged)
         {
+            Data = new byte[unmanaged.DataLength];
+            Marshal.Copy(unmanaged.Data, Data, 0, (int)unmanaged.DataLength);
         }
 
         /// <summary>
-        /// The Y plane data.
+        /// The YUV plane data.
         /// </summary>
-        public byte[] YData
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// The U plane data.
-        /// </summary>
-        public byte[] UData
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// The V plane data.
-        /// </summary>
-        public byte[] VData
-        {
-            get;
-            internal set;
-        }
+        public byte[] Data { get; }
     }
 }
 

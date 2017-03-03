@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using static Interop.Camera;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -21,45 +26,87 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PreviewData
     {
-        internal PreviewData()
+        internal PreviewData(IntPtr ptr)
         {
+            var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
+
+            Format = unmanagedStruct.Format;
+            Width = unmanagedStruct.Width;
+            Height = unmanagedStruct.Height;
+            TimeStamp = unmanagedStruct.TimeStamp;
+            PlaneType = GetPlaneType(unmanagedStruct);
+            Plane = ConvertPlane(unmanagedStruct);
+        }
+
+        private static IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
+        {
+            if (unmanagedStruct.NumOfPlanes == 1)
+            {
+                if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg)
+                {
+                    return new EncodedPlane(unmanagedStruct.Plane.EncodedPlane);
+                }
+                else
+                {
+                    return new SinglePlane(unmanagedStruct.Plane.SinglePlane);
+                }
+            }
+            else if (unmanagedStruct.NumOfPlanes == 2)
+            {
+                return new DoublePlane(unmanagedStruct.Plane.DoublePlane);
+            }
+            else if (unmanagedStruct.NumOfPlanes == 3)
+            {
+                return new TriplePlane(unmanagedStruct.Plane.TriplePlane);
+            }
+
+            Debug.Fail("Unknown preview data!");
+            return null;
+        }
+
+        private static PlaneType GetPlaneType(CameraPreviewDataStruct unmanagedStruct)
+        {
+            if (unmanagedStruct.NumOfPlanes == 1)
+            {
+                if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg)
+                {
+                    return PlaneType.EncodedPlane;
+                }
+                else
+                {
+                    return PlaneType.SinglePlane;
+                }
+            }
+            else if (unmanagedStruct.NumOfPlanes == 2)
+            {
+                return PlaneType.DoublePlane;
+            }
+
+            return PlaneType.TriplePlane;
         }
 
         /// <summary>
         /// The pixel format of the image.
         /// </summary>
-        public CameraPixelFormat Format
-        {
-            get;
-            internal set;
-        }
+        public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// The width of the image.
         /// </summary>
-        public int Width
-        {
-            get;
-            internal set;
-        }
+        public int Width { get; }
 
         /// <summary>
         /// The height of the image.
         /// </summary>
-        public int Height
-        {
-            get;
-            internal set;
-        }
+        public int Height { get; }
 
         /// <summary>
         /// The time of capture of the image.
         /// </summary>
-        public uint TimeStamp
-        {
-            get;
-            internal set;
-        }
+        public uint TimeStamp { get; }
+
+        public IPreviewPlane Plane { get; }
+
+        public PlaneType PlaneType { get; }
     }
 }
-

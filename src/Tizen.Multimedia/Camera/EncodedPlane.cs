@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,36 +14,25 @@
  * limitations under the License.
  */
 
-using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the captured image.
+    /// The class containing Encoded image data.
     /// </summary>
-    public class CapturingEventArgs : EventArgs
+    public class EncodedPlane : IPreviewPlane
     {
-        internal CapturingEventArgs(ImageData img, ImageData post, ImageData thumbnail)
+        internal EncodedPlane(Interop.Camera.EncodedPlaneStruct unmanagedData)
         {
-            Image = img;
-            PostView = post;
-            Thumbnail = thumbnail;
+            Data = new byte[unmanagedData.DataLength];
+            Marshal.Copy(unmanagedData.Data, Data, 0, (int)unmanagedData.DataLength);
         }
 
         /// <summary>
-        /// The image data of the captured picture.
+        /// The buffer containing encoded image data.
         /// </summary>
-        public ImageData Image { get; }
-
-        /// <summary>
-        /// The image data of the postview.
-        /// </summary>
-        public ImageData PostView { get; }
-
-        /// <summary>
-        /// The image data of the thumbnail.
-        /// </summary>
-        public ImageData Thumbnail { get; }
+        public byte[] Data { get; }
     }
 }
 

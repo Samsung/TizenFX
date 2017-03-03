@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,96 +15,56 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// The class contains the details of the detected face.
     /// </summary>
-    public class FaceDetectedData
+    public class FaceDetectionData
     {
-        private int _id;
-        private int _score;
-        private int _x;
-        private int _y;
-        private int _width;
-        private int _height;
-
-        internal FaceDetectedData(int id, int score, int x, int y, int width, int height)
+        internal FaceDetectionData(IntPtr ptr)
         {
-	        _id = id;
-            _score = score;
-            _x = x;
-            _y = y;
-            _width = width;
-            _height = height;
+            var unmanagedStruct = Marshal.PtrToStructure<Interop.Camera.DetectedFaceStruct>(ptr);
+
+            Id = unmanagedStruct.Id;
+            Score = unmanagedStruct.Score;
+            X = unmanagedStruct.X;
+            Y = unmanagedStruct.Y;
+            Width = unmanagedStruct.Width;
+            Height = unmanagedStruct.Height;
         }
 
         /// <summary>
         /// The Id of each face.
         /// </summary>
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id { get; }
 
         /// <summary>
         /// The confidence level for the detection of the face.
         /// </summary>
-        public int Score
-        {
-            get
-            {
-                return _score;
-            }
-        }
+        public int Score { get; }
 
         /// <summary>
         /// The X co-ordinate of the face.
         /// </summary>
-        public int X
-        {
-            get
-            {
-                return _x;
-            }
-        }
+        public int X { get; }
 
         /// <summary>
         /// The Y co-ordinate of the face.
         /// </summary>
-        public int Y
-        {
-            get
-            {
-                return _y;
-            }
-        }
+        public int Y { get; }
 
         /// <summary>
         /// The width of the face.
         /// </summary>
-        public int Width
-        {
-            get
-            {
-                return _width;
-            }
-        }
+        public int Width { get; }
 
         /// <summary>
         /// The height of the face.
         /// </summary>
-        public int Height
-        {
-            get
-            {
-                return _height;
-            }
-        }
+        public int Height { get; }
     }
 }
 

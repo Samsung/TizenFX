@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
@@ -24,70 +25,56 @@ namespace Tizen.Multimedia
     /// </summary>
     public class ImageData
     {
-        internal byte[] _data;
-        internal int _width;
-        internal int _height;
-        internal CameraPixelFormat _format;
-        internal byte[] _exif;
-
-        internal ImageData()
+        internal ImageData(IntPtr ptr)
         {
-        }
+            var unmanagedStruct = Marshal.PtrToStructure<Interop.Camera.ImageDataStruct>(ptr);
 
-        /// <summary>
-        /// The buffer containing image data.
-        /// </summary>
-        public byte[] Data
-        {
-            get
+            Format = unmanagedStruct.Format;
+            Width = unmanagedStruct.Width;
+            Height = unmanagedStruct.Height;
+
+            if (unmanagedStruct.Data != IntPtr.Zero && unmanagedStruct.DataLength > 0)
             {
-                return _data;
+                Data = new byte[unmanagedStruct.DataLength];
+                Marshal.Copy(unmanagedStruct.Data, Data, 0, (int)unmanagedStruct.DataLength);
             }
-        }
-
-        /// <summary>
-        /// The width of the image.
-        /// </summary>
-        public int Width
-        {
-            get
+            else
             {
-                return _width;
+                Debug.Fail("ImageData is null!");
             }
-        }
 
-        /// <summary>
-        /// The height of the image.
-        /// </summary>
-        public int Height
-        {
-            get
+            //Exif can be null
+            if (unmanagedStruct.ExifLength > 0)
             {
-                return _height;
+                Exif = new byte[unmanagedStruct.ExifLength];
+                Marshal.Copy(unmanagedStruct.Exif, Exif, 0, (int)unmanagedStruct.ExifLength);
             }
         }
 
         /// <summary>
         /// The pixel format of the captured image.
         /// </summary>
-        public CameraPixelFormat Format
-        {
-            get
-            {
-                return _format;
-            }
-        }
+        public CameraPixelFormat Format { get; }
+
+        /// <summary>
+        /// The width of the image.
+        /// </summary>
+        public int Width { get; }
+
+        /// <summary>
+        /// The height of the image.
+        /// </summary>
+        public int Height { get; }
+
+        /// <summary>
+        /// The buffer containing image data.
+        /// </summary>
+        public byte[] Data { get; }
 
         /// <summary>
         /// String containing Exif data.
         /// </summary>
-        public byte[] Exif
-        {
-            get
-            {
-                return _exif;
-            }
-        }
+        public byte[] Exif { get; }
     }
 }
 

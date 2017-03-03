@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,11 +16,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
-using Tizen.Internals.Errors;
-using Tizen.Multimedia;
-using System.IO;
-
+using System.Threading;
+using System.Collections;
 namespace Tizen.Multimedia
 {
     static internal class CameraLog
@@ -41,43 +41,25 @@ namespace Tizen.Multimedia
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
-        private Interop.Camera.CapturingCallback _capturingCallback;
-        private Interop.Camera.CaptureCompletedCallback _captureCompletedCallback;
-        private Interop.Camera.FaceDetectedCallback _faceDetectedCallback;
-        private EventHandler<CameraErrorOccurredEventArgs> _cameraErrorOccurred;
-        private EventHandler<CameraStateChangedEventArgs> _cameraStateChanged;
-        private EventHandler<PreviewEventArgs> _preview;
-        private EventHandler<CameraFocusChangedEventArgs> _cameraFocusChanged;
-        private EventHandler<CameraInterruptedEventArgs> _cameraInterrupted;
-        private EventHandler<HdrCaptureProgressEventArgs> _hdrProgress;
-        private EventHandler<MediaPacketPreviewEventArgs> _mediaPacketPreview;
-        private readonly CameraFeature _cameraFeature;
-        private readonly CameraSetting _cameraSetting;
-        private readonly CameraDisplay _cameraDisplay;
-        private readonly List<FaceDetectedData> _faces = new List<FaceDetectedData>();
-        private Interop.Camera.PreviewCallback _previewCallback;
-        Interop.Camera.MediaPacketPreviewCallback _mediaPacketCallback;
-        private Interop.Camera.FocusChangedCallback _focusCallback;
-        private Interop.Camera.HdrCaptureProgressCallback _hdrProgressCallback;
-        private Interop.Camera.StateChangedCallback _stateChangedCallback;
-        private Interop.Camera.InterruptedCallback _interruptedCallback;
-        private Interop.Camera.ErrorCallback _errorCallback;
+        private CameraState _state = CameraState.None;
+        private static Dictionary<object, int> _callbackIdInfo = new Dictionary<object, int>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Multimedia.Camera"/> Class.
+        /// Initializes a new instance of the <see cref="Camera"/> Class.
         /// </summary>
-        /// <param name="device">Device.</param>
+        /// <param name="device">The camera device to access</param>
         public Camera(CameraDevice device)
         {
-            int ret = Interop.Camera.Create((int)device, out _handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to create camera instance");
-            }
+            CameraErrorFactory.ThrowIfError(Interop.Camera.Create((int)device, out _handle),
+                "Failed to create camera instance");
 
-            _cameraFeature = new CameraFeature(_handle);
-            _cameraSetting = new CameraSetting(_handle);
-            _cameraDisplay = new CameraDisplay(_handle);
+            Feature = new CameraFeatures(this);
+            Setting = new CameraSettings(this);
+            Display = new CameraDisplay(this);
+
+            RegisterCallbacks();
+
+            _state = CameraState.Created;
         }
 
         /// <summary>
@@ -94,959 +76,7 @@ namespace Tizen.Multimedia
             return _handle;
         }
 
-        /// <summary>
-        /// Event that occurs when there is change in HDR capture progress.
-        /// </summary>
-        public event EventHandler<HdrCaptureProgressEventArgs> HdrCaptureProgress
-        {
-            add
-            {
-                if (_hdrProgress == null)
-                {
-                    _hdrProgressCallback = (int percent, IntPtr userData) =>
-                    {
-                        HdrCaptureProgressEventArgs eventArgs = new HdrCaptureProgressEventArgs(percent);
-                        _hdrProgress?.Invoke(this, eventArgs);
-                    };
-                    int ret = Interop.Camera.SetHdrCaptureProgressCallback(_handle, _hdrProgressCallback, IntPtr.Zero);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Setting hdr progress callback failed");
-                    }
-                }
-
-                _hdrProgress += value;
-            }
-
-            remove
-            {
-                _hdrProgress -= value;
-                if (_hdrProgress == null)
-                {
-                    int ret = Interop.Camera.UnsetHdrCaptureProgressCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting hdr progress callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs during capture of image.
-        /// </summary>
-        public event EventHandler<CapturingEventArgs> Capturing;
-
-        /// <summary>
-        /// Event that occurs after the capture of the image.
-        /// </summary>
-        public event EventHandler<EventArgs> CaptureCompleted;
-
-        /// <summary>
-        /// Event that occurs when camera state is changed.
-        /// </summary>
-        public event EventHandler<CameraStateChangedEventArgs> CameraStateChanged
-        {
-            add
-            {
-                if (_cameraStateChanged == null)
-                {
-                    _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr userData) =>
-                    {
-                        CameraStateChangedEventArgs eventArgs = new CameraStateChangedEventArgs(previous, current, byPolicy);
-                        _cameraStateChanged?.Invoke(this, eventArgs);
-                    };
-                    int ret = Interop.Camera.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Setting state changed callback failed");
-                    }
-                }
-
-                _cameraStateChanged += value;
-            }
-
-            remove
-            {
-                _cameraStateChanged -= value;
-                if (_cameraStateChanged == null)
-                {
-                    int ret = Interop.Camera.UnsetStateChangedCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting state changed callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when the auto-focus state of camera changes.
-        /// </summary>
-        public event EventHandler<CameraFocusChangedEventArgs> CameraFocusChanged
-        {
-            add
-            {
-                if (_cameraFocusChanged == null)
-                {
-                    _focusCallback = (CameraFocusState state, IntPtr userData) =>
-                    {
-                        CameraFocusChangedEventArgs eventArgs = new CameraFocusChangedEventArgs(state);
-                        _cameraFocusChanged?.Invoke(this, eventArgs);
-                    };
-                    int ret = Interop.Camera.SetFocusChangedCallback(_handle, _focusCallback, IntPtr.Zero);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Setting focus changed callback failed");
-                    }
-                }
-
-                _cameraFocusChanged += value;
-            }
-
-            remove
-            {
-                _cameraFocusChanged -= value;
-                if (_cameraFocusChanged == null)
-                {
-                    int ret = Interop.Camera.UnsetFocusChangedCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting focus changed callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when an camera is interrupted by policy.
-        /// </summary>
-        public event EventHandler<CameraInterruptedEventArgs> CameraInterrupted
-        {
-            add
-            {
-                if (_cameraInterrupted == null)
-                {
-                    _interruptedCallback = (CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData) =>
-                    {
-                        CameraInterruptedEventArgs eventArgs = new CameraInterruptedEventArgs(policy, previous, current);
-                        _cameraInterrupted?.Invoke(this, eventArgs);
-                    };
-                    int ret = Interop.Camera.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Setting interrupt callback failed");
-                    }
-                }
-
-                _cameraInterrupted += value;
-            }
-
-            remove
-            {
-                _cameraInterrupted -= value;
-                if (_cameraInterrupted == null)
-                {
-                    int ret = Interop.Camera.UnsetInterruptedCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting interrupt callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when there is an asynchronous error.
-        /// </summary>
-        public event EventHandler<CameraErrorOccurredEventArgs> CameraErrorOccurred
-        {
-            add
-            {
-                if (_cameraErrorOccurred == null)
-                {
-                    _errorCallback = (CameraErrorCode error, CameraState current, IntPtr userData) =>
-                    {
-                        CameraErrorOccurredEventArgs eventArgs = new CameraErrorOccurredEventArgs(error, current);
-                        _cameraErrorOccurred?.Invoke(this, eventArgs);
-                    };
-                    int ret = Interop.Camera.SetErrorCallback(_handle, _errorCallback, IntPtr.Zero);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Setting error callback failed");
-                    }
-                }
-
-                _cameraErrorOccurred += value;
-            }
-
-            remove
-            {
-                _cameraErrorOccurred -= value;
-                if (_cameraErrorOccurred == null)
-                {
-                    int ret = Interop.Camera.UnsetErrorCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting error callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when a face is detected in preview frame.
-        /// </summary>
-        public event EventHandler<FaceDetectedEventArgs> FaceDetected;
-
-        /// <summary>
-        /// Event that occurs once per frame when previewing.
-        /// </summary>
-        public event EventHandler<PreviewEventArgs> Preview
-        {
-            add
-            {
-                if (_preview == null)
-                {
-                    CreatePreviewCallback();
-                }
-
-                _preview += value;
-            }
-
-            remove
-            {
-                _preview -= value;
-                if (_preview == null)
-                {
-                    int ret = Interop.Camera.UnsetPreviewCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting preview callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs once per frame when previewing.
-        /// </summary>
-        public event EventHandler<MediaPacketPreviewEventArgs> MediaPacketPreview
-        {
-            add
-            {
-                if (_mediaPacketPreview == null)
-                {
-                    CreateMediaPacketPreviewCallback();
-                }
-
-                _mediaPacketPreview += value;
-            }
-
-            remove
-            {
-                _mediaPacketPreview -= value;
-                if (_mediaPacketPreview == null)
-                {
-                    int ret = Interop.Camera.UnsetMediaPacketPreviewCallback(_handle);
-                    if (ret != (int)CameraError.None)
-                    {
-                        CameraErrorFactory.ThrowException(ret, "Unsetting media packet preview callback failed");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get/Set the various camera settings.
-        /// </summary>
-        public CameraSetting Setting
-        {
-            get
-            {
-                return _cameraSetting;
-            }
-        }
-
-        /// <summary>
-        /// Gets the various camera features.
-        /// </summary>
-        public CameraFeature Feature
-        {
-            get
-            {
-                return _cameraFeature;
-            }
-        }
-
-        /// <summary>
-        /// Get/set various camera display properties.
-        /// </summary>
-        public CameraDisplay Display
-        {
-            get
-            {
-                return _cameraDisplay;
-            }
-        }
-
-        /// <summary>
-        /// Gets the state of the camera.
-        /// </summary>
-        public CameraState State
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Interop.Camera.GetState(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera state, " + (CameraError)ret);
-                }
-
-                return (CameraState)val;
-            }
-        }
-
-        /// <summary>
-        /// The hint for display reuse.
-        /// If the hint is set to true, the display will be reused when the camera device is changed with
-        /// ChangeDevice method.
-        /// </summary>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public bool DisplayReuseHint
-        {
-            get
-            {
-                bool val = false;
-
-                int ret = Interop.Camera.GetDisplayReuseHint(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera display reuse hint, " + (CameraError)ret);
-                }
-
-                return val;
-            }
-
-            set
-            {
-                int ret = Interop.Camera.SetDisplayReuseHint(_handle, value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set display reuse hint, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set display reuse hint.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Resolution of the preview.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public CameraResolution PreviewResolution
-        {
-            get
-            {
-                int width = 0;
-                int height = 0;
-                int ret = Interop.Camera.GetPreviewResolution(_handle, out width, out height);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera preview resolution, " + (CameraError)ret);
-                }
-
-                CameraResolution res = new CameraResolution(width, height);
-                return res;
-            }
-
-            set
-            {
-                CameraResolution res = value;
-                int ret = Interop.Camera.SetPreviewResolution(_handle, res.Width, res.Height);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set preview resolution, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set preview resolution.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the recommended preview resolution.
-        /// </summary>
-        /// <remarks>
-        /// Depending on the capture resolution aspect ratio and display resolution,
-        /// the recommended preview resolution is determined.
-        /// </remarks>
-        public CameraResolution RecommendedPreviewResolution
-        {
-            get
-            {
-                int width = 0;
-                int height = 0;
-                int ret = Interop.Camera.GetRecommendedPreviewResolution(_handle, out width, out height);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get recommended preview resolution, " + (CameraError)ret);
-                }
-
-                CameraResolution res = new CameraResolution(width, height);
-                return res;
-            }
-        }
-
-        /// <summary>
-        /// Resolution of the captured image.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public CameraResolution CaptureResolution
-        {
-            get
-            {
-                int width = 0;
-                int height = 0;
-                int ret = Interop.Camera.GetCaptureResolution(_handle, out width, out height);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera capture resolution, " + (CameraError)ret);
-                }
-
-                CameraResolution res = new CameraResolution(width, height);
-                return res;
-            }
-
-            set
-            {
-                CameraResolution res = value;
-                int ret = Interop.Camera.SetCaptureResolution(_handle, res.Width, res.Height);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set capture resolution, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set capture resolution.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Format of an image to be captured.
-        /// </summary>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public CameraPixelFormat CaptureFormat
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.Camera.GetCaptureFormat(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera capture format, " + (CameraError)ret);
-                }
-
-                return (CameraPixelFormat)val;
-            }
-
-            set
-            {
-                int ret = Interop.Camera.SetCaptureFormat(_handle, (int)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set capture format, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set capture format.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The preview data format.
-        /// </summary>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public CameraPixelFormat PreviewFormat
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.Camera.GetPreviewFormat(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get preview format, " + (CameraError)ret);
-                }
-
-                return (CameraPixelFormat)val;
-            }
-
-            set
-            {
-                int ret = Interop.Camera.SetPreviewFormat(_handle, (int)value);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to set preview format, " + (CameraError)ret);
-                    CameraErrorFactory.ThrowException(ret, "Failed to set preview format.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the facing direction of camera module.
-        /// </summary>
-        public CameraFacingDirection Direction
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.Camera.GetFacingDirection(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera direction, " + (CameraError)ret);
-                }
-
-                return (CameraFacingDirection)val;
-            }
-        }
-
-        /// <summary>
-        /// Gets the camera's flash state.
-        /// </summary>
-        public CameraFlashState FlashState
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.Camera.GetFlashState(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera flash state, " + (CameraError)ret);
-                }
-
-                return (CameraFlashState)val;
-            }
-        }
-
-        /// <summary>
-        /// Gets the camera device count.
-        /// </summary>
-        /// <remarks>
-        /// If the device supports primary and secondary camera, this returns 2.
-        /// If 1 is returned, the device only supports primary camera.
-        /// </remarks>
-        public int CameraCount
-        {
-            get
-            {
-                int val = 0;
-                int ret = Interop.Camera.GetDeviceCount(_handle, out val);
-                if ((CameraError)ret != CameraError.None)
-                {
-                    Log.Error(CameraLog.Tag, "Failed to get camera device count, " + (CameraError)ret);
-                }
-
-                return val;
-            }
-        }
-
-        /// <summary>
-        /// Changes the camera device.
-        /// </summary>
-        /// <param name="device">The hardware camera to access.</param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <remarks>
-        /// This method can be used to change camera device without using destory and create method.
-        /// If display reuse is set using <see cref="Tizen.Multimedia.Camera.DisplayReuseHint"/>
-        /// before stopping the preview, display handle  will be reused and last frame on display
-        /// can be kept even though cameradevice is changed.
-        /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of ChangeDevice feature is not supported</exception>
-        public void ChangeDevice(CameraDevice device)
-        {
-            int ret = Interop.Camera.ChangeDevice(_handle, (int)device);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to change the camera device");
-            }
-        }
-
-        /// <summary>
-        /// Gets the device state.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <param name="device">The device to get state.</param>
-        /// <returns>Returns the state of camera device</returns>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        public CameraDeviceState GetDeviceState(CameraDevice device)
-        {
-            int val = 0;
-            int ret = Interop.Camera.GetDeviceState(device, out val);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to get the camera device state.");
-            }
-
-            return (CameraDeviceState)val;
-        }
-
-        /// <summary>
-        /// Starts capturing and drawing preview frames on the screen.
-        /// The display handle must be set using <see cref="Tizen.Multimedia.Camera.SetDisplay"/>
-        /// before using this method.
-        /// If needed set fps <see cref="Tizen.Multimedia.CameraSetting.PreviewFps"/>, preview resolution
-        /// <see cref="Tizen.Multimedia.Camera.PreviewResolution"/>, or preview format <see cref="Tizen.Multimedia.Camera.PreviewFormat"/>
-        /// before using this method.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StartPreview()
-        {
-            int ret = Interop.Camera.StartPreview(_handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to start the camera preview.");
-            }
-        }
-
-        /// <summary>
-        /// Stops capturing and drawing preview frames on the screen.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StopPreview()
-        {
-            int ret = Interop.Camera.StopPreview(_handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to stop the camera preview.");
-            }
-        }
-
-        /// <summary>
-        /// Starts capturing of still images.
-        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
-        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
-        /// calling this method.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <remarks>
-        /// This function causes the transition of the camera state from Capturing to Captured
-        /// automatically and the corresponding EventHandlers will be invoked.
-        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/>
-        /// method.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StartCapture()
-        {
-            Log.Info(CameraLog.Tag, "StartCapture API starting");
-
-            _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
-            {
-                Interop.Camera.ImageDataStruct _img = new Interop.Camera.ImageDataStruct();
-                Interop.Camera.ImageDataStruct _post = new Interop.Camera.ImageDataStruct();
-                Interop.Camera.ImageDataStruct _thumb = new Interop.Camera.ImageDataStruct();
-                ImageData img = new ImageData();
-                ImageData post = new ImageData();
-                ImageData thumb = new ImageData();
-
-                if (image != IntPtr.Zero)
-                {
-                    _img = Interop.Camera.IntPtrToImageDataStruct(image);
-                    CopyImageData(img, _img);
-                }
-                if (postview != IntPtr.Zero)
-                {
-                    _post = Interop.Camera.IntPtrToImageDataStruct(postview);
-                    CopyImageData(post, _post);
-                }
-                if (thumbnail != IntPtr.Zero)
-                {
-                    _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
-                    CopyImageData(thumb, _thumb);
-                }
-
-                CapturingEventArgs eventArgs = new CapturingEventArgs(img, post, thumb);
-                Capturing?.Invoke(this, eventArgs);
-            };
-
-            _captureCompletedCallback = (IntPtr userData) =>
-            {
-                EventArgs eventArgs = new EventArgs();
-                CaptureCompleted?.Invoke(this, eventArgs);
-            };
-
-            int ret = Interop.Camera.StartCapture(_handle, _capturingCallback, _captureCompletedCallback, IntPtr.Zero);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to start the camera capture.");
-            }
-            Log.Info(CameraLog.Tag, "StartCapture API finished");
-        }
-
-        /// <summary>
-        /// Aborts continuous capturing.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StopContinuousCapture()
-        {
-            int ret = Interop.Camera.StopContinuousCapture(_handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to stop the continuous capture.");
-            }
-        }
-
-        /// <summary>
-        /// Starts continuously capturing still images.
-        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
-        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
-        /// calling this method.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <param name="count">The number of still images.</param>
-        /// <param name="interval">The interval of the capture(milliseconds).</param>
-        /// <remarks>
-        /// If this is not supported zero shutter lag occurs. The capture resolution could be
-        /// changed to the preview resolution. This function causes the transition of the camera state
-        /// from Capturing to Captured automatically and the corresponding Eventhandlers will be invoked.
-        /// Each captured image will be delivered through Eventhandler set using <see cref="Tizen.Multimedia.Camera.Capturing"/> event.
-        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/> method.
-        /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StartContinuousCapture(int count, int interval)
-        {
-            _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
-            {
-                Interop.Camera.ImageDataStruct _img = new Interop.Camera.ImageDataStruct();
-                Interop.Camera.ImageDataStruct _post = new Interop.Camera.ImageDataStruct();
-                Interop.Camera.ImageDataStruct _thumb = new Interop.Camera.ImageDataStruct();
-                ImageData img = new ImageData();
-                ImageData post = new ImageData();
-                ImageData thumb = new ImageData();
-
-                if (image != IntPtr.Zero)
-                {
-                    _img = Interop.Camera.IntPtrToImageDataStruct(image);
-                    CopyImageData(img, _img);
-                }
-                if (postview != IntPtr.Zero)
-                {
-                    _post = Interop.Camera.IntPtrToImageDataStruct(postview);
-                    CopyImageData(post, _post);
-                }
-                if (thumbnail != IntPtr.Zero)
-                {
-                    _thumb = Interop.Camera.IntPtrToImageDataStruct(thumbnail);
-                    CopyImageData(thumb, _thumb);
-                }
-
-                CapturingEventArgs eventArgs = new CapturingEventArgs(img, post, thumb);
-                Capturing?.Invoke(this, eventArgs);
-            };
-
-            _captureCompletedCallback = (IntPtr userData) =>
-            {
-                EventArgs eventArgs = new EventArgs();
-                CaptureCompleted?.Invoke(this, eventArgs);
-            };
-
-            int ret = Interop.Camera.StartContinuousCapture(_handle, count, interval, _capturingCallback, _captureCompletedCallback, IntPtr.Zero);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to start the continuous capture.");
-            }
-        }
-
-        /// <summary>
-        /// Sets the display handle to show preview images.
-        /// </summary>
-        /// <param name="displayType">Display type.</param>
-        /// <param name="preview">MediaView object to display preview.</param>
-        /// <remarks>
-        /// This method must be called before StartPreview() method.
-        /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
-        /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void SetDisplay(CameraDisplayType displayType, MediaView preview)
-        {
-             int ret = Interop.Camera.SetDisplay(_handle, (int)displayType, preview);
-             if (ret != (int)CameraError.None)
-             {
-                 CameraErrorFactory.ThrowException(ret, "Failed to set the camera display.");
-             }
-        }
-
-        /// <summary>
-        /// Starts camera auto-focusing, asynchronously.
-        /// </summary>
-        /// <param name="continuous">Continuous.</param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <remarks>
-        /// If continuous status is true, the camera continuously tries to focus.
-        /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StartFocusing(bool continuous)
-        {
-            int ret = Interop.Camera.StartFocusing(_handle, continuous);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to cancel the camera focus.");
-            }
-        }
-
-        /// <summary>
-        /// Stops camera auto focusing.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void CancelFocusing()
-        {
-            int ret = Interop.Camera.CancelFocusing(_handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to cancel the camera focus.");
-            }
-        }
-
-        /// <summary>
-        /// Starts face detection.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <remarks>
-        /// This should be called after <see cref="Tizen.Multimedia.Camera.StartPreview"/> is started.
-        /// The Eventhandler set using <see cref="Tizen.Multimedia.Camera.FaceDetected"/> invoked when the face is detected in preview frame.
-        /// Internally it starts continuous focus and focusing on the detected face.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StartFaceDetection()
-        {
-            _faceDetectedCallback = (IntPtr faces, int count, IntPtr userData) =>
-            {
-                Interop.Camera.DetectedFaceStruct[] faceStruct = new Interop.Camera.DetectedFaceStruct[count];
-                IntPtr current = faces;
-                for (int i = 0; i < count; i++)
-                {
-                    faceStruct[i] = Marshal.PtrToStructure<Interop.Camera.DetectedFaceStruct>(current);
-                    FaceDetectedData face = new FaceDetectedData(faceStruct[i].id, faceStruct[i].score, faceStruct[i].x, faceStruct[i].y, faceStruct[i].width, faceStruct[i].height);
-                    _faces.Add(face);
-                    current = (IntPtr)((long)current + Marshal.SizeOf(faceStruct[i]));
-                }
-
-                FaceDetectedEventArgs eventArgs = new FaceDetectedEventArgs(_faces);
-                FaceDetected?.Invoke(this, eventArgs);
-            };
-
-            int ret = Interop.Camera.StartFaceDetection(_handle, _faceDetectedCallback, IntPtr.Zero);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to start the face detection.");
-            }
-        }
-
-        /// <summary>
-        /// Stops face detection.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
-        public void StopFaceDetection()
-        {
-            int ret = Interop.Camera.StopFaceDetection(_handle);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Failed to stop the face detection.");
-            }
-        }
-
-        /// <summary>
-        /// DeviceChangedCallback delegate.
-        /// </summary>
-        public delegate void DeviceChangedCallback(CameraDevice device, CameraDeviceState state, IntPtr userData);
-
-        /// <summary>
-        /// set the DeviceStateChanged Callback.
-        /// </summary>
-        /// <param name="callback">Callback of type <see cref="Tizen.Multimedia.Camera.DeviceChangedCallback"/>.</param>
-        /// <param name="callbackId">The Id of registered callback.</param>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public static void SetDeviceStateChangedCallback(DeviceChangedCallback callback, out int callbackId)
-        {
-            int ret = Camera.AddDeviceChangedCallback(callback, IntPtr.Zero, out callbackId);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Setting device state changed callback failed");
-            }
-        }
-
-        /// <summary>
-        /// Unset the DeviceStateChanged Callback.
-        /// </summary>
-        /// <param name="callbackId">Registered callbackId to be deleted.</param>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        public static void UnsetDeviceStateChangedCallback(int callbackId)
-        {
-            int ret = Interop.Camera.UnsetDeviceStateChangedCallback(callbackId);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Unsetting device state changed callback failed");
-            }
-        }
-
+#region Dispose support
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
@@ -1082,165 +112,704 @@ namespace Tizen.Multimedia
                 throw new ObjectDisposedException(nameof(Camera));
             }
         }
+#endregion Dispose support
 
-        [DllImport(Interop.Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
-        internal static extern int AddDeviceChangedCallback(DeviceChangedCallback callback, IntPtr userData, out int callbackId);
-
-        internal static void CopyImageData(ImageData image, Interop.Camera.ImageDataStruct img)
+#region Check camera state
+        internal void ValidateState(params CameraState[] required)
         {
-            image._data = new byte[img.size];
-            if(img.data != IntPtr.Zero)
-                Marshal.Copy(img.data, image._data, 0, (int)img.size);
-            image._width = img.width;
-            image._height = img.height;
-            image._format = img.format;
-            image._exif = new byte[img.exifSize];
-            if (img.exif != IntPtr.Zero)
-                Marshal.Copy(img.exif, image._exif, 0, (int)img.exifSize);
-        }
+            ValidateNotDisposed();
 
-        internal static PreviewData CopyPreviewData(Interop.Camera.CameraPreviewDataStruct previewStruct, PlaneType type)
-        {
-            Log.Info(CameraLog.Tag, "plane type " + type.ToString());
-            if (type == PlaneType.SinglePlane)
+            Debug.Assert(required.Length > 0);
+
+            var curState = _state;
+            if (!required.Contains(curState))
             {
-                SinglePlaneData singleData = new SinglePlaneData();
-                singleData.Format = previewStruct.format;
-                singleData.Height = previewStruct.height;
-                singleData.TimeStamp = previewStruct.timestamp;
-                singleData.Width = previewStruct.width;
-                Interop.Camera.SinglePlane singlePlane = previewStruct.frameData.singlePlane;
-                singleData.YUVData = new byte[singlePlane.yuvsize];
-
-                if (singlePlane.yuvsize > 0)
-                    Marshal.Copy(singlePlane.yuv, singleData.YUVData, 0, (int)singlePlane.yuvsize);
-
-                return singleData;
-            }
-            else if (type == PlaneType.DoublePlane)
-            {
-                DoublePlaneData doubleData = new DoublePlaneData();
-                doubleData.Format = previewStruct.format;
-                doubleData.Height = previewStruct.height;
-                doubleData.TimeStamp = previewStruct.timestamp;
-                doubleData.Width = previewStruct.width;
-                Interop.Camera.DoublePlane doublePlane = previewStruct.frameData.doublePlane;
-                doubleData.YData = new byte[doublePlane.ysize];
-                doubleData.UVData = new byte[doublePlane.uvsize];
-                Log.Info(CameraLog.Tag, "ysize " + doublePlane.ysize);
-                Log.Info(CameraLog.Tag, "uv size " + doublePlane.uvsize);
-
-                if (doublePlane.ysize > 0)
-                    Marshal.Copy(doublePlane.y, doubleData.YData, 0, (int)doublePlane.ysize);
-
-                if (doublePlane.uvsize > 0)
-                    Marshal.Copy(doublePlane.uv, doubleData.UVData, 0, (int)doublePlane.uvsize);
-
-                return doubleData;
-            }
-            else if (type == PlaneType.TriplePlane)
-            {
-                TriplePlaneData tripleData = new TriplePlaneData();
-                tripleData.Format = previewStruct.format;
-                tripleData.Height = previewStruct.height;
-                tripleData.TimeStamp = previewStruct.timestamp;
-                tripleData.Width = previewStruct.width;
-                Interop.Camera.TriplePlane triplePlane = previewStruct.frameData.triplePlane;
-                tripleData.YData = new byte[triplePlane.ysize];
-                tripleData.UData = new byte[triplePlane.usize];
-                tripleData.VData = new byte[triplePlane.vsize];
-
-                if (triplePlane.ysize > 0)
-                    Marshal.Copy(triplePlane.y, tripleData.YData, 0, (int)triplePlane.ysize);
-
-                if (triplePlane.usize > 0)
-                    Marshal.Copy(triplePlane.u, tripleData.UData, 0, (int)triplePlane.usize);
-
-                if (triplePlane.vsize > 0)
-                    Marshal.Copy(triplePlane.v, tripleData.VData, 0, (int)triplePlane.vsize);
-
-                return tripleData;
-            }
-            else
-            {
-                EncodedPlaneData encodedData = new EncodedPlaneData();
-                encodedData.Format = previewStruct.format;
-                encodedData.Height = previewStruct.height;
-                encodedData.TimeStamp = previewStruct.timestamp;
-                encodedData.Width = previewStruct.width;
-                Interop.Camera.EncodedPlane encodedPlane = previewStruct.frameData.encodedPlane;
-                encodedData.Data = new byte[encodedPlane.size];
-
-                if (encodedPlane.size > 0)
-                    Marshal.Copy(encodedPlane.data, encodedData.Data, 0, (int)encodedPlane.size);
-
-                return encodedData;
+                throw new InvalidOperationException($"The camera is not in a valid state. " +
+                    $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
             }
         }
 
-        private void CreatePreviewCallback()
+        internal void SetState(CameraState state)
         {
-            Log.Info(CameraLog.Tag, "Create preview callback.");
+            _state = state;
+        }
+#endregion Check camera state
 
+#region EventHandlers
+        /// <summary>
+        /// Event that occurs when an camera is interrupted by policy.
+        /// </summary>
+        public event EventHandler<CameraInterruptedEventArgs> Interrupted;
+        private Interop.Camera.InterruptedCallback _interruptedCallback;
+
+        /// <summary>
+        /// Event that occurs when there is an asynchronous error.
+        /// </summary>
+        public event EventHandler<CameraErrorOccurredEventArgs> ErrorOccurred;
+        private Interop.Camera.ErrorCallback _errorCallback;
+
+        /// <summary>
+        /// Event that occurs when the auto focus state is changed.
+        /// </summary>
+        public event EventHandler<CameraFocusStateChangedEventArgs> FocusStateChanged;
+        private Interop.Camera.FocusStateChangedCallback _focusStateChangedCallback;
+
+        /// <summary>
+        /// Event that occurs when a face is detected in preview frame.
+        /// </summary>
+        public event EventHandler<FaceDetectedEventArgs> FaceDetected;
+        private Interop.Camera.FaceDetectedCallback _faceDetectedCallback;
+
+        /// <summary>
+        /// Event that occurs during capture of image.
+        /// </summary>
+        public event EventHandler<CameraCapturingEventArgs> Capturing;
+        private Interop.Camera.CapturingCallback _capturingCallback;
+
+        /// <summary>
+        /// Event that occurs after the capture of the image.
+        /// </summary>
+        public event EventHandler<EventArgs> CaptureCompleted;
+        private Interop.Camera.CaptureCompletedCallback _captureCompletedCallback;
+
+        /// <summary>
+        /// Event that occurs when there is change in HDR capture progress.
+        /// Check whether HdrCapture feature is supported or not before add this EventHandler.
+        /// </summary>
+        public event EventHandler<HdrCaptureProgressEventArgs> HdrCaptureProgress;
+        private Interop.Camera.HdrCaptureProgressCallback _hdrCaptureProgressCallback;
+
+        /// <summary>
+        /// Event that occurs when camera state is changed.
+        /// </summary>
+        public event EventHandler<CameraStateChangedEventArgs> StateChanged;
+        private Interop.Camera.StateChangedCallback _stateChangedCallback;
+
+    #region DeviceStateChanged callback
+        internal static Interop.Camera.DeviceStateChangedCallback _deviceStateChangedCallback;
+        public static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
+        public static object _deviceStateChangedEventLock = new object();
+
+        /// <summary>
+        /// Set the DeviceStateChanged Callback.
+        /// User doesn't need to create camera instance.
+        /// This static EventHandler calls platform function every time because each callback function have to remain its own callbackId.
+        /// </summary>
+        /// <param name="callback">Callback of type <see cref="Interop.Camera.DeviceStateChangedCallback"/>.</param>
+        /// <param name="callbackId">The Id of registered callback.</param>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        public static event EventHandler<CameraDeviceStateChangedEventArgs> DeviceStateChanged
+        {
+            add
+            {
+                lock (_deviceStateChangedEventLock)
+                {
+                    int callbackId = 0;
+
+                    _deviceStateChangedCallback = (CameraDevice device, CameraDeviceState state, IntPtr userData) =>
+                    {
+                        _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
+                    };
+                    CameraErrorFactory.ThrowIfError(Interop.Camera.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out callbackId),
+                        "Failed to set interrupt callback");
+
+                    // Keep current callbackId and EventHandler pair to remove EventHandler later.
+                    _callbackIdInfo.Add(value, callbackId);
+                    Log.Info(CameraLog.Tag, "add callbackId " + callbackId.ToString());
+
+                    _deviceStateChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (_deviceStateChangedEventLock)
+                {
+                    _deviceStateChanged -= value;
+
+                    int callbackId = 0;
+                    _callbackIdInfo.TryGetValue(value, out callbackId);
+                    Log.Info(CameraLog.Tag, "remove callbackId " + callbackId.ToString());
+
+                    CameraErrorFactory.ThrowIfError(Interop.Camera.UnsetDeviceStateChangedCallback(callbackId),
+                            "Unsetting media packet preview callback failed");
+
+                    _callbackIdInfo.Remove(value);
+
+                    if (_deviceStateChanged == null)
+                    {
+                        _deviceStateChangedCallback = null;
+                    }
+                }
+            }
+        }
+        #endregion DeviceStateChanged callback
+
+    #region Preview EventHandler
+        private Interop.Camera.PreviewCallback _previewCallback;
+        private event EventHandler<PreviewEventArgs> _preview;
+        private object _previewEventLock = new object();
+        /// <summary>
+        /// Event that occurs once per frame when previewing.
+        /// Preview callback is registered when user add callback explicitly to avoid useless P/Invoke.
+        /// </summary>
+        public event EventHandler<PreviewEventArgs> Preview
+        {
+            add
+            {
+                lock (_previewEventLock)
+                {
+                    if (_preview == null)
+                    {
+                        RegisterPreviewCallback();
+                    }
+
+                    _preview += value;
+                }
+            }
+
+            remove
+            {
+                lock (_previewEventLock)
+                {
+                    _preview -= value;
+
+                    if (_preview == null)
+                    {
+                        CameraErrorFactory.ThrowIfError(Interop.Camera.UnsetPreviewCallback(_handle),
+                            "Unsetting preview callback failed");
+                        _previewCallback = null;
+                    }
+                }
+            }
+        }
+    #endregion Preview EventHandler
+
+    #region MediaPacketPreview EventHandler
+        private Interop.Camera.MediaPacketPreviewCallback _mediaPacketPreviewCallback;
+        private EventHandler<MediaPacketPreviewEventArgs> _mediaPacketPreview;
+        private object _mediaPacketPreviewEventLock = new object();
+
+        /// <summary>
+        /// Event that occurs once per frame when previewing.
+        /// Preview callback is registered when user add callback explicitly to avoid useless P/Invoke.
+        /// </summary>
+        public event EventHandler<MediaPacketPreviewEventArgs> MediaPacketPreview
+        {
+            add
+            {
+                lock (_mediaPacketPreviewEventLock)
+                {
+                    if (_mediaPacketPreview == null)
+                    {
+                        RegisterMediaPacketPreviewCallback();
+                    }
+
+                    _mediaPacketPreview += value;
+                }
+            }
+
+            remove
+            {
+                lock (_mediaPacketPreviewEventLock)
+                {
+                    _mediaPacketPreview -= value;
+
+                    if (_mediaPacketPreview == null)
+                    {
+                        CameraErrorFactory.ThrowIfError(Interop.Camera.UnsetMediaPacketPreviewCallback(_handle),
+                            "Unsetting media packet preview callback failed");
+                        _mediaPacketPreviewCallback = null;
+                    }
+                }
+            }
+        }
+    #endregion MediaPacketPreview EventHandler
+
+#endregion EventHandlers
+
+#region Properties
+        /// <summary>
+        /// Get/Set the various camera settings.
+        /// </summary>
+        public CameraSettings Setting { get; }
+
+        /// <summary>
+        /// Gets the various camera features.
+        /// </summary>
+        public CameraFeatures Feature { get; }
+
+        /// <summary>
+        /// Get/set various camera display properties.
+        /// </summary>
+        public CameraDisplay Display { get; }
+
+        /// <summary>
+        /// Gets the state of the camera.
+        /// </summary>
+        public CameraState State
+        {
+            get
+            {
+                CameraState val = CameraState.None;
+                CameraErrorFactory.ThrowIfError(Interop.Camera.GetState(_handle, out val),
+                    "Failed to get camera state");
+
+                return val;
+            }
+        }
+
+        /// <summary>
+        /// The hint for display reuse.
+        /// If the hint is set to true, the display will be reused when the camera device is changed with
+        /// ChangeDevice method.
+        /// </summary>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        public bool DisplayReuseHint
+        {
+            get
+            {
+                bool val = false;
+
+                CameraErrorFactory.ThrowIfError(Interop.Camera.GetDisplayReuseHint(_handle, out val),
+                    "Failed to get camera display reuse hint");
+
+                return val;
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Interop.Camera.SetDisplayReuseHint(_handle, value),
+                    "Failed to set display reuse hint.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the facing direction of camera module.
+        /// </summary>
+        public CameraFacingDirection Direction
+        {
+            get
+            {
+                CameraFacingDirection val = 0;
+
+                CameraErrorFactory.ThrowIfError(Interop.Camera.GetFacingDirection(_handle, out val),
+                    "Failed to get camera direction");
+
+                return val;
+            }
+        }
+
+        /// <summary>
+        /// Gets the camera device count.
+        /// </summary>
+        /// <remarks>
+        /// This returns 2, if the device supports primary and secondary cameras.
+        /// Otherwise 1, if the device only supports primary camera.
+        /// </remarks>
+        public int CameraCount
+        {
+            get
+            {
+                int val = 0;
+
+                CameraErrorFactory.ThrowIfError(Interop.Camera.GetDeviceCount(_handle, out val),
+                    "Failed to get camera device count");
+
+                return val;
+            }
+        }
+#endregion Properties
+
+#region Methods
+        /// <summary>
+        /// Changes the camera device.
+        /// </summary>
+        /// <param name="device">The hardware camera to access.</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <remarks>
+        /// If display reuse is set using <see cref="DisplayReuseHint"/>
+        /// before stopping the preview, the display will be reused and last frame on the display
+        /// can be kept even though camera device is changed.
+        /// The camera must be in the <see cref="CameraState.Created"/> or <see cref="CameraState.Preview"/> state.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of ChangeDevice feature is not supported</exception>
+        public void ChangeDevice(CameraDevice device)
+        {
+            ValidateState(CameraState.Created, CameraState.Preview);
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.ChangeDevice(_handle, (int)device),
+                "Failed to change the camera device");
+        }
+
+        /// <summary>
+        /// Gets the device state.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <param name="device">The device to get state.</param>
+        /// <returns>Returns the state of camera device</returns>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        public CameraDeviceState GetDeviceState(CameraDevice device)
+        {
+            int val = 0;
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.GetDeviceState(device, out val),
+                "Failed to get the camera device state.");
+
+            return (CameraDeviceState)val;
+        }
+
+        public static CameraFlashState GetFlashState(CameraDevice device)
+        {
+            CameraFlashState val = CameraFlashState.NotUsed;
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.GetFlashState(device, out val),
+                "Failed to get camera flash state");
+
+            return val;
+        }
+
+        /// <summary>
+        /// Starts capturing and drawing preview frames on the screen.
+        /// The display handle must be set using <see cref="Tizen.Multimedia.Camera.SetDisplay"/>
+        /// before using this method.
+        /// If needed set fps <see cref="Tizen.Multimedia.CameraSetting.PreviewFps"/>, preview resolution
+        /// <see cref="Tizen.Multimedia.Camera.PreviewResolution"/>, or preview format <see cref="Tizen.Multimedia.Camera.PreviewFormat"/>
+        /// before using this method.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StartPreview()
+        {
+            ValidateState(CameraState.Created, CameraState.Captured);
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StartPreview(_handle),
+                "Failed to start the camera preview.");
+
+            // Update by StateChangedCallback can be delayed for dozens of milliseconds.
+            SetState(CameraState.Preview);
+        }
+
+        /// <summary>
+        /// Stops capturing and drawing preview frames on the screen.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StopPreview()
+        {
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StopPreview(_handle),
+                "Failed to stop the camera preview.");
+
+            SetState(CameraState.Created);
+        }
+
+        /// <summary>
+        /// Starts capturing of still images.
+        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
+        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
+        /// calling this method.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <remarks>
+        /// This function causes the transition of the camera state from Capturing to Captured
+        /// automatically and the corresponding EventHandlers will be invoked.
+        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/>
+        /// method.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StartCapture()
+        {
+            ValidateState(CameraState.Preview);
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StartCapture(_handle, _capturingCallback, _captureCompletedCallback, IntPtr.Zero),
+                "Failed to start the camera capture.");
+
+            SetState(CameraState.Capturing);
+        }
+
+        /// <summary>
+        /// Starts continuously capturing still images.
+        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
+        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
+        /// calling this method.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <param name="count">The number of still images.</param>
+        /// <param name="interval">The interval of the capture(milliseconds).</param>
+        /// <remarks>
+        /// If this is not supported zero shutter lag occurs. The capture resolution could be
+        /// changed to the preview resolution. This function causes the transition of the camera state
+        /// from Capturing to Captured automatically and the corresponding Eventhandlers will be invoked.
+        /// Each captured image will be delivered through Eventhandler set using <see cref="Tizen.Multimedia.Camera.Capturing"/> event.
+        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/> method.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StartCapture(int count, int interval, CancellationToken cancellationToken)
+        {
+            ValidateState(CameraState.Preview);
+
+            if (count < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), count, $"{nameof(count)} should be greater than one.");
+            }
+
+            if (interval < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(interval), interval, $"{nameof(interval)} should be greater than or equal to zero.");
+            }
+
+            //Handle CancellationToken
+            if (cancellationToken != CancellationToken.None)
+            {
+                cancellationToken.Register(() =>
+                {
+                    CameraErrorFactory.ThrowIfError(Interop.Camera.StopContinuousCapture(_handle),
+                        "Failed to cancel the continuous capture");
+                    SetState(CameraState.Captured);
+                });
+            }
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StartContinuousCapture(_handle, count, interval,
+                _capturingCallback, _captureCompletedCallback, IntPtr.Zero), "Failed to start the continuous capture.");
+
+            SetState(CameraState.Capturing);
+        }
+
+        /// <summary>
+        /// Starts camera auto-focusing, asynchronously.
+        /// </summary>
+        /// <param name="continuous">Continuous.</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <remarks>
+        /// If continuous status is true, the camera continuously tries to focus.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StartFocusing(bool continuous)
+        {
+            ValidateState(CameraState.Preview, CameraState.Captured);
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StartFocusing(_handle, continuous),
+                "Failed to cancel the camera focus.");
+        }
+
+        /// <summary>
+        /// Stops camera auto focusing.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StopFocusing()
+        {
+            ValidateState(CameraState.Preview, CameraState.Captured);
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.CancelFocusing(_handle),
+                "Failed to cancel the camera focus.");
+        }
+
+        /// <summary>
+        /// Starts face detection.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <remarks>
+        /// This should be called after <see cref="Tizen.Multimedia.Camera.StartPreview"/> is started.
+        /// The Eventhandler set using <see cref="Tizen.Multimedia.Camera.FaceDetected"/> invoked when the face is detected in preview frame.
+        /// Internally it starts continuous focus and focusing on the detected face.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StartFaceDetection()
+        {
+            ValidateState(CameraState.Preview);
+
+            _faceDetectedCallback = (IntPtr faces, int count, IntPtr userData) =>
+            {
+                var result = new List<FaceDetectionData>();
+                IntPtr current = faces;
+
+                for (int i = 0; i < count; i++)
+                {
+                    result.Add(new FaceDetectionData(current));
+                    current = IntPtr.Add(current, Marshal.SizeOf<Interop.Camera.DetectedFaceStruct>());
+                }
+
+                FaceDetected?.Invoke(this, new FaceDetectedEventArgs(result));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StartFaceDetection(_handle, _faceDetectedCallback, IntPtr.Zero),
+                "Failed to start face detection");
+        }
+
+        /// <summary>
+        /// Stops face detection.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        public void StopFaceDetection()
+        {
+            if (_faceDetectedCallback == null)
+            {
+                throw new InvalidOperationException("The face detection is not started.");
+            }
+
+            CameraErrorFactory.ThrowIfError(Interop.Camera.StopFaceDetection(_handle),
+                "Failed to stop the face detection.");
+
+            _faceDetectedCallback = null;
+        }
+#endregion Methods
+
+#region Callback registrations
+        public void RegisterCallbacks()
+        {
+            RegisterErrorCallback();
+            RegisterFocusStateChanged();
+            RegisterHdrCaptureProgress();
+            RegisterInterruptedCallback();
+            RegisterStateChangedCallback();
+
+            //Define capturing callback
+            _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
+            {
+                Capturing?.Invoke(this, new CameraCapturingEventArgs(new ImageData(image),
+                    postview == IntPtr.Zero ? null : new ImageData(postview),
+                    thumbnail == IntPtr.Zero ? null : new ImageData(thumbnail)));
+            };
+
+            //Define captureCompleted callback
+            _captureCompletedCallback = _ =>
+            {
+                SetState(CameraState.Captured);
+                CaptureCompleted?.Invoke(this, EventArgs.Empty);
+            };
+        }
+
+        private void RegisterInterruptedCallback()
+        {
+            _interruptedCallback = (CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData) =>
+            {
+                Interrupted?.Invoke(this, new CameraInterruptedEventArgs(policy, previous, current));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero),
+                "Failed to set interrupt callback");
+        }
+
+        private void RegisterErrorCallback()
+        {
+            _errorCallback = (CameraErrorCode error, CameraState current, IntPtr userData) =>
+            {
+                ErrorOccurred?.Invoke(this, new CameraErrorOccurredEventArgs(error, current));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetErrorCallback(_handle, _errorCallback, IntPtr.Zero),
+                "Setting error callback failed");
+        }
+
+        private void RegisterStateChangedCallback()
+        {
+            _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr _) =>
+            {
+                _state = current;
+                Log.Info(CameraLog.Tag, "Camera state changed " + previous.ToString() + " -> " + current.ToString());
+                StateChanged?.Invoke(this, new CameraStateChangedEventArgs(previous, current, byPolicy));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
+                "Setting state changed callback failed");
+        }
+
+        private void RegisterFocusStateChanged()
+        {
+            _focusStateChangedCallback = (CameraFocusState state, IntPtr userData) =>
+            {
+                FocusStateChanged?.Invoke(this, new CameraFocusStateChangedEventArgs(state));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback, IntPtr.Zero),
+                "Setting focus changed callback failed");
+        }
+
+        private void RegisterHdrCaptureProgress()
+        {
+            //Hdr Capture can not be supported.
+            if (Feature.IsHdrCaptureSupported)
+            {
+                _hdrCaptureProgressCallback = (int percent, IntPtr userData) =>
+                {
+                    HdrCaptureProgress?.Invoke(this, new HdrCaptureProgressEventArgs(percent));
+                };
+                CameraErrorFactory.ThrowIfError(Interop.Camera.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero),
+                    "Setting Hdr capture progress callback failed");
+            }
+        }
+
+        private void RegisterPreviewCallback()
+        {
             _previewCallback = (IntPtr frame, IntPtr userData) =>
             {
-                Interop.Camera.CameraPreviewDataStruct _previewStruct = Interop.Camera.IntPtrToCameraPreviewDataStruct(frame);
-                PlaneType _type = PlaneType.SinglePlane;
-                PreviewData _previewData = new PreviewData();
+                _preview?.Invoke(this, new PreviewEventArgs(new PreviewData(frame)));
+            };
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero),
+                "Setting preview callback failed");
+        }
 
-                if (_previewStruct.format == CameraPixelFormat.H264 || _previewStruct.format == CameraPixelFormat.Jpeg)
+        private void RegisterMediaPacketPreviewCallback()
+        {
+            _mediaPacketPreviewCallback = (IntPtr mediaPacket, IntPtr userData) =>
+            {
+                MediaPacket packet = MediaPacket.From(mediaPacket);
+                var eventHandler = _mediaPacketPreview;
+
+                if (eventHandler != null)
                 {
-                    _type = PlaneType.EncodedPlane;
-                    _previewData = CopyPreviewData(_previewStruct, _type);
+                    eventHandler.Invoke(this, new MediaPacketPreviewEventArgs(packet));
                 }
                 else
                 {
-                    Log.Info(CameraLog.Tag, "Number of plane " + _previewStruct.numOfPlanes);
-                    if (_previewStruct.numOfPlanes == 1)
-                    {
-                        _type = PlaneType.SinglePlane;
-                        _previewData = CopyPreviewData(_previewStruct, _type);
-                    }
-                    else if (_previewStruct.numOfPlanes == 2)
-                    {
-                        _type = PlaneType.DoublePlane;
-                        _previewData = CopyPreviewData(_previewStruct, _type);
-                    }
-                    else if (_previewStruct.numOfPlanes == 3)
-                    {
-                        _type = PlaneType.TriplePlane;
-                        _previewData = CopyPreviewData(_previewStruct, _type);
-                    }
+                    packet.Dispose();
                 }
-
-                PreviewEventArgs eventArgs = new PreviewEventArgs(_previewData, _type);
-
-                _preview?.Invoke(this, eventArgs);
             };
-
-            int ret = Interop.Camera.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Setting preview callback failed");
-            }
+            CameraErrorFactory.ThrowIfError(Interop.Camera.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero),
+                "Setting media packet preview callback failed");
         }
-
-        private void CreateMediaPacketPreviewCallback()
-        {
-            _mediaPacketCallback = (IntPtr mediaPacket, IntPtr userData) =>
-            {
-                MediaPacket packet = MediaPacket.From(mediaPacket);
-
-                MediaPacketPreviewEventArgs eventArgs = new MediaPacketPreviewEventArgs(packet);
-                _mediaPacketPreview?.Invoke(this, eventArgs);
-            };
-
-            int ret = Interop.Camera.SetMediaPacketPreviewCallback(_handle, _mediaPacketCallback, IntPtr.Zero);
-            if (ret != (int)CameraError.None)
-            {
-                CameraErrorFactory.ThrowException(ret, "Setting media packet preview callback failed");
-            }
-        }
+#endregion Callback registrations
     }
 }
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,25 +21,19 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// An extended EventArgs class which contains details about all the faces detected.
+    /// If user need to remain faces data, user have to copy the data.
     /// </summary>
     public class FaceDetectedEventArgs : EventArgs
     {
-        private readonly List<FaceDetectedData> _faces;
-        internal FaceDetectedEventArgs(List<FaceDetectedData> faces)
+        internal FaceDetectedEventArgs(List<FaceDetectionData> faces)
         {
-            _faces = new List<FaceDetectedData>(faces);
+            Faces = faces;
         }
 
         /// <summary>
-        /// List containing faces of type <see cref="Tizen.Multimedia.FaceDetectedData"/>.
+        /// List containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
         /// </summary>
-        public IEnumerable<FaceDetectedData> Faces
-        {
-            get
-            {
-                return _faces;
-            }
-        }
+        public IEnumerable<FaceDetectionData> Faces { get; }
     }
 }
 

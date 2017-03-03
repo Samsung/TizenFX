@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,36 +14,9 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia
 {
-    /// <summary>
-    /// The class containing image data which has two planes.
-    /// </summary>
-    public class DoublePlaneData : PreviewData
+    public interface IPreviewPlane
     {
-        internal DoublePlaneData()
-        {
-        }
-
-        /// <summary>
-        /// The Y plane data.
-        /// </summary>
-        public byte[] YData
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// The UV plane data.
-        /// </summary>
-        public byte[] UVData
-        {
-            get;
-            internal set;
-        }
     }
 }
-
