@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class PageTurnPortraitView : PageTurnView {
+    internal class PageTurnPortraitView : PageTurnView {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PageTurnPortraitView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnPortraitView_SWIGUpcast(cPtr), cMemoryOwn) {

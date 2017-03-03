@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SignalConnectorType : global::System.IDisposable {
+    internal class SignalConnectorType : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

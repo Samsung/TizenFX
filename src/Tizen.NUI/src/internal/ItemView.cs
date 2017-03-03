@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class ItemView : Scrollable {
+    internal class ItemView : Scrollable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemView_SWIGUpcast(cPtr), cMemoryOwn) {

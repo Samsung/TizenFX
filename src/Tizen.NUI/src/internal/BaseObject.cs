@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class BaseObject : RefObject {
+    internal class BaseObject : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.BaseObject_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -53,7 +53,7 @@ public class BaseObject : RefObject {
     return ret;
   }
 
-  public bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
+  internal bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
     bool ret = NDalicPINVOKE.BaseObject_DoConnectSignal(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum GradientVisualSpreadMethodType {
+    internal enum GradientVisualSpreadMethodType {
   PAD,
   REFLECT,
   REPEAT

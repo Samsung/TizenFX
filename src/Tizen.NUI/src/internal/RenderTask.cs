@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class RenderTask : Handle {
+    internal class RenderTask : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RenderTask_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -290,13 +290,13 @@ public class RenderTask : Handle {
     return ret;
   }
 
-  public void SetViewport(RectInteger viewport) {
-    NDalicPINVOKE.RenderTask_SetViewport(swigCPtr, RectInteger.getCPtr(viewport));
+  public void SetViewport(Rectangle viewport) {
+    NDalicPINVOKE.RenderTask_SetViewport(swigCPtr, Rectangle.getCPtr(viewport));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public RectInteger GetViewport() {
-    RectInteger ret = new RectInteger(NDalicPINVOKE.RenderTask_GetViewport(swigCPtr), true);
+  public Rectangle GetViewport() {
+    Rectangle ret = new Rectangle(NDalicPINVOKE.RenderTask_GetViewport(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-
-#if true
 using System.Reflection;
-#endif
 
 namespace Tizen.NUI
 {
-  /// <summary>
-  /// Helper class for calculating what property indexes should be assigned to C# View (view) classes.
-  /// </summary>
-  public class PropertyRangeManager
+    /// <summary>
+    /// Helper class for calculating what property indexes should be assigned to C# View (view) classes.
+    /// </summary>
+    internal class PropertyRangeManager
   {
     private Dictionary<String, PropertyRange > _propertyRange;
 

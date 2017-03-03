@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class EncodedBufferImage : Image {
+    internal class EncodedBufferImage : Image {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal EncodedBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.EncodedBufferImage_SWIGUpcast(cPtr), cMemoryOwn) {

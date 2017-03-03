@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum FittingModeType {
+    internal enum FittingModeType {
   SHRINK_TO_FIT,
   SCALE_TO_FILL,
   FIT_WIDTH,

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum DepthFunctionType {
+    internal enum DepthFunctionType {
   NEVER,
   ALWAYS,
   LESS,

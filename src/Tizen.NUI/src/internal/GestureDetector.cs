@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class GestureDetector : Handle {
+    public class GestureDetector : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal GestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.GestureDetector_SWIGUpcast(cPtr), cMemoryOwn) {

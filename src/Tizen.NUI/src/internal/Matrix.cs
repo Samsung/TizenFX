@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Matrix : global::System.IDisposable {
+    internal class Matrix : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -62,7 +62,7 @@ public class Matrix : global::System.IDisposable {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Matrix(Quaternion rotation) : this(NDalicPINVOKE.new_Matrix__SWIG_3(Quaternion.getCPtr(rotation)), true) {
+  public Matrix(Rotation rotation) : this(NDalicPINVOKE.new_Matrix__SWIG_3(Rotation.getCPtr(rotation)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -183,8 +183,8 @@ public class Matrix : global::System.IDisposable {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void Multiply(Matrix result, Matrix lhs, Quaternion rhs) {
-    NDalicPINVOKE.Matrix_Multiply__SWIG_1(Matrix.getCPtr(result), Matrix.getCPtr(lhs), Quaternion.getCPtr(rhs));
+  public static void Multiply(Matrix result, Matrix lhs, Rotation rhs) {
+    NDalicPINVOKE.Matrix_Multiply__SWIG_1(Matrix.getCPtr(result), Matrix.getCPtr(lhs), Rotation.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -206,13 +206,13 @@ public class Matrix : global::System.IDisposable {
     return ret;
   }
 
-  public void SetTransformComponents(Vector3 scale, Quaternion rotation, Vector3 translation) {
-    NDalicPINVOKE.Matrix_SetTransformComponents(swigCPtr, Vector3.getCPtr(scale), Quaternion.getCPtr(rotation), Vector3.getCPtr(translation));
+  public void SetTransformComponents(Vector3 scale, Rotation rotation, Vector3 translation) {
+    NDalicPINVOKE.Matrix_SetTransformComponents(swigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetInverseTransformComponents(Vector3 scale, Quaternion rotation, Vector3 translation) {
-    NDalicPINVOKE.Matrix_SetInverseTransformComponents__SWIG_0(swigCPtr, Vector3.getCPtr(scale), Quaternion.getCPtr(rotation), Vector3.getCPtr(translation));
+  public void SetInverseTransformComponents(Vector3 scale, Rotation rotation, Vector3 translation) {
+    NDalicPINVOKE.Matrix_SetInverseTransformComponents__SWIG_0(swigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -221,8 +221,8 @@ public class Matrix : global::System.IDisposable {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void GetTransformComponents(Vector3 position, Quaternion rotation, Vector3 scale) {
-    NDalicPINVOKE.Matrix_GetTransformComponents(swigCPtr, Vector3.getCPtr(position), Quaternion.getCPtr(rotation), Vector3.getCPtr(scale));
+  public void GetTransformComponents(Vector3 position, Rotation rotation, Vector3 scale) {
+    NDalicPINVOKE.Matrix_GetTransformComponents(swigCPtr, Vector3.getCPtr(position), Rotation.getCPtr(rotation), Vector3.getCPtr(scale));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

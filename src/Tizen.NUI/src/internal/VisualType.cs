@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum VisualType {
+    internal enum VisualType {
   BORDER,
   COLOR,
   GRADIENT,

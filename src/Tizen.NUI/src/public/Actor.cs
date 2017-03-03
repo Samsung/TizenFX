@@ -108,7 +108,6 @@ namespace Tizen.NUI
             }
         }
 
-        //changed
         public float Opacity
         {
             get
@@ -123,21 +122,6 @@ namespace Tizen.NUI
             }
         }
 
-        //changed. moved to View class
-        /*
-        public bool StateFocusEnable
-        {
-            set
-            {
-                SetKeyboardFocusable(value);
-            }
-            get
-            {
-                return IsKeyboardFocusable();
-            }
-        }
-        */
-
         public bool IsOnStage
         {
             get
@@ -146,26 +130,11 @@ namespace Tizen.NUI
             }
         }
 
-        //changed
         public int HierarchyDepth
         {
             get
             {
                 return GetHierarchyDepth();
-            }
-        }
-
-        public bool BatchParent
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(Actor.Property.BATCH_PARENT).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(Actor.Property.BATCH_PARENT, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -193,7 +162,6 @@ namespace Tizen.NUI
             SetVisible(false);
         }
 
-        //changed
         internal class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -231,15 +199,15 @@ namespace Tizen.NUI
                     global::System.GC.SuppressFinalize(this);
                 }
             }
-            //changed
-            internal static readonly int BATCH_PARENT = NDalicManualPINVOKE.Actor_Property_BATCH_PARENT_get();
+
             internal static readonly int SIBLING_ORDER = NDalicManualPINVOKE.Actor_Property_SIBLING_ORDER_get();
-            //changed
+            internal static readonly int OPACITY = NDalicManualPINVOKE.Actor_Property_OPACITY_get();
+
             internal Property() : this(NDalicPINVOKE.new_Actor_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            //changed
+
             internal static readonly int PARENT_ORIGIN = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_get();
             internal static readonly int PARENT_ORIGIN_X = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_X_get();
             internal static readonly int PARENT_ORIGIN_Y = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_Y_get();
@@ -308,60 +276,60 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Actor(Actor copy) : this(NDalicPINVOKE.new_Actor__SWIG_1(Actor.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Actor Assign(Actor rhs)
         {
             Actor ret = new Actor(NDalicPINVOKE.Actor_Assign(swigCPtr, Actor.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal string GetName()
         {
             string ret = NDalicPINVOKE.Actor_GetName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetName(string name)
         {
             NDalicPINVOKE.Actor_SetName(swigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal uint GetId()
         {
             uint ret = NDalicPINVOKE.Actor_GetId(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsRoot()
         {
             bool ret = NDalicPINVOKE.Actor_IsRoot(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool OnStage()
         {
             bool ret = NDalicPINVOKE.Actor_OnStage(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsLayer()
         {
             bool ret = NDalicPINVOKE.Actor_IsLayer(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Layer GetLayer()
         {
             Layer ret = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
@@ -380,7 +348,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_Remove(swigCPtr, Actor.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Unparent()
         {
             NDalicPINVOKE.Actor_Unparent(swigCPtr);
@@ -407,81 +375,81 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Actor FindChildById(uint id)
         {
             Actor ret = new Actor(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Actor GetParent()
         {
             Actor ret = new Actor(NDalicPINVOKE.Actor_GetParent(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetParentOrigin(Vector3 origin)
         {
             NDalicPINVOKE.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector3 GetCurrentParentOrigin()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentParentOrigin(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetAnchorPoint(Vector3 anchorPoint)
         {
             NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector3 GetCurrentAnchorPoint()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentAnchorPoint(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetSize(float width, float height)
         {
             NDalicPINVOKE.Actor_SetSize__SWIG_0(swigCPtr, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetSize(float width, float height, float depth)
         {
             NDalicPINVOKE.Actor_SetSize__SWIG_1(swigCPtr, width, height, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetSize(Vector2 size)
         {
             NDalicPINVOKE.Actor_SetSize__SWIG_2(swigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetSize(Vector3 size)
         {
             NDalicPINVOKE.Actor_SetSize__SWIG_3(swigCPtr, Vector3.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector3 GetTargetSize()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetTargetSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
-        internal Vector3 GetCurrentSize()
+
+        internal Size GetCurrentSize()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentSize(swigCPtr), true);
+            Size ret = new Size(NDalicPINVOKE.Actor_GetCurrentSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -492,282 +460,282 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetPosition(float x, float y)
         {
             NDalicPINVOKE.Actor_SetPosition__SWIG_0(swigCPtr, x, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetPosition(float x, float y, float z)
         {
             NDalicPINVOKE.Actor_SetPosition__SWIG_1(swigCPtr, x, y, z);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetPosition(Vector3 position)
         {
             NDalicPINVOKE.Actor_SetPosition__SWIG_2(swigCPtr, Vector3.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetX(float x)
         {
             NDalicPINVOKE.Actor_SetX(swigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetY(float y)
         {
             NDalicPINVOKE.Actor_SetY(swigCPtr, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetZ(float z)
         {
             NDalicPINVOKE.Actor_SetZ(swigCPtr, z);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void TranslateBy(Vector3 distance)
         {
             NDalicPINVOKE.Actor_TranslateBy(swigCPtr, Vector3.getCPtr(distance));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal Vector3 GetCurrentPosition()
+
+        internal Position GetCurrentPosition()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentPosition(swigCPtr), true);
+            Position ret = new Position(NDalicPINVOKE.Actor_GetCurrentPosition(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Vector3 GetCurrentWorldPosition()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentWorldPosition(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetInheritPosition(bool inherit)
         {
             NDalicPINVOKE.Actor_SetInheritPosition(swigCPtr, inherit);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal PositionInheritanceMode GetPositionInheritanceMode()
         {
             PositionInheritanceMode ret = (PositionInheritanceMode)NDalicPINVOKE.Actor_GetPositionInheritanceMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsPositionInherited()
         {
             bool ret = NDalicPINVOKE.Actor_IsPositionInherited(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetOrientation(Degree angle, Vector3 axis)
         {
             NDalicPINVOKE.Actor_SetOrientation__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetOrientation(Radian angle, Vector3 axis)
         {
             NDalicPINVOKE.Actor_SetOrientation__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal void SetOrientation(Quaternion orientation)
+
+        internal void SetOrientation(Rotation orientation)
         {
-            NDalicPINVOKE.Actor_SetOrientation__SWIG_2(swigCPtr, Quaternion.getCPtr(orientation));
+            NDalicPINVOKE.Actor_SetOrientation__SWIG_2(swigCPtr, Rotation.getCPtr(orientation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void RotateBy(Degree angle, Vector3 axis)
         {
             NDalicPINVOKE.Actor_RotateBy__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void RotateBy(Radian angle, Vector3 axis)
         {
             NDalicPINVOKE.Actor_RotateBy__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal void RotateBy(Quaternion relativeRotation)
+
+        internal void RotateBy(Rotation relativeRotation)
         {
-            NDalicPINVOKE.Actor_RotateBy__SWIG_2(swigCPtr, Quaternion.getCPtr(relativeRotation));
+            NDalicPINVOKE.Actor_RotateBy__SWIG_2(swigCPtr, Rotation.getCPtr(relativeRotation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal Quaternion GetCurrentOrientation()
+
+        internal Rotation GetCurrentOrientation()
         {
-            Quaternion ret = new Quaternion(NDalicPINVOKE.Actor_GetCurrentOrientation(swigCPtr), true);
+            Rotation ret = new Rotation(NDalicPINVOKE.Actor_GetCurrentOrientation(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetInheritOrientation(bool inherit)
         {
             NDalicPINVOKE.Actor_SetInheritOrientation(swigCPtr, inherit);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool IsOrientationInherited()
         {
             bool ret = NDalicPINVOKE.Actor_IsOrientationInherited(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
-        internal Quaternion GetCurrentWorldOrientation()
+
+        internal Rotation GetCurrentWorldOrientation()
         {
-            Quaternion ret = new Quaternion(NDalicPINVOKE.Actor_GetCurrentWorldOrientation(swigCPtr), true);
+            Rotation ret = new Rotation(NDalicPINVOKE.Actor_GetCurrentWorldOrientation(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetScale(float scale)
         {
             NDalicPINVOKE.Actor_SetScale__SWIG_0(swigCPtr, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetScale(float scaleX, float scaleY, float scaleZ)
         {
             NDalicPINVOKE.Actor_SetScale__SWIG_1(swigCPtr, scaleX, scaleY, scaleZ);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetScale(Vector3 scale)
         {
             NDalicPINVOKE.Actor_SetScale__SWIG_2(swigCPtr, Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void ScaleBy(Vector3 relativeScale)
         {
             NDalicPINVOKE.Actor_ScaleBy(swigCPtr, Vector3.getCPtr(relativeScale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector3 GetCurrentScale()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentScale(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Vector3 GetCurrentWorldScale()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentWorldScale(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetInheritScale(bool inherit)
         {
             NDalicPINVOKE.Actor_SetInheritScale(swigCPtr, inherit);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool IsScaleInherited()
         {
             bool ret = NDalicPINVOKE.Actor_IsScaleInherited(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Matrix GetCurrentWorldMatrix()
         {
             Matrix ret = new Matrix(NDalicPINVOKE.Actor_GetCurrentWorldMatrix(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetVisible(bool visible)
         {
             NDalicPINVOKE.Actor_SetVisible(swigCPtr, visible);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool IsVisible()
         {
             bool ret = NDalicPINVOKE.Actor_IsVisible(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetOpacity(float opacity)
         {
             NDalicPINVOKE.Actor_SetOpacity(swigCPtr, opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal float GetCurrentOpacity()
         {
             float ret = NDalicPINVOKE.Actor_GetCurrentOpacity(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetColor(Vector4 color)
         {
             NDalicPINVOKE.Actor_SetColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector4 GetCurrentColor()
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.Actor_GetCurrentColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetColorMode(ColorMode colorMode)
         {
             NDalicPINVOKE.Actor_SetColorMode(swigCPtr, (int)colorMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal ColorMode GetColorMode()
         {
             ColorMode ret = (ColorMode)NDalicPINVOKE.Actor_GetColorMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Vector4 GetCurrentWorldColor()
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.Actor_GetCurrentWorldColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetDrawMode(DrawModeType drawMode)
         {
             NDalicPINVOKE.Actor_SetDrawMode(swigCPtr, (int)drawMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal DrawModeType GetDrawMode()
         {
             DrawModeType ret = (DrawModeType)NDalicPINVOKE.Actor_GetDrawMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetSensitive(bool sensitive)
         {
             NDalicPINVOKE.Actor_SetSensitive(swigCPtr, sensitive);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool IsSensitive()
         {
             bool ret = NDalicPINVOKE.Actor_IsSensitive(swigCPtr);
@@ -781,65 +749,65 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetLeaveRequired(bool required)
         {
             NDalicPINVOKE.Actor_SetLeaveRequired(swigCPtr, required);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool GetLeaveRequired()
         {
             bool ret = NDalicPINVOKE.Actor_GetLeaveRequired(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetKeyboardFocusable(bool focusable)
         {
             NDalicPINVOKE.Actor_SetKeyboardFocusable(swigCPtr, focusable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal bool IsKeyboardFocusable()
         {
             bool ret = NDalicPINVOKE.Actor_IsKeyboardFocusable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal ResizePolicyType GetResizePolicy(DimensionType dimension)
         {
             ResizePolicyType ret = (ResizePolicyType)NDalicPINVOKE.Actor_GetResizePolicy(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetSizeScalePolicy(SizeScalePolicyType policy)
         {
             NDalicPINVOKE.Actor_SetSizeScalePolicy(swigCPtr, (int)policy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal SizeScalePolicyType GetSizeScalePolicy()
         {
             SizeScalePolicyType ret = (SizeScalePolicyType)NDalicPINVOKE.Actor_GetSizeScalePolicy(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetSizeModeFactor(Vector3 factor)
         {
             NDalicPINVOKE.Actor_SetSizeModeFactor(swigCPtr, Vector3.getCPtr(factor));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector3 GetSizeModeFactor()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetSizeModeFactor(swigCPtr), true);
@@ -860,134 +828,134 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal float GetRelayoutSize(DimensionType dimension)
         {
             float ret = NDalicPINVOKE.Actor_GetRelayoutSize(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
-        internal void SetPadding(RectFloat padding)
+
+        public void SetPadding(PaddingType padding)
         {
-            NDalicPINVOKE.Actor_SetPadding(swigCPtr, RectFloat.getCPtr(padding));
+            NDalicPINVOKE.Actor_SetPadding(swigCPtr, PaddingType.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal void GetPadding(RectFloat paddingOut)
+
+        public void GetPadding(PaddingType paddingOut)
         {
-            NDalicPINVOKE.Actor_GetPadding(swigCPtr, RectFloat.getCPtr(paddingOut));
+            NDalicPINVOKE.Actor_GetPadding(swigCPtr, PaddingType.getCPtr(paddingOut));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetMinimumSize(Vector2 size)
         {
             NDalicPINVOKE.Actor_SetMinimumSize(swigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector2 GetMinimumSize()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Actor_GetMinimumSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetMaximumSize(Vector2 size)
         {
             NDalicPINVOKE.Actor_SetMaximumSize(swigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector2 GetMaximumSize()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Actor_GetMaximumSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal int GetHierarchyDepth()
         {
             int ret = NDalicPINVOKE.Actor_GetHierarchyDepth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal uint AddRenderer(Renderer renderer)
         {
             uint ret = NDalicPINVOKE.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal uint GetRendererCount()
         {
             uint ret = NDalicPINVOKE.Actor_GetRendererCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Renderer GetRendererAt(uint index)
         {
             Renderer ret = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void RemoveRenderer(Renderer renderer)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void RemoveRenderer(uint index)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t TouchedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t ret = new SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t(NDalicPINVOKE.Actor_TouchedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorTouchDataSignal TouchSignal()
         {
             ActorTouchDataSignal ret = new ActorTouchDataSignal(NDalicPINVOKE.Actor_TouchSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorHoverSignal HoveredSignal()
         {
             ActorHoverSignal ret = new ActorHoverSignal(NDalicPINVOKE.Actor_HoveredSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorWheelSignal WheelEventSignal()
         {
             ActorWheelSignal ret = new ActorWheelSignal(NDalicPINVOKE.Actor_WheelEventSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorSignal OnStageSignal()
         {
             ActorSignal ret = new ActorSignal(NDalicPINVOKE.Actor_OnStageSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorSignal OffStageSignal()
         {
             ActorSignal ret = new ActorSignal(NDalicPINVOKE.Actor_OffStageSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ActorSignal OnRelayoutSignal()
         {
             ActorSignal ret = new ActorSignal(NDalicPINVOKE.Actor_OnRelayoutSignal(swigCPtr), false);
@@ -1008,10 +976,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.PARENT_ORIGIN, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //removed
-        //public float ParentOriginX
-        //public float ParentOriginY
-        //public float ParentOriginZ
+
         public Position AnchorPoint
         {
             get
@@ -1025,16 +990,12 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //removed
-        //public float AnchorPointX
-        //public float AnchorPointY
-        //public float AnchorPointZ
+
         public Size Size
         {
             get
             {
-                Size temp = new Size(0.0f, 0.0f, 0.0f);
-                GetProperty(Actor.Property.SIZE).Get(temp);
+                Size temp = GetCurrentSize();
                 return temp;
             }
             set
@@ -1085,8 +1046,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Position temp = new Position(0.0f, 0.0f, 0.0f);
-                GetProperty(Actor.Property.POSITION).Get(temp);
+                Position temp = GetCurrentPosition();
                 return temp;
             }
             set
@@ -1143,17 +1103,11 @@ namespace Tizen.NUI
             }
         }
 
-        //removed
-        //public float WorldPositionX
-        //public float WorldPositionY
-        //public float WorldPositionZ
-
-        //need to be removed and replaced by "Rotation" high level class
-        public Quaternion Orientation
+        public Rotation Orientation
         {
             get
             {
-                Quaternion temp = new Quaternion();
+                Rotation temp = new Rotation();
                 GetProperty(Actor.Property.ORIENTATION).Get(temp);
                 return temp;
             }
@@ -1162,11 +1116,11 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.ORIENTATION, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public Quaternion WorldOrientation
+        public Rotation WorldOrientation
         {
             get
             {
-                Quaternion temp = new Quaternion();
+                Rotation temp = new Rotation();
                 GetProperty(Actor.Property.WORLD_ORIENTATION).Get(temp);
                 return temp;
             }
@@ -1319,8 +1273,7 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-        //removed
-        //public Matrix WorldMatrix
+
         public string Name
         {
             get
@@ -1386,7 +1339,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.INHERIT_SCALE, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //changed
+
         public ColorMode ColorMode
         {
             get
@@ -1415,10 +1368,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.COLOR_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        //removed
-        //public string PositionInheritance
 
-        //changed
         public DrawModeType DrawMode
         {
             get
@@ -1459,7 +1409,6 @@ namespace Tizen.NUI
             }
         }
 
-        //changed
         public ResizePolicyType WidthResizePolicy
         {
             get
@@ -1496,7 +1445,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        //changed
+
         public ResizePolicyType HeightResizePolicy
         {
             get
@@ -1533,7 +1482,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        //changed
+
         public SizeScalePolicyType SizeScalePolicy
         {
             get
@@ -1600,7 +1549,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //changed
+
         public Size2D MinimumSize
         {
             get
@@ -1614,7 +1563,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //changed
+
         public Size2D MaximumSize
         {
             get
@@ -1641,13 +1590,13 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.INHERIT_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //changed
+
         public ClippingModeType ClippingMode
         {
             get
             {
                 string temp;
-                if (GetProperty(Actor.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
+                if (GetProperty(Actor.Property.CLIPPING_MODE).Get(out temp) == false)
                 {
                     //Tizen.Log.Error("NUI", "ClippingMode get error!");
                 }
@@ -1663,7 +1612,7 @@ namespace Tizen.NUI
             }
             set
             {
-                SetProperty(Actor.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+                SetProperty(Actor.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
 
@@ -1675,14 +1624,14 @@ namespace Tizen.NUI
         UseParentColor,
         UseOwnMultiplyParentColor,
         UseOwnMultiplyParentAlpha
-    }
+            }
 
     public enum DimensionType
     {
         Width = 0x1,
         Height = 0x2,
         AllDimensions = 0x3
-    }
+        }
 
     public enum DrawModeType
     {

@@ -30,7 +30,7 @@ namespace Tizen.NUI {
     using System.Runtime.InteropServices;
 
 
-public class Builder : BaseHandle {
+    public class Builder : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Builder_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -247,7 +247,7 @@ public class Builder : BaseHandle {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public FrameBufferImage GetFrameBufferImage(string name) {
+  internal FrameBufferImage GetFrameBufferImage(string name) {
     FrameBufferImage ret = new FrameBufferImage(NDalicPINVOKE.Builder_GetFrameBufferImage(swigCPtr, name), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -259,19 +259,19 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public PathConstrainer GetPathConstrainer(string pathConstrainerName) {
+  internal PathConstrainer GetPathConstrainer(string pathConstrainerName) {
     PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.Builder_GetPathConstrainer(swigCPtr, pathConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
+  internal LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
     LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.Builder_GetLinearConstrainer(swigCPtr, linearConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public VoidSignal QuitSignal() {
+  internal VoidSignal QuitSignal() {
     VoidSignal ret = new VoidSignal(NDalicPINVOKE.Builder_QuitSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

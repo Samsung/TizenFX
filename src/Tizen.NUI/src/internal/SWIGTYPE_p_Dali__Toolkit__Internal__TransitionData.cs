@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData {
+    internal class SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData(global::System.IntPtr cPtr, bool futureUse) {

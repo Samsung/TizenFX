@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class PageTurnView : View {
+    internal class PageTurnView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn) {

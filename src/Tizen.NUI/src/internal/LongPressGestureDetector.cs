@@ -29,7 +29,7 @@ namespace Tizen.NUI {
 using System;
 using System.Runtime.InteropServices;
 
-public class LongPressGestureDetector : GestureDetector {
+    public class LongPressGestureDetector : GestureDetector {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -207,7 +207,7 @@ public static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global
     return ret;
   }
 
-  public LongPressGestureDetectedSignal DetectedSignal() {
+  internal LongPressGestureDetectedSignal DetectedSignal() {
     LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(NDalicPINVOKE.LongPressGestureDetector_DetectedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

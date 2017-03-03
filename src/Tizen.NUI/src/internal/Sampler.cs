@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Sampler : BaseHandle {
+    internal class Sampler : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Sampler_SWIGUpcast(cPtr), cMemoryOwn) {

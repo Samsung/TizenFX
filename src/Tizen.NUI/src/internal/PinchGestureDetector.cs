@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class PinchGestureDetector : GestureDetector {
+    public class PinchGestureDetector : GestureDetector {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PinchGestureDetector_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -177,7 +177,7 @@ public static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System
     return ret;
   }
 
-  public PinchGestureDetectedSignal DetectedSignal() {
+  internal PinchGestureDetectedSignal DetectedSignal() {
     PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(NDalicPINVOKE.PinchGestureDetector_DetectedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

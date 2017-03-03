@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum LoadingState {
+    internal enum LoadingState {
   ResourceLoading,
   ResourceLoadingSucceeded,
   ResourceLoadingFailed

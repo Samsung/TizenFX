@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ChildPropertyRegistration : global::System.IDisposable {
+    internal class ChildPropertyRegistration : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -24,10 +24,15 @@ public class ChildPropertyRegistration : global::System.IDisposable {
   }
 
   ~ChildPropertyRegistration() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -39,6 +44,7 @@ public class ChildPropertyRegistration : global::System.IDisposable {
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(NDalicPINVOKE.new_ChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

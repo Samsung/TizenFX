@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ApplicationExtensions : global::System.IDisposable {
+    internal class ApplicationExtensions : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -24,10 +24,15 @@ public class ApplicationExtensions : global::System.IDisposable {
   }
 
   ~ApplicationExtensions() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -39,6 +44,7 @@ public class ApplicationExtensions : global::System.IDisposable {
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public ApplicationExtensions() : this(NDalicPINVOKE.new_ApplicationExtensions__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

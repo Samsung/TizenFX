@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class GaussianBlurView : View {
+    internal class GaussianBlurView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.GaussianBlurView_SWIGUpcast(cPtr), cMemoryOwn) {

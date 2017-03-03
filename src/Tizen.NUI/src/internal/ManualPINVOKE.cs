@@ -104,7 +104,7 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr new_ViewWrapperImpl(int jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewWrapperImpl_New")]
-        public static extern global::System.IntPtr ViewWrapperImpl_New(global::System.Runtime.InteropServices.HandleRef jarg1);
+        public static extern global::System.IntPtr ViewWrapperImpl_New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ViewWrapperImpl")]
         public static extern void delete_ViewWrapperImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr GetControlWrapperImpl__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewWrapper_New")]
-        public static extern global::System.IntPtr ViewWrapper_New(global::System.Runtime.InteropServices.HandleRef jarg1);
+        public static extern global::System.IntPtr ViewWrapper_New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ViewWrapper__SWIG_0")]
         public static extern global::System.IntPtr new_ViewWrapper__SWIG_0();
@@ -187,17 +187,20 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_MakeCallback")]
         public static extern global::System.IntPtr MakeCallback(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Actor_Property_BATCH_PARENT_get")]
-        public static extern int Actor_Property_BATCH_PARENT_get();
-        
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Actor_Property_SIBLING_ORDER_get")]
         public static extern int Actor_Property_SIBLING_ORDER_get();
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Renderer_Property_BATCHING_ENABLED_get")]
-        public static extern int Renderer_Property_BATCHING_ENABLED_get();
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Actor_Property_OPACITY_get")]
+        public static extern int Actor_Property_OPACITY_get();
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_View_Property_TOOLTIP_get")]
         public static extern int View_Property_TOOLTIP_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_View_Property_STATE_get")]
+        public static extern int View_Property_STATE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_View_Property_SUB_STATE_get")]
+        public static extern int View_Property_SUB_STATE_get();
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_ItemView_Property_LAYOUT_get")]
         public static extern int ItemView_Property_LAYOUT_get();

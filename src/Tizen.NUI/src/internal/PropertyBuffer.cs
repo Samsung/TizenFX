@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class PropertyBuffer : BaseHandle {
+    internal class PropertyBuffer : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn) {

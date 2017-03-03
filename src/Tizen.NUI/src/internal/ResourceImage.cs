@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class ResourceImage : Image {
+internal class ResourceImage : Image {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ResourceImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ResourceImage_SWIGUpcast(cPtr), cMemoryOwn) {

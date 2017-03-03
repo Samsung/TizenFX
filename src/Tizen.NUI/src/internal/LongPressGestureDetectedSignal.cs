@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class LongPressGestureDetectedSignal : global::System.IDisposable {
+    internal class LongPressGestureDetectedSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -24,10 +24,15 @@ public class LongPressGestureDetectedSignal : global::System.IDisposable {
   }
 
   ~LongPressGestureDetectedSignal() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -39,6 +44,7 @@ public class LongPressGestureDetectedSignal : global::System.IDisposable {
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public bool Empty() {
     bool ret = NDalicPINVOKE.LongPressGestureDetectedSignal_Empty(swigCPtr);

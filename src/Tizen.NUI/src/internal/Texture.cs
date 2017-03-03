@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Texture : BaseHandle {
+    internal class Texture : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Texture_SWIGUpcast(cPtr), cMemoryOwn) {

@@ -704,11 +704,11 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.POPUP_BACKGROUND_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public RectInteger PopupBackgroundBorder
+        public Rectangle PopupBackgroundBorder
         {
             get
             {
-                RectInteger temp = new RectInteger(0, 0, 0, 0);
+                Rectangle temp = new Rectangle(0, 0, 0, 0);
                 GetProperty(Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
                 return temp;
             }

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Ruler : RefObject {
+    internal class Ruler : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Ruler_SWIGUpcast(cPtr), cMemoryOwn) {

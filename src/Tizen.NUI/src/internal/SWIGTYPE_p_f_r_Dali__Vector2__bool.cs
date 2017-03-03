@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_f_r_Dali__Vector2__bool {
+    internal class SWIGTYPE_p_f_r_Dali__Vector2__bool {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_f_r_Dali__Vector2__bool(global::System.IntPtr cPtr, bool futureUse) {

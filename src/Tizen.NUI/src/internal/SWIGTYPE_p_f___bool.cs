@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_f___bool {
+    internal class SWIGTYPE_p_f___bool {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_f___bool(global::System.IntPtr cPtr, bool futureUse) {

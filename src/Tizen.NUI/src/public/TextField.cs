@@ -827,11 +827,11 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public RectInteger DecorationBoundingBox
+        public Rectangle DecorationBoundingBox
         {
             get
             {
-                RectInteger temp = new RectInteger(0, 0, 0, 0);
+                Rectangle temp = new Rectangle(0, 0, 0, 0);
                 GetProperty(TextField.Property.DECORATION_BOUNDING_BOX).Get(temp);
                 return temp;
             }

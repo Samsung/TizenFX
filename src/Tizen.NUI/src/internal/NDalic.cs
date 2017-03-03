@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class NDalic {
+    internal class NDalic {
   public static uint int_to_uint(int x) {
     uint ret = NDalicPINVOKE.int_to_uint(x);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -311,6 +311,60 @@ public class NDalic {
 
   public static bool EqualTo(AngleAxis lhs, AngleAxis rhs) {
     bool ret = NDalicPINVOKE.EqualTo__SWIG_9(AngleAxis.getCPtr(lhs), AngleAxis.getCPtr(rhs));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint NextPowerOfTwo(uint i) {
+    uint ret = NDalicPINVOKE.NextPowerOfTwo(i);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsPowerOfTwo(uint i) {
+    bool ret = NDalicPINVOKE.IsPowerOfTwo(i);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static float GetRangedEpsilon(float a, float b) {
+    float ret = NDalicPINVOKE.GetRangedEpsilon(a, b);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool EqualsZero(float value) {
+    bool ret = NDalicPINVOKE.EqualsZero(value);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool Equals(float a, float b) {
+    bool ret = NDalicPINVOKE.Equals__SWIG_0(a, b);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool Equals(float a, float b, float epsilon) {
+    bool ret = NDalicPINVOKE.Equals__SWIG_1(a, b, epsilon);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static float Round(float value, int pos) {
+    float ret = NDalicPINVOKE.Round(value, pos);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static float WrapInDomain(float x, float start, float end) {
+    float ret = NDalicPINVOKE.WrapInDomain(x, start, end);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static float ShortestDistanceInDomain(float a, float b, float start, float end) {
+    float ret = NDalicPINVOKE.ShortestDistanceInDomain(a, b, start, end);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1020,7 +1074,6 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
   public static readonly int IMAGE_VISUAL_DESIRED_HEIGHT = NDalicPINVOKE.IMAGE_VISUAL_DESIRED_HEIGHT_get();
   public static readonly int IMAGE_VISUAL_SYNCHRONOUS_LOADING = NDalicPINVOKE.IMAGE_VISUAL_SYNCHRONOUS_LOADING_get();
   public static readonly int IMAGE_VISUAL_BORDER_ONLY = NDalicPINVOKE.IMAGE_VISUAL_BORDER_ONLY_get();
-  public static readonly int IMAGE_VISUAL_BATCHING_ENABLED = NDalicPINVOKE.IMAGE_VISUAL_BATCHING_ENABLED_get();
   public static readonly int IMAGE_VISUAL_PIXEL_AREA = NDalicPINVOKE.IMAGE_VISUAL_PIXEL_AREA_get();
   public static readonly int IMAGE_VISUAL_WRAP_MODE_U = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_U_get();
   public static readonly int IMAGE_VISUAL_WRAP_MODE_V = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_V_get();

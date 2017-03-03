@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class BoolSignal : global::System.IDisposable {
+    internal class BoolSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

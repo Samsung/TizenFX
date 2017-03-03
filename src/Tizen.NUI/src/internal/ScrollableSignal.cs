@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ScrollableSignal : global::System.IDisposable {
+    internal class ScrollableSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

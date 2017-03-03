@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class StringValuePair : global::System.IDisposable {
+    internal class StringValuePair : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

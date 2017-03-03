@@ -33,7 +33,7 @@ namespace Tizen.NUI
 {
     public class CustomView : ViewWrapper
     {
-        public CustomView(ViewBehaviour behaviour) : base(new ViewWrapperImpl(behaviour))
+        public CustomView(string typeName, ViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
             viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);

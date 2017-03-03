@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SignalObserver : global::System.IDisposable {
+    internal class SignalObserver : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -24,10 +24,15 @@ public class SignalObserver : global::System.IDisposable {
   }
 
   ~SignalObserver() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -39,6 +44,7 @@ public class SignalObserver : global::System.IDisposable {
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback) {
     NDalicPINVOKE.SignalObserver_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));

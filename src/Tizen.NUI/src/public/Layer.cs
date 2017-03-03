@@ -244,15 +244,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetClippingBox(RectInteger box)
+        public void SetClippingBox(Rectangle box)
         {
-            NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, RectInteger.getCPtr(box));
+            NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, Rectangle.getCPtr(box));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RectInteger GetClippingBox()
+        public Rectangle GetClippingBox()
         {
-            RectInteger ret = new RectInteger(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
+            Rectangle ret = new Rectangle(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -327,11 +327,11 @@ namespace Tizen.NUI
                 SetProperty(Layer.Property.CLIPPING_ENABLE, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public RectInteger ClippingBox
+        public Rectangle ClippingBox
         {
             get
             {
-                RectInteger temp = new RectInteger(0, 0, 0, 0);
+                Rectangle temp = new Rectangle(0, 0, 0, 0);
                 GetProperty(Layer.Property.CLIPPING_BOX).Get(temp);
                 return temp;
             }
@@ -340,7 +340,7 @@ namespace Tizen.NUI
                 SetProperty(Layer.Property.CLIPPING_BOX, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public LayerBehavior Behavior
+        public Layer.LayerBehavior Behavior
         {
             get
             {

@@ -153,7 +153,7 @@ namespace Tizen.NUI
 
 
 
-        public TimerSignalType TickSignal()
+        internal TimerSignalType TickSignal()
         {
             TimerSignalType ret = new TimerSignalType(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

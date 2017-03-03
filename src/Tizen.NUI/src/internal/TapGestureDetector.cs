@@ -203,7 +203,7 @@ public static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.Int
     return ret;
   }
 
-  public TapGestureDetectedSignal DetectedSignal() {
+  internal TapGestureDetectedSignal DetectedSignal() {
     TapGestureDetectedSignal ret = new TapGestureDetectedSignal(NDalicPINVOKE.TapGestureDetector_DetectedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

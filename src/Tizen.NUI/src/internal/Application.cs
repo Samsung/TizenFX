@@ -8,7 +8,8 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
     using System;
     using System.Runtime.InteropServices;
@@ -19,23 +20,23 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationInitEventArgs : EventArgs
     {
-    private Application _application;
+        private Application _application;
 
-      /**
-        * @brief Application - is the application that is being initialized
-        *
-        */
-    public Application Application
-      {
-        get
+        /**
+          * @brief Application - is the application that is being initialized
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -44,22 +45,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationTerminateEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being Terminated
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being Terminated
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -68,22 +69,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationPauseEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being Paused
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being Paused
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -92,22 +93,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationResumeEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being Resumed
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being Resumed
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -116,22 +117,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationResetEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being Reset
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being Reset
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -140,22 +141,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationResizeEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being Resized
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being Resized
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -164,22 +165,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationLanguageChangedEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being affected with Device's language change
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being affected with Device's language change
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -188,22 +189,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationRegionChangedEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being affected with Device's region change
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being affected with Device's region change
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -212,22 +213,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationBatteryLowEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being affected when the battery level of the device is low
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being affected when the battery level of the device is low
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -236,22 +237,22 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationMemoryLowEventArgs : EventArgs
     {
-    private Application _application;
-      /**
-        * @brief Application - is the application that is being affected when the memory level of the device is low
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        /**
+          * @brief Application - is the application that is being affected when the memory level of the device is low
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
-        {
-          _application = value;
-        }
-      }
     }
 
     /**
@@ -260,988 +261,1034 @@ namespace Tizen.NUI {
       */
     public class NUIApplicationAppControlEventArgs : EventArgs
     {
-    private Application _application;
-    private IntPtr _voidp;
-      /**
-        * @brief Application - is the application that is receiving the launch request from another application
-        *
-        */
-    public Application Application
-      {
-        get
+        private Application _application;
+        private IntPtr _voidp;
+        /**
+          * @brief Application - is the application that is receiving the launch request from another application
+          *
+          */
+        public Application Application
         {
-          return _application;
+            get
+            {
+                return _application;
+            }
+            set
+            {
+                _application = value;
+            }
         }
-        set
+        /**
+          * @brief VoidP - contains the information about why the application is launched
+          *
+          */
+        public IntPtr VoidP
         {
-          _application = value;
+            get
+            {
+                return _voidp;
+            }
+            set
+            {
+                _voidp = value;
+            }
         }
-      }
-      /**
-        * @brief VoidP - contains the information about why the application is launched
-        *
-        */
-    public IntPtr VoidP
-      {
-        get
-        {
-          return _voidp;
-        }
-        set
-        {
-          _voidp = value;
-        }
-      }
     }
 
-public class Application : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Application() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Application(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationInitEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationInitEventArgs> _applicationInitEventHandler;
-    private NUIApplicationInitEventCallbackDelegate _applicationInitEventCallbackDelegate;
-
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationTerminateEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationTerminateEventArgs> _applicationTerminateEventHandler;
-    private NUIApplicationTerminateEventCallbackDelegate _applicationTerminateEventCallbackDelegate;
-
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationPauseEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationPauseEventArgs> _applicationPauseEventHandler;
-    private NUIApplicationPauseEventCallbackDelegate _applicationPauseEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationResumeEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationResumeEventArgs> _applicationResumeEventHandler;
-    private NUIApplicationResumeEventCallbackDelegate _applicationResumeEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationResetEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationResetEventArgs> _applicationResetEventHandler;
-    private NUIApplicationResetEventCallbackDelegate _applicationResetEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationResizeEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationResizeEventArgs> _applicationResizeEventHandler;
-    private NUIApplicationResizeEventCallbackDelegate _applicationResizeEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationLanguageChangedEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationLanguageChangedEventArgs> _applicationLanguageChangedEventHandler;
-    private NUIApplicationLanguageChangedEventCallbackDelegate _applicationLanguageChangedEventCallbackDelegate;
-
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationRegionChangedEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationRegionChangedEventArgs> _applicationRegionChangedEventHandler;
-    private NUIApplicationRegionChangedEventCallbackDelegate _applicationRegionChangedEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationBatteryLowEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationBatteryLowEventArgs> _applicationBatteryLowEventHandler;
-    private NUIApplicationBatteryLowEventCallbackDelegate _applicationBatteryLowEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationMemoryLowEventCallbackDelegate(IntPtr application);
-    private DaliEventHandler<object,NUIApplicationMemoryLowEventArgs> _applicationMemoryLowEventHandler;
-    private NUIApplicationMemoryLowEventCallbackDelegate _applicationMemoryLowEventCallbackDelegate;
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    private delegate void NUIApplicationAppControlEventCallbackDelegate(IntPtr application, IntPtr voidp);
-    private DaliEventHandler<object,NUIApplicationAppControlEventArgs> _applicationAppControlEventHandler;
-    private NUIApplicationAppControlEventCallbackDelegate _applicationAppControlEventCallbackDelegate;
-
-    /**
-      * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationInitEventHandler - DaliEventHandler<object,NUIApplicationInitEventArgs>)
-      *  provided by the user. Initialized signal is emitted when application is initialised
-      */
-    public event DaliEventHandler<object,NUIApplicationInitEventArgs> Initialized
+    public class Application : BaseHandle
     {
-      add
-      {
-        lock(this)
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
-          // Restricted to only one listener
-          if (_applicationInitEventHandler == null)
-          {
-            _applicationInitEventHandler += value;
-
-            _applicationInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationInit);
-            this.InitSignal().Connect(_applicationInitEventCallbackDelegate);
-          }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-      }
 
-      remove
-      {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj)
         {
-          if (_applicationInitEventHandler != null)
-          {
-            this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
-          }
-
-          _applicationInitEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-      }
-    }
 
-    // Callback for Application InitSignal
-    private void OnApplicationInit(IntPtr data)
-    {
-      NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
-
-      // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationInitEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationInitEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationTerminateEventHandler-DaliEventHandler<object,NUIApplicationTerminateEventArgs>)
-      *  provided by the user. Terminated signal is emitted when application is terminated
-      */
-    public event DaliEventHandler<object,NUIApplicationTerminateEventArgs> Terminated
-    {
-      add
-      {
-        lock(this)
+        ~Application()
         {
-          // Restricted to only one listener
-          if (_applicationTerminateEventHandler == null)
-          {
-            _applicationTerminateEventHandler += value;
-
-            _applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
-            this.TerminateSignal().Connect(_applicationTerminateEventCallbackDelegate);
-          }
+            DisposeQueue.Instance.Add(this);
         }
-      }
 
-      remove
-      {
-        lock(this)
+        public override void Dispose()
         {
-          if (_applicationTerminateEventHandler != null)
-          {
-            this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
-          }
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-          _applicationTerminateEventHandler -= value;
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Application(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
         }
-      }
-    }
 
-    // Callback for Application TerminateSignal
-    private void OnNUIApplicationTerminate(IntPtr data)
-    {
-      NUIApplicationTerminateEventArgs e = new NUIApplicationTerminateEventArgs();
 
-      // Populate all members of "e" (NUIApplicationTerminateEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationInitEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationInitEventArgs> _applicationInitEventHandler;
+        private NUIApplicationInitEventCallbackDelegate _applicationInitEventCallbackDelegate;
 
-      if (_applicationTerminateEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationTerminateEventHandler(this, e);
-      }
-    }
 
-    /**
-      * @brief Event for Paused signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationPauseEventHandler-DaliEventHandler<object,NUIApplicationPauseEventArgs>)
-      * provided by the user. Paused signal is emitted when application is paused
-      */
-    public event DaliEventHandler<object,NUIApplicationPauseEventArgs> Paused
-    {
-      add
-      {
-        lock(this)
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationTerminateEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationTerminateEventArgs> _applicationTerminateEventHandler;
+        private NUIApplicationTerminateEventCallbackDelegate _applicationTerminateEventCallbackDelegate;
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationPauseEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationPauseEventArgs> _applicationPauseEventHandler;
+        private NUIApplicationPauseEventCallbackDelegate _applicationPauseEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationResumeEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationResumeEventArgs> _applicationResumeEventHandler;
+        private NUIApplicationResumeEventCallbackDelegate _applicationResumeEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationResetEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationResetEventArgs> _applicationResetEventHandler;
+        private NUIApplicationResetEventCallbackDelegate _applicationResetEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationResizeEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationResizeEventArgs> _applicationResizeEventHandler;
+        private NUIApplicationResizeEventCallbackDelegate _applicationResizeEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationLanguageChangedEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> _applicationLanguageChangedEventHandler;
+        private NUIApplicationLanguageChangedEventCallbackDelegate _applicationLanguageChangedEventCallbackDelegate;
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationRegionChangedEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> _applicationRegionChangedEventHandler;
+        private NUIApplicationRegionChangedEventCallbackDelegate _applicationRegionChangedEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationBatteryLowEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> _applicationBatteryLowEventHandler;
+        private NUIApplicationBatteryLowEventCallbackDelegate _applicationBatteryLowEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationMemoryLowEventCallbackDelegate(IntPtr application);
+        private DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> _applicationMemoryLowEventHandler;
+        private NUIApplicationMemoryLowEventCallbackDelegate _applicationMemoryLowEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void NUIApplicationAppControlEventCallbackDelegate(IntPtr application, IntPtr voidp);
+        private DaliEventHandler<object, NUIApplicationAppControlEventArgs> _applicationAppControlEventHandler;
+        private NUIApplicationAppControlEventCallbackDelegate _applicationAppControlEventCallbackDelegate;
+
+        /**
+          * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationInitEventHandler - DaliEventHandler<object,NUIApplicationInitEventArgs>)
+          *  provided by the user. Initialized signal is emitted when application is initialised
+          */
+        public event DaliEventHandler<object, NUIApplicationInitEventArgs> Initialized
         {
-          // Restricted to only one listener
-          if (_applicationPauseEventHandler == null)
-          {
-            _applicationPauseEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationInitEventHandler == null)
+                    {
+                        _applicationInitEventHandler += value;
 
-            _applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
-            this.PauseSignal().Connect(_applicationPauseEventCallbackDelegate);
-          }
+                        _applicationInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationInit);
+                        this.InitSignal().Connect(_applicationInitEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationInitEventHandler != null)
+                    {
+                        this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
+                    }
+
+                    _applicationInitEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application InitSignal
+        private void OnApplicationInit(IntPtr data)
         {
-          if (_applicationPauseEventHandler != null)
-          {
-            this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
-          }
+            NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
 
-          _applicationPauseEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationInitEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationInitEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application PauseSignal
-    private void OnNUIApplicationPause(IntPtr data)
-    {
-      NUIApplicationPauseEventArgs e = new NUIApplicationPauseEventArgs();
-
-      // Populate all members of "e" (NUIApplicationPauseEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationPauseEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationPauseEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for Resumed signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationResumeEventHandler-DaliEventHandler<object,NUIApplicationResumeEventArgs>)
-      *  provided by the user. Resumed signal is emitted when application is resumed
-      */
-    public event DaliEventHandler<object,NUIApplicationResumeEventArgs> Resumed
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationTerminateEventHandler-DaliEventHandler<object,NUIApplicationTerminateEventArgs>)
+          *  provided by the user. Terminated signal is emitted when application is terminated
+          */
+        public event DaliEventHandler<object, NUIApplicationTerminateEventArgs> Terminated
         {
-          // Restricted to only one listener
-          if (_applicationResumeEventHandler == null)
-          {
-            _applicationResumeEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationTerminateEventHandler == null)
+                    {
+                        _applicationTerminateEventHandler += value;
 
-            _applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
-            this.ResumeSignal().Connect(_applicationResumeEventCallbackDelegate);
-          }
+                        _applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
+                        this.TerminateSignal().Connect(_applicationTerminateEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationTerminateEventHandler != null)
+                    {
+                        this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
+                    }
+
+                    _applicationTerminateEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application TerminateSignal
+        private void OnNUIApplicationTerminate(IntPtr data)
         {
-          if (_applicationResumeEventHandler != null)
-          {
-            this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
-          }
+            NUIApplicationTerminateEventArgs e = new NUIApplicationTerminateEventArgs();
 
-          _applicationResumeEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationTerminateEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationTerminateEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationTerminateEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application ResumeSignal
-    private void OnNUIApplicationResume(IntPtr data)
-    {
-      NUIApplicationResumeEventArgs e = new NUIApplicationResumeEventArgs();
-
-      // Populate all members of "e" (NUIApplicationResumeEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationResumeEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationResumeEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for Reset signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationResetEventHandler-DaliEventHandler<object,NUIApplicationResetEventArgs>)
-      *  provided by the user. Reset signal is emitted when application is reset
-      */
-    public event DaliEventHandler<object,NUIApplicationResetEventArgs> Reset
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for Paused signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationPauseEventHandler-DaliEventHandler<object,NUIApplicationPauseEventArgs>)
+          * provided by the user. Paused signal is emitted when application is paused
+          */
+        public event DaliEventHandler<object, NUIApplicationPauseEventArgs> Paused
         {
-          // Restricted to only one listener
-          if (_applicationResetEventHandler == null)
-          {
-            _applicationResetEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationPauseEventHandler == null)
+                    {
+                        _applicationPauseEventHandler += value;
 
-            _applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
-            this.ResetSignal().Connect(_applicationResetEventCallbackDelegate);
-          }
+                        _applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
+                        this.PauseSignal().Connect(_applicationPauseEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationPauseEventHandler != null)
+                    {
+                        this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
+                    }
+
+                    _applicationPauseEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application PauseSignal
+        private void OnNUIApplicationPause(IntPtr data)
         {
-          if (_applicationResetEventHandler != null)
-          {
-            this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
-          }
+            NUIApplicationPauseEventArgs e = new NUIApplicationPauseEventArgs();
 
-          _applicationResetEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationPauseEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationPauseEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationPauseEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application ResetSignal
-    private void OnNUIApplicationReset(IntPtr data)
-    {
-      NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
-
-      // Populate all members of "e" (NUIApplicationResetEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationResetEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationResetEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for Resized signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationResizeEventHandler-DaliEventHandler<object,NUIApplicationResizeEventArgs>)
-      *  provided by the user. Resized signal is emitted when application is resized
-      */
-    public event DaliEventHandler<object,NUIApplicationResizeEventArgs> Resized
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for Resumed signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationResumeEventHandler-DaliEventHandler<object,NUIApplicationResumeEventArgs>)
+          *  provided by the user. Resumed signal is emitted when application is resumed
+          */
+        public event DaliEventHandler<object, NUIApplicationResumeEventArgs> Resumed
         {
-          // Restricted to only one listener
-          if (_applicationResizeEventHandler == null)
-          {
-            _applicationResizeEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationResumeEventHandler == null)
+                    {
+                        _applicationResumeEventHandler += value;
 
-            _applicationResizeEventCallbackDelegate = new NUIApplicationResizeEventCallbackDelegate(OnNUIApplicationResize);
-            this.ResizeSignal().Connect(_applicationResizeEventCallbackDelegate);
-          }
+                        _applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
+                        this.ResumeSignal().Connect(_applicationResumeEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationResumeEventHandler != null)
+                    {
+                        this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
+                    }
+
+                    _applicationResumeEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application ResumeSignal
+        private void OnNUIApplicationResume(IntPtr data)
         {
-          if (_applicationResizeEventHandler != null)
-          {
-            this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
-          }
+            NUIApplicationResumeEventArgs e = new NUIApplicationResumeEventArgs();
 
-          _applicationResizeEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationResumeEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResumeEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationResumeEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application ResizeSignal
-    private void OnNUIApplicationResize(IntPtr data)
-    {
-      NUIApplicationResizeEventArgs e = new NUIApplicationResizeEventArgs();
-
-      // Populate all members of "e" (NUIApplicationResizeEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationResizeEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationResizeEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationLanguageChangedEventHandler-DaliEventHandler<object,NUIApplicationLanguageChangedEventArgs>)
-      *  provided by the user. LanguageChanged signal is emitted when the region of the device is changed.
-      */
-    public event DaliEventHandler<object,NUIApplicationLanguageChangedEventArgs> LanguageChanged
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for Reset signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationResetEventHandler-DaliEventHandler<object,NUIApplicationResetEventArgs>)
+          *  provided by the user. Reset signal is emitted when application is reset
+          */
+        public event DaliEventHandler<object, NUIApplicationResetEventArgs> Reset
         {
-          // Restricted to only one listener
-          if (_applicationLanguageChangedEventHandler == null)
-          {
-            _applicationLanguageChangedEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationResetEventHandler == null)
+                    {
+                        _applicationResetEventHandler += value;
 
-            _applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
-            this.LanguageChangedSignal().Connect(_applicationLanguageChangedEventCallbackDelegate);
-          }
+                        _applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
+                        this.ResetSignal().Connect(_applicationResetEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationResetEventHandler != null)
+                    {
+                        this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
+                    }
+
+                    _applicationResetEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application ResetSignal
+        private void OnNUIApplicationReset(IntPtr data)
         {
-          if (_applicationLanguageChangedEventHandler != null)
-          {
-            this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
-          }
+            NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
 
-          _applicationLanguageChangedEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationResetEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResetEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationResetEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application LanguageChangedSignal
-    private void OnNUIApplicationLanguageChanged(IntPtr data)
-    {
-      NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
-
-      // Populate all members of "e" (NUIApplicationLanguageChangedEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationLanguageChangedEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationLanguageChangedEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for RegionChanged signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationRegionChangedEventHandler-DaliEventHandler<object,NUIApplicationRegionChangedEventArgs>)
-      *  provided by the user. RegionChanged signal is emitted when the region of the device is changed.
-      */
-    public event DaliEventHandler<object,NUIApplicationRegionChangedEventArgs> RegionChanged
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for Resized signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationResizeEventHandler-DaliEventHandler<object,NUIApplicationResizeEventArgs>)
+          *  provided by the user. Resized signal is emitted when application is resized
+          */
+        public event DaliEventHandler<object, NUIApplicationResizeEventArgs> Resized
         {
-          // Restricted to only one listener
-          if (_applicationRegionChangedEventHandler == null)
-          {
-            _applicationRegionChangedEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationResizeEventHandler == null)
+                    {
+                        _applicationResizeEventHandler += value;
 
-            _applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
-            this.RegionChangedSignal().Connect(_applicationRegionChangedEventCallbackDelegate);
-          }
+                        _applicationResizeEventCallbackDelegate = new NUIApplicationResizeEventCallbackDelegate(OnNUIApplicationResize);
+                        this.ResizeSignal().Connect(_applicationResizeEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationResizeEventHandler != null)
+                    {
+                        this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
+                    }
+
+                    _applicationResizeEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application ResizeSignal
+        private void OnNUIApplicationResize(IntPtr data)
         {
-          if (_applicationRegionChangedEventHandler != null)
-          {
-            this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
-          }
+            NUIApplicationResizeEventArgs e = new NUIApplicationResizeEventArgs();
 
-          _applicationRegionChangedEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationResizeEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResizeEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationResizeEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application RegionChangedSignal
-    private void OnNUIApplicationRegionChanged(IntPtr data)
-    {
-      NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
-
-      // Populate all members of "e" (NUIApplicationRegionChangedEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationRegionChangedEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationRegionChangedEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationBatteryLowEventHandler-DaliEventHandler<object,NUIApplicationBatteryLowEventArgs>) 
-      * provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
-      */
-    public event DaliEventHandler<object,NUIApplicationBatteryLowEventArgs> BatteryLow
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationLanguageChangedEventHandler-DaliEventHandler<object,NUIApplicationLanguageChangedEventArgs>)
+          *  provided by the user. LanguageChanged signal is emitted when the region of the device is changed.
+          */
+        public event DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> LanguageChanged
         {
-          // Restricted to only one listener
-          if (_applicationBatteryLowEventHandler == null)
-          {
-            _applicationBatteryLowEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationLanguageChangedEventHandler == null)
+                    {
+                        _applicationLanguageChangedEventHandler += value;
 
-            _applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
-            this.BatteryLowSignal().Connect(_applicationBatteryLowEventCallbackDelegate);
-          }
+                        _applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
+                        this.LanguageChangedSignal().Connect(_applicationLanguageChangedEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationLanguageChangedEventHandler != null)
+                    {
+                        this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                    }
+
+                    _applicationLanguageChangedEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application LanguageChangedSignal
+        private void OnNUIApplicationLanguageChanged(IntPtr data)
         {
-          if (_applicationBatteryLowEventHandler != null)
-          {
-            this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
-          }
+            NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
 
-          _applicationBatteryLowEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationLanguageChangedEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationLanguageChangedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationLanguageChangedEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application BatteryLowSignal
-    private void OnNUIApplicationBatteryLow(IntPtr data)
-    {
-      NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
-
-      // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationBatteryLowEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationBatteryLowEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for MemoryLow signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationMemoryLowEventHandler-DaliEventHandler<object,NUIApplicationMemoryLowEventArgs>)
-      *  provided by the user. MemoryLow signal is emitted when the memory level of the device is low.
-      */
-    public event DaliEventHandler<object,NUIApplicationMemoryLowEventArgs> MemoryLow
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for RegionChanged signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationRegionChangedEventHandler-DaliEventHandler<object,NUIApplicationRegionChangedEventArgs>)
+          *  provided by the user. RegionChanged signal is emitted when the region of the device is changed.
+          */
+        public event DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> RegionChanged
         {
-          // Restricted to only one listener
-          if (_applicationMemoryLowEventHandler == null)
-          {
-            _applicationMemoryLowEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationRegionChangedEventHandler == null)
+                    {
+                        _applicationRegionChangedEventHandler += value;
 
-            _applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
-            this.MemoryLowSignal().Connect(_applicationMemoryLowEventCallbackDelegate);
-          }
+                        _applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
+                        this.RegionChangedSignal().Connect(_applicationRegionChangedEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationRegionChangedEventHandler != null)
+                    {
+                        this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                    }
+
+                    _applicationRegionChangedEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application RegionChangedSignal
+        private void OnNUIApplicationRegionChanged(IntPtr data)
         {
-          if (_applicationMemoryLowEventHandler != null)
-          {
-            this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
-          }
+            NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
 
-          _applicationMemoryLowEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationRegionChangedEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationRegionChangedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationRegionChangedEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application MemoryLowSignal
-    private void OnNUIApplicationMemoryLow(IntPtr data)
-    {
-      NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
-
-      // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(data);
-
-      if (_applicationMemoryLowEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationMemoryLowEventHandler(this, e);
-      }
-    }
-
-    /**
-      * @brief Event for AppControl signal which can be used to subscribe/unsubscribe the event handler
-      * (in the type of NUIApplicationAppControlEventHandler-DaliEventHandler<object,NUIApplicationAppControlEventArgs>)
-      *  provided by the user. AppControl signal is emitted when another application sends a launch request to the application.
-      */
-    public event DaliEventHandler<object,NUIApplicationAppControlEventArgs> AppControl
-    {
-      add
-      {
-        lock(this)
+        /**
+          * @brief Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationBatteryLowEventHandler-DaliEventHandler<object,NUIApplicationBatteryLowEventArgs>) 
+          * provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
+          */
+        public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> BatteryLow
         {
-          // Restricted to only one listener
-          if (_applicationAppControlEventHandler == null)
-          {
-            _applicationAppControlEventHandler += value;
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationBatteryLowEventHandler == null)
+                    {
+                        _applicationBatteryLowEventHandler += value;
 
-            _applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
-            this.AppControlSignal().Connect(_applicationAppControlEventCallbackDelegate);
-          }
+                        _applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
+                        this.BatteryLowSignal().Connect(_applicationBatteryLowEventCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationBatteryLowEventHandler != null)
+                    {
+                        this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                    }
+
+                    _applicationBatteryLowEventHandler -= value;
+                }
+            }
         }
-      }
 
-      remove
-      {
-        lock(this)
+        // Callback for Application BatteryLowSignal
+        private void OnNUIApplicationBatteryLow(IntPtr data)
         {
-          if (_applicationAppControlEventHandler != null)
-          {
-            this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
-          }
+            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
-          _applicationAppControlEventHandler -= value;
+            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationBatteryLowEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationBatteryLowEventHandler(this, e);
+            }
         }
-      }
-    }
 
-    // Callback for Application AppControlSignal
-    private void OnNUIApplicationAppControl(IntPtr application, IntPtr voidp)
-    {
-      NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
+        /**
+          * @brief Event for MemoryLow signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationMemoryLowEventHandler-DaliEventHandler<object,NUIApplicationMemoryLowEventArgs>)
+          *  provided by the user. MemoryLow signal is emitted when the memory level of the device is low.
+          */
+        public event DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> MemoryLow
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationMemoryLowEventHandler == null)
+                    {
+                        _applicationMemoryLowEventHandler += value;
 
-      // Populate all members of "e" (NUIApplicationAppControlEventArgs) with real data
-      e.Application = Application.GetApplicationFromPtr(application);
-      e.VoidP = voidp;
+                        _applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
+                        this.MemoryLowSignal().Connect(_applicationMemoryLowEventCallbackDelegate);
+                    }
+                }
+            }
 
-      if (_applicationAppControlEventHandler != null)
-      {
-        //here we send all data to user event handlers
-        _applicationAppControlEventHandler(this, e);
-      }
-    }
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationMemoryLowEventHandler != null)
+                    {
+                        this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                    }
 
-    private static Application _instance; // singleton
+                    _applicationMemoryLowEventHandler -= value;
+                }
+            }
+        }
 
-    public delegate void InitDelegate();
+        // Callback for Application MemoryLowSignal
+        private void OnNUIApplicationMemoryLow(IntPtr data)
+        {
+            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
-    public delegate void TerminateDelegate();
+            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(data);
 
-    public delegate void PauseDelegate();
+            if (_applicationMemoryLowEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationMemoryLowEventHandler(this, e);
+            }
+        }
 
-    public delegate void ResumeDelegate();
+        /**
+          * @brief Event for AppControl signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of NUIApplicationAppControlEventHandler-DaliEventHandler<object,NUIApplicationAppControlEventArgs>)
+          *  provided by the user. AppControl signal is emitted when another application sends a launch request to the application.
+          */
+        public event DaliEventHandler<object, NUIApplicationAppControlEventArgs> AppControl
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_applicationAppControlEventHandler == null)
+                    {
+                        _applicationAppControlEventHandler += value;
 
-    public delegate void ResizeDelegate();
+                        _applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
+                        this.AppControlSignal().Connect(_applicationAppControlEventCallbackDelegate);
+                    }
+                }
+            }
 
-    public delegate void AppControlDelegate();
+            remove
+            {
+                lock (this)
+                {
+                    if (_applicationAppControlEventHandler != null)
+                    {
+                        this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
+                    }
 
-    public delegate void LanguageChangedDelegate();
+                    _applicationAppControlEventHandler -= value;
+                }
+            }
+        }
 
-    public delegate void RegionChangedDelegate();
+        // Callback for Application AppControlSignal
+        private void OnNUIApplicationAppControl(IntPtr application, IntPtr voidp)
+        {
+            NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
 
-    public delegate void BatteryLowDelegate();
+            // Populate all members of "e" (NUIApplicationAppControlEventArgs) with real data
+            e.Application = Application.GetApplicationFromPtr(application);
+            e.VoidP = voidp;
 
-    public delegate void MemoryLowDelegate();
+            if (_applicationAppControlEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _applicationAppControlEventHandler(this, e);
+            }
+        }
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void InitDelegateInternal();
+        private static Application _instance; // singleton
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void TerminateDelegateInternal();
+        public delegate void InitDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void PauseDelegateInternal();
+        public delegate void TerminateDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void ResumeDelegateInternal();
+        public delegate void PauseDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void ResizeDelegateInternal();
+        public delegate void ResumeDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void AppControlDelegateInternal();
+        public delegate void ResizeDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void LanguageChangedDelegateInternal();
+        public delegate void AppControlDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void RegionChangedDelegateInternal();
+        public delegate void LanguageChangedDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void BatteryLowDelegateInternal();
+        public delegate void RegionChangedDelegate();
 
-    [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-    internal delegate void MemoryLowDelegateInternal();
+        public delegate void BatteryLowDelegate();
 
-    static void Initialize()
-    {
-      //	instance.InitDelegate();
-    }
+        public delegate void MemoryLowDelegate();
 
-    public static Application Instance
-    {
-       get
-       {
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void InitDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void TerminateDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void PauseDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void ResumeDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void ResizeDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void AppControlDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void LanguageChangedDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void RegionChangedDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void BatteryLowDelegateInternal();
+
+        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
+        internal delegate void MemoryLowDelegateInternal();
+
+        static void Initialize()
+        {
+            //	instance.InitDelegate();
+        }
+
+        public static Application Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public static Application GetApplicationFromPtr(global::System.IntPtr cPtr)
+        {
+            Application ret = new Application(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetupDelegates()
+        {
+            InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialize);
+            System.Console.WriteLine("InitSignal connection count");
+
+            this.InitSignal().Connect(initializeCallback);
+            //Console.WriteLine( "InitSignal connection count = " + app.InitSignal().GetConnectionCount() );
+        }
+
+        public static Application NewApplication()
+        {
+            _instance = NewApplication("", Application.WINDOW_MODE.OPAQUE);
             return _instance;
-       }
+        }
+
+        public static Application NewApplication(string stylesheet)
+        {
+            _instance = NewApplication(stylesheet, Application.WINDOW_MODE.OPAQUE);
+            return _instance;
+        }
+
+        public static Application NewApplication(string stylesheet, Application.WINDOW_MODE windowMode)
+        {
+
+            // register all Views with the type registry, so that can be created / styled via JSON
+            ViewRegistryHelper.Initialize();
+
+            Application ret = New(1, stylesheet, windowMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // we've got an application now connect the signals
+            ret.SetupDelegates();
+            // set the singleton
+            _instance = ret;
+            return ret;
+        }
+
+        public bool AddIdle(System.Delegate func)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+
+            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+
+        /**
+        * Outer::outer_method(int)
+        */
+        public static Application New()
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(int argc)
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(int argc, string stylesheet)
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(int argc, string stylesheet, Application.WINDOW_MODE windowMode)
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Application(Application application) : this(NDalicPINVOKE.new_Application__SWIG_1(Application.getCPtr(application)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Application Assign(Application application)
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void MainLoop()
+        {
+            NDalicPINVOKE.Application_MainLoop__SWIG_0(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
+        {
+            NDalicPINVOKE.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Lower()
+        {
+            NDalicPINVOKE.Application_Lower(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Quit()
+        {
+            NDalicPINVOKE.Application_Quit(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
+        {
+            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Window GetWindow()
+        {
+            Window ret = new Window(NDalicPINVOKE.Application_GetWindow(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void ReplaceWindow(Rectangle windowPosition, string name)
+        {
+            NDalicPINVOKE.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public static string GetResourcePath()
+        {
+            string ret = NDalicPINVOKE.Application_GetResourcePath();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetViewMode(ViewMode viewMode)
+        {
+            NDalicPINVOKE.Application_SetViewMode(swigCPtr, (int)viewMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ViewMode GetViewMode()
+        {
+            ViewMode ret = (ViewMode)NDalicPINVOKE.Application_GetViewMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetStereoBase(float stereoBase)
+        {
+            NDalicPINVOKE.Application_SetStereoBase(swigCPtr, stereoBase);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public float GetStereoBase()
+        {
+            float ret = NDalicPINVOKE.Application_GetStereoBase(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal InitSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_InitSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal TerminateSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_TerminateSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal PauseSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_PauseSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal ResumeSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResumeSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal ResetSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResetSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal ResizeSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResizeSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationControlSignal AppControlSignal()
+        {
+            ApplicationControlSignal ret = new ApplicationControlSignal(NDalicPINVOKE.Application_AppControlSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal LanguageChangedSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_LanguageChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal RegionChangedSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_RegionChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal BatteryLowSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_BatteryLowSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal MemoryLowSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_MemoryLowSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public enum WINDOW_MODE
+        {
+            OPAQUE = 0,
+            TRANSPARENT = 1
+        }
+
     }
-
-    public static Application GetApplicationFromPtr(global::System.IntPtr cPtr) {
-      Application ret = new Application(cPtr, false);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    internal void SetupDelegates() {
-      InitDelegateInternal initializeCallback = new InitDelegateInternal( Initialize );
-      System.Console.WriteLine( "InitSignal connection count");
-
-      this.InitSignal().Connect( initializeCallback );
-      //Console.WriteLine( "InitSignal connection count = " + app.InitSignal().GetConnectionCount() );
-    }
-
-    public static Application NewApplication() {
-     _instance = NewApplication("", Application.WINDOW_MODE.OPAQUE);
-     return _instance;
-    }
-
-    public static Application NewApplication(string stylesheet) {
-      _instance = NewApplication(stylesheet, Application.WINDOW_MODE.OPAQUE);
-      return _instance;
-    }
-
-    public static Application NewApplication(string stylesheet, Application.WINDOW_MODE windowMode) {
-
-      // register all Views with the type registry, so that can be created / styled via JSON
-      ViewRegistryHelper.Initialize();
-
-      Application ret = New(1, stylesheet, windowMode);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-      // we've got an application now connect the signals
-      ret.SetupDelegates();
-      // set the singleton
-      _instance = ret;
-      return ret;
-    }
-
-    public bool AddIdle(System.Delegate func) {
-      System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-      System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
-
-      bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
-
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    
-  
-  /**
-  * Outer::outer_method(int)
-  */
-  public static Application New() {
-    Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static Application New(int argc) {
-    Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static Application New(int argc, string stylesheet) {
-    Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static Application New(int argc, string stylesheet, Application.WINDOW_MODE windowMode) {
-    Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Application(Application application) : this(NDalicPINVOKE.new_Application__SWIG_1(Application.getCPtr(application)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Application Assign(Application application) {
-    Application ret = new Application(NDalicPINVOKE.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void MainLoop() {
-    NDalicPINVOKE.Application_MainLoop__SWIG_0(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration) {
-    NDalicPINVOKE.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Lower() {
-    NDalicPINVOKE.Application_Lower(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Quit() {
-    NDalicPINVOKE.Application_Quit(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback) {
-    bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Window GetWindow() {
-    Window ret = new Window(NDalicPINVOKE.Application_GetWindow(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ReplaceWindow(RectInteger windowPosition, string name) {
-    NDalicPINVOKE.Application_ReplaceWindow(swigCPtr, RectInteger.getCPtr(windowPosition), name);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static string GetResourcePath() {
-    string ret = NDalicPINVOKE.Application_GetResourcePath();
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetViewMode(ViewMode viewMode) {
-    NDalicPINVOKE.Application_SetViewMode(swigCPtr, (int)viewMode);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public ViewMode GetViewMode() {
-    ViewMode ret = (ViewMode)NDalicPINVOKE.Application_GetViewMode(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetStereoBase(float stereoBase) {
-    NDalicPINVOKE.Application_SetStereoBase(swigCPtr, stereoBase);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public float GetStereoBase() {
-    float ret = NDalicPINVOKE.Application_GetStereoBase(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal InitSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_InitSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal TerminateSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_TerminateSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal PauseSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_PauseSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal ResumeSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResumeSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal ResetSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResetSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal ResizeSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResizeSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationControlSignal AppControlSignal() {
-    ApplicationControlSignal ret = new ApplicationControlSignal(NDalicPINVOKE.Application_AppControlSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal LanguageChangedSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_LanguageChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal RegionChangedSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_RegionChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal BatteryLowSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_BatteryLowSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public ApplicationSignal MemoryLowSignal() {
-    ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_MemoryLowSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public enum WINDOW_MODE {
-    OPAQUE = 0,
-    TRANSPARENT = 1
-  }
-
-}
 
 }

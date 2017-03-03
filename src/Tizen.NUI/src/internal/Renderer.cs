@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Renderer : Handle {
+    internal class Renderer : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Renderer_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -61,20 +61,6 @@ public class Renderer : Handle {
   }
 
 
-  public bool BatchingEnabled
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Renderer.Property.BATCHING_ENABLED).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Renderer.Property.BATCHING_ENABLED, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-
   public class Property : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
@@ -104,8 +90,6 @@ public class Renderer : Handle {
         global::System.GC.SuppressFinalize(this);
       }
     }
-  
-    public static readonly int BATCHING_ENABLED = NDalicManualPINVOKE.Renderer_Property_BATCHING_ENABLED_get();
   
     public Property() : this(NDalicPINVOKE.new_Renderer_Property(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -6,7 +6,7 @@
 		<authors>Tizen Developers</authors>
 		<description>Tizen NUI dll (dali c#) </description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.1" />
+      <dependency id="Tizen.Applications" version="1.0.3"/>
     </dependencies>
 	</metadata>
   <files>

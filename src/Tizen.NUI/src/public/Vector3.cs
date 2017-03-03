@@ -319,9 +319,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Vector3 MultiplyAssign(Quaternion rhs)
+        internal Vector3 MultiplyAssign(Rotation rhs)
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_MultiplyAssign__SWIG_2(swigCPtr, Quaternion.getCPtr(rhs)), false);
+            Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_MultiplyAssign__SWIG_2(swigCPtr, Rotation.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

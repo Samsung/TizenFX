@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum WrapModeType {
+    internal enum WrapModeType {
   DEFAULT = 0,
   CLAMP_TO_EDGE,
   REPEAT,

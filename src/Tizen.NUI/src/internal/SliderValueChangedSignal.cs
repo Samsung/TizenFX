@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SliderValueChangedSignal : global::System.IDisposable {
+    internal class SliderValueChangedSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_f_float__float {
+    internal class SWIGTYPE_p_f_float__float {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_f_float__float(global::System.IntPtr cPtr, bool futureUse) {

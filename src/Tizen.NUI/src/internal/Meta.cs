@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum Meta {
+    internal enum Meta {
   DIMENSION_COUNT = 2
 }
 

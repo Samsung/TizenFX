@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class CustomActorImpl : RefObject {
+    public class CustomActorImpl : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CustomActorImpl_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -35,7 +35,7 @@ public class CustomActorImpl : RefObject {
     }
   }
 
-  public CustomActor Self() {
+  internal CustomActor Self() {
     CustomActor ret = new CustomActor(NDalicPINVOKE.CustomActorImpl_Self(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -76,7 +76,7 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0) {
+  internal virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0) {
     bool ret = NDalicPINVOKE.CustomActorImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
