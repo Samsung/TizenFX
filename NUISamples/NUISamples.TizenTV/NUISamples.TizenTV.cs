@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ namespace MyCSharpExample
             topLabel.SizeModeFactor = new Vector3(0.0f, 0.1f, 0.0f);
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             topLabel.TextColor = Color.Yellow;
-            topLabel.Text = " DALi Views Ver.0216-01";
+            topLabel.Text = " DALi Views Ver.0303-01";
             topLabel.HorizontalAlignment = "BEGIN";
             topLabel.VerticalAlignment = "CENTER";
 
@@ -108,6 +108,7 @@ namespace MyCSharpExample
 
             FocusManager.Instance.PreFocusChange += OnPreFocusChange;
 
+#if false
             _timer = new Timer(500);
             _timer.Tick += OnTimerTick;
             _timer.Start();
@@ -122,7 +123,6 @@ namespace MyCSharpExample
             _testView.Size = new Size(1.0f, 2.0f, 0.0f);
             Tizen.Log.Debug("NUI", "3) test view sizewidth = " + _testView.SizeWidth + "  sizeHeight= " + _testView.SizeHeight);
 
-#if false
             Window _win = new Window(new RectInteger(100, 100, 500, 500), "win test", false);
             Window _win = _application.GetWindow();
             _win.Activate();
@@ -163,7 +163,7 @@ namespace MyCSharpExample
             itemLabel.Size = new Size(_stage.Size.Width * 0.2f, _stage.Size.Height * 0.05f, 0.0f);
             itemLabel.HorizontalAlignment = "BEGIN";
             itemLabel.VerticalAlignment = "BOTTOM";
-            //itemLabel.PointSize = 10.0f;
+            itemLabel.PointSize = 10.0f;
             _contentContainer.AddChild(itemLabel, new TableView.CellPosition(((uint)idx / 5) * 2, (uint)idx % 5));
 
             // If item is implemented in public, attach it on stage
@@ -322,7 +322,7 @@ namespace MyCSharpExample
                     text.MultiLine = true;
                     text.WidthResizePolicy = ResizePolicyType.FillToParent;
                     text.HeightResizePolicy = ResizePolicyType.DimensionDependency;
-                    text.Padding = new Vector4(10.0f, 10.0f, 20.0f, 0.0f);
+                    text.SetPadding(new PaddingType(10.0f, 10.0f, 20.0f, 0.0f));
                     _popup.SetContent(text);
                     _popup.Focusable = true;
                     _popup.SetDisplayState(Popup.DisplayStateType.Hidden);
@@ -470,7 +470,7 @@ namespace MyCSharpExample
         {
             Tizen.Log.Debug("NUI", "dali c# control-dashboard! main() is called!");
 
-            Example example = new Example(Application.NewApplication("/home/owner/apps_rw/NUISamples.TizenTV/res/json/control-dashboard-theme.json"));
+            Example example = new Example(Application.NewApplication(/*"/home/owner/apps_rw/NUISamples.TizenTV/res/json/control-dashboard-theme.json"*/));
             example.MainLoop();
         }
     }

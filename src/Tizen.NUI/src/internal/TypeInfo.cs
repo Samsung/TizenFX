@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class TypeInfo : BaseHandle {
+    public class TypeInfo : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -107,7 +107,7 @@ public class TypeInfo : BaseHandle {
     return ret;
   }
 
-  public void GetPropertyIndices(VectorInteger indices) {
+  internal void GetPropertyIndices(VectorInteger indices) {
     NDalicPINVOKE.TypeInfo_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }

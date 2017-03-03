@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class ScrollViewPagePathEffect : ScrollViewEffect {
+    internal class ScrollViewPagePathEffect : ScrollViewEffect {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewPagePathEffect_SWIGUpcast(cPtr), cMemoryOwn) {

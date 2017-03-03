@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum PixelFormat {
+    internal enum PixelFormat {
   INVALID = 0,
   A8 = 1,
   L8,

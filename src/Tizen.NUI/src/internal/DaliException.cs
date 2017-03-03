@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class DaliException : global::System.IDisposable {
+    internal class DaliException : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -24,10 +24,15 @@ public class DaliException : global::System.IDisposable {
   }
 
   ~DaliException() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -39,6 +44,7 @@ public class DaliException : global::System.IDisposable {
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public DaliException(string location, string condition) : this(NDalicPINVOKE.new_DaliException(location, condition), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

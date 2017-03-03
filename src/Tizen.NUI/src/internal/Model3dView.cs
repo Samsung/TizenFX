@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Model3dView : View {
+    internal class Model3dView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Model3dView_SWIGUpcast(cPtr), cMemoryOwn) {

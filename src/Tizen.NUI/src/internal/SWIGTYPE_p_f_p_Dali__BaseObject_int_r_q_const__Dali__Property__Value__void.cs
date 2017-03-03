@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void {
+    internal class SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void(global::System.IntPtr cPtr, bool futureUse) {

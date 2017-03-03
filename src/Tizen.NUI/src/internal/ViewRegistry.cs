@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-
-#if true
 using System.Reflection;
-#endif
+
 
 namespace Tizen.NUI
 {
@@ -102,7 +100,7 @@ namespace Tizen.NUI
     ///
     ///  static Spin()
     ///  {
-    ///     ViewRegistry.Instance.RegisterControl("Spin", CreateInstance, typeof(Spin) );
+    ///     ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
     ///  }
     ///
     ///  The control should also provide a CreateInstance function, which gets passed to the ViewRegistry
@@ -297,17 +295,17 @@ namespace Tizen.NUI
         /// {
         ///   ViewRegistry registers control type with DALi type registery
         ///   also uses introspection to find any properties that need to be registered with type registry
-        ///   ViewRegistry.Instance.Register("Spin", CreateInstance, typeof(Spin) );
+        ///   ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
         /// }
         ///
         /// </summary>
-        public void Register(string viewName, Func<CustomView> createFunction, System.Type viewType)
+        public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
             // add the mapping between the view name and it's create function
-            _constructorMap.Add(viewName, createFunction);
+            _constructorMap.Add(viewType.Name, createFunction);
 
             // Call into DALi C++ to register the control with the type registry
-            TypeRegistration.RegisterControl(viewName, _createCallback);
+            TypeRegistration.RegisterControl(viewType.Name, _createCallback);
 
             // Cycle through each property in the class
             foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties())
@@ -316,13 +314,9 @@ namespace Tizen.NUI
                 if (propertyInfo.CanRead)
                 {
 
-#if true
                     IEnumerable<Attribute> ie_attrs = propertyInfo.GetCustomAttributes<Attribute>();
                     List<Attribute> li_attrs = new List<Attribute>(ie_attrs);
                     System.Attribute[] attrs = li_attrs.ToArray();
-#else
-          System.Attribute[] attrs = System.Attribute.GetCustomAttributes(propertyInfo);
-#endif
 
                     foreach (System.Attribute attr in attrs)
                     {
@@ -335,19 +329,16 @@ namespace Tizen.NUI
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
                             // we get the start property index, based on the type and it's heirachy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
-                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewName, viewType, scriptableProp.type);
+                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.Name, viewType, scriptableProp.type);
 
                             // get the enum for the property type... E.g. registering a string property returns Tizen.NUI.PropertyType.String
                             Tizen.NUI.PropertyType propertyType = GetDaliPropertyType(propertyInfo.PropertyType.Name);
 
                             // Example   RegisterProperty("spin","maxValue", 50001, FLOAT, set, get );
                             // Native call to register the property
-                            TypeRegistration.RegisterProperty(viewName, propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
+                            TypeRegistration.RegisterProperty(viewType.Name, propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
                         }
                     }
-
-
-
                     // Console.WriteLine ("property name = " + propertyInfo.Name);
                 }
             }

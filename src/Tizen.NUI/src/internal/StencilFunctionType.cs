@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum StencilFunctionType {
+    internal enum StencilFunctionType {
   NEVER,
   LESS,
   EQUAL,

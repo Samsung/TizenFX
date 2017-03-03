@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class NativeImageInterface : RefObject {
+    internal class NativeImageInterface : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NativeImageInterface_SWIGUpcast(cPtr), cMemoryOwn) {

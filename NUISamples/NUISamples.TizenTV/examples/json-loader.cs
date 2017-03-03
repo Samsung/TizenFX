@@ -85,11 +85,8 @@ namespace MyExampleApp
       {
           fileName = args[0];
       }
- 
+
       Console.WriteLine("arguments = " + args.Length);
-
-     fileName = "./json/date-picker.json";
-
       Example example = new Example(Application.NewApplication(), fileName);
       example.MainLoop ();
     }

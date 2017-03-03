@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum GradientVisualUnitsType {
+    internal enum GradientVisualUnitsType {
   OBJECT_BOUNDING_BOX,
   USER_SPACE
 }

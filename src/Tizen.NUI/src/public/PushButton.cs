@@ -214,12 +214,6 @@ namespace Tizen.NUI
 
         public string UnselectedIcon
         {
-            get
-            {
-                string temp;
-                GetProperty(PushButton.Property.UNSELECTED_ICON).Get(out temp);
-                return temp;
-            }
             set
             {
                 SetProperty(PushButton.Property.UNSELECTED_ICON, new Tizen.NUI.PropertyValue(value));
@@ -227,12 +221,6 @@ namespace Tizen.NUI
         }
         public string SelectedIcon
         {
-            get
-            {
-                string temp;
-                GetProperty(PushButton.Property.SELECTED_ICON).Get(out temp);
-                return temp;
-            }
             set
             {
                 SetProperty(PushButton.Property.SELECTED_ICON, new Tizen.NUI.PropertyValue(value));
@@ -251,12 +239,12 @@ namespace Tizen.NUI
                 SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
-        public string LabelPadding
+        public Vector4 LabelPadding
         {
             get
             {
-                string temp;
-                GetProperty(PushButton.Property.LABEL_PADDING).Get(out temp);
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(PushButton.Property.LABEL_PADDING).Get(temp);
                 return temp;
             }
             set
@@ -264,6 +252,7 @@ namespace Tizen.NUI
                 SetProperty(PushButton.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
         public string IconPadding
         {
             get

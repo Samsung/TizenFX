@@ -31,7 +31,21 @@ namespace MyCSharpExample
         private int _myRating;
         private bool _myDragEnabled;
 
-        public StarRating() : base(ViewWrapperImpl.CustomViewBehaviour.VIEW_BEHAVIOUR_DEFAULT)
+        // Called by DALi Builder if it finds a StarRating control in a JSON file
+        static CustomView CreateInstance()
+        {
+          return new StarRating();
+        }
+
+        // static constructor registers the control type (only runs once)
+        static StarRating()
+        {
+          // ViewRegistry registers control type with DALi type registery
+          // also uses introspection to find any properties that need to be registered with type registry
+          ViewRegistry.Instance.Register(CreateInstance, typeof(StarRating) );
+        }
+
+        public StarRating() : base(typeof(StarRating).Name, ViewWrapperImpl.CustomViewBehaviour.VIEW_BEHAVIOUR_DEFAULT)
         {
         }
 
@@ -229,6 +243,8 @@ namespace MyCSharpExample
         [STAThread]
         static void Main(string[] args)
         {
+            System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(MyCSharpExample.StarRating).TypeHandle);
+
             Example example = new Example(Application.NewApplication());
             example.MainLoop ();
         }

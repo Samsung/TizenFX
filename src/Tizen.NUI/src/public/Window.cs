@@ -77,22 +77,22 @@ namespace Tizen.NUI
         }
 
 
-        public Window(RectInteger windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(RectInteger.getCPtr(windowPosition), name, isTransparent), true)
+        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Window(RectInteger windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(RectInteger.getCPtr(windowPosition), name), true)
+        public Window(Rectangle windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Window(RectInteger windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(RectInteger.getCPtr(windowPosition), name, className, isTransparent), true)
+        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Window(RectInteger windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(RectInteger.getCPtr(windowPosition), name, className), true)
+        public Window(Rectangle windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -109,19 +109,19 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void ShowIndicator(IndicatorVisibleMode visibleMode)
+        public void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
         {
             NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetIndicatorBgOpacity(IndicatorBgOpacity opacity)
+        public void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
         {
             NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void RotateIndicator(WindowOrientation orientation)
+        public void RotateIndicator(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -151,25 +151,25 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void AddAvailableOrientation(WindowOrientation orientation)
+        internal void AddAvailableOrientation(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RemoveAvailableOrientation(WindowOrientation orientation)
+        internal void RemoveAvailableOrientation(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetPreferredOrientation(WindowOrientation orientation)
+        internal void SetPreferredOrientation(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WindowOrientation GetPreferredOrientation()
+        internal Window.WindowOrientation GetPreferredOrientation()
         {
             Window.WindowOrientation ret = (Window.WindowOrientation)NDalicPINVOKE.Window_GetPreferredOrientation(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

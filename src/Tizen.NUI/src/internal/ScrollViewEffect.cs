@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ScrollViewEffect : BaseHandle {
+    internal class ScrollViewEffect : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn) {

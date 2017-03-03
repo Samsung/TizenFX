@@ -115,7 +115,7 @@ namespace MyCSharpExample
       _scrollBar.AnchorPoint = NDalic.AnchorPointTopLeft;
       _scrollBar.SetResizePolicy(ResizePolicyType.FIT_TO_CHILDREN, DimensionType.WIDTH);
       _scrollBar.SetResizePolicy(ResizePolicyType.FILL_TO_PARENT, DimensionType.HEIGHT);
-      _scrollBar.Orientation = new Quaternion( new Radian( new Degree( 270.0f ) ), Vector3.ZAXIS );
+      _scrollBar.Orientation = new Rotation( new Radian( new Degree( 270.0f ) ), Vector3.ZAXIS );
       _scrollBar.SetScrollDirection(ScrollBar.Direction.Horizontal);
       _scrollView.Add(_scrollBar);
 
@@ -165,8 +165,8 @@ namespace MyCSharpExample
 
         _animation = new Animation(1.0f); // 1 second of duration
 
-        _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Quaternion( new Radian( new Degree( 180.0f ) ), Vector3.XAXIS )), new AlphaFunction(AlphaFunction.BuiltinFunction.Linear), new TimePeriod(0.0f, 0.5f));
-        _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Quaternion( new Radian( new Degree( 0.0f ) ), Vector3.XAXIS )), new AlphaFunction(AlphaFunction.BuiltinFunction.Linear), new TimePeriod(0.5f, 0.5f));
+        _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Rotation( new Radian( new Degree( 180.0f ) ), Vector3.XAXIS )), new AlphaFunction(AlphaFunction.BuiltinFunction.Linear), new TimePeriod(0.0f, 0.5f));
+        _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Rotation( new Radian( new Degree( 0.0f ) ), Vector3.XAXIS )), new AlphaFunction(AlphaFunction.BuiltinFunction.Linear), new TimePeriod(0.5f, 0.5f));
 
         // Connect the signal callback for animaiton finished signal
         _animation.Finished += AnimationFinished;

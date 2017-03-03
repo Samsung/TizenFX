@@ -58,8 +58,8 @@ namespace Tizen.NUI
         public delegate void OnPanDelegate(PanGesture pan);
         public delegate void OnTapDelegate(TapGesture tap);
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
-        public delegate void SignalConnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
-        public delegate void SignalDisconnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
+        internal delegate void SignalConnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
+        internal delegate void SignalDisconnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
 
         public OnStageConnectionDelegate OnStageConnection;
         public OnStageDisconnectionDelegate OnStageDisconnection;
@@ -99,8 +99,8 @@ namespace Tizen.NUI
         public OnPanDelegate OnPan;
         public OnTapDelegate OnTap;
         public OnLongPressDelegate OnLongPress;
-        public SignalConnectedDelegate SignalConnected;
-        public SignalDisconnectedDelegate SignalDisconnected;
+        internal SignalConnectedDelegate SignalConnected;
+        internal SignalDisconnectedDelegate SignalDisconnected;
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -141,9 +141,9 @@ namespace Tizen.NUI
             DirectorConnect();
         }
 
-        public static ViewWrapper New(ViewWrapperImpl viewWrapper)
+        public static ViewWrapper New(string typeName, ViewWrapperImpl viewWrapper)
         {
-            ViewWrapper ret = new ViewWrapper(NDalicManualPINVOKE.ViewWrapperImpl_New(ViewWrapperImpl.getCPtr(viewWrapper)), true);
+            ViewWrapper ret = new ViewWrapper(NDalicManualPINVOKE.ViewWrapperImpl_New(typeName, ViewWrapperImpl.getCPtr(viewWrapper)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

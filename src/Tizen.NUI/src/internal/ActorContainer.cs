@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ActorContainer : global::System.IDisposable, global::System.Collections.IEnumerable
+internal class ActorContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IEnumerable<Actor>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -26,10 +26,15 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
   }
 
   ~ActorContainer() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -41,6 +46,7 @@ public class ActorContainer : global::System.IDisposable, global::System.Collect
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public ActorContainer(global::System.Collections.ICollection c) : this() {
     if (c == null)

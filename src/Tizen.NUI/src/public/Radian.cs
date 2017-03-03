@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Radian : global::System.IDisposable {
+    public class Radian : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum FilterModeType {
+    internal enum FilterModeType {
   NONE = 0,
   DEFAULT,
   NEAREST,

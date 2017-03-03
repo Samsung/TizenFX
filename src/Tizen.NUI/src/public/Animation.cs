@@ -77,46 +77,8 @@ namespace Tizen.NUI
                 base.Dispose();
             }
         }
-        
-        //changed
-        /*
-        private EventCallbackDelegateType1 _animationFinishedEventCallbackDelegate;
-        private event EventHandler _animationFinishedEventHandler;
 
-        public event EventHandler Finished
-        {
-            add
-            {
-                lock (this)
-                {
-                    _animationFinishedEventHandler += value;
-                    _animationFinishedEventCallbackDelegate = OnFinished;
-                    this.FinishedSignal().Connect(_animationFinishedEventCallbackDelegate);
-                }
-            }
-            remove
-            {
-                lock (this)
-                {
-                    if (_animationFinishedEventHandler != null)
-                    {
-                        this.FinishedSignal().Disconnect(_animationFinishedEventCallbackDelegate);
-                    }
-                    _animationFinishedEventHandler -= value;
-                }
-            }
-        }
 
-        // Callback for Animation FinishedSignal
-        private void OnFinished(IntPtr data)
-        {
-            if (_animationFinishedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _animationFinishedEventHandler(this, null);
-            }
-        }
-        */
 
         private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -216,7 +178,7 @@ namespace Tizen.NUI
                 return ret;
             }
         }
-        //changed
+
         public States State
         {
             get
@@ -262,7 +224,7 @@ namespace Tizen.NUI
                 return GetEndAction();
             }
         }
-        //changed
+
         public void Stop(EndActions action = EndActions.Cancel)
         {
             SetEndAction(action);
@@ -270,7 +232,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        //changed
         public int CurrentLoop
         {
             get
@@ -278,7 +239,7 @@ namespace Tizen.NUI
                 return GetCurrentLoop();
             }
         }
-        //changed
+
         public EndActions DisconnectAction
         {
             set
@@ -293,7 +254,7 @@ namespace Tizen.NUI
                 return ret;
             }
         }
-        //changed
+
         public float CurrentProgress
         {
             set
@@ -308,7 +269,7 @@ namespace Tizen.NUI
                 return ret;
             }
         }
-        //changed
+
         public float SpeedFactor
         {
             set
@@ -323,7 +284,7 @@ namespace Tizen.NUI
                 return ret;
             }
         }
-        //changed
+
         public Vector2 PlayRange
         {
             set
@@ -339,286 +300,7 @@ namespace Tizen.NUI
             }
         }
 
-        //changed
-        /*
-        public int StartTime { set; get; }
-        public int EndTime { set; get; }
-        public string TargetProperty { set; get; }
-        public object Destination { set; get; }
-        public Tizen.NUI.AlphaFunction AlphaFunction { set; get; }
 
-
-        public void AnimateBy(Actor target)
-        {
-            string _str1 = TargetProperty.Substring(0, 1);
-            string _str2 = TargetProperty.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)Destination;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateBy(Actor target, string propertyIndex)
-        {
-            string _str1 = propertyIndex.Substring(0, 1);
-            string _str2 = propertyIndex.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)Destination;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateBy(Actor target, string propertyIndex, object relativeValue)
-        {
-            string _str1 = propertyIndex.Substring(0, 1);
-            string _str2 = propertyIndex.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)relativeValue;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBy(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateTo(Actor target)
-        {
-            string _str1 = TargetProperty.Substring(0, 1);
-            string _str2 = TargetProperty.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)Destination;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateTo(Actor target, string propertyIndex)
-        {
-            string _str1 = propertyIndex.Substring(0, 1);
-            string _str2 = propertyIndex.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)Destination;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateTo(Actor target, string propertyIndex, object destinationValue)
-        {
-            string _str1 = propertyIndex.Substring(0, 1);
-            string _str2 = propertyIndex.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-            dynamic obj = (object)destinationValue;
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj));
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateTo(new Property(target, _str), new PropertyValue(obj), time);
-                }
-            }
-        }
-
-        public void AnimateBetween(Actor target, KeyFrames keyFrames)
-        {
-            string _str1 = TargetProperty.Substring(0, 1);
-            string _str2 = TargetProperty.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBetween(new Property(target, _str), keyFrames, this.AlphaFunction);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBetween(new Property(target, _str), keyFrames, this.AlphaFunction, time);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBetween(new Property(target, _str), keyFrames);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBetween(new Property(target, _str), keyFrames, time);
-                }
-            }
-        }
-
-        public void AnimateBetween(Actor target, KeyFrames keyFrames, Animation.Interpolation interpolation)
-        {
-            string _str1 = TargetProperty.Substring(0, 1);
-            string _str2 = TargetProperty.Substring(1);
-            string _str = _str1.ToLower() + _str2;
-
-
-            if (this.AlphaFunction != null)
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBetween(new Property(target, _str), keyFrames, this.AlphaFunction, interpolation);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBetween(new Property(target, _str), keyFrames, this.AlphaFunction, time, interpolation);
-                }
-            }
-            else
-            {
-                if (this.StartTime == 0 && this.EndTime == 0)
-                {
-                    AnimateBetween(new Property(target, _str), keyFrames, interpolation);
-                }
-                else
-                {
-                    Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(this.StartTime), MilliSecondsToSeconds(this.EndTime - this.StartTime));
-                    AnimateBetween(new Property(target, _str), keyFrames, time, interpolation);
-                }
-            }
-        }
-        */
-        //changed
         public void AnimateBy(Actor target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -642,7 +324,7 @@ namespace Tizen.NUI
                 AnimateBy(_prop, new PropertyValue(obj));
             }
         }
-        //changed
+
         public void AnimateBy(Actor target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -668,7 +350,7 @@ namespace Tizen.NUI
                 AnimateBy(_prop, new PropertyValue(obj), time);
             }
         }
-        //changed
+
         public void AnimateTo(Actor target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -692,7 +374,7 @@ namespace Tizen.NUI
                 AnimateTo(_prop, new PropertyValue(obj));
             }
         }
-        //changed
+
         public void AnimateTo(Actor target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -718,7 +400,7 @@ namespace Tizen.NUI
                 AnimateTo(_prop, new PropertyValue(obj), time);
             }
         }
-        //changed
+
         public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -741,7 +423,7 @@ namespace Tizen.NUI
                 AnimateBetween(_prop, keyFrames, alphaFunction);
             }
         }
-        //changed
+
         public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -764,7 +446,7 @@ namespace Tizen.NUI
                 AnimateBetween(_prop, keyFrames, time, interpolation);
             }
         }
-        //changed
+
         public void AnimatePath(Actor actor, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
         {
             if (alphaFunction == null)
@@ -776,7 +458,7 @@ namespace Tizen.NUI
                 Animate(actor, path, forward, alphaFunction);
             }
         }
-        //changed
+
         public void AnimatePath(Actor actor, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
@@ -796,7 +478,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        //changed
         internal Animation(float durationSeconds) : this(NDalicPINVOKE.Animation_New(durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -808,12 +489,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Animation(Animation handle) : this(NDalicPINVOKE.new_Animation__SWIG_1(Animation.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
 
         internal Animation Assign(Animation rhs)
         {
@@ -821,14 +501,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
 
         internal void SetDuration(float seconds)
         {
             NDalicPINVOKE.Animation_SetDuration(swigCPtr, seconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
 
         internal float GetDuration()
         {
@@ -836,111 +514,111 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetLooping(bool looping)
         {
             NDalicPINVOKE.Animation_SetLooping(swigCPtr, looping);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetLoopCount(int count)
         {
             NDalicPINVOKE.Animation_SetLoopCount(swigCPtr, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal int GetLoopCount()
         {
             int ret = NDalicPINVOKE.Animation_GetLoopCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal int GetCurrentLoop()
         {
             int ret = NDalicPINVOKE.Animation_GetCurrentLoop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsLooping()
         {
             bool ret = NDalicPINVOKE.Animation_IsLooping(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
-        internal void SetEndAction(EndActions action)
+
+        internal void SetEndAction(Animation.EndActions action)
         {
             NDalicPINVOKE.Animation_SetEndAction(swigCPtr, (int)action);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal EndActions GetEndAction()
+
+        internal Animation.EndActions GetEndAction()
         {
-            EndActions ret = (EndActions)NDalicPINVOKE.Animation_GetEndAction(swigCPtr);
+            Animation.EndActions ret = (Animation.EndActions)NDalicPINVOKE.Animation_GetEndAction(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
-        internal void SetDisconnectAction(EndActions disconnectAction)
+
+        internal void SetDisconnectAction(Animation.EndActions disconnectAction)
         {
             NDalicPINVOKE.Animation_SetDisconnectAction(swigCPtr, (int)disconnectAction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal EndActions GetDisconnectAction()
+
+        internal Animation.EndActions GetDisconnectAction()
         {
             Animation.EndActions ret = (Animation.EndActions)NDalicPINVOKE.Animation_GetDisconnectAction(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetDefaultAlphaFunction(AlphaFunction alpha)
         {
             NDalicPINVOKE.Animation_SetDefaultAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal AlphaFunction GetDefaultAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(NDalicPINVOKE.Animation_GetDefaultAlphaFunction(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetCurrentProgress(float progress)
         {
             NDalicPINVOKE.Animation_SetCurrentProgress(swigCPtr, progress);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal float GetCurrentProgress()
         {
             float ret = NDalicPINVOKE.Animation_GetCurrentProgress(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetSpeedFactor(float factor)
         {
             NDalicPINVOKE.Animation_SetSpeedFactor(swigCPtr, factor);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal float GetSpeedFactor()
         {
             float ret = NDalicPINVOKE.Animation_GetSpeedFactor(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetPlayRange(Vector2 range)
         {
             NDalicPINVOKE.Animation_SetPlayRange(swigCPtr, Vector2.getCPtr(range));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Vector2 GetPlayRange()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Animation_GetPlayRange(swigCPtr), true);
@@ -965,8 +643,8 @@ namespace Tizen.NUI
             NDalicPINVOKE.Animation_Pause(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
-        internal States GetState()
+
+        internal Animation.States GetState()
         {
             Animation.States ret = (Animation.States)NDalicPINVOKE.Animation_GetState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -984,140 +662,140 @@ namespace Tizen.NUI
             NDalicPINVOKE.Animation_Clear(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal AnimationSignal FinishedSignal()
         {
             AnimationSignal ret = new AnimationSignal(NDalicPINVOKE.Animation_FinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void AnimateBy(Property target, PropertyValue relativeValue)
         {
             NDalicPINVOKE.Animation_AnimateBy__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha)
         {
             NDalicPINVOKE.Animation_AnimateBy__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBy(Property target, PropertyValue relativeValue, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateBy__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateBy__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateTo(Property target, PropertyValue destinationValue)
         {
             NDalicPINVOKE.Animation_AnimateTo__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha)
         {
             NDalicPINVOKE.Animation_AnimateTo__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateTo(Property target, PropertyValue destinationValue, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateTo__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateTo__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_0(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, Animation.Interpolation interpolation)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_1(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_2(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, Animation.Interpolation interpolation)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_3(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_4(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period, Animation.Interpolation interpolation)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_5(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_6(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period, Animation.Interpolation interpolation)
         {
             NDalicPINVOKE.Animation_AnimateBetween__SWIG_7(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Animate(Actor actor, Path path, Vector3 forward)
         {
             NDalicPINVOKE.Animation_Animate__SWIG_0(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Animate(Actor actor, Path path, Vector3 forward, AlphaFunction alpha)
         {
             NDalicPINVOKE.Animation_Animate__SWIG_1(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Animate(Actor actor, Path path, Vector3 forward, TimePeriod period)
         {
             NDalicPINVOKE.Animation_Animate__SWIG_2(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Animate(Actor actor, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
             NDalicPINVOKE.Animation_Animate__SWIG_3(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Show(Actor actor, float delaySeconds)
         {
             NDalicPINVOKE.Animation_Show(swigCPtr, Actor.getCPtr(actor), delaySeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void Hide(Actor actor, float delaySeconds)
         {
             NDalicPINVOKE.Animation_Hide(swigCPtr, Actor.getCPtr(actor), delaySeconds);

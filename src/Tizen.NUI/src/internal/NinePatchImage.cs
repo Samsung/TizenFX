@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class NinePatchImage : ResourceImage {
+    internal class NinePatchImage : ResourceImage {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal NinePatchImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NinePatchImage_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -99,8 +99,8 @@ public class NinePatchImage : ResourceImage {
     return ret;
   }
 
-  public RectInteger GetChildRectangle() {
-    RectInteger ret = new RectInteger(NDalicPINVOKE.NinePatchImage_GetChildRectangle(swigCPtr), true);
+  public Rectangle GetChildRectangle() {
+    Rectangle ret = new Rectangle(NDalicPINVOKE.NinePatchImage_GetChildRectangle(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

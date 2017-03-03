@@ -80,286 +80,6 @@ namespace Tizen.NUI
         }
 
 
-        //changed
-        /*
-        public class ClickedEventArgs : EventArgs
-        {
-            private Button _button;
-
-            public Button Button
-            {
-                get
-                {
-                    return _button;
-                }
-                set
-                {
-                    _button = value;
-                }
-            }
-        }
-
-        public class PressedEventArgs : EventArgs
-        {
-            private Button _button;
-
-            public Button Button
-            {
-                get
-                {
-                    return _button;
-                }
-                set
-                {
-                    _button = value;
-                }
-            }
-        }
-
-        public class ReleasedEventArgs : EventArgs
-        {
-            private Button _button;
-
-            public Button Button
-            {
-                get
-                {
-                    return _button;
-                }
-                set
-                {
-                    _button = value;
-                }
-            }
-        }
-
-        public class StateChangedEventArgs : EventArgs
-        {
-            private Button _button;
-
-            public Button Button
-            {
-                get
-                {
-                    return _button;
-                }
-                set
-                {
-                    _button = value;
-                }
-            }
-        }
-
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool ClickedCallbackDelegate(global::System.IntPtr data);
-        private DaliEventHandlerWithReturnType<object, ClickedEventArgs, bool> _buttonClickedEventHandler;
-        private ClickedCallbackDelegate _buttonClickedCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool PressedCallbackDelegate(global::System.IntPtr data);
-        private DaliEventHandlerWithReturnType<object, PressedEventArgs, bool> _buttonPressedEventHandler;
-        private PressedCallbackDelegate _buttonPressedCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool ReleasedCallbackDelegate(global::System.IntPtr data);
-        private DaliEventHandlerWithReturnType<object, ReleasedEventArgs, bool> _buttonReleasedEventHandler;
-        private ReleasedCallbackDelegate _buttonReleasedCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool StateChangedCallbackDelegate(global::System.IntPtr data);
-        private DaliEventHandlerWithReturnType<object, StateChangedEventArgs, bool> _buttonStateChangedEventHandler;
-        private StateChangedCallbackDelegate _buttonStateChangedCallbackDelegate;
-
-
-        public event DaliEventHandlerWithReturnType<object, ClickedEventArgs, bool> Clicked
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_buttonClickedEventHandler == null)
-                    {
-                        _buttonClickedEventHandler += value;
-
-                        _buttonClickedCallbackDelegate = new ClickedCallbackDelegate(OnClicked);
-                        this.ClickedSignal().Connect(_buttonClickedCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_buttonClickedEventHandler != null)
-                    {
-                        this.ClickedSignal().Disconnect(_buttonClickedCallbackDelegate);
-                    }
-
-                    _buttonClickedEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for button click signal
-        private bool OnClicked(IntPtr data)
-        {
-            ClickedEventArgs e = new ClickedEventArgs();
-
-            e.Button = Button.GetButtonFromPtr(data);
-
-            if (_buttonClickedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _buttonClickedEventHandler(this, e);
-            }
-            return false;
-        }
-
-
-        public event DaliEventHandlerWithReturnType<object, PressedEventArgs, bool> Pressed
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_buttonPressedEventHandler == null)
-                    {
-                        _buttonPressedEventHandler += value;
-
-                        _buttonPressedCallbackDelegate = new PressedCallbackDelegate(OnPressed);
-                        this.PressedSignal().Connect(_buttonPressedCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_buttonPressedEventHandler != null)
-                    {
-                        this.PressedSignal().Disconnect(_buttonPressedCallbackDelegate);
-                    }
-
-                    _buttonPressedEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for button click signal
-        private bool OnPressed(IntPtr data)
-        {
-            PressedEventArgs e = new PressedEventArgs();
-
-            e.Button = Button.GetButtonFromPtr(data);
-
-            if (_buttonPressedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _buttonPressedEventHandler(this, e);
-            }
-            return false;
-        }
-
-
-        public event DaliEventHandlerWithReturnType<object, ReleasedEventArgs, bool> Released
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_buttonReleasedEventHandler == null)
-                    {
-                        _buttonReleasedEventHandler += value;
-
-                        _buttonReleasedCallbackDelegate = new ReleasedCallbackDelegate(OnReleased);
-                        this.ReleasedSignal().Connect(_buttonReleasedCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_buttonReleasedEventHandler != null)
-                    {
-                        this.ReleasedSignal().Disconnect(_buttonReleasedCallbackDelegate);
-                    }
-
-                    _buttonReleasedEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for button click signal
-        private bool OnReleased(IntPtr data)
-        {
-            ReleasedEventArgs e = new ReleasedEventArgs();
-
-            e.Button = Button.GetButtonFromPtr(data);
-
-            if (_buttonReleasedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _buttonReleasedEventHandler(this, e);
-            }
-            return false;
-        }
-
-
-        public event DaliEventHandlerWithReturnType<object, StateChangedEventArgs, bool> StateChanged
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_buttonStateChangedEventHandler == null)
-                    {
-                        _buttonStateChangedEventHandler += value;
-
-                        _buttonStateChangedCallbackDelegate = new StateChangedCallbackDelegate(OnStateChanged);
-                        this.StateChangedSignal().Connect(_buttonStateChangedCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_buttonStateChangedEventHandler != null)
-                    {
-                        this.StateChangedSignal().Disconnect(_buttonStateChangedCallbackDelegate);
-                    }
-
-                    _buttonStateChangedEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for button click signal
-        private bool OnStateChanged(IntPtr data)
-        {
-            StateChangedEventArgs e = new StateChangedEventArgs();
-
-            e.Button = Button.GetButtonFromPtr(data);
-
-            if (_buttonStateChangedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _buttonStateChangedEventHandler(this, e);
-            }
-            return false;
-        }
-        */
-        //changed <<<<
         private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ClickedCallbackType(global::System.IntPtr data);
@@ -520,7 +240,8 @@ namespace Tizen.NUI
             }
             return false;
         }
-        //changed >>>
+
+
 
         public static Button GetButtonFromPtr(global::System.IntPtr cPtr)
         {
@@ -682,7 +403,7 @@ namespace Tizen.NUI
                 SetProperty(Button.Property.VISUAL_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
-        //internal
+
         internal class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -720,7 +441,7 @@ namespace Tizen.NUI
                     global::System.GC.SuppressFinalize(this);
                 }
             }
-            //chagned
+
             internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
             internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();
             internal static readonly int DISABLED_SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_VISUAL_get();
@@ -737,7 +458,7 @@ namespace Tizen.NUI
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            //changed
+
             internal static readonly int DISABLED = NDalicPINVOKE.Button_Property_DISABLED_get();
             internal static readonly int AUTO_REPEATING = NDalicPINVOKE.Button_Property_AUTO_REPEATING_get();
             internal static readonly int INITIAL_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
@@ -758,12 +479,12 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Button(Button button) : this(NDalicPINVOKE.new_Button__SWIG_1(Button.getCPtr(button)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Button Assign(Button button)
         {
             Button ret = new Button(NDalicPINVOKE.Button_Assign(swigCPtr, Button.getCPtr(button)), false);
@@ -777,42 +498,42 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsDisabled()
         {
             bool ret = NDalicPINVOKE.Button_IsDisabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsAutoRepeating()
         {
             bool ret = NDalicPINVOKE.Button_IsAutoRepeating(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal float GetInitialAutoRepeatingDelay()
         {
             float ret = NDalicPINVOKE.Button_GetInitialAutoRepeatingDelay(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal float GetNextAutoRepeatingDelay()
         {
             float ret = NDalicPINVOKE.Button_GetNextAutoRepeatingDelay(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsTogglableButton()
         {
             bool ret = NDalicPINVOKE.Button_IsTogglableButton(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal bool IsSelected()
         {
             bool ret = NDalicPINVOKE.Button_IsSelected(swigCPtr);
@@ -826,74 +547,74 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal string GetLabelText()
         {
             string ret = NDalicPINVOKE.Button_GetLabelText(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal void SetLabel(Actor label)
         {
             NDalicPINVOKE.Button_SetLabel(swigCPtr, Actor.getCPtr(label));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetButtonImage(Image image)
         {
             NDalicPINVOKE.Button_SetButtonImage(swigCPtr, Image.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal void SetSelectedImage(Image image)
         {
             NDalicPINVOKE.Button_SetSelectedImage(swigCPtr, Image.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal Actor GetButtonImage()
         {
             Actor ret = new Actor(NDalicPINVOKE.Button_GetButtonImage(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal Actor GetSelectedImage()
         {
             Actor ret = new Actor(NDalicPINVOKE.Button_GetSelectedImage(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ButtonSignal PressedSignal()
         {
             ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_PressedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ButtonSignal ReleasedSignal()
         {
             ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ReleasedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ButtonSignal ClickedSignal()
         {
             ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ClickedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal ButtonSignal StateChangedSignal()
         {
             ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_StateChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         internal enum PropertyRange
         {
             PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,

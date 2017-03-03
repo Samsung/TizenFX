@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Geometry : BaseHandle {
+    internal class Geometry : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Geometry_SWIGUpcast(cPtr), cMemoryOwn) {

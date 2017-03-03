@@ -25,22 +25,22 @@ using Tizen.NUI;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents an application that have UI screen. The DaliApplication class has a default stage.
+    /// Represents an application that have UI screen. The NUIApplication class has a default stage.
     /// </summary>
-    public class DaliApplication : CoreUIApplication
+    public class NUIApplication : CoreUIApplication
     {
         /// <summary>
         /// The instance of the Dali Application.
         /// </summary>
         /// <remarks>
-        /// This application is created before OnCreate() or created event. And the DaliApplication will be terminated when this application is closed.
+        /// This application is created before OnCreate() or created event. And the NUIApplication will be terminated when this application is closed.
         /// </remarks>
         protected Tizen.NUI.Application application;
 
         /// <summary>
         /// The instance of the Dali Application extension.
         /// </summary>
-        protected Tizen.NUI.ApplicationExtensions applicationExt;
+        internal Tizen.NUI.ApplicationExtensions applicationExt;
 
         /// <summary>
         /// Store the stylesheet value.
@@ -55,7 +55,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Store the app mode value.
         /// </summary>
-        protected APP_MODE appMode;
+        protected AppMode appMode;
 
         /// <summary>
         /// The instance of the Dali Stage.
@@ -65,29 +65,29 @@ namespace Tizen.Applications
         /// <summary>
         /// The default constructor.
         /// </summary>
-        public DaliApplication():base()
+        public NUIApplication():base()
         {
-            appMode = APP_MODE.DEFAULT;
+            appMode = AppMode.Default;
         }
 
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
-        public DaliApplication(string stylesheet):base()
+        public NUIApplication(string stylesheet):base()
         {
             //handle the stylesheet
-            appMode = APP_MODE.STYLESHEETONLY;
+            appMode = AppMode.StyleSheetOnly;
             m_stylesheet = stylesheet;
         }
 
         /// <summary>
         /// The constructor with stylesheet and window mode.
         /// </summary>
-        public DaliApplication(string stylesheet, Tizen.NUI.Application.WINDOW_MODE windowMode)
+        public NUIApplication(string stylesheet, Tizen.NUI.Application.WINDOW_MODE windowMode)
             : base()
         {
             //handle the stylesheet and windowMode
-            appMode = APP_MODE.STYLESHEETWITHWINDOWMODE;
+            appMode = AppMode.StyleSheetWithWindowMode;
             m_stylesheet = stylesheet;
             m_windowMode = windowMode;
         }
@@ -100,13 +100,13 @@ namespace Tizen.Applications
         {
             switch(appMode)
             {
-                case APP_MODE.DEFAULT:
+                case AppMode.Default:
                     application = Tizen.NUI.Application.NewApplication();
                     break;
-                case APP_MODE.STYLESHEETONLY:
+                case AppMode.StyleSheetOnly:
                     application = Tizen.NUI.Application.NewApplication(m_stylesheet);
                     break;
-                case APP_MODE.STYLESHEETWITHWINDOWMODE:
+                case AppMode.StyleSheetWithWindowMode:
                     application = Tizen.NUI.Application.NewApplication(m_stylesheet, m_windowMode);
                     break;
                 default:
@@ -159,11 +159,11 @@ namespace Tizen.Applications
         /// <summary>
         /// The mode of creating Dali application.
         /// </summary>
-        protected enum APP_MODE
+        protected enum AppMode
         {
-            DEFAULT = 0,
-            STYLESHEETONLY = 1,
-            STYLESHEETWITHWINDOWMODE = 2
+            Default = 0,
+            StyleSheetOnly = 1,
+            StyleSheetWithWindowMode = 2
         }
     }
 }

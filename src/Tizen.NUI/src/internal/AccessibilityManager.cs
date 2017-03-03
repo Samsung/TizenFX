@@ -12,8 +12,8 @@ namespace Tizen.NUI {
 
     using System;
     using System.Runtime.InteropServices;
-    
-    public class AccessibilityManager : BaseHandle {
+
+internal class AccessibilityManager : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.AccessibilityManager_SWIGUpcast(cPtr), cMemoryOwn) {

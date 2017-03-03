@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Uint16Pair : global::System.IDisposable {
+    internal class Uint16Pair : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

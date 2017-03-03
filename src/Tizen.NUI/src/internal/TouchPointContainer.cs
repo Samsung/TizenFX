@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class TouchPointContainer : global::System.IDisposable, global::System.Collections.IEnumerable
+    internal class TouchPointContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IEnumerable<TouchPoint>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

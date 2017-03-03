@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ItemIdContainer : global::System.IDisposable, global::System.Collections.IEnumerable
+    internal class ItemIdContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IList<uint>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -26,10 +26,15 @@ public class ItemIdContainer : global::System.IDisposable, global::System.Collec
   }
 
   ~ItemIdContainer() {
-    Dispose();
+    DisposeQueue.Instance.Add(this);
   }
 
   public virtual void Dispose() {
+    if (!Stage.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
+
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -41,6 +46,7 @@ public class ItemIdContainer : global::System.IDisposable, global::System.Collec
       global::System.GC.SuppressFinalize(this);
     }
   }
+
 
   public ItemIdContainer(global::System.Collections.ICollection c) : this() {
     if (c == null)

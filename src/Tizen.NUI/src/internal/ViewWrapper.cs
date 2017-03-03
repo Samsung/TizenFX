@@ -55,7 +55,7 @@ namespace Tizen.NUI
             }
         }
 
-        public ViewWrapper (ViewWrapperImpl implementation) : this (NDalicManualPINVOKE.ViewWrapper_New(ViewWrapperImpl.getCPtr(implementation)), true)
+        public ViewWrapper (string typeName, ViewWrapperImpl implementation) : this (NDalicManualPINVOKE.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

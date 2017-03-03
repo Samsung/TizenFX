@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Degree : global::System.IDisposable {
+    public class Degree : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

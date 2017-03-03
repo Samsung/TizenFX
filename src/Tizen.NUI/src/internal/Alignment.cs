@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Alignment : View {
+internal class Alignment : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Alignment(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Alignment_SWIGUpcast(cPtr), cMemoryOwn) {

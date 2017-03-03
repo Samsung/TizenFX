@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class VectorInteger : global::System.IDisposable {
+internal class VectorInteger : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

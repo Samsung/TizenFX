@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -283,7 +283,7 @@ namespace MyCSharpExample
           text.MultiLine = true;
           text.SetResizePolicy(ResizePolicyType.FILL_TO_PARENT, DimensionType.WIDTH);
           text.SetResizePolicy(ResizePolicyType.DIMENSION_DEPENDENCY, DimensionType.HEIGHT);
-          text.SetPadding(new RectFloat(10.0f, 10.0f, 20.0f, 0.0f));
+          text.SetPadding(new PaddingType(10.0f, 10.0f, 20.0f, 0.0f));
           _popup.SetContent(text);
           _popup.SetKeyboardFocusable(true);
           _popup.SetDisplayState(Popup.DisplayStateType.HIDDEN);

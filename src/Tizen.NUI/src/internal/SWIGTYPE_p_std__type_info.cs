@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_std__type_info {
+    internal class SWIGTYPE_p_std__type_info {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_std__type_info(global::System.IntPtr cPtr, bool futureUse) {

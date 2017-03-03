@@ -1,4 +1,4 @@
-Name:       dali-sharp
+Name:       csapi-nui
 Summary:    dali-NUI
 Version:    1.0.0
 Release:    0
@@ -14,14 +14,14 @@ ExcludeArch: aarch64
 BuildRequires: dotnet-build-tools
 
 # C# API Requires
-BuildRequires: csapi-tizen-nuget
+BuildRequires: csapi-application-nuget
 
 %define Assemblies Tizen.NUI
 
 %description
 %{summary}
 
-%dotnet_import_sub_packages
+%_nuget_package
 
 %prep
 %setup -q

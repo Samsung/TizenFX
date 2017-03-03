@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_double {
+    internal class SWIGTYPE_p_double {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_double(global::System.IntPtr cPtr, bool futureUse) {

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class PageTurnSignal : global::System.IDisposable {
+    internal class PageTurnSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

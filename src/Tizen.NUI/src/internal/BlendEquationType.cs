@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum BlendEquationType {
+    internal enum BlendEquationType {
   ADD = 0x8006,
   SUBTRACT = 0x800A,
   REVERSE_SUBTRACT = 0x800B

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class doublep : global::System.IDisposable {
+    internal class doublep : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

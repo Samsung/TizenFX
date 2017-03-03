@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class Image : BaseHandle {
+    internal class Image : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Image(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Image_SWIGUpcast(cPtr), cMemoryOwn) {

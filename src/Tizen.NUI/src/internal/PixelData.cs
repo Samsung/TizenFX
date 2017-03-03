@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class PixelData : BaseHandle {
+    internal class PixelData : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PixelData_SWIGUpcast(cPtr), cMemoryOwn) {

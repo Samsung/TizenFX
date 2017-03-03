@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class BufferImage : Image {
+    internal class BufferImage : Image {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal BufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.BufferImage_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -133,8 +133,8 @@ public class BufferImage : Image {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void Update(RectUnsignedInteger updateArea) {
-    NDalicPINVOKE.BufferImage_Update__SWIG_1(swigCPtr, RectUnsignedInteger.getCPtr(updateArea));
+  public void Update(SWIGTYPE_p_Dali__RectT_unsigned_int_t updateArea) {
+    NDalicPINVOKE.BufferImage_Update__SWIG_1(swigCPtr, SWIGTYPE_p_Dali__RectT_unsigned_int_t.getCPtr(updateArea));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

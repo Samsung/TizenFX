@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum SamplingModeType {
+    internal enum SamplingModeType {
   BOX,
   NEAREST,
   LINEAR,

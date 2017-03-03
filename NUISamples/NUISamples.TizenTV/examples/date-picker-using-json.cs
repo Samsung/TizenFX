@@ -17,7 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Dali;
+using Tizen.NUI;
 
 namespace MyCSharpExample
 {
@@ -25,13 +25,13 @@ namespace MyCSharpExample
 
     class Example
     {
-        private Dali.Application _application;
+        private Application _application;
         private Spin _spinYear;  // spin control for year
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
         private Builder _builder; // DALi Builder
 
-        public Example(Dali.Application application)
+        public Example(Application application)
         {
             _application = application;
             _application.Initialized += Initialize;
@@ -40,7 +40,7 @@ namespace MyCSharpExample
         public void Initialize(object source, NUIApplicationInitEventArgs e)
         {
 
-            Stage stage = Stage.GetCurrent();
+            Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
 
             // load date JSON template...
@@ -49,18 +49,18 @@ namespace MyCSharpExample
 
             // Optional constant to see logging information coming out
             // of DALi JSON parser (builder)
-            Property.Map constants = new  Property.Map();
-            constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new Property.Value( "Verbose") );
+            PropertyMap constants = new  PropertyMap();
+            constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new PropertyValue( "Verbose") );
             _builder.AddConstants( constants );
 
-            _builder.LoadFromFile( "./json/date-picker.json" );
+            _builder.LoadFromFile("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-template.json");
 
             // create the date-picker from the template in the json file
             BaseHandle handle =  _builder.Create( "date-picker");
 
             Actor actorTree =  Actor.DownCast( handle );
 
-            stage.Add( actorTree );
+            stage.GetDefaultLayer().Add( actorTree );
 
             Actor year  = actorTree.FindChildByName("Year");
             Actor month  =  actorTree.FindChildByName("Month" );
@@ -76,46 +76,46 @@ namespace MyCSharpExample
             _spinDay.Value = 23;
 
 
-            _spinYear.SetKeyboardFocusable(true);
-            _spinMonth.SetKeyboardFocusable(true);
-            _spinDay.SetKeyboardFocusable(true);
+            _spinYear.Focusable = (true);
+            _spinMonth.Focusable = (true);
+            _spinDay.Focusable = (true);
 
 
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
-            keyboardFocusManager.FocusedActorEnterKeyPressed += OnFocusedActorEnterKeyPressed;
+            keyboardFocusManager.FocusedViewEnterKeyPressed += OnFocusedActorEnterKeyPressed;
 
         }
 
-        private Actor OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
+        private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
         {
-            Actor nextFocusActor = e.Proposed;
+            View nextFocusActor = e.ProposedView;
 
             // When nothing has been focused initially, focus the text field in the first spin
-            if (!e.Current && !e.Proposed)
+            if (!e.CurrentView && !e.ProposedView)
             {
                 nextFocusActor = _spinYear.SpinText;
             }
-            else if(e.Direction == View.KeyboardFocus.Direction.LEFT)
+            else if(e.Direction == View.FocusDirection.Left)
             {
                 // Move the focus to the spin in the left of the current focused spin
-                if(e.Current == _spinMonth.SpinText)
+                if(e.CurrentView == _spinMonth.SpinText)
                 {
                     nextFocusActor = _spinYear.SpinText;
                 }
-                else if(e.Current == _spinDay.SpinText)
+                else if(e.CurrentView == _spinDay.SpinText)
                 {
                     nextFocusActor = _spinMonth.SpinText;
                 }
             }
-            else if(e.Direction == View.KeyboardFocus.Direction.RIGHT)
+            else if(e.Direction == View.FocusDirection.Right)
             {
                 // Move the focus to the spin in the right of the current focused spin
-                if(e.Current == _spinYear.SpinText)
+                if(e.CurrentView == _spinYear.SpinText)
                 {
                     nextFocusActor = _spinMonth.SpinText;
                 }
-                else if(e.Current == _spinMonth.SpinText)
+                else if(e.CurrentView == _spinMonth.SpinText)
                 {
                     nextFocusActor = _spinDay.SpinText;
                 }
@@ -124,26 +124,26 @@ namespace MyCSharpExample
             return nextFocusActor;
         }
 
-        private void OnFocusedActorEnterKeyPressed(object source, FocusManager.FocusedActorEnterKeyEventArgs e)
+        private void OnFocusedActorEnterKeyPressed(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
         {
             // Make the text field in the current focused spin to take the key input
             KeyInputFocusManager manager = KeyInputFocusManager.Get();
 
-            if (e.Actor == _spinYear.SpinText)
+            if (e.View == _spinYear.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinYear.SpinText)
                 {
                     manager.SetFocus(_spinYear.SpinText);
                 }
             }
-            else if (e.Actor == _spinMonth.SpinText)
+            else if (e.View == _spinMonth.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinMonth.SpinText)
                 {
                     manager.SetFocus(_spinMonth.SpinText);
                 }
             }
-            else if (e.Actor == _spinDay.SpinText)
+            else if (e.View == _spinDay.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinDay.SpinText)
                 {

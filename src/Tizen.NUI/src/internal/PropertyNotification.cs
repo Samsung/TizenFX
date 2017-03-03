@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class PropertyNotification : BaseHandle {
+    internal class PropertyNotification : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyNotification_SWIGUpcast(cPtr), cMemoryOwn) {

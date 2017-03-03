@@ -81,14 +81,14 @@ namespace MyCSharpExample
           StartTime = 0,
           EndTime = 500,
           TargetProperty = "Orientation",
-          Destination = new Quaternion( new Radian( new Degree( 180.0f ) ), Vect3.Xaxis)
+          Destination = new Rotation( new Radian( new Degree( 180.0f ) ), Vect3.Xaxis)
         };
         _animation.AnimateTo(_text);
 
         _animation.StartTime = 500;
         _animation.EndTime = 1000;
         _animation.TargetProperty = "Orientation";
-        _animation.Destination = new Quaternion( new Radian( new Degree( 0.0f ) ), Vect3.Xaxis );
+        _animation.Destination = new Rotation( new Radian( new Degree( 0.0f ) ), Vect3.Xaxis );
         _animation.AnimateTo(_text);
 
         _animation.StartTime = 1000;

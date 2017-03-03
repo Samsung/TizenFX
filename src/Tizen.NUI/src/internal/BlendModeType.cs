@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum BlendModeType {
+    internal enum BlendModeType {
   OFF,
   AUTO,
   ON

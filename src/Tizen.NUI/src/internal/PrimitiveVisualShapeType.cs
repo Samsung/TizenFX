@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum PrimitiveVisualShapeType {
+    internal enum PrimitiveVisualShapeType {
   SPHERE,
   CONICAL_FRUSTRUM,
   CONE,

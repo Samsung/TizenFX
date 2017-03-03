@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class RenderTaskList : BaseHandle {
+    internal class RenderTaskList : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal RenderTaskList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RenderTaskList_SWIGUpcast(cPtr), cMemoryOwn) {

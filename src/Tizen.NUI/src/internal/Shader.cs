@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Shader : Handle {
+    internal class Shader : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn) {

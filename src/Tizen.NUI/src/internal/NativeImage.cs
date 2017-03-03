@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class NativeImage : Image {
+    internal class NativeImage : Image {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal NativeImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NativeImage_SWIGUpcast(cPtr), cMemoryOwn) {

@@ -91,7 +91,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        //changed
+
         internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -102,7 +102,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        //changed
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
@@ -111,7 +110,7 @@ namespace Tizen.NUI
             controlPoint0 = new Vector2(ret.X, ret.Y);
             controlPoint1 = new Vector2(ret.Z, ret.W);
         }
-        //changed
+
         internal SWIGTYPE_p_f_float__float GetCustomFunction()
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.AlphaFunction_GetCustomFunction(swigCPtr);
@@ -119,7 +118,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
         {
             AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)NDalicPINVOKE.AlphaFunction_GetBuiltinFunction(swigCPtr);
@@ -127,14 +126,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        //changed
         public AlphaFunction.Modes GetMode()
         {
             AlphaFunction.Modes ret = (AlphaFunction.Modes)NDalicPINVOKE.AlphaFunction_GetMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        //changed
+
         public enum BuiltinFunctions
         {
             Default,
@@ -154,7 +152,6 @@ namespace Tizen.NUI
             Count
         }
 
-        //changed
         public enum Modes
         {
             CustomFunction = 1,

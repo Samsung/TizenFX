@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class Scrollable : View {
+    internal class Scrollable : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Scrollable_SWIGUpcast(cPtr), cMemoryOwn) {

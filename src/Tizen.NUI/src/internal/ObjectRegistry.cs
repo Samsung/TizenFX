@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class ObjectRegistry : BaseHandle {
+    internal class ObjectRegistry : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ObjectRegistry_SWIGUpcast(cPtr), cMemoryOwn) {
