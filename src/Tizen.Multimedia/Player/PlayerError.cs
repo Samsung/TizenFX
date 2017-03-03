@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -62,8 +63,9 @@ namespace Tizen.Multimedia
             {
                 case PlayerErrorCode.InvalidArgument:
                 case PlayerErrorCode.InvalidUri:
-                case PlayerErrorCode.NoSuchFile:
                     throw new ArgumentException(msg);
+                case PlayerErrorCode.NoSuchFile:
+                    throw new FileNotFoundException(msg);
 
                 case PlayerErrorCode.OutOfMemory:
                 case PlayerErrorCode.NoSpaceOnDevice:

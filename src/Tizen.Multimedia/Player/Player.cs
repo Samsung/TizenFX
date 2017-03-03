@@ -425,7 +425,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get display : " + _display.Type);
                 return _display;
             }
             set
@@ -700,7 +699,7 @@ namespace Tizen.Multimedia
 
             if (!File.Exists(path))
             {
-                throw new ArgumentException($"The specified file does not exist : { path }.");
+                throw new FileNotFoundException($"The specified file does not exist : { path }.");
             }
 
             PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, path),
