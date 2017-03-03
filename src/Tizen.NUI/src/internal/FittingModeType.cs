@@ -8,13 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-    internal enum FittingModeType {
-  SHRINK_TO_FIT,
-  SCALE_TO_FILL,
-  FIT_WIDTH,
-  FIT_HEIGHT
+namespace Tizen.NUI
+{
+    public enum FittingModeType
+    {
+        ShrinkToFit,
+        ScaleToFill,
+        FitWidth,
+        FitHeight
 }
 
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\internal\AlignType.cs" />
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="src\internal\DefaultItemLayoutProperty.cs" />
     <Compile Include="src\internal\DefaultItemLayoutType.cs" />
     <Compile Include="src\internal\DefaultRuler.cs" />
+    <Compile Include="src\public\ContentView.cs" />
     <Compile Include="src\public\Degree.cs" />
     <Compile Include="src\internal\DepthFunctionType.cs" />
     <Compile Include="src\internal\DepthTestModeType.cs" />
@@ -327,7 +329,7 @@
     <Compile Include="src\public\ScrollBar.cs" />
     <Compile Include="src\public\Size.cs" />
     <Compile Include="src\public\Slider.cs" />
-    <Compile Include="src\public\spin.cs" />
+    <Compile Include="src\public\Spin.cs" />
     <Compile Include="src\public\Stage.cs" />
     <Compile Include="src\public\StyleManager.cs" />
     <Compile Include="src\public\TableView.cs" />
@@ -343,14 +345,9 @@
     <Compile Include="src\public\View.cs" />
     <Compile Include="src\public\VisualBase.cs" />
     <Compile Include="src\public\VisualFactory.cs" />
+    <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Tizen.Applications, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4aa249e9db245e88, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tizen.Applications.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

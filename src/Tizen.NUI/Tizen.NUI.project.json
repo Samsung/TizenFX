@@ -3,7 +3,9 @@
     "Microsoft.CSharp": "4.3.0",
     "NETStandard.Library": "1.6.0",
     "System.Reflection": "4.3.0",
-    "System.Reflection.TypeExtensions": "4.3.0"
+    "System.Reflection.TypeExtensions": "4.3.0",
+    "Tizen": "1.0.2",
+    "Tizen.Applications": "1.2.4"
   },
   "frameworks": {
     "netstandard1.3": {}
