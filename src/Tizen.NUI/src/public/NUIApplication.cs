@@ -16,150 +16,136 @@
  */
 
 using System;
+using Tizen.Applications;
 using Tizen.NUI;
 
-//------------------------------------------------------------------------------
-// This file can only run on Tizen target. You should compile it with hello-test.cs, and
-// add tizen c# application related library as reference.
-//------------------------------------------------------------------------------
-namespace Tizen.Applications
+namespace Tizen.NUI
 {
-    /// <summary>
-    /// Represents an application that have UI screen. The NUIApplication class has a default stage.
-    /// </summary>
+
     public class NUIApplication : CoreUIApplication
     {
-        /// <summary>
-        /// The instance of the Dali Application.
-        /// </summary>
-        /// <remarks>
-        /// This application is created before OnCreate() or created event. And the NUIApplication will be terminated when this application is closed.
-        /// </remarks>
-        protected Tizen.NUI.Application application;
-
-        /// <summary>
-        /// The instance of the Dali Application extension.
-        /// </summary>
-        internal Tizen.NUI.ApplicationExtensions applicationExt;
-
-        /// <summary>
-        /// Store the stylesheet value.
-        /// </summary>
-        protected string m_stylesheet;
-
-        /// <summary>
-        /// Store the window mode value.
-        /// </summary>
-        protected Tizen.NUI.Application.WINDOW_MODE m_windowMode;
-
-        /// <summary>
-        /// Store the app mode value.
-        /// </summary>
-        protected AppMode appMode;
-
-        /// <summary>
-        /// The instance of the Dali Stage.
-        /// </summary>
-        public Stage stage { get; private set; }
-
-        /// <summary>
-        /// The default constructor.
-        /// </summary>
-        public NUIApplication():base()
+        private void LOG(string _str)
         {
-            appMode = AppMode.Default;
+            Tizen.Log.Debug("NUI", _str);
+            //Console.WriteLine("[NUI]" + _str);
         }
 
-        /// <summary>
-        /// The constructor with stylesheet.
-        /// </summary>
-        public NUIApplication(string stylesheet):base()
+        private Application _application;
+        private ApplicationExtensions _applicationExt;
+        private string _stylesheet;
+        private Application.WindowMode _windowMode;
+        private AppMode _appMode;
+        private Stage _stage;
+
+        public NUIApplication() : base()
+        {
+            _appMode = AppMode.Default;
+        }
+
+        public NUIApplication(string stylesheet) : base()
         {
             //handle the stylesheet
-            appMode = AppMode.StyleSheetOnly;
-            m_stylesheet = stylesheet;
+            _appMode = AppMode.StyleSheetOnly;
+            _stylesheet = stylesheet;
         }
 
-        /// <summary>
-        /// The constructor with stylesheet and window mode.
-        /// </summary>
-        public NUIApplication(string stylesheet, Tizen.NUI.Application.WINDOW_MODE windowMode)
-            : base()
+        public NUIApplication(string stylesheet, Application.WindowMode windowMode) : base()
         {
             //handle the stylesheet and windowMode
-            appMode = AppMode.StyleSheetWithWindowMode;
-            m_stylesheet = stylesheet;
-            m_windowMode = windowMode;
+            _appMode = AppMode.StyleSheetWithWindowMode;
+            _stylesheet = stylesheet;
+            _windowMode = windowMode;
         }
 
-        /// <summary>
-        /// Overrides this method if want to handle behavior before calling OnCreate().
-        /// stage property is initialized in this overrided method.
-        /// </summary>
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            _applicationExt.Pause();
+            LOG("OnPause() is called!");
+        }
+
         protected override void OnPreCreate()
         {
-            switch(appMode)
+            switch (_appMode)
             {
                 case AppMode.Default:
-                    application = Tizen.NUI.Application.NewApplication();
+                    _application = Tizen.NUI.Application.NewApplication();
                     break;
                 case AppMode.StyleSheetOnly:
-                    application = Tizen.NUI.Application.NewApplication(m_stylesheet);
+                    _application = Tizen.NUI.Application.NewApplication(_stylesheet);
                     break;
                 case AppMode.StyleSheetWithWindowMode:
-                    application = Tizen.NUI.Application.NewApplication(m_stylesheet, m_windowMode);
+                    _application = Tizen.NUI.Application.NewApplication(_stylesheet, _windowMode);
                     break;
                 default:
                     break;
             }
+            _applicationExt = new ApplicationExtensions(_application);
+            _applicationExt.Init();
 
-            applicationExt = new Tizen.NUI.ApplicationExtensions(application);
-            applicationExt.Init();
-
-            stage = Stage.GetCurrent();
-            stage.SetBackgroundColor( Color.White );
+            _stage = Stage.Instance;
+            _stage.SetBackgroundColor(Color.White);
+            LOG("OnPreCreate() is called!");
         }
 
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected override void OnTerminate()
-        {
-            base.OnTerminate();
-            applicationExt.Terminate();
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected override void OnPause()
-        {
-            base.OnPause();
-            applicationExt.Pause();
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
         protected override void OnResume()
         {
             base.OnResume();
-            applicationExt.Resume();
+            _applicationExt.Resume();
+            LOG("OnResume() is called!");
         }
 
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
+        protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        {
+            base.OnAppControlReceived(e);
+            LOG("OnAppControlReceived() is called!");
+            if (e != null)
+            {
+                LOG("OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
+                LOG("CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
+            }
+        }
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            LOG("OnCreate() is called!");
+        }
+
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             base.OnLocaleChanged(e);
-            applicationExt.LanguageChange();
+            _applicationExt.LanguageChange();
+            LOG("OnLocaleChanged() is called!");
         }
 
-        /// <summary>
-        /// The mode of creating Dali application.
-        /// </summary>
-        protected enum AppMode
+        protected override void OnLowBattery(LowBatteryEventArgs e)
+        {
+            base.OnLowBattery(e);
+            LOG("OnLowBattery() is called!");
+        }
+
+        protected override void OnLowMemory(LowMemoryEventArgs e)
+        {
+            base.OnLowMemory(e);
+            LOG("OnLowMemory() is called!");
+        }
+
+        protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
+        {
+            base.OnRegionFormatChanged(e);
+            LOG("OnRegionFormatChanged() is called!");
+        }
+
+        protected override void OnTerminate()
+        {
+            base.OnTerminate();
+            _applicationExt.Terminate();
+            LOG("OnTerminate() is called!");
+        }
+
+        private enum AppMode
         {
             Default = 0,
             StyleSheetOnly = 1,

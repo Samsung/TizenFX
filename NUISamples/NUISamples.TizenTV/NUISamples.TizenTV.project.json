@@ -9,6 +9,7 @@
     "Microsoft.NETCore.App": {
       "version": "1.0.0"
     },
+    "Tizen": "1.0.2",
     "Tizen.Applications": "1.2.4",
     "Xamarin.Forms": "2.3.3.175",
     "Xamarin.Forms.Platform.Tizen": "2.3.3.175-beta-007"

@@ -77,7 +77,7 @@ namespace Tizen.NUI
         }
 
 
-        internal static VisualFactory Get()
+        public static VisualFactory Get()
         {
             VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    internal enum VisualTransformPropertyType {
+    public enum VisualTransformPropertyType {
   OFFSET,
   SIZE,
   ORIGIN,

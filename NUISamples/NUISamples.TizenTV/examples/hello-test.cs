@@ -16,112 +16,118 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
-using Dali;
-using Tizen.Applications;
+using Tizen.NUI;
 
-//------------------------------------------------------------------------------
-// <manual-generated />
-//
-// This file can only run on Tizen target. You should compile it with DaliApplication.cs, and
-// add tizen c# application related library as reference.
-//------------------------------------------------------------------------------
-namespace MyCSharpExample
+namespace HelloTestExample
 {
-    class Example : DaliApplication
+    class Example : NUIApplication
     {
+        private void LOG(string _str)
+        {
+            Tizen.Log.Debug("NUI", _str);
+            //Console.WriteLine("[NUI]" + _str);
+        }
+
+        private Animation _animation;
+        private TextLabel _text;
+        private Stage _stage;
+
+        public Example() : base()
+        {
+        }
+
+        public Example(string stylesheet) : base(stylesheet)
+        {
+        }
+
+        public Example(string stylesheet, Application.WindowMode windowMode) : base(stylesheet, windowMode)
+        {
+        }
+
+        private void Initialize()
+        {
+            LOG("Customized Application Initialize event handler");
+            _stage = Stage.Instance;
+            _stage.Touch += OnStageTouched;
+
+            // Add a _text label to the stage
+            _text = new TextLabel("Hello NUI World");
+            _text.ParentOrigin = ParentOrigin.Center;
+            _text.AnchorPoint = AnchorPoint.Center;
+            _text.HorizontalAlignment = "CENTER";
+            _text.PointSize = 32.0f;
+            _text.TextColor = Color.Magenta;
+            _stage.GetDefaultLayer().Add(_text);
+        }
+
+        // Callback for _animation finished signal handling
+        public void AnimationFinished(object sender, EventArgs e)
+        {
+            LOG("AnimationFinished()!");
+            if (_animation)
+            {
+                LOG("Duration= " + _animation.Duration);
+                LOG("EndAction= " + _animation.EndAction);
+            }
+
+            LOG("[4]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+        }
+
+        // Callback for stage touched signal handling
+        public void OnStageTouched(object sender, Stage.TouchEventArgs e)
+        {
+            // Only animate the _text label when touch down happens
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+                LOG("Customized Stage Touch event handler");
+                // Create a new _animation
+                if (_animation)
+                {
+                    //_animation.Stop(Dali.Constants.Animation.EndAction.Stop);
+                    _animation.Reset();
+                }
+
+                _animation = new Animation
+                {
+                    Duration = 2000
+                };
+
+                LOG("[1]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+
+                _animation.AnimateTo(_text, "PositionX", _text.PositionX + 200.0f);
+                _animation.AnimateTo(_text, "SizeHeight", _text.SizeHeight + 200.0f);
+
+                LOG("[2]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+
+                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), Vector3.XAxis), 0, 500);
+                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), Vector3.XAxis), 500, 1000);
+
+                //_animation.AnimateBy(_text, "ScaleX", 3.0f, 1000, 1500);
+                //_animation.AnimateBy(_text, "ScaleY", 4.0f, 1250, 2000);
+                _animation.EndAction = Animation.EndActions.Discard;
+
+                // Connect the signal callback for animaiton finished signal
+                _animation.Finished += AnimationFinished;
+
+                
+                // Play the _animation
+                _animation.Play();
+
+                LOG("[3]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+
+            }
+        }
+
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate void CallbackDelegate(IntPtr data);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate void TouchCallbackDelegate(IntPtr data);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate void AnimationCallbackDelegate(IntPtr data);
-
-        private Animation _animation;
-        private TextLabel _text;
-
-        public Example():base()
-        {
-        }
-
-        public Example(string stylesheet):base(stylesheet)
-        {
-        }
-
-        public Example(string stylesheet, Dali.Application.WINDOW_MODE windowMode):base(stylesheet, windowMode)
-        {
-        }
-
-        private void Initialize()
-        {
-            // Connect the signal callback for stage touched signal
-            TouchCallbackDelegate stageTouchedCallback = new TouchCallbackDelegate(OnStageTouched);
-            stage.TouchSignal().Connect(stageTouchedCallback);
-
-            // Add a _text label to the stage
-            _text = new TextLabel("Hello Mono World");
-            _text.ParentOrigin = NDalic.ParentOriginCenter;
-            _text.AnchorPoint = NDalic.AnchorPointCenter;
-            _text.HorizontalAlignment = "CENTER";
-            _text.PointSize = 32.0f;
-
-            stage.Add(_text);
-        }
-
-        // Callback for _animation finished signal handling
-        private void AnimationFinished(IntPtr data)
-        {
-            Animation _animation = Animation.GetAnimationFromPtr( data );
-            Console.WriteLine("Animation finished: duration = " + _animation.GetDuration());
-        }
-
-        // Callback for stage touched signal handling
-        private void OnStageTouched(IntPtr data)
-        {
-            TouchData touchData = TouchData.GetTouchDataFromPtr( data );
-
-            // Only animate the _text label when touch down happens
-            if (touchData.GetState(0) == PointStateType.DOWN)
-            {
-                // Create a new _animation
-                if (_animation)
-                {
-                    _animation.Reset();
-                }
-
-                _animation = new Animation(1.0f); // 1 second of duration
-
-                _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Quaternion(new Radian(new Degree(180.0f)), Vector3.XAXIS)), new AlphaFunction(AlphaFunction.BuiltinFunction.LINEAR), new TimePeriod(0.0f, 0.5f));
-                _animation.AnimateTo(new Property(_text, Actor.Property.ORIENTATION), new Property.Value(new Quaternion(new Radian(new Degree(0.0f)), Vector3.XAXIS)), new AlphaFunction(AlphaFunction.BuiltinFunction.LINEAR), new TimePeriod(0.5f, 0.5f));
-
-                // Connect the signal callback for animaiton finished signal
-                AnimationCallbackDelegate animFinishedDelegate = new AnimationCallbackDelegate(AnimationFinished);
-                _animation.FinishedSignal().Connect(animFinishedDelegate);
-
-                // Play the _animation
-                _animation.Play();
-            }
-        }
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-
         [STAThread]
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello mono world.");
-            //Example example = new Example();
-            //Example example = new Example("stylesheet");
-            Example example = new Example("stylesheet", Dali.Application.WINDOW_MODE.TRANSPARENT);
+            Example example = new Example();
             example.Run(args);
         }
     }

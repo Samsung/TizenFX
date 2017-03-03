@@ -14,6 +14,8 @@ ExcludeArch: aarch64
 BuildRequires: dotnet-build-tools
 
 # C# API Requires
+
+BuildRequires: csapi-tizen-nuget
 BuildRequires: csapi-application-nuget
 
 %define Assemblies Tizen.NUI

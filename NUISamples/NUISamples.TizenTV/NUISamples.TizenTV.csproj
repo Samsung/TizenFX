@@ -47,16 +47,16 @@
     <None Include="res\json\control-dashboard.json" />
     <None Include="res\json\date-picker-template.json" />
     <None Include="res\json\date-picker.json" />
+    <None Include="res\json\style-example-theme-one.json" />
     <None Include="res\json\spin.json" />
     <None Include="tizen-manifest.xml" />
     <None Include="shared\res\NUISamples.TizenTV.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NUISamples.TizenTV.cs" />
+    <Compile Include="examples\transition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="examples\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +66,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\images\application-icon-0.png" />
     <Content Include="res\images\arrow.png" />
+    <Content Include="res\images\background-blocks.jpg" />
     <Content Include="res\images\gallery-0.jpg" />
     <Content Include="res\images\gallery-1.jpg" />
     <Content Include="res\images\gallery-2.jpg" />
@@ -80,6 +82,9 @@
     <Content Include="res\images\star-dim.png" />
     <Content Include="res\images\star-highlight.png" />
     <Content Include="res\images\star-mod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

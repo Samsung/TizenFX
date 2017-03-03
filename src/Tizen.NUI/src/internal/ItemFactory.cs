@@ -100,6 +100,7 @@ namespace Tizen.NUI
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
             bool hasDerivedMethod = methodInfo.GetType().GetTypeInfo().IsSubclassOf(typeof(ItemFactory));
+            Tizen.Log.Debug("NUI-APP", "hasDerivedMethod=" + hasDerivedMethod);
             return hasDerivedMethod;
         }
 

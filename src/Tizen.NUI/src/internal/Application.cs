@@ -14,6 +14,14 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
+    internal class LOG
+    {
+        internal LOG(string _str)
+        {
+            Tizen.Log.Debug("NUI", _str);
+        }
+    }
+
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -1042,18 +1050,19 @@ namespace Tizen.NUI
 
         public static Application NewApplication()
         {
-            _instance = NewApplication("", Application.WINDOW_MODE.OPAQUE);
+            _instance = NewApplication("", Application.WindowMode.Opaque);
             return _instance;
         }
 
         public static Application NewApplication(string stylesheet)
         {
-            _instance = NewApplication(stylesheet, Application.WINDOW_MODE.OPAQUE);
+            _instance = NewApplication(stylesheet, Application.WindowMode.Opaque);
             return _instance;
         }
 
-        public static Application NewApplication(string stylesheet, Application.WINDOW_MODE windowMode)
+        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode)
         {
+            new LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 
             // register all Views with the type registry, so that can be created / styled via JSON
             ViewRegistryHelper.Initialize();
@@ -1086,6 +1095,8 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
+            new LOG("New() is called!");
+
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1093,6 +1104,8 @@ namespace Tizen.NUI
 
         public static Application New(int argc)
         {
+            new LOG("New(int argc) is called!");
+
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1100,13 +1113,17 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet)
         {
+            new LOG("New(int argc, string stylesheet) is called!");
+
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static Application New(int argc, string stylesheet, Application.WINDOW_MODE windowMode)
+        public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
+            new LOG("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
+
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1114,6 +1131,8 @@ namespace Tizen.NUI
 
         public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
         {
+            new LOG("Application() is called!");
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1283,10 +1302,10 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public enum WINDOW_MODE
+        public enum WindowMode
         {
-            OPAQUE = 0,
-            TRANSPARENT = 1
+            Opaque = 0,
+            Transparent = 1
         }
 
     }

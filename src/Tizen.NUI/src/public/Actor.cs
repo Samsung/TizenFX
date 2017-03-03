@@ -1007,9 +1007,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.SIZE_WIDTH).Get(ref temp);
-                return temp;
+                Size temp = GetCurrentSize();
+                return temp.Width;
             }
             set
             {
@@ -1020,9 +1019,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.SIZE_HEIGHT).Get(ref temp);
-                return temp;
+                Size temp = GetCurrentSize();
+                return temp.Height;
             }
             set
             {
@@ -1033,9 +1031,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.SIZE_DEPTH).Get(ref temp);
-                return temp;
+                Size temp = GetCurrentSize();
+                return temp.Depth;
             }
             set
             {
@@ -1058,9 +1055,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.POSITION_X).Get(ref temp);
-                return temp;
+                Position temp = GetCurrentPosition();
+                return temp.X;
             }
             set
             {
@@ -1071,9 +1067,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.POSITION_Y).Get(ref temp);
-                return temp;
+                Position temp = GetCurrentPosition();
+                return temp.Y;
             }
             set
             {
@@ -1084,9 +1079,8 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Actor.Property.POSITION_Z).Get(ref temp);
-                return temp;
+                Position temp = GetCurrentPosition();
+                return temp.Z;
             }
             set
             {
