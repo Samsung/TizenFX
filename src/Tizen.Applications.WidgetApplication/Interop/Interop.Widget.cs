@@ -98,10 +98,10 @@ internal static partial class Interop
         [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_terminate_context")]
         internal static extern ErrorCode TerminateContext(IntPtr handle);
 
-        [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_set_content_info")]
+        [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_context_set_content_info")]
         internal static extern ErrorCode SetContent(IntPtr handle, SafeBundleHandle content);
 
-        [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_set_title")]
+        [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_context_set_title")]
         internal static extern ErrorCode SetTitle(IntPtr handle, string title);
 
         [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_get_elm_win")]
