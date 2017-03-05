@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using Tizen.Multimedia;
 
@@ -59,27 +59,35 @@ internal static partial class Interop
 
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_continuous_capture")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool ContinuousCaptureSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_face_detection")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool FaceDetectionSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_zero_shutter_lag")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool ZeroShutterLagSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_media_packet_preview_cb")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool MediaPacketPreviewCallbackSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_hdr_capture")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool HdrCaptureSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_anti_shake")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool AntiShakeSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_video_stabilization")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool VideoStabilizationSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_auto_contrast")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool AutoContrastSupport(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_resolution")]
