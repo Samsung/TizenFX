@@ -16,6 +16,5 @@
 	</metadata>
 	<files>
 		<file src="bin/$Configuration$/Tizen.Network.Smartcard.dll" target="lib/netstandard1.3" />
-		<file src="bin/$Configuration$/Net45/Tizen.Network.Smartcard.dll" target="lib/net45" />
 	</files>
 </package>
