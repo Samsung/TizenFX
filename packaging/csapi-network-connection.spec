@@ -1,6 +1,6 @@
 Name:       csapi-network-connection
 Summary:    Tizen Connection API for C#
-Version:    1.0.10
+Version:    1.0.11
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
