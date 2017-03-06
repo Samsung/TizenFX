@@ -149,6 +149,18 @@ namespace ElmSharp
             }
         }
 
+        public bool Alpha
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_alpha_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_alpha_set(Handle, value);
+            }
+        }
+
         public StatusBarMode StatusBarMode
         {
             get
