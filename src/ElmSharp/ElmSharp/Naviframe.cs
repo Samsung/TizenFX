@@ -136,7 +136,7 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_naviframe_item_pop(RealHandle);
         }
-        
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);

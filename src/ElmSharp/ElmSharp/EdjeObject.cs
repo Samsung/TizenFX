@@ -63,7 +63,8 @@ namespace ElmSharp
 
         public string Name { get { return _part; } }
 
-        public string Text {
+        public string Text
+        {
             get
             {
                 return Interop.Elementary.edje_object_part_text_get(_edjeHandle, _part);

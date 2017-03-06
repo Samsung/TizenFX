@@ -81,7 +81,7 @@ namespace ElmSharp
         {
             get
             {
-                return (ColorSelectorMode) Interop.Elementary.elm_colorselector_mode_get(Handle);
+                return (ColorSelectorMode)Interop.Elementary.elm_colorselector_mode_get(Handle);
             }
             set
             {

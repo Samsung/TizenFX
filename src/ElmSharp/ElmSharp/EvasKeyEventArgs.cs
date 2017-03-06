@@ -29,11 +29,11 @@ namespace ElmSharp
 
         static public EvasKeyEventArgs Create(IntPtr data, IntPtr obj, IntPtr info)
         {
-            EvasEventKeyDown evt = (EvasEventKeyDown)Marshal.PtrToStructure(info, typeof(EvasEventKeyDown));
+            var evt = Marshal.PtrToStructure<EvasEventKeyDown>(info);
             return new EvasKeyEventArgs() { KeyName = evt.keyname };
         }
 
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         struct EvasEventKeyDown
         {
             public string keyname;

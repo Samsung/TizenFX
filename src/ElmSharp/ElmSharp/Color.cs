@@ -68,7 +68,7 @@ namespace ElmSharp
         {
         }
 
-        public Color(int r, int g, int b, int a) : this(r,g,b,a, Mode.Rgb)
+        public Color(int r, int g, int b, int a) : this(r, g, b, a, Mode.Rgb)
         {
         }
 
@@ -106,10 +106,26 @@ namespace ElmSharp
             return base.Equals(obj);
         }
 
+        public static bool operator ==(Color a, Color b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if ((object)a == null || (object)b == null)
+                return false;
+
+            return EqualsInner(a, b);
+        }
+
+        public static bool operator !=(Color a, Color b)
+        {
+            return !(a == b);
+        }
+
         static bool EqualsInner(Color color1, Color color2)
         {
             if (color1._mode == Mode.Default && color2._mode == Mode.Default)
-				return true;
+                return true;
             return color1._r == color2._r && color1._g == color2._g && color1._b == color2._b && color1._a == color2._a;
         }
 

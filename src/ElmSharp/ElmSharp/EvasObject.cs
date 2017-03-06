@@ -353,7 +353,7 @@ namespace ElmSharp
 
         public void Realize(EvasObject parent)
         {
-            if(!IsRealized)
+            if (!IsRealized)
             {
                 Parent = parent;
                 Handle = CreateHandle(parent);

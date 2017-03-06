@@ -27,7 +27,7 @@ namespace ElmSharp
         /// Create a new Polygon widget.
         /// <param name="p">The EvasObject to which the new Polygon will be attached as a child.</param>
         /// </summary>
-        public Polygon (EvasObject parent) : base(parent)
+        public Polygon(EvasObject parent) : base(parent)
         {
         }
 

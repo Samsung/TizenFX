@@ -13,6 +13,5 @@
 	</metadata>
 	<files>
 		<file src="bin/$Configuration$/ElmSharp.dll" target="lib/netstandard1.3" />
-		<file src="bin/$Configuration$/Net45/ElmSharp.dll" target="lib/net45" />
 	</files>
 </package>

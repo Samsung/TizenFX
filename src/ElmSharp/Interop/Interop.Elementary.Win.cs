@@ -92,7 +92,7 @@ internal static partial class Interop
 
         internal static void elm_win_wm_rotation_available_rotations_set(IntPtr obj, int[] rotations)
         {
-            IntPtr pRotations = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)) * rotations.Length);
+            IntPtr pRotations = Marshal.AllocHGlobal(Marshal.SizeOf<int>() * rotations.Length);
             Marshal.Copy(rotations, 0, pRotations, rotations.Length);
             _elm_win_wm_rotation_available_rotations_set(obj, pRotations, (uint)rotations.Length);
             Marshal.FreeHGlobal(pRotations);

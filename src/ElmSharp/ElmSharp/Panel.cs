@@ -87,7 +87,7 @@ namespace ElmSharp
         {
             Interop.Elementary.elm_panel_toggle(RealHandle);
         }
-        
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);

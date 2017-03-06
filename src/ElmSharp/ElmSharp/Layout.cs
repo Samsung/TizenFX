@@ -28,7 +28,8 @@ namespace ElmSharp
         public Layout(EvasObject parent) : base(parent)
         {
             _languageChanged = new SmartEvent(this, this.RealHandle, "language,changed");
-            _languageChanged.On += (s, e) => {
+            _languageChanged.On += (s, e) =>
+            {
                 LanguageChanged?.Invoke(this, EventArgs.Empty);
             };
 
@@ -67,7 +68,7 @@ namespace ElmSharp
         {
             set
             {
-                if(value.IsDefault)
+                if (value.IsDefault)
                 {
                     string part = ClassName.ToLower().Replace("elm_", "") + "/" + "bg";
                     EdjeObject.DeleteColorClass(part);

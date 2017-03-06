@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-using System;
-using System.Linq;
-
 namespace ElmSharp.Test
 {
     public class ScreenInformationTest : TestCaseBase
     {
         public override string TestName => "ScreenInformationTest";
         public override string TestDescription => "To get screen information";
-
-        Naviframe _navi;
-        int _sequence = 0;
 
         public override void Run(Window window)
         {
@@ -46,66 +40,6 @@ namespace ElmSharp.Test
             label2.Text = string.Format("<span color=#FFFFFF , font_size=50>ScreenDPI : xdpi : {0} ydpi : {1}", window.ScreenDpi.X, window.ScreenDpi.Y);
             label2.Show();
             box.PackEnd(label2);
-        }
-
-        EvasObject CreatePage(Window parent)
-        {
-            Box box = new Box(parent);
-            box.Show();
-
-            Label label = new Label(parent)
-            {
-                Text = string.Format("{0} Page", _sequence++),
-                WeightX = 1,
-                AlignmentX = -1,
-            };
-            Button push = new Button(parent)
-            {
-                Text = "Push",
-                WeightX = 1,
-                AlignmentX = -1,
-            };
-            Button pop = new Button(parent)
-            {
-                Text = "pop",
-                WeightX = 1,
-                AlignmentX = -1,
-            };
-
-            label.Show();
-            push.Show();
-            pop.Show();
-
-            push.Clicked += (s, e) =>
-            {
-                _navi.Push(CreatePage(parent), string.Format("{0} Page", _sequence - 1));
-            };
-
-            pop.Clicked += (s, e) =>
-            {
-                var item = _navi.NavigationStack.LastOrDefault();
-                int nativePointer = (int)(IntPtr)(item.Content);
-                Console.WriteLine("----- Before Call _navi.Pop() {0:x} ", nativePointer);
-                _navi.Pop();
-                Console.WriteLine("----- After Call _navi.Pop() {0:x} ", nativePointer);
-            };
-
-            push.Resize(500, 100);
-            pop.Resize(500, 100);
-            label.Resize(500, 100);
-            box.SetLayoutCallback(() =>
-            {
-                Console.WriteLine("Layout callback with : {0}", box.Geometry);
-                var rect = box.Geometry;
-                label.Move(rect.X, rect.Y);
-                push.Move(rect.X, rect.Y + 100);
-                pop.Move(rect.X, rect.Y + 200);
-            });
-
-            box.PackEnd(label);
-            box.PackEnd(push);
-            box.PackEnd(pop);
-            return box;
-        }
+        }        
     }
 }

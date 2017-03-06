@@ -368,20 +368,20 @@ namespace ElmSharp
                 case GestureType.LongTap:
                 case GestureType.DoubleTap:
                 case GestureType.TripleTap:
-                    action(Marshal.PtrToStructure(event_info, typeof(TapData)));
+                    action(Marshal.PtrToStructure<TapData>(event_info));
                     break;
                 case GestureType.Momentum:
-                    action(Marshal.PtrToStructure(event_info, typeof(MomentumData)));
+                    action(Marshal.PtrToStructure<MomentumData>(event_info));
                     break;
                 case GestureType.Line:
                 case GestureType.Flick:
-                    action(Marshal.PtrToStructure(event_info, typeof(LineData)));
+                    action(Marshal.PtrToStructure<LineData>(event_info));
                     break;
                 case GestureType.Zoom:
-                    action(Marshal.PtrToStructure(event_info, typeof(ZoomData)));
+                    action(Marshal.PtrToStructure<ZoomData>(event_info));
                     break;
                 case GestureType.Rotate:
-                    action(Marshal.PtrToStructure(event_info, typeof(RotateData)));
+                    action(Marshal.PtrToStructure<RotateData>(event_info));
                     break;
             }
         }
@@ -401,7 +401,7 @@ namespace ElmSharp
             /// </summary>
             public Int32 Y;
 
-            #pragma warning disable 3003
+#pragma warning disable 3003
             /// <summary>
             /// The number of fingers tapped.
             /// </summary>
@@ -411,7 +411,7 @@ namespace ElmSharp
             /// The timestamp.
             /// </summary>
             public UInt32 Timestamp;
-            #pragma warning restore 3003
+#pragma warning restore 3003
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -437,7 +437,7 @@ namespace ElmSharp
             /// </summary>
             public Int32 Y2;
 
-            #pragma warning disable 3003
+#pragma warning disable 3003
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
@@ -462,7 +462,7 @@ namespace ElmSharp
             /// Number of fingers.
             /// </summary>
             public UInt32 FingersCount;
-            #pragma warning restore 3003
+#pragma warning restore 3003
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -488,7 +488,7 @@ namespace ElmSharp
             /// </summary>
             public Int32 Y2;
 
-            #pragma warning disable 3003
+#pragma warning disable 3003
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
@@ -513,7 +513,7 @@ namespace ElmSharp
             /// Number of fingers.
             /// </summary>
             public UInt32 FingersCount;
-            #pragma warning restore 3003
+#pragma warning restore 3003
 
             /// <summary>
             /// Angle (direction) of lines.
@@ -590,20 +590,24 @@ namespace ElmSharp
         {
             public static double DefaultLongTapTimeout
             {
-                get {
+                get
+                {
                     return Interop.Elementary.elm_config_glayer_long_tap_start_timeout_get();
                 }
-                set {
+                set
+                {
                     Interop.Elementary.elm_config_glayer_long_tap_start_timeout_set(value);
                 }
             }
 
             public static double DefaultDoubleTapTimeout
             {
-                get {
+                get
+                {
                     return Interop.Elementary.elm_config_glayer_double_tap_timeout_get();
                 }
-                set {
+                set
+                {
                     Interop.Elementary.elm_config_glayer_double_tap_timeout_set(value);
                 }
             }

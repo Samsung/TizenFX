@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 
 namespace ElmSharp
 {
@@ -36,7 +35,8 @@ namespace ElmSharp
         Expand
     }
 
-    public class ToolbarItemEventArgs : EventArgs {
+    public class ToolbarItemEventArgs : EventArgs
+    {
         public ToolbarItem Item { get; private set; }
 
         internal static ToolbarItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)

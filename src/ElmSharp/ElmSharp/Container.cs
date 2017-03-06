@@ -27,11 +27,11 @@ namespace ElmSharp
         {
         }
 
-       public override Color BackgroundColor
+        public override Color BackgroundColor
         {
             set
             {
-                if(value.IsDefault)
+                if (value.IsDefault)
                 {
                     SetPartColor("bg", Color.Transparent);
                 }

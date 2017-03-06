@@ -43,7 +43,7 @@ namespace ElmSharp
             set
             {
                 var swallowContent = GetPartContent("elm.swallow.rectangle");
-                if(swallowContent == IntPtr.Zero)
+                if (swallowContent == IntPtr.Zero)
                 {
                     Interop.Elementary.elm_bg_color_set(RealHandle, value.R, value.G, value.B);
                     swallowContent = GetPartContent("elm.swallow.rectangle");
@@ -68,11 +68,11 @@ namespace ElmSharp
         {
             get
             {
-                return (BackgroundOptions) Interop.Elementary.elm_bg_option_get(RealHandle);
+                return (BackgroundOptions)Interop.Elementary.elm_bg_option_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_bg_option_set(RealHandle, (Interop.Elementary.BackgroundOptions) value);
+                Interop.Elementary.elm_bg_option_set(RealHandle, (Interop.Elementary.BackgroundOptions)value);
             }
         }
 
