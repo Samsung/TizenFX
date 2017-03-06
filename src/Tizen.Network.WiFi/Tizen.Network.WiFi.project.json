@@ -3,7 +3,7 @@
     "NETStandard.Library": "1.6.0",
     "System.Threading.Thread": "4.3.0",
     "Tizen": "1.0.2",
-    "Tizen.Network.Connection": "1.0.2"
+    "Tizen.Network.Connection": "1.0.10"
   },
   "frameworks": {
     "netstandard1.3": {}
