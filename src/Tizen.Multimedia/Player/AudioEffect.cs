@@ -26,12 +26,18 @@ namespace Tizen.Multimedia
 
         internal AudioEffect(Player owner)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player = owner;
 
             bool available = false;
             int ret = Interop.Player.AudioEffectEqualizerIsAvailable(Player.GetHandle(), out available);
             PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+
+            IsAvailable = available;
+
+            if (IsAvailable == false)
+            {
+                return;
+            }
 
             int count = 0;
             ret = Interop.Player.AudioEffectGetEqualizerBandsCount(Player.GetHandle(), out count);
@@ -42,13 +48,11 @@ namespace Tizen.Multimedia
             ret = Interop.Player.AudioEffectGetEqualizerLevelRange(Player.GetHandle(), out min, out max);
             PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
 
-            IsAvailable = available;
             Count = count;
             MinBandLevel = min;
             MaxBandLevel = max;
 
             _bands = new EqualizerBand[count];
-            Log.Debug(PlayerLog.Tag, "available : " + available + ", count : " + count + ", min : " + min + ", max : " + max);
         }
 
         /// <summary>
