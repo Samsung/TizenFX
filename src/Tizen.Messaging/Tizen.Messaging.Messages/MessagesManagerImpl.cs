@@ -103,11 +103,6 @@ namespace Tizen.Messaging.Messages
 
         internal Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
-            if (message == null)
-            {
-                MessagesErrorFactory.ThrowMessagesException((int)MessagesError.InvalidParameter);
-            }
-
             var task = new TaskCompletionSource<SentResult>();
 
             _messageSentCallback = (int result, IntPtr data) =>
@@ -132,11 +127,6 @@ namespace Tizen.Messaging.Messages
 
         internal Task<IEnumerable<Message>> SearchMessageAsync(MessagesSearchFilter filter)
         {
-            if (filter == null)
-            {
-                MessagesErrorFactory.ThrowMessagesException((int)MessagesError.InvalidParameter);
-            }
-
             return Task.Run<IEnumerable<Message>>(() =>
             {
                 List<Message> messageList = new List<Message>();
