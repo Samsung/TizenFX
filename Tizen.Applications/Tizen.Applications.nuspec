@@ -16,6 +16,5 @@
 	</metadata>
 	<files>
 		<file src="bin/$Configuration$/Tizen.Applications.dll" target="lib/netstandard1.3" />
-		<file src="bin/$Configuration$/Net45/Tizen.Applications.dll" target="lib/net45" />
 	</files>
 </package>
