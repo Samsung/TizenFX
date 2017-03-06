@@ -1,6 +1,6 @@
 Name:       csapi-information
 Summary:    Tizen Information API for C#
-Version:    1.0.1
+Version:    1.0.2
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
