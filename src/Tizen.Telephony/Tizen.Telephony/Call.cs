@@ -91,7 +91,7 @@ namespace Tizen.Telephony
         /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
         /// <exception cref="NotSupportedException">Incase of Telephony is not supported</exception>>
         /// <exception cref="OutOfMemoryException">Incase of Out of Memory</exception>>
-        public List<CallHandle> GetCallHandleList()
+        public IEnumerable<CallHandle> GetCallHandleList()
         {
             uint count;
             _callList = new IntPtr();
