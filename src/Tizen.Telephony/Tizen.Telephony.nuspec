@@ -11,11 +11,10 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <description>Telephony API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.4" />
+      <dependency id="Tizen" version="1.0.5" />
     </dependencies>
   </metadata>
   <files>
     <file src="bin/$Configuration$/Tizen.Telephony.dll" target="lib/netstandard1.3" />
-    <file src="bin/$Configuration$/Net45/Tizen.Telephony.dll" target="lib/net45" />
   </files>
 </package>
