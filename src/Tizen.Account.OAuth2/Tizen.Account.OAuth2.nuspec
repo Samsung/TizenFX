@@ -16,6 +16,5 @@
   </metadata>
   <files>
     <file src="bin/$Configuration$/Tizen.Account.OAuth2.dll" target="lib/netstandard1.3" />
-    <file src="bin/$Configuration$/Net45/Tizen.Account.OAuth2.dll" target="lib/net45" />
   </files>
 </package>
