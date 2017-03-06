@@ -156,7 +156,7 @@ namespace Tizen.Telephony
         /// 2. If the operation is not supported on device
         /// 3. If the Operation Failed
         /// </exception>
-        public static IEnumerable<SlotHandle> Init()
+        public static List<SlotHandle> Init()
         {
             //DeInitialize Previous Handles if present
             if (_isInitialized)

@@ -58,7 +58,7 @@ namespace Tizen.Telephony
         /// 1. Operation Not Supported
         /// 2. Operation Failed
         /// </exception>
-        public void SetNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
+        public void SetNotificationId(List<ChangeNotificationEventArgs.Notification> list)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Tizen.Telephony
         /// 1. Operation Not Supported
         /// 2. Operation Failed
         /// </exception>
-        public void RemoveNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
+        public void RemoveNotificationId(List<ChangeNotificationEventArgs.Notification> list)
         {
             foreach (ChangeNotificationEventArgs.Notification n in list)
             {
