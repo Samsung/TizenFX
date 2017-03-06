@@ -21,21 +21,19 @@ namespace Tizen.Uix.InputMethodManager
 {
     /// <summary>
     /// This class provides the functions for launching input method editor (IME) list and selector settings. A user can manage the installed IMEs in the system.
-    /// </summary>
-    /// <overview>
     /// Input method editor (IME) is an input panel that lets users provide input and the platform receives the text data entered.
     /// Manager is a module for managing the installed IMEs.
     /// IME developers can use this module to open the installed IME list or selector menu after their IME installation and then guide to select the installed IME.
-    /// </overview>
+    /// </summary>
     public static class Manager
     {
         /// <summary>
         /// Requests to open the installed IME list menu.
         /// This api provides the installed IME list menu for the IME developers who might want to open it to enable their IME.
         /// </summary>
-        /// <Privilege>
+        /// <privilege>
         /// http://tizen.org/privilege/imemanager
-        /// </Privilege>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur if:
         /// 1) The application does not have the privilege to call this function
@@ -55,9 +53,9 @@ namespace Tizen.Uix.InputMethodManager
         /// Requests to open the IME selector menu.
         /// This api provides the IME selector menu for the IME or other application developers who might want to change the default IME.
         /// </summary>
-        /// <Privilege>
+        /// <privilege>
         /// http://tizen.org/privilege/imemanager
-        /// </Privilege>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur if:
         /// 1) The application does not have the privilege to call this function
@@ -77,9 +75,9 @@ namespace Tizen.Uix.InputMethodManager
         /// Checks if the specific IME is enabled or disabled in the system keyboard setting.
         /// The IME developers can use this property to check if their IME is enabled or not.
         /// </summary>
-        /// <Privilege>
+        /// <privilege>
         /// http://tizen.org/privilege/imemanager
-        /// </Privilege>
+        /// </privilege>
         /// <param name="appId">The application ID of the IME</param>
         /// <returns>The On (enabled) and Off (disabled) state of the IME</returns>
         /// <exception cref="ArgumentException">
@@ -106,9 +104,9 @@ namespace Tizen.Uix.InputMethodManager
         /// <summary>
         /// Checks which IME is the current activated (selected) IME.
         /// </summary>
-        /// <Privilege>
+        /// <privilege>
         /// http://tizen.org/privilege/imemanager
-        /// </Privilege>
+        /// </privilege>
         /// <returns>
         /// Current activated (selected) IME
         /// </returns>
@@ -133,9 +131,9 @@ namespace Tizen.Uix.InputMethodManager
         /// <summary>
         /// Gets the number of IMEs which are enabled (usable).
         /// </summary>
-        /// <Privilege>
+        /// <privilege>
         /// http://tizen.org/privilege/imemanager
-        /// </Privilege>
+        /// </privilege>
         /// <returns>
         /// The number of enabled IMEs
         /// </returns>
