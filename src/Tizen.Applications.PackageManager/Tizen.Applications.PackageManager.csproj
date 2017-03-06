@@ -49,7 +49,9 @@
     <Compile Include="Interop\Interop.PackageManager.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Applications\CertCompareResultType.cs" />
     <Compile Include="Tizen.Applications\CertificateType.cs" />
+    <Compile Include="Tizen.Applications\PackageDrm.cs" />
     <Compile Include="Tizen.Applications\PackageEventState.cs" />
     <Compile Include="Tizen.Applications\Package.cs" />
     <Compile Include="Tizen.Applications\PackageCertificate.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Tizen.Applications\PackageManagerEventArgs.cs" />
     <Compile Include="Tizen.Applications\PackageSizeInformation.cs" />
     <Compile Include="Tizen.Applications\PackageType.cs" />
+    <Compile Include="Tizen.Applications\PermissionType.cs" />
     <Compile Include="Tizen.Applications\SafePackageManagerHandle.cs" />
     <Compile Include="Tizen.Applications\StorageType.cs" />
   </ItemGroup>

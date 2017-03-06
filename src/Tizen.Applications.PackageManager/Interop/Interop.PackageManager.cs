@@ -71,6 +71,22 @@ internal static partial class Interop
             Update = 2
         }
 
+        internal enum CertCompareResultType
+        {
+            Match = 0,
+            Mismatch,
+            LhsNoCert,
+            RhsNoCert,
+            BothNoCert
+        }
+
+        internal enum PackageManagerPermissionType
+        {
+            Normal = 0,
+            Signature,
+            Privilege
+        }
+
         // Any change here might require changes in Tizen.Applications.StorageType enum
         internal enum StorageType
         {
@@ -164,5 +180,26 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move")]
         internal static extern ErrorCode PackageManagerRequestMove(IntPtr request, string name, StorageType moveToStorageType);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info")]
+        internal static extern ErrorCode PackageManagerCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_app_cert_info")]
+        internal static extern ErrorCode PackageManagerCompareCertInfoByApplicationId(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_is_preload_package_by_app_id")]
+        internal static extern ErrorCode PackageManagerIsPreloadPackageByApplicationId(string ApplicationId, out bool IsPreload);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_permission_type")]
+        internal static extern ErrorCode PackageManagerGetPermissionType(string ApplicationId, out PackageManagerPermissionType PermissionType);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_generate_license_request")]
+        internal static extern ErrorCode PackageManagerDrmGenerateLicenseRequest(string responseData, out string requestData, out string licenseUrl);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_register_license")]
+        internal static extern ErrorCode PackageManagerDrmRegisterLicense(string responseData);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_decrypt_package")]
+        internal static extern ErrorCode PackageManagerDrmDecryptPackage(string drmFilePath, string decryptedFilePath);
     }
 }

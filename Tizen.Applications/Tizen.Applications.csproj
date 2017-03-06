@@ -124,6 +124,9 @@
     <Compile Include="../Tizen.Applications.Service/Tizen.Applications/ServiceApplication.cs" />
     <Compile Include="../Tizen.Applications.Service/Tizen.Applications.CoreBackend/ServiceCoreBackend.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/StorageType.cs" />
+    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/CertCompareResultType.cs" />
+    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PermissionType.cs" />
+    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageDrm.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/TizenSynchronizationContext.cs" />
     <Compile Include="../Tizen.Applications.UI/Tizen.Applications.CoreBackend/UICoreBackend.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientationEventArgs.cs" />

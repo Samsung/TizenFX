@@ -205,6 +205,25 @@ namespace Tizen.Applications
             return await tcs.Task.ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Compare certificate information with given package id.
+        /// </summary>
+        /// <param name="packageId">Id of the package</param>
+        /// <returns>Certificate comparison result</returns>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        public CertCompareResultType CompareCertInfo(string packageId)
+        {
+            Interop.PackageManager.CertCompareResultType compareResult;
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerCompareCertInfo(Id, packageId, out compareResult);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                throw PackageManagerErrorFactory.GetException(err, "Failed to compare package cert info");
+            }
+
+            return (CertCompareResultType)compareResult;
+        }
+
         // This method assumes that given arguments are already validated and have valid values.
         internal static Package CreatePackage(IntPtr handle, string pkgId)
         {

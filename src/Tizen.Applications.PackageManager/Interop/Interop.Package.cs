@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 
 using ErrorCode = Interop.PackageManager.ErrorCode;
 using StorageType = Interop.PackageManager.StorageType;
+using CertCompareResultType = Interop.PackageManager.CertCompareResultType;
 
 internal static partial class Interop
 {
@@ -104,5 +105,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_is_accessible")]
         internal static extern ErrorCode PackageInfoIsAccessible(IntPtr handle, out bool accessible);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info")]
+        internal static extern ErrorCode PackageCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType result);
     }
 }

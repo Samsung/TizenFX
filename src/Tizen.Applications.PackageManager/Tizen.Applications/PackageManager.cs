@@ -434,6 +434,151 @@ namespace Tizen.Applications
             return result;
         }
 
+        /// <summary>
+        /// Gets permission type of package which has given application id
+        /// </summary>
+        /// <param name="applicationId">Id of the application</param>
+        /// <returns>Returns permission type.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        public static PermissionType GetPermissionTypeByApplicationId(string applicationId)
+        {
+            Interop.PackageManager.PackageManagerPermissionType permissionType;
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetPermissionType(applicationId, out permissionType);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                throw PackageManagerErrorFactory.GetException(err, "Failed to get permission type.");
+            }
+
+            return (PermissionType)permissionType;
+        }
+
+        /// <summary>
+        /// Gets package's preload attribute which contain given applicion id
+        /// </summary>
+        /// <param name="applicationId">Id of the application</param>
+        /// <returns>Returns true if package is preloaded. Otherwise return false.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        public static bool IsPreloadPackageByApplicationId(string applicationId)
+        {
+            bool isPreloadPackage;
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerIsPreloadPackageByApplicationId(applicationId, out isPreloadPackage);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                throw PackageManagerErrorFactory.GetException(err, "Failed to get preload info");
+            }
+
+            return isPreloadPackage;
+        }
+
+        /// <summary>
+        /// Compare certificate of two packages
+        /// </summary>
+        /// <param name="lhsPackageId">package id to compare</param>
+        /// <param name="rhsPackageId">package id to be compared</param>
+        /// <returns>Returns certificate comparison result.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        public static CertCompareResultType CompareCertInfo(string lhsPackageId, string rhsPackageId)
+        {
+            Interop.PackageManager.CertCompareResultType compareResult;
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerCompareCertInfo(lhsPackageId, rhsPackageId, out compareResult);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                throw PackageManagerErrorFactory.GetException(err, "Failed to compare cert info");
+            }
+
+            return (CertCompareResultType)compareResult;
+        }
+
+        /// <summary>
+        /// Compare certificate of two packages which contain each given application id
+        /// </summary>
+        /// <param name="lhsApplicationId">application id to compare</param>
+        /// <param name="rhsApplicationId">application id to be compared</param>
+        /// <returns>Returns certificate comparison result.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        public static CertCompareResultType CompareCertInfoByApplicationId(string lhsApplicationId, string rhsApplicationId)
+        {
+            Interop.PackageManager.CertCompareResultType compareResult;
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerCompareCertInfoByApplicationId(lhsApplicationId, rhsApplicationId, out compareResult);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                throw PackageManagerErrorFactory.GetException(err, "Failed to compare cert info by application id");
+            }
+
+            return (CertCompareResultType)compareResult;
+        }
+
+        /// <summary>
+        /// Drm nested class. This class has the PackageManager's drm related methods.
+        /// </summary>
+        public static class Drm
+        {
+            /// <summary>
+            /// Generates request for getting license
+            /// </summary>
+            /// <param name="responseData">Response data string of the purchase request</param>
+            /// <returns>Returns package drm information of given response data which contains require data and license url</returns>
+            /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            public static PackageDrm GenerateLicenseRequest(string responseData)
+            {
+                return PackageDrm.GenerateLicenseRequest(responseData);
+
+            }
+
+            /// <summary>
+            /// Registers encrypted license
+            /// </summary>
+            /// <param name="responseData">The response data string of the rights request</param>
+            /// <returns>Returns true if succeed. Otherwise return false</returns>
+            /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            public static bool RegisterLicense(string responseData)
+            {
+                Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmRegisterLicense(responseData);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to register drm license");
+                }
+
+                return true;
+            }
+
+            /// <summary>
+            /// Decrypts contents which is encrypted
+            /// </summary>
+            /// <param name="drmFilePath">Drm file path</param>
+            /// <param name="decryptedFilePath">Decrypted file path</param>
+            /// <returns>Returns true if succeed. Otherwise return false</returns>
+            /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            public static bool DecryptPackage(string drmFilePath, string decryptedFilePath)
+            {
+                Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmDecryptPackage(drmFilePath, decryptedFilePath);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to decrypt drm package");
+                }
+
+                return true;
+            }
+        }
+
         private static void SetPackageManagerEventStatus()
         {
             if (Handle.IsInvalid) return;
