@@ -11,7 +11,7 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <description>Telephony API for Tizen.Net</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.5" />
+      <dependency id="Tizen" version="1.0.6" />
     </dependencies>
   </metadata>
   <files>
