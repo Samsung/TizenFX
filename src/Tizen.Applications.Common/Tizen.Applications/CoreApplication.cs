@@ -73,6 +73,11 @@ namespace Tizen.Applications
         public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
 
         /// <summary>
+        /// Occurs when the device orientation is changed.
+        /// </summary>
+        public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
+
+        /// <summary>
         /// The backend instance.
         /// </summary>
         protected ICoreBackend Backend { get { return _backend; } }
@@ -92,6 +97,7 @@ namespace Tizen.Applications
             _backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
             _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
+            _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
             string[] argsClone = null;
 
@@ -179,6 +185,15 @@ namespace Tizen.Applications
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             RegionFormatChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the device orientation is changed.
+        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// </summary>
+        protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
+        {
+            DeviceOrientationChanged?.Invoke(this, e);
         }
 
         /// <summary>

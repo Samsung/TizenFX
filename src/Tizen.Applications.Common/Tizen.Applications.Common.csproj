@@ -66,6 +66,8 @@
     <Compile Include="Tizen.Applications\AppControlReplyCallback.cs" />
     <Compile Include="Tizen.Applications\ApplicationType.cs" />
     <Compile Include="Tizen.Applications\CoreApplication.cs" />
+    <Compile Include="Tizen.Applications\DeviceOrientation.cs" />
+    <Compile Include="Tizen.Applications\DeviceOrientationEventArgs.cs" />
     <Compile Include="Tizen.Applications\DirectoryInfo.cs" />
     <Compile Include="Tizen.Applications\ResourceManager.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />

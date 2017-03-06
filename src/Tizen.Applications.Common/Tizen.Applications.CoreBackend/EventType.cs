@@ -70,6 +70,11 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         public static readonly EventType RegionFormatChanged = "RegionFormatChanged";
 
+        /// <summary>
+        /// Pre-defined event type. "DeviceOrientationChanged"
+        /// </summary>
+        public static readonly EventType DeviceOrientationChanged = "DeviceOrientationChanged";
+
         private string _typeName;
 
         /// <summary>

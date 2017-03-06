@@ -136,5 +136,20 @@ namespace Tizen.Applications.CoreBackend
                 handler?.Invoke(new RegionFormatChangedEventArgs(region));
             }
         }
+
+        protected virtual void OnDeviceOrientationChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            DeviceOrientation orientation;
+            ErrorCode err = Interop.AppCommon.AppEventGetDeviceOrientation(infoHandle, out orientation);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+            }
+            if (Handlers.ContainsKey(EventType.DeviceOrientationChanged))
+            {
+                var handler = Handlers[EventType.DeviceOrientationChanged] as Action<DeviceOrientationEventArgs>;
+                handler?.Invoke(new DeviceOrientationEventArgs(orientation));
+            }
+        }
     }
 }

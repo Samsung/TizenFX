@@ -27,11 +27,13 @@ namespace Tizen.Applications.CoreBackend
         private IntPtr _lowBatteryEventHandle = IntPtr.Zero;
         private IntPtr _localeChangedEventHandle = IntPtr.Zero;
         private IntPtr _regionChangedEventHandle = IntPtr.Zero;
+        private IntPtr _deviceOrientationChangedEventHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         private Interop.Service.AppEventCallback _onLowMemoryNative;
         private Interop.Service.AppEventCallback _onLowBatteryNative;
         private Interop.Service.AppEventCallback _onLocaleChangedNative;
         private Interop.Service.AppEventCallback _onRegionChangedNative;
+        private Interop.Service.AppEventCallback _onDeviceOrientationChangedNative;
 
         public ServiceCoreBackend()
         {
@@ -43,6 +45,7 @@ namespace Tizen.Applications.CoreBackend
             _onLowBatteryNative = new Interop.Service.AppEventCallback(OnLowBatteryNative);
             _onLocaleChangedNative = new Interop.Service.AppEventCallback(OnLocaleChangedNative);
             _onRegionChangedNative = new Interop.Service.AppEventCallback(OnRegionChangedNative);
+            _onDeviceOrientationChangedNative = new Interop.Service.AppEventCallback(OnDeviceOrientationChangedNative);
         }
 
         public override void Exit()
@@ -78,6 +81,12 @@ namespace Tizen.Applications.CoreBackend
                 Log.Error(LogTag, "Failed to add event handler for RegionFormatChanged event. Err = " + err);
             }
 
+            err = Interop.Service.AddEventHandler(out _deviceOrientationChangedEventHandle, AppEventType.DeviceOrientationChanged, _onDeviceOrientationChangedNative, IntPtr.Zero);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for DeviceOrientationChanged event. Err = " + err);
+            }
+
             err = Interop.Service.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
@@ -109,6 +118,11 @@ namespace Tizen.Applications.CoreBackend
                 if (_regionChangedEventHandle != IntPtr.Zero)
                 {
                     Interop.Service.RemoveEventHandler(_regionChangedEventHandle);
+                }
+
+                if (_deviceOrientationChangedEventHandle != IntPtr.Zero)
+                {
+                    Interop.Service.RemoveEventHandler(_deviceOrientationChangedEventHandle);
                 }
 
                 _disposedValue = true;
@@ -165,6 +179,11 @@ namespace Tizen.Applications.CoreBackend
         protected override void OnRegionChangedNative(IntPtr infoHandle, IntPtr data)
         {
             base.OnRegionChangedNative(infoHandle, data);
+        }
+
+        protected override void OnDeviceOrientationChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            base.OnDeviceOrientationChangedNative(infoHandle, data);
         }
 
     }
