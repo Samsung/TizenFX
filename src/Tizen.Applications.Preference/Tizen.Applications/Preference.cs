@@ -119,7 +119,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    throw PreferenceErrorFactory.GetException((int)ErrorCode.KeyNotAvailable);
+                    throw PreferenceErrorFactory.GetException((int)PreferenceErrorFactory.PreferenceError.KeyNotAvailable);
                 }
             }
 
