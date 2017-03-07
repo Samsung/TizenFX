@@ -131,12 +131,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageTouchEventHandler != null)
+                _stageTouchEventHandler -= value;
+
+                if (_stageTouchEventHandler == null && _stageTouchCallback != null)
                 {
                     TouchSignal().Disconnect(_stageTouchCallback);
                 }
-
-                _stageTouchEventHandler -= value;
             }
         }
 
@@ -200,12 +200,13 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageWheelEventHandler != null)
+                _stageWheelEventHandler -= value;
+
+                if (_stageWheelEventHandler == null && _stageWheelCallback != null)
                 {
                     WheelEventSignal().Disconnect(_stageWheelCallback);
                 }
 
-                _stageWheelEventHandler -= value;
             }
         }
 
@@ -269,12 +270,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageKeyEventHandler != null)
+                _stageKeyEventHandler -= value;
+
+                if (_stageKeyEventHandler == null && _stageKeyCallback != null)
                 {
                     KeyEventSignal().Disconnect(_stageKeyCallback);
                 }
-
-                _stageKeyEventHandler -= value;
             }
         }
 
@@ -318,12 +319,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageEventProcessingFinishedEventHandler != null)
+                _stageEventProcessingFinishedEventHandler -= value;
+
+                if (_stageEventProcessingFinishedEventHandler == null && _stageEventProcessingFinishedEventCallback != null)
                 {
                     EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallback);
                 }
-
-                _stageEventProcessingFinishedEventHandler -= value;
             }
         }
 
@@ -359,12 +360,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageContextLostEventHandler != null)
+                _stageContextLostEventHandler -= value;
+
+                if (_stageContextLostEventHandler == null && _stageContextLostEventCallback != null)
                 {
                     ContextLostSignal().Disconnect(_stageContextLostEventCallback);
                 }
-
-                _stageContextLostEventHandler -= value;
             }
         }
 
@@ -401,12 +402,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageContextRegainedEventHandler != null)
+                _stageContextRegainedEventHandler -= value;
+
+                if (_stageContextRegainedEventHandler == null && _stageContextRegainedEventCallback != null)
                 {
                     ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallback);
                 }
-
-                _stageContextRegainedEventHandler -= value;
             }
         }
 
@@ -442,12 +443,13 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_stageSceneCreatedEventHandler != null)
+                _stageSceneCreatedEventHandler -= value;
+
+                if (_stageSceneCreatedEventHandler == null && _stageSceneCreatedEventCallback != null)
                 {
                     SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallback);
                 }
 
-                _stageSceneCreatedEventHandler -= value;
             }
         }
 

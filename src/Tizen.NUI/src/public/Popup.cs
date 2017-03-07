@@ -140,12 +140,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_popUpOutsideTouchedEventCallback != null)
+                _popUpOutsideTouchedEventHandler -= value;
+
+                if (_popUpOutsideTouchedEventCallback == null && _popUpOutsideTouchedEventCallback != null)
                 {
                     OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallback);
-
                 }
-                _popUpOutsideTouchedEventHandler -= value;
             }
         }
 
@@ -173,11 +173,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_popUpShowingEventCallback != null)
+                _popUpShowingEventHandler -= value;
+
+                if (_popUpShowingEventCallback == null && _popUpShowingEventCallback != null)
                 {
                     ShowingSignal().Disconnect(_popUpShowingEventCallback);
                 }
-                _popUpShowingEventHandler -= value;
             }
         }
 
@@ -206,11 +207,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_popUpShownEventCallback == null)
+                _popUpShownEventHandler -= value;
+
+                if (_popUpShownEventCallback == null && _popUpShownEventCallback != null)
                 {
                     ShownSignal().Disconnect(_popUpShownEventCallback);
                 }
-                _popUpShownEventHandler -= value;
             }
         }
 
@@ -238,11 +240,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_popUpHidingEventCallback != null)
+                _popUpHidingEventHandler -= value;
+
+                if (_popUpHidingEventCallback == null && _popUpHidingEventCallback != null)
                 {
                     HidingSignal().Disconnect(_popUpHidingEventCallback);
                 }
-                _popUpHidingEventHandler -= value;
             }
         }
 
@@ -269,11 +272,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_popUpHiddenEventCallback != null)
+                _popUpHiddenEventHandler -= value;
+
+                if (_popUpHiddenEventCallback == null && _popUpHiddenEventCallback != null)
                 {
                     HiddenSignal().Disconnect(_popUpHiddenEventCallback);
                 }
-                _popUpHiddenEventHandler -= value;
             }
         }
 

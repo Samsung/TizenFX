@@ -100,14 +100,6 @@ namespace Tizen.NUI
             }
         }
 
-        public bool Visibility
-        {
-            get
-            {
-                return IsVisible();
-            }
-        }
-
         public float Opacity
         {
             get

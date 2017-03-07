@@ -24,8 +24,8 @@ namespace HelloTestExample
     {
         private void LOG(string _str)
         {
-            Tizen.Log.Debug("NUI", _str);
-            //Console.WriteLine("[NUI]" + _str);
+            Tizen.Log.Debug("NUI-APP", _str);
+            //Console.WriteLine("[NUI-APP]" + _str);
         }
 
         private Animation _animation;
@@ -40,7 +40,7 @@ namespace HelloTestExample
         {
         }
 
-        public Example(string stylesheet, Application.WindowMode windowMode) : base(stylesheet, windowMode)
+        public Example(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
         {
         }
 
@@ -49,6 +49,7 @@ namespace HelloTestExample
             LOG("Customized Application Initialize event handler");
             _stage = Stage.Instance;
             _stage.Touch += OnStageTouched;
+            _stage.Key += OnStageKeyEvent;
 
             // Add a _text label to the stage
             _text = new TextLabel("Hello NUI World");
@@ -58,6 +59,45 @@ namespace HelloTestExample
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
             _stage.GetDefaultLayer().Add(_text);
+
+            _animation = new Animation
+            {
+                Duration = 2000
+            };
+
+            LOG("[1]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+
+            _animation.AnimateTo(_text, "PositionX", _text.PositionX + 200.0f);
+            _animation.AnimateTo(_text, "SizeHeight", _text.SizeHeight + 200.0f);
+
+            LOG("[2]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
+
+            _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), Vector3.XAxis), 0, 500);
+            _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), Vector3.XAxis), 500, 1000);
+            _animation.EndAction = Animation.EndActions.Discard;
+        }
+
+        public void OnStageKeyEvent(object sender, Stage.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "Up")
+                {
+                    if (_animation)
+                    {
+                        _animation.Finished += AnimationFinished;
+                        LOG("AnimationFinished added!");
+                    }
+                }
+                else if (e.Key.KeyPressedName == "Down")
+                {
+                    if (_animation)
+                    {
+                        _animation.Finished -= AnimationFinished;
+                        LOG("AnimationFinished removed!");
+                    }
+                }
+            }
         }
 
         // Callback for _animation finished signal handling
@@ -69,7 +109,6 @@ namespace HelloTestExample
                 LOG("Duration= " + _animation.Duration);
                 LOG("EndAction= " + _animation.EndAction);
             }
-
             LOG("[4]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
         }
 
@@ -80,41 +119,11 @@ namespace HelloTestExample
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
                 LOG("Customized Stage Touch event handler");
-                // Create a new _animation
-                if (_animation)
-                {
-                    //_animation.Stop(Dali.Constants.Animation.EndAction.Stop);
-                    _animation.Reset();
-                }
 
-                _animation = new Animation
-                {
-                    Duration = 2000
-                };
-
-                LOG("[1]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
-
-                _animation.AnimateTo(_text, "PositionX", _text.PositionX + 200.0f);
-                _animation.AnimateTo(_text, "SizeHeight", _text.SizeHeight + 200.0f);
-
-                LOG("[2]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
-
-                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), Vector3.XAxis), 0, 500);
-                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), Vector3.XAxis), 500, 1000);
-
-                //_animation.AnimateBy(_text, "ScaleX", 3.0f, 1000, 1500);
-                //_animation.AnimateBy(_text, "ScaleY", 4.0f, 1250, 2000);
-                _animation.EndAction = Animation.EndActions.Discard;
-
-                // Connect the signal callback for animaiton finished signal
-                _animation.Finished += AnimationFinished;
-
-                
                 // Play the _animation
                 _animation.Play();
 
                 LOG("[3]_text PositionX =" + _text.PositionX + "  SizeHeight=" + _text.SizeHeight);
-
             }
         }
 

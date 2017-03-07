@@ -201,6 +201,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for the direction of the main axis in the flex container. This determines
+        /// the direction that flex items are laid out in the flex container.
+        /// </summary>
         public enum FlexDirectionType
         {
             Column,
@@ -216,6 +220,10 @@ namespace Tizen.NUI
             RTL
         }
 
+        /// <summary>
+        /// Enumeration for the alignment of the flex items when the items do not use all available
+        /// space on the main-axis.
+        /// </summary>
         public enum Justification
         {
             JustifyFlexStart,
@@ -225,6 +233,10 @@ namespace Tizen.NUI
             JustifySpaceAround
         }
 
+        /// <summary>
+        /// Enumeration for the alignment of the flex items or lines when the items or lines do not
+        /// use all the available space on the cross-axis.
+        /// </summary>
         public enum Alignment
         {
             AlignAuto,
@@ -233,6 +245,11 @@ namespace Tizen.NUI
             AlignFlexEnd,
             AlignStretch
         }
+
+        /// <summary>
+        /// Enumeration for the wrap type of the flex container when there is no enough room for
+        /// all the items on one flex line.
+        /// </summary>
         public enum WrapType
         {
             NoWrap,
@@ -247,82 +264,105 @@ namespace Tizen.NUI
             CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
         }
 
-        public int ContentDirection
+        /// <summary>
+        /// The primary direction in which content is ordered
+        /// </summary>
+        public ContentDirectionType ContentDirection
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.CONTENT_DIRECTION).Get(ref temp);
-                return temp;
+                return (ContentDirectionType)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        public int FlexDirection
+
+        /// <summary>
+        /// The direction of the main-axis which determines the direction that flex items are laid out
+        /// </summary>
+        public FlexDirectionType FlexDirection
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.FLEX_DIRECTION).Get(ref temp);
-                return temp;
+                return (FlexDirectionType)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        public int FlexWrap
+
+        /// <summary>
+        /// Whether the flex items should wrap or not if there is no enough room for them on one flex line
+        /// </summary>
+        public WrapType FlexWrap
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.FLEX_WRAP).Get(ref temp);
-                return temp;
+                return (WrapType)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        public int JustifyContent
+
+        /// <summary>
+        /// The alignment of flex items when the items do not use all available space on the main-axis
+        /// </summary>
+        public Justification JustifyContent
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.JUSTIFY_CONTENT).Get(ref temp);
-                return temp;
+                return (Justification)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        public int AlignItems
+
+        /// <summary>
+        /// The alignment of flex items when the items do not use all available space on the cross-axis
+        /// </summary>
+        public Alignment AlignItems
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.ALIGN_ITEMS).Get(ref temp);
-                return temp;
+                return (Alignment)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-        public int AlignContent
+
+        /// <summary>
+        /// Similar to "alignItems", but it aligns flex lines, so only works when there are multiple lines
+        /// </summary>
+        public Alignment AlignContent
         {
             get
             {
                 int temp = 0;
                 GetProperty(FlexContainer.Property.ALIGN_CONTENT).Get(ref temp);
-                return temp;
+                return (Alignment)temp;
             }
             set
             {
-                SetProperty(FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue((int)value));
             }
         }
 

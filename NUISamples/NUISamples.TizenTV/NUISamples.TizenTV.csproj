@@ -53,7 +53,7 @@
     <None Include="shared\res\NUISamples.TizenTV.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\transition.cs" />
+    <Compile Include="examples\hello-test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

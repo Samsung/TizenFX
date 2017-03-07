@@ -145,11 +145,11 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_preFocusChangeEventHandler != null)
+                _preFocusChangeEventHandler -= value;
+                if (_preFocusChangeEventHandler == null && _preFocusChangeCallback != null)
                 {
                     PreFocusChangeSignal().Disconnect(_preFocusChangeCallback);
                 }
-                _preFocusChangeEventHandler -= value;
             }
         }
 
@@ -222,11 +222,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_focusChangedEventCallback != null)
+                _focusChangedEventHandler -= value;
+
+                if (_focusChangedEventCallback == null && _focusChangedEventCallback != null)
                 {
                     FocusChangedSignal().Disconnect(_focusChangedEventCallback);
                 }
-                _focusChangedEventHandler -= value;
             }
         }
 
@@ -296,11 +297,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_focusGroupChangedEventCallback != null)
+                _focusGroupChangedEventHandler -= value;
+
+                if (_focusGroupChangedEventCallback == null && _focusGroupChangedEventCallback != null)
                 {
                     FocusGroupChangedSignal().Disconnect(_focusGroupChangedEventCallback);
                 }
-                _focusGroupChangedEventHandler -= value;
             }
         }
 
@@ -357,11 +359,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_focusedViewEnterKeyEventCallback != null)
+                _focusedViewEnterKeyEventHandler -= value;
+
+                if (_focusedViewEnterKeyEventCallback == null && _focusedViewEnterKeyEventCallback != null)
                 {
                     FocusedActorEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
                 }
-                _focusedViewEnterKeyEventHandler -= value;
             }
         }
 

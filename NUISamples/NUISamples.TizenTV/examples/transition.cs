@@ -124,13 +124,13 @@ namespace MyCSharpExample
 
                 ImageVisualMap _imageViewMap = new ImageVisualMap();
                 _imageViewMap.URL = "/home/owner/apps_rw/NUISamples.TizenTV/res/images/gallery-" + myCount + ".jpg";
-                _imageViewMap.FittingMode = FittingModeType.SHRINK_TO_FIT;
+                _imageViewMap.FittingMode = FittingModeType.ShrinkToFit;
                 _imageViewMap.DepthIndex = 0;
 
                 TextVisualMap _textVisualMap = new TextVisualMap();
                 _textVisualMap.Text = "TEXT-" + myCount;
                 _textVisualMap.PointSize = 20.0f; //20 + 2 * myCount;
-                _textVisualMap.TextColor = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+                _textVisualMap.TextColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 _textVisualMap.DepthIndex = 1;
 
                 myContentView.ImageVisual = _imageViewMap;
