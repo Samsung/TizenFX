@@ -67,6 +67,9 @@ namespace Tizen.Maps
             set { handle.Url = value; }
         }
 
+        /// <summary>
+        /// String that represents this category
+        /// </summary>
         public override string ToString()
         {
             return $"{Name}";

@@ -65,6 +65,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Id for this route
+        /// </summary>
         public string Id
         {
             get

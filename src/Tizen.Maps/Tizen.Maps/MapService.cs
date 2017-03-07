@@ -39,6 +39,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="serviceProvider">Name of map service provider</param>
         /// <param name="serviceProviderKey">Key string provided by map service provider</param>
+        /// <exception cref="System.ArgumentException">Throws if parameters are invalid</exception>
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory, connect to service</exception>
         /// <exception cref="System.UnauthorizedAccessException">Throws if user does not have privilege to access this API</exception>
         public MapService(string serviceProvider, string serviceProviderKey)

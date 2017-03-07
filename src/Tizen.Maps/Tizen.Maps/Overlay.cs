@@ -31,6 +31,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates"></param>
         /// <param name="objectToContain"></param>
+        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
         public Overlay(Geocoordinates coordinates, EvasObject objectToContain) : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
         {
         }

@@ -22,6 +22,8 @@ namespace Tizen.Maps
     /// </summary>
     public abstract class MapObject
     {
+        internal MapObject() { }
+
         /// <summary>
         /// Map Object's visibility
         /// </summary>

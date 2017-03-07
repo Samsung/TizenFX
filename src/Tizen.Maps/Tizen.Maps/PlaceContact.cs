@@ -54,6 +54,9 @@ namespace Tizen.Maps
         /// </summary>
         public string Value { get { return _value; } }
 
+        /// <summary>
+        /// String that represents this place contact
+        /// </summary>
         public override string ToString()
         {
             return $"{Label}: {Value}";

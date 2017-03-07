@@ -189,6 +189,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// String that represents this address
+        /// </summary>
         public override string ToString()
         {
             return $"{Freetext}";

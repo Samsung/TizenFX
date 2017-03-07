@@ -53,6 +53,9 @@ namespace Tizen.Maps
         /// </summary>
         public string Text { get { return _text; } }
 
+        /// <summary>
+        /// String that represents this attribute
+        /// </summary>
         public override string ToString()
         {
             return $"{Label}: {Text}";

@@ -185,6 +185,7 @@ namespace Tizen.Maps
         /// Creates Pin type parker
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
+        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
         public Pin(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Pin)
         {
@@ -195,6 +196,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image path</param>
+        /// <exception cref="ArgumentException">Throws if input coordinates or imagePath are invalid</exception>
         public Pin(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
         {
@@ -212,6 +214,7 @@ namespace Tizen.Maps
         /// Creates Sticker type parker
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
+        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
         public Sticker(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Sticker)
         {
@@ -222,6 +225,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image path</param>
+        /// <exception cref="ArgumentException">Throws if input coordinates or imagePath are invalid</exception>
         public Sticker(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
         {

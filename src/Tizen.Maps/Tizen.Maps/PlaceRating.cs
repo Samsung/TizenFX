@@ -42,6 +42,9 @@ namespace Tizen.Maps
         /// </summary>
         public double Average { get { return _average; } }
 
+        /// <summary>
+        /// String that represents this place rating
+        /// </summary>
         public override string ToString()
         {
             return $"{Average}({UserCount} reviews)";

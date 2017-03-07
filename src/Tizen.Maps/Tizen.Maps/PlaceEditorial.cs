@@ -53,6 +53,9 @@ namespace Tizen.Maps
         /// </summary>
         public PlaceMedia Media { get { return _media; } }
 
+        /// <summary>
+        /// String that represents this place media
+        /// </summary>
         public override string ToString()
         {
             return $"{Description}";

@@ -30,8 +30,8 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="topLeft">Top left coordinate of the area</param>
         /// <param name="bottomRight">Bottom left coordinate of the area</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
-        /// <exception cref="InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.ArgumentException">Throws if input coordinates are invalid</exception>
+        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public Area(Geocoordinates topLeft, Geocoordinates bottomRight)
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -48,8 +48,8 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="center">Coordinate for center of the area</param>
         /// <param name="radius">Radius of the area</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
-        /// <exception cref="InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.ArgumentException">Throws if input coordinates are invalid</exception>
+        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public Area(Geocoordinates center, double radius)
         {
             var err = Interop.ErrorCode.InvalidParameter;

@@ -88,8 +88,8 @@ internal static class ErrorCodeExtensions
         switch (err)
         {
             //case ErrorCode.None:
-            case Interop.ErrorCode.PermissionDenied: return new UnauthorizedAccessException(errMessage);
-            case Interop.ErrorCode.InvalidParameter: return new ArgumentException(errMessage);
+            case Interop.ErrorCode.PermissionDenied: return new System.UnauthorizedAccessException(errMessage);
+            case Interop.ErrorCode.InvalidParameter: return new System.ArgumentException(errMessage);
             case Interop.ErrorCode.OutOfMemory:
             case Interop.ErrorCode.NotSupported:
             case Interop.ErrorCode.ConnectionTimeOut:
@@ -101,7 +101,7 @@ internal static class ErrorCodeExtensions
             case Interop.ErrorCode.Unknown:
             case Interop.ErrorCode.ServiceNotAvailable:
             case Interop.ErrorCode.NotFound:
-            default: return new InvalidOperationException(errMessage);
+            default: return new System.InvalidOperationException(errMessage);
         }
     }
 }

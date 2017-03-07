@@ -64,6 +64,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// String that represents this coordinate
+        /// </summary>
         public override string ToString()
         {
             return $"[{Latitude}, {Longitude}]";
