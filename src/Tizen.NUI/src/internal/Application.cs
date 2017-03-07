@@ -26,7 +26,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
       */
-    public class NUIApplicationInitEventArgs : EventArgs
+    internal class NUIApplicationInitEventArgs : EventArgs
     {
         private Application _application;
 
@@ -51,7 +51,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationTerminate signal
       *
       */
-    public class NUIApplicationTerminateEventArgs : EventArgs
+    internal class NUIApplicationTerminateEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -75,7 +75,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationPause signal
       *
       */
-    public class NUIApplicationPauseEventArgs : EventArgs
+    internal class NUIApplicationPauseEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -99,7 +99,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationResume signal
       *
       */
-    public class NUIApplicationResumeEventArgs : EventArgs
+    internal class NUIApplicationResumeEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -123,7 +123,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationReset signal
       *
       */
-    public class NUIApplicationResetEventArgs : EventArgs
+    internal class NUIApplicationResetEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -147,7 +147,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationResize signal
       *
       */
-    public class NUIApplicationResizeEventArgs : EventArgs
+    internal class NUIApplicationResizeEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -171,7 +171,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationLanguageChanged signal
       *
       */
-    public class NUIApplicationLanguageChangedEventArgs : EventArgs
+    internal class NUIApplicationLanguageChangedEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -195,7 +195,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationRegionChanged signal
       *
       */
-    public class NUIApplicationRegionChangedEventArgs : EventArgs
+    internal class NUIApplicationRegionChangedEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -219,7 +219,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationBatteryLow signal
       *
       */
-    public class NUIApplicationBatteryLowEventArgs : EventArgs
+    internal class NUIApplicationBatteryLowEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -243,7 +243,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationMemoryLow signal
       *
       */
-    public class NUIApplicationMemoryLowEventArgs : EventArgs
+    internal class NUIApplicationMemoryLowEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -267,7 +267,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationAppControl	 signal
       *
       */
-    public class NUIApplicationAppControlEventArgs : EventArgs
+    internal class NUIApplicationAppControlEventArgs : EventArgs
     {
         private Application _application;
         private IntPtr _voidp;
@@ -303,7 +303,7 @@ namespace Tizen.NUI
         }
     }
 
-    public class Application : BaseHandle
+    internal class Application : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

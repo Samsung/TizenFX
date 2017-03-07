@@ -178,12 +178,13 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_tickCallBack != null)
+                _tickEventHandler -= value;
+
+                if (_tickCallBack == null && _tickCallBack != null)
                 {
                     this.TickSignal().Disconnect(_tickCallBack);
                     _tickCallBack = null;
                 }
-                _tickEventHandler -= value;
             }
         }
         private bool OnTick()

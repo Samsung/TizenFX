@@ -22,26 +22,61 @@ using Tizen.NUI;
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Represents an application that have UI screen. The NUIApplication class has a default stage.
+    /// </summary>
     public class NUIApplication : CoreUIApplication
     {
         private void LOG(string _str)
         {
-            Tizen.Log.Debug("NUI", _str);
+            //Tizen.Log.Debug("NUI", _str);
             //Console.WriteLine("[NUI]" + _str);
         }
 
+        /// <summary>
+        /// The instance of the Application.
+        /// </summary>
+        /// <remarks>
+        /// This application is created before OnCreate() or created event. And the NUIApplication will be terminated when this application is closed.
+        /// </remarks>
         private Application _application;
+
+        /// <summary>
+        /// The instance of the Dali Application extension.
+        /// </summary>
         private ApplicationExtensions _applicationExt;
+
+        /// <summary>
+        /// Store the stylesheet value.
+        /// </summary>
         private string _stylesheet;
+
+        /// <summary>
+        /// Store the window mode value.
+        /// </summary>
         private Application.WindowMode _windowMode;
+
+        /// <summary>
+        /// Store the app mode value.
+        /// </summary>
         private AppMode _appMode;
+
+        /// <summary>
+        /// The instance of the Dali Stage.
+        /// </summary>
         private Stage _stage;
 
+        /// <summary>
+        /// The default constructor.
+        /// </summary>
         public NUIApplication() : base()
         {
             _appMode = AppMode.Default;
         }
 
+        /// <summary>
+        /// The constructor with stylesheet.
+        /// </summary>
         public NUIApplication(string stylesheet) : base()
         {
             //handle the stylesheet
@@ -49,15 +84,20 @@ namespace Tizen.NUI
             _stylesheet = stylesheet;
         }
 
-        public NUIApplication(string stylesheet, Application.WindowMode windowMode) : base()
+        /// <summary>
+        /// The constructor with stylesheet and window mode.
+        /// </summary>
+        public NUIApplication(string stylesheet, WindowMode windowMode) : base()
         {
             //handle the stylesheet and windowMode
             _appMode = AppMode.StyleSheetWithWindowMode;
             _stylesheet = stylesheet;
-            _windowMode = windowMode;
+            _windowMode = (Application.WindowMode)windowMode;
         }
 
-
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnPause()
         {
             base.OnPause();
@@ -65,6 +105,10 @@ namespace Tizen.NUI
             LOG("OnPause() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior before calling OnCreate().
+        /// stage property is initialized in this overrided method.
+        /// </summary>
         protected override void OnPreCreate()
         {
             switch (_appMode)
@@ -89,6 +133,9 @@ namespace Tizen.NUI
             LOG("OnPreCreate() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnResume()
         {
             base.OnResume();
@@ -96,6 +143,9 @@ namespace Tizen.NUI
             LOG("OnResume() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             base.OnAppControlReceived(e);
@@ -107,12 +157,18 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             LOG("OnCreate() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             base.OnLocaleChanged(e);
@@ -120,24 +176,36 @@ namespace Tizen.NUI
             LOG("OnLocaleChanged() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             base.OnLowBattery(e);
             LOG("OnLowBattery() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             base.OnLowMemory(e);
             LOG("OnLowMemory() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             base.OnRegionFormatChanged(e);
             LOG("OnRegionFormatChanged() is called!");
         }
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
         protected override void OnTerminate()
         {
             base.OnTerminate();
@@ -145,11 +213,24 @@ namespace Tizen.NUI
             LOG("OnTerminate() is called!");
         }
 
+        /// <summary>
+        /// The mode of creating NUI application.
+        /// </summary>
         private enum AppMode
         {
             Default = 0,
             StyleSheetOnly = 1,
             StyleSheetWithWindowMode = 2
         }
+
+        /// <summary>
+        /// Enumeration for deciding whether a NUI application window is opaque or transparent.
+        /// </summary>
+        public enum WindowMode
+        {
+            Opaque = 0,
+            Transparent = 1
+        }
+
     }
 }

@@ -80,11 +80,6 @@ namespace Tizen.NUI
 
 
 
-        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void AnimationFinishedEventCallbackType(IntPtr data);
-        private event EventHandler _animationFinishedEventHandler;
-
         /**
         * @brief Create an initialized Animation.
         *
@@ -101,6 +96,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnimationFinishedEventCallbackType(IntPtr data);
+        private event EventHandler _animationFinishedEventHandler;
         /**
         * @brief Event for Finished signal which can be used to subscribe/unsubscribe the event handler
         * Finished signal is emitted when an Animation's animations have finished.
@@ -119,12 +118,12 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_animationFinishedEventHandler != null)
+                _animationFinishedEventHandler -= value;
+
+                if (_animationFinishedEventHandler == null && _animationFinishedEventCallback != null)
                 {
                     FinishedSignal().Disconnect(_animationFinishedEventCallback);
                 }
-
-                _animationFinishedEventHandler -= value;
             }
         }
         private void OnFinished(IntPtr data)
@@ -401,7 +400,7 @@ namespace Tizen.NUI
             }
         }
 
-        public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, AlphaFunction alphaFunction = null)
+        public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -415,12 +414,11 @@ namespace Tizen.NUI
 
             if (alphaFunction != null)
             {
-
-                AnimateBetween(_prop, keyFrames);
+                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
             }
             else
             {
-                AnimateBetween(_prop, keyFrames, alphaFunction);
+                AnimateBetween(_prop, keyFrames, interpolation);
             }
         }
 

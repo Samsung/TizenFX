@@ -104,12 +104,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_keyInputFocusGainedEventHandler != null)
+                _keyInputFocusGainedEventHandler -= value;
+
+                if (_keyInputFocusGainedEventHandler == null && _keyInputFocusGainedCallback != null)
                 {
                     this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
                 }
-
-                _keyInputFocusGainedEventHandler -= value;
             }
         }
 
@@ -146,12 +146,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_keyInputFocusLostEventHandler != null)
+                _keyInputFocusLostEventHandler -= value;
+
+                if (_keyInputFocusLostEventHandler == null && _keyInputFocusLostCallback != null)
                 {
                     this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
                 }
-
-                _keyInputFocusLostEventHandler -= value;
             }
         }
 
@@ -213,12 +213,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_keyEventHandler != null)
+                _keyEventHandler -= value;
+
+                if (_keyEventHandler == null && _keyCallback != null)
                 {
                     this.KeyEventSignal().Disconnect(_keyCallback);
                 }
-
-                _keyEventHandler -= value;
             }
         }
 
@@ -260,12 +260,13 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_onRelayoutEventHandler != null)
+                _onRelayoutEventHandler -= value;
+
+                if (_onRelayoutEventHandler == null && _onRelayoutEventCallback != null)
                 {
                     this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
                 }
 
-                _onRelayoutEventHandler -= value;
             }
         }
 
@@ -328,12 +329,13 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_touchDataEventHandler != null)
+                _touchDataEventHandler -= value;
+
+                if (_touchDataEventHandler == null && _touchDataCallback != null)
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
 
-                _touchDataEventHandler -= value;
             }
         }
 
@@ -401,12 +403,13 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_hoverEventHandler != null)
+                _hoverEventHandler -= value;
+
+                if (_hoverEventHandler == null && _hoverEventCallback != null)
                 {
                     this.HoveredSignal().Disconnect(_hoverEventCallback);
                 }
 
-                _hoverEventHandler -= value;
             }
         }
 
@@ -473,12 +476,13 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_wheelEventHandler != null)
+                _wheelEventHandler -= value;
+
+                if (_wheelEventHandler == null && _wheelEventCallback != null)
                 {
                     this.WheelEventSignal().Disconnect(_wheelEventCallback);
                 }
 
-                _wheelEventHandler -= value;
             }
         }
 
@@ -521,12 +525,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_onStageEventHandler != null)
+                _onStageEventHandler -= value;
+
+                if (_onStageEventHandler == null && _onStageEventCallback != null)
                 {
                     this.OnStageSignal().Disconnect(_onStageEventCallback);
                 }
-
-                _onStageEventHandler -= value;
             }
         }
 
@@ -564,11 +568,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_offStageEventHandler != null)
+                _offStageEventHandler -= value;
+
+                if (_offStageEventHandler == null  && _offStageEventCallback != null)
                 {
                     this.OnStageSignal().Disconnect(_offStageEventCallback);
                 }
-                _offStageEventHandler -= value;
             }
         }
 
@@ -956,6 +961,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Child Property of FlexContainer
+        /// The proportion of the free space in the container the flex item will receive. 
+        /// If all items in the container set this property, their sizes will be proportional to the specified flex factor
+        /// </summary> 
         public float Flex
         {
             get
@@ -969,6 +979,11 @@ namespace Tizen.NUI
                 SetProperty(FlexContainer.ChildProperty.FLEX, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Child Property of FlexContainer
+        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container
+        /// </summary> 
         public int AlignSelf
         {
             get
@@ -982,6 +997,11 @@ namespace Tizen.NUI
                 SetProperty(FlexContainer.ChildProperty.ALIGN_SELF, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Child Property of FlexContainer
+        /// The space around the flex item
+        /// </summary> 
         public Vector4 FlexMargin
         {
             get

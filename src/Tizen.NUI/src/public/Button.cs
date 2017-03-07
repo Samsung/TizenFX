@@ -100,12 +100,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_clickedEventHandler != null)
+                _clickedEventHandler -= value;
+
+                if (_clickedEventHandler == null && _clickedCallback != null)
                 {
                     ClickedSignal().Disconnect(_clickedCallback);
                 }
-
-                _clickedEventHandler -= value;
             }
         }
 
@@ -141,12 +141,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_pressedEventHandler != null)
+                _pressedEventHandler -= value;
+
+                if (_pressedEventHandler == null && _pressedCallback != null)
                 {
                     this.PressedSignal().Disconnect(_pressedCallback);
                 }
-
-                _pressedEventHandler -= value;
             }
         }
 
@@ -175,21 +175,18 @@ namespace Tizen.NUI
                     _releasedCallback = OnReleased;
                     ReleasedSignal().Connect(_releasedCallback);
                 }
-
                 _releasedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_releasedEventHandler != null)
-                    {
-                        ReleasedSignal().Disconnect(_releasedCallback);
-                    }
+                _releasedEventHandler -= value;
 
-                    _releasedEventHandler -= value;
+                if (_releasedEventHandler == null && _releasedCallback != null)
+                {
+                    ReleasedSignal().Disconnect(_releasedCallback);
                 }
+
             }
         }
 
@@ -223,12 +220,12 @@ namespace Tizen.NUI
 
             remove
             {
-                if (_stateChangedEventHandler != null)
+                _stateChangedEventHandler -= value;
+
+                if (_stateChangedEventHandler == null && _stateChangedCallback != null)
                 {
                     StateChangedSignal().Disconnect(_stateChangedCallback);
                 }
-
-                _stateChangedEventHandler -= value;
             }
         }
 
