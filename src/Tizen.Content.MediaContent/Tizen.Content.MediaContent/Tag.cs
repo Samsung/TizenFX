@@ -48,11 +48,8 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentError res = (MediaContentError)Interop.Tag.GetTagId(_tagHandle, out id);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Id for the Tag");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.GetTagId(_tagHandle, out id), "Failed to get value");
                 return id;
             }
         }
@@ -68,26 +65,17 @@ namespace Tizen.Content.MediaContent
             }
             set
             {
-                MediaContentError res = (MediaContentError)Interop.Tag.SetName(_tagHandle, value);
-                if (res == MediaContentError.None)
-                {
-                    _tagName = value;
-                }
-                else
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set name for the Tag");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.SetName(_tagHandle, value), "Failed to set value");
+                _tagName = value;
             }
         }
 
         internal Tag(IntPtr tagHandle)
         {
             _tagHandle = tagHandle;
-            MediaContentError error = (MediaContentError)Interop.Tag.GetName(tagHandle, out _tagName);
-            if (error != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(error, "Failed to get the tage Name");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.GetName(tagHandle, out _tagName), "Failed to get value");
         }
         /// <summary>
         /// Creates a Tag object which can be inserted to the media database using ContentManager:InsertToDatabaseAsync(ContentCollection)
@@ -104,13 +92,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The media info which is added</param>
         public void AddItem(MediaInformation mediaContent)
         {
-            Console.WriteLine("Tag add item info: " + mediaContent.MediaId);
-            MediaContentError res = (MediaContentError)Interop.Tag.AddMedia(_tagHandle, mediaContent.MediaId);
-            if (res != MediaContentError.None)
-            {
-                Console.WriteLine("exception :" + res);
-                throw MediaContentErrorFactory.CreateException(res, "Failed to add the media item to the Tag");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.AddMedia(_tagHandle, mediaContent.MediaId), "Failed to add item");
         }
 
         /// <summary>
@@ -119,11 +102,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The media info which is removed</param>
         public void RemoveItem(MediaInformation mediaContent)
         {
-            MediaContentError res = (MediaContentError)Interop.Tag.RemoveMedia(_tagHandle, mediaContent.MediaId);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to remove the media item from the Tag");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.RemoveMedia(_tagHandle, mediaContent.MediaId), "Failed to remove item");
         }
 
         /// <summary>
@@ -135,21 +115,18 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = (MediaContentError)Interop.Tag.GetMediaCountFromDb(Id, handle, out mediaCount);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get media count for the tag");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.GetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get count");
+
             return mediaCount;
         }
 
         public override void Dispose()
         {
-            MediaContentError res = (MediaContentError)Interop.Tag.Destroy(_tagHandle);
-            _tagHandle = IntPtr.Zero;
-            if (res != MediaContentError.None)
+            if (_tagHandle != IntPtr.Zero)
             {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to dispose the tag");
+                Interop.Tag.Destroy(_tagHandle);
+                _tagHandle = IntPtr.Zero;
             }
         }
 
@@ -165,23 +142,18 @@ namespace Tizen.Content.MediaContent
             var tcs = new TaskCompletionSource<IEnumerable<MediaInformation>>();
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res;
+
             Interop.Tag.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
-                }
-                MediaInformation info = new MediaInformation(newHandle);
-                mediaContents.Add(info);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
+
+                mediaContents.Add(new MediaInformation(newHandle));
             };
-            res = (MediaContentError)Interop.Tag.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media information for the tag");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
+
             tcs.TrySetResult(mediaContents);
             return tcs.Task;
         }

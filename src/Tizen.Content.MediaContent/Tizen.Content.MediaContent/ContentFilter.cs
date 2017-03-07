@@ -120,34 +120,21 @@ namespace Tizen.Content.MediaContent
             {
                 int offset;
                 int count;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetOffset(_filterHandle, out offset, out count);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to Get offset");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetOffset(_filterHandle, out offset, out count), "Failed to Get offset");
+
                 return offset;
             }
             set
             {
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOffset(_filterHandle, value, this.Count);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to Setoffset");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.SetOffset(_filterHandle, value, this.Count), "Failed to Set offset");
             }
         }
         public ContentFilter()
         {
-            MediaContentError res;
-            res = (MediaContentError)Interop.Filter.Create(out _filterHandle);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to Create Filter handle.");
-            }
-            //res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle,(int) _order, _orderKey, (int) _collationType);
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Filter.Create(out _filterHandle), "Failed to Create Filter handle.");
         }
         /// <summary>
         /// The number of items to be searched with respect to the offset
@@ -158,23 +145,15 @@ namespace Tizen.Content.MediaContent
             {
                 int offset;
                 int count;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetOffset(_filterHandle, out offset, out count);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to Getoffset/count");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetOffset(_filterHandle, out offset, out count), "Failed to Getoffset/count");
+
                 return count;
             }
             set
             {
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetOffset(_filterHandle, this.Offset, value);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to Setoffset/Count");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.SetOffset(_filterHandle, this.Offset, value), "Failed to Setoffset/Count");
             }
         }
         /// <summary>
@@ -187,12 +166,9 @@ namespace Tizen.Content.MediaContent
                 int orderType;
                 string orderKey;
                 int collatetType;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType), "Failed to GetOrder");
+
                 return (ContentOrder)orderType;
             }
         }
@@ -203,28 +179,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                //check If we can create multiple variables in a property itself..
-                //Guess.. This might be need to change as method.
                 string condition;
                 int collatetType;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetCondition(_filterHandle, out condition, out collatetType);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetCondition for CollationType");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetCondition(_filterHandle, out condition, out collatetType), "Failed to GetCondition for CollationType");
+
                 return (ContentCollation)collatetType;
             }
             set
             {
                 _collationType = value;
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, this.Condition, (int)value);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition for CollationType");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.SetCondition(_filterHandle, this.Condition, (int)value), "Failed to SetCondition for CollationType");
             }
         }
         /// <summary>
@@ -235,25 +201,16 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string conditionVal = "";
-                MediaContentError res;
                 int collatetType;
-                res = (MediaContentError)Interop.Filter.GetCondition(_filterHandle, out conditionVal, out collatetType);
-                _collationType = (ContentCollation)collatetType;
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetCondition");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetCondition(_filterHandle, out conditionVal, out collatetType), "Failed to GetCondition");
+
                 return conditionVal;
             }
             set
             {
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetCondition(_filterHandle, value, (int)_collationType);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.SetCondition(_filterHandle, value, (int)_collationType), "Failed to SetCondition");
             }
         }
         /// <summary>
@@ -264,26 +221,16 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                //check If we can create multiple variables in a property itself..
-                //Guess.. This might be need to change as method.
                 string storageId;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetStorage(_filterHandle, out storageId);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetCondition");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetStorage(_filterHandle, out storageId), "Failed to GetCondition");
+
                 return storageId;
             }
             set
             {
-                //TOD: check if we can convert this as method to club offset and count.
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.SetStorage(_filterHandle, value);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to SetCondition");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.SetStorage(_filterHandle, value), "Failed to SetCondition");
             }
         }
         /// <summary>
@@ -296,12 +243,9 @@ namespace Tizen.Content.MediaContent
                 int orderType;
                 string orderKey;
                 int collatetType;
-                MediaContentError res;
-                res = (MediaContentError)Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to GetOrder for OrderKey");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Filter.GetOrder(_filterHandle, out orderType, out orderKey, out collatetType), "Failed to GetOrder for OrderKey");
+
                 return orderKey;
             }
         }
@@ -317,11 +261,8 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         public void SetOrderProperties(ContentOrder order, string oderKey)
         {
-            MediaContentError res = (MediaContentError)Interop.Filter.SetOrder(_filterHandle, order, oderKey, CollationType);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to SetOrder");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Filter.SetOrder(_filterHandle, order, oderKey, CollationType), "Failed to SetOrder");
         }
 
 

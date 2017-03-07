@@ -51,11 +51,8 @@ namespace Tizen.Content.MediaContent
         {
             if (!_isConnected)
             {
-                MediaContentError err = (MediaContentError)Interop.Content.Connect();
-                if (err != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(err, "failed to connect to db.");
-                }
+                MediaContentRetValidator.ThrowIfError(Interop.Content.Connect(), "Connect failed");
+
                 _isConnected = true;
             }
         }
@@ -63,11 +60,8 @@ namespace Tizen.Content.MediaContent
         {
             if (_isConnected)
             {
-                MediaContentError err = (MediaContentError)Interop.Content.Disconnect();
-                if (err != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(err, "failed to disconnect to db.");
-                }
+                MediaContentRetValidator.ThrowIfError(Interop.Content.Disconnect(), "Disconnect failed");
+
                 _isConnected = false;
             }
         }
@@ -89,11 +83,8 @@ namespace Tizen.Content.MediaContent
             {
                 if (s_contentUpdated == null)
                 {
-                    MediaContentError ret = (MediaContentError)Interop.Content.SetDbUpdatedCb(s_contentUpdatedCallback, IntPtr.Zero);
-                    if (ret != MediaContentError.None)
-                    {
-                        throw MediaContentErrorFactory.CreateException(ret, "Error in callback handling");
-                    }
+                    MediaContentRetValidator.ThrowIfError(
+                        Interop.Content.SetDbUpdatedCb(s_contentUpdatedCallback, IntPtr.Zero), "Failed to set callback");
                 }
                 s_contentUpdated += value;
             }
@@ -103,11 +94,8 @@ namespace Tizen.Content.MediaContent
                 s_contentUpdated -= value;
                 if (s_contentUpdated == null)
                 {
-                    MediaContentError ret = (MediaContentError)Interop.Content.UnsetDbUpdatedCb();
-                    if (ret != MediaContentError.None)
-                    {
-                        throw MediaContentErrorFactory.CreateException(ret, "Error in callback handling");
-                    }
+                    MediaContentRetValidator.ThrowIfError(
+                        Interop.Content.UnsetDbUpdatedCb(), "Failed to unset callback");
                 }
             }
         }
@@ -165,10 +153,8 @@ namespace Tizen.Content.MediaContent
                 res = MediaContentError.InvalidParameter;
             }
 
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get count for the content");
-            }
+            MediaContentRetValidator.ThrowIfError(res, "Failed to get count for the content");
+
             return count;
         }
 
@@ -179,15 +165,12 @@ namespace Tizen.Content.MediaContent
         /// <returns>MediaInformation instance for the associated id.It throws Exception for invalid Id.</returns>
         public MediaInformation Select(string id)
         {
-            MediaContentError error = MediaContentError.None;
             ConnectToDB();
             MediaInformation result;
             Interop.MediaInformation.SafeMediaInformationHandle mediaHandle;
-            error = (MediaContentError)Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle);
-            if (error != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(error, "Failed to get the media information from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle), "Failed to get information");
+
             result = new MediaInformation(mediaHandle);
             return result;
         }
@@ -200,28 +183,23 @@ namespace Tizen.Content.MediaContent
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
         public T Select<T>(string id) where T : ContentCollection
         {
-            MediaContentError error = MediaContentError.None;
             ConnectToDB();
             ContentCollection result = null;
             if (typeof(T) == typeof(MediaFolder))
             {
                 IntPtr handle = IntPtr.Zero;
-                error = (MediaContentError)Interop.Folder.GetFolderFromDb(id, out handle);
-                if (error != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(error, "Failed to get the content collection");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Folder.GetFolderFromDb(id, out handle), "Failed to get information");
+
                 if (handle != IntPtr.Zero)
                     result = new MediaFolder(handle);
             }
             else if (typeof(T) == typeof(Storage))
             {
                 IntPtr handle = IntPtr.Zero;
-                error = (MediaContentError)Interop.Storage.GetStorageInfoFromDb(id, out handle);
-                if (error != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(error, "Failed to get the content collection");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Storage.GetStorageInfoFromDb(id, out handle), "Failed to get information");
+
                 if (handle != IntPtr.Zero)
                 {
                     result = new Storage(handle);
@@ -240,39 +218,29 @@ namespace Tizen.Content.MediaContent
         public T Select<T>(int id) where T : ContentCollection
         {
             ConnectToDB();
-            MediaContentError res = MediaContentError.None;
             ContentCollection contentCollection = null;
             IntPtr _handle;
             if (typeof(T) == typeof(PlayList))
             {
-                res = (MediaContentError)Interop.Playlist.GetPlaylistFromDb(id, out _handle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get the content collection");
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.GetPlaylistFromDb(id, out _handle), "Failed to get information");
+
                 if (_handle != IntPtr.Zero)
                     contentCollection = new PlayList(_handle);
             }
             else if (typeof(T) == typeof(Album))
             {
-                res = (MediaContentError)Interop.Group.MediaAlbumGetAlbumFromDb(id, out _handle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get the content collection");
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumGetAlbumFromDb(id, out _handle), "Failed to get information");
+
                 if (_handle != IntPtr.Zero)
                     contentCollection = new Album(_handle);
             }
             else if (typeof(T) == typeof(Tag))
             {
-                res = (MediaContentError)Interop.Tag.GetTagFromDb(id, out _handle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get the content collection");
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to get the content collection");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.GetTagFromDb(id, out _handle), "Failed to get information");
+
                 if (_handle != IntPtr.Zero)
                     contentCollection = new Tag(_handle);
             }
@@ -281,54 +249,39 @@ namespace Tizen.Content.MediaContent
 
         private static IEnumerable<MediaFolder> ForEachFolder(ContentFilter filter)
         {
-            MediaContentError res = MediaContentError.None;
             List<MediaFolder> folderCollections = new List<MediaFolder>();
             Interop.Folder.MediaFolderCallback folderCallback = (IntPtr folderHandle, IntPtr data) =>
             {
                 IntPtr newHandle;
-                res = (MediaContentError)Interop.Folder.Clone(out newHandle, folderHandle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get path for the MediaFolder " + res);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Folder.Clone(out newHandle, folderHandle), "Failed to clone");
 
-                MediaFolder folder = new MediaFolder(newHandle);
-                folderCollections.Add(folder);
+                folderCollections.Add(new MediaFolder(newHandle));
                 return true;
             };
             IntPtr filterHandle = filter != null ? filter.Handle : IntPtr.Zero;
-            res = (MediaContentError)Interop.Folder.ForeachFolderFromDb(filterHandle, folderCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Folder.ForeachFolderFromDb(filterHandle, folderCallback, IntPtr.Zero), "Failed to get information");
+
             return folderCollections;
         }
 
         private static IEnumerable<Album> ForEachAlbum(ContentFilter filter)
         {
-            MediaContentError res = MediaContentError.None;
             List<Album> albumCollections = new List<Album>();
             Interop.Group.MediaAlbumCallback albumCallback = (IntPtr albumHandle, IntPtr data) =>
             {
-                IntPtr newHandle;
-                res = (MediaContentError)Interop.Group.MediaAlbumClone(out newHandle, albumHandle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get path for the MediaFolder " + res);
-                }
+                IntPtr newHandle = IntPtr.Zero;
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumClone(out newHandle, albumHandle), "Failed to clone");
 
                 albumCollections.Add(new Album(newHandle));
                 return true;
             };
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            res = (MediaContentError)Interop.Group.MediaAlbumForeachAlbumFromDb(handle, albumCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Group.MediaAlbumForeachAlbumFromDb(handle, albumCallback, IntPtr.Zero), "Failed to get information");
+
             return albumCollections;
         }
 
@@ -340,100 +293,79 @@ namespace Tizen.Content.MediaContent
             {
                 groupType = MediaGroupType.DisplayName;
             }
-            else {
+            else
+            {
                 groupType = filter.GroupType;
             }
-            MediaContentError res = MediaContentError.None;
+
             List<Group> groupCollections = new List<Group>();
             Interop.Group.MediaGroupCallback groupCallback = (string groupName, IntPtr data) =>
             {
                 groupCollections.Add(new Group(groupName, groupType));
                 return true;
             };
-            res = (MediaContentError)Interop.Group.ForeachGroupFromDb(handle, groupType, groupCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Group.ForeachGroupFromDb(handle, groupType, groupCallback, IntPtr.Zero), "Failed to get information");
+
             return groupCollections;
         }
 
         private static IEnumerable<Storage> ForEachStorage(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = MediaContentError.None;
             List<Storage> storageCollections = new List<Storage>();
             Interop.Storage.MediaStorageCallback storageCallback = (IntPtr storageHandle, IntPtr data) =>
             {
                 IntPtr newHandle;
-                res = (MediaContentError)Interop.Storage.Clone(out newHandle, storageHandle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to clone storage handle");
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone storage handle");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Storage.Clone(out newHandle, storageHandle), "Failed to clone");
+
                 storageCollections.Add(new Storage(newHandle));
                 return true;
             };
-            res = (MediaContentError)Interop.Storage.ForeachStorageFromDb(handle, storageCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Storage.ForeachStorageFromDb(handle, storageCallback, IntPtr.Zero), "Failed to get information");
+
             return storageCollections;
         }
 
         private static IEnumerable<Tag> ForEachTag(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = MediaContentError.None;
+
             List<Tag> tagCollections = new List<Tag>();
             Interop.Tag.MediaTagCallback tagCallback = (IntPtr tagHandle, IntPtr data) =>
             {
                 IntPtr newHandle;
-                res = (MediaContentError)Interop.Tag.Clone(out newHandle, tagHandle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get path for the MediaFolder " + res);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.Clone(out newHandle, tagHandle), "Failed to clone");
 
                 tagCollections.Add(new Tag(newHandle));
                 return true;
             };
-            res = (MediaContentError)Interop.Tag.ForeachTagFromDb(handle, tagCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Tag.ForeachTagFromDb(handle, tagCallback, IntPtr.Zero), "Failed to get information");
+
             return tagCollections;
         }
 
         private static IEnumerable<PlayList> ForEachPlayList(ContentFilter filter)
         {
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = MediaContentError.None;
+
             List<PlayList> playListCollections = new List<PlayList>();
             Interop.Playlist.MediaPlaylistCallback playListCallback = (IntPtr playListHandle, IntPtr data) =>
             {
                 IntPtr newHandle;
-                res = (MediaContentError)Interop.Tag.Clone(out newHandle, playListHandle);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get path for the MediaFolder " + res);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.Clone(out newHandle, playListHandle), "Failed to clone");
 
                 playListCollections.Add(new PlayList(newHandle));
                 return true;
             };
-            res = (MediaContentError)Interop.Playlist.ForeachPlaylistFromDb(handle, playListCallback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(Globals.LogTag, "Failed to get content collections from the database");
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get content collections from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.ForeachPlaylistFromDb(handle, playListCallback, IntPtr.Zero), "Failed to get information");
+
             return playListCollections;
         }
 
@@ -496,86 +428,49 @@ namespace Tizen.Content.MediaContent
         private IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)
         {
             ConnectToDB();
-            MediaContentError result;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             List<MediaInformation> mediaInformationList = new List<MediaInformation>();
             Interop.MediaInformation.MediaInformationCallback callback = (IntPtr mediaHandle, IntPtr userData) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                result = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (result != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(result, "Failed to clone media");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone");
 
                 MediaContentType type;
                 Interop.MediaInformation.GetMediaType(newHandle, out type);
                 if (type == MediaContentType.Image)
                 {
                     Interop.ImageInformation.SafeImageInformationHandle imageInfo;
-                    result = (MediaContentError)Interop.MediaInformation.GetImage(mediaHandle, out imageInfo);
-                    if (result != MediaContentError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                    }
-                    if (imageInfo != null)
-                    {
-                        MediaInformation info = new ImageInformation(imageInfo, newHandle);
-                        mediaInformationList.Add(info);
-                    }
-                    else
-                    {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Image Information");
-                    }
+                    MediaContentRetValidator.ThrowIfError(
+                        Interop.MediaInformation.GetImage(mediaHandle, out imageInfo), "Failed to get image information");
+
+                    mediaInformationList.Add(new ImageInformation(imageInfo, newHandle));
                 }
                 else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
                 {
                     Interop.AudioInformation.SafeAudioInformationHandle audioInfo;
-                    result = (MediaContentError)Interop.MediaInformation.GetAudio(mediaHandle, out audioInfo);
-                    if (result != MediaContentError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                    }
-                    if (audioInfo != null)
-                    {
-                        MediaInformation info = new AudioInformation(audioInfo, newHandle);
-                        mediaInformationList.Add(info);
-                    }
-                    else
-                    {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Audio Information");
-                    }
+                    MediaContentRetValidator.ThrowIfError(
+                        Interop.MediaInformation.GetAudio(mediaHandle, out audioInfo), "Failed to get audio information");
+
+                    mediaInformationList.Add(new AudioInformation(audioInfo, newHandle));
                 }
                 else if (type == MediaContentType.Video)
                 {
-                    Interop.VideoInformation.SafeVideoInformationHandle audioInfo;
-                    result = (MediaContentError)Interop.MediaInformation.GetVideo(mediaHandle, out audioInfo);
-                    if (result != MediaContentError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                    }
-                    if (audioInfo != null)
-                    {
-                        MediaInformation info = new VideoInformation(audioInfo, newHandle);
-                        mediaInformationList.Add(info);
-                    }
-                    else
-                    {
-                        throw MediaContentErrorFactory.CreateException(MediaContentError.InvalidParameter, "Could not find the Audio Information");
-                    }
+                    Interop.VideoInformation.SafeVideoInformationHandle videoInfo;
+                    MediaContentRetValidator.ThrowIfError(
+                        Interop.MediaInformation.GetVideo(mediaHandle, out videoInfo), "Failed to get video information");
+
+                    mediaInformationList.Add(new VideoInformation(videoInfo, newHandle));
                 }
                 else if (type == MediaContentType.Others)
                 {
-                    MediaInformation info = new MediaInformation(newHandle);
-                    mediaInformationList.Add(info);
+                    mediaInformationList.Add(new MediaInformation(newHandle));
                 }
                 return true;
             };
-            result = (MediaContentError)Interop.MediaInformation.GetAllMedia(handle, callback, IntPtr.Zero);
-            if (result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to get media information from the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetAllMedia(handle, callback, IntPtr.Zero), "Failed to get media information");
+
             return mediaInformationList;
         }
 
@@ -586,9 +481,8 @@ namespace Tizen.Content.MediaContent
         public void Delete(MediaInformation mediaInfo)
         {
             ConnectToDB();
-            MediaContentError result = (MediaContentError)Interop.MediaInformation.Delete(mediaInfo.MediaId);
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "failed to Delete bookmark from DB");
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.Delete(mediaInfo.MediaId), "Failed to remove information");
         }
 
 
@@ -602,39 +496,35 @@ namespace Tizen.Content.MediaContent
         {
             ConnectToDB();
             Type type = contentcollection.GetType();
-            MediaContentError result = MediaContentError.None;
+
             if (type == typeof(Tag))
             {
-                result = (MediaContentError)Interop.Tag.DeleteFromDb(((Tag)contentcollection).Id);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Tag.DeleteFromDb(((Tag)contentcollection).Id), "Failed to remove information");
             }
             else if (type == typeof(PlayList))
             {
-                result = (MediaContentError)Interop.Playlist.DeleteFromDb(((PlayList)contentcollection).Id);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.DeleteFromDb(((PlayList)contentcollection).Id), "Failed to remove information");
             }
             else
             {
-                result = MediaContentError.InvalidParameter;
+                throw new ArgumentException("The type of content collection is wrong");
             }
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "failed to Delete ContentCollection from DB");
         }
 
         internal void Delete(MediaBookmark bookmark)
         {
             ConnectToDB();
-            MediaContentError result = MediaContentError.None;
-            result = (MediaContentError)Interop.MediaBookmark.DeleteFromDb(bookmark.Id);
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "failed to Delete bookmark from DB");
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaBookmark.DeleteFromDb(bookmark.Id), "Failed to remove information");
         }
 
         internal void Delete(MediaFace face)
         {
             ConnectToDB();
-            MediaContentError result = MediaContentError.None;
-            result = (MediaContentError)Interop.Face.DeleteFromDb(face.Id);
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "failed to Delete face from DB");
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Face.DeleteFromDb(face.Id), "Failed to remove face information");
         }
 
         /// <summary>
@@ -664,8 +554,7 @@ namespace Tizen.Content.MediaContent
                 result = MediaContentError.InvalidParameter;
             }
 
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "Failed to update DB");
+            MediaContentRetValidator.ThrowIfError(result, "Failed to update DB");
         }
 
         /// <summary>
@@ -698,17 +587,14 @@ namespace Tizen.Content.MediaContent
                 result = MediaContentError.InvalidOperation;
             }
 
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "Failed to update DB");
+            MediaContentRetValidator.ThrowIfError(result, "Failed to update DB");
         }
 
         internal void Update(MediaFace face)
         {
             ConnectToDB();
 
-            MediaContentError result = (MediaContentError)Interop.Face.UpdateToDb(face.Handle);
-            if (result != MediaContentError.None)
-                throw MediaContentErrorFactory.CreateException(result, "Failed to update DB");
+            MediaContentRetValidator.ThrowIfError(Interop.Face.UpdateToDb(face.Handle), "Failed to update DB");
         }
 
         /// <summary>
@@ -738,30 +624,21 @@ namespace Tizen.Content.MediaContent
                 Console.WriteLine("Inalid insert");
                 result = MediaContentError.InvalidParameter;
             }
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
-            }
+            MediaContentRetValidator.ThrowIfError(result, "Failed to insert collection to the database");
         }
 
         internal void Insert(string mediaId, uint offset, string thumbnailPath)
         {
             ConnectToDB();
-            MediaContentError result = (MediaContentError)Interop.MediaBookmark.InsertToDb(mediaId, offset, thumbnailPath);
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Failed to insert bookmark to the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaBookmark.InsertToDb(mediaId, offset, thumbnailPath), "Failed to insert information");
         }
 
         internal void Insert(MediaFace face)
         {
             ConnectToDB();
-            MediaContentError result = (MediaContentError)Interop.Face.InsertToDb(((MediaFace)face).Handle);
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Failed to insert collection to the database");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Face.InsertToDb(((MediaFace)face).Handle), "Failed to insert information");
         }
     }
 }

@@ -39,11 +39,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string mediaId = "";
-                int result = Interop.ImageInformation.GetMediaId(_handle, out mediaId);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetMediaId(_handle, out mediaId), "Failed to get value");
+
                 if (mediaId == null)
                 {
                     mediaId = "";
@@ -60,11 +58,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int width = 0;
-                int result = Interop.ImageInformation.GetWidth(_handle, out width);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetWidth(_handle, out width), "Failed to get value");
+
                 return width;
             }
         }
@@ -77,11 +73,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int height = 0;
-                int result = Interop.ImageInformation.GetHeight(_handle, out height);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetHeight(_handle, out height), "Failed to get value");
+
                 return height;
             }
         }
@@ -94,21 +88,15 @@ namespace Tizen.Content.MediaContent
             get
             {
                 MediaContentOrientation orientation = MediaContentOrientation.NotAvailable;
-                int result = Interop.ImageInformation.GetOrientation(_handle, out orientation);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                Tizen.Log.Info(Globals.LogTag, "Orientation Recieved " + orientation);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetOrientation(_handle, out orientation), "Failed to get value");
+
                 return orientation;
             }
             set
             {
-                int result = Interop.ImageInformation.SetOrientation(_handle, value);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException((MediaContentError)result, "Failed to Setorientation");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.SetOrientation(_handle, value), "Failed to set value");
             }
         }
 
@@ -120,11 +108,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string takenDate = "";
-                int result = Interop.ImageInformation.GetDateTaken(_handle, out takenDate);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetDateTaken(_handle, out takenDate), "Failed to get value");
+
                 if (takenDate == null)
                 {
                     takenDate = "";
@@ -142,11 +128,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string burstId = "";
-                int result = Interop.ImageInformation.GetBurstId(_handle, out burstId);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetBurstId(_handle, out burstId), "Failed to get value");
+
                 if (burstId == null)
                 {
                     burstId = "";
@@ -163,11 +147,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string exposureTime = "";
-                int result = Interop.ImageInformation.GetExposureTime(_handle, out exposureTime);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetExposureTime(_handle, out exposureTime), "Failed to get value");
+
                 if (exposureTime == null)
                 {
                     exposureTime = "";
@@ -184,12 +166,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 double fNumber = 0.0;
-                int result = Interop.ImageInformation.GetFNumber(_handle, out fNumber);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                Tizen.Log.Info(Globals.LogTag, "Received fnumber:" + fNumber);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetFNumber(_handle, out fNumber), "Failed to get value");
+
                 return fNumber;
             }
         }
@@ -202,12 +181,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int iso = 0;
-                int result = Interop.ImageInformation.GetISO(_handle, out iso);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                Tizen.Log.Info(Globals.LogTag, "Received iso:" + iso);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetISO(_handle, out iso), "Failed to get value");
+
                 return iso;
             }
         }
@@ -220,11 +196,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string model = "";
-                int result = Interop.ImageInformation.GetModel(_handle, out model);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.GetModel(_handle, out model), "Failed to get value");
+
                 if (model == null)
                 {
                     model = "";
@@ -243,12 +217,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 bool isBurst = false;
-                int result = Interop.ImageInformation.IsBurstShot(_handle, out isBurst);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
-                Tizen.Log.Info(Globals.LogTag, "Received isBurst:" + isBurst);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.ImageInformation.IsBurstShot(_handle, out isBurst), "Failed to get value");
+
                 return isBurst;
             }
         }
@@ -264,31 +235,19 @@ namespace Tizen.Content.MediaContent
         {
             var task = new TaskCompletionSource<IEnumerable<MediaFace>>();
             Collection<MediaFace> coll = new Collection<MediaFace>();
-            MediaContentError result;
+
             Interop.MediaInformation.MediaFaceCallback faceCallback = (IntPtr facehandle, IntPtr userData) =>
             {
-                IntPtr newHandle;
-                result = (MediaContentError)Interop.Face.Clone(out newHandle, facehandle);
-                if (result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to clone Tag");
-                }
-                MediaFace face = new MediaFace(newHandle);
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Got Media Face");
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Id " + face.Id);
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.MediaInformationId " + face.MediaInformationId);
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Orientation " + face.Orientation);
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Rect " + face.Rect);
-                Tizen.Log.Info("TCT", "GetMediaFacesAsync: Face.Tag " + face.Tag);
-                coll.Add(face);
+                IntPtr newHandle = IntPtr.Zero;
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Face.Clone(out newHandle, facehandle), "Failed to clone Tag");
+
+                coll.Add(new MediaFace(newHandle));
                 return true;
             };
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            result = (MediaContentError)Interop.MediaInformation.GetAllFaces(MediaId, filterHandle, faceCallback, IntPtr.Zero);
-            if (result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetAllFaces(MediaId, filterHandle, faceCallback, IntPtr.Zero), "Failed to get value");
             task.SetResult(coll);
             return task.Task;
         }
@@ -303,12 +262,9 @@ namespace Tizen.Content.MediaContent
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            int result = Interop.MediaInformation.GetFaceCount(MediaId, handle, out count);
-            Tizen.Log.Info("TCT", "GetMediaFaceCount: " + count);
-            if ((MediaContentError)result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetFaceCount(MediaId, handle, out count), "Failed to get value");
+
             return count;
         }
 

@@ -71,8 +71,7 @@
     <Compile Include="Tizen.Content.MediaContent\ImageInformation.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaBookmark.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaContentEnums.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaContentErrorFactory.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaContentTypes.cs" />
+    <Compile Include="Tizen.Content.MediaContent\MediaContentError.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaFace.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaFolder.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaInformation.cs" />

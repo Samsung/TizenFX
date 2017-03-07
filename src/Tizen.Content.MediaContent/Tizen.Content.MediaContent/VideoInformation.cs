@@ -38,11 +38,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string mediaId = "";
-                int result = Interop.VideoInformation.GetMediaId(_handle, out mediaId);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetMediaId(_handle, out mediaId), "Failed to get value");
+
                 if (mediaId == null)
                 {
                     mediaId = "";
@@ -60,11 +58,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string album = "";
-                int result = Interop.VideoInformation.GetAlbum(_handle, out album);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetAlbum(_handle, out album), "Failed to get value");
+
                 if (album == null)
                 {
                     album = "";
@@ -82,11 +78,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string artist = "";
-                int result = Interop.VideoInformation.GetArtist(_handle, out artist);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetArtist(_handle, out artist), "Failed to get value");
+
                 if (artist == null)
                 {
                     artist = "";
@@ -104,11 +98,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string albumArtist = "";
-                int result = Interop.VideoInformation.GetAlbumArtist(_handle, out albumArtist);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetAlbumArtist(_handle, out albumArtist), "Failed to get value");
+
                 if (albumArtist == null)
                 {
                     albumArtist = "";
@@ -126,11 +118,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string genre = "";
-                int result = Interop.VideoInformation.GetGenre(_handle, out genre);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetGenre(_handle, out genre), "Failed to get value");
+
                 if (genre == null)
                 {
                     genre = "";
@@ -148,11 +138,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string composer = "";
-                int result = Interop.VideoInformation.GetComposer(_handle, out composer);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetComposer(_handle, out composer), "Failed to get value");
+
                 if (composer == null)
                 {
                     composer = "";
@@ -170,11 +158,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string year = "";
-                int result = Interop.VideoInformation.GetYear(_handle, out year);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetYear(_handle, out year), "Failed to get value");
+
                 if (year == null)
                 {
                     year = "";
@@ -191,11 +177,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string recordedDate = "";
-                int result = Interop.VideoInformation.GetRecordedDate(_handle, out recordedDate);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetRecordedDate(_handle, out recordedDate), "Failed to get value");
+
                 if (recordedDate == null)
                 {
                     recordedDate = "";
@@ -213,11 +197,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string copyright = "";
-                int result = Interop.VideoInformation.GetCopyright(_handle, out copyright);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetCopyright(_handle, out copyright), "Failed to get value");
+
                 if (copyright == null)
                 {
                     copyright = "";
@@ -235,11 +217,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string trackNumber = "";
-                int result = Interop.VideoInformation.GetTrackNum(_handle, out trackNumber);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetTrackNum(_handle, out trackNumber), "Failed to get value");
+
                 if (trackNumber == null)
                 {
                     trackNumber = "";
@@ -256,11 +236,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int bitrate = 0;
-                int result = Interop.VideoInformation.GetBitRate(_handle, out bitrate);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetBitRate(_handle, out bitrate), "Failed to get value");
+
                 return bitrate;
             }
         }
@@ -273,11 +251,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int duration = 0;
-                int result = Interop.VideoInformation.GetDuration(_handle, out duration);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetDuration(_handle, out duration), "Failed to get value");
+
                 return duration;
             }
         }
@@ -290,11 +266,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int width = 0;
-                int result = Interop.VideoInformation.GetWidth(_handle, out width);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetWidth(_handle, out width), "Failed to get value");
+
                 return width;
             }
         }
@@ -307,11 +281,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int height = 0;
-                int result = Interop.VideoInformation.GetHeight(_handle, out height);
-                if ((MediaContentError)result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.VideoInformation.GetHeight(_handle, out height), "Failed to get value");
+
                 return height;
             }
         }
@@ -326,11 +298,9 @@ namespace Tizen.Content.MediaContent
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError result = (MediaContentError)Interop.MediaInformation.GetBookmarkCount(MediaId, handle, out count);
-            if (result != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(result, "Error Occured with error code: ");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetBookmarkCount(MediaId, handle, out count), "Failed to get count");
+
             return count;
         }
 
@@ -343,26 +313,20 @@ namespace Tizen.Content.MediaContent
         public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
         {
             var task = new TaskCompletionSource<IEnumerable<MediaBookmark>>();
-            MediaContentError result;
+
             Collection<MediaBookmark> coll = new Collection<MediaBookmark>();
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
             Interop.MediaInformation.MediaBookmarkCallback bookmarksCallback = (IntPtr handle, IntPtr userData) =>
             {
                 IntPtr newHandle;
-                result = (MediaContentError)Interop.MediaBookmark.Clone(out newHandle, handle);
-                if (result != MediaContentError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to clone Tag");
-                }
-                MediaBookmark bookmark = new MediaBookmark(newHandle);
-                coll.Add(bookmark);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaBookmark.Clone(out newHandle, handle), "Failed to clone Tag");
+                coll.Add(new MediaBookmark(newHandle));
                 return true;
             };
-            result = (MediaContentError)Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, bookmarksCallback, IntPtr.Zero);
-            if (result != MediaContentError.None)
-            {
-                Log.Error(Globals.LogTag, "Error Occured with error code: " + (MediaContentError)result);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, bookmarksCallback, IntPtr.Zero), "Failed to get value");
+
             task.SetResult(coll);
             return task.Task;
         }

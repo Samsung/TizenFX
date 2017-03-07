@@ -37,11 +37,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id = 0;
-                MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetAlbumId(_albumHandle, out id);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Id for the Album");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumGetAlbumId(_albumHandle, out id), "Failed to get value");
+
                 return id;
             }
         }
@@ -54,11 +52,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string artist = "";
-                MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetArtist(_albumHandle, out artist);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Artist for the Album");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumGetArtist(_albumHandle, out artist), "Failed to get value");
+
                 return artist;
             }
         }
@@ -71,12 +67,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string art = "";
-                MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out art);
-                Tizen.Log.Info("TCT", "Album Art Property: " + art);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Album Art for the Album");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out art), "Failed to get value");
+
                 return art;
             }
         }
@@ -89,11 +82,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string name = "";
-                MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetArtist(_albumHandle, out name);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Name for the Album");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Group.MediaAlbumGetArtist(_albumHandle, out name), "Failed to get value");
+
                 return name;
             }
         }
@@ -113,22 +104,19 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumGetMediaCountFromDb(Id, handle, out mediaCount);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get media count for the album");
-            }
+
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Group.MediaAlbumGetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get count");
+
             return mediaCount;
         }
 
         public override void Dispose()
         {
-            MediaContentError res = (MediaContentError)Interop.Group.MediaAlbumDestroy(_albumHandle);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to dispose the album");
+            if (_albumHandle != IntPtr.Zero) {
+                Interop.Group.MediaAlbumDestroy(_albumHandle);
+                _albumHandle = IntPtr.Zero;
             }
-            _albumHandle = IntPtr.Zero;
         }
 
         /// <summary>
@@ -142,26 +130,20 @@ namespace Tizen.Content.MediaContent
         {
             var tcs = new TaskCompletionSource<IEnumerable<MediaInformation>>();
             List<MediaInformation> mediaContents = new List<MediaInformation>();
-            MediaContentError res;
+
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             Interop.Group.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone");
 
-                MediaInformation info = new MediaInformation(newHandle);
-                mediaContents.Add(info);
+                mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            res = (MediaContentError)Interop.Group.MediaAlbumForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get media information for the album");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Group.MediaAlbumForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
+
             tcs.TrySetResult(mediaContents);
             return tcs.Task;
         }

@@ -36,16 +36,11 @@ namespace Tizen.Content.MediaContent
         internal MediaBookmark(IntPtr handle)
         {
             _bookmarkHandle = handle;
-            MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to Get Offset");
-            }
-            res = (MediaContentError)Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out _thumbnailPath);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to Get Thumbnail Path");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset), "Failed to Get Offset");
+
+            MediaContentRetValidator.ThrowIfError(
+                Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out _thumbnailPath), "Failed to Get Thumbnail Path");
         }
 
         ~MediaBookmark()
@@ -60,11 +55,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentError res = (MediaContentError)Interop.MediaBookmark.GetBookmarkId(_bookmarkHandle, out id);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(Globals.LogTag, "Failed to get bookmark id");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaBookmark.GetBookmarkId(_bookmarkHandle, out id), "Failed to get bookmark id");
+
                 return id;
             }
         }

@@ -7,43 +7,43 @@ internal static partial class Interop
     internal static partial class Tag
     {
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_insert_to_db")]
-        internal static extern int InsertToDb(string tag_name, out IntPtr tag);
+        internal static extern MediaContentError InsertToDb(string tag_name, out IntPtr tag);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_delete_from_db")]
-        internal static extern int DeleteFromDb(int tag_id);
+        internal static extern MediaContentError DeleteFromDb(int tag_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_count_from_db")]
-        internal static extern int GetTagCountFromDb(IntPtr filter, out int tag_count);
+        internal static extern MediaContentError GetTagCountFromDb(IntPtr filter, out int tag_count);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_media_count_from_db")]
-        internal static extern int GetMediaCountFromDb(int tag_id, IntPtr filter, out int media_count);
+        internal static extern MediaContentError GetMediaCountFromDb(int tag_id, IntPtr filter, out int media_count);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_clone")]
-        internal static extern int Clone(out IntPtr dst, IntPtr src);
+        internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_destroy")]
-        internal static extern int Destroy(IntPtr tag);
+        internal static extern MediaContentError Destroy(IntPtr tag);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_id")]
-        internal static extern int GetTagId(IntPtr tag, out int tag_id);
+        internal static extern MediaContentError GetTagId(IntPtr tag, out int tag_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_name")]
-        internal static extern int GetName(IntPtr tag, out string tag_name);
+        internal static extern MediaContentError GetName(IntPtr tag, out string tag_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_from_db")]
-        internal static extern int GetTagFromDb(int tag_id, out IntPtr tag);
+        internal static extern MediaContentError GetTagFromDb(int tag_id, out IntPtr tag);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_add_media")]
-        internal static extern int AddMedia(IntPtr tag, string media_id);
+        internal static extern MediaContentError AddMedia(IntPtr tag, string media_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_remove_media")]
-        internal static extern int RemoveMedia(IntPtr tag, string media_id);
+        internal static extern MediaContentError RemoveMedia(IntPtr tag, string media_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_set_name")]
-        internal static extern int SetName(IntPtr tag, string tag_name);
+        internal static extern MediaContentError SetName(IntPtr tag, string tag_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_update_to_db")]
-        internal static extern int UpdateToDb(IntPtr tag);
+        internal static extern MediaContentError UpdateToDb(IntPtr tag);
 
         //Callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -53,9 +53,9 @@ internal static partial class Interop
         internal delegate bool MediaTagCallback(IntPtr tag, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_foreach_tag_from_db")]
-        internal static extern int ForeachTagFromDb(IntPtr filter, MediaTagCallback callback, IntPtr user_data);
+        internal static extern MediaContentError ForeachTagFromDb(IntPtr filter, MediaTagCallback callback, IntPtr user_data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_foreach_media_from_db")]
-        internal static extern int ForeachMediaFromDb(int tag_id, IntPtr filter, MediaInfoCallback callback, IntPtr user_data);
+        internal static extern MediaContentError ForeachMediaFromDb(int tag_id, IntPtr filter, MediaInfoCallback callback, IntPtr user_data);
     }
 }

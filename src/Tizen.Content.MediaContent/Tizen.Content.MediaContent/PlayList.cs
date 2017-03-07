@@ -47,25 +47,19 @@ namespace Tizen.Content.MediaContent
         private void refreshPlaylistDictionary()
         {
             _dictionary.Clear();
-            MediaContentError res;
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
+
                 string mediaId;
                 Interop.MediaInformation.GetMediaId(newHandle, out mediaId);
                 _dictionary.Add(mediaId, memberId);
                 return true;
             };
-            res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, IntPtr.Zero, callback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get playlist items");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.ForeachMediaFromDb(Id, IntPtr.Zero, callback, IntPtr.Zero), "Failed to get playlist items");
         }
 
         /// <summary>
@@ -76,11 +70,9 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentError res = (MediaContentError)Interop.Playlist.GetPlaylistId(_playlistHandle, out id);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Id for the PlayList");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.GetPlaylistId(_playlistHandle, out id), "Failed to get value");
+
                 return id;
             }
         }
@@ -97,15 +89,9 @@ namespace Tizen.Content.MediaContent
             }
             set
             {
-                MediaContentError res = (MediaContentError)Interop.Playlist.SetName(_playlistHandle, value);
-                if (res == MediaContentError.None)
-                {
-                    _playListName = value;
-                }
-                else
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set Name for the PlayList");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.SetName(_playlistHandle, value), "Failed to set value");
+                _playListName = value;
             }
         }
         /// <summary>
@@ -116,20 +102,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 string path;
-                MediaContentError res = (MediaContentError)Interop.Playlist.GetThumbnailPath(_playlistHandle, out path);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Thumbnail Path for the PlayList");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.GetThumbnailPath(_playlistHandle, out path), "Failed to get value");
                 return path;
             }
             set
             {
-                MediaContentError res = (MediaContentError)Interop.Playlist.SetThumbnailPath(_playlistHandle, value);
-                if (res != MediaContentError.None)
-                {
-                    Log.Warn(MediaContentErrorFactory.LogTag, "Failed to set Thumbnail Path for the PlayList");
-                }
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.Playlist.SetThumbnailPath(_playlistHandle, value), "Failed to set value");
             }
         }
 
@@ -145,11 +125,8 @@ namespace Tizen.Content.MediaContent
         internal PlayList(IntPtr handle)
         {
             _playlistHandle = handle;
-            MediaContentError res = (MediaContentError)Interop.Playlist.GetName(handle, out _playListName);
-            if (res != MediaContentError.None)
-            {
-                Log.Warn(MediaContentErrorFactory.LogTag, "Failed to get Name for the PlayList");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.GetName(handle, out _playListName), "Failed to get value");
         }
 
         /// <summary>
@@ -158,12 +135,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The AudioContent obect to be added</param>
         public void AddItem(MediaInformation mediaContent)
         {
-            MediaContentError res = (MediaContentError)Interop.Playlist.AddMedia(_playlistHandle, mediaContent.MediaId);
-            if (res != MediaContentError.None)
-            {
-                //TODO improve the error message once media content is implemented
-                throw MediaContentErrorFactory.CreateException(res, "Failed to add media content to the playlist");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.AddMedia(_playlistHandle, mediaContent.MediaId), "Failed to add item");
         }
 
         /// <summary>
@@ -175,11 +148,8 @@ namespace Tizen.Content.MediaContent
             int memberId = 0;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            MediaContentError res = (MediaContentError)Interop.Playlist.RemoveMedia(_playlistHandle, memberId);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to remove media content from the playlist");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.RemoveMedia(_playlistHandle, memberId), "Failed to remove item");
         }
 
         /// <summary>
@@ -189,16 +159,11 @@ namespace Tizen.Content.MediaContent
         /// <param name="playOrder">The playing order</param>
         public void SetPlayOrder(MediaInformation media, int playOrder)
         {
-            Tizen.Log.Info("TCT", "Order set for Media Id: " + media.MediaId);
             int memberId;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            Tizen.Log.Info("TCT", "Order set for member Id: " + memberId);
-            MediaContentError res = (MediaContentError)Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to set play order for the playlist member " + memberId);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder), "Failed to set play order");
         }
 
         /// <summary>
@@ -207,17 +172,13 @@ namespace Tizen.Content.MediaContent
         /// <param name="media"></param>
         public int GetPlayOrder(MediaInformation media)
         {
-            Tizen.Log.Info("TCT", "Getting order for Media Id: " + media.MediaId);
             int playOrder;
             int memberId;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            Tizen.Log.Info("TCT", "Order get for Member Id: " + memberId);
-            MediaContentError res = (MediaContentError)Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get play order for the playlist member " + memberId);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder), "Failed to get play order");
+
             return playOrder;
         }
 
@@ -232,11 +193,9 @@ namespace Tizen.Content.MediaContent
             PlayList playList = null;
             IntPtr playlistHandle;
 
-            MediaContentError res = (MediaContentError)Interop.Playlist.ImportFromFile(name, filePath, out playlistHandle);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to import playlist  " + name + " from " + filePath);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.ImportFromFile(name, filePath, out playlistHandle), "Failed to import");
+
             playList = new PlayList(name);
             playList._playlistHandle = playlistHandle;
             return playList;
@@ -248,11 +207,8 @@ namespace Tizen.Content.MediaContent
         /// <returns>path The path to export the playlist</returns>
         public static void Export(PlayList list, string filePath)
         {
-            MediaContentError res = (MediaContentError)Interop.Playlist.ExportToFile(list.Handle, filePath);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to export playlist  " + list.Name + " to " + filePath);
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.ExportToFile(list.Handle, filePath), "Failed to export playlist:" + filePath);
         }
 
         /// <summary>
@@ -264,21 +220,17 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = (MediaContentError)Interop.Playlist.GetMediaCountFromDb(Id, handle, out mediaCount);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get media count for the playlist");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.GetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get media count");
+
             return mediaCount;
         }
 
         public override void Dispose()
         {
-            MediaContentError res = (MediaContentError)Interop.Playlist.Destroy(_playlistHandle);
-            _playlistHandle = IntPtr.Zero;
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to dispose the playlist");
+            if (_playlistHandle != IntPtr.Zero) {
+                Interop.Playlist.Destroy(_playlistHandle);
+                _playlistHandle = IntPtr.Zero;
             }
         }
 
@@ -294,24 +246,18 @@ namespace Tizen.Content.MediaContent
             var tcs = new TaskCompletionSource<IEnumerable<MediaInformation>>();
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res;
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                res = (MediaContentError)Interop.MediaInformation.Clone(out newHandle, mediaHandle);
-                if (res != MediaContentError.None)
-                {
-                    throw MediaContentErrorFactory.CreateException(res, "Failed to clone media");
-                }
-                MediaInformation info = new MediaInformation(newHandle);
-                mediaContents.Add(info);
+                MediaContentRetValidator.ThrowIfError(
+                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
+
+                mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            res = (MediaContentError)Interop.Playlist.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero);
-            if (res != MediaContentError.None)
-            {
-                throw MediaContentErrorFactory.CreateException(res, "Failed to get media information for the playlist");
-            }
+            MediaContentRetValidator.ThrowIfError(
+                Interop.Playlist.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get media information");
+
             tcs.TrySetResult(mediaContents);
             return tcs.Task;
         }
