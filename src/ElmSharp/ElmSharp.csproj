@@ -55,6 +55,8 @@
     <Compile Include="ElmSharp\ColorSelector.cs" />
     <Compile Include="ElmSharp\Conformant.cs" />
     <Compile Include="ElmSharp\Container.cs" />
+    <Compile Include="ElmSharp\MultiButtonEntryItem.cs" />
+    <Compile Include="ElmSharp\MultiButtonEntry.cs" />
     <Compile Include="ElmSharp\ContextPopup.cs" />
     <Compile Include="ElmSharp\ColorSelectorItem.cs" />
     <Compile Include="ElmSharp\ContextPopupItem.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="ElmSharp\WrapType.cs" />
     <Compile Include="Interop\Interop.Eina.cs" />
     <Compile Include="Interop\Interop.Elementary.FlipSelector.cs" />
+    <Compile Include="Interop\Interop.Elementary.MultiButtonEntry.cs" />
     <Compile Include="Interop\Interop.Eo.cs" />
     <Compile Include="Interop\Interop.Ecore.cs" />
     <Compile Include="Interop\Interop.Elementary.Bg.cs" />
