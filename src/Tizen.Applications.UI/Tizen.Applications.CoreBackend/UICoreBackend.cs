@@ -175,7 +175,7 @@ namespace Tizen.Applications.CoreBackend
 
         protected override void OnLowMemoryNative(IntPtr infoHandle, IntPtr data)
         {
-            base.OnLowBatteryNative(infoHandle, data);
+            base.OnLowMemoryNative(infoHandle, data);
         }
 
         protected override void OnLowBatteryNative(IntPtr infoHandle, IntPtr data)
