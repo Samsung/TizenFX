@@ -34,6 +34,27 @@ namespace Tizen.Applications
         {
             return _handle;
         }
+    }
+
+    internal class ConformantWindow : Widget
+    {
+        private IntPtr _handle;
+        private IntPtr _conf;
+
+        internal ConformantWindow(EvasObject parent, IntPtr handle) : base()
+        {
+            _handle = handle;
+            Realize(parent);
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
+        {
+            _conf = Interop.Widget.elm_conformant_add(_handle);
+            Interop.Widget.evas_object_size_hint_weight_set(_conf, 1.0, 1.0);
+            Interop.Widget.elm_win_conformant_set(_handle, true);
+            Interop.Widget.elm_win_resize_object_add(_handle, _conf);
+            return _conf;
+        }
 
     }
 }

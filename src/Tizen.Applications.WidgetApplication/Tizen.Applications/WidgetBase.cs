@@ -26,6 +26,7 @@ namespace Tizen.Applications
     {
         internal IntPtr Handle;
         internal string Id;
+        internal Widget BaseWindow;
         protected static readonly string LogTag = typeof(WidgetBase).Namespace;
 
         /// <summary>
@@ -160,8 +161,10 @@ namespace Tizen.Applications
             IntPtr win;
 
             Interop.Widget.GetWin(Handle, out win);
-            Window = new WidgetWindow(win);
-            Window.Resize(w, h);
+            BaseWindow = new WidgetWindow(win);
+            BaseWindow.Resize(w, h);
+            BaseWindow.Show();
+            Window = new ConformantWindow(Window, win);
             Window.Show();
         }
 
