@@ -22,16 +22,16 @@ internal static partial class Interop
         internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_get_id")]
-        internal static extern MediaContentError GetId(IntPtr storage, out string storage_id);
+        internal static extern MediaContentError GetId(IntPtr storage, out IntPtr storage_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_get_name")]
-        internal static extern MediaContentError GetName(IntPtr storage, out string storage_name);
+        internal static extern MediaContentError GetName(IntPtr storage, out IntPtr storage_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_get_path")]
-        internal static extern MediaContentError GetPath(IntPtr storage, out string storage_path);
+        internal static extern MediaContentError GetPath(IntPtr storage, out IntPtr storage_path);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_get_type")]
-        internal static extern MediaContentError GetType(IntPtr storage, out int storage_type);
+        internal static extern MediaContentError GetType(IntPtr storage, out ContentStorageType storage_type);
 
         //Callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

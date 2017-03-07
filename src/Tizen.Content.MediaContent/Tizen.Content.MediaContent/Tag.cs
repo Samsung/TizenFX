@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -48,7 +49,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Tag.GetTagId(_tagHandle, out id), "Failed to get value");
                 return id;
             }
@@ -65,7 +66,7 @@ namespace Tizen.Content.MediaContent
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Tag.SetName(_tagHandle, value), "Failed to set value");
                 _tagName = value;
             }
@@ -74,8 +75,17 @@ namespace Tizen.Content.MediaContent
         internal Tag(IntPtr tagHandle)
         {
             _tagHandle = tagHandle;
-            MediaContentRetValidator.ThrowIfError(
-                Interop.Tag.GetName(tagHandle, out _tagName), "Failed to get value");
+            IntPtr val = IntPtr.Zero;
+            try
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Tag.GetName(_tagHandle, out val), "Failed to get value");
+                _tagName = Marshal.PtrToStringAnsi(val);
+            }
+            finally
+            {
+                Interop.Libc.Free(val);
+            }
         }
         /// <summary>
         /// Creates a Tag object which can be inserted to the media database using ContentManager:InsertToDatabaseAsync(ContentCollection)
@@ -92,7 +102,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The media info which is added</param>
         public void AddItem(MediaInformation mediaContent)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Tag.AddMedia(_tagHandle, mediaContent.MediaId), "Failed to add item");
         }
 
@@ -102,7 +112,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The media info which is removed</param>
         public void RemoveItem(MediaInformation mediaContent)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Tag.RemoveMedia(_tagHandle, mediaContent.MediaId), "Failed to remove item");
         }
 
@@ -115,7 +125,7 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Tag.GetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get count");
 
             return mediaCount;
@@ -146,12 +156,13 @@ namespace Tizen.Content.MediaContent
             Interop.Tag.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
 
                 mediaContents.Add(new MediaInformation(newHandle));
+                return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Tag.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
 
             tcs.TrySetResult(mediaContents);

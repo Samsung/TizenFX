@@ -28,6 +28,6 @@ internal partial class Interop
         internal static extern MediaContentError GetMarkedTime(IntPtr bookmark, out uint marked_time);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_bookmark_get_thumbnail_path")]
-        internal static extern MediaContentError GetThumbnailPath(IntPtr bookmark, out string filePath);
+        internal static extern MediaContentError GetThumbnailPath(IntPtr bookmark, out IntPtr filePath);
     }
 }

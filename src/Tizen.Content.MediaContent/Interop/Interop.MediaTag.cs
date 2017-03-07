@@ -28,7 +28,7 @@ internal static partial class Interop
         internal static extern MediaContentError GetTagId(IntPtr tag, out int tag_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_name")]
-        internal static extern MediaContentError GetName(IntPtr tag, out string tag_name);
+        internal static extern MediaContentError GetName(IntPtr tag, out IntPtr tag_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_from_db")]
         internal static extern MediaContentError GetTagFromDb(int tag_id, out IntPtr tag);
@@ -47,7 +47,7 @@ internal static partial class Interop
 
         //Callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MediaInfoCallback(IntPtr mediaInformation, IntPtr data);
+        internal delegate bool MediaInfoCallback(IntPtr mediaInformation, IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool MediaTagCallback(IntPtr tag, IntPtr data);

@@ -73,8 +73,7 @@ namespace Tizen.Content.MediaContent
         public static void Scan(string filePath)
         {
             Database.ConnectToDB();
-            MediaContentRetValidator.ThrowIfError(
-                Interop.Content.ScanFile(filePath), "Failed scan");
+            MediaContentValidator.ThrowIfError(Interop.Content.ScanFile(filePath), "Failed scan");
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace Tizen.Content.MediaContent
         {
             Database.ConnectToDB();
             Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.Insert(filePath, out mediaInformationHandle), "Failed to Insert MediaInformation to DB");
 
             return new MediaInformation(mediaInformationHandle);
@@ -107,10 +106,12 @@ namespace Tizen.Content.MediaContent
 
             Interop.Content.MediaScanCompletedCallback scanCompleted = (MediaContentError scanResult, IntPtr data) =>
             {
-                MediaContentRetValidator.ThrowIfError(scanResult, "Failed to scan");
+                MediaContentValidator.ThrowIfError(scanResult, "Failed to scan");
                 task.SetResult((int)scanResult);
             };
-            MediaContentRetValidator.ThrowIfError(Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero), "Failed to scan");
+
+            MediaContentValidator.ThrowIfError(
+                Interop.Content.ScanFolder(folderPath, recursive, scanCompleted, IntPtr.Zero), "Failed to scan");
 
             return task.Task;
         }
@@ -140,7 +141,7 @@ namespace Tizen.Content.MediaContent
                     if (!taskCompleted)
                     {
                         taskCompleted = true;
-                        MediaContentRetValidator.ThrowIfError(
+                        MediaContentValidator.ThrowIfError(
                             Interop.Content.CancelScanFolder(folderPath), "Failed CancelScanFolder");
 
                         task.SetCanceled();
@@ -154,13 +155,13 @@ namespace Tizen.Content.MediaContent
                     if (!taskCompleted)
                     {
                         taskCompleted = true;
-                        MediaContentRetValidator.ThrowIfError(scanResult, "Failed scan");
+                        MediaContentValidator.ThrowIfError(scanResult, "Failed scan");
                         task.SetResult((int)scanResult);
                     }
                 }
             };
 
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Content.ScanFolder(folderPath, recursive, scanCompletedWithToken, IntPtr.Zero), "Failed to scan");
 
             return task.Task;
@@ -179,10 +180,10 @@ namespace Tizen.Content.MediaContent
             string[] paths = ((List<string>)filePaths).ToArray();
             Interop.MediaInformation.MediaInsertCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
-                MediaContentRetValidator.ThrowIfError(error, "Failed to batch insert");
+                MediaContentValidator.ThrowIfError(error, "Failed to batch insert");
                 task.SetResult((int)error);
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.BatchInsert(paths, paths.Length, callback, IntPtr.Zero), "Failed to add batch media");
 
             return task.Task;
@@ -200,10 +201,10 @@ namespace Tizen.Content.MediaContent
             string[] paths = ((List<string>)filePaths).ToArray();
             Interop.MediaInformation.MediaInsertBurstShotCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
             {
-                MediaContentRetValidator.ThrowIfError(error, "Failed to add burstshot");
+                MediaContentValidator.ThrowIfError(error, "Failed to add burstshot");
                 task.SetResult((int)error);
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.BurstShotInsert(paths, paths.Length, callback, IntPtr.Zero), "Failed to add burst shots to db");
 
             return task.Task;

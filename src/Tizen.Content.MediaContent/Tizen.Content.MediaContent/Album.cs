@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -37,7 +38,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Group.MediaAlbumGetAlbumId(_albumHandle, out id), "Failed to get value");
 
                 return id;
@@ -51,11 +52,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string artist = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Group.MediaAlbumGetArtist(_albumHandle, out artist), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Group.MediaAlbumGetArtist(_albumHandle, out val), "Failed to get value");
 
-                return artist;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -66,11 +74,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string art = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out art), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out val), "Failed to get value");
 
-                return art;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -81,11 +96,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string name = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Group.MediaAlbumGetArtist(_albumHandle, out name), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Group.MediaAlbumGetName(_albumHandle, out val), "Failed to get value");
 
-                return name;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -105,7 +127,7 @@ namespace Tizen.Content.MediaContent
             int mediaCount = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
 
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Group.MediaAlbumGetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get count");
 
             return mediaCount;
@@ -135,13 +157,13 @@ namespace Tizen.Content.MediaContent
             Interop.Group.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone");
 
                 mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Group.MediaAlbumForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
 
             tcs.TrySetResult(mediaContents);

@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -50,15 +51,22 @@ namespace Tizen.Content.MediaContent
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
 
-                string mediaId;
-                Interop.MediaInformation.GetMediaId(newHandle, out mediaId);
-                _dictionary.Add(mediaId, memberId);
-                return true;
+                    Interop.MediaInformation.GetMediaId(newHandle, out val);
+                    _dictionary.Add(Marshal.PtrToStringAnsi(val), memberId);
+                    return true;
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.ForeachMediaFromDb(Id, IntPtr.Zero, callback, IntPtr.Zero), "Failed to get playlist items");
         }
 
@@ -70,7 +78,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Playlist.GetPlaylistId(_playlistHandle, out id), "Failed to get value");
 
                 return id;
@@ -89,7 +97,7 @@ namespace Tizen.Content.MediaContent
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Playlist.SetName(_playlistHandle, value), "Failed to set value");
                 _playListName = value;
             }
@@ -101,14 +109,21 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string path;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Playlist.GetThumbnailPath(_playlistHandle, out path), "Failed to get value");
-                return path;
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Playlist.GetThumbnailPath(_playlistHandle, out val), "Failed to get value");
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Playlist.SetThumbnailPath(_playlistHandle, value), "Failed to set value");
             }
         }
@@ -125,8 +140,17 @@ namespace Tizen.Content.MediaContent
         internal PlayList(IntPtr handle)
         {
             _playlistHandle = handle;
-            MediaContentRetValidator.ThrowIfError(
-                Interop.Playlist.GetName(handle, out _playListName), "Failed to get value");
+            IntPtr val = IntPtr.Zero;
+            try
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Playlist.GetName(handle, out val), "Failed to get value");
+                _playListName = Marshal.PtrToStringAnsi(val);
+            }
+            finally
+            {
+                Interop.Libc.Free(val);
+            }
         }
 
         /// <summary>
@@ -135,7 +159,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaContent">The AudioContent obect to be added</param>
         public void AddItem(MediaInformation mediaContent)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.AddMedia(_playlistHandle, mediaContent.MediaId), "Failed to add item");
         }
 
@@ -148,7 +172,7 @@ namespace Tizen.Content.MediaContent
             int memberId = 0;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.RemoveMedia(_playlistHandle, memberId), "Failed to remove item");
         }
 
@@ -162,7 +186,7 @@ namespace Tizen.Content.MediaContent
             int memberId;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder), "Failed to set play order");
         }
 
@@ -176,7 +200,7 @@ namespace Tizen.Content.MediaContent
             int memberId;
             refreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder), "Failed to get play order");
 
             return playOrder;
@@ -193,7 +217,7 @@ namespace Tizen.Content.MediaContent
             PlayList playList = null;
             IntPtr playlistHandle;
 
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.ImportFromFile(name, filePath, out playlistHandle), "Failed to import");
 
             playList = new PlayList(name);
@@ -207,7 +231,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>path The path to export the playlist</returns>
         public static void Export(PlayList list, string filePath)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.ExportToFile(list.Handle, filePath), "Failed to export playlist:" + filePath);
         }
 
@@ -220,7 +244,7 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.GetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get media count");
 
             return mediaCount;
@@ -249,13 +273,13 @@ namespace Tizen.Content.MediaContent
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
 
                 mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Playlist.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get media information");
 
             tcs.TrySetResult(mediaContents);

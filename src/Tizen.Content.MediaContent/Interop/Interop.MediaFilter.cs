@@ -25,24 +25,24 @@ internal static partial class Interop
         internal static extern MediaContentError SetOffset(IntPtr filter, int offset, int count);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_condition")]
-        internal static extern MediaContentError SetCondition(IntPtr filter, string condition, int collate_type);
+        internal static extern MediaContentError SetCondition(IntPtr filter, string condition, ContentCollation type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_order")]
-        internal static extern MediaContentError SetOrder(IntPtr filter, ContentOrder order_type, string order_keyword, ContentCollation collate_type);
+        internal static extern MediaContentError SetOrder(IntPtr filter, ContentOrder order, string keyword, ContentCollation type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_storage")]
-        internal static extern MediaContentError SetStorage(IntPtr filter, string storage_id);
+        internal static extern MediaContentError SetStorage(IntPtr filter, string storageId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_get_offset")]
         internal static extern MediaContentError GetOffset(IntPtr filter, out int offset, out int count);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_get_condition")]
-        internal static extern MediaContentError GetCondition(IntPtr filter, out string condition, out int collate_type);
+        internal static extern MediaContentError GetCondition(IntPtr filter, out IntPtr condition, out ContentCollation type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_get_order")]
-        internal static extern MediaContentError GetOrder(IntPtr filter, out int order_type, out string order_keyword, out int collate_type);
+        internal static extern MediaContentError GetOrder(IntPtr filter, out ContentOrder order, out IntPtr keyword, out ContentCollation type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_get_storage")]
-        internal static extern MediaContentError GetStorage(IntPtr filter, out string storage_id);
+        internal static extern MediaContentError GetStorage(IntPtr filter, out IntPtr storageId);
     }
 }

@@ -22,34 +22,34 @@ internal static partial class Interop
         internal static extern MediaContentError Clone(out SafeVideoInformationHandle dst, SafeVideoInformationHandle src);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_media_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetMediaId(SafeVideoInformationHandle videoInformationHandle, out string mediaId);
+        internal static extern MediaContentError GetMediaId(SafeVideoInformationHandle videoInformationHandle, out IntPtr mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAlbum(SafeVideoInformationHandle videoInformationHandle, out string albumName);
+        internal static extern MediaContentError GetAlbum(SafeVideoInformationHandle videoInformationHandle, out IntPtr albumName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_artist", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetArtist(SafeVideoInformationHandle videoInformationHandle, out string artistName);
+        internal static extern MediaContentError GetArtist(SafeVideoInformationHandle videoInformationHandle, out IntPtr artistName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album_artist", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAlbumArtist(SafeVideoInformationHandle videoInformationHandle, out string albumArtistName);
+        internal static extern MediaContentError GetAlbumArtist(SafeVideoInformationHandle videoInformationHandle, out IntPtr albumArtistName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_genre", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetGenre(SafeVideoInformationHandle videoInformationHandle, out string genreName);
+        internal static extern MediaContentError GetGenre(SafeVideoInformationHandle videoInformationHandle, out IntPtr genreName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_composer", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetComposer(SafeVideoInformationHandle videoInformationHandle, out string composerName);
+        internal static extern MediaContentError GetComposer(SafeVideoInformationHandle videoInformationHandle, out IntPtr composerName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_year", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetYear(SafeVideoInformationHandle videoInformationHandle, out string year);
+        internal static extern MediaContentError GetYear(SafeVideoInformationHandle videoInformationHandle, out IntPtr year);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_recorded_date", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetRecordedDate(SafeVideoInformationHandle videoInformationHandle, out string recordedDate);
+        internal static extern MediaContentError GetRecordedDate(SafeVideoInformationHandle videoInformationHandle, out IntPtr recordedDate);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_copyright", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetCopyright(SafeVideoInformationHandle videoInformationHandle, out string copyright);
+        internal static extern MediaContentError GetCopyright(SafeVideoInformationHandle videoInformationHandle, out IntPtr copyright);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_track_num", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetTrackNum(SafeVideoInformationHandle videoInformationHandle, out string trackNum);
+        internal static extern MediaContentError GetTrackNum(SafeVideoInformationHandle videoInformationHandle, out IntPtr trackNum);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_bit_rate", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetBitRate(SafeVideoInformationHandle videoInformationHandle, out int bitRate);

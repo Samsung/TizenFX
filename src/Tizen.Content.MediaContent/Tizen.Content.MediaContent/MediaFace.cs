@@ -17,6 +17,7 @@
 
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Content.MediaContent
 {
@@ -52,11 +53,19 @@ namespace Tizen.Content.MediaContent
         ///</param>
         internal MediaFace(MediaInformation image, FaceRect rect)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Face.Create(image.MediaId, out _faceHandle), "Failed to create MediaFace");
 
-            MediaContentRetValidator.ThrowIfError(
-                Interop.Face.SetFaceRect(_faceHandle, rect.X, rect.Y, rect.Width, rect.Height), "Failed to set Rect to MediaFace");
+            try
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Face.SetFaceRect(_faceHandle, rect.X, rect.Y, rect.Width, rect.Height), "Failed to set Rect to MediaFace");
+            }
+            catch (Exception)
+            {
+                Interop.Face.Destroy(_faceHandle);
+                throw;
+            }
         }
 
         ~MediaFace()
@@ -75,7 +84,7 @@ namespace Tizen.Content.MediaContent
                 int y;
                 int width;
                 int height;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Face.GetFaceRect(_faceHandle, out x, out y, out width, out height), "Failed to get Rect for the Face");
 
                 return new FaceRect(x, y, width, height);
@@ -83,7 +92,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 FaceRect rect = (FaceRect)value;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Face.SetFaceRect(_faceHandle, rect.X, rect.Y, rect.Width, rect.Height), "Failed to set Rect for the Face");
             }
         }
@@ -95,11 +104,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string id;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Face.GetFaceId(_faceHandle, out id), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Face.GetFaceId(_faceHandle, out val), "Failed to get value");
 
-                return id;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -110,11 +126,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string mediaId;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Face.GetMediaId(_faceHandle, out mediaId), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Face.GetMediaId(_faceHandle, out val), "Failed to get value");
 
-                return mediaId;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
         /// <summary>
@@ -124,15 +147,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string tag;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Face.GetTag(_faceHandle, out tag), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Face.GetTag(_faceHandle, out val), "Failed to get value");
 
-                return tag;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Face.SetTag(_faceHandle, value), "Failed to set value");
             }
         }
@@ -145,14 +175,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int orientation;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Face.GetOrientation(_faceHandle, out orientation), "Failed to value");
 
                 return (MediaContentOrientation)orientation;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Face.SetOrientation(_faceHandle, (int)value), "Failed to set value");
             }
         }

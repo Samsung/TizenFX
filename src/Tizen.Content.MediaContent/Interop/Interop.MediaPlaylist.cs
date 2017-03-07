@@ -31,13 +31,13 @@ internal static partial class Interop
         internal static extern MediaContentError GetPlaylistId(IntPtr playlist, out int playlist_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_get_name")]
-        internal static extern MediaContentError GetName(IntPtr playlist, out string playlist_name);
+        internal static extern MediaContentError GetName(IntPtr playlist, out IntPtr playlist_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_set_name")]
         internal static extern MediaContentError SetName(IntPtr playlist, string playlist_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_get_thumbnail_path")]
-        internal static extern MediaContentError GetThumbnailPath(IntPtr playlist, out string filePath);
+        internal static extern MediaContentError GetThumbnailPath(IntPtr playlist, out IntPtr filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_set_thumbnail_path")]
         internal static extern MediaContentError SetThumbnailPath(IntPtr playlist, string filePath);

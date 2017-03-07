@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -44,11 +45,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string id;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Storage.GetId(_storageHandle, out id), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Storage.GetId(_storageHandle, out val), "Failed to get value");
 
-                return id;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -59,11 +67,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string path;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Storage.GetPath(_storageHandle, out path), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Storage.GetPath(_storageHandle, out val), "Failed to get value");
 
-                return path;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -74,11 +89,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string name;
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.Storage.GetName(_storageHandle, out name), "Failed to get value");
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Storage.GetName(_storageHandle, out val), "Failed to get value");
 
-                return name;
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -89,11 +111,11 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                int storageType;
-                MediaContentRetValidator.ThrowIfError(
+                ContentStorageType storageType;
+                MediaContentValidator.ThrowIfError(
                     Interop.Storage.GetType(_storageHandle, out storageType), "Failed to get value");
 
-                return (ContentStorageType)storageType;
+                return storageType;
             }
         }
 
@@ -111,7 +133,7 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Storage.GetMediaCountFromDb(Id, handle, out mediaCount), "Failed to get count");
 
             return mediaCount;
@@ -142,13 +164,13 @@ namespace Tizen.Content.MediaContent
             Interop.Storage.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone media");
 
                 mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Storage.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
 
             tcs.TrySetResult(mediaContents);

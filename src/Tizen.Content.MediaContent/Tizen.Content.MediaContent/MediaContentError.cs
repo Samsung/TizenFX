@@ -40,7 +40,7 @@ namespace Tizen.Content.MediaContent
         UnsupportedContent = TizenMediaContentError | 0x04,
         NotSupported = ErrorCode.NotSupported,
     }
-    internal class MediaContentRetValidator
+    internal class MediaContentValidator
     {
         internal const string LogTag = "Tizen.Content.MediaContent";
 
@@ -67,6 +67,11 @@ namespace Tizen.Content.MediaContent
                 case MediaContentError.UnsupportedContent:
                     throw new PlatformNotSupportedException(msg);
             }
+        }
+
+        internal static string CheckString(string value)
+        {
+            return (value != null) ? value : "";
         }
     }
 }

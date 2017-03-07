@@ -91,19 +91,19 @@ internal static partial class Interop
         internal static extern MediaContentError GetAudio(IntPtr mediaInformationHandle, out Interop.AudioInformation.SafeAudioInformationHandle audio);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetMediaId(SafeMediaInformationHandle mediaInformationHandle, out string mediaId);
+        internal static extern MediaContentError GetMediaId(SafeMediaInformationHandle mediaInformationHandle, out IntPtr mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_file_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetFilePath(SafeMediaInformationHandle mediaInformationHandle, out string filePath);
+        internal static extern MediaContentError GetFilePath(SafeMediaInformationHandle mediaInformationHandle, out IntPtr filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_display_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetDisplayName(SafeMediaInformationHandle mediaInformationHandle, out string name);
+        internal static extern MediaContentError GetDisplayName(SafeMediaInformationHandle mediaInformationHandle, out IntPtr name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_type", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetMediaType(SafeMediaInformationHandle mediaInformationHandle, out MediaContentType type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_mime_type", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetMimeType(SafeMediaInformationHandle mediaInformationHandle, out string mimeType);
+        internal static extern MediaContentError GetMimeType(SafeMediaInformationHandle mediaInformationHandle, out IntPtr mimeType);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_size", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetSize(SafeMediaInformationHandle mediaInformationHandle, out long size);
@@ -118,10 +118,10 @@ internal static partial class Interop
         internal static extern MediaContentError GetTimeline(SafeMediaInformationHandle mediaInformationHandle, out int time);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_thumbnail_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetThumbnailPath(SafeMediaInformationHandle mediaInformationHandle, out string filePath);
+        internal static extern MediaContentError GetThumbnailPath(SafeMediaInformationHandle mediaInformationHandle, out IntPtr filePath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_description", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetDescription(SafeMediaInformationHandle mediaInformationHandle, out string description);
+        internal static extern MediaContentError GetDescription(SafeMediaInformationHandle mediaInformationHandle, out IntPtr description);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_longitude", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetLongitude(SafeMediaInformationHandle mediaInformationHandle, out double longitude);
@@ -133,7 +133,7 @@ internal static partial class Interop
         internal static extern MediaContentError GetAltitude(SafeMediaInformationHandle mediaInformationHandle, out double altitude);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_weather", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetWeather(SafeMediaInformationHandle mediaInformationHandle, out string weather);
+        internal static extern MediaContentError GetWeather(SafeMediaInformationHandle mediaInformationHandle, out IntPtr weather);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_rating", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetRating(SafeMediaInformationHandle mediaInformationHandle, out int rating);
@@ -142,31 +142,31 @@ internal static partial class Interop
         internal static extern MediaContentError GetFavorite(SafeMediaInformationHandle mediaInformationHandle, out bool favorite);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_author", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAuthor(SafeMediaInformationHandle mediaInformationHandle, out string author);
+        internal static extern MediaContentError GetAuthor(SafeMediaInformationHandle mediaInformationHandle, out IntPtr author);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_provider", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetProvider(SafeMediaInformationHandle mediaInformationHandle, out string provider);
+        internal static extern MediaContentError GetProvider(SafeMediaInformationHandle mediaInformationHandle, out IntPtr provider);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_content_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetContentName(SafeMediaInformationHandle mediaInformationHandle, out string contentName);
+        internal static extern MediaContentError GetContentName(SafeMediaInformationHandle mediaInformationHandle, out IntPtr contentName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetTitle(SafeMediaInformationHandle mediaInformationHandle, out string title);
+        internal static extern MediaContentError GetTitle(SafeMediaInformationHandle mediaInformationHandle, out IntPtr title);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_category", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetCategory(SafeMediaInformationHandle mediaInformationHandle, out string category);
+        internal static extern MediaContentError GetCategory(SafeMediaInformationHandle mediaInformationHandle, out IntPtr category);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_location_tag", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetLocationTag(SafeMediaInformationHandle mediaInformationHandle, out string locationTag);
+        internal static extern MediaContentError GetLocationTag(SafeMediaInformationHandle mediaInformationHandle, out IntPtr locationTag);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_age_rating", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAgeRating(SafeMediaInformationHandle mediaInformationHandle, out string ageRating);
+        internal static extern MediaContentError GetAgeRating(SafeMediaInformationHandle mediaInformationHandle, out IntPtr ageRating);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_keyword", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetKeyword(SafeMediaInformationHandle mediaInformationHandle, out string keyword);
+        internal static extern MediaContentError GetKeyword(SafeMediaInformationHandle mediaInformationHandle, out IntPtr keyword);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetStorageId(SafeMediaInformationHandle mediaInformationHandle, out string storageId);
+        internal static extern MediaContentError GetStorageId(SafeMediaInformationHandle mediaInformationHandle, out IntPtr storageId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_is_drm", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError IsDrm(SafeMediaInformationHandle mediaInformationHandle, out bool isDrm);

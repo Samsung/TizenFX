@@ -47,7 +47,7 @@ namespace Tizen.Content.MediaContent
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetTagCount(MediaId, handle, out count), "Failed to get count");
 
             return count;
@@ -61,7 +61,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="destination">The Destination path</param>
         public void Move(string destination)
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.MoveToDB(_handle, destination), "Failed to move");
         }
 
@@ -72,7 +72,7 @@ namespace Tizen.Content.MediaContent
         /// void </returns>
         public void Refresh()
         {
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.RefreshMetadataToDB(MediaId), "Failed to refresh");
         }
 
@@ -87,10 +87,10 @@ namespace Tizen.Content.MediaContent
             var task = new TaskCompletionSource<string>();
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                MediaContentRetValidator.ThrowIfError(createResult, "Failed to create thumbnail");
+                MediaContentValidator.ThrowIfError(createResult, "Failed to create thumbnail");
                 task.SetResult(path);
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero), "Failed to create thumbnail");
 
             return await task.Task;
@@ -107,16 +107,16 @@ namespace Tizen.Content.MediaContent
         {
             var task = new TaskCompletionSource<string>();
             cancellationToken.Register(() => {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.CancelThumbnail(_handle), "Failed to cancel");
                 task.SetCanceled();
             });
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                MediaContentRetValidator.ThrowIfError(createResult, "Failed to create thumbnail");
+                MediaContentValidator.ThrowIfError(createResult, "Failed to create thumbnail");
                 task.SetResult(path);
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero), "Failed to create thumbnail");
 
             return await task.Task;
@@ -137,13 +137,13 @@ namespace Tizen.Content.MediaContent
             Interop.MediaInformation.MediaTagCallback tagsCallback = (IntPtr tagHandle, IntPtr userData) =>
             {
                 IntPtr newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.Tag.Clone(out newHandle, tagHandle), "Failed to clone");
                 coll.Add(new Tag(newHandle));
 
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetAllTags(MediaId, handle, tagsCallback, IntPtr.Zero), "Failed to get information");
 
             task.SetResult(coll);
@@ -157,14 +157,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string mediaId = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetMediaId(_handle, out mediaId), "Failed to get value");
-                if (mediaId == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    mediaId = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetMediaId(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return mediaId;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -175,14 +179,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string path = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetFilePath(_handle, out path), "Failed to get value");
-                if (path == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    path = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetFilePath(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return path;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -193,19 +201,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string displayname = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetDisplayName(_handle, out displayname), "Failed to get value");
-
-                if (displayname == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    displayname = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetDisplayName(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return displayname;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetDisplayName(_handle, value), "failed to set value");
             }
         }
@@ -218,7 +229,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 MediaContentType contentType = MediaContentType.Others;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetMediaType(_handle, out contentType), "Failed to get value");
 
                 return contentType;
@@ -232,15 +243,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string mimeType = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetMimeType(_handle, out mimeType), "Failed to get value");
-
-                if (mimeType == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    mimeType = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetMimeType(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return mimeType;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -252,7 +266,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 long size;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetSize(_handle, out size), "Failed to get value");
 
                 return size;
@@ -266,27 +280,17 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                DateTime addedAt;
                 int time;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetAddedTime(_handle, out time), "Failed to get value");
 
-                DateTime utc;
-                if (time != 0)
-                {
-                    utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
-                    addedAt = utc.ToLocalTime();
-                }
-                else
-                {
-                    addedAt = DateTime.Now;
-                }
-                return addedAt;
-            }
+                DateTime utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
 
+                return utc.ToLocalTime();
+            }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetAddedTime(_handle, (int)value.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds), "failed to set time");
             }
         }
@@ -298,22 +302,13 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                DateTime modifiedAt;
                 int time;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetModifiedTime(_handle, out time), "Failed to get value");
 
-                DateTime utc;
-                if (time != 0)
-                {
-                    utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
-                    modifiedAt = utc.ToLocalTime();
-                }
-                else
-                {
-                    modifiedAt = DateTime.Now;
-                }
-                return modifiedAt;
+                DateTime utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
+
+                return utc.ToLocalTime();
             }
         }
 
@@ -324,22 +319,13 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                DateTime timeline;
                 int time;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetTimeline(_handle, out time), "Failed to get value");
 
-                DateTime utc;
-                if (time != 0)
-                {
-                    utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
-                    timeline = utc.ToLocalTime();
-                }
-                else
-                {
-                    timeline = DateTime.Now;
-                }
-                return timeline;
+                DateTime utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
+
+                return utc.ToLocalTime();
             }
         }
 
@@ -350,15 +336,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string thumbnailPath = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetThumbnailPath(_handle, out thumbnailPath), "Failed to get value");
-
-                if (thumbnailPath == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    thumbnailPath = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetThumbnailPath(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return thumbnailPath;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -370,19 +359,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string description = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetDescription(_handle, out description), "Failed to get value");
-
-                if (description == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    description = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetDescription(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return description;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetDescription(_handle, value), "failed to set value");
             }
         }
@@ -396,14 +388,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 double longitude = 0.0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetLongitude(_handle, out longitude), "Failed to get value");
 
                 return longitude;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetLongitude(_handle, value), "failed to set value");
             }
         }
@@ -417,14 +409,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 double latitude = 0.0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetLatitude(_handle, out latitude), "Failed to get value");
 
                 return latitude;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetLatitude(_handle, value), "failed to set value");
             }
         }
@@ -438,14 +430,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 double altitude = 0.0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetAltitude(_handle, out altitude), "Failed to get value");
 
                 return altitude;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetAltitude(_handle, value), "failed to set value");
             }
         }
@@ -458,19 +450,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string weather = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetWeather(_handle, out weather), "Failed to get value");
-
-                if (weather == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    weather = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetWeather(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return weather;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetWeather(_handle, value), "failed to set value");
             }
         }
@@ -483,13 +478,13 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int rating = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetRating(_handle, out rating), "Failed to get value");
                 return rating;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetRating(_handle, value), "failed to set value");
             }
         }
@@ -503,14 +498,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 bool isFavourtite = false;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetFavorite(_handle, out isFavourtite), "Failed to get value");
 
                 return isFavourtite;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetFavorite(_handle, value), "failed to set value");
             }
         }
@@ -522,19 +517,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string author = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetAuthor(_handle, out author), "Failed to get value");
-
-                if(author == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    author = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetAuthor(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return author;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetAuthor(_handle, value), "failed to set value");
             }
         }
@@ -546,19 +544,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string provider = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetProvider(_handle, out provider), "Failed to get value");
-
-                if (provider == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    provider = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetProvider(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return provider;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetProvider(_handle, value), "failed to set value");
             }
         }
@@ -570,19 +571,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string contentName = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetContentName(_handle, out contentName), "Failed to get value");
-
-                if (contentName == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    contentName = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetContentName(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return contentName;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetContentName(_handle, value), "failed to set value");
             }
         }
@@ -594,15 +598,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string title = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetTitle(_handle, out title), "Failed to get value");
-
-                if (title == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    title = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetTitle(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return title;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -613,19 +620,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string category = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetCategory(_handle, out category), "Failed to get value");
-
-                if (category == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    category = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetCategory(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return category;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetCategory(_handle, value), "failed to set value");
             }
         }
@@ -637,19 +647,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string loationTag = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetLocationTag(_handle, out loationTag), "Failed to get value");
-
-                if (loationTag == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    loationTag = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetLocationTag(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return loationTag;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetLocationTag(_handle, value), "failed to set value");
             }
         }
@@ -661,19 +674,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string ageRating = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetAgeRating(_handle, out ageRating), "Failed to get value");
-
-                if (ageRating == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    ageRating = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetAgeRating(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return ageRating;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetAgeRating(_handle, value), "Failed to set value");
             }
         }
@@ -685,19 +701,22 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string keyword = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetKeyword(_handle, out keyword), "Failed to get value");
-
-                if (keyword == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    keyword = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetKeyword(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return keyword;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetKeyword(_handle, value), "failed to set value");
             }
         }
@@ -709,15 +728,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string storageId = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.MediaInformation.GetStorageId(_handle, out storageId), "Failed to get value");
-
-                if (storageId == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    storageId = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetStorageId(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return storageId;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -729,7 +751,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 bool isDRM = false;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.IsDrm(_handle, out isDRM), "Failed to get value");
 
                 return isDRM;
@@ -744,7 +766,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 ContentStorageType storageType = ContentStorageType.Internal;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetStorageType(_handle, out storageType), "Failed to get value");
 
                 return storageType;
@@ -760,14 +782,14 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int playedCount = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetPlayedCount(_handle, out playedCount), "Failed to get value");
 
                 return playedCount;
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.IncreasePlayedCount(_handle), "failed to set value");
             }
         }
@@ -780,26 +802,17 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                DateTime addedAt;
                 int time;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.GetPlayedAt(_handle, out time), "Failed to get value");
 
-                DateTime utc;
-                if (time != 0)
-                {
-                    utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
-                    addedAt = utc.ToLocalTime();
-                }
-                else
-                {
-                    addedAt = DateTime.Now;
-                }
-                return addedAt;
+                DateTime utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
+
+                return utc.ToLocalTime();
             }
             set
             {
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.SetPlayedAt(_handle), "failed to set value");
             }
         }

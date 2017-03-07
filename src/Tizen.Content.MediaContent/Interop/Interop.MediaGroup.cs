@@ -22,13 +22,13 @@ internal static partial class Interop
         internal static extern MediaContentError MediaAlbumGetAlbumId(IntPtr album, out int album_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_get_name")]
-        internal static extern MediaContentError MediaAlbumGetName(IntPtr album, out string album_name);
+        internal static extern MediaContentError MediaAlbumGetName(IntPtr album, out IntPtr album_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_get_artist")]
-        internal static extern MediaContentError MediaAlbumGetArtist(IntPtr album, out string artist);
+        internal static extern MediaContentError MediaAlbumGetArtist(IntPtr album, out IntPtr artist);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_get_album_art")]
-        internal static extern MediaContentError MediaAlbumGetAlbumArt(IntPtr album, out string album_art);
+        internal static extern MediaContentError MediaAlbumGetAlbumArt(IntPtr album, out IntPtr album_art);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_get_album_from_db")]
         internal static extern MediaContentError MediaAlbumGetAlbumFromDb(int album_id, out IntPtr album);

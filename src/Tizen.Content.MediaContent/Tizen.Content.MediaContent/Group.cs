@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Content.MediaContent
@@ -68,7 +69,7 @@ namespace Tizen.Content.MediaContent
         {
             int mediaCount = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Group.GetMediaCountFromDb(Name, _groupType, handle, out mediaCount), "Failed to GetMediaCountFromDb");
 
             return mediaCount;
@@ -90,13 +91,13 @@ namespace Tizen.Content.MediaContent
             Interop.Group.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
             {
                 Interop.MediaInformation.SafeMediaInformationHandle newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone MediaInformation instance");
 
                 mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.Group.ForeachMediaFromDb(Name, _groupType, handle, callback, IntPtr.Zero), "Failed to get media information for the group");
 
             tcs.TrySetResult(mediaContents);

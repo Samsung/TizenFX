@@ -19,26 +19,26 @@ internal static partial class Interop
         internal static extern MediaContentError Destroy(IntPtr folder);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_folder_id")]
-        internal static extern MediaContentError GetFolderId(IntPtr folder, out string folder_id);
+        internal static extern MediaContentError GetFolderId(IntPtr folder, out IntPtr folder_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_parent_folder_id")]
-        internal static extern MediaContentError GetParentFolderId(IntPtr folder, out string parent_folder_id);
+        internal static extern MediaContentError GetParentFolderId(IntPtr folder, out IntPtr parent_folder_id);
 
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_path")]
-        internal static extern MediaContentError GetPath(IntPtr folder, out string folderPath);
+        internal static extern MediaContentError GetPath(IntPtr folder, out IntPtr folderPath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_name")]
-        internal static extern MediaContentError GetName(IntPtr folder, out string folder_name);
+        internal static extern MediaContentError GetName(IntPtr folder, out IntPtr folder_name);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_modified_time")]
         internal static extern MediaContentError GetModifiedTime(IntPtr folder, out DateTime date);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_type")]
-        internal static extern MediaContentError GetStorageType(IntPtr folder, out int storage_type);
+        internal static extern MediaContentError GetStorageType(IntPtr folder, out ContentStorageType storage_type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_id")]
-        internal static extern MediaContentError GetStorageId(IntPtr folder, out string storage_id);
+        internal static extern MediaContentError GetStorageId(IntPtr folder, out IntPtr storage_id);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_order")]
         internal static extern MediaContentError GetOrder(IntPtr folder, out int order);

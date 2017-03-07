@@ -22,34 +22,34 @@ internal static partial class Interop
         internal static extern MediaContentError Clone(out SafeAudioInformationHandle dst, SafeAudioInformationHandle src);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_media_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetMediaId(SafeAudioInformationHandle audioInformationHandle, out string mediaId);
+        internal static extern MediaContentError GetMediaId(SafeAudioInformationHandle audioInformationHandle, out IntPtr mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_album", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAlbum(SafeAudioInformationHandle audioInformationHandle, out string albumName);
+        internal static extern MediaContentError GetAlbum(SafeAudioInformationHandle audioInformationHandle, out IntPtr albumName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_artist", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetArtist(SafeAudioInformationHandle audioInformationHandle, out string artistName);
+        internal static extern MediaContentError GetArtist(SafeAudioInformationHandle audioInformationHandle, out IntPtr artistName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_album_artist", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetAlbumArtist(SafeAudioInformationHandle audioInformationHandle, out string albumArtistName);
+        internal static extern MediaContentError GetAlbumArtist(SafeAudioInformationHandle audioInformationHandle, out IntPtr albumArtistName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_genre", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetGenre(SafeAudioInformationHandle audioInformationHandle, out string genreName);
+        internal static extern MediaContentError GetGenre(SafeAudioInformationHandle audioInformationHandle, out IntPtr genreName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_composer", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetComposer(SafeAudioInformationHandle audioInformationHandle, out string composerName);
+        internal static extern MediaContentError GetComposer(SafeAudioInformationHandle audioInformationHandle, out IntPtr composerName);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_year", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetYear(SafeAudioInformationHandle audioInformationHandle, out string year);
+        internal static extern MediaContentError GetYear(SafeAudioInformationHandle audioInformationHandle, out IntPtr year);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_recorded_date", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetRecordedDate(SafeAudioInformationHandle audioInformationHandle, out string recordedDate);
+        internal static extern MediaContentError GetRecordedDate(SafeAudioInformationHandle audioInformationHandle, out IntPtr recordedDate);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_copyright", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetCopyright(SafeAudioInformationHandle audioInformationHandle, out string copyright);
+        internal static extern MediaContentError GetCopyright(SafeAudioInformationHandle audioInformationHandle, out IntPtr copyright);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_track_num", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetTrackNum(SafeAudioInformationHandle audioInformationHandle, out string trackNum);
+        internal static extern MediaContentError GetTrackNum(SafeAudioInformationHandle audioInformationHandle, out IntPtr trackNum);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "audio_meta_get_bit_rate", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetBitRate(SafeAudioInformationHandle audioInformationHandle, out int bitRate);

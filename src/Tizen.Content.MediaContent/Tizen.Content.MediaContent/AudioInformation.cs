@@ -43,15 +43,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string mediaId = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetMediaId(_handle, out mediaId), "Failed to get value");
-
-                if (mediaId == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    mediaId = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetMediaId(_handle, out val), "Failed to get value");
+
+                    return Marshal.PtrToStringAnsi(val);
                 }
-                return mediaId;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -64,15 +67,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string album = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetAlbum(_handle, out album), "Failed to get value");
-
-                if (album == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    album = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetAlbum(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return album;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -85,15 +91,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string artist = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetArtist(_handle, out artist), "Failed to get value");
-
-                if (artist == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    artist = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetArtist(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return artist;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -106,15 +115,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string albumArtist = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetAlbumArtist(_handle, out albumArtist), "Failed to get value");
-
-                if (albumArtist == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    albumArtist = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetAlbumArtist(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return albumArtist;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -127,15 +139,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string genre = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetGenre(_handle, out genre), "Failed to get value");
-
-                if (genre == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    genre = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetGenre(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return genre;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -148,15 +163,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string composer = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetComposer(_handle, out composer), "Failed to get value");
-
-                if (composer == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    composer = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetComposer(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return composer;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -169,15 +187,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string year = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetYear(_handle, out year), "Failed to get value");
-
-                if (year == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    year = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetYear(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return year;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -188,15 +209,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string recordedDate = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetRecordedDate(_handle, out recordedDate), "Failed to get value");
-
-                if (recordedDate == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    recordedDate = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetRecordedDate(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return recordedDate;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -208,15 +232,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string copyright = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetCopyright(_handle, out copyright), "Failed to get value");
-
-                if (copyright == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    copyright = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetCopyright(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return copyright;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -228,15 +255,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                string trackNumber = "";
-                MediaContentRetValidator.ThrowIfError(
-                    Interop.AudioInformation.GetTrackNum(_handle, out trackNumber), "Failed to get value");
-
-                if (trackNumber == null)
+                IntPtr val = IntPtr.Zero;
+                try
                 {
-                    trackNumber = "";
+                    MediaContentValidator.ThrowIfError(
+                        Interop.AudioInformation.GetTrackNum(_handle, out val), "Failed to get value");
+
+                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
                 }
-                return trackNumber;
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -248,7 +278,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int bitrate = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.GetBitRate(_handle, out bitrate), "Failed to get value");
 
                 return bitrate;
@@ -263,7 +293,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int bitPerSample = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.GetBitPerSample(_handle, out bitPerSample), "Failed to get value");
 
                 return bitPerSample;
@@ -278,7 +308,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int sampleRate = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.GetSampleRate(_handle, out sampleRate), "Failed to get value");
 
                 return sampleRate;
@@ -293,7 +323,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int channel = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.GetChannel(_handle, out channel), "Failed to get value");
 
                 return channel;
@@ -308,7 +338,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int duration = 0;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.GetDuration(_handle, out duration), "Failed to get value");
 
                 return duration;
@@ -326,7 +356,7 @@ namespace Tizen.Content.MediaContent
         {
             int count = 0;
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetBookmarkCount(MediaId, handle, out count), "Failed to get count");
 
             return count;
@@ -348,14 +378,14 @@ namespace Tizen.Content.MediaContent
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
             Interop.MediaInformation.MediaBookmarkCallback callback = (IntPtr handle, IntPtr userData) =>
             {
-                IntPtr newHandle;
-                MediaContentRetValidator.ThrowIfError(
+                IntPtr newHandle = IntPtr.Zero;
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaBookmark.Clone(out newHandle, handle), "Failed to clone");
 
                 coll.Add(new MediaBookmark(newHandle));
                 return true;
             };
-            MediaContentRetValidator.ThrowIfError(
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, callback, IntPtr.Zero), "Failed to get value");
 
             task.SetResult(coll);

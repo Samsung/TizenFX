@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Tizen.Content.MediaContent
@@ -36,11 +37,21 @@ namespace Tizen.Content.MediaContent
         internal MediaBookmark(IntPtr handle)
         {
             _bookmarkHandle = handle;
-            MediaContentRetValidator.ThrowIfError(
+            IntPtr val = IntPtr.Zero;
+            MediaContentValidator.ThrowIfError(
                 Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset), "Failed to Get Offset");
 
-            MediaContentRetValidator.ThrowIfError(
-                Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out _thumbnailPath), "Failed to Get Thumbnail Path");
+            try
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out val), "Failed to Get Thumbnail Path");
+
+                _thumbnailPath = Marshal.PtrToStringAnsi(val);
+            }
+            finally
+            {
+                Interop.Libc.Free(val);
+            }
         }
 
         ~MediaBookmark()
@@ -55,7 +66,7 @@ namespace Tizen.Content.MediaContent
             get
             {
                 int id;
-                MediaContentRetValidator.ThrowIfError(
+                MediaContentValidator.ThrowIfError(
                     Interop.MediaBookmark.GetBookmarkId(_bookmarkHandle, out id), "Failed to get bookmark id");
 
                 return id;
