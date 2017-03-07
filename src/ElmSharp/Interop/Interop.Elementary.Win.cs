@@ -52,6 +52,24 @@ internal static partial class Interop
         internal static extern void elm_win_resize_object_add(IntPtr obj, IntPtr subobj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_alpha_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_alpha_set(IntPtr obj, bool alpha);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr _elm_win_role_get(IntPtr obj);
+
+        internal static string elm_win_role_get(IntPtr obj)
+        {
+            var text = _elm_win_role_get(obj);
+            return Marshal.PtrToStringAnsi(text);
+        }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_role_set(IntPtr obj, string role);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_autodel_set(IntPtr obj, bool autodel);
 
         [DllImport(Libraries.Elementary)]
