@@ -1,6 +1,6 @@
 Name:       csapi-uix-stt
 Summary:    Tizen STT Uix API for C#
-Version:    1.0.0
+Version:    1.0.1
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
