@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETStandard,Version=v1.3": {
-      "ElmSharp/1.1.0-beta-005": {
+      "ElmSharp/1.1.0-beta-011": {
         "type": "package",
         "compile": {
           "lib/netstandard1.3/ElmSharp.dll": {}
@@ -819,12 +819,12 @@
     }
   },
   "libraries": {
-    "ElmSharp/1.1.0-beta-005": {
-      "sha512": "zFIFe8eaLj+3vqlgq07cav9zM7WwEgSWJFPXNpZtyib5F2Buy3T3E9QQhYgLchTpuhaFBTHjnv6KEUXNtHvJNw==",
+    "ElmSharp/1.1.0-beta-011": {
+      "sha512": "0ZQqB2XEc0aA0f+2Je272fZE+uDLJ8rfzrjlifwCLWGd4luyPuOVYPhptN3vb0Nid8pTvBSpaQQOFc+pZbUeTA==",
       "type": "package",
-      "path": "ElmSharp/1.1.0-beta-005",
+      "path": "ElmSharp/1.1.0-beta-011",
       "files": [
-        "ElmSharp.1.1.0-beta-005.nupkg.sha512",
+        "ElmSharp.1.1.0-beta-011.nupkg.sha512",
         "ElmSharp.nuspec",
         "lib/net45/ElmSharp.dll",
         "lib/netstandard1.3/ElmSharp.dll"

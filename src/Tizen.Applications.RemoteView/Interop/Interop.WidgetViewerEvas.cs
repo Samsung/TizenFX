@@ -65,13 +65,13 @@ internal static partial class Interop
         internal static extern ErrorCode ResumeWidget(IntPtr widget);
 
         [DllImport(Libraries.WidgetViewerEvas, EntryPoint = "widget_viewer_evas_get_content_info")]
-        internal static extern string GetContentInfo(IntPtr widget);
+        internal static extern IntPtr GetContentInfo(IntPtr widget);
 
         [DllImport(Libraries.WidgetViewerEvas, EntryPoint = "widget_viewer_evas_get_title_string")]
-        internal static extern string GetTitleString(IntPtr widget);
+        internal static extern IntPtr GetTitleString(IntPtr widget);
 
         [DllImport(Libraries.WidgetViewerEvas, EntryPoint = "widget_viewer_evas_get_widget_id")]
-        internal static extern string GetWidgetId(IntPtr widget);
+        internal static extern IntPtr GetWidgetId(IntPtr widget);
 
         [DllImport(Libraries.WidgetViewerEvas, EntryPoint = "widget_viewer_evas_get_period")]
         internal static extern double GetPeriod(IntPtr widget);

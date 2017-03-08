@@ -16,6 +16,7 @@
 
 using ElmSharp;
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
@@ -54,7 +55,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.WidgetViewerEvas.GetWidgetId(Layout);
+                IntPtr ptr = Interop.WidgetViewerEvas.GetWidgetId(Layout);
+
+                return Marshal.PtrToStringAnsi(ptr);
             }
         }
 
@@ -81,7 +84,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.WidgetViewerEvas.GetContentInfo(Layout);
+                IntPtr ptr = Interop.WidgetViewerEvas.GetContentInfo(Layout);
+
+                return Marshal.PtrToStringAnsi(ptr);
             }
         }
 
@@ -93,7 +98,9 @@ namespace Tizen.Applications
         {
             get
             {
-                return Interop.WidgetViewerEvas.GetTitleString(Layout);
+                IntPtr ptr = Interop.WidgetViewerEvas.GetTitleString(Layout);
+
+                return Marshal.PtrToStringAnsi(ptr);
             }
         }
 
