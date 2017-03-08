@@ -67,6 +67,7 @@
     <Compile Include="Tizen.Applications\ApplicationType.cs" />
     <Compile Include="Tizen.Applications\CoreApplication.cs" />
     <Compile Include="Tizen.Applications\DirectoryInfo.cs" />
+    <Compile Include="Tizen.Applications\ResourceManager.cs" />
     <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowBatteryEventArgs.cs" />
     <Compile Include="Tizen.Applications\LowBatteryStatus.cs" />

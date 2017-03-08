@@ -64,6 +64,7 @@
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationTerminatedEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationType.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/Bundle.cs" />
+    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ResourceManager.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/CertificateType.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs" />
     <Compile Include="../Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs" />

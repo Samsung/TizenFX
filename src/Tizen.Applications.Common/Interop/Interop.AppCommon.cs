@@ -24,6 +24,14 @@ internal static partial class Interop
 {
     internal static partial class AppCommon
     {
+	internal enum ResourceCategory : int
+        {
+            Image = 0,
+            Layout,
+            Sound,
+            Binary
+        }
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_id")]
         internal static extern ErrorCode AppGetId(out string appId);
 
@@ -75,6 +83,8 @@ internal static partial class Interop
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format")]
         internal static extern ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
 
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_resource_manager_get")]
+        internal static extern ErrorCode AppResourceManagerGet(ResourceCategory category, string id, out string path);
     }
 }
 
