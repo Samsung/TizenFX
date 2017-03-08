@@ -33,7 +33,7 @@ namespace Tizen.Content.MediaContent
         private readonly Interop.ImageInformation.SafeImageInformationHandle _handle;
 
         /// <summary>
-        ///  Gets the tag ID for the image.
+        ///  Gets the id of the media.
         /// </summary>
         public string MediaId
         {
@@ -117,7 +117,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.ImageInformation.GetDateTaken(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -128,7 +128,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the burst shot ID.
-        /// If BurstId is empty, this is not a burst shot
+        /// If BurstId is null, this is not a burst shot
         /// </summary>
         public string BurstId
         {
@@ -140,7 +140,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.ImageInformation.GetBurstId(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -162,7 +162,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.ImageInformation.GetExposureTime(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -214,7 +214,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.ImageInformation.GetModel(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {

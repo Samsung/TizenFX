@@ -151,7 +151,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        ///  Gets the tag ID for the media.
+        ///  Gets the ID of the media.
         /// </summary>
         public virtual string MediaId
         {
@@ -443,8 +443,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Weather of media.
-        /// Dafault is empty string.
+        /// Weather information of media.
         /// </summary>
         public string Weather
         {
@@ -456,7 +455,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetWeather(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -523,7 +522,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetAuthor(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -550,7 +549,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetProvider(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -577,7 +576,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetContentName(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -593,6 +592,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// Gets the title of media.
+        /// If the media content has no title, the property returns empty string.
         /// </summary>
         public string Title
         {
@@ -626,7 +626,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetCategory(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -653,7 +653,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetLocationTag(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -680,7 +680,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetAgeRating(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
@@ -707,7 +707,7 @@ namespace Tizen.Content.MediaContent
                     MediaContentValidator.ThrowIfError(
                         Interop.MediaInformation.GetKeyword(_handle, out val), "Failed to get value");
 
-                    return MediaContentValidator.CheckString(Marshal.PtrToStringAnsi(val));
+                    return Marshal.PtrToStringAnsi(val);
                 }
                 finally
                 {
