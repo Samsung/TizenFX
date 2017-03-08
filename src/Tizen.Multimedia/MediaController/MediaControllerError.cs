@@ -14,8 +14,8 @@
 * limitations under the License.
 */
 
-
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia.MediaController
@@ -29,27 +29,27 @@ namespace Tizen.Multimedia.MediaController
         NoSpaceOnDevice = ErrorCode.FileNoSpaceOnDevice,
         PermissionDenied = ErrorCode.PermissionDenied,
     };
-    internal static class MediaControllerErrorFactory
+
+    internal static class MediaControllerValidator
     {
-        internal static void ThrowException(MediaControllerError errorCode, string errorMessage = null, string paramName = null)
+        internal static void ThrowIfError(MediaControllerError error, string errorMessage)
         {
-            MediaControllerError err = errorCode;
-            if(string.IsNullOrEmpty(errorMessage))
+            switch (error)
             {
-                errorMessage = err.ToString();
-            }
-            switch(errorCode)
-            {
-            case MediaControllerError.InvalidParameter:
-                throw new ArgumentException(errorMessage, paramName);
+                case MediaControllerError.InvalidParameter:
+                    throw new ArgumentException(errorMessage);
 
-            case MediaControllerError.OutOfMemory:
-            case MediaControllerError.NoSpaceOnDevice:
-                throw new OutOfMemoryException(errorMessage);
+                case MediaControllerError.OutOfMemory:
+                    throw new OutOfMemoryException(errorMessage);
 
-            case MediaControllerError.InvalidOperation:
-            case MediaControllerError.PermissionDenied:
-                throw new InvalidOperationException(errorMessage);
+                case MediaControllerError.InvalidOperation:
+                    throw new InvalidOperationException(errorMessage);
+
+                case MediaControllerError.NoSpaceOnDevice:
+                    throw new IOException(errorMessage);
+
+                case MediaControllerError.PermissionDenied:
+                    throw new UnauthorizedAccessException(errorMessage);
             }
         }
     }

@@ -32,26 +32,17 @@ namespace Tizen.Multimedia.MediaController
             Position = position;
         }
 
-        internal MediaControllerPlayback(IntPtr _playbackHandle) {
-            MediaControllerError res = MediaControllerError.None;
-            int state = 0;
+        internal MediaControllerPlayback(IntPtr _handle) {
+            MediaControllerPlaybackState state = MediaControllerPlaybackState.None;
             ulong position = 0L;
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackState(_playbackHandle, out state);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback state failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback state failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetPlaybackState(_handle, out state), "Get Playback state failed");
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetPlaybackPosition(_playbackHandle, out position);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback position failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback position failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetPlaybackPosition(_handle, out position), "Get Playback position failed");
 
-            State = (MediaControllerPlaybackState)state;
+            State = state;
             Position = position;
         }
 

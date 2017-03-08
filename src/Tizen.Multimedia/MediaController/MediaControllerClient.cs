@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
 
@@ -26,6 +25,9 @@ namespace Tizen.Multimedia.MediaController
     /// <summary>
     /// The MediaControllerClient class provides APIs required for media-controller-client.
     /// </summary>
+    /// <privilege>
+    /// http://tizen.org/privilege/mediacontroller.client
+    /// </privilege>
     /// <remarks>
     /// The MediaControllerClient APIs provides functions to get media information from server.
     /// </remarks>
@@ -51,9 +53,11 @@ namespace Tizen.Multimedia.MediaController
         /// The constructor of MediaControllerClient class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
         public MediaControllerClient ()
         {
-            Interop.MediaControllerClient.Create (out _handle);
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.Create(out _handle), "Create client failed");
         }
 
         ~MediaControllerClient ()
@@ -236,102 +240,81 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets latest server information </summary>
+        /// <returns>The name and state of the latest media controller server application: ServerInformation object</returns>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public ServerInformation GetLatestServer()
         {
-            MediaControllerError res = MediaControllerError.None;
-            string _name;
-            int _state;
+            string _name = null;
+            MediaControllerServerState _state = MediaControllerServerState.None;
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetLatestServer(_handle, out _name, out _state);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Latest server failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Latest server failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetLatestServer(_handle, out _name, out _state), "Get Latest server failed");
 
-            ServerInformation _serverInfo = new ServerInformation (_name, (MediaControllerServerState)_state);
-            return _serverInfo;
+            return new ServerInformation(_name, (MediaControllerServerState)_state);
         }
 
         /// <summary>
         /// gets playback information for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <returns>The playback state and playback position of the specific media controller server application:MediaControllerPlayback object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerPlayback GetPlayback(String serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
             IntPtr _playbackHandle = IntPtr.Zero;
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetServerPlayback(_handle, serverName, out _playbackHandle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback handle failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetServerPlayback(_handle, serverName, out _playbackHandle), "Get Playback handle failed");
 
-            MediaControllerPlayback _playback = new MediaControllerPlayback (_playbackHandle);
-            return _playback;
+            return new MediaControllerPlayback (_playbackHandle);
         }
 
         /// <summary>
         /// gets metadata information for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <returns>The metadata information of the specific media controller server application:MediaControllerMetadata object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerMetadata GetMetadata(String serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
             IntPtr _metadataHandle = IntPtr.Zero;
 
-            res = (MediaControllerError)Interop.MediaControllerClient.GetServerMetadata(_handle, serverName, out _metadataHandle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback handle failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetServerMetadata(_handle, serverName, out _metadataHandle), "Get Metadata handle failed");
 
-            MediaControllerMetadata _metadata = new MediaControllerMetadata (_metadataHandle);
-            return _metadata;
+            return new MediaControllerMetadata (_metadataHandle);
         }
 
         /// <summary>
         /// gets shuffle mode for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <returns>The shuffle mode of the specific media controller server application:MediaControllerShuffleMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerShuffleMode GetShuffleMode(String serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
-            int _shuffleMode;
-            res = (MediaControllerError)Interop.MediaControllerClient.GetServerShuffleMode(_handle, serverName, out _shuffleMode);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback handle failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
-            }
+            MediaControllerShuffleMode _shuffleMode = MediaControllerShuffleMode.Off;
 
-            return (MediaControllerShuffleMode)_shuffleMode;
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetServerShuffleMode(_handle, serverName, out _shuffleMode), "Get ShuffleMode failed");
+
+            return _shuffleMode;
         }
 
         /// <summary>
         /// gets repeat mode for specific server </summary>
         /// <param name="serverName"> Server Name  </param>
+        /// <returns>The repeat mode of the specific media controller server application:MediaControllerRepeatMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public MediaControllerRepeatMode GetRepeatMode(String serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
-            int _repeatMode;
-            res = (MediaControllerError)Interop.MediaControllerClient.GetServerRepeatMode(_handle, serverName, out _repeatMode);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Get Playback handle failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Get Playback handle failed");
-            }
+            MediaControllerRepeatMode _repeatMode = MediaControllerRepeatMode.Off;
 
-            return (MediaControllerRepeatMode)_repeatMode;
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetServerRepeatMode(_handle, serverName, out _repeatMode), "Get RepeatMode failed");
+
+            return _repeatMode;
         }
 
         /// <summary>
@@ -342,13 +325,8 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendPlaybackStateCommand(string serverName, MediaControllerPlaybackState state)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerClient.SendPlaybackStateCommand(_handle, serverName, (int)state);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Send playback state command failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Send playback state command failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.SendPlaybackStateCommand(_handle, serverName, state), "Send playback state command failed");
         }
 
         /// <summary>
@@ -360,13 +338,9 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendCustomCommand(string serverName, string command, Bundle bundle)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerClient.SendCustomCommand(_handle, serverName, command, bundle.SafeBundleHandle, _customcommandReplyCallback, IntPtr.Zero);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Send custom command failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Send custom command failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.SendCustomCommand(_handle, serverName, command, bundle.SafeBundleHandle, _customcommandReplyCallback, IntPtr.Zero),
+                "Send custom command failed");
         }
 
         /// <summary>
@@ -376,13 +350,8 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public void Subscribe(MediaControllerSubscriptionType type, string serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerClient.Subscribe(_handle, (int)type, serverName);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Subscribe failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Subscribe failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.Subscribe(_handle, type, serverName), "Subscribe failed");
         }
 
         /// <summary>
@@ -392,17 +361,13 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public void Unsubscribe(MediaControllerSubscriptionType type, string serverName)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerClient.Unsubscribe(_handle, (int)type, serverName);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Unsubscribe failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Unsubscribe failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.Unsubscribe(_handle, type, serverName), "Unsubscribe failed");
         }
 
         /// <summary>
         /// gets activated server list </summary>
+        /// <returns>The list of activated media controller server applications: IEnumerable of string</returns>
         public Task<IEnumerable<string>> GetActivatedServerList()
         {
             var task = new TaskCompletionSource<IEnumerable<string>>();
@@ -416,13 +381,14 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// gets subscribed server list </summary>
         /// <param name="subscriptionType"> Subscription Type  </param>
+        /// <returns>The list of subscribed media controller server applications: IEnumerable of string</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public Task<IEnumerable<string>> GetSubscribedServerList(MediaControllerSubscriptionType subscriptionType)
         {
             var task = new TaskCompletionSource<IEnumerable<string>>();
 
-            List<string> collectionList = ForEachSubscribedServer(_handle, (int)subscriptionType);
+            List<string> collectionList = ForEachSubscribedServer(_handle, subscriptionType);
             task.TrySetResult((IEnumerable<string>)collectionList);
 
             return task.Task;
@@ -430,9 +396,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterServerUpdatedEvent()
         {
-            _serverUpdatedCallback = (string serverName, int serverState, IntPtr userData) =>
+            _serverUpdatedCallback = (string serverName, MediaControllerServerState serverState, IntPtr userData) =>
             {
-                ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(serverName, (MediaControllerServerState)serverState);
+                ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(serverName, serverState);
                 _serverUpdated?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerClient.SetServerUpdatedCb(_handle, _serverUpdatedCallback, IntPtr.Zero);
@@ -475,18 +441,15 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterShuffleModeUpdatedEvent()
         {
-            MediaControllerError res = MediaControllerError.None;
-            _shufflemodeUpdatedCallback = (string serverName, int shuffleMode, IntPtr userData) =>
+            _shufflemodeUpdatedCallback = (string serverName, MediaControllerShuffleMode shuffleMode, IntPtr userData) =>
             {
-                ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(serverName, (MediaControllerShuffleMode)shuffleMode);
+                ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(serverName, shuffleMode);
                 _shufflemodeUpdated?.Invoke(this, eventArgs);
             };
-            res = (MediaControllerError)Interop.MediaControllerClient.SetShuffleModeUpdatedCb(_handle, _shufflemodeUpdatedCallback, IntPtr.Zero);
-            if (res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set ShuffleModeUpdated callback failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set ShuffleModeUpdated callback failed");
-            }
+
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.SetShuffleModeUpdatedCb(_handle, _shufflemodeUpdatedCallback, IntPtr.Zero),
+                "Set ShuffleModeUpdated callback failed");
         }
 
         private void UnregisterShuffleModeUpdatedEvent()
@@ -496,18 +459,15 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterRepeatModeUpdatedEvent()
         {
-            MediaControllerError res = MediaControllerError.None;
-            _repeatmodeUpdatedCallback = (string serverName, int repeatMode, IntPtr userData) =>
+            _repeatmodeUpdatedCallback = (string serverName, MediaControllerRepeatMode repeatMode, IntPtr userData) =>
             {
-                RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(serverName, (MediaControllerRepeatMode)repeatMode);
+                RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(serverName, repeatMode);
                 _repeatmodeUpdated?.Invoke(this, eventArgs);
             };
-            res = (MediaControllerError)Interop.MediaControllerClient.SetRepeatModeUpdatedCb(_handle, _repeatmodeUpdatedCallback, IntPtr.Zero);
-            if (res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set RepeatModeUpdated callback failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set RepeatModeUpdated callback failed");
-            }
+
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.SetRepeatModeUpdatedCb(_handle, _repeatmodeUpdatedCallback, IntPtr.Zero),
+                "Set RepeatModeUpdated callback failed");
         }
 
         private void UnregisterRepeatModeUpdatedEvent()
@@ -515,9 +475,8 @@ namespace Tizen.Multimedia.MediaController
             Interop.MediaControllerClient.UnsetRepeatModeUpdatedCb(_handle);
         }
 
-        private static List<string> ForEachSubscribedServer(IntPtr handle, int subscriptionType)
+        private static List<string> ForEachSubscribedServer(IntPtr handle, MediaControllerSubscriptionType subscriptionType)
         {
-            MediaControllerError res = MediaControllerError.None;
             List<string> subscribedServerCollections = new List<string>();
 
             Interop.MediaControllerClient.SubscribedServerCallback serverCallback = (string serverName, IntPtr userData) =>
@@ -525,35 +484,30 @@ namespace Tizen.Multimedia.MediaController
                 subscribedServerCollections.Add (serverName);
                 return true;
             };
-            res = (MediaControllerError)Interop.MediaControllerClient.ForeachSubscribedServer (handle, subscriptionType, serverCallback, IntPtr.Zero);
-            if (res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Foreach Subscribed server failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Foreach Subscribed server failed");
-            }
+
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.ForeachSubscribedServer(handle, subscriptionType, serverCallback, IntPtr.Zero),
+                "Foreach Subscribed server failed");
+
             return subscribedServerCollections;
         }
 
         private static List<string> ForEachActivatedServer(IntPtr handle)
         {
-            MediaControllerError res = MediaControllerError.None;
             List<string> activatedServerCollections = new List<string>();
 
             Interop.MediaControllerClient.ActivatedServerCallback serverCallback = (string serverName, IntPtr userData) =>
             {
-                activatedServerCollections.Add (serverName);
+                activatedServerCollections.Add(serverName);
                 return true;
             };
-            res = (MediaControllerError)Interop.MediaControllerClient.ForeachActivatedServer (handle, serverCallback, IntPtr.Zero);
-            if (res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Foreach Activated server failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Foreach Activated server failed");
-            }
+
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.ForeachActivatedServer(handle, serverCallback, IntPtr.Zero),
+                "Foreach Activated server failed");
+
             return activatedServerCollections;
         }
-
-
     }
 }
 

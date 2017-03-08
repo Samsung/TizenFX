@@ -15,8 +15,6 @@
 */
 
 
-using System;
-
 namespace Tizen.Multimedia.MediaController
 {
     /// <summary>

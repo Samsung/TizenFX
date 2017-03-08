@@ -14,9 +14,7 @@
 * limitations under the License.
 */
 
-
 using System;
-using System.Runtime.InteropServices;
 using Tizen.Applications;
 
 namespace Tizen.Multimedia.MediaController
@@ -25,6 +23,9 @@ namespace Tizen.Multimedia.MediaController
     /// <summary>
     /// The MediaControllerServer class provides APIs required for media-controller-server.
     /// </summary>
+    /// <privilege>
+    /// http://tizen.org/privilege/mediacontroller.server
+    /// </privilege>
     /// <remarks>
     /// The MediaControllerServer APIs provides functions to update media information.
     /// </remarks>
@@ -42,15 +43,11 @@ namespace Tizen.Multimedia.MediaController
         /// The constructor of MediaControllerServer class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
         public MediaControllerServer ()
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerServer.Create (out _handle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Create server failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Create server failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.Create(out _handle), "Create  server failed");
         }
 
         ~MediaControllerServer ()
@@ -136,33 +133,19 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdatePlayback(MediaControllerPlayback playback)
         {
-            MediaControllerError res = MediaControllerError.None;
-
             if (playback == null)
             {
-                MediaControllerErrorFactory.ThrowException(MediaControllerError.InvalidParameter, "playback");
+                throw new ArgumentNullException("playback is null");
             }
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetPlaybackState(_handle, (int)playback.State);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Playback state failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Playback state failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetPlaybackState(_handle, playback.State), "Set Playback state failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetPlaybackPosition(_handle, playback.Position);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Playback position failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Playback position failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetPlaybackPosition(_handle, playback.Position), "Set Playback position failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.UpdatePlayback(_handle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Update Playback failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Update Playback failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.UpdatePlayback(_handle), "Update Playback failed");
         }
 
         /// <summary>
@@ -172,96 +155,46 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateMetadata(MediaControllerMetadata metadata)
         {
-            MediaControllerError res = MediaControllerError.None;
-
             if (metadata == null)
             {
-                MediaControllerErrorFactory.ThrowException(MediaControllerError.InvalidParameter, "metadata");
+                throw new ArgumentNullException("metadata is null");
             }
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Title, metadata.Title);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Title, metadata.Title), "Set Title failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Artist, metadata.Artist);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Artist, metadata.Artist), "Set Artist failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Album, metadata.Album);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Album, metadata.Album), "Set Album failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Author, metadata.Author);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Author, metadata.Author), "Set Author failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Genre, metadata.Genre);
-            if (res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Genre, metadata.Genre), "Set Genre failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Duration, metadata.Duration);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Duration, metadata.Duration), "Set Duration failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Date, metadata.Date);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Date, metadata.Date), "Set Date failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Copyright, metadata.Copyright);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Copyright, metadata.Copyright), "Set Copyright failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Description, metadata.Description);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Description, metadata.Description), "Set Description failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.TrackNumber, metadata.TrackNumber);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.TrackNumber, metadata.TrackNumber), "Set TrackNumber failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.SetMetadata(_handle, (int)MediaControllerAttributes.Picture, metadata.Picture);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Set Title failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Set Title failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Picture, metadata.Picture), "Set Picture failed");
 
-            res = (MediaControllerError)Interop.MediaControllerServer.UpdateMetadata(_handle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Update Metadata failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Update Metadata failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.UpdateMetadata(_handle), "UpdateMetadata Metadata failed");
         }
 
         /// <summary>
@@ -271,13 +204,8 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateShuffleMode(MediaControllerShuffleMode mode)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerServer.UpdateShuffleMode(_handle, (int)mode);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Update Shuffle Mode failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Update Shuffle Mode failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.UpdateShuffleMode(_handle, mode), "Update Shuffle Mode failed");
         }
 
         /// <summary>
@@ -287,13 +215,8 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void UpdateRepeatMode(MediaControllerRepeatMode mode)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerServer.UpdateRepeatMode(_handle, (int)mode);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Update Repeat Mode failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Update Repeat Mode failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.UpdateRepeatMode(_handle, mode), "Update Repeat Mode failed");
         }
 
         /// <summary>
@@ -305,20 +228,15 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendCustomCommandReply(string clientName, int result, Bundle bundle)
         {
-            MediaControllerError res = MediaControllerError.None;
-            res = (MediaControllerError)Interop.MediaControllerServer.SendCommandReply (_handle, clientName, result, bundle.SafeBundleHandle);
-            if(res != MediaControllerError.None)
-            {
-                Log.Error(MediaControllerLog.LogTag, "Send reply for command failed" + res);
-                MediaControllerErrorFactory.ThrowException(res, "Send reply for command failed");
-            }
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerServer.SendCommandReply(_handle, clientName, result, bundle.SafeBundleHandle), "Send reply for command failed");
         }
 
         private void RegisterPlaybackCmdRecvEvent()
         {
-            _playbackCommandCallback = (string clientName, int state, IntPtr userData) =>
+            _playbackCommandCallback = (string clientName, MediaControllerPlaybackState state, IntPtr userData) =>
             {
-                PlaybackStateCommandEventArgs eventArgs = new PlaybackStateCommandEventArgs(clientName, (MediaControllerPlaybackState)state);
+                PlaybackStateCommandEventArgs eventArgs = new PlaybackStateCommandEventArgs(clientName, state);
                 _playbackCommand?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerServer.SetPlaybackStateCmdRecvCb(_handle, _playbackCommandCallback, IntPtr.Zero);
