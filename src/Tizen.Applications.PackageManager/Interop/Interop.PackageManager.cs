@@ -46,7 +46,8 @@ internal static partial class Interop
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
             NoSuchPackage = -0x01150000 | 0x71,
             SystemError = -0x01150000 | 0x72,
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation
         }
 
         // Any change here might require changes in Tizen.Applications.PackageEventState enum
