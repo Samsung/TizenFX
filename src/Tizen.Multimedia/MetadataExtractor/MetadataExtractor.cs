@@ -56,6 +56,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="path">The path for the file to extract metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> is not exist.</exception>
         public MetadataExtractor(string path)
         {
             if (path == null)
