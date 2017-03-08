@@ -52,8 +52,13 @@ internal static partial class Interop
             Max = 5
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InstanceCallback(string widgetId, string instanceId, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void LifecycleCallback(string widgetId, LifecycleEvent e, string instanceId, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_icon")]
