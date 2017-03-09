@@ -126,7 +126,7 @@ namespace ElmSharp
         private SmartEvent<EventArgs> _smartEvent;
         private event EventHandler _handlers;
 
-        public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.Handle, eventName)
+        public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.RealHandle, eventName)
         {
         }
 
