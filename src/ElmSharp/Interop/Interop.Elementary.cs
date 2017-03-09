@@ -221,6 +221,21 @@ internal static partial class Interop
         internal static extern void elm_object_focus_set(IntPtr obj, bool focus);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_object_focus_allow_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_focus_allow_set(IntPtr obj, bool enable);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_focus_next(IntPtr obj, int direction);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_focus_next_object_set(IntPtr obj, IntPtr next, int direction);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_focus_next_item_set(IntPtr obj, IntPtr nextItem, int direction);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_theme_extension_add(IntPtr theme, string path);
 
         [DllImport(Libraries.Elementary)]

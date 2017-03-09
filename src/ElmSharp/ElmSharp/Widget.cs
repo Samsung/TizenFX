@@ -19,6 +19,16 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    public enum FocusDirection
+    {
+        Previous,
+        Next,
+        Up,
+        Down,
+        Right,
+        Left
+    }
+
     public abstract class Widget : EvasObject
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
@@ -78,6 +88,14 @@ namespace ElmSharp
             }
         }
 
+        public bool IsFocusAllowed
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_focus_allow_get(RealHandle);
+            }
+        }
+
         public virtual string Text
         {
             get
@@ -134,6 +152,21 @@ namespace ElmSharp
         public void SetFocus(bool isFocus)
         {
             Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
+        }
+
+        public void AllowFocus(bool isAllowFocus)
+        {
+            Interop.Elementary.elm_object_focus_allow_set(RealHandle, isAllowFocus);
+        }
+
+        public void FocusNext(FocusDirection direction)
+        {
+            Interop.Elementary.elm_object_focus_next(RealHandle, (int)direction);
+        }
+
+        public void SetNextFocusObject(EvasObject next, FocusDirection direction)
+        {
+            Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next.RealHandle, (int)direction);
         }
 
         public void SetPartContent(string part, EvasObject content)
