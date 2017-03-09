@@ -69,6 +69,10 @@ internal static partial class Interop
         internal static extern void AppManagerUnSetAppContextEvent();
         //void app_manager_unset_app_context_event_cb (void);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
+        internal static extern ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
+        //int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_app_context")]
         internal static extern ErrorCode AppManagerForeachAppContext(AppManagerAppContextCallback callback, IntPtr userData);
         //int app_manager_foreach_app_context(app_manager_app_context_cb callback, void *user_data)
@@ -140,6 +144,10 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_equal")]
         internal static extern ErrorCode AppContextIsEqual(IntPtr first, IntPtr second, out bool equal);
         //int app_context_is_equal (app_context_h lhs, app_context_h rhs, bool *equal);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_sub_app")]
+        internal static extern ErrorCode AppContextIsSubApp(IntPtr handle, out bool is_sub_app);
+        //int app_context_is_sub_app(app_context_h app_context, bool *is_sub_app);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_clone")]
         internal static extern ErrorCode AppContextClone(out IntPtr destination, IntPtr source);

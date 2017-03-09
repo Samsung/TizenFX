@@ -27,12 +27,19 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications";
         private bool _disposed = false;
         private IntPtr _infoHandle = IntPtr.Zero;
+        private IntPtr _contextHandle = IntPtr.Zero;
         private string _applicationId = string.Empty;
         private Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
             _infoHandle = infoHandle;
+        }
+
+        internal ApplicationInfo(IntPtr infoHandle, IntPtr contextHandle)
+        {
+            _infoHandle = infoHandle;
+            _contextHandle = contextHandle;
         }
 
         /// <summary>
@@ -314,26 +321,11 @@ namespace Tizen.Applications
             get
             {
                 int pid = 0;
-                IntPtr contextHandle = IntPtr.Zero;
-                try
+                IntPtr contextHandle = GetContextHandle();
+                err = Interop.ApplicationManager.AppContextGetPid(contextHandle, out pid);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    err = Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, "Failed to get the context handle. err = " + err);
-                    }
-                    err = Interop.ApplicationManager.AppContextGetPid(contextHandle, out pid);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, "Failed to get the process id. err = " + err);
-                    }
-                }
-                finally
-                {
-                    if (contextHandle != IntPtr.Zero)
-                    {
-                        Interop.ApplicationManager.AppContextDestroy(contextHandle);
-                    }
+                    Log.Warn(LogTag, "Failed to get the process id. err = " + err);
                 }
                 return pid;
             }
@@ -448,29 +440,47 @@ namespace Tizen.Applications
             get
             {
                 int value = 0;
-                IntPtr contextHandle = IntPtr.Zero;
-                try
+                IntPtr contextHandle = GetContextHandle();
+                err = Interop.ApplicationManager.AppContextGetAppState(contextHandle, out value);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    err = Interop.ApplicationManager.AppManagerGetAppContext(ApplicationId, out contextHandle);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, "Failed to get the context handle. err = " + err);
-                    }
-                    err = Interop.ApplicationManager.AppContextGetAppState(contextHandle, out value);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, "Failed to get the app state. err = " + err);
-                    }
-                }
-                finally
-                {
-                    if (contextHandle != IntPtr.Zero)
-                    {
-                        Interop.ApplicationManager.AppContextDestroy(contextHandle);
-                    }
+                    Log.Warn(LogTag, "Failed to get the app state. err = " + err);
                 }
                 return (AppState)value;
             }
+        }
+
+        /// <summary>
+        /// Checks whether the application is running as a sub application of the application group.
+        /// </summary>
+        public bool IsSubApp
+        {
+            get
+            {
+                bool value = false;
+                IntPtr contextHandle = GetContextHandle();
+                err = Interop.ApplicationManager.AppContextIsSubApp(contextHandle, out value);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get IsSubApp. err = " + err);
+                }
+                return value;
+            }
+        }
+
+        private IntPtr GetContextHandle()
+        {
+            if (_contextHandle == IntPtr.Zero)
+            {
+                IntPtr contextHandle = IntPtr.Zero;
+                err = Interop.ApplicationManager.AppManagerGetAppContext(_applicationId, out contextHandle);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the handle of the ApplicationContext. err = " + err);
+                }
+                _contextHandle = contextHandle;
+            }
+            return _contextHandle;
         }
 
         private IntPtr GetInfoHandle()
@@ -508,6 +518,11 @@ namespace Tizen.Applications
             {
                 Interop.ApplicationManager.AppInfoDestroy(_infoHandle);
                 _infoHandle = IntPtr.Zero;
+            }
+            if (_contextHandle != IntPtr.Zero)
+            {
+                Interop.ApplicationManager.AppContextDestroy(_contextHandle);
+                _contextHandle = IntPtr.Zero;
             }
             _disposed = true;
         }

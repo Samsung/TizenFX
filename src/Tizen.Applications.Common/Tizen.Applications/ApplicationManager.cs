@@ -199,7 +199,22 @@ namespace Tizen.Applications
                             Log.Warn(LogTag, "Failed to get appid. err = " + err);
                             return false;
                         }
-                        ApplicationInfo app = GetInstalledApplication(appid);
+                        IntPtr infoHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppManagerGetAppInfo(appid, out infoHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get the application information.");
+                            return false;
+                        }
+                        IntPtr cloneContextHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppContextClone(out cloneContextHandle, contextHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to clone the application context handle");
+                            Interop.ApplicationManager.AppInfoDestroy(infoHandle);
+                            return false;
+                        }
+                        ApplicationInfo app = new ApplicationInfo(infoHandle, cloneContextHandle);
                         if (app != null)
                         {
                             result.Add(app);
@@ -210,6 +225,61 @@ namespace Tizen.Applications
                 };
 
                 err = Interop.ApplicationManager.AppManagerForeachAppContext(cb, IntPtr.Zero);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
+                }
+                return result;
+            });
+        }
+
+        /// <summary>
+        /// Gets the information of all running applications asynchronously.
+        /// </summary>
+        public static async Task<IEnumerable<ApplicationInfo>> GetAllRunningApplicationsAsync()
+        {
+            return await Task.Run(() =>
+            {
+                Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+                List<ApplicationInfo> result = new List<ApplicationInfo>();
+
+                Interop.ApplicationManager.AppManagerAppContextCallback cb = (IntPtr contextHandle, IntPtr userData) =>
+                {
+                    if (contextHandle != IntPtr.Zero)
+                    {
+                        string appid = string.Empty;
+                        err = Interop.ApplicationManager.AppContextGetAppId(contextHandle, out appid);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get appid. err = " + err);
+                            return false;
+                        }
+                        IntPtr infoHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppManagerGetAppInfo(appid, out infoHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get the application information.");
+                            return false;
+                        }
+                        IntPtr cloneContextHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppContextClone(out cloneContextHandle, contextHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to clone the application context handle");
+                            Interop.ApplicationManager.AppInfoDestroy(infoHandle);
+                            return false;
+                        }
+                        ApplicationInfo app = new ApplicationInfo(infoHandle, cloneContextHandle);
+                        if (app != null)
+                        {
+                            result.Add(app);
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+
+                err = Interop.ApplicationManager.AppManagerForeachRunningAppContext(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
