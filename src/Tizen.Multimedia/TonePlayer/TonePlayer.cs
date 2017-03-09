@@ -69,8 +69,7 @@ namespace Tizen.Multimedia
             if (ret != (int)TonePlayerError.None)
             {
                 Log.Error(TonePlayerLog.LogTag, "Error Occured with error code: " + (TonePlayerError)ret);
-                task.TrySetException(TonePlayerErrorFactory.CreateException(ret, "Failed to play tone."));
-                return;
+                throw TonePlayerErrorFactory.CreateException(ret, "Failed to play tone.");
             }
 
             if (cancellationToken != CancellationToken.None)
