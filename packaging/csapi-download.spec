@@ -1,6 +1,6 @@
 Name:       csapi-download
 Summary:    Tizen Download API for C#
-Version:    1.0.2
+Version:    1.0.3
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
