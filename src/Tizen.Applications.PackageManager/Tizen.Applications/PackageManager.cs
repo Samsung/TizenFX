@@ -152,6 +152,25 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Clears the application's internal and external cache directory.
+        /// </summary>
+        /// <param name="packageId">Id of the package</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
+        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+        /// <privilege>http://tizen.org/privilege/packagemanager.clearcache</privilege>
+        public static void ClearCacheDirectory(string packageId)
+        {
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearCacheDir(packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to clear cache directory for {0}. err = {1}", packageId, err));
+                throw PackageManagerErrorFactory.GetException(err, "Failed to clear cache directory");
+            }
+        }
+
+        /// <summary>
         /// Clears all application's internal and external cache directory.
         /// </summary>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
@@ -166,6 +185,29 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to clear all cache directories. err = {0}", err));
                 throw PackageManagerErrorFactory.GetException(err, "Failed to clear all cache directories");
+            }
+        }
+
+        /// <summary>
+        /// Clears the application's internal and external data directories
+        /// </summary>
+        /// <remarks>
+        /// All files under data, shared/data and shared/trusted in the internal storage are removed.
+        /// And, If external storeage exists, then all files under data and shared/trusted in the external storage are removed.
+        /// </remarks>
+        /// <param name="packageId">Id of the package</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
+        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        public static void ClearDataDirectory(string packageId)
+        {
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearDataDir(packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to clear data directory for {0}. err = {1}", packageId, err));
+                throw PackageManagerErrorFactory.GetException(err, "Failed to clear data directory");
             }
         }
 

@@ -119,24 +119,6 @@ namespace Tizen.Applications
         public IEnumerable<string> Privileges { get { return _privileges; } }
 
         /// <summary>
-        /// Clears the application's internal and external cache directory.
-        /// </summary>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
-        /// <privilege>http://tizen.org/privilege/packagemanager.clearcache</privilege>
-        public void ClearCacheDirectory()
-        {
-            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearCacheDir(Id);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to clear cache directory for {0}. err = {1}", Id, err));
-                throw PackageManagerErrorFactory.GetException(err, "Failed to clear cache directory");
-            }
-        }
-
-        /// <summary>
         /// Retrieves all application IDs of this package.
         /// </summary>
         /// <returns>Returns a dictionary containing all application info for given application type.</returns>
