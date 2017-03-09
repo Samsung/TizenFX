@@ -58,6 +58,11 @@ namespace Tizen.Multimedia
 
             }
 
+            if (Enum.IsDefined(typeof(ToneType), tone) == false)
+            {
+                throw new ArgumentException("Invalid ToneType provided : " + tone);
+            }
+
             int id;
             var task = new TaskCompletionSource<int>();
             int ret = Interop.TonePlayer.Start(tone, streamPolicy.Handle, durationMs, out id);
