@@ -23,6 +23,10 @@ namespace Tizen.Applications
     /// </summary>
     public class WidgetLifecycleEventArgs : EventArgs
     {
+        internal WidgetLifecycleEventArgs()
+        {
+        }
+
         /// <summary>
         /// Enumeration for event type.
         /// </summary>

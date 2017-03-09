@@ -32,11 +32,7 @@ namespace Tizen.Applications
         {
             private string _widgetId;
 
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            /// <param name="widgetId">Widget ID</param>
-            public Instance(string widgetId)
+            internal Instance(string widgetId)
             {
                 _widgetId = widgetId;
             }
@@ -131,6 +127,11 @@ namespace Tizen.Applications
         /// </summary>
         public class Scale
         {
+
+            internal Scale()
+            {
+            }
+
             /// <summary>
             /// Enumeration for types of widget size
             /// </summary>
