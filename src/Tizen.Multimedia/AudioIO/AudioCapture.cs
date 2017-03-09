@@ -149,11 +149,8 @@ namespace Tizen.Multimedia
         /// Gets the size to be allocated for the audio input buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
-        /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
         public int GetBufferSize()
         {
-            ValidateState(AudioIOState.Running, AudioIOState.Paused);
-
             int size;
             AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.GetBufferSize(_handle, out size));
             return size;
