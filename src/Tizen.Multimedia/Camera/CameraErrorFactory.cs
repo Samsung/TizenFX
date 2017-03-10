@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
         TizenErrorCamera = -0x01910000,
-        CameraErrorClass = TizenErrorCamera | 0x00,
+        CameraErrorClass = TizenErrorCamera,
         InvalidState = CameraErrorClass | 0x02,
         OutOfMemory = ErrorCode.OutOfMemory,
         ErrorDevice = CameraErrorClass | 0x04,
