@@ -20,11 +20,11 @@ using System.Runtime.InteropServices;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Audio Information
+    /// Audio Information class provides audio information which is negotiated with source device for screen mirroring. e.g codec
     /// </summary>
     /// <remarks>
-    /// This class provides properties and API that are required for setting
-    /// audio information of a player.
+    /// This class provides properties and API that are required for setting audio information.
+    /// For getting property using this api, we should call it after connectAsync() api.
     /// </remarks>
     public class AudioInformation
     {
@@ -39,9 +39,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get Audio Codec.
+        /// Get audio codec.
         /// </summary>
-        /// <value> Audio Codec </value>
+        /// <value> Get audio codec which is one of enums in 'AudioCodec' which is negotiaged with source device.  </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public AudioCodec Codec
         {
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get audio channel.
         /// </summary>
-        /// <value> AudioChannel </value>
+        /// <value> Get audio channel property of audio information which is negotiated with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Channel
         {
@@ -83,7 +83,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get audio sample rate.
         /// </summary>
-        /// <value> AudioSampleRate </value>
+        /// <value> Get audio sample rate property which is negotiated with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int SampleRate
         {
@@ -104,7 +104,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get audio bitwidth.
         /// </summary>
-        /// <value> AudioBitwidth </value>
+        /// <value> Get audio bitwidth property which is negotiated with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int BitWidth
         {
