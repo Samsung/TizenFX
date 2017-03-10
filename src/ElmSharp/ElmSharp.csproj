@@ -53,6 +53,7 @@
     <Compile Include="ElmSharp\Color.cs" />
     <Compile Include="ElmSharp\ColorChangedEventArgs.cs" />
     <Compile Include="ElmSharp\ColorSelector.cs" />
+    <Compile Include="ElmSharp\HoverselItem.cs" />
     <Compile Include="ElmSharp\Conformant.cs" />
     <Compile Include="ElmSharp\Container.cs" />
     <Compile Include="ElmSharp\ContextPopup.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="ElmSharp\GenList.cs" />
     <Compile Include="ElmSharp\GenListItem.cs" />
     <Compile Include="ElmSharp\GestureLayer.cs" />
+    <Compile Include="ElmSharp\Hoversel.cs" />
     <Compile Include="ElmSharp\Icon.cs" />
     <Compile Include="ElmSharp\Image.cs" />
     <Compile Include="ElmSharp\Index.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="ElmSharp\Window.cs" />
     <Compile Include="ElmSharp\WrapType.cs" />
     <Compile Include="Interop\Interop.Eina.cs" />
+    <Compile Include="Interop\Interop.Elementary.Hoversel.cs" />
     <Compile Include="Interop\Interop.Elementary.FlipSelector.cs" />
     <Compile Include="Interop\Interop.Eo.cs" />
     <Compile Include="Interop\Interop.Ecore.cs" />
