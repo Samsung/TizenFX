@@ -982,12 +982,19 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
             }
         }
-
+        public Size CurrentSize
+        {
+            get
+            {
+                return GetCurrentSize();
+            }
+        } 
         public Size Size
         {
             get
             {
-                Size temp = GetCurrentSize();
+			    Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(Actor.Property.SIZE).Get(temp);
                 return temp;
             }
             set
@@ -999,8 +1006,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Size temp = GetCurrentSize();
-                return temp.Width;
+                float temp = 0.0f;
+                GetProperty(Actor.Property.SIZE_WIDTH).Get(ref temp);
+                return temp;
             }
             set
             {
@@ -1011,8 +1019,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Size temp = GetCurrentSize();
-                return temp.Height;
+                float temp = 0.0f;
+                GetProperty(Actor.Property.SIZE_HEIGHT).Get(ref temp);
+                return temp;
             }
             set
             {
@@ -1023,7 +1032,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Size temp = GetCurrentSize();
+                float temp = 0.0f;
+                GetProperty(Actor.Property.SIZE_DEPTH).Get(ref temp);
+                return temp;
                 return temp.Depth;
             }
             set
@@ -1031,11 +1042,19 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue(value));
             }
         }
+        public Position CurrentPosition
+        {
+            get
+            {
+                return GetCurrentPosition();
+            }
+        }
         public Position Position
         {
             get
             {
-                Position temp = GetCurrentPosition();
+			    Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(Actor.Property.POSITION).Get(temp);
                 return temp;
             }
             set
@@ -1047,8 +1066,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Position temp = GetCurrentPosition();
-                return temp.X;
+                float temp = 0.0f;
+                GetProperty(Actor.Property.POSITION_X).Get(ref temp);
+                return temp;
             }
             set
             {
@@ -1059,8 +1079,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Position temp = GetCurrentPosition();
-                return temp.Y;
+                float temp = 0.0f;
+                GetProperty(Actor.Property.POSITION_Y).Get(ref temp);
+                return temp;
             }
             set
             {
@@ -1071,8 +1092,9 @@ namespace Tizen.NUI
         {
             get
             {
-                Position temp = GetCurrentPosition();
-                return temp.Z;
+                float temp = 0.0f;
+                GetProperty(Actor.Property.POSITION_Z).Get(ref temp);
+                return temp;
             }
             set
             {
@@ -1649,3 +1671,4 @@ namespace Tizen.NUI
     }
 
 }
+
