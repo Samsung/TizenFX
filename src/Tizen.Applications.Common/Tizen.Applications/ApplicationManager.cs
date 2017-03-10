@@ -229,45 +229,27 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the running applications asynchronously.
         /// </summary>
-        public static async Task<IEnumerable<ApplicationInfo>> GetRunningApplicationsAsync()
+        public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
             return await Task.Run(() =>
             {
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
-                List<ApplicationInfo> result = new List<ApplicationInfo>();
+                List<ApplicationRunningContext> result = new List<ApplicationRunningContext>();
 
                 Interop.ApplicationManager.AppManagerAppContextCallback cb = (IntPtr contextHandle, IntPtr userData) =>
                 {
                     if (contextHandle != IntPtr.Zero)
                     {
-                        string appid = string.Empty;
-                        err = Interop.ApplicationManager.AppContextGetAppId(contextHandle, out appid);
+                        IntPtr clonedHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppContextClone(out clonedHandle, contextHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to get appid. err = " + err);
+                            Log.Warn(LogTag, "Failed to clone the app context. err = " + err);
                             return false;
                         }
-                        IntPtr infoHandle = IntPtr.Zero;
-                        err = Interop.ApplicationManager.AppManagerGetAppInfo(appid, out infoHandle);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to get the application information.");
-                            return false;
-                        }
-                        IntPtr cloneContextHandle = IntPtr.Zero;
-                        err = Interop.ApplicationManager.AppContextClone(out cloneContextHandle, contextHandle);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to clone the application context handle");
-                            Interop.ApplicationManager.AppInfoDestroy(infoHandle);
-                            return false;
-                        }
-                        ApplicationInfo app = new ApplicationInfo(infoHandle, cloneContextHandle);
-                        if (app != null)
-                        {
-                            result.Add(app);
-                            return true;
-                        }
+                        ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle);
+                        result.Add(context);
+                        return true;
                     }
                     return false;
                 };
@@ -282,47 +264,29 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of all running applications asynchronously.
+        /// Gets the information of the running applications including subapp asynchronously.
         /// </summary>
-        public static async Task<IEnumerable<ApplicationInfo>> GetAllRunningApplicationsAsync()
+        public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
             return await Task.Run(() =>
             {
                 Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
-                List<ApplicationInfo> result = new List<ApplicationInfo>();
+                List<ApplicationRunningContext> result = new List<ApplicationRunningContext>();
 
                 Interop.ApplicationManager.AppManagerAppContextCallback cb = (IntPtr contextHandle, IntPtr userData) =>
                 {
                     if (contextHandle != IntPtr.Zero)
                     {
-                        string appid = string.Empty;
-                        err = Interop.ApplicationManager.AppContextGetAppId(contextHandle, out appid);
+                        IntPtr clonedHandle = IntPtr.Zero;
+                        err = Interop.ApplicationManager.AppContextClone(out clonedHandle, contextHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to get appid. err = " + err);
+                            Log.Warn(LogTag, "Failed to clone the app context. err = " + err);
                             return false;
                         }
-                        IntPtr infoHandle = IntPtr.Zero;
-                        err = Interop.ApplicationManager.AppManagerGetAppInfo(appid, out infoHandle);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to get the application information.");
-                            return false;
-                        }
-                        IntPtr cloneContextHandle = IntPtr.Zero;
-                        err = Interop.ApplicationManager.AppContextClone(out cloneContextHandle, contextHandle);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to clone the application context handle");
-                            Interop.ApplicationManager.AppInfoDestroy(infoHandle);
-                            return false;
-                        }
-                        ApplicationInfo app = new ApplicationInfo(infoHandle, cloneContextHandle);
-                        if (app != null)
-                        {
-                            result.Add(app);
-                            return true;
-                        }
+                        ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle);
+                        result.Add(context);
+                        return true;
                     }
                     return false;
                 };
@@ -358,28 +322,15 @@ namespace Tizen.Applications
             s_applicationChangedEventCallback = (IntPtr contextHandle, Interop.ApplicationManager.AppContextEvent state, IntPtr userData) =>
             {
                 if (contextHandle == IntPtr.Zero) return;
-                try
-                {
-                    string appid = string.Empty;
-                    err = Interop.ApplicationManager.AppContextGetAppId(contextHandle, out appid);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        throw ApplicationManagerErrorFactory.GetException(err, "Failed to get application id.");
-                    }
 
-                    ApplicationInfo appInfo = GetInstalledApplication(appid);
-                    if (state == Interop.ApplicationManager.AppContextEvent.Launched)
-                    {
-                        s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationInfo = appInfo });
-                    }
-                    else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
-                    {
-                        s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationInfo = appInfo });
-                    }
-                }
-                catch (Exception e)
+                ApplicationRunningContext context = new ApplicationRunningContext(contextHandle);
+                if (state == Interop.ApplicationManager.AppContextEvent.Launched)
                 {
-                    Log.Warn(LogTag, e.Message);
+                    s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationRunningContext = context });
+                }
+                else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
+                {
+                    s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationRunningContext = context });
                 }
             };
             err = Interop.ApplicationManager.AppManagerSetAppContextEvent(s_applicationChangedEventCallback, IntPtr.Zero);

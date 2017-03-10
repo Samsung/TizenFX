@@ -26,7 +26,6 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of the application.
         /// </summary>
-        public ApplicationInfo ApplicationInfo { get; internal set; }
+        public ApplicationRunningContext ApplicationRunningContext { get; internal set; }
     }
 }
-

@@ -174,6 +174,10 @@ internal static partial class Interop
         internal static extern ErrorCode AppContextGetAppId(IntPtr handle, out string applicationId);
         //int app_context_get_app_id(app_context_h app_context, char **app_id)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_package_id")]
+        internal static extern ErrorCode AppContextGetPackageId(IntPtr handle, out string packageId);
+        //int app_context_get_package_id(app_context_h app_context, char **package_id)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_pid")]
         internal static extern ErrorCode AppContextGetPid(IntPtr handle, out int processId);
         //int app_context_get_pid (app_context_h app_context, pid_t *pid)
@@ -192,7 +196,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_sub_app")]
         internal static extern ErrorCode AppContextIsSubApp(IntPtr handle, out bool is_sub_app);
-        //int app_context_is_sub_app(app_context_h app_context, bool *is_sub_app);
+        //int app_context_is_sub_app (app_context_h app_context, bool *is_sub_app);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_clone")]
         internal static extern ErrorCode AppContextClone(out IntPtr destination, IntPtr source);

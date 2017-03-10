@@ -64,6 +64,7 @@
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfoMetadataFilter.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationLaunchedEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs" />
+    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationTerminatedEventArgs.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationType.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/Bundle.cs" />
