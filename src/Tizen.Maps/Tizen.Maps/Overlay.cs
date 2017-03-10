@@ -140,6 +140,10 @@ namespace Tizen.Maps
     /// </summary>
     public class BubbleOverlay : Overlay
     {
+        /// <summary>
+        /// Creates Box overlay
+        /// </summary>
+        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
         public BubbleOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Bubble)
         {
         }
@@ -153,6 +157,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates Box overlay
         /// </summary>
+        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
         public BoxOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Box)
         {
         }

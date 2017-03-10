@@ -53,6 +53,7 @@ namespace Tizen.Maps
         /// <returns>Response from map service provider</returns>
         /// <exception cref="TaskCanceledException">Throws if request is canceled</exception>
         /// <exception cref="InvalidOperationException">Throws if native operation failed</exception>
+        /// <exception cref="ArgumentException">Throws if arguments are invalid</exception>
         public async Task<IEnumerable<T>> GetResponseAsync()
         {
             if (_requestTask == null || _requestTask.Task.IsCanceled)

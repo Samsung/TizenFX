@@ -55,6 +55,8 @@ namespace Tizen.Maps
             handle = new Interop.ViewHandle(service.handle, this);
             _service = service;
 
+            this.Resize(1, 1);
+
             // We need to keep Gesture Tap event enabled for object event to work
             handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
             SetObjectEventCallback();

@@ -35,6 +35,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">list of geographical coordinates</param>
         /// <param name="color">background color</param>
+        /// <exception cref="ArgumentException">Throws if input values are invalid</exception>
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;

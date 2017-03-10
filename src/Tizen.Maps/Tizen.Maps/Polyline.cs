@@ -36,6 +36,7 @@ namespace Tizen.Maps
         /// <param name="coordinates">List of geographical coordinates</param>
         /// <param name="color">Line color</param>
         /// <param name="width">The width of line [1 ~ 100] (pixels)</param>
+        /// <exception cref="ArgumentException">Throws if input values are invalid</exception>
         public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
