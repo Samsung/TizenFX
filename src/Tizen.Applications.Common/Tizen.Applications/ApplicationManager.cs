@@ -26,11 +26,59 @@ namespace Tizen.Applications
     public static class ApplicationManager
     {
         private const string LogTag = "Tizen.Applications";
-
         private static EventHandler<ApplicationLaunchedEventArgs> s_launchedHandler;
         private static EventHandler<ApplicationTerminatedEventArgs> s_terminatedHandler;
-
         private static Interop.ApplicationManager.AppManagerAppContextEventCallback s_applicationChangedEventCallback;
+        private static EventHandler<ApplicationEnabledEventArgs> _enabledHandler;
+        private static EventHandler<ApplicationDisabledEventArgs> _disabledHandler;
+        private static Interop.ApplicationManager.AppManagerEventCallback _eventCallback;
+        private static IntPtr _eventHandle = IntPtr.Zero;
+
+        /// <summary>
+        /// Occurs whenever the installed application is enabled.
+        /// </summary>
+        public static event EventHandler<ApplicationEnabledEventArgs> ApplicationEnabled
+        {
+            add
+            {
+                if (_enabledHandler == null && _disabledHandler == null)
+                {
+                    RegisterApplicationEvent();
+                }
+                _enabledHandler += value;
+            }
+            remove
+            {
+                _enabledHandler -= value;
+                if (_enabledHandler == null && _disabledHandler == null)
+                {
+                    UnRegisterApplicationEvent();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Occurs whenever the installed application is disabled.
+        /// </summary>
+        public static event EventHandler<ApplicationDisabledEventArgs> ApplicationDisabled
+        {
+            add
+            {
+                if (_disabledHandler == null && _enabledHandler == null)
+                {
+                    RegisterApplicationEvent();
+                }
+                _disabledHandler += value;
+            }
+            remove
+            {
+                _disabledHandler -= value;
+                if (_disabledHandler == null && _enabledHandler == null)
+                {
+                    UnRegisterApplicationEvent();
+                }
+            }
+        }
 
         /// <summary>
         /// Occurs whenever the installed applications get launched.
@@ -344,6 +392,53 @@ namespace Tizen.Applications
         private static void UnRegisterApplicationChangedEvent()
         {
             Interop.ApplicationManager.AppManagerUnSetAppContextEvent();
+        }
+
+        private static void RegisterApplicationEvent()
+        {
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+            err = Interop.ApplicationManager.AppManagerEventCreate(out _eventHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to create the application event handle");
+            }
+
+            err = Interop.ApplicationManager.AppManagerEventSetStatus(_eventHandle, Interop.ApplicationManager.AppManagerEventStatusType.All);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
+                _eventHandle = IntPtr.Zero;
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to set the application event");
+            }
+
+            _eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
+            {
+                if (eventType == Interop.ApplicationManager.AppManagerEventType.Enable)
+                {
+                    _enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
+                }
+                else if (eventType == Interop.ApplicationManager.AppManagerEventType.Disable)
+                {
+                    _disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
+                }
+            };
+            err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, _eventCallback, IntPtr.Zero);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
+                _eventHandle = IntPtr.Zero;
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to set the application event callback");
+            }
+        }
+
+        private static void UnRegisterApplicationEvent()
+        {
+            if (_eventHandle != IntPtr.Zero)
+            {
+                Interop.ApplicationManager.AppManagerUnSetEventCallback(_eventHandle);
+                Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
+                _eventHandle = IntPtr.Zero;
+            }
         }
     }
 

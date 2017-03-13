@@ -56,6 +56,9 @@
     <Compile Include="Tizen.Applications.CoreBackend\EventType.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\DefaultCoreBackend.cs" />
     <Compile Include="Tizen.Applications.CoreBackend\ICoreBackend.cs" />
+    <Compile Include="Tizen.Applications\ApplicationEnabledEventArgs.cs" />
+    <Compile Include="Tizen.Applications\ApplicationDisabledEventArgs.cs" />
+    <Compile Include="Tizen.Applications\ApplicationEventState.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\ApplicationManager.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfoFilter.cs" />

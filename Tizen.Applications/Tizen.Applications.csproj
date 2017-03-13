@@ -56,6 +56,9 @@
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlReplyCallback.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlReplyResult.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/Application.cs" />
+    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationDisabledEventArgs.cs" />
+    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationEnabledEventArgs.cs" />
+    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationEventState.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfoFilter.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfoMetadataFilter.cs" />

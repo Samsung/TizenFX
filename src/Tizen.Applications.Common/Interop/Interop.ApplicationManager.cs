@@ -41,6 +41,31 @@ internal static partial class Interop
             Terminated = 1
         }
 
+        internal enum AppManagerEventStatusType
+        {
+            All = 0x00,
+            Enable = 0x01,
+            Disable = 0x02
+        }
+
+        internal enum AppManagerEventType
+        {
+            Enable = 0,
+            Disable = 1
+        }
+
+        internal enum AppManagerEventState
+        {
+            Started = 0,
+            Completed = 1,
+            Failed = 2
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AppManagerEventCallback(string appType, string appId, AppManagerEventType eventType, AppManagerEventState eventState, IntPtr eventHandle, IntPtr userData);
+        //void(* app_manager_event_cb)(const char *type, const char *app_id, app_manager_event_type_e event_type, app_manager_event_state_e event_state, app_manager_event_h handle, void *user_data)
+
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppManagerAppContextEventCallback(IntPtr handle, AppContextEvent state, IntPtr userData);
         //void(* app_manager_app_context_event_cb)(app_context_h app_context, app_context_event_e event, void *user_data)
@@ -120,6 +145,26 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_external_shared_data_path")]
         internal static extern ErrorCode AppManagerGetExternalSharedDataPath(string applicationId, out string path);
         //int app_manager_get_external_shared_data_path (const char *appid, char **path);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_create")]
+        internal static extern ErrorCode AppManagerEventCreate(out IntPtr handle);
+        //int app_manager_event_create (app_manager_event_h *handle);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_set_status")]
+        internal static extern ErrorCode AppManagerEventSetStatus(IntPtr handle, AppManagerEventStatusType statusType);
+        //int app_manager_event_set_status (app_manager_event_h handle, int status_type);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_event_cb")]
+        internal static extern ErrorCode AppManagerSetEventCallback(IntPtr handle, AppManagerEventCallback callback, IntPtr userData);
+        //int app_manager_set_event_cb (app_manager_event_h handle, app_manager_event_cb callback, void *user_data);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_event_cb")]
+        internal static extern ErrorCode AppManagerUnSetEventCallback(IntPtr handle);
+        //int app_manager_unset_event_cb (app_manager_event_h handle);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_destroy")]
+        internal static extern ErrorCode AppManagerEventDestroy(IntPtr handle);
+        //int app_manager_event_destroy (app_manager_event_h handle);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
