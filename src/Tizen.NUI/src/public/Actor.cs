@@ -1035,7 +1035,6 @@ namespace Tizen.NUI
                 float temp = 0.0f;
                 GetProperty(Actor.Property.SIZE_DEPTH).Get(ref temp);
                 return temp;
-                return temp.Depth;
             }
             set
             {
