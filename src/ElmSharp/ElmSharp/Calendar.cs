@@ -21,6 +21,9 @@ using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Calendar is a widget that helps applications to flexibly display a calender with day of the week, date, year and month.
+    /// </summary>
     public class Calendar : Layout
     {
         private SmartEvent _changed;
@@ -28,6 +31,12 @@ namespace ElmSharp
         private SmartEvent _displayedMonthChanged;
         private int _cacheDisplayedMonth;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Calendar class.
+        /// </summary>
+        /// <param name="parent">
+        /// The EvasObject to which the new Calendar will be attached as a child.
+        /// </param>
         public Calendar(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -47,10 +56,19 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// DateChanged will be triggered when the date in the calendar is changed.
+        /// </summary>
         public event EventHandler<DateChangedEventArgs> DateChanged;
 
+        /// <summary>
+        /// DisplayedMonthChanged will be triggered when the current month displayed in the calendar is changed.
+        /// </summary>
         public event EventHandler<DisplayedMonthChangedEventArgs> DisplayedMonthChanged;
 
+        /// <summary>
+        /// Sets or gets the minimum for year.
+        /// </summary>
         public int MinimumYear
         {
             get
@@ -69,6 +87,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the maximum for the year.
+        /// </summary>
         public int MaximumYear
         {
             get
@@ -87,6 +108,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the first day of week, who are used on Calendar.
+        /// </summary>
         public DayOfWeek FirstDayOfWeek
         {
             get
@@ -99,6 +123,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the weekdays names to be displayed by the Calendar.
+        /// </summary>
+        /// <remarks>
+        /// The usage should be like this;
+        /// List<string> weekDayNames = new List<string>() { "S", "M", "T", "W", "T", "F", "S" };
+        /// Calendar.WeekDayNames = weekDayNames;
+        /// </remarks>
         public IReadOnlyList<string> WeekDayNames
         {
             get
@@ -117,6 +149,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the selected date.
+        /// </summary>
+        /// <remarks>
+        /// Selected date changes when the user goes to next/previous month or select a day pressing over it on calendar.
+        /// </remarks>
         public DateTime SelectedDate
         {
             get
@@ -133,6 +171,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the interval on time updates for an user mouse button
+        /// hold on calendar widgets' month/year selection.
+        /// </summary>
         public double Interval
         {
             get

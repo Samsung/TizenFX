@@ -18,14 +18,24 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Box is a container used to arranges UI components in a linear order.
+    /// </summary>
     public class Box : Container
     {
         private Interop.Elementary.BoxLayoutCallback _layoutCallback;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Box class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Box will be attached as a child.</param>
         public Box(EvasObject parent) : base(parent)
         {
         }
 
+        /// <summary>
+        /// Sets or gets IsHorizontal value which describe pack direction, vertical is default.
+        /// </summary>
         public bool IsHorizontal
         {
             get
@@ -38,36 +48,78 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Adds an object at the end of the pack list.
+        /// </summary>
+        /// <remarks>
+        /// Packs "content" object into the Box, placing it last in the list of children objects.
+        /// The actual position the object will get on screen depends on the layout used.
+        /// If no custom layout is set, it will be at the bottom or right,
+        /// depending if the Box is vertical or horizontal, respectively.
+        /// </remarks>
+        /// <param name="content">The oject be packed</param>
         public void PackEnd(EvasObject content)
         {
             Interop.Elementary.elm_box_pack_end(RealHandle, content);
             AddChild(content);
         }
 
+        /// <summary>
+        /// Adds an "content" object to the beginning of the pack list.
+        /// </summary>
+        /// <remarks>
+        /// Pack "content" object into the Box obj, placing it first in the list of children objects.
+        /// The actual position the object will get on screen depends on the layout used.
+        /// If no custom layout is set, it will be at the top or left,
+        /// depending if the Box is vertical or horizontal, respectively.
+        /// </remarks>
+        /// <param name="content">The object to be packed.</param>
         public void PackStart(EvasObject content)
         {
             Interop.Elementary.elm_box_pack_start(RealHandle, content);
             AddChild(content);
         }
 
+        /// <summary>
+        /// Adds an "content "object to the Box after the "after" object.
+        /// </summary>
+        /// <remarks>
+        /// This will add the "content" to the Box indicated after the object indicated with "after".
+        /// If "after" is not already in the Box, results are undefined.
+        /// After means either to the right of the "after" object or below it depending on orientation.
+        /// </remarks>
+        /// <param name="content">The object will be added in Box</param>
+        /// <param name="after">The object has been added in Box</param>
         public void PackAfter(EvasObject content, EvasObject after)
         {
             Interop.Elementary.elm_box_pack_after(RealHandle, content, after);
             AddChild(content);
         }
 
+        /// <summary>
+        /// Remove the "content" oject from Box without deleting it.
+        /// </summary>
+        /// <param name="content">The object to unpack</param>
         public void UnPack(EvasObject content)
         {
             Interop.Elementary.elm_box_unpack(RealHandle, content);
             RemoveChild(content);
         }
 
+        /// <summary>
+        /// Removes all objects from Box container.
+        /// </summary>
         public void UnPackAll()
         {
             Interop.Elementary.elm_box_unpack_all(RealHandle);
             ClearChildren();
         }
 
+        /// <summary>
+        /// Whenever anything changes that requires the Box in obj to recalculate the size and position of its elements,
+        /// the function cb will be called to determine what the layout of the children will be.
+        /// </summary>
+        /// <param name="action">The callback function used for layout </param>
         public void SetLayoutCallback(Action action)
         {
             _layoutCallback = (obj, priv, data) =>
@@ -77,6 +129,11 @@ namespace ElmSharp
             Interop.Elementary.elm_box_layout_set(RealHandle, _layoutCallback, IntPtr.Zero, null);
         }
 
+        /// <summary>
+        /// Sets the color of color class to Box's layout parent.
+        /// </summary>
+        /// <param name="part">The name of color class. </param>
+        /// <param name="color">The color value.</param>
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -85,6 +142,11 @@ namespace ElmSharp
                                                                               color.A);
         }
 
+        /// <summary>
+        /// Get the color of color class of Box's layout parent.
+        /// </summary>
+        /// <param name="part">The name of color class.</param>
+        /// <returns></returns>
         public override Color GetPartColor(string part)
         {
             int r, g, b, a;

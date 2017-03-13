@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Button is a widget works as a clickable input element to trigger events.
+    /// </summary>
     public class Button : Layout
     {
         private SmartEvent _clicked;
@@ -25,6 +28,12 @@ namespace ElmSharp
         private SmartEvent _pressed;
         private SmartEvent _released;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Button class.
+        /// </summary>
+        /// <param name="parent">
+        /// The EvasObject to which the new Button will be attached as a child.
+        /// </param>
         public Button(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, this.RealHandle, "clicked");
@@ -53,14 +62,36 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// Clicked will be triggered when Button is clicked.
+        /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// Repeated will be triggered when Button is pressed without releasing it.
+        /// </summary>
         public event EventHandler Repeated;
 
+        /// <summary>
+        /// Pressed will be triggered when the Button is pressed.
+        /// </summary>
         public event EventHandler Pressed;
 
+        /// <summary>
+        /// Released will be triggered when the Button is released after being pressed.
+        /// </summary>
         public event EventHandler Released;
 
+        /// <summary>
+        /// Sets or gets the autorepeat feature of a given Button.
+        /// </summary>
+        /// <remarks>
+        /// Autorepeat feature means autorepeat event generated when the button is kept pressed.
+        /// When set AutoRepeat to false, no autorepeat is performed and buttons will trigger Clicked event when they are clicked.
+        /// When set to true, keeping a button pressed continuously trigger Repeated event until the button is released.
+        /// The time it takes until it starts triggering Repeated is given by AutoRepeatInitialTime,
+        /// and the time between each new emission is given by AutoRepeatGapTimeout.
+        /// </remarks>
         public bool AutoRepeat
         {
             get
@@ -73,6 +104,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the initial timeout before the Repeat event is generated.
+        /// </summary>
         public double AutoRepeatInitialTime
         {
             get
@@ -85,6 +119,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the interval between each generated Repeat event.
+        /// </summary>
         public double AutoRepeatGapTimeout
         {
             get
@@ -103,6 +140,9 @@ namespace ElmSharp
             Interop.Elementary.edje_object_color_class_del(Handle, part);
         }
 
+        /// <summary>
+        /// Sets or gets the BackgroundColor of a given Button in normal and pressed status.
+        /// </summary>
         public override Color BackgroundColor
         {
             set

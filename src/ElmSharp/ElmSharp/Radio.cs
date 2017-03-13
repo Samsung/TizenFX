@@ -18,18 +18,31 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Radio is a widget that allows for 1 or more options to be displayed and have the user choose only 1 of them.
+    /// </summary>
     public class Radio : Layout
     {
         SmartEvent _changed;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Radio class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Radio will be attached as a child.</param>
         public Radio(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
             _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// ValueChanged will be triggered when value of Radio change.
+        /// </summary>
         public event EventHandler ValueChanged;
 
+        /// <summary>
+        /// Sets or gets a unique value to each Radio button.
+        /// </summary>
         public int StateValue
         {
             get
@@ -42,6 +55,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value of the radio group.
+        /// </summary>
         public int GroupValue
         {
             get
@@ -54,6 +70,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Adds this radio to a group of other radio objects.
+        /// </summary>
+        /// <param name="group">Group which add radio in.</param>
         public void SetGroup(Radio group)
         {
             if (group == null)

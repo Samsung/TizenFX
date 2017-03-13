@@ -19,19 +19,53 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the popup orientation type.
+    /// </summary>
     public enum PopupOrientation
     {
+        /// <summary>
+        /// Appears in the top of parent, default.
+        /// </summary>
         Top,
+        /// <summary>
+        /// Appears in the center of parent.
+        /// </summary>
         Center,
+        /// <summary>
+        /// Appears in the bottom of parent.
+        /// </summary>
         Bottom,
+        /// <summary>
+        /// Appears in the left of parent.
+        /// </summary>
         Left,
+        /// <summary>
+        /// Appears in the right of parent.
+        /// </summary>
         Right,
+        /// <summary>
+        /// Appears in the top left of parent.
+        /// </summary>
         TopLeft,
+        /// <summary>
+        /// Appears in the top right of parent.
+        /// </summary>
         TopRight,
+        /// <summary>
+        /// Appears in the bottom left of parent.
+        /// </summary>
         BottomLeft,
+        /// <summary>
+        /// Appears in the bottom right of parent.
+        /// </summary>
         BottomRight
     }
 
+    /// <summary>
+    /// This Popup is a widget that is an enhancement of Notify.
+    /// In addition to content area, there are two optional sections, namely title area and action area.
+    /// </summary>
     public class Popup : Layout
     {
         HashSet<PopupItem> _children = new HashSet<PopupItem>();
@@ -40,6 +74,10 @@ namespace ElmSharp
         SmartEvent _timeout;
         SmartEvent _showFinished;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Popup class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Popup will be attached as a child.</param>
         public Popup(EvasObject parent) : base(parent)
         {
             _dismissed = new SmartEvent(this, "dismissed");
@@ -67,14 +105,29 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// Dismissed will be triggered when Popup have been dismissed.
+        /// </summary>
         public event EventHandler Dismissed;
 
+        /// <summary>
+        /// OutsideClicked will be triggered when users taps on the outside of Popup.
+        /// </summary>
         public event EventHandler OutsideClicked;
 
+        /// <summary>
+        /// OutsideClicked will be triggered when Popup is closed as a result of timeout.
+        /// </summary>
         public event EventHandler TimedOut;
 
+        /// <summary>
+        /// OutsideClicked will be triggered when the Popup transition is finished in showing.
+        /// </summary>
         public event EventHandler ShowAnimationFinished;
 
+        /// <summary>
+        /// Sets or gets the position in which Popup will appear in its parent.
+        /// </summary>
         public PopupOrientation Orientation
         {
             get
@@ -87,6 +140,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the wrapping type of content text packed in content area of Popup widget.
+        /// </summary>
         public WrapType ContentTextWrapType
         {
             get
@@ -99,6 +155,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the timeout value set to the Popup(in seconds).
+        /// </summary>
         public double Timeout
         {
             get
@@ -111,6 +170,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether events should be passed to event blocked area by a click outside.
+        /// </summary>
+        /// <remarks>
+        /// The visible region of popup is surrounded by a translucent region called Blocked Event area.
+        /// </remarks>
         public bool AllowEvents
         {
             get
@@ -123,6 +188,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the AlignmentX in which the popup will appear in its parent.
+        /// </summary>
         public override double AlignmentX
         {
             get
@@ -135,6 +203,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the AlignmentY in which the popup will appear in its parent.
+        /// </summary>
         public override double AlignmentY
         {
             get
@@ -147,6 +218,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the Opacity value set to the Popup(in seconds).
+        /// </summary>
         public override int Opacity
         {
             get
@@ -160,11 +234,22 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Adds label to a Popup widget.
+        /// </summary>
+        /// <param name="label"></param>
+        /// <returns>The new PopupItem which contains label .</returns>
         public PopupItem Append(string label)
         {
             return Append(label, null);
         }
 
+        /// <summary>
+        /// Adds Label and icon to a Popup widget.
+        /// </summary>
+        /// <param name="label">The Label which will be added into a new PopupItem. </param>
+        /// <param name="icon">The icon which will be added into a new PopupItem. </param>
+        /// <returns>The new PopupItem which contains label and icon.</returns>
         public PopupItem Append(string label, EvasObject icon)
         {
             PopupItem item = new PopupItem(label, icon);
@@ -173,6 +258,10 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Uses this function to dismiss the popup in hide effect.
+        /// when the Popup is dismissed, the "dismissed" signal will be emitted.
+        /// </summary>
         public void Dismiss()
         {
             Interop.Elementary.elm_popup_dismiss(Handle);
@@ -182,13 +271,11 @@ namespace ElmSharp
         {
             return Interop.Elementary.elm_popup_add(parent.Handle);
         }
-
         void AddInternal(PopupItem item)
         {
             _children.Add(item);
             item.Deleted += Item_Deleted;
         }
-
         void Item_Deleted(object sender, EventArgs e)
         {
             _children.Remove((PopupItem)sender);

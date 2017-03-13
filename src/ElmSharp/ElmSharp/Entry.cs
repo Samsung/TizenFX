@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// A enum to describle InputPanel layout type.
+    /// </summary>
     public enum InputPanelLayout
     {
         /// <summary>
