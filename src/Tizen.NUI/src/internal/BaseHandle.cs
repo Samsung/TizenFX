@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    public class BaseHandle : global::System.IDisposable {
+public class BaseHandle : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

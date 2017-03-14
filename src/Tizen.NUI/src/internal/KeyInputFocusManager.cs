@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    public class KeyInputFocusManager : BaseHandle {
+public class KeyInputFocusManager : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.KeyInputFocusManager_SWIGUpcast(cPtr), cMemoryOwn) {

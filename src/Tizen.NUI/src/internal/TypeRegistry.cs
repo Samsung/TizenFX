@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    public class TypeRegistry : BaseHandle {
+public class TypeRegistry : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeRegistry_SWIGUpcast(cPtr), cMemoryOwn) {

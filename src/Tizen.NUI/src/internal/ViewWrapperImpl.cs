@@ -51,15 +51,13 @@ namespace Tizen.NUI
         public delegate bool OnAccessibilityZoomDelegate();
         public delegate void OnKeyInputFocusGainedDelegate();
         public delegate void OnKeyInputFocusLostDelegate();
-        public delegate View GetNextFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
-        public delegate void OnFocusChangeCommittedDelegate(View commitedFocusableView);
+        public delegate Actor GetNextKeyboardFocusableActorDelegate(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled);
+        public delegate void OnKeyboardFocusChangeCommittedDelegate(Actor commitedFocusableActor);
         public delegate bool OnKeyboardEnterDelegate();
         public delegate void OnPinchDelegate(PinchGesture pinch);
         public delegate void OnPanDelegate(PanGesture pan);
         public delegate void OnTapDelegate(TapGesture tap);
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
-        internal delegate void SignalConnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
-        internal delegate void SignalDisconnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
 
         public OnStageConnectionDelegate OnStageConnection;
         public OnStageDisconnectionDelegate OnStageDisconnection;
@@ -92,15 +90,13 @@ namespace Tizen.NUI
         public OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnKeyInputFocusGainedDelegate OnKeyInputFocusGained;
         public OnKeyInputFocusLostDelegate OnKeyInputFocusLost;
-        public GetNextFocusableViewDelegate GetNextFocusableView;
-        public OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
+        public GetNextKeyboardFocusableActorDelegate GetNextKeyboardFocusableActor;
+        public OnKeyboardFocusChangeCommittedDelegate OnKeyboardFocusChangeCommitted;
         public OnKeyboardEnterDelegate OnKeyboardEnter;
         public OnPinchDelegate OnPinch;
         public OnPanDelegate OnPan;
         public OnTapDelegate OnTap;
         public OnLongPressDelegate OnLongPress;
-        internal SignalConnectedDelegate SignalConnected;
-        internal SignalDisconnectedDelegate SignalDisconnected;
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -135,7 +131,7 @@ namespace Tizen.NUI
             }
         }
 
-        public ViewWrapperImpl(ViewBehaviour behaviourFlags) : this(NDalicManualPINVOKE.new_ViewWrapperImpl((int)behaviourFlags), true)
+        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(NDalicManualPINVOKE.new_ViewWrapperImpl((int)behaviourFlags), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             DirectorConnect();
@@ -411,7 +407,10 @@ namespace Tizen.NUI
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            OnStyleChange(new StyleManager(styleManager, false), (StyleChangeType)change);
+            if (OnStyleChange != null)
+            {
+                OnStyleChange(new StyleManager(styleManager, false), (StyleChangeType)change);
+            }
         }
 
         private bool DirectorOnAccessibilityActivated()
@@ -482,16 +481,6 @@ namespace Tizen.NUI
         private void DirectorOnLongPress(global::System.IntPtr longPress)
         {
             OnLongPress(new LongPressGesture(longPress, false));
-        }
-
-        private void DirectorSignalConnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
-        {
-            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
-        }
-
-        private void DirectorSignalDisconnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
-        {
-            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
         }
 
         public delegate void DelegateViewWrapperImpl_0(int depth);
@@ -577,15 +566,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_38 Delegate38;
         private DelegateViewWrapperImpl_39 Delegate39;
         private DelegateViewWrapperImpl_40 Delegate40;
-
-        public enum CustomViewBehaviour
-        {
-            VIEW_BEHAVIOUR_DEFAULT = 0,
-            DISABLE_SIZE_NEGOTIATION = 1 << 0,
-            REQUIRES_KEYBOARD_NAVIGATION_SUPPORT = 1 << 5,
-            DISABLE_STYLE_CHANGE_SIGNALS = 1 << 6,
-            LAST_VIEW_BEHAVIOUR_FLAG
-        }
 
         public static readonly int VIEW_BEHAVIOUR_FLAG_COUNT = NDalicManualPINVOKE.ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get();
     }

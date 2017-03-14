@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    public class CustomActorImpl : RefObject {
+public class CustomActorImpl : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CustomActorImpl_SWIGUpcast(cPtr), cMemoryOwn) {

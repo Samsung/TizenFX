@@ -1,6 +1,6 @@
 Name:       csapi-nui
 Summary:    dali-NUI
-Version:    1.0.1
+Version:    1.0.2
 Release:    0
 Group:      Development/Libraries
 License:    Apache-2.0

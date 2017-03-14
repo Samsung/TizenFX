@@ -1,8 +1,11 @@
-﻿using System;
+﻿#define DOT_NET_CORE
+
+using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+#if (DOT_NET_CORE)
 using System.Reflection;
-
+#endif
 
 namespace Tizen.NUI
 {
@@ -53,14 +56,14 @@ namespace Tizen.NUI
     ///  in MyControl.h
     ///  class MyControl : public Control
     ///  {
-    ///      struct Property
+    ///    struct Property
+    ///    {
+    ///      enum
     ///      {
-    ///         enum
-    ///        {
-    ///              HOURS =  Control::CONTROL_PROPERTY_END_INDEX + 1
-    ///        }
-    ///     }
-    ///
+    ///        HOURS =  Control::CONTROL_PROPERTY_END_INDEX + 1
+    ///      }
+    ///    }
+    ///  }
     ///
     /// in MyControl-impl.cpp
     ///
@@ -141,9 +144,10 @@ namespace Tizen.NUI
         private PropertyRangeManager _propertyRangeManager;
 
         /// <summary>
-        /// Given a C++ custom control the dictionary allows us to find what CustomView it belongs to
+        /// Given a C++ control the dictionary allows us to find which C# control (View) it belongs to.
+        /// By keeping the weak reference only, it will allow the object to be garbage collected.
         /// </summary>
-        private Dictionary<IntPtr, Tizen.NUI.CustomView> _controlMap;
+        private Dictionary<IntPtr, WeakReference> _controlMap;
 
         ///<summary>
         // Maps the name of a custom view to a create instance function
@@ -179,7 +183,7 @@ namespace Tizen.NUI
             _getPropertyCallback = new GetPropertyDelegate(GetProperty);
             _setPropertyCallback = new SetPropertyDelegate(SetProperty);
 
-            _controlMap = new Dictionary<IntPtr, CustomView>();
+            _controlMap = new Dictionary<IntPtr, WeakReference>();
             _constructorMap = new Dictionary<string, Func<CustomView>>();
             _propertyRangeManager = new PropertyRangeManager();
 
@@ -201,7 +205,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Called directly from DALi C++ type registry to create a control (View)  uses no marshalling.
+        /// Called directly from DALi C++ type registry to create a control (View) using no marshalling.
         /// </summary>
         /// <returns>Pointer to the Control (Views) handle </returns>
         /// <param name="cPtrControlName"> C pointer to the Control (View) name</param>
@@ -217,23 +221,49 @@ namespace Tizen.NUI
             {
                 // Create the control
                 CustomView newControl = controlConstructor();
-
-                // Store the mapping between this instance of the custom control and native part
-                // We store a pointer to the RefObject for the control
-                IntPtr cPtr = newControl.GetPtrfromActor();
-                RefObject refObj = newControl.GetObjectPtr();
-                IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
-
-                //Console.WriteLine ("________Storing ref object cptr in control map Hex: {0:X}", refCptr);
-                Instance._controlMap.Add(refCptr, newControl);
-
-                return cPtr;  // return pointer to handle
+                return newControl.GetPtrfromActor();  // return pointer to handle
             }
             else
             {
                 throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
                 return IntPtr.Zero;
             }
+        }
+
+        /// <summary>
+        /// Store the mapping between this instance of control (View) and native part.
+        /// </summary>
+        /// <param name="view"> The instance of control (View)</param>
+        public static void RegisterView(View view)
+        {
+            // We store a pointer to the RefObject for the control
+            RefObject refObj = view.GetObjectPtr();
+            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+
+            //Console.WriteLine ("________Storing ref object cptr in control map Hex: {0:X}", refCptr);
+            if (!Instance._controlMap.ContainsKey(refCptr))
+            {
+                Instance._controlMap.Add(refCptr, new WeakReference(view, false));
+            }
+
+            return;
+        }
+
+        /// <summary>
+        /// Remove the this instance of control (View) and native part from the mapping table.
+        /// </summary>
+        /// <param name="view"> The instance of control (View)</param>
+        public static void UnregisterView(View view)
+        {
+            RefObject refObj = view.GetObjectPtr();
+            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+
+            if (Instance._controlMap.ContainsKey(refCptr))
+            {
+                Instance._controlMap.Remove(refCptr);
+            }
+
+            return;
         }
 
         private static IntPtr GetProperty(IntPtr controlPtr, IntPtr propertyName)
@@ -262,19 +292,17 @@ namespace Tizen.NUI
             }
         }
 
-        public static CustomView GetCustomViewFromActor(Actor actor)
+        public static View GetViewFromActor(Actor actor)
         {
             // we store a dictionary of ref-obects (C++ land) to custom views (C# land)
-            Tizen.NUI.CustomView view;
 
             RefObject refObj = actor.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            if (Instance._controlMap.TryGetValue(refObjectPtr, out view))
+            WeakReference viewReference;
+            if (Instance._controlMap.TryGetValue(refObjectPtr, out viewReference))
             {
-
-                // call the get property function
-
+                View view = viewReference.Target as View;
                 return view;
             }
             else
@@ -314,9 +342,13 @@ namespace Tizen.NUI
                 if (propertyInfo.CanRead)
                 {
 
+#if (DOT_NET_CORE)
                     IEnumerable<Attribute> ie_attrs = propertyInfo.GetCustomAttributes<Attribute>();
                     List<Attribute> li_attrs = new List<Attribute>(ie_attrs);
                     System.Attribute[] attrs = li_attrs.ToArray();
+#else
+                    System.Attribute[] attrs = System.Attribute.GetCustomAttributes(propertyInfo);
+#endif
 
                     foreach (System.Attribute attr in attrs)
                     {
@@ -351,16 +383,16 @@ namespace Tizen.NUI
         private IntPtr GetPropertyValue(IntPtr controlPtr, string propertyName)
         {
             // Get the C# control that maps to the C++ control
-            Tizen.NUI.CustomView view;
-
             BaseHandle baseHandle = new BaseHandle(controlPtr, false);
 
             RefObject refObj = baseHandle.GetObjectPtr();
 
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            if (_controlMap.TryGetValue(refObjectPtr, out view))
+            WeakReference viewReference;
+            if (_controlMap.TryGetValue(refObjectPtr, out viewReference))
             {
+                View view = viewReference.Target as View;
 
                 // call the get property function
                 System.Object val = view.GetType().GetProperty(propertyName).GetAccessors()[0].Invoke(view, null);
@@ -382,15 +414,15 @@ namespace Tizen.NUI
         private void SetPropertyValue(IntPtr controlPtr, string propertyName, IntPtr propertyValuePtr)
         {
             // Get the C# control that maps to the C++ control
-            Tizen.NUI.CustomView view;
 
             //Console.WriteLine ("SetPropertyValue   refObjectPtr = {0:X}", controlPtr);
 
             PropertyValue propValue = new PropertyValue(propertyValuePtr, false);
 
-            if (_controlMap.TryGetValue(controlPtr, out view))
+            WeakReference viewReference;
+            if (_controlMap.TryGetValue(controlPtr, out viewReference))
             {
-
+                View view = viewReference.Target as View;
                 System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
 
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
@@ -472,7 +504,6 @@ namespace Tizen.NUI
                 }
                 else if (type.Equals(typeof(Size)))
                 {
-                    // DALi sizes are Vector3
                     Size value = new Size();
                     ok = propValue.Get(value);
                     if (ok)

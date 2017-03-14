@@ -26,6 +26,7 @@
 
 namespace Tizen.NUI
 {
+
     using System;
     using System.Runtime.InteropServices;
 
@@ -74,6 +75,60 @@ namespace Tizen.NUI
         }
 
 
+
+        /**
+          * @brief Event arguments that passed via Tick signal
+          *
+          */
+        public class TickEventArgs : EventArgs
+        {
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool TickCallbackDelegate(IntPtr data);
+        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
+        private TickCallbackDelegate _timerTickCallbackDelegate;
+
+        /**
+          * @brief Event for Ticked signal which can be used to subscribe/unsubscribe the event handler
+          * (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>) 
+          * provided by the user. Ticked signal is emitted after specified time interval.
+          */
+        public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
+        {
+            add
+            {
+                if (_timerTickEventHandler == null)
+                {
+                    _timerTickCallbackDelegate = (OnTick);
+                    TickSignal().Connect(_timerTickCallbackDelegate);
+                }
+                _timerTickEventHandler += value;
+            }
+            remove
+            {
+                _timerTickEventHandler -= value;
+                if (_timerTickEventHandler == null && _timerTickCallbackDelegate != null)
+                {
+                    TickSignal().Disconnect(_timerTickCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Timer Tick signal
+        private bool OnTick(IntPtr data)
+        {
+            TickEventArgs e = new TickEventArgs();
+
+            if (_timerTickEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                return _timerTickEventHandler(this, e);
+            }
+            return false;
+        }
+
+
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -110,18 +165,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public uint Interval
-        {
-            set
-            {
-                SetInterval(value);
-            }
-            get
-            {
-                return GetInterval();
-            }
-        }
-
         internal void SetInterval(uint milliSec)
         {
             NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
@@ -135,23 +178,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public bool Running
-        {
-            get
-            {
-                return IsRunning();
-            }
-        }
-
-        internal bool IsRunning()
+        public bool IsRunning()
         {
             bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-
-
 
         internal TimerSignalType TickSignal()
         {
@@ -159,43 +191,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        private DaliEventHandlerWithReturnType<object, EventArgs, bool> _tickEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate bool TickCallbackType();
-        private TickCallbackType _tickCallBack;
-
-        public event DaliEventHandlerWithReturnType<object, EventArgs, bool> Tick
-        {
-            add
-            {
-                if (_tickCallBack == null)
-                {
-                    _tickCallBack = OnTick;
-                    this.TickSignal().Connect(_tickCallBack);
-                }
-                _tickEventHandler += value;
-            }
-            remove
-            {
-                _tickEventHandler -= value;
-
-                if (_tickCallBack == null && _tickCallBack != null)
-                {
-                    this.TickSignal().Disconnect(_tickCallBack);
-                    _tickCallBack = null;
-                }
-            }
-        }
-        private bool OnTick()
-        {
-            if (_tickEventHandler != null)
-            {
-                return _tickEventHandler(this, null);
-            }
-            return false;
-        }
-
 
     }
 

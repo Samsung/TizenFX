@@ -7,7 +7,11 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
+#define DOT_NET_CORE
+
+#if (DOT_NET_CORE)
 using System.Reflection;
+#endif
 
 namespace Tizen.NUI
 {
@@ -570,6 +574,8 @@ namespace Tizen.NUI
             NDalicPINVOKE.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate22, swigDelegate23, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate27, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
+
+#if (DOT_NET_CORE)
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
@@ -578,6 +584,14 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI-APP", "hasDerivedMethod=" + hasDerivedMethod);
             return hasDerivedMethod;
         }
+#else
+        private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
+        {
+            global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
+            bool hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(ViewImpl));
+            return hasDerivedMethod;
+        }
+#endif
 
         private void SwigDirectorOnStageConnection(int depth)
         {

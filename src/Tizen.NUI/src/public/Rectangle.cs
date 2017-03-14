@@ -8,286 +8,333 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class Rectangle : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Rectangle() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Rectangle(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
-
-
-    public static bool operator ==(Rectangle a, Rectangle b)
+    public class Rectangle : global::System.IDisposable
     {
-        // If both are null, or both are same instance, return true.
-        if (System.Object.ReferenceEquals(a, b))
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
+
+        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
-            return true;
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        // If one is null, but not both, return false.
-        if (((object)a == null) || ((object)b == null))
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj)
         {
-            return false;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        // Return true if the fields match:
-        return a.X == b.X && a.Y == b.Y && a.Width == b.Width && a.Height == b.Height;
+        ~Rectangle()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public virtual void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Rectangle(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+
+        public static bool operator ==(Rectangle a, Rectangle b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return a.X == b.X && a.Y == b.Y && a.Width == b.Width && a.Height == b.Height;
+        }
+
+        public static bool operator !=(Rectangle a, Rectangle b)
+        {
+            return !(a == b);
+        }
+
+        ///< X position of the rectangle
+        public int X
+        {
+            set
+            {
+                x = value;
+            }
+            get
+            {
+                return x;
+            }
+        }
+
+        ///< Y position of the rectangle
+        public int Y
+        {
+            set
+            {
+                y = value;
+            }
+            get
+            {
+                return y;
+            }
+        }
+
+        ///< Width of the rectangle
+        public int Width
+        {
+            set
+            {
+                width = value;
+            }
+            get
+            {
+                return width;
+            }
+        }
+
+        ///< Height of the rectangle
+        public int Height
+        {
+            set
+            {
+                height = value;
+            }
+            get
+            {
+                return height;
+            }
+        }
+
+        public Rectangle() : this(NDalicPINVOKE.new_Rectangle__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Rectangle(int x, int y, int width, int height) : this(NDalicPINVOKE.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Rectangle(Rectangle rhs) : this(NDalicPINVOKE.new_Rectangle__SWIG_2(Rectangle.getCPtr(rhs)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Rectangle Assign(Rectangle rhs)
+        {
+            Rectangle ret = new Rectangle(NDalicPINVOKE.Rectangle_Assign(swigCPtr, Rectangle.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Set(int newX, int newY, int newWidth, int newHeight)
+        {
+            NDalicPINVOKE.Rectangle_Set(swigCPtr, newX, newY, newWidth, newHeight);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsEmpty()
+        {
+            bool ret = NDalicPINVOKE.Rectangle_IsEmpty(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int Left()
+        {
+            int ret = NDalicPINVOKE.Rectangle_Left(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int Right()
+        {
+            int ret = NDalicPINVOKE.Rectangle_Right(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int Top()
+        {
+            int ret = NDalicPINVOKE.Rectangle_Top(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int Bottom()
+        {
+            int ret = NDalicPINVOKE.Rectangle_Bottom(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int Area()
+        {
+            int ret = NDalicPINVOKE.Rectangle_Area(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool Intersects(Rectangle other)
+        {
+            bool ret = NDalicPINVOKE.Rectangle_Intersects(swigCPtr, Rectangle.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool Contains(Rectangle other)
+        {
+            bool ret = NDalicPINVOKE.Rectangle_Contains(swigCPtr, Rectangle.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private int x
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_x_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_x_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int left
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_left_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_left_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int y
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_y_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_y_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int right
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_right_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_right_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int width
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_width_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_width_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int bottom
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_bottom_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_bottom_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int height
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_height_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_height_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int top
+        {
+            set
+            {
+                NDalicPINVOKE.Rectangle_top_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = NDalicPINVOKE.Rectangle_top_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
-
-    public static bool operator !=(Rectangle a, Rectangle b)
-    {
-        return !(a == b);
-    }
-
-    ///< X position of the rectangle
-    public int X
-    {
-        set
-        {
-            x = value;
-        }
-        get
-        {
-            return x;
-        }
-    }
-
-    ///< Y position of the rectangle
-    public int Y
-    {
-        set
-        {
-            y = value;
-        }
-        get
-        {
-            return y;
-        }
-    }
-
-    ///< Width of the rectangle
-    public int Width
-    {
-        set
-        {
-            width = value;
-        }
-        get
-        {
-            return width;
-        }
-    }
-
-    ///< Height of the rectangle
-    public int Height
-    {
-        set
-        {
-            height = value;
-        }
-        get
-        {
-            return height;
-        }
-    }
-
-  public Rectangle() : this(NDalicPINVOKE.new_Rectangle__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Rectangle(int x, int y, int width, int height) : this(NDalicPINVOKE.new_Rectangle__SWIG_1(x, y, width, height), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Rectangle(Rectangle rhs) : this(NDalicPINVOKE.new_Rectangle__SWIG_2(Rectangle.getCPtr(rhs)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Rectangle Assign(Rectangle rhs) {
-    Rectangle ret = new Rectangle(NDalicPINVOKE.Rectangle_Assign(swigCPtr, Rectangle.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void Set(int newX, int newY, int newWidth, int newHeight) {
-    NDalicPINVOKE.Rectangle_Set(swigCPtr, newX, newY, newWidth, newHeight);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsEmpty() {
-    bool ret = NDalicPINVOKE.Rectangle_IsEmpty(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int Left() {
-    int ret = NDalicPINVOKE.Rectangle_Left(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int Right() {
-    int ret = NDalicPINVOKE.Rectangle_Right(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int Top() {
-    int ret = NDalicPINVOKE.Rectangle_Top(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int Bottom() {
-    int ret = NDalicPINVOKE.Rectangle_Bottom(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int Area() {
-    int ret = NDalicPINVOKE.Rectangle_Area(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool Intersects(Rectangle other) {
-    bool ret = NDalicPINVOKE.Rectangle_Intersects(swigCPtr, Rectangle.getCPtr(other));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool Contains(Rectangle other) {
-    bool ret = NDalicPINVOKE.Rectangle_Contains(swigCPtr, Rectangle.getCPtr(other));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  private int x {
-    set {
-      NDalicPINVOKE.Rectangle_x_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_x_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int left {
-    set {
-      NDalicPINVOKE.Rectangle_left_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_left_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int y {
-    set {
-      NDalicPINVOKE.Rectangle_y_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_y_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int right {
-    set {
-      NDalicPINVOKE.Rectangle_right_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_right_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int width {
-    set {
-      NDalicPINVOKE.Rectangle_width_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_width_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int bottom {
-    set {
-      NDalicPINVOKE.Rectangle_bottom_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_bottom_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int height {
-    set {
-      NDalicPINVOKE.Rectangle_height_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_height_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private int top {
-    set {
-      NDalicPINVOKE.Rectangle_top_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = NDalicPINVOKE.Rectangle_top_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-}
 
 }

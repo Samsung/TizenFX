@@ -40,14 +40,28 @@ namespace Tizen.NUI
       TexturedWithDetailedSpecularLighting = Tizen.NUI.MeshVisualShadingModeValue.TEXTURED_WITH_DETAILED_SPECULAR_LIGHTING ///< Uses all textures provided including a gloss, normal and texture map along with specular, ambient and diffuse lighting. @SINCE_1_1.45
     }
 
-
-
     public struct Direction
     {
       public enum Type
       {
         LeftToRight = Tizen.NUI.DirectionType.LEFT_TO_RIGHT,
         RightToLeft = Tizen.NUI.DirectionType.RIGHT_TO_LEFT
+      }
+    }
+
+    public struct Align
+    {
+      public enum Type
+      {
+        TopBegin = Tizen.NUI.AlignType.TOP_BEGIN,
+        TopCenter = Tizen.NUI.AlignType.TOP_CENTER,
+        TopEnd = Tizen.NUI.AlignType.TOP_END,
+        CenterBegin = Tizen.NUI.AlignType.CENTER_BEGIN,
+        Center = Tizen.NUI.AlignType.CENTER,
+        CenterEnd = Tizen.NUI.AlignType.CENTER_END,
+        BottomBegin = Tizen.NUI.AlignType.BOTTOM_BEGIN,
+        BottomCenter = Tizen.NUI.AlignType.BOTTOM_CENTER,
+        BottomEnd = Tizen.NUI.AlignType.BOTTOM_END
       }
     }
 

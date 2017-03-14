@@ -8,17 +8,16 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI
-{
-    public enum SamplingModeType
-    {
-        BOX,
-        NEAREST,
-        LINEAR,
-        BOX_THEN_NEAREST,
-        BOX_THEN_LINEAR,
-        NO_FILTER,
-        DONT_CARE
-    }
+namespace Tizen.NUI {
+
+public enum SamplingModeType {
+  BOX,
+  NEAREST,
+  LINEAR,
+  BOX_THEN_NEAREST,
+  BOX_THEN_LINEAR,
+  NO_FILTER,
+  DONT_CARE
+}
 
 }
