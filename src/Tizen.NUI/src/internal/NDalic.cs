@@ -967,6 +967,36 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static void Raise(Actor actor) {
+    NDalicPINVOKE.Raise(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void Lower(Actor actor) {
+    NDalicPINVOKE.Lower(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void RaiseToTop(Actor actor) {
+    NDalicPINVOKE.RaiseToTop(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void LowerToBottom(Actor actor) {
+    NDalicPINVOKE.LowerToBottom(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void RaiseAbove(Actor actor, Actor target) {
+    NDalicPINVOKE.RaiseAbove(Actor.getCPtr(actor), Actor.getCPtr(target));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void LowerBelow(Actor actor, Actor target) {
+    NDalicPINVOKE.LowerBelow(Actor.getCPtr(actor), Actor.getCPtr(target));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public static FittingModeType FittingModeDefault {
     get {
       FittingModeType ret = (FittingModeType)NDalicPINVOKE.FittingModeDefault_get();

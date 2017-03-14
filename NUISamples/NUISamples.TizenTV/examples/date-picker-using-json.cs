@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,21 +23,24 @@ namespace MyCSharpExample
 {
     // A spin control (for continously changing values when users can easily predict a set of values)
 
-    class Example
+    class Example : NUIApplication
     {
-        private Application _application;
         private Spin _spinYear;  // spin control for year
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
         private Builder _builder; // DALi Builder
 
-        public Example(Application application)
+        public Example() : base()
         {
-            _application = application;
-            _application.Initialized += Initialize;
         }
 
-        public void Initialize(object source, NUIApplicationInitEventArgs e)
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Initialize();
+        }
+
+        public void Initialize()
         {
 
             Stage stage = Stage.Instance;
@@ -53,7 +56,7 @@ namespace MyCSharpExample
             constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new PropertyValue( "Verbose") );
             _builder.AddConstants( constants );
 
-            _builder.LoadFromFile("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-template.json");
+            _builder.LoadFromFile("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-template.json" );
 
             // create the date-picker from the template in the json file
             BaseHandle handle =  _builder.Create( "date-picker");
@@ -66,44 +69,43 @@ namespace MyCSharpExample
             Actor month  =  actorTree.FindChildByName("Month" );
             Actor day  = actorTree.FindChildByName("Day");
 
-            // need to get the actual C# View associated with the actor,
-            _spinYear = (Spin ) ViewRegistry.GetCustomViewFromActor( year );
-            _spinMonth = (Spin ) ViewRegistry.GetCustomViewFromActor( month );
-            _spinDay = (Spin ) ViewRegistry.GetCustomViewFromActor( day );
+            // need to get the actual C# Spin object associated with the actor,
+            _spinYear = View.DownCast<Spin>( year );
+            _spinMonth = View.DownCast<Spin>( month );
+            _spinDay = View.DownCast<Spin>( day );
 
             _spinYear.Value = 2099;
             _spinMonth.Value = 5;
             _spinDay.Value = 23;
 
-
             _spinYear.Focusable = (true);
             _spinMonth.Focusable = (true);
             _spinDay.Focusable = (true);
 
-
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
-            keyboardFocusManager.FocusedViewEnterKeyPressed += OnFocusedActorEnterKeyPressed;
+            keyboardFocusManager.FocusedActorEnterKeyPressed += OnFocusedActorEnterKeyPressed;
 
+            StyleManager.Get().ApplyTheme("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-theme.json");
         }
 
-        private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
+        private Actor OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
         {
-            View nextFocusActor = e.ProposedView;
+            Actor nextFocusActor = e.Proposed;
 
             // When nothing has been focused initially, focus the text field in the first spin
-            if (!e.CurrentView && !e.ProposedView)
+            if (!e.Current && !e.Proposed)
             {
                 nextFocusActor = _spinYear.SpinText;
             }
             else if(e.Direction == View.FocusDirection.Left)
             {
                 // Move the focus to the spin in the left of the current focused spin
-                if(e.CurrentView == _spinMonth.SpinText)
+                if(e.Current == _spinMonth.SpinText)
                 {
                     nextFocusActor = _spinYear.SpinText;
                 }
-                else if(e.CurrentView == _spinDay.SpinText)
+                else if(e.Current == _spinDay.SpinText)
                 {
                     nextFocusActor = _spinMonth.SpinText;
                 }
@@ -111,11 +113,11 @@ namespace MyCSharpExample
             else if(e.Direction == View.FocusDirection.Right)
             {
                 // Move the focus to the spin in the right of the current focused spin
-                if(e.CurrentView == _spinYear.SpinText)
+                if(e.Current == _spinYear.SpinText)
                 {
                     nextFocusActor = _spinMonth.SpinText;
                 }
-                else if(e.CurrentView == _spinMonth.SpinText)
+                else if(e.Current == _spinMonth.SpinText)
                 {
                     nextFocusActor = _spinDay.SpinText;
                 }
@@ -124,26 +126,26 @@ namespace MyCSharpExample
             return nextFocusActor;
         }
 
-        private void OnFocusedActorEnterKeyPressed(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
+        private void OnFocusedActorEnterKeyPressed(object source, FocusManager.FocusedActorEnterKeyEventArgs e)
         {
             // Make the text field in the current focused spin to take the key input
             KeyInputFocusManager manager = KeyInputFocusManager.Get();
 
-            if (e.View == _spinYear.SpinText)
+            if (e.Actor == _spinYear.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinYear.SpinText)
                 {
                     manager.SetFocus(_spinYear.SpinText);
                 }
             }
-            else if (e.View == _spinMonth.SpinText)
+            else if (e.Actor == _spinMonth.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinMonth.SpinText)
                 {
                     manager.SetFocus(_spinMonth.SpinText);
                 }
             }
-            else if (e.View == _spinDay.SpinText)
+            else if (e.Actor == _spinDay.SpinText)
             {
                 if (manager.GetCurrentFocusControl() != _spinDay.SpinText)
                 {
@@ -152,10 +154,6 @@ namespace MyCSharpExample
             }
         }
 
-        public void MainLoop()
-        {
-            _application.MainLoop ();
-        }
 
         /// <summary>
         /// The main entry point for the application.
@@ -163,8 +161,8 @@ namespace MyCSharpExample
         [STAThread]
         static void Main(string[] args)
         {
-            Example example = new Example(Application.NewApplication());
-            example.MainLoop ();
+            Example example = new Example();
+            example.Run(args);
         }
     }
 }

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    public class TypeInfo : BaseHandle {
+public class TypeInfo : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn) {

@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-    public class TransitionData : BaseHandle {
+public class TransitionData : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TransitionData_SWIGUpcast(cPtr), cMemoryOwn) {

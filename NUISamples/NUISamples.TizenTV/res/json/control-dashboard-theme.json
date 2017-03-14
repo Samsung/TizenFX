@@ -28,32 +28,6 @@
 {
   "styles":
   {
-    "Tooltip":
-    {
-      "tooltip":
-      {
-        "content":
-        {
-          "pointSize":8
-        },
-        "waitTime":0.5,
-        "background":
-        {
-          "visual":"{DALI_IMAGE_DIR}tooltip.9.png",
-          "border":[1,5,5,1]
-        },
-        "tail":
-        {
-          "visibility":false,
-          "aboveVisual":"{DALI_IMAGE_DIR}tooltip-tail-above.png",
-          "belowVisual":"{DALI_IMAGE_DIR}tooltip-tail-below.png"
-        },
-        "position":"BELOW",
-        "hoverPointOffset":[10,10],
-        "movementThreshold":5,
-        "disappearOnMovement":false
-      }
-    },
     "TextLabel":
     {
       "pointSize":8,
@@ -114,48 +88,7 @@
     },
     "TextFieldFontSize4":
     {
-      "pointSize":12
-    },
-    "TextSelectionPopup":
-    {
-      "popupMaxSize":[1700,100],
-      "optionDividerSize":[2,0],
-      "popupDividerColor":[0.23,0.72,0.8,0.11],
-      "popupIconColor":[1.0,1.0,1.0,1.0],
-      "popupPressedColor":[0.24,0.72,0.8,0.11],
-      "background": {
-        "rendererType": "image",
-        "url": "{DALI_IMAGE_DIR}selection-popup-bg.9.png"
-        },
-      "popupFadeInDuration":0.25,
-      "popupFadeOutDuration":0.25
-    },
-    "TextSelectionPopupButton":
-    {
-      "label":
-      {
-        "visualType":"TEXT",
-        "pointSize":6
-      },
-      "unselectedBackgroundVisual":
-      {
-        "visualType": "IMAGE",
-        "url": ""
-      },
-      "selectedBackgroundVisual":
-      {
-        "visualType": "IMAGE",
-        "url": ""
-      }
-    },
-    "TextSelectionToolbar":
-    {
-      "enableOvershoot":true,
-      "scrollView":
-      {
-        "overshootAnimationSpeed":360.0,
-        "overshootSize":[1920.0,130.0]
-      }
+      "pointSize":20
     },
     "ScrollView":
     {
@@ -175,26 +108,7 @@
       "primaryCursorColor":[0.0,0.72,0.9,1.0],
       "secondaryCursorColor":[0.0,0.72,0.9,1.0],
       "cursorWidth":6,
-      "selectionHighlightColor":[0.75,0.96,1.0,1.0],
-      "grabHandleImage" : "{DALI_STYLE_IMAGE_DIR}cursor_handler_drop_center.png",
-      "selectionHandleImageLeft" : {"filename":"{DALI_STYLE_IMAGE_DIR}selection_handle_drop_left.png" },
-      "selectionHandleImageRight": {"filename":"{DALI_STYLE_IMAGE_DIR}selection_handle_drop_right.png" }
-    },
-    "ProgressBar":
-    {
-      "progressValue": 0,
-      "trackVisual":{
-        "url":"{DALI_IMAGE_DIR}progress-skin.9.png",
-        "size":[24,24]
-      },
-      "progressVisual":{
-        "url":"{DALI_IMAGE_DIR}progress-skin-progress.9.png",
-        "size":[24,24]
-      }
-    },
-    "ProgressBarValueTextLabel":
-    {
-      "textColor":[0.8,0.8,1,1]
+      "selectionHighlightColor":[0.75,0.96,1.0,1.0]
     },
     "Button":
     {
@@ -215,26 +129,6 @@
          "horizontalAlignment": "CENTER",
          "pointSize" : 6.0, // Point size must always be provided to Text Visual
          "verticalAlignment": "CENTER"
-       },
-      "unselectedBackgroundVisual":
-       {
-         "visualType": "IMAGE",
-         "url": "{DALI_IMAGE_DIR}button-up.9.png"
-       },
-       "selectedBackgroundVisual":
-       {
-         "visualType": "IMAGE",
-         "url": "{DALI_IMAGE_DIR}button-down.9.png"
-       },
-       "disabledSelectedBackgroundVisual":
-       {
-         "visualType": "IMAGE",
-         "url": "{DALI_IMAGE_DIR}button-down-disabled.9.png"
-       },
-       "disabledUnselectedBackgroundVisual":
-       {
-         "visualType": "IMAGE",
-         "url": "{DALI_IMAGE_DIR}button-disabled.9.png"
        }
     },
     "CheckBoxButton":
@@ -246,27 +140,7 @@
          "visualType": "TEXT",
          "pointSize" : 8.0, // Point size must always be provided to Text Visual
          "verticalAlignment": "CENTER"
-       },
-      "unselectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}checkbox-unselected.png"
-      },
-      "selectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}checkbox-selected.png"
-      },
-      "disabledUnselectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}checkbox-unselected-disabled.png"
-      },
-      "disabledSelectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}checkbox-selected-disabled.png"
-      }
+       }
     },
     "RadioButton":
     {
@@ -277,27 +151,7 @@
          "visualType": "TEXT",
          "pointSize" : 8.0, // Point size must always be provided to Text Visual
          "verticalAlignment": "CENTER"
-       },
-      "unselectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}radio-button-unselected.png"
-      },
-      "selectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}radio-button-selected.png"
-      },
-      "disabledUnselectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}radio-button-unselected-disabled.png"
-      },
-      "disabledSelectedVisual":
-      {
-        "visualType": "IMAGE",
-        "url": "{DALI_IMAGE_DIR}radio-button-selected-disabled.png"
-      }
+       }
     }
   }
 }

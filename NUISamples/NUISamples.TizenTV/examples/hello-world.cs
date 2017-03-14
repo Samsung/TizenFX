@@ -16,35 +16,33 @@
 */
 
 using System;
+using System.Runtime.InteropServices;
 using Tizen.NUI;
 
-namespace HelloWorldExample
+namespace MyCSharpExample
 {
-    class Example
+    class Example : NUIApplication
     {
-        private void LOG(string msg)
-        {
-            Tizen.Log.Debug("NUI", msg);
-            //Console.WriteLine("[NUI] " + msg);
-        }
-
-        private Application _application;
         private Animation _animation;
         private TextLabel _text;
-        private Stage _stage;
 
-        public Example(Application application)
+        public Example() : base()
         {
-            _application = application;
-            _application.Initialized += Initialize;
         }
 
-        public void Initialize(object source, NUIApplicationInitEventArgs e)
+        protected override void OnCreate()
         {
-            LOG("Customized Application Initialize event handler");
-            _stage = Stage.Instance;
-            _stage.BackgroundColor = Color.Green;
-            _stage.Touch += OnStageTouched;
+            base.OnCreate();
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            Console.WriteLine("Customized Application Initialize event handler");
+            Stage stage = Stage.Instance;
+            stage.BackgroundColor = Color.White;
+            stage.Touch += OnStageTouched;
+            stage.Key += OnStageKeyEvent;
 
             // Add a _text label to the stage
             _text = new TextLabel("Hello NUI World");
@@ -53,13 +51,13 @@ namespace HelloWorldExample
             _text.HorizontalAlignment = "CENTER";
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
-            _stage.GetDefaultLayer().Add(_text);
+            stage.GetDefaultLayer().Add(_text);
         }
 
         // Callback for _animation finished signal handling
         public void AnimationFinished(object sender, EventArgs e)
         {
-            LOG("AnimationFinished()!");
+            Console.WriteLine("AnimationFinished()!");
             if (_animation)
             {
                 Console.WriteLine("Duration= " + _animation.Duration);
@@ -67,13 +65,35 @@ namespace HelloWorldExample
             }
         }
 
-        // Callback for stage touched signal handling
+        public void OnStageKeyEvent(object sender, Stage.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "Up")
+                {
+                    if (_animation)
+                    {
+                        _animation.Finished += AnimationFinished;
+                        Console.WriteLine("AnimationFinished added!");
+                    }
+                }
+                else if (e.Key.KeyPressedName == "Down")
+                {
+                    if (_animation)
+                    {
+                        _animation.Finished -= AnimationFinished;
+                        Console.WriteLine("AnimationFinished removed!");
+                    }
+                }
+            }
+        }
+
         public void OnStageTouched(object sender, Stage.TouchEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
-                LOG("Customized Stage Touch event handler");
+                Console.WriteLine("Customized Stage Touch event handler");
                 // Create a new _animation
                 if (_animation)
                 {
@@ -85,36 +105,28 @@ namespace HelloWorldExample
                 {
                     Duration = 2000
                 };
+                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, 500);
 
-                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), Vector3.XAxis), 0, 500);
-                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), Vector3.XAxis), 500, 1000);
+                _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
 
                 _animation.AnimateBy(_text, "ScaleX", 3.0f, 1000, 1500);
-                _animation.AnimateBy(_text, "ScaleY", 4.0f, 1250, 2000);
+
+                _animation.AnimateBy(_text, "ScaleY", 4.0f, 1500, 2000);
+
                 _animation.EndAction = Animation.EndActions.Discard;
 
-                // Connect the signal callback for animaiton finished signal
                 _animation.Finished += AnimationFinished;
 
-                // Play the _animation
                 _animation.Play();
-
             }
         }
 
-        public void MainLoop()
-        {
-            _application.MainLoop();
-        }
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
-            Example example = new Example(Application.NewApplication());
-            example.MainLoop();
+            Console.WriteLine("Main() called!");
+            Example example = new Example();
+            example.Run(args);
         }
     }
 }

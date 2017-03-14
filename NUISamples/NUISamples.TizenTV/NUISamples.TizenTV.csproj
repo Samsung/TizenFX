@@ -45,6 +45,7 @@
     <None Include="NUISamples.TizenTV.project.json" />
     <None Include="res\json\control-dashboard-theme.json" />
     <None Include="res\json\control-dashboard.json" />
+    <None Include="res\json\date-picker-theme.json" />
     <None Include="res\json\date-picker-template.json" />
     <None Include="res\json\date-picker.json" />
     <None Include="res\json\style-example-theme-one.json" />
@@ -53,7 +54,7 @@
     <None Include="shared\res\NUISamples.TizenTV.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\hello-test.cs" />
+    <Compile Include="examples\control-dashboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,10 +110,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

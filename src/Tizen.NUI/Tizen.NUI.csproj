@@ -42,12 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="src\public\Doxyfile" />
     <None Include="Tizen.NUI.project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\internal\AlignType.cs" />
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
@@ -56,8 +54,8 @@
     <Compile Include="src\internal\ActorSignal.cs" />
     <Compile Include="src\internal\ActorTouchDataSignal.cs" />
     <Compile Include="src\internal\ActorWheelSignal.cs" />
-    <Compile Include="src\internal\addedManually.cs" />
     <Compile Include="src\internal\Alignment.cs" />
+    <Compile Include="src\internal\AlignType.cs" />
     <Compile Include="src\internal\AngleAxis.cs" />
     <Compile Include="src\internal\AngleThresholdPair.cs" />
     <Compile Include="src\internal\AnimatablePropertyComponentRegistration.cs" />
@@ -74,7 +72,6 @@
     <Compile Include="src\internal\BlendEquationType.cs" />
     <Compile Include="src\internal\BlendFactorType.cs" />
     <Compile Include="src\internal\BlendModeType.cs" />
-    <Compile Include="src\internal\BoolSignal.cs" />
     <Compile Include="src\internal\BufferImage.cs" />
     <Compile Include="src\internal\Builder.cs" />
     <Compile Include="src\internal\ButtonSignal.cs" />
@@ -93,14 +90,14 @@
     <Compile Include="src\internal\DefaultItemLayoutProperty.cs" />
     <Compile Include="src\internal\DefaultItemLayoutType.cs" />
     <Compile Include="src\internal\DefaultRuler.cs" />
-    <Compile Include="src\public\ContentView.cs" />
-    <Compile Include="src\public\Degree.cs" />
     <Compile Include="src\internal\DepthFunctionType.cs" />
     <Compile Include="src\internal\DepthTestModeType.cs" />
     <Compile Include="src\internal\DepthWriteModeType.cs" />
     <Compile Include="src\internal\DirectionBias.cs" />
     <Compile Include="src\internal\DirectionType.cs" />
     <Compile Include="src\internal\DisposeQueue.cs" />
+    <Compile Include="src\internal\dotnetcore\HandleRef.cs" />
+    <Compile Include="src\internal\dotnetcore\AddedException.cs" />
     <Compile Include="src\internal\doublep.cs" />
     <Compile Include="src\internal\DragAndDropDetector.cs" />
     <Compile Include="src\internal\EncodedBufferImage.cs" />
@@ -121,7 +118,6 @@
     <Compile Include="src\internal\GradientVisualSpreadMethodType.cs" />
     <Compile Include="src\internal\GradientVisualUnitsType.cs" />
     <Compile Include="src\internal\Handle.cs" />
-    <Compile Include="src\internal\handleref.cs" />
     <Compile Include="src\internal\Image.cs" />
     <Compile Include="src\internal\ImageSignal.cs" />
     <Compile Include="src\internal\intp.cs" />
@@ -136,6 +132,7 @@
     <Compile Include="src\internal\KeyEventSignal.cs" />
     <Compile Include="src\internal\KeyInputFocusManager.cs" />
     <Compile Include="src\internal\KeyInputFocusSignal.cs" />
+    <Compile Include="src\internal\LinearConstrainer.cs" />
     <Compile Include="src\internal\LoadingState.cs" />
     <Compile Include="src\internal\LongPressGestureDetectedSignal.cs" />
     <Compile Include="src\internal\LongPressGestureDetector.cs" />
@@ -162,12 +159,15 @@
     <Compile Include="src\internal\PageTurnView.cs" />
     <Compile Include="src\internal\PanGestureDetectedSignal.cs" />
     <Compile Include="src\internal\PanGestureDetector.cs" />
+    <Compile Include="src\internal\PathConstrainer.cs" />
     <Compile Include="src\internal\PinchGestureDetectedSignal.cs" />
     <Compile Include="src\internal\PinchGestureDetector.cs" />
     <Compile Include="src\internal\PixelData.cs" />
     <Compile Include="src\internal\PixelFormat.cs" />
+    <Compile Include="src\internal\Position2D.cs" />
     <Compile Include="src\internal\PositionInheritanceMode.cs" />
     <Compile Include="src\internal\PrimitiveVisualShapeType.cs" />
+    <Compile Include="src\internal\ProgressBarValueChangedSignal.cs" />
     <Compile Include="src\internal\PropertyBuffer.cs" />
     <Compile Include="src\internal\PropertyCondition.cs" />
     <Compile Include="src\internal\PropertyNotification.cs" />
@@ -175,7 +175,6 @@
     <Compile Include="src\internal\PropertyRangeManager.cs" />
     <Compile Include="src\internal\PropertyRanges.cs" />
     <Compile Include="src\internal\PropertyRegistration.cs" />
-    <Compile Include="src\public\Radian.cs" />
     <Compile Include="src\internal\RefObject.cs" />
     <Compile Include="src\internal\RenderBufferFormat.cs" />
     <Compile Include="src\internal\Renderer.cs" />
@@ -200,6 +199,8 @@
     <Compile Include="src\internal\Shader.cs" />
     <Compile Include="src\internal\SignalConnectorType.cs" />
     <Compile Include="src\internal\SignalObserver.cs" />
+    <Compile Include="src\public\CustomView\Spin.cs" />
+    <Compile Include="src\public\Size2D.cs" />
     <Compile Include="src\internal\SliderMarkReachedSignal.cs" />
     <Compile Include="src\internal\SliderValueChangedSignal.cs" />
     <Compile Include="src\internal\SlotObserver.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="src\internal\SWIGTYPE_p_Dali__Constraint.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__CustomActorImpl__Extension.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__FunctorDelegate.cs" />
+    <Compile Include="src\internal\SWIGTYPE_p_Dali__Internal__Texture.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__Internal__TypeRegistry.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__RectT_unsigned_int_t.cs" />
@@ -223,7 +225,6 @@
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fboolF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t.cs" />
-    <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__ProgressBar_float_floatF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t.cs" />
@@ -246,7 +247,6 @@
     <Compile Include="src\internal\SWIGTYPE_p_f_r_Dali__Vector2__bool.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_f_r_q_const__Dali__Vector3__float.cs" />
-    <Compile Include="src\internal\SWIGTYPE_p_f___bool.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_int.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_PropertyInputContainer.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_std__type_info.cs" />
@@ -254,7 +254,6 @@
     <Compile Include="src\internal\SWIGTYPE_p_unsigned_char.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_unsigned_int.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_unsigned_short.cs" />
-    <Compile Include="src\public\TapGesture.cs" />
     <Compile Include="src\internal\TapGestureDetectedSignal.cs" />
     <Compile Include="src\internal\TapGestureDetector.cs" />
     <Compile Include="src\internal\TextEditorSignal.cs" />
@@ -302,6 +301,8 @@
     <Compile Include="src\public\CheckBoxButton.cs" />
     <Compile Include="src\public\Color.cs" />
     <Compile Include="src\public\CustomView.cs" />
+    <Compile Include="src\public\NUIApplication.cs" />
+    <Compile Include="src\public\Degree.cs" />
     <Compile Include="src\public\FlexContainer.cs" />
     <Compile Include="src\public\FocusManager.cs" />
     <Compile Include="src\public\Gesture.cs" />
@@ -310,18 +311,16 @@
     <Compile Include="src\public\Key.cs" />
     <Compile Include="src\public\KeyFrames.cs" />
     <Compile Include="src\public\Layer.cs" />
-    <Compile Include="src\internal\LinearConstrainer.cs" />
     <Compile Include="src\public\LongPressGesture.cs" />
-    <Compile Include="src\public\NUIApplication.cs" />
     <Compile Include="src\public\PanGesture.cs" />
     <Compile Include="src\public\Path.cs" />
-    <Compile Include="src\internal\PathConstrainer.cs" />
     <Compile Include="src\public\PinchGesture.cs" />
     <Compile Include="src\public\Popup.cs" />
     <Compile Include="src\public\Position.cs" />
     <Compile Include="src\public\ProgressBar.cs" />
     <Compile Include="src\public\Property.cs" />
     <Compile Include="src\public\PushButton.cs" />
+    <Compile Include="src\public\Radian.cs" />
     <Compile Include="src\public\RadioButton.cs" />
     <Compile Include="src\public\Rectangle.cs" />
     <Compile Include="src\public\RelayoutContainer.cs" />
@@ -329,10 +328,10 @@
     <Compile Include="src\public\ScrollBar.cs" />
     <Compile Include="src\public\Size.cs" />
     <Compile Include="src\public\Slider.cs" />
-    <Compile Include="src\public\Spin.cs" />
     <Compile Include="src\public\Stage.cs" />
     <Compile Include="src\public\StyleManager.cs" />
     <Compile Include="src\public\TableView.cs" />
+    <Compile Include="src\public\TapGesture.cs" />
     <Compile Include="src\public\TextEditor.cs" />
     <Compile Include="src\public\TextField.cs" />
     <Compile Include="src\public\TextLabel.cs" />
@@ -345,7 +344,6 @@
     <Compile Include="src\public\View.cs" />
     <Compile Include="src\public\VisualBase.cs" />
     <Compile Include="src\public\VisualFactory.cs" />
-    <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
   </ItemGroup>
@@ -372,10 +370,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
