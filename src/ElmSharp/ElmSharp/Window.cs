@@ -195,6 +195,16 @@ namespace ElmSharp
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
         }
 
+        public void KeyGrabEx(string keyname)
+        {
+            Interop.Elementary.eext_win_keygrab_set(RealHandle, keyname);
+        }
+
+        public void KeyUngrabEx(string keyname)
+        {
+            Interop.Elementary.eext_win_keygrab_unset(RealHandle, keyname);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             Interop.Elementary.elm_config_accel_preference_set("3d");

@@ -23,6 +23,7 @@ internal static partial class Interop
     {
         internal delegate void EcoreCallback(IntPtr data);
         internal delegate bool EcoreTaskCallback(IntPtr data);
+        internal delegate void EcoreEventCallback(IntPtr data, int type, IntPtr evt);
 
         [DllImport(Libraries.Ecore)]
         internal static extern int ecore_init();
@@ -65,5 +66,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Ecore)]
         internal static extern double ecore_time_get();
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern IntPtr ecore_event_handler_add(int type, EcoreEventCallback func, IntPtr data);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern IntPtr ecore_event_handler_del(IntPtr handler);
     }
 }

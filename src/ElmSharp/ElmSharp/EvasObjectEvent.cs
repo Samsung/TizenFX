@@ -24,6 +24,7 @@ namespace ElmSharp
     {
         void MakeInvalidate();
     }
+
     public enum EvasObjectCallbackType
     {
         MouseIn,
