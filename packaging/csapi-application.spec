@@ -1,6 +1,6 @@
 Name:       csapi-application
 Summary:    Tizen Application API for C#
-Version:    1.2.5
+Version:    1.2.6
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
