@@ -30,10 +30,10 @@ namespace ElmSharp
         SmartEvent _expanded;
         SmartEvent _contracted;
         SmartEvent _expandedStateChanged;
-        SmartEvent<MultiButtonEntryArgs> _itemSelected;
-        SmartEvent<MultiButtonEntryArgs> _itemClicked;
-        SmartEvent<MultiButtonEntryArgs> _itemLongPressed;
-        SmartEvent<MultiButtonEntryArgs> _itemAdded;
+        SmartEvent<MultiButtonEntryItemEventArgs> _itemSelected;
+        SmartEvent<MultiButtonEntryItemEventArgs> _itemClicked;
+        SmartEvent<MultiButtonEntryItemEventArgs> _itemLongPressed;
+        SmartEvent<MultiButtonEntryItemEventArgs> _itemAdded;
 
         public MultiButtonEntry(EvasObject parent) : base(parent)
         {
@@ -42,10 +42,10 @@ namespace ElmSharp
             _contracted = new SmartEvent(this, "contracted");
             _expandedStateChanged = new SmartEvent(this, "expand,state,changed");
 
-            _itemSelected = new SmartEvent<MultiButtonEntryArgs>(this, "item,selected", MultiButtonEntryArgs.CreateFromSmartEvent);
-            _itemClicked = new SmartEvent<MultiButtonEntryArgs>(this, "item,clicked", MultiButtonEntryArgs.CreateFromSmartEvent);
-            _itemLongPressed = new SmartEvent<MultiButtonEntryArgs>(this, "item,longpressed", MultiButtonEntryArgs.CreateFromSmartEvent);
-            _itemAdded = new SmartEvent<MultiButtonEntryArgs>(this, "item,added", MultiButtonEntryArgs.CreateAndAddFromSmartEvent);
+            _itemSelected = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,selected", MultiButtonEntryItemEventArgs.CreateFromSmartEvent);
+            _itemClicked = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,clicked", MultiButtonEntryItemEventArgs.CreateFromSmartEvent);
+            _itemLongPressed = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,longpressed", MultiButtonEntryItemEventArgs.CreateFromSmartEvent);
+            _itemAdded = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,added", MultiButtonEntryItemEventArgs.CreateAndAddFromSmartEvent);
 
             _filtercallback = new Interop.Elementary.MultiButtonEntryItemFilterCallback(FilterCallbackHandler);
 
@@ -68,15 +68,15 @@ namespace ElmSharp
 
         public event EventHandler ExpandedStateChanged;
 
-        public event EventHandler<MultiButtonEntryArgs> ItemSelected;
+        public event EventHandler<MultiButtonEntryItemEventArgs> ItemSelected;
 
-        public event EventHandler<MultiButtonEntryArgs> ItemClicked;
+        public event EventHandler<MultiButtonEntryItemEventArgs> ItemClicked;
 
-        public event EventHandler<MultiButtonEntryArgs> ItemLongPressed;
+        public event EventHandler<MultiButtonEntryItemEventArgs> ItemLongPressed;
 
-        public event EventHandler<MultiButtonEntryArgs> ItemAdded;
+        public event EventHandler<MultiButtonEntryItemEventArgs> ItemAdded;
 
-        public event EventHandler<MultiButtonEntryArgs> ItemDeleted;
+        public event EventHandler<MultiButtonEntryItemEventArgs> ItemDeleted;
 
         public MultiButtonEntryItem SelectedItem
         {
@@ -203,10 +203,10 @@ namespace ElmSharp
             // "item,deleted" event will be called after removing the item from ItemObject has been done.
             // ItemObject will no longer have the item instance that is deleted after this.
             // So, ItemDelete event with the removed item should be triggered here.
-            ItemDeleted?.Invoke(this, new MultiButtonEntryArgs() { Item = removed });
+            ItemDeleted?.Invoke(this, new MultiButtonEntryItemEventArgs() { Item = removed });
         }
 
-        void OnItemAdded(object sender, MultiButtonEntryArgs e)
+        void OnItemAdded(object sender, MultiButtonEntryItemEventArgs e)
         {
             _children.Add(e.Item);
             e.Item.Deleted += Item_Deleted;
@@ -224,24 +224,24 @@ namespace ElmSharp
         }
     }
 
-    public class MultiButtonEntryArgs : EventArgs
+    public class MultiButtonEntryItemEventArgs : EventArgs
     {
         public MultiButtonEntryItem Item { get; set; }
 
-        internal static MultiButtonEntryArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
+        internal static MultiButtonEntryItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(info) as MultiButtonEntryItem;
-            return new MultiButtonEntryArgs() { Item = item };
+            return new MultiButtonEntryItemEventArgs() { Item = item };
         }
 
-        internal static MultiButtonEntryArgs CreateAndAddFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
+        internal static MultiButtonEntryItemEventArgs CreateAndAddFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             // Item can be added throught calling Append method and user input.
             // And since "item.added" event will be called before xx_append() method returns,
             // ItemObject does NOT have an item that contains handle matched to "info" at this time.
             // So, item should be created and added internally here.
             MultiButtonEntryItem item = new MultiButtonEntryItem(info);
-            return new MultiButtonEntryArgs() { Item = item };
+            return new MultiButtonEntryItemEventArgs() { Item = item };
         }
     }
 }
