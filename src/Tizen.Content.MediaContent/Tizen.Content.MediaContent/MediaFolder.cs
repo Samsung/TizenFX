@@ -38,6 +38,7 @@ namespace Tizen.Content.MediaContent
             {
                 return _folderHandle;
             }
+
             set
             {
                 _folderHandle = value;
@@ -129,6 +130,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -204,6 +206,7 @@ namespace Tizen.Content.MediaContent
 
                 return order;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -236,6 +239,7 @@ namespace Tizen.Content.MediaContent
         {
             Dispose(false);
         }
+
         public override void Dispose()
         {
             Dispose(true);
@@ -248,14 +252,14 @@ namespace Tizen.Content.MediaContent
             {
                 if (_folderHandle != IntPtr.Zero)
                 {
-                    Console.WriteLine("Before destroy");
                     Interop.Folder.Destroy(_folderHandle);
                     _folderHandle = IntPtr.Zero;
-                    Console.WriteLine("After destroy");
                 }
+
                 _disposedValue = true;
             }
         }
+
         /// <summary>
         /// Iterates through the media files with an filter in the given folder from the media database.
         /// This function gets all media files associated with the given folder and meeting desired filter option.

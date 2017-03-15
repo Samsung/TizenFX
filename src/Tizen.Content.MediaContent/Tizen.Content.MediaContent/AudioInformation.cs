@@ -408,6 +408,7 @@ namespace Tizen.Content.MediaContent
                     break;
                 }
             }
+
             bookmarkfilter.Dispose();
             return result;
         }

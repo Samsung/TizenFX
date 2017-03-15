@@ -124,17 +124,20 @@ namespace Tizen.Content.MediaContent
 
                 return offset;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Filter.SetOffset(_filterHandle, value, this.Count), "Failed to set offset");
             }
         }
+
         public ContentFilter()
         {
             MediaContentValidator.ThrowIfError(
                 Interop.Filter.Create(out _filterHandle), "Failed to Create Filter handle.");
         }
+
         /// <summary>
         /// The number of items to be searched with respect to the offset
         /// </summary>
@@ -149,12 +152,14 @@ namespace Tizen.Content.MediaContent
 
                 return count;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Filter.SetOffset(_filterHandle, this.Offset, value), "Failed to set count");
             }
         }
+
         /// <summary>
         /// Gets the media filter content order and order keyword.
         /// </summary>
@@ -178,6 +183,7 @@ namespace Tizen.Content.MediaContent
                 }
             }
         }
+
         /// <summary>
         /// The collate type for comparing two strings
         /// </summary>
@@ -199,12 +205,14 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Filter.SetCondition(_filterHandle, this.Condition, value), "Failed to set collation");
             }
         }
+
         /// <summary>
         /// Gets/Sets the condition for the given filter.
         /// </summary>
@@ -226,12 +234,14 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Filter.SetCondition(_filterHandle, value, this.CollationType), "Failed to set condition");
             }
         }
+
         /// <summary>
         /// Sets the storage id for the given filter.
         /// You can use this property when you want to search items only in the specific storage
@@ -253,12 +263,14 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Filter.SetStorage(_filterHandle, value), "Failed to set condition");
             }
         }
+
         /// <summary>
         /// The search order keyword
         /// </summary>
@@ -291,6 +303,8 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// SetOrderProperties like OrderType and OrderKey.
         /// </summary>
+        /// <param name="order">ordering type</param>
+        /// <param name="oderKey">Keywords to sort</param>
         public void SetOrderProperties(ContentOrder order, string oderKey)
         {
             MediaContentValidator.ThrowIfError(
@@ -317,6 +331,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Filter.Destroy(_filterHandle);
                     _filterHandle = IntPtr.Zero;
                 }
+
                 _disposedValue = true;
             }
         }

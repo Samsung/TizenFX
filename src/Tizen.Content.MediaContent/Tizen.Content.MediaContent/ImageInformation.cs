@@ -95,6 +95,7 @@ namespace Tizen.Content.MediaContent
 
                 return orientation;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -288,6 +289,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="image">The image on which face is to be added</param>
         /// <param name="rect">The dimensions of the face</param>
+        /// <returns>The MediaFace instance</returns>
         public MediaFace AddFace(ImageInformation image, FaceRect rect)
         {
             MediaFace face = new MediaFace(image, rect);

@@ -135,7 +135,8 @@ namespace Tizen.Content.MediaContent
 
         public override void Dispose()
         {
-            if (_albumHandle != IntPtr.Zero) {
+            if (_albumHandle != IntPtr.Zero)
+            {
                 Interop.Group.MediaAlbumDestroy(_albumHandle);
                 _albumHandle = IntPtr.Zero;
             }

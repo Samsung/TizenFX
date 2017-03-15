@@ -36,6 +36,7 @@ namespace Tizen.Content.MediaContent
             {
                 return _tagHandle;
             }
+
             set
             {
                 _tagHandle = value;
@@ -64,6 +65,7 @@ namespace Tizen.Content.MediaContent
             {
                 return _tagName;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -87,6 +89,7 @@ namespace Tizen.Content.MediaContent
                 Interop.Libc.Free(val);
             }
         }
+
         /// <summary>
         /// Creates a Tag object which can be inserted to the media database using ContentManager:InsertToDatabaseAsync(ContentCollection)
         /// </summary>
@@ -162,10 +165,12 @@ namespace Tizen.Content.MediaContent
                 mediaContents.Add(new MediaInformation(newHandle));
                 return true;
             };
+
             MediaContentValidator.ThrowIfError(
                 Interop.Tag.ForeachMediaFromDb(Id, handle, callback, IntPtr.Zero), "Failed to get information");
 
             tcs.TrySetResult(mediaContents);
+
             return tcs.Task;
         }
     }

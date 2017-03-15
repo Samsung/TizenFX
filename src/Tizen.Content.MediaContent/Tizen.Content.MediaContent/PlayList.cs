@@ -39,13 +39,14 @@ namespace Tizen.Content.MediaContent
             {
                 return _playlistHandle;
             }
+
             set
             {
                 _playlistHandle = value;
             }
         }
 
-        private void refreshPlaylistDictionary()
+        private void RefreshPlaylistDictionary()
         {
             _dictionary.Clear();
             Interop.Playlist.PlaylistMemberCallback callback = (int memberId, IntPtr mediaHandle, IntPtr data) =>
@@ -95,6 +96,7 @@ namespace Tizen.Content.MediaContent
             {
                 return _playListName;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -121,6 +123,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -170,7 +173,7 @@ namespace Tizen.Content.MediaContent
         public void RemoveItem(MediaInformation media)
         {
             int memberId = 0;
-            refreshPlaylistDictionary();
+            RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
                 Interop.Playlist.RemoveMedia(_playlistHandle, memberId), "Failed to remove item");
@@ -184,7 +187,7 @@ namespace Tizen.Content.MediaContent
         public void SetPlayOrder(MediaInformation media, int playOrder)
         {
             int memberId;
-            refreshPlaylistDictionary();
+            RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
                 Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder), "Failed to set play order");
@@ -193,12 +196,13 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the playing order in the playlist for the passed member id.
         /// </summary>
-        /// <param name="media"></param>
+        /// <param name="media">The MediaInformation instance</param>
+        /// <returns>The number of play order</returns>
         public int GetPlayOrder(MediaInformation media)
         {
             int playOrder;
             int memberId;
-            refreshPlaylistDictionary();
+            RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
                 Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder), "Failed to get play order");
@@ -228,6 +232,8 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Exports the playlist to m3u playlist file.
         /// </summary>
+        /// <param name="list">The playlist instance to export</param>
+        /// <param name="filePath">The path to save exported playlist</param>
         /// <returns>path The path to export the playlist</returns>
         public static void Export(PlayList list, string filePath)
         {
@@ -252,7 +258,8 @@ namespace Tizen.Content.MediaContent
 
         public override void Dispose()
         {
-            if (_playlistHandle != IntPtr.Zero) {
+            if (_playlistHandle != IntPtr.Zero)
+            {
                 Interop.Playlist.Destroy(_playlistHandle);
                 _playlistHandle = IntPtr.Zero;
             }

@@ -102,8 +102,11 @@ namespace Tizen.Content.MediaContent
         {
             _offset = offset;
             if (thumbnailPath != null)
+            {
                 _thumbnailPath = thumbnailPath;
+            }
         }
+
         public void Dispose()
         {
             Dispose(true);
@@ -119,6 +122,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Face.Destroy(_bookmarkHandle);
                     _bookmarkHandle = IntPtr.Zero;
                 }
+
                 _disposedValue = true;
             }
         }

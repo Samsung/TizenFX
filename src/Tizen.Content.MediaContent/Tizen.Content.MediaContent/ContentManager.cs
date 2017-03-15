@@ -79,6 +79,7 @@ namespace Tizen.Content.MediaContent
         /// Inserts a media to the media database
         /// </summary>
         /// <param name="filePath">File path of the media to be inserted</param>
+        /// <returns>the MediaInformation instance about added media path</returns>
         public static MediaInformation AddMediaInformation(string filePath)
         {
             Database.ConnectToDB();
@@ -99,6 +100,7 @@ namespace Tizen.Content.MediaContent
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
+        /// <returns>Task with scanning result</returns>
         public static Task ScanFolderAsync(string folderPath, bool recursive = true)
         {
             var task = new TaskCompletionSource<int>();
@@ -128,6 +130,7 @@ namespace Tizen.Content.MediaContent
         /// The sub folders are also scanned,if there are sub folders in that folder.
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
+        /// <returns>Task with scanning result</returns>
         public static Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken, bool recursive = true)
         {
             var task = new TaskCompletionSource<int>();
@@ -171,7 +174,9 @@ namespace Tizen.Content.MediaContent
         /// Inserts media files into the media database, asynchronously.
         /// </summary>
         /// <param name="filePaths">The path array to the media files</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Task with the result of batch insertion
+        /// </returns>
         public static Task AddMediaInformationBatchAsync(IEnumerable<string> filePaths)
         {
             Database.ConnectToDB();
@@ -192,7 +197,9 @@ namespace Tizen.Content.MediaContent
         /// Inserts the burst shot images into the media database, asynchronously.
         /// </summary>
         /// <param name="filePaths">The path array to the burst shot images</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Task with the result of the burstshot insertion
+        /// </returns>
         public static Task AddBurstShotImagesAsync(IEnumerable<string> filePaths)
         {
             Database.ConnectToDB();
@@ -215,7 +222,7 @@ namespace Tizen.Content.MediaContent
         /// without calling this function.This function is only called when the media server is busy and user needs to get quick result of deleting.
         /// </summary>
         /// <param name="filter">The content filter to which media will be matched</param>
-        /// <returns></returns>
+        /// <returns>Task with the removal result </returns>
         public static Task RemoveMediaInformationBatchAsync(ContentFilter filter)
         {
             Database.ConnectToDB();

@@ -47,6 +47,7 @@ namespace Tizen.Content.MediaContent
         internal ContentDatabase()
         {
         }
+
         internal void ConnectToDB()
         {
             if (!_isConnected)
@@ -56,6 +57,7 @@ namespace Tizen.Content.MediaContent
                 _isConnected = true;
             }
         }
+
         private void DisconnectFromDB()
         {
             if (_isConnected)
@@ -77,11 +79,11 @@ namespace Tizen.Content.MediaContent
             string mimeType,
             IntPtr userData) =>
         {
-            s_contentUpdated?.Invoke(
+            _contentUpdated?.Invoke(
                 null, new ContentUpdatedEventArgs(error, pid, updateItem, updateType, mediaType, uuid, filePath, mimeType));
         };
 
-        private static event EventHandler<ContentUpdatedEventArgs> s_contentUpdated;
+        private static event EventHandler<ContentUpdatedEventArgs> _contentUpdated;
         /// <summary>
         /// ContentUpdated event is triggered when the media DB changes.
         /// </summary>
@@ -91,18 +93,19 @@ namespace Tizen.Content.MediaContent
         {
             add
             {
-                if (s_contentUpdated == null)
+                if (_contentUpdated == null)
                 {
                     MediaContentValidator.ThrowIfError(
                         Interop.Content.SetDbUpdatedCb(s_contentUpdatedCallback, IntPtr.Zero), "Failed to set callback");
                 }
-                s_contentUpdated += value;
+
+                _contentUpdated += value;
             }
 
             remove
             {
-                s_contentUpdated -= value;
-                if (s_contentUpdated == null)
+                _contentUpdated -= value;
+                if (_contentUpdated == null)
                 {
                     MediaContentValidator.ThrowIfError(
                         Interop.Content.UnsetDbUpdatedCb(), "Failed to unset callback");
@@ -264,6 +267,7 @@ namespace Tizen.Content.MediaContent
 
                 return (T)result;
             }
+
             return null;
         }
 
@@ -396,7 +400,9 @@ namespace Tizen.Content.MediaContent
         /// This function gets all ContentCollections matching the given filter. If NULL is passed to the filter, no filtering is applied.
         /// </remarks>
         /// <param name="filter">Filter for content items</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Task with the list of the ContentCollection
+        /// </returns>
         public Task<IEnumerable<T>> SelectAsync<T>(ContentFilter filter)
         {
             ConnectToDB();
@@ -436,6 +442,7 @@ namespace Tizen.Content.MediaContent
                 IEnumerable<PlayList> collectionList = ForEachPlayList(filter);
                 task.TrySetResult((IEnumerable<T>)collectionList);
             }
+
             return task.Task;
         }
 

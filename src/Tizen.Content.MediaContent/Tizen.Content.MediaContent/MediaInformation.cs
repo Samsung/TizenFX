@@ -99,21 +99,27 @@ namespace Tizen.Content.MediaContent
         /// which can be cancelled
         /// If a thumbnail already exists for the given media, then the path of thumbnail will be returned.
         /// </summary>
+        /// <param name="cancellationToken">Token to cancel the requested operation</param>
         /// <returns>
-        /// Task for creation of Thumbnail </returns>
+        /// Task for creation of Thumbnail
+        /// </returns>
         public async Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
         {
             var task = new TaskCompletionSource<string>();
-            cancellationToken.Register(() => {
+            cancellationToken.Register(() =>
+            {
                 MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.CancelThumbnail(_handle), "Failed to cancel");
+
                 task.SetCanceled();
             });
+
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
                 MediaContentValidator.ThrowIfError(createResult, "Failed to create thumbnail");
                 task.SetResult(path);
             };
+
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero), "Failed to create thumbnail");
 
@@ -212,6 +218,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -286,6 +293,7 @@ namespace Tizen.Content.MediaContent
 
                 return utc.ToLocalTime();
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -370,6 +378,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -391,6 +400,7 @@ namespace Tizen.Content.MediaContent
 
                 return longitude;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -412,6 +422,7 @@ namespace Tizen.Content.MediaContent
 
                 return latitude;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -433,6 +444,7 @@ namespace Tizen.Content.MediaContent
 
                 return altitude;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -460,6 +472,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -479,6 +492,7 @@ namespace Tizen.Content.MediaContent
                     Interop.MediaInformation.GetRating(_handle, out rating), "Failed to get value");
                 return rating;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -500,6 +514,7 @@ namespace Tizen.Content.MediaContent
 
                 return isFavourtite;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -527,6 +542,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -554,6 +570,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -581,6 +598,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -631,6 +649,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -658,6 +677,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -685,6 +705,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -712,6 +733,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -785,6 +807,7 @@ namespace Tizen.Content.MediaContent
 
                 return playedCount;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -808,6 +831,7 @@ namespace Tizen.Content.MediaContent
 
                 return utc.ToLocalTime();
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(

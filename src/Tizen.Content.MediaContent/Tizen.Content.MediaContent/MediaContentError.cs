@@ -40,6 +40,7 @@ namespace Tizen.Content.MediaContent
         UnsupportedContent = TizenMediaContentError | 0x04,
         NotSupported = ErrorCode.NotSupported,
     }
+
     internal class MediaContentValidator
     {
         internal const string LogTag = "Tizen.Content.MediaContent";

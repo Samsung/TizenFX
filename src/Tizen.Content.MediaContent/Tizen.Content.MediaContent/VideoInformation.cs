@@ -364,7 +364,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="offset">Offset of the video in seconds</param>
         /// <param name="thumbnailPath">Thumbnail path for the bookmark</param>
-        /// <returns></returns>
+        /// <returns>Task with added MediaBookmark instance </returns>
         public async Task<MediaBookmark> AddBookmark(uint offset, string thumbnailPath)
         {
             MediaBookmark result = null;
@@ -381,6 +381,7 @@ namespace Tizen.Content.MediaContent
                     break;
                 }
             }
+
             bookmarkfilter.Dispose();
             return result;
         }

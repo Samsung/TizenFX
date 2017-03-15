@@ -34,6 +34,7 @@ namespace Tizen.Content.MediaContent
             {
                 return _faceHandle;
             }
+
             set
             {
                 _faceHandle = value;
@@ -45,12 +46,14 @@ namespace Tizen.Content.MediaContent
         {
             _faceHandle = handle;
         }
+
         /// <summary>
         /// Create Face for Given Image
         /// </summary>
         /// <param name="image">
         ///image item through which FaceRect has to be tagged.
         ///</param>
+        ///<param name="rect">Position about the detacted face in the media</param>
         internal MediaFace(MediaInformation image, FaceRect rect)
         {
             MediaContentValidator.ThrowIfError(
@@ -89,6 +92,7 @@ namespace Tizen.Content.MediaContent
 
                 return new FaceRect(x, y, width, height);
             }
+
             set
             {
                 FaceRect rect = (FaceRect)value;
@@ -160,6 +164,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -180,6 +185,7 @@ namespace Tizen.Content.MediaContent
 
                 return (MediaContentOrientation)orientation;
             }
+
             set
             {
                 MediaContentValidator.ThrowIfError(
@@ -205,6 +211,7 @@ namespace Tizen.Content.MediaContent
                     Interop.Face.Destroy(_faceHandle);
                     _faceHandle = IntPtr.Zero;
                 }
+
                 _disposedValue = true;
             }
         }
