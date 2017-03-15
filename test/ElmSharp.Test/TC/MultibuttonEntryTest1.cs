@@ -52,7 +52,7 @@ namespace ElmSharp.Test
                 if (e.Item.Next != null)
                     Console.WriteLine("next item: " + e.Item.Next);
                 if (e.Item.Prev != null)
-                    Console.WriteLine("next item: " + e.Item.Prev);
+                    Console.WriteLine("previous item: " + e.Item.Prev);
             };
 
             mbe.ItemClicked += (s, e) =>
