@@ -92,8 +92,8 @@ namespace Tizen.NUI
 
             this.Add(_textField);
 
-            _textField.KeyInputFocusGained += TextFieldKeyInputFocusGained;
-            _textField.KeyInputFocusLost += TextFieldKeyInputFocusLost;
+            _textField.FocusGained += TextFieldKeyInputFocusGained;
+            _textField.FocusLost += TextFieldKeyInputFocusLost;
         }
 
         public override Size GetNaturalSize()
@@ -101,14 +101,14 @@ namespace Tizen.NUI
             return new Size(150.0f, 150.0f, 0.0f);
         }
 
-        public void TextFieldKeyInputFocusGained(object source, KeyInputFocusGainedEventArgs e)
+        public void TextFieldKeyInputFocusGained(object source, EventArgs e)
         {
             // Make sure when the current spin that takes input focus also takes the keyboard focus
             // For example, when you tap the spin directly
-            FocusManager.Instance.SetCurrentFocusActor(_textField);
+            FocusManager.Instance.SetCurrentFocusView(_textField);
         }
 
-        public void TextFieldKeyInputFocusLost(object source, KeyInputFocusLostEventArgs e)
+        public void TextFieldKeyInputFocusLost(object source, EventArgs e)
         {
             int previousValue = _currentValue;
 

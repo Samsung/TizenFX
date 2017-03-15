@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 // include all custom views here which will be
 namespace Tizen.NUI

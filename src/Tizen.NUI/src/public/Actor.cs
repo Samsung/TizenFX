@@ -134,7 +134,7 @@ namespace Tizen.NUI
             }
         }
 
-        protected bool PositionUsesAnchorPoint
+        public bool PositionUsesAnchorPoint
         {
             get
             {
@@ -1289,10 +1289,12 @@ namespace Tizen.NUI
                 GetProperty(Actor.Property.VISIBLE).Get(ref temp);
                 return temp;
             }
+            /* only get is required : removed
             set
             {
                 SetProperty(Actor.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
             }
+            */
         }
         public Color MixColor
         {

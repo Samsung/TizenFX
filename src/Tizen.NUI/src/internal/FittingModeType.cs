@@ -9,12 +9,12 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
+/* moved to VisualMaps.cs
 public enum FittingModeType {
   SHRINK_TO_FIT,
   SCALE_TO_FILL,
   FIT_WIDTH,
   FIT_HEIGHT
 }
-
+*/
 }
