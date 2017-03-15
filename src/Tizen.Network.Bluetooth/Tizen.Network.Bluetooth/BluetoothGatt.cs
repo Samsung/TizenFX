@@ -857,10 +857,9 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Throws excetion if value is null</exception>
         public void SetValue(string value)
         {
-/* Fix svace issue: 183099 (UNREACHABLE_CODE)
-            if (value.Equals(null))
+            if (string.IsNullOrEmpty(value))
                 GattUtil.ThrowForError((int)BluetoothError.InvalidParameter, "value should not be null");
-*/
+
             byte[] val = Encoding.UTF8.GetBytes(value);
             Impl.SetValue(val);
         }
