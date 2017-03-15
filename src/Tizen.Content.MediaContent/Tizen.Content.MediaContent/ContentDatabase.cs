@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 /// <summary>
 /// The Media Content API provides functions, enumerations used in the entire Content Service.
