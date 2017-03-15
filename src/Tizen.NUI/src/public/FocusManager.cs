@@ -152,7 +152,16 @@ namespace Tizen.NUI
             {
                 view = _preFocusChangeEventHandler(this, e);
             }
+
+            if (view)
+            {
             return view.GetPtrfromActor();
+        }
+            else
+            {
+                if (e.ProposedView) return proposed;
+                else return current;
+            }
         }
 
         ///<summary>

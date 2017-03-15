@@ -61,16 +61,29 @@ namespace FlexContainerTest
             FocusManager.Instance.SetCurrentFocusView(label[3]);
 
             FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
+            //added
             FocusManager.Instance.FocusChanged += (sender, e) =>
             {
-                Tizen.Log.Debug("NUI", "FocusChanged signal callback e.CurrentView.Name=" + e.CurrentView?.Name);
-                Tizen.Log.Debug("NUI", "FocusChanged signal callback e.NextView.Name=" + e.NextView?.Name);
+                if(e.CurrentView) Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.CurrentView.Name=" + e.CurrentView.Name);
+                else Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.CurrentView is null!");
+                if (e.NextView) Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.NextView.Name=" + e.NextView.Name);
+                else Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.NextView is null!");
             };
+            //added
             FocusManager.Instance.FocusedViewEnterKeyPressed += (sender, e) =>
             {
-                Tizen.Log.Debug("NUI", "FocusedViewEnterKeyPressed signal callback e.View.Name=" + e.View?.Name);
+                if (e.View) Tizen.Log.Debug("NUI", "FocusManager FocusedViewEnterKeyPressed signal callback! e.View.Name=" + e.View.Name);
+                else Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.View is null!");
             };
 
+            //added
+            Stage.Instance.Touch += (sender, e) =>
+            {
+                Tizen.Log.Debug("NUI", "Stage Touch signal callback! To avoid crash, when losing key focus, set here again unless the NextView is null");
+                FocusManager.Instance.SetCurrentFocusView(label[3]);
+            };
+
+            //added
             pushButton1 = new PushButton();
             pushButton1.MinimumSize = new Size2D(400, 200);
             pushButton1.LabelText = "+PreFocusChange";
@@ -80,7 +93,10 @@ namespace FlexContainerTest
             pushButton1.Clicked += (sender, e) =>
             {
                 Tizen.Log.Debug("NUI", "pushbutton1 clicked! add handler!");
+                _cnt++;
                 FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
+                pushButton1.LabelText = "Add Handler" + _cnt;
+                pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
             Stage.Instance.GetDefaultLayer().Add(pushButton1);
@@ -93,12 +109,16 @@ namespace FlexContainerTest
             pushButton2.Position2D = new Position2D(800, 800);
             pushButton2.Clicked += (sender, e) =>
             {
-                Tizen.Log.Debug("NUI", "pushbutton2 clicked! add handler!");
+                Tizen.Log.Debug("NUI", "pushbutton2 clicked! remove handler!");
+                _cnt--;
                 FocusManager.Instance.PreFocusChange -= Instance_PreFocusChange;
+                pushButton1.LabelText = "Add Handler" + _cnt;
+                pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
             Stage.Instance.GetDefaultLayer().Add(pushButton2);
 
+            //added
             _ani = new Animation(2000);
             _ani.AnimateTo(pushButton1, "Opacity", 0.0f);
             _ani.AnimateTo(pushButton2, "Opacity", 0.0f);
@@ -106,38 +126,36 @@ namespace FlexContainerTest
 
         }
 
-
-
         private View Instance_PreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
         {
             View nextView;
             Tizen.Log.Debug("NUI", "Instance_PreFocusChange = " + e.Direction.ToString());
 
+            //added
             if (e.CurrentView == null) e.CurrentView = label[0];
             if (e.ProposedView == null) e.ProposedView = label[0];
 
-            Tizen.Log.Debug("NUI", "currentView name=" + e.CurrentView.Name + "  nextView name=" + e.CurrentView.Name);
-
             int index = Array.FindIndex(label, x => x == e.CurrentView);
-
 
             Tizen.Log.Debug("NUI", "index = " + index);
 
             switch (e.Direction)
             {
                 case View.FocusDirection.Up:
-                    index = (index + numOfSamples - 1) % numOfSamples;
+                    index = (index + numOfSamples - 2) % numOfSamples;  //changed
                     _ani.Play();
                     break;
                 case View.FocusDirection.Down:
-                    index = (index + 1) % numOfSamples;
-                    Tizen.Log.Debug("NUI", "pushbutton1 Visible=" + pushButton1.Visible + "  pushbutton2 Visible=" + pushButton2.Visible);
+                    index = (index + 2) % numOfSamples; //changed
+                    Tizen.Log.Debug("NUI", "pushbutton1 Visible=" + pushButton1.Visible + "  pushbutton2 Visible=" + pushButton2.Visible); //added
                     break;
                 case View.FocusDirection.Left:
+                    //added    
                     pushButton1.Show();
-                    pushButton2.Show();
+                    pushButton2.Show(); 
                     break;
                 case View.FocusDirection.Right:
+                    //added    
                     pushButton1.Hide();
                     pushButton2.Hide();
                     break;
@@ -154,9 +172,7 @@ namespace FlexContainerTest
             }
             //nextView?.SetKeyInputFocus();  //removed
 
-
             return nextView;
-
         }
 
         static void _Main(string[] args)
