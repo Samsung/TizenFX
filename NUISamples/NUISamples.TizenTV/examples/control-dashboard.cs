@@ -19,7 +19,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
 
-namespace MyCSharpExample
+namespace ControlDashboard
 {
     class Example : NUIApplication
     {
@@ -71,7 +71,7 @@ namespace MyCSharpExample
             base.OnCreate();
             Initialize();
         }
-        
+
         public void Initialize()
         {
             Console.WriteLine("Customized Application Initialize event handler");
@@ -117,13 +117,13 @@ namespace MyCSharpExample
         }
 
         // Callback for KeyboardFocusManager
-        private Actor OnPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
+        private View OnPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
         {
-            if (!e.Proposed && !e.Current)
+            if (!e.ProposedView && !e.CurrentView)
             {
-                e.Proposed = _contentContainer.GetChildAt(1);
+                e.ProposedView = View.DownCast(_contentContainer.GetChildAt(1));
             }
-            return e.Proposed;
+            return e.ProposedView;
         }
 
         private void CreateContent()
@@ -335,7 +335,7 @@ namespace MyCSharpExample
                     {
                         _stage.GetDefaultLayer().Add(_popup);
                         _popup.SetDisplayState(Popup.DisplayStateType.Shown);
-                        FocusManager.Instance.SetCurrentFocusActor((_popup.FindChildByName("Footer")).FindChildByName("OKButton"));
+                        FocusManager.Instance.SetCurrentFocusView(View.DownCast((_popup.FindChildByName("Footer")).FindChildByName("OKButton")));
                         return true;
                     };
                     _contentContainer.AddChild(button, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));

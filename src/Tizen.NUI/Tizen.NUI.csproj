@@ -164,7 +164,9 @@
     <Compile Include="src\internal\PinchGestureDetector.cs" />
     <Compile Include="src\internal\PixelData.cs" />
     <Compile Include="src\internal\PixelFormat.cs" />
-    <Compile Include="src\internal\Position2D.cs" />
+    <Compile Include="src\public\CustomView\VisualView.cs" />
+    <Compile Include="src\public\VisualMaps.cs" />
+    <Compile Include="src\public\Position2D.cs" />
     <Compile Include="src\internal\PositionInheritanceMode.cs" />
     <Compile Include="src\internal\PrimitiveVisualShapeType.cs" />
     <Compile Include="src\internal\ProgressBarValueChangedSignal.cs" />

@@ -73,85 +73,104 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Event arguments that passed via KeyInputFocusGained signal
-         *
-         */
-        public class KeyInputFocusGainedEventArgs : EventArgs
-        {
-            private View _view;
 
-            /**
-             * @brief View - is the view that gets Key Input Focus
-             *
-             */
-            public View View
+
+        private EventHandler _keyInputFocusGainedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void KeyInputFocusGainedCallbackType(IntPtr control);
+        private KeyInputFocusGainedCallbackType _keyInputFocusGainedCallback;
+
+        /**
+          * @brief Event for KeyInputFocusGained signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. KeyInputFocusGained signal is emitted when the control gets Key Input Focus.
+          */
+        public event EventHandler FocusGained
+        {
+            add
             {
-                get
+                if (_keyInputFocusGainedEventHandler == null)
                 {
-                    return _view;
+                    _keyInputFocusGainedCallback = OnKeyInputFocusGained;
+                    this.KeyInputFocusGainedSignal().Connect(_keyInputFocusGainedCallback);
                 }
-                set
+
+                _keyInputFocusGainedEventHandler += value;
+            }
+
+            remove
+            {
+                _keyInputFocusGainedEventHandler -= value;
+
+                if (_keyInputFocusGainedEventHandler == null && _keyInputFocusGainedCallback != null)
                 {
-                    _view = value;
+                    this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
                 }
             }
         }
 
-        /**
-         * @brief Event arguments that passed via KeyInputFocusLost signal
-         *
-         */
-        public class KeyInputFocusLostEventArgs : EventArgs
+        private void OnKeyInputFocusGained(IntPtr view)
         {
-            private View _view;
-
-            /**
-             * @brief View - is the view that loses Key Input Focus
-             *
-             */
-            public View View
+            if (_keyInputFocusGainedEventHandler != null)
             {
-                get
+                _keyInputFocusGainedEventHandler(this, null);
+            }
+        }
+
+
+        private EventHandler _keyInputFocusLostEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void KeyInputFocusLostCallbackType(IntPtr control);
+        private KeyInputFocusLostCallbackType _keyInputFocusLostCallback;
+
+        /**
+          * @brief Event for KeyInputFocusLost signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. KeyInputFocusLost signal is emitted when the control loses Key Input Focus.
+          */
+        public event EventHandler FocusLost
+        {
+            add
+            {
+                if (_keyInputFocusLostEventHandler == null)
                 {
-                    return _view;
+                    _keyInputFocusLostCallback = OnKeyInputFocusLost;
+                    this.KeyInputFocusLostSignal().Connect(_keyInputFocusLostCallback);
                 }
-                set
+
+                _keyInputFocusLostEventHandler += value;
+            }
+
+            remove
+            {
+                _keyInputFocusLostEventHandler -= value;
+
+                if (_keyInputFocusLostEventHandler == null && _keyInputFocusLostCallback != null)
                 {
-                    _view = value;
+                    this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
                 }
             }
         }
 
+        private void OnKeyInputFocusLost(IntPtr view)
+        {
+            if (_keyInputFocusLostEventHandler != null)
+            {
+                _keyInputFocusLostEventHandler(this, null);
+            }
+        }
+
+
         /**
-         * @brief Event arguments that passed via Key signal
-         *
-         */
+          * @brief Event arguments that passed via KeyEvent signal
+          *
+          */
         public class KeyEventArgs : EventArgs
         {
-            private View _view;
             private Key _key;
 
             /**
-             * @brief View - is the view that recieves the key.
-             *
-             */
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-
-            /**
-             * @brief Key - is the key sent to the View.
-             *
-             */
+              * @brief KeyEvent - is the keyevent sent to the View.
+              *
+              */
             public Key Key
             {
                 get
@@ -165,61 +184,109 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Event arguments that passed via OnRelayout signal
-         *
-         */
-        public class OnRelayoutEventArgs : EventArgs
-        {
-            private View _view;
+        private EventHandlerWithReturnType<object, KeyEventArgs, bool> _keyEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool KeyCallbackType(IntPtr control, IntPtr keyEvent);
+        private KeyCallbackType _keyCallback;
 
-            /**
-             * @brief View - is the view that is being resized upon relayout
-             *
-             */
-            public View View
+        /**
+          * @brief Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. KeyPressed signal is emitted when key event is received.
+          */
+        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
+        {
+            add
             {
-                get
+                if (_keyEventHandler == null)
                 {
-                    return _view;
+                    _keyCallback = OnKeyEvent;
+                    this.KeyEventSignal().Connect(_keyCallback);
                 }
-                set
+
+                _keyEventHandler += value;
+            }
+
+            remove
+            {
+                _keyEventHandler -= value;
+
+                if (_keyEventHandler == null && _keyCallback != null)
                 {
-                    _view = value;
+                    this.KeyEventSignal().Disconnect(_keyCallback);
                 }
+            }
+        }
+
+        private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
+        {
+            KeyEventArgs e = new KeyEventArgs();
+
+            e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
+
+            if (_keyEventHandler != null)
+            {
+                return _keyEventHandler(this, e);
+            }
+            return false;
+        }
+
+
+        private EventHandler _onRelayoutEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void OnRelayoutEventCallbackType(IntPtr control);
+        private OnRelayoutEventCallbackType _onRelayoutEventCallback;
+
+        /**
+          * @brief Event for OnRelayout signal which can be used to subscribe/unsubscribe the event handler
+          * OnRelayout signal is emitted after the size has been set on the view during relayout.
+          */
+        public event EventHandler OnRelayoutEvent
+        {
+            add
+            {
+                if (_onRelayoutEventHandler == null)
+                {
+                    _onRelayoutEventCallback = OnRelayout;
+                    this.OnRelayoutSignal().Connect(_onRelayoutEventCallback);
+                }
+
+                _onRelayoutEventHandler += value;
+            }
+
+            remove
+            {
+                _onRelayoutEventHandler -= value;
+
+                if (_onRelayoutEventHandler == null && _onRelayoutEventCallback != null)
+                {
+                    this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                }
+
+            }
+        }
+
+        // Callback for View OnRelayout signal
+        private void OnRelayout(IntPtr data)
+        {
+            if (_onRelayoutEventHandler != null)
+            {
+                _onRelayoutEventHandler(this, null);
             }
         }
 
 
         /**
-         * @brief Event arguments that passed via Touch signal
-         *
-         */
+          * @brief Event arguments that passed via Touch signal
+          *
+          */
         public class TouchEventArgs : EventArgs
         {
-            private View _view;
             private Touch _touch;
 
             /**
-             * @brief View - is the view that is being touched
-             *
-             */
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-
-            /**
-             * @brief Touch - contains the information of touch points
-             *
-             */
+              * @brief TouchData - contains the information of touch points
+              *
+              */
             public Touch Touch
             {
                 get
@@ -233,36 +300,67 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Event arguments that passed via Hover signal
-         *
-         */
-        public class HoverEventArgs : EventArgs
-        {
-            private View _view;
-            private Hover _hover;
+        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _touchDataEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
+        private TouchDataCallbackType _touchDataCallback;
 
-            /**
-             * @brief View - is the view that is being hovered
-             *
-             */
-            public View View
+        /**
+          * @brief Event for Touched signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. Touched signal is emitted when touch input is received.
+          */
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        {
+            add
             {
-                get
+                if (_touchDataEventHandler == null)
                 {
-                    return _view;
+                    _touchDataCallback = OnTouch;
+                    this.TouchSignal().Connect(_touchDataCallback);
                 }
-                set
-                {
-                    _view = value;
-                }
+
+                _touchDataEventHandler += value;
             }
 
+            remove
+            {
+                _touchDataEventHandler -= value;
+
+                if (_touchDataEventHandler == null && _touchDataCallback != null)
+                {
+                    this.TouchSignal().Disconnect(_touchDataCallback);
+                }
+
+            }
+        }
+
+        // Callback for View TouchSignal
+        private bool OnTouch(IntPtr view, IntPtr touchData)
+        {
+            TouchEventArgs e = new TouchEventArgs();
+
+            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+
+            if (_touchDataEventHandler != null)
+            {
+                return _touchDataEventHandler(this, e);
+            }
+            return false;
+        }
+
+
+        /**
+          * @brief Event arguments that passed via Hover signal
+          *
+          */
+        public class HoverEventArgs : EventArgs
+        {
+            private Hover _hover;
             /**
-             * @brief Hover - contains touch points that represent the points
-             * that are currently being hovered or the points where a hover has stopped
-             *
-             */
+              * @brief HoverEvent - contains touch points that represent the points
+              * that are currently being hovered or the points where a hover has stopped
+              *
+              */
             public Hover Hover
             {
                 get
@@ -276,35 +374,66 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Event arguments that passed via Wheel signal
-         *
-         */
-        public class WheelEventArgs : EventArgs
-        {
-            private View _view;
-            private Wheel _wheel;
+        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _hoverEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
+        private HoverEventCallbackType _hoverEventCallback;
 
-            /**
-             * @brief View - is the view that is being wheeled
-             *
-             */
-            public View View
+        /**
+          * @brief Event for Hovered signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. Hovered signal is emitted when hover input is received.
+          */
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        {
+            add
             {
-                get
+                if (_hoverEventHandler == null)
                 {
-                    return _view;
+                    _hoverEventCallback = OnHoverEvent;
+                    this.HoveredSignal().Connect(_hoverEventCallback);
                 }
-                set
-                {
-                    _view = value;
-                }
+
+                _hoverEventHandler += value;
             }
 
+            remove
+            {
+                _hoverEventHandler -= value;
+
+                if (_hoverEventHandler == null && _hoverEventCallback != null)
+                {
+                    this.HoveredSignal().Disconnect(_hoverEventCallback);
+                }
+
+            }
+        }
+
+        // Callback for View Hover signal
+        private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
+        {
+            HoverEventArgs e = new HoverEventArgs();
+
+            e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
+
+            if (_hoverEventHandler != null)
+            {
+                return _hoverEventHandler(this, e);
+            }
+            return false;
+        }
+
+
+        /**
+          * @brief Event arguments that passed via Wheel signal
+          *
+          */
+        public class WheelEventArgs : EventArgs
+        {
+            private Wheel _wheel;
             /**
-             * @brief Wheel - store a wheel rolling type : MOUSE_WHEEL or CUSTOM_WHEEL
-             *
-             */
+              * @brief WheelEvent - store a wheel rolling type : MOUSE_WHEEL or CUSTOM_WHEEL
+              *
+              */
             public Wheel Wheel
             {
                 get
@@ -318,434 +447,84 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Event arguments that passed via OnStage signal
-         *
-         */
-        public class OnStageEventArgs : EventArgs
-        {
-            private View _view;
-
-            /**
-             * @brief View - is the view that is being connected to the stage
-             *
-             */
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-        }
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _wheelEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+        private WheelEventCallbackType _wheelEventCallback;
 
         /**
-         * @brief Event arguments that passed via OffStage signal
-         *
-         */
-        public class OffStageEventArgs : EventArgs
-        {
-            private View _view;
-
-            /**
-             * @brief View - is the view that is being disconnected from the stage
-             *
-             */
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void KeyInputFocusGainedCallbackDelegate(IntPtr control);
-        private EventHandler<KeyInputFocusGainedEventArgs> _KeyInputFocusGainedEventHandler;
-        private KeyInputFocusGainedCallbackDelegate _KeyInputFocusGainedCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void KeyInputFocusLostCallbackDelegate(IntPtr control);
-        private EventHandler<KeyInputFocusLostEventArgs> _KeyInputFocusLostEventHandler;
-        private KeyInputFocusLostCallbackDelegate _KeyInputFocusLostCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool KeyCallbackDelegate(IntPtr control, IntPtr key);
-        private EventHandlerWithReturnType<object, KeyEventArgs, bool> _KeyHandler;
-        private KeyCallbackDelegate _KeyCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void OnRelayoutEventCallbackDelegate(IntPtr control);
-        private EventHandler<OnRelayoutEventArgs> _viewOnRelayoutEventHandler;
-        private OnRelayoutEventCallbackDelegate _viewOnRelayoutEventCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool TouchCallbackDelegate(IntPtr view, IntPtr touch);
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _viewTouchHandler;
-        private TouchCallbackDelegate _viewTouchCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool HoverCallbackDelegate(IntPtr view, IntPtr hover);
-        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _viewHoverHandler;
-        private HoverCallbackDelegate _viewHoverCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool WheelCallbackDelegate(IntPtr view, IntPtr wheel);
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _viewWheelHandler;
-        private WheelCallbackDelegate _viewWheelCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void OnStageEventCallbackDelegate(IntPtr control);
-        private EventHandler<OnStageEventArgs> _viewOnStageEventHandler;
-        private OnStageEventCallbackDelegate _viewOnStageEventCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void OffStageEventCallbackDelegate(IntPtr control);
-        private EventHandler<OffStageEventArgs> _viewOffStageEventHandler;
-        private OffStageEventCallbackDelegate _viewOffStageEventCallbackDelegate;
-
-        /**
-         * @brief Event for KeyInputFocusGained signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of KeyInputFocusGainedEventHandler-DaliEventHandler<object,KeyInputFocusGainedEventArgs>)
-         * provided by the user. KeyInputFocusGained signal is emitted when the control gets Key Input Focus.
-         */
-        public event EventHandler<KeyInputFocusGainedEventArgs> KeyInputFocusGained
-        {
-            add
-            {
-                if (_KeyInputFocusGainedEventHandler == null)
-                {
-                    //Console.WriteLine("View Key EVENT Locked....");
-                    _KeyInputFocusGainedCallbackDelegate = (OnKeyInputFocusGained);
-                    KeyInputFocusGainedSignal().Connect(_KeyInputFocusGainedCallbackDelegate);
-                }
-                _KeyInputFocusGainedEventHandler += value;
-            }
-
-            remove
-            {
-                _KeyInputFocusGainedEventHandler -= value;
-
-                if (_KeyInputFocusGainedEventHandler == null && _KeyInputFocusGainedCallbackDelegate != null)
-                {
-                    KeyInputFocusGainedSignal().Disconnect(_KeyInputFocusGainedCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnKeyInputFocusGained(IntPtr view)
-        {
-            KeyInputFocusGainedEventArgs e = new KeyInputFocusGainedEventArgs();
-            Console.WriteLine("View Key ....");
-            // Populate all members of "e" (KeyInputFocusGainedEventArgs) with real data
-            e.View = Tizen.NUI.View.GetViewFromPtr(view);
-
-            if (_KeyInputFocusGainedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _KeyInputFocusGainedEventHandler(this, e);
-            }
-
-        }
-
-        /**
-         * @brief Event for KeyInputFocusLost signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of KeyInputFocusLostEventHandler-DaliEventHandler<object,KeyInputFocusLostEventArgs>)
-         * provided by the user. KeyInputFocusLost signal is emitted when the control loses Key Input Focus.
-         */
-        public event EventHandler<KeyInputFocusLostEventArgs> KeyInputFocusLost
-        {
-            add
-            {
-                if (_KeyInputFocusLostEventHandler == null)
-                {
-                    _KeyInputFocusLostCallbackDelegate = (OnKeyInputFocusLost);
-                    KeyInputFocusLostSignal().Connect(_KeyInputFocusLostCallbackDelegate);
-                }
-                _KeyInputFocusLostEventHandler += value;
-            }
-
-            remove
-            {
-                _KeyInputFocusLostEventHandler -= value;
-
-                if (_KeyInputFocusLostEventHandler == null && _KeyInputFocusLostCallbackDelegate != null)
-                {
-                    KeyInputFocusLostSignal().Disconnect(_KeyInputFocusLostCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnKeyInputFocusLost(IntPtr view)
-        {
-            KeyInputFocusLostEventArgs e = new KeyInputFocusLostEventArgs();
-
-            // Populate all members of "e" (KeyInputFocusLostEventArgs) with real data
-            e.View = Tizen.NUI.View.GetViewFromPtr(view);
-
-            if (_KeyInputFocusLostEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _KeyInputFocusLostEventHandler(this, e);
-            }
-        }
-
-        /**
-         * @brief Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of KeyHandler-EventHandlerWithReturnType<object,KeyEventArgs,bool>)
-         * provided by the user. KeyPressed signal is emitted when key event is received.
-         */
-        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyPressed
-        {
-            add
-            {
-                if (_KeyHandler == null)
-                {
-                    _KeyCallbackDelegate = (OnKey);
-                    KeyEventSignal().Connect(_KeyCallbackDelegate);
-                }
-                _KeyHandler += value;
-            }
-
-            remove
-            {
-                _KeyHandler -= value;
-                if (_KeyHandler == null && _KeyCallbackDelegate != null)
-                {
-                    KeyEventSignal().Disconnect(_KeyCallbackDelegate);
-                }
-            }
-        }
-
-        private bool OnKey(IntPtr view, IntPtr key)
-        {
-            KeyEventArgs e = new KeyEventArgs();
-
-            // Populate all members of "e" (KeyEventArgs) with real data
-            e.View = Tizen.NUI.View.GetViewFromPtr(view);
-            e.Key = Tizen.NUI.Key.GetKeyFromPtr(key);
-
-            if (_KeyHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _KeyHandler(this, e);
-            }
-            return false;
-
-        }
-
-        /**
-         * @brief Event for OnRelayout signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of OnRelayoutEventHandler) provided by the user.
-         * OnRelayout signal is emitted after the size has been set on the view during relayout.
-         */
-        public event EventHandler<OnRelayoutEventArgs> OnRelayoutEvent
-        {
-            add
-            {
-                if (_viewOnRelayoutEventHandler == null)
-                {
-                    //Console.WriteLine("View OnRelayoutEventArgs Locked....");
-                    _viewOnRelayoutEventCallbackDelegate = (OnRelayout);
-                    OnRelayoutSignal().Connect(_viewOnRelayoutEventCallbackDelegate);
-                }
-                _viewOnRelayoutEventHandler += value;
-            }
-
-            remove
-            {
-                _viewOnRelayoutEventHandler -= value;
-                if (_viewOnRelayoutEventHandler == null && _viewOnRelayoutEventCallbackDelegate != null)
-                {
-                    OnRelayoutSignal().Disconnect(_viewOnRelayoutEventCallbackDelegate);
-                }
-            }
-        }
-
-        // Callback for View OnRelayout signal
-        private void OnRelayout(IntPtr data)
-        {
-            OnRelayoutEventArgs e = new OnRelayoutEventArgs();
-            Console.WriteLine("View OnRelayoutEventArgs....");
-            // Populate all members of "e" (OnRelayoutEventArgs) with real data
-            e.View = View.GetViewFromPtr(data);
-
-            if (_viewOnRelayoutEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _viewOnRelayoutEventHandler(this, e);
-            }
-        }
-
-        /**
-         * @brief Event for Touched signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of TouchHandler-EventHandlerWithReturnType<object,TouchEventArgs,bool>)
-         * provided by the user. Touched signal is emitted when touch input is received.
-         */
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
-        {
-            add
-            {
-                if (_viewTouchHandler == null)
-                {
-                    //Console.WriteLine("View Touch EVENT LOCKED....");
-                    _viewTouchCallbackDelegate = (OnTouch);
-                    TouchSignal().Connect(_viewTouchCallbackDelegate);
-                }
-                _viewTouchHandler += value;
-            }
-
-            remove
-            {
-                _viewTouchHandler -= value;
-                if (_viewTouchHandler == null && _viewTouchCallbackDelegate != null)
-                {
-                    TouchSignal().Disconnect(_viewTouchCallbackDelegate);
-                }
-            }
-        }
-
-        // Callback for View TouchSignal
-        private bool OnTouch(IntPtr view, IntPtr touch)
-        {
-            TouchEventArgs e = new TouchEventArgs();
-            Console.WriteLine("View Touch EVENT....");
-            // Populate all members of "e" (TouchEventArgs) with real data
-            e.View = View.GetViewFromPtr(view);
-            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touch);
-
-            if (_viewTouchHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _viewTouchHandler(this, e);
-            }
-
-            return false;
-        }
-
-        /**
-         * @brief Event for Hovered signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of HoverHandler-EventHandlerWithReturnType<object,HoverEventArgs,bool>)
-         * provided by the user. Hovered signal is emitted when hover input is received.
-         */
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
-        {
-            add
-            {
-                if (_viewHoverHandler == null)
-                {
-                    _viewHoverCallbackDelegate = (OnHover);
-                    HoveredSignal().Connect(_viewHoverCallbackDelegate);
-                }
-                _viewHoverHandler += value;
-            }
-
-            remove
-            {
-                _viewHoverHandler -= value;
-                if (_viewHoverHandler == null && _viewHoverCallbackDelegate != null)
-                {
-                    HoveredSignal().Disconnect(_viewHoverCallbackDelegate);
-                }
-            }
-        }
-
-        // Callback for View Hover signal
-        private bool OnHover(IntPtr view, IntPtr hover)
-        {
-            HoverEventArgs e = new HoverEventArgs();
-
-            // Populate all members of "e" (HoverEventArgs) with real data
-            e.View = View.GetViewFromPtr(view);
-            e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hover);
-
-            if (_viewHoverHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _viewHoverHandler(this, e);
-            }
-
-            return false;
-        }
-
-        /**
-         * @brief Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of WheelHandler-EventHandlerWithReturnType<object,WheelEventArgs,bool>)
-         * provided by the user. WheelMoved signal is emitted when wheel event is received.
-         */
+          * @brief Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler
+          * provided by the user. WheelMoved signal is emitted when wheel event is received.
+          */
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
             add
             {
-                if (_viewWheelHandler == null)
+                if (_wheelEventHandler == null)
                 {
-                    //Console.WriteLine("View Wheel EVENT LOCKED....");
-                    _viewWheelCallbackDelegate = (OnWheel);
-                    WheelEventSignal().Connect(_viewWheelCallbackDelegate);
+                    _wheelEventCallback = OnWheelEvent;
+                    this.WheelEventSignal().Connect(_wheelEventCallback);
                 }
-                _viewWheelHandler += value;
+
+                _wheelEventHandler += value;
             }
 
             remove
             {
-                _viewWheelHandler -= value;
-                if (_viewWheelHandler == null && _viewWheelCallbackDelegate != null)
+                _wheelEventHandler -= value;
+
+                if (_wheelEventHandler == null && _wheelEventCallback != null)
                 {
-                    WheelEventSignal().Disconnect(_viewWheelCallbackDelegate);
+                    this.WheelEventSignal().Disconnect(_wheelEventCallback);
                 }
+
             }
         }
 
         // Callback for View Wheel signal
-        private bool OnWheel(IntPtr view, IntPtr wheel)
+        private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
             WheelEventArgs e = new WheelEventArgs();
-            Console.WriteLine("View Wheel EVENT ....");
-            // Populate all members of "e" (WheelEventArgs) with real data
-            e.View = View.GetViewFromPtr(view);
-            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheel);
 
-            if (_viewWheelHandler != null)
+            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
+
+            if (_wheelEventHandler != null)
             {
-                //here we send all data to user event handlers
-                return _viewWheelHandler(this, e);
+                return _wheelEventHandler(this, e);
             }
-
             return false;
         }
 
+
+        private EventHandler _onStageEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void OnStageEventCallbackType(IntPtr control);
+        private OnStageEventCallbackType _onStageEventCallback;
+
         /**
-         * @brief Event for OnStage signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of OnStageEventHandler) provided by the user.
-         * OnStage signal is emitted after the view has been connected to the stage.
-         */
-        public event EventHandler<OnStageEventArgs> OnStageEvent
+          * @brief Event for OnStage signal which can be used to subscribe/unsubscribe the event handler
+          * OnStage signal is emitted after the view has been connected to the stage.
+          */
+        public event EventHandler OnStageEvent
         {
             add
             {
-                if (_viewOnStageEventHandler == null)
+                if (_onStageEventHandler == null)
                 {
-                    _viewOnStageEventCallbackDelegate = (OnStage);
-                    OnStageSignal().Connect(_viewOnStageEventCallbackDelegate);
+                    _onStageEventCallback = OnStage;
+                    this.OnStageSignal().Connect(_onStageEventCallback);
                 }
-                _viewOnStageEventHandler += value;
+
+                _onStageEventHandler += value;
             }
 
             remove
             {
-                _viewOnStageEventHandler -= value;
-                if (_viewOnStageEventHandler == null && _viewOnStageEventCallbackDelegate != null)
+                _onStageEventHandler -= value;
+
+                if (_onStageEventHandler == null && _onStageEventCallback != null)
                 {
-                    OnStageSignal().Disconnect(_viewOnStageEventCallbackDelegate);
+                    this.OnStageSignal().Disconnect(_onStageEventCallback);
                 }
             }
         }
@@ -753,43 +532,42 @@ namespace Tizen.NUI
         // Callback for View OnStage signal
         private void OnStage(IntPtr data)
         {
-            OnStageEventArgs e = new OnStageEventArgs();
-
-            // Populate all members of "e" (OnStageEventArgs) with real data
-            e.View = View.GetViewFromPtr(data);
-
-            //Console.WriteLine("############# OnStage()! e.View.Name=" + e.View.Name);
-
-            if (_viewOnStageEventHandler != null)
+            if (_onStageEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _viewOnStageEventHandler(this, e);
+                _onStageEventHandler(this, null);
             }
         }
 
+
+        private EventHandler _offStageEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void OffStageEventCallbackType(IntPtr control);
+        private OffStageEventCallbackType _offStageEventCallback;
+
         /**
-         * @brief Event for OffStage signal which can be used to subscribe/unsubscribe the event handler
-         * (in the type of OffStageEventHandler) provided by the user.
-         * OffStage signal is emitted after the view has been disconnected from the stage.
-         */
-        public event EventHandler<OffStageEventArgs> OffStageEvent
+          * @brief Event for OffStage signal which can be used to subscribe/unsubscribe the event handler
+          * OffStage signal is emitted after the view has been disconnected from the stage.
+          */
+        public event EventHandler OffStageEvent
         {
             add
             {
-                if (_viewOffStageEventHandler == null)
+                if (_offStageEventHandler == null)
                 {
-                    _viewOffStageEventCallbackDelegate = (OffStage);
-                    OnStageSignal().Connect(_viewOffStageEventCallbackDelegate);
+                    _offStageEventCallback = OffStage;
+                    this.OnStageSignal().Connect(_offStageEventCallback);
                 }
-                _viewOffStageEventHandler += value;
+
+                _offStageEventHandler += value;
             }
 
             remove
             {
-                _viewOffStageEventHandler -= value;
-                if (_viewOffStageEventHandler == null && _viewOffStageEventCallbackDelegate != null)
+                _offStageEventHandler -= value;
+
+                if (_offStageEventHandler == null && _offStageEventCallback != null)
                 {
-                    OnStageSignal().Disconnect(_viewOffStageEventCallbackDelegate);
+                    this.OnStageSignal().Disconnect(_offStageEventCallback);
                 }
             }
         }
@@ -797,17 +575,16 @@ namespace Tizen.NUI
         // Callback for View OffStage signal
         private void OffStage(IntPtr data)
         {
-            OffStageEventArgs e = new OffStageEventArgs();
-
-            // Populate all members of "e" (OffStageEventArgs) with real data
-            e.View = View.GetViewFromPtr(data);
-
-            if (_viewOffStageEventHandler != null)
+            if (_offStageEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _viewOffStageEventHandler(this, e);
+                _offStageEventHandler(this, null);
             }
         }
+
+
+
+
+
 
         public static View GetViewFromPtr(global::System.IntPtr cPtr)
         {

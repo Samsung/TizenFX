@@ -9,11 +9,11 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
+/* moved to VisualMaps.cs
     internal enum MeshVisualShadingModeValue {
   TEXTURELESS_WITH_DIFFUSE_LIGHTING,
   TEXTURED_WITH_SPECULAR_LIGHTING,
   TEXTURED_WITH_DETAILED_SPECULAR_LIGHTING
 }
-
+*/
 }

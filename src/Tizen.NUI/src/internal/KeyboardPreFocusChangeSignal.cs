@@ -68,7 +68,7 @@ internal class PreFocusChangeSignal : global::System.IDisposable {
     return ret;
   }
 
-  public void Connect(FocusManager.PreFocusChangeEventCallbackDelegate func) {
+  public void Connect(FocusManager.PreFocusChangeEventCallback func) {
      NDalicManualPINVOKE.PreFocusChangeSignal_Connect(swigCPtr, func);
      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
  }

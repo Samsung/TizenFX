@@ -55,6 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="examples\control-dashboard.cs" />
+    <Compile Include="examples\date-picker-using-json.cs" />
+    <Compile Include="examples\date-picker.cs" />
+    <Compile Include="examples\flex-container.cs" />
+    <Compile Include="examples\visual-view-test.cs" />
+    <Compile Include="examples\hello-world.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

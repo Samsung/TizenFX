@@ -1,4 +1,4 @@
-﻿#define DOT_NET_CORE
+#define DOT_NET_CORE
 
 using System;
 using System.Runtime.InteropServices;
