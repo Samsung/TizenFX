@@ -27,10 +27,10 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class MetadataUpdatedEventArgs : EventArgs
     {
-        internal MetadataUpdatedEventArgs (string name, IntPtr handle)
+        internal MetadataUpdatedEventArgs(string name, IntPtr handle)
         {
             ServerName = name;
-            Metadata = new MediaControllerMetadata (handle);
+            Metadata = new MediaControllerMetadata(handle);
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class CustomCommandEventArgs : EventArgs
     {
-        internal CustomCommandEventArgs (string name, string command, Bundle bundle)
+        internal CustomCommandEventArgs(string name, string command, Bundle bundle)
         {
             ClientName = name;
             Command = command;

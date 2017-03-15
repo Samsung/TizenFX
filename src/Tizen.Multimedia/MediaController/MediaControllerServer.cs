@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Runtime.InteropServices;
 using Tizen.Applications;
 
 namespace Tizen.Multimedia.MediaController
@@ -39,18 +40,23 @@ namespace Tizen.Multimedia.MediaController
         private EventHandler<CustomCommandEventArgs> _customCommand;
         private Interop.MediaControllerServer.CustomCommandRecievedCallback _customCommandCallback;
 
+        private bool IsValidHandle
+        {
+            get { return (this._handle != IntPtr.Zero); }
+        }
+
         /// <summary>
         /// The constructor of MediaControllerServer class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
-        public MediaControllerServer ()
+        public MediaControllerServer()
         {
             MediaControllerValidator.ThrowIfError(
                 Interop.MediaControllerServer.Create(out _handle), "Create  server failed");
         }
 
-        ~MediaControllerServer ()
+        ~MediaControllerServer()
         {
             Dispose(false);
         }
@@ -63,17 +69,19 @@ namespace Tizen.Multimedia.MediaController
 
         protected virtual void Dispose(bool disposing)
         {
-            if(!_disposed)
+            if (!_disposed)
             {
-                if(disposing)
+                if (disposing)
                 {
                     // To be used if there are any other disposable objects
                 }
-                if(_handle != IntPtr.Zero)
+
+                if (IsValidHandle)
                 {
                     Interop.MediaControllerServer.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
+
                 _disposed = true;
             }
         }
@@ -85,17 +93,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_playbackCommand == null)
+                if (_playbackCommand == null)
                 {
                     RegisterPlaybackCmdRecvEvent();
                 }
+
                 _playbackCommand += value;
 
             }
+
             remove
             {
                 _playbackCommand -= value;
-                if(_playbackCommand == null)
+                if (_playbackCommand == null)
                 {
                     UnregisterPlaybackCmdRecvEvent();
                 }
@@ -109,17 +119,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_customCommand == null)
+                if (_customCommand == null)
                 {
                     RegisterCustomCommandEvent();
                 }
+
                 _customCommand += value;
 
             }
+
             remove
             {
                 _customCommand -= value;
-                if(_customCommand == null)
+                if (_customCommand == null)
                 {
                     UnregisterCustomCommandEvent();
                 }
@@ -223,7 +235,7 @@ namespace Tizen.Multimedia.MediaController
         /// Send reply for command from server to client </summary>
         /// <param name="clientName"> client name to recieve reply  </param>
         /// <param name="result"> result to run command  </param>
-        /// <param name="bundleData"> Bundle data  </param>
+        /// <param name="bundle"> Bundle to send various data  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void SendCustomCommandReply(string clientName, int result, Bundle bundle)
@@ -234,9 +246,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterPlaybackCmdRecvEvent()
         {
-            _playbackCommandCallback = (string clientName, MediaControllerPlaybackState state, IntPtr userData) =>
+            _playbackCommandCallback = (IntPtr clientName, MediaControllerPlaybackState state, IntPtr userData) =>
             {
-                PlaybackStateCommandEventArgs eventArgs = new PlaybackStateCommandEventArgs(clientName, state);
+                PlaybackStateCommandEventArgs eventArgs = new PlaybackStateCommandEventArgs(Marshal.PtrToStringAnsi(clientName), state);
                 _playbackCommand?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerServer.SetPlaybackStateCmdRecvCb(_handle, _playbackCommandCallback, IntPtr.Zero);
@@ -249,13 +261,13 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterCustomCommandEvent()
         {
-            _customCommandCallback = (string clientName, string command, IntPtr bundle, IntPtr userData) =>
+            _customCommandCallback = (IntPtr clientName, IntPtr command, IntPtr bundle, IntPtr userData) =>
             {
-                SafeBundleHandle bundleHandle = new SafeBundleHandle(bundle, true);
-                Applications.Bundle _bundle = new Bundle(bundleHandle);
-                CustomCommandEventArgs eventArgs = new CustomCommandEventArgs(clientName, command, _bundle);
+                SafeBundleHandle safeBundleHandle = new SafeBundleHandle(bundle, true);
+                Bundle bundleData = new Bundle(safeBundleHandle);
+                CustomCommandEventArgs eventArgs = new CustomCommandEventArgs(Marshal.PtrToStringAnsi(clientName), Marshal.PtrToStringAnsi(command), bundleData);
                 _customCommand?.Invoke(this, eventArgs);
-            };
+        };
             Interop.MediaControllerServer.SetCustomCmdRecvCb(_handle, _customCommandCallback, IntPtr.Zero);
         }
 
