@@ -14,7 +14,16 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// The Stage is a top-level object used for displaying a tree of Actors.
+    /// Stage is a top-level object that represents the entire screen.
+    /// It is used for displaying a hierarchy of actors managed by the scene graph structure,
+    /// which means an actor inherits a position relative to its parent,
+    /// and can be moved in relation to this point.
+    /// The stage instance is a singleton object (the only instance of its class during the
+    /// lifetime of the program). You can get it using a static function.
+    /// To display the contents of an actor, it must be added to a stage.
+    /// </summary>
     public class Stage : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -58,21 +67,16 @@ namespace Tizen.NUI
             }
         }
 
-
-
-
-        /**
-          * @brief Event arguments that passed via Touch signal
-          *
-          */
+        /// <summary>
+        /// Touch event argument
+        /// </summary>
         public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
 
-            /**
-              * @brief Touch - contains the information of touch points
-              *
-              */
+            /// <summary>
+            /// Touch
+            /// </summary>
             public Touch Touch
             {
                 get
@@ -89,12 +93,12 @@ namespace Tizen.NUI
         private event EventHandler<TouchEventArgs> _stageTouchHandler;
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
-        /**
-          * @brief Event for TouchEvent signal which can be used to subscribe/unsubscribe the event handler
-          * TouchEvent signal is emitted when the screen is touched and when the touch ends
-          * (i.e. the down & up touch events only).
-          *
-          */
+        /// <summary>
+        /// This is emitted when the screen is touched and when the touch ends.
+        /// If there are multiple touch points, then this will be emitted when the first touch occurs and
+        /// then when the last finger is lifted.
+        /// An interrupted event will also be emitted (if it occurs).
+        /// </summary>
         public event EventHandler<TouchEventArgs> Touch
         {
             add
@@ -131,18 +135,16 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Wheel arguments that passed via Wheel signal
-          *
-          */
+        /// <summary>
+        /// Wheel event arguments
+        /// </summary>
         public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
 
-            /**
-              * @brief Wheel - store a wheel rolling type MOUSE_WHEEL or CUSTOM_WHEEL
-              *
-              */
+            /// <summary>
+            /// Wheel
+            /// </summary>
             public Wheel Wheel
             {
                 get
@@ -159,11 +161,9 @@ namespace Tizen.NUI
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
         private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
 
-        /**
-          * @brief Event for Wheel signal which can be used to subscribe/unsubscribe the event handler
-          * Wheel signal is emitted is emitted when wheel event is received.
-          *
-          */
+        /// <summary>
+        /// This is emitted when wheel event is received.
+        /// </summary>
         public event EventHandler<WheelEventArgs> Wheel
         {
             add
@@ -200,18 +200,16 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event arguments that passed via Key signal
-          *
-          */
+        /// <summary>
+        /// Key event arguments.
+        /// </summary>
         public class KeyEventArgs : EventArgs
         {
             private Key _key;
 
-            /**
-              * @brief Key - is the keyevent sent to Stage.
-              *
-              */
+            /// <summary>
+            /// Key
+            /// </summary>
             public Key Key
             {
                 get
@@ -228,11 +226,9 @@ namespace Tizen.NUI
         private event EventHandler<KeyEventArgs> _stageKeyHandler;
         private EventCallbackDelegateType1 _stageKeyCallbackDelegate;
 
-        /**
-          * @brief Event for Key signal which can be used to subscribe/unsubscribe the event handler
-          * Key signal is emitted is emitted when key event is received.
-          *
-          */
+        /// <summary>
+        /// This is emitted when key event is received.
+        /// </summary>
         public event EventHandler<KeyEventArgs> Key
         {
             add
@@ -275,11 +271,6 @@ namespace Tizen.NUI
         private event EventHandler _stageEventProcessingFinishedEventHandler;
         private EventCallbackDelegateType0 _stageEventProcessingFinishedEventCallbackDelegate;
 
-        /**
-          * @brief Event for EventProcessingFinished signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. EventProcessingFinished signal is emitted just after the event processing is finished.
-          *
-          */
         internal event EventHandler EventProcessingFinished
         {
             add
@@ -315,11 +306,6 @@ namespace Tizen.NUI
         private EventHandler _stageContextLostEventHandler;
         private EventCallbackDelegateType0 _stageContextLostEventCallbackDelegate;
 
-        /**
-          * @brief Event for ContextLost signal which can be used to subscribe/unsubscribe the event handler
-          * ContextLost signal is emitted when the GL context is lost (Platform specific behaviour).
-          *
-          */
         internal event EventHandler ContextLost
         {
             add
@@ -354,12 +340,6 @@ namespace Tizen.NUI
         private EventHandler _stageContextRegainedEventHandler;
         private EventCallbackDelegateType0 _stageContextRegainedEventCallbackDelegate;
 
-        /**
-          * @brief Event for ContextRegained signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. ContextRegained signal is emitted when the GL context is regained (Platform specific
-          * behaviour).
-          *
-          */
         internal event EventHandler ContextRegained
         {
             add
@@ -394,11 +374,6 @@ namespace Tizen.NUI
         private EventHandler _stageSceneCreatedEventHandler;
         private EventCallbackDelegateType0 _stageSceneCreatedEventCallbackDelegate;
 
-        /**
-          * @brief Event for SceneCreated signal which can be used to subscribe/unsubscribe the event handler
-          * SceneCreated signal is emitted after the initial scene is created.
-          *
-          */
         internal event EventHandler SceneCreated
         {
             add
@@ -429,7 +404,9 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Size.
+        /// </summary>
         public Size2D Size
         {
             get
@@ -439,6 +416,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Background color.
+        /// </summary>
         public Color BackgroundColor
         {
             set
@@ -452,6 +432,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dpi.
+        /// </summary>
         public Vector2 Dpi
         {
             get
@@ -460,6 +443,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Layer count.
+        /// </summary>
         public uint LayerCount
         {
             get
@@ -470,6 +456,9 @@ namespace Tizen.NUI
 
         private static readonly Stage instance = Stage.GetCurrent();
 
+        /// <summary>
+        /// Stage instance.
+        /// </summary>
         public static Stage Instance
         {
             get
@@ -478,22 +467,29 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Get default ( root ) layer.
+        /// </summary>
         public Layer GetDefaultLayer()
         {
             return this.GetRootLayer();
         }
 
+        /// <summary>
+        /// Add layer to the Stage.
+        /// </summary>
         public void AddLayer(Layer layer)
         {
             this.Add((Actor)layer);
         }
 
+        /// <summary>
+        /// Remove layer from the Stage.
+        /// </summary>
         public void RemoveLayer(Layer layer)
         {
             this.Remove((Actor)layer);
         }
-
-
 
         internal static Vector4 DEFAULT_BACKGROUND_COLOR
         {
@@ -581,6 +577,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the layer at a specified depth.
+        /// </summary>
         public Layer GetLayer(uint depth)
         {
             Layer ret = new Layer(NDalicPINVOKE.Stage_GetLayer(swigCPtr, depth), true);
@@ -622,6 +621,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Keep rendering for at least the given amount of time.
+        /// </summary>
         public void KeepRendering(float durationSeconds)
         {
             NDalicPINVOKE.Stage_KeepRendering(swigCPtr, durationSeconds);

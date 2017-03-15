@@ -30,7 +30,9 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// A control which provides a single-line editable text field.
+    /// </summary>
     public class TextField : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -50,6 +52,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -74,12 +79,16 @@ namespace Tizen.NUI
             }
         }
 
-
-
+        /// <summary>
+        /// Text changed event arguments.
+        /// </summary>
         public class TextChangedEventArgs : EventArgs
         {
             private TextField _textField;
 
+            /// <summary>
+            /// TextField.
+            /// </summary>
             public TextField TextField
             {
                 get
@@ -93,10 +102,16 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// MaxLengthReached event arguments.
+        /// </summary>
         public class MaxLengthReachedEventArgs : EventArgs
         {
             private TextField _textField;
 
+            /// <summary>
+            /// TextField.
+            /// </summary>
             public TextField TextField
             {
                 get
@@ -121,6 +136,9 @@ namespace Tizen.NUI
         private EventHandler<MaxLengthReachedEventArgs> _textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
 
+        /// <summary>
+        /// TextChanged event.
+        /// </summary>
         public event EventHandler<TextChangedEventArgs> TextChanged
         {
             add
@@ -157,6 +175,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// MaxLengthReached event.
+        /// </summary>
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
         {
             add
@@ -352,6 +373,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates an empty handle.
+        /// </summary>
         public TextField() : this(NDalicPINVOKE.TextField_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -369,6 +393,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to TextField.
+        /// </summary>
         public new static TextField DownCast(BaseHandle handle)
         {
             TextField ret = new TextField(NDalicPINVOKE.TextField_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -409,6 +436,9 @@ namespace Tizen.NUI
             ExceedPolicyClip
         }
 
+        /// <summary>
+        /// RenderingBackend property.
+        /// </summary>
         public int RenderingBackend
         {
             get
@@ -422,6 +452,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.RENDERING_BACKEND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Text property.
+        /// </summary>
         public string Text
         {
             get
@@ -435,6 +469,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.TEXT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PlaceholderText property.
+        /// </summary>
         public string PlaceholderText
         {
             get
@@ -448,6 +486,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PlaceholderTextFocused property.
+        /// </summary>
         public string PlaceholderTextFocused
         {
             get
@@ -461,6 +503,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.PLACEHOLDER_TEXT_FOCUSED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// FontFamily property.
+        /// </summary>
         public string FontFamily
         {
             get
@@ -474,6 +520,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// FontStyle property.
+        /// </summary>
         public PropertyMap FontStyle
         {
             get
@@ -487,6 +537,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.FONT_STYLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PointSize property.
+        /// </summary>
         public float PointSize
         {
             get
@@ -500,6 +554,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.POINT_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// MaxLength property.
+        /// </summary>
         public int MaxLength
         {
             get
@@ -513,6 +571,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.MAX_LENGTH, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ExceedPolicy property.
+        /// </summary>
         public int ExceedPolicy
         {
             get
@@ -526,6 +588,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.EXCEED_POLICY, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// HorizontalAlignment property.
+        /// </summary>
         public string HorizontalAlignment
         {
             get
@@ -539,6 +605,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// VerticalAlignment property.
+        /// </summary>
         public string VerticalAlignment
         {
             get
@@ -552,6 +622,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// TextColor property.
+        /// </summary>
         public Color TextColor
         {
             get
@@ -565,6 +639,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PlaceholderTextColor property.
+        /// </summary>
         public Vector4 PlaceholderTextColor
         {
             get
@@ -578,6 +656,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ShadowOffset property.
+        /// </summary>
         public Vector2 ShadowOffset
         {
             get
@@ -591,6 +673,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SHADOW_OFFSET, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ShadowColor property.
+        /// </summary>
         public Vector4 ShadowColor
         {
             get
@@ -604,6 +690,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SHADOW_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PrimaryCursorColor property.
+        /// </summary>
         public Vector4 PrimaryCursorColor
         {
             get
@@ -617,6 +707,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SecondaryCursorColor property.
+        /// </summary>
         public Vector4 SecondaryCursorColor
         {
             get
@@ -630,6 +724,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SECONDARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// EnableCursorBlink property.
+        /// </summary>
         public bool EnableCursorBlink
         {
             get
@@ -643,6 +741,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.ENABLE_CURSOR_BLINK, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// CursorBlinkInterval property.
+        /// </summary>
         public float CursorBlinkInterval
         {
             get
@@ -656,6 +758,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.CURSOR_BLINK_INTERVAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// CursorBlinkDuration property.
+        /// </summary>
         public float CursorBlinkDuration
         {
             get
@@ -669,6 +775,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.CURSOR_BLINK_DURATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// CursorWidth property.
+        /// </summary>
         public int CursorWidth
         {
             get
@@ -682,6 +792,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.CURSOR_WIDTH, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// GrabHandleImage property.
+        /// </summary>
         public string GrabHandleImage
         {
             get
@@ -695,6 +809,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.GRAB_HANDLE_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// GrabHandlePressedImage property.
+        /// </summary>
         public string GrabHandlePressedImage
         {
             get
@@ -708,6 +826,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.GRAB_HANDLE_PRESSED_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ScrollThreshold property.
+        /// </summary>
         public float ScrollThreshold
         {
             get
@@ -721,6 +843,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SCROLL_THRESHOLD, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ScrollSpeed property.
+        /// </summary>
         public float ScrollSpeed
         {
             get
@@ -734,6 +860,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandleImageLeft property.
+        /// </summary>
         public PropertyMap SelectionHandleImageLeft
         {
             get
@@ -747,6 +877,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandleImageRight property.
+        /// </summary>
         public PropertyMap SelectionHandleImageRight
         {
             get
@@ -760,6 +894,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandlePressedImageLeft property.
+        /// </summary>
         public PropertyMap SelectionHandlePressedImageLeft
         {
             get
@@ -773,6 +911,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandlePressedImageRight property.
+        /// </summary>
         public PropertyMap SelectionHandlePressedImageRight
         {
             get
@@ -786,6 +928,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandleMarkerImageLeft property.
+        /// </summary>
         public PropertyMap SelectionHandleMarkerImageLeft
         {
             get
@@ -799,6 +945,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHandleMarkerImageRight property.
+        /// </summary>
         public PropertyMap SelectionHandleMarkerImageRight
         {
             get
@@ -812,6 +962,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// SelectionHighlightColor property.
+        /// </summary>
         public Vector4 SelectionHighlightColor
         {
             get
@@ -825,6 +979,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// DecorationBoundingBox property.
+        /// </summary>
         public Rectangle DecorationBoundingBox
         {
             get
@@ -838,6 +996,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.DECORATION_BOUNDING_BOX, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputMethodSettings property.
+        /// </summary>
         public PropertyMap InputMethodSettings
         {
             get
@@ -851,6 +1013,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_METHOD_SETTINGS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputColor property.
+        /// </summary>
         public Vector4 InputColor
         {
             get
@@ -864,6 +1030,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// EnableMarkup property.
+        /// </summary>
         public bool EnableMarkup
         {
             get
@@ -877,6 +1047,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputFontFamily property.
+        /// </summary>
         public string InputFontFamily
         {
             get
@@ -890,6 +1064,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputFontStyle property.
+        /// </summary>
         public PropertyMap InputFontStyle
         {
             get
@@ -903,6 +1081,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_FONT_STYLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputPointSize property.
+        /// </summary>
         public float InputPointSize
         {
             get
@@ -916,6 +1098,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_POINT_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Underline property.
+        /// </summary>
         public PropertyMap Underline
         {
             get
@@ -929,6 +1115,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.UNDERLINE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputUnderline property.
+        /// </summary>
         public PropertyMap InputUnderline
         {
             get
@@ -942,6 +1132,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_UNDERLINE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Shadow property.
+        /// </summary>
         public PropertyMap Shadow
         {
             get
@@ -955,6 +1149,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.SHADOW, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputShadow property.
+        /// </summary>
         public PropertyMap InputShadow
         {
             get
@@ -968,6 +1166,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_SHADOW, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Emboss property.
+        /// </summary>
         public PropertyMap Emboss
         {
             get
@@ -981,6 +1183,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.EMBOSS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputEmboss property.
+        /// </summary>
         public PropertyMap InputEmboss
         {
             get
@@ -994,6 +1200,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.INPUT_EMBOSS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Outline property.
+        /// </summary>
         public PropertyMap Outline
         {
             get
@@ -1007,6 +1217,10 @@ namespace Tizen.NUI
                 SetProperty(TextField.Property.OUTLINE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// InputOutline property.
+        /// </summary>
         public PropertyMap InputOutline
         {
             get

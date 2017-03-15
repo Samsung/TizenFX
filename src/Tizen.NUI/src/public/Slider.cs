@@ -30,7 +30,9 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// Slider is a control to enable sliding an indicator between two values.
+    /// </summary>
     public class Slider : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -76,6 +78,9 @@ namespace Tizen.NUI
 
 
 
+        /// <summary>
+        /// Emitted when the slider value changes.
+        /// </summary>
         public class ValueChangedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -106,6 +111,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Emitted when the sliding is finished.
+        /// </summary>
         public class SlidingFinishedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -136,6 +144,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Emitted when the slider handle reaches a mark.
+        /// </summary>
         public class MarkReachedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -182,6 +193,8 @@ namespace Tizen.NUI
         private EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> _sliderMarkReachedEventHandler;
         private MarkReachedCallbackDelegate _sliderMarkReachedCallbackDelegate;
 
+        /// <summary>
+        /// </summary>
         public event EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> ValueChanged
         {
             add
@@ -220,6 +233,8 @@ namespace Tizen.NUI
             return false;
         }
 
+        /// <summary>
+        /// </summary>
         public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
         {
             add
@@ -258,6 +273,8 @@ namespace Tizen.NUI
             return false;
         }
 
+        /// <summary>
+        /// </summary>
         public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
         {
             add
@@ -296,13 +313,14 @@ namespace Tizen.NUI
             return false;
         }
 
+        /// <summary>
+        /// </summary>
         public static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
             Slider ret = new Slider(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
 
         internal class Property : global::System.IDisposable
         {
@@ -365,6 +383,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates an empty Slider handle.
+        /// </summary>
         public Slider() : this(NDalicPINVOKE.Slider_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -382,6 +403,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts an Object handle to Slider.
+        /// If handle points to a Slider, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
         public new static Slider DownCast(BaseHandle handle)
         {
             Slider ret = new Slider(NDalicPINVOKE.Slider_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -416,6 +442,9 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// Lower bound property
+        /// </summary>
         public float LowerBound
         {
             get
@@ -429,6 +458,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Upper bound property
+        /// </summary>
         public float UpperBound
         {
             get
@@ -442,6 +475,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Value property
+        /// </summary>
         public float Value
         {
             get
@@ -455,6 +492,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Track visual property
+        /// </summary>
         public PropertyMap TrackVisual
         {
             get
@@ -468,6 +509,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Handle visual property
+        /// </summary>
         public PropertyMap HandleVisual
         {
             get
@@ -481,6 +526,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Progress visual property
+        /// </summary>
         public PropertyMap ProgressVisual
         {
             get
@@ -494,6 +543,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Popup visual property
+        /// </summary>
         public PropertyMap PopupVisual
         {
             get
@@ -507,6 +560,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Popup arrow visual property
+        /// </summary>
         public PropertyMap PopupArrowVisual
         {
             get
@@ -520,6 +577,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Disable color property
+        /// </summary>
         public Vector4 DisabledColor
         {
             get
@@ -533,6 +594,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Value presicion property
+        /// </summary>
         public int ValuePrecision
         {
             get
@@ -546,6 +611,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Show popup property
+        /// </summary>
         public bool ShowPopup
         {
             get
@@ -559,6 +628,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Show value property
+        /// </summary>
         public bool ShowValue
         {
             get
@@ -572,6 +645,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Marks property
+        /// </summary>
         public Tizen.NUI.PropertyArray Marks
         {
             get
@@ -585,6 +662,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.MARKS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Snap to marks property
+        /// </summary>
         public bool SnapToMarks
         {
             get
@@ -598,6 +679,10 @@ namespace Tizen.NUI
                 SetProperty(Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Mark tolerance property
+        /// </summary>
         public float MarkTolerance
         {
             get
