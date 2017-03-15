@@ -187,7 +187,7 @@ namespace Tizen.Multimedia
                 }
                 else
                 {
-                    task.SetException(new InvalidOperationException("["+ error +"] Fail to create thumbnail"));
+                    task.SetException(new InvalidOperationException("[" + error + "] Fail to create thumbnail"));
                 }
             };
 
@@ -226,6 +226,7 @@ namespace Tizen.Multimedia
                     Interop.ThumbnailExtractor.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
+
                 _disposed = true;
             }
         }

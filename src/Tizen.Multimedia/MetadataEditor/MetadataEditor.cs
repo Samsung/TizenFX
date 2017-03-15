@@ -47,6 +47,7 @@ namespace Tizen.Multimedia
                 {
                     throw new ObjectDisposedException(nameof(MetadataEditor));
                 }
+
                 return _handle;
             }
         }
@@ -114,6 +115,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Artist);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Artist, value);
@@ -129,6 +131,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Title);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Title, value);
@@ -144,6 +147,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Album);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Album, value);
@@ -159,6 +163,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Genre);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Genre, value);
@@ -174,6 +179,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Author);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Author, value);
@@ -189,6 +195,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Copyright);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Copyright, value);
@@ -208,6 +215,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Date);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Date, value);
@@ -223,6 +231,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Description);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Description, value);
@@ -238,6 +247,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Comment);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Comment, value);
@@ -253,6 +263,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.TrackNumber);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.TrackNumber, value);
@@ -279,6 +290,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.Conductor);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.Conductor, value);
@@ -294,6 +306,7 @@ namespace Tizen.Multimedia
             {
                 return GetParam(MetadataEditorAttr.UnsyncLyrics);
             }
+
             set
             {
                 SetParam(MetadataEditorAttr.UnsyncLyrics, value);
@@ -407,11 +420,13 @@ namespace Tizen.Multimedia
                 {
                     // To be used if there are any other disposable objects
                 }
+
                 if (_handle != IntPtr.Zero)
                 {
                     Interop.MetadataEditor.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
+
                 _disposed = true;
             }
         }

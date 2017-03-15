@@ -64,7 +64,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(path));
             }
 
-            Create(()=> Interop.MetadataExtractor.SetPath(_handle, path));
+            Create(() => Interop.MetadataExtractor.SetPath(_handle, path));
         }
 
         /// <summary>
