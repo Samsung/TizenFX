@@ -18,6 +18,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A two dimensional size
+    /// </summary>
     public class Size2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -39,6 +42,8 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// </summary>
         public virtual void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -62,42 +67,64 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Addition operator.
+        /// </summary>
         public static Size2D operator +(Size2D arg1, Size2D arg2)
         {
             return arg1.Add(arg2);
         }
 
+        /// <summary>
+        /// Subtraction operator.
+        /// </summary>
         public static Size2D operator -(Size2D arg1, Size2D arg2)
         {
             return arg1.Subtract(arg2);
         }
 
+        /// <summary>
+        /// </summary>
         public static Size2D operator -(Size2D arg1)
         {
             return arg1.Subtract();
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
         public static Size2D operator *(Size2D arg1, Size2D arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
         public static Size2D operator *(Size2D arg1, int arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
         public static Size2D operator /(Size2D arg1, Size2D arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
         public static Size2D operator /(Size2D arg1, int arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Array subscript operator.
+        /// </summary>
         public float this[uint index]
         {
             get
@@ -106,6 +133,7 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
         public static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
         {
             Size2D ret = new Size2D(cPtr, false);
@@ -113,17 +141,25 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size2D() : this(NDalicPINVOKE.new_Vector2__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size2D(int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size2D(Size size) : this(NDalicPINVOKE.new_Vector2__SWIG_3(Size.getCPtr(size)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -180,6 +216,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Check equality.
+        /// Utilizes appropriate machine epsilon values.
+        /// </summary>
         public bool EqualTo(Size2D rhs)
         {
             bool ret = NDalicPINVOKE.Vector2_EqualTo(swigCPtr, Size2D.getCPtr(rhs));
@@ -187,6 +227,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Check inequality.
+        /// Utilizes appropriate machine epsilon values.
+        /// </summary>
         public bool NotEqualTo(Size2D rhs)
         {
             bool ret = NDalicPINVOKE.Vector2_NotEqualTo(swigCPtr, Size2D.getCPtr(rhs));
@@ -201,7 +245,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// </summary>
         public int Width
         {
             set
@@ -217,6 +262,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public int Height
         {
             set
@@ -232,11 +279,15 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public static implicit operator Vector2(Size2D size)
         {
             return new Vector2((float)size.Width, (float)size.Height);
         }
 
+        /// <summary>
+        /// </summary>
         public static implicit operator Size2D(Vector2 vec)
         {
             return new Size2D((int)vec.X, (int)vec.Y);

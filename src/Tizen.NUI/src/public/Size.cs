@@ -18,6 +18,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Three dimensional size
+    /// </summary>
     public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -39,6 +42,8 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// </summary>
         public virtual void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -63,41 +68,65 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Addition operator.
+        /// </summary>
         public static Size operator +(Size arg1, Size arg2)
         {
             return arg1.Add(arg2);
         }
 
+        /// <summary>
+        /// Subtraction operator.
+        /// </summary>
         public static Size operator -(Size arg1, Size arg2)
         {
             return arg1.Subtract(arg2);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static Size operator -(Size arg1)
         {
             return arg1.Subtract();
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
         public static Size operator *(Size arg1, Size arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
         public static Size operator *(Size arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
         public static Size operator /(Size arg1, Size arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
         public static Size operator /(Size arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Array subscript operator.
+        /// </summary>
         public float this[uint index]
         {
             get
@@ -106,6 +135,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public static Size GetSizeFromPtr(global::System.IntPtr cPtr)
         {
             Size ret = new Size(cPtr, false);
@@ -113,23 +144,32 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Size(Size2D size2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
+        /// <summary>
+        /// </summary>
         public static Size Zero
         {
             get
@@ -197,6 +237,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Check equality.
+        /// Utilizes appropriate machine epsilon values.
+        /// </summary>
         public bool EqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -204,6 +248,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Check inequality.
+        /// Utilizes appropriate machine epsilon values.
+        /// </summary>
         public bool NotEqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -211,7 +259,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// </summary>
         public float Width
         {
             set
@@ -227,6 +276,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public float Height
         {
             set
@@ -242,6 +293,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public float Depth
         {
             set
@@ -257,12 +310,15 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// </summary>
         public static implicit operator Vector3(Size size)
         {
             return new Vector3(size.Width, size.Height, size.Depth);
         }
 
+        /// <summary>
+        /// </summary>
         public static implicit operator Size(Vector3 vec)
         {
             return new Size(vec.Width, vec.Height, vec.Depth);

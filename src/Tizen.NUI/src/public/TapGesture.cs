@@ -11,6 +11,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A TapGesture is emitted when the user taps the screen with the stated number of fingers a stated number of times.
+    /// </summary>
     public class TapGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -30,6 +33,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -55,6 +61,9 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Get TapGesture from Ptr.
+        /// </summary>
         public static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
             TapGesture ret = new TapGesture(cPtr, false);
@@ -62,6 +71,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// NumberOfTaps.
+        /// </summary>
         public uint NumberOfTaps
         {
             get
@@ -70,6 +82,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// NumberOfTouches.
+        /// </summary>
         public uint NumberOfTouches
         {
             get
@@ -78,6 +93,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// ScreenPoint.
+        /// </summary>
         public Vector2 ScreenPoint
         {
             get
@@ -86,6 +104,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// LocalPoint.
+        /// </summary>
         public Vector2 LocalPoint
         {
             get
@@ -94,16 +115,25 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public TapGesture() : this(NDalicPINVOKE.new_TapGesture__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
         public TapGesture(TapGesture rhs) : this(NDalicPINVOKE.new_TapGesture__SWIG_1(TapGesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Assignment.
+        /// </summary>
         public TapGesture Assign(TapGesture rhs)
         {
             TapGesture ret = new TapGesture(NDalicPINVOKE.TapGesture_Assign(swigCPtr, TapGesture.getCPtr(rhs)), false);

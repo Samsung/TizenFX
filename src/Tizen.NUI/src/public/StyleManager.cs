@@ -14,6 +14,19 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// StyleManager informs applications of system theme change,
+    /// and supports application theme change at runtime.
+    /// Applies various styles to Controls using the properties system.
+    /// On theme change, it automatically updates all controls, then raises
+    /// a event to inform the application.
+    ///
+    /// If the application wants to customize the theme, RequestThemeChange
+    /// needs to be called.
+    /// It provides the path to the  application resource root folder, 
+    /// from there the filename can an be specified along with
+    /// any sub folders, e.g Images, Models etc.
+    /// </summary>
     public class StyleManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -33,6 +46,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -57,23 +73,17 @@ namespace Tizen.NUI
             }
         }
 
-
-
-
-        /**
-          * @brief Event arguments that passed via StyleChanged signal
-          *
-          */
+        /// <summary>
+        /// Style changed event arguments
+        /// </summary>
         public class StyleChangedEventArgs : EventArgs
         {
             private StyleManager _styleManager;
             private StyleChangeType _styleChange;
 
-            /**
-              * @brief StyleManager - is the StyleManager that informs applications of system theme change,
-              * and supports application theme change at runtime.
-              *
-              */
+            /// <summary>
+            /// StyleManager.
+            /// </summary>
             public StyleManager StyleManager
             {
                 get
@@ -86,11 +96,10 @@ namespace Tizen.NUI
                 }
             }
 
-            /**
-              * @brief StyleChange - contains Style change information (default font changed or
-              * default font size changed or theme has changed)
-              *
-              */
+            /// <summary>
+            /// StyleChange - contains Style change information (default font changed or
+            /// default font size changed or theme has changed)
+            /// </summary>
             public StyleChangeType StyleChange
             {
                 get
@@ -110,12 +119,12 @@ namespace Tizen.NUI
         private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
-        /**
-          * @brief Event for StyleChanged signal which can be used to subscribe/unsubscribe the
-          * event handler (in the type of StyleChangedEventHandler-DaliEventHandler<object,StyleChangedEventArgs>) 
-          * provided by the user. StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
-          * and the controls have been informed.
-          */
+        /// <summary>
+        /// Event for StyleChanged signal which can be used to subscribe/unsubscribe the
+        /// event handler provided by the user. 
+        /// StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
+        /// and the controls have been informed.
+        /// </summary>
         public event EventHandler<StyleChangedEventArgs> StyleChanged
         {
             add
@@ -160,12 +169,18 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Creates a StyleManager handle.
+        /// this can be initialized with StyleManager::Get().
+        /// </summary>
         public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the singleton of StyleManager object.
+        /// </summary>
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
@@ -173,24 +188,40 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Applies a new theme to the application. 
+        /// This will be merged on top of the default Toolkit theme.
+        /// If the application theme file doesn't style all controls that the
+        /// application uses, then the default Toolkit theme will be used
+        /// instead for those controls.
+        /// </summary>
         public void ApplyTheme(string themeFile)
         {
             NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Applies the default Toolkit theme.
+        /// </summary>
         public void ApplyDefaultTheme()
         {
             NDalicPINVOKE.StyleManager_ApplyDefaultTheme(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets a constant for use when building styles.
+        /// </summary>
         public void SetStyleConstant(string key, PropertyValue value)
         {
             NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns the style constant set for a specific key.
+        /// </summary>
         public bool GetStyleConstant(string key, PropertyValue valueOut)
         {
             bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
@@ -198,6 +229,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Applies the specified style to the control.
+        /// </summary>
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
@@ -213,6 +247,9 @@ namespace Tizen.NUI
 
     }
 
+    /// <summary>
+    /// Types of style change.
+    /// </summary>
     public enum StyleChangeType
     {
         DefaultFontChange,
