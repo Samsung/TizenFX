@@ -260,6 +260,10 @@ namespace Tizen.Applications.DataControl
             }
 
             byte_array = GetValue(index);
+            if (byte_array == null)
+            {
+                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+            }
             ret = BitConverter.ToInt32(byte_array, 0);
 
             return ret;
@@ -280,6 +284,10 @@ namespace Tizen.Applications.DataControl
             }
 
             byte_array = GetValue(index);
+            if (byte_array == null)
+            {
+                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+            }
             ret = BitConverter.ToInt64(byte_array, 0);
 
             return ret;
@@ -300,6 +308,10 @@ namespace Tizen.Applications.DataControl
             }
 
             byte_array = GetValue(index);
+            if (byte_array == null)
+            {
+                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+            }
             ret = BitConverter.ToDouble(byte_array, 0);
 
             return ret;

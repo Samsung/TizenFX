@@ -119,7 +119,7 @@ namespace Tizen.Applications.DataControl
             {
                 query += " LIMIT " + countPerPage + " OFFSET " + (countPerPage * (pageNum - 1));
             }
-
+            handle.Dispose();
             return query;
         }
 
@@ -461,14 +461,15 @@ namespace Tizen.Applications.DataControl
                                 if (ret != ResultType.Success)
                                 {
                                     Log.Error(LogTag, "Writing a row to a file descriptor is failed");
+                                    mc.Dispose();
                                     return;
                                 }
                             }
                         }
                         while (write_size > 0);
+                        mc.Dispose();
                     }
 
-                    mc.Dispose();
                 }
                 else
                 {
@@ -806,6 +807,7 @@ namespace Tizen.Applications.DataControl
                 default:
                     break;
             }
+            handle.Dispose();
 
             return query;
         }
@@ -822,6 +824,7 @@ namespace Tizen.Applications.DataControl
                 provider = _providerDict[dataID];
                 provider._nativeHandle = handlePtr;
             }
+            handle.Dispose();
 
             return provider;
         }
@@ -839,7 +842,7 @@ namespace Tizen.Applications.DataControl
         {
             ResultType ret;
 
-            if (changedData == null | changedData.SafeBundleHandle.IsInvalid)
+            if (changedData == null || changedData.SafeBundleHandle.IsInvalid)
             {
                 ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "changedData");
             }
