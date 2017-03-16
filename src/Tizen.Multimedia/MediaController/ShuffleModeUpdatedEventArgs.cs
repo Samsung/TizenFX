@@ -27,7 +27,7 @@ namespace Tizen.Multimedia.MediaController
     /// </remarks>
     public class ShuffleModeUpdatedEventArgs : EventArgs
     {
-        internal ShuffleModeUpdatedEventArgs (string name, MediaControllerShuffleMode mode)
+        internal ShuffleModeUpdatedEventArgs(string name, MediaControllerShuffleMode mode)
         {
             ServerName = name;
             ShuffleMode = mode;

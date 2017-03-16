@@ -27,20 +27,33 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The constructor of MediaControllerPlayback class.
         /// </summary>
-        public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position) {
+        /// <param name="state">
+        /// The state of the playback which is playing in MediaConttoller server application
+        /// </param>
+        /// <param name="position">
+        /// The position of the playback which is playing in MediaConttoller server application
+        /// </param>
+        public MediaControllerPlayback(MediaControllerPlaybackState state, ulong position)
+        {
             State = state;
             Position = position;
         }
 
-        internal MediaControllerPlayback(IntPtr _handle) {
+        internal MediaControllerPlayback(IntPtr handle)
+        {
             MediaControllerPlaybackState state = MediaControllerPlaybackState.None;
             ulong position = 0L;
 
-            MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetPlaybackState(_handle, out state), "Get Playback state failed");
+            if (handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("MediaControllerPlayback is not valid.");
+            }
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetPlaybackPosition(_handle, out position), "Get Playback position failed");
+                Interop.MediaControllerClient.GetPlaybackState(handle, out state), "Get Playback state failed");
+
+            MediaControllerValidator.ThrowIfError(
+                Interop.MediaControllerClient.GetPlaybackPosition(handle, out position), "Get Playback position failed");
 
             State = state;
             Position = position;

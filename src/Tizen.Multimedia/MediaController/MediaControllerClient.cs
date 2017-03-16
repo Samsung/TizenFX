@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
 
@@ -49,18 +50,23 @@ namespace Tizen.Multimedia.MediaController
         private EventHandler<CustomCommandReplyEventArgs> _customcommandReply;
         private Interop.MediaControllerClient.CommandReplyRecievedCallback _customcommandReplyCallback;
 
+        private bool IsValidHandle
+        {
+            get { return (this._handle != IntPtr.Zero); }
+        }
+
         /// <summary>
         /// The constructor of MediaControllerClient class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
-        public MediaControllerClient ()
+        public MediaControllerClient()
         {
             MediaControllerValidator.ThrowIfError(
                 Interop.MediaControllerClient.Create(out _handle), "Create client failed");
         }
 
-        ~MediaControllerClient ()
+        ~MediaControllerClient()
         {
             Dispose(false);
         }
@@ -73,17 +79,19 @@ namespace Tizen.Multimedia.MediaController
 
         protected virtual void Dispose(bool disposing)
         {
-            if(!_disposed)
+            if (!_disposed)
             {
-                if(disposing)
+                if (disposing)
                 {
                     // To be used if there are any other disposable objects
                 }
-                if(_handle != IntPtr.Zero)
+
+                if (IsValidHandle)
                 {
                     Interop.MediaControllerClient.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
+
                 _disposed = true;
             }
         }
@@ -95,17 +103,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_serverUpdated == null)
+                if (_serverUpdated == null)
                 {
                     RegisterServerUpdatedEvent();
                 }
+
                 _serverUpdated += value;
 
             }
+
             remove
             {
                 _serverUpdated -= value;
-                if(_serverUpdated == null)
+                if (_serverUpdated == null)
                 {
                     UnregisterServerUpdatedEvent();
                 }
@@ -119,17 +129,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_playbackUpdated == null)
+                if (_playbackUpdated == null)
                 {
                     RegisterPlaybackUpdatedEvent();
                 }
+
                 _playbackUpdated += value;
 
             }
+
             remove
             {
                 _playbackUpdated -= value;
-                if(_playbackUpdated == null)
+                if (_playbackUpdated == null)
                 {
                     UnregisterPlaybackUpdatedEvent();
                 }
@@ -143,17 +155,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_metadataUpdated == null)
+                if (_metadataUpdated == null)
                 {
                     RegisterMetadataUpdatedEvent();
                 }
+
                 _metadataUpdated += value;
 
             }
+
             remove
             {
                 _metadataUpdated -= value;
-                if(_metadataUpdated == null)
+                if (_metadataUpdated == null)
                 {
                     UnregisterMetadataUpdatedEvent();
                 }
@@ -167,17 +181,19 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_shufflemodeUpdated == null)
+                if (_shufflemodeUpdated == null)
                 {
                     RegisterShuffleModeUpdatedEvent();
                 }
+
                 _shufflemodeUpdated += value;
 
             }
+
             remove
             {
                 _shufflemodeUpdated -= value;
-                if(_shufflemodeUpdated == null)
+                if (_shufflemodeUpdated == null)
                 {
                     UnregisterShuffleModeUpdatedEvent();
                 }
@@ -191,17 +207,18 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_repeatmodeUpdated == null)
+                if (_repeatmodeUpdated == null)
                 {
                     RegisterRepeatModeUpdatedEvent();
                 }
-                _repeatmodeUpdated += value;
 
+                _repeatmodeUpdated += value;
             }
+
             remove
             {
                 _repeatmodeUpdated -= value;
-                if(_repeatmodeUpdated == null)
+                if (_repeatmodeUpdated == null)
                 {
                     UnregisterRepeatModeUpdatedEvent();
                 }
@@ -215,23 +232,25 @@ namespace Tizen.Multimedia.MediaController
         {
             add
             {
-                if(_customcommandReply == null)
+                if (_customcommandReply == null)
                 {
-                    _customcommandReplyCallback = (string serverName, int result, IntPtr bundle, IntPtr userData) =>
+                    _customcommandReplyCallback = (IntPtr serverName, int result, IntPtr bundle, IntPtr userData) =>
                     {
-                        SafeBundleHandle bundleHandle = new SafeBundleHandle(bundle, true);
-                        Applications.Bundle _bundle = new Bundle(bundleHandle);
-                        CustomCommandReplyEventArgs eventArgs = new CustomCommandReplyEventArgs(serverName, result, _bundle);
+                        SafeBundleHandle safeBundleHandle = new SafeBundleHandle(bundle, true);
+                        Bundle bundleData = new Bundle(safeBundleHandle);
+                        CustomCommandReplyEventArgs eventArgs = new CustomCommandReplyEventArgs(Marshal.PtrToStringAnsi(serverName), result, bundleData);
                         _customcommandReply?.Invoke(this, eventArgs);
                     };
                 }
+
                 _customcommandReply += value;
 
             }
+
             remove
             {
                 _customcommandReply -= value;
-                if(_customcommandReply == null)
+                if (_customcommandReply == null)
                 {
                     _customcommandReplyCallback = null;
                 }
@@ -244,13 +263,19 @@ namespace Tizen.Multimedia.MediaController
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public ServerInformation GetLatestServer()
         {
-            string _name = null;
-            MediaControllerServerState _state = MediaControllerServerState.None;
+            IntPtr name = IntPtr.Zero;
+            MediaControllerServerState state = MediaControllerServerState.None;
 
-            MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetLatestServer(_handle, out _name, out _state), "Get Latest server failed");
-
-            return new ServerInformation(_name, (MediaControllerServerState)_state);
+            try
+            {
+                MediaControllerValidator.ThrowIfError(
+                    Interop.MediaControllerClient.GetLatestServer(_handle, out name, out state), "Get Latest server failed");
+                return new ServerInformation(Marshal.PtrToStringAnsi(name), (MediaControllerServerState)state);
+            }
+            finally
+            {
+                Interop.Libc.Free(name);
+            }
         }
 
         /// <summary>
@@ -259,14 +284,27 @@ namespace Tizen.Multimedia.MediaController
         /// <returns>The playback state and playback position of the specific media controller server application:MediaControllerPlayback object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        public MediaControllerPlayback GetPlayback(String serverName)
+        public MediaControllerPlayback GetPlayback(string serverName)
         {
-            IntPtr _playbackHandle = IntPtr.Zero;
+            IntPtr playbackHandle = IntPtr.Zero;
+            MediaControllerPlayback playback = null;
 
-            MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetServerPlayback(_handle, serverName, out _playbackHandle), "Get Playback handle failed");
+            try
+            {
+                MediaControllerValidator.ThrowIfError(
+                    Interop.MediaControllerClient.GetServerPlayback(_handle, serverName, out playbackHandle), "Get Playback handle failed");
+                playback = new MediaControllerPlayback(playbackHandle);
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    MediaControllerValidator.ThrowIfError(
+                        Interop.MediaControllerClient.DestroyPlayback(playbackHandle), "Destroy playback failed");
+                }
+            }
 
-            return new MediaControllerPlayback (_playbackHandle);
+            return playback;
         }
 
         /// <summary>
@@ -275,14 +313,27 @@ namespace Tizen.Multimedia.MediaController
         /// <returns>The metadata information of the specific media controller server application:MediaControllerMetadata object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        public MediaControllerMetadata GetMetadata(String serverName)
+        public MediaControllerMetadata GetMetadata(string serverName)
         {
-            IntPtr _metadataHandle = IntPtr.Zero;
+            IntPtr metadataHandle = IntPtr.Zero;
+            MediaControllerMetadata metadata = null;
 
-            MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetServerMetadata(_handle, serverName, out _metadataHandle), "Get Metadata handle failed");
+            try
+            {
+                MediaControllerValidator.ThrowIfError(
+                    Interop.MediaControllerClient.GetServerMetadata(_handle, serverName, out metadataHandle), "Get Metadata handle failed");
+                metadata = new MediaControllerMetadata(metadataHandle);
+            }
+            finally
+            {
+                if (metadataHandle != IntPtr.Zero)
+                {
+                    MediaControllerValidator.ThrowIfError(
+                    Interop.MediaControllerClient.DestroyMetadata(metadataHandle), "Destroy metadata failed");
+                }
+            }
 
-            return new MediaControllerMetadata (_metadataHandle);
+            return metadata;
         }
 
         /// <summary>
@@ -291,14 +342,14 @@ namespace Tizen.Multimedia.MediaController
         /// <returns>The shuffle mode of the specific media controller server application:MediaControllerShuffleMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        public MediaControllerShuffleMode GetShuffleMode(String serverName)
+        public MediaControllerShuffleMode GetShuffleMode(string serverName)
         {
-            MediaControllerShuffleMode _shuffleMode = MediaControllerShuffleMode.Off;
+            MediaControllerShuffleMode shuffleMode = MediaControllerShuffleMode.Off;
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetServerShuffleMode(_handle, serverName, out _shuffleMode), "Get ShuffleMode failed");
+                Interop.MediaControllerClient.GetServerShuffleMode(_handle, serverName, out shuffleMode), "Get ShuffleMode failed");
 
-            return _shuffleMode;
+            return shuffleMode;
         }
 
         /// <summary>
@@ -307,14 +358,14 @@ namespace Tizen.Multimedia.MediaController
         /// <returns>The repeat mode of the specific media controller server application:MediaControllerRepeatMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        public MediaControllerRepeatMode GetRepeatMode(String serverName)
+        public MediaControllerRepeatMode GetRepeatMode(string serverName)
         {
-            MediaControllerRepeatMode _repeatMode = MediaControllerRepeatMode.Off;
+            MediaControllerRepeatMode repeatMode = MediaControllerRepeatMode.Off;
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerClient.GetServerRepeatMode(_handle, serverName, out _repeatMode), "Get RepeatMode failed");
+                Interop.MediaControllerClient.GetServerRepeatMode(_handle, serverName, out repeatMode), "Get RepeatMode failed");
 
-            return _repeatMode;
+            return repeatMode;
         }
 
         /// <summary>
@@ -396,9 +447,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterServerUpdatedEvent()
         {
-            _serverUpdatedCallback = (string serverName, MediaControllerServerState serverState, IntPtr userData) =>
+            _serverUpdatedCallback = (IntPtr serverName, MediaControllerServerState serverState, IntPtr userData) =>
             {
-                ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(serverName, serverState);
+                ServerUpdatedEventArgs eventArgs = new ServerUpdatedEventArgs(Marshal.PtrToStringAnsi(serverName), serverState);
                 _serverUpdated?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerClient.SetServerUpdatedCb(_handle, _serverUpdatedCallback, IntPtr.Zero);
@@ -411,9 +462,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterPlaybackUpdatedEvent()
         {
-            _playbackUpdatedCallback = (string serverName, IntPtr playback, IntPtr userData) =>
+            _playbackUpdatedCallback = (IntPtr serverName, IntPtr playback, IntPtr userData) =>
             {
-                PlaybackUpdatedEventArgs eventArgs = new PlaybackUpdatedEventArgs(serverName, playback);
+                PlaybackUpdatedEventArgs eventArgs = new PlaybackUpdatedEventArgs(Marshal.PtrToStringAnsi(serverName), playback);
                 _playbackUpdated?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerClient.SetPlaybackUpdatedCb(_handle, _playbackUpdatedCallback, IntPtr.Zero);
@@ -426,9 +477,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterMetadataUpdatedEvent()
         {
-            _metadataUpdatedCallback = (string serverName, IntPtr metadata, IntPtr userData) =>
+            _metadataUpdatedCallback = (IntPtr serverName, IntPtr metadata, IntPtr userData) =>
             {
-                MetadataUpdatedEventArgs eventArgs = new MetadataUpdatedEventArgs(serverName, metadata);
+                MetadataUpdatedEventArgs eventArgs = new MetadataUpdatedEventArgs(Marshal.PtrToStringAnsi(serverName), metadata);
                 _metadataUpdated?.Invoke(this, eventArgs);
             };
             Interop.MediaControllerClient.SetMetadataUpdatedCb(_handle, _metadataUpdatedCallback, IntPtr.Zero);
@@ -441,9 +492,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterShuffleModeUpdatedEvent()
         {
-            _shufflemodeUpdatedCallback = (string serverName, MediaControllerShuffleMode shuffleMode, IntPtr userData) =>
+            _shufflemodeUpdatedCallback = (IntPtr serverName, MediaControllerShuffleMode shuffleMode, IntPtr userData) =>
             {
-                ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(serverName, shuffleMode);
+                ShuffleModeUpdatedEventArgs eventArgs = new ShuffleModeUpdatedEventArgs(Marshal.PtrToStringAnsi(serverName), shuffleMode);
                 _shufflemodeUpdated?.Invoke(this, eventArgs);
             };
 
@@ -459,9 +510,9 @@ namespace Tizen.Multimedia.MediaController
 
         private void RegisterRepeatModeUpdatedEvent()
         {
-            _repeatmodeUpdatedCallback = (string serverName, MediaControllerRepeatMode repeatMode, IntPtr userData) =>
+            _repeatmodeUpdatedCallback = (IntPtr serverName, MediaControllerRepeatMode repeatMode, IntPtr userData) =>
             {
-                RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(serverName, repeatMode);
+                RepeatModeUpdatedEventArgs eventArgs = new RepeatModeUpdatedEventArgs(Marshal.PtrToStringAnsi(serverName), repeatMode);
                 _repeatmodeUpdated?.Invoke(this, eventArgs);
             };
 
@@ -479,9 +530,9 @@ namespace Tizen.Multimedia.MediaController
         {
             List<string> subscribedServerCollections = new List<string>();
 
-            Interop.MediaControllerClient.SubscribedServerCallback serverCallback = (string serverName, IntPtr userData) =>
+            Interop.MediaControllerClient.SubscribedServerCallback serverCallback = (IntPtr serverName, IntPtr userData) =>
             {
-                subscribedServerCollections.Add (serverName);
+                subscribedServerCollections.Add(Marshal.PtrToStringAnsi(serverName));
                 return true;
             };
 
@@ -496,9 +547,9 @@ namespace Tizen.Multimedia.MediaController
         {
             List<string> activatedServerCollections = new List<string>();
 
-            Interop.MediaControllerClient.ActivatedServerCallback serverCallback = (string serverName, IntPtr userData) =>
+            Interop.MediaControllerClient.ActivatedServerCallback serverCallback = (IntPtr serverName, IntPtr userData) =>
             {
-                activatedServerCollections.Add(serverName);
+                activatedServerCollections.Add(Marshal.PtrToStringAnsi(serverName));
                 return true;
             };
 

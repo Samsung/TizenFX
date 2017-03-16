@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.MediaController
     {
         internal ServerUpdatedEventArgs(string name, MediaControllerServerState state)
         {
-            ServerInfo = new ServerInformation (name, state);
+            ServerInfo = new ServerInformation(name, state);
         }
 
         /// <summary>

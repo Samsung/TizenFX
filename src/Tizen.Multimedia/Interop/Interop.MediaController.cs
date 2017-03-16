@@ -8,28 +8,28 @@ internal static partial class Interop
     internal static partial class MediaControllerClient
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ServerUpdatedCallback(string serverName, MediaControllerServerState serverState, IntPtr userData);
+        internal delegate void ServerUpdatedCallback(IntPtr serverName, MediaControllerServerState serverState, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaybackUpdatedCallback(string serverName, IntPtr playback, IntPtr userData);
+        internal delegate void PlaybackUpdatedCallback(IntPtr serverName, IntPtr playback, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MetadataUpdatedCallback(string serverName, IntPtr metadata, IntPtr userData);
+        internal delegate void MetadataUpdatedCallback(IntPtr serverName, IntPtr metadata, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ShuffleModeUpdatedCallback(string serverName, MediaControllerShuffleMode shuffleMode, IntPtr userData);
+        internal delegate void ShuffleModeUpdatedCallback(IntPtr serverName, MediaControllerShuffleMode shuffleMode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void RepeatModeUpdatedCallback(string serverName, MediaControllerRepeatMode repeatMode, IntPtr userData);
+        internal delegate void RepeatModeUpdatedCallback(IntPtr serverName, MediaControllerRepeatMode repeatMode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CommandReplyRecievedCallback(string serverName, int result, IntPtr bundle, IntPtr userData);
+        internal delegate void CommandReplyRecievedCallback(IntPtr serverName, int result, IntPtr bundle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool SubscribedServerCallback(string serverName, IntPtr userData);
+        internal delegate bool SubscribedServerCallback(IntPtr serverName, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool ActivatedServerCallback(string serverName, IntPtr userData);
+        internal delegate bool ActivatedServerCallback(IntPtr serverName, IntPtr userData);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
         internal static extern MediaControllerError Create(out IntPtr handle);
@@ -83,13 +83,29 @@ internal static partial class Interop
         internal static extern MediaControllerError DestroyPlayback(IntPtr playback);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_metadata")]
-        internal static extern MediaControllerError GetMetadata(IntPtr metadata, MediaControllerAttributes attribute, out string value);
+        private static extern MediaControllerError GetMetadata(IntPtr metadata, MediaControllerAttributes attribute, out IntPtr value);
+
+        internal static string GetMetadata(IntPtr handle, MediaControllerAttributes attr)
+        {
+            IntPtr valuePtr = IntPtr.Zero;
+
+            try
+            {
+                var ret = GetMetadata(handle, attr, out valuePtr);
+                MediaControllerValidator.ThrowIfError(ret, "Failed to get value for " + attr);
+                return Marshal.PtrToStringAnsi(valuePtr);
+            }
+            finally
+            {
+                Libc.Free(valuePtr);
+            }
+        }
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_destroy_metadata")]
         internal static extern MediaControllerError DestroyMetadata(IntPtr metadata);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_latest_server_info")]
-        internal static extern MediaControllerError GetLatestServer(IntPtr handle, out string serverName, out MediaControllerServerState serverState);
+        internal static extern MediaControllerError GetLatestServer(IntPtr handle, out IntPtr serverName, out MediaControllerServerState serverState);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_playback_info")]
         internal static extern MediaControllerError GetServerPlayback(IntPtr handle, string serverName, out IntPtr playback);
@@ -119,10 +135,10 @@ internal static partial class Interop
     internal static partial class MediaControllerServer
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaybackStateCommandRecievedCallback(string clientName, MediaControllerPlaybackState state, IntPtr userData);
+        internal delegate void PlaybackStateCommandRecievedCallback(IntPtr clientName, MediaControllerPlaybackState state, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CustomCommandRecievedCallback(string clientName, string command, IntPtr bundle, IntPtr userData);
+        internal delegate void CustomCommandRecievedCallback(IntPtr clientName, IntPtr command, IntPtr bundle, IntPtr userData);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
         internal static extern MediaControllerError Create(out IntPtr handle);

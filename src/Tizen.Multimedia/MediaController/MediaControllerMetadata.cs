@@ -32,74 +32,24 @@ namespace Tizen.Multimedia.MediaController
             // Do nothing
         }
 
-        internal MediaControllerMetadata(IntPtr _handle) {
-            string _title;
-            string _artist;
-            string _album;
-            string _author;
-            string _genre;
-            string _duration;
-            string _date;
-            string _copyright;
-            string _description;
-            string _track_number;
-            string _picture;
+        internal MediaControllerMetadata(IntPtr handle)
+        {
+            if (handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("MediaControllerMetadata is not valid.");
+            }
 
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Title, out _title),
-                    "Get Title failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Artist, out _artist),
-                    "Get Artist failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Album, out _album),
-                    "Get Album failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Author, out _author),
-                    "Get Author failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Genre, out _genre),
-                    "Get Genre failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Duration, out _duration),
-                    "Get Duration failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Date, out _date),
-                    "Get Date failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Copyright, out _copyright),
-                    "Get Copyright failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Description, out _description),
-                    "Get Description failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.TrackNumber, out _track_number),
-                    "Get TrackNumber failed");
-
-            MediaControllerValidator.ThrowIfError(
-                    Interop.MediaControllerClient.GetMetadata(_handle, MediaControllerAttributes.Picture, out _picture),
-                    "Get Picture failed");
-
-            Title = _title;
-            Artist = _artist;
-            Album = _album;
-            Author = _author;
-            Genre = _genre;
-            Duration = _duration;
-            Date = _date;
-            Copyright = _copyright;
-            Description = _description;
-            TrackNumber = _track_number;
-            Picture = _picture;
+            Title = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Title);
+            Artist = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Artist);
+            Album = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Album);
+            Author = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Author);
+            Genre = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Genre);
+            Duration = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Duration);
+            Date = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Date);
+            Copyright = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Copyright);
+            Description = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Description);
+            TrackNumber = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.TrackNumber);
+            Picture = Interop.MediaControllerClient.GetMetadata(handle, MediaControllerAttributes.Picture);
         }
 
         /// <summary>
