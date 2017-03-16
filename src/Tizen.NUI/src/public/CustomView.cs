@@ -17,6 +17,9 @@
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// CustomView provides some common functionality required by all views.
+    /// </summary>
     public class CustomView : ViewWrapper
     {
         public CustomView(string typeName, CustomViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
@@ -70,11 +73,10 @@ namespace Tizen.NUI
             SetStyleName(this.GetType().Name);
         }
 
-        /**
-         * @brief Set the background with a property map.
-         *
-         * @param[in] map The background property map.
-         */
+        /// <summary>
+        /// Set the background with a property map.
+        /// </summary>
+        /// <param name="map">The background property map</param>
         public void SetBackground(Tizen.NUI.PropertyMap map)
         {
             viewWrapperImpl.SetBackground(map);
@@ -106,15 +108,12 @@ namespace Tizen.NUI
             viewWrapperImpl.DisableGestureDetection(type);
         }
 
-        /**
-         * @brief Sets whether this control supports two dimensional
-         * keyboard navigation (i.e. whether it knows how to handle the
-         * keyboard focus movement between its child actors).
-         *
-         * The control doesn't support it by default.
-         * @param[in] isSupported Whether this control supports two dimensional keyboard navigation.
-         */
-
+        /// <summary>
+        /// Sets whether this control supports two dimensional keyboard navigation
+        /// (i.e. whether it knows how to handle the keyboard focus movement between its child actors).
+        /// The control doesn't support it by default.
+        /// </summary>
+        /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
         public bool FocusNavigationSupport
         {
             get
@@ -144,6 +143,10 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Sets or Gets whether this control is a focus group for keyboard navigation.
+        /// </summary>
+        /// <returns>true if this control is set as a focus group for keyboard navigation</returns>
         public bool FocusGroup
         {
             get
@@ -187,20 +190,19 @@ namespace Tizen.NUI
             viewWrapperImpl.AccessibilityActivate();
         }
 
-        /**
-         * @brief Called by the KeyboardFocusManager.
-         */
+        /// <summary>
+        /// Called by the KeyboardFocusManager.
+        /// </summary>
         public void KeyboardEnter()
         {
             viewWrapperImpl.KeyboardEnter();
         }
 
-        /**
-         * @brief Called by the KeyInputFocusManager to emit key event signals.
-         *
-         * @param[in] key The key event.
-         * @return True if the event was consumed.
-         */
+        /// <summary>
+        /// Called by the KeyInputFocusManager to emit key event signals.
+        /// </summary>
+        /// <param name="key">The key event</param>
+        /// <returns>True if the event was consumed</returns>
         public bool EmitKeyEventSignal(Key key)
         {
             return viewWrapperImpl.EmitKeyEventSignal(key);

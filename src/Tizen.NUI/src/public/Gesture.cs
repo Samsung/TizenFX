@@ -11,6 +11,11 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Base structure for different gestures that an application can receive.
+    /// A gesture is an event that is produced from a combination of several touch events
+    /// in a particular order or within a certain time frame (e.g pinch).
+    /// </summary>
     public class Gesture : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -56,6 +61,9 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// The gesture type.
+        /// </summary>
         public Gesture.GestureType Type
         {
             get
@@ -64,6 +72,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The gesture state.
+        /// </summary>
         public Gesture.StateType State
         {
             get
@@ -72,6 +83,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The time the gesture took place.
+        /// </summary>
         public uint Time
         {
             get
@@ -80,11 +94,20 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
         public Gesture(Gesture rhs) : this(NDalicPINVOKE.new_Gesture(Gesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         public Gesture Assign(Gesture rhs)
         {
             Gesture ret = new Gesture(NDalicPINVOKE.Gesture_Assign(swigCPtr, Gesture.getCPtr(rhs)), false);
@@ -137,6 +160,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Enumeration for type of gesture
+        /// </summary>
         public enum GestureType
         {
             Pinch = 1 << 0,
@@ -145,6 +171,9 @@ namespace Tizen.NUI
             LongPress = 1 << 3
         }
 
+        /// <summary>
+        /// Enumeration for state of the gesture.
+        /// </summary>
         public enum StateType
         {
             Clear,

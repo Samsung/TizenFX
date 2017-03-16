@@ -11,6 +11,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// The key structure is used to store a key press.
+    /// </summary> 
     public class Key : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,6 +66,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Name given to the key pressed
+        /// </summary> 
         public string KeyPressedName
         {
             get
@@ -81,6 +87,9 @@ namespace Tizen.NUI
         }
         */
 
+        /// <summary>
+        /// Keycode for the key pressed.
+        /// </summary> 
         public int KeyCode
         {
             get
@@ -89,6 +98,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Special keys like shift, alt and control which modify the next key pressed.
+        /// </summary> 
         public int KeyModifier
         {
             get
@@ -97,6 +109,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The time (in ms) that the key event occurred.
+        /// </summary> 
         public uint Time
         {
             get
@@ -105,6 +120,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// State of the key event.
+        /// </summary> 
         public Key.StateType State
         {
             get
@@ -113,16 +131,32 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Default Constructor.
+        /// </summary> 
         public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="keyName">The name of the key pressed or command from the IMF, if later then the some following parameters will be needed</param>
+        /// <param name="keyString">A string of input characters or key pressed</param>
+        /// <param name="keyCode">The unique key code for the key pressed</param>
+        /// <param name="keyModifier">The key modifier for special keys like shift and alt</param>
+        /// <param name="timeStamp">The time (in ms) that the key event occurred</param>
+        /// <param name="keyState">The state of the key event</param>
         public Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Checks to see if Shift key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if shift modifier</returns>
         public bool IsShiftModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsShiftModifier(swigCPtr);
@@ -130,6 +164,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Checks to see if Ctrl (control) key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if ctrl modifier</returns>
         public bool IsCtrlModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsCtrlModifier(swigCPtr);
@@ -137,6 +175,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Checks to see if Alt key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if alt modifier</returns>
         public bool IsAltModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsAltModifier(swigCPtr);
@@ -234,6 +276,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Enumeration for specifying the state of the key event.
+        /// </summary>
         public enum StateType
         {
             Down,

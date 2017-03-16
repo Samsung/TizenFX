@@ -11,6 +11,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// An angle in degrees.
+    /// This reduces ambiguity when using methods which accept angles in degrees or radians.
+    /// </summary>
     public class Degree : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -56,16 +60,27 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Degree() : this(NDalicPINVOKE.new_Degree__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an angle in degrees.
+        /// </summary>
+        /// <param name="value">The initial value in degrees</param>
         public Degree(float value) : this(NDalicPINVOKE.new_Degree__SWIG_1(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an angle in degrees from a Radian.
+        /// </summary>
+        /// <param name="value">The initial value in Radians</param>
         public Degree(Radian value) : this(NDalicPINVOKE.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
