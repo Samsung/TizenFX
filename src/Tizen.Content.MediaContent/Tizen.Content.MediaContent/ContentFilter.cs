@@ -101,11 +101,21 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _filterHandle = IntPtr.Zero;
         private bool _disposedValue = false;
+        private ContentCollation _conditionCollate = ContentCollation.Default;
+        private ContentCollation _orderCollate = ContentCollation.Default;
+        private ContentOrder _orderType = ContentOrder.Asc;
+        private string _orderKeyword = null;
+        private string _conditionMsg = null;
 
         internal IntPtr Handle
         {
             get
             {
+                if (_filterHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(ContentFilter));
+                }
+
                 return _filterHandle;
             }
         }
@@ -120,7 +130,7 @@ namespace Tizen.Content.MediaContent
                 int offset;
                 int count;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Filter.GetOffset(_filterHandle, out offset, out count), "Failed to get offset");
+                    Interop.Filter.GetOffset(Handle, out offset, out count), "Failed to get offset");
 
                 return offset;
             }
@@ -128,7 +138,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Filter.SetOffset(_filterHandle, value, this.Count), "Failed to set offset");
+                    Interop.Filter.SetOffset(Handle, value, this.Count), "Failed to set offset");
             }
         }
 
@@ -148,7 +158,7 @@ namespace Tizen.Content.MediaContent
                 int offset;
                 int count;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Filter.GetOffset(_filterHandle, out offset, out count), "Failed to get count");
+                    Interop.Filter.GetOffset(Handle, out offset, out count), "Failed to get count");
 
                 return count;
             }
@@ -156,7 +166,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Filter.SetOffset(_filterHandle, this.Offset, value), "Failed to set count");
+                    Interop.Filter.SetOffset(Handle, this.Offset, value), "Failed to set count");
             }
         }
 
@@ -167,107 +177,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                ContentOrder order;
-                IntPtr val = IntPtr.Zero;
-                ContentCollation collate;
-                try
-                {
-                    MediaContentValidator.ThrowIfError(
-                        Interop.Filter.GetOrder(_filterHandle, out order, out val, out collate), "Failed to get order");
-
-                    return order;
-                }
-                finally
-                {
-                    Interop.Libc.Free(val);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The collate type for comparing two strings
-        /// </summary>
-        public ContentCollation CollationType
-        {
-            get
-            {
-                IntPtr val = IntPtr.Zero;
-                ContentCollation type;
-                try
-                {
-                    MediaContentValidator.ThrowIfError(
-                        Interop.Filter.GetCondition(_filterHandle, out val, out type), "Failed to get collation");
-
-                    return type;
-                }
-                finally
-                {
-                    Interop.Libc.Free(val);
-                }
+                return _orderType;
             }
 
             set
             {
-                MediaContentValidator.ThrowIfError(
-                    Interop.Filter.SetCondition(_filterHandle, this.Condition, value), "Failed to set collation");
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the condition for the given filter.
-        /// </summary>
-        public string Condition
-        {
-            get
-            {
-                IntPtr val = IntPtr.Zero;
-                ContentCollation type;
-                try
+                if (_orderKeyword != null)
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Filter.GetCondition(_filterHandle, out val, out type), "Failed to get condition");
-
-                    return Marshal.PtrToStringAnsi(val);
+                        Interop.Filter.SetOrder(Handle, value, _orderKeyword, _orderCollate), "Failed to set order");
                 }
-                finally
-                {
-                    Interop.Libc.Free(val);
-                }
-            }
 
-            set
-            {
-                MediaContentValidator.ThrowIfError(
-                    Interop.Filter.SetCondition(_filterHandle, value, this.CollationType), "Failed to set condition");
-            }
-        }
-
-        /// <summary>
-        /// Sets the storage id for the given filter.
-        /// You can use this property when you want to search items only in the specific storage
-        /// </summary>
-        public string StorageId
-        {
-            get
-            {
-                IntPtr val = IntPtr.Zero;
-                try
-                {
-                    MediaContentValidator.ThrowIfError(
-                        Interop.Filter.GetStorage(_filterHandle, out val), "Failed to get condition");
-
-                    return Marshal.PtrToStringAnsi(val);
-                }
-                finally
-                {
-                    Interop.Libc.Free(val);
-                }
-            }
-
-            set
-            {
-                MediaContentValidator.ThrowIfError(
-                    Interop.Filter.SetStorage(_filterHandle, value), "Failed to set condition");
+                _orderType = value;
             }
         }
 
@@ -284,7 +205,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Filter.GetOrder(_filterHandle, out order, out val, out type), "Failed to GetOrder for OrderKey");
+                        Interop.Filter.GetOrder(Handle, out order, out val, out type), "Failed to GetOrder for OrderKey");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -293,24 +214,124 @@ namespace Tizen.Content.MediaContent
                     Interop.Libc.Free(val);
                 }
             }
+
+            set
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Filter.SetOrder(Handle, _orderType, value, _orderCollate), "Failed to set OrderKey");
+
+                _orderKeyword = value;
+            }
+        }
+
+        /// <summary>
+        /// The collate type for comparing two strings
+        /// </summary>
+        public ContentCollation OrderCollationType
+        {
+            get
+            {
+                return _orderCollate;
+            }
+
+            set
+            {
+                if (_orderKeyword != null)
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Filter.SetOrder(Handle, _orderType, _orderKeyword, value), "Failed to set collation");
+                }
+
+                _orderCollate = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the condition for the given filter.
+        /// </summary>
+        public string Condition
+        {
+            get
+            {
+                IntPtr val = IntPtr.Zero;
+                ContentCollation type;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Filter.GetCondition(Handle, out val, out type), "Failed to get condition");
+
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
+            }
+
+            set
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Filter.SetCondition(Handle, value, _conditionCollate), "Failed to set condition");
+
+                _conditionMsg = value;
+            }
+        }
+
+        /// <summary>
+        /// The collate type for comparing two strings
+        /// </summary>
+        public ContentCollation ConditionCollationType
+        {
+            get
+            {
+                return _conditionCollate;
+            }
+
+            set
+            {
+                if (_conditionMsg != null)
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Filter.SetCondition(Handle, _conditionMsg, value), "Failed to set collation");
+                }
+
+                _conditionCollate = value;
+            }
+        }
+
+        /// <summary>
+        /// Sets the storage id for the given filter.
+        /// You can use this property when you want to search items only in the specific storage
+        /// </summary>
+        public string StorageId
+        {
+            get
+            {
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.Filter.GetStorage(Handle, out val), "Failed to get condition");
+
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
+            }
+
+            set
+            {
+                MediaContentValidator.ThrowIfError(
+                    Interop.Filter.SetStorage(Handle, value), "Failed to set condition");
+            }
         }
 
         /// <summary>
         /// The type of the media group
         /// </summary>
         public MediaGroupType GroupType { get; set; }
-
-        /// <summary>
-        /// SetOrderProperties like OrderType and OrderKey.
-        /// </summary>
-        /// <param name="order">ordering type</param>
-        /// <param name="oderKey">Keywords to sort</param>
-        public void SetOrderProperties(ContentOrder order, string oderKey)
-        {
-            MediaContentValidator.ThrowIfError(
-                Interop.Filter.SetOrder(_filterHandle, order, oderKey, CollationType), "Failed to set order");
-        }
-
 
         /// <summary>
         /// Dispose API for closing the internal resources.
