@@ -27,6 +27,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A set of key frames for a property that can be animated using Dali Animation.
+    /// This allows the generation of key frame objects from individual Property::Values.
+    /// </summary>
     public class KeyFrames : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -72,24 +76,44 @@ namespace Tizen.NUI
 
 
 
+        /// <summary>
+        /// Adds a key frame.
+        /// </summary>
+        /// <param name="progress">A progress value between 0.0 and 1.0</param>
+        /// <param name="value">A value</param>
         public void Add(float progress, object value)
         {
             dynamic obj = value;
             Add(progress, new PropertyValue(obj));
         }
 
+        /// <summary>
+        /// Adds a key frame.
+        /// </summary>
+        /// <param name="progress">A progress value between 0.0 and 1.0</param>
+        /// <param name="value">A value</param>
+        /// <param name="alpha">The alpha function used to blend to the next keyframe</param>
         public void Add(float progress, object value, AlphaFunction alpha)
         {
             dynamic obj = value;
             Add(progress, new PropertyValue(obj), alpha);
         }
 
-
+        /// <summary>
+        /// Creates an initialized KeyFrames handle.
+        /// </summary>
         public KeyFrames() : this(NDalicPINVOKE.KeyFrames_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+        /// <summary>
+        /// Downcasts a handle to KeyFrames handle.
+        /// If handle points to a KeyFrames object, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a KeyFrames object or an uninitialized handle</returns>
         public static KeyFrames DownCast(BaseHandle handle)
         {
             KeyFrames ret = new KeyFrames(NDalicPINVOKE.KeyFrames_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -109,6 +133,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the type of the key frame.
+        /// </summary>
+        /// <returns>The key frame property type</returns>
         public PropertyType GetType()
         {
             PropertyType ret = (PropertyType)NDalicPINVOKE.KeyFrames_GetType(swigCPtr);
@@ -116,12 +144,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Adds a key frame.
+        /// </summary>
+        /// <param name="progress">A progress value between 0.0 and 1.0</param>
+        /// <param name="value">A value</param>
         public void Add(float progress, PropertyValue value)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_0(swigCPtr, progress, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Adds a key frame.
+        /// </summary>
+        /// <param name="progress">A progress value between 0.0 and 1.0</param>
+        /// <param name="value">A value</param>
+        /// <param name="alpha">The alpha function used to blend to the next keyframe</param>
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_1(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));

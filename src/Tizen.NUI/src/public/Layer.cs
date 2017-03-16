@@ -27,6 +27,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Layers provide a mechanism for overlaying groups of actors on top of each other.
+    /// </summary>
     public class Layer : Actor
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -120,11 +123,21 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates a Layer object.
+        /// </summary>
         public Layer() : this(NDalicPINVOKE.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+        /// <summary>
+        /// Downcasts a handle to Layer handle.
+        /// If handle points to a Layer, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a Layer or an uninitialized handle</returns>
         public new static Layer DownCast(BaseHandle handle)
         {
             Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -144,6 +157,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries the depth of the layer.
+        /// 0 is the bottom most layer, higher number is on top.
+        /// </summary>
         public uint Depth
         {
             get
@@ -159,12 +176,18 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Increments the depth of the layer.
+        /// </summary>
         public void Raise()
         {
             NDalicPINVOKE.Layer_Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Decrements the depth of the layer.
+        /// </summary>
         public void Lower()
         {
             NDalicPINVOKE.Layer_Lower(swigCPtr);
@@ -183,24 +206,40 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Raises the layer to the top.
+        /// </summary>
         public void RaiseToTop()
         {
             NDalicPINVOKE.Layer_RaiseToTop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Lowers the layer to the bottom.
+        /// </summary>
         public void LowerToBottom()
         {
             NDalicPINVOKE.Layer_LowerToBottom(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Moves the layer directly above the given layer.
+        /// After the call, this layers depth will be immediately above target.
+        /// </summary>
+        /// <param name="target">Layer to get on top of</param>
         public void MoveAbove(Layer target)
         {
             NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Moves the layer directly below the given layer
+        /// After the call, this layers depth will be immediately below target.
+        /// </summary>
+        /// <param name="target">Layer to get below of</param>
         public void MoveBelow(Layer target)
         {
             NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
@@ -239,12 +278,22 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the clipping box of a layer, in window coordinates.
+        /// The contents of the layer will not be visible outside this box, when clipping is
+        /// enabled. The default clipping box is empty (0,0,0,0) which means everything is clipped.
+        /// </summary>
+        /// <param name="box">The clipping box</param>
         public void SetClippingBox(Rectangle box)
         {
             NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, Rectangle.getCPtr(box));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves the clipping box of a layer in window coordinates.
+        /// </summary>
+        /// <returns>The clipping box</returns>
         public Rectangle GetClippingBox()
         {
             Rectangle ret = new Rectangle(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
@@ -297,6 +346,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for the behavior of the layer.
+        /// </summary>
         public enum LayerBehavior
         {
             Layer2D,
@@ -309,6 +361,9 @@ namespace Tizen.NUI
             TREE_DEPTH_MULTIPLIER = 10000
         }
 
+        /// <summary>
+        /// Layer ClippingEnable, type bool
+        /// </summary>
         public bool ClippingEnable
         {
             get
@@ -322,6 +377,9 @@ namespace Tizen.NUI
                 SetProperty(Layer.Property.CLIPPING_ENABLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Layer ClippingBox, type Rectangle
+        /// </summary>
         public Rectangle ClippingBox
         {
             get
@@ -335,6 +393,9 @@ namespace Tizen.NUI
                 SetProperty(Layer.Property.CLIPPING_BOX, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Layer Behavior, type String(Layer.LayerBehavior)
+        /// </summary>
         public Layer.LayerBehavior Behavior
         {
             get

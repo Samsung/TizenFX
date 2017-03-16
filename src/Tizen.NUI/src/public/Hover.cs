@@ -11,6 +11,11 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Hover events are a collection of points at a specific moment in time.
+    /// When a multi event occurs, each point represents the points that are currently being
+    /// hovered or the points where a hover has stopped.
+    /// </summary>
     public class Hover : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,6 +68,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The time (in ms) that the hover event occurred.
+        /// </summary>
         public uint Time
         {
             get
@@ -71,6 +79,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Returns the ID of the device used for the Point specified.
+        /// Each point has a unique device ID which specifies the device used for that
+        /// point. This is returned by this method.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The Device ID of this poin</returns>
         public int GetDeviceId(uint point)
         {
             if (point < points.Count)
@@ -80,6 +95,11 @@ namespace Tizen.NUI
             return -1;
         }
 
+        /// <summary>
+        /// Retrieves the State of the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The state of the point specified</returns>
         public PointStateType GetState(uint point)
         {
             if (point < points.Count)
@@ -89,6 +109,11 @@ namespace Tizen.NUI
             return PointStateType.Finished;
         }
 
+        /// <summary>
+        /// Retrieves the actor that was underneath the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The actor that was underneath the point specified</returns>
         public Actor GetHitActor(uint point)
         {
             if (point < points.Count)
@@ -104,6 +129,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the hit-actor at the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the hit-actor of the point specified</returns>
         public Vector2 GetLocalPosition(uint point)
         {
             if (point < points.Count)
@@ -113,6 +143,11 @@ namespace Tizen.NUI
             return new Vector2(0.0f, 0.0f);
         }
 
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the screen of the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the screen of the point specified</returns>
         public Vector2 GetScreenPosition(uint point)
         {
             if (point < points.Count)
@@ -122,11 +157,18 @@ namespace Tizen.NUI
             return new Vector2(0.0f, 0.0f);
         }
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public Hover() : this(NDalicPINVOKE.new_Hover__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="time">The time the event occurred</param>
         public Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -163,6 +205,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Returns the total number of points.
+        /// </summary>
+        /// <returns>Total number of Points</returns>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Hover_GetPointCount(swigCPtr);

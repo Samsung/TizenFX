@@ -123,6 +123,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Enumeration for the instance of child properties belonging to the FlexContainer class.
+        /// </summary>
         public class ChildProperty : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -172,6 +175,10 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates a FlexContainer handle.
+        /// Calling member functions with an uninitialized handle is not allowed.
+        /// </summary>
         public FlexContainer() : this(NDalicPINVOKE.FlexContainer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -208,6 +215,10 @@ namespace Tizen.NUI
             RowReverse
         }
 
+        /// <summary>
+        /// Enumeration for the primary direction in which content is ordered in the flex container
+        /// and on which sides the ?œstart??and ?œend??are.
+        /// </summary>
         public enum ContentDirectionType
         {
             Inherit,

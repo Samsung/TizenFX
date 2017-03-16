@@ -11,6 +11,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A LongPressGesture is emitted when the user holds the screen with the stated number of fingers.
+    /// Long press gesture finishes when all touches have been released.
+    /// </summary>
     public class LongPressGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -62,6 +66,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The number of touch points in this long press gesture, i.e. the number of fingers the user had
+        /// on the screen to generate the long press gesture.
+        /// </summary>
         public uint NumberOfTouches
         {
             get
@@ -70,6 +78,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is the point, in screen coordinates, where the long press occurred.
+        /// If a multi-touch long press, then this is the centroid of all the touch points.
+        /// </summary>
         public Vector2 ScreenPoint
         {
             get
@@ -78,6 +90,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is the point, in local actor coordinates, where the long press occurred.
+        /// If a multi-touch long press, then this is the centroid of all the touch points.
+        /// </summary>
         public Vector2 LocalPoint
         {
             get
@@ -86,16 +102,29 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="state">The state of the gesture</param>
         public LongPressGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
         public LongPressGesture(LongPressGesture rhs) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_1(LongPressGesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         public LongPressGesture Assign(LongPressGesture rhs)
         {
             LongPressGesture ret = new LongPressGesture(NDalicPINVOKE.LongPressGesture_Assign(swigCPtr, LongPressGesture.getCPtr(rhs)), false);
