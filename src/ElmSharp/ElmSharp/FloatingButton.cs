@@ -91,20 +91,20 @@ namespace ElmSharp
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);
         }
+    }
 
-        public enum FloatingButtonMode
-        {
-            All,
-            LeftRightOnly,
-        }
+    public enum FloatingButtonMode
+    {
+        All,
+        LeftRightOnly,
+    }
 
-        public enum FloatingButtonPosition
-        {
-            LeftOut,
-            Left,
-            Center,
-            Right,
-            RightOut,
-        }
+    public enum FloatingButtonPosition
+    {
+        LeftOut,
+        Left,
+        Center,
+        Right,
+        RightOut,
     }
 }

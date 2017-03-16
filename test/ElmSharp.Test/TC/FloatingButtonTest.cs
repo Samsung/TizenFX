@@ -53,7 +53,7 @@ namespace ElmSharp.Test
 
             FloatingButton floatingButton = new FloatingButton(window)
             {
-                Mode = FloatingButton.FloatingButtonMode.All,
+                Mode = FloatingButtonMode.All,
                 AlignmentY = -1,
                 AlignmentX = -1,
                 WeightX = 1,
@@ -74,14 +74,14 @@ namespace ElmSharp.Test
 
             Button button1 = CreateButton(window, "Mode change to LeftRightOnly");
             button1.Clicked += (s, e) => {
-                if (floatingButton.Mode == FloatingButton.FloatingButtonMode.All)
+                if (floatingButton.Mode == FloatingButtonMode.All)
                 {
-                    floatingButton.Mode = FloatingButton.FloatingButtonMode.LeftRightOnly;
+                    floatingButton.Mode = FloatingButtonMode.LeftRightOnly;
                     button1.Text = "Mode change to All";
                 }
                 else
                 {
-                    floatingButton.Mode = FloatingButton.FloatingButtonMode.All;
+                    floatingButton.Mode = FloatingButtonMode.All;
                     button1.Text = "Mode change to LeftRightOnly";
                 }
             };
