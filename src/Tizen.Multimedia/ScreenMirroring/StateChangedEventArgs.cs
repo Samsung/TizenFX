@@ -19,10 +19,10 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// StateChanged event arguments
+    /// Get value of changed state. It provides getting state values which are returned when state is changed.
     /// </summary>
     /// <remarks>
-    /// StateChanged event arguments
+    /// Return error and state code.
     /// </remarks>
     public class StateChangedEventArgs : EventArgs
     {
@@ -41,9 +41,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get the error.
+        /// Get the error code of screen mirroring.
         /// </summary>
-        /// <value> error code </value>
+        /// <value> Get the error code which is one of enums in 'ScreenMirroringErrorCode' when screen mirroring error is occurred.</value>
         public ScreenMirroringErrorCode Error
         {
             get
@@ -53,9 +53,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get the current state.
+        /// Get the current state of screen mirroring.
         /// </summary>
-        /// <value> current state </value>
+        /// <value> Get state code which is one of enums in 'ScreenMirroringSinkState' when screen mirroring state is changed. </value>
         public ScreenMirroringSinkState State
         {
             get

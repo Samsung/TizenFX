@@ -21,11 +21,11 @@ using System.Runtime.InteropServices;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Video Information
+    /// Video Information class provides video information which is negotiated with source device for screen mirroring. e.g codec
     /// </summary>
     /// <remarks>
-    /// This class provides properties and API that are required for setting
-    /// video information of a player.
+    /// This class provides properties and API that are required for setting video information.
+    /// For getting property using this api, we should call it after connectAsync() api.
     /// </remarks>
     public class VideoInformation
     {
@@ -40,9 +40,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get video Codec.
+        /// Get video codec.
         /// </summary>
-        /// <value> Video Codec </value>
+        /// <value> Get video codec which is one of enums in 'VideoCodec' which is negotiaged with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public VideoCodec Codec
         {
@@ -63,7 +63,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get height of video resolution.
         /// </summary>
-        /// <value> Video Resolution Height </value>
+        /// <value> Get height property of video resolution which is negotiated with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Height
         {
@@ -82,9 +82,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get width of video resolution.
+        /// Get width of video.
         /// </summary>
-        /// <value> Video Resolution Width </value>
+        /// <value> Get width property of video resolution which is negotiated with source device. </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int Width
         {
@@ -103,9 +103,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get width of video frame rate.
+        /// Get video frame rate.
         /// </summary>
-        /// <value> Video FrameRate </value>
+        /// <value> Get video frame rate property which is negotiated with source device.  </value>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to an internal error</exception>
         public int FrameRate
         {

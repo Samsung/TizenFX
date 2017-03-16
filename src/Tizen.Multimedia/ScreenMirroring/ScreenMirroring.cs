@@ -24,7 +24,10 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Screen mirroring.
+    /// ScreenMirroring class provides methods to function as screen mirroring application as sink.
+    /// It gives the ability to connect to and disconnect from a screen mirroring source, and
+    /// start, pause, and resume the screen mirroring sink, set the resolution or display,
+    /// register state change callback function.
     /// </summary>
     public class ScreenMirroring : IDisposable
     {
@@ -43,7 +46,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the ScreenMirroring class with parameters Ip, Port, Surface type and Display handle.
         /// Object should be created only when Ip and Port are available.
-        /// Create api will create a new handle with the given parameters.
+        /// Create(i.e constructor) api will create a new handle with the given parameters.
         /// </summary>
         /// <param name="type">Type.</param>
         /// <param name="display">Display.</param>
