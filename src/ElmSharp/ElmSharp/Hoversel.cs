@@ -31,11 +31,17 @@ namespace ElmSharp
 
     public class Hoversel : Layout
     {
+        SmartEvent _dismissed;
         SmartEvent<HoverselItemEventArgs> _selected;
         Interop.Evas.SmartCallback _onItemSelected;
 
         public Hoversel(EvasObject parent) : base(parent)
         {
+            _dismissed = new SmartEvent(this, "dismissed");
+            _dismissed.On += (sender, e) =>
+            {
+                Dismissed?.Invoke(this, EventArgs.Empty);
+            };
             _selected = new SmartEvent<HoverselItemEventArgs>(this, RealHandle, "selected", HoverselItemEventArgs.CreateFromSmartEvent);
             _selected.On += (s, e) =>
             {
@@ -47,6 +53,8 @@ namespace ElmSharp
                 item?.SendItemSelected();
             };
         }
+
+        public event EventHandler Dismissed;
 
         public event EventHandler<HoverselItemEventArgs> ItemSelected;
 

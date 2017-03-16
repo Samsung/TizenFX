@@ -48,6 +48,10 @@ namespace ElmSharp.Test
             {
                 Console.WriteLine("ItemSelected : " + e.Item.Label);
             };
+            hoversel.Dismissed += (s, e) =>
+            {
+                Console.WriteLine("Hoversel is dismissed");
+            };
 
             HoverselItem item1 = hoversel.AddItem("item1");
             HoverselItem item2 = hoversel.AddItem("item2");
