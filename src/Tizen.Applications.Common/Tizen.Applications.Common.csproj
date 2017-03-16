@@ -60,6 +60,8 @@
     <Compile Include="Tizen.Applications\ApplicationDisabledEventArgs.cs" />
     <Compile Include="Tizen.Applications\ApplicationEventState.cs" />
     <Compile Include="Tizen.Applications\ApplicationRunningContext.cs" />
+    <Compile Include="Tizen.Applications\RecentApplicationControl.cs" />
+    <Compile Include="Tizen.Applications\RecentApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
     <Compile Include="Tizen.Applications\ApplicationManager.cs" />
     <Compile Include="Tizen.Applications\ApplicationInfoFilter.cs" />

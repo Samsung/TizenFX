@@ -29,6 +29,7 @@ internal static partial class Interop
         public const string Bundle = "libbundle.so.0";
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
+        public const string Rua =  "librua.so.0";
         public const string Notification = "libnotification.so.0";
         public const string Preference = "libcapi-appfw-preference.so.0";
         public const string Alarm = "libcapi-appfw-alarm.so.0";

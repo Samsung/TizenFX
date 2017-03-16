@@ -305,5 +305,43 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_foreach")]
         internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct RuaRec
+        {
+            internal int id;
+            internal IntPtr pkgName;
+            internal IntPtr appPath;
+            internal IntPtr arg;
+            internal long launchTime;
+            internal IntPtr instanceId;
+            internal IntPtr instanceName;
+            internal IntPtr icon;
+            internal IntPtr uri;
+        };
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]
+        internal static extern ErrorCode RuaHistoryGetRecord(out RuaRec record, IntPtr table, int nRows, int nCols, int row);
+        //int rua_history_get_rec(struct rua_rec *rec, char** table, int nrows, int ncols, int row);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_history_load_db")]
+        internal static extern ErrorCode RuaHistoryLoadDb(out IntPtr table, out int nRows, out int nCols);
+        //int rua_history_load_db(char*** table, int *nrows, int *ncols);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_history_unload_db")]
+        internal static extern ErrorCode RuaHistoryUnLoadDb(ref IntPtr table);
+        //int rua_history_unload_db(char*** table);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_pkgname")]
+        internal static extern ErrorCode RuaDeleteHistoryWithPkgname(string pkgName);
+        //int rua_delete_history_with_pkgname(char* pkg_name);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_apppath")]
+        internal static extern ErrorCode RuaDeleteHistoryWithApppath(string appPath);
+        //int rua_delete_history_with_apppath(char* app_path);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_clear_history")]
+        internal static extern ErrorCode RuaClearHistory();
+        //int rua_clear_history(void);
     }
 }

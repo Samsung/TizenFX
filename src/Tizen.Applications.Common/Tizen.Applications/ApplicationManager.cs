@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Applications
@@ -398,6 +399,48 @@ namespace Tizen.Applications
                 Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
                 _eventHandle = IntPtr.Zero;
             }
+        }
+
+        /// <summary>
+        /// Gets the information of the recent applications.
+        /// </summary>
+        /// <returns>Returns a dictionary containing all recent application info.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        public static IEnumerable<RecentApplicationInfo> GetRecentApplications()
+        {
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+
+            List<RecentApplicationInfo> result = new List<RecentApplicationInfo>();
+            IntPtr table;
+            int nrows, ncols;
+
+            err = Interop.ApplicationManager.RuaHistoryLoadDb(out table, out nrows, out ncols);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to load a table for the recent application list.");
+            }
+
+            for (int row = 0; row < nrows; ++row)
+            {
+                Interop.ApplicationManager.RuaRec record;
+
+                err = Interop.ApplicationManager.RuaHistoryGetRecord(out record, table, nrows, ncols, row);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to get record.");
+                }
+
+                RecentApplicationInfo info = new RecentApplicationInfo(record);
+                result.Add(info);
+            }
+
+            err = Interop.ApplicationManager.RuaHistoryUnLoadDb(ref table);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to unload a table for the recent application list.");
+            }
+
+            return result;
         }
     }
 
