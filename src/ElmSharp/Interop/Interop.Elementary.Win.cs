@@ -136,5 +136,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_screen_dpi_get(IntPtr obj, out int xdpi, out int ydpi);
+
+        [DllImport(Libraries.Eext)]
+        internal static extern bool eext_win_keygrab_set(IntPtr obj, string key);
+
+        [DllImport(Libraries.Eext)]
+        internal static extern bool eext_win_keygrab_unset(IntPtr obj, string key);
+
     }
 }

@@ -53,6 +53,8 @@
     <Compile Include="ElmSharp\Color.cs" />
     <Compile Include="ElmSharp\ColorChangedEventArgs.cs" />
     <Compile Include="ElmSharp\ColorSelector.cs" />
+    <Compile Include="ElmSharp\EcoreEvent.cs" />
+    <Compile Include="ElmSharp\EcoreKeyEventArgs.cs" />
     <Compile Include="ElmSharp\HoverselItem.cs" />
     <Compile Include="ElmSharp\Conformant.cs" />
     <Compile Include="ElmSharp\Container.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Interop\Interop.Evas.cs" />
     <Compile Include="Interop\Interop.Evas.Image.cs" />
     <Compile Include="Interop\Interop.Libc.cs" />
+    <Compile Include="Interop\Interop.Libdl.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
