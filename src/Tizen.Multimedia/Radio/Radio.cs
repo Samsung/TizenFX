@@ -104,7 +104,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Indicates if radio is muted
+        /// Indicates if radio is muted. By default radio is not muted.
         /// </summary>
         public bool IsMuted
         {
@@ -133,7 +133,8 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Current radio volume level, in [0.0 ~ 1.0](1.0 = 100%) range
+        /// Current radio volume level, in [0.0 ~ 1.0](1.0 = 100%) range.
+        /// Default value for volume is 1.0.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">This is thrown if value passed to setter in not in valid range</exception>
         public float Volume
@@ -309,30 +310,14 @@ namespace Tizen.Multimedia
             }
         }
 
-        #region IDisposable Support
         private bool _disposedValue = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposedValue)
-            {
-                _handle.Dispose();
-                _disposedValue = true;
-            }
-        }
-
-        ~Radio()
-        {
-            Dispose(false);
-        }
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _handle.ScanCompleteCb = null;
+            _handle.InteruptedCb = null;
+            _handle.Dispose();
+            _disposedValue = true;
         }
-        #endregion
-
-
     }
 }

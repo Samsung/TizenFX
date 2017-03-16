@@ -147,8 +147,6 @@ namespace Tizen.Multimedia
 
             internal override ErrorCode DisposeNativeHandle()
             {
-                ScanCompleteCb = null;
-                InteruptedCb = null;
                 return Destroy(handle);
             }
 
