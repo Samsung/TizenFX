@@ -18,13 +18,24 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Background is a widget that use for setting (solid) background decorations to a window (unless it has transparency enabled)
+    /// or to any container object.
+    /// </summary>
     public class Background : Layout
     {
+        /// <summary>
+        /// Creates and initializes a new instance of the Background class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Background will be attached as a child.</param>
         public Background(EvasObject parent) : base(parent)
         {
             Style = "transparent";
         }
 
+        /// <summary>
+        /// Sets or gets color to Background.
+        /// </summary>
         public override Color Color
         {
             get
@@ -52,6 +63,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets image to Background.
+        /// </summary>
         public string File
         {
             get
@@ -64,6 +78,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the mode of display for a given background widget's image.
+        /// </summary>
+        /// <remarks>
+        /// This sets how the background widget will display its image.
+        /// This will only work if the File was previously set with an image file on obj.
+        /// The image can be display tiled, scaled, centered or stretched. scaled by default.
+        /// </remarks>
         public BackgroundOptions BackgroundOption
         {
             get
@@ -88,11 +110,27 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration for the background type.
+    /// </summary>
     public enum BackgroundOptions
     {
+
+        /// <summary>
+        /// Centers the background image
+        /// </summary>
         Center,
+        /// <summary>
+        /// Scales the background image, retaining the aspect ratio
+        /// </summary>
         Scale,
+        /// <summary>
+        /// Stretches the background image to fill the UI component's area.
+        /// </summary>
         Stretch,
+        /// <summary>
+        /// Tiles the background image at its original size
+        /// </summary>
         Tile
     }
 }

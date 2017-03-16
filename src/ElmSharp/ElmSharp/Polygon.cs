@@ -19,20 +19,20 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// A view used to draw a polygon (filled).
+    /// The Polygon is a widget that used to draw a polygon (filled).
     /// </summary>
     public class Polygon : EvasObject
     {
         /// <summary>
-        /// Create a new Polygon widget.
-        /// <param name="p">The EvasObject to which the new Polygon will be attached as a child.</param>
+        /// Creates and initializes a new instance of the Polygon class.
+        /// <param name="parent">The EvasObject to which the new Polygon will be attached as a child.</param>
         /// </summary>
         public Polygon(EvasObject parent) : base(parent)
         {
         }
 
         /// <summary>
-        /// Adds a new vertex to the polygon.
+        /// Adds a new vertex to the Polygon.
         /// <param name="x">The X coordinate of the new vertex.</param>
         /// <param name="y">The Y coordinate of the new vertex.</param>
         /// </summary>
@@ -42,7 +42,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds a new vertex to the polygon.
+        /// Adds a new vertex to the Polygon.
         /// <param name="p">The coordinates of the new vertex.</param>
         /// </summary>
         public void AddPoint(Point p)
@@ -51,7 +51,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all the vertices of the polygon, making it empty.
+        /// Removes all the vertices of the Polygon, making it empty.
         /// </summary>
         public void ClearPoints()
         {

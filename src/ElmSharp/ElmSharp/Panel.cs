@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for paneldirection type.
+    /// </summary>
     public enum PanelDirection
     {
         /// <summary>
@@ -38,15 +41,26 @@ namespace ElmSharp
         Right,
     }
 
+    /// <summary>
+    /// The Panel is a container that can contain subobjects.
+    /// </summary>
     public class Panel : Layout
     {
         SmartEvent _toggled;
+
+        /// <summary>
+        /// Creates and initializes a new instance of Panel class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Panel will be attached as a child.</param>
         public Panel(EvasObject parent) : base(parent)
         {
             _toggled = new SmartEvent(this, this.RealHandle, "toggled");
             _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Sets or gets the hidden status of a given Panel widget.
+        /// </summary>
         public bool IsOpen
         {
             get
@@ -59,6 +73,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the direction of a given Panel widget.
+        /// </summary>
         public PanelDirection Direction
         {
             get
@@ -71,18 +88,36 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Toggled will be triggered when toggles Panel.
+        /// </summary>
         public event EventHandler Toggled;
 
+        /// <summary>
+        /// Enable or disable scrolling in the Panel.
+        /// </summary>
+        /// <param name="enable">
+        /// Bool value can be false or true.
+        /// </param>
         public void SetScrollable(bool enable)
         {
             Interop.Elementary.elm_panel_scrollable_set(RealHandle, enable);
         }
 
+        /// <summary>
+        /// Sets the scroll size of Panel.
+        /// </summary>
+        /// <param name="ratio">
+        /// The size of scroll area.
+        /// </param>
         public void SetScrollableArea(double ratio)
         {
             Interop.Elementary.elm_panel_scrollable_content_size_set(RealHandle, ratio);
         }
 
+        /// <summary>
+        /// Toggles the hidden state of the Panel.
+        /// </summary>
         public void Toggle()
         {
             Interop.Elementary.elm_panel_toggle(RealHandle);

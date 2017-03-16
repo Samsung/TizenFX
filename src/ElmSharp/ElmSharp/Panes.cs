@@ -18,10 +18,19 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Panes is a widget that adds a draggable bar between two contents.
+    /// When dragged this bar resizes contents' size.
+    /// </summary>
     public class Panes : Layout
     {
         SmartEvent _press;
         SmartEvent _unpressed;
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Panes class.
+        /// </summary>
+        /// <param name="parent">The EvasObject to which the new Panes will be attached as a child.</param>
         public Panes(EvasObject parent) : base(parent)
         {
             _press = new SmartEvent(this, this.RealHandle, "press");
@@ -31,8 +40,20 @@ namespace ElmSharp
             _unpressed.On += (s, e) => Unpressed?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Pressed will be triggered when panes have been pressed (button isn't released yet).
+        /// </summary>
         public event EventHandler Pressed;
+
+        /// <summary>
+        /// Unpressed will be triggered when panes are released after being pressed.
+        /// </summary>
         public event EventHandler Unpressed;
+
+        /// <summary>
+        /// Sets or gets resize mode of a given Panes widget.
+        /// True means the left and right panes resize homogeneously.
+        /// </summary>
         public bool IsFixed
         {
             get
@@ -45,6 +66,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or Gets the size proportion of the Panes widget's left side.
+        /// </summary>
+        /// <remarks>
+        /// By default it's homogeneous, i.e., both sides have the same size.If something different is required,
+        /// it can be set with this function. For example, if the left content should be displayed over 75% of the panes size,
+        /// size should be passed as 0.75. This way, the right content is resized to 25% of the panes size.
+        /// If displayed vertically, left content is displayed at the top, and right content at the bottom.
+        /// This proportion changes when the user drags the panes bar.
+        ///
+        /// The value is float type and between 0.0 and 1.0 representing the size proportion of the left side.
+        /// </remarks>
         public double Proportion
         {
             get
@@ -57,6 +90,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the orientation of a given Panes widget.
+        /// </summary>
+        /// <remarks>
+        /// Uses this function to change how your panes are to be disposed: vertically or horizontally.
+        /// By default it's displayed horizontally.
+        /// </remarks>
         public bool IsHorizontal
         {
             get

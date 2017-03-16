@@ -28,6 +28,9 @@ namespace ElmSharp
         Degree_270 = 8
     };
 
+    /// <summary>
+    /// Enum indicator opacity
+    /// </summary>
     public enum StatusBarMode
     {
         /// <summary>
@@ -49,16 +52,37 @@ namespace ElmSharp
         Transparent = 3,
     }
 
+    /// <summary>
+    /// The Window is container that contain the graphical user interface of a program.
+    /// </summary>
     public class Window : Widget
     {
         SmartEvent _deleteRequest;
         SmartEvent _rotationChanged;
         HashSet<EvasObject> _referenceHolder = new HashSet<EvasObject>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
+        /// <param name="name">Window name.</param>
         public Window(string name) : this(null, name)
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
+        /// <param name="parent">
+        /// Parent widget which this widow created on.
+        /// </param>
+        /// <param name="name">
+        /// Window name.
+        /// </param>
+        /// <remarks>
+        /// Window constructor.show window indicator,set callback
+        /// When closing the window in any way outside the program control,
+        /// and set callback when window rotation changed.
+        /// </remarks>
         public Window(Window parent, string name)
         {
             Name = name;
@@ -75,11 +99,24 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// CloseRequested will be triggered when Window close.
+        /// </summary>
         public event EventHandler CloseRequested;
+
+        /// <summary>
+        /// RotationChanged will be triggered when Window do rotation.
+        /// </summary>
         public event EventHandler RotationChanged;
 
+        /// <summary>
+        /// Sets or gets Window name.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets Window size with Size value(w,h)
+        /// </summary>
         public Size ScreenSize
         {
             get
@@ -90,6 +127,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the screen dpi for the screen that a Window is on.
+        /// </summary>
         public Point ScreenDpi
         {
             get
@@ -100,6 +140,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the rotation of the Window.The rotation of the window in degrees (0-360).
+        /// </summary>
         public int Rotation
         {
             get
@@ -108,6 +151,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets value whether rotation is supported.
+        /// </summary>
         public bool IsRotationSupported
         {
             get
@@ -119,6 +165,10 @@ namespace ElmSharp
         [Obsolete("Sorry, it's error typo of AvailableRotations, please use AvailableRotations")]
         public DisplayRotation AavailableRotations { get; set; }
 
+
+        /// <summary>
+        /// Sets or gets available rotation degree.
+        /// </summary>
         public DisplayRotation AvailableRotations
         {
             get
@@ -137,6 +187,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether auto deletion function is enable.
+        /// </summary>
+        /// <remarks>
+        /// If you enable auto deletion, the window is automatically destroyed after the signal is emitted.
+        /// If auto deletion is disabled, the window is not destroyed and the program has to handle it.
+        /// </remarks>
         public bool AutoDeletion
         {
             get
@@ -185,15 +242,36 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// This function sends a request to the Windows Manager to activate the Window.
+        /// If honored by the WM, the window receives the keyboard focus.
+        /// </summary>
+        /// <remarks>
+        /// This is just a request that a Window Manager may ignore, so calling this function does not ensure
+        /// in any way that the window is going to be the active one after it.
+        /// </remarks>
         public void Active()
         {
             Interop.Elementary.elm_win_activate(Handle);
         }
 
+        /// <summary>
+        /// Adds obj as a resize object of the Window.
+        /// </summary>
+        /// <remarks>
+        /// Setting an object as a resize object of the window means that the obj child's size and
+        /// position is controlled by the window directly. That is, the obj is resized to match the window size
+        /// and should never be moved or resized manually by the developer.In addition,
+        /// resize objects of the window control the minimum size of it as well as whether it can or cannot be resized by the user.
+        /// </remarks>
+        /// <param name="obj">
+        /// Resize object.
+        /// </param>
         public void AddResizeObject(EvasObject obj)
         {
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
         }
+
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -211,6 +289,7 @@ namespace ElmSharp
             _referenceHolder.Remove(obj);
         }
 
+        /// </return>
         static int[] ConvertDegreeArray(DisplayRotation value)
         {
             List<int> rotations = new List<int>();

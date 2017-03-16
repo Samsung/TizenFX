@@ -38,19 +38,11 @@ namespace ElmSharp
         /// </summary>
         public int Z;
 
-        /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Point3D" />.
-        /// </summary>
-        /// <returns>The string is formatted as "{{X={0} Y={1} Z={2}}}".</returns>
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Z={2}}}", X, Y, Z);
         }
 
-        /// <summary>
-        /// Returns a hash value for the <see cref="T:Tizen.UI.Point3D" />.
-        /// </summary>
-        /// <returns>A value intended for efficient insertion and lookup in hashtable-based data structures.</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -62,11 +54,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Returns true if the X, Y and Z values of this are exactly equal to those in the argument.
-        /// </summary>
-        /// <param name="obj">Another <see cref="T:Tizen.UI.Point3D" />.</param>
-        /// <returns>True if the X, Y and Z values are equal to those in <paramref name="obj" />. Returns false if <paramref name="obj" /> is not a <see cref="T:Tizen.UI.Point" />.</returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Point3D))
@@ -75,11 +62,6 @@ namespace ElmSharp
             return Equals((Point3D)obj);
         }
 
-        /// <summary>
-        /// Returns true if the X, Y and Z values of this are exactly equal to those in the argument.
-        /// </summary>
-        /// <param name="other">Another <see cref="T:Tizen.UI.Point3D" />.</param>
-        /// <returns>True if the X, Y and Z values are equal to those in <paramref name="other" />.</returns>
         public bool Equals(Point3D other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
