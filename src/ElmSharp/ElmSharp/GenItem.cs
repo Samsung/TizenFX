@@ -18,6 +18,11 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="ItemObject"/>.
+    /// A base class for <see cref="GenGridItem"/> and <see cref="GenListItem"/>.
+    /// It contains genitem class and data to display data.
+    /// </summary>
     public abstract class GenItem : ItemObject
     {
         internal GenItem(object data, GenItemClass itemClass) : base(IntPtr.Zero)
@@ -26,10 +31,29 @@ namespace ElmSharp
             ItemClass = itemClass;
         }
 
+        /// <summary>
+        /// Gets the item class that defines how to display data. It returns <see cref="GenItemClass"/> type.
+        /// </summary>
         public GenItemClass ItemClass { get; protected set; }
+
+        /// <summary>
+        /// Gets item data that is added through calling <see cref="GenGrid.Append(GenItemClass, object)"/>, <see cref="GenGrid.Prepend(GenItemClass, object)"/> or <see cref="GenGrid.InsertBefore(GenItemClass, object, GenGridItem)"/> methods.
+        /// </summary>
         public object Data { get; protected set; }
+
+        /// <summary>
+        /// It's a abstract property. It's implemented by <see cref="GenGridItem.IsSelected"/> and <see cref="GenListItem.IsSelected"/>.
+        /// </summary>
         public abstract bool IsSelected { get; set; }
+
+        /// <summary>
+        /// It's a abstract method. It's implemented by <see cref="GenGridItem.Update"/> and <see cref="GenListItem.Update"/>.
+        /// </summary>
         public abstract void Update();
+
+        /// <summary>
+        /// The override method for delete item class and item data. It's called when the item is deleting.
+        /// </summary>
         protected override void OnInvalidate()
         {
             ItemClass?.SendItemDeleted(Data);

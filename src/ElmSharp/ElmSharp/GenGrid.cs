@@ -19,16 +19,43 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for setting selection mode for GenGird.
+    /// </summary>
     public enum GenGridSelectionMode
     {
+        /// <summary>
+        /// The item will only call their selection func and callback when first becoming selected.
+        /// Any further clicks will do nothing, unless you set Always select mode.
+        /// </summary>
         Default = 0,
+        /// <summary>
+        /// This means that, even if selected, every click will make the selected callbacks be called.
+        /// </summary>
         Always,
+        /// <summary>
+        /// This will turn off the ability to select the item entirely and they will neither appear selected nor call selected callback functions.
+        /// </summary>
         None,
+        /// <summary>
+        /// This will apply no-finger-size rule with DisplayOnly.
+        /// No-finger-size rule makes an item can be smaller than lower limit.
+        /// Clickable objects should be bigger than human touch point device (your finger) for some touch or small screen devices.
+        /// So it is enabled, the item can be shrink than predefined finger-size value. And the item will be updated.
+        /// </summary>
         DisplayOnly,
     }
 
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// It contains Item which is <see cref="GenGridItem"/> type.
+    /// All events of GenGrid contain GenGridItemEventArgs as a parameter.
+    /// </summary>
     public class GenGridItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets or sets GenGrid item.The return type is <see cref="GenGridItem"/>.
+        /// </summary>
         public GenGridItem Item { get; set; }
 
         internal static GenGridItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -38,6 +65,12 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// It inherits <see cref="Layout"/>.
+    /// The GenGrid is a widget that aims to position objects in a grid layout while actually creating and rendering only the visible ones.
+    /// It has two direction in which a given GenGrid widget expands while placing its items, horizontal and vertical.
+    /// The GenGrid items are represented through <see cref="GenItemClass"/> definition field details.
+    /// </summary>
     public class GenGrid : Layout
     {
         HashSet<GenGridItem> _children = new HashSet<GenGridItem>();
@@ -52,21 +85,65 @@ namespace ElmSharp
         SmartEvent<GenGridItemEventArgs> _unrealized;
         SmartEvent<GenGridItemEventArgs> _longpressed;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the GenGrid class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by GenGrid as a child. It's <see cref="EvasObject"/> type.</param>
         public GenGrid(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
         }
 
+        /// <summary>
+        /// ItemSelected is raised when a new gengrid item is selected.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemSelected;
+
+        /// <summary>
+        /// ItemUnselected is raised when the gengrid item is Unselected.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemUnselected;
+
+        /// <summary>
+        /// ItemPressed is raised when a new gengrid item is pressed.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemPressed;
+
+        /// <summary>
+        /// ItemReleased is raised when a new gengrid item is released.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemReleased;
+
+        /// <summary>
+        /// ItemActivated is raised when a new gengrid item is double clicked or pressed (enter|return|spacebar).
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemActivated;
+
+        /// <summary>
+        /// ItemDoubleClicked is raised when a new gengrid item is double clicked.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemDoubleClicked;
+
+        /// <summary>
+        /// ItemRealized is raised when a gengrid item is implementing through <see cref="GenItemClass"/>.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemRealized;
+
+        /// <summary>
+        /// ItemUnrealized is raised when the gengrid item is deleted.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemUnrealized;
+
+        /// <summary>
+        /// ItemLongPressed is raised when a gengrid item is pressed for a certain amount of time. By default it's 1 second.
+        /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemLongPressed;
 
+        /// <summary>
+        /// Gets or sets the item's grid alignment along x-axis within a given gengrid widget.
+        /// The range is less than or equal to 1,and greater than or equal to 0.
+        /// By default, value is 0.5, meaning that the gengrid has its items grid placed exactly in the middle along x-axis.
+        /// </summary>
         public double ItemAlignmentX
         {
             get
@@ -82,6 +159,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the item's grid alignment on y-axis within a given gengrid widget.
+        /// The range is less than or equal to 1, and greater than or equal to 0.
+        /// By default, value is 0.5, meaning that the gengrid has its items grid placed exactly in the middle along y-axis.
+        /// </summary>
         public double ItemAlignmentY
         {
             get
@@ -97,6 +179,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the manner in which the items grid is filled within a given gengrid widget.
+        /// It is filled if true, otherwise false.
+        /// </summary>
         public bool FillItems
         {
             get
@@ -109,6 +195,15 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether multi-selection is enabled or disabled for a given gengrid widget.
+        /// </summary>
+        /// <remarks>
+        /// Multi-selection is the ability to have more than one item selected, on a given gengrid, simultaneously.
+        /// When it is enabled, a sequence of clicks on different items makes them all selected, progressively.
+        /// A click on an already selected item unselects it. If interacting via the keyboard, multi-selection is enabled while holding the "Shift" key.
+        /// By default, multi-selection is disabled.
+        /// </remarks>
         public bool MultipleSelection
         {
             get
@@ -121,6 +216,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the width for the items of a given gengrid widget.
+        /// </summary>
+        /// <remarks>
+        /// A gengrid, after creation, still has no information on the size to give to each of its cells.
+        /// The default width and height just have one finger wide.
+        /// Use this property to force a custom width for your items, making them as big as you wish.
+        /// </remarks>
         public int ItemWidth
         {
             get
@@ -137,6 +240,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the height for the items of a given gengrid widget.
+        /// </summary>
+        /// <remarks>
+        /// A gengrid, after creation, still has no information on the size to give to each of its cells.
+        /// The default width and height just have one finger wide.
+        /// Use this property to force a custom height for your items, making them as big as you wish.
+        /// </remarks>
         public int ItemHeight
         {
             get
@@ -152,6 +263,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gengrid select mode by <see cref="GenGridSelectionMode"/>.
+        /// </summary>
         public GenGridSelectionMode SelectionMode
         {
             get
@@ -164,6 +278,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the direction for which a given gengrid widget expands while placing its items.
+        /// </summary>
+        /// <remarks>
+        /// If true, items are placed in columns from top to bottom and when the space for a column is filled, another one is started on the right, thus expanding the grid horizontally.
+        /// If false, items are placed in rows from left to right, and when the space for a row is filled, another one is started below, thus expanding the grid vertically.
+        /// </remarks>
         public bool IsHorizontal
         {
             get
@@ -176,6 +297,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the gengrid items should be highlighted when an item is selected.
+        /// </summary>
         public bool IsHighlight
         {
             get
@@ -188,6 +312,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Appends a new item to a given gengrid widget. This adds an item to the end of the gengrid.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <seealso cref="GenItemClass"/>
+        /// <seealso cref="GenGridItem"/>
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -197,6 +329,14 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepends a new item to a given gengrid widget. This adds an item to the beginning of the gengrid.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <seealso cref="GenItemClass"/>
+        /// <seealso cref="GenGridItem"/>
         public GenGridItem Prepend(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -206,6 +346,15 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Inserts an item before another in a gengrid widget. This inserts an item before another in the gengrid.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="before">The item before which to place this new one.</param>
+        /// <returns>Return a gengrid item that contains data and itemClass./></returns>
+        /// <seealso cref="GenItemClass"/>
+        /// <seealso cref="GenGridItem"/>
         public GenGridItem InsertBefore(GenItemClass itemClass, object data, GenGridItem before)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -215,6 +364,17 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Shows a given item to the visible area of a gengrid.
+        /// </summary>
+        /// <param name="item">The gengrid item to display.</param>
+        /// <param name="position">The position of the item in the viewport.</param>
+        /// <param name="animated">The type of how to show the item.</param>
+        /// <remarks>
+        /// If animated is true, the gengrid shows item by scrolling if it's not fully visible.
+        /// If animated is false, the gengrid shows item by jumping if it's not fully visible.
+        /// </remarks>
+        /// <seealso cref="ScrollToPosition"/>
         public void ScrollTo(GenGridItem item, ScrollToPosition position, bool animated)
         {
             if (animated)
@@ -227,11 +387,26 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Updates the contents of all the realized items.
+        /// This updates all realized items by calling all the <see cref="GenItemClass"/> again to get the content, text, and states.
+        /// Use this when the original item data has changed and the changes are desired to reflect.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="GenItem.Update()"/> to update just one item.
+        /// </remarks>
         public void UpdateRealizedItems()
         {
             Interop.Elementary.elm_gengrid_realized_items_update(RealHandle);
         }
 
+        /// <summary>
+        /// Removes all items from a given gengrid widget.
+        /// This removes(and deletes) all items in obj, making it empty.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="ItemObject.Delete()"/> to delete just one item.
+        /// </remarks>
         public void Clear()
         {
             Interop.Elementary.elm_gengrid_clear(RealHandle);
