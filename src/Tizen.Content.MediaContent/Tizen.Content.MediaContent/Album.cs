@@ -47,6 +47,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// The name of the media artist
+        /// If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Artist
         {
@@ -91,6 +92,7 @@ namespace Tizen.Content.MediaContent
 
         /// <summary>
         /// The name of the media album
+        /// If the media content has no album info, the property returns empty string.
         /// </summary>
         public string Name
         {
