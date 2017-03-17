@@ -52,6 +52,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -79,13 +82,16 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Emitted when the slider value changes.
+        /// Value changed event arguments.
         /// </summary>
         public class ValueChangedEventArgs : EventArgs
         {
             private Slider _slider;
             private float _slideValue;
 
+            /// <summary>
+            /// Slider.
+            /// </summary>
             public Slider Slider
             {
                 get
@@ -98,6 +104,9 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Slider value.
+            /// </summary>
             public float SlideValue
             {
                 get
@@ -112,13 +121,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Emitted when the sliding is finished.
+        /// Sliding finished event arguments.
         /// </summary>
         public class SlidingFinishedEventArgs : EventArgs
         {
             private Slider _slider;
             private float _slideValue;
 
+            /// <summary>
+            /// Slider.
+            /// </summary>
             public Slider Slider
             {
                 get
@@ -131,6 +143,9 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Slider value.
+            /// </summary>
             public float SlideValue
             {
                 get
@@ -145,13 +160,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Emitted when the slider handle reaches a mark.
+        /// Mark reached event arguments.
         /// </summary>
         public class MarkReachedEventArgs : EventArgs
         {
             private Slider _slider;
             private int _slideValue;
 
+            /// <summary>
+            /// Slider.
+            /// </summary>
             public Slider Slider
             {
                 get
@@ -164,6 +182,9 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Slider value.
+            /// </summary>
             public int SlideValue
             {
                 get
@@ -194,6 +215,7 @@ namespace Tizen.NUI
         private MarkReachedCallbackDelegate _sliderMarkReachedCallbackDelegate;
 
         /// <summary>
+        /// Event emitted when the slider value changes.
         /// </summary>
         public event EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> ValueChanged
         {
@@ -234,6 +256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event emitted when the sliding is finished.
         /// </summary>
         public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
         {
@@ -274,6 +297,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event emitted when the slider handle reaches a mark.
         /// </summary>
         public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
         {
@@ -314,7 +338,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get Slider from the pointer.
         /// </summary>
+        /// <param name="cPtr">The pointer of Slider</param>
+        /// <returns>Object of Slider type</returns>
         public static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
             Slider ret = new Slider(cPtr, false);
@@ -384,7 +411,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an empty Slider handle.
+        /// Creates the Slider control.
         /// </summary>
         public Slider() : this(NDalicPINVOKE.Slider_New(), true)
         {
@@ -408,6 +435,8 @@ namespace Tizen.NUI
         /// If handle points to a Slider, the downcast produces valid handle.
         /// If not, the returned handle is left uninitialized.
         /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a Slider or an uninitialized handle</returns>
         public new static Slider DownCast(BaseHandle handle)
         {
             Slider ret = new Slider(NDalicPINVOKE.Slider_DownCast(BaseHandle.getCPtr(handle)), true);
