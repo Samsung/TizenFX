@@ -27,7 +27,9 @@ namespace Tizen.Network.WiFi
     {
         private IntPtr _apHandle = IntPtr.Zero;
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
+        private static Dictionary<IntPtr, Interop.WiFi.VoidCallback> s_callbackMap = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
+        private static int s_requestId = 0;
         private WiFiNetwork _network;
         private WiFiSecurity _security;
         private bool _disposed = false;
@@ -188,12 +190,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Connects the access point with WPS PBC asynchronously.
+        /// Connects the access point with WPS asynchronously.
         /// </summary>
-        /// <returns> A task indicating whether the ConnectByWpsPbs method is done or not.</returns>
-        public Task ConnectByWpsPbcAsync()
+        /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
+        /// <returns>A task indicating whether the ConnectWps method is done or not.</returns>
+        public Task ConnectWpsAsync(WpsInfo info)
         {
-            Log.Debug(Globals.LogTag, "ConnectByWpsPbcAsync");
+            Log.Debug(Globals.LogTag, "ConnectWpsAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -201,7 +204,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Debug(Globals.LogTag, "Connecting by WPS PBC finished");
+                    Log.Debug(Globals.LogTag, "Connecting by WPS finished");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
@@ -214,49 +217,81 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ConnectByWpsPbc(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            if (info.GetType() == typeof(WpsPbcInfo))
             {
-                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                int ret = Interop.WiFi.ConnectByWpsPbc(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret);
+                }
             }
+
+            else if (info.GetType() == typeof(WpsPinInfo))
+            {
+                WpsPinInfo pinInfo = (WpsPinInfo)info;
+                int ret = Interop.WiFi.ConnectByWpsPin(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, pinInfo.GetWpsPin(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret);
+                }
+            }
+
             return task.Task;
         }
 
         /// <summary>
-        /// Connects the access point with WPS PIN asynchronously.
+        /// Connects the access point with WPS without ssid asynchronously.
         /// </summary>
-        /// <returns> A task indicating whether the ConnectByWpsPin method is done or not.</returns>
-        /// <param name="pin">The WPS PIN is a non-null string with length greater than 0 and less than or equal to 8.</param>
-        public Task ConnectByWpsPinAsync(string pin)
+        /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
+        /// <returns>A task which contains Connected access point information.</returns>
+        public static Task<WiFiAP> ConnectWpsWithoutSsidAsync(WpsInfo info)
         {
-            Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<WiFiAP> task = new TaskCompletionSource<WiFiAP>();
             IntPtr id;
-            lock (_callback_map)
+            lock (s_callbackMap)
             {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
+                id = (IntPtr)s_requestId++;
+                s_callbackMap[id] = (error, key) =>
                 {
-                    Log.Debug(Globals.LogTag, "Connecting by WPS PIN finished");
+                    Log.Debug(Globals.LogTag, "Connecting by WPS finished");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
-                    lock (_callback_map)
+                    WiFiAP ap = WiFiManagerImpl.Instance.GetConnectedAP();
+                    task.SetResult(ap);
+                    lock (s_callbackMap)
                     {
-                        _callback_map.Remove(key);
+                        s_callbackMap.Remove(key);
                     }
                 };
             }
-            int ret = Interop.WiFi.ConnectByWpsPin(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, pin, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            if (info.GetType() == typeof(WpsPbcInfo))
             {
-                Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                int ret = Interop.WiFi.ConnectByWpsPbcWithoutSsid(WiFiManagerImpl.Instance.GetSafeHandle(), s_callbackMap[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret);
+                }
             }
+
+            else if (info.GetType() == typeof(WpsPinInfo))
+            {
+                WpsPinInfo pinInfo = (WpsPinInfo)info;
+                int ret = Interop.WiFi.ConnectByWpsPinWithoutSsid(WiFiManagerImpl.Instance.GetSafeHandle(), pinInfo.GetWpsPin(), s_callbackMap[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret);
+                }
+            }
+
             return task.Task;
         }
 
@@ -300,15 +335,55 @@ namespace Tizen.Network.WiFi
         /// Deletes the information of stored access point and disconnects it when it is connected.<br>
         /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
         /// </summary>
-        public void RemoveAP()
+        public void ForgetAP()
         {
-            Log.Debug(Globals.LogTag, "RemoveAP");
+            Log.Debug(Globals.LogTag, "ForgetAP");
             int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, "Failed to forget AP, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret);
             }
+        }
+    }
+
+    /// <summary>
+    /// An abstract class which is used to represent WPS information of access point.
+    /// </summary>
+    public abstract class WpsInfo
+    {
+    }
+
+    /// <summary>
+    /// A class which is used to represent WPS PBC information of access point.
+    /// </summary>
+    public class WpsPbcInfo : WpsInfo
+    {
+    }
+
+    /// <summary>
+    /// A class which is used to represent WPS PIN information of access point.
+    /// </summary>
+    public class WpsPinInfo : WpsInfo
+    {
+        private string _pin;
+
+        private WpsPinInfo()
+        {
+        }
+
+        /// <summary>
+        /// A public constructor which instantiates WpsPinInfo class with the given pin.
+        /// </summary>
+        /// <param name="pin">WPS Pin of the access point.</param>
+        public WpsPinInfo(string pin)
+        {
+            _pin = pin;
+        }
+
+        internal string GetWpsPin()
+        {
+            return _pin;
         }
     }
 }

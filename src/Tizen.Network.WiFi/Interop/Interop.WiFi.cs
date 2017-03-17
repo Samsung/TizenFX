@@ -72,6 +72,10 @@ internal static partial class Interop
         internal static extern int ConnectByWpsPbc(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_by_wps_pin")]
         internal static extern int ConnectByWpsPin(SafeWiFiManagerHandle wifi, IntPtr ap, string pin, VoidCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_by_wps_pbc_without_ssid")]
+        internal static extern int ConnectByWpsPbcWithoutSsid(SafeWiFiManagerHandle wifi, VoidCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_by_wps_pin_without_ssid")]
+        internal static extern int ConnectByWpsPinWithoutSsid(SafeWiFiManagerHandle wifi, string pin, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
         internal static extern int RemoveAP(SafeWiFiManagerHandle wifi, IntPtr ap);
 
