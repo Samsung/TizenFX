@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,11 +31,12 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
-        public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
+        public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.RealHandle, eventName, parser)
         {
         }
 
-        internal SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
+        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
+        public SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
         {
             _sender = sender;
             _eventName = eventName;
@@ -130,7 +132,8 @@ namespace ElmSharp
         {
         }
 
-        internal SmartEvent(EvasObject sender, IntPtr handle, string eventName)
+        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
+        public SmartEvent(EvasObject sender, IntPtr handle, string eventName)
         {
             _smartEvent = new SmartEvent<EventArgs>(sender, handle, eventName, null);
         }

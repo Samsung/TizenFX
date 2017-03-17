@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace ElmSharp
@@ -76,11 +77,12 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
-        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.Handle, type, parser)
+        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.RealHandle, type, parser)
         {
         }
 
-        internal EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
+        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
+        public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
         {
             _sender = sender;
             _handle = handle;
@@ -177,11 +179,12 @@ namespace ElmSharp
         private event EventHandler _handlers;
         private bool _disposed = false;
 
-        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.Handle, type)
+        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.RealHandle, type)
         {
         }
 
-        internal EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
+        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
+        public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
         {
             _evasObjectEvent = new EvasObjectEvent<EventArgs>(sender, handle, type, null);
         }
