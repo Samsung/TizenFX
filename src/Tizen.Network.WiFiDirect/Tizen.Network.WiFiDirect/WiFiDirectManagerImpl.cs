@@ -387,6 +387,13 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
+        internal bool IsInitialize
+	{
+		get
+		{
+		    return Globals.IsInitialize;
+		}
+	}
         internal bool IsGroupOwner
         {
             get

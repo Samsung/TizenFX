@@ -27,6 +27,21 @@ namespace Tizen.Network.WiFiDirect
     public static class WiFiDirectManager
     {
         /// <summary>
+        /// A property to check whether the Wifidirect is initialized or not.
+        /// </summary>
+        /// <remarks>
+        /// If it is not initialized, false will be returned.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when the wifidirect is not supported</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsInitialized
+        {
+            get
+            {
+                return WiFiDirectManagerImpl.Instance.IsInitialize;
+            }
+        }
+        /// <summary>
         /// A property to check whether the device is group owner or not.
         /// </summary>
         /// <remarks>
