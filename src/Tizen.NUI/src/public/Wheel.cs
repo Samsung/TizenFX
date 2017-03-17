@@ -11,6 +11,16 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// The wheel event structure is used to store a wheel rolling, it facilitates
+    /// processing of the wheel rolling and passing to other libraries like Toolkit.
+    /// 
+    /// There is a key modifier which relates to keys like alt, shift and control functions are
+    /// supplied to check if they have been pressed when the wheel is being rolled.
+    /// 
+    /// We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.
+    /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the stage.
+    /// </summary>
     public class Wheel : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,6 +73,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The type of the wheel event
+        /// </summary>
         public Wheel.WheelType Type
         {
             get
@@ -71,6 +84,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// he direction of wheel rolling (0 = default vertical wheel, 1 = horizontal wheel)
+        /// </summary>
         public int Direction
         {
             get
@@ -79,6 +95,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Modifier keys pressed during the event (such as shift, alt and control)
+        /// </summary>
         public uint Modifiers
         {
             get
@@ -87,6 +106,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The co-ordinates of the cursor relative to the top-left of the screen
+        /// </summary>
         public Vector2 Point
         {
             get
@@ -95,6 +117,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise)
+        /// </summary>
         public int Z
         {
             get
@@ -103,6 +128,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The time the wheel is being rolled
+        /// </summary>
         public uint TimeStamp
         {
             get
@@ -111,16 +139,32 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public Wheel() : this(NDalicPINVOKE.new_Wheel__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="type">The type of the wheel event</param>
+        /// <param name="direction">The direction of wheel rolling (0 = default vertical wheel, 1 = horizontal wheel)</param>
+        /// <param name="modifiers">Modifier keys pressed during the event (such as shift, alt and control)</param>
+        /// <param name="point">The co-ordinates of the cursor relative to the top-left of the screen</param>
+        /// <param name="z">The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise)</param>
+        /// <param name="timeStamp">The time the wheel is being rolled</param>
         public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(NDalicPINVOKE.new_Wheel__SWIG_1((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Checks to see if Shift key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if shift modifier</returns>
         public bool IsShiftModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsShiftModifier(swigCPtr);
@@ -128,6 +172,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Checks to see if Ctrl (control) key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if ctrl modifier</returns>
         public bool IsCtrlModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsCtrlModifier(swigCPtr);
@@ -135,6 +183,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Checks to see if Alt key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if alt modifier</returns>
         public bool IsAltModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsAltModifier(swigCPtr);
@@ -233,6 +285,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The type of the wheel event
+        /// </summary>
         public enum WheelType
         {
             MouseWheel,

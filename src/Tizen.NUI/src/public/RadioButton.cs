@@ -27,6 +27,19 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A RadioButton provides a radio button which two states \e selected or \e unselected.
+    /// Radio buttons are designed to select one of many option at the same time.
+    /// RadioButton can change its current state using Selected.
+    /// 
+    /// RadioButtons can be grouped.
+    /// Two or more RadioButtons are in one group when they have this same parent.
+    /// In each groups only one RadioButton can be \e selected at a given time.
+    /// So when RadioButton is set to \e selected, other RadioButtons in its group are set to \e unselected.
+    /// When \e selected RadioButton is set to \e unselected no other RadioButtons in his group is set to \e selected.
+    /// 
+    ///  A StateChanged Event is emitted when the RadioButton change its state to \e selected or \e unselected.
+    /// </summary>
     public class RadioButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -70,12 +83,19 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Creates an uninitialized RadioButton
+        /// </summary>
         public RadioButton() : this(NDalicPINVOKE.RadioButton_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an uninitialized RadioButton with Label
+        /// </summary>
+        /// <param name="label">Label text</param>
         public RadioButton(string label) : this(NDalicPINVOKE.RadioButton_New__SWIG_1(label), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -93,6 +113,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to RadioButton handle.
+        /// If handle points to a RadioButton, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>A handle to a RadioButton or an uninitialized handle</returns>
         public new static RadioButton DownCast(BaseHandle handle)
         {
             RadioButton ret = new RadioButton(NDalicPINVOKE.RadioButton_DownCast(BaseHandle.getCPtr(handle)), true);

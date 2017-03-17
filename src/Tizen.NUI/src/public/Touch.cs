@@ -10,7 +10,11 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// Touch events are a collection of points at a specific moment in time.
+    /// When a multi-touch event occurs, each point represents the points that are currently being
+    /// touched or the points where a touch has stopped.
+    /// </summary>
     public class Touch : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -62,6 +66,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// An uninitialized Touch instance.
+        /// Calling member functions with an uninitialized Touch handle is not allowed.
+        /// </summary>
         public Touch() : this(NDalicPINVOKE.new_Touch__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -79,6 +87,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the time (in ms) that the touch event occurred.
+        /// </summary>
+        /// <returns>The time (in ms) that the touch event occurred</returns>
         public uint GetTime()
         {
             uint ret = NDalicPINVOKE.Touch_GetTime(swigCPtr);
@@ -86,6 +98,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the total number of points in this TouchData.
+        /// </summary>
+        /// <returns>Total number of Points</returns>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Touch_GetPointCount(swigCPtr);
@@ -93,6 +109,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the ID of the device used for the Point specified.
+        /// Each point has a unique device ID which specifies the device used for that
+        /// point. This is returned by this method.
+        /// If point is greater than GetPointCount() then this method will return -1.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The Device ID of this point</returns>
         public int GetDeviceId(uint point)
         {
             int ret = NDalicPINVOKE.Touch_GetDeviceId(swigCPtr, point);
@@ -100,6 +124,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the State of the point specified.
+        /// If point is greater than GetPointCount() then this method will return PointState.Finished.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The state of the point specified</returns>
         public PointStateType GetState(uint point)
         {
             PointStateType ret = (PointStateType)NDalicPINVOKE.Touch_GetState(swigCPtr, point);
@@ -107,6 +137,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the actor that was underneath the point specified.
+        /// If point is greater than GetPointCount() then this method will return an empty handle.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The actor that was underneath the point specified</returns>
         public Actor GetHitActor(uint point)
         {
             Actor ret = new Actor(NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point), true);
@@ -114,6 +150,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the hit-actor at the point specified.
+        /// The top-left of an actor is (0.0, 0.0, 0.5).
+        /// If you require the local coordinates of another actor (e.g the parent of the hit actor),
+        /// then you should use Actor::ScreenToLocal().
+        /// If point is greater than GetPointCount() then this method will return Vector2.Zero.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the hit-actor of the point specified</returns>
         public Vector2 GetLocalPosition(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetLocalPosition(swigCPtr, point), false);
@@ -121,6 +166,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the screen of the point specified.
+        /// If point is greater than GetPointCount() then this method will return Vector2.Zero.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the screen of the point specified</returns>
         public Vector2 GetScreenPosition(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetScreenPosition(swigCPtr, point), false);
@@ -128,6 +179,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the radius of the press point.
+        /// This is the average of both the horizontal and vertical radii of the press point.
+        /// If point is greater than GetPointCount() then this method will return 0.0f.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The radius of the press point</returns>
         public float GetRadius(uint point)
         {
             float ret = NDalicPINVOKE.Touch_GetRadius(swigCPtr, point);
@@ -135,6 +193,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves BOTH the horizontal and the vertical radii of the press point.
+        /// If point is greater than GetPointCount() then this method will return Vector2.Zero.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The horizontal and vertical radii of the press point</returns>
         public Vector2 GetEllipseRadius(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetEllipseRadius(swigCPtr, point), false);
@@ -142,6 +206,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the touch pressure.
+        /// The pressure range starts at 0.0f.
+        /// Normal pressure is defined as 1.0f.
+        /// A value between 0.0f and 1.0f means light pressure has been applied.
+        /// A value greater than 1.0f means more pressure than normal has been applied.
+        /// If point is greater than GetPointCount() then this method will return 1.0f.
+        /// </summary>
+        /// <param name="point">point The point required</param>
+        /// <returns>The touch pressure</returns>
         public float GetPressure(uint point)
         {
             float ret = NDalicPINVOKE.Touch_GetPressure(swigCPtr, point);
@@ -158,6 +232,9 @@ namespace Tizen.NUI
 
     }
 
+    /// <summary>
+    /// Enumeration for point state type.
+    /// </summary>
     public enum PointStateType
     {
         Started,

@@ -11,6 +11,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Interface to encapsulate information required for relayout.
+    /// </summary>
     public class RelayoutContainer : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

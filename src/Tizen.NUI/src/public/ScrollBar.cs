@@ -30,7 +30,10 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// ScrollBar is a UI component that can be linked to the scrollable objects
+    /// indicating the current scroll position of the scrollable object.
+    /// </summary>
     public class ScrollBar : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -74,17 +77,23 @@ namespace Tizen.NUI
             }
         }
 
-
-
-
+        /// <summary>
+        /// Event arguments that passed via PanFinished event
+        /// </summary>
         public class PanFinishedEventArgs : EventArgs
         {
         }
 
+        /// <summary>
+        /// Event arguments that passed via ScrollPositionIntervalReached event
+        /// </summary>
         public class ScrollPositionIntervalReachedEventArgs : EventArgs
         {
             private float _currentScrollPosition;
 
+            /// <summary>
+            /// current scroll position of the scrollable content
+            /// </summary>
             public float CurrentScrollPosition
             {
                 get
@@ -108,6 +117,9 @@ namespace Tizen.NUI
         private EventHandler<ScrollPositionIntervalReachedEventArgs> _scrollBarScrollPositionIntervalReachedEventHandler;
         private ScrollPositionIntervalReachedEventCallbackDelegate _scrollBarScrollPositionIntervalReachedEventCallbackDelegate;
 
+        /// <summary>
+        /// Event emitted when panning is finished on the scroll indicator.
+        /// </summary>
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
             add
@@ -142,6 +154,9 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Event emitted when the current scroll position of the scrollable content
+        /// </summary>
         public event EventHandler<ScrollPositionIntervalReachedEventArgs> ScrollPositionIntervalReached
         {
             add
@@ -231,11 +246,18 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates an initialized ScrollBar.
+        /// </summary>
+        /// <param name="direction">The direction of scroll bar (either vertically or horizontally)</param>
         public ScrollBar(ScrollBar.Direction direction) : this(NDalicPINVOKE.ScrollBar_New__SWIG_0((int)direction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
+        /// <summary>
+        /// Creates an uninitialized ScrollBar
+        /// </summary>
         public ScrollBar() : this(NDalicPINVOKE.ScrollBar_New__SWIG_1(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -253,6 +275,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to ScrollBar handle.
+        /// If handle points to a ScrollBar, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a ScrollBar or an uninitialized handle</returns>
         public new static ScrollBar DownCast(BaseHandle handle)
         {
             ScrollBar ret = new ScrollBar(NDalicPINVOKE.ScrollBar_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -389,18 +418,27 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// Direction of scroll bar
+        /// </summary>
         public enum Direction
         {
             Vertical = 0,
             Horizontal
         }
 
+        /// <summary>
+        /// Indicator height policy.
+        /// </summary>
         public enum IndicatorHeightPolicyType
         {
             Variable = 0,
             Fixed
         }
 
+        /// <summary>
+        /// Direction of scroll bar
+        /// </summary>
         public string ScrollDirection
         {
             get
@@ -414,6 +452,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Indicator height policy.
+        /// </summary>
         public string IndicatorHeightPolicy
         {
             get
@@ -427,6 +469,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// the fixed height of scroll indicator.
+        /// </summary>
         public float IndicatorFixedHeight
         {
             get
@@ -440,6 +486,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_FIXED_HEIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// the duration in seconds for the scroll indicator to become fully visible.
+        /// </summary>
         public float IndicatorShowDuration
         {
             get
@@ -453,6 +503,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_SHOW_DURATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// the duration in seconds for the scroll indicator to become fully invisible.
+        /// </summary>
         public float IndicatorHideDuration
         {
             get
@@ -466,6 +520,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_HIDE_DURATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// the list of values to get notification when the current scroll position of the scrollable object goes above or below any of these values.
+        /// </summary>
         public Tizen.NUI.PropertyArray ScrollPositionIntervals
         {
             get
@@ -479,6 +537,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.SCROLL_POSITION_INTERVALS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// The minimum height for a variable size indicator.
+        /// </summary>
         public float IndicatorMinimumHeight
         {
             get
@@ -492,6 +554,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// The padding at the start of the indicator. For example, the top if scrollDirection is Vertical.
+        /// </summary>
         public float IndicatorStartPadding
         {
             get
@@ -505,6 +571,10 @@ namespace Tizen.NUI
                 SetProperty(ScrollBar.Property.INDICATOR_START_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// The padding at the end of the indicator. For example, the bottom if scrollDirection is Vertical.
+        /// </summary>
         public float IndicatorEndPadding
         {
             get

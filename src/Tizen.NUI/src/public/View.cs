@@ -20,7 +20,9 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// View is the base class for all views.
+    /// </summary>
     public class View : CustomActor
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -653,6 +655,9 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Describes the direction to move the keyboard focus towards.
+        /// </summary>
         public enum FocusDirection
         {
             Left,
@@ -663,7 +668,9 @@ namespace Tizen.NUI
             PageDown
         }
 
-
+        /// <summary>
+        /// Creates a new instance of a View.
+        /// </summary>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -681,6 +688,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to View handle.
+        /// If handle points to a View, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>A handle to a View or an uninitialized handle</returns>
         public new static View DownCast(BaseHandle handle)
         {
             View ret = new View(NDalicPINVOKE.View_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -688,6 +702,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to class which inherit View handle.
+        /// </summary>
+        /// <typeparam name="T">Class which inherit View</typeparam>
+        /// <param name="actor">Actor to an object</param>
+        /// <returns>A object which inherit View</returns>
         public static T DownCast<T>(Actor actor) where T : View
         {
             return (T)(ViewRegistry.GetViewFromActor(actor));
@@ -716,6 +736,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Quries whether the view has key input focus.
+        /// </summary>
+        /// <returns>true if this view has keyboard input focus</returns>
         public bool HasKeyInputFocus()
         {
             bool ret = NDalicPINVOKE.View_HasKeyInputFocus(swigCPtr);
@@ -757,12 +781,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the name of the style to be applied to the view.
+        /// </summary>
+        /// <param name="styleName">A string matching a style described in a stylesheet</param>
         public void SetStyleName(string styleName)
         {
             NDalicPINVOKE.View_SetStyleName(swigCPtr, styleName);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves the name of the style to be applied to the view (if any).
+        /// </summary>
+        /// <returns>A string matching a style, or an empty string</returns>
         public string GetStyleName()
         {
             string ret = NDalicPINVOKE.View_GetStyleName(swigCPtr);
@@ -789,6 +821,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Clears the background.
+        /// </summary>
         public void ClearBackground()
         {
             NDalicPINVOKE.View_ClearBackground(swigCPtr);
@@ -828,6 +863,9 @@ namespace Tizen.NUI
             CONTROL_PROPERTY_END_INDEX = CONTROL_PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// styleName, type string.
+        /// </summary>
         public string StyleName
         {
             get
@@ -842,6 +880,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// mutually exclusive with BACKGROUND_IMAGE & BACKGROUND,  type Vector4.
+        /// </summary>
         public Color BackgroundColor
         {
             get
@@ -864,6 +905,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND,  type Map.
+        /// </summary>
         public string BackgroundImage
         {
             get
@@ -900,6 +944,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND_IMAGE, type Map or string for URL.
+        /// </summary>
         public Tizen.NUI.PropertyMap Background
         {
             get
@@ -914,6 +961,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The current state of the view.
+        /// </summary>
         public string State
         {
             get
@@ -928,6 +978,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The current sub state of the view.
+        /// </summary>
         public string SubState
         {
             get
@@ -942,6 +995,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Displays a tooltip
+        /// </summary>
         public Tizen.NUI.PropertyMap Tooltip
         {
             get
@@ -956,6 +1012,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Displays a tooltip as Text
+        /// </summary>
         public string TooltipText
         {
             set
@@ -1075,6 +1134,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The top-left cell this child occupies, if not set, the first available cell is used
+        /// </summary>
         public Vector2 CellIndex
         {
             get
@@ -1089,6 +1151,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The number of rows this child occupies, if not set, default value is 1
+        /// </summary>
         public float RowSpan
         {
             get
@@ -1103,6 +1168,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The number of columns this child occupies, if not set, default value is 1
+        /// </summary>
         public float ColumnSpan
         {
             get
@@ -1117,6 +1185,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The horizontal alignment of this child inside the cells, if not set, default value is 'left'
+        /// </summary>
         public string CellHorizontalAlignment
         {
             get
@@ -1131,6 +1202,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The vertical alignment of this child inside the cells, if not set, default value is 'top'
+        /// </summary>
         public string CellVerticalAlignment
         {
             get
@@ -1145,12 +1219,11 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief The left focusable view.
-         * @note This will return NULL if not set.
-         * This will also return NULL if the specified left focusable view is not on stage.
-         *
-         */
+        /// <summary>
+        /// The left focusable view.
+        /// This will return NULL if not set.
+        /// This will also return NULL if the specified left focusable view is not on stage.
+        /// </summary>
         public View LeftFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1168,12 +1241,11 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief The right focusable view.
-         * @note This will return NULL if not set.
-         * This will also return NULL if the specified right focusable view is not on stage.
-         *
-         */
+        /// <summary>
+        /// The right focusable view.
+        /// This will return NULL if not set.
+        /// This will also return NULL if the specified right focusable view is not on stage.
+        /// </summary>
         public View RightFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1191,12 +1263,11 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief The up focusable view.
-         * @note This will return NULL if not set.
-         * This will also return NULL if the specified up focusable view is not on stage.
-         *
-         */
+        /// <summary>
+        /// The up focusable view.
+        /// This will return NULL if not set.
+        /// This will also return NULL if the specified up focusable view is not on stage.
+        /// </summary>
         public View UpFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1214,12 +1285,11 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief The down focusable view.
-         * @note This will return NULL if not set.
-         * This will also return NULL if the specified down focusable view is not on stage.
-         *
-         */
+        /// <summary>
+        /// The down focusable view.
+        /// This will return NULL if not set.
+        /// This will also return NULL if the specified down focusable view is not on stage.
+        /// </summary>
         public View DownFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1237,6 +1307,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// whether the view should be focusable by keyboard navigation.
+        /// </summary>
         public bool Focusable
         {
             set

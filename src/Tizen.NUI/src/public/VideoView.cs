@@ -30,7 +30,9 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
+    /// <summary>
+    /// VideoView is a control for video playback and display.
+    /// </summary>
     public class VideoView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -74,20 +76,16 @@ namespace Tizen.NUI
             }
         }
 
-
-
-        /**
-          * @brief Event arguments that passed via Finished signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via Finished signal
+        /// </summary>
         public class FinishedEventArgs : EventArgs
         {
             private VideoView _videoView;
 
-            /**
-              * @brief VideoView - VideoView is a control for video playback and display.
-              *
-              */
+            /// <summary>
+            /// The view for video playback and display.
+            /// </summary>
             public VideoView VideoView
             {
                 get
@@ -107,11 +105,12 @@ namespace Tizen.NUI
         private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
         private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
 
-        /**
-          * @brief Event for Finished signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.
-          * Finished signal is emitted when a video playback have finished.
-          */
+
+        /// <summary>
+        /// Event for Finished signal which can be used to subscribe/unsubscribe the event handler
+        /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.
+        /// Finished signal is emitted when a video playback have finished.
+        /// </summary>
         public event EventHandler<FinishedEventArgs> Finished
         {
             add
@@ -206,11 +205,20 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates an initialized VideoView.
+        /// </summary>
         public VideoView() : this(NDalicPINVOKE.VideoView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized VideoView.
+        /// If the string is empty, VideoView will not display anything.
+        /// </summary>
+        /// <param name="url">The url of the video resource to display</param>
         public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -228,6 +236,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to VideoView handle.
+        /// If handle points to a VideoView, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a VideoView or an uninitialized handle</returns>
         public new static VideoView DownCast(BaseHandle handle)
         {
             VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -235,30 +250,47 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Starts the video playback.
+        /// </summary>
         public void Play()
         {
             NDalicPINVOKE.VideoView_Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Pauses the video playback.
+        /// </summary>
         public void Pause()
         {
             NDalicPINVOKE.VideoView_Pause(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Stops the video playback.
+        /// </summary>
         public void Stop()
         {
             NDalicPINVOKE.VideoView_Stop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Seeks forward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for forward playback</param>
         public void Forward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Seeks backward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for backward playback</param>
         public void Backward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
@@ -277,6 +309,9 @@ namespace Tizen.NUI
             PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX
         }
 
+        /// <summary>
+        /// video file url as string type or PropertyMap.
+        /// </summary>
         public PropertyMap Video
         {
             get
@@ -290,6 +325,10 @@ namespace Tizen.NUI
                 SetProperty(VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// looping status, true or false.
+        /// </summary>
         public bool Looping
         {
             get
@@ -303,6 +342,10 @@ namespace Tizen.NUI
                 SetProperty(VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// mute status, true or false.
+        /// </summary>
         public bool Muted
         {
             get
@@ -316,6 +359,10 @@ namespace Tizen.NUI
                 SetProperty(VideoView.Property.MUTED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// left and right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
+        /// </summary>
         public PropertyMap Volume
         {
             get

@@ -11,6 +11,12 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Sets whether the actor should be focusable by keyboard navigation.
+    /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on-stage.
+    /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.
+    /// Note: The visual responds to the the Actor::COLOR by blending it with the 'Multiply' operator.
+    /// </summary>
     public class VisualBase : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -48,6 +54,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Create an empty Visual Handle
+        /// </summary>
         public VisualBase() : this(NDalicPINVOKE.new_VisualBase__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -65,6 +74,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// name of the visual
+        /// </summary>
         public string Name
         {
             set
@@ -90,12 +102,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the transform and the control size
+        /// </summary>
+        /// <param name="transform">A property map describing the transform</param>
+        /// <param name="controlSize">The size of the parent control for visuals that need to scale internally.</param>
         public void SetTransformAndSize(PropertyMap transform, Vector2 controlSize)
         {
             NDalicPINVOKE.VisualBase_SetTransformAndSize(swigCPtr, PropertyMap.getCPtr(transform), Vector2.getCPtr(controlSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns the height for a given width.
+        /// </summary>
+        /// <param name="width">Width to use.</param>
+        /// <returns>The height based on the width.</returns>
         public float GetHeightForWidth(float width)
         {
             float ret = NDalicPINVOKE.VisualBase_GetHeightForWidth(swigCPtr, width);
@@ -103,6 +125,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the width for a given height.
+        /// </summary>
+        /// <param name="height">Height to use.</param>
+        /// <returns>The width based on the height.</returns>
         public float GetWidthForHeight(float height)
         {
             float ret = NDalicPINVOKE.VisualBase_GetWidthForHeight(swigCPtr, height);
@@ -110,12 +137,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Return the natural size of the visual.
+        /// Deriving classes stipulate the natural size and by default a visual has a ZERO natural size.
+        /// A visual may not actually have a natural size until it has been placed on stage and acquired all it's resources.
+        /// </summary>
+        /// <param name="naturalSize">The visual's natural size</param>
         public void GetNaturalSize(Size2D naturalSize)
         {
             NDalicPINVOKE.VisualBase_GetNaturalSize(swigCPtr, Size2D.getCPtr(naturalSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// the depth index of this visual.
+        /// </summary>
         public float DepthIndex
         {
             set
@@ -140,6 +176,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Create the property map representing this visual.
+        /// </summary>
         public PropertyMap Creation
         {
             set
