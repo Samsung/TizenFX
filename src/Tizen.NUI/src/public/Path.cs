@@ -27,6 +27,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A 3D parametric curve.
+    /// Paths can be used to animate position and orientation of actors.
+    /// </summary> 
     public class Path : Handle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -119,11 +123,20 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates an initialized Path handle.
+        /// </summary>
         public Path() : this(NDalicPINVOKE.Path_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+        /// <summary>
+        /// Downcasts a handle to Path handle.
+        /// If handle points to a Path object, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
         public new static Path DownCast(BaseHandle handle)
         {
             Path ret = new Path(NDalicPINVOKE.Path_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -143,30 +156,57 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Adds an interpolation point.
+        /// </summary>
+        /// <param name="point">The new interpolation point to be added</param>
         public void AddPoint(Position point)
         {
             NDalicPINVOKE.Path_AddPoint(swigCPtr, Position.getCPtr(point));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Adds a control point.
+        /// </summary>
+        /// <param name="point">The new control point to be added</param>
         public void AddControlPoint(Vector3 point)
         {
             NDalicPINVOKE.Path_AddControlPoint(swigCPtr, Vector3.getCPtr(point));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Automatic generation of control points. Generated control points which result in a smooth join between the splines of each segment.
+        /// The generating algorithm is as follows:
+        /// For a given knot point K[N], find the vector that bisects K[N-1],[N] and [N],[N+1].
+        /// Calculate the tangent vector by taking the normal of this bisector.
+        /// The in control point is the length of the preceding segment back along this bisector multiplied by the curvature.
+        /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.
+        /// </summary>
+        /// <param name="curvature">The curvature of the spline. 0 gives straight lines between the knots, negative values means the spline contains loops, positive values up to  0.5 result in a smooth curve, positive values between 0.5 and 1 result  in looped curves where the loops are not distinct (i.e. the curve appears to be non-continuous), positive values higher than 1 result in looped curves</param>
         public void GenerateControlPoints(float curvature)
         {
             NDalicPINVOKE.Path_GenerateControlPoints(swigCPtr, curvature);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sample path at a given progress. Calculates position and tangent at that point of the curve.
+        /// </summary>
+        /// <param name="progress">A floating point value between 0.0 and 1.0</param>
+        /// <param name="position">The interpolated position at that progress</param>
+        /// <param name="tangent">The interpolated tangent at that progress</param>
         public void Sample(float progress, Vector3 position, Vector3 tangent)
         {
             NDalicPINVOKE.Path_Sample(swigCPtr, progress, Vector3.getCPtr(position), Vector3.getCPtr(tangent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Accessor for the interpolation points.
+        /// </summary>
+        /// <param name="index">The index of the interpolation point</param>
         public Vector3 GetPoint(uint index)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Path_GetPoint(swigCPtr, index), false);
@@ -174,6 +214,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Accessor for the control points.
+        /// </summary>
+        /// <param name="index">The index of the control point</param>	
         public Vector3 GetControlPoint(uint index)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Path_GetControlPoint(swigCPtr, index), false);
@@ -181,6 +225,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the number of interpolation points in the path.
+        /// </summary>
+        /// <returns>The number of interpolation points in the path</returns>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Path_GetPointCount(swigCPtr);
@@ -188,6 +236,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for Points
+        /// </summary>
         public PropertyArray Points
         {
             get
@@ -202,6 +253,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Enumeration for ControlPoints
+        /// </summary>
         public PropertyArray ControlPoints
         {
             get

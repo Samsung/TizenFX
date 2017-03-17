@@ -20,6 +20,9 @@ namespace Tizen.NUI
 
     using System;
 
+    /// <summary>
+    /// Color Class
+    /// </summary>
     public class Color : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -65,42 +68,65 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Addition operator.
+        /// </summary>
         public static Color operator +(Color arg1, Color arg2)
         {
             return arg1.Add(arg2);
         }
 
+        /// <summary>
+        /// Subtraction operator.
+        /// </summary>
         public static Color operator -(Color arg1, Color arg2)
         {
             return arg1.Subtract(arg2);
         }
 
+        /// <summary>
+        /// Subtraction operator, void
+        /// </summary>
         public static Color operator -(Color arg1)
         {
             return arg1.Subtract();
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
         public static Color operator *(Color arg1, Color arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Multiplication operator, using float.
+        /// </summary>
         public static Color operator *(Color arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
         public static Color operator /(Color arg1, Color arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Division operator, using float.
+        /// </summary>
         public static Color operator /(Color arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
 
-
+        /// <summary>
+        /// Array subscript operator.
+        /// </summary>
         public float this[uint index]
         {
             get
@@ -109,6 +135,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// GetColorFromPtr
+        /// </summary>
         public static Color GetColorFromPtr(global::System.IntPtr cPtr)
         {
             Color ret = new Color(cPtr, false);
@@ -117,21 +146,40 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Color() : this(NDalicPINVOKE.new_Vector4__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="r">The red component</param>
+        /// <param name="g">The green component</param>
+        /// <param name="b">The blue component</param>
+        /// <param name="a">The alpha component</param>
         public Color(float r, float g, float b, float a) : this(NDalicPINVOKE.new_Vector4__SWIG_1(r, g, b, a), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="array">The array</param>
         public Color(float[] array) : this(NDalicPINVOKE.new_Vector4__SWIG_2(array), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Add Color.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         private Color Add(Color rhs)
         {
             Color ret = new Color(NDalicPINVOKE.Vector4_Add(swigCPtr, Color.getCPtr(rhs)), true);
@@ -139,6 +187,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Add assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         private Color AddAssign(Vector4 rhs)
         {
             Color ret = new Color(NDalicPINVOKE.Vector4_AddAssign(swigCPtr, Color.getCPtr(rhs)), false);
@@ -223,6 +276,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         public bool EqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_EqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -233,6 +291,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>	
         public bool NotEqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_NotEqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -248,6 +311,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The red component
+        /// </summary>
         public float R
         {
             set
@@ -263,6 +329,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Green Component.
+        /// </summary>
         public float G
         {
             set
@@ -278,6 +347,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Blue Component.
+        /// </summary>
         public float B
         {
             set
@@ -293,6 +365,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Alpha Component.
+        /// </summary>
         public float A
         {
             set
@@ -308,6 +383,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Black Color.
+        /// </summary>
         public static Color Black
         {
             get
@@ -319,6 +397,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The White Color.
+        /// </summary>
         public static Color White
         {
             get
@@ -330,6 +411,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Red Color.
+        /// </summary>
         public static Color Red
         {
             get
@@ -341,6 +425,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Green Color.
+        /// </summary>
         public static Color Green
         {
             get
@@ -352,6 +439,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Blue Color.
+        /// </summary>
         public static Color Blue
         {
             get
@@ -363,6 +453,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Yellow Color.
+        /// </summary>
         public static Color Yellow
         {
             get
@@ -374,6 +467,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Magenta Color.
+        /// </summary>
         public static Color Magenta
         {
             get
@@ -385,6 +481,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Cyan Color.
+        /// </summary>
         public static Color Cyan
         {
             get
@@ -396,6 +495,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The Transparent Color.
+        /// </summary>
         public static Color Transparent
         {
             get

@@ -842,6 +842,9 @@ namespace Tizen.NUI
         {
         }
     }
+    /// <summary>
+    /// Enumeration for CustomViewBehaviour
+    /// </summary>
     public enum CustomViewBehaviour
     {
         ViewBehaviourDefault = 0,

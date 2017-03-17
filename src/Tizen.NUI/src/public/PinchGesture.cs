@@ -11,6 +11,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.
+    /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.
+    /// </summary>
     public class PinchGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -62,6 +66,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The scale factor from the start of the pinch gesture till the latest pinch gesture.
+        /// If the user is moving their fingers away from each other, then
+        /// this value increases.  Conversely, if the user is moving their
+        /// fingers towards each other, this value will decrease.
+        /// </summary>
         public float Scale
         {
             get
@@ -70,6 +80,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The speed at which the user is moving their fingers.
+        /// This is the pixel movement per second.
+        /// </summary>
         public float Speed
         {
             get
@@ -78,6 +92,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The center point of the two points that caused the pinch gesture in screen coordinates.
+        /// </summary>
         public Vector2 ScreenCenterPoint
         {
             get
@@ -86,6 +103,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The center point of the two points that caused the pinch gesture in local actor coordinates.
+        /// </summary>
         public Vector2 LocalCenterPoint
         {
             get
@@ -94,16 +114,29 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
+        /// <param name="state">The state of the gesture</param>
         public PinchGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PinchGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
         public PinchGesture(PinchGesture rhs) : this(NDalicPINVOKE.new_PinchGesture__SWIG_1(PinchGesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         public PinchGesture Assign(PinchGesture rhs)
         {
             PinchGesture ret = new PinchGesture(NDalicPINVOKE.PinchGesture_Assign(swigCPtr, PinchGesture.getCPtr(rhs)), false);
