@@ -27,6 +27,10 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A control which renders a short text string.
+    /// Text labels are lightweight, non-editable and do not respond to user input.
+    /// </summary>
     public class TextLabel : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,6 +50,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -141,11 +148,19 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates the TextLabel control.
+        /// </summary>
         public TextLabel() : this(NDalicPINVOKE.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates the TextLabel control.
+        /// </summary>
+        /// <param name="text">The text to display</param>
         public TextLabel(string text) : this(NDalicPINVOKE.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -163,6 +178,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to TextLabel.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
         public new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -176,6 +195,10 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// RenderingBackend property
+        /// The type of rendering e.g. bitmap-based.
+        /// </summary>
         public int RenderingBackend
         {
             get
@@ -189,6 +212,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.RENDERING_BACKEND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Text property
+        /// The text to display in UTF-8 format.
+        /// </summary>
         public string Text
         {
             get
@@ -202,6 +230,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.TEXT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// FontFamily property
+        /// The requested font family to use.
+        /// </summary>
         public string FontFamily
         {
             get
@@ -215,6 +248,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// FontStyle property
+        /// The requested font style to use.
+        /// </summary>
         public PropertyMap FontStyle
         {
             get
@@ -228,6 +266,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.FONT_STYLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// PointSize property
+        /// The size of font in points.
+        /// </summary>
         public float PointSize
         {
             get
@@ -241,6 +284,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.POINT_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// MultiLine property
+        /// The single-line or multi-line layout option.
+        /// </summary>
         public bool MultiLine
         {
             get
@@ -254,6 +302,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.MULTI_LINE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// HorizontalAlignment property
+        /// The line horizontal alignment.
+        /// </summary>
         public string HorizontalAlignment
         {
             get
@@ -267,6 +320,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// VerticalAlignment property
+        /// The line vertical alignment.
+        /// </summary>
         public string VerticalAlignment
         {
             get
@@ -280,6 +338,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// TextColor property
+        /// The color of the text.
+        /// </summary>
         public Color TextColor
         {
             get
@@ -293,6 +356,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ShadowOffset property
+        /// The drop shadow offset 0 indicates no shadow.
+        /// </summary>
         public Vector2 ShadowOffset
         {
             get
@@ -306,6 +374,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.SHADOW_OFFSET, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// ShadowColor property
+        /// The color of a drop shadow.
+        /// </summary>
         public Vector4 ShadowColor
         {
             get
@@ -319,6 +392,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.SHADOW_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// UnderlineEnabled property
+        /// The underline enabled flag.
+        /// </summary>
         public bool UnderlineEnabled
         {
             get
@@ -332,6 +410,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.UNDERLINE_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// UnderlineColor property
+        /// Overrides the underline height from font metrics.
+        /// </summary>
         public Vector4 UnderlineColor
         {
             get
@@ -345,6 +428,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.UNDERLINE_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// UnderlineHeight property
+        /// Overrides the underline height from font metrics.
+        /// </summary>
         public float UnderlineHeight
         {
             get
@@ -358,6 +446,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.UNDERLINE_HEIGHT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// EnableMarkup property
+        /// Whether the mark-up processing is enabled.
+        /// </summary>
         public bool EnableMarkup
         {
             get
@@ -371,6 +464,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// EnableAutoScroll property
+        /// Starts or stops auto scrolling.
+        /// </summary>
         public bool EnableAutoScroll
         {
             get
@@ -384,6 +482,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.ENABLE_AUTO_SCROLL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// AutoScrollSpeed property
+        /// Sets the speed of scrolling in pixels per second.
+        /// </summary>
         public int AutoScrollSpeed
         {
             get
@@ -397,6 +500,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.AUTO_SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// AutoScrollLoopCount property
+        /// Number of complete loops when scrolling enabled.
+        /// </summary>
         public int AutoScrollLoopCount
         {
             get
@@ -410,6 +518,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_COUNT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// AutoScrollGap property
+        /// Gap before scrolling wraps.
+        /// </summary>
         public float AutoScrollGap
         {
             get
@@ -423,6 +536,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.AUTO_SCROLL_GAP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// LineSpacing property
+        /// The default extra space between lines in points.
+        /// </summary>
         public float LineSpacing
         {
             get
@@ -436,6 +554,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.LINE_SPACING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Underline property
+        /// The default underline parameters.
+        /// </summary>
         public PropertyMap Underline
         {
             get
@@ -449,6 +572,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.UNDERLINE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Shadow property
+        /// The default shadow parameters.
+        /// </summary>
         public PropertyMap Shadow
         {
             get
@@ -462,6 +590,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.SHADOW, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Emboss property
+        /// The default emboss parameters.
+        /// </summary>
         public PropertyMap Emboss
         {
             get
@@ -475,6 +608,11 @@ namespace Tizen.NUI
                 SetProperty(TextLabel.Property.EMBOSS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Outline property
+        /// The default outline parameters.
+        /// </summary>
         public PropertyMap Outline
         {
             get
