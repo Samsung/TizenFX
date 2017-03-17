@@ -210,18 +210,23 @@ namespace Tizen.Content.MediaContent
                 MediaContentValidator.ThrowIfError(
                     Interop.Folder.GetFolderFromDb(id, out handle), "Failed to get information");
 
-                result = new MediaFolder(handle);
+                if (handle != IntPtr.Zero)
+                {
+                    result = new MediaFolder(handle);
+                    return (T)result;
+                }
 
-                return (T)result;
             }
             else if (typeof(T) == typeof(Storage))
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Storage.GetStorageInfoFromDb(id, out handle), "Failed to get information");
 
-                result = new Storage(handle);
-
-                return (T)result;
+                if (handle != IntPtr.Zero)
+                {
+                    result = new Storage(handle);
+                    return (T)result;
+                }
             }
 
             return null;
@@ -245,27 +250,33 @@ namespace Tizen.Content.MediaContent
                 MediaContentValidator.ThrowIfError(
                     Interop.Playlist.GetPlaylistFromDb(id, out handle), "Failed to get information");
 
-                result = new PlayList(handle);
-
-                return (T)result;
+                if (handle != IntPtr.Zero)
+                {
+                    result = new PlayList(handle);
+                    return (T)result;
+                }
             }
             else if (typeof(T) == typeof(Album))
             {
                 MediaContentValidator.ThrowIfError(
                 Interop.Group.MediaAlbumGetAlbumFromDb(id, out handle), "Failed to get information");
 
-                result = new Album(handle);
-
-                return (T)result;
+                if (handle != IntPtr.Zero)
+                {
+                    result = new Album(handle);
+                    return (T)result;
+                }
             }
             else if (typeof(T) == typeof(Tag))
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.Tag.GetTagFromDb(id, out handle), "Failed to get information");
 
-                result = new Tag(handle);
-
-                return (T)result;
+                if (handle != IntPtr.Zero)
+                {
+                    result = new Tag(handle);
+                    return (T)result;
+                }
             }
 
             return null;
