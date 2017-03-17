@@ -145,6 +145,15 @@ namespace Tizen.NUI
             _visualDictionary.Clear();
         }
 
+        /// <summary>
+        /// Override method of OnRelayout() for CustomView class.
+        /// Called after the size negotiation has been finished for this control.
+        /// The control is expected to assign this given size to itself/its children.
+        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.
+        /// Note! As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored)
+        /// </summary>
+        /// <param name="size">The allocated size</param>
+        /// <param name="container">The control should add actors to this container that it is not able to allocate a size for.</param>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             foreach (var item in _visualDictionary)
