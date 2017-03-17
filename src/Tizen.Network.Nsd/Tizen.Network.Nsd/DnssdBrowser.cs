@@ -24,10 +24,12 @@ namespace Tizen.Network.Nsd
     public class DnssdBrowser : INsdBrowser
     {
         private string _serviceType;
+        private uint _browserHandle;
         private event EventHandler<DnssdServiceFoundEventArgs> _serviceFound;
+        private Interop.Nsd.Dnssd.ServiceFoundCallback _serviceFoundCallback;
 
         /// <summary>
-        /// This event is raised when service state changes during service discovery using DNSSD.
+        /// This event is raised when a DNSSD service is found during service discovery.
         /// </summary>
         public event EventHandler<DnssdServiceFoundEventArgs> ServiceFound
         {
@@ -48,7 +50,43 @@ namespace Tizen.Network.Nsd
         /// <param name="serviceType">The DNSSD service type</param>
         public DnssdBrowser(string serviceType)
         {
+            DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
+            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+
             _serviceType = serviceType;
+        }
+
+        internal void StartDiscovery()
+        {
+            DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
+            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+
+            _serviceFoundCallback = (DnssdServiceState state, uint service, IntPtr userData) =>
+            {
+                if (_serviceFound != null)
+                {
+                    Log.Info(Globals.LogTag, "Inside Service found callback");
+                    DnssdService dnsService = new DnssdService(service);
+                    _serviceFound(null, new DnssdServiceFoundEventArgs(state, dnsService));
+                }
+            };
+
+            int ret = Interop.Nsd.Dnssd.StartBrowsing(_serviceType, out _browserHandle, _serviceFoundCallback, IntPtr.Zero);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to discover Dnssd remote service, Error - " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        internal void StopDiscovery()
+        {
+            int ret = Interop.Nsd.Dnssd.StopBrowsing(_browserHandle);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to stop discovery of Dnssd remote service, Error - " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
         }
     }
 }

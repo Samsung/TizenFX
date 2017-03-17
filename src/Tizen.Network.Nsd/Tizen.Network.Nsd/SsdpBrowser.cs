@@ -24,10 +24,12 @@ namespace Tizen.Network.Nsd
     public class SsdpBrowser : INsdBrowser
     {
         private string _target;
+        private uint _browserHandle;
         private event EventHandler<SsdpServiceFoundEventArgs> _serviceFound;
+        private Interop.Nsd.Ssdp.ServiceFoundCallback _serviceFoundCallback;
 
         /// <summary>
-        /// This event is raised when service state changes during service discovery using SSDP.
+        /// This event is raised when service has become available or unavailable during service discovery using SSDP.
         /// </summary>
         public event EventHandler<SsdpServiceFoundEventArgs> ServiceFound
         {
@@ -48,7 +50,43 @@ namespace Tizen.Network.Nsd
         /// <param name="target">The target to browse for the service.</param>
         public SsdpBrowser(string target)
         {
+            SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
+            Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+
             _target = target;
+        }
+
+        internal void StartDiscovery()
+        {
+            SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
+            Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+
+            _serviceFoundCallback = (SsdpServiceState state, uint service, IntPtr userData) =>
+            {
+                if (_serviceFound != null)
+                {
+                    Log.Info(Globals.LogTag, "Inside Service found callback");
+                    SsdpService ssdpService = new SsdpService(service);
+                    _serviceFound(null, new SsdpServiceFoundEventArgs(state, ssdpService));
+                }
+            };
+
+            int ret = Interop.Nsd.Ssdp.StartBrowsing(_target, out _browserHandle, _serviceFoundCallback, IntPtr.Zero);
+            if (ret != (int)SsdpError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to discover Ssdp remote service, Error - " + (SsdpError)ret);
+                NsdErrorFactory.ThrowSsdpException(ret);
+            }
+        }
+
+        internal void StopDiscovery()
+        {
+            int ret = Interop.Nsd.Ssdp.StopBrowsing(_browserHandle);
+            if (ret != (int)SsdpError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to stop discovery of Ssdp remote service, Error - " + (SsdpError)ret);
+                NsdErrorFactory.ThrowSsdpException(ret);
+            }
         }
     }
 }

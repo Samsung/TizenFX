@@ -70,7 +70,7 @@ internal static partial class Interop
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_name")]
             internal static extern int GetName(uint service, out string name);
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_ip")]
-            internal static extern int GetIp(uint service, out string ipV4, out string ipV6);
+            internal static extern int GetIP(uint service, out string ipV4, out string ipV6);
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_port")]
             internal static extern int GetPort(uint service, out int port);
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_all_txt_record")]

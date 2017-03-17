@@ -14,24 +14,83 @@
  * limitations under the License.
  */
 
+using System;
+using System.Text;
+using System.Threading;
+using System.Net;
+
 namespace Tizen.Network.Nsd
 {
+    internal class DnssdInitializer
+    {
+        internal DnssdInitializer()
+        {
+            Globals.DnssdInitialize();
+        }
+
+        ~DnssdInitializer()
+        {
+            int ret = Interop.Nsd.Dnssd.Deinitialize();
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to deinitialize Dnssd, Error - " + (DnssdError)ret);
+            }
+        }
+    }
     /// <summary>
-    /// This class is used for managing local service discovery using DNSSD.
+    /// This class is used for managing local service registration and its properties using DNSSD.
     /// </summary>
     public class DnssdService : INsdService
     {
-        private uint _service;
+        private uint _serviceHandle;
+        private string _serviceType;
+        private ushort _dnsRecordtype = 16;
+        private Interop.Nsd.Dnssd.ServiceRegisteredCallback _serviceRegisteredCallback;
 
         /// <summary>
-        /// Name of DNSSD local service.
+        /// Constructor to create DnssdService instance that sets the serviceType to a given value.
         /// </summary>
+        /// <param name="serviceType">The DNSSD service type. It is expressed as type followed by protocol, separated by a dot(e.g. "_ftp._tcp").
+        /// It must begin with an underscore, followed by 1-15 characters which may be letters, digits or hyphens.
+        /// </param>
+        public DnssdService(string serviceType)
+        {
+            _serviceType = serviceType;
+            DnssdInitializeCreateService();
+        }
+
+        internal DnssdService(uint service)
+        {
+            _serviceHandle = service;
+        }
+
+        internal void DnssdInitializeCreateService()
+        {
+            DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
+            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+            int ret = Interop.Nsd.Dnssd.CreateService(_serviceType, out _serviceHandle);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to create a local Dnssd service handle, Error - " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Name of DNSSD service.
+        /// </summary>
+        /// <remarks>
+        /// Set Name for only unregistered service created locally.
+        /// In case of error, null will be returned during get and exception will be thrown during set.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
         public string Name
         {
             get
             {
                 string name;
-                int ret = Interop.Nsd.Dnssd.GetName(_service, out name);
+                int ret = Interop.Nsd.Dnssd.GetName(_serviceHandle, out name);
                 if (ret != (int)DnssdError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get name of service, Error: " + (DnssdError)ret);
@@ -43,7 +102,12 @@ namespace Tizen.Network.Nsd
 
             set
             {
-                int ret = Interop.Nsd.Dnssd.SetName(_service, value.ToString());
+                if (!Globals.s_threadDns.IsValueCreated)
+                {
+                    DnssdInitializeCreateService();
+                }
+
+                int ret = Interop.Nsd.Dnssd.SetName(_serviceHandle, value.ToString());
                 if (ret != (int)DnssdError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set name of service, Error: " + (DnssdError)ret);
@@ -55,12 +119,15 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Type of DNSSD local/remote service.
         /// </summary>
+        /// <remarks>
+        /// In case of error, null will be returned.
+        /// </remarks>
         public string Type
         {
             get
             {
                 string type;
-                int ret = Interop.Nsd.Dnssd.GetType(_service, out type);
+                int ret = Interop.Nsd.Dnssd.GetType(_serviceHandle, out type);
                 if (ret != (int)DnssdError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get type of service, Error: " + (DnssdError)ret);
@@ -68,6 +135,224 @@ namespace Tizen.Network.Nsd
                 }
 
                 return type;
+            }
+        }
+
+        /// <summary>
+        /// Port number of DNSSD local/remote service.
+        /// </summary>
+        /// <remarks>
+        /// Set Port for only unregistered service created locally.
+        /// In case of error, -1 will be returned during get and exception will be thrown during set.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
+        public int Port
+        {
+            get
+            {
+                int port;
+                int ret = Interop.Nsd.Dnssd.GetPort(_serviceHandle, out port);
+                if (ret != (int)DnssdError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get port number of Dnssd service, Error: " + (DnssdError)ret);
+                    return -1;
+                }
+
+                return port;
+            }
+
+            set
+            {
+                if (!Globals.s_threadDns.IsValueCreated)
+                {
+                    DnssdInitializeCreateService();
+                }
+
+                int ret = Interop.Nsd.Dnssd.SetPort(_serviceHandle, value);
+                if (ret != (int)DnssdError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to set port number of Dnssd service, Error: " + (DnssdError)ret);
+                    NsdErrorFactory.ThrowDnssdException(ret);
+                }
+            }
+        }
+
+        /// <summary>
+        /// IP of DNSSD remote service.
+        /// </summary>
+        /// <remarks>
+        /// If there is no IPv4 Address, then IPV4Address would contain null and if there is no IPv6 Address, then IPV6Address would contain null.
+        /// In case of error, null object will be returned.
+        /// </remarks>
+        public IPAddressInformation IP
+        {
+            get
+            {
+                string IPv4, IPv6;
+                int ret = Interop.Nsd.Dnssd.GetIP(_serviceHandle, out IPv4, out IPv6);
+                if (ret != (int)DnssdError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get the IP of Dnssd remote service, Error: " + (DnssdError)ret);
+                    return null;
+                }
+
+                IPAddressInformation IPAddressInstance = new IPAddressInformation(IPv4, IPv6);
+                return IPAddressInstance;
+            }
+        }
+
+        private void GetTxtRecord(out ushort length, out byte[] value)
+        {
+            int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out length, out value);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get the TXT record, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Adds the TXT record.
+        /// </summary>
+        /// <remarks>
+        /// TXT record should be added after registering local service using RegisterService().
+        /// </remarks>
+        /// <param name="key">The key of the TXT record. It must be a null-terminated string with 9 characters or fewer excluding null. It is case insensitive.</param>
+        /// <param name="value">The value of the TXT record.If null, then "key" will be added with no value. If non-null but value_length is zero, then "key=" will be added with empty value.</param>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        public void AddTXTRecord(string key, string value)
+        {
+            byte[] byteValue = Encoding.UTF8.GetBytes(value);
+            ushort length = Convert.ToUInt16(byteValue.Length);
+            int ret = Interop.Nsd.Dnssd.AddTxtRecord(_serviceHandle, key, length, byteValue);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to add the TXT record, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+
+            byte[] txtValue;
+            ushort txtLength;
+            GetTxtRecord(out txtLength, out txtValue);
+
+            ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, txtLength, txtValue);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Removes the TXT record.
+        /// </summary>
+        /// <param name="key">The key of the TXT record to be removed.</param>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        public void RemoveTXTRecord(string key)
+        {
+            int ret = Interop.Nsd.Dnssd.RemoveTxtRecord(_serviceHandle, key);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to remove the TXT record, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+
+            byte[] txtValue;
+            ushort txtLength;
+            GetTxtRecord(out txtLength, out txtValue);
+            if (txtLength == 0)
+            {
+                ret = Interop.Nsd.Dnssd.UnsetRecord(_serviceHandle, _dnsRecordtype);
+                if (ret != (int)DnssdError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to unset the DNS resource record, Error: " + (DnssdError)ret);
+                    NsdErrorFactory.ThrowDnssdException(ret);
+                }
+            }
+        }
+
+        internal void RegisterService()
+        {
+            if (Globals.s_threadDns.IsValueCreated)
+            {
+                DnssdInitializeCreateService();
+            }
+
+            _serviceRegisteredCallback = (DnssdError result, uint service, IntPtr userData) =>
+            {
+                if (result != DnssdError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to finish the registration of Dnssd local service, Error: " + result);
+                    NsdErrorFactory.ThrowDnssdException((int)result);
+                }
+            };
+
+            int ret = Interop.Nsd.Dnssd.RegisterService(_serviceHandle, _serviceRegisteredCallback, IntPtr.Zero);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to register the Dnssd local service, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        internal void DeregisterService()
+        {
+            int ret = Interop.Nsd.Dnssd.DeregisterService(_serviceHandle);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to deregister the Dnssd local service, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
+        }
+
+        ~DnssdService()
+        {
+            int ret = Interop.Nsd.Dnssd.DestroyService(_serviceHandle);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to destroy the local Dnssd service handle, Error - " + (DnssdError)ret);
+            }
+        }
+    }
+
+    /// <summary>
+    /// This class manages the IP address properties of DNSSD service.
+    /// </summary>
+    public class IPAddressInformation
+    {
+        private string _ipv4, _ipv6;
+        internal IPAddressInformation()
+        {
+        }
+
+        internal IPAddressInformation(string ipv4, string ipv6)
+        {
+            _ipv4 = ipv4;
+            _ipv6 = ipv6;
+        }
+
+        /// <summary>
+        /// The IP version 4 address of DNSSD service.
+        /// </summary>
+        public IPAddress IPV4Address
+        {
+            get
+            {
+                return IPAddress.Parse(_ipv4);
+            }
+        }
+
+        /// <summary>
+        /// The IP version 6 address of DNSSD service.
+        /// </summary>
+        public IPAddress IPV6Address
+        {
+            get
+            {
+                return IPAddress.Parse(_ipv6);
             }
         }
     }

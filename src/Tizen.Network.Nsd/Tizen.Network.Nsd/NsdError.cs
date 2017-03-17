@@ -32,7 +32,7 @@ namespace Tizen.Network.Nsd
             case DnssdError.InvalidParameter:
                 throw new InvalidOperationException("Invalid parameter");
             case DnssdError.NotSupported:
-                throw new InvalidOperationException("Not supported");
+                throw new NotSupportedException("Not supported");
             case DnssdError.NotInitialized:
                 throw new InvalidOperationException("Not initialized");
             case DnssdError.AlreadyRegistered:
@@ -58,7 +58,7 @@ namespace Tizen.Network.Nsd
                 case SsdpError.InvalidParameter:
                     throw new InvalidOperationException("Invalid parameter");
                 case SsdpError.NotSupported:
-                    throw new InvalidOperationException("Not supported");
+                    throw new NotSupportedException("Not supported");
                 case SsdpError.NotInitialized:
                     throw new InvalidOperationException("Not initialized");
                 case SsdpError.OperationFailed:
