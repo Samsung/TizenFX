@@ -26,7 +26,10 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// The window class is used internally for drawing.
+    /// A Window has an orientation and indicator properties.
+    /// </summary>
     public class Window : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -70,22 +73,48 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="isTransparent">Whether Window is transparent</param>
         public Window(Rectangle windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
         public Window(Rectangle windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="className">The Window class name</param>
+        /// <param name="isTransparent">Whether Window is transparent</param>
         public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="className">The Window class name</param>
         public Window(Rectangle windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -103,18 +132,31 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// This sets whether the indicator bar should be shown or not.
+        /// </summary>
+        /// <param name="visibleMode">Visible mode for indicator bar, Visible in default</param>
         public void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
         {
             NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// This sets the opacity mode of indicator bar.
+        /// </summary>
+        /// <param name="opacity">The opacity mode</param>
         public void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
         {
             NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// This sets the orientation of indicator bar.
+        /// It does not implicitly show the indicator if it is currently hidden.
+        /// </summary>
+        /// <param name="orientation">The orientation</param>
         public void RotateIndicator(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
@@ -127,18 +169,27 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Raises window to the top of Window stack.
+        /// </summary>
         public void Raise()
         {
             NDalicPINVOKE.Window_Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Lowers window to the bottom of Window stack.
+        /// </summary>
         public void Lower()
         {
             NDalicPINVOKE.Window_Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Activates window to the top of Window stack even it is iconified.
+        /// </summary>
         public void Activate()
         {
             NDalicPINVOKE.Window_Activate(swigCPtr);
@@ -191,6 +242,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
+        /// </summary>
         public enum WindowOrientation
         {
             Portrait = 0,
@@ -199,6 +253,9 @@ namespace Tizen.NUI
             LandscapeInverse = 270
         }
 
+        /// <summary>
+        /// Enumeration for opacity of the indicator.
+        /// </summary>
         public enum IndicatorBgOpacity
         {
             Opaque = 100,
@@ -206,6 +263,9 @@ namespace Tizen.NUI
             Transparent = 0
         }
 
+        /// <summary>
+        /// Enumeration for visible mode of the indicator.
+        /// </summary>
         public enum IndicatorVisibleMode
         {
             Invisible = 0,

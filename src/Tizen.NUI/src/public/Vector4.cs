@@ -11,6 +11,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A four dimensional vector.
+    /// </summary>
     public class Vector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -55,42 +58,87 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Addition operator.
+        /// </summary>
+        /// <param name="arg1">First value</param>
+        /// <param name="arg2">Second value</param>
+        /// <returns>A vector containing the result of the addition</returns>
         public static Vector4 operator +(Vector4 arg1, Vector4 arg2)
         {
             return arg1.Add(arg2);
         }
 
+        /// <summary>
+        /// Subtraction operator.
+        /// </summary>
+        /// <param name="arg1">First value</param>
+        /// <param name="arg2">Second value</param>
+        /// <returns>A vector containing the result of the subtraction</returns>
         public static Vector4 operator -(Vector4 arg1, Vector4 arg2)
         {
             return arg1.Subtract(arg2);
         }
 
+        /// <summary>
+        /// Unary negation operator.
+        /// </summary>
+        /// <param name="arg1">Target Value</param>
+        /// <returns>A vector containg the negation</returns>
         public static Vector4 operator -(Vector4 arg1)
         {
             return arg1.Subtract();
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
+        /// <param name="arg1">First Value</param>
+        /// <param name="arg2">Second Value</param>
+        /// <returns>A vector containing the result of the multiplication</returns>
         public static Vector4 operator *(Vector4 arg1, Vector4 arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
+        /// <param name="arg1">First Value</param>
+        /// <param name="arg2">The float value to scale the vector</param>
+        /// <returns>A vector containing the result of the scaling</returns>
         public static Vector4 operator *(Vector4 arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
+        /// <param name="arg1">First Value</param>
+        /// <param name="arg2">Second Value</param>
+        /// <returns>A vector containing the result of the division</returns>
         public static Vector4 operator /(Vector4 arg1, Vector4 arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Division operator.
+        /// </summary>
+        /// <param name="arg1">First Value</param>
+        /// <param name="arg2">The float value to scale the vector by</param>
+        /// <returns>A vector containing the result of the scaling</returns>
         public static Vector4 operator /(Vector4 arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
 
+        /// <summary>
+        /// Array subscript operator overload.
+        /// </summary>
+        /// <param name="index">Subscript index</param>
+        /// <returns>The float at the given index</returns>
         public float this[uint index]
         {
             get
@@ -106,32 +154,56 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Default constructor, initializes the vector to 0.
+        /// </summary>
         public Vector4() : this(NDalicPINVOKE.new_Vector4__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Conversion constructor from four floats.
+        /// </summary>
+        /// <param name="x">x (or r/s) component</param>
+        /// <param name="y">y (or g/t) component</param>
+        /// <param name="z">z (or b/p) component</param>
+        /// <param name="w">w (or a/q) component</param>
         public Vector4(float x, float y, float z, float w) : this(NDalicPINVOKE.new_Vector4__SWIG_1(x, y, z, w), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Conversion constructor from an array of four floats.
+        /// </summary>
+        /// <param name="array">array Array of either xyzw/rgba/stpq</param>
         public Vector4(float[] array) : this(NDalicPINVOKE.new_Vector4__SWIG_2(array), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Conversion constructor from Vector2.
+        /// </summary>
+        /// <param name="vec2">Vector2 to copy from, z and w are initialized to 0</param>
         public Vector4(Vector2 vec2) : this(NDalicPINVOKE.new_Vector4__SWIG_3(Vector2.getCPtr(vec2)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Conversion constructor from Vector3.
+        /// </summary>
+        /// <param name="vec3">Vector3 to copy from, w is initialized to 0</param>
         public Vector4(Vector3 vec3) : this(NDalicPINVOKE.new_Vector4__SWIG_4(Vector3.getCPtr(vec3)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// (1.0f,1.0f,1.0f,1.0f)
+        /// </summary>
         public static Vector4 One
         {
             get
@@ -143,6 +215,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// (1.0f,0.0f,0.0f,0.0f)
+        /// </summary>
         public static Vector4 XAxis
         {
             get
@@ -154,6 +229,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// (0.0f,1.0f,0.0f,0.0f)
+        /// </summary>
         public static Vector4 YAxis
         {
             get
@@ -165,6 +243,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// (0.0f,0.0f,1.0f,0.0f)
+        /// </summary>
         public static Vector4 ZAxis
         {
             get
@@ -176,6 +257,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// (0.0f, 0.0f, 0.0f, 0.0f)
+        /// </summary>
         public static Vector4 Zero
         {
             get
@@ -348,6 +432,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the length of the vector.
+        /// </summary>
+        /// <returns>The length</returns>
         public float Length()
         {
             float ret = NDalicPINVOKE.Vector4_Length(swigCPtr);
@@ -355,6 +443,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the length of the vector squared.
+        /// This is faster than using Length() when performing
+        /// threshold checks as it avoids use of the square root.
+        /// </summary>
+        /// <returns>The length of the vector squared</returns>
         public float LengthSquared()
         {
             float ret = NDalicPINVOKE.Vector4_LengthSquared(swigCPtr);
@@ -362,12 +456,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Normalizes the vector.
+        /// Sets the vector to unit length whilst maintaining its direction.
+        /// </summary>
         public void Normalize()
         {
             NDalicPINVOKE.Vector4_Normalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Clamps the vector between minimum and maximum vectors.
+        /// </summary>
+        /// <param name="min">The minimum vector</param>
+        /// <param name="max">The maximum vector</param>
         public void Clamp(Vector4 min, Vector4 max)
         {
             NDalicPINVOKE.Vector4_Clamp(swigCPtr, Vector4.getCPtr(min), Vector4.getCPtr(max));
@@ -382,6 +485,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// x component
+        /// </summary>
         public float X
         {
             set
@@ -397,6 +503,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// red component
+        /// </summary>
         public float R
         {
             set
@@ -412,6 +521,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// s component
+        /// </summary>
         public float S
         {
             set
@@ -427,6 +539,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// y component
+        /// </summary>
         public float Y
         {
             set
@@ -442,6 +557,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// green component
+        /// </summary>
         public float G
         {
             set
@@ -457,6 +575,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// t component
+        /// </summary>
         public float T
         {
             set
@@ -472,6 +593,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// z component
+        /// </summary>
         public float Z
         {
             set
@@ -487,6 +611,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// blue component
+        /// </summary>
         public float B
         {
             set
@@ -502,6 +629,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// p component
+        /// </summary>
         public float P
         {
             set
@@ -517,6 +647,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// w component
+        /// </summary>
         public float W
         {
             set
@@ -532,6 +665,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// alpha component
+        /// </summary>
         public float A
         {
             set
@@ -547,6 +683,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// q component
+        /// </summary>
         public float Q
         {
             set
