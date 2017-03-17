@@ -329,12 +329,6 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to destroy package filter handle. err = {0}", err));
             }
-
-            if (filter != null)
-            {
-                filter.FilteredCount = packageList.Count;
-            }
-
             return packageList;
         }
 

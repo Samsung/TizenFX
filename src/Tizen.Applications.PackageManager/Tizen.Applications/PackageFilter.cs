@@ -15,7 +15,6 @@
  */
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Tizen.Applications
 {
@@ -25,7 +24,6 @@ namespace Tizen.Applications
     public class PackageFilter
     {
         private IDictionary<string, bool> _filter;
-        private int _filteredCount = -1;
 
         /// <summary>
         /// Default constructor with empty filter list. All installed applications will satisfy this filter unless updated with more specific filters.
@@ -51,45 +49,6 @@ namespace Tizen.Applications
             get
             {
                 return _filter;
-            }
-        }
-
-        /// <summary>
-        /// Gets the filtered item count from the given filtered result which was retrieved using GetPackages method, previously.
-        /// </summary>
-        /// <param name="filteredList">filtered list</param>
-        /// <exception cref="ArgumentException">Thrown when failed when input filtered list is invalid</exception>
-        public int GetCount(IEnumerable<Package> filteredList)
-        {
-            if (filteredList == null)
-            {
-                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.InvalidParameter, "the parameter is null");
-            }
-            return filteredList.Count();
-        }
-
-        /// <summary>
-        /// Gets the filtered count from the latest result of GetPackages method call.
-        /// </summary>
-        /// <remarks>
-        /// For the valid result, the method, Getpackages(PackageFilter filter), should be called once before.
-        /// The return value of this API can be same with GetCount(filteredList) if the filteredList is the result of the latest GetPackages method call.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">Thrown when failed when there is no valid fitered result</exception>
-        public int GetCount()
-        {
-            if (_filteredCount < 0)
-            {
-                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.InvalidOperation, "there is no valid filtered result");
-            }
-            return _filteredCount;
-        }
-
-        internal int FilteredCount
-        {
-            set
-            {
-                _filteredCount = value;
             }
         }
 
