@@ -27,6 +27,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A PushButton changes its appearance when is pressed and returns to its original when is released.
+    /// </summary>
     public class PushButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -122,6 +125,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates the PushButton.
+        /// </summary>
         public PushButton() : this(NDalicPINVOKE.PushButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -139,6 +145,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to PushButton handle.
+        /// If handle points to a PushButton, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a PushButton or an uninitialized handle</returns>
         public new static PushButton DownCast(BaseHandle handle)
         {
             PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -206,6 +219,9 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// Sets the unselected button image.
+        /// </summary>
         public string UnselectedIcon
         {
             set
@@ -213,6 +229,9 @@ namespace Tizen.NUI
                 SetProperty(PushButton.Property.UNSELECTED_ICON, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Sets the selected button image.
+        /// </summary>
         public string SelectedIcon
         {
             set
@@ -220,6 +239,9 @@ namespace Tizen.NUI
                 SetProperty(PushButton.Property.SELECTED_ICON, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Sets the icon alignment.
+        /// </summary>
         public string IconAlignment
         {
             get
@@ -233,6 +255,9 @@ namespace Tizen.NUI
                 SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Sets the label padding value.
+        /// </summary>
         public Vector4 LabelPadding
         {
             get
@@ -247,6 +272,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets the icon padding value.
+        /// </summary>
         public string IconPadding
         {
             get

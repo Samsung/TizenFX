@@ -17,6 +17,9 @@
 
 namespace Tizen.NUI {
 
+/// <summary>
+/// Position is a three dimensional vector.
+/// </summary>
 public class Position : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
@@ -53,35 +56,81 @@ public class Position : global::System.IDisposable {
   }
 
 
+  /// <summary>
+  /// Addition operator.
+  /// </summary>
+  /// <param name="arg1">Vector to add</param>
+  /// <param name="arg2">Vector to add</param>
+  /// <returns>A vector containing the result of the addition</returns>
   public static Position operator+(Position arg1, Position arg2) {
     return arg1.Add(arg2);
   }
 
+  /// <summary>
+  /// Subtraction operator.
+  /// </summary>
+  /// <param name="arg1">Vector to subtract</param>
+  /// <param name="arg2">Vector to subtract</param>
+  /// <returns>A vector containing the result of the subtraction</returns>
   public static Position operator-(Position arg1, Position arg2) {
     return arg1.Subtract(arg2);
   }
 
+  /// <summary>
+  /// Unary negation operator.
+  /// </summary>
+  /// <param name="arg1">Vector to netate</param>
+  /// <returns>A vector containg the negation</returns>
   public static Position operator-(Position arg1) {
     return arg1.Subtract();
   }
 
+  /// <summary>
+  /// Multiplication operator.
+  /// </summary>
+  /// <param name="arg1">The vector to multiply</param>
+  /// <param name="arg2">The vector to multiply</param>
+  /// <returns>A vector containing the result of the multiplication</returns>
   public static Position operator*(Position arg1, Position arg2) {
     return arg1.Multiply(arg2);
   }
 
+  /// <summary>
+  /// Multiplication operator.
+  /// </summary>
+  /// <param name="arg1">The vector to multiply</param>
+  /// <param name="arg2">The float value to scale the vector</param>
+  /// <returns>A vector containing the result of the scaling</returns>
   public static Position operator*(Position arg1, float arg2) {
     return arg1.Multiply(arg2);
   }
 
+  /// <summary>
+  /// Division operator.
+  /// </summary>
+  /// <param name="arg1">The vector to divide</param>
+  /// <param name="arg2">The vector to divide</param>
+  /// <returns>A vector containing the result of the division</returns>
   public static Position operator/(Position arg1, Position arg2) {
     return arg1.Divide(arg2);
   }
 
+  /// <summary>
+  /// Division operator.
+  /// </summary>
+  /// <param name="arg1">The vector to divide</param>
+  /// <param name="arg2">The float value to scale the vector by</param>
+  /// <returns>A vector containing the result of the scaling</returns>
   public static Position operator/(Position arg1, float arg2) {
     return arg1.Divide(arg2);
   }
 
 
+  /// <summary>
+  /// Const array subscript operator overload. Should be 0, 1 or 2.
+  /// </summary>
+  /// <param name="index">Subscript index</param>
+  /// <returns>The float at the given index</returns>
   public float this[uint index]
   {
     get
@@ -90,6 +139,8 @@ public class Position : global::System.IDisposable {
     }
   }
 
+  /// <summary>
+  /// </summary>
   public static Position GetPositionFromPtr(global::System.IntPtr cPtr) {
     Position ret = new Position(cPtr, false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -97,14 +148,27 @@ public class Position : global::System.IDisposable {
   }
 
 
+  /// <summary>
+  /// Constructor
+  /// </summary>
   public Position() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  /// <summary>
+  /// Constructor
+  /// </summary>
+  /// <param name="x">x component</param>
+  /// <param name="y">y component</param>
+  /// <param name="z">z component</param>
   public Position(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  /// <summary>
+  /// Constructor
+  /// </summary>
+  /// <param name="position2d">Position2D to create this vector from</param>
   public Position(Position2D position2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Position2D.getCPtr(position2d)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -159,12 +223,22 @@ public class Position : global::System.IDisposable {
     return ret;
   }
 
+  /// <summary>
+  /// Compare if rhs is equal to
+  /// </summary>
+  /// <param name="rhs">The vector to compare</param>
+  /// <returns>Returns true if the two vectors are equal, otherwise false</returns>
   public bool EqualTo(Position rhs) {
     bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Position.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
+  /// <summary>
+  /// Compare if rhs is not equal to
+  /// </summary>
+  /// <param name="rhs">The vector to compare</param>
+  /// <returns>Returns true if the two vectors are not equal, otherwise false</returns>
   public bool NotEqualTo(Position rhs) {
     bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Position.getCPtr(rhs));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -172,6 +246,9 @@ public class Position : global::System.IDisposable {
   }
 
 
+  /// <summary>
+  /// x component
+  /// </summary>
   public float X {
     set {
       NDalicPINVOKE.Vector3_X_set(swigCPtr, value);
@@ -184,6 +261,9 @@ public class Position : global::System.IDisposable {
     }
   }
 
+  /// <summary>
+  /// y component
+  /// </summary>
   public float Y {
     set {
       NDalicPINVOKE.Vector3_Y_set(swigCPtr, value);
@@ -196,6 +276,9 @@ public class Position : global::System.IDisposable {
     }
   }
 
+  /// <summary>
+  /// z component
+  /// </summary>
   public float Z {
     set {
       NDalicPINVOKE.Vector3_Z_set(swigCPtr, value);
@@ -208,16 +291,22 @@ public class Position : global::System.IDisposable {
     }
   }
 
-        public static float ParentOriginTop
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginTop_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+  /// <summary>
+  /// ParentOrigin constants. It's 0.0.
+  /// </summary>
+  public static float ParentOriginTop
+  {
+      get
+      {
+          float ret = NDalicPINVOKE.ParentOriginTop_get();
+          if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+          return ret;
+      }
+  }
 
+  /// <summary>
+  /// ParentOrigin constants. It's 1.0.
+  /// </summary>
   public static float ParentOriginBottom
   {
       get
@@ -228,6 +317,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants. It's 0.0.
+  /// </summary>
   public static float ParentOriginLeft
   {
       get
@@ -238,6 +330,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants. It's 1.0.
+  /// </summary>
   public static float ParentOriginRight
   {
       get
@@ -248,6 +343,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants. It's 0.5.
+  /// </summary>
   public static float ParentOriginMiddle
   {
       get
@@ -258,6 +356,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.0, 0.0, 0.5
+  /// </summary>
   public static Position ParentOriginTopLeft
   {
       get
@@ -269,6 +370,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.5, 0.0, 0.5
+  /// </summary>
   public static Position ParentOriginTopCenter
   {
       get
@@ -280,6 +384,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 1.0, 0.0, 0.5
+  /// </summary>
   public static Position ParentOriginTopRight
   {
       get
@@ -291,6 +398,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.0, 0.5, 0.5
+  /// </summary>
   public static Position ParentOriginCenterLeft
   {
       get
@@ -302,6 +412,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.0, 0.5, 0.5
+  /// </summary>
   public static Position ParentOriginCenter
   {
       get
@@ -313,6 +426,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 1.0, 0.5, 0.5
+  /// </summary>
   public static Position ParentOriginCenterRight
   {
       get
@@ -324,6 +440,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.0f, 1.0f, 0.5f
+  /// </summary>
   public static Position ParentOriginBottomLeft
   {
       get
@@ -335,6 +454,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 0.5, 1.0, 0.5
+  /// </summary>
   public static Position ParentOriginBottomCenter
   {
       get
@@ -346,6 +468,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// ParentOrigin constants: 1.0, 1.0, 0.5
+  /// </summary>
   public static Position ParentOriginBottomRight
   {
       get
@@ -357,6 +482,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0
+  /// </summary>
   public static float AnchorPointTop
   {
       get
@@ -367,6 +495,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 1.0
+  /// </summary>
   public static float AnchorPointBottom
   {
       get
@@ -377,6 +508,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0
+  /// </summary>
   public static float AnchorPointLeft
   {
       get
@@ -387,6 +521,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 1.0
+  /// </summary>
   public static float AnchorPointRight
   {
       get
@@ -397,6 +534,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0
+  /// </summary>
   public static float AnchorPointMiddle
   {
       get
@@ -407,6 +547,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0, 0.0, 0.5
+  /// </summary>
   public static Position AnchorPointTopLeft
   {
       get
@@ -418,6 +561,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.5, 0.0, 0.5
+  /// </summary>
   public static Position AnchorPointTopCenter
   {
       get
@@ -429,6 +575,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 1.0, 0.0, 0.5
+  /// </summary>
   public static Position AnchorPointTopRight
   {
       get
@@ -440,6 +589,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0, 0.5, 0.5
+  /// </summary>
   public static Position AnchorPointCenterLeft
   {
       get
@@ -451,6 +603,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.5, 0.5, 0.5
+  /// </summary>
   public static Position AnchorPointCenter
   {
       get
@@ -462,6 +617,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 1.0, 0.5, 0.5
+  /// </summary>
   public static Position AnchorPointCenterRight
   {
       get
@@ -473,6 +631,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.0, 1.0, 0.5
+  /// </summary>
   public static Position AnchorPointBottomLeft
   {
       get
@@ -484,6 +645,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 0.5, 1.0, 0.5
+  /// </summary>
   public static Position AnchorPointBottomCenter
   {
       get
@@ -495,6 +659,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// AnchorPoint constants: 1.0, 1.0, 0.5
+  /// </summary>
   public static Position AnchorPointBottomRight
   {
       get
@@ -506,6 +673,9 @@ public class Position : global::System.IDisposable {
       }
   }
 
+  /// <summary>
+  /// Constant ( 1.0f, 1.0f, 1.0f )
+  /// </summary>
   public static Position One {
     get {
       global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ONE_get();
@@ -569,6 +739,9 @@ public class Position : global::System.IDisposable {
     }
   }
 
+  /// <summary>
+  /// Constant ( 0.0f, 0.0f, 0.0f )
+  /// </summary>
   public static Position Zero {
     get {
       global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZERO_get();
@@ -578,11 +751,15 @@ public class Position : global::System.IDisposable {
     }
   }
 
+  /// <summary>
+  /// </summary>
   public static implicit operator Vector3(Position Position)
   {
     return new Vector3(Position.X, Position.Y, Position.Z);
   }
 
+  /// <summary>
+  /// </summary>
   public static implicit operator Position(Vector3 vec)
   {
     return new Position(vec.X, vec.Y, vec.Z);

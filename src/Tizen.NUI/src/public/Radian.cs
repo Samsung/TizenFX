@@ -11,6 +11,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// An angle in radians.
+    /// </summary>
     public class Radian : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -56,35 +59,60 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Default constructor, initializes to 0.
+        /// </summary>
         public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an angle in radians.
+        /// </summary>
+        /// <param name="value">The initial value in radians</param>
         public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an angle in radians from an angle in degrees.
+        /// </summary>
+        /// <param name="degree">The initial value in degrees</param>
         public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Radian Assign(float value)
+        /// <summary>
+        /// Assigns an angle from a float value.
+        /// </summary>
+        /// <param name="value">Float value in radians</param>
+        /// <returns>A reference to this</returns>
+        internal Radian Assign(float value)
         {
             Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_0(swigCPtr, value), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Radian Assign(Degree degree)
+        /// <summary>
+        /// Assigns an angle from a Degree value.
+        /// </summary>
+        /// <param name="degree">The value in degrees</param>
+        /// <returns>A reference to this</returns>
+        internal Radian Assign(Degree degree)
         {
             Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_1(swigCPtr, Degree.getCPtr(degree)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// Conversion to float.
+        /// </summary>
+        /// <returns>The float value of this Radian</returns>
         public float ConvertToFloat()
         {
             float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
@@ -92,6 +120,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The value in radians
+        /// </summary>
         public float radian
         {
             set
