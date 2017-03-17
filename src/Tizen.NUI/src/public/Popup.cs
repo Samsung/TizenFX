@@ -31,6 +31,9 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
 
+    /// <summary>
+    /// The Popup widget provides a configurable pop-up dialog with built-in layout of three main fields.
+    /// </summary>
     public class Popup : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -76,22 +79,37 @@ namespace Tizen.NUI
 
 
 
+        /// <summary>
+        /// Event arguments that passed via OutsideTouchedEvent
+        /// </summary>
         public class OutsideTouchedEventArgs : EventArgs
         {
         }
 
+        /// <summary>
+        /// Event arguments that passed via ShowingEventArgs
+        /// </summary>
         public class ShowingEventArgs : EventArgs
         {
         }
 
+        /// <summary>
+        /// Event arguments that passed via ShownEventArgs
+        /// </summary>
         public class ShownEventArgs : EventArgs
         {
         }
 
+        /// <summary>
+        /// Event arguments that passed via HidingEventArgs
+        /// </summary>
         public class HidingEventArgs : EventArgs
         {
         }
 
+        /// <summary>
+        /// Event arguments that passed via HiddenEventArgs
+        /// </summary>
         public class HiddenEventArgs : EventArgs
         {
         }
@@ -121,6 +139,9 @@ namespace Tizen.NUI
         private EventHandler<HiddenEventArgs> _popUpHiddenEventHandler;
         private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
 
+        /// <summary>
+        /// Event is sent when user has touched outside of the Dialog.
+        /// </summary>
         public event EventHandler<OutsideTouchedEventArgs> OutsideTouched
         {
             add
@@ -154,6 +175,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Event is sent when the Popup is starting to be shown.
+        /// </summary>
         public event EventHandler<ShowingEventArgs> Showing
         {
             add
@@ -188,6 +212,9 @@ namespace Tizen.NUI
         }
 
 
+        /// <summary>
+        /// Event is sent when the Popup has been fully displayed.
+        /// </summary>
         public event EventHandler<ShownEventArgs> Shown
         {
             add
@@ -221,6 +248,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Event is sent when the Popup is starting to be hidden.
+        /// </summary>
         public event EventHandler<HidingEventArgs> Hiding
         {
             add
@@ -254,6 +284,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Event is sent when the Popup has been completely hidden.
+        /// </summary>
         public event EventHandler<HiddenEventArgs> Hidden
         {
             add
@@ -354,6 +387,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Create the Popup.
+        /// </summary>
         public Popup() : this(NDalicPINVOKE.Popup_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -371,6 +407,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to Popup handle.
+        /// If handle points to a Popup, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a Popup or an uninitialized handle</returns>
         public new static Popup DownCast(BaseHandle handle)
         {
             Popup ret = new Popup(NDalicPINVOKE.Popup_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -378,6 +421,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets a title for this Popup.
+        /// </summary>
+        /// <param name="titleActor">The actor to set a title</param>
         public void SetTitle(Actor titleActor)
         {
             NDalicPINVOKE.Popup_SetTitle(swigCPtr, Actor.getCPtr(titleActor));
@@ -391,6 +438,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the content actor.
+        /// </summary>
+        /// <param name="content">The actor to use</param>
         public void SetContent(Actor content)
         {
             NDalicPINVOKE.Popup_SetContent(swigCPtr, Actor.getCPtr(content));
@@ -404,6 +455,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the actor to use for a footer in this Popup.
+        /// </summary>
+        /// <param name="footer">The footer actor to be added to this Popup</param>
         public void SetFooter(Actor footer)
         {
             NDalicPINVOKE.Popup_SetFooter(swigCPtr, Actor.getCPtr(footer));
@@ -417,6 +472,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the display state of Popup.
+        /// There are 4 total display states.
+        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.
+        ///
+        /// The other two states are getable, but not setable and are there for consistency.
+        ///
+        /// | Value    | Setting the state              | Getting the state              |
+        /// |----------|--------------------------------|--------------------------------|
+        /// | SHOWN    | Show the popup                 | The popup is fully shown       |
+        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |
+        /// | SHOWING  |                                | The popup is transitioning in  |
+        /// | HIDING   |                                | The popup is transitioning out |
+        ///
+        /// All 4 state changes cause notifications via 4 respective signals that can be connected to.
+        /// </summary>
+        /// <param name="displayState">The desired display state to change to</param>
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
             NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
@@ -471,6 +543,9 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// The display states of the Popup.
+        /// </summary>
         public enum DisplayStateType
         {
             Showing,
@@ -479,6 +554,10 @@ namespace Tizen.NUI
             Hidden
         }
 
+        /// <summary>
+        /// The animation mode within popup.
+        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.
+        /// </summary>
         public enum AnimationModeType
         {
             None,
@@ -487,6 +566,11 @@ namespace Tizen.NUI
             Custom
         }
 
+        /// <summary>
+        /// Types of contextual layout.
+        /// The Popup is positioned adjacent to it's parent in the direction specified by this mode.
+        /// NON_CONTEXTUAL disables any contextual positioning.
+        /// </summary>
         public enum ContextualModeType
         {
             NonContextual,
@@ -496,6 +580,9 @@ namespace Tizen.NUI
             Left
         }
 
+        /// <summary>
+        /// Popup title
+        /// </summary>
         public PropertyMap Title
         {
             get
@@ -509,6 +596,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TITLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Popup content
+        /// </summary>
         public PropertyMap Content
         {
             get
@@ -522,6 +612,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.CONTENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Popup footer
+        /// </summary>
         public PropertyMap Footer
         {
             get
@@ -535,6 +628,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.FOOTER, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Popup display state
+        /// </summary>
         public string DisplayState
         {
             get
@@ -548,6 +644,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.DISPLAY_STATE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Touch transparent
+        /// </summary>
         public bool TouchTransparent
         {
             get
@@ -561,6 +660,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TOUCH_TRANSPARENT, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Popup tail visibility
+        /// </summary>
         public bool TailVisibility
         {
             get
@@ -574,6 +676,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TAIL_VISIBILITY, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Popup tail position
+        /// </summary>
         public Vector3 TailPosition
         {
             get
@@ -587,6 +692,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TAIL_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Contextual mode
+        /// </summary>
         public string ContextualMode
         {
             get
@@ -600,6 +708,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Animation duration
+        /// </summary>
         public float AnimationDuration
         {
             get
@@ -613,6 +724,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.ANIMATION_DURATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Animation mode
+        /// </summary>
         public string AnimationMode
         {
             get
@@ -626,6 +740,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Entry animation
+        /// </summary>
         public PropertyMap EntryAnimation
         {
             get
@@ -639,6 +756,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.ENTRY_ANIMATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Exit animation
+        /// </summary>
         public PropertyMap ExitAnimation
         {
             get
@@ -652,6 +772,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.EXIT_ANIMATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Auto hide delay
+        /// </summary>
         public int AutoHideDelay
         {
             get
@@ -665,6 +788,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.AUTO_HIDE_DELAY, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Backing enabled
+        /// </summary>
         public bool BackingEnabled
         {
             get
@@ -678,6 +804,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.BACKING_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Backing color
+        /// </summary>
         public Vector4 BackingColor
         {
             get
@@ -691,6 +820,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.BACKING_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Background image
+        /// </summary>
         public string PopupBackgroundImage
         {
             get
@@ -704,6 +836,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.POPUP_BACKGROUND_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Background border
+        /// </summary>
         public Rectangle PopupBackgroundBorder
         {
             get
@@ -717,6 +852,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.POPUP_BACKGROUND_BORDER, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Tail up image
+        /// </summary>
         public string TailUpImage
         {
             get
@@ -730,6 +868,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TAIL_UP_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Tail down image
+        /// </summary>
         public string TailDownImage
         {
             get
@@ -743,6 +884,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TAIL_DOWN_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Tail left image
+        /// </summary>
         public string TailLeftImage
         {
             get
@@ -756,6 +900,9 @@ namespace Tizen.NUI
                 SetProperty(Popup.Property.TAIL_LEFT_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Tail right image
+        /// </summary>
         public string TailRightImage
         {
             get

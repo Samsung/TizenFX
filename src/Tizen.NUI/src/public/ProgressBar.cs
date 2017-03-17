@@ -31,6 +31,9 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
 
+    /// <summary>
+    /// ProgressBar is a control to give the user an indication of the progress of an operation.
+    /// </summary>
     public class ProgressBar : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -76,6 +79,9 @@ namespace Tizen.NUI
 
 
 
+        /// <summary>
+        /// Event arguments that passed via ValueChangedEventArgs
+        /// </summary>
         public class ValueChangedEventArgs : EventArgs
         {
             private ProgressBar _progressBar;
@@ -125,6 +131,9 @@ namespace Tizen.NUI
         private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
         private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
 
+        /// <summary>
+        /// Event is sent when the ProgressBar value changes.
+        /// </summary>
         public event EventHandler<ValueChangedEventArgs> ValueChanged
         {
             add
@@ -162,6 +171,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// </summary>
         public static ProgressBar GetProgressBarFromPtr(global::System.IntPtr cPtr)
         {
             ProgressBar ret = new ProgressBar(cPtr, false);
@@ -225,6 +236,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Creates the ProgressBar.
+        /// </summary>
         public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -242,6 +256,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Downcasts a handle to ProgressBar handle.
+        /// If handle points to a ProgressBar, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a ProgressBar or an uninitialized handle</returns>
         public new static ProgressBar DownCast(BaseHandle handle)
         {
             ProgressBar ret = new ProgressBar(NDalicPINVOKE.ProgressBar_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -262,6 +283,12 @@ namespace Tizen.NUI
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
+        /// <summary>
+        /// The progress value of progress bar, progress runs form 0 to 1.
+        /// If Value is set to 0, progress bar will be set to beginning.
+        /// If Value is set to 1, progress bar will be set to end.
+        /// Any Value outside of the range is ignored.
+        /// </summary>
         public float ProgressValue
         {
             get
@@ -275,6 +302,13 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.PROGRESS_VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The secondary progress value of progress bar, secondary progress runs form 0 to 1.
+        /// Optional. If not supplied, the default is 0.
+        /// If Value is set to 0, progress bar will be set secondary progress to beginning.
+        /// If Value is set to 1, progress bar will be set secondary progress to end.
+        /// Any Value outside of the range is ignored.
+        /// </summary>
         public float SecondaryProgressValue
         {
             get
@@ -288,6 +322,9 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// Sets the progress-bar as \e indeterminate state.
+        /// </summary>
         public bool Indeterminate
         {
             get
@@ -301,6 +338,10 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.INDETERMINATE, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The track Visual value of progress bar, it's a full progress area and it's shown behind PROGRESS_VISUAL.
+        /// Optional. If not supplied, the default track visual will be shown.
+        /// </summary>
         public Tizen.NUI.PropertyMap TrackVisual
         {
             get
@@ -314,6 +355,10 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The progress Visual value of progress bar, size of the progress visual is changed based on PROGRESS_VALUE.
+        /// Optional. If not supplied, the default progress visual will be shown.
+        /// </summary>
         public Tizen.NUI.PropertyMap ProgressVisual
         {
             get
@@ -327,6 +372,10 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The secondary progress visual of progress bar, size of the secondary progress visual is changed based on SECONDARY_PROGRESS_VALUE.
+        /// Optional. If not supplied, the secondary progress visual will not be shown.
+        /// </summary>
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
             get
@@ -340,6 +389,10 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The indeterminate visual of progress bar.
+        /// Optional. If not supplied, the default inditerminate visual will be shown.
+        /// </summary>
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
             get
@@ -353,6 +406,10 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.INDETERMINATE_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The transition data for indeterminate visual animation.
+        /// Optional. If not supplied, default animation will be played.
+        /// </summary>
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {
             get
@@ -366,6 +423,9 @@ namespace Tizen.NUI
                 SetProperty(ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION, new Tizen.NUI.PropertyValue(value));
             }
         }
+        /// <summary>
+        /// The Label visual of progress bar.
+        /// </summary>
         public Tizen.NUI.PropertyMap LabelVisual
         {
             get
