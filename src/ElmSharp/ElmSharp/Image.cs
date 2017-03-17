@@ -35,7 +35,9 @@ namespace ElmSharp
         }
 
         public event EventHandler Clicked;
+
         public event EventHandler LoadingCompleted;
+
         public event EventHandler LoadingFailed;
 
         public string File
@@ -259,6 +261,12 @@ namespace ElmSharp
                 }
                 _backgroundColor = value;
             }
+        }
+
+        public void SetBorder(int left, int right, int top, int bottom)
+        {
+            IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
+            Interop.Evas.evas_object_image_border_set(evasObj, left, right, top, bottom);
         }
 
         public bool Load(string file)
