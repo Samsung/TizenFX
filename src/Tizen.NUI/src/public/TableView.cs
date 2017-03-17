@@ -26,6 +26,7 @@
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// TableView is a layout container for aligning child actors in a grid like layout.
     /// TableView constrains the x and y position and width and height of the child actors.
@@ -51,9 +52,6 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
-        /// <summary>
-        /// Dispose.
-        /// <summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -182,7 +180,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Class to specify layout position for child actor.
+        /// Class to specify layout position for child view.
         /// </summary>
         public class CellPosition : global::System.IDisposable
         {
@@ -205,9 +203,6 @@ namespace Tizen.NUI
                 Dispose();
             }
 
-            /// <summary>
-            /// Dispose
-            /// </summary>
             public virtual void Dispose()
             {
                 lock (this)
@@ -228,31 +223,11 @@ namespace Tizen.NUI
             /// <summary>
             /// Constructor.
             /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            /// <param name="rowSpan">The row span initialized</param>
+            /// <param name="columnSpan">The column span initialized</param>
             public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -260,13 +235,43 @@ namespace Tizen.NUI
             /// <summary>
             /// Constructor to initialise values to defaults for convenience.
             /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            /// <param name="rowSpan">The row span initialized</param>
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Constructor to initialise values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Constructor to initialise values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Default constructor
+            /// </summary>
             public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <summary>
-            /// Row index.
+            /// Index of row
             /// </summary>
             public uint rowIndex
             {
@@ -284,7 +289,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Column index.
+            /// Index of column
             /// </summary>
             public uint columnIndex
             {
@@ -302,7 +307,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Row span.
+            /// Span of row
             /// </summary>
             public uint rowSpan
             {
@@ -320,7 +325,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Column span.
+            /// Span of column
             /// </summary>
             public uint columnSpan
             {
@@ -340,8 +345,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates the TableView control.
+        /// Creates the TableView view.
         /// </summary>
+        /// <param name="initialRows">initialRows for the table</param>
+        /// <param name="initialColumns">initialColumns for the table</param>
         public TableView(uint initialRows, uint initialColumns) : this(NDalicPINVOKE.TableView_New(initialRows, initialColumns), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -351,6 +358,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Copy constructor. Creates another handle that points to the same real object.
         /// </summary>
+        /// <param name="handle">Handle to copy from</param>
         public TableView(TableView handle) : this(NDalicPINVOKE.new_TableView__SWIG_1(TableView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -359,6 +367,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Changes this handle to point to another real object.
         /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>A reference to this</returns>
         public TableView Assign(TableView handle)
         {
             TableView ret = new TableView(NDalicPINVOKE.TableView_Assign(swigCPtr, TableView.getCPtr(handle)), false);
@@ -368,7 +378,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Downcasts a handle to TableView handle.
+        /// If handle points to a TableView, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
         /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TableView or an uninitialized handle</returns>
         public new static TableView DownCast(BaseHandle handle)
         {
             TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -378,7 +392,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Adds a child to the table.
+        /// If the row or column index is outside the table, the table gets resized bigger.
         /// </summary>
+        /// <param name="child">The child to add</param>
+        /// <param name="position">The position for the child</param>
+        /// <returns>Tue if the addition succeeded and false if the cell is already occupied</returns>
         public bool AddChild(Actor child, TableView.CellPosition position)
         {
             bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
@@ -389,6 +407,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns a child from the given layout position.
         /// </summary>
+        /// <param name="position">The position in the table</param>
+        /// <returns>Child that was in the cell or an uninitialized handle</returns>
         public Actor GetChildAt(TableView.CellPosition position)
         {
             Actor ret = new Actor(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
@@ -399,6 +419,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes a child from the given layout position.
         /// </summary>
+        /// <param name="position">The position for the child to remove</param>
+        /// <returns>Child that was removed or an uninitialized handle</returns>
         public Actor RemoveChildAt(TableView.CellPosition position)
         {
             Actor ret = new Actor(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
@@ -409,6 +431,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Finds the child's layout position.
         /// </summary>
+        /// <param name="child">The child to search for</param>
+        /// <param name="position">The position for the child</param>
+        /// <returns>true if the child was included in this TableView</returns>
         public bool FindChildPosition(Actor child, TableView.CellPosition position)
         {
             bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
@@ -419,6 +444,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Inserts a new row to given index.
         /// </summary>
+        /// <param name="rowIndex">The rowIndex of the new row</param>
         public void InsertRow(uint rowIndex)
         {
             NDalicPINVOKE.TableView_InsertRow(swigCPtr, rowIndex);
@@ -427,7 +453,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes a row from the given index.
+        /// Removed elements are deleted.
         /// </summary>
+        /// <param name="rowIndex">The rowIndex of the row to delete</param>
         public void DeleteRow(uint rowIndex)
         {
             NDalicPINVOKE.TableView_DeleteRow__SWIG_0(swigCPtr, rowIndex);
@@ -443,6 +471,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Inserts a new column to the given index.
         /// </summary>
+        /// <param name="columnIndex">The columnIndex of the new column</param>
         public void InsertColumn(uint columnIndex)
         {
             NDalicPINVOKE.TableView_InsertColumn(swigCPtr, columnIndex);
@@ -451,7 +480,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes a column from the given index.
+        /// Removed elements are deleted.
         /// </summary>
+        /// <param name="columnIndex">The columnIndex of the column to delete</param>
         public void DeleteColumn(uint columnIndex)
         {
             NDalicPINVOKE.TableView_DeleteColumn__SWIG_0(swigCPtr, columnIndex);
@@ -467,6 +498,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Resizes the TableView.
         /// </summary>
+        /// <param name="rows">The rows for the table</param>
+        /// <param name="columns">The columns for the table</param>
         public void Resize(uint rows, uint columns)
         {
             NDalicPINVOKE.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
@@ -482,6 +515,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets horizontal and vertical padding between cells.
         /// </summary>
+        /// <param name="padding">Width and height</param>
         public void SetCellPadding(Size2D padding)
         {
             NDalicPINVOKE.TableView_SetCellPadding(swigCPtr, Size2D.getCPtr(padding));
@@ -491,6 +525,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the current padding as width and height.
         /// </summary>
+        /// <returns>The current padding as width and height</returns>
         public Vector2 GetCellPadding()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.TableView_GetCellPadding(swigCPtr), true);
@@ -501,6 +536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Specifies this row as fitting its height to its children.
         /// </summary>
+        /// <param name="rowIndex">The row to set</param>
         public void SetFitHeight(uint rowIndex)
         {
             NDalicPINVOKE.TableView_SetFitHeight(swigCPtr, rowIndex);
@@ -510,6 +546,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks if the row is a fit row.
         /// </summary>
+        /// <param name="rowIndex">The row to check</param>
+        /// <returns>true if the row is fit</returns>
         public bool IsFitHeight(uint rowIndex)
         {
             bool ret = NDalicPINVOKE.TableView_IsFitHeight(swigCPtr, rowIndex);
@@ -520,6 +558,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Specifies this column as fitting its width to its children.
         /// </summary>
+        /// <param name="columnIndex">The column to set</param>
         public void SetFitWidth(uint columnIndex)
         {
             NDalicPINVOKE.TableView_SetFitWidth(swigCPtr, columnIndex);
@@ -529,6 +568,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks if the column is a fit column.
         /// </summary>
+        /// <param name="columnIndex">The column to check</param>
+        /// <returns>true if the column is fit</returns>
         public bool IsFitWidth(uint columnIndex)
         {
             bool ret = NDalicPINVOKE.TableView_IsFitWidth(swigCPtr, columnIndex);
@@ -538,7 +579,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets a row to have fixed height.
+        /// Setting a fixed height of 0 has no effect.
         /// </summary>
+        /// <param name="rowIndex">The rowIndex for row with fixed height</param>
+        /// <param name="height">The height in world coordinate units</param>
         public void SetFixedHeight(uint rowIndex, float height)
         {
             NDalicPINVOKE.TableView_SetFixedHeight(swigCPtr, rowIndex, height);
@@ -548,6 +592,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a row's fixed height.
         /// </summary>
+        /// <param name="rowIndex">The row index with fixed height</param>
+        /// <returns>height The height in world coordinate units</returns>
         public float GetFixedHeight(uint rowIndex)
         {
             float ret = NDalicPINVOKE.TableView_GetFixedHeight(swigCPtr, rowIndex);
@@ -560,6 +606,8 @@ namespace Tizen.NUI
         /// the remainder of the table height after subtracting Padding and Fixed height rows.
         /// Setting a relative height of 0 has no effect.
         /// </summary>
+        /// <param name="rowIndex">The rowIndex for row with relative height</param>
+        /// <param name="heightPercentage">The height percentage between 0.0f and 1.0f</param>
         public void SetRelativeHeight(uint rowIndex, float heightPercentage)
         {
             NDalicPINVOKE.TableView_SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
@@ -569,6 +617,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a row's relative height.
         /// </summary>
+        /// <param name="rowIndex">The row index with relative height</param>
+        /// <returns>Height in percentage units, between 0.0f and 1.0f</returns>
         public float GetRelativeHeight(uint rowIndex)
         {
             float ret = NDalicPINVOKE.TableView_GetRelativeHeight(swigCPtr, rowIndex);
@@ -578,7 +628,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets a column to have fixed width.
+        /// Setting a fixed width of 0 has no effect.
         /// </summary>
+        /// <param name="columnIndex">The columnIndex for column with fixed width</param>
+        /// <param name="width">The width in world coordinate units</param>
         public void SetFixedWidth(uint columnIndex, float width)
         {
             NDalicPINVOKE.TableView_SetFixedWidth(swigCPtr, columnIndex, width);
@@ -588,6 +641,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a column's fixed width.
         /// </summary>
+        /// <param name="columnIndex">The column index with fixed width</param>
+        /// <returns>Width in world coordinate units</returns>
         public float GetFixedWidth(uint columnIndex)
         {
             float ret = NDalicPINVOKE.TableView_GetFixedWidth(swigCPtr, columnIndex);
@@ -600,6 +655,8 @@ namespace Tizen.NUI
         /// the remainder of table width after subtracting Padding and Fixed width columns.
         /// Setting a relative width of 0 has no effect.
         /// </summary>
+        /// <param name="columnIndex">The columnIndex for column with fixed width</param>
+        /// <param name="widthPercentage">The widthPercentage between 0.0f and 1.0f</param>
         public void SetRelativeWidth(uint columnIndex, float widthPercentage)
         {
             NDalicPINVOKE.TableView_SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
@@ -609,6 +666,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a column's relative width.
         /// </summary>
+        /// <param name="columnIndex">The column index with relative width</param>
+        /// <returns>Width in percentage units, between 0.0f and 1.0f</returns>
         public float GetRelativeWidth(uint columnIndex)
         {
             float ret = NDalicPINVOKE.TableView_GetRelativeWidth(swigCPtr, columnIndex);
@@ -619,6 +678,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the amount of rows in the table.
         /// </summary>
+        /// <returns>The amount of rows in the table</returns>
         public uint GetRows()
         {
             uint ret = NDalicPINVOKE.TableView_GetRows(swigCPtr);
@@ -629,6 +689,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the amount of columns in the table.
         /// </summary>
+        /// <returns>The amount of columns in the table</returns>
         public uint GetColumns()
         {
             uint ret = NDalicPINVOKE.TableView_GetColumns(swigCPtr);
@@ -638,7 +699,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the alignment on a cell.
+        /// Cells without calling this function have the default values of LEFT and TOP respectively.
         /// </summary>
+        /// <param name="position">The cell to set alignment on</param>
+        /// <param name="horizontal">The horizontal alignment</param>
+        /// <param name="vertical">The vertical alignment</param>
         public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)
         {
             NDalicPINVOKE.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
@@ -654,7 +719,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layout policy.
+        /// Enumeration for describing how the size of a row / column has been set.
         /// </summary>
         public enum LayoutPolicy
         {
@@ -665,7 +730,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Rows property.
+        /// the amount of rows in the table.
         /// </summary>
         public int Rows
         {
@@ -680,9 +745,8 @@ namespace Tizen.NUI
                 SetProperty(TableView.Property.ROWS, new Tizen.NUI.PropertyValue(value));
             }
         }
-
         /// <summary>
-        /// Columns property.
+        /// the amount of columns in the table.
         /// </summary>
         public int Columns
         {
@@ -697,9 +761,8 @@ namespace Tizen.NUI
                 SetProperty(TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue(value));
             }
         }
-
         /// <summary>
-        /// Cell padding property.
+        /// padding between cells.
         /// </summary>
         public Vector2 CellPadding
         {
@@ -716,7 +779,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layout rows property.
+        /// The number of layout rows
         /// </summary>
         public PropertyMap LayoutRows
         {
@@ -733,7 +796,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layout columns property.
+        /// The number of layout columns
         /// </summary>
         public PropertyMap LayoutColumns
         {
@@ -752,7 +815,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// HorizontalAlignmentType.
+    /// Enumeration for horizontal alignment types.
     /// </summary>
     public enum HorizontalAlignmentType
     {
@@ -762,7 +825,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// VerticalAlignmentType.
+    /// Enumeration for vertical alignment types.
     /// </summary>
     public enum VerticalAlignmentType
     {

@@ -374,7 +374,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an empty handle.
+        /// Creates the TextField control.
         /// </summary>
         public TextField() : this(NDalicPINVOKE.TextField_New(), true)
         {
@@ -396,6 +396,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcasts a handle to TextField.
         /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TextField or an empty handle</returns>
         public new static TextField DownCast(BaseHandle handle)
         {
             TextField ret = new TextField(NDalicPINVOKE.TextField_DownCast(BaseHandle.getCPtr(handle)), true);

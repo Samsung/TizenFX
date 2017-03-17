@@ -181,6 +181,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the singleton of StyleManager object.
         /// </summary>
+        /// <returns>A handle to the StyleManager control</returns>
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
@@ -195,6 +196,7 @@ namespace Tizen.NUI
         /// application uses, then the default Toolkit theme will be used
         /// instead for those controls.
         /// </summary>
+        /// <param name="themeFile">A relative path is specified for style theme</param>
         public void ApplyTheme(string themeFile)
         {
             NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
@@ -213,6 +215,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets a constant for use when building styles.
         /// </summary>
+        /// <param name="key">The key of the constant</param>
+        /// <param name="value">The value of the constant</param>
         public void SetStyleConstant(string key, PropertyValue value)
         {
             NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
@@ -222,6 +226,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the style constant set for a specific key.
         /// </summary>
+        /// <param name="key">The key of the constant</param>
+        /// <param name="valueOut">The value of the constant if it exists</param>
+        /// <returns></returns>
         public bool GetStyleConstant(string key, PropertyValue valueOut)
         {
             bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
@@ -232,6 +239,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Applies the specified style to the control.
         /// </summary>
+        /// <param name="control">The control to which to apply the style</param>
+        /// <param name="jsonFileName">The name of the JSON style file to apply</param>
+        /// <param name="styleName">The name of the style within the JSON file to apply</param>
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
