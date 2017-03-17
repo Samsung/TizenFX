@@ -303,7 +303,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an empty handle.
+        /// Creates the TextEditor control.
         /// </summary>
         public TextEditor() : this(NDalicPINVOKE.TextEditor_New(), true)
         {
@@ -325,6 +325,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcasts a handle to TextEditor.
         /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TextEditor or an empty handle</returns>
         public new static TextEditor DownCast(BaseHandle handle)
         {
             TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_DownCast(BaseHandle.getCPtr(handle)), true);

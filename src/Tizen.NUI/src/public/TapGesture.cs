@@ -62,8 +62,10 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Get TapGesture from Ptr.
+        /// Get TapGesture from the pointer.
         /// </summary>
+        /// <param name="cPtr">The pointer to cast</param>
+        /// <returns>TapGesture object</returns>
         public static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
             TapGesture ret = new TapGesture(cPtr, false);
@@ -72,7 +74,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// NumberOfTaps.
+        /// Number of taps property (read-only).
         /// </summary>
         public uint NumberOfTaps
         {
@@ -83,7 +85,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// NumberOfTouches.
+        /// Number of touches property (read-only).
         /// </summary>
         public uint NumberOfTouches
         {
@@ -94,7 +96,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ScreenPoint.
+        /// Screen point property (read-only).
         /// </summary>
         public Vector2 ScreenPoint
         {
@@ -105,7 +107,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// LocalPoint.
+        /// Local point property (read-only).
         /// </summary>
         public Vector2 LocalPoint
         {
@@ -116,7 +118,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default constructor.
+        /// Creates a TapGesture.
         /// </summary>
         public TapGesture() : this(NDalicPINVOKE.new_TapGesture__SWIG_0(), true)
         {
@@ -126,14 +128,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Copy constructor.
         /// </summary>
+        /// <param name="rhs">TapGesture to copy</param>
         public TapGesture(TapGesture rhs) : this(NDalicPINVOKE.new_TapGesture__SWIG_1(TapGesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Assignment.
+        /// Assignment
         /// </summary>
+        /// <param name="rhs">A reference to the copied handle</param>
+        /// <returns>A reference to this</returns>
         public TapGesture Assign(TapGesture rhs)
         {
             TapGesture ret = new TapGesture(NDalicPINVOKE.TapGesture_Assign(swigCPtr, TapGesture.getCPtr(rhs)), false);

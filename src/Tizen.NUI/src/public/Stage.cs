@@ -43,6 +43,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -68,14 +71,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Touch event argument
+        /// Touch event argument.
         /// </summary>
         public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
 
             /// <summary>
-            /// Touch
+            /// Touch.
             /// </summary>
             public Touch Touch
             {
@@ -136,14 +139,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Wheel event arguments
+        /// Wheel event arguments.
         /// </summary>
         public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
 
             /// <summary>
-            /// Wheel
+            /// Wheel.
             /// </summary>
             public Wheel Wheel
             {
@@ -162,7 +165,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
 
         /// <summary>
-        /// This is emitted when wheel event is received.
+        /// Event emitted when wheel event is received.
         /// </summary>
         public event EventHandler<WheelEventArgs> Wheel
         {
@@ -227,7 +230,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageKeyCallbackDelegate;
 
         /// <summary>
-        /// This is emitted when key event is received.
+        /// Event emitted when key event is received.
         /// </summary>
         public event EventHandler<KeyEventArgs> Key
         {
@@ -405,7 +408,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Size.
+        /// Stage size property (read-only).
         /// </summary>
         public Size2D Size
         {
@@ -417,7 +420,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color.
+        /// Background color property.
         /// </summary>
         public Color BackgroundColor
         {
@@ -433,7 +436,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dpi.
+        /// Dpi property (read-only).
+        /// Retrieves the DPI of the display device to which the stage is connected.
         /// </summary>
         public Vector2 Dpi
         {
@@ -444,7 +448,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layer count.
+        /// Layer count property (read-only).
+        /// Queries the number of on-stage layers.
         /// </summary>
         public uint LayerCount
         {
@@ -457,7 +462,8 @@ namespace Tizen.NUI
         private static readonly Stage instance = Stage.GetCurrent();
 
         /// <summary>
-        /// Stage instance.
+        /// Stage instance property (read-only).
+        /// Gets the current Stage.
         /// </summary>
         public static Stage Instance
         {
@@ -470,6 +476,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get default ( root ) layer.
         /// </summary>
+        /// <returns>The root layer</returns>
         public Layer GetDefaultLayer()
         {
             return this.GetRootLayer();
@@ -478,6 +485,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Add layer to the Stage.
         /// </summary>
+        /// <param name="layer">Layer to add</param>
         public void AddLayer(Layer layer)
         {
             this.Add((Actor)layer);
@@ -486,6 +494,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove layer from the Stage.
         /// </summary>
+        /// <param name="layer">Layer to remove</param>
         public void RemoveLayer(Layer layer)
         {
             this.Remove((Actor)layer);
@@ -580,6 +589,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the layer at a specified depth.
         /// </summary>
+        /// <param name="depth">The depth</param>
+        /// <returns>The layer found at the given depth</returns>
         public Layer GetLayer(uint depth)
         {
             Layer ret = new Layer(NDalicPINVOKE.Stage_GetLayer(swigCPtr, depth), true);
@@ -624,6 +635,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Keep rendering for at least the given amount of time.
         /// </summary>
+        /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame</param>
         public void KeepRendering(float durationSeconds)
         {
             NDalicPINVOKE.Stage_KeepRendering(swigCPtr, durationSeconds);

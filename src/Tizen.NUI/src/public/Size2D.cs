@@ -43,6 +43,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Dispose
         /// </summary>
         public virtual void Dispose()
         {
@@ -68,23 +69,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Addition operator.
+        /// Addition operator for A+B
         /// </summary>
+        /// <param name="arg1">Size, A</param>
+        /// <param name="arg2">Size to assign, B</param>
+        /// <returns>A Size containing the result of the addition</returns>
         public static Size2D operator +(Size2D arg1, Size2D arg2)
         {
             return arg1.Add(arg2);
         }
 
         /// <summary>
-        /// Subtraction operator.
+        /// Subtraction operator for A-B
         /// </summary>
+        /// <param name="arg1">Size, A</param>
+        /// <param name="arg2">Size to subtract, B</param>
+        /// <returns>A Size containing the result of the subtraction</returns>
         public static Size2D operator -(Size2D arg1, Size2D arg2)
         {
             return arg1.Subtract(arg2);
         }
 
         /// <summary>
+        /// Unary negation operator.
         /// </summary>
+        /// <param name="arg1">Size for unary negation</param>
+        /// <returns>A Size containg the negation</returns>
         public static Size2D operator -(Size2D arg1)
         {
             return arg1.Subtract();
@@ -93,6 +103,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Multiplication operator.
         /// </summary>
+        /// <param name="arg1">Size for multiplication</param>
+        /// <param name="arg2">The Size to multipl</param>
+        /// <returns>A Size containing the result of the multiplication</returns>
         public static Size2D operator *(Size2D arg1, Size2D arg2)
         {
             return arg1.Multiply(arg2);
@@ -101,6 +114,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Multiplication operator.
         /// </summary>
+        /// <param name="arg1">Size for multiplication</param>
+        /// <param name="arg2">The int value to scale the Size</param>
+        /// <returns>A Size containing the result of the scaling</returns>
+
         public static Size2D operator *(Size2D arg1, int arg2)
         {
             return arg1.Multiply(arg2);
@@ -109,6 +126,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Division operator.
         /// </summary>
+        /// <param name="arg1">Size for division</param>
+        /// <param name="arg2">The Size to divide</param>
+        /// <returns>A Size containing the result of the division></returns>
         public static Size2D operator /(Size2D arg1, Size2D arg2)
         {
             return arg1.Divide(arg2);
@@ -117,6 +137,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Division operator.
         /// </summary>
+        /// <param name="arg1">Size for division</param>
+        /// <param name="arg2">The int value to scale the Size by</param>
+        /// <returns>A Size containing the result of the scaling</returns>
         public static Size2D operator /(Size2D arg1, int arg2)
         {
             return arg1.Divide(arg2);
@@ -125,6 +148,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Array subscript operator.
         /// </summary>
+        /// <param name="index">Subscript index</param>
+        /// <returns>The float at the given index</returns>
         public float this[uint index]
         {
             get
@@ -134,6 +159,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get Size from pointer.
+        /// </summary>
+        /// <param name="cPtr">Pointer of the Size</param>
+        /// <returns>Size</returns>
         public static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
         {
             Size2D ret = new Size2D(cPtr, false);
@@ -152,6 +181,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="x">x (or width) component</param>
+        /// <param name="y">y (or height) component</param>
         public Size2D(int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -160,6 +191,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="size">Size with x (width), y (height), and z (depth)</param>
         public Size2D(Size size) : this(NDalicPINVOKE.new_Vector2__SWIG_3(Size.getCPtr(size)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -220,6 +252,8 @@ namespace Tizen.NUI
         /// Check equality.
         /// Utilizes appropriate machine epsilon values.
         /// </summary>
+        /// <param name="rhs">The Size to test against</param>
+        /// <returns>True if the Sizes are equal</returns>
         public bool EqualTo(Size2D rhs)
         {
             bool ret = NDalicPINVOKE.Vector2_EqualTo(swigCPtr, Size2D.getCPtr(rhs));
@@ -231,6 +265,8 @@ namespace Tizen.NUI
         /// Check inequality.
         /// Utilizes appropriate machine epsilon values.
         /// </summary>
+        /// <param name="rhs">The Size to test against</param>
+        /// <returns>True if the Sizes are not equal</returns>
         public bool NotEqualTo(Size2D rhs)
         {
             bool ret = NDalicPINVOKE.Vector2_NotEqualTo(swigCPtr, Size2D.getCPtr(rhs));
@@ -246,6 +282,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Property for width component of Size
         /// </summary>
         public int Width
         {
@@ -263,6 +300,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Property for height component of Size
         /// </summary>
         public int Height
         {
@@ -280,14 +318,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Type cast operator, Size2D to Vector2.
         /// </summary>
+        /// <param name="size">Object of Size2D type</param>
         public static implicit operator Vector2(Size2D size)
         {
             return new Vector2((float)size.Width, (float)size.Height);
         }
 
         /// <summary>
+        /// Type cast operator, Vector2 to Size2D type.
         /// </summary>
+        /// <param name="vec">Object of Vector2 type</param>
         public static implicit operator Size2D(Vector2 vec)
         {
             return new Size2D((int)vec.X, (int)vec.Y);
