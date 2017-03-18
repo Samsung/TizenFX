@@ -49,6 +49,7 @@
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
+    <Compile Include="src\internal\FriendAssembly.cs" />
     <Compile Include="src\internal\ActorContainer.cs" />
     <Compile Include="src\internal\ActorHoverSignal.cs" />
     <Compile Include="src\internal\ActorSignal.cs" />
