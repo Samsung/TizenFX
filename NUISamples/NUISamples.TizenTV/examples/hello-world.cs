@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.ExtTEST;
 
 namespace HelloWorldTest
 {
@@ -79,6 +80,12 @@ namespace HelloWorldTest
 
             _view.SizeWidth = 50;
             Tizen.Log.Debug("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
+
+            ActorEXT _actorExt = new ActorEXT();
+            Actor _actor1 = _actorExt.CreateActor();
+            if(_actor1) Tizen.Log.Debug("NUI", "FriendAssembly Test _actor1 name = " + _actor1.Name);
+            else Tizen.Log.Debug("NUI", "FriendAssembly Test _actor1 is NULL!");
+
         }
 
         public void AnimationFinished(object sender, EventArgs e)

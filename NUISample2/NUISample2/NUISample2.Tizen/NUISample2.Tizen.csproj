@@ -7,11 +7,11 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{B47E2552-F995-49F6-AC29-58B9CCFB7056}</ProjectGuid>
+    <ProjectGuid>{1BC32B91-AF24-45AE-99A7-ACF5E0740993}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NUISamples.TizenTV</RootNamespace>
-    <AssemblyName>NUISamples.TizenTV</AssemblyName>
+    <RootNamespace>NUISample2.Tizen</RootNamespace>
+    <AssemblyName>NUISample2.Tizen</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,60 +43,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="NUISamples.TizenTV.project.json" />
-    <None Include="res\json\control-dashboard-theme.json" />
-    <None Include="res\json\control-dashboard.json" />
-    <None Include="res\json\date-picker-theme.json" />
-    <None Include="res\json\date-picker-template.json" />
-    <None Include="res\json\date-picker.json" />
-    <None Include="res\json\style-example-theme-one.json" />
-    <None Include="res\json\spin.json" />
+    <None Include="NUISample2.Tizen.project.json" />
     <None Include="tizen-manifest.xml" />
-    <None Include="shared\res\NUISamples.TizenTV.png" />
+    <None Include="shared\res\NUISample2.Tizen.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\control-dashboard.cs" />
-    <Compile Include="examples\date-picker-using-json.cs" />
-    <Compile Include="examples\date-picker.cs" />
-    <Compile Include="examples\flex-container.cs" />
-    <Compile Include="examples\test1.cs" />
-    <Compile Include="examples\visual-view-test.cs" />
-    <Compile Include="examples\hello-world.cs" />
+    <Compile Include="NUISample2.Tizen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Tizen.NUI\Tizen.NUI.csproj">
-      <Project>{f03a3b48-9d9b-4bf3-92ce-bd63cadc3cd3}</Project>
-      <Name>Tizen.NUI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="res\images\application-icon-0.png" />
-    <Content Include="res\images\arrow.png" />
-    <Content Include="res\images\background-blocks.jpg" />
-    <Content Include="res\images\gallery-0.jpg" />
-    <Content Include="res\images\gallery-1.jpg" />
-    <Content Include="res\images\gallery-2.jpg" />
-    <Content Include="res\images\gallery-3.jpg" />
-    <Content Include="res\images\gallery-4.jpg" />
-    <Content Include="res\images\gallery-5.jpg" />
-    <Content Include="res\images\image-1.jpg" />
-    <Content Include="res\images\image-2.jpg" />
-    <Content Include="res\images\image-3.jpg" />
-    <Content Include="res\images\not_yet_sign.png" />
-    <Content Include="res\images\star-dim.png" />
-    <Content Include="res\images\star-highlight.png" />
-    <Content Include="res\images\star-mod.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-    <Reference Include="Tizen.NUI.ExtTEST, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9038b6d7f5a8293c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Tizen.NUI.ExtTEST\Tizen.NUI.ExtTEST\bin\Debug\Tizen.NUI.ExtTEST.dll</HintPath>
-    </Reference>
+    <Folder Include="res\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,0 +1,157 @@
+/*
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * This file is part of Dali Toolkit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+//******************************************************************************
+//
+// Default Reference style theme for a 1920x1080 resolution, The values determined by UX design specification.
+// This file can be copied to a new folder within the styles/ directory and amended with new default values.
+// Can be overriden if StyleManager applies another style sheet.
+//
+//******************************************************************************
+
+{
+  "styles":
+  {
+    "TextLabel":
+    {
+      "pointSize":8,
+      "enableAutoScroll":false,
+      "autoScrollLoopCount":2,
+      "autoScrollGap":50,
+      "autoScrollSpeed":80
+    },
+
+    "TextLabelFontSize0":
+    {
+      "pointSize":8
+    },
+    "TextLabelFontSize1":
+    {
+      "pointSize":9
+    },
+    "TextLabelFontSize2":
+    {
+      "pointSize":10
+    },
+    "TextLabelFontSize3":
+    {
+      "pointSize":11
+    },
+    "TextLabelFontSize4":
+    {
+      "pointSize":12
+    },
+
+    "TextField":
+    {
+      "pointSize":8,
+      "primaryCursorColor":[0.0,0.72,0.9,1.0],
+      "secondaryCursorColor":[0.0,0.72,0.9,1.0],
+      "cursorWidth":6,
+      "selectionHighlightColor":[0.75,0.96,1.0,1.0],
+      "grabHandleImage" : "{DALI_STYLE_IMAGE_DIR}cursor_handler_drop_center.png",
+      "selectionHandleImageLeft" : {"filename":"{DALI_STYLE_IMAGE_DIR}selection_handle_drop_left.png" },
+      "selectionHandleImageRight": {"filename":"{DALI_STYLE_IMAGE_DIR}selection_handle_drop_right.png" }
+    },
+
+    "TextFieldFontSize0":
+    {
+      "pointSize":8
+    },
+    "TextFieldFontSize1":
+    {
+      "pointSize":9
+    },
+    "TextFieldFontSize2":
+    {
+      "pointSize":10
+    },
+    "TextFieldFontSize3":
+    {
+      "pointSize":11
+    },
+    "TextFieldFontSize4":
+    {
+      "pointSize":20
+    },
+    "ScrollView":
+    {
+      "overshootEffectColor":"B018",
+      "overshootAnimationSpeed":960.0,
+      "overshootSize":[1920.0,130.0]
+    },
+    "ItemView":
+    {
+      "overshootEffectColor":"B018",
+      "overshootAnimationSpeed":960.0,
+      "overshootSize":[1920.0,130.0]
+    },
+    "TextEditor":
+    {
+      "pointSize":8,
+      "primaryCursorColor":[0.0,0.72,0.9,1.0],
+      "secondaryCursorColor":[0.0,0.72,0.9,1.0],
+      "cursorWidth":6,
+      "selectionHighlightColor":[0.75,0.96,1.0,1.0]
+    },
+    "Button":
+    {
+      "styles":["Tooltip"],
+      "initialAutoRepeatingDelay":2.0,
+      "nextAutoRepeatingDelay":0.9
+      // Note: Visuals added to Button will be used in all derived buttons unless overridden.
+    },
+    "PushButton":
+    {
+      "styles":["Button"],
+      "autoRepeating":false,
+      "togglable":false,
+      "labelPadding":[ 12.0, 12.0, 12.0, 12.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 6.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+    "CheckBoxButton":
+    {
+      "styles":["Button"],
+      "labelPadding":[ 12.0, 12.0, 0.0, 0.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+    "RadioButton":
+    {
+      "styles":["Button"],
+      "labelPadding":[ 12.0, 12.0, 0.0, 0.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    }
+  }
+}
