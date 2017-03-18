@@ -51,8 +51,8 @@ namespace Tizen.NUI
         public delegate bool OnAccessibilityZoomDelegate();
         public delegate void OnKeyInputFocusGainedDelegate();
         public delegate void OnKeyInputFocusLostDelegate();
-        public delegate Actor GetNextKeyboardFocusableActorDelegate(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled);
-        public delegate void OnKeyboardFocusChangeCommittedDelegate(Actor commitedFocusableActor);
+        public delegate View GetNextKeyboardFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
+        public delegate void OnKeyboardFocusChangeCommittedDelegate(View commitedFocusableView);
         public delegate bool OnKeyboardEnterDelegate();
         public delegate void OnPinchDelegate(PinchGesture pinch);
         public delegate void OnPanDelegate(PanGesture pan);
@@ -90,7 +90,7 @@ namespace Tizen.NUI
         public OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnKeyInputFocusGainedDelegate OnKeyInputFocusGained;
         public OnKeyInputFocusLostDelegate OnKeyInputFocusLost;
-        public GetNextKeyboardFocusableActorDelegate GetNextKeyboardFocusableActor;
+        public GetNextKeyboardFocusableViewDelegate GetNextKeyboardFocusableView;
         public OnKeyboardFocusChangeCommittedDelegate OnKeyboardFocusChangeCommitted;
         public OnKeyboardEnterDelegate OnKeyboardEnter;
         public OnPinchDelegate OnPinch;
@@ -450,12 +450,12 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNextKeyboardFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            return Actor.getCPtr(GetNextKeyboardFocusableActor(new Actor(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
+            return Actor.getCPtr(GetNextKeyboardFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
-        private void DirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableActor)
+        private void DirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnKeyboardFocusChangeCommitted(new Actor(commitedFocusableActor, false));
+            OnKeyboardFocusChangeCommitted(new View(commitedFocusableView, false));
         }
 
         private bool DirectorOnKeyboardEnter()
