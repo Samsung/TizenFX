@@ -18,12 +18,32 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// The DisplayedMonthChangedEvent in Calendar contain
+    /// DisplayedMonthChangedEventArgs as a parameter.
+    /// </summary>
     public class DisplayedMonthChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets the OldMonth property of the given DisplayedMonthChangedEventArgs.
+        /// </summary>
         public int OldMonth { get; private set; }
 
+        /// <summary>
+        /// Gets the NewMonth property of the given DisplayedMonthChangedEventArgs.
+        /// </summary>
         public int NewMonth { get; private set; }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the DisplayedMonthChangedEventArgs class.
+        /// </summary>
+        /// <param name="oldMonth">
+        /// old month of date when DisplayedMonthChangedEvent triggered.
+        /// </param>
+        /// <param name="newMonth">
+        /// new month of date when DisplayedMonthChangedEvent triggered.
+        /// </param>
         public DisplayedMonthChangedEventArgs(int oldMonth, int newMonth)
         {
             this.OldMonth = oldMonth;

@@ -115,7 +115,6 @@ namespace ElmSharp
     /// </summary>
     public enum BackgroundOptions
     {
-
         /// <summary>
         /// Centers the background image
         /// </summary>

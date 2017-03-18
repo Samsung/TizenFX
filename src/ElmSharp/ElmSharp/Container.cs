@@ -19,14 +19,28 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="Widget"/>.
+    /// The Container is a abstract class.
+    /// Other class inherits it to Elementary is about displaying
+    /// its widgets in a nice layout.
+    /// </summary>
     public abstract class Container : Widget
     {
         HashSet<EvasObject> _children = new HashSet<EvasObject>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of class which inherit from Container.
+        /// </summary>
+        /// <param name="parent">The parent is a given object which will be attached by Container
+        /// as a child.It's <see cref="EvasObject"/> type.</param>
         public Container(EvasObject parent) : base(parent)
         {
         }
 
+        /// <summary>
+        /// Sets the background color of a given Container.
+        /// </summary>
         public override Color BackgroundColor
         {
             set

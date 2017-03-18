@@ -18,12 +18,28 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// Event ColorChanged of ColorSelector contain ColorChangedEventArgs as a parameter.
+    /// Refer to <see cref="ColorSelector"/>type.
+    /// </summary>
     public class ColorChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets old color in color changed event.
+        /// </summary>
         public Color OldColor { get; private set; }
 
+        /// <summary>
+        /// Gets new color in color changed event.
+        /// </summary>
         public Color NewColor { get; private set; }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the ColorChangedEventArgs class.
+        /// </summary>
+        /// <param name="oldColor">old color</param>
+        /// <param name="newColor">new color</param>
         public ColorChangedEventArgs(Color oldColor, Color newColor)
         {
             this.OldColor = oldColor;
