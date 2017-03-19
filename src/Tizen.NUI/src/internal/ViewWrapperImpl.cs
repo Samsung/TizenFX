@@ -308,7 +308,10 @@ namespace Tizen.NUI
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            OnPropertySet(index, new PropertyValue(propertyValue, true));
+            if ( OnPropertySet != null )
+            {
+                OnPropertySet(index, new PropertyValue(propertyValue, true));
+            }
         }
 
         private void DirectorOnSizeSet(global::System.IntPtr targetSize)
