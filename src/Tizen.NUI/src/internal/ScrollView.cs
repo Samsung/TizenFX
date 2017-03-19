@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-    internal class ScrollView : Scrollable {
+    public class ScrollView : Scrollable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ScrollView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -63,8 +63,6 @@ using System.Runtime.InteropServices;
       base.Dispose();
     }
   }
-
-
 
 /**
   * @brief Event arguments that passed via SnapStarted signal
@@ -153,20 +151,20 @@ public class SnapStartedEventArgs : EventArgs
   public class ClampEvent : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
-  
+
     internal ClampEvent(global::System.IntPtr cPtr, bool cMemoryOwn) {
       swigCMemOwn = cMemoryOwn;
       swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
     }
-  
+
     internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ClampEvent obj) {
       return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
     }
-  
+
     ~ClampEvent() {
       Dispose();
     }
-  
+
     public virtual void Dispose() {
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -179,68 +177,68 @@ public class SnapStartedEventArgs : EventArgs
         global::System.GC.SuppressFinalize(this);
       }
     }
-  
-    public ClampState2D scale {
+
+    internal ClampState2D scale {
       set {
         NDalicPINVOKE.ScrollView_ClampEvent_scale_set(swigCPtr, ClampState2D.getCPtr(value));
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         global::System.IntPtr cPtr = NDalicPINVOKE.ScrollView_ClampEvent_scale_get(swigCPtr);
         ClampState2D ret = (cPtr == global::System.IntPtr.Zero) ? null : new ClampState2D(cPtr, false);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
-    public ClampState2D position {
+
+    internal ClampState2D position {
       set {
         NDalicPINVOKE.ScrollView_ClampEvent_position_set(swigCPtr, ClampState2D.getCPtr(value));
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         global::System.IntPtr cPtr = NDalicPINVOKE.ScrollView_ClampEvent_position_get(swigCPtr);
         ClampState2D ret = (cPtr == global::System.IntPtr.Zero) ? null : new ClampState2D(cPtr, false);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
-    public ClampState rotation {
+
+    internal ClampState rotation {
       set {
         NDalicPINVOKE.ScrollView_ClampEvent_rotation_set(swigCPtr, (int)value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         ClampState ret = (ClampState)NDalicPINVOKE.ScrollView_ClampEvent_rotation_get(swigCPtr);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
+
     public ClampEvent() : this(NDalicPINVOKE.new_ScrollView_ClampEvent(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
-  
+
   }
 
   public class SnapEvent : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
-  
+
     internal SnapEvent(global::System.IntPtr cPtr, bool cMemoryOwn) {
       swigCMemOwn = cMemoryOwn;
       swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
     }
-  
+
     internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SnapEvent obj) {
       return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
     }
-  
+
     ~SnapEvent() {
       Dispose();
     }
-  
+
     public virtual void Dispose() {
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -253,73 +251,73 @@ public class SnapStartedEventArgs : EventArgs
         global::System.GC.SuppressFinalize(this);
       }
     }
-  
+
    public static SnapEvent GetSnapEventFromPtr(global::System.IntPtr cPtr) {
       SnapEvent ret = new SnapEvent(cPtr, false);
-  	if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
-  
-    public SnapType type {
+
+    internal SnapType type {
       set {
         NDalicPINVOKE.ScrollView_SnapEvent_type_set(swigCPtr, (int)value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         SnapType ret = (SnapType)NDalicPINVOKE.ScrollView_SnapEvent_type_get(swigCPtr);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
+
     public Vector2 position {
       set {
         NDalicPINVOKE.ScrollView_SnapEvent_position_set(swigCPtr, Vector2.getCPtr(value));
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         global::System.IntPtr cPtr = NDalicPINVOKE.ScrollView_SnapEvent_position_get(swigCPtr);
         Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
+
     public float duration {
       set {
         NDalicPINVOKE.ScrollView_SnapEvent_duration_set(swigCPtr, value);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
+      }
       get {
         float ret = NDalicPINVOKE.ScrollView_SnapEvent_duration_get(swigCPtr);
         if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         return ret;
-      } 
+      }
     }
-  
+
     public SnapEvent() : this(NDalicPINVOKE.new_ScrollView_SnapEvent(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
-  
+
   }
 
   public class Property : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;
-  
+
     internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
       swigCMemOwn = cMemoryOwn;
       swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
     }
-  
+
     internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
       return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
     }
-  
+
     ~Property() {
       Dispose();
     }
-  
+
     public virtual void Dispose() {
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -332,11 +330,11 @@ public class SnapStartedEventArgs : EventArgs
         global::System.GC.SuppressFinalize(this);
       }
     }
-  
+
     public Property() : this(NDalicPINVOKE.new_ScrollView_Property(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
-  
+
     public static readonly int WRAP_ENABLED = NDalicPINVOKE.ScrollView_Property_WRAP_ENABLED_get();
     public static readonly int PANNING_ENABLED = NDalicPINVOKE.ScrollView_Property_PANNING_ENABLED_get();
     public static readonly int AXIS_AUTO_LOCK_ENABLED = NDalicPINVOKE.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
@@ -362,7 +360,7 @@ public class SnapStartedEventArgs : EventArgs
     public static readonly int SCROLL_DOMAIN_OFFSET = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
     public static readonly int SCROLL_POSITION_DELTA = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_DELTA_get();
     public static readonly int START_PAGE_POSITION = NDalicPINVOKE.ScrollView_Property_START_PAGE_POSITION_get();
-  
+
   }
 
   public ScrollView () : this (NDalicPINVOKE.ScrollView_New(), true) {
@@ -636,7 +634,7 @@ public class SnapStartedEventArgs : EventArgs
     return ret;
   }
 
-  public void ApplyConstraintToChildren(SWIGTYPE_p_Dali__Constraint constraint) {
+  internal void ApplyConstraintToChildren(SWIGTYPE_p_Dali__Constraint constraint) {
     NDalicPINVOKE.ScrollView_ApplyConstraintToChildren(swigCPtr, SWIGTYPE_p_Dali__Constraint.getCPtr(constraint));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -686,7 +684,7 @@ public class SnapStartedEventArgs : EventArgs
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public ScrollViewSnapStartedSignal SnapStartedSignal() {
+  internal ScrollViewSnapStartedSignal SnapStartedSignal() {
     ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(NDalicPINVOKE.ScrollView_SnapStartedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

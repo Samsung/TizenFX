@@ -15,7 +15,8 @@ public enum VisualTransformPropertyType {
   SIZE,
   ORIGIN,
   ANCHOR_POINT,
-  OFFSET_SIZE_MODE
+  OFFSET_POLICY,
+  SIZE_POLICY
 }
 
 }

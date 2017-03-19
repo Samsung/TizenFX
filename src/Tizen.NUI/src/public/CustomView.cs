@@ -64,6 +64,9 @@ namespace Tizen.NUI
             viewWrapperImpl.OnTap = new ViewWrapperImpl.OnTapDelegate(OnTap);
             viewWrapperImpl.OnLongPress = new ViewWrapperImpl.OnLongPressDelegate(OnLongPress);
 
+            // By default, we do not want the position to use the anchor point
+            this.PositionUsesAnchorPoint = false;
+
             // Make sure CustomView is initialized.
             OnInitialize();
 
@@ -91,7 +94,7 @@ namespace Tizen.NUI
          * @endcode
          * @param[in]  type  The gesture type(s) to enable.
          */
-        internal void EnableGestureDetection(Gesture.GestureType type)
+        public void EnableGestureDetection(Gesture.GestureType type)
         {
             viewWrapperImpl.EnableGestureDetection(type);
         }
@@ -815,7 +818,7 @@ namespace Tizen.NUI
          * @note Tap detection should be enabled via EnableGestureDetection().
          * @see EnableGestureDetection
          */
-        internal virtual void OnTap(TapGesture tap)
+        public virtual void OnTap(TapGesture tap)
         {
         }
 

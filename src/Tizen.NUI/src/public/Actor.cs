@@ -1094,7 +1094,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal float GetRelayoutSize(DimensionType dimension)
+        public float GetRelayoutSize(DimensionType dimension)
         {
             float ret = NDalicPINVOKE.Actor_GetRelayoutSize(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
