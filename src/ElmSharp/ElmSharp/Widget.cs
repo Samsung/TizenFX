@@ -19,16 +19,41 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the focus direction.
+    /// </summary>
     public enum FocusDirection
     {
+        /// <summary>
+        /// Previous direction
+        /// </summary>
         Previous,
+        /// <summary>
+        /// Next direction
+        /// </summary>
         Next,
+        /// <summary>
+        /// Up direction
+        /// </summary>
         Up,
+        /// <summary>
+        /// Down direction
+        /// </summary>
         Down,
+        /// <summary>
+        /// Right direction
+        /// </summary>
         Right,
+        /// <summary>
+        /// Left direction
+        /// </summary>
         Left
     }
 
+    /// <summary>
+    /// The Widget is abstract class, it is the parent of other widgets.
+    /// Inherits from <see cref="EvasObject"/>.
+    /// </summary>
     public abstract class Widget : EvasObject
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
@@ -43,6 +68,10 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Widget class.
+        /// </summary>
+        /// <param name="parent">The parent of new Widget instance</param>
         protected Widget(EvasObject parent) : base(parent)
         {
             _focused = new SmartEvent(this, "focused");
@@ -52,10 +81,19 @@ namespace ElmSharp
             _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Focused will be triggered when the widget is focused.
+        /// </summary>
         public event EventHandler Focused;
 
+        /// <summary>
+        /// Unfocused will be triggered when the widget is unfocused.
+        /// </summary>
         public event EventHandler Unfocused;
 
+        /// <summary>
+        /// Sets or gets the state of the widget, which might be enabled or disabled.
+        /// </summary>
         public bool IsEnabled
         {
             get
@@ -68,6 +106,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the style of the widget.
+        /// </summary>
         public string Style
         {
             get
@@ -80,6 +121,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets whether this widget is focused.
+        /// </summary>
         public bool IsFocused
         {
             get
@@ -88,6 +132,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets whether a widget is focusable or not.
+        /// </summary>
+        /// <remarks>Widgets which are meant to be interacted with by input events are created able to be focused, by default</remarks>
         public bool IsFocusAllowed
         {
             get
@@ -96,6 +144,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the text of the widget.
+        /// </summary>
+        /// <remarks>It could be override by special child class</remarks>
         public virtual string Text
         {
             get
@@ -108,6 +160,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the background color of the widget.
+        /// </summary>
+        /// <remarks>It could be override by special child class</remarks>
         public virtual Color BackgroundColor
         {
             get
@@ -132,6 +188,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the opacity of the widget.
+        /// </summary>
+        /// <remarks>It could be override by special child class</remarks>
         public virtual int Opacity
         {
             get
@@ -149,31 +209,61 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the widget to be focused or not.
+        /// </summary>
+        /// <param name="isFocus">Weather be focused</param>
         public void SetFocus(bool isFocus)
         {
             Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
         }
 
+        /// <summary>
+        /// Sets the ability for a widget to be focused.
+        /// </summary>
+        /// <param name="isAllowFocus">True if the object can be focused, false if not(and on errors)</param>
         public void AllowFocus(bool isAllowFocus)
         {
             Interop.Elementary.elm_object_focus_allow_set(RealHandle, isAllowFocus);
         }
 
+        /// <summary>
+        /// Gives focus to next widget in widget tree.
+        /// </summary>
+        /// <param name="direction">Direction to move the focus</param>
         public void FocusNext(FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next(RealHandle, (int)direction);
         }
 
+        /// <summary>
+        /// Set next widget with specific focus direction.
+        /// </summary>
+        /// <param name="next">Focus next widget</param>
+        /// <param name="direction">Focus direction</param>
         public void SetNextFocusObject(EvasObject next, FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next.RealHandle, (int)direction);
         }
 
+        /// <summary>
+        /// Sets content to particular part of the widget, and the preserve old content will not be unset.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="content">The content</param>
+        /// <seealso cref="SetPartContent(string, EvasObject, bool)"/>
         public void SetPartContent(string part, EvasObject content)
         {
             SetPartContent(part, content, false);
         }
 
+        /// <summary>
+        /// Sets content to particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="content">The content</param>
+        /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
+        /// <seealso cref="SetPartContent(string, EvasObject)"/>
         public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -185,11 +275,22 @@ namespace ElmSharp
             _partContents[part ?? "__default__"] = content;
         }
 
+        /// <summary>
+        /// Sets content to the widget, and the preserve old content will not be unset.
+        /// </summary>
+        /// <param name="content">The content</param>
+        /// <seealso cref="SetContent(EvasObject, bool)"/>
         public void SetContent(EvasObject content)
         {
             SetContent(content, false);
         }
 
+        /// <summary>
+        /// Sets content the widget.
+        /// </summary>
+        /// <param name="content">The content</param>
+        /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
+        /// <seealso cref="SetContent(EvasObject)"/>
         public void SetContent(EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -201,16 +302,32 @@ namespace ElmSharp
             _partContents["__default__"] = content;
         }
 
+        /// <summary>
+        /// Sets text to particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="text">The text</param>
         public void SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_part_text_set(RealHandle, part, text);
         }
 
+        /// <summary>
+        /// Gets text of a particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <returns>Text of the particular part of the widget</returns>
         public string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_part_text_get(RealHandle, part);
         }
 
+        /// <summary>
+        /// Sets color of a particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="color">The color be set to widget</param>
+        /// <remarks>This method is a virtual method, it could be override by special child class</remarks>
         public virtual void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(RealHandle, part, color.R * color.A / 255,
@@ -219,6 +336,12 @@ namespace ElmSharp
                                                                               color.A);
         }
 
+        /// <summary>
+        /// Gets color of the particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <returns>The color of the particular part</returns>
+        /// <remarks>This method is a virtual method, it could be override by special child class</remarks>
         public virtual Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -226,11 +349,21 @@ namespace ElmSharp
             return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
         }
 
+        /// <summary>
+        /// Sets opacity of the particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="opacity">The opacity of the particular part</param>
         public void SetPartOpacity(string part, int opacity)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, 255, 255, 255, opacity);
         }
 
+        /// <summary>
+        /// Gets opacity of the particular part of the widget.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <returns>Opacity value of the particular part</returns>
         public int GetPartOpacity(string part)
         {
             int r, g, b, a;

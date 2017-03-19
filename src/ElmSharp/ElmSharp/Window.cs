@@ -19,12 +19,27 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the display rotation of window.
+    /// </summary>
     [Flags]
     public enum DisplayRotation
     {
+        /// <summary>
+        /// Rotation value of window is 0 degree
+        /// </summary>
         Degree_0 = 1,
+        /// <summary>
+        /// Rotation value of window is 90 degree
+        /// </summary>
         Degree_90 = 2,
+        /// <summary>
+        /// Rotation value of window is 180 degree
+        /// </summary>
         Degree_180 = 4,
+        /// <summary>
+        /// Rotation value of window is 270 degree
+        /// </summary>
         Degree_270 = 8
     };
 
@@ -152,7 +167,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets value whether rotation is supported.
+        /// Gets whether window manager supports window rotation or not.
         /// </summary>
         public bool IsRotationSupported
         {
@@ -206,6 +221,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the alpha channel state of a window.
+        /// </summary>
+        /// <remarks>
+        /// True if the window alpha channel is enabled, false otherwise.
+        /// If alpha is true, the alpha channel of the canvas will be enabled possibly making parts of the window completely or partially transparent.
+        /// </remarks>
         public bool Alpha
         {
             get
@@ -218,6 +240,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the role of the window.
+        /// </summary>
+        /// <remarks>
+        /// The Role will be invalid if a new role is set or if the window is destroyed.
+        /// </remarks>
         public string Role
         {
             get
@@ -230,6 +258,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the mode of status bar.
+        /// </summary>
         public StatusBarMode StatusBarMode
         {
             get
@@ -273,11 +304,19 @@ namespace ElmSharp
         }
 
 
+        /// <summary>
+        /// Set the keygrab of the window.
+        /// </summary>
+        /// <param name="keyname">keyname string to set keygrab</param>
         public void KeyGrabEx(string keyname)
         {
             Interop.Elementary.eext_win_keygrab_set(RealHandle, keyname);
         }
 
+        /// <summary>
+        /// Unset the keygrab of the window.
+        /// </summary>
+        /// <param name="keyname">keyname string to unset keygrab</param>
         public void KeyUngrabEx(string keyname)
         {
             Interop.Elementary.eext_win_keygrab_unset(RealHandle, keyname);
@@ -299,7 +338,6 @@ namespace ElmSharp
             _referenceHolder.Remove(obj);
         }
 
-        /// </return>
         static int[] ConvertDegreeArray(DisplayRotation value)
         {
             List<int> rotations = new List<int>();
