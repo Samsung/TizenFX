@@ -23,6 +23,11 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Provides the functionality of handling keyboard navigation and maintaining the two dimensional keyboard focus chain.
+    /// It provides functionality of setting the focus and moving the focus in four directions(i.e.Left, Right, Up and Down).
+    /// It also draws a highlight for the focused View and sends a event when the focus is changed.
+    /// </summary>
     public class FocusManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,6 +47,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make FocusManager instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -382,6 +390,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Moves the keyboard focus to the given View.
+        /// Only one View can be focused at the same time.
+        /// The View must be in the stage already and keyboard focusable.
+        /// </summary>
+        /// <param name="view">The View to be focused</param>
+        /// <returns>Whether the focus is successful or not</returns>
         public bool SetCurrentFocusView(View view)
         {
             bool ret = NDalicManualPINVOKE.FocusManager_SetCurrentFocusActor(swigCPtr, Actor.getCPtr(view));
@@ -389,6 +404,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the current focused actor.
+        /// </summary>
+        /// <returns>A handle to the current focused View or an empty handle if no View is focused</returns>
         public View GetCurrentFocusView()
         {
             View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr), true));
@@ -396,6 +415,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Moves the focus to the next focusable View in the focus chain in the given direction(according to the focus traversal order).
+        /// </summary>
+        /// <param name="direction">The direction of focus movement</param>
+        /// <returns>true if the movement was successful</returns>
         public bool MoveFocus(View.FocusDirection direction)
         {
             bool ret = NDalicManualPINVOKE.FocusManager_MoveFocus(swigCPtr, (int)direction);
@@ -403,12 +427,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Clears the focus from the current focused actor if any, so that no actor is focused in the focus chain.
+        /// It will emit FocusChanged event without current focused View.
+        /// </summary>
         public void ClearFocus()
         {
             NDalicManualPINVOKE.FocusManager_ClearFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets/Gets the status of whether the focus movement should be looped within the same focus group.
+        /// The focus movement is not looped by default.
+        /// </summary>
         public bool FocusGroupLoop
         {
             set
@@ -434,12 +466,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets whether an View is a focus group that can limit the scope of focus movement to its child actors in the focus chain.
+        /// Layout controls set themselves as focus groups by default.
+        /// </summary>
+        /// <param name="view">The View to be set as a focus group</param>
+        /// <param name="isFocusGroup">Whether to set the View as a focus group or not</param>
         public void SetAsFocusGroup(View view, bool isFocusGroup)
         {
             NDalicManualPINVOKE.FocusManager_SetAsFocusGroup(swigCPtr, Actor.getCPtr(view), isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Checks whether the actor is set as a focus group or not.
+        /// </summary>
+        /// <param name="view">The View to be checked</param>
+        /// <returns>Whether the View is set as a focus group</returns>
         public bool IsFocusGroup(View view)
         {
             bool ret = NDalicManualPINVOKE.FocusManager_IsFocusGroup(swigCPtr, Actor.getCPtr(view));
@@ -447,6 +490,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the closest ancestor of the given actor that is a focus group.
+        /// </summary>
+        /// <param name="view">The View to be checked for its focus group</param>
+        /// <returns>The focus group the given view belongs to or an empty handle if the given view</returns>
         public View GetFocusGroup(View view)
         {
             View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, Actor.getCPtr(view)), true));
@@ -454,6 +502,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets/Gets the focus indicator View.
+        /// This will replace the default focus indicator view in FocusManager and will be added to the focused view as a highlight.
+        /// </summary>
         public View FocusIndicator
         {
             set
@@ -509,6 +561,9 @@ namespace Tizen.NUI
 
         private static readonly FocusManager instance = FocusManager.Get();
 
+        /// <summary>
+        /// Gets the singleton of FocusManager object.
+        /// </summary>
         public static FocusManager Instance
         {
             get
