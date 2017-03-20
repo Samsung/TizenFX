@@ -1771,15 +1771,15 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "USE_OWN_COLOR":
-                        return ColorMode.UseOwnColor;
+                    return ColorMode.UseOwnColor;
                     case "USE_PARENT_COLOR":
-                        return ColorMode.UseParentColor;
+                    return ColorMode.UseParentColor;
                     case "USE_OWN_MULTIPLY_PARENT_COLOR":
-                        return ColorMode.UseOwnMultiplyParentColor;
+                    return ColorMode.UseOwnMultiplyParentColor;
                     case "USE_OWN_MULTIPLY_PARENT_ALPHA":
-                        return ColorMode.UseOwnMultiplyParentAlpha;
+                    return ColorMode.UseOwnMultiplyParentAlpha;
                     default:
-                        return ColorMode.UseOwnMultiplyParentAlpha;
+                    return ColorMode.UseOwnMultiplyParentAlpha;
                 }
             }
             set
@@ -1809,13 +1809,13 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "NORMAL":
-                        return DrawModeType.Normal;
+                    return DrawModeType.Normal;
                     case "OVERLAY_2D":
-                        return DrawModeType.Overlay2D;
+                    return DrawModeType.Overlay2D;
                     case "STENCIL":
-                        return DrawModeType.Stencil;
+                    return DrawModeType.Stencil;
                     default:
-                        return DrawModeType.Normal;
+                    return DrawModeType.Normal;
                 }
             }
             set
@@ -1858,23 +1858,23 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "FIXED":
-                        return ResizePolicyType.Fixed;
+                    return ResizePolicyType.Fixed;
                     case "USE_NATURAL_SIZE":
-                        return ResizePolicyType.UseNaturalSize;
+                    return ResizePolicyType.UseNaturalSize;
                     case "FILL_TO_PARENT":
-                        return ResizePolicyType.FillToParent;
+                    return ResizePolicyType.FillToParent;
                     case "SIZE_RELATIVE_TO_PARENT":
-                        return ResizePolicyType.SizeRelativeToParent;
+                    return ResizePolicyType.SizeRelativeToParent;
                     case "SIZE_FIXED_OFFSET_FROM_PARENT":
-                        return ResizePolicyType.SizeFixedOffsetFromParent;
+                    return ResizePolicyType.SizeFixedOffsetFromParent;
                     case "FIT_TO_CHILDREN":
-                        return ResizePolicyType.FitToChildren;
+                    return ResizePolicyType.FitToChildren;
                     case "DIMENSION_DEPENDENCY":
-                        return ResizePolicyType.DimensionDependency;
+                    return ResizePolicyType.DimensionDependency;
                     case "USE_ASSIGNED_SIZE":
-                        return ResizePolicyType.UseAssignedSize;
+                    return ResizePolicyType.UseAssignedSize;
                     default:
-                        return ResizePolicyType.Fixed;
+                    return ResizePolicyType.Fixed;
                 }
             }
             set
@@ -1898,23 +1898,23 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "FIXED":
-                        return ResizePolicyType.Fixed;
+                    return ResizePolicyType.Fixed;
                     case "USE_NATURAL_SIZE":
-                        return ResizePolicyType.UseNaturalSize;
+                    return ResizePolicyType.UseNaturalSize;
                     case "FILL_TO_PARENT":
-                        return ResizePolicyType.FillToParent;
+                    return ResizePolicyType.FillToParent;
                     case "SIZE_RELATIVE_TO_PARENT":
-                        return ResizePolicyType.SizeRelativeToParent;
+                    return ResizePolicyType.SizeRelativeToParent;
                     case "SIZE_FIXED_OFFSET_FROM_PARENT":
-                        return ResizePolicyType.SizeFixedOffsetFromParent;
+                    return ResizePolicyType.SizeFixedOffsetFromParent;
                     case "FIT_TO_CHILDREN":
-                        return ResizePolicyType.FitToChildren;
+                    return ResizePolicyType.FitToChildren;
                     case "DIMENSION_DEPENDENCY":
-                        return ResizePolicyType.DimensionDependency;
+                    return ResizePolicyType.DimensionDependency;
                     case "USE_ASSIGNED_SIZE":
-                        return ResizePolicyType.UseAssignedSize;
+                    return ResizePolicyType.UseAssignedSize;
                     default:
-                        return ResizePolicyType.Fixed;
+                    return ResizePolicyType.Fixed;
                 }
             }
             set
@@ -1939,18 +1939,42 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "USE_SIZE_SET":
-                        return SizeScalePolicyType.UseSizeSet;
+                    return SizeScalePolicyType.UseSizeSet;
                     case "FIT_WITH_ASPECT_RATIO":
-                        return SizeScalePolicyType.FitWithAspectRatio;
+                    return SizeScalePolicyType.FitWithAspectRatio;
                     case "FILL_WITH_ASPECT_RATIO":
-                        return SizeScalePolicyType.FillWithAspectRatio;
+                    return SizeScalePolicyType.FillWithAspectRatio;
                     default:
-                        return SizeScalePolicyType.UseSizeSet;
+                    return SizeScalePolicyType.UseSizeSet;
                 }
             }
             set
             {
-                SetProperty(Actor.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case SizeScalePolicyType.UseSizeSet:
+                    {
+                        valueToString = "USE_SIZE_SET";
+                        break;
+                    }
+                    case SizeScalePolicyType.FitWithAspectRatio:
+                    {
+                        valueToString = "FIT_WITH_ASPECT_RATIO";
+                        break;
+                    }
+                    case SizeScalePolicyType.FillWithAspectRatio:
+                    {
+                        valueToString = "FILL_WITH_ASPECT_RATIO";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "USE_SIZE_SET";
+                        break;
+                    }
+                }
+                SetProperty(Actor.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -2075,11 +2099,11 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "DISABLED":
-                        return ClippingModeType.Disabled;
+                    return ClippingModeType.Disabled;
                     case "CLIP_CHILDREN":
-                        return ClippingModeType.ClipChildren;
+                    return ClippingModeType.ClipChildren;
                     default:
-                        return ClippingModeType.Disabled;
+                    return ClippingModeType.Disabled;
                 }
             }
             set
