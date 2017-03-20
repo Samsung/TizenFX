@@ -130,9 +130,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the color of color class to Box's layout parent.
+        /// Sets the color of exact part to Box's layout parent.
         /// </summary>
-        /// <param name="part">The name of color class. </param>
+        /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <param name="color">The color value.</param>
         public override void SetPartColor(string part, Color color)
         {
@@ -143,9 +143,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the color of color class of Box's layout parent.
+        /// Gets the color of exact part of Box's layout parent.
         /// </summary>
-        /// <param name="part">The name of color class.</param>
+        /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <returns></returns>
         public override Color GetPartColor(string part)
         {
