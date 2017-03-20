@@ -586,6 +586,53 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Decodes an encoded bundle data.
+        /// </summary>
+        /// <param name="bundleRaw">The encoded bundle data. bundleRaw should be return value of Tizen.Applications.Bundle.Encode, otherwise this method will not succeed</param>
+        /// <returns>Decoded Bundle object.</returns>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <code>
+        /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+        /// string bundleRaw = bundle.Encode();
+        /// Bundle data = bundle.Decode(bundleRaw);
+        /// </code>
+        public static Bundle Decode(string bundleRaw)
+        {
+            SafeBundleHandle handle;
+
+            handle = Interop.Bundle.BundleDecode(bundleRaw, bundleRaw.Length);
+            if (ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+            {
+                throw new ArgumentException("Invalid bundle raw");
+            }
+
+            return new Bundle(handle);
+        }
+
+        /// <summary>
+        /// Encodes bundle to string.
+        /// </summary>
+        /// <returns>Encoded Bundle data in string.</returns>
+        /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the Bundle instance has been disposed.</exception>
+        /// <code>
+        /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+        /// string bundleRaw = bundle.Encode();
+        /// </code>
+        public string Encode()
+        {
+            string bundleRaw;
+            int len;
+
+            Interop.Bundle.BundleEncode(_handle, out bundleRaw, out len);
+            if (ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
+            {
+                throw new InvalidOperationException("Invalid bundle");
+            }
+
+            return bundleRaw;
+        }
+
+        /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
