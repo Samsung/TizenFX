@@ -485,7 +485,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback)
         {
-            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            SafePackageManagerRequestHandle RequestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -493,56 +493,64 @@ namespace Tizen.Applications
                 return false;
             }
 
-            if (type != PackageType.UNKNOWN)
+            try
             {
-                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
-                if (err != Interop.PackageManager.ErrorCode.None)
+                if (type != PackageType.UNKNOWN)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
-                    RequestHandle.Dispose();
-                    return false;
+                    err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
                 }
-            }
 
-            if (!string.IsNullOrEmpty(expansionPackagePath))
-            {
-                err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
-                if (err != Interop.PackageManager.ErrorCode.None)
+                if (!string.IsNullOrEmpty(expansionPackagePath))
                 {
-                    Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
-                    RequestHandle.Dispose();
-                    return false;
+                    err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
                 }
-            }
 
-            int requestId;
-            if (eventCallback != null)
-            {
-                err = Interop.PackageManager.PackageManagerRequestInstallWithCB(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
-                if (err == Interop.PackageManager.ErrorCode.None)
+                int requestId;
+                if (eventCallback != null)
                 {
-                    RequestCallbacks.Add(requestId, eventCallback);
-                    RequestHandles.Add(requestId, RequestHandle);
+                    err = Interop.PackageManager.PackageManagerRequestInstallWithCB(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                    if (err == Interop.PackageManager.ErrorCode.None)
+                    {
+                        RequestCallbacks.Add(requestId, eventCallback);
+                        RequestHandles.Add(requestId, RequestHandle);
+                    }
+                    else
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
                 }
                 else
                 {
-                    Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
-                    RequestHandle.Dispose();
-                    return false;
+                    err = Interop.PackageManager.PackageManagerRequestInstall(RequestHandle, packagePath, out requestId);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
                 }
+                return true;
             }
-            else
+            catch (Exception e)
             {
-                err = Interop.PackageManager.PackageManagerRequestInstall(RequestHandle, packagePath, out requestId);
-                if (err != Interop.PackageManager.ErrorCode.None)
-                {
-                    Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
-                    return false;
-                }
+                Log.Warn(LogTag, e.Message);
                 RequestHandle.Dispose();
+                return false;
             }
-
-            return true;
         }
 
         /// <summary>
@@ -606,7 +614,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Uninstall(string packageId, PackageType type, RequestEventCallback eventCallback)
         {
-            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            SafePackageManagerRequestHandle RequestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -614,42 +622,50 @@ namespace Tizen.Applications
                 return false;
             }
 
-            err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
-            if (err != Interop.PackageManager.ErrorCode.None)
+            try
             {
-                Log.Warn(LogTag, string.Format("Failed to uninstall package. Error in setting request package type. err = {0}", err));
-                RequestHandle.Dispose();
-                return false;
-            }
-
-            int requestId;
-            if (eventCallback != null)
-            {
-                err = Interop.PackageManager.PackageManagerRequestUninstallWithCB(RequestHandle, packageId, internalRequestEventCallback, IntPtr.Zero, out requestId);
-                if (err == Interop.PackageManager.ErrorCode.None)
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    RequestCallbacks.Add(requestId, eventCallback);
-                    RequestHandles.Add(requestId, RequestHandle);
-                }
-                else
-                {
-                    Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                    Log.Warn(LogTag, string.Format("Failed to uninstall package. Error in setting request package type. err = {0}", err));
                     RequestHandle.Dispose();
                     return false;
                 }
-            }
-            else
-            {
-                err = Interop.PackageManager.PackageManagerRequestUninstall(RequestHandle, packageId, out requestId);
-                if (err != Interop.PackageManager.ErrorCode.None)
-                {
-                    Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
-                    return false;
-                }
-                RequestHandle.Dispose();
-            }
 
-            return true;
+                int requestId;
+                if (eventCallback != null)
+                {
+                    err = Interop.PackageManager.PackageManagerRequestUninstallWithCB(RequestHandle, packageId, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                    if (err == Interop.PackageManager.ErrorCode.None)
+                    {
+                        RequestCallbacks.Add(requestId, eventCallback);
+                        RequestHandles.Add(requestId, RequestHandle);
+                    }
+                    else
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
+                }
+                else
+                {
+                    err = Interop.PackageManager.PackageManagerRequestUninstall(RequestHandle, packageId, out requestId);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                        RequestHandle.Dispose();
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                Log.Warn(LogTag, e.Message);
+                RequestHandle.Dispose();
+                return false;
+            }
         }
 
         /// <summary>
@@ -717,7 +733,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         public static bool Move(string packageId, PackageType type, StorageType newStorage, RequestEventCallback eventCallback)
         {
-            SafePackageManagerRequestHandle RequestHandle = new SafePackageManagerRequestHandle();
+            SafePackageManagerRequestHandle RequestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -725,43 +741,51 @@ namespace Tizen.Applications
                 return false;
             }
 
-            err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
-            if (err != Interop.PackageManager.ErrorCode.None)
+            try
             {
-                Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
-                RequestHandle.Dispose();
-                return false;
-            }
-
-            bool result = true;
-            if (eventCallback != null)
-            {
-                int requestId;
-                err = Interop.PackageManager.PackageManagerRequestMoveWithCB(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage, internalRequestEventCallback, IntPtr.Zero, out requestId);
-                if (err == Interop.PackageManager.ErrorCode.None)
+                bool result = true;
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    RequestCallbacks.Add(requestId, eventCallback);
-                    RequestHandles.Add(requestId, RequestHandle);
+                    Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
+                    RequestHandle.Dispose();
+                    return false;
+                }
+
+                if (eventCallback != null)
+                {
+                    int requestId;
+                    err = Interop.PackageManager.PackageManagerRequestMoveWithCB(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                    if (err == Interop.PackageManager.ErrorCode.None)
+                    {
+                        RequestCallbacks.Add(requestId, eventCallback);
+                        RequestHandles.Add(requestId, RequestHandle);
+                    }
+                    else
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                        RequestHandle.Dispose();
+                        result = false;
+                    }
                 }
                 else
                 {
-                    Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
-                    RequestHandle.Dispose();
-                    result = false;
+                    err = Interop.PackageManager.PackageManagerRequestMove(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                        RequestHandle.Dispose();
+                        result = false;
+                    }
                 }
+                return result;
             }
-            else
+            catch (Exception e)
             {
-                err = Interop.PackageManager.PackageManagerRequestMove(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage);
-                if (err != Interop.PackageManager.ErrorCode.None)
-                {
-                    Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
-                    result = false;
-                }
+                Log.Warn(LogTag, e.Message);
                 RequestHandle.Dispose();
+                return false;
             }
-
-            return result;
         }
 
         /// <summary>
