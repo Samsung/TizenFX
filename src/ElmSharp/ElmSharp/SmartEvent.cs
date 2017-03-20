@@ -31,7 +31,7 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
-        public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.RealHandle, eventName, parser)
+        public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
         {
         }
 

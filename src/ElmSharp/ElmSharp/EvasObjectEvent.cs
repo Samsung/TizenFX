@@ -77,7 +77,7 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
-        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.RealHandle, type, parser)
+        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.Handle, type, parser)
         {
         }
 
@@ -179,7 +179,7 @@ namespace ElmSharp
         private event EventHandler _handlers;
         private bool _disposed = false;
 
-        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.RealHandle, type)
+        public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.Handle, type)
         {
         }
 
