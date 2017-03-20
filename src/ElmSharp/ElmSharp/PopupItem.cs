@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The PopupItem is a class that including icon and text.
+    /// </summary>
     public class PopupItem : ItemObject
     {
         internal PopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
@@ -26,7 +29,14 @@ namespace ElmSharp
             Icon = icon;
         }
 
+        /// <summary>
+        /// Gets the text label of popupitem.Return value is string.
+        /// </summary>
         public string Text { get; internal set; }
+
+        /// <summary>
+        /// Gets the icon EvasObject of popupitem.
+        /// </summary>
         public EvasObject Icon { get; internal set; }
     }
 }
