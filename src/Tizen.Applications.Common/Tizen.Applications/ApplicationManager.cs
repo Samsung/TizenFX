@@ -329,14 +329,16 @@ namespace Tizen.Applications
                 {
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the application context event.");
                 }
-                ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle);
-                if (state == Interop.ApplicationManager.AppContextEvent.Launched)
+                using (ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle))
                 {
-                    s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationRunningContext = context });
-                }
-                else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
-                {
-                    s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationRunningContext = context });
+                    if (state == Interop.ApplicationManager.AppContextEvent.Launched)
+                    {
+                        s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationRunningContext = context });
+                    }
+                    else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
+                    {
+                        s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationRunningContext = context });
+                    }
                 }
             };
             err = Interop.ApplicationManager.AppManagerSetAppContextEvent(s_applicationChangedEventCallback, IntPtr.Zero);
