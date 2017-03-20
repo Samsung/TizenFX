@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Samsung Electronics Co., Ltd.
+// Copyright (c) 2017 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -154,36 +154,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of GetNextKeyboardFocusableActor() for CustomView class.
-        /// Gets the next key focusable actor in this View towards the given direction.
+        /// Override method of GetNextKeyboardFocusableView() for CustomView class.
+        /// Gets the next key focusable view in this View towards the given direction.
         /// A View needs to override this function in order to support two dimensional key navigation.
         /// </summary>
-        /// <param name="currentFocusedActor">The current focused actor</param>
+        /// <param name="currentFocusedView">The current focused view</param>
         /// <param name="direction">The direction to move the focus towards</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control</param>
-        /// <returns>The next keyboard focusable actor in this control or an empty handle if no actor can be focused</returns>
-        public override Actor GetNextKeyboardFocusableActor(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled)
+        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused</returns>
+        public override View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             // Respond to Up/Down keys to change the value while keeping the current spin focused
-            Actor nextFocusedActor = currentFocusedActor;
+            View nextFocusedView = currentFocusedView;
             if (direction == View.FocusDirection.Up)
             {
                 this.Value += this.Step;
-                nextFocusedActor = _textField;
+                nextFocusedView = _textField;
             }
             else if (direction == View.FocusDirection.Down)
             {
                 this.Value -= this.Step;
-                nextFocusedActor = _textField;
+                nextFocusedView = _textField;
             }
             else
             {
                 // Return a native empty handle as nothing can be focused in the left or right
-                nextFocusedActor = new Actor();
-                nextFocusedActor.Reset();
+                nextFocusedView = new View();
+                nextFocusedView.Reset();
             }
 
-            return nextFocusedActor;
+            return nextFocusedView;
         }
 
         /// <summary>

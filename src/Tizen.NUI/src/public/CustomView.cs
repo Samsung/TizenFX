@@ -56,7 +56,7 @@ namespace Tizen.NUI
             viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnKeyInputFocusGained = new ViewWrapperImpl.OnKeyInputFocusGainedDelegate(OnKeyInputFocusGained);
             viewWrapperImpl.OnKeyInputFocusLost = new ViewWrapperImpl.OnKeyInputFocusLostDelegate(OnKeyInputFocusLost);
-            viewWrapperImpl.GetNextKeyboardFocusableActor = new ViewWrapperImpl.GetNextKeyboardFocusableActorDelegate(GetNextKeyboardFocusableActor);
+            viewWrapperImpl.GetNextKeyboardFocusableView = new ViewWrapperImpl.GetNextKeyboardFocusableViewDelegate(GetNextKeyboardFocusableView);
             viewWrapperImpl.OnKeyboardFocusChangeCommitted = new ViewWrapperImpl.OnKeyboardFocusChangeCommittedDelegate(OnKeyboardFocusChangeCommitted);
             viewWrapperImpl.OnKeyboardEnter = new ViewWrapperImpl.OnKeyboardEnterDelegate(OnKeyboardEnter);
             viewWrapperImpl.OnPinch = new ViewWrapperImpl.OnPinchDelegate(OnPinch);
@@ -745,9 +745,9 @@ namespace Tizen.NUI
          * @param[in] loopEnabled Whether the focus movement should be looped within the control.
          * @return the next keyboard focusable actor in this control or an empty handle if no actor can be focused.
          */
-        public virtual Actor GetNextKeyboardFocusableActor(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled)
+        public virtual View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            return new Actor();
+            return new View();
         }
 
         /**
@@ -758,7 +758,7 @@ namespace Tizen.NUI
          *
          * @param[in] commitedFocusableActor The commited focusable actor.
          */
-        public virtual void OnKeyboardFocusChangeCommitted(Actor commitedFocusableActor)
+        public virtual void OnKeyboardFocusChangeCommitted(View commitedFocusableView)
         {
         }
 
