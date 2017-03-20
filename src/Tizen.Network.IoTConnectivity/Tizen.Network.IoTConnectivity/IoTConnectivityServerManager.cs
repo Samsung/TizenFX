@@ -24,6 +24,10 @@ namespace Tizen.Network.IoTConnectivity
     /// </summary>
     public static class IoTConnectivityServerManager
     {
+
+        private static int s_requestId = 1;
+        private static Dictionary<IntPtr, Interop.IoTConnectivity.Server.Resource.RequestHandlerCallback> s_RequestHandlerCallbackMap = new Dictionary<IntPtr, Interop.IoTConnectivity.Server.Resource.RequestHandlerCallback>();
+
         /// <summary>
         /// Initializes IoTCon. Call this API to start IoTCon.
         /// </summary>
@@ -71,6 +75,9 @@ namespace Tizen.Network.IoTConnectivity
         public static void Deinitialize()
         {
             _resources.Clear();
+            s_requestId = 1;
+            s_RequestHandlerCallbackMap.Clear();
+
             Interop.IoTConnectivity.Client.IoTCon.Deinitialize();
         }
 
@@ -98,12 +105,38 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static void RegisterResource(Resource resource)
         {
+            Log.Error(IoTConnectivityErrorFactory.LogTag, "...");
+
+            IntPtr id = IntPtr.Zero;
+            lock (s_RequestHandlerCallbackMap)
+            {
+                id = (IntPtr)s_requestId++;
+            }
+
+            s_RequestHandlerCallbackMap[id] = (IntPtr r_resource, IntPtr request, IntPtr userData) =>
+            {
+                int requestId = (int)userData;
+
+                Log.Info(IoTConnectivityErrorFactory.LogTag, "Received s_RequestHandlerCallbackMap : " + requestId);
+
+                if (request == null)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "request is null");
+                    return;
+                }
+                resource.OnRequest(r_resource, request, userData);
+            };
+
             IntPtr handle = IntPtr.Zero;
-            int ret = Interop.IoTConnectivity.Server.Resource.Create(resource.UriPath, resource.Types._resourceTypeHandle, resource.Interfaces.ResourceInterfacesHandle, (int)resource.Policy, resource.OnRequest, IntPtr.Zero, out handle);
-            if (ret != (int)IoTConnectivityError.None)
+            int errorCode = Interop.IoTConnectivity.Server.Resource.Create(resource.UriPath, resource.Types._resourceTypeHandle, resource.Interfaces.ResourceInterfacesHandle, (int)resource.Policy, s_RequestHandlerCallbackMap[id], id, out handle);
+            if (errorCode != (int)IoTConnectivityError.None)
             {
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed create resource");
-                throw IoTConnectivityErrorFactory.GetException(ret);
+                lock (s_RequestHandlerCallbackMap)
+                {
+                    s_RequestHandlerCallbackMap.Remove(id);
+                }
+                throw IoTConnectivityErrorFactory.GetException(errorCode);
             }
             else
             {

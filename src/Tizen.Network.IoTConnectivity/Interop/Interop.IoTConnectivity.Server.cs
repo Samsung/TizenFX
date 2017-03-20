@@ -47,6 +47,7 @@ internal static partial class Interop
 
             internal static partial class Resource
             {
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 internal delegate void RequestHandlerCallback(IntPtr resource, IntPtr request, IntPtr userData);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_resource_create")]
