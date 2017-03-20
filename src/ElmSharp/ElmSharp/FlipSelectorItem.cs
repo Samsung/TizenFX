@@ -18,12 +18,25 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Iterm class of FlipSelector
+    /// </summary>
     public class FlipSelectorItem : ItemObject
     {
+        /// <summary>
+        /// Sets or gets the Text of FlipSelectorItem
+        /// </summary>
         public string Text { get; private set; }
 
+        /// <summary>
+        /// Selected will be triggered when Selected
+        /// </summary>
         public event EventHandler Selected;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the FlipSelectorItem.
+        /// </summary>
+        /// <param name="text">FlipSelectorItem's text</param>
         public FlipSelectorItem(string text) : base(IntPtr.Zero)
         {
             Text = text;

@@ -18,18 +18,30 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The FloatingButton is a widget that to add floating area for buttons.
+    /// </summary>
     public class FloatingButton : Layout
     {
         SmartEvent _clicked;
-
+        /// <summary>
+        /// Creates and initializes a new instance of the FloatingButton class.
+        /// </summary>
+        /// <param name="parent">Created on this parent container..</param>
         public FloatingButton(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, Handle, "clicked");
             _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Clicked will be triggered when clicked
+        /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// Sets or gets floatingbutton mode.
+        /// </summary>
         public FloatingButtonMode Mode
         {
             get
@@ -42,6 +54,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets floatingbutton Position.
+        /// </summary>
         public FloatingButtonPosition Position
         {
             get
@@ -50,6 +65,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets movability for a given floatingbutton widget.
+        /// </summary>
         public bool MovementBlock
         {
             get
@@ -62,6 +80,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Get Opacity's value of the given FloatingButton.
+        /// </summary>
         public override int Opacity
         {
             get
@@ -75,6 +96,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Set the floatingbutton position with animation or not.
+        /// </summary>
+        /// <param name="position">Button position</param>
+        /// <param name="animated">Animat flag</param>
         public void SetPosition(FloatingButtonPosition position, bool animated)
         {
             if (animated)
@@ -93,18 +119,45 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration for FloatingButtonMode
+    /// </summary>
     public enum FloatingButtonMode
     {
+        /// <summary>
+        /// Allows all positions
+        /// </summary>
         All,
+        /// <summary>
+        /// Allows LEFT and RIGHT positions only
+        /// </summary>
         LeftRightOnly,
     }
 
+    /// <summary>
+    /// Enumeration for FloatingButtonPosition
+    /// </summary>
     public enum FloatingButtonPosition
     {
+        /// <summary>
+        /// Hides in the left, but small handler will show only
+        /// </summary>
         LeftOut,
+        /// <summary>
+        /// Shows all of buttons, but lies on the left
+        /// </summary>
         Left,
+        /// <summary>
+        /// Shows all of buttons, but lies on the center
+        /// </summary>
         Center,
+        /// <summary>
+        /// Shows all of buttons, but lies on the right
+        /// </summary>
         Right,
+        /// <summary>
+        /// Hides in the right, but small handler will show only
+        /// </summary>
         RightOut,
     }
 }
