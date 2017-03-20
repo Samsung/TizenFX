@@ -59,6 +59,12 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach")]
         internal static extern void Foreach(SafeBundleHandle handle, Iterator iterator, IntPtr userData);
 
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_encode")]
+        internal static extern void BundleEncode(SafeBundleHandle handle, out string str, out int len);
+
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_decode")]
+        internal static extern SafeBundleHandle BundleDecode(string bundleRaw, int len);
+
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_dup")]
         internal static extern SafeBundleHandle DangerousClone(IntPtr handle);
 
