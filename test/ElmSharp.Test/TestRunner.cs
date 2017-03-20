@@ -100,7 +100,10 @@ namespace ElmSharp.Test
 
         private Window CreateWindow(bool isSecond = false)
         {
-            Window window = new Window("ElmSharp UI Tests");
+            Window window = new Window("ElmSharp UI Tests")
+            {
+                AvailableRotations = DisplayRotation.Degree_0 | DisplayRotation.Degree_180 | DisplayRotation.Degree_270 | DisplayRotation.Degree_90
+            };
             window.Show();
             if (isSecond)
             {
