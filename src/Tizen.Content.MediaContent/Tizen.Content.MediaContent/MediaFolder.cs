@@ -36,12 +36,12 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                return _folderHandle;
-            }
+                if (_folderHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(MediaFolder));
+                }
 
-            set
-            {
-                _folderHandle = value;
+                return _folderHandle;
             }
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Folder.GetFolderId(_folderHandle, out val), "Failed to get value");
+                        Interop.Folder.GetFolderId(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -77,7 +77,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Folder.GetParentFolderId(_folderHandle, out val), "Failed to get value");
+                        Interop.Folder.GetParentFolderId(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -99,7 +99,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Folder.GetPath(_folderHandle, out val), "Failed to get value");
+                        Interop.Folder.GetPath(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -121,7 +121,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Folder.GetName(_folderHandle, out val), "Failed to get value");
+                        Interop.Folder.GetName(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -134,7 +134,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Folder.SetName(_folderHandle, value), "Failed to set value");
+                    Interop.Folder.SetName(Handle, value), "Failed to set value");
             }
         }
 
@@ -148,7 +148,7 @@ namespace Tizen.Content.MediaContent
             {
                 ContentStorageType type;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Folder.GetStorageType(_folderHandle, out type), "Failed to get value");
+                    Interop.Folder.GetStorageType(Handle, out type), "Failed to get value");
 
                 return type;
             }
@@ -165,7 +165,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Folder.GetStorageId(_folderHandle, out val), "Failed to get value");
+                        Interop.Folder.GetStorageId(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -185,7 +185,7 @@ namespace Tizen.Content.MediaContent
             {
                 DateTime date;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Folder.GetModifiedTime(_folderHandle, out date), "Failed to get value");
+                    Interop.Folder.GetModifiedTime(Handle, out date), "Failed to get value");
 
                 return date;
             }
@@ -202,7 +202,7 @@ namespace Tizen.Content.MediaContent
             {
                 int order;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Folder.GetOrder(_folderHandle, out order), "Failed to get value");
+                    Interop.Folder.GetOrder(Handle, out order), "Failed to get value");
 
                 return order;
             }
@@ -210,13 +210,13 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Folder.SetOrder(_folderHandle, value), "Failed to set value");
+                    Interop.Folder.SetOrder(Handle, value), "Failed to set value");
             }
         }
 
-        internal MediaFolder(IntPtr _folderHandle)
+        internal MediaFolder(IntPtr handle)
         {
-            this.Handle = _folderHandle;
+            _folderHandle = handle;
         }
 
         /// <summary>

@@ -30,10 +30,16 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _tagHandle = IntPtr.Zero;
         private string _tagName = "";
+
         internal IntPtr Handle
         {
             get
             {
+                if (_tagHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(Tag));
+                }
+
                 return _tagHandle;
             }
 
@@ -51,7 +57,7 @@ namespace Tizen.Content.MediaContent
             {
                 int id;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Tag.GetTagId(_tagHandle, out id), "Failed to get value");
+                    Interop.Tag.GetTagId(Handle, out id), "Failed to get value");
                 return id;
             }
         }
@@ -69,7 +75,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Tag.SetName(_tagHandle, value), "Failed to set value");
+                    Interop.Tag.SetName(Handle, value), "Failed to set value");
                 _tagName = value;
             }
         }
@@ -81,7 +87,7 @@ namespace Tizen.Content.MediaContent
             try
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Tag.GetName(_tagHandle, out val), "Failed to get value");
+                    Interop.Tag.GetName(Handle, out val), "Failed to get value");
                 _tagName = Marshal.PtrToStringAnsi(val);
             }
             finally
@@ -106,7 +112,7 @@ namespace Tizen.Content.MediaContent
         public void AddItem(MediaInformation mediaContent)
         {
             MediaContentValidator.ThrowIfError(
-                Interop.Tag.AddMedia(_tagHandle, mediaContent.MediaId), "Failed to add item");
+                Interop.Tag.AddMedia(Handle, mediaContent.MediaId), "Failed to add item");
         }
 
         /// <summary>
@@ -116,7 +122,7 @@ namespace Tizen.Content.MediaContent
         public void RemoveItem(MediaInformation mediaContent)
         {
             MediaContentValidator.ThrowIfError(
-                Interop.Tag.RemoveMedia(_tagHandle, mediaContent.MediaId), "Failed to remove item");
+                Interop.Tag.RemoveMedia(Handle, mediaContent.MediaId), "Failed to remove item");
         }
 
         /// <summary>

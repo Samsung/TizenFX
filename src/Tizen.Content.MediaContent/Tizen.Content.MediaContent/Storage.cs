@@ -31,10 +31,15 @@ namespace Tizen.Content.MediaContent
     public class Storage : ContentCollection
     {
         private IntPtr _storageHandle = IntPtr.Zero;
-        internal IntPtr Handle
+        private IntPtr Handle
         {
             get
             {
+                if (_storageHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(Storage));
+                }
+
                 return _storageHandle;
             }
         }
@@ -49,7 +54,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Storage.GetId(_storageHandle, out val), "Failed to get value");
+                        Interop.Storage.GetId(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -71,7 +76,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Storage.GetPath(_storageHandle, out val), "Failed to get value");
+                        Interop.Storage.GetPath(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -93,7 +98,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Storage.GetName(_storageHandle, out val), "Failed to get value");
+                        Interop.Storage.GetName(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -113,15 +118,15 @@ namespace Tizen.Content.MediaContent
             {
                 ContentStorageType storageType;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Storage.GetType(_storageHandle, out storageType), "Failed to get value");
+                    Interop.Storage.GetType(Handle, out storageType), "Failed to get value");
 
                 return storageType;
             }
         }
 
-        internal Storage(IntPtr _storageHandle)
+        internal Storage(IntPtr handle)
         {
-            this._storageHandle = _storageHandle;
+            _storageHandle = handle;
         }
 
         /// <summary>

@@ -29,26 +29,22 @@ namespace Tizen.Content.MediaContent
     {
         private IntPtr _bookmarkHandle = IntPtr.Zero;
         private bool _disposedValue = false;
-        internal readonly uint _offset;
-        internal readonly String _thumbnailPath;
+
+        private IntPtr Handle
+        {
+            get
+            {
+                if (_bookmarkHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(MediaBookmark));
+                }
+
+                return _bookmarkHandle;
+            }
+        }
         internal MediaBookmark(IntPtr handle)
         {
             _bookmarkHandle = handle;
-            IntPtr val = IntPtr.Zero;
-            MediaContentValidator.ThrowIfError(
-                Interop.MediaBookmark.GetMarkedTime(_bookmarkHandle, out _offset), "Failed to Get Offset");
-
-            try
-            {
-                MediaContentValidator.ThrowIfError(
-                    Interop.MediaBookmark.GetThumbnailPath(_bookmarkHandle, out val), "Failed to Get Thumbnail Path");
-
-                _thumbnailPath = Marshal.PtrToStringAnsi(val);
-            }
-            finally
-            {
-                Interop.Libc.Free(val);
-            }
         }
 
         ~MediaBookmark()
@@ -64,7 +60,7 @@ namespace Tizen.Content.MediaContent
             {
                 int id;
                 MediaContentValidator.ThrowIfError(
-                    Interop.MediaBookmark.GetBookmarkId(_bookmarkHandle, out id), "Failed to get bookmark id");
+                    Interop.MediaBookmark.GetBookmarkId(Handle, out id), "Failed to get bookmark id");
 
                 return id;
             }
@@ -77,7 +73,18 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                return _thumbnailPath;
+                IntPtr val = IntPtr.Zero;
+                try
+                {
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaBookmark.GetThumbnailPath(Handle, out val), "Failed to get bookmark thumbnail");
+
+                    return Marshal.PtrToStringAnsi(val);
+                }
+                finally
+                {
+                    Interop.Libc.Free(val);
+                }
             }
         }
 
@@ -88,22 +95,11 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
-                return _offset;
-            }
-        }
+                uint offset;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaBookmark.GetMarkedTime(Handle, out offset), "Failed to get bookmarked time");
 
-        /// <summary>
-        /// Inserts a new bookmark in media on the specified time offset to the media database.
-        /// </summary>
-        /// <param name="content">Media in which the bookmark is to be inserted</param>
-        /// <param name="offset">The bookmark time offset (in seconds)</param>
-        /// <param name="thumbnailPath">The thumbnail path of video bookmark. If the media type is audio, then thumbnail is null.</param>
-        internal MediaBookmark(MediaInformation content, uint offset, string thumbnailPath)
-        {
-            _offset = offset;
-            if (thumbnailPath != null)
-            {
-                _thumbnailPath = thumbnailPath;
+                return offset;
             }
         }
 
@@ -119,7 +115,7 @@ namespace Tizen.Content.MediaContent
             {
                 if (_bookmarkHandle != IntPtr.Zero)
                 {
-                    Interop.Face.Destroy(_bookmarkHandle);
+                    Interop.MediaBookmark.Destroy(_bookmarkHandle);
                     _bookmarkHandle = IntPtr.Zero;
                 }
 

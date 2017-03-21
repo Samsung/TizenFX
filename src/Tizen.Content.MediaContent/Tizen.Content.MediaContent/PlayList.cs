@@ -37,6 +37,11 @@ namespace Tizen.Content.MediaContent
         {
             get
             {
+                if (_playlistHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(PlayList));
+                }
+
                 return _playlistHandle;
             }
 
@@ -80,7 +85,7 @@ namespace Tizen.Content.MediaContent
             {
                 int id;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Playlist.GetPlaylistId(_playlistHandle, out id), "Failed to get value");
+                    Interop.Playlist.GetPlaylistId(Handle, out id), "Failed to get value");
 
                 return id;
             }
@@ -100,7 +105,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Playlist.SetName(_playlistHandle, value), "Failed to set value");
+                    Interop.Playlist.SetName(Handle, value), "Failed to set value");
                 _playListName = value;
             }
         }
@@ -115,7 +120,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Playlist.GetThumbnailPath(_playlistHandle, out val), "Failed to get value");
+                        Interop.Playlist.GetThumbnailPath(Handle, out val), "Failed to get value");
                     return Marshal.PtrToStringAnsi(val);
                 }
                 finally
@@ -127,7 +132,7 @@ namespace Tizen.Content.MediaContent
             set
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.Playlist.SetThumbnailPath(_playlistHandle, value), "Failed to set value");
+                    Interop.Playlist.SetThumbnailPath(Handle, value), "Failed to set value");
             }
         }
 
@@ -163,7 +168,7 @@ namespace Tizen.Content.MediaContent
         public void AddItem(MediaInformation mediaContent)
         {
             MediaContentValidator.ThrowIfError(
-                Interop.Playlist.AddMedia(_playlistHandle, mediaContent.MediaId), "Failed to add item");
+                Interop.Playlist.AddMedia(Handle, mediaContent.MediaId), "Failed to add item");
         }
 
         /// <summary>
@@ -176,7 +181,7 @@ namespace Tizen.Content.MediaContent
             RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
-                Interop.Playlist.RemoveMedia(_playlistHandle, memberId), "Failed to remove item");
+                Interop.Playlist.RemoveMedia(Handle, memberId), "Failed to remove item");
         }
 
         /// <summary>
@@ -190,7 +195,7 @@ namespace Tizen.Content.MediaContent
             RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
-                Interop.Playlist.SetPlayOrder(_playlistHandle, memberId, playOrder), "Failed to set play order");
+                Interop.Playlist.SetPlayOrder(Handle, memberId, playOrder), "Failed to set play order");
         }
 
         /// <summary>
@@ -205,7 +210,7 @@ namespace Tizen.Content.MediaContent
             RefreshPlaylistDictionary();
             _dictionary.TryGetValue(media.MediaId, out memberId);
             MediaContentValidator.ThrowIfError(
-                Interop.Playlist.GetPlayOrder(_playlistHandle, memberId, out playOrder), "Failed to get play order");
+                Interop.Playlist.GetPlayOrder(Handle, memberId, out playOrder), "Failed to get play order");
 
             return playOrder;
         }
@@ -225,7 +230,7 @@ namespace Tizen.Content.MediaContent
                 Interop.Playlist.ImportFromFile(name, filePath, out playlistHandle), "Failed to import");
 
             playList = new PlayList(name);
-            playList._playlistHandle = playlistHandle;
+            playList.Handle = playlistHandle;
             return playList;
         }
 

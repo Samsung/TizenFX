@@ -29,7 +29,21 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class Album : ContentCollection
     {
-        internal IntPtr _albumHandle = IntPtr.Zero;
+        private IntPtr _albumHandle = IntPtr.Zero;
+
+        private IntPtr Handle
+        {
+            get
+            {
+                if (_albumHandle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(Album));
+                }
+
+                return _albumHandle;
+            }
+        }
+
         /// <summary>
         /// The media album ID
         /// </summary>
@@ -39,7 +53,7 @@ namespace Tizen.Content.MediaContent
             {
                 int id = 0;
                 MediaContentValidator.ThrowIfError(
-                    Interop.Group.MediaAlbumGetAlbumId(_albumHandle, out id), "Failed to get value");
+                    Interop.Group.MediaAlbumGetAlbumId(Handle, out id), "Failed to get value");
 
                 return id;
             }
@@ -57,7 +71,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Group.MediaAlbumGetArtist(_albumHandle, out val), "Failed to get value");
+                        Interop.Group.MediaAlbumGetArtist(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -79,7 +93,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Group.MediaAlbumGetAlbumArt(_albumHandle, out val), "Failed to get value");
+                        Interop.Group.MediaAlbumGetAlbumArt(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -102,7 +116,7 @@ namespace Tizen.Content.MediaContent
                 try
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Group.MediaAlbumGetName(_albumHandle, out val), "Failed to get value");
+                        Interop.Group.MediaAlbumGetName(Handle, out val), "Failed to get value");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -115,7 +129,7 @@ namespace Tizen.Content.MediaContent
 
         internal Album(IntPtr handle)
         {
-            this._albumHandle = handle;
+            _albumHandle = handle;
         }
 
         /// <summary>
