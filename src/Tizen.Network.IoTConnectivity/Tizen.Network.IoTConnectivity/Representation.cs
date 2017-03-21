@@ -148,10 +148,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
                     return null;
                 }
-                if (typeHandle == IntPtr.Zero)
-                    return null;
-                else
-                    return new ResourceTypes(typeHandle);
+                return (typeHandle == IntPtr.Zero) ? null : new ResourceTypes(typeHandle);
             }
             set
             {

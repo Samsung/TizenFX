@@ -105,7 +105,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static void RegisterResource(Resource resource)
         {
-            Log.Error(IoTConnectivityErrorFactory.LogTag, "...");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, "...");
 
             IntPtr id = IntPtr.Zero;
             lock (s_RequestHandlerCallbackMap)
