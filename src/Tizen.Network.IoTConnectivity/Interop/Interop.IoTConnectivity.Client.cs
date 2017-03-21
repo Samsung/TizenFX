@@ -166,9 +166,6 @@ internal static partial class Interop
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_checking_interval")]
                 internal static extern int SetTimeInterval(IntPtr resource, int timeInterval);
-
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_name")]
-                internal static extern int GetDeviceName(IntPtr resource, out IntPtr deviceName);
             }
 
             internal static partial class IoTCon

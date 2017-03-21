@@ -158,11 +158,6 @@ namespace Tizen.Network.IoTConnectivity
         public ResourcePolicy Policy { get; private set; }
 
         /// <summary>
-        /// The device name of the remote resource
-        /// </summary>
-        public string DeviceName { get; private set; }
-
-        /// <summary>
         /// The header options of the resource
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
@@ -761,15 +756,6 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get remote resource");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-
-            /*IntPtr deviceName;
-            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceName(_remoteResourceHandle, out deviceName);
-            if (ret != (int)IoTConnectivityError.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
-                throw IoTConnectivityErrorFactory.GetException(ret);
-            }
-            DeviceName = Marshal.PtrToStringAnsi(deviceName);*/
         }
 
         private void SetRemoteResource()
@@ -819,14 +805,6 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device id");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-            IntPtr deviceName;
-            ret = Interop.IoTConnectivity.Client.RemoteResource.GetDeviceName(_remoteResourceHandle, out deviceName);
-            if (ret != (int)IoTConnectivityError.None)
-            {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device name of remote resource");
-                throw IoTConnectivityErrorFactory.GetException(ret);
-            }
-            DeviceName = Marshal.PtrToStringAnsi(deviceName);
             DeviceId = Marshal.PtrToStringAnsi(deviceIdPtr);
             HostAddress = Marshal.PtrToStringAnsi(hostAddressPtr);
             UriPath = Marshal.PtrToStringAnsi(uriPathPtr);

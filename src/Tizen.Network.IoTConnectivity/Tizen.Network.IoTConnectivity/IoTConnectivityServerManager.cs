@@ -254,13 +254,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// This API sets the name of the local device (the device calling the API).\n
         /// If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>.
-        /// Clients can also get the name using <see cref="RemoteResource.DeviceName"/> property.
         /// </remarks>
         /// <param name="deviceName">The device name</param>
         /// <seealso cref="IoTConnectivityClientManager.DeviceInformationFound"/>
         /// <seealso cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>
         /// <seealso cref="DeviceInformationFoundEventArgs"/>
-        /// <seealso cref="RemoteResource.DeviceName"/>
         /// <code>
         /// IoTConnectivityServerManager.SetDeviceName("my-tizen");
         /// </code>
