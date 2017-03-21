@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,85 +17,86 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropFace = Interop.MediaVision.Face;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class contains the Media Vision face tracking API which performs tracking
-    /// on <see cref="MediaVisionSource"/> for <see cref="FaceTrackingModel"/>
+    /// Provides the ability to track faces on image sources.
     /// </summary>
     public static class FaceTracker
     {
+
         /// <summary>
-        /// Performs face tracking on the @a source for the @a trackingModel.\n
-        /// Use this function to launch face tracking algorithm configured by @a config configuration using
-        /// @a trackingModel tracking model. Each time when this function is called, new location determined for the tracked face
-        /// and model confidence that location is determined correctly are returned.
+        /// Performs face tracking on the source with the trackingModel.
         /// </summary>
-        /// <param name="source">The source of the media to recognize face for</param>
-        /// <param name="trackingModel">The model will be used for tracking</param>
-        /// <param name="doLearn">The model learning flag. If it is set true then model will try to learn (if it supports learning feature), otherwise model will be not learned during the invoking tracking iteration. Learning process improves tracking correctness, but can decrease tracking performance</param>
-        /// <param name="config">The configuration of engine will be used for tracking. If NULL, the default configuration will be used.</param>
-        /// <returns>Returns the FaceTrackingResult with new location and confidence asynchronously</returns>
-        /// <code>
-        /// 
-        /// </code>
-        public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source, FaceTrackingModel trackingModel, bool doLearn, FaceEngineConfiguration config = null)
+        /// <param name="source">The source of the media to recognize face for.</param>
+        /// <param name="trackingModel">The model will be used for tracking.</param>
+        /// <param name="doLearn">The value indicating whether model learning while tracking. If it is true then model will try to learn
+        /// (if it supports learning feature), otherwise model will be not learned during the invoking tracking iteration.
+        /// Learning process improves tracking correctness, but can decrease tracking performance</param>
+        /// <returns>A task that represents the asynchronous tracking operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> is null.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> is not prepared.</exception>
+        public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source,
+            FaceTrackingModel trackingModel, bool doLearn)
         {
-            if (source == null || trackingModel == null)
+            if (source == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (trackingModel == null)
+            {
+                throw new ArgumentNullException(nameof(trackingModel));
             }
 
-            TaskCompletionSource<FaceTrackingResult> tcsResult = new TaskCompletionSource<FaceTrackingResult>();
+            TaskCompletionSource<FaceTrackingResult> tcs = new TaskCompletionSource<FaceTrackingResult>();
 
-            // Define native callback
-            Interop.MediaVision.Face.MvFaceTrackedCallback faceTrackedCb = (IntPtr sourceHandle, IntPtr trackingModelHandle, IntPtr engineCfgHandle, IntPtr locationPtr, double confidence, IntPtr userData) =>
+            using (var cb = ObjectKeeper.Get(GetTrackCallback(tcs)))
+            {
+                InteropFace.Track(source.Handle, trackingModel.Handle, IntPtr.Zero,
+                    cb.Target, doLearn).Validate("Failed to perform face tracking.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static InteropFace.TrackedCallback GetTrackCallback(TaskCompletionSource<FaceTrackingResult> tcs)
+        {
+            return (IntPtr sourceHandle, IntPtr trackingModelHandle, IntPtr engineCfgHandle,
+                IntPtr locationPtr, double confidence, IntPtr _) =>
             {
                 try
                 {
-                    Quadrangle faceLocation = null;
+                    Quadrangle area = null;
                     if (locationPtr != IntPtr.Zero)
                     {
-                        Interop.MediaVision.Quadrangle location = (Interop.MediaVision.Quadrangle)Marshal.PtrToStructure(locationPtr, typeof(Interop.MediaVision.Quadrangle));
-                        faceLocation = new Quadrangle()
-                        {
-                            Points = new Point[4]
-                            {
-                            new Point(location.x1, location.y1),
-                            new Point(location.x2, location.y2),
-                            new Point(location.x3, location.y3),
-                            new Point(location.x4, location.y4)
-                            }
-                        };
-
-                        Log.Info(MediaVisionLog.Tag, String.Format("Tracked location : {0}, confidence : {1}", faceLocation.ToString(), confidence));
+                        area = Marshal.PtrToStructure<Interop.MediaVision.Quadrangle>(locationPtr).ToApiStruct();
                     }
 
-                    FaceTrackingResult result = new FaceTrackingResult()
-                    {
-                        Location = faceLocation,
-                        Confidence = confidence
-                    };
+                    Log.Info(MediaVisionLog.Tag, $"Tracked area : {area}, confidence : {confidence}");
 
-                    if (!tcsResult.TrySetResult(result))
+                    if (!tcs.TrySetResult(new FaceTrackingResult(locationPtr != IntPtr.Zero, confidence, area)))
                     {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
+                        Log.Error(MediaVisionLog.Tag, "Failed to set tracking result");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsResult.TrySetException(ex);
+                    MultimediaLog.Error(MediaVisionLog.Tag, "Setting tracking result failed.", e);
+                    tcs.TrySetException(e);
                 }
             };
-
-            int ret = Interop.MediaVision.Face.Track(source._sourceHandle, trackingModel._trackingModelHandle, (config != null) ? config._engineHandle : IntPtr.Zero, faceTrackedCb, doLearn, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform face tracking.");
-
-            return await tcsResult.Task;
         }
     }
 }

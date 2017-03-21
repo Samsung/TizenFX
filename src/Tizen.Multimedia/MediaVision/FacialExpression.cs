@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,40 +17,47 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for expression types can be determined for faces.
+    /// Specifies the expression types for faces.
     /// </summary>
     public enum FacialExpression
     {
         /// <summary>
-        /// Unknown face expression
+        /// Unknown face expression.
         /// </summary>
         Unknown,
+
         /// <summary>
-        /// Face expression is neutral
+        /// Face expression is neutral.
         /// </summary>
         Neutral,
+
         /// <summary>
-        /// Face expression is smiling
+        /// Face expression is smiling.
         /// </summary>
         Smile,
+
         /// <summary>
-        /// Face expression is sadness
+        /// Face expression is sadness.
         /// </summary>
         Sadness,
+
         /// <summary>
-        /// Face expression is surprise
+        /// Face expression is surprise.
         /// </summary>
         Surprise,
+
         /// <summary>
-        /// Face expression is anger
+        /// Face expression is anger.
         /// </summary>
         Anger,
+
         /// <summary>
-        /// Face expression is fear
+        /// Face expression is fear.
         /// </summary>
         Fear,
+
         /// <summary>
-        /// Face expression is disgust
+        /// Face expression is disgust.
         /// </summary>
         Disgust
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,27 +17,33 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents result of person recognition event trigger.
+    /// Represents a result of <see cref="PersonRecognizer"/> instances.
     /// </summary>
-    public class PersonRecognitionResult
+    public class PersonRecognitionInfo
     {
-        internal PersonRecognitionResult()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonRecognitionInfo"/> class.
+        /// </summary>
+        public PersonRecognitionInfo(Rectangle area, int label, double confidence)
         {
+            Area = area;
+            Label = label;
+            Confidence = confidence;
         }
 
         /// <summary>
-        /// Gets a rectangular locations where person face was recognized.
+        /// Gets the rectangular location where person face was recognized.
         /// </summary>
-        public Rectangle Location { get; internal set; }
+        public Rectangle Area { get; }
 
         /// <summary>
-        /// Gets a label that correspond to the recognized person.
+        /// Gets the label that correspond to the recognized person.
         /// </summary>
-        public int Label { get; internal set; }
+        public int Label { get; }
 
         /// <summary>
-        /// Gets a confidence value that correspond to the recognized person.
+        /// Gets the confidence value that correspond to the recognized person.
         /// </summary>
-        public double Confidence { get; internal set; }
+        public double Confidence { get; }
     }
 }

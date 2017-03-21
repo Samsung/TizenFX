@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,88 +15,147 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
-using static Interop.MediaVision;
+using System.Diagnostics;
+using InteropSource = Interop.MediaVision.MediaSource;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents media vision source. An instance of this class has to be created \n
-    /// to keep information on image or video frame data as raw buffer. It can be created based on \n
-    /// the media data stored in memory or using the BaseMediaPacket class. \n
-    /// It provides a set of getters which allow to retrieve such image parameters as its size or colorspace (see Colorspace enumeration).
+    /// Represents the media vision source to keep information on image or video frame data as raw buffer.
     /// </summary>
-    public class MediaVisionSource : IDisposable
+    public class MediaVisionSource : IBufferOwner, IDisposable
     {
-        internal IntPtr _sourceHandle = IntPtr.Zero;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
-        /// <summary>
-        /// The media vision source constructor
-        /// </summary>
-        /// <code>
-        /// MediaVisionSource source = new MediaVisionSource();
-        /// </code>
-        public MediaVisionSource()
+        internal MediaVisionSource()
         {
-            int ret = Interop.MediaVision.MediaSource.Create(out _sourceHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to create media vision source.");
+            InteropSource.Create(out _handle).Validate("Failed to create media vision source");
+        }
+
+        private MediaVisionSource(Action<IntPtr> fillAction)
+            : this()
+        {
+            try
+            {
+                fillAction(_handle);
+            }
+            catch(Exception)
+            {
+                InteropSource.Destroy(_handle);
+                throw;
+            }
+        }
+
+        private static void FillMediaPacket(IntPtr handle, MediaPacket mediaPacket)
+        {
+            Debug.Assert(handle != IntPtr.Zero);
+
+            if (mediaPacket == null)
+            {
+                throw new ArgumentNullException(nameof(mediaPacket));
+            }
+
+            InteropSource.FillMediaPacket(handle, mediaPacket.GetHandle()).
+                Validate("Failed to fill media packet");
         }
 
         /// <summary>
-        /// Destructor of the MediaVisionSource class.
+        /// Initializes a new instance of the <see cref="MediaVisionSource"/> class based on the <see cref="MediaPacket"/>.
         /// </summary>
+        /// <param name="mediaPacket">The <see cref="MediaPacket"/> from which the source will be filled.</param>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="mediaPacket"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="mediaPacket"/> has already been disposed of.</exception>
+        public MediaVisionSource(MediaPacket mediaPacket)
+            : this(handle => FillMediaPacket(handle, mediaPacket))
+        {
+        }
+
+        private static void FillBuffer(IntPtr handle, byte[] buffer, uint width, uint height, Colorspace colorspace)
+        {
+            Debug.Assert(handle != IntPtr.Zero);
+
+            if (buffer == null)
+            {
+                throw new ArgumentNullException(nameof(buffer));
+            }
+
+            if (buffer.Length == 0)
+            {
+                throw new ArgumentException("Buffer.Length is zero.", nameof(buffer));
+            }
+
+            if (colorspace == Colorspace.Invalid)
+            {
+                throw new ArgumentException($"color space must not be {Colorspace.Invalid}.", nameof(colorspace));
+            }
+
+            ValidationUtil.ValidateEnum(typeof(Colorspace), colorspace, nameof(colorspace));
+
+            InteropSource.FillBuffer(handle, buffer, buffer.Length, width, height, colorspace).
+                Validate("Failed to fill buffer");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaVisionSource"/> class based on the buffer and <see cref="Colorspace"/>.
+        /// </summary>
+        /// <param name="buffer">The buffer of image data.</param>
+        /// <param name="width">The width of image.</param>
+        /// <param name="height">The height of image.</param>
+        /// <param name="colorspace">The image <see cref="Colorspace"/>.</param>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="buffer"/> has no element.(The length is zero.)\n
+        ///     - or -\n
+        ///     <paramref name="colorspace"/> is invalid.
+        /// </exception>
+        public MediaVisionSource(byte[] buffer, uint width, uint height, Colorspace colorspace)
+            : this(handle => FillBuffer(handle, buffer, width, height, colorspace))
+        {
+        }
+
         ~MediaVisionSource()
         {
             Dispose(false);
         }
 
+        private IMediaBuffer _buffer;
+
         /// <summary>
-        /// Gets buffer of the media source.
+        /// Gets the buffer of the media source.
         /// </summary>
-        /// <code>
-        /// 
-        /// </code>
-        public byte[] Buffer
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
+        public IMediaBuffer Buffer
         {
             get
             {
-                IntPtr byteStrPtr;
-                int byteStrSize;
-                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.MediaSource.GetBuffer(_sourceHandle, out byteStrPtr, out byteStrSize);
-                if (ret != MediaVisionError.None)
+                if (_buffer == null)
                 {
-                    Log.Error(MediaVisionLog.Tag, "[{0}] : Failed to get buffer data", ret.ToString());
-                    return null;
-                }
+                    IntPtr bufferHandle = IntPtr.Zero;
+                    int bufferSize = 0;
 
-                byte[] byteStr = new byte[byteStrSize];
-                if (byteStrSize > 0)
-                {
-                    Marshal.Copy(byteStrPtr, byteStr, 0, byteStrSize);
-                }
+                    InteropSource.GetBuffer(Handle, out bufferHandle, out bufferSize).
+                        Validate("Failed to get buffer");
 
-                return byteStr;
+                    _buffer = new DependentMediaBuffer(this, bufferHandle, bufferSize);
+                }
+                return _buffer;
             }
         }
 
         /// <summary>
         /// Gets height of the media source.
         /// </summary>
-        /// <code>
-        /// 
-        /// </code>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
         public uint Height
         {
             get
             {
                 uint height = 0;
-                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.MediaSource.GetHeight(_sourceHandle, out height);
-                if (ret != MediaVisionError.None)
-                {
-                    Log.Error(MediaVisionLog.Tag, "[{0}] : Failed to get height", ret.ToString());
-                }
-
+                var ret = InteropSource.GetHeight(Handle, out height);
+                MultimediaDebug.AssertNoError(ret);
                 return height;
             }
         }
@@ -104,86 +163,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets width of the media source.
         /// </summary>
-        /// <code>
-        /// 
-        /// </code>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
         public uint Width
         {
             get
             {
                 uint width = 0;
-                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.MediaSource.GetWidth(_sourceHandle, out width);
-                if (ret != MediaVisionError.None)
-                {
-                    Log.Error(MediaVisionLog.Tag, "[{0}] : Failed to get width", ret.ToString());
-                }
-
+                var ret = InteropSource.GetWidth(Handle, out width);
+                MultimediaDebug.AssertNoError(ret);
                 return width;
             }
         }
 
         /// <summary>
-        /// Gets colorspace of the media source.
+        /// Gets <see cref="Colorspace"/> of the media source.
         /// </summary>
-        /// <code>
-        /// 
-        /// </code>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
         public Colorspace Colorspace
         {
             get
             {
                 Colorspace colorspace = Colorspace.Invalid;
-                MediaVisionError ret = (MediaVisionError)Interop.MediaVision.MediaSource.GetColorspace(_sourceHandle, out colorspace);
-                if (ret != MediaVisionError.None)
-                {
-                    Log.Error(MediaVisionLog.Tag, "[{0}] : Failed to get colorspace", ret.ToString());
-                }
-
+                var ret = InteropSource.GetColorspace(Handle, out colorspace);
+                MultimediaDebug.AssertNoError(ret);
                 return colorspace;
             }
-        }
-
-        /// <summary>
-        /// Fills the media source based on the media packet.
-        /// </summary>
-        /// <param name="mediaPacket">The media packet from which the source will be filled</param>
-        /// <code>
-        /// 
-        /// </code>
-        /*public void FillMediaPacket(BaseMediaPacket mediaPacket)
-        {
-            int ret = Interop.MediaVision.MediaSource.FillBuffer(out _sourceHandle, mediaPacket._mediaPacketHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to fill media packet");
-        }*/
-
-        /// <summary>
-        /// Fills the media source based on the buffer and metadata.
-        /// </summary>
-        /// <param name="buffer">The buffer of image data</param>
-        /// <param name="width">The width of image data</param>
-        /// <param name="height">The height of image data</param>
-        /// <param name="colorspace">The image colorspace</param>
-        /// <seealso cref="Clear()"/>
-        /// <code>
-        /// 
-        /// </code>
-        public void FillBuffer(byte[] buffer, uint width, uint height, Colorspace colorspace)
-        {
-            int ret = Interop.MediaVision.MediaSource.FillBuffer(_sourceHandle, buffer, buffer.Length, width, height, colorspace);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to fill buffer");
-        }
-
-        /// <summary>
-        /// Clears the buffer of the media source.
-        /// </summary>
-        /// <seealso cref="FillBuffer()"/>
-        /// <code>
-        /// 
-        /// </code>
-        public void Clear()
-        {
-            int ret = Interop.MediaVision.MediaSource.Clear(_sourceHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to clear media source buffer");
         }
 
         public void Dispose()
@@ -199,13 +203,30 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            if (disposing)
-            {
-                // Free managed objects
-            }
-
-            Interop.MediaVision.MediaSource.Destroy(_sourceHandle);
+            InteropSource.Destroy(_handle);
             _disposed = true;
+        }
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(MediaVisionSource));
+                }
+                return _handle;
+            }
+        }
+
+        bool IBufferOwner.IsBufferAccessible(object buffer, MediaBufferAccessMode accessMode)
+        {
+            return true;
+        }
+
+        bool IBufferOwner.IsDisposed
+        {
+            get { return _disposed; }
         }
     }
 }

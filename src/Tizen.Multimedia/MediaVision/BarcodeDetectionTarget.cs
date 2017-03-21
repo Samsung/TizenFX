@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,36 +14,26 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class representsmovement detection event trigger.
+    /// Specifies the target of <see cref="BarcodeDetector"/>.
     /// </summary>
-    public class MovementDetectionEventTrigger : SurveillanceEventTrigger
+    public enum BarcodeDetectionTarget
     {
         /// <summary>
-        /// Constructor of MovementDetectionEventTrigger class
+        /// 1D and 2D
         /// </summary>
-        public MovementDetectionEventTrigger() : base(SurveillanceEventTrigger.MovementDetectedType)
-        {
-        }
+        All,
 
         /// <summary>
-        /// This is event for a movement detection. The result will be position of regions where movement has been detected.
+        /// 1D barcode only
         /// </summary>
-        public event EventHandler<MovementDetectedEventArgs> MovementDetected
-        {
-            add
-            {
-                base.MovementDetectedEvent += value;
-            }
+        Barcode1D,
 
-            remove
-            {
-                base.MovementDetectedEvent -= value;
-            }
-        }
+        /// <summary>
+        /// 2D barcode only
+        /// </summary>
+        Barcode2D,
     }
 }

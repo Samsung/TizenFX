@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,49 +15,53 @@
  */
 
 using System;
-using static Interop.MediaVision;
+using System.IO;
+using InteropModel = Interop.MediaVision.ImageTrackingModel;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents image tracking model interface
+    /// Represents the image tracking model interface.
     /// </summary>
-    public class ImageTrackingModel
+    public class ImageTrackingModel : IDisposable
     {
-        internal IntPtr _trackingModelHandle = IntPtr.Zero;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
-        /// Construct of ImageTrackingModel class
+        /// Initializes a new instance of the <see cref="ImageTrackingModel"/> class.
         /// </summary>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         public ImageTrackingModel()
         {
-            int ret = Interop.MediaVision.ImageTrackingModel.Create(out _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to create FaceTrackingModel.");
+            InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel");
         }
 
         /// <summary>
-        /// Construct of ImageTrackingModel class which creates and loads tracking model from file.
+        /// Initializes a new instance of the <see cref="ImageTrackingModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// ImageTrackingModel is loaded from the absolute path directory.\n
-        /// Models has been saved by <see cref="Save()"/> function can be loaded with this function
+        /// Model have been saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
-        /// <param name="fileName">Name of path/file to load the model</param>
+        /// <param name="modelPath">Path to the model to load.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
+        /// <exception cref="System.IO.FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     <paramref name="modelPath"/> is not supported format.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
-        /// <seealso cref="Prepare()"/>
-        /// <code>
-        /// 
-        /// </code>
-        public ImageTrackingModel(string fileName)
+        public ImageTrackingModel(string modelPath)
         {
-            int ret = Interop.MediaVision.ImageTrackingModel.Load(fileName, out _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to load ImageTrackingModel from file.");
+            if (modelPath == null)
+            {
+                throw new ArgumentNullException(nameof(modelPath));
+            }
+            InteropModel.Load(modelPath, out _handle).Validate("Failed to load ImageTrackingModel from file");
         }
 
-        /// <summary>
-        /// Destructor of the ImageTrackingModel class.
-        /// </summary>
         ~ImageTrackingModel()
         {
             Dispose(false);
@@ -67,47 +71,59 @@ namespace Tizen.Multimedia
         /// Sets target of image tracking model.\n
         /// Sets image object which will be tracked by using tracking functionality with this tracking model.
         /// </summary>
-        /// <param name="imageObject">Image object which will be set as target for tracking</param>
-        public void SetTarget(Image imageObject)
+        /// <param name="imageObject">Image object which will be set as the target for tracking.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="imageObject"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The <see cref="ImageTrackingModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="imageObject"/> has already been disposed of.
+        /// </exception>
+        public void SetTarget(ImageObject imageObject)
         {
             if (imageObject == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(imageObject));
             }
 
-            int ret = Interop.MediaVision.ImageTrackingModel.SetTarget(imageObject._imageObjectHandle, _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to set target of image tracking model");
+            InteropModel.SetTarget(imageObject.Handle, Handle).
+                Validate("Failed to set target of image tracking model");
         }
 
         /// <summary>
         /// Refreshes the state of image tracking model.\n
-        /// Clears moving history and change state to undetected. This function is usually called each time before tracking is started
+        /// Clears moving history and change state to undetected. It is usually called each time before tracking is started
         /// for the new sequence of sources which is not the direct continuation of the sequence for which tracking has been performed before.
         /// Tracking algorithm will try to find image by itself.
         /// </summary>
-        /// <param name="config">Image engine configuration. If null, default configuration will be used</param>
-        public void Refresh(ImageEngineConfiguration config = null)
+        /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
+        public void Refresh()
         {
-            int ret = Interop.MediaVision.ImageTrackingModel.Refresh(_trackingModelHandle, (config != null) ? config._engineHandle : IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to refresh state");
+            InteropModel.Refresh(Handle, IntPtr.Zero).Validate("Failed to refresh state");
         }
 
         /// <summary>
-        /// Calls this method to save tracking model to the file.
+        /// Saves tracking model to the file.
         /// </summary>
-        /// <remarks>
-        /// TrackingModel is saved to the absolute path directory.
-        /// </remarks>
-        /// <param name="fileName">Name of the path/file to save the model</param>
-        public void Save(string fileName)
+        /// <param name="path">Path to the file to save the model.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
+        /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        public void Save(string path)
         {
-            if (string.IsNullOrEmpty(fileName))
+            if (path == null)
             {
-                throw new ArgumentException("Invalid file name");
+                throw new ArgumentNullException(path);
             }
 
-            int ret = Interop.MediaVision.ImageTrackingModel.Save(fileName, _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to save tracking model to file");
+            var ret = InteropModel.Save(path, Handle);
+
+            if (ret == MediaVisionError.InvalidPath)
+            {
+                throw new DirectoryNotFoundException($"The directory for the path({path}) does not exist.");
+            }
+
+            ret.Validate("Failed to save tracking model to file");
         }
 
         public void Dispose()
@@ -123,13 +139,20 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            if (disposing)
-            {
-                // Free managed objects
-            }
-
-            Interop.MediaVision.ImageTrackingModel.Destroy(_trackingModelHandle);
+            InteropModel.Destroy(_handle);
             _disposed = true;
+        }
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(ImageTrackingModel));
+                }
+                return _handle;
+            }
         }
     }
 }

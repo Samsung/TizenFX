@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,75 +17,111 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropImage = Interop.MediaVision.Image;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class contains the Media Vision image tracking API which performs tracking
-    /// on <see cref="MediaVisionSource"/> for <see cref="ImageTrackingModel"/>
+    /// Provides the ability to track images on image sources.
     /// </summary>
     public static class ImageTracker
     {
         /// <summary>
-        /// Tracks the given image tracking model on the current frame asynchronously.
+        /// Tracks the given image tracking model on the current frame.
         /// </summary>
-        /// <param name="source">The current image of sequence where image tracking model will be tracked</param>
-        /// <param name="trackingModel">The image tracking model which processed as target of tracking</param>
-        /// <param name="config">The configuration of engine which will be used for tracking. If NULL, then default settings will be used.</param>
-        /// <returns>Returns the image object location asynchronously</returns>
-        /// <code>
-        /// 
-        /// </code>
-        public static async Task<Quadrangle> TrackAsync(MediaVisionSource source, ImageTrackingModel trackingModel, ImageEngineConfiguration config = null)
+        /// <param name="source">The current image of sequence where image tracking model will be tracked.</param>
+        /// <param name="trackingModel">The image tracking model which processed as target of tracking.</param>
+        /// <returns>A task that represents the asynchronous tracking operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> has no target.</exception>
+        /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
+            ImageTrackingModel trackingModel)
         {
-            if (source == null || trackingModel == null)
+            return await TrackAsync(source, trackingModel, null);
+        }
+
+        /// <summary>
+        /// Tracks the given image tracking model on the current frame and <see cref="ImageTrackingConfiguration"/>.
+        /// </summary>
+        /// <param name="source">The current image of sequence where image tracking model will be tracked.</param>
+        /// <param name="trackingModel">The image tracking model which processed as target of tracking.</param>
+        /// <param name="config">The configuration used for tracking. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous tracking operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="trackingModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> has no target.</exception>
+        /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
+            ImageTrackingModel trackingModel, ImageTrackingConfiguration config)
+        {
+            if (source == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (trackingModel == null)
+            {
+                throw new ArgumentNullException(nameof(trackingModel));
             }
 
-            TaskCompletionSource<Quadrangle> tcsResult = new TaskCompletionSource<Quadrangle>();
+            TaskCompletionSource<Quadrangle> tcs = new TaskCompletionSource<Quadrangle>();
 
-            // Define native callback
-            Interop.MediaVision.Image.MvImageTrackedCallback imageTrackedCb = (IntPtr sourceHandle, IntPtr imageTrackingModelHandle, IntPtr engineCfgHandle, IntPtr locationPtr, IntPtr userData) =>
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            {
+                InteropImage.Track(source.Handle, trackingModel.Handle, EngineConfiguration.GetHandle(config),
+                    cb.Target).Validate("Failed to perform image tracking.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static InteropImage.TrackedCallback GetCallback(TaskCompletionSource<Quadrangle> tcs)
+        {
+            return (IntPtr sourceHandle, IntPtr imageTrackingModelHandle, IntPtr engineCfgHandle, IntPtr locationPtr, IntPtr _) =>
             {
                 try
                 {
-                    Quadrangle imageLocation = null;
+                    Quadrangle region = null;
                     if (locationPtr != IntPtr.Zero)
                     {
-                        Interop.MediaVision.Quadrangle location = (Interop.MediaVision.Quadrangle)Marshal.PtrToStructure(locationPtr, typeof(Interop.MediaVision.Quadrangle));
-                        imageLocation = new Quadrangle()
-                        {
-                            Points = new Point[4]
-                            {
-                            new Point(location.x1, location.y1),
-                            new Point(location.x2, location.y2),
-                            new Point(location.x3, location.y3),
-                            new Point(location.x4, location.y4)
-                            }
-                        };
-
-                        Log.Info(MediaVisionLog.Tag, String.Format("Image tracked, location : {0}", imageLocation.ToString()));
+                        region = Marshal.PtrToStructure<Interop.MediaVision.Quadrangle>(locationPtr).ToApiStruct();
                     }
 
-                    if (!tcsResult.TrySetResult(imageLocation))
+                    Log.Info(MediaVisionLog.Tag, $"Image tracked, region : {region}");
+
+                    if (!tcs.TrySetResult(region))
                     {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
+                        Log.Info(MediaVisionLog.Tag, "Failed to set track result");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsResult.TrySetException(ex);
+                    MultimediaLog.Error(MediaVisionLog.Tag, "Failed to handle track result", e);
+                    tcs.TrySetException(e);
                 }
             };
 
-            int ret = Interop.MediaVision.Image.Track(source._sourceHandle, trackingModel._trackingModelHandle, (config != null) ? config._engineHandle : IntPtr.Zero, imageTrackedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform image tracking.");
-
-            return await tcsResult.Task;
         }
     }
 }

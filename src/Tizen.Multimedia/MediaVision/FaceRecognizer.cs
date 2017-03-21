@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,184 +17,304 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropFace = Interop.MediaVision.Face;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents an interface for Face recognition functionalities.
-    /// It also contains APIs which perform facial expression recognition and eye condition recognition.
+    /// Provides the ability to recognize faces, face expressions and eye condition on image sources.
     /// </summary>
     public static class FaceRecognizer
     {
+
         /// <summary>
-        /// Performs face recognition on the source image synchronously.
+        /// Performs face recognition on the source with <see cref="FaceRecognitionModel"/>.
         /// </summary>
-        /// <param name="source">The source of the media to recognize face(s) for</param>
-        /// <param name="recognitionModel">The model to be used for recognition</param>
-        /// <param name="config">The configuration of engine will be used for recognition. If NULL, then default settings will be used</param>
-        /// <param name="location">Rectangular box bounding face image on the source. If NULL, then full source will be analyzed</param>
-        /// <returns>Returns the FaceRecognitionResult asynchronously</returns>
-        /// <code>
-        /// 
-        /// </code>
-        public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, FaceEngineConfiguration config = null, Rectangle location = null)
+        /// <param name="source">The <see cref="MediaVisionSource"/> of the media to recognize faces for.</param>
+        /// <param name="recognitionModel">The <see cref="FaceRecognitionConfiguration"/> to be used for recognition.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="recognitionModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
+            FaceRecognitionModel recognitionModel)
         {
-            if (source == null || recognitionModel == null)
+            return await InvokeRecognizeAsync(source, recognitionModel, null, null);
+        }
+
+        /// <summary>
+        /// Performs face recognition on the source with <see cref="FaceRecognitionModel"/> and a bounding box.
+        /// </summary>
+        /// <param name="source">The <see cref="MediaVisionSource"/> of the media to recognize faces for.</param>
+        /// <param name="recognitionModel">The <see cref="FaceRecognitionModel"/> to be used for recognition.</param>
+        /// <param name="bound">Rectangular box bounding face image on the source.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="recognitionModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
+            FaceRecognitionModel recognitionModel, Rectangle bound)
+        {
+            return await InvokeRecognizeAsync(source, recognitionModel, bound, null);
+        }
+
+        /// <summary>
+        /// Performs face recognition on the source with <see cref="FaceRecognitionModel"/> and <see cref="FaceRecognitionConfiguration"/>.
+        /// </summary>
+        /// <param name="source">The <see cref="MediaVisionSource"/> of the media to recognize faces for.</param>
+        /// <param name="recognitionModel">The <see cref="FaceRecognitionModel"/> to be used for recognition.</param>
+        /// <param name="config">The configuration used for recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="recognitionModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
+            FaceRecognitionModel recognitionModel, FaceRecognitionConfiguration config)
+        {
+            return await InvokeRecognizeAsync(source, recognitionModel, null, config);
+        }
+
+
+        /// <summary>
+        /// Performs face recognition on the source  with <see cref="FaceRecognitionModel"/>, <see cref="FaceRecognitionConfiguration"/>
+        /// and a bounding box.
+        /// </summary>
+        /// <param name="source">The <see cref="MediaVisionSource"/> of the media to recognize faces for.</param>
+        /// <param name="recognitionModel">The <see cref="FaceRecognitionModel"/> to be used for recognition.</param>
+        /// <param name="bound">Rectangular box bounding face image on the source.</param>
+        /// <param name="config">The <see cref="FaceRecognitionConfiguration"/> used for recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="recognitionModel"/> is null.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
+            FaceRecognitionModel recognitionModel, Rectangle bound, FaceRecognitionConfiguration config)
+        {
+            return await InvokeRecognizeAsync(source, recognitionModel, bound, config);
+        }
+
+        private static MediaVisionError InvokeRecognize(IntPtr sourceHandle, IntPtr modelHandle,
+            IntPtr configHandle, InteropFace.RecognizedCallback cb, Rectangle? area)
+        {
+            if (area == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                return InteropFace.Recognize(sourceHandle, modelHandle, configHandle, IntPtr.Zero, cb);
             }
 
-            IntPtr locationPtr = IntPtr.Zero;
-            if (location != null)
+            var rect = area.Value.ToMarshalable();
+            return InteropFace.Recognize(sourceHandle, modelHandle, configHandle, ref rect, cb);
+        }
+
+        private static async Task<FaceRecognitionResult> InvokeRecognizeAsync(MediaVisionSource source,
+            FaceRecognitionModel recognitionModel, Rectangle? area,
+            FaceRecognitionConfiguration config)
+        {
+            if (source == null)
             {
-                Interop.MediaVision.Rectangle rectangle = new Interop.MediaVision.Rectangle()
-                {
-                    width = location.Width,
-                    height = location.Height,
-                    x = location.Point.X,
-                    y = location.Point.Y
-                };
-                locationPtr = Marshal.AllocHGlobal(Marshal.SizeOf(rectangle));
-                Marshal.StructureToPtr(rectangle, locationPtr, false);
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (recognitionModel == null)
+            {
+                throw new ArgumentNullException(nameof(recognitionModel));
             }
 
-            TaskCompletionSource<FaceRecognitionResult> tcsResult = new TaskCompletionSource<FaceRecognitionResult>();
+            TaskCompletionSource<FaceRecognitionResult> tcs = new TaskCompletionSource<FaceRecognitionResult>();
 
-            // Define native callback
-            Interop.MediaVision.Face.MvFaceRecognizedCallback faceRecognizedCb = (IntPtr sourceHandle, IntPtr recognitionModelHandle, IntPtr engineCfgHandle, IntPtr faceLocationPtr, IntPtr faceLabelPtr, double confidence, IntPtr userData) =>
+            using (var cb = ObjectKeeper.Get(GetRecognizedCallback(tcs)))
+            {
+                InvokeRecognize(source.Handle, recognitionModel.Handle, EngineConfiguration.GetHandle(config),
+                    cb.Target, area).Validate("Failed to perform face recognition.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static FaceRecognitionResult CreateRecognitionResult(
+             IntPtr faceLocationPtr, IntPtr faceLabelPtr, double confidence)
+        {
+            int faceLabel = 0;
+            if (faceLabelPtr != IntPtr.Zero)
+            {
+                faceLabel = Marshal.ReadInt32(faceLabelPtr);
+            }
+
+            Rectangle? faceLocation = null;
+            if (faceLocationPtr != IntPtr.Zero)
+            {
+                var area = Marshal.PtrToStructure<Interop.MediaVision.Rectangle>(faceLocationPtr);
+                faceLocation = area.ToApiStruct();
+            }
+
+            return new FaceRecognitionResult(faceLabelPtr != IntPtr.Zero, confidence, faceLabel, faceLocation);
+        }
+
+        private static InteropFace.RecognizedCallback GetRecognizedCallback(
+            TaskCompletionSource<FaceRecognitionResult> tcs)
+        {
+            return (IntPtr sourceHandle, IntPtr recognitionModelHandle,
+                IntPtr engineCfgHandle, IntPtr faceLocationPtr, IntPtr faceLabelPtr, double confidence, IntPtr _) =>
             {
                 try
                 {
-                    int faceLabel = 0;
-                    if (faceLabelPtr != IntPtr.Zero)
+                    if (!tcs.TrySetResult(CreateRecognitionResult(faceLocationPtr, faceLabelPtr, confidence)))
                     {
-                        faceLabel = Marshal.ReadInt32(faceLabelPtr);
-                    }
-
-                    Rectangle faceLocation = null;
-                    if (faceLocationPtr != IntPtr.Zero)
-                    {
-                        Interop.MediaVision.Rectangle loc = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(faceLocationPtr, typeof(Interop.MediaVision.Rectangle));
-                        faceLocation = new Rectangle()
-                        {
-                            Width = loc.width,
-                            Height = loc.height,
-                            Point = new Point(loc.x, loc.y)
-                        };
-                        Log.Info(MediaVisionLog.Tag, String.Format("Face label {0} recognized at : ({1}, {2}), Width : {3}, Height : {4}, confidence : {5}", faceLabel, faceLocation.Point.X, faceLocation.Point.Y, faceLocation.Width, faceLocation.Height, confidence));
-                    }
-
-                    FaceRecognitionResult result = new FaceRecognitionResult()
-                    {
-                        Location = faceLocation,
-                        Label = faceLabel,
-                        Confidence = confidence
-                    };
-
-                    if (!tcsResult.TrySetResult(result))
-                    {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
+                        Log.Error(MediaVisionLog.Tag, "Failed to set result");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsResult.TrySetException(ex);
+                    MultimediaLog.Error(MediaVisionLog.Tag, "Setting recognition result failed.", e);
+                    tcs.TrySetException(e);
                 }
             };
-
-
-            int ret = Interop.MediaVision.Face.Recognize(source._sourceHandle, recognitionModel._recognitionModelHandle,
-                            (config != null) ? config._engineHandle : IntPtr.Zero, locationPtr, faceRecognizedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform face recognition.");
-
-            return await tcsResult.Task;
         }
 
         /// <summary>
-        /// Determines eye-blink condition for @a location on media source.
+        /// Determines eye-blink condition on media source.
         /// </summary>
-        /// <param name="source">The source of the media to recognize eye-blink condition for</param>
-        /// <param name="location">The location bounding the face at the source</param>
-        /// <param name="config">The configuration of engine will be used for eye-blink condition recognition. If NULL, the default configuration will be used</param>
-        /// <returns>Returns the EyeCondition asynchronously</returns>
-        public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source, Rectangle location, FaceEngineConfiguration config = null)
+        /// <param name="source">The source of the media to recognize eye-blink condition for.</param>
+        /// <param name="bound">The bounding the face at the source.</param>
+        /// <param name="config">The configuration used for eye-blink condition recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
+            Rectangle bound)
         {
-            if (source == null || location == null)
-            {
-                throw new ArgumentException("Invalid parameter");
-            }
-
-            Interop.MediaVision.Rectangle rectangle = new Interop.MediaVision.Rectangle()
-            {
-                width = location.Width,
-                height = location.Height,
-                x = location.Point.X,
-                y = location.Point.Y
-            };
-
-            TaskCompletionSource<EyeCondition> tcsResult = new TaskCompletionSource<EyeCondition>();
-
-            // Define native callback
-            Interop.MediaVision.Face.MvFaceEyeConditionRecognizedCallback eyeConditionRecognizedCb = (IntPtr sourceHandle, IntPtr engineCfgHandle, Interop.MediaVision.Rectangle faceLocation, EyeCondition eyeCondition, IntPtr userData) =>
-            {
-                Log.Info(MediaVisionLog.Tag, String.Format("Eye condition recognized, eye condition : {0}", eyeCondition));
-                if (!tcsResult.TrySetResult(eyeCondition))
-                {
-                    Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                    tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
-                }
-            };
-
-            int ret = Interop.MediaVision.Face.RecognizeEyeCondition(source._sourceHandle, (config != null) ? config._engineHandle : IntPtr.Zero,
-                             rectangle, eyeConditionRecognizedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform eye condition recognition.");
-
-            return await tcsResult.Task;
+            return await RecognizeEyeConditionAsync(source, bound, null);
         }
 
         /// <summary>
-        /// Determines facial expression for @a location on media source.
+        /// Determines eye-blink condition on media source.
         /// </summary>
-        /// <param name="source">The source of the media to recognize facial expression for</param>
-        /// <param name="location">The location bounding the face at the source</param>
-        /// <param name="config">The configuration of engine to be used for expression recognition</param>
-        /// <returns>Returns the FacialExpression asynchronously</returns>
-        public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source, Rectangle location, FaceEngineConfiguration config = null)
+        /// <param name="source">The source of the media to recognize eye-blink condition for.</param>
+        /// <param name="bound">The bounding the face at the source.</param>
+        /// <param name="config">The configuration used for eye-blink condition recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
+            Rectangle bound, FaceRecognitionConfiguration config)
         {
-            if (source == null || location == null)
+            if (source == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(source));
             }
 
-            Interop.MediaVision.Rectangle rectangle = new Interop.MediaVision.Rectangle()
+            TaskCompletionSource<EyeCondition> tcs = new TaskCompletionSource<EyeCondition>();
+
+            InteropFace.EyeConditionRecognizedCallback cb = (IntPtr sourceHandle, IntPtr engineCfgHandle,
+                Interop.MediaVision.Rectangle faceLocation, EyeCondition eyeCondition, IntPtr _) =>
             {
-                width = location.Width,
-                height = location.Height,
-                x = location.Point.X,
-                y = location.Point.Y
+                Log.Info(MediaVisionLog.Tag, $"Eye condition recognized, eye condition : {eyeCondition}");
+                if (!tcs.TrySetResult(eyeCondition))
+                {
+                    Log.Error(MediaVisionLog.Tag, "Failed to set eye condition result");
+                }
             };
+
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                InteropFace.RecognizeEyeCondition(source.Handle, EngineConfiguration.GetHandle(config),
+                    bound.ToMarshalable(), cb).Validate("Failed to perform eye condition recognition.");
+
+                return await tcs.Task;
+            }
+        }
+
+        /// <summary>
+        /// Determines facial expression on media source.
+        /// </summary>
+        /// <param name="source">The source of the media to recognize facial expression for.</param>
+        /// <param name="bound">The location bounding the face at the source.</param>
+        /// <param name="config">The configuration used for expression recognition.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
+            Rectangle bound)
+        {
+            return await RecognizeFacialExpressionAsync(source, bound, null);
+        }
+
+        /// <summary>
+        /// Determines facial expression on media source.
+        /// </summary>
+        /// <param name="source">The source of the media to recognize facial expression for.</param>
+        /// <param name="bound">The location bounding the face at the source.</param>
+        /// <param name="config">The configuration used for expression recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
+            Rectangle bound, FaceRecognitionConfiguration config)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
 
             TaskCompletionSource<FacialExpression> tcsResult = new TaskCompletionSource<FacialExpression>();
 
-            // Define native callback
-            Interop.MediaVision.Face.MvFaceFacialExpressionRecognizedCallback facialExpressionRecognizedCb = (IntPtr sourceHandle, IntPtr engineCfgHandle, Interop.MediaVision.Rectangle faceLocation, FacialExpression facialExpression, IntPtr userData) =>
+           InteropFace.MvFaceFacialExpressionRecognizedCallback cb = (IntPtr sourceHandle, IntPtr engineCfgHandle,
+               Interop.MediaVision.Rectangle faceLocation, FacialExpression facialExpression, IntPtr _) =>
             {
-                Log.Info(MediaVisionLog.Tag, String.Format("Facial expression recognized, expression : {0}", facialExpression));
+                Log.Info(MediaVisionLog.Tag, $"Facial expression recognized, expression : {facialExpression}");
                 if (!tcsResult.TrySetResult(facialExpression))
                 {
-                    Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                    tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
+                    Log.Error(MediaVisionLog.Tag, "Failed to set facial result");
                 }
             };
 
-            int ret = Interop.MediaVision.Face.RecognizeFacialExpression(source._sourceHandle, (config != null) ? config._engineHandle : IntPtr.Zero,
-                             rectangle, facialExpressionRecognizedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform facial expression recognition.");
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                InteropFace.RecognizeFacialExpression(source.Handle, EngineConfiguration.GetHandle(config),
+                    bound.ToMarshalable(), cb).
+                    Validate("Failed to perform facial expression recognition.");
 
-            return await tcsResult.Task;
+                return await tcsResult.Task;
+            }
         }
     }
 }
+

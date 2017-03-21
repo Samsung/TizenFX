@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,7 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration to text attribute
     /// </summary>
-    public enum TextAttribute
+    public enum Visibility
     {
         /// <summary>
         /// Invisible
@@ -28,10 +28,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Visible
         /// </summary>
-        Visible,
-        /// <summary>
-        /// Unavailable
-        /// </summary>
-        Unavailable
+        Visible
     }
 }

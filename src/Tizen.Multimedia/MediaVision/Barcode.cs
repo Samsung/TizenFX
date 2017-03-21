@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,27 +17,33 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents a detected barcode.
+    /// Represents a detected barcode.
     /// </summary>
     public class Barcode
     {
-        internal Barcode()
+        public Barcode(Quadrangle location, string message, BarcodeType type)
         {
+            Region = location;
+            Message = message;
+            Type = type;
         }
 
         /// <summary>
-        /// The quadrangle location of detected barcode
+        /// The quadrangle location of detected barcode.
         /// </summary>
-        public Quadrangle Location { get; internal set; }
+        public Quadrangle Region { get; }
 
         /// <summary>
-        /// The decoded message of barcode
+        /// The decoded message of barcode.
         /// </summary>
-        public string Message { get; internal set; }
+        public string Message { get; }
 
         /// <summary>
-        /// The type of detected barcode
+        /// The type of detected barcode.
         /// </summary>
-        public BarcodeType Type { get; internal set; }
+        public BarcodeType Type { get; }
+
+        public override string ToString() =>
+            $"Region={Region}, Message={Message}, Type={Type.ToString()}";
     }
 }

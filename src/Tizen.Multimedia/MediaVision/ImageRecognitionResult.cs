@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,23 +14,28 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents result of image recognition.
+    /// Represents a result of RecognizeAsync operations of <see cref="ImageRecognizer"/>.
     /// </summary>
     public class ImageRecognitionResult
     {
-        internal ImageRecognitionResult()
+
+        internal ImageRecognitionResult(bool success, Quadrangle region)
         {
+            Success = success;
+            Region = region;
         }
 
         /// <summary>
-        /// The indexes of recognized image objects and their locations on the source image.
+        /// The region of recognized image object on the source image.
         /// </summary>
-        public List<Tuple<int, Quadrangle>> Results { get; internal set; }
+        public Quadrangle Region { get; }
+
+        /// <summary>
+        /// Gets the value indicating the recognition is successful.
+        /// </summary>
+        public bool Success { get; }
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,83 +15,98 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using static Interop.MediaVision;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents an abstract EngineConfiguration class.\n
-    /// It provides dictionary functionality. It means that it is possible to set (key, value) pairs to this class \n
-    /// and use them to transfer these values to the engine part underlying Media Vision API. \n
-    /// Information on which attributes can be set is provided together with concrete engines.
+    /// A base class for configuration classes.
     /// </summary>
     public abstract class EngineConfiguration : IDisposable
     {
-        internal IntPtr _engineHandle = IntPtr.Zero;
-        private readonly IDictionary<string, object> _config = new Dictionary<string, object>();
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
-        /// <summary>
-        /// Constructor of the EngineConfig class.
-        /// </summary>
         internal EngineConfiguration()
         {
-            int ret = Interop.MediaVision.EngineConfig.Create(out _engineHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to create media vision engine.");
+            EngineConfig.Create(out _handle).Validate("Failed to create media vision engine.");
         }
 
-        /// <summary>
-        /// Destructor of the EngineConfig class.
-        /// </summary>
         ~EngineConfiguration()
         {
             Dispose(false);
         }
 
-        internal void Add<T>(string key, T value)
+        internal static IntPtr GetHandle(EngineConfiguration config)
         {
-            object val = (object)value;
-
-            if (!_config.ContainsKey(key))
+            if (config == null)
             {
-                _config.Add(key, val);
+                return IntPtr.Zero;
             }
-            else
-            {
-                int ret = 0;
-                if (typeof(T) == typeof(double))
-                {
-                    ret = Interop.MediaVision.EngineConfig.SetDouble(_engineHandle, key, (double)val);
-                }
-                else if (typeof(T) == typeof(int))
-                {
-                    ret = Interop.MediaVision.EngineConfig.SetInt(_engineHandle, key, (int)val);
-                }
-                else if (typeof(T) == typeof(bool))
-                {
-                    ret = Interop.MediaVision.EngineConfig.SetBool(_engineHandle, key, (bool)val);
-                }
-                else if (typeof(T) == typeof(string))
-                {
-                    ret = Interop.MediaVision.EngineConfig.SetString(_engineHandle, key, (string)val);
-                }
 
-                MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to add attribute");
-                _config[key] = val;
+            if (config._disposed)
+            {
+                throw new ObjectDisposedException(config.GetType().Name);
             }
+
+            return config._handle;
         }
 
-        internal object Get(string key)
+        internal void Set(string key, double value)
         {
-            if (_config.ContainsKey(key))
+            EngineConfig.SetDouble(Handle, key, value).Validate("Failed to set attribute");
+        }
+
+        internal void Set(string key, int value)
+        {
+            EngineConfig.SetInt(Handle, key, value).Validate("Failed to set attribute");
+        }
+
+
+        internal void Set(string key, bool value)
+        {
+            EngineConfig.SetBool(Handle, key, value).Validate("Failed to set attribute");
+        }
+
+        internal void Set(string key, string value)
+        {
+            EngineConfig.SetString(Handle, key, value).Validate("Failed to set attribute");
+        }
+
+        internal int GetInt(string key)
+        {
+            int value = 0;
+            EngineConfig.GetInt(Handle, key, out value).Validate("Failed to get the value");
+            return value;
+        }
+
+        internal double GetDouble(string key)
+        {
+            double value = 0;
+            EngineConfig.GetDouble(Handle, key, out value).Validate("Failed to get the value");
+            return value;
+        }
+
+        internal bool GetBool(string key)
+        {
+            bool value = false;
+            EngineConfig.GetBool(Handle, key, out value).Validate("Failed to get the value");
+            return value;
+        }
+
+        internal string GetString(string key)
+        {
+            IntPtr ptr = IntPtr.Zero;
+
+            try
             {
-                return _config[key];
+                EngineConfig.GetString(Handle, key, out ptr).Validate("Failed to get the value");
+                return Marshal.PtrToStringAnsi(ptr);
             }
-            else
+            finally
             {
-                Log.Error(MediaVisionLog.Tag, "Attribute was not set");
-                return null;
+                Interop.Libc.Free(ptr);
             }
         }
 
@@ -108,13 +123,20 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            if (disposing)
-            {
-                // Free managed objects
-            }
-
-            Interop.MediaVision.EngineConfig.Destroy(_engineHandle);
+            EngineConfig.Destroy(_handle);
             _disposed = true;
+        }
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(EngineConfiguration));
+                }
+                return _handle;
+            }
         }
     }
 }

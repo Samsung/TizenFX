@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,23 +17,31 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents result of face tracking operation.
+    /// Represents result of face tracking operation.
     /// </summary>
     public class FaceTrackingResult
     {
-        internal FaceTrackingResult()
+        internal FaceTrackingResult(bool success, double confidence, Quadrangle region)
         {
+            Success = success;
+            Confidence = confidence;
+            Region = region;
         }
 
         /// <summary>
-        /// Gets the quadrangle-shaped location which determines new position of the tracked face on the source.
+        /// Gets the value indicating the recognition is successful.
         /// </summary>
-        public Quadrangle Location { get; internal set; }
+        public bool Success { get; }
+
+        /// <summary>
+        /// Gets the region which determines new position of the tracked face on the source.
+        /// </summary>
+        public Quadrangle Region { get; }
 
         /// <summary>
         /// The confidence of the tracking_model that new location of the face was determined correctly
-        /// (value from 0.0 to 1.0). If no location was determined during last track iteration, then value is 0.0
+        /// (value from 0.0 to 1.0). If no location was determined during last track iteration, then value is 0.0.
         /// </summary>
-        public double Confidence { get; internal set; }
+        public double Confidence { get; }
     }
 }

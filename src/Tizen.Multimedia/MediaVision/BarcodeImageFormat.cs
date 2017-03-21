@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,29 +17,22 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for supported image formats for the barcode generation.
+    /// Specifies supported image formats for <see cref="BarcodeGenerator"/>
     /// </summary>
+    /// <seealso cref="BarcodeImageConfiguration"/>
     public enum BarcodeImageFormat
     {
         /// <summary>
-        /// Unavailable image format
-        /// </summary>
-        Unavailable = -1,
-        /// <summary>
         /// BMP image format
         /// </summary>
-        BMP,
+        Bmp,
         /// <summary>
         /// JPEG image format
         /// </summary>
-        JPG,
+        Jpeg,
         /// <summary>
         /// PNG image format
         /// </summary>
-        PNG,
-        /// <summary>
-        /// The number of supported image format
-        /// </summary>
-        NUM
+        Png
     }
 }

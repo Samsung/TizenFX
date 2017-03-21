@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,177 +15,248 @@
  */
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
-using static Interop.MediaVision;
+using InteropModel = Interop.MediaVision.FaceRecognitionModel;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents face recognition model interface
+    /// Represents the face recognition model interface.
     /// </summary>
     public class FaceRecognitionModel : IDisposable
     {
-        internal IntPtr _recognitionModelHandle = IntPtr.Zero;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
-        /// Construct of FaceRecognitionModel class
+        /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class.
         /// </summary>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         public FaceRecognitionModel()
         {
-            int ret = Interop.MediaVision.FaceRecognitionModel.Create(out _recognitionModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to create FaceRecognitionModel.");
+            InteropModel.Create(out _handle).Validate("Failed to create FaceRecognitionModel");
         }
 
         /// <summary>
-        /// Construct of FaceRecognitionModel class which creates and loads recognition model from file.
+        /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class withe the specified path.
         /// </summary>
         /// <remarks>
-        /// FaceRecognitionModel is loaded from the absolute path directory.\n
-        /// Models has been saved by <see cref="Save()"/> function can be loaded with this function
+        /// Models have been saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
-        /// <param name="fileName">Name of path/file to load the model</param>
-        /// <seealso cref="Save()"/>
-        /// <code>
-        /// 
-        /// </code>
-        public FaceRecognitionModel(string fileName)
+        /// <param name="modelPath">Path to the model to load.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     <paramref name="modelPath"/> is not supported format.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
+        /// <seealso cref="Save(string)"/>
+        public FaceRecognitionModel(string modelPath)
         {
-            int ret = Interop.MediaVision.FaceRecognitionModel.Load(fileName, out _recognitionModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to load FaceRecognitionModel from file.");
+            if (modelPath == null)
+            {
+                throw new ArgumentNullException(nameof(modelPath));
+            }
+
+            InteropModel.Load(modelPath, out _handle).
+                Validate("Failed to load FaceRecognitionModel from file");
         }
 
-        /// <summary>
-        /// Destructor of the FaceRecognitionModel class.
-        /// </summary>
         ~FaceRecognitionModel()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Gets labels list
+        /// Gets labels that had been learned by the model.
         /// </summary>
-        public int[] FaceLabels
+        public int[] Labels
         {
             get
             {
-                IntPtr labelsArrayPtr;
-                uint numOfLabels = 0;
-                int ret = Interop.MediaVision.FaceRecognitionModel.QueryLabels(_recognitionModelHandle, out labelsArrayPtr, out numOfLabels);
-                if (ret != 0)
+                IntPtr unmangedArray = IntPtr.Zero;
+                try
                 {
-                    Tizen.Log.Error(MediaVisionLog.Tag, "Failed to get face labels");
-                    return null;
-                }
+                    uint numOfLabels = 0;
 
-                int[] labels = new int[numOfLabels];
-                for (int i = 0; i < numOfLabels; i++)
+                    InteropModel.QueryLabels(Handle, out unmangedArray, out numOfLabels).
+                        Validate("Failed to retrieve face labels.");
+
+                    int[] labels = new int[numOfLabels];
+                    Marshal.Copy(unmangedArray, labels, 0, (int)numOfLabels);
+
+                    return labels;
+                }
+                finally
                 {
-                    labels[i] = Marshal.ReadInt32(labelsArrayPtr);
-                    labelsArrayPtr = IntPtr.Add(labelsArrayPtr, sizeof(int));
+                    if (unmangedArray != IntPtr.Zero)
+                    {
+                        Interop.Libc.Free(unmangedArray);
+                    }
                 }
-
-                return labels;
             }
         }
 
         /// <summary>
-        /// Calls this method to save recognition model to the file.
+        /// Saves the recognition model to the file.
         /// </summary>
-        /// <remarks>
-        /// RecognitionModel is saved to the absolute path directory.
-        /// </remarks>
-        /// <param name="fileName">Name of the path/file to save the model</param>
-        /// <code>
-        /// 
-        /// </code>
-        public void Save(string fileName)
+        /// <param name="path">Path to the file to save the model.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        public void Save(string path)
         {
-            if (string.IsNullOrEmpty(fileName))
+            if (path == null)
             {
-                throw new ArgumentException("Invalid file name");
+                throw new ArgumentNullException(nameof(path));
             }
 
-            int ret = Interop.MediaVision.FaceRecognitionModel.Save(fileName, _recognitionModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to save recognition model to file");
+            var ret = InteropModel.Save(path, Handle);
+
+            if (ret == MediaVisionError.InvalidPath)
+            {
+                throw new DirectoryNotFoundException($"The directory for the path({path}) does not exist.");
+            }
+
+            ret.Validate("Failed to save recognition model to file");
+        }
+
+        private MediaVisionError InvokeAdd(MediaVisionSource source, int label, Rectangle? area)
+        {
+            if (area != null)
+            {
+                var rect = area.Value.ToMarshalable();
+                return InteropModel.Add(source.Handle, Handle, ref rect, label);
+            }
+
+            return InteropModel.Add(source.Handle, Handle, IntPtr.Zero, label);
         }
 
         /// <summary>
-        /// Adds face image example to be used for face recognition model learning with <see cref="Learn()"/>.
+        /// Adds face image example to be used for face recognition model learning.
         /// </summary>
-        /// <param name="source">Source that contains face image</param>
-        /// <param name="faceLabel">The label that identifies face for which example is adding. Specify the same labels for the face images of a single person when calling this method. Has to be unique for each face</param>
-        /// <param name="location">The rectangular location of the face image at the source image.</param>
-        /// <code>
-        /// 
-        /// </code>
-        public void Add(MediaVisionSource source, int faceLabel, Rectangle location = null)
+        /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
+        /// <param name="label">The label that identifies face for which example is adding.
+        ///     Specify the same labels for the face images of a single person when calling this method.
+        ///     Has to be unique for each face</param>
+        /// <param name="area">The rectangular location of the face image at the source image.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="source"/> has already been dispose of.
+        /// </exception>
+        /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
+        public void Add(MediaVisionSource source, int label)
         {
             if (source == null)
             {
                 throw new ArgumentException("Invalid source");
             }
 
-            IntPtr ptr = IntPtr.Zero;
-            if (location != null)
+            InvokeAdd(source, label, null).Validate("Failed to add face example image");
+        }
+
+        /// <summary>
+        /// Adds face image example to be used for face recognition model learning.
+        /// </summary>
+        /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
+        /// <param name="label">The label that identifies face for which example is adding.
+        ///     Specify the same labels for the face images of a single person when calling this method.
+        ///     Has to be unique for each face</param>
+        /// <param name="area">The rectangular region of the face image at the source image.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="source"/> has already been dispose of.
+        /// </exception>
+        /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
+        public void Add(MediaVisionSource source, int label, Rectangle area)
+        {
+            if (source == null)
             {
-                Interop.MediaVision.Rectangle rectangle = new Interop.MediaVision.Rectangle()
-                {
-                    width = location.Width,
-                    height = location.Height,
-                    x = location.Point.X,
-                    y = location.Point.Y
-                };
-                ptr = Marshal.AllocHGlobal(Marshal.SizeOf(rectangle));
-                Marshal.StructureToPtr(rectangle, ptr, false);
+                throw new ArgumentException("Invalid source");
             }
 
-            int ret = Interop.MediaVision.FaceRecognitionModel.Add(source._sourceHandle, _recognitionModelHandle, ptr, faceLabel);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to add face example image");
+            InvokeAdd(source, label, area).Validate("Failed to add face example image");
         }
 
         /// <summary>
-        /// Removes from RecognitionModel all collected with <see cref="Add()"/> function face examples labeled with faceLabel.
+        /// Removes all face examples added with the specified label.
         /// </summary>
-        /// <param name="faceLabel">The label that identifies face for which examples will be removed from the RecognitionModel.</param>
-        /// <code>
-        /// 
-        /// </code>
-        public void Remove(int faceLabel)
+        /// <param name="label">The label that identifies face for which examples will be removed.</param>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <returns>true if the examples are successfully removed; otherwise, false if there is no example labeled with the specified label.</returns>
+        /// <seealso cref="Add(MediaVisionSource, int)"/>
+        /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        public bool Remove(int label)
         {
-            int ret = Interop.MediaVision.FaceRecognitionModel.Remove(_recognitionModelHandle, ref faceLabel);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to remove image example");
+            var ret = InteropModel.Remove(Handle, ref label);
+
+            if (ret == MediaVisionError.KeyNotAvailable)
+            {
+                return false;
+            }
+
+            ret.Validate("Failed to remove image example");
+            return true;
         }
 
         /// <summary>
-        /// Removes all image examples known by RecognitionModel.
+        /// Removes all face examples.
         /// </summary>
-        /// <code>
-        /// 
-        /// </code>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         public void Reset()
         {
-            int ret = Interop.MediaVision.FaceRecognitionModel.Reset(_recognitionModelHandle, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to remove image example");
+            InteropModel.Reset(Handle).Validate("Failed to reset image example");
         }
+
 
         /// <summary>
         /// Learns face recognition model.
         /// </summary>
         /// <remarks>
         /// Before you start learning process, face recognition models has to be filled with training data - face image examples.
-        /// These examples has to be provided by <see cref="Add()"/> function. Usually, recognition accuracy is increased
-        /// when number of not identical examples is large. But it depends on the used learning algorithm.
+        /// These examples has to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
+        /// Recognition accuracy is usually increased when the different examples of the identical face are added more and more.
+        /// But it depends on the used learning algorithm.
         /// </remarks>
-        /// <param name="config">The configuration of engine will be used for learning of the recognition models. If NULL, then default settings will be used</param>
-        /// <code>
-        /// 
-        /// </code>
-        public void Learn(FaceEngineConfiguration config = null)
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">No examples added.</exception>
+        /// <seealso cref="Add(MediaVisionSource, int)"/>
+        /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        public void Learn()
         {
-            int ret = Interop.MediaVision.FaceRecognitionModel.Learn((config != null) ? config._engineHandle : IntPtr.Zero, _recognitionModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to learn");
+            Learn(null);
+        }
+
+        /// <summary>
+        /// Learns face recognition model with <see cref="FaceRecognitionConfiguration"/>.
+        /// </summary>
+        /// <remarks>
+        /// Before you start learning process, face recognition models has to be filled with training data - face image examples.
+        /// These examples has to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
+        /// Recognition accuracy is usually increased when the different examples of the identical face are added more and more.
+        /// But it depends on the used learning algorithm.
+        /// </remarks>
+        /// <param name="config">The configuration used for learning of the recognition models. This value can be null.</param>
+        /// <exception cref="ObjectDisposedException">
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">No examples added.</exception>
+        /// <seealso cref="Add(MediaVisionSource, int)"/>
+        /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        public void Learn(FaceRecognitionConfiguration config)
+        {
+            InteropModel.Learn(EngineConfiguration.GetHandle(config), Handle).
+                Validate("Failed to learn");
         }
 
         public void Dispose()
@@ -201,13 +272,20 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            if (disposing)
-            {
-                // Free managed objects
-            }
-
-            Interop.MediaVision.FaceRecognitionModel.Destroy(_recognitionModelHandle);
+            InteropModel.Destroy(_handle);
             _disposed = true;
+        }
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(FaceRecognitionModel));
+                }
+                return _handle;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,29 +17,25 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for supported QR code encoding mode.
+    /// Specifies the supported QR code encoding mode.
     /// </summary>
     public enum QrMode
     {
         /// <summary>
-        /// Numeric digits
+        /// Numeric digits.
         /// </summary>
         Numeric,
         /// <summary>
-        /// Alphanumeric characters
+        /// Alphanumeric characters, '$', '%', '*', '+', '-', '.', '/' and ':'.
         /// </summary>
         AlphaNumeric,
         /// <summary>
-        /// Raw 8-bit bytes
+        /// Raw 8-bit bytes.
         /// </summary>
         Byte,
         /// <summary>
-        /// UTF-8 character encoding
+        /// UTF-8 character encoding.
         /// </summary>
-        Utf8,
-        /// <summary>
-        /// Unavailable
-        /// </summary>
-        Unavailable
+        Utf8
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,48 +17,46 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for supported barcode types.
+    /// Specifies the supported barcode types.
     /// </summary>
     /// <remarks>
     /// QR codes (versions 1 to 40) and set of 1D barcodes are supported
     /// </remarks>
+    /// <seealso cref="BarcodeDetector"/>
+    /// <seealso cref="BarcodeGenerator"/>
     public enum BarcodeType
     {
         /// <summary>
-        /// 2D barcode - Quick Response code
+        /// 2D barcode - Quick Response code.
         /// </summary>
         QR,
         /// <summary>
-        /// 1D barcode - Universal Product Code with 12-digit
+        /// 1D barcode - Universal Product Code with 12-digit.
         /// </summary>
-        UPC_A,
+        UpcA,
         /// <summary>
-        /// 1D barcode - Universal Product Code with 6-digit
+        /// 1D barcode - Universal Product Code with 6-digit.
         /// </summary>
-        UPC_E,
+        UpcE,
         /// <summary>
-        /// 1D barcode - International Article Number with 8-digit
+        /// 1D barcode - International Article Number with 8-digit.
         /// </summary>
-        EAN_8,
+        Ean8,
         /// <summary>
-        /// 1D barcode - International Article Number with 13-digit
+        /// 1D barcode - International Article Number with 13-digit.
         /// </summary>
-        EAN_13,
+        Ean13,
         /// <summary>
-        /// 1D barcode - Code 128
+        /// 1D barcode - Code 128.
         /// </summary>
-        CODE128,
+        Code128,
         /// <summary>
-        /// 1D barcode - Code 39
+        /// 1D barcode - Code 39.
         /// </summary>
-        CODE39,
+        Code39,
         /// <summary>
-        /// 1D barcode - Interleaved Two of Five
+        /// 1D barcode - Interleaved Two of Five.
         /// </summary>
-        I2_5,
-        /// <summary>
-        /// Undefined
-        /// </summary>
-        Undefined
+        I25
     }
 }

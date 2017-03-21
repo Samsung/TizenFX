@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,57 +17,57 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for Media Vision colorspace
+    /// Specifies colorspaces for MediaVision.
     /// </summary>
     public enum Colorspace
     {
         /// <summary>
-        /// The colorspace type is invalid
+        /// The colorspace type is invalid.
         /// </summary>
         Invalid,
         /// <summary>
-        /// The colorspace type is Y800
+        /// The colorspace type is Y800.
         /// </summary>
         Y800,
         /// <summary>
-        /// The colorspace type is I420
+        /// The colorspace type is I420.
         /// </summary>
         I420,
         /// <summary>
-        /// The colorspace type is NV12
+        /// The colorspace type is NV12.
         /// </summary>
         NV12,
         /// <summary>
-        /// The colorspace type is YV12
+        /// The colorspace type is YV12.
         /// </summary>
         YV12,
         /// <summary>
-        /// The colorspace type is NV21
+        /// The colorspace type is NV21.
         /// </summary>
         NV21,
         /// <summary>
-        /// The colorspace type is YUYV
+        /// The colorspace type is YUYV.
         /// </summary>
-        YUYV,
+        Yuyv,
         /// <summary>
-        /// The colorspace type is UYVY
+        /// The colorspace type is UYVY.
         /// </summary>
-        UYVY,
+        Uyvy,
         /// <summary>
-        /// The colorspace type is 422P
+        /// The colorspace type is 422P.
         /// </summary>
-        P422,
+        Yuv422P,
         /// <summary>
-        /// The colorspace type is RGB565
+        /// The colorspace type is RGB565.
         /// </summary>
-        RGB565,
+        Rgb565,
         /// <summary>
-        /// The colorspace type is RGB888
+        /// The colorspace type is RGB888.
         /// </summary>
-        RGB888,
+        Rgb888,
         /// <summary>
-        /// The colorspace type is RGBA
+        /// The colorspace type is RGBA.
         /// </summary>
-        RGBA
+        Rgba
     }
 }

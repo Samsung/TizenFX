@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,105 +17,138 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropImage = Interop.MediaVision.Image;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents an interface for image recognition functionality.
+    /// Provides the ability to recognize images on image sources.
     /// </summary>
     public static class ImageRecognizer
     {
         /// <summary>
         /// Recognizes the given image objects on the source image.\n
-        /// Use this function to launch image recognition algorithm configured by @a config configuration.
         /// </summary>
-        /// <param name="source">The source image on which image objects will be recognized</param>
-        /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition</param>
-        /// <param name="config">The configuration of engine which will be used for recognition. If NULL, then default settings will be used.</param>
-        /// <returns>Returns ImageRecognitionResult asynchronously</returns>
-        public static async Task<ImageRecognitionResult> RecognizeAsync(MediaVisionSource source, Image[] imageObjects, ImageEngineConfiguration config = null)
+        /// <param name="source">The source image on which image objects will be recognized.</param>
+        /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition.</param>
+        /// <param name="config">The configuration of engine which will be used for recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageObjects"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageObjects"/> contains null reference.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(
+            MediaVisionSource source, ImageObject[] imageObjects)
         {
-            if (source == null || imageObjects.Length == 0)
+            return await RecognizeAsync(source, imageObjects, null);
+        }
+
+        /// <summary>
+        /// Recognizes the given image objects on the source image.\n
+        /// </summary>
+        /// <param name="source">The source image on which image objects will be recognized.</param>
+        /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition.</param>
+        /// <param name="config">The configuration used for recognition. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous recognition operation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageObjects"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageObjects"/> contains null elements.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> has already been disposed of.
+        /// </exception>
+        public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(MediaVisionSource source,
+            ImageObject[] imageObjects, ImageRecognitionConfiguration config)
+        {
+            if (source == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (imageObjects == null)
+            {
+                throw new ArgumentNullException(nameof(imageObjects));
+            }
+            if (imageObjects.Length == 0)
+            {
+                throw new ArgumentException("No image object to recognize.", nameof(imageObjects));
             }
 
-            IntPtr[] ptrArray = new IntPtr[imageObjects.Length];
+            var tcs = new TaskCompletionSource<IEnumerable<ImageRecognitionResult>>();
+
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            using (var imageHandles = ObjectKeeper.Get(GetHandles(imageObjects)))
+            {
+                InteropImage.Recognize(source.Handle, imageHandles.Target, imageHandles.Target.Length,
+                    EngineConfiguration.GetHandle(config), cb.Target).
+                    Validate("Failed to perform image recognition.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static ImageRecognitionResult[] CreateResults(IntPtr[] locations, uint numOfObjects)
+        {
+            ImageRecognitionResult[] results = new ImageRecognitionResult[numOfObjects];
+
+            for (int i = 0; i < numOfObjects; i++)
+            {
+                Quadrangle quadrangle = locations[i] != IntPtr.Zero ?
+                    Marshal.PtrToStructure<Interop.MediaVision.Quadrangle>(locations[i]).ToApiStruct() : null;
+
+                results[i] = new ImageRecognitionResult(locations[i] != IntPtr.Zero, quadrangle);
+            }
+
+            return results;
+        }
+
+        private static InteropImage.RecognizedCallback GetCallback(
+            TaskCompletionSource<IEnumerable<ImageRecognitionResult>> tcs)
+        {
+            return (IntPtr source, IntPtr engineConfig, IntPtr imageObjectHandles,
+                IntPtr[] locations, uint numOfObjects, IntPtr _) =>
+            {
+                try
+                {
+                    if (!tcs.TrySetResult(CreateResults(locations, numOfObjects)))
+                    {
+                        Log.Info(MediaVisionLog.Tag, "Failed to set recognition result");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MultimediaLog.Error(MediaVisionLog.Tag, "Failed to handle recognition result", e);
+                    tcs.TrySetException(e);
+                }
+            };
+        }
+
+        private static IntPtr[] GetHandles(ImageObject[] imageObjects)
+        {
+            IntPtr[] imageHandles = new IntPtr[imageObjects.Length];
             for (int i = 0; i < imageObjects.Length; i++)
             {
                 if (imageObjects[i] == null)
                 {
-                    throw new ArgumentException("Invalid parameter");
+                    throw new ArgumentNullException($"{nameof(imageObjects)}[{i}]");
                 }
 
-                ptrArray[i] = imageObjects[i]._imageObjectHandle;
+                imageHandles[i] = imageObjects[i].Handle;
             }
 
-            int size = Marshal.SizeOf(typeof(IntPtr)) * ptrArray.Length;
-            IntPtr imageObjectsPtr = Marshal.AllocHGlobal(size);
-
-            Marshal.Copy(ptrArray, 0, imageObjectsPtr, ptrArray.Length);
-
-            TaskCompletionSource<ImageRecognitionResult> tcsResult = new TaskCompletionSource<ImageRecognitionResult>();
-
-            // Define native callback
-            Interop.MediaVision.Image.MvImageRecognizedCallback imageRecognizedCb = (IntPtr sourceHandle, IntPtr engineCfgHandle, IntPtr imageObjectsHandle, IntPtr locationsPtr, uint numberOfObjects, IntPtr userData) =>
-            {
-                try
-                {
-                    List<Tuple<int, Quadrangle>> recognitionResults = new List<Tuple<int, Quadrangle>>();
-                    if (numberOfObjects > 0)
-                    {
-                        IntPtr[] imageLocationsPtr = new IntPtr[numberOfObjects];
-                        Marshal.Copy(locationsPtr, imageLocationsPtr, 0, (int)numberOfObjects);
-
-                        // Prepare list of locations and its indexes
-                        for (int i = 0; i < numberOfObjects; i++)
-                        {
-                            if (imageLocationsPtr[i] == null)
-                            {
-                                continue;
-                            }
-
-                            Interop.MediaVision.Quadrangle location = (Interop.MediaVision.Quadrangle)Marshal.PtrToStructure(imageLocationsPtr[i], typeof(Interop.MediaVision.Quadrangle));
-                            Quadrangle quadrangle = new Quadrangle()
-                            {
-                                Points = new Point[4]
-                                {
-                                new Point(location.x1, location.y1),
-                                new Point(location.x2, location.y2),
-                                new Point(location.x3, location.y3),
-                                new Point(location.x4, location.y4)
-                                }
-                            };
-                            Log.Info(MediaVisionLog.Tag, String.Format("Image recognized, Location : {0}", quadrangle.ToString()));
-                            recognitionResults.Add(Tuple.Create(i, quadrangle));
-                        }
-                    }
-
-                    ImageRecognitionResult result = new ImageRecognitionResult()
-                    {
-                        Results = recognitionResults
-                    };
-
-                    if (!tcsResult.TrySetResult(result))
-                    {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsResult.TrySetException(ex);
-                }
-            };
-
-            int ret = Interop.MediaVision.Image.Recognize(source._sourceHandle, imageObjectsPtr, ptrArray.Length, (config != null) ? config._engineHandle : IntPtr.Zero, imageRecognizedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform image recognition.");
-
-            return await tcsResult.Task;
+            return imageHandles;
         }
     }
 }

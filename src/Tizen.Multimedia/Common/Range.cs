@@ -28,9 +28,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="min">Minimum value of the range.</param>
         /// <param name="max">Maximum value of the range.</param>
+        /// <exception cref="ArgumentException"><paramref name="max"/> is less than <paramref name="min"/>.</exception>
         public Range(int min, int max)
         {
-            if (min > max )
+            if (min > max)
             {
                 throw new ArgumentException($"min can't be greater than max.");
             }
@@ -71,7 +72,7 @@ namespace Tizen.Multimedia
             return Min <= value && value <= Max;
         }
 
-        public override string ToString() => $"Min={Min}, Max={Max}";
+        public override string ToString() => $"Min={Min.ToString()}, Max={Max.ToString()}";
 
         public override int GetHashCode()
         {
@@ -80,13 +81,17 @@ namespace Tizen.Multimedia
 
         public override bool Equals(object obj)
         {
-            if ((obj is Range) == false)
-            {
-                return false;
-            }
+            return obj is Range && this == (Range)obj;
+        }
 
-            Range rhs = (Range)obj;
-            return Min == rhs.Min && Max == rhs.Max;
+        public static bool operator ==(Range lhs, Range rhs)
+        {
+            return lhs.Min == rhs.Min && lhs.Max == rhs.Max;
+        }
+
+        public static bool operator !=(Range lhs, Range rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }

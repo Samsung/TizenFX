@@ -15,79 +15,88 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropFace = Interop.MediaVision.Face;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents the interface for media vision face detection.
+    /// Provides the ability to detect faces on image sources.
     /// </summary>
     public static class FaceDetector
     {
+
         /// <summary>
-        /// Performs face detection on the source for the engine_conf.\n
-        /// Use this function to launch face detection algorithm configured by @a config configuration.
+        /// Detects faces on the source.\n
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
-        /// <param name="source">The source of the media where faces will be detected</param>
-        /// <param name="config">The configuration of engine will be used for detecting. If NULL, then default settings will be used.</param>
-        /// <returns>Returns the FaceDetectionResult asynchronously</returns>
-        /// <code>
-        ///
-        /// </code>
-        public static async Task<FaceDetectionResult> DetectAsync(MediaVisionSource source, FaceEngineConfiguration config = null)
+        /// <param name="source">The source of the media where faces will be detected.</param>
+        /// <returns>A task that represents the asynchronous detect operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     The format of <paramref name="source"/> is not supported.
+        /// </exception>
+        public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)
+        {
+            return await DetectAsync(source, null);
+        }
+
+        /// <summary>
+        /// Detects faces on the source.\n
+        /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
+        /// </summary>
+        /// <param name="source">The source of the media where faces will be detected.</param>
+        /// <param name="config">The configuration of engine will be used for detecting. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous detect operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source,
+            FaceDetectionConfiguration config)
         {
             if (source == null)
             {
-                throw new ArgumentException("Invalid source");
+                throw new ArgumentNullException(nameof(source));
             }
 
-            TaskCompletionSource<FaceDetectionResult> tcsResult = new TaskCompletionSource<FaceDetectionResult>();
-            // Define native callback
-            Interop.MediaVision.Face.MvFaceDetectedCallback faceDetectedCb = (IntPtr sourceHandle, IntPtr engineCfgHandle, IntPtr facesLocations, int numberOfFaces, IntPtr userData) =>
+            TaskCompletionSource<Rectangle[]> tcs = new TaskCompletionSource<Rectangle[]>();
+
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            {
+                InteropFace.Detect(source.Handle, EngineConfiguration.GetHandle(config), cb.Target).
+                    Validate("Failed to perform face detection");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static InteropFace.DetectedCallback GetCallback(TaskCompletionSource<Rectangle[]> tcs)
+        {
+            return (IntPtr sourceHandle, IntPtr engineConfig, Interop.MediaVision.Rectangle[] facesLocations,
+                int numberOfFaces, IntPtr _) =>
             {
                 try
                 {
-                    Log.Info(MediaVisionLog.Tag, String.Format("Faces detected, count : {0}", numberOfFaces));
-                    List<Rectangle> locations = new List<Rectangle>();
-                    if (numberOfFaces > 0)
+                    Log.Info(MediaVisionLog.Tag, $"Faces detected, count : {numberOfFaces}.");
+                    Rectangle[] locations = new Rectangle[numberOfFaces];
+                    for (int i = 0; i < numberOfFaces; i++)
                     {
-                        // Prepare list of locations
-                        for (int i = 0; i < numberOfFaces; i++)
-                        {
-                            Interop.MediaVision.Rectangle location = (Interop.MediaVision.Rectangle)Marshal.PtrToStructure(facesLocations, typeof(Interop.MediaVision.Rectangle));
-                            Rectangle rect = new Rectangle(new Point(location.x, location.y),
-                                new Size(location.width, location.height));
-                            Log.Info(MediaVisionLog.Tag, String.Format("Face {0} detected at : ({1}, {2})", i + 1, rect.Point.X, rect.Point.Y));
-                            locations.Add(rect);
-                            facesLocations = IntPtr.Add(facesLocations, sizeof(int) * 4);
-                        }
+                        locations[i] = facesLocations[i].ToApiStruct();
+                        Log.Info(MediaVisionLog.Tag, $"Face {0} detected : {locations}.");
                     }
 
-                    FaceDetectionResult result = new FaceDetectionResult()
+                    if (!tcs.TrySetResult(locations))
                     {
-                        Locations = locations
-                    };
-
-                    if (!tcsResult.TrySetResult(result))
-                    {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsResult.TrySetException(new InvalidOperationException("Failed to set result"));
+                        Log.Error(MediaVisionLog.Tag, "Failed to set face detection result.");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsResult.TrySetException(ex);
+                    MultimediaLog.Info(MediaVisionLog.Tag, "Failed to handle face detection.", e);
+                    tcs.TrySetException(e);
                 }
             };
-
-            int ret = Interop.MediaVision.Face.Detect(source._sourceHandle, (config != null) ? config._engineHandle : IntPtr.Zero, faceDetectedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to perform face detection.");
-            return await tcsResult.Task;
         }
     }
 }

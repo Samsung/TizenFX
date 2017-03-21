@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,23 +17,32 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents result of face recognition operation.
+    /// Represents result of <see cref="FaceRecognizer"/> operations.
     /// </summary>
     public class FaceRecognitionResult
     {
-        internal FaceRecognitionResult()
+        internal FaceRecognitionResult(bool recognized, double confidence, int label, Rectangle? area)
         {
+            Success = recognized;
+            Label = label;
+            Area = area;
+            Confidence = confidence;
         }
+
+        /// <summary>
+        /// Gets the value indicating the recognition is successful.
+        /// </summary>
+        public bool Success { get; }
 
         /// <summary>
         /// Gets the label of the recognized face.
         /// </summary>
-        public int Label { get; internal set; }
+        public int Label { get; }
 
         /// <summary>
         /// Gets the location of the recognized face.
         /// </summary>
-        public Rectangle Location { get; internal set; }
+        public Rectangle? Area { get; }
 
         /// <summary>
         /// The confidence of the recognition_model that face has been recognized correctly (value from 0.0 to 1.0).
@@ -41,6 +50,6 @@ namespace Tizen.Multimedia
         /// threshold for this value can be high (0.85-0.95). If model was learned for small amount of examples,
         /// then threshold can be reduced (0.5-0.85).
         /// </summary>
-        public double Confidence { get; internal set; }
+        public double Confidence { get; }
     }
 }

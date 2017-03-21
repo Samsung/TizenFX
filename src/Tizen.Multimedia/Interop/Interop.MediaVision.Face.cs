@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -34,34 +34,50 @@ internal static partial class Interop
         internal static partial class Face
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_detect")]
-            internal static extern int Detect(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, MvFaceDetectedCallback detectedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Detect(IntPtr source, IntPtr engineCfg,
+                DetectedCallback detectedCb, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognize")]
-            internal static extern int Recognize(IntPtr /* mv_source_h */ source, IntPtr /* mv_face_recognition_model_h */ recognitionModel, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr faceLocation, MvFaceRecognizedCallback recognizedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Recognize(IntPtr source, IntPtr recognitionModel, IntPtr engineCfg,
+                IntPtr faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognize")]
+            internal static extern MediaVisionError Recognize(IntPtr source, IntPtr recognitionModel, IntPtr engineCfg,
+                ref Rectangle faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_track")]
-            internal static extern int Track(IntPtr /* mv_source_h */ source, IntPtr /* mv_face_tracking_model_h */ trackingModel, IntPtr /* mv_engine_config_h */ engineCfg, MvFaceTrackedCallback trackedCb, bool doLearn, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Track(IntPtr source, IntPtr trackingModel, IntPtr engineCfg,
+                TrackedCallback trackedCb, bool doLearn, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_eye_condition_recognize")]
-            internal static extern int RecognizeEyeCondition(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, Rectangle faceLocation, MvFaceEyeConditionRecognizedCallback eyeConditionRecognizedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError RecognizeEyeCondition(IntPtr source, IntPtr engineCfg,
+                Rectangle faceLocation, EyeConditionRecognizedCallback eyeConditionRecognizedCb, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_facial_expression_recognize")]
-            internal static extern int RecognizeFacialExpression(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, Rectangle faceLocation, MvFaceFacialExpressionRecognizedCallback expressionRecognizedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError RecognizeFacialExpression(IntPtr source, IntPtr engineCfg,
+                Rectangle faceLocation, MvFaceFacialExpressionRecognizedCallback expressionRecognizedCb,
+                IntPtr userData = default(IntPtr));
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvFaceDetectedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr facesLocations, int numberOfFaces, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void DetectedCallback(IntPtr source, IntPtr engineCfg,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] Rectangle[] facesLocations,
+                int numberOfFaces, IntPtr userData);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvFaceRecognizedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_face_recognition_model_h */ recognitionModel, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr faceLocation, IntPtr faceLabel, double confidence, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void RecognizedCallback(IntPtr source, IntPtr recognitionModel,
+                IntPtr engineCfg, IntPtr faceLocation, IntPtr faceLabel, double confidence, IntPtr userData);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvFaceTrackedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_face_tracking_model_h */ trackingModel, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr location, double confidence, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void TrackedCallback(IntPtr source, IntPtr trackingModel, IntPtr engineCfg,
+                IntPtr location, double confidence, IntPtr userData);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvFaceEyeConditionRecognizedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, Rectangle faceLocation, EyeCondition /* mv_face_eye_condition_e */ eyeCondition, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void EyeConditionRecognizedCallback(IntPtr source, IntPtr engineCfg,
+                Rectangle faceLocation, EyeCondition eyeCondition, IntPtr userData);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvFaceFacialExpressionRecognizedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, Rectangle faceLocation, FacialExpression /* mv_face_facial_expression_e */ facialExpression, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void MvFaceFacialExpressionRecognizedCallback(IntPtr source,
+                IntPtr engineCfg, Rectangle faceLocation, FacialExpression facialExpression, IntPtr userData);
         }
 
         /// <summary>
@@ -70,34 +86,39 @@ internal static partial class Interop
         internal static partial class FaceRecognitionModel
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_create")]
-            internal static extern int Create(out IntPtr /* mv_face_recognition_model_h */ recognitionModel);
+            internal static extern MediaVisionError Create(out IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_destroy")]
-            internal static extern int Destroy(IntPtr /* mv_face_recognition_model_h */ recognitionModel);
+            internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_clone")]
-            internal static extern int Clone(IntPtr /* mv_face_recognition_model_h */ src, out IntPtr /* mv_face_recognition_model_h */ dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_save")]
-            internal static extern int Save(string fileName, IntPtr /* mv_face_recognition_model_h */ recognitionModel);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_load")]
-            internal static extern int Load(string fileName, out IntPtr /* mv_face_recognition_model_h */ recognitionModel);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_add")]
-            internal static extern int Add(IntPtr /* mv_source_h */ source, IntPtr /* mv_face_recognition_model_h */ recognitionModel, IntPtr exampleLocation, int faceLabel);
+            internal static extern MediaVisionError Add(IntPtr source, IntPtr recognitionModel,
+                ref Rectangle exampleLocation, int faceLabel);
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_add")]
+            internal static extern MediaVisionError Add(IntPtr source, IntPtr recognitionModel,
+                IntPtr exampleLocation, int faceLabel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_reset")]
-            internal static extern int Reset(IntPtr /* mv_face_recognition_model_h */ recognitionModel, IntPtr faceLabel);
+            internal static extern MediaVisionError Reset(IntPtr recognitionModel, IntPtr faceLabel = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_reset")]
-            internal static extern int Remove(IntPtr /* mv_face_recognition_model_h */ recognitionModel, ref int faceLabel);
+            internal static extern MediaVisionError Remove(IntPtr recognitionModel, ref int faceLabel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_learn")]
-            internal static extern int Learn(IntPtr /* mv_engine_config_h */ engineCfg, IntPtr /* mv_face_recognition_model_h */ recognitionModel);
+            internal static extern MediaVisionError Learn(IntPtr engineCfg, IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_recognition_model_query_labels")]
-            internal static extern int QueryLabels(IntPtr /* mv_face_recognition_model_h */ recognitionModel, out IntPtr labels, out uint numberOfLabels);
+            internal static extern MediaVisionError QueryLabels(IntPtr handle, out IntPtr labels, out uint numberOfLabels);
         }
 
         /// <summary>
@@ -106,22 +127,27 @@ internal static partial class Interop
         internal static partial class FaceTrackingModel
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_create")]
-            internal static extern int Create(out IntPtr /* mv_face_tracking_model_h */ trackingModel);
+            internal static extern MediaVisionError Create(out IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_destroy")]
-            internal static extern int Destroy(IntPtr /* mv_face_tracking_model_h */ trackingModel);
+            internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_prepare")]
-            internal static extern int Prepare(IntPtr /* mv_face_tracking_model_h */ trackingModel, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr /* mv_source_h */ source, IntPtr location);
+            internal static extern MediaVisionError Prepare(IntPtr trackingModel, IntPtr engineCfg,
+                IntPtr source, ref Quadrangle location);
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr trackingModel, IntPtr engineCfg,
+                IntPtr source, IntPtr location);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_clone")]
-            internal static extern int Clone(IntPtr /* mv_face_tracking_model_h */ src, out IntPtr /* mv_face_tracking_model_h */ dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_save")]
-            internal static extern int Save(string fileName, IntPtr /* mv_face_tracking_model_h */ trackingModel);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_face_tracking_model_load")]
-            internal static extern int Load(string fileName, out IntPtr /* mv_face_tracking_model_h */ trackingModel);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
         }
     }
 }

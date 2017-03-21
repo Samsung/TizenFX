@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,107 +15,125 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
-using static Interop.MediaVision;
+using System.IO;
+using InteropModel = Interop.MediaVision.FaceTrackingModel;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents face tracking model interface
+    /// Represents face tracking model.
     /// </summary>
     public class FaceTrackingModel : IDisposable
     {
-        internal IntPtr _trackingModelHandle = IntPtr.Zero;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
-        /// Construct of FaceTrackingModel class
+        /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class.
         /// </summary>
-        /// <code>
-        /// var model = new FaceTrackingModel();
-        /// </code>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         public FaceTrackingModel()
         {
-            int ret = Interop.MediaVision.FaceTrackingModel.Create(out _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to create FaceTrackingModel.");
+            InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel.");
         }
 
         /// <summary>
-        /// Construct of FaceTrackingModel class which creates and loads tracking model from file.
+        /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// FaceTrackingModel is loaded from the absolute path directory.\n
-        /// Models has been saved by <see cref="Save()"/> function can be loaded with this function
+        /// Models has been saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
-        /// <param name="fileName">Name of path/file to load the model</param>
+        /// <param name="modelPath">Path to the model to load.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
+        /// <exception cref="System.IO.FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     <paramref name="modelPath"/> is not supported format.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
-        /// <seealso cref="Prepare()"/>
-        /// <code>
-        /// 
-        /// </code>
-        public FaceTrackingModel(string fileName)
+        public FaceTrackingModel(string modelPath)
         {
-            int ret = Interop.MediaVision.FaceTrackingModel.Load(fileName, out _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to load FaceTrackingModel from file.");
+            if (modelPath == null)
+            {
+                throw new ArgumentNullException(nameof(modelPath));
+            }
+            InteropModel.Load(modelPath, out _handle).Validate("Failed to load FaceTrackingModel from file.");
         }
 
-        /// <summary>
-        /// Destructor of the FaceTrackingModel class.
-        /// </summary>
         ~FaceTrackingModel()
         {
             Dispose(false);
         }
 
-        /// <summary>
-        /// Calls this function to initialize tracking model by the location of the face to be tracked.
-        /// </summary>
-        /// <param name="config">The configuration of engine will be used for model preparing. If NULL, then default settings will be used.</param>
-        /// <param name="source">The source where face location is specified. Usually it is the first frame of the video or the first image in the continuous image sequence planned to be used for tracking</param>
-        /// <param name="location">The quadrangle-shaped location determining position of the face to be tracked on the source. If NULL, then tracking model will try to find previously tracked face by itself. Don't set NULL when called first time for the tracking model.</param>
-        public void Prepare(FaceEngineConfiguration config, MediaVisionSource source, Quadrangle location = null)
+        private MediaVisionError InvokePrepare(MediaVisionSource source, Quadrangle region)
         {
-            if (source == null)
+            if (region != null)
             {
-                throw new ArgumentException("Invalid source");
+                var quad = region.ToMarshalable();
+                return InteropModel.Prepare(Handle, IntPtr.Zero, source.Handle, ref quad);
             }
 
-            IntPtr ptr = IntPtr.Zero;
-            if (location != null)
-            {
-                Interop.MediaVision.Quadrangle quadrangle = new Interop.MediaVision.Quadrangle()
-                {
-                    x1 = location.Points[0].X, y1 = location.Points[0].Y,
-                    x2 = location.Points[1].X, y2 = location.Points[1].Y,
-                    x3 = location.Points[2].X, y3 = location.Points[2].Y,
-                    x4 = location.Points[3].X, y4 = location.Points[3].Y
-                };
-                ptr = Marshal.AllocHGlobal(Marshal.SizeOf(quadrangle));
-                Marshal.StructureToPtr(quadrangle, ptr, false);
-            }
-
-            int ret = Interop.MediaVision.FaceTrackingModel.Prepare(_trackingModelHandle,
-                                                                    (config != null) ? config._engineHandle : IntPtr.Zero,
-                                                                    source._sourceHandle, ptr);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to prepare tracking model.");
+            return InteropModel.Prepare(Handle, IntPtr.Zero, source.Handle, IntPtr.Zero);
         }
 
         /// <summary>
-        /// Calls this method to save tracking model to the file.
+        /// Initializes tracking model by the location of the face to be tracked.
+        ///
+        /// It is usually called once after tracking model is created and each time before tracking
+        /// is started for the new sequence of sources which is not the direct continuation of
+        /// the sequence for which tracking has been performed before. But it is allowed to call it
+        /// between tracking sessions to allow Media Vision start to track more accurately.
         /// </summary>
         /// <remarks>
-        /// TrackingModel is saved to the absolute path directory.
+        /// <paramref name="region"/> needs to be the position of the face to be tracked when called first time for the tracking model.
         /// </remarks>
-        /// <param name="fileName">Name of the path/file to save the model</param>
-        public void Save(string fileName)
+        /// <param name="source">The source where face location is specified.
+        ///     Usually it is the first frame of the video or the first image in the continuous
+        ///     image sequence planned to be used for tracking.</param>
+        /// <param name="region">The region determining position of the face to be tracked on the source.
+        ///     If null, then tracking model will try to find previously tracked face by itself.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="region"/> has invalid points.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The <see cref="FaceTrackingModel"/> has already been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="source"/> has already bean disposed of.
+        /// </exception>
+        public void Prepare(MediaVisionSource source, Quadrangle region)
         {
-            if (string.IsNullOrEmpty(fileName))
+            if (source == null)
             {
-                throw new ArgumentException("Invalid file name");
+                throw new ArgumentNullException(nameof(source));
             }
 
-            int ret = Interop.MediaVision.FaceTrackingModel.Save(fileName, _trackingModelHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to save tracking model to file");
+            InvokePrepare(source, region).Validate("Failed to prepare tracking model.");
+        }
+
+        /// <summary>
+        /// Saves the tracking model to the file.
+        /// </summary>
+        /// <param name="path">Path to the file to save the model.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        public void Save(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            var ret = InteropModel.Save(path, Handle);
+
+            if (ret == MediaVisionError.InvalidPath)
+            {
+                throw new DirectoryNotFoundException($"The directory for the path({path}) does not exist.");
+            }
+
+            ret.Validate("Failed to save tracking model to file");
         }
 
         public void Dispose()
@@ -131,13 +149,20 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            if (disposing)
-            {
-                // Free managed objects
-            }
-
-            Interop.MediaVision.FaceTrackingModel.Destroy(_trackingModelHandle);
+            InteropModel.Destroy(_handle);
             _disposed = true;
+        }
+
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(FaceTrackingModel));
+                }
+                return _handle;
+            }
         }
     }
 }

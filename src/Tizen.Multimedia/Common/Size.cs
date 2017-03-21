@@ -47,7 +47,7 @@ namespace Tizen.Multimedia
             set;
         }
 
-        public override string ToString() => $"Width={ Width }, Height={ Height }";
+        public override string ToString() => $"Width={ Width.ToString() }, Height={ Height.ToString() }";
 
         public override int GetHashCode()
         {
@@ -56,23 +56,17 @@ namespace Tizen.Multimedia
 
         public override bool Equals(object obj)
         {
-            if ((obj is Size) == false)
-            {
-                return false;
-            }
-
-            Size rhs = (Size)obj;
-            return Width == rhs.Width && Height == rhs.Height;
+            return obj is Size && this == (Size)obj;
         }
 
         public static bool operator ==(Size lhs, Size rhs)
         {
-            return lhs.Equals(rhs);
+            return lhs.Width == rhs.Width && lhs.Height == rhs.Height;
         }
 
         public static bool operator !=(Size lhs, Size rhs)
         {
-            return !lhs.Equals(rhs);
+            return !(lhs == rhs);
         }
     }
 }

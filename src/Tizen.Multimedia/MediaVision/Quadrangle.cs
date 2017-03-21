@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,38 +19,32 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents location of the object bounded by quadrangle defined by four 2D points.
+    /// Represents a region with 4 <see cref="Point"/>s.
     /// </summary>
     public class Quadrangle
     {
-        internal Quadrangle()
-        {
-
-        }
-
         /// <summary>
         /// The constructor of the Quadrangle class
         /// </summary>
-        /// <param name="points">four points that define object bounding quadrangle</param>
+        /// <remarks><paramref name="points"/> must have 4 elements</remarks>
+        /// <param name="points">four points that define object bounding quadrangle.</param>
+        /// <exception cref="ArgumentException">The Length of <paramref name="points"/> is not 4.</exception>
         public Quadrangle(Point[] points)
         {
             if (points.Length != 4)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentException($"{points} must have 4 elements.");
             }
 
             Points = points;
         }
 
         /// <summary>
-        /// Gets four points that define object bounding quadrangle
+        /// Gets four points that define the object bounding quadrangle.
         /// </summary>
-        public Point[] Points { get; internal set; }
+        public Point[] Points { get; }
 
-        internal new string ToString()
-        {
-            return string.Format("[{0}, {1}, {2}, {3}]", Points[0].ToString(), Points[1].ToString(),
-                Points[2].ToString(), Points[3].ToString());
-        }
+        public override string ToString() =>
+            $"[{{{Points[0].ToString()}}}, {{{Points[1].ToString()}}}, {{{Points[2].ToString()}}}, {{{Points[3].ToString()}}}]";
     }
 }

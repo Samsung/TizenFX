@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -31,25 +31,38 @@ internal static partial class Interop
         /// <summary>
         /// Interop for barcode detector APIs
         /// </summary>
-        internal static partial class BarCodeDetector
+        internal static partial class BarcodeDetector
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_detect")]
-            internal static extern int Detect(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, Rectangle roi, MvBarcodeDetectedCallback detectCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Detect(IntPtr source, IntPtr engineCfg, Rectangle roi,
+                DetectedCallback detectCb, IntPtr userData = default(IntPtr));
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvBarcodeDetectedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr barcodeLocations, IntPtr messages, IntPtr /* mv_barcode_type_e */ types, int numberOfBarcodes, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void DetectedCallback(
+                IntPtr source,
+                IntPtr engineCfg,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)]
+                Quadrangle[] locations,
+                [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 5)]
+                string[] messages,
+                BarcodeType[] types,
+                int numberOfBarcodes,
+                IntPtr userData);
         }
 
         /// <summary>
         /// Interop for barcode generator APIs
         /// </summary>
-        internal static partial class BarCodeGenerator
+        internal static partial class BarcodeGenerator
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_generate_source")]
-            internal static extern int GenerateSource(IntPtr /* mv_engine_config_h */ engineCfg, string message, BarcodeType /* mv_barcode_type_e */ type, QrMode /* mv_barcode_qr_mode_e */ qrEncMode, ErrorCorrectionLevel /* mv_barcode_qr_ecc_e */ qrEcc, int qrVersion, IntPtr /* mv_source_h */ image);
+            internal static extern MediaVisionError GenerateSource(IntPtr engineCfg, string message,
+                BarcodeType type, int qrEncMode, int qrEcc, int qrVersion, IntPtr source);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_generate_image")]
-            internal static extern int GenerateImage(IntPtr /* mv_engine_config_h */ engineCfg, string message, int imageWidth, int imageHeight, BarcodeType /* mv_barcode_type_e */ type, QrMode /* mv_barcode_qr_mode_e */ qrEncMode, ErrorCorrectionLevel /* mv_barcode_qr_ecc_e */ qrEcc, int qrVersion, string imagePath, BarcodeImageFormat /* mv_barcode_image_format_e */ imageFormat);
+            internal static extern MediaVisionError GenerateImage(IntPtr engineCfg,
+                string message, int imageWidth, int imageHeight, BarcodeType type,
+                int qrEncMode, int qrEcc, int qrVersion, string imagePath, BarcodeImageFormat imageFormat);
         }
     }
 }

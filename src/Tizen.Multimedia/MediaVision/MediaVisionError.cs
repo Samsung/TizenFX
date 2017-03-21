@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -84,51 +85,43 @@ namespace Tizen.Multimedia
         InvalidPath = MediaVisionErrorCode | 0x04
     }
 
-    internal static class MediaVisionErrorFactory
+    internal static class MediaVisionErrorExtensions
     {
-        internal static void CheckAndThrowException(int error, string msg)
+        public static void Validate(this MediaVisionError error, string msg)
         {
-            MediaVisionError e = (MediaVisionError)error;
-            if (e != MediaVisionError.None)
+            if (error == MediaVisionError.None)
             {
-                Log.Error(MediaVisionLog.Tag, String.Format("{0} : {1}", e.ToString(), msg));
-                throw GetException(error, msg);
+                return;
             }
-        }
 
-        internal static Exception GetException(int err, string msg)
-        {
-            MediaVisionError e = (MediaVisionError)err;
-            switch (e)
+            switch (error)
             {
-                case MediaVisionError.None:
-                    return null;
                 case MediaVisionError.NotSupported:
-                    throw new NotSupportedException("Not Supported: " + msg);
+                    throw new NotSupportedException(msg);
                 case MediaVisionError.MsgTooLong:
-                    throw new InvalidOperationException("Message too long: " + msg);
+                    throw new ArgumentException($"{msg} : Message too long.");
                 case MediaVisionError.NoData:
-                    throw new InvalidOperationException("No Data: " + msg);
+                    throw new InvalidOperationException($"{msg} : No Data.");
                 case MediaVisionError.KeyNotAvailable:
-                    throw new InvalidOperationException("Key Not Available: " + msg);
+                    throw new ArgumentException($"{msg} : Key Not Available.");
                 case MediaVisionError.OutOfMemory:
-                    throw new OutOfMemoryException("Out of Memory: " + msg);
+                    throw new OutOfMemoryException($"{msg} : Out of Memory.");
                 case MediaVisionError.InvalidParameter:
-                    throw new ArgumentException("Invalid Parameter: " + msg);
+                    throw new ArgumentException($"{msg} : Invalid argument.");
                 case MediaVisionError.InvalidOperation:
-                    throw new InvalidOperationException("Invalid Opertation: " + msg);
+                    throw new InvalidOperationException($"{msg} : Invalid Operation.");
                 case MediaVisionError.PermissionDenied:
-                    throw new UnauthorizedAccessException("Permission Denied: " + msg);
+                    throw new UnauthorizedAccessException($"{msg} : Permission Denied.");
                 case MediaVisionError.NotSupportedFormat:
-                    throw new InvalidOperationException("Not Supported Format: " + msg);
+                    throw new NotSupportedException($"{msg} : Not Supported Format.");
                 case MediaVisionError.Internal:
-                    throw new InvalidOperationException("Internal Error: " + msg);
+                    throw new InvalidOperationException($"{msg} : Internal Error.");
                 case MediaVisionError.InvalidData:
-                    throw new InvalidOperationException("Invalid Data: " + msg);
+                    throw new ArgumentException($"{msg} : Invalid Data.");
                 case MediaVisionError.InvalidPath:
-                    throw new InvalidOperationException("Invalid Path: " + msg);
+                    throw new FileNotFoundException($"{msg} : Invalid Path.");
                 default:
-                    throw new InvalidOperationException("Unknown Error: " + msg);
+                    throw new InvalidOperationException($"{msg} : Unknown Error.");
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -20,22 +20,21 @@ using System.Collections.Generic;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class is an event arguments of the PersonRecognized event.
+    /// Provides data for the <see cref="PersonRecognizer.Recognized"/> event.
     /// </summary>
     public class PersonRecognizedEventArgs : EventArgs
     {
-        internal PersonRecognizedEventArgs()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonRecognizedEventArgs"/> class.
+        /// </summary>
+        public PersonRecognizedEventArgs(IEnumerable<PersonRecognitionInfo> recognitionInfo)
         {
+            Recongnitions = recognitionInfo;
         }
 
         /// <summary>
-        /// The identifier of the video source where event has been detected
+        /// Gets a set of information that correspond to the recognized persons.
         /// </summary>
-        public int VideoStreamId { get; internal set; }
-
-        /// <summary>
-        /// Gets a set of information that correspond to the recognized persons
-        /// </summary>
-        public List<PersonRecognitionResult> Result { get; internal set; }
+        public IEnumerable<PersonRecognitionInfo> Recongnitions { get; }
     }
 }

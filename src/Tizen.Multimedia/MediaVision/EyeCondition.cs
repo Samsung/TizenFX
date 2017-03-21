@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,20 +17,22 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for eyes state type.
+    /// Specifies the eyes state types.
     /// </summary>
     public enum EyeCondition
     {
         /// <summary>
-        /// Eyes are open
+        /// Eyes are open.
         /// </summary>
         Open,
+
         /// <summary>
-        /// Eyes are closed
+        /// Eyes are closed.
         /// </summary>
         Closed,
+
         /// <summary>
-        /// The eyes condition wasn't determined
+        /// The eyes condition wasn't determined.
         /// </summary>
         NotFound
     }

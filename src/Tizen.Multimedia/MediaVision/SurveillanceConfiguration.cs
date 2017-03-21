@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,25 +17,12 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration to target attribute
+    /// SurveillanceEngineConfiguration is a base class for surveillance configurations.
     /// </summary>
-    public enum TargetAttribute
+    public class SurveillanceEngineConfiguration : EngineConfiguration
     {
-        /// <summary>
-        /// 1D and 2D
-        /// </summary>
-        All,
-        /// <summary>
-        /// 1D barcode only
-        /// </summary>
-        Barcode1D,
-        /// <summary>
-        /// 2D barcode only
-        /// </summary>
-        Barcode2D,
-        /// <summary>
-        /// Unavailable
-        /// </summary>
-        Unavailable
+        internal SurveillanceEngineConfiguration()
+        {
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace Tizen.Multimedia
             set;
         }
 
-        public override string ToString() => $"X={X}, Y={Y}";
+        public override string ToString() => $"X={X.ToString()}, Y={Y.ToString()}";
 
         public override int GetHashCode()
         {
@@ -60,23 +60,17 @@ namespace Tizen.Multimedia
 
         public override bool Equals(object obj)
         {
-            if ((obj is Point) == false)
-            {
-                return false;
-            }
-
-            Point rhs = (Point)obj;
-            return X == rhs.X && Y == rhs.Y;
+            return obj is Point && this == (Point)obj;
         }
 
         public static bool operator ==(Point lhs, Point rhs)
         {
-            return lhs.Equals(rhs);
+            return lhs.X == rhs.X && lhs.Y == rhs.Y;
         }
 
         public static bool operator !=(Point lhs, Point rhs)
         {
-            return !lhs.Equals(rhs);
+            return !(lhs == rhs);
         }
     }
 }

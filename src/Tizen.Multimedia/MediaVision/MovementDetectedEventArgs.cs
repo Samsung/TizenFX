@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -20,22 +20,21 @@ using System.Collections.Generic;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class is an event arguments of the MovementDetected event.
+    /// Provides data for the <see cref="MovementDetector.Detected"/> event.
     /// </summary>
     public class MovementDetectedEventArgs : EventArgs
     {
-        internal MovementDetectedEventArgs()
-        {
-        }
-
         /// <summary>
-        /// The identifier of the video source where event has been detected
+        /// Initializes a new instance of the <see cref="MovementDetectedEventArgs"/> class.
         /// </summary>
-        public int VideoStreamId { get; internal set; }
+        public MovementDetectedEventArgs(IEnumerable<Rectangle> areas)
+        {
+            Areas = areas;
+        }
 
         /// <summary>
         /// Gets a set of rectangular regions where movement was detected.
         /// </summary>
-        public List<Rectangle> Regions { get; internal set; }
+        public IEnumerable<Rectangle> Areas { get; }
     }
 }

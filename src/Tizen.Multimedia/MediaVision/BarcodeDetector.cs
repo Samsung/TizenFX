@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,95 +16,101 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.MediaVision;
+using InteropBarcode = Interop.MediaVision.BarcodeDetector;
+using Unmanaged = Interop.MediaVision;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class contains the Media Vision barcode detect API.\n
-    /// These APIs can be used for detecting barcodes on image sources, reading encoded messages, getting barcode types.
+    /// Provides the ability to detect barcodes on image sources.
     /// </summary>
     public static class BarcodeDetector
     {
         /// <summary>
-        /// Detects barcode(s) on source and reads message from it.
+        /// Detects barcodes on source and reads message from it.
         /// </summary>
-        /// <param name="source">The media vision source object</param>
-        /// <param name="config">The configuration of the barcode detector engine </param>
-        /// <param name="roi">Region of interest - rectangular area on the source which will be used for barcode detection Note that roi should be inside area on the source.</param>
-        /// <returns>Returns list of barcode detected asynchronously</returns>
-        /// <code>
-        ///
-        /// </code>
-        public static async Task<List<Barcode>> DetectAsync(MediaVisionSource source, BarcodeDetectorEngineConfiguration config, Rectangle roi)
+        /// <param name="source">The <see cref="MediaVisionSource"/> instance.</param>
+        /// <param name="roi">Region of interest - rectangular area on the source which will be used for
+        ///     barcode detection. Note that roi should be inside area on the source.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="source"/> already has been disposed of.</exception>
+        /// <returns>A task that represents the asynchronous detect operation.</returns>
+        /// <seealso cref="Barcode"/>
+        public static async Task<IEnumerable<Barcode>> DetectAsync(MediaVisionSource source,
+            Rectangle roi)
         {
-            TaskCompletionSource<List<Barcode>> tcsBarcodeList = new TaskCompletionSource<List<Barcode>>();
-            Interop.MediaVision.Rectangle rectangle = new Interop.MediaVision.Rectangle()
-            {
-                x = roi.Point.X,
-                y = roi.Point.Y,
-                width = roi.Width,
-                height = roi.Height
-            };
+            return await DetectAsync(source, roi, null);
+        }
 
-            // Define native callback
-            Interop.MediaVision.BarCodeDetector.MvBarcodeDetectedCallback detectedCb = (IntPtr mvSource, IntPtr engineCfg, IntPtr barcodeLocations, IntPtr messages, IntPtr types, int numberOfBarcodes, IntPtr userData) =>
+        /// <summary>
+        /// Detects barcodes on source and reads message from it with <see cref="BarcodeDetectionConfiguration"/>.
+        /// </summary>
+        /// <param name="source">The <see cref="MediaVisionSource"/> instance.</param>
+        /// <param name="roi">Region of interest - rectangular area on the source which will be used for
+        ///     barcode detection. Note that roi should be inside area on the source.</param>
+        /// <param name="config">The configuration of the barcode detector. This value can be null.</param>
+        /// <returns>A task that represents the asynchronous detect operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="source"/> already has been disposed of.\n
+        ///     - or -\n
+        ///     <paramref name="config"/> already has been disposed of.
+        /// </exception>
+        /// <seealso cref="Barcode"/>
+        public static async Task<IEnumerable<Barcode>> DetectAsync(MediaVisionSource source,
+            Rectangle roi, BarcodeDetectionConfiguration config)
+        {
+            if (source == null)
             {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            var tcs = new TaskCompletionSource<IEnumerable<Barcode>>();
+
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            {
+                InteropBarcode.Detect(source.Handle, EngineConfiguration.GetHandle(config),
+                    roi.ToMarshalable(), cb.Target).Validate("Failed to detect barcode.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static Barcode[] CreateBarcodes(Unmanaged.Quadrangle[] locations, string[] messages,
+            BarcodeType[] types, int numberOfBarcodes)
+        {
+            Barcode[] barcodes = new Barcode[numberOfBarcodes];
+
+            for (int i = 0; i < numberOfBarcodes; i++)
+            {
+                barcodes[i] = new Barcode(locations[i].ToApiStruct(), messages[i], types[i]);
+
+                Log.Info(MediaVisionLog.Tag, barcodes[i].ToString());
+            }
+
+            return barcodes;
+        }
+
+        private static InteropBarcode.DetectedCallback GetCallback(TaskCompletionSource<IEnumerable<Barcode>> tcs)
+        {
+            return (IntPtr mvSource, IntPtr engineCfg, Unmanaged.Quadrangle[] locations, string[] messages,
+                BarcodeType[] types, int numberOfBarcodes, IntPtr userData) =>
+            {
+                Log.Info(MediaVisionLog.Tag, $"Barcodes detected, count : {numberOfBarcodes}");
+
                 try
                 {
-                    Log.Info(MediaVisionLog.Tag, String.Format("Barcodes detected, count : {0}", numberOfBarcodes));
-                    List<Barcode> barcodes = new List<Barcode>();
-                    if (numberOfBarcodes > 0)
-                    {
-                        IntPtr[] msgPtr = new IntPtr[numberOfBarcodes];
-                        Marshal.Copy(messages, msgPtr, 0, numberOfBarcodes);
-
-                        // Prepare list of barcodes
-                        for (int i = 0; i < numberOfBarcodes; i++)
-                        {
-                            Interop.MediaVision.Quadrangle location = (Interop.MediaVision.Quadrangle)Marshal.PtrToStructure(barcodeLocations, typeof(Interop.MediaVision.Quadrangle));
-                            string message = Marshal.PtrToStringAnsi(msgPtr[i]);
-                            BarcodeType type = (BarcodeType)Marshal.ReadInt32(types);
-                            Quadrangle quadrangle = new Quadrangle()
-                            {
-                                Points = new Point[4]
-                                {
-                                    new Point(location.x1, location.y1),
-                                    new Point(location.x2, location.y2),
-                                    new Point(location.x3, location.y3),
-                                    new Point(location.x4, location.y4)
-                                }
-                            };
-                            Log.Info(MediaVisionLog.Tag, String.Format("Location : {0}, Message : {1}, Type : {2}", quadrangle.ToString(), message, type));
-                            Barcode barcode = new Barcode()
-                            {
-                                Location = quadrangle,
-                                Message = message,
-                                Type = type
-                            };
-                            barcodes.Add(barcode);
-                            barcodeLocations = IntPtr.Add(barcodeLocations, sizeof(int) * 8);
-                            types = IntPtr.Add(barcodeLocations, sizeof(BarcodeType));
-                        }
-                    }
-
-                    if (!tcsBarcodeList.TrySetResult(barcodes))
-                    {
-                        Log.Info(MediaVisionLog.Tag, "Failed to set result");
-                        tcsBarcodeList.TrySetException(new InvalidOperationException("Failed to set result"));
-                    }
+                    tcs.TrySetResult(CreateBarcodes(locations, messages, types, numberOfBarcodes));
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Log.Info(MediaVisionLog.Tag, "exception :" + ex.ToString());
-                    tcsBarcodeList.TrySetException(ex);
+                    MultimediaLog.Error(MediaVisionLog.Tag, "Failed to handle barcode detection callback", e);
+                    tcs.TrySetException(e);
                 }
             };
-            int ret = Interop.MediaVision.BarCodeDetector.Detect(source._sourceHandle, config._engineHandle, rectangle, detectedCb, IntPtr.Zero);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to detect barcode.");
-            return await tcsBarcodeList.Task;
         }
     }
 }

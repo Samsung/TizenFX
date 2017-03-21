@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Multimedia;
 
 /// <summary>
 /// Interop APIs
@@ -33,43 +34,51 @@ internal static partial class Interop
         internal static partial class Image
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_recognize")]
-            internal static extern int Recognize(IntPtr /* mv_source_h */ source, IntPtr /* mv_image_object_h */ imageObjects, int numberOfObjects, IntPtr /* mv_engine_config_h */ engineCfg, MvImageRecognizedCallback recognizedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Recognize(IntPtr source, IntPtr[] imageObjects,
+                int numberOfObjects, IntPtr engineCfg, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_track")]
-            internal static extern int Track(IntPtr /* mv_source_h */ source, IntPtr /* mv_image_tracking_model_h */ imageTrackingModel, IntPtr /* mv_engine_config_h */ engineCfg, MvImageTrackedCallback trackedCb, IntPtr /* void */ userData);
+            internal static extern MediaVisionError Track(IntPtr source, IntPtr imageTrackingModel,
+                IntPtr engineCfg, TrackedCallback trackedCb, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_create")]
-            internal static extern int Create(out IntPtr /* mv_image_object_h */ imageObject);
+            internal static extern MediaVisionError Create(out IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_destroy")]
-            internal static extern int Destroy(IntPtr /* mv_image_object_h */ imageObject);
+            internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_fill")]
-            internal static extern int Fill(IntPtr /* mv_image_object_h */ imageObject, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr /* mv_source_h */ source, IntPtr location);
+            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, ref Rectangle location);
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_fill")]
+            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, IntPtr location);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_get_recognition_rate")]
-            internal static extern int GetRecognitionRate(IntPtr /* mv_image_object_h */ imageObject, out double recognitionRate);
+            internal static extern MediaVisionError GetRecognitionRate(IntPtr handle, out double recognitionRate);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_set_label")]
-            internal static extern int SetLabel(IntPtr /* mv_image_object_h */ imageObject, int label);
+            internal static extern MediaVisionError SetLabel(IntPtr handle, int label);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_get_label")]
-            internal static extern int GetLabel(IntPtr /* mv_image_object_h */ imageObject, out int label);
+            internal static extern MediaVisionError GetLabel(IntPtr handle, out int label);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_clone")]
-            internal static extern int Clone(IntPtr /* mv_image_object_h */ src, out IntPtr /* mv_image_object_h */ dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_save")]
-            internal static extern int Save(string fileName, IntPtr /* mv_image_object_h */ imageObject);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_object_load")]
-            internal static extern int Load(string fileName, out IntPtr /* mv_image_object_h */ imageObject);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvImageRecognizedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr /* mv_image_object_h */ imageObjects, IntPtr locations, uint numberOfObjects, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void RecognizedCallback(IntPtr source, IntPtr engineCfg, IntPtr imageObjects,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]
+                IntPtr[] locations, uint numberOfObjects, IntPtr userData);
 
-            [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-            internal delegate void MvImageTrackedCallback(IntPtr /* mv_source_h */ source, IntPtr /* mv_image_tracking_model_h */ imageTrackingModel, IntPtr /* mv_engine_config_h */ engineCfg, IntPtr location, IntPtr /* void */ userData);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void TrackedCallback(IntPtr source, IntPtr imageTrackingModel,
+                IntPtr engineCfg, IntPtr location, IntPtr  userData);
         }
 
         /// <summary>
@@ -78,25 +87,25 @@ internal static partial class Interop
         internal static partial class ImageTrackingModel
         {
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_create")]
-            internal static extern int Create(out IntPtr /* mv_image_tracking_model_h */ imageTrackingModel);
+            internal static extern MediaVisionError Create(out IntPtr imageTrackingModel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_set_target")]
-            internal static extern int SetTarget(IntPtr /* mv_image_object_h */ imageObject, IntPtr /* mv_image_tracking_model_h */ imageTrackingModel);
+            internal static extern MediaVisionError SetTarget(IntPtr handle, IntPtr imageTrackingModel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_destroy")]
-            internal static extern int Destroy(IntPtr /* mv_image_tracking_model_h */ imageTrackingModel);
+            internal static extern int Destroy(IntPtr imageTrackingModel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_refresh")]
-            internal static extern int Refresh(IntPtr /* mv_image_tracking_model_h */ imageTrackingModel, IntPtr /* mv_engine_config_h */ engineCfg);
+            internal static extern MediaVisionError Refresh(IntPtr imageTrackingModel, IntPtr engineCfg);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_clone")]
-            internal static extern int Clone(IntPtr /* mv_image_tracking_model_h */ src, out IntPtr /* mv_image_tracking_model_h */ dest);
+            internal static extern int Clone(IntPtr src, out IntPtr dest);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_save")]
-            internal static extern int Save(string fileName, IntPtr /* mv_image_tracking_model_h */ imageTrackingModel);
+            internal static extern MediaVisionError Save(string fileName, IntPtr imageTrackingModel);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_image_tracking_model_load")]
-            internal static extern int Load(string fileName, out IntPtr /* mv_image_tracking_model_h */ imageTrackingModel);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr imageTrackingModel);
         }
     }
 }

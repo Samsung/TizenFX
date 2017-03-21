@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,107 +15,331 @@
  */
 
 using System;
+using InteropBarcode = Interop.MediaVision.BarcodeGenerator;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class contains the Media Vision barcode generate API.\n
-    /// These APIs can be used for generating the barcodes and QR codes.
-    /// Different encoding types <see cref="QrMode"/> , error correction codes <see cref="ErrorCorrectionLevel"/>  and code versions are supported for QRCodes.
+    /// Provides the ability to generate barcodes and QR codes.
+    /// Different encoding types <see cref="QrMode"/> , error correction codes <see cref="ErrorCorrectionLevel"/>
+    /// and code versions are supported for QRCodes.
     /// </summary>
+    /// <seealso cref="BarcodeGenerationConfiguration"/>
     public static class BarcodeGenerator
     {
-        /// <summary>
-        /// Generates <see cref="MediaVisionSource"/> with barcode image.
-        /// </summary>
-        /// <remarks>
-        /// If the text attribute of engine configuration is set to <see cref="TextAttribute.Visible"/> , InvalidOperationException will be thrown when type is <see cref="BarcodeType.QR"/>
-        /// </remarks>
-        /// <param name="config">The configuration of the bar code generator engine</param>
-        /// <param name="message">The message to be encoded in the barcode</param>
-        /// <param name="type">Type of the barcode to be generated</param>
-        /// <param name="qrConfig">The QrConfig object - required for QR codes only</param>
-        /// <returns>
-        /// <param name="source">The media vision source object which will be used to fill by the buffer with generated image</param>
-        /// </returns>
-        /// <code>
-        /// 
-        /// </code>
-        public static MediaVisionSource GenerateSource(BarcodeGeneratorEngineConfiguration config, string message, BarcodeType type, QrConfiguration qrConfig = null)
+        private const int NoneErrorCorrection = (int)ErrorCorrectionLevel.High + 1;
+        private const int NoneQrMode = (int)QrMode.Utf8 + 1;
+
+        private static MediaVisionSource GenerateSource(BarcodeGenerationConfiguration config,
+            string message, BarcodeType type, int qrMode, int qrEcc, int qrVersion)
         {
-            if (string.IsNullOrEmpty(message) ||
-                type == BarcodeType.Undefined ||
-                (type == BarcodeType.QR &&
-                (qrConfig == null ||
-                qrConfig.ErrorCorrectionLevel == ErrorCorrectionLevel.Unavailable ||
-                qrConfig.Mode == QrMode.Unavailable ||
-                qrConfig.Version < 1 ||
-                qrConfig.Version > 40)))
+            if (message == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(message));
             }
 
+            ValidationUtil.ValidateEnum(typeof(BarcodeType), type);
+
             MediaVisionSource source = new MediaVisionSource();
-            int ret = (type == BarcodeType.QR) ?
-                        Interop.MediaVision.BarCodeGenerator.GenerateSource(config._engineHandle, message, type, qrConfig.Mode, qrConfig.ErrorCorrectionLevel, qrConfig.Version, source._sourceHandle) :
-                        Interop.MediaVision.BarCodeGenerator.GenerateSource(config._engineHandle, message, type, QrMode.Unavailable, ErrorCorrectionLevel.Unavailable, 0, source._sourceHandle);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to generate source");
+            try
+            {
+                InteropBarcode.GenerateSource(EngineConfiguration.GetHandle(config),
+                    message, type, qrMode, qrEcc, qrVersion, source.Handle).
+                    Validate("Failed to generate source");
+            }
+            catch (Exception)
+            {
+                source.Dispose();
+                throw;
+            }
             return source;
         }
 
         /// <summary>
-        /// Generates image file with barcode.
+        /// Generates a QR image with the specified message.
         /// </summary>
-        /// <remarks>
-        /// If the text attribute of engine configuration is set to <see cref="TextAttribute.Visible"/> ,
-        /// InvalidOperationException will be thrown when type is <see cref="BarcodeType.QR"/>\n
-        /// </remarks>
-        /// <param name="config">The configuration of the bar code generator engine</param>
-        /// <param name="message">The message to be encoded in the barcode</param>
-        /// <param name="type">Type of the barcode to be generated</param>
-        /// <param name="imageConfig">The BarcodeImageConfig object that contains information about the file to be generated</param>
-        /// <param name="qrConfig">The QrConfig object - required for QR codes only</param>
-        /// <code>
-        /// 
-        /// </code>
-        public static void GenerateImage(BarcodeGeneratorEngineConfiguration config, string message, BarcodeType type, BarcodeImageConfiguration imageConfig, QrConfiguration qrConfig = null)
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
+        /// <returns><see cref="MediaVisionSource"/> containing the generated QR image.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="qrConfig"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
+        ///     </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <seealso cref="QrMode"/>
+        public static MediaVisionSource GenerateSource(string message, QrConfiguration qrConfig)
         {
-            if (string.IsNullOrEmpty(message) ||
-                imageConfig == null ||
-                string.IsNullOrEmpty(imageConfig.Path) ||
-                type == BarcodeType.Undefined ||
-                (type == BarcodeType.QR &&
-                (qrConfig == null ||
-                qrConfig.ErrorCorrectionLevel == ErrorCorrectionLevel.Unavailable ||
-                qrConfig.Mode == QrMode.Unavailable ||
-                qrConfig.Version < 1 ||
-                qrConfig.Version > 40)))
+            return GenerateSource(message, qrConfig, null);
+        }
+
+        /// <summary>
+        /// Generates a QR image with the specified message with <see cref="BarcodeGenerationConfiguration"/>.
+        /// </summary>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
+        /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
+        /// <returns><see cref="MediaVisionSource"/> containing the generated QR image.</returns>
+        /// <remarks>
+        ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
+        ///     because the text visibility is not supported in the QR code.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="qrConfig"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> is the <see cref="Visibility.Visible"/>.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        /// <seealso cref="QrMode"/>
+        public static MediaVisionSource GenerateSource(string message, QrConfiguration qrConfig,
+            BarcodeGenerationConfiguration config)
+        {
+            if (qrConfig == null)
             {
-                throw new ArgumentException("Invalid parameter");
+                throw new ArgumentNullException(nameof(qrConfig));
             }
 
-            int ret = (type == BarcodeType.QR) ?
-                        Interop.MediaVision.BarCodeGenerator.GenerateImage(config._engineHandle,
-                                                                            message,
-                                                                            imageConfig.Width,
-                                                                            imageConfig.Height,
-                                                                            type,
-                                                                            qrConfig.Mode,
-                                                                            qrConfig.ErrorCorrectionLevel,
-                                                                            qrConfig.Version,
-                                                                            imageConfig.Path,
-                                                                            imageConfig.Format) :
-                        Interop.MediaVision.BarCodeGenerator.GenerateImage(config._engineHandle,
-                                                                            message,
-                                                                            imageConfig.Width,
-                                                                            imageConfig.Height,
-                                                                            type,
-                                                                            QrMode.Unavailable,
-                                                                            ErrorCorrectionLevel.Unavailable,
-                                                                            0,
-                                                                            imageConfig.Path,
-                                                                            imageConfig.Format);
-            MediaVisionErrorFactory.CheckAndThrowException(ret, "Failed to generate image");
+            if (config != null)
+            {
+                if (config.TextVisibility == Visibility.Visible)
+                {
+                    throw new NotSupportedException("Text can't be visible in QR.");
+                }
+            }
+
+            return GenerateSource(config, message, BarcodeType.QR, (int)qrConfig.Mode,
+                (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
+        }
+
+        /// <summary>
+        /// Generates a barcode image with the specified message.
+        /// </summary>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="type">Type of the barcode to be generated.</param>
+        /// <returns><see cref="MediaVisionSource"/> containing the generated barcode image.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="message"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.\n
+        ///     - or -\n
+        ///     <paramref name="type"/> is invalid.
+        ///     - or -\n
+        ///     <paramref name="message"/> contains illegal characters.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static MediaVisionSource GenerateSource(string message, BarcodeType type)
+        {
+            return GenerateSource(message, type, null);
+        }
+
+        /// <summary>
+        /// Generates a barcode image with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
+        /// </summary>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="type">Type of the barcode to be generated.</param>
+        /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
+        /// <returns><see cref="MediaVisionSource"/> containing the generated barcode image.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="message"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     - or -\n
+        ///     <paramref name="type"/> is invalid.
+        ///     - or -\n
+        ///     <paramref name="message"/> contains illegal characters.
+        /// </exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        public static MediaVisionSource GenerateSource(string message, BarcodeType type,
+            BarcodeGenerationConfiguration config)
+        {
+            if (type == BarcodeType.QR)
+            {
+                throw new ArgumentException($"Invalid barcode type : {type}.");
+            }
+
+            return GenerateSource(config, message, type, NoneQrMode, NoneErrorCorrection, 0);
+        }
+
+        private static void GenerateImage(BarcodeGenerationConfiguration config,
+            string message, BarcodeType type, BarcodeImageConfiguration imageConfig,
+            int qrMode, int qrEcc, int qrVersion)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            if (imageConfig == null)
+            {
+                throw new ArgumentNullException(nameof(imageConfig));
+            }
+
+            ValidationUtil.ValidateEnum(typeof(BarcodeType), type);
+
+            InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
+                imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
+                imageConfig.Path, imageConfig.Format).
+                Validate("Failed to generate image");
+        }
+
+        /// <summary>
+        /// Generates a QR image file with the specified message.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
+        ///     because the text visibility is not supported in the QR code.
+        /// </remarks>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
+        /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains information about the file to be generated.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="messsage"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="qrConfig"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageConfig"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <seealso cref="QrMode"/>
+        public static void GenerateImage(string message, QrConfiguration qrConfig,
+            BarcodeImageConfiguration imageConfig)
+        {
+            GenerateImage(message, qrConfig, imageConfig, null);
+        }
+
+        /// <summary>
+        /// Generates a QR image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
+        ///     because the text visibility is not supported in the QR code.
+        /// </remarks>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
+        /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
+        ///     information about the file to be generated.</param>
+        /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="messsage"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="qrConfig"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageConfig"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     - or -\n
+        ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> is the <see cref="Visibility.Visible"/>.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        public static void GenerateImage(string message, QrConfiguration qrConfig,
+            BarcodeImageConfiguration imageConfig, BarcodeGenerationConfiguration config)
+        {
+            if (qrConfig == null)
+            {
+                throw new ArgumentNullException(nameof(qrConfig));
+            }
+
+            if (config.TextVisibility == Visibility.Visible)
+            {
+                throw new NotSupportedException("Text can't be visible in QR.");
+            }
+
+            GenerateImage(config, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
+                (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
+        }
+
+        /// <summary>
+        /// Generates a barcode image file with the specified message.
+        /// </summary>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="type">Type of the barcode to be generated.</param>
+        /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
+        ///     information about the file to be generated.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="messsage"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageConfig"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     - or -\n
+        ///     <paramref name="type"/> is invalid.
+        ///     - or -\n
+        ///     <paramref name="message"/> contains illegal characters.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        public static void GenerateImage(string message, BarcodeType type, BarcodeImageConfiguration imageConfig)
+        {
+            GenerateImage(message, type, imageConfig, null);
+        }
+
+        /// <summary>
+        /// Generates a barcode image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
+        /// </summary>
+        /// <param name="message">The message to be encoded in the barcode.</param>
+        /// <param name="type">Type of the barcode to be generated.</param>
+        /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
+        ///     information about the file to be generated.</param>
+        /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="messsage"/> is null.\n
+        ///     - or -\n
+        ///     <paramref name="imageConfig"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="message"/> is too long.\n
+        ///     - or -\n
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     - or -\n
+        ///     <paramref name="type"/> is invalid.
+        ///     - or -\n
+        ///     <paramref name="message"/> contains illegal characters.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        public static void GenerateImage(string message,
+            BarcodeType type, BarcodeImageConfiguration imageConfig, BarcodeGenerationConfiguration config)
+        {
+            if (type == BarcodeType.QR)
+            {
+                throw new ArgumentException($"Invalid barcode type : {type}.");
+            }
+            GenerateImage(config, message, type, imageConfig, NoneQrMode, NoneErrorCorrection, 0);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,25 +17,23 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for face recognition model learning attribute of the engine configuration.
+    /// Specifies the face recognition model learning algorithms.
     /// </summary>
     public enum FaceRecognitionModelType
     {
         /// <summary>
-        /// Unknown method
+        /// Eigenfaces.
         /// </summary>
-        Unknown = 0,
+        EigenFaces = 1,
+
         /// <summary>
-        /// Eigenfaces
-        /// </summary>
-        EigenFaces,
-        /// <summary>
-        /// Fisherfaces
+        /// Fisherfaces.
         /// </summary>
         FisherFaces,
+
         /// <summary>
-        /// Local Binary Patterns Histograms (LBPH) - This is the default type
+        /// Local Binary Patterns Histograms (LBPH); The default type.
         /// </summary>
-        LBPH
+        Lbph
     }
 }
