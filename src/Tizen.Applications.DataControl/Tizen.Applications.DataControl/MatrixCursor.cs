@@ -19,6 +19,7 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Tizen.Applications.DataControl
 {
@@ -384,7 +385,7 @@ namespace Tizen.Applications.DataControl
                 index++;
                 fileTable[threadID] = index;
 
-                path = DATACONTROL_DIRECTORY + Application.Current.ApplicationInfo.ApplicationId + "_"+Application.Current.ApplicationInfo.ProcessId.ToString() + "_" + threadID.ToString() + "_" + index.ToString();
+                path = DATACONTROL_DIRECTORY + Application.Current.ApplicationInfo.ApplicationId + "_" + Process.GetCurrentProcess().Id.ToString() + "_" + threadID.ToString() + "_" + index.ToString();
 
                 return path;
             }
