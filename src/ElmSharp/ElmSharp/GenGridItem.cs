@@ -18,12 +18,25 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="GenItem"/>.
+    /// A instance to the gengrid item added.
+    /// It contains Update() method to update a gengrid item which is given.
+    /// </summary>
     public class GenGridItem : GenItem
     {
         internal GenGridItem(object data, GenItemClass itemClass) : base(data, itemClass)
         {
         }
 
+        /// <summary>
+        /// Gets or sets whether a given gengrid item is selected.
+        /// If one gengrid item is selected, any other previously selected items get unselected in favor of this new one.
+        /// </summary>
+        /// <remarks>
+        /// If true, it is selected.
+        /// If false, it is unselected.
+        /// </remarks>
         public override bool IsSelected
         {
             get
@@ -36,6 +49,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Updates the content of a given gengrid item.
+        /// This updates an item by calling all the genitem class functions again to get the content, text, and states.
+        /// Use this when the original item data has changed and you want the changes to reflect.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="GenGrid.UpdateRealizedItems"/> to update the contents of all the realized items.
+        /// </remarks>
         public override void Update()
         {
             Interop.Elementary.elm_gengrid_item_update(Handle);

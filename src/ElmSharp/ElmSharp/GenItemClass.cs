@@ -20,18 +20,53 @@ using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It represents the GenGrid or GenList item class definition field details.
+    /// It has some display styles, such as "default", "full" and "group_index".
+    /// </summary>
     public class GenItemClass : IDisposable
     {
         private static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
+
+        /// <summary>
+        /// The delegate to define <see cref="GetTextHandler"/>.
+        /// </summary>
+        /// <param name="data">The item data.</param>
+        /// <param name="part">The part where the data should be shown.</param>
+        /// <returns>Return string that should be shown.</returns>
         public delegate string GetTextDelegate(object data, string part);
+
+        /// <summary>
+        /// The delegate to define <see cref="GetContentHandler"/>.
+        /// </summary>
+        /// <param name="data">The item data.</param>
+        /// <param name="part">The part where the data should be shown.</param>
+        /// <returns>Return content that should be shown.</returns>
         public delegate EvasObject GetContentDelegate(object data, string part);
+
+        /// <summary>
+        /// The delegate to define <see cref="DeleteHandler"/>.
+        /// </summary>
+        /// <param name="data">The item data.</param>
         public delegate void DeleteDelegate(object data);
+
+        /// <summary>
+        /// The delegate to define <see cref="ReusableContentHandler"/>.
+        /// </summary>
+        /// <param name="data">The item data.</param>
+        /// <param name="part">The part where the data should be shown.</param>
+        /// <param name="old">The content has been added in gengrid.</param>
+        /// <returns>Return content that should be shown.</returns>
         public delegate EvasObject GetReusableContentDelegate(object data, string part, EvasObject old);
 
         private ItemClass _itemClass;
         private IntPtr _unmanagedPtr = IntPtr.Zero;
         private string _style;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the GenItemClass.
+        /// </summary>
+        /// <param name="style">The item display style.</param>
         public GenItemClass(string style)
         {
             _style = style;
@@ -52,10 +87,33 @@ namespace ElmSharp
             Dispose(false);
         }
 
+        /// <summary>
+        /// Gets the item style.
+        /// </summary>
         public string ItemStyle { get { return _style; } }
+
+        /// <summary>
+        /// Gets or sets the callback that defines how to display item text.
+        /// If get, return <see cref="GetTextDelegate"/>.
+        /// </summary>
         public GetTextDelegate GetTextHandler { get; set; }
+
+        /// <summary>
+        /// Gets or sets the callback that defines how to display item content.
+        /// If get, return <see cref="GetContentDelegate"/>.
+        /// </summary>
         public GetContentDelegate GetContentHandler { get; set; }
+
+        /// <summary>
+        /// Gets or sets the callback that defines how to delete item text and content.
+        /// If get, return <see cref="DeleteDelegate"/>.
+        /// </summary>
         public DeleteDelegate DeleteHandler { get; set; }
+
+        /// <summary>
+        /// Gets or sets the callback that defines how to reuse item content.
+        /// If get, return <see cref="GetReusableContentDelegate"/>.
+        /// </summary>
         public GetReusableContentDelegate ReusableContentHandler { get; set; }
 
         internal IntPtr UnmanagedPtr
@@ -80,9 +138,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Releases all resources used by the class.
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
