@@ -85,7 +85,7 @@ namespace ElmSharp
 
         public NaviItem Push(EvasObject content, string title, string style)
         {
-            IntPtr item = Interop.Elementary.elm_naviframe_item_push(RealHandle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, null);
+            IntPtr item = Interop.Elementary.elm_naviframe_item_push(RealHandle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, style);
             NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
             _itemStack.Add(naviItem);
             naviItem.Popped += ItemPoppedHandler;
