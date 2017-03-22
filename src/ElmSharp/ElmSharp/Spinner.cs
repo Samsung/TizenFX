@@ -18,6 +18,10 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Spinner is a widget that increase or decrease numeric values using arrow buttons, or edit values directly.
+    /// Inherits <see cref="Layout"/>.
+    /// </summary>
     public class Spinner : Layout
     {
         double _minimum = 0.0;
@@ -26,6 +30,10 @@ namespace ElmSharp
         SmartEvent _changed;
         SmartEvent _delayedChanged;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Spinner class.
+        /// </summary>
+        /// <param name="parent">The parent of new Spinner instance</param>
         public Spinner(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -35,10 +43,19 @@ namespace ElmSharp
             _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// ValueChanged will be triggered whenever the spinner value is changed.
+        /// </summary>
         public event EventHandler ValueChanged;
 
+        /// <summary>
+        ///  DelayedValueChanged will be triggered after a short time when the value is changed.
+        /// </summary>
         public event EventHandler DelayedValueChanged;
 
+        /// <summary>
+        /// Sets or gets the label format of the spinner.
+        /// </summary>
         public string LabelFormat
         {
             get
@@ -51,6 +68,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the minimum value for the spinner.
+        /// </summary>
         public double Minimum
         {
             get
@@ -64,6 +84,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the maximum value for the spinner.
+        /// </summary>
         public double Maximum
         {
             get
@@ -77,6 +100,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the step that used to increment or decrement the spinner value.
+        /// </summary>
         public double Step
         {
             get
@@ -89,6 +115,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value displayed by the spinner.
+        /// </summary>
         public double Value
         {
             get
@@ -101,6 +130,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the interval on time updates for an user mouse button hold on spinner widgets' arrows.
+        /// </summary>
         public double Interval
         {
             get
@@ -113,6 +145,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the base for rounding.
+        /// </summary>
         public double RoundBase
         {
             get
@@ -125,6 +160,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the round value for rounding.
+        /// </summary>
         public int RoundValue
         {
             get
@@ -137,6 +175,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the wrap of a given spinner widget.
+        /// </summary>
+        /// <remarks>
+        /// If wrap is disabled, when the user tries to increment the value, but displayed value plus step value is bigger than maximum value, the new value will be the maximum value.
+        /// If wrap is enabled, when the user tries to increment the value, but displayed value plus step value is bigger than maximum value, the new value will be the minimum value.
+        /// By default it's disabled.
+        /// </remarks>
         public bool IsWrapEnabled
         {
             get
@@ -149,6 +195,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the spinner can be directly edited by the user or not.
+        /// </summary>
+        /// <remarks>By default it is enabled</remarks>
         public bool IsEditable
         {
             get
@@ -161,17 +211,30 @@ namespace ElmSharp
             }
         }
 
-
+        /// <summary>
+        /// Set a special string to display in the place of the numerical value.
+        /// </summary>
+        /// <param name="value">The numerical value to be replaced</param>
+        /// <param name="label">The label to be used</param>
         public void AddSpecialValue(double value, string label)
         {
             Interop.Elementary.elm_spinner_special_value_add(RealHandle, value, label);
         }
 
+        /// <summary>
+        /// Remove a previously added special value, After this, the spinner will display the value itself instead of a label.
+        /// </summary>
+        /// <param name="value">The replaced numerical value</param>
         public void RemoveSpecialValue(double value)
         {
             Interop.Elementary.elm_spinner_special_value_del(RealHandle, value);
         }
 
+        /// <summary>
+        /// Get the special string display in the place of the numerical value.
+        /// </summary>
+        /// <param name="value">The replaced numerical value.</param>
+        /// <returns>The value of the spinner which replaced numerical value with special string</returns>
         public string GetSpecialValue(double value)
         {
             return Interop.Elementary.elm_spinner_special_value_get(RealHandle, value);

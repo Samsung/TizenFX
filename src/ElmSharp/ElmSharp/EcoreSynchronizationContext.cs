@@ -50,8 +50,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="d"><see cref="System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
         /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
-        /// <remarks>
-        /// The Post method starts an asynchronous request to post a message.</remarks>
+        /// <remarks>The Post method starts an asynchronous request to post a message.</remarks>
         public override void Post(SendOrPostCallback d, object state)
         {
             EcoreMainloop.PostAndWakeUp(() =>

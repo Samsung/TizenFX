@@ -19,6 +19,9 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// EcoreAnimator is a helper class, it provides functions to manager animations.
+    /// </summary>
     public static class EcoreAnimator
     {
         static readonly Dictionary<int, Func<bool>> _taskMap = new Dictionary<int, Func<bool>>();
@@ -32,17 +35,30 @@ namespace ElmSharp
             _nativeHandler = NativeHandler;
         }
 
+        /// <summary>
+        /// Gets current system time as a floating point value in seconds.
+        /// </summary>
+        /// <returns>Current system time</returns>
         public static double GetCurrentTime()
         {
             return Interop.Ecore.ecore_time_get();
         }
 
+        /// <summary>
+        /// Adds an animator to call <paramref name="handler"/> at every animation tick during main loop execution.
+        /// </summary>
+        /// <param name="handler">The function to call when it ticks off</param>
+        /// <returns>A handle to the new animator</returns>
         public static IntPtr AddAmimator(Func<bool> handler)
         {
             int id = RegistHandler(handler);
             return Interop.Ecore.ecore_animator_add(_nativeHandler, (IntPtr)id);
         }
 
+        /// <summary>
+        /// Removes the specified animator from the animator list.
+        /// </summary>
+        /// <param name="anim">The specified animator handle</param>
         public static void RemoveAnimator(IntPtr anim)
         {
             int taskId = (int)Interop.Ecore.ecore_animator_del(anim);

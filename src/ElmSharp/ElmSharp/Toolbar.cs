@@ -18,25 +18,74 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the selection mode of Toolbar.
+    /// </summary>
     public enum ToolbarSelectionMode
     {
+        /// <summary>
+        /// Default select mode.
+        /// </summary>
         Default = 0,
+
+        /// <summary>
+        /// Always select mode.
+        /// </summary>
         Always,
+
+        /// <summary>
+        /// No select mode.
+        /// </summary>
         None,
+
+        /// <summary>
+        /// No select mode with no finger size rule.
+        /// </summary>
         DisplayOnly,
     }
 
+    /// <summary>
+    /// Enumeration that sets the toolbar items display behavior, it can be scrollable, can show a menu with exceeding items, or simply hide them.
+    /// </summary>
     public enum ToolbarShrinkMode
     {
+        /// <summary>
+        /// Sets minimum toolbar size to fit all the items.
+        /// </summary>
         None = 0,
+
+        /// <summary>
+        /// Hides exceeding items.
+        /// </summary>
         Hide,
+
+        /// <summary>
+        /// Allows accessing exceeding items through a scroller.
+        /// </summary>
         Scroll,
+
+        /// <summary>
+        /// Inserts a button to pop up a menu with exceeding items.
+        /// </summary>
         Menu,
+
+        /// <summary>
+        /// Expands all items according to the size of the toolbar.
+        /// </summary>
         Expand
     }
 
+    /// <summary>
+    /// Event arguments for events of <see cref="ToolbarItem"/>.
+    /// </summary>
+    /// <remarks>
+    /// Inherits EventArgs.
+    /// </remarks>
     public class ToolbarItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets the ToolbarItem.
+        /// </summary>
         public ToolbarItem Item { get; private set; }
 
         internal static ToolbarItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -46,11 +95,21 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// The Toolbar is a widget that displays a list of items inside a box.
+    /// </summary>
     public class Toolbar : Widget
     {
         SmartEvent<ToolbarItemEventArgs> _clicked;
         SmartEvent<ToolbarItemEventArgs> _selected;
         SmartEvent<ToolbarItemEventArgs> _longpressed;
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Toolbar class.
+        /// </summary>
+        /// <param name="parent">
+        /// A EvasObject to which the new Table instance will be attached.
+        /// </param>
         public Toolbar(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
@@ -74,8 +133,15 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// Selected will be triggered when toolbar have been selected.
+        /// </summary>
         public event EventHandler<ToolbarItemEventArgs> Selected;
 
+        /// <summary>
+        /// Sets or gets whether the layout of this toolbar is homogeneous.
+        /// </summary>
+        /// <remarks>True for homogeneous, False for no homogeneous</remarks>
         public bool Homogeneous
         {
             get
@@ -88,6 +154,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the slection mode of a given Toolbar widget.
+        /// </summary>
         public ToolbarSelectionMode SelectionMode
         {
             get
@@ -100,6 +169,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the shrink mode of a given Toolbar widget.
+        /// </summary>
         public ToolbarShrinkMode ShrinkMode
         {
             get
@@ -112,6 +184,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the alignment of the items.
+        /// </summary>
+        /// <remarks>The toolbar items alignment, a float between 0.0 and 1.0</remarks>
         public double ItemAlignment
         {
             get
@@ -124,6 +200,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the item's transverse expansion of a given toolbar widget.
+        /// </summary>
+        /// <remarks>
+        /// The transverse expansion of the item, true for on and false for off.
+        /// By default it's false.
+        /// </remarks>
         public bool TransverseExpansion
         {
             get
@@ -136,10 +219,27 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Appends ToolbarItem which just contains label to the toolbar.
+        /// </summary>
+        /// <param name="label">The label of the item</param>
+        /// <returns>The new ToolbarItem which appended to the toolbar</returns>
+        /// <seealso cref="Append(string, string)"/>
+        /// <seealso cref="Prepend(string)"/>
         public ToolbarItem Append(string label)
         {
             return Append(label, null);
         }
+
+        /// <summary>
+        /// Appends ToolbarItem which contains label and icon to the toolbar.
+        /// </summary>
+        /// <param name="label">The label of the item</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
+        /// <returns>The new ToolbarItem which appended to the toolbar</returns>
+        /// <seealso cref="Append(string)"/>
+        /// <seealso cref="Prepend(string)"/>
+        /// <seealso cref="Prepend(string, string)"/>
         public ToolbarItem Append(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -147,11 +247,28 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepends ToolbarItem which just contains label to the toolbar.
+        /// </summary>
+        /// <param name="label">The label of the item</param>
+        /// <returns>The new ToolbarItem which prepended to the toolbar</returns>
+        /// <seealso cref="Append(string)"/>
+        /// <seealso cref="Append(string, string)"/>
+        /// <seealso cref="Prepend(string, string)"/>
         public ToolbarItem Prepend(string label)
         {
             return Prepend(label, null);
         }
 
+        /// <summary>
+        /// Prepends ToolbarItem which contains label and icon to the toolbar.
+        /// </summary>
+        /// <param name="label">The label of the item</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which prepended to the toolbar</returns>
+        /// <seealso cref="Append(string)"/>
+        /// <seealso cref="Append(string, string)"/>
+        /// <seealso cref="Prepend(string)"/>
         public ToolbarItem Prepend(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -159,11 +276,26 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Inserts a new item which just contains label into the toolbar object before item <paramref name="before"/>.
+        /// </summary>
+        /// <param name="before">The toolbar item to insert before</param>
+        /// <param name="label">The label of the item</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <seealso cref="InsertBefore(ToolbarItem, string, string)"/>
         public ToolbarItem InsertBefore(ToolbarItem before, string label)
         {
             return InsertBefore(before, label);
         }
 
+        /// <summary>
+        /// Inserts a new item which contains label and icon into the toolbar object before item <paramref name="before"/>.
+        /// </summary>
+        /// <param name="before">The toolbar item to insert before</param>
+        /// <param name="label">The label of the item</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <seealso cref="InsertBefore(ToolbarItem, string)"/>
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -171,6 +303,9 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Gets the selected ToolbarItemItem of the toolbar.
+        /// </summary>
         public ToolbarItem SelectedItem
         {
             get
