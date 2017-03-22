@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-    internal class Scrollable : View {
+    public class Scrollable : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Scrollable_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -359,19 +359,19 @@ public class CompletedEventArgs : EventArgs
     return ret;
   }
 
-  public ScrollableSignal ScrollStartedSignal() {
+  internal ScrollableSignal ScrollStartedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollStartedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public ScrollableSignal ScrollUpdatedSignal() {
+  internal ScrollableSignal ScrollUpdatedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public ScrollableSignal ScrollCompletedSignal() {
+  internal ScrollableSignal ScrollCompletedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollCompletedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

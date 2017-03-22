@@ -25,7 +25,8 @@ namespace Tizen.NUI
     {
         private Vector2 _visualSize = Vector2.Zero;
         private Vector2 _visualOffset = Vector2.Zero;
-        private Vector4 _visualOffsetSizeMode = new Vector4(1.0f, 1.0f, 1.0f, 1.0f); // default absolute
+        private Vector2 _visualOffsetPolicy = new Vector2((int)VisualTransformPolicyType.ABSOLUTE, (int)VisualTransformPolicyType.ABSOLUTE); // default absolute
+        private Vector2 _visualSizePolicy = new Vector2((int)VisualTransformPolicyType.ABSOLUTE, (int)VisualTransformPolicyType.ABSOLUTE); // default absolute
         private AlignType _visualOrigin = AlignType.TOP_BEGIN;
         private AlignType _visualAnchorPoint = AlignType.TOP_BEGIN;
 
@@ -73,20 +74,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set offset/size mode of the visual.
-        /// Indicates which components of the offset and size are relative
+        /// Get or set offset policy of the visual.
+        /// Indicates which components of the offset are relative
         /// (percentage of the parent) or absolute (in world units).
         /// 0 indicates the component is relative, and 1 absolute.
         /// </summary>
-        public Vector4 OffsetSizeMode
+        public Vector2 OffsetPolicy
         {
             get
             {
-                return _visualOffsetSizeMode;
+                return _visualOffsetPolicy;
             }
             set
             {
-                _visualOffsetSizeMode = value;
+                _visualOffsetPolicy = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set size policy of the visual.
+        /// Indicates which components of the size are relative
+        /// (percentage of the parent) or absolute (in world units).
+        /// 0 indicates the component is relative, and 1 absolute.
+        /// </summary>
+        public Vector2 SizePolicy
+        {
+            get
+            {
+                return _visualSizePolicy;
+            }
+            set
+            {
+                _visualSizePolicy = value;
             }
         }
 
@@ -142,7 +161,8 @@ namespace Tizen.NUI
                 _visualTransformMap = new PropertyMap();
                 _visualTransformMap.Add((int)VisualTransformPropertyType.SIZE, new PropertyValue(_visualSize));
                 _visualTransformMap.Add((int)VisualTransformPropertyType.OFFSET, new PropertyValue(_visualOffset));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.OFFSET_SIZE_MODE, new PropertyValue(_visualOffsetSizeMode));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.OFFSET_POLICY, new PropertyValue(_visualOffsetPolicy));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.SIZE_POLICY, new PropertyValue(_visualSizePolicy));
                 _visualTransformMap.Add((int)VisualTransformPropertyType.ORIGIN, new PropertyValue((int)_visualOrigin));
                 _visualTransformMap.Add((int)VisualTransformPropertyType.ANCHOR_POINT, new PropertyValue((int)_visualAnchorPoint));
             }
