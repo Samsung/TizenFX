@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,32 +24,21 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecordingErrorOccurredEventArgs : EventArgs
     {
-        private RecorderErrorCode _error = RecorderErrorCode.DeviceError;
-        private RecorderState _state = RecorderState.None;
-
         internal RecordingErrorOccurredEventArgs(RecorderErrorCode error, RecorderState state)
         {
-            _error = error;
-            _state = state;
+            Error = error;
+            State = state;
         }
 
         /// <summary>
         /// The error code.
         /// </summary>
-        public RecorderErrorCode Error {
-            get {
-                return _error;
-            }
-        }
+        public RecorderErrorCode Error { get; }
 
         /// <summary>
         /// The state of the recorder.
         /// </summary>
-        public RecorderState State {
-            get {
-                return _state;
-            }
-        }
+        public RecorderState State { get; }
 
     }
 }

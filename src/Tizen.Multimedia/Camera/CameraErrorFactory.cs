@@ -69,14 +69,14 @@ namespace Tizen.Multimedia
 
                 case CameraError.SecurityRestricted:
                 case CameraError.PermissionDenied:
-		            throw new UnauthorizedAccessException(errorMessage);
+                    throw new UnauthorizedAccessException(errorMessage);
 
                 case CameraError.NotSupported:
                     throw new NotSupportedException(errorMessage);
 
                 case CameraError.InvalidState:
                 case CameraError.InvalidOperation:
-                    case CameraError.ResourceConflict:
+                case CameraError.ResourceConflict:
                 case CameraError.ServiceDisconnected:
                     throw new InvalidOperationException(errorMessage);
 

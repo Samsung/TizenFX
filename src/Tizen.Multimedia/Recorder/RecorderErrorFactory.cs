@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,49 +21,45 @@ namespace Tizen.Multimedia
 {
     internal enum RecorderError
     {
-        None = ErrorCode.None,
-        InvalidParameter = ErrorCode.InvalidParameter,
         TizenErrorRecorder = -0x01950000,
         RecorderErrorClass = TizenErrorRecorder | 0x10,
+        None = ErrorCode.None,
+        InvalidParameter = ErrorCode.InvalidParameter,
         InvalidState = RecorderErrorClass | 0x02,
         OutOfMemory = ErrorCode.OutOfMemory,
-        ErrorDevice = RecorderErrorClass | 0x04,
+        DeviceError = RecorderErrorClass | 0x04,
         InvalidOperation = ErrorCode.InvalidOperation,
-        SoundPolicy = RecorderErrorClass | 0x06,
         SecurityRestricted = RecorderErrorClass | 0x07,
-        SoundPolicyByCall = RecorderErrorClass | 0x08,
-        SoundPolicyByAlarm = RecorderErrorClass | 0x09,
         Esd = RecorderErrorClass | 0x0a,
         OutOfStorage = RecorderErrorClass | 0x0b,
         PermissionDenied = ErrorCode.PermissionDenied,
         NotSupported = ErrorCode.NotSupported,
-        ResourceConflict = RecorderErrorClass | 0x0c
+        ResourceConflict = RecorderErrorClass | 0x0c,
+        ServiceDisconnected = RecorderErrorClass | 0x0d
     }
 
     internal static class RecorderErrorFactory
     {
-        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
+        internal static void ThrowIfError(int errorCode, string errorMessage = null)
         {
             RecorderError err = (RecorderError)errorCode;
             if(string.IsNullOrEmpty(errorMessage)) {
                 errorMessage = err.ToString();
             }
 
-            switch((RecorderError)errorCode)
+            Log.Info(RecorderLog.Tag, "errorCode : " + errorMessage);
+
+            switch (err)
             {
                 case RecorderError.InvalidParameter:
-                    throw new ArgumentException(errorMessage, paramName);
+                    throw new ArgumentException(errorMessage);
 
                 case RecorderError.OutOfMemory:
                     throw new OutOfMemoryException(errorMessage);
 
-                case RecorderError.ErrorDevice:
-                case RecorderError.SoundPolicy:
-                case RecorderError.SecurityRestricted:
-                case RecorderError.SoundPolicyByCall:
-                case RecorderError.SoundPolicyByAlarm:
+                case RecorderError.DeviceError:
                 case RecorderError.Esd:
-                case RecorderError.OutOfStorage:
+                case RecorderError.SecurityRestricted:
                 case RecorderError.PermissionDenied:
                     throw new UnauthorizedAccessException(errorMessage);
 
@@ -73,9 +69,13 @@ namespace Tizen.Multimedia
                 case RecorderError.InvalidState:
                 case RecorderError.InvalidOperation:
                 case RecorderError.ResourceConflict:
+                case RecorderError.ServiceDisconnected:
+                case RecorderError.OutOfStorage: //TODO need to alloc new proper exception class
                     throw new InvalidOperationException(errorMessage);
+
+                default:
+                    throw new Exception("Unknown error : " + errorCode.ToString());
             }
         }
     }
 }
-

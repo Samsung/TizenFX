@@ -35,4 +35,3 @@ namespace Tizen.Multimedia
         public byte[] Data { get; }
     }
 }
-

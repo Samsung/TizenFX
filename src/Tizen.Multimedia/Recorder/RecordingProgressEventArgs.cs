@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,33 +21,22 @@ namespace Tizen.Multimedia
     /// <summary>
     /// An extened EventArgs class which contain the details of current recording status.
     /// </summary>
-    public class RecordingStatusChangedEventArgs : EventArgs
+    public class RecordingProgressEventArgs : EventArgs
     {
-        private ulong _time = 0;
-        private ulong _fileSize = 0;
-
-        internal RecordingStatusChangedEventArgs(ulong time, ulong fileSize)
+        internal RecordingProgressEventArgs(ulong elapsedTime, ulong fileSize)
         {
-            _time = time;
-            _fileSize = fileSize;
+            ElapsedTime = elapsedTime;
+            FileSize = fileSize;
         }
 
         /// <summary>
         /// The time of recording in milliseconds.
         /// </summary>
-        public ulong ElapsedTime {
-            get {
-                return _time;
-            }
-        }
+        public ulong ElapsedTime { get; }
 
         /// <summary>
         /// The size of the recording file in Kilobyte.
         /// </summary>
-        public ulong FileSize {
-            get { 
-                return _fileSize;
-            }
-        }
+        public ulong FileSize { get; }
     }
 }

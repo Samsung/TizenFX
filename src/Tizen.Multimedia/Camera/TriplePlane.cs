@@ -49,4 +49,3 @@ namespace Tizen.Multimedia
         public byte[] V { get; }
     }
 }
-

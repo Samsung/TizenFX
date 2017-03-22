@@ -219,7 +219,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Device Error.
         /// </summary>
-        DeviceError = RecorderError.ErrorDevice,
+        DeviceError = RecorderError.DeviceError,
         /// <summary>
         /// Internal error.
         /// </summary>
@@ -230,4 +230,3 @@ namespace Tizen.Multimedia
         OutOfMemory = RecorderError.OutOfMemory
     }
 }
-

@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurred when recording is progressing for recording status.
         /// </summary>
-        private EventHandler<RecordingStatusChangedEventArgs> _recordingStatusChanged;
+        private EventHandler<RecordingProgressEventArgs> _recordingStatusChanged;
         private Interop.StreamRecorder.RecordingStatusCallback _recordingStatusCallback;
         /// <summary>
         /// Occurred when recording time or size reach limit.
@@ -143,7 +143,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Event that occurs when recording status changed.
         /// </summary>
-        public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged
+        public event EventHandler<RecordingProgressEventArgs> RecordingStatusChanged
         {
             add
             {
@@ -985,7 +985,7 @@ namespace Tizen.Multimedia
         {
             _recordingStatusCallback = (ulong elapsedTime, ulong fileSize, IntPtr userData) =>
             {
-                RecordingStatusChangedEventArgs eventArgs = new RecordingStatusChangedEventArgs(elapsedTime, fileSize);
+                RecordingProgressEventArgs eventArgs = new RecordingProgressEventArgs(elapsedTime, fileSize);
                 _recordingStatusChanged?.Invoke(this, eventArgs);
             };
             int ret = Interop.StreamRecorder.SetStatusChangedCallback(_handle, _recordingStatusCallback, IntPtr.Zero);

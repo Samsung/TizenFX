@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -23,20 +23,14 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecordingLimitReachedEventArgs : EventArgs
     {
-        private RecordingLimitType _type = RecordingLimitType.Size;
-
         internal RecordingLimitReachedEventArgs(RecordingLimitType type)
         {
-            _type = type;
+            Type = type;
         }
 
         /// <summary>
         /// The limitation type.
         /// </summary>
-        public RecordingLimitType Type {
-            get {
-                return _type;
-            }
-        }
+        public RecordingLimitType Type { get; }
     }
 }

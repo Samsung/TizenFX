@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,43 +24,27 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecorderStateChangedEventArgs : EventArgs
     {
-        private RecorderState _previous = RecorderState.None;
-        private RecorderState _current = RecorderState.None;
-        private bool _policy = false;
-
-        internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool policy)
+        internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool byPolicy)
         {
-            _previous = previous;
-            _current = current;
-            _policy = policy;
+            Previous = previous;
+            Current = current;
+            IsStateChangedByPolicy = byPolicy;
         }
 
         /// <summary>
         /// Previous state of the recorder.
         /// </summary>
-        public RecorderState Previous {
-            get {
-                return _previous;
-            }
-        }
+        public RecorderState Previous { get; }
 
         /// <summary>
         /// Current state of the recorder.
         /// </summary>
-        public RecorderState Current {
-            get {
-                return _current;
-            }
-        }
+        public RecorderState Current { get; }
 
         /// <summary>
         /// true if the state changed by policy such as Resource Conflict or Security, otherwise false
         /// in normal state change.
         /// </summary>
-        public bool ByPolicy {
-            get {
-                return _policy;
-            }
-        }
+        public bool IsStateChangedByPolicy { get; }
     }
 }

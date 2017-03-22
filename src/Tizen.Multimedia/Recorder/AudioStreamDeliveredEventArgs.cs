@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
@@ -23,53 +24,33 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioStreamDeliveredEventArgs : EventArgs
     {
-        private byte[] _stream = null;
-        private AudioSampleType _type = AudioSampleType.S16Le;
-        private int _channel = 0;
-        private uint _recordingTime = 0;
-
-        internal AudioStreamDeliveredEventArgs(byte[] stream, AudioSampleType type, int channel, uint recordingTime)
+        internal AudioStreamDeliveredEventArgs(IntPtr stream, int streamSize, AudioSampleType type, int channel, uint recordingTime)
         {
-            _stream = stream;
-            _type = type;
-            _channel = channel;
-            _recordingTime = recordingTime;
+            Stream = new byte[streamSize];
+            Marshal.Copy(stream, Stream, 0, streamSize);
+            Type = type;
+            Channel = channel;
+            RecordingTime = recordingTime;
         }
 
         /// <summary>
         /// The audio stream data.
         /// </summary>
-        public byte[] Stream {
-            get {
-                return _stream;
-            }
-        }
+        public byte[] Stream { get; }
 
         /// <summary>
         /// The audio format type.
         /// </summary>
-        public AudioSampleType Type {
-            get {
-                return _type;
-            }
-        }
+        public AudioSampleType Type { get; }
 
         /// <summary>
         /// The number of channels.
         /// </summary>
-        public int Channel {
-            get {
-                return _channel;
-            }
-        }
+        public int Channel { get; }
 
         /// <summary>
         /// The recording time of the stream buffer in milliseconds.
         /// </summary>
-        public uint RecordingTime {
-            get {
-                return _recordingTime;
-            }
-        }
+        public uint RecordingTime { get; }
     }
 }

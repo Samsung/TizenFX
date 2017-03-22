@@ -42,4 +42,3 @@ namespace Tizen.Multimedia
         public byte[] UV { get; }
     }
 }
-
