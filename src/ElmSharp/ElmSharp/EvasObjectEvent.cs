@@ -26,48 +26,170 @@ namespace ElmSharp
         void MakeInvalidate();
     }
 
+    /// <summary>
+    /// Enumeration for EvasObjectCallbackType
+    /// </summary>
     public enum EvasObjectCallbackType
     {
+        /// <summary>
+        /// Mouse In Event CallbackType.
+        /// </summary>
         MouseIn,
+        /// <summary>
+        /// Mouse Out Event CallbackType
+        /// </summary>
         MouseOut,
+        /// <summary>
+        /// Mouse Button Down Event CallbackType
+        /// </summary>
         MouseDown,
+        /// <summary>
+        /// Mouse Button Up Event CallbackType
+        /// </summary>
         MouseUp,
+        /// <summary>
+        /// Mouse Move Event CallbackType
+        /// </summary>
         MouseMove,
+        /// <summary>
+        /// Mouse Wheel Event CallbackType
+        /// </summary>
         MouseWheel,
+        /// <summary>
+        /// Multi-touch Down Event CallbackType
+        /// </summary>
         MultiDown,
+        /// <summary>
+        /// Multi-touch Up Event CallbackType
+        /// </summary>
         MultiUp,
+        /// <summary>
+        /// Multi-touch Move Event CallbackType
+        /// </summary>
         MultiMove,
+        /// <summary>
+        /// Object Being Freed (Called after Del)
+        /// </summary>
         Free,
+        /// <summary>
+        /// Key Press Event CallbackType
+        /// </summary>
         KeyDown,
+        /// <summary>
+        /// Key Release Event CallbackType
+        /// </summary>
         KeyUp,
+        /// <summary>
+        /// Focus In Event CallbackType
+        /// </summary>
         FocusIn,
+        /// <summary>
+        /// Focus Out Event CallbackType
+        /// </summary>
         FocusOut,
+        /// <summary>
+        /// Show Event CallbackType
+        /// </summary>
         Show,
+        /// <summary>
+        /// Hide Event CallbackType
+        /// </summary>
         Hide,
+        /// <summary>
+        /// Move Event CallbackType
+        /// </summary>
         Move,
+        /// <summary>
+        /// Resize Event CallbackType
+        /// </summary>
         Resize,
+        /// <summary>
+        /// Restack Event CallbackType
+        /// </summary>
         Restack,
+        /// <summary>
+        /// Object Being Deleted (called before Free)
+        /// </summary>
         Del,
+        /// <summary>
+        /// Hold Event CallbackType, Informational purpose event to indicate something
+        /// </summary>
         Hold,
+        /// <summary>
+        /// Size hints changed Event CallbackType
+        /// </summary>
         ChangedSizeHints,
+        /// <summary>
+        /// Image has been preloaded
+        /// </summary>
         ImagePreloaded,
+        /// <summary>
+        /// Canvas got focus as a whole
+        /// </summary>
         CanvasFocusIn,
+        /// <summary>
+        /// Canvas lost focus as a whole
+        /// </summary>
         CanvasFocusOut,
+        /// <summary>
+        /// Called just before rendering is updated on the canvas target
+        /// </summary>
         RenderFlushPre,
+        /// <summary>
+        /// Called just after rendering is updated on the canvas target
+        /// </summary>
         RenderFlushPost,
+        /// <summary>
+        /// Canvas object got focus
+        /// </summary>
         CanvasObjectFocusIn,
+        /// <summary>
+        /// Canvas object lost focus
+        /// </summary>
         CanvasObjectFocusOut,
+        /// <summary>
+        /// Image data has been unloaded (by some mechanism in Evas that throw out original image data)
+        /// </summary>
         ImageUnloaded,
+        /// <summary>
+        /// Called just before rendering starts on the canvas target
+        /// </summary>
         RenderPre,
+        /// <summary>
+        /// Called just after rendering stops on the canvas target
+        /// </summary>
         RenderPost,
+        /// <summary>
+        /// Image size is changed
+        /// </summary>
         ImageResize,
+        /// <summary>
+        /// Devices added, removed or changed on canvas
+        /// </summary>
         DeviceChanged,
+        /// <summary>
+        /// Axis is changed
+        /// </summary>
         AxisUpdate,
+        /// <summary>
+        /// Canvas Viewport size is changed
+        /// </summary>
         CanvasViewportResize
     }
 
+    /// <summary>
+    /// Event class for EvasObject
+    /// </summary>
+    /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
     public class EvasObjectEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
+        /// <summary>
+        /// SmartEventInfoParser delegate of EvasObjectEvent class
+        /// </summary>
+        /// <param name="data">data</param>
+        /// <param name="obj">obj</param>
+        /// <param name="info">info</param>
+        /// <returns></returns>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private bool _disposed = false;
@@ -77,10 +199,22 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="type">EvasObjectCallbackType</param>
+        /// <param name="parser">SmartEventInfoParser</param>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.Handle, type, parser)
         {
         }
-
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="handle">EvasObject class's handle</param>
+        /// <param name="type">EvasObjectCallbackType</param>
+        /// <param name="parser">SmartEventInfoParser</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
         {
@@ -90,7 +224,11 @@ namespace ElmSharp
             _parser = parser;
             sender.AddToEventLifeTracker(this);
         }
-
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong with</param>
+        /// <param name="type">SmartEventInfoParser</param>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, type, null)
         {
         }
@@ -106,6 +244,9 @@ namespace ElmSharp
             public EventHandler<TEventArgs> eventHandler;
         }
 
+        /// <summary>
+        /// On Event Handler of EvasObjectEvent
+        /// </summary>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -160,12 +301,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Destroy Current Obj
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Make current instance invalidate
+        /// </summary>
         public void MakeInvalidate()
         {
             _sender = null;
@@ -173,16 +320,29 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Event class for EvasObject
+    /// </summary>
     public class EvasObjectEvent : IInvalidatable
     {
         private EvasObjectEvent<EventArgs> _evasObjectEvent;
         private event EventHandler _handlers;
         private bool _disposed = false;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="type">EvasObjectCallbackType</param>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.Handle, type)
         {
         }
-
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="handle">EvasObject class's handle</param>
+        /// <param name="type">EvasObjectCallbackTypes</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
         {
@@ -194,6 +354,9 @@ namespace ElmSharp
             Dispose(false);
         }
 
+        /// <summary>
+        /// On Event Handler of EvasObjectEvent
+        /// </summary>
         public event EventHandler On
         {
             add
@@ -232,12 +395,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Destroy Current Obj
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Make current instance invalidate
+        /// </summary>
         public void MakeInvalidate()
         {
             _evasObjectEvent.MakeInvalidate();
