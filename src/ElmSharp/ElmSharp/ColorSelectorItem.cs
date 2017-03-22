@@ -18,12 +18,18 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// A instance to the ColorSelector item added.
+    /// </summary>
     public class ColorSelectorItem : ItemObject
     {
         internal ColorSelectorItem() : base(IntPtr.Zero)
         {
         }
 
+        /// <summary>
+        /// Gets or sets the Palette item's color
+        /// </summary>
         public Color Color
         {
             get

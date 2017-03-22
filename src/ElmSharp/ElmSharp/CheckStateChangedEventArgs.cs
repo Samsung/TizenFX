@@ -18,12 +18,28 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// The CheckStateChangedEventArgs is EventArgs to record Check's state.
+    /// Include old state and new state.
+    /// </summary>
     public class CheckStateChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets the OldState property.The return type is bool.
+        /// </summary>
         public bool OldState { get; private set; }
 
+        /// <summary>
+        /// Gets the NewState property.The return type is bool.
+        /// </summary>
         public bool NewState { get; private set; }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the CheckStateChangedEventArgs class.
+        /// </summary>
+        /// <param name="oldState">Old state of Check which to use this CheckStateChangedEventArgs.</param>
+        /// <param name="newState">New state of Check which to use this CheckStateChangedEventArgs.</param>
         public CheckStateChangedEventArgs(bool oldState, bool newState)
         {
             this.OldState = oldState;

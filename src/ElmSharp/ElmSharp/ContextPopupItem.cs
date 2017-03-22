@@ -18,6 +18,10 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="ItemObject"/>.
+    /// A instance to the ContextPopup item added.
+    /// </summary>
     public class ContextPopupItem : ItemObject
     {
         internal ContextPopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
@@ -26,8 +30,19 @@ namespace ElmSharp
             Icon = icon;
         }
 
+        /// <summary>
+        /// Gets the Text property of the given ContextPopupItem.
+        /// </summary>
         public string Text { get; internal set; }
+
+        /// <summary>
+        /// Gets the Icon(type is <see cref="EvasObject"/>) property of the given ContextPopupItem.
+        /// </summary>
         public EvasObject Icon { get; internal set; }
+
+        /// <summary>
+        /// Selected will be triggered when the ContextPopupItem is Selected.
+        /// </summary>
         public event EventHandler Selected;
 
         internal void SendSelected()

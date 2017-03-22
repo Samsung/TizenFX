@@ -19,6 +19,9 @@ using System.Globalization;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Color is a struct to record Check's state.
+    /// </summary>
     public struct Color
     {
         readonly int _a;
@@ -34,40 +37,81 @@ namespace ElmSharp
             Rgb
         }
 
+        /// <summary>
+        /// Gets a default Color instance.
+        /// </summary>
+        /// <remarks>
+        /// In default Color instance,Mode type is Default,RGBA all set as -1.
+        /// </remarks>
         public static Color Default
         {
             get { return new Color(-1, -1, -1, -1, Mode.Default); }
         }
 
+        /// <summary>
+        /// Gets whether the Color instance's mode is default or not.
+        /// Return type is bool.
+        /// </summary>
         public bool IsDefault
         {
             get { return _mode == Mode.Default; }
         }
 
+        /// <summary>
+        /// Gets A value of RGBA.
+        /// A means the Alpha in color.
+        /// </summary>
         public int A
         {
             get { return _a; }
         }
 
+        /// <summary>
+        /// Gets R value of RGBA.
+        /// R means the Red in color.
+        /// </summary>
         public int R
         {
             get { return _r; }
         }
 
+        /// <summary>
+        /// Gets G value of RGBA.
+        /// G means the Green in color.
+        /// </summary>
         public int G
         {
             get { return _g; }
         }
 
+        /// <summary>
+        /// Gets B value of RGBA.
+        /// B means the Blue in color.
+        /// </summary>
         public int B
         {
             get { return _b; }
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Color class.
+        /// With RGB parameters.
+        /// </summary>
+        /// <param name="r">Red of RGB</param>
+        /// <param name="g">Green of RGB</param>
+        /// <param name="b">Blue of RGB</param>
         public Color(int r, int g, int b) : this(r, g, b, 255)
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Color class.
+        /// With RGBA parameters.
+        /// </summary>
+        /// <param name="r">Red of RGBA</param>
+        /// <param name="g">Green of RGBA<</param>
+        /// <param name="b">Blue of RGBA<</param>
+        /// <param name="a">Alpha of RGBA<</param>
         public Color(int r, int g, int b, int a) : this(r, g, b, a, Mode.Rgb)
         {
         }
@@ -106,6 +150,14 @@ namespace ElmSharp
             return base.Equals(obj);
         }
 
+        /// <summary>
+        /// Compare whether two Color instance is same or not.
+        /// </summary>
+        /// <param name="a">A Color instance.</param>
+        /// <param name="b">A Color instance.</param>
+        /// <returns>The result whether two instance is same or not.
+        /// Return type is bool.If they are same, return true.
+        /// </returns>
         public static bool operator ==(Color a, Color b)
         {
             if (ReferenceEquals(a, b))
@@ -117,6 +169,14 @@ namespace ElmSharp
             return EqualsInner(a, b);
         }
 
+        /// <summary>
+        /// Compare whether two Color instance is different or not.
+        /// </summary>
+        /// <param name="a">A Color instance.</param>
+        /// <param name="b">A Color instance.</param>
+        /// <returns>The result whether two instance is different or not.
+        /// Return type is bool.If they are different, return true.
+        /// </returns>
         public static bool operator !=(Color a, Color b)
         {
             return !(a == b);
@@ -134,6 +194,11 @@ namespace ElmSharp
             return string.Format(CultureInfo.InvariantCulture, "[Color: R={0}, G={1}, B={2}, A={3}]", R, G, B, A);
         }
 
+        /// <summary>
+        /// Gets a Color instance with a hexadecimal string parameter.
+        /// </summary>
+        /// <param name="hex">Hexadecimal string.</param>
+        /// <returns>New instance of Color struct.</returns>
         public static Color FromHex(string hex)
         {
             hex = hex.Replace("#", "");
@@ -152,17 +217,37 @@ namespace ElmSharp
             return FromUint(Convert.ToUInt32(hex.Replace("#", ""), 16));
         }
 
+        /// <summary>
+        /// Gets a Color instance with a Unsigned integer parameter.
+        /// </summary>
+        /// <param name="argb">Unsigned integer indicates RGBA.</param>
+        /// <returns>New instance of Color struct.</returns>
         [CLSCompliant(false)]
         public static Color FromUint(uint argb)
         {
             return FromRgba((byte)((argb & 0x00ff0000) >> 0x10), (byte)((argb & 0x0000ff00) >> 0x8), (byte)(argb & 0x000000ff), (byte)((argb & 0xff000000) >> 0x18));
         }
 
+        /// <summary>
+        /// Gets a Color instance with R,G,B,A parameters.
+        /// </summary>
+        /// <param name="r">Red in RGBA.</param>
+        /// <param name="g">Green in RGBA.</param>
+        /// <param name="b">Blue in RGBA.</param>
+        /// <param name="a">Alpha in RGBA.</param>
+        /// <returns>New instance of Color struct.</returns>
         public static Color FromRgba(int r, int g, int b, int a)
         {
             return new Color(r, g, b, a);
         }
 
+        /// <summary>
+        /// Gets a Color instance with R,G,B,A parameters.
+        /// </summary>
+        /// <param name="r">Red in RGB.</param>
+        /// <param name="g">Green in RGB.</param>
+        /// <param name="b">Blue in RGB.</param>
+        /// <returns>New instance of Color struct.</returns>
         public static Color FromRgb(int r, int g, int b)
         {
             return FromRgba(r, g, b, 255);

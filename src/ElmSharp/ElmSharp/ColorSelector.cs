@@ -18,22 +18,59 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for mode of ColorSelector
+    /// </summary>
     public enum ColorSelectorMode
     {
+        /// <summary>
+        /// Only color palette is displayed, default
+        /// </summary>
         Palette,
+        /// <summary>
+        /// Only color selector is displayed
+        /// </summary>
         Components,
+        /// <summary>
+        /// Both Palette and selector is displayed
+        /// </summary>
         Both,
+        /// <summary>
+        /// Only color picker is displayed
+        /// </summary>
         Picker,
+        /// <summary>
+        /// This mode is not supported. If you use this, nothing will be shown
+        /// </summary>
         Plane,
+        /// <summary>
+        /// This mode is not supported. If you use this, it will be shown same with Palette mode
+        /// </summary>
         PallettePlane,
+        /// <summary>
+        /// This mode is not supported. If you use this, it will be shown same with Palette mode
+        /// </summary>
         All
     }
 
+    /// <summary>
+    /// The ColorSelector is a widget to set a series of colors.
+    /// It also allows to load/save colors from/to config with a unique identifier.
+    /// </summary>
+    /// <remarks>
+    /// By default, the colors are loaded/saved from/to config using "default" identifier.
+    /// The colors can be picked by user from the color set by clicking on individual
+    /// color item on the palette or by selecting it from selector.
+    /// </remarks>
     public class ColorSelector : Layout
     {
         private readonly SmartEvent<ColorChangedEventArgs> _changed;
         private Color _currentColor;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the ColorSelector class.
+        /// </summary>
+        /// <param name="parent"></param>
         public ColorSelector(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent<ColorChangedEventArgs>(this, "changed", (data, obj, info) =>
@@ -42,12 +79,18 @@ namespace ElmSharp
             });
         }
 
+        /// <summary>
+        /// ColorChanged will be triggered when the SelectedColor changed.
+        /// </summary>
         public event EventHandler<ColorChangedEventArgs> ColorChanged
         {
             add { _changed.On += value; }
             remove { _changed.On -= value; }
         }
 
+        /// <summary>
+        /// Gets or sets color of colorselector.
+        /// </summary>
         public Color SelectedColor
         {
             get
@@ -64,6 +107,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets Alpha of a default Color Class.
+        /// </summary>
         public override int Opacity
         {
             get
@@ -77,6 +123,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets Colorselector's mode.
+        /// </summary>
         public ColorSelectorMode Mode
         {
             get
@@ -89,6 +138,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Get or set current palette's name.
+        /// </summary>
         public string PaletteName
         {
             get
@@ -101,6 +153,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Adds a new color item to palette.
+        /// </summary>
+        /// <param name="color">Color item to add</param>
+        /// <returns>A new color palette Item.</returns>
         public ColorSelectorItem AddPaletteColor(Color color)
         {
             ColorSelectorItem item = new ColorSelectorItem();
@@ -108,6 +165,9 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Clear the palette items.
+        /// </summary>
         public void ClearPalette()
         {
             Interop.Elementary.elm_colorselector_palette_clear(Handle);

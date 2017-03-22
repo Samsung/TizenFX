@@ -18,11 +18,20 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The check is a widget allows for toggling a value between true and false.
+    /// </summary>
     public class Check : Layout
     {
         private SmartEvent _changed;
         private bool _currentState;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Check class.
+        /// </summary>
+        /// <param name="parent">
+        /// The EvasObject to which the new Check will be attached as a child.
+        /// </param>
         public Check(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -32,8 +41,17 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// StateChanged will be triggered when the IsChecked in the Check is changed.
+        /// </summary>
         public event EventHandler<CheckStateChangedEventArgs> StateChanged;
 
+        /// <summary>
+        /// Sets or gets whether the given Check is checked or not.
+        /// </summary>
+        /// <remarks>
+        /// When object is checked, the value will set to true, Conversely will set to false.
+        /// </remarks>
         public bool IsChecked
         {
             get

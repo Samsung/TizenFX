@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration of datetime field types for DateTimeSelector.
+    /// </summary>
     public enum DateTimeFieldType
     {
         Year,
@@ -28,11 +31,22 @@ namespace ElmSharp
         AmPm
     }
 
+    /// <summary>
+    /// It inherits <see cref="Layout"/>
+    /// DateTimeSelector is a widget to display and input date & time values.
+    /// This widget displays date and time as per the system's locale settings
+    /// (Date includes Day, Month & Year along with the defined separators and Time includes Hour, Minute & AM/PM fields. Separator for AM/PM field is ignored.
+    /// </summary>
     public class DateTimeSelector : Layout
     {
         SmartEvent _changed;
         DateTime _cacheDateTime;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the DateTimeSelector class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by DateTimeSelector
+        ///as a child.It's <see cref="EvasObject"/> type.</param>
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -44,8 +58,17 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// ItemSelected is raised when Datetime field value changed.
+        /// </summary>
         public event EventHandler<DateChangedEventArgs> DateTimeChanged;
 
+        /// <summary>
+        /// Gets or sets the datetime format.
+        /// </summary>
+        /// <remarks>
+        /// format is a combination of allowed LIBC date format specifiers like: "%b %d, %Y %I : %M %p".
+        /// </remarks>
         public string Format
         {
             get
@@ -58,6 +81,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the upper boundary of DateTime field.
+        /// </summary>
         public DateTime MaximumDateTime
         {
             get
@@ -73,6 +99,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the lower boundary of DateTime field.
+        /// </summary>
         public DateTime MinimumDateTime
         {
             get
@@ -88,6 +117,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the current value of DateTime field.
+        /// </summary>
         public DateTime DateTime
         {
             get
@@ -104,16 +136,35 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets whether a field can be visible.
+        /// </summary>
+        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
+        /// <returns>
+        /// The field is visible or not.
+        /// Type is bool.If visible, return true.
+        /// </returns>
         public bool IsFieldVisible(DateTimeFieldType type)
         {
             return Interop.Elementary.elm_datetime_field_visible_get(RealHandle, (int)type);
         }
 
+        /// <summary>
+        /// Sets the field limits of a field.
+        /// </summary>
+        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
+        /// <param name="minimum">minimum limit</param>
+        /// <param name="maximum">maximum limit</param>
         public void SetFieldLimit(DateTimeFieldType type, int minimum, int maximum)
         {
             Interop.Elementary.elm_datetime_field_limit_set(RealHandle, (int)type, minimum, maximum);
         }
 
+        /// <summary>
+        /// Gets whether a field can be visible.
+        /// </summary>
+        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
+        /// <param name="visible">When set as true, the field type visible.</param>
         public void SetFieldVisible(DateTimeFieldType type, bool visible)
         {
             Interop.Elementary.elm_datetime_field_visible_set(RealHandle, (int)type, visible);

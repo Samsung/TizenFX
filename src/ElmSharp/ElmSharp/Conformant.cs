@@ -18,8 +18,18 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The check is a widget that can be used in elementary apps
+    /// to account for space taken up by the indicator,
+    /// virtual keypad & softkey windows when running the illume2 module of E17.
+    /// </summary>
     public class Conformant : Widget
     {
+        /// <summary>
+        /// Creates and initializes a new instance of the Conformant class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Conformant
+        /// as a child.It's <see cref="EvasObject"/> type.</param>
         public Conformant(Window parent) : base(parent)
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
