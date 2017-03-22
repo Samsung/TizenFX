@@ -70,11 +70,7 @@ namespace Tizen.Multimedia
 
         private bool IsFeatureSupported(IsSupportedDelegate func)
         {
-            bool ret = func(_camera.GetHandle());
-
-            CameraErrorFactory.ThrowIfError(ErrorFacts.GetLastResult(), "Failed to check feature is suported or not.");
-
-            return ret;
+            return func(_camera.GetHandle());
         }
 
         private bool CheckRangeValid(GetRangeDelegate func)

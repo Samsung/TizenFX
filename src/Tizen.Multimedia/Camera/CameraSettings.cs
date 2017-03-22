@@ -82,7 +82,8 @@ namespace Tizen.Multimedia
 
         public void SetAutoFocusArea(Point pos)
         {
-            SetAutoFocusArea(pos.X, pos.Y);
+            CameraErrorFactory.ThrowIfError(Interop.CameraSettings.SetAutoFocusArea(_camera.GetHandle(), pos.X, pos.Y),
+                "Failed to set the autofocus area.");
         }
 
         /// <summary>
