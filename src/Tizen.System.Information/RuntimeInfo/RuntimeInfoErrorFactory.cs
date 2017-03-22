@@ -64,7 +64,7 @@ namespace Tizen.System
             }
             else if (error == RuntimeInfoError.NotSupported)
             {
-                throw new ArgumentException("Not supported");
+                throw new NotSupportedException("Not supported");
             }
         }
     }
