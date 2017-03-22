@@ -18,20 +18,45 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for visible type of scrollbar.
+    /// </summary>
     public enum ScrollBarVisiblePolicy
     {
+        /// <summary>
+        /// Show scrollbars as needed
+        /// </summary>
         Auto = 0,
+        /// <summary>
+        /// Always show scrollbars
+        /// </summary>
         Visible,
+        /// <summary>
+        /// Never show scrollbars
+        /// </summary>
         Invisible
     }
-
+    /// <summary>
+    /// Enumeration for visible type of scrollbar.
+    /// </summary>
     public enum ScrollBlock
     {
+        /// <summary>
+        /// Scrolling movement is allowed in both direction.(X axis and Y axis)
+        /// </summary>
         None = 1,
+        /// <summary>
+        /// Scrolling movement is not allowed in Y axis direction.
+        /// </summary>
         Vertical = 2,
+        /// <summary>
+        /// Scrolling movement is not allowed in X axis direction.
+        /// </summary>
         Horizontal = 4
     }
-
+    /// <summary>
+    /// The Scroller is a container that holds and clips a single object and allows you to scroll across it.
+    /// </summary>
     public class Scroller : Layout
     {
         SmartEvent _scroll;
@@ -39,6 +64,10 @@ namespace ElmSharp
         SmartEvent _dragStop;
         SmartEvent _scrollpage;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Scroller class.
+        /// </summary>
+        /// <param name="parent">The <see cref="EvasObject"/> to which the new Scroller will be attached as a child.</param>
         public Scroller(EvasObject parent) : base(parent)
         {
             _scroll = new SmartEvent(this, this.RealHandle, "scroll");
@@ -47,6 +76,9 @@ namespace ElmSharp
             _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
         }
 
+        /// <summary>
+        /// Scrolled will be triggered when the content has been scrolled.
+        /// </summary>
         public event EventHandler Scrolled
         {
             add
@@ -58,6 +90,10 @@ namespace ElmSharp
                 _scroll.On -= value;
             }
         }
+
+        /// <summary>
+        /// DragStart will be triggered when dragging the contents around has started.
+        /// </summary>
         public event EventHandler DragStart
         {
             add
@@ -69,6 +105,10 @@ namespace ElmSharp
                 _dragStart.On -= value;
             }
         }
+
+        /// <summary>
+        /// DragStop will be triggered when dragging the contents around has stopped.
+        /// </summary>
         public event EventHandler DragStop
         {
             add
@@ -80,6 +120,10 @@ namespace ElmSharp
                 _dragStop.On -= value;
             }
         }
+
+        /// <summary>
+        /// PageScrolled will be triggered when the visible page has changed.
+        /// </summary>
         public event EventHandler PageScrolled
         {
             add
@@ -92,6 +136,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the current region in the content object that is visible through the Scroller.
+        /// </summary>
         public Rect CurrentRegion
         {
             get
@@ -102,6 +149,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
         public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -117,6 +171,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
         public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -132,6 +193,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value of ScrollBlock.
+        /// </summary>
+        /// <remarks>
+        /// This function will block scrolling movement  in a given direction.One can disable movements in the X axis, the Y axis or both.
+        /// The default value is ScrollBlock.None, where movements are allowed in both directions.
+        /// </remarks>
         public ScrollBlock ScrollBlock
         {
             get
@@ -144,6 +212,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets scroll current page number.
+        /// </summary>
+        /// <remarks>
+        /// Current page means the page which meets the top of the viewport.
+        /// If there are two or more pages in the viewport, it returns the number of the page which meets the top of the viewport.
+        /// The page number starts from 0. 0 is the first page.
+        /// </remarks>
         public int VerticalPageIndex
         {
             get
@@ -154,6 +230,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets scroll current page number.
+        /// </summary>
+        /// <remarks>
+        /// Current page means the page which meets the left of the viewport.
+        /// If there are two or more pages in the viewport, it returns the number of the page which meets the left of the viewport.
+        /// The page number starts from 0. 0 is the first page.
+        /// </remarks>
         public int HorizontalPageIndex
         {
             get
@@ -164,6 +248,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the maximum limit of the movable page at vertical direction.
+        /// </summary>
         public int VerticalPageScrollLimit
         {
             get
@@ -179,6 +266,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the maximum limit of the movable page at horizontal direction.
+        /// </summary>
         public int HorizontalPageScrollLimit
         {
             get
@@ -194,16 +284,42 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the page size to an absolute fixed value, with 0 turning it off for that axis.
+        /// </summary>
+        /// <param name="width">The horizontal page size.</param>
+        /// <param name="height">The vertical page size.</param>
         public void SetPageSize(int width, int height)
         {
             Interop.Elementary.elm_scroller_page_size_set(RealHandle, width, height);
         }
 
+        /// <summary>
+        /// Sets the scroll page size relative to the viewport size.
+        /// </summary>
+        /// <remarks>
+        /// The scroller is capable of limiting scrolling by the user to "pages".
+        /// That is to jump by and only show a "whole page" at a time as if the continuous area of the scroller
+        /// content is split into page sized pieces. This sets the size of a page relative to the viewport of the scroller.
+        /// 1.0 is "1 viewport" which is the size (horizontally or vertically). 0.0 turns it off in that axis.
+        /// This is mutually exclusive with the page size (see elm_scroller_page_size_set() for more information).
+        /// Likewise 0.5 is "half a viewport". Usable values are normally between 0.0 and 1.0 including 1.0.
+        /// If you only want 1 axis to be page "limited", use 0.0 for the other axis.
+        /// </remarks>
+        /// <param name="width">The horizontal page relative size.</param>
+        /// <param name="height">The vertical page relative size.</param>
         public void SetPageSize(double width, double height)
         {
             Interop.Elementary.elm_scroller_page_relative_set(RealHandle, width, height);
         }
 
+        /// <summary>
+        /// Shows a specific virtual region within the scroller content object by the page number.
+        /// (0, 0) of the indicated page is located at the top-left corner of the viewport.
+        /// </summary>
+        /// <param name="horizontalPageIndex">The horizontal page number.</param>
+        /// <param name="verticalPageIndex">The vertical page number.</param>
+        /// <param name="animated">True means slider with animation.</param>
         public void ScrollTo(int horizontalPageIndex, int verticalPageIndex, bool animated)
         {
             if (animated)
@@ -216,6 +332,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Shows a specific virtual region within the scroller content object.
+        /// </summary>
+        /// <remarks>
+        /// This ensures that all (or part, if it does not fit) of the designated region in the virtual content object ((0, 0)
+        /// starting at the top-left of the virtual content object) is shown within the scroller.
+        /// If set "animated" to true, it will allows the scroller to "smoothly slide" to this location
+        /// (if configuration in general calls for transitions).
+        /// It may not jump immediately to the new location and may take a while and show other content along the way.
+        /// </remarks>
+        /// <param name="region">Rect struct of region.</param>
+        /// <param name="animated">True means allows the scroller to "smoothly slide" to this location.</param>
         public void ScrollTo(Rect region, bool animated)
         {
             if (animated)

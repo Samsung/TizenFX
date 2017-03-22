@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Struct defining a 3-D point.
+    /// The Point3D is a Struct that defining a 3-D point.
     /// </summary>
     public struct Point3D : IEquatable<Point3D>
     {

@@ -19,13 +19,14 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// A view used to draw a solid colored rectangle.
+    /// The Rectangle is a class that used to draw a solid colored rectangle.
     /// </summary>
     public class Rectangle : EvasObject
     {
         /// <summary>
-        /// Create a new BoxView widget.
+        /// Creates and initializes a new instance of the Rectangle class.
         /// </summary>
+        /// <param name="parent">The <see cref="EvasObject"/> to which the new Slider will be attached as a child.</param>
         public Rectangle(EvasObject parent) : base(parent)
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);

@@ -63,7 +63,7 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// This Popup is a widget that is an enhancement of Notify.
+    /// The Popup is a widget that is an enhancement of Notify.
     /// In addition to content area, there are two optional sections, namely title area and action area.
     /// </summary>
     public class Popup : Layout

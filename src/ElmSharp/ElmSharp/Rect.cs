@@ -19,11 +19,17 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// A value that represent rectangluar space.
+    /// The Rect is a struct that represent rectangluar space.
     /// </summary>
     public struct Rect : IEquatable<Rect>
     {
-
+        /// <summary>
+        /// Creates and initializes a new instance of the Rect class.
+        /// </summary>
+        /// <param name="x">X axis value.</param>
+        /// <param name="y">Y axis value.</param>
+        /// <param name="w">Width value.</param>
+        /// <param name="h">Height value.</param>
         public Rect(int x, int y, int w, int h)
         {
             X = x;
@@ -81,19 +87,11 @@ namespace ElmSharp
         /// </summary>
         public Size Size { get { return new Size { Width = Width, Height = Height }; } }
 
-        /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Rectangle" />.
-        /// </summary>
-        /// <returns>The string is formatted as "{{X={0} Y={1} Width={2} Height={3}}}".</returns>
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Width={2} Height={3}}}", X, Y, Width, Height);
         }
 
-        /// <summary>
-        /// Returns a hash value for the <see cref="T:Tizen.UI.Rectangle" />.
-        /// </summary>
-        /// <returns>A value intended for efficient insertion and lookup in hashtable-based data structures.</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -106,11 +104,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Returns true if the values of this are exactly equal to those in the argument.
-        /// </summary>
-        /// <param name="obj">Another <see cref="T:Tizen.UI.Rectangle" />.</param>
-        /// <returns>True if the values are equal to those in <paramref name="obj" />. Returns false if <paramref name="obj" /> is not a <see cref="T:Tizen.UI.Rectangle" />.</returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Rect))
@@ -119,11 +112,6 @@ namespace ElmSharp
             return Equals((Rect)obj);
         }
 
-        /// <summary>
-        /// Returns true if the values of this are exactly equal to those in the argument.
-        /// </summary>
-        /// <param name="other">Another <see cref="T:Tizen.UI.Rectangle" />.</param>
-        /// <returns>True if the values are equal to those in <paramref name="other" />.</returns>
         public bool Equals(Rect other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);

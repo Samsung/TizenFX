@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Slider is a widget that adds a draggable “slider” widget for selecting the value of something within a range.
+    /// </summary>
     public class Slider : Layout
     {
         double _minimum = 0.0;
@@ -28,6 +31,10 @@ namespace ElmSharp
         SmartEvent _dragStarted;
         SmartEvent _dragStopped;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Slider class.
+        /// </summary>
+        /// <param name="parent">The <see cref="EvasObject"/> to which the new Slider will be attached as a child.</param>
         public Slider(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -43,14 +50,37 @@ namespace ElmSharp
             _dragStopped.On += (s, e) => DragStopped?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// ValueChanged will be triggered when the Slider value is changed by the user.
+        /// </summary>
         public event EventHandler ValueChanged;
 
+        /// <summary>
+        /// DelayedValueChanged will be triggered when a short time after the value is changed by the user.
+        /// This will be called only when the user stops dragging for a very short period or when they release their finger/mouse,
+        /// so it avoids possibly expensive reactions to the value change.
+        /// </summary>
         public event EventHandler DelayedValueChanged;
 
+        /// <summary>
+        /// DragStarted will be triggered when dragging the Slider indicator around has started.
+        /// </summary>
         public event EventHandler DragStarted;
 
+        /// <summary>
+        /// DragStopped will be triggered when dragging the Slider indicator around has stopped.
+        /// </summary>
         public event EventHandler DragStopped;
 
+        /// <summary>
+        /// Sets or gets the (exact) length of the bar region of a given Slider widget.
+        /// </summary>
+        /// <remarks>
+        /// This sets the minimum width (when in the horizontal mode) or height (when in the vertical mode)
+        /// of the actual bar area of the slider obj. This in turn affects the object's minimum size.
+        /// Use this when you're not setting other size hints expanding on the given direction
+        /// (like weight and alignment hints), and you would like it to have a specific size.
+        /// </remarks>
         public int SpanSize
         {
             get
@@ -63,6 +93,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the format string for the unit label.
+        /// </summary>
+        /// <remarks>
+        /// Unit label is displayed all the time, if set, after the slider's bar.
+        /// In the horizontal mode, on the right and in the vertical mode, at the bottom.If NULL,
+        /// the unit label won't be visible. If not, it sets the format string for the label text.
+        /// For the label text a floating point value is provided,
+        /// so the label text can display up to 1 floating point value.
+        /// Note that this is optional.Use a format string such as "%1.2f meters" for example,
+        /// and it displays values like: "3.14 meters" for a value equal to 3.14159.By default, unit label is disabled.
+        /// </remarks>
         public string UnitFormat
         {
             get
@@ -75,6 +117,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the format string for the indicator label.
+        /// </summary>
+        /// <remarks>
+        /// The slider may display its value somewhere other than the unit label,
+        /// for example, above the slider knob that is dragged around. This function sets the format string
+        /// used for this.If NULL, the indicator label won't be visible. If not, it sets the format string
+        /// for the label text. For the label text floating point value is provided, so the label text can
+        /// display up to 1 floating point value. Note that this is optional.Use a format string
+        /// such as "%1.2f meters" for example, and it displays values like: "3.14 meters" for a value
+        /// equal to 3.14159.By default, the indicator label is disabled.
+        /// </remarks>
         public string IndicatorFormat
         {
             get
@@ -87,6 +141,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the orientation of a given slider widget.
+        /// </summary>
+        /// <remarks>
+        /// The orientation may be vertically or horizontally.By default, it's displayed horizontally.
+        /// </remarks>
         public bool IsHorizontal
         {
             get
@@ -99,6 +159,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the minimum values for the slider.
+        /// </summary>
+        /// <remarks>
+        /// This defines the allowed minimum values to be selected by the user.
+        /// If the actual value is less than min, it is updated to min.
+        /// Actual value can be obtained with Value.By default, min is equal to 0.0.
+        /// </remarks>
         public double Minimum
         {
             get
@@ -112,6 +180,15 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the maximum values for the slider.
+        /// </summary>
+        /// <remarks>
+        /// This defines the allowed maximum values to be selected by the user.
+        /// If the actual value is bigger then max, it is updated to max.
+        /// Actual value can be obtained with Value.By default, min is equal to 0.0, and max is equal to 1.0.
+        /// Maximum must be greater than minimum, otherwise the behavior is undefined.
+        /// </remarks>
         public double Maximum
         {
             get
@@ -125,6 +202,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value displayed by the slider.
+        /// </summary>
+        /// <remarks>
+        /// Value will be presented on the unit label following format specified with UnitFormat and
+        /// on indicator with IndicatorFormat.The value must to be between Minimum and Maximum values.
+        /// </remarks>
         public double Value
         {
             get
@@ -137,6 +221,15 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the step by which the slider indicator moves.
+        /// </summary>
+        /// <remarks>
+        /// This value is used when the draggable object is moved automatically i.e.,
+        /// in case of a key event when up/down/left/right key is pressed or in case accessibility
+        /// is set and the flick event is used to inc/dec slider values.
+        /// By default, the step value is equal to 0.05.
+        /// </remarks>
         public double Step
         {
             get
@@ -149,6 +242,15 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether a given slider widget's displaying values are inverted.
+        /// </summary>
+        /// <remarks>
+        /// A slider may be inverted, in which case it gets its values inverted,
+        /// with high values being on the left or top and low values on the right or bottom,
+        /// as opposed to normally have the low values on the former and high values on the latter,
+        /// respectively, for the horizontal and vertical modes.
+        /// </remarks>
         public bool IsInverted
         {
             get
@@ -161,6 +263,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether to enlarge the slider indicator (augmented knob).
+        /// </summary>
+        /// <remarks>
+        /// By default, the indicator is bigger when dragged by the user.
+        /// It won't display values set with IndicatorFormat if you disable the indicator.
+        /// </remarks>
         public bool IsIndicatorVisible
         {
             get
