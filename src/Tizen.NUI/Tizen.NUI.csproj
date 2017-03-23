@@ -347,7 +347,7 @@
     <Compile Include="src\public\VideoView.cs" />
     <Compile Include="src\public\View.cs" />
     <Compile Include="src\public\VisualBase.cs" />
-    <Compile Include="src\internal\VisualFactory.cs" />
+    <Compile Include="src\public\VisualFactory.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
   </ItemGroup>
