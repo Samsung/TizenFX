@@ -595,12 +595,12 @@ namespace Tizen.NUI
         /// Emboss property
         /// The default emboss parameters.
         /// </summary>
-        public PropertyMap Emboss
+        public string Emboss
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextLabel.Property.EMBOSS).Get(temp);
+                string temp;
+                GetProperty(TextLabel.Property.EMBOSS).Get( out temp);
                 return temp;
             }
             set
@@ -613,12 +613,12 @@ namespace Tizen.NUI
         /// Outline property
         /// The default outline parameters.
         /// </summary>
-        public PropertyMap Outline
+        public string Outline
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextLabel.Property.OUTLINE).Get(temp);
+                string temp;
+                GetProperty(TextLabel.Property.OUTLINE).Get(out temp);
                 return temp;
             }
             set
