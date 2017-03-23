@@ -153,7 +153,7 @@ public class DetectedEventArgs : EventArgs
 
 public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr) {
     PanGestureDetector ret = new PanGestureDetector(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

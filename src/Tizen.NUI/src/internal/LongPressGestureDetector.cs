@@ -152,7 +152,7 @@ public class DetectedEventArgs : EventArgs
 
 public static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr) {
     LongPressGestureDetector ret = new LongPressGestureDetector(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

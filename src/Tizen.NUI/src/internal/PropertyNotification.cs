@@ -131,7 +131,7 @@ public class NotifyEventArgs : EventArgs
 
   public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr) {
     PropertyNotification ret = new PropertyNotification(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
