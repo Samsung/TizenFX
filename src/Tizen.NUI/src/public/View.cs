@@ -557,7 +557,7 @@ namespace Tizen.NUI
                 if (_offStageEventHandler == null)
                 {
                     _offStageEventCallback = OffStage;
-                    this.OnStageSignal().Connect(_offStageEventCallback);
+                    this.OffStageSignal().Connect(_offStageEventCallback);
                 }
 
                 _offStageEventHandler += value;
@@ -569,7 +569,7 @@ namespace Tizen.NUI
 
                 if (_offStageEventHandler == null && _offStageEventCallback != null)
                 {
-                    this.OnStageSignal().Disconnect(_offStageEventCallback);
+                    this.OffStageSignal().Disconnect(_offStageEventCallback);
                 }
             }
         }
@@ -968,9 +968,27 @@ namespace Tizen.NUI
         {
             get
             {
-                string temp;
-                GetProperty(View.Property.STATE).Get(out temp);
-                return temp;
+                int temp = 0;
+                GetProperty(View.Property.STATE).Get(ref temp);
+                switch (temp)
+                {
+                    case 0:
+                    {
+                        return "NORMAL";
+                    }
+                    case 1:
+                    {
+                        return "FOCUSED";
+                    }
+                    case 2:
+                    {
+                        return "DISABLED";
+                    }
+                    default:
+                    {
+                        return "";
+                    }
+                }
             }
             set
             {
