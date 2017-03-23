@@ -165,6 +165,7 @@
     <Compile Include="src\internal\PinchGestureDetector.cs" />
     <Compile Include="src\internal\PixelData.cs" />
     <Compile Include="src\internal\PixelFormat.cs" />
+    <Compile Include="src\internal\VisualTransformPolicyType.cs" />
     <Compile Include="src\public\CustomView\VisualView.cs" />
     <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Position2D.cs" />

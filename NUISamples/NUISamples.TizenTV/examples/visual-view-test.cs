@@ -25,6 +25,7 @@ namespace VisualViewTest
     class Example : NUIApplication
     {
         private VisualView _visualView = null;
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         public Example() : base()
         {
@@ -62,7 +63,7 @@ namespace VisualViewTest
 
             /* image visual 1. */
             ImageVisualMap imageVisualMap1 = new ImageVisualMap();
-            imageVisualMap1.URL = "./examples/images/image-1.jpg";
+            imageVisualMap1.URL = resources + "/images/image-1.jpg";
             imageVisualMap1.VisualSize = new Vector2(200.0f, 200.0f);
             imageVisualMap1.Offset = new Vector2(10.0f, 10.0f);
             imageVisualMap1.OffsetPolicy = new Vector2(1, 1);
@@ -73,7 +74,7 @@ namespace VisualViewTest
 
             /* image visual 2. */
             ImageVisualMap imageVisualMap2 = new ImageVisualMap();
-            imageVisualMap2.URL = "./examples/images/image-2.jpg";
+            imageVisualMap2.URL = resources + "/images/image-2.jpg";
             imageVisualMap2.VisualSize = new Vector2(250.0f, 200.0f);
             imageVisualMap2.Offset = new Vector2(220.0f, 10.0f);
             imageVisualMap2.OffsetPolicy = new Vector2(1, 1);
@@ -96,7 +97,7 @@ namespace VisualViewTest
             textVisualMap1.Text = "Hello Goodbye";
             textVisualMap1.PointSize = 20.0f;
 
-            textVisualMap1.VisualSize = new Vector2(200.0f, 50.0f);
+            textVisualMap1.VisualSize = new Vector2(900.0f, 250.0f);
             textVisualMap1.Offset = new Vector2(10.0f, 220.0f);
             textVisualMap1.OffsetPolicy = new Vector2(1, 1);
             textVisualMap1.SizePolicy = new Vector2(1, 1);
@@ -110,7 +111,7 @@ namespace VisualViewTest
             borderVisualMap1.Size = 5.0f;
 
             borderVisualMap1.VisualSize = new Vector2(100.0f, 100.0f);
-            borderVisualMap1.Offset = new Vector2(10.0f, 280.0f);
+            borderVisualMap1.Offset = new Vector2(10.0f, 380.0f);
             borderVisualMap1.OffsetPolicy = new Vector2(1, 1);
             borderVisualMap1.SizePolicy = new Vector2(1, 1);
             borderVisualMap1.Origin = AlignType.TOP_BEGIN;
@@ -139,7 +140,7 @@ namespace VisualViewTest
             gradientVisualMap1.Radius = 1.414f;
 
             gradientVisualMap1.VisualSize = new Vector2(100.0f, 100.0f);
-            gradientVisualMap1.Offset = new Vector2(120.0f, 280.0f);
+            gradientVisualMap1.Offset = new Vector2(120.0f, 380.0f);
             gradientVisualMap1.OffsetPolicy = new Vector2(1, 1);
             gradientVisualMap1.SizePolicy = new Vector2(1, 1);
             gradientVisualMap1.Origin = AlignType.TOP_BEGIN;
@@ -155,7 +156,7 @@ namespace VisualViewTest
             primitiveVisualMap1.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
 
             primitiveVisualMap1.VisualSize = new Vector2(100.0f, 100.0f);
-            primitiveVisualMap1.Offset = new Vector2(230.0f, 280.0f);
+            primitiveVisualMap1.Offset = new Vector2(230.0f, 380.0f);
             primitiveVisualMap1.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap1.SizePolicy = new Vector2(1, 1);
             primitiveVisualMap1.Origin = AlignType.TOP_BEGIN;
@@ -171,7 +172,7 @@ namespace VisualViewTest
             primitiveVisualMap2.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
 
             primitiveVisualMap2.VisualSize = new Vector2(100.0f, 100.0f);
-            primitiveVisualMap2.Offset = new Vector2(340.0f, 280.0f);
+            primitiveVisualMap2.Offset = new Vector2(340.0f, 380.0f);
             primitiveVisualMap2.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap2.SizePolicy = new Vector2(1, 1);
             primitiveVisualMap2.Origin = AlignType.TOP_BEGIN;
@@ -187,7 +188,7 @@ namespace VisualViewTest
             primitiveVisualMap3.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
 
             primitiveVisualMap3.VisualSize = new Vector2(100.0f, 100.0f);
-            primitiveVisualMap3.Offset = new Vector2(10.0f, 390.0f);
+            primitiveVisualMap3.Offset = new Vector2(10.0f, 490.0f);
             primitiveVisualMap3.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap3.SizePolicy = new Vector2(1, 1);
             primitiveVisualMap3.Origin = AlignType.TOP_BEGIN;
@@ -203,7 +204,7 @@ namespace VisualViewTest
             primitiveVisualMap4.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
 
             primitiveVisualMap4.VisualSize = new Vector2(100.0f, 100.0f);
-            primitiveVisualMap4.Offset = new Vector2(120.0f, 390.0f);
+            primitiveVisualMap4.Offset = new Vector2(120.0f, 490.0f);
             primitiveVisualMap4.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap4.SizePolicy = new Vector2(1, 1);
             primitiveVisualMap4.Origin = AlignType.TOP_BEGIN;
@@ -219,7 +220,7 @@ namespace VisualViewTest
             primitiveVisualMap5.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
 
             primitiveVisualMap5.VisualSize = new Vector2(100.0f, 100.0f);
-            primitiveVisualMap5.Offset = new Vector2(230.0f, 390.0f);
+            primitiveVisualMap5.Offset = new Vector2(230.0f, 490.0f);
             primitiveVisualMap5.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap5.SizePolicy = new Vector2(1, 1);
             primitiveVisualMap5.Origin = AlignType.TOP_BEGIN;
@@ -228,13 +229,13 @@ namespace VisualViewTest
 
             /* mesh visual nothing show. */
             MeshVisualMap meshVisualMap1 = new MeshVisualMap();
-            meshVisualMap1.ObjectURL = "./examples/models/Dino.obj";
-            meshVisualMap1.MaterialtURL = "./examples/models/Dino.mtl";
-            meshVisualMap1.TexturesPath = "./examples/images/";
+            meshVisualMap1.ObjectURL = resources + "/models/Dino.obj";
+            meshVisualMap1.MaterialtURL = resources + "/models/Dino.mtl";
+            meshVisualMap1.TexturesPath = resources + "/images/";
             meshVisualMap1.ShadingMode = MeshVisualShadingModeValue.TexturedWithSpecularLighting;
 
             meshVisualMap1.VisualSize = new Vector2(200.0f, 200.0f);
-            meshVisualMap1.Offset = new Vector2(10.0f, 500.0f);
+            meshVisualMap1.Offset = new Vector2(10.0f, 600.0f);
             meshVisualMap1.OffsetPolicy = new Vector2(1, 1);
             meshVisualMap1.SizePolicy = new Vector2(1, 1);
             meshVisualMap1.Origin = AlignType.TOP_BEGIN;
@@ -243,7 +244,7 @@ namespace VisualViewTest
         }
 
         [STAThread]
-        static void _Main(string[] args)
+        static void Main(string[] args)
         {
             Example example = new Example();
             example.Run(args);
