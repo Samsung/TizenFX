@@ -190,7 +190,39 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle), "Failed to get information");
 
-            return new MediaInformation(mediaHandle);
+            MediaContentType type;
+            MediaInformation res;
+            Interop.MediaInformation.GetMediaType(mediaHandle, out type);
+            if (type == MediaContentType.Image)
+            {
+                Interop.ImageInformation.SafeImageInformationHandle imageInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetImage(mediaHandle.DangerousGetHandle(), out imageInfo), "Failed to get image information");
+
+                res = new ImageInformation(imageInfo, mediaHandle);
+            }
+            else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
+            {
+                Interop.AudioInformation.SafeAudioInformationHandle audioInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetAudio(mediaHandle.DangerousGetHandle(), out audioInfo), "Failed to get audio information");
+
+                res = new AudioInformation(audioInfo, mediaHandle);
+            }
+            else if (type == MediaContentType.Video)
+            {
+                Interop.VideoInformation.SafeVideoInformationHandle videoInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetVideo(mediaHandle.DangerousGetHandle(), out videoInfo), "Failed to get video information");
+
+                res = new VideoInformation(videoInfo, mediaHandle);
+            }
+            else
+            {
+                res = new MediaInformation(mediaHandle);
+            }
+
+            return res;
         }
 
         /// <summary>
@@ -608,21 +640,30 @@ namespace Tizen.Content.MediaContent
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.ImageInformation.UpdateToDB(((ImageInformation)mediaInfo).ImageHandle), "Failed to update DB");
+
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.UpdateToDB(mediaInfo.MediaHandle), "Failed to update DB");
             }
             else if (type == typeof(AudioInformation))
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.AudioInformation.UpdateToDB(((AudioInformation)mediaInfo).AudioHandle), "Failed to update DB");
+
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.UpdateToDB(mediaInfo.MediaHandle), "Failed to update DB");
             }
             else if (type == typeof(VideoInformation))
             {
                 MediaContentValidator.ThrowIfError(
                     Interop.VideoInformation.UpdateToDB(((VideoInformation)mediaInfo).VideoHandle), "Failed to update DB");
+
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.UpdateToDB(mediaInfo.MediaHandle), "Failed to update DB");
             }
             else if (type == typeof(MediaInformation))
             {
                 MediaContentValidator.ThrowIfError(
-                    Interop.MediaInformation.UpdateToDB(((MediaInformation)mediaInfo).MediaHandle), "Failed to update DB");
+                    Interop.MediaInformation.UpdateToDB(mediaInfo.MediaHandle), "Failed to update DB");
             }
             else
             {

@@ -93,7 +93,37 @@ namespace Tizen.Content.MediaContent
                 MediaContentValidator.ThrowIfError(
                     Interop.MediaInformation.Clone(out newHandle, mediaHandle), "Failed to clone MediaInformation instance");
 
-                mediaContents.Add(new MediaInformation(newHandle));
+                MediaContentType type;
+                Interop.MediaInformation.GetMediaType(newHandle, out type);
+                if (type == MediaContentType.Image)
+                {
+                    Interop.ImageInformation.SafeImageInformationHandle imageInfo;
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetImage(mediaHandle, out imageInfo), "Failed to get image information");
+
+                    mediaContents.Add(new ImageInformation(imageInfo, newHandle));
+                }
+                else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
+                {
+                    Interop.AudioInformation.SafeAudioInformationHandle audioInfo;
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetAudio(mediaHandle, out audioInfo), "Failed to get audio information");
+
+                    mediaContents.Add(new AudioInformation(audioInfo, newHandle));
+                }
+                else if (type == MediaContentType.Video)
+                {
+                    Interop.VideoInformation.SafeVideoInformationHandle videoInfo;
+                    MediaContentValidator.ThrowIfError(
+                        Interop.MediaInformation.GetVideo(mediaHandle, out videoInfo), "Failed to get video information");
+
+                    mediaContents.Add(new VideoInformation(videoInfo, newHandle));
+                }
+                else if (type == MediaContentType.Others)
+                {
+                    mediaContents.Add(new MediaInformation(newHandle));
+                }
+
                 return true;
             };
             MediaContentValidator.ThrowIfError(

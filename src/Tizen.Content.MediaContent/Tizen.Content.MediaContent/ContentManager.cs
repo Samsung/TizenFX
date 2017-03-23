@@ -87,7 +87,39 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.Insert(filePath, out mediaInformationHandle), "Failed to Insert MediaInformation to DB");
 
-            return new MediaInformation(mediaInformationHandle);
+            MediaContentType type;
+            MediaInformation res;
+            Interop.MediaInformation.GetMediaType(mediaInformationHandle, out type);
+            if (type == MediaContentType.Image)
+            {
+                Interop.ImageInformation.SafeImageInformationHandle imageInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetImage(mediaInformationHandle.DangerousGetHandle(), out imageInfo), "Failed to get image information");
+
+                res = new ImageInformation(imageInfo, mediaInformationHandle);
+            }
+            else if ((type == MediaContentType.Music) || (type == MediaContentType.Sound))
+            {
+                Interop.AudioInformation.SafeAudioInformationHandle audioInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetAudio(mediaInformationHandle.DangerousGetHandle(), out audioInfo), "Failed to get audio information");
+
+                res = new AudioInformation(audioInfo, mediaInformationHandle);
+            }
+            else if (type == MediaContentType.Video)
+            {
+                Interop.VideoInformation.SafeVideoInformationHandle videoInfo;
+                MediaContentValidator.ThrowIfError(
+                    Interop.MediaInformation.GetVideo(mediaInformationHandle.DangerousGetHandle(), out videoInfo), "Failed to get video information");
+
+                res = new VideoInformation(videoInfo, mediaInformationHandle);
+            }
+            else
+            {
+                res = new MediaInformation(mediaInformationHandle);
+            }
+
+            return res;
         }
 
         /// <summary>
