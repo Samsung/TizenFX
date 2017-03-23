@@ -36,6 +36,8 @@ internal static partial class Interop
             internal int wday; /* day of the week, range 0 to 6*/
             internal int yday; /* day in the year, range 0 to 365*/
             internal int isdst; /* daylight saving time*/
+            internal long tm_gmtoff;
+            internal IntPtr tm_zone;
         };
 
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_after_delay")]
