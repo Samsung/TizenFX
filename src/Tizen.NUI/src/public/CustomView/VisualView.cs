@@ -117,7 +117,7 @@ namespace Tizen.NUI
         /// <param name="visualName"> The name of visual to remove. </param>
         public void RemoveVisual(string visualName)
         {
-            foreach (var item in _visualDictionary)
+            foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == visualName)
                 {
