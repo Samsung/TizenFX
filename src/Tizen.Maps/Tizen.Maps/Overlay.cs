@@ -43,7 +43,7 @@ namespace Tizen.Maps
             {
                 err.ThrowIfFailed("given coordinates or parent evas object is null");
             }
-            handle = new Interop.OverlayHandle(coordinates.handle, objectToContain, Interop.ViewOverlayType.Normal);
+            handle = new Interop.OverlayHandle(coordinates.handle, objectToContain, type);
         }
 
         public override bool IsVisible
