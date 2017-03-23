@@ -45,6 +45,9 @@ namespace Tizen.Multimedia.MediaCodec
             }
 
             MultimediaDebug.AssertNoError(ret);
+
+            RegisterInputProcessed();
+            RegisterErrorOccurred();
         }
 
         #region IDisposable-support
@@ -337,7 +340,7 @@ namespace Tizen.Multimedia.MediaCodec
         }
 
         /// <summary>
-        /// Add the packet to the internal queue of the codec.
+        /// Adds the packet to the internal queue of the codec.
         /// </summary>
         /// <param name="packet">The packet to be encoded or decoded.</param>
         /// <exception cref="ArgumentNullException">packet is null.</exception>
@@ -352,7 +355,7 @@ namespace Tizen.Multimedia.MediaCodec
                 throw new ArgumentNullException(nameof(packet));
             }
 
-            MediaPacket.Lock packetLock = new MediaPacket.Lock(packet);
+            MediaPacket.Lock packetLock = MediaPacket.Lock.Get(packet);
 
             int ret = Interop.MediaCodec.Process(_handle, packetLock.GetHandle(), 0);
 
@@ -365,7 +368,7 @@ namespace Tizen.Multimedia.MediaCodec
         }
 
         /// <summary>
-        /// Flush both input and output buffers.
+        /// Flushes both input and output buffers.
         /// </summary>
         public void FlushBuffers()
         {
@@ -508,37 +511,13 @@ namespace Tizen.Multimedia.MediaCodec
         #endregion
 
         #region InputProcessed event
-        private EventHandler<InputProcessedEventArgs> _inputProcessed;
         private Interop.MediaCodec.InputBufferUsedCallback _inputBufferUsedCb;
 
         /// <summary>
         /// Occurs when an input packet is processed.
         /// </summary>
         /// <see cref="ProcessInput(MediaPacket)"/>
-        public event EventHandler<InputProcessedEventArgs> InputProcessed
-        {
-            add
-            {
-                ValidateNotDisposed();
-
-                if (_inputProcessed == null)
-                {
-                    RegisterInputProcessed();
-                }
-                _inputProcessed += value;
-
-            }
-            remove
-            {
-                ValidateNotDisposed();
-
-                _inputProcessed -= value;
-                if (_inputProcessed == null)
-                {
-                    UnregisterInputProcessed();
-                }
-            }
-        }
+        public event EventHandler<InputProcessedEventArgs> InputProcessed;
 
         private void RegisterInputProcessed()
         {
@@ -550,11 +529,13 @@ namespace Tizen.Multimedia.MediaCodec
                 using (MediaPacket.Lock packetLock =
                     MediaPacket.Lock.FromHandle(lockedPacketHandle))
                 {
+                    Debug.Assert(packetLock != null);
+
                     packet = packetLock.MediaPacket;
                 }
                 Debug.Assert(packet != null);
 
-                _inputProcessed?.Invoke(this, new InputProcessedEventArgs(packet));
+                InputProcessed?.Invoke(this, new InputProcessedEventArgs(packet));
             };
 
             int ret = Interop.MediaCodec.SetInputBufferUsedCb(_handle,
@@ -572,37 +553,12 @@ namespace Tizen.Multimedia.MediaCodec
         #endregion
 
         #region ErrorOccurred event
-        private EventHandler<MediaCodecErrorOccurredEventArgs> _errorOccurred;
         private Interop.MediaCodec.ErrorCallback _errorCb;
 
-        // TODO replace
         /// <summary>
         /// Occurs whenever an error is produced in the codec.
         /// </summary>
-        public event EventHandler<MediaCodecErrorOccurredEventArgs> ErrorOccurred
-        {
-            add
-            {
-                ValidateNotDisposed();
-
-                if (_errorOccurred == null)
-                {
-                    RegisterErrorOccurred();
-                }
-                _errorOccurred += value;
-
-            }
-            remove
-            {
-                ValidateNotDisposed();
-
-                _errorOccurred -= value;
-                if (_errorOccurred == null)
-                {
-                    UnregisterErrorOccurred();
-                }
-            }
-        }
+        public event EventHandler<MediaCodecErrorOccurredEventArgs> ErrorOccurred;
 
         private void RegisterErrorOccurred()
         {
@@ -611,7 +567,7 @@ namespace Tizen.Multimedia.MediaCodec
                 MediaCodecError error = (Enum.IsDefined(typeof(MediaCodecError), errorCode)) ?
                     (MediaCodecError)errorCode : MediaCodecError.InternalError;
 
-                _errorOccurred?.Invoke(this, new MediaCodecErrorOccurredEventArgs(error));
+                ErrorOccurred?.Invoke(this, new MediaCodecErrorOccurredEventArgs(error));
             };
             int ret = Interop.MediaCodec.SetErrorCb(_handle, _errorCb, IntPtr.Zero);
 

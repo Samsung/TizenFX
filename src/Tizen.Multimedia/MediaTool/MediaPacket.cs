@@ -603,8 +603,28 @@ namespace Tizen.Multimedia
         {
             private readonly MediaPacket _packet;
             private readonly GCHandle _gcHandle;
+            private int _lockCount;
 
-            internal Lock(MediaPacket packet)
+            internal static Lock Get(MediaPacket packet)
+            {
+                Debug.Assert(packet != null);
+
+                lock (packet)
+                {
+                    Lock lck = FromHandle(packet._handle);
+
+                    if (lck == null)
+                    {
+                        lck = new Lock(packet);
+                    }
+
+                    lck._lockCount++;
+
+                    return lck;
+                }
+            }
+
+            private Lock(MediaPacket packet)
             {
                 Debug.Assert(packet != null, "The packet is null!");
 
@@ -625,7 +645,10 @@ namespace Tizen.Multimedia
 
                 IntPtr extra = GetExtra(handle);
 
-                Debug.Assert(extra != IntPtr.Zero, "Extra of packet must not be null.");
+                if (extra == IntPtr.Zero)
+                {
+                    return null;
+                }
 
                 return (Lock)GCHandle.FromIntPtr(extra).Target;
             }
@@ -667,16 +690,24 @@ namespace Tizen.Multimedia
             {
                 if (!_isDisposed)
                 {
-                    // TODO rollback after the corresponding native api is fixed.
-                    //SetExtra(IntPtr.Zero);
-
-                    if (_gcHandle.IsAllocated)
+                    lock (_packet)
                     {
-                        _gcHandle.Free();
-                    }
+                        _lockCount--;
 
-                    //We can assure that at this point '_packet' is always locked by this lock.
-                    _packet._lock.SetUnlock();
+                        if (_lockCount == 0)
+                        {
+                            // TODO rollback after the corresponding native api is fixed.
+                            //SetExtra(IntPtr.Zero);
+
+                            if (_gcHandle.IsAllocated)
+                            {
+                                _gcHandle.Free();
+                            }
+
+                            //We can assure that at this point '_packet' is always locked by this lock.
+                            _packet._lock.SetUnlock();
+                        }
+                    }
 
                     _isDisposed = true;
                 }
