@@ -193,7 +193,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Called by the KeyboardFocusManager.
         /// </summary>
-        public void KeyboardEnter()
+        internal void KeyboardEnter()
         {
             viewWrapperImpl.KeyboardEnter();
         }
@@ -203,7 +203,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key event</param>
         /// <returns>True if the event was consumed</returns>
-        public bool EmitKeyEventSignal(Key key)
+        internal bool EmitKeyEventSignal(Key key)
         {
             return viewWrapperImpl.EmitKeyEventSignal(key);
         }
