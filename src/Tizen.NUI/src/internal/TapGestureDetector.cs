@@ -152,7 +152,7 @@ public class DetectedEventArgs : EventArgs
 
 public static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr) {
     TapGestureDetector ret = new TapGestureDetector(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

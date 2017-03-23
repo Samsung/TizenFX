@@ -152,7 +152,7 @@ public class DetectedEventArgs : EventArgs
 
 public static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr) {
     PinchGestureDetector ret = new PinchGestureDetector(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

@@ -47,7 +47,7 @@ namespace Tizen.NUI {
 
  public static RenderTask GetRenderTaskFromPtr(global::System.IntPtr cPtr) {
     RenderTask ret = new RenderTask(cPtr, false);
-	if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
