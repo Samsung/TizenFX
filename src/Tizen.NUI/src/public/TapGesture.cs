@@ -66,7 +66,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="cPtr">The pointer to cast</param>
         /// <returns>TapGesture object</returns>
-        public static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
+        internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
             TapGesture ret = new TapGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

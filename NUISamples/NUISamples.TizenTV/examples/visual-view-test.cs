@@ -68,8 +68,8 @@ namespace VisualViewTest
             imageVisualMap1.Offset = new Vector2(10.0f, 10.0f);
             imageVisualMap1.OffsetPolicy = new Vector2(1, 1);
             imageVisualMap1.SizePolicy = new Vector2(1, 1);
-            imageVisualMap1.Origin = AlignType.TOP_BEGIN;
-            imageVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
+            imageVisualMap1.Origin = AlignType.TopBegin;
+            imageVisualMap1.AnchorPoint = AlignType.TopBegin;
             _visualView.AddVisual("imageVisual1", imageVisualMap1);
 
             /* image visual 2. */
@@ -79,8 +79,8 @@ namespace VisualViewTest
             imageVisualMap2.Offset = new Vector2(220.0f, 10.0f);
             imageVisualMap2.OffsetPolicy = new Vector2(1, 1);
             imageVisualMap2.SizePolicy = new Vector2(1, 1);
-            imageVisualMap2.Origin = AlignType.TOP_BEGIN;
-            imageVisualMap2.AnchorPoint = AlignType.TOP_BEGIN;
+            imageVisualMap2.Origin = AlignType.TopBegin;
+            imageVisualMap2.AnchorPoint = AlignType.TopBegin;
             _visualView.AddVisual("imageVisual2", imageVisualMap2);
 
             /* Modify imageVisual2, we just need do this. */
@@ -101,8 +101,8 @@ namespace VisualViewTest
             textVisualMap1.Offset = new Vector2(10.0f, 220.0f);
             textVisualMap1.OffsetPolicy = new Vector2(1, 1);
             textVisualMap1.SizePolicy = new Vector2(1, 1);
-            textVisualMap1.Origin = AlignType.TOP_BEGIN;
-            textVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
+            textVisualMap1.Origin = AlignType.TopBegin;
+            textVisualMap1.AnchorPoint = AlignType.TopBegin;
             _visualView.AddVisual("textVisual1", textVisualMap1);
 
             /* border visual */
@@ -114,9 +114,9 @@ namespace VisualViewTest
             borderVisualMap1.Offset = new Vector2(10.0f, 380.0f);
             borderVisualMap1.OffsetPolicy = new Vector2(1, 1);
             borderVisualMap1.SizePolicy = new Vector2(1, 1);
-            borderVisualMap1.Origin = AlignType.TOP_BEGIN;
-            borderVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "borderVisual1", borderVisualMap1);
+            borderVisualMap1.Origin = AlignType.TopBegin;
+            borderVisualMap1.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("borderVisual1", borderVisualMap1);
 
             /* gradient visual */
             GradientVisualMap gradientVisualMap1 = new GradientVisualMap();
@@ -128,104 +128,104 @@ namespace VisualViewTest
             stopOffset.Add(new PropertyValue(1.0f));
             gradientVisualMap1.StopOffset = stopOffset;
             PropertyArray stopColor = new PropertyArray();
-            stopColor.Add(new PropertyValue(new Vector4( 129.0f, 198.0f, 193.0f, 255.0f )/255.0f));
-            stopColor.Add(new PropertyValue(new Vector4( 196.0f, 198.0f, 71.0f, 122.0f )/255.0f));
-            stopColor.Add(new PropertyValue(new Vector4( 214.0f, 37.0f, 139.0f, 191.0f )/255.0f));
-            stopColor.Add(new PropertyValue(new Vector4( 129.0f, 198.0f, 193.0f, 150.0f )/255.0f));
+            stopColor.Add(new PropertyValue(new Vector4(129.0f, 198.0f, 193.0f, 255.0f) / 255.0f));
+            stopColor.Add(new PropertyValue(new Vector4(196.0f, 198.0f, 71.0f, 122.0f) / 255.0f));
+            stopColor.Add(new PropertyValue(new Vector4(214.0f, 37.0f, 139.0f, 191.0f) / 255.0f));
+            stopColor.Add(new PropertyValue(new Vector4(129.0f, 198.0f, 193.0f, 150.0f) / 255.0f));
             stopColor.Add(new PropertyValue(Color.Yellow));
             gradientVisualMap1.StopColor = stopColor;
-            gradientVisualMap1.StartPosition = new Vector2(  0.5f,  0.5f );
-            gradientVisualMap1.EndPosition = new Vector2( -0.5f, -0.5f );
-            gradientVisualMap1.Center = new Vector2( 0.5f, 0.5f);
+            gradientVisualMap1.StartPosition = new Vector2(0.5f, 0.5f);
+            gradientVisualMap1.EndPosition = new Vector2(-0.5f, -0.5f);
+            gradientVisualMap1.Center = new Vector2(0.5f, 0.5f);
             gradientVisualMap1.Radius = 1.414f;
 
             gradientVisualMap1.VisualSize = new Vector2(100.0f, 100.0f);
             gradientVisualMap1.Offset = new Vector2(120.0f, 380.0f);
             gradientVisualMap1.OffsetPolicy = new Vector2(1, 1);
             gradientVisualMap1.SizePolicy = new Vector2(1, 1);
-            gradientVisualMap1.Origin = AlignType.TOP_BEGIN;
-            gradientVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "gradientVisual1", gradientVisualMap1);
+            gradientVisualMap1.Origin = AlignType.TopBegin;
+            gradientVisualMap1.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("gradientVisual1", gradientVisualMap1);
 
             /* primitive visual: Cone */
             PrimitiveVisualMap primitiveVisualMap1 = new PrimitiveVisualMap();
             primitiveVisualMap1.Shape = PrimitiveVisualShapeType.Cone;
             primitiveVisualMap1.BevelPercentage = 0.3f;
             primitiveVisualMap1.BevelSmoothness = 0.0f;
-            primitiveVisualMap1.ScaleDimensions = new Vector3(1.0f,1.0f,0.3f);
-            primitiveVisualMap1.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+            primitiveVisualMap1.ScaleDimensions = new Vector3(1.0f, 1.0f, 0.3f);
+            primitiveVisualMap1.MixColor = new Vector4((245.0f / 255.0f), (188.0f / 255.0f), (73.0f / 255.0f), 1.0f);
 
             primitiveVisualMap1.VisualSize = new Vector2(100.0f, 100.0f);
             primitiveVisualMap1.Offset = new Vector2(230.0f, 380.0f);
             primitiveVisualMap1.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap1.SizePolicy = new Vector2(1, 1);
-            primitiveVisualMap1.Origin = AlignType.TOP_BEGIN;
-            primitiveVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "primitiveVisual1", primitiveVisualMap1);
+            primitiveVisualMap1.Origin = AlignType.TopBegin;
+            primitiveVisualMap1.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("primitiveVisual1", primitiveVisualMap1);
 
             /* primitive visual: Sphere */
             PrimitiveVisualMap primitiveVisualMap2 = new PrimitiveVisualMap();
             primitiveVisualMap2.Shape = PrimitiveVisualShapeType.Sphere;
             primitiveVisualMap2.BevelPercentage = 0.3f;
             primitiveVisualMap2.BevelSmoothness = 0.0f;
-            primitiveVisualMap2.ScaleDimensions = new Vector3(1.0f,1.0f,0.3f);
-            primitiveVisualMap2.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+            primitiveVisualMap2.ScaleDimensions = new Vector3(1.0f, 1.0f, 0.3f);
+            primitiveVisualMap2.MixColor = new Vector4((245.0f / 255.0f), (188.0f / 255.0f), (73.0f / 255.0f), 1.0f);
 
             primitiveVisualMap2.VisualSize = new Vector2(100.0f, 100.0f);
             primitiveVisualMap2.Offset = new Vector2(340.0f, 380.0f);
             primitiveVisualMap2.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap2.SizePolicy = new Vector2(1, 1);
-            primitiveVisualMap2.Origin = AlignType.TOP_BEGIN;
-            primitiveVisualMap2.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "primitiveVisual2", primitiveVisualMap2);
+            primitiveVisualMap2.Origin = AlignType.TopBegin;
+            primitiveVisualMap2.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("primitiveVisual2", primitiveVisualMap2);
 
             /* primitive visual: Cylinder */
             PrimitiveVisualMap primitiveVisualMap3 = new PrimitiveVisualMap();
             primitiveVisualMap3.Shape = PrimitiveVisualShapeType.Cylinder;
             primitiveVisualMap3.BevelPercentage = 0.3f;
             primitiveVisualMap3.BevelSmoothness = 0.0f;
-            primitiveVisualMap3.ScaleDimensions = new Vector3(1.0f,1.0f,0.3f);
-            primitiveVisualMap3.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+            primitiveVisualMap3.ScaleDimensions = new Vector3(1.0f, 1.0f, 0.3f);
+            primitiveVisualMap3.MixColor = new Vector4((245.0f / 255.0f), (188.0f / 255.0f), (73.0f / 255.0f), 1.0f);
 
             primitiveVisualMap3.VisualSize = new Vector2(100.0f, 100.0f);
             primitiveVisualMap3.Offset = new Vector2(10.0f, 490.0f);
             primitiveVisualMap3.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap3.SizePolicy = new Vector2(1, 1);
-            primitiveVisualMap3.Origin = AlignType.TOP_BEGIN;
-            primitiveVisualMap3.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "primitiveVisual3", primitiveVisualMap3);
+            primitiveVisualMap3.Origin = AlignType.TopBegin;
+            primitiveVisualMap3.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("primitiveVisual3", primitiveVisualMap3);
 
             /* primitive visual: ConicalFrustrum */
             PrimitiveVisualMap primitiveVisualMap4 = new PrimitiveVisualMap();
             primitiveVisualMap4.Shape = PrimitiveVisualShapeType.ConicalFrustrum;
             primitiveVisualMap4.BevelPercentage = 0.3f;
             primitiveVisualMap4.BevelSmoothness = 0.0f;
-            primitiveVisualMap4.ScaleDimensions = new Vector3(1.0f,1.0f,0.3f);
-            primitiveVisualMap4.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+            primitiveVisualMap4.ScaleDimensions = new Vector3(1.0f, 1.0f, 0.3f);
+            primitiveVisualMap4.MixColor = new Vector4((245.0f / 255.0f), (188.0f / 255.0f), (73.0f / 255.0f), 1.0f);
 
             primitiveVisualMap4.VisualSize = new Vector2(100.0f, 100.0f);
             primitiveVisualMap4.Offset = new Vector2(120.0f, 490.0f);
             primitiveVisualMap4.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap4.SizePolicy = new Vector2(1, 1);
-            primitiveVisualMap4.Origin = AlignType.TOP_BEGIN;
-            primitiveVisualMap4.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "primitiveVisual4", primitiveVisualMap4);
+            primitiveVisualMap4.Origin = AlignType.TopBegin;
+            primitiveVisualMap4.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("primitiveVisual4", primitiveVisualMap4);
 
             /* primitive visual: Cube */
             PrimitiveVisualMap primitiveVisualMap5 = new PrimitiveVisualMap();
             primitiveVisualMap5.Shape = PrimitiveVisualShapeType.Cube;
             primitiveVisualMap5.BevelPercentage = 0.3f;
             primitiveVisualMap5.BevelSmoothness = 0.0f;
-            primitiveVisualMap5.ScaleDimensions = new Vector3(1.0f,1.0f,0.3f);
-            primitiveVisualMap5.MixColor = new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+            primitiveVisualMap5.ScaleDimensions = new Vector3(1.0f, 1.0f, 0.3f);
+            primitiveVisualMap5.MixColor = new Vector4((245.0f / 255.0f), (188.0f / 255.0f), (73.0f / 255.0f), 1.0f);
 
             primitiveVisualMap5.VisualSize = new Vector2(100.0f, 100.0f);
             primitiveVisualMap5.Offset = new Vector2(230.0f, 490.0f);
             primitiveVisualMap5.OffsetPolicy = new Vector2(1, 1);
             primitiveVisualMap5.SizePolicy = new Vector2(1, 1);
-            primitiveVisualMap5.Origin = AlignType.TOP_BEGIN;
-            primitiveVisualMap5.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "primitiveVisual5", primitiveVisualMap5);
+            primitiveVisualMap5.Origin = AlignType.TopBegin;
+            primitiveVisualMap5.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("primitiveVisual5", primitiveVisualMap5);
 
             /* mesh visual nothing show. */
             MeshVisualMap meshVisualMap1 = new MeshVisualMap();
@@ -238,13 +238,13 @@ namespace VisualViewTest
             meshVisualMap1.Offset = new Vector2(10.0f, 600.0f);
             meshVisualMap1.OffsetPolicy = new Vector2(1, 1);
             meshVisualMap1.SizePolicy = new Vector2(1, 1);
-            meshVisualMap1.Origin = AlignType.TOP_BEGIN;
-            meshVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
-            _visualView.AddVisual( "meshVisual1", meshVisualMap1);
+            meshVisualMap1.Origin = AlignType.TopBegin;
+            meshVisualMap1.AnchorPoint = AlignType.TopBegin;
+            _visualView.AddVisual("meshVisual1", meshVisualMap1);
         }
 
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Example example = new Example();
             example.Run(args);

@@ -242,7 +242,7 @@ namespace Tizen.NUI
 
 
 
-        public static Button GetButtonFromPtr(global::System.IntPtr cPtr)
+        internal static Button GetButtonFromPtr(global::System.IntPtr cPtr)
         {
             Button ret = new Button(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -70,10 +70,6 @@
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\visual-view-test.cs" />
     <Compile Include="examples\hello-world.cs" />
-    <Compile Include="examples\visuals-example.cs" />
-    <Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
-    <Compile Include="examples\visuals-using-custom-view\ContactView.cs" />
-    <Compile Include="examples\visuals-using-custom-view\visuals-using-custom-view.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

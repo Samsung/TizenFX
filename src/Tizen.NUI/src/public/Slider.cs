@@ -342,7 +342,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="cPtr">The pointer of Slider</param>
         /// <returns>Object of Slider type</returns>
-        public static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
+        internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
             Slider ret = new Slider(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

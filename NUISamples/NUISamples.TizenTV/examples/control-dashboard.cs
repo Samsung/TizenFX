@@ -293,13 +293,13 @@ namespace ControlDashboard
                     PropertyArray iconTooltipContent = new PropertyArray();
 
                     PropertyMap iconVisual = new PropertyMap();
-                    iconVisual.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Image))
-                      .Add(Tizen.NUI.Constants.ImageVisualProperty.URL, new PropertyValue(_resPath + "/images/star-highlight.png"));
+                    iconVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
+                      .Add(ImageVisualProperty.URL, new PropertyValue(_resPath + "/images/star-highlight.png"));
                     iconTooltipContent.Add(new PropertyValue(iconVisual));
 
                     PropertyMap textVisual = new PropertyMap();
-                    textVisual.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Text))
-                      .Add(Tizen.NUI.Constants.TextVisualProperty.Text, new PropertyValue("Tooltip with Icon"));
+                    textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text))
+                      .Add(TextVisualProperty.Text, new PropertyValue("Tooltip with Icon"));
                     iconTooltipContent.Add(new PropertyValue(textVisual));
 
                     PropertyMap iconTooltip = new PropertyMap();
@@ -463,9 +463,9 @@ namespace ControlDashboard
         void OnProgressBarValueChanged(object source, ProgressBar.ValueChangedEventArgs e)
         {
             PropertyMap labelVisual = new PropertyMap();
-            labelVisual.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Text))
-              .Add(Tizen.NUI.Constants.TextVisualProperty.Text, new PropertyValue(Math.Round(e.ProgressBar.ProgressValue, 2) + " / " + Math.Round(e.ProgressBar.SecondaryProgressValue, 2)))
-              .Add(Tizen.NUI.Constants.TextVisualProperty.PointSize, new PropertyValue(10.0f));
+            labelVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text))
+              .Add(TextVisualProperty.Text, new PropertyValue(Math.Round(e.ProgressBar.ProgressValue, 2) + " / " + Math.Round(e.ProgressBar.SecondaryProgressValue, 2)))
+              .Add(TextVisualProperty.PointSize, new PropertyValue(10.0f));
             e.ProgressBar.LabelVisual = labelVisual;
             return;
         }

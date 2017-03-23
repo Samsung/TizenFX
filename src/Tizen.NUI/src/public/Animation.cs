@@ -128,7 +128,7 @@ namespace Tizen.NUI
         }
 
 
-        public static Animation GetAnimationFromPtr(global::System.IntPtr cPtr)
+        internal static Animation GetAnimationFromPtr(global::System.IntPtr cPtr)
         {
             Animation ret = new Animation(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

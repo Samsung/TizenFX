@@ -59,7 +59,7 @@ namespace Tizen.NUI
         }
 
 
-        public static LongPressGesture GetLongPressGestureFromPtr(global::System.IntPtr cPtr)
+        internal static LongPressGesture GetLongPressGestureFromPtr(global::System.IntPtr cPtr)
         {
             LongPressGesture ret = new LongPressGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
