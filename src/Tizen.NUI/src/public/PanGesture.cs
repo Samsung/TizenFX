@@ -64,7 +64,7 @@ namespace Tizen.NUI
         }
 
 
-        public static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
+        internal static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
         {
             PanGesture ret = new PanGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -136,7 +136,7 @@ namespace Tizen.NUI
         /// This sets whether the indicator bar should be shown or not.
         /// </summary>
         /// <param name="visibleMode">Visible mode for indicator bar, Visible in default</param>
-        public void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
+        internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
         {
             NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         /// This sets the opacity mode of indicator bar.
         /// </summary>
         /// <param name="opacity">The opacity mode</param>
-        public void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
+        internal void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
         {
             NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// It does not implicitly show the indicator if it is currently hidden.
         /// </summary>
         /// <param name="orientation">The orientation</param>
-        public void RotateIndicator(Window.WindowOrientation orientation)
+        internal void RotateIndicator(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -256,7 +256,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for opacity of the indicator.
         /// </summary>
-        public enum IndicatorBgOpacity
+        internal enum IndicatorBgOpacity
         {
             Opaque = 100,
             Translucent = 50,
@@ -266,7 +266,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for visible mode of the indicator.
         /// </summary>
-        public enum IndicatorVisibleMode
+        internal enum IndicatorVisibleMode
         {
             Invisible = 0,
             Visible = 1,

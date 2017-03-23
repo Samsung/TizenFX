@@ -25,10 +25,10 @@ namespace Tizen.NUI
     {
         private Vector2 _visualSize = Vector2.Zero;
         private Vector2 _visualOffset = Vector2.Zero;
-        private Vector2 _visualOffsetPolicy = new Vector2((int)VisualTransformPolicyType.ABSOLUTE, (int)VisualTransformPolicyType.ABSOLUTE); // default absolute
-        private Vector2 _visualSizePolicy = new Vector2((int)VisualTransformPolicyType.ABSOLUTE, (int)VisualTransformPolicyType.ABSOLUTE); // default absolute
-        private AlignType _visualOrigin = AlignType.TOP_BEGIN;
-        private AlignType _visualAnchorPoint = AlignType.TOP_BEGIN;
+        private Vector2 _visualOffsetPolicy = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute); // default absolute
+        private Vector2 _visualSizePolicy = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute); // default absolute
+        private AlignType _visualOrigin = AlignType.TopBegin;
+        private AlignType _visualAnchorPoint = AlignType.TopBegin;
 
         private PropertyMap _visualTransformMap = null;
 
@@ -159,12 +159,12 @@ namespace Tizen.NUI
             if (_visualSize != Vector2.Zero)
             {
                 _visualTransformMap = new PropertyMap();
-                _visualTransformMap.Add((int)VisualTransformPropertyType.SIZE, new PropertyValue(_visualSize));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.OFFSET, new PropertyValue(_visualOffset));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.OFFSET_POLICY, new PropertyValue(_visualOffsetPolicy));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.SIZE_POLICY, new PropertyValue(_visualSizePolicy));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.ORIGIN, new PropertyValue((int)_visualOrigin));
-                _visualTransformMap.Add((int)VisualTransformPropertyType.ANCHOR_POINT, new PropertyValue((int)_visualAnchorPoint));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(_visualSize));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(_visualOffset));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(_visualOffsetPolicy));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin));
+                _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint));
             }
         }
 
@@ -396,26 +396,26 @@ namespace Tizen.NUI
             if (_url != "")
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Image));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.URL, new PropertyValue(_url));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode));
+                _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode));
 
                 if (_desiredWidth != 0)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.DesiredWidth, new PropertyValue(_desiredWidth));
+                    _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue(_desiredWidth));
                 }
 
                 if (_desiredHeight != 0)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.DesiredHeight, new PropertyValue(_desiredHeight));
+                    _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue(_desiredHeight));
                 }
 
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronousLoading));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.BorderOnly, new PropertyValue(_borderOnly));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU));
-                _outputVisualMap.Add(Tizen.NUI.Constants.ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV));
+                _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronousLoading));
+                _outputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue(_borderOnly));
+                _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea));
+                _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU));
+                _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV));
             }
         }
     }
@@ -581,29 +581,29 @@ namespace Tizen.NUI
             if (_text != "")
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Text));
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.Text, new PropertyValue(_text));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
+                _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
 
                 if (_fontFamily != "")
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.FontFamily, new PropertyValue(_fontFamily));
+                    _outputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily));
                 }
 
                 if (_fontStyle != null)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.FontStyle, new PropertyValue(_fontStyle));
+                    _outputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle));
                 }
 
                 if (_pointSize != 0)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.PointSize, new PropertyValue(_pointSize));
+                    _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue(_pointSize));
                 }
 
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.MultiLine, new PropertyValue(_multiLine));
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment));
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment));
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.TextColor, new PropertyValue(_textColor));
-                _outputVisualMap.Add(Tizen.NUI.Constants.TextVisualProperty.EnableMarkup, new PropertyValue(_enableMarkup));
+                _outputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue(_multiLine));
+                _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment));
+                _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment));
+                _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor));
+                _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue(_enableMarkup));
             }
         }
     }
@@ -672,10 +672,10 @@ namespace Tizen.NUI
             if (_size > 0.000001f)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Border));
-                _outputVisualMap.Add(Tizen.NUI.Constants.BorderVisualProperty.Color, new PropertyValue(_color));
-                _outputVisualMap.Add(Tizen.NUI.Constants.BorderVisualProperty.Size, new PropertyValue(_size));
-                _outputVisualMap.Add(Tizen.NUI.Constants.BorderVisualProperty.AntiAliasing, new PropertyValue(_antiAliasing));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
+                _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color));
+                _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue(_size));
+                _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue(_antiAliasing));
             }
         }
     }
@@ -709,8 +709,8 @@ namespace Tizen.NUI
         protected override void ComposingPropertyMap()
         {
             _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Color));
-            _outputVisualMap.Add(Tizen.NUI.Constants.ColorVisualProperty.MixColor, new PropertyValue(_mixColor));
+            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+            _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColor));
         }
     }
 
@@ -868,20 +868,20 @@ namespace Tizen.NUI
                 && _radius > 0.000001f && _stopColor != null)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Gradient));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.StartPosition, new PropertyValue(_startPosition));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.EndPosition, new PropertyValue(_endPosition));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.Center, new PropertyValue(_center));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.Radius, new PropertyValue(_radius));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Gradient));
+                _outputVisualMap.Add(GradientVisualProperty.StartPosition, new PropertyValue(_startPosition));
+                _outputVisualMap.Add(GradientVisualProperty.EndPosition, new PropertyValue(_endPosition));
+                _outputVisualMap.Add(GradientVisualProperty.Center, new PropertyValue(_center));
+                _outputVisualMap.Add(GradientVisualProperty.Radius, new PropertyValue(_radius));
 
                 if (_stopOffset != null)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset));
+                    _outputVisualMap.Add(GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset));
                 }
 
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.StopColor, new PropertyValue(_stopColor));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.Units, new PropertyValue((int)_units));
-                _outputVisualMap.Add(Tizen.NUI.Constants.GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod));
+                _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor));
+                _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units));
+                _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod));
             }
         }
     }
@@ -1022,22 +1022,22 @@ namespace Tizen.NUI
             if (_objectURL != "")
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Mesh));
-                _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.ObjectURL, new PropertyValue(_objectURL));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Mesh));
+                _outputVisualMap.Add(MeshVisualProperty.ObjectURL, new PropertyValue(_objectURL));
 
                 if (_materialtURL != "" && _texturesPath != "")
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.MaterialtURL, new PropertyValue(_materialtURL));
-                    _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.TexturesPath, new PropertyValue(_texturesPath));
+                    _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, new PropertyValue(_materialtURL));
+                    _outputVisualMap.Add(MeshVisualProperty.TexturesPath, new PropertyValue(_texturesPath));
                 }
 
-                _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.ShadingMode, new PropertyValue((int)_shadingMode));
-                _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.UseMipmapping, new PropertyValue(_useMipmapping));
-                _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.UseSoftNormals, new PropertyValue(_useSoftNormals));
+                _outputVisualMap.Add(MeshVisualProperty.ShadingMode, new PropertyValue((int)_shadingMode));
+                _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, new PropertyValue(_useMipmapping));
+                _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, new PropertyValue(_useSoftNormals));
 
                 if (_lightPosition != null)
                 {
-                    _outputVisualMap.Add(Tizen.NUI.Constants.MeshVisualProperty.LightPosition, new PropertyValue(_lightPosition));
+                    _outputVisualMap.Add(MeshVisualProperty.LightPosition, new PropertyValue(_lightPosition));
                 }
             }
         }
@@ -1293,22 +1293,22 @@ namespace Tizen.NUI
         protected override void ComposingPropertyMap()
         {
             _outputVisualMap = new PropertyMap(); ;
-            _outputVisualMap.Add(Tizen.NUI.Constants.Visual.Property.Type, new PropertyValue((int)Tizen.NUI.Constants.Visual.Type.Primitive));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.Shape, new PropertyValue((int)_shape));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColor));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.Slices, new PropertyValue(_slices));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.Stacks, new PropertyValue(_stacks));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.ScaleTopRadius, new PropertyValue(_scaleTopRadius));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.ScaleBottomRadius, new PropertyValue(_scaleBottomRadius));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.ScaleHeight, new PropertyValue(_scaleHeight));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.ScaleRadius, new PropertyValue(_scaleRadius));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(_scaleDimensions));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.BevelPercentage, new PropertyValue(_bevelPercentage));
-            _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.BevelSmoothness, new PropertyValue(_bevelSmoothness));
+            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Primitive));
+            _outputVisualMap.Add(PrimitiveVisualProperty.Shape, new PropertyValue((int)_shape));
+            _outputVisualMap.Add(PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColor));
+            _outputVisualMap.Add(PrimitiveVisualProperty.Slices, new PropertyValue(_slices));
+            _outputVisualMap.Add(PrimitiveVisualProperty.Stacks, new PropertyValue(_stacks));
+            _outputVisualMap.Add(PrimitiveVisualProperty.ScaleTopRadius, new PropertyValue(_scaleTopRadius));
+            _outputVisualMap.Add(PrimitiveVisualProperty.ScaleBottomRadius, new PropertyValue(_scaleBottomRadius));
+            _outputVisualMap.Add(PrimitiveVisualProperty.ScaleHeight, new PropertyValue(_scaleHeight));
+            _outputVisualMap.Add(PrimitiveVisualProperty.ScaleRadius, new PropertyValue(_scaleRadius));
+            _outputVisualMap.Add(PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(_scaleDimensions));
+            _outputVisualMap.Add(PrimitiveVisualProperty.BevelPercentage, new PropertyValue(_bevelPercentage));
+            _outputVisualMap.Add(PrimitiveVisualProperty.BevelSmoothness, new PropertyValue(_bevelSmoothness));
 
             if (_lightPosition != null)
             {
-                _outputVisualMap.Add(Tizen.NUI.Constants.PrimitiveVisualProperty.LightPosition, new PropertyValue(_lightPosition));
+                _outputVisualMap.Add(PrimitiveVisualProperty.LightPosition, new PropertyValue(_lightPosition));
             }
         }
     }
@@ -1371,5 +1371,146 @@ namespace Tizen.NUI
         NoFilter,
         DontCare
     }
+
+    public enum VisualTransformPolicyType
+    {
+        Relative = 0,
+        Absolute = 1
+    }
+
+    public enum AlignType
+    {
+        TopBegin = 0,
+        TopCenter,
+        TopEnd,
+        CenterBegin,
+        Center,
+        CenterEnd,
+        BottomBegin,
+        BottomCenter,
+        BottomEnd
+    }
+
+    public enum VisualTransformPropertyType
+    {
+        Offset,
+        Size,
+        Origin,
+        AnchorPoint,
+        OffsetPolicy,
+        SizePolicy
+    }
+
+    public struct Visual
+    {
+        public enum Type
+        {
+            Border,
+            Color,
+            Gradient,
+            Image,
+            Mesh,
+            Primitive,
+            Wireframe,
+            Text
+        }
+
+        public struct Property
+        {
+            public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
+            public static readonly int Shader = NDalic.VISUAL_PROPERTY_SHADER;
+            public static readonly int Transform = NDalic.VISUAL_PROPERTY_TRANSFORM;
+            public static readonly int PremultipliedAlpha = NDalic.VISUAL_PROPERTY_PREMULTIPLIED_ALPHA;
+            public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
+        }
+
+        public struct ShaderProperty
+        {
+            public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
+            public static readonly int FragmentShader = NDalic.VISUAL_SHADER_FRAGMENT;
+            public static readonly int ShaderSubdivideGridX = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_X;
+            public static readonly int ShaderSubdivideGridY = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_Y;
+            public static readonly int ShaderHints = NDalic.VISUAL_SHADER_HINTS;
+        }
+    }
+
+    public struct BorderVisualProperty
+    {
+        public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
+        public static readonly int Size = NDalic.BORDER_VISUAL_SIZE;
+        public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
+    }
+
+    public struct ColorVisualProperty
+    {
+        public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
+    }
+
+    public struct GradientVisualProperty
+    {
+        public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
+        public static readonly int EndPosition = NDalic.GRADIENT_VISUAL_END_POSITION;
+        public static readonly int Center = NDalic.GRADIENT_VISUAL_CENTER;
+        public static readonly int Radius = NDalic.GRADIENT_VISUAL_RADIUS;
+        public static readonly int StopOffset = NDalic.GRADIENT_VISUAL_STOP_OFFSET;
+        public static readonly int StopColor = NDalic.GRADIENT_VISUAL_STOP_COLOR;
+        public static readonly int Units = NDalic.GRADIENT_VISUAL_UNITS;
+        public static readonly int SpreadMethod = NDalic.GRADIENT_VISUAL_SPREAD_METHOD;
+    }
+
+    public struct ImageVisualProperty
+    {
+        public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+        public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+        public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+        public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+        public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+        public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+        public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+        public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+        public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+    }
+
+    public struct MeshVisualProperty
+    {
+        public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
+        public static readonly int MaterialtURL = NDalic.MESH_VISUAL_MATERIAL_URL;
+        public static readonly int TexturesPath = NDalic.MESH_VISUAL_TEXTURES_PATH;
+        public static readonly int ShadingMode = NDalic.MESH_VISUAL_SHADING_MODE;
+        public static readonly int UseMipmapping = NDalic.MESH_VISUAL_USE_MIPMAPPING;
+        public static readonly int UseSoftNormals = NDalic.MESH_VISUAL_USE_SOFT_NORMALS;
+        public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
+    }
+
+    public struct PrimitiveVisualProperty
+    {
+        public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
+        public static readonly int MixColor = NDalic.PRIMITIVE_VISUAL_MIX_COLOR;
+        public static readonly int Slices = NDalic.PRIMITIVE_VISUAL_SLICES;
+        public static readonly int Stacks = NDalic.PRIMITIVE_VISUAL_STACKS;
+        public static readonly int ScaleTopRadius = NDalic.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS;
+        public static readonly int ScaleBottomRadius = NDalic.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS;
+        public static readonly int ScaleHeight = NDalic.PRIMITIVE_VISUAL_SCALE_HEIGHT;
+        public static readonly int ScaleRadius = NDalic.PRIMITIVE_VISUAL_SCALE_RADIUS;
+        public static readonly int ScaleDimensions = NDalic.PRIMITIVE_VISUAL_SCALE_DIMENSIONS;
+        public static readonly int BevelPercentage = NDalic.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE;
+        public static readonly int BevelSmoothness = NDalic.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS;
+        public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
+    }
+
+    public struct TextVisualProperty
+    {
+        public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
+        public static readonly int FontFamily = NDalic.TEXT_VISUAL_FONT_FAMILY;
+        public static readonly int FontStyle = NDalic.TEXT_VISUAL_FONT_STYLE;
+        public static readonly int PointSize = NDalic.TEXT_VISUAL_POINT_SIZE;
+        public static readonly int MultiLine = NDalic.TEXT_VISUAL_MULTI_LINE;
+        public static readonly int HorizontalAlignment = NDalic.TEXT_VISUAL_HORIZONTAL_ALIGNMENT;
+        public static readonly int VerticalAlignment = NDalic.TEXT_VISUAL_VERTICAL_ALIGNMENT;
+        public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
+        public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
+    }
+
 
 }

@@ -163,7 +163,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="cPtr">Pointer of the Size</param>
         /// <returns>Size</returns>
-        public static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
+        internal static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
         {
             Size2D ret = new Size2D(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

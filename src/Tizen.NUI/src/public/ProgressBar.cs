@@ -173,7 +173,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// </summary>
-        public static ProgressBar GetProgressBarFromPtr(global::System.IntPtr cPtr)
+        internal static ProgressBar GetProgressBarFromPtr(global::System.IntPtr cPtr)
         {
             ProgressBar ret = new ProgressBar(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -588,7 +588,7 @@ namespace Tizen.NUI
 
 
 
-        public static View GetViewFromPtr(global::System.IntPtr cPtr)
+        internal static View GetViewFromPtr(global::System.IntPtr cPtr)
         {
             View ret = new View(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -891,10 +891,10 @@ namespace Tizen.NUI
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Tizen.NUI.Constants.Visual.Property.Type).Get(ref visualType);
-                if (visualType == (int)Tizen.NUI.Constants.Visual.Type.Color)
+                background.Find(Visual.Property.Type).Get(ref visualType);
+                if (visualType == (int)Visual.Type.Color)
                 {
-                    background.Find(Tizen.NUI.Constants.ColorVisualProperty.MixColor).Get(backgroundColor);
+                    background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
                 }
 
                 return backgroundColor;
@@ -916,10 +916,10 @@ namespace Tizen.NUI
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Tizen.NUI.Constants.Visual.Property.Type).Get(ref visualType);
-                if (visualType == (int)Tizen.NUI.Constants.Visual.Type.Image)
+                background.Find(Visual.Property.Type).Get(ref visualType);
+                if (visualType == (int)Visual.Type.Image)
                 {
-                    background.Find(Tizen.NUI.Constants.ImageVisualProperty.URL).Get(out backgroundImage);
+                    background.Find(ImageVisualProperty.URL).Get(out backgroundImage);
                 }
 
                 return backgroundImage;

@@ -73,8 +73,6 @@ namespace Tizen.NUI
             }
         }
 
-
-
         internal static Actor GetActorFromPtr(global::System.IntPtr cPtr)
         {
             Actor ret = new Actor(cPtr, false);

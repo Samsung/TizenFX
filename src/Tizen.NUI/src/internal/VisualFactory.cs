@@ -14,7 +14,7 @@ namespace Tizen.NUI
     /// <summary>
     /// VisualFactory is a singleton object that provides and shares visuals between views
     /// </summary>
-    public class VisualFactory : BaseHandle
+    internal class VisualFactory : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

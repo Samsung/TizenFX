@@ -8,6 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+/* moved to VisualMaps.cs 
 namespace Tizen.NUI {
 
 public enum VisualTransformPolicyType {
@@ -16,3 +17,4 @@ public enum VisualTransformPolicyType {
 }
 
 }
+*/

@@ -8,6 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+/* moved to VisualMaps.cs 
 namespace Tizen.NUI
 {
     public enum AlignType
@@ -23,3 +24,4 @@ namespace Tizen.NUI
         BOTTOM_END
     }
 }
+*/

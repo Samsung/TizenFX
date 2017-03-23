@@ -157,12 +157,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Get Size from pointer.
-        /// </summary>
-        /// <param name="cPtr">Pointer of the Size</param>
-        /// <returns>Size</returns>
-        public static Size GetSizeFromPtr(global::System.IntPtr cPtr)
+        internal static Size GetSizeFromPtr(global::System.IntPtr cPtr)
         {
             Size ret = new Size(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
