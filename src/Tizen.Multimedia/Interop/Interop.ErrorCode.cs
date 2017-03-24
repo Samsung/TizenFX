@@ -96,8 +96,8 @@ namespace Tizen.Multimedia
                 case Interop.ErrorCode.InvalidParameter: return new ArgumentException(errMessage);
                 case Interop.ErrorCode.NoSuchFile: return new FileNotFoundException(errMessage);
                 case Interop.ErrorCode.OutOfMemory: return new OutOfMemoryException(errMessage);
+                case Interop.ErrorCode.NoAntenna:
                 case Interop.ErrorCode.NotSupported: return new NotSupportedException(errMessage);
-                case Interop.ErrorCode.NoAntenna: return new NotSupportedException(errMessage);
                 case Interop.ErrorCode.InvalidOperation:
                 case Interop.ErrorCode.InvalidState:
                 case Interop.ErrorCode.SoundPolicy:
