@@ -700,7 +700,7 @@ namespace Tizen.Multimedia
 #endregion Methods
 
 #region Callback registrations
-        public void RegisterCallbacks()
+        private void RegisterCallbacks()
         {
             RegisterErrorCallback();
             RegisterFocusStateChanged();
