@@ -38,7 +38,7 @@ public class RefObject : global::System.IDisposable {
 
  public static RefObject GetRefObjectFromPtr(global::System.IntPtr cPtr) {
     RefObject ret = new RefObject(cPtr, false);
-	if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

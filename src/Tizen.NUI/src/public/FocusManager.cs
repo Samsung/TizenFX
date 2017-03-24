@@ -163,8 +163,8 @@ namespace Tizen.NUI
 
             if (view)
             {
-            return view.GetPtrfromActor();
-        }
+                return view.GetPtrfromActor();
+            }
             else
             {
                 if (e.ProposedView) return proposed;
