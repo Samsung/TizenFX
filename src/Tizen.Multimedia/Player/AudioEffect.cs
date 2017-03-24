@@ -29,8 +29,9 @@ namespace Tizen.Multimedia
             Player = owner;
 
             bool available = false;
-            int ret = Interop.Player.AudioEffectEqualizerIsAvailable(Player.GetHandle(), out available);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+
+            Interop.Player.AudioEffectEqualizerIsAvailable(Player.Handle, out available).
+                ThrowIfFailed("Failed to initialize the AudioEffect");
 
             IsAvailable = available;
 
@@ -40,13 +41,13 @@ namespace Tizen.Multimedia
             }
 
             int count = 0;
-            ret = Interop.Player.AudioEffectGetEqualizerBandsCount(Player.GetHandle(), out count);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+            Interop.Player.AudioEffectGetEqualizerBandsCount(Player.Handle, out count).
+                ThrowIfFailed("Failed to initialize the AudioEffect");
 
             int min = 0;
             int max = 0;
-            ret = Interop.Player.AudioEffectGetEqualizerLevelRange(Player.GetHandle(), out min, out max);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the AudioEffect");
+            Interop.Player.AudioEffectGetEqualizerLevelRange(Player.Handle, out min, out max).
+                ThrowIfFailed("Failed to initialize the AudioEffect");
 
             Count = count;
             MinBandLevel = min;
@@ -96,8 +97,8 @@ namespace Tizen.Multimedia
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player.ValidateNotDisposed();
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.AudioEffectEqualizerClear(Player.GetHandle()),
-                "Failed to clear equalizer effect");
+            Interop.Player.AudioEffectEqualizerClear(Player.Handle).
+                ThrowIfFailed("Failed to clear equalizer effect");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 

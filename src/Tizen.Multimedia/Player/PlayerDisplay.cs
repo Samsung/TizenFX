@@ -103,12 +103,8 @@ namespace Tizen.Multimedia
 
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
 
-                int ret = Interop.Player.SetDisplayMode(Player.GetHandle(), (int)value);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set display mode, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set display mode");
+                Interop.Player.SetDisplayMode(Player.Handle, value).
+                    ThrowIfFailed("Failed to set display mode");
 
                 _displayMode = value;
             }
@@ -141,12 +137,8 @@ namespace Tizen.Multimedia
                     return;
                 }
 
-                int ret = Interop.Player.SetDisplayVisible(Player.GetHandle(), value);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the visible state of the display, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the visible state of the display");
+                Interop.Player.SetDisplayVisible(Player.Handle, value).
+                    ThrowIfFailed("Failed to set the visible state of the display");
 
                 _isVisible = value;
             }
@@ -182,12 +174,8 @@ namespace Tizen.Multimedia
 
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayRotation), value);
 
-                int ret = Interop.Player.SetDisplayRotation(Player.GetHandle(), (int)value);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the rotation state of the display, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the rotation state of the display");
+                Interop.Player.SetDisplayRotation(Player.Handle, value).
+                    ThrowIfFailed("Failed to set the rotation state of the display");
 
                 _rotation = value;
             }
@@ -228,9 +216,8 @@ namespace Tizen.Multimedia
                     $"The height of the roi can't be less than or equal to zero.");
             }
 
-            PlayerErrorConverter.ThrowIfError(
-                Interop.Player.SetDisplayRoi(Player.GetHandle(), roi.X, roi.Y, roi.Width, roi.Height),
-                "Failed to set the roi");
+            Interop.Player.SetDisplayRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
+                ThrowIfFailed("Failed to set the roi");
         }
     }
 }

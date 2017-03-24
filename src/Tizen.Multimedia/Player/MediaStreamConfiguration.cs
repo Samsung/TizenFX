@@ -81,9 +81,8 @@ namespace Tizen.Multimedia
                     throw new ArgumentOutOfRangeException(nameof(value), value, "the buffer max size can't be zero.");
                 }
 
-                int ret = Interop.Player.SetMediaStreamBufferMaxSize(_owner.Player.GetHandle(), (int)_streamType, value);
-
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the buffer max size");
+                Interop.Player.SetMediaStreamBufferMaxSize(_owner.Player.Handle, _streamType, value).
+                    ThrowIfFailed("Failed to set the buffer max size");
 
                 _bufferMaxSize = value;
             }
@@ -118,8 +117,8 @@ namespace Tizen.Multimedia
                         $"The threshold can't be greater than 100, but got { value }.");
                 }
 
-                int ret = Interop.Player.SetMediaStreamBufferMinThreshold(_owner.Player.GetHandle(), (int)_streamType, value);
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the buffer minimum threshold");
+                Interop.Player.SetMediaStreamBufferMinThreshold(_owner.Player.Handle, _streamType, value).
+                    ThrowIfFailed("Failed to set the buffer minimum threshold");
 
                 _threshold = value;
             }
@@ -138,11 +137,11 @@ namespace Tizen.Multimedia
                 player.MediaStreamVideoBufferStatusChanged += MediaStreamBufferStatusChanged;
             }
 
-            int ret = Interop.Player.SetMediaStreamBufferMaxSize(player.GetHandle(), (int)_streamType, _bufferMaxSize);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the media stream configuration");
+            Interop.Player.SetMediaStreamBufferMaxSize(player.Handle, _streamType, _bufferMaxSize).
+                ThrowIfFailed("Failed to initialize the media stream configuration");
 
-            ret = Interop.Player.SetMediaStreamBufferMinThreshold(player.GetHandle(), (int)_streamType, _threshold);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the media stream configuration");
+            Interop.Player.SetMediaStreamBufferMinThreshold(player.Handle, _streamType, _threshold).
+                ThrowIfFailed("Failed to initialize the media stream configuration");
         }
 
         internal void OnPlayerUnset(Player player)

@@ -29,6 +29,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="Player.SetSource(MediaSource)"/>
     public sealed class MediaUriSource : MediaSource
     {
+        // TODO consider using Uri class.
         /// <summary>
         /// Initialize a new instance of the MediaUriSource class with the specified uri.</summary>
         /// <param name="uri">The uri string.</param>
@@ -52,8 +53,7 @@ namespace Tizen.Multimedia
 
         internal override void OnAttached(Player player)
         {
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetUri(player.GetHandle(), Uri),
-                "Failed to set the source with specified uri");
+            Interop.Player.SetUri(player.Handle, Uri).ThrowIfFailed("Failed to set the source with specified uri");
         }
     }
 }

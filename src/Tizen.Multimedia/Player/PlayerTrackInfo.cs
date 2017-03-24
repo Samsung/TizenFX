@@ -50,8 +50,8 @@ namespace Tizen.Multimedia
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int count = 0;
-            int ret = Interop.Player.GetTrackCount(_owner.GetHandle(), _streamType, out count);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get count of the track");
+            Interop.Player.GetTrackCount(_owner.Handle, _streamType, out count).
+                ThrowIfFailed("Failed to get count of the track");
             Log.Info(PlayerLog.Tag, "get count : " + count);
             return count;
         }
@@ -86,10 +86,8 @@ namespace Tizen.Multimedia
 
             try
             {
-                int ret = Interop.Player.GetTrackLanguageCode(
-                    _owner.GetHandle(), _streamType, index, out code);
-
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to get the selected language of the player");
+                Interop.Player.GetTrackLanguageCode(_owner.Handle, _streamType, index, out code).
+                    ThrowIfFailed("Failed to get the selected language of the player");
 
                 string result = Marshal.PtrToStringAnsi(code);
 
@@ -119,8 +117,9 @@ namespace Tizen.Multimedia
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int value = 0;
-            int ret = Interop.Player.GetCurrentTrack(_owner.GetHandle(), _streamType, out value);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the selected index of the player");
+
+            Interop.Player.GetCurrentTrack(_owner.Handle, _streamType, out value).
+                ThrowIfFailed("Failed to get the selected index of the player");
             Log.Debug(PlayerLog.Tag, "get selected index : " + value);
             return value;
         }
@@ -148,12 +147,8 @@ namespace Tizen.Multimedia
 
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int ret = Interop.Player.SelectTrack(_owner.GetHandle(), _streamType, index);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the selected index of the player, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the selected index of the player");
+            Interop.Player.SelectTrack(_owner.Handle, _streamType, index).
+                ThrowIfFailed("Failed to set the selected index of the player");
         }
 
     }

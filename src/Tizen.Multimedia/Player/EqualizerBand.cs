@@ -38,11 +38,11 @@ namespace Tizen.Multimedia
             int frequency = 0;
             int range = 0;
 
-            int ret = Interop.Player.AudioEffectGetEqualizerBandFrequency(_owner.Player.GetHandle(), _index, out frequency);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize equalizer band");
+            Interop.Player.AudioEffectGetEqualizerBandFrequency(_owner.Player.Handle, _index, out frequency).
+                ThrowIfFailed("Failed to initialize equalizer band");
 
-            ret = Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_owner.Player.GetHandle(), _index, out range);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize equalizer band");
+            Interop.Player.AudioEffectGetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out range).
+                ThrowIfFailed("Failed to initialize equalizer band");
 
             Frequency = frequency;
             FrequencyRange = range;
@@ -72,12 +72,8 @@ namespace Tizen.Multimedia
                     $"but got {value}.");
             }
 
-            int ret = Interop.Player.AudioEffectSetEqualizerBandLevel(_owner.Player.GetHandle(), _index, value);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the level of the equalizer band, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the level of the equalizer band");
+            Interop.Player.AudioEffectSetEqualizerBandLevel(_owner.Player.Handle, _index, value).
+                ThrowIfFailed("Failed to set the level of the equalizer band");
         }
 
         /// <summary>
@@ -90,13 +86,8 @@ namespace Tizen.Multimedia
             _owner.Player.ValidateNotDisposed();
 
             int value = 0;
-            int ret = Interop.Player.AudioEffectGetEqualizerBandLevel(_owner.Player.GetHandle(),
-                _index, out value);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to get the level of the equalizer band, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the level of the equalizer band");
+            Interop.Player.AudioEffectGetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
+                ThrowIfFailed("Failed to get the level of the equalizer band");
             Log.Info(PlayerLog.Tag, "get level : " + value);
             return value;
         }

@@ -237,7 +237,7 @@ namespace Tizen.Multimedia
     /// Specifies the reason for the playback interruption.
     /// </summary>
     /// <seealso cref="Player.PlaybackInterrupted"/>
-    public enum PlaybackIntrruptionReason
+    public enum PlaybackInterruptionReason
     {
         ResourceConflict = 4
     }

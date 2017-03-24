@@ -225,13 +225,8 @@ namespace Tizen.Multimedia
 
             _player.ValidatePlayerState(PlayerState.Paused, PlayerState.Playing, PlayerState.Ready);
 
-            int ret = Interop.Player.PushMediaStream(_player.GetHandle(), packet.GetHandle());
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to push the packet to the player, " + (PlayerError)ret);
-            }
-
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to push the packet to the player");
+            Interop.Player.PushMediaStream(_player.Handle, packet.GetHandle()).
+                ThrowIfFailed("Failed to push the packet to the player");
         }
 
         private void SetMediaStreamInfo(StreamType streamType, MediaFormat mediaFormat)
@@ -247,13 +242,8 @@ namespace Tizen.Multimedia
             try
             {
                 ptr = mediaFormat.AsNativeHandle();
-                int ret = Interop.Player.SetMediaStreamInfo(_player.GetHandle(), (int)streamType, ptr);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the media stream info, " + (PlayerError)ret);
-                }
-
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the media stream info");
+                Interop.Player.SetMediaStreamInfo(_player.Handle, (int)streamType, ptr).
+                    ThrowIfFailed("Failed to set the media stream info");
             }
             finally
             {

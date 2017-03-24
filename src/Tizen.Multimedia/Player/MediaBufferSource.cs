@@ -130,13 +130,8 @@ namespace Tizen.Multimedia
 
         internal override void OnAttached(Player player)
         {
-            // TODO test buffer if we need to use GCHandle
-            int ret = Interop.Player.SetMemoryBuffer(player.GetHandle(), _buffer, _buffer.Length);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the memory buffer, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the memory buffer");
+            Interop.Player.SetMemoryBuffer(player.Handle, _buffer, _buffer.Length).
+                ThrowIfFailed("Failed to set the memory buffer");
         }
     }
 }

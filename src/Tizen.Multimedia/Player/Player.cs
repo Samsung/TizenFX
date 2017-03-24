@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using static Tizen.Multimedia.Interop;
 
 namespace Tizen.Multimedia
 {
@@ -37,9 +38,9 @@ namespace Tizen.Multimedia
     /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
     /// Note that only one video player can be played at one time.
     /// </remarks>
-    public sealed class Player : IDisposable
+    public class Player : IDisposable
     {
-        private IntPtr _handle = IntPtr.Zero;
+        private PlayerHandle _handle;
 
         /// <summary>
         /// Occurs when playback of a media is finished.
@@ -109,49 +110,40 @@ namespace Tizen.Multimedia
         public Player()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            try
-            {
-                int ret = Interop.Player.Create(out _handle);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to create player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to create player");
 
-                RetrieveProperties();
-                RegisterCallbacks();
+            Interop.Player.Create(out _handle).ThrowIfFailed("Failed to create player");
 
-                AudioEffect = new AudioEffect(this);
-            }
-            catch (Exception)
-            {
-                if (_handle != IntPtr.Zero)
-                {
-                    Interop.Player.Destroy(_handle);
-                }
-                throw;
-            }
+            Debug.Assert(_handle != null);
+
+            RetrieveProperties();
+
+            AudioEffect = new AudioEffect(this);
         }
 
         private void RetrieveProperties()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            PlayerErrorConverter.ThrowIfError(Interop.Player.GetVolume(_handle, out _volume, out _volume),
-                "Failed to initialize the player");
+            Interop.Player.GetVolume(Handle, out _volume, out _volume).
+                ThrowIfFailed("Failed to initialize the player");
 
-            int value = 0;
-            PlayerErrorConverter.ThrowIfError(Interop.Player.GetAudioLatencyMode(_handle, out value),
-                "Failed to initialize the player");
-            _audioLatencyMode = (AudioLatencyMode)value;
+            Interop.Player.GetAudioLatencyMode(Handle, out _audioLatencyMode).
+                ThrowIfFailed("Failed to initialize the player");
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.IsLooping(_handle, out _isLooping),
-                "Failed to initialize the player");
+            Interop.Player.IsLooping(Handle, out _isLooping).ThrowIfFailed("Failed to initialize the player");
+
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
+
+        private bool _callbackRegistered;
 
         private void RegisterCallbacks()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
+
+            if (_callbackRegistered)
+            {
+                return;
+            }
             RegisterSubtitleUpdatedCallback();
             RegisterErrorOccurredCallback();
             RegisterPlaybackInterruptedCallback();
@@ -161,18 +153,17 @@ namespace Tizen.Multimedia
             RegisterMediaStreamSeekCallback();
             RegisterPlaybackCompletedCallback();
             RegisterVideoFrameDecodedCallback();
+
+            _callbackRegistered = true;
         }
 
-        ~Player()
+        public IntPtr Handle
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            Dispose(false);
-        }
-
-        internal IntPtr GetHandle()
-        {
-            ValidateNotDisposed();
-            return _handle;
+            get
+            {
+                ValidateNotDisposed();
+                return _handle.DangerousGetHandle();
+            }
         }
 
         internal void ValidatePlayerState(params PlayerState[] desiredStates)
@@ -192,8 +183,8 @@ namespace Tizen.Multimedia
                 $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
         }
 
-#region Properties
-#region Network configuration
+        #region Properties
+        #region Network configuration
         private string _cookie = "";
         private string _userAgent = "";
 
@@ -222,12 +213,8 @@ namespace Tizen.Multimedia
                     throw new ArgumentNullException(nameof(value), "Cookie can't be null.");
                 }
 
-                int ret = Interop.Player.SetStreamingCookie(_handle, value, value.Length);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the cookie to the player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the cookie to the player");
+                Interop.Player.SetStreamingCookie(Handle, value, value.Length).
+                    ThrowIfFailed("Failed to set the cookie to the player");
 
                 _cookie = value;
                 Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
@@ -259,18 +246,14 @@ namespace Tizen.Multimedia
                     throw new ArgumentNullException(nameof(value), "UserAgent can't be null.");
                 }
 
-                int ret = Interop.Player.SetStreamingUserAgent(_handle, value, value.Length);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the user agent to the player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the user agent to the player");
+                Interop.Player.SetStreamingUserAgent(Handle, value, value.Length).
+                    ThrowIfFailed("Failed to set the user agent to the player");
 
                 _userAgent = value;
                 Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
             }
         }
-#endregion
+        #endregion
 
         /// <summary>
         /// Gets the state of the player.
@@ -290,12 +273,7 @@ namespace Tizen.Multimedia
                 }
 
                 int state = 0;
-                int ret = Interop.Player.GetState(_handle, out state);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to retrieve the state of the player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to retrieve the state of the player");
+                Interop.Player.GetState(Handle, out state).ThrowIfFailed("Failed to retrieve the state of the player");
 
                 Debug.Assert(Enum.IsDefined(typeof(PlayerState), state));
 
@@ -334,12 +312,8 @@ namespace Tizen.Multimedia
                 }
                 ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
 
-                int ret = Interop.Player.SetAudioLatencyMode(_handle, (int)value);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the audio latency mode of the player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the audio latency mode of the player");
+                Interop.Player.SetAudioLatencyMode(Handle, value).
+                    ThrowIfFailed("Failed to set the audio latency mode of the player");
 
                 _audioLatencyMode = value;
             }
@@ -369,34 +343,29 @@ namespace Tizen.Multimedia
                     return;
                 }
 
-                int ret = Interop.Player.SetLooping(_handle, value);
-                if (ret != (int)PlayerErrorCode.None)
-                {
-                    Log.Error(PlayerLog.Tag, "Failed to set the looping state of the player, " + (PlayerError)ret);
-                }
-                PlayerErrorConverter.ThrowIfError(ret, "Failed to set the looping state of the player");
+                Interop.Player.SetLooping(Handle, value).ThrowIfFailed("Failed to set the looping state of the player");
 
                 _isLooping = value;
             }
         }
 
-#region Display methods
+        #region Display methods
         private PlayerDisplay _display;
 
-        private int SetDisplay(PlayerDisplay display)
+        private PlayerErrorCode SetDisplay(PlayerDisplay display)
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (display == null)
             {
                 Log.Info(PlayerLog.Tag, "set display to none");
-                return Interop.Player.SetDisplay(_handle, PlayerDisplayType.None, IntPtr.Zero);
+                return Interop.Player.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
             }
             Log.Info(PlayerLog.Tag, "set display to " + display.Type + " (" + display.EvasObject + ")");
 
             Debug.Assert(Enum.IsDefined(typeof(PlayerDisplayType), display.Type));
             Debug.Assert(display.EvasObject != null);
 
-            return Interop.Player.SetDisplay(_handle, display.Type, display.EvasObject);
+            return Interop.Player.SetDisplay(Handle, display.Type, display.EvasObject);
         }
 
         private void ReplaceDisplay(PlayerDisplay newDisplay)
@@ -444,13 +413,13 @@ namespace Tizen.Multimedia
                     }
                 }
 
-                PlayerErrorConverter.ThrowIfError(SetDisplay(value), "Failed to set the display to the player");
+                SetDisplay(value).ThrowIfFailed("Failed to set the display to the player");
 
                 ReplaceDisplay(value);
                 Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
             }
         }
-#endregion
+        #endregion
 
         private PlayerTrackInfo _audioTrack;
 
@@ -514,16 +483,15 @@ namespace Tizen.Multimedia
         /// </summary>
         public AudioEffect AudioEffect { get; }
 
-#endregion
+        #endregion
 
-#region Dispose support
+        #region Dispose support
         private bool _disposed;
 
         public void Dispose()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool disposing)
@@ -543,10 +511,9 @@ namespace Tizen.Multimedia
                 }
                 _source = null;
 
-                if (_handle != IntPtr.Zero)
+                if (_handle != null)
                 {
-                    Interop.Player.Destroy(_handle);
-                    _handle = IntPtr.Zero;
+                    _handle.Dispose();
                 }
                 _disposed = true;
             }
@@ -561,17 +528,10 @@ namespace Tizen.Multimedia
             }
         }
 
-        internal bool IsDisposed
-        {
-            get
-            {
-                Log.Info(PlayerLog.Tag, "get disposed : " + _disposed);
-                return _disposed;
-            }
-        }
-#endregion
+        internal bool IsDisposed => _disposed;
+        #endregion
 
-#region Methods
+        #region Methods
 
         /// <summary>
         /// Gets the mute state.
@@ -583,8 +543,7 @@ namespace Tizen.Multimedia
             ValidateNotDisposed();
 
             bool value = false;
-            PlayerErrorConverter.ThrowIfError(Interop.Player.IsMuted(_handle, out value),
-                "Failed to get the mute state of the player");
+            Interop.Player.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
 
             Log.Info(PlayerLog.Tag, "get mute : " + value);
 
@@ -601,12 +560,7 @@ namespace Tizen.Multimedia
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidateNotDisposed();
 
-            int ret = Interop.Player.SetMute(_handle, mute);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the mute state of the player, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the mute state of the player");
+            Interop.Player.SetMute(Handle, mute).ThrowIfFailed("Failed to set the mute state of the player");
         }
 
         /// <summary>
@@ -626,15 +580,15 @@ namespace Tizen.Multimedia
 
             int start = 0;
             int current = 0;
-            int ret = Interop.Player.GetStreamingDownloadProgress(_handle, out start, out current);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get download progress");
+            Interop.Player.GetStreamingDownloadProgress(Handle, out start, out current).
+                ThrowIfFailed("Failed to get download progress");
 
             Log.Info(PlayerLog.Tag, "get download progress : " + start + ", " + current);
 
             return new DownloadProgress(start, current);
         }
 
-#region Volume
+        #region Volume
         private float _volume;
 
         /// <summary>
@@ -657,8 +611,8 @@ namespace Tizen.Multimedia
                     $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
             }
 
-            int ret = Interop.Player.SetVolume(_handle, value, value);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the volume of the player");
+            Interop.Player.SetVolume(Handle, value, value).
+                ThrowIfFailed("Failed to set the volume of the player");
         }
 
         /// <summary>
@@ -671,11 +625,11 @@ namespace Tizen.Multimedia
             ValidateNotDisposed();
 
             float value = 0.0F;
-            int ret = Interop.Player.GetVolume(_handle, out value, out value);
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to get the volume of the player");
+            Interop.Player.GetVolume(Handle, out value, out value).
+                ThrowIfFailed("Failed to get the volume of the player");
             return value;
         }
-#endregion
+        #endregion
 
         /// <summary>
         /// Sets the subtitle path for playback.
@@ -685,7 +639,8 @@ namespace Tizen.Multimedia
         ///     The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentException">The specified path does not exist.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path"/> is an empty string.</exception>
+        /// <exception cref="FileNotFoundException">The specified path does not exist.</exception>
         /// <exception cref="ArgumentNullException">The path is null.</exception>
         public void SetSubtitle(string path)
         {
@@ -697,13 +652,19 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(path));
             }
 
+            if (path.Length == 0)
+            {
+                throw new ArgumentException("The path is empty.", nameof(path));
+            }
+
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"The specified file does not exist.", path);
             }
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, path),
-                "Failed to set the subtitle path to the player");
+            Interop.Player.SetSubtitlePath(Handle, path).
+                ThrowIfFailed("Failed to set the subtitle path to the player");
+
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -718,8 +679,8 @@ namespace Tizen.Multimedia
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Idle);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, null),
-                "Failed to clear the subtitle of the player");
+            Interop.Player.SetSubtitlePath(Handle, null).
+                ThrowIfFailed("Failed to clear the subtitle of the player");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -728,26 +689,40 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.\n
+        ///     - or -\n
+        ///     No subtitle is set.
+        /// </exception>
+        /// <seealso cref="SetSubtitle(string)"/>
         public void SetSubtitleOffset(int offset)
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePositionOffset(_handle, offset),
-                "Failed to the subtitle offset of the player");
+            var err = Interop.Player.SetSubtitlePositionOffset(Handle, offset);
+
+            if (err == PlayerErrorCode.FeatureNotSupported)
+            {
+                throw new InvalidOperationException("No subtitle set");
+            }
+
+            err.ThrowIfFailed("Failed to the subtitle offset of the player");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         private void Prepare()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            int ret = Interop.Player.Prepare(_handle);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to prepare the player, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to prepare the player");
+            Interop.Player.Prepare(Handle).ThrowIfFailed("Failed to prepare the player");
+        }
+
+        /// <summary>
+        /// Invoked when
+        /// </summary>
+        protected virtual void OnPreparing()
+        {
+            RegisterCallbacks();
         }
 
         /// <summary>
@@ -758,7 +733,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No source is set.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        public Task PrepareAsync()
+        public virtual Task PrepareAsync()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (_source == null)
@@ -767,6 +742,8 @@ namespace Tizen.Multimedia
             }
 
             ValidatePlayerState(PlayerState.Idle);
+
+            OnPreparing();
 
             var completionSource = new TaskCompletionSource<bool>();
 
@@ -804,7 +781,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        public void Unprepare()
+        public virtual void Unprepare()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Idle)
@@ -814,8 +791,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.Unprepare(_handle),
-                "Failed to unprepare the player");
+            Interop.Player.Unprepare(Handle).ThrowIfFailed("Failed to unprepare the player");
 
             if (_source != null)
             {
@@ -839,7 +815,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Stop"/>
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
-        public void Start()
+        public virtual void Start()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Playing)
@@ -849,7 +825,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.Start(_handle), "Failed to start the player");
+            Interop.Player.Start(Handle).ThrowIfFailed("Failed to start the player");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -864,7 +840,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
-        public void Stop()
+        public virtual void Stop()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Ready)
@@ -874,7 +850,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Paused, PlayerState.Playing);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.Stop(_handle), "Failed to stop the player");
+            Interop.Player.Stop(Handle).ThrowIfFailed("Failed to stop the player");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -888,7 +864,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="Start"/>
-        public void Pause()
+        public virtual void Pause()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Paused)
@@ -899,7 +875,7 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Playing);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.Pause(_handle), "Failed to pause the player");
+            Interop.Player.Pause(Handle).ThrowIfFailed("Failed to pause the player");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -961,9 +937,8 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                PlayerErrorConverter.ThrowIfError(
-                    Interop.Player.CaptureVideo(_handle, cb, IntPtr.Zero),
-                    "Failed to capture the video");
+                Interop.Player.CaptureVideo(Handle, cb)
+                    .ThrowIfFailed("Failed to capture the video");
 
                 return await t.Task;
             }
@@ -983,8 +958,8 @@ namespace Tizen.Multimedia
 
             int playPosition = 0;
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.GetPlayPosition(_handle, out playPosition),
-                "Failed to get the play position of the player");
+            Interop.Player.GetPlayPosition(Handle, out playPosition).
+                ThrowIfFailed("Failed to get the play position of the player");
 
             Log.Info(PlayerLog.Tag, "get play position : " + playPosition);
 
@@ -995,19 +970,19 @@ namespace Tizen.Multimedia
             Interop.Player.SeekCompletedCallback cb)
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            int ret = Interop.Player.SetPlayPosition(_handle, milliseconds, accurate, cb, IntPtr.Zero);
+            var ret = Interop.Player.SetPlayPosition(Handle, milliseconds, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
-            if (ret == (int)PlayerErrorCode.InvalidArgument)
+            if (ret == PlayerErrorCode.InvalidArgument)
             {
                 throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
                     "The position is not valid.");
             }
-            if (ret != (int)PlayerErrorCode.None)
+            if (ret != PlayerErrorCode.None)
             {
                 Log.Error(PlayerLog.Tag, "Failed to set play position, " + (PlayerError)ret);
             }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set play position");
+            ret.ThrowIfFailed("Failed to set play position");
         }
 
         /// <summary>
@@ -1080,8 +1055,7 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetPlaybackRate(_handle, rate),
-                "Failed to set the playback rate.");
+            Interop.Player.SetPlaybackRate(Handle, rate).ThrowIfFailed("Failed to set the playback rate.");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
@@ -1112,13 +1086,12 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
-            PlayerErrorConverter.ThrowIfError(Interop.Player.SetAudioPolicyInfo(_handle, policy.Handle),
-                "Failed to set the audio stream policy to the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
+            Interop.Player.SetAudioPolicyInfo(Handle, policy.Handle).
+                ThrowIfFailed("Failed to set the audio stream policy to the player");
         }
-#endregion
+        #endregion
 
-#region Callback registrations
+        #region Callback registrations
         private void RegisterSubtitleUpdatedCallback()
         {
             _subtitleUpdatedCallback = (duration, text, _) =>
@@ -1127,12 +1100,8 @@ namespace Tizen.Multimedia
                 SubtitleUpdated?.Invoke(this, new SubtitleUpdatedEventArgs(duration, text));
             };
 
-            int ret = Interop.Player.SetSubtitleUpdatedCb(_handle, _subtitleUpdatedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to initialize the player, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to initialize the player");
+            Interop.Player.SetSubtitleUpdatedCb(Handle, _subtitleUpdatedCallback).
+                ThrowIfFailed("Failed to initialize the player");
         }
 
         private void RegisterPlaybackCompletedCallback()
@@ -1142,57 +1111,42 @@ namespace Tizen.Multimedia
                 Log.Debug(PlayerLog.Tag, "completed callback");
                 PlaybackCompleted?.Invoke(this, EventArgs.Empty);
             };
-            int ret = Interop.Player.SetCompletedCb(_handle, _playbackCompletedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set PlaybackCompleted, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackCompleted");
+            Interop.Player.SetCompletedCb(Handle, _playbackCompletedCallback).
+                ThrowIfFailed("Failed to set PlaybackCompleted");
         }
 
         private void RegisterPlaybackInterruptedCallback()
         {
             _playbackInterruptedCallback = (code, _) =>
             {
-                if (!Enum.IsDefined(typeof(PlaybackIntrruptionReason), code))
+                if (!Enum.IsDefined(typeof(PlaybackInterruptionReason), code))
                 {
                     return;
                 }
                 Log.Warn(PlayerLog.Tag, "interrupted reason : " + code);
-                PlaybackInterrupted?.Invoke(this,
-                    new PlaybackInterruptedEventArgs((PlaybackIntrruptionReason)code));
+                PlaybackInterrupted?.Invoke(this, new PlaybackInterruptedEventArgs(code));
             };
-            int ret = Interop.Player.SetInterruptedCb(_handle, _playbackInterruptedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set PlaybackInterrupted, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackInterrupted");
+
+            Interop.Player.SetInterruptedCb(Handle, _playbackInterruptedCallback).
+                ThrowIfFailed("Failed to set PlaybackInterrupted");
         }
 
         private void RegisterErrorOccurredCallback()
         {
             _playbackErrorCallback = (code, _) =>
             {
-                if (!Enum.IsDefined(typeof(PlayerError), code))
-                {
-                    return;
-                }
                 //TODO handle service disconnected error.
                 Log.Warn(PlayerLog.Tag, "error code : " + code);
                 ErrorOccurred?.Invoke(this, new PlayerErrorOccurredEventArgs((PlayerError)code));
             };
-            int ret = Interop.Player.SetErrorCb(_handle, _playbackErrorCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set PlaybackError, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackError");
+
+            Interop.Player.SetErrorCb(Handle, _playbackErrorCallback).
+                ThrowIfFailed("Failed to set PlaybackError");
         }
 
         private void RegisterVideoFrameDecodedCallback()
         {
-            _videoFrameDecodedCallback = (packetHandle,_) =>
+            _videoFrameDecodedCallback = (packetHandle, _) =>
             {
                 var handler = VideoFrameDecoded;
                 if (handler != null)
@@ -1207,12 +1161,8 @@ namespace Tizen.Multimedia
                 }
             };
 
-            int ret = Interop.Player.SetVideoFrameDecodedCb(_handle, _videoFrameDecodedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the VideoFrameDecoded, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to register the VideoFrameDecoded");
+            Interop.Player.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
+                ThrowIfFailed("Failed to register the VideoFrameDecoded");
         }
 
         private void RegisterVideoStreamChangedCallback()
@@ -1226,12 +1176,9 @@ namespace Tizen.Multimedia
 
                 VideoStreamChanged?.Invoke(this, new VideoStreamChangedEventArgs(height, width, fps, bitrate));
             };
-            int ret = Interop.Player.SetVideoStreamChangedCb(GetHandle(), _videoStreamChangedCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set the video stream changed callback, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set the video stream changed callback");
+
+            Interop.Player.SetVideoStreamChangedCb(Handle, _videoStreamChangedCallback).
+                ThrowIfFailed("Failed to set the video stream changed callback");
         }
 
         private void RegisterBufferingCallback()
@@ -1242,12 +1189,8 @@ namespace Tizen.Multimedia
                 BufferingProgressChanged?.Invoke(this, new BufferingProgressChangedEventArgs(percent));
             };
 
-            int ret = Interop.Player.SetBufferingCb(_handle, _bufferingProgressCallback, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set BufferingProgress, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to set BufferingProgress");
+            Interop.Player.SetBufferingCb(Handle, _bufferingProgressCallback).
+                ThrowIfFailed("Failed to set BufferingProgress");
         }
 
         private void RegisterMediaStreamBufferStatusCallback()
@@ -1257,14 +1200,14 @@ namespace Tizen.Multimedia
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
                 Log.Debug(PlayerLog.Tag, "audio buffer status : " + status);
                 MediaStreamAudioBufferStatusChanged?.Invoke(this,
-                    new MediaStreamBufferStatusChangedEventArgs((MediaStreamBufferStatus)status));
+                    new MediaStreamBufferStatusChangedEventArgs(status));
             };
             _mediaStreamVideoBufferStatusChangedCallback = (status, _) =>
             {
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
                 Log.Debug(PlayerLog.Tag, "video buffer status : " + status);
                 MediaStreamVideoBufferStatusChanged?.Invoke(this,
-                    new MediaStreamBufferStatusChangedEventArgs((MediaStreamBufferStatus)status));
+                    new MediaStreamBufferStatusChangedEventArgs(status));
             };
 
             RegisterMediaStreamBufferStatusCallback(StreamType.Audio, _mediaStreamAudioBufferStatusChangedCallback);
@@ -1274,13 +1217,8 @@ namespace Tizen.Multimedia
         private void RegisterMediaStreamBufferStatusCallback(StreamType streamType,
             Interop.Player.MediaStreamBufferStatusCallback cb)
         {
-            int ret = Interop.Player.SetMediaStreamBufferStatusCb(_handle, (int)streamType,
-              cb, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to SetMediaStreamBufferStatus, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to SetMediaStreamBufferStatus");
+            Interop.Player.SetMediaStreamBufferStatusCb(Handle, streamType, cb).
+                ThrowIfFailed("Failed to SetMediaStreamBufferStatus");
         }
 
         private void RegisterMediaStreamSeekCallback()
@@ -1302,17 +1240,12 @@ namespace Tizen.Multimedia
 
         private void RegisterMediaStreamSeekCallback(StreamType streamType, Interop.Player.MediaStreamSeekCallback cb)
         {
-            int ret = Interop.Player.SetMediaStreamSeekCb(_handle, (int)streamType,
-                cb, IntPtr.Zero);
-            if (ret != (int)PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to SetMediaStreamSeek, " + (PlayerError)ret);
-            }
-            PlayerErrorConverter.ThrowIfError(ret, "Failed to SetMediaStreamSeek");
+            Interop.Player.SetMediaStreamSeekCb(Handle, streamType, cb).
+                ThrowIfFailed("Failed to SetMediaStreamSeek");
         }
-#endregion
+        #endregion
 
-#region Preparing state
+        #region Preparing state
 
         private int _isPreparing;
 
@@ -1330,6 +1263,6 @@ namespace Tizen.Multimedia
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }
-#endregion
+        #endregion
     }
 }

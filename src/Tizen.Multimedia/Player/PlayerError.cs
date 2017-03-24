@@ -47,42 +47,49 @@ namespace Tizen.Multimedia
         ServiceDisconnected = PlayerErrorClass | 0x0d
     }
 
-    internal static class PlayerErrorConverter
+    internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfError(int errorCode, string errorMessage)
+        internal static void ThrowIfFailed(this PlayerErrorCode err, string message)
         {
-            if (errorCode == (int)PlayerErrorCode.None)
+            if (err == PlayerErrorCode.None)
             {
                 return;
             }
-            PlayerErrorCode err = (PlayerErrorCode)errorCode;
 
-            string msg = $"{ (errorMessage ?? "Operation failed") } : { err.ToString() }.";
+            string msg = $"{ (message ?? "Operation failed") } : { err.ToString() }.";
 
-            switch ((PlayerErrorCode)errorCode)
+            switch (err)
             {
                 case PlayerErrorCode.InvalidArgument:
                 case PlayerErrorCode.InvalidUri:
                     throw new ArgumentException(msg);
+
                 case PlayerErrorCode.NoSuchFile:
                     throw new FileNotFoundException(msg);
 
                 case PlayerErrorCode.OutOfMemory:
-                case PlayerErrorCode.NoSpaceOnDevice:
                     throw new OutOfMemoryException(msg);
 
+                case PlayerErrorCode.NoSpaceOnDevice:
+                    throw new IOException(msg);
+
                 case PlayerErrorCode.PermissionDenied:
-                case PlayerErrorCode.InvalidOperation:
-                case PlayerErrorCode.InvalidState:
-                case PlayerErrorCode.FeatureNotSupported:
-                case PlayerErrorCode.SeekFailed:
+                    throw new UnauthorizedAccessException(msg);
+
                 case PlayerErrorCode.NotSupportedFile:
-                case PlayerErrorCode.ConnectionFailed:
-                case PlayerErrorCode.VideoCaptureFailed:
+                case PlayerErrorCode.FeatureNotSupported:
+                    throw new NotSupportedException(msg);
+
                 case PlayerErrorCode.DrmExpired:
                 case PlayerErrorCode.DrmNoLicense:
                 case PlayerErrorCode.DrmFutureUse:
                 case PlayerErrorCode.DrmNotPermitted:
+                    // TODO consider another exception.
+                case PlayerErrorCode.InvalidOperation:
+                case PlayerErrorCode.InvalidState:
+                case PlayerErrorCode.SeekFailed:
+                case PlayerErrorCode.ConnectionFailed:
+                case PlayerErrorCode.VideoCaptureFailed:
                     throw new InvalidOperationException(msg);
 
                 case PlayerErrorCode.NoBufferSpace:
@@ -93,6 +100,13 @@ namespace Tizen.Multimedia
             }
 
             throw new Exception(msg);
+        }
+    }
+
+    internal static class PlayerErrorConverter
+    {
+        internal static void ThrowIfError(int errorCode, string errorMessage)
+        {
         }
     }
     /// <summary>
