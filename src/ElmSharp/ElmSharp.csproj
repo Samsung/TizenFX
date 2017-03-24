@@ -44,6 +44,14 @@
     <AssemblyOriginatorKeyFile>ElmSharp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ElmSharp\AccessRole.cs" />
+    <Compile Include="ElmSharp\AccessibleObject.cs" />
+    <Compile Include="ElmSharp\AccessibleRelation.cs" />
+    <Compile Include="ElmSharp\AccessibleUtil.cs" />
+    <Compile Include="ElmSharp\IAccessibleObject.cs" />
+    <Compile Include="ElmSharp\ItemObjectExtension.cs" />
+    <Compile Include="ElmSharp\ReadingInfoType.cs" />
+    <Compile Include="Interop\Interop.Elementary.Accessibility.cs" />
     <Compile Include="ElmSharp\Background.cs" />
     <Compile Include="ElmSharp\Box.cs" />
     <Compile Include="ElmSharp\Button.cs" />

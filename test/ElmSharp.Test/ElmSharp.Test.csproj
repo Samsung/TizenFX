@@ -40,11 +40,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TC\AccessibilityRelationTest.cs" />
+    <Compile Include="TC\AccessibilityTest.cs" />
     <Compile Include="TC\BackgroundTest1.cs" />
     <Compile Include="TC\BackgroundTest2.cs" />
     <Compile Include="TC\BackgroundTest3.cs" />
     <Compile Include="TC\GenListTest10.cs" />
     <Compile Include="TC\LabelTest4.cs" />
+    <Compile Include="TC\Log.cs" />
     <Compile Include="TC\MultibuttonEntryTest1.cs" />
     <Compile Include="TC\DateTimeSelectorTest2.cs" />
     <Compile Include="TC\EntryTest2.cs" />

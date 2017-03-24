@@ -1,4 +1,4 @@
-%define DEV_VERSION beta-021
+%define DEV_VERSION beta-022
 
 Name:       elm-sharp
 Summary:    C# Binding for Elementary

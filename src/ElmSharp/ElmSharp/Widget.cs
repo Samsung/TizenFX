@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using ElmSharp.Accessible;
 
 namespace ElmSharp
 {
@@ -54,7 +55,7 @@ namespace ElmSharp
     /// The Widget is abstract class, it is the parent of other widgets.
     /// Inherits from <see cref="EvasObject"/>.
     /// </summary>
-    public abstract class Widget : EvasObject
+    public abstract class Widget : AccessibleObject
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
 
