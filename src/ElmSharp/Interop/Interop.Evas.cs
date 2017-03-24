@@ -62,6 +62,14 @@ internal static partial class Interop
         }
         internal delegate void EventCallback(IntPtr data, IntPtr evas, IntPtr obj, IntPtr info);
 
+        internal delegate void EvasCallback(IntPtr data, IntPtr evas, IntPtr info);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_event_callback_add(IntPtr obj, ObjectCallbackType type, EvasCallback func, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_event_callback_del(IntPtr obj, ObjectCallbackType type, EvasCallback func);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_event_callback_add(IntPtr obj, ObjectCallbackType type, EventCallback func, IntPtr data);
         [DllImport(Libraries.Evas)]

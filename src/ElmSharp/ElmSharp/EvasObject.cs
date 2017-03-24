@@ -45,7 +45,8 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
-        EvasObjectEvent _renderPost;
+        EventHandler _renderPost;
+        Interop.Evas.EvasCallback _renderPostCallback = null;
 
         readonly HashSet<IInvalidatable> _eventStore = new HashSet<IInvalidatable>();
 
@@ -103,13 +104,30 @@ namespace ElmSharp
             add { _resized.On += value; }
             remove { _resized.On -= value; }
         }
+
         /// <summary>
         /// Current widget RenderPost Event Handler
         /// </summary>
         public event EventHandler RenderPost
         {
-            add { _renderPost.On += value; }
-            remove { _renderPost.On -= value; }
+            add
+            {
+                _renderPost += value;
+                if (_renderPostCallback == null)
+                {
+                    _renderPostCallback = new Interop.Evas.EvasCallback((o, e, d) => _renderPost?.Invoke(this, EventArgs.Empty));
+                    Interop.Evas.evas_event_callback_add(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback, IntPtr.Zero);
+                }
+            }
+            remove
+            {
+                _renderPost -= value;
+                if (_renderPost?.GetInvocationList().Length == 0)
+                {
+                    Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
+                    _renderPostCallback = null;
+                }
+            }
         }
 
         /// <summary>
@@ -510,7 +528,6 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
-                _renderPost = new EvasObjectEvent(this, Interop.Evas.evas_object_evas_get(Handle), EvasObjectCallbackType.RenderPost);
 
                 _deleted.On += (s, e) => MakeInvalidate();
                 _keydown.On += (s, e) => KeyDown?.Invoke(this, e);
@@ -525,6 +542,12 @@ namespace ElmSharp
         {
             if (IsRealized)
             {
+                if(_renderPostCallback != null)
+                {
+                    Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
+                    _renderPostCallback = null;
+                }
+
                 OnUnrealize();
                 IntPtr toBeDeleted = Handle;
                 Handle = IntPtr.Zero;
