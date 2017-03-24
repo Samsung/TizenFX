@@ -41,14 +41,6 @@ namespace Tizen.System
         /// </summary>
         UsbTethering = 5,
         /// <summary>
-        /// Indicates whether the location service is allowed to use location data from GPS satellites.
-        /// </summary>
-        LocationService = 6,
-        /// <summary>
-        /// Indicates whether the location service is allowed to use location data from cellular and Wi-Fi.
-        /// </summary>
-        LocationNetworkPosition = 8,
-        /// <summary>
         /// Indicates Whether the packet data through 3G network is enabled.
         /// </summary>
         PacketData = 9,

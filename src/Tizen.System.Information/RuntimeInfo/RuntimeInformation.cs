@@ -72,16 +72,6 @@ namespace Tizen.System
                         s_usbTetheringEnabled?.Invoke(null, eventArgs);
                         break;
                     };
-                case RuntimeInformationKey.LocationService:
-                    {
-                        s_locationServiceEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.LocationNetworkPosition:
-                    {
-                        s_locationNetworkPositionEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
                 case RuntimeInformationKey.PacketData:
                     {
                         s_packetDataEnabled?.Invoke(null, eventArgs);
@@ -143,8 +133,6 @@ namespace Tizen.System
             [RuntimeInformationKey.WifiHotspot] = typeof(bool),
             [RuntimeInformationKey.BluetoothTethering] = typeof(bool),
             [RuntimeInformationKey.UsbTethering] = typeof(bool),
-            [RuntimeInformationKey.LocationService] = typeof(bool),
-            [RuntimeInformationKey.LocationNetworkPosition] = typeof(bool),
             [RuntimeInformationKey.PacketData] = typeof(bool),
             [RuntimeInformationKey.DataRoaming] = typeof(bool),
             [RuntimeInformationKey.Vibration] = typeof(bool),
@@ -494,66 +482,6 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) LocationServiceEnabled is raised when system preference for location service is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> LocationServiceEnabled
-        {
-            add
-            {
-                if (s_locationServiceEnabled == null)
-                {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.LocationService, s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != (int)RuntimeInfoError.None)
-                    {
-                        Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
-                        RuntimeInfoErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_locationServiceEnabled += value;
-            }
-            remove
-            {
-                s_locationServiceEnabled -= value;
-                if (s_locationServiceEnabled == null)
-                {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.LocationService);
-                    RuntimeInfoErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-        /// <summary>
-        /// (event) LocationNetworkPositionEnabled is raised when system preference for allowing location service to use location data from cellular and Wi-Fi is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> LocationNetworkPositionEnabled
-        {
-            add
-            {
-                if (s_locationNetworkPositionEnabled == null)
-                {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.LocationNetworkPosition, s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != (int)RuntimeInfoError.None)
-                    {
-                        Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
-                        RuntimeInfoErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_locationNetworkPositionEnabled += value;
-            }
-            remove
-            {
-                s_locationNetworkPositionEnabled -= value;
-                if (s_locationNetworkPositionEnabled == null)
-                {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.LocationNetworkPosition);
-                    if (ret != (int)RuntimeInfoError.None)
-                    {
-                        Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
-                        RuntimeInfoErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
         /// (event) PacketDataEnabled is raised when system preference for package data through 3G network is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> PacketDataEnabled
@@ -587,7 +515,6 @@ namespace Tizen.System
         }
         /// <summary>
         /// (event) DataRoamingEnabled is raised when system preference for data roaming is changed.
-
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> DataRoamingEnabled
         {
