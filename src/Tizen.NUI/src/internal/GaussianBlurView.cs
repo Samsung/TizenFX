@@ -137,7 +137,7 @@ public class FinishedEventArgs : EventArgs
 
  public static GaussianBlurView GetGaussianBlurViewFromPtr(global::System.IntPtr cPtr) {
     GaussianBlurView ret = new GaussianBlurView(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

@@ -386,7 +386,7 @@ public class PageTurnFinishedEventArgs : EventArgs
 
   public static PageTurnView GetPageTurnViewFromPtr(global::System.IntPtr cPtr) {
     PageTurnView ret = new PageTurnView(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

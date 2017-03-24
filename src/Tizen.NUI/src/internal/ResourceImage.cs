@@ -137,7 +137,7 @@ public class LoadingFinishedEventArgs : EventArgs
 
 public static ResourceImage GetResourceImageFromPtr(global::System.IntPtr cPtr) {
     ResourceImage ret = new ResourceImage(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

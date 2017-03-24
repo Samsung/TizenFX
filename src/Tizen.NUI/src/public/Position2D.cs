@@ -92,7 +92,7 @@ public class Position2D : global::System.IDisposable {
   internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr) {
     Position2D ret = new Position2D(cPtr, false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-       return ret;
+    return ret;
   }
 
 
