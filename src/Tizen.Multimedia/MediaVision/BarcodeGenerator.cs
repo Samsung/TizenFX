@@ -270,9 +270,12 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(qrConfig));
             }
 
-            if (config.TextVisibility == Visibility.Visible)
+            if (config != null)
             {
-                throw new NotSupportedException("Text can't be visible in QR.");
+                if (config.TextVisibility == Visibility.Visible)
+                {
+                    throw new NotSupportedException("Text can't be visible in QR.");
+                }
             }
 
             GenerateImage(config, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
