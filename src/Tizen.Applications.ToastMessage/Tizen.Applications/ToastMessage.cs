@@ -22,6 +22,9 @@ using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// The class helps you create and show ToastMessage which is a view quick message for the user
+    /// </summary>
     public sealed class ToastMessage
     {
 
