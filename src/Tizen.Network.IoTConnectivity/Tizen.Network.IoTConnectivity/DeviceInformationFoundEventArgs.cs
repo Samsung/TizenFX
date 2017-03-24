@@ -30,6 +30,11 @@ namespace Tizen.Network.IoTConnectivity
         public int RequestId { get; internal set; }
 
         /// <summary>
+        /// Indicates to continuously receive the event for finding device information.
+        /// </summary>
+        public bool EventContinue { get; set; }
+
+        /// <summary>
         /// Indicates human friendly name for device
         /// </summary>
         public string Name { get; internal set; }

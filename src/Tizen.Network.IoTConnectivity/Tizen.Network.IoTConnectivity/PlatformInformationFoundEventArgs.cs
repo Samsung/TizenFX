@@ -30,6 +30,11 @@ namespace Tizen.Network.IoTConnectivity
         public int RequestId { get; internal set; }
 
         /// <summary>
+        /// Indicates to continuously receive the event for finding platform information.
+        /// </summary>
+        public bool EventContinue { get; set; }
+
+        /// <summary>
         /// Indicates the platform identifier
         /// </summary>
         public string PlatformId { get; internal set; }

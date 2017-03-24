@@ -488,6 +488,8 @@ namespace Tizen.Network.IoTConnectivity
                             Resource = resource
                         };
                         ResourceFound?.Invoke(null, e);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        return e.EventContinue;
                     }
                     else
                     {
@@ -585,6 +587,8 @@ namespace Tizen.Network.IoTConnectivity
                             return true;
                         }
                         DeviceInformationFound?.Invoke(null, e);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        return e.EventContinue;
                     }
                     else
                     {
@@ -683,6 +687,8 @@ namespace Tizen.Network.IoTConnectivity
                             return true; ;
                         }
                         PlatformInformationFound?.Invoke(null, e);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        return e.EventContinue;
                     }
                     else
                     {
@@ -790,6 +796,7 @@ namespace Tizen.Network.IoTConnectivity
             DeviceInformationFoundEventArgs e = new DeviceInformationFoundEventArgs()
             {
                 RequestId = requestId,
+                EventContinue = true,
                 Name = Marshal.PtrToStringAnsi(name),
                 SpecVersion = Marshal.PtrToStringAnsi(specVersion),
                 DeviceId = Marshal.PtrToStringAnsi(deviceId),

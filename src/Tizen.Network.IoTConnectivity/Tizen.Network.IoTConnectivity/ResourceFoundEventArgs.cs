@@ -33,6 +33,11 @@ namespace Tizen.Network.IoTConnectivity
         public int RequestId { get; internal set; }
 
         /// <summary>
+        /// Indicates to continuously receive the event for finding resource.
+        /// </summary>
+        public bool EventContinue { get; set; }
+
+        /// <summary>
         /// Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.
         /// </summary>
         /// <seealso cref="IoTConnectivityClientManager.ResourceFound"/>
