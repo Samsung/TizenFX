@@ -63,10 +63,8 @@ namespace Tizen.Multimedia
             set;
         }
 
-        public override string ToString()
-        {
-            return $"SampleRate : { SampleRate }, Channels : { Channels }, BitRate : { BitRate }";
-        }
+        public override string ToString() =>
+            $"SampleRate={ SampleRate.ToString() }, Channels={ Channels.ToString() }, BitRate={ BitRate.ToString() }";
     }
 
     /// <summary>
@@ -125,7 +123,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Fps : { Fps }, BitRate : { BitRate }, Size : [{ Size }]";
+            return $"Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }, Size=[{ Size.ToString() }]";
         }
     }
 

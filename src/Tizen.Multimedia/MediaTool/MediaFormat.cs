@@ -105,7 +105,7 @@ namespace Tizen.Multimedia
         /// Fill out properties of a native media format with the current media format object.
         /// </summary>
         /// <param name="handle">A native handle to be written.</param>
-        protected abstract void AsNativeHandle(IntPtr handle);
+        internal abstract void AsNativeHandle(IntPtr handle);
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the ContainerMediaFormat class.
         /// </summary>
         /// <param name="mimeType">The mime type of the container format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
         public ContainerMediaFormat(MediaFormatContainerMimeType mimeType)
             : base(MediaFormatType.Container)
         {
@@ -157,7 +157,7 @@ namespace Tizen.Multimedia
             get;
         }
 
-        protected override void AsNativeHandle(IntPtr handle)
+        internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Container);
 
@@ -168,7 +168,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"[{ nameof(ContainerMediaFormat) }] MimeType : { MimeType }";
+            return $"MimeType={ MimeType.ToString() }";
         }
 
         public override bool Equals(object obj)
@@ -202,8 +202,8 @@ namespace Tizen.Multimedia
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="width">The width value of the format.</param>
         /// <param name="height">The height value of the format</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, or height is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, or height is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height)
             : this(mimeType, width, height, DefaultFrameRate)
         {
@@ -214,8 +214,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, or height is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, or height is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size)
             : this(mimeType, size, DefaultFrameRate)
         {
@@ -229,8 +229,8 @@ namespace Tizen.Multimedia
         /// <param name="width">The width value of the format.</param>
         /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate)
             : this(mimeType, width, height, frameRate, DefaultBitRate)
@@ -245,8 +245,8 @@ namespace Tizen.Multimedia
         /// <param name="size">The video size of the format.</param>
         /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate)
             : this(mimeType, size, frameRate, DefaultBitRate)
@@ -262,8 +262,8 @@ namespace Tizen.Multimedia
         /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <param name="bitRate">The bit rate of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate, int bitRate)
             : this(mimeType, new Size(width, height), frameRate, bitRate)
@@ -278,8 +278,8 @@ namespace Tizen.Multimedia
         /// <param name="size">The size of the format.</param>
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <param name="bitRate">The bit rate of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate, int bitRate)
             : base(MediaFormatType.Video)
@@ -376,7 +376,7 @@ namespace Tizen.Multimedia
             MultimediaDebug.AssertNoError(ret);
         }
 
-        protected override void AsNativeHandle(IntPtr handle)
+        internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Video);
 
@@ -418,8 +418,8 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"MimeType : { MimeType }, Size : ({ Size }), "
-                + $"FrameRate : { FrameRate }, BitRate : { BitRate }";
+            return $@"MimeType={ MimeType.ToString() }, Size=({ Size.ToString() }), FrameRate=
+                { FrameRate.ToString() }, BitRate={ BitRate.ToString() }";
         }
 
         public override bool Equals(object obj)
@@ -455,8 +455,8 @@ namespace Tizen.Multimedia
         /// <param name="sampleRate">The sample rate value of the format.</param>
         /// <param name="bit">The bit value of the format.</param>
         /// <param name="bitRate">The bit rate value of the format.</param>
-        /// <exception cref="System.ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
         ///                     channel, sampleRate, bit or bitRate is less than zero.</exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate)
@@ -473,12 +473,12 @@ namespace Tizen.Multimedia
         /// <param name="sampleRate">The sample rate value of the format.</param>
         /// <param name="bit">The bit value of the format.</param>
         /// <param name="bitRate">The bit rate value of the format.</param>
-        /// <exception cref="System.ArgumentException">
+        /// <exception cref="ArgumentException">
         ///     mimeType or aacType is invalid(i.e. undefined value).
         ///     <para>- or -</para>
         ///     aacType is not <see cref="MediaFormatAacType.None"/>, but mimeType is one of aac types.
         ///     </exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         ///                     channel, sampleRate, bit or bitRate is less than zero.</exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)
@@ -613,7 +613,7 @@ namespace Tizen.Multimedia
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatAacType), aacType), "Invalid aac type!");
         }
 
-        protected override void AsNativeHandle(IntPtr handle)
+        internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Audio);
 
@@ -668,8 +668,8 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"MimeType : {MimeType }, Channel : { Channel }, SampleRate : { SampleRate }, "
-                + $"Bit : { Bit }, BitRate : { BitRate }, AacType : { AacType }";
+            return $@"MimeTyp={ MimeType.ToString() }, Channel={ Channel.ToString() }, SampleRate=
+                { SampleRate }, Bit={ Bit.ToString() }, BitRate={ BitRate.ToString() }, AacType={ AacType.ToString() }";
         }
 
         public override bool Equals(object obj)
@@ -701,7 +701,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="textType">The text type of the format.</param>
-        /// <exception cref="System.ArgumentException">
+        /// <exception cref="ArgumentException">
         ///                     mimeType or textType is invalid(i.e. undefined value).</exception>
         public TextMediaFormat(MediaFormatTextMimeType mimeType, MediaFormatTextType textType)
             : base(MediaFormatType.Text)
@@ -761,7 +761,7 @@ namespace Tizen.Multimedia
                 "Invalid text type!");
         }
 
-        protected override void AsNativeHandle(IntPtr handle)
+        internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Text);
 
@@ -784,7 +784,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"[{ nameof(TextMediaFormat) }] MimeType : { MimeType }, TextType : { TextType }";
+            return $"MimeType={ MimeType.ToString() }, TextType={ TextType.ToString() }";
         }
 
         public override bool Equals(object obj)

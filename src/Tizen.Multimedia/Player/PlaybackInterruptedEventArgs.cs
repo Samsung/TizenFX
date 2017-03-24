@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Reason : { Reason }";
+            return $"Reason : { Reason.ToString() }";
         }
     }
 }

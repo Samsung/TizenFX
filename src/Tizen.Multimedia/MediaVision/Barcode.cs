@@ -24,9 +24,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Barcode"/> class.
         /// </summary>
-        public Barcode(Quadrangle location, string message, BarcodeType type)
+        public Barcode(Quadrangle region, string message, BarcodeType type)
         {
-            Region = location;
+            Region = region;
             Message = message;
             Type = type;
         }

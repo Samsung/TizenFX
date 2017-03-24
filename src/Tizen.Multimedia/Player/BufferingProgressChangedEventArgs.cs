@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Percent : { Percent }";
+            return $"Percent={ Percent.ToString() }";
         }
     }
 }

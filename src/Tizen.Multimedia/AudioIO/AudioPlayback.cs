@@ -23,8 +23,8 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioPlayback : IDisposable
     {
-        public const int MinSampleRate = 8000;
-        public const int MaxSampleRate = 48000;
+        public readonly int MinSampleRate = 8000;
+        public readonly int MaxSampleRate = 48000;
 
         private IntPtr _handle = IntPtr.Zero;
 

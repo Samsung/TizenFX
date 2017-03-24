@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the he duration of the updated subtitl .
+        /// Gets the he duration of the updated subtitle.
         /// </summary>
         public uint Duration { get; }
 
@@ -41,7 +41,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Duration : { Duration }, Text : { Text }";
+            return $"Duration={ Duration.ToString() }, Text={ Text }";
         }
     }
 }

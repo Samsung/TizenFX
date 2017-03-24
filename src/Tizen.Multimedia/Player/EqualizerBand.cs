@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
         /// Sets the gain for the equalizer band.
         /// </summary>
         /// <param name="value">The value indicating new gain in decibel(dB).</param>
-        /// <exception cref="ObjectDisposedException">The player that this EqualuzerBand belongs to has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     value is less than <see cref="AudioEffect.MinBandLevel"/>.
         ///     <para>-or-</para>
@@ -83,7 +83,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the gain for the equalizer band.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The player that this EqualuzerBand belongs to has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
         public int GetLevel()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);

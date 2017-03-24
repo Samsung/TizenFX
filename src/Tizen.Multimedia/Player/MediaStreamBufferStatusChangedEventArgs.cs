@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Status : { Status }";
+            return $"Status : { Status.ToString() }";
         }
     }
 }
