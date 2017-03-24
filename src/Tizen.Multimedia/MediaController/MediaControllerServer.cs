@@ -42,7 +42,20 @@ namespace Tizen.Multimedia.MediaController
 
         private bool IsValidHandle
         {
-            get { return (this._handle != IntPtr.Zero); }
+            get { return (_handle != IntPtr.Zero); }
+        }
+
+        private IntPtr SafeHandle
+        {
+            get
+            {
+                if (!IsValidHandle)
+                {
+                    throw new ObjectDisposedException(nameof(MediaControllerServer), "Fail to operate MediaControllerServer");
+                }
+
+                return _handle;
+            }
         }
 
         /// <summary>
@@ -151,13 +164,13 @@ namespace Tizen.Multimedia.MediaController
             }
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetPlaybackState(_handle, playback.State), "Set Playback state failed");
+                Interop.MediaControllerServer.SetPlaybackState(SafeHandle, playback.State), "Set Playback state failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetPlaybackPosition(_handle, playback.Position), "Set Playback position failed");
+                Interop.MediaControllerServer.SetPlaybackPosition(SafeHandle, playback.Position), "Set Playback position failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.UpdatePlayback(_handle), "Update Playback failed");
+                Interop.MediaControllerServer.UpdatePlayback(SafeHandle), "Update Playback failed");
         }
 
         /// <summary>
@@ -173,40 +186,40 @@ namespace Tizen.Multimedia.MediaController
             }
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Title, metadata.Title), "Set Title failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Title, metadata.Title), "Set Title failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Artist, metadata.Artist), "Set Artist failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Artist, metadata.Artist), "Set Artist failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Album, metadata.Album), "Set Album failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Album, metadata.Album), "Set Album failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Author, metadata.Author), "Set Author failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Author, metadata.Author), "Set Author failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Genre, metadata.Genre), "Set Genre failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Genre, metadata.Genre), "Set Genre failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Duration, metadata.Duration), "Set Duration failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Duration, metadata.Duration), "Set Duration failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Date, metadata.Date), "Set Date failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Date, metadata.Date), "Set Date failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Copyright, metadata.Copyright), "Set Copyright failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Copyright, metadata.Copyright), "Set Copyright failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Description, metadata.Description), "Set Description failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Description, metadata.Description), "Set Description failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.TrackNumber, metadata.TrackNumber), "Set TrackNumber failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.TrackNumber, metadata.TrackNumber), "Set TrackNumber failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SetMetadata(_handle, MediaControllerAttributes.Picture, metadata.Picture), "Set Picture failed");
+                Interop.MediaControllerServer.SetMetadata(SafeHandle, MediaControllerAttributes.Picture, metadata.Picture), "Set Picture failed");
 
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.UpdateMetadata(_handle), "UpdateMetadata Metadata failed");
+                Interop.MediaControllerServer.UpdateMetadata(SafeHandle), "UpdateMetadata Metadata failed");
         }
 
         /// <summary>
@@ -217,7 +230,7 @@ namespace Tizen.Multimedia.MediaController
         public void UpdateShuffleMode(MediaControllerShuffleMode mode)
         {
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.UpdateShuffleMode(_handle, mode), "Update Shuffle Mode failed");
+                Interop.MediaControllerServer.UpdateShuffleMode(SafeHandle, mode), "Update Shuffle Mode failed");
         }
 
         /// <summary>
@@ -228,7 +241,7 @@ namespace Tizen.Multimedia.MediaController
         public void UpdateRepeatMode(MediaControllerRepeatMode mode)
         {
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.UpdateRepeatMode(_handle, mode), "Update Repeat Mode failed");
+                Interop.MediaControllerServer.UpdateRepeatMode(SafeHandle, mode), "Update Repeat Mode failed");
         }
 
         /// <summary>
@@ -241,7 +254,7 @@ namespace Tizen.Multimedia.MediaController
         public void SendCustomCommandReply(string clientName, int result, Bundle bundle)
         {
             MediaControllerValidator.ThrowIfError(
-                Interop.MediaControllerServer.SendCommandReply(_handle, clientName, result, bundle.SafeBundleHandle), "Send reply for command failed");
+                Interop.MediaControllerServer.SendCommandReply(SafeHandle, clientName, result, bundle.SafeBundleHandle), "Send reply for command failed");
         }
 
         private void RegisterPlaybackCmdRecvEvent()
@@ -251,12 +264,12 @@ namespace Tizen.Multimedia.MediaController
                 PlaybackStateCommandEventArgs eventArgs = new PlaybackStateCommandEventArgs(Marshal.PtrToStringAnsi(clientName), state);
                 _playbackCommand?.Invoke(this, eventArgs);
             };
-            Interop.MediaControllerServer.SetPlaybackStateCmdRecvCb(_handle, _playbackCommandCallback, IntPtr.Zero);
+            Interop.MediaControllerServer.SetPlaybackStateCmdRecvCb(SafeHandle, _playbackCommandCallback, IntPtr.Zero);
         }
 
         private void UnregisterPlaybackCmdRecvEvent()
         {
-            Interop.MediaControllerServer.UnsetPlaybackStateCmdRecvCb(_handle);
+            Interop.MediaControllerServer.UnsetPlaybackStateCmdRecvCb(SafeHandle);
         }
 
         private void RegisterCustomCommandEvent()
@@ -268,12 +281,12 @@ namespace Tizen.Multimedia.MediaController
                 CustomCommandEventArgs eventArgs = new CustomCommandEventArgs(Marshal.PtrToStringAnsi(clientName), Marshal.PtrToStringAnsi(command), bundleData);
                 _customCommand?.Invoke(this, eventArgs);
         };
-            Interop.MediaControllerServer.SetCustomCmdRecvCb(_handle, _customCommandCallback, IntPtr.Zero);
+            Interop.MediaControllerServer.SetCustomCmdRecvCb(SafeHandle, _customCommandCallback, IntPtr.Zero);
         }
 
         private void UnregisterCustomCommandEvent()
         {
-            Interop.MediaControllerServer.UnsetCustomCmdRecvCb(_handle);
+            Interop.MediaControllerServer.UnsetCustomCmdRecvCb(SafeHandle);
         }
     }
 }
