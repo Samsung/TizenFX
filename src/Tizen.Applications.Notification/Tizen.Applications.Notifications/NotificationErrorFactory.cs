@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Applications.Notifications
 {
+    using System;
+    using System.Runtime.CompilerServices;
+
     internal enum NotificationError
     {
         None = Tizen.Internals.Errors.ErrorCode.None,
@@ -35,17 +36,19 @@ namespace Tizen.Applications.Notifications
 
     internal static class NotificationErrorFactory
     {
-        private const string _logTag = "Tizen.Applications.Notification";
-
-        internal static Exception GetException(NotificationError ret, string msg)
+        internal static Exception GetException(NotificationError ret, string msg, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
+            Log.Error(Notification.LogTag, memberName + " : " + lineNumber);
+
             switch (ret)
             {
                 case NotificationError.InvalidParameter:
-                    Log.Error(_logTag, msg);
+                    Log.Error(Notification.LogTag, msg);
                     return new ArgumentException(ret + " error occurred.");
+                case NotificationError.PermissionDenied:
+                    throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/notification)");
                 default:
-                    Log.Error(_logTag, msg);
+                    Log.Error(Notification.LogTag, msg);
                     return new InvalidOperationException(ret + " error occurred.");
             }
         }

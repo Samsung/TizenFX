@@ -76,7 +76,6 @@
     <Compile Include="../Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/DefaultCoreBackend.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DirectoryInfo.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/EventNotification.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/EventType.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/ICoreBackend.cs" />
     <Compile Include="../Tizen.Applications.Alarm/Interop/Interop.Alarm.cs" />
@@ -103,10 +102,6 @@
     <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs" />
     <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePortErrorFactory.cs" />
     <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessageReceivedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/Notification.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/NotificationEnumerations.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/NotificationErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/NotificationManager.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/Package.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageCertificate.cs" />
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageEventState.cs" />
@@ -118,7 +113,6 @@
     <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageType.cs" />
     <Compile Include="../Tizen.Applications.Preference/Tizen.Applications/Preference.cs" />
     <Compile Include="../Tizen.Applications.Preference/Tizen.Applications/PreferenceChangedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications/ProgressNotification.cs" />
     <Compile Include="./Properties\AssemblyInfo.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs" />
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/RegionFormatChangedEventArgs.cs" />
@@ -139,6 +133,25 @@
     <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientation.cs" />
     <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessage.cs" />
     <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessageErrorFactory.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationSafeHandle.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationBinder.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationAccessorySet.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationAccessorySetBinder.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationActiveStyle.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationButtonAction.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationEnumerations.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationErrorFactory.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationIndicatorStyle.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationLockStyle.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationMakerBase.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationProgress.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationProgressBinder.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationReplyAction.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyle.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyleBinder.cs" />
+	<Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationBigPictureStyle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tizen.Applications.project.json" />

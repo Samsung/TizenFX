@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 using Tizen.Applications.Notifications;
@@ -24,149 +25,288 @@ internal static partial class Interop
     internal static class Notification
     {
         [DllImport(Libraries.Notification, EntryPoint = "notification_create")]
-        internal static extern SafeNotificationHandle Create(NotificationType type);
+        internal static extern IntPtr Create(NotificationType type);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_free")]
-        internal static extern int Destroy(IntPtr handle);
+        internal static extern NotificationError Destroy(IntPtr handle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_text")]
-        internal static extern int GetText(SafeNotificationHandle handle, NotiText type, out IntPtr text);
+        internal static extern NotificationError GetTextReferenceType(NotificationSafeHandle handle, NotificationText type, out IntPtr text);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_text")]
-        internal static extern int SetText(SafeNotificationHandle handle, NotiText type, string text, string key, int args);
+        internal static extern NotificationError SetText(NotificationSafeHandle handle, NotificationText type, string text, string key, int args);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_image")]
-        internal static extern int GetImage(SafeNotificationHandle handle, NotiImage type, out IntPtr text);
+        internal static extern NotificationError GetImageReferenceType(NotificationSafeHandle handle, NotificationImage type, out IntPtr path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_image")]
-        internal static extern int SetImage(SafeNotificationHandle handle, NotiImage type, string text);
+        internal static extern NotificationError SetImage(NotificationSafeHandle handle, NotificationImage type, string path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_time")]
-        internal static extern int GetTime(SafeNotificationHandle handle, out int time);
+        internal static extern NotificationError GetTime(NotificationSafeHandle handle, out int time);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_time")]
-        internal static extern int SetTime(SafeNotificationHandle handle, int time);
+        internal static extern NotificationError SetTime(NotificationSafeHandle handle, int time);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_insert_time")]
-        internal static extern int GetInsertTime(SafeNotificationHandle handle, out long time);
+        internal static extern NotificationError GetInsertTime(NotificationSafeHandle handle, out long time);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_sound")]
-        internal static extern int GetSound(SafeNotificationHandle handle, out SoundOption type, out IntPtr path);
+        internal static extern NotificationError GetSoundReferenceType(NotificationSafeHandle handle, out AccessoryOption type, out IntPtr path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_sound")]
-        internal static extern int SetSound(SafeNotificationHandle handle, SoundOption type, string path);
+        internal static extern NotificationError SetSound(NotificationSafeHandle handle, AccessoryOption type, string path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_vibration")]
-        internal static extern int GetVibration(SafeNotificationHandle handle, out VibrationOption type, out IntPtr path);
+        internal static extern NotificationError GetVibrationReferenceType(NotificationSafeHandle handle, out AccessoryOption type, out IntPtr path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_vibration")]
-        internal static extern int SetVibration(SafeNotificationHandle handle, VibrationOption type, string path);
+        internal static extern NotificationError SetVibration(NotificationSafeHandle handle, AccessoryOption type, string path);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_led")]
-        internal static extern int GetLed(SafeNotificationHandle handle, out LedOption type, out int color);
+        internal static extern NotificationError GetLed(NotificationSafeHandle handle, out AccessoryOption type, out int color);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_led")]
-        internal static extern int SetLed(SafeNotificationHandle handle, LedOption type, int color);
+        internal static extern NotificationError SetLed(NotificationSafeHandle handle, AccessoryOption type, int color);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_led_time_period")]
-        internal static extern int GetLedTimePeriod(SafeNotificationHandle handle, out int on, out int off);
+        internal static extern NotificationError GetLedTimePeriod(NotificationSafeHandle handle, out int onMillisecond, out int offMillisecond);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_led_time_period")]
-        internal static extern int SetLedTimePeriod(SafeNotificationHandle handle, int on, int off);
+        internal static extern NotificationError SetLedTimePeriod(NotificationSafeHandle handle, int onMillisecond, int offMillisecond);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_launch_option")]
-        internal static extern int GetAppControl(SafeNotificationHandle handle, LaunchOption type, out SafeAppControlHandle apphandle);
+        internal static extern NotificationError GetAppControl(NotificationSafeHandle handle, LaunchOption type, out SafeAppControlHandle apphandle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_launch_option")]
-        internal static extern int SetAppControl(SafeNotificationHandle handle, LaunchOption type, SafeAppControlHandle appHandle);
+        internal static extern NotificationError SetAppControl(NotificationSafeHandle handle, LaunchOption type, SafeAppControlHandle appHandle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_event_handler")]
-        internal static extern int GetEventHandler(SafeNotificationHandle handle, int type, out SafeAppControlHandle appHandle);
+        internal static extern NotificationError GetEventHandler(NotificationSafeHandle handle, int type, out SafeAppControlHandle appHandle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_event_handler")]
-        internal static extern int SetEventHandler(SafeNotificationHandle handle, int type, SafeAppControlHandle appHandle);
+        internal static extern NotificationError SetEventHandler(NotificationSafeHandle handle, int type, SafeAppControlHandle appHandle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_property")]
-        internal static extern int GetProperties(SafeNotificationHandle handle, out int flags);
+        internal static extern NotificationError GetProperties(NotificationSafeHandle handle, out int flags);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_property")]
-        internal static extern int SetProperties(SafeNotificationHandle handle, int flags);
+        internal static extern NotificationError SetProperties(NotificationSafeHandle handle, int flags);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_display_applist")]
-        internal static extern int GetApplist(SafeNotificationHandle handle, out int flags);
+        internal static extern NotificationError GetApplist(NotificationSafeHandle handle, out int flags);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_display_applist")]
-        internal static extern int SetApplist(SafeNotificationHandle handle, int flags);
+        internal static extern NotificationError SetApplist(NotificationSafeHandle handle, int flags);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_size")]
-        internal static extern int GetProgressSize(SafeNotificationHandle handle, out double value);
+        internal static extern NotificationError GetProgressSize(NotificationSafeHandle handle, out double size);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_size")]
-        internal static extern int SetProgressSize(SafeNotificationHandle handle, double value);
+        internal static extern NotificationError SetProgressSize(NotificationSafeHandle handle, double size);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_progress")]
-        internal static extern int GetProgress(SafeNotificationHandle handle, out double value);
+        internal static extern NotificationError GetProgress(NotificationSafeHandle handle, out double progress);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_progress")]
-        internal static extern int SetProgress(SafeNotificationHandle handle, double value);
+        internal static extern NotificationError SetProgress(NotificationSafeHandle handle, double progress);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_layout")]
-        internal static extern int GetLayout(SafeNotificationHandle handle, out NotiLayout type);
+        internal static extern NotificationError GetLayout(NotificationSafeHandle handle, out NotificationLayout layout);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_layout")]
-        internal static extern int SetLayout(SafeNotificationHandle handle, NotiLayout type);
+        internal static extern NotificationError SetLayout(NotificationSafeHandle handle, NotificationLayout layout);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_type")]
-        internal static extern int GetType(SafeNotificationHandle handle, out NotificationType type);
+        internal static extern NotificationError GetType(NotificationSafeHandle handle, out NotificationType type);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_update")]
-        internal static extern int Update(SafeNotificationHandle handle);
+        internal static extern NotificationError Update(NotificationSafeHandle handle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_delete")]
-        internal static extern int Delete(SafeNotificationHandle handle);
+        internal static extern NotificationError Delete(NotificationSafeHandle handle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_delete_all")]
-        internal static extern int DeleteAll(int type);
+        internal static extern NotificationError DeleteAll(int type);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_post")]
-        internal static extern int Post(SafeNotificationHandle handle);
+        internal static extern NotificationError Post(NotificationSafeHandle handle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_pkgname")]
-        internal static extern int GetPackageName(SafeNotificationHandle handle, out IntPtr name);
+        internal static extern NotificationError GetPackageName(NotificationSafeHandle handle, out IntPtr name);
 
-        [DllImport(Libraries.Notification, EntryPoint = "notification_add_button")]
-        internal static extern int AddButton(SafeNotificationHandle handle, int index);
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_event_handler")]
+        internal static extern NotificationError AddButtonAction(NotificationSafeHandle handle, ButtonIndex type, SafeAppControlHandle appcontrol);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_remove_button")]
-        internal static extern int RemoveButton(SafeNotificationHandle handle, int index);
+        internal static extern NotificationError RemoveButton(NotificationSafeHandle handle, ButtonIndex index);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_tag")]
-        internal static extern int SetTag(SafeNotificationHandle handle, string tag);
+        internal static extern NotificationError SetTag(NotificationSafeHandle handle, string tag);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_tag")]
-        internal static extern int GetTag(SafeNotificationHandle handle, out IntPtr tag);
+        internal static extern NotificationError GetTagReferenceType(NotificationSafeHandle handle, out IntPtr tag);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_load_by_tag")]
-        internal static extern SafeNotificationHandle Load(string text);
+        internal static extern IntPtr Load(string text);
 
-        internal sealed class SafeNotificationHandle : SafeHandle
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_id")]
+        internal static extern NotificationError GetID(NotificationSafeHandle handle, out int groupID, out int privID);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_priv_id")]
+        internal static extern NotificationError SetID(NotificationSafeHandle handle, int privID);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_save_as_template")]
+        internal static extern NotificationError SaveTemplate(NotificationSafeHandle handle, string name);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_create_from_template")]
+        internal static extern IntPtr LoadTemplate(string name);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_noti_block_state")]
+        internal static extern NotificationError GetBlockState(out NotificationBlockState status);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_auto_remove")]
+        internal static extern NotificationError SetAutoRemove(NotificationSafeHandle handle, bool autoRemove);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_auto_remove")]
+        internal static extern NotificationError GetAutoRemove(NotificationSafeHandle handle, out bool autoRemove);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_ongoing_value_type")]
+        internal static extern NotificationError SetProgressType(NotificationSafeHandle handle, ProgressCategory category);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_ongoing_value_type")]
+        internal static extern NotificationError GetProgressType(NotificationSafeHandle handle, out ProgressCategory category);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_ongoing_flag")]
+        internal static extern NotificationError SetOngoingFlag(NotificationSafeHandle handle, bool flag);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_ongoing_flag")]
+        internal static extern NotificationError GetProgressFlag(NotificationSafeHandle handle, bool flag);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_ongoing_flag")]
+        internal static extern NotificationError GetProgressFlag(NotificationSafeHandle handle, out bool flag);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_text_input")]
+        internal static extern NotificationError SetPlaceHolderLength(NotificationSafeHandle handle, int length);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_text_input_max_length")]
+        internal static extern NotificationError GetPlaceHolderLength(NotificationSafeHandle handle, out int length);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_hide_timeout")]
+        internal static extern NotificationError GetHideTime(NotificationSafeHandle handle, out int timeout);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_hide_timeout")]
+        internal static extern NotificationError SetHideTime(NotificationSafeHandle handle, int timeout);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_delete_timeout")]
+        internal static extern NotificationError GetDeleteTime(NotificationSafeHandle handle, out int timeout);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_delete_timeout")]
+        internal static extern NotificationError SetDeleteTime(NotificationSafeHandle handle, int timeout);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extension_image_size")]
+        internal static extern NotificationError SetBigPictureSize(NotificationSafeHandle handle, int size);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_image_size")]
+        internal static extern NotificationError GetBigPictureSize(NotificationSafeHandle handle, out int size);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extention_data")]
+        internal static extern NotificationError SetExtentionData(NotificationSafeHandle handle, string key, SafeBundleHandle bundleHandle);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extention_data")]
+        internal static extern NotificationError GetExtentionData(NotificationSafeHandle handle, string key, out SafeBundleHandle bundleHandle);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_args")]
+        internal static extern NotificationError GetExtentionBundle(NotificationSafeHandle handle, out IntPtr args, out IntPtr group_args);
+
+        internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
-            public SafeNotificationHandle()
-                : base(IntPtr.Zero, true)
+            NotificationError ret;
+            IntPtr ptr;
+            ret = GetTextReferenceType(handle, type, out ptr);
+
+            if (ptr == IntPtr.Zero)
             {
+                text = null;
+            }
+            else
+            {
+                text = Marshal.PtrToStringAnsi(ptr);
             }
 
-            public override bool IsInvalid
+            return ret;
+        }
+
+        internal static NotificationError GetImage(NotificationSafeHandle handle, NotificationImage type, out string path)
+        {
+            NotificationError ret;
+            IntPtr ptr;
+            ret = GetImageReferenceType(handle, type, out ptr);
+
+            if (ptr == IntPtr.Zero)
             {
-                get { return this.handle == IntPtr.Zero; }
+                path = null;
+            }
+            else
+            {
+                path = Marshal.PtrToStringAnsi(ptr);
             }
 
-            protected override bool ReleaseHandle()
+            return ret;
+        }
+
+        internal static NotificationError GetSound(NotificationSafeHandle handle, out AccessoryOption type, out string path)
+        {
+            NotificationError ret;
+            IntPtr ptr;
+            ret = GetSoundReferenceType(handle, out type, out ptr);
+
+            if (ptr == IntPtr.Zero)
             {
-                Notification.Destroy(this.handle);
-                this.SetHandle(IntPtr.Zero);
-                return true;
+                path = null;
             }
+            else
+            {
+                path = Marshal.PtrToStringAnsi(ptr);
+            }
+
+            return ret;
+        }
+
+        internal static NotificationError GetVibration(NotificationSafeHandle handle, out AccessoryOption type, out string path)
+        {
+            NotificationError ret;
+            IntPtr ptr;
+            ret = GetVibrationReferenceType(handle, out type, out ptr);
+
+            if (ptr == IntPtr.Zero)
+            {
+                path = null;
+            }
+            else
+            {
+                path = Marshal.PtrToStringAnsi(ptr);
+            }
+
+            return ret;
+        }
+
+        internal static NotificationError GetTag(NotificationSafeHandle handle, out string tag)
+        {
+            NotificationError ret;
+            IntPtr ptr;
+            ret = GetTagReferenceType(handle, out ptr);
+
+            if (ptr == IntPtr.Zero)
+            {
+                tag = null;
+            }
+            else
+            {
+                tag = Marshal.PtrToStringAnsi(ptr);
+            }
+
+            return ret;
         }
     }
 }
