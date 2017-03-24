@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
         {
             Stream = new byte[streamSize];
             Marshal.Copy(stream, Stream, 0, streamSize);
+            StreamLength = streamSize;
             Type = type;
             Channel = channel;
             RecordingTime = recordingTime;
@@ -37,6 +38,11 @@ namespace Tizen.Multimedia
         /// The audio stream data.
         /// </summary>
         public byte[] Stream { get; }
+
+        /// <summary>
+        /// The length of audio stream data.
+        /// </summary>
+        public int StreamLength { get; }
 
         /// <summary>
         /// The audio format type.

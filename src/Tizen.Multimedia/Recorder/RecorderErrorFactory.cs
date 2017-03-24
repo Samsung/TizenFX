@@ -43,11 +43,12 @@ namespace Tizen.Multimedia
         internal static void ThrowIfError(int errorCode, string errorMessage = null)
         {
             RecorderError err = (RecorderError)errorCode;
-            if(string.IsNullOrEmpty(errorMessage)) {
-                errorMessage = err.ToString();
+            if (err == RecorderError.None)
+            {
+                return;
             }
 
-            Log.Info(RecorderLog.Tag, "errorCode : " + errorMessage);
+            Log.Info(RecorderLog.Tag, "errorCode : " + err.ToString());
 
             switch (err)
             {

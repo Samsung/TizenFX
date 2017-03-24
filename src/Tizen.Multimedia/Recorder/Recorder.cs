@@ -47,11 +47,13 @@ namespace Tizen.Multimedia
         /// </summary>
         public Recorder()
         {
-            RecorderErrorFactory.ThrowIfError (Interop.Recorder.Create(out _handle),
+            RecorderErrorFactory.ThrowIfError(Interop.Recorder.Create(out _handle),
                 "Failed to create Audio recorder");
 
             Feature = new RecorderFeatures(this);
             Setting = new RecorderSettings(this);
+
+            RegisterCallbacks();
         }
 
         /// <summary>
@@ -67,6 +69,8 @@ namespace Tizen.Multimedia
 
             Feature = new RecorderFeatures(this);
             Setting = new RecorderSettings(this);
+
+            RegisterCallbacks();
         }
 
         /// <summary>
