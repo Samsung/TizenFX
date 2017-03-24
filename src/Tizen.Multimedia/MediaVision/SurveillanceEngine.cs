@@ -77,7 +77,7 @@ namespace Tizen.Multimedia
 
                     for (int i = 0; i < count; i++)
                     {
-                        points[i] = Marshal.PtrToStructure<Interop.MediaVision.Point>(roiPtr).ToApiStruct();
+                        points[i] = Marshal.PtrToStructure<Interop.MediaVision.Point>(iterPtr).ToApiStruct();
                         iterPtr = IntPtr.Add(iterPtr, Marshal.SizeOf<Interop.MediaVision.Point>());
                     }
 
