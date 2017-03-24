@@ -19,88 +19,91 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using Tizen;
 
-internal static partial class Interop
+namespace Tizen.Multimedia
 {
-    internal enum ErrorCode
+    internal static partial class Interop
     {
-        None = Tizen.Internals.Errors.ErrorCode.None,
-        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
-        InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
-        InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
-        PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
-        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
-        ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
-        NoSuchFile = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
-
-        // Radio
-        InvalidState = -0x019A0000 | 0x01, // RADIO_ERROR_INVALID_STATE
-        SoundPolicy = -0x019A0000 | 0x02, // RADIO_ERROR_SOUND_POLICY
-        NoAntenna = -0x019A0000 | 0x03, // RADIO_ERROR_NO_ANTENNA
-
-        // Image/ Video Utility
-        NotSupportedFormat = -0x01980000 | 0x01, // VIDEO_UTIL_ERROR_NOT_SUPPORTED_FORMAT
-    }
-}
-
-internal static class ErrorCodeExtensions
-{
-    private const string LogTag = "Tizen.Multimedia";
-
-    internal static bool IsSuccess(this Interop.ErrorCode err)
-    {
-        return err == Interop.ErrorCode.None;
-    }
-
-    internal static bool IsFailed(this Interop.ErrorCode err)
-    {
-        return !err.IsSuccess();
-    }
-
-    /// <summary>
-    /// Utility method to check for error, returns false if failed and print warning messages
-    /// </summary>
-    /// <returns>true in case of no error, false otherwise</returns>
-    internal static bool WarnIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
-    {
-        if (err.IsFailed())
+        internal enum ErrorCode
         {
-            Log.Debug(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
-            return false;
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+            ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
+            NoSuchFile = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
+
+            // Radio
+            InvalidState = -0x019A0000 | 0x01, // RADIO_ERROR_INVALID_STATE
+            SoundPolicy = -0x019A0000 | 0x02, // RADIO_ERROR_SOUND_POLICY
+            NoAntenna = -0x019A0000 | 0x03, // RADIO_ERROR_NO_ANTENNA
+
+            // Image/ Video Utility
+            NotSupportedFormat = -0x01980000 | 0x01, // VIDEO_UTIL_ERROR_NOT_SUPPORTED_FORMAT
         }
-        return true;
     }
 
-    /// <summary>
-    /// Utility method to check for error, returns false if failed and throw exception
-    /// </summary>
-    /// <returns>true in case of no error</returns>
-    internal static bool ThrowIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+    internal static class ErrorCodeExtensions
     {
-        if (err.IsFailed())
+        private const string LogTag = "Tizen.Multimedia";
+
+        internal static bool IsSuccess(this Interop.ErrorCode err)
         {
-            Log.Error(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
-            throw err.GetException(msg);
+            return err == Interop.ErrorCode.None;
         }
-        return true;
-    }
 
-    internal static Exception GetException(this Interop.ErrorCode err, string message)
-    {
-        string errMessage = $"{message}, err: {err.ToString()}";
-        switch (err)
+        internal static bool IsFailed(this Interop.ErrorCode err)
         {
-            //case ErrorCode.None:
-            case Interop.ErrorCode.PermissionDenied: return new UnauthorizedAccessException(errMessage);
-            case Interop.ErrorCode.InvalidParameter: return new ArgumentException(errMessage);
-            case Interop.ErrorCode.NoSuchFile: return new FileNotFoundException(errMessage);
-            case Interop.ErrorCode.OutOfMemory: return new OutOfMemoryException(errMessage);
-            case Interop.ErrorCode.NotSupported: return new NotSupportedException(errMessage);
-            case Interop.ErrorCode.NoAntenna: return new NotSupportedException(errMessage);
-            case Interop.ErrorCode.InvalidOperation:
-            case Interop.ErrorCode.InvalidState:
-            case Interop.ErrorCode.SoundPolicy:
-            case Interop.ErrorCode.ResourceBusy:
-            default: return new InvalidOperationException(errMessage);
+            return !err.IsSuccess();
+        }
+
+        /// <summary>
+        /// Utility method to check for error, returns false if failed and print warning messages
+        /// </summary>
+        /// <returns>true in case of no error, false otherwise</returns>
+        internal static bool WarnIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            if (err.IsFailed())
+            {
+                Log.Debug(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Utility method to check for error, returns false if failed and throw exception
+        /// </summary>
+        /// <returns>true in case of no error</returns>
+        internal static bool ThrowIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            if (err.IsFailed())
+            {
+                Log.Error(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
+                throw err.GetException(msg);
+            }
+            return true;
+        }
+
+        internal static Exception GetException(this Interop.ErrorCode err, string message)
+        {
+            string errMessage = $"{message}, err: {err.ToString()}";
+            switch (err)
+            {
+                //case ErrorCode.None:
+                case Interop.ErrorCode.PermissionDenied: return new UnauthorizedAccessException(errMessage);
+                case Interop.ErrorCode.InvalidParameter: return new ArgumentException(errMessage);
+                case Interop.ErrorCode.NoSuchFile: return new FileNotFoundException(errMessage);
+                case Interop.ErrorCode.OutOfMemory: return new OutOfMemoryException(errMessage);
+                case Interop.ErrorCode.NotSupported: return new NotSupportedException(errMessage);
+                case Interop.ErrorCode.NoAntenna: return new NotSupportedException(errMessage);
+                case Interop.ErrorCode.InvalidOperation:
+                case Interop.ErrorCode.InvalidState:
+                case Interop.ErrorCode.SoundPolicy:
+                case Interop.ErrorCode.ResourceBusy:
+                default: return new InvalidOperationException(errMessage);
+            }
         }
     }
 }

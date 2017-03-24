@@ -16,7 +16,7 @@
 
 using System;
 using System.IO;
-using InteropModel = Interop.MediaVision.ImageTrackingModel;
+using InteropModel = Tizen.Multimedia.Interop.MediaVision.ImageTrackingModel;
 
 namespace Tizen.Multimedia
 {

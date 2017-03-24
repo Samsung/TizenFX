@@ -17,8 +17,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using InteropBarcode = Interop.MediaVision.BarcodeDetector;
-using Unmanaged = Interop.MediaVision;
+using InteropBarcode = Tizen.Multimedia.Interop.MediaVision.BarcodeDetector;
+using Unmanaged = Tizen.Multimedia.Interop.MediaVision;
 
 namespace Tizen.Multimedia
 {

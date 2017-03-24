@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using static Interop.MediaVision;
+using static Tizen.Multimedia.Interop.MediaVision;
 
 namespace Tizen.Multimedia
 {

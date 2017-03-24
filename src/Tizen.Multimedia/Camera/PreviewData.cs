@@ -17,7 +17,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using static Interop.Camera;
+using static Tizen.Multimedia.Interop.Camera;
 
 namespace Tizen.Multimedia
 {

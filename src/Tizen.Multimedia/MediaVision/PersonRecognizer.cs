@@ -15,7 +15,7 @@
  */
 
 using System;
-using static Interop.MediaVision.Surveillance;
+using static Tizen.Multimedia.Interop.MediaVision.Surveillance;
 
 namespace Tizen.Multimedia
 {

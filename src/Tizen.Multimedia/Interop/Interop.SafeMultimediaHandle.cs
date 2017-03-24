@@ -20,60 +20,63 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-internal static partial class Interop
+namespace Tizen.Multimedia
 {
-    internal static Task<T> PinnedTask<T>(TaskCompletionSource<T> tcs)
+    internal static partial class Interop
     {
-        var gch = GCHandle.Alloc(tcs);
-        return tcs.Task.ContinueWith(
-            t => { gch.Free(); return t; },
-            TaskContinuationOptions.ExecuteSynchronously).Unwrap();
-    }
-
-    internal abstract class SafeMultimediaHandle : SafeHandle
-    {
-        internal delegate ErrorCode GetterMethod<TProp>(out TProp value);
-        internal delegate ErrorCode SetterMethod<TProp>(TProp value);
-
-        protected SafeMultimediaHandle(IntPtr handle, bool needToRelease) : base(handle, true)
+        internal static Task<T> PinnedTask<T>(TaskCompletionSource<T> tcs)
         {
-            Debug.Assert(handle != IntPtr.Zero);
-            HasOwnership = needToRelease;
+            var gch = GCHandle.Alloc(tcs);
+            return tcs.Task.ContinueWith(
+                t => { gch.Free(); return t; },
+                TaskContinuationOptions.ExecuteSynchronously).Unwrap();
         }
 
-        internal bool HasOwnership { get; set; }
-        public override bool IsInvalid { get { return handle == IntPtr.Zero; } }
-
-        internal abstract ErrorCode DisposeNativeHandle();
-
-        internal TProp NativeGet<TProp>(GetterMethod<TProp> getter, [CallerMemberName] string propertyName = "")
+        internal abstract class SafeMultimediaHandle : SafeHandle
         {
-            TProp value; getter(out value).ThrowIfFailed($"Failed to get {propertyName}");
-            return value;
-        }
+            internal delegate ErrorCode GetterMethod<TProp>(out TProp value);
+            internal delegate ErrorCode SetterMethod<TProp>(TProp value);
 
-        internal string NativeGet(GetterMethod<string> getter, [CallerMemberName] string propertyName = "")
-        {
-            string value; getter(out value).ThrowIfFailed($"Failed to get {propertyName}");
-            return value;
-        }
-
-        internal void NativeSet<TProp>(SetterMethod<TProp> setter, TProp value, [CallerMemberName] string propertyName = "")
-        {
-            setter(value).ThrowIfFailed($"Failed to set {propertyName}");
-        }
-
-        protected override bool ReleaseHandle()
-        {
-            var err = ErrorCode.None;
-            if (HasOwnership)
+            protected SafeMultimediaHandle(IntPtr handle, bool needToRelease) : base(handle, true)
             {
-                err = DisposeNativeHandle();
-                err.WarnIfFailed($"Failed to delete native {GetType()} handle");
+                Debug.Assert(handle != IntPtr.Zero);
+                HasOwnership = needToRelease;
             }
 
-            SetHandle(IntPtr.Zero);
-            return err.IsSuccess();
+            internal bool HasOwnership { get; set; }
+            public override bool IsInvalid { get { return handle == IntPtr.Zero; } }
+
+            internal abstract ErrorCode DisposeNativeHandle();
+
+            internal TProp NativeGet<TProp>(GetterMethod<TProp> getter, [CallerMemberName] string propertyName = "")
+            {
+                TProp value; getter(out value).ThrowIfFailed($"Failed to get {propertyName}");
+                return value;
+            }
+
+            internal string NativeGet(GetterMethod<string> getter, [CallerMemberName] string propertyName = "")
+            {
+                string value; getter(out value).ThrowIfFailed($"Failed to get {propertyName}");
+                return value;
+            }
+
+            internal void NativeSet<TProp>(SetterMethod<TProp> setter, TProp value, [CallerMemberName] string propertyName = "")
+            {
+                setter(value).ThrowIfFailed($"Failed to set {propertyName}");
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                var err = ErrorCode.None;
+                if (HasOwnership)
+                {
+                    err = DisposeNativeHandle();
+                    err.WarnIfFailed($"Failed to delete native {GetType()} handle");
+                }
+
+                SetHandle(IntPtr.Zero);
+                return err.IsSuccess();
+            }
         }
     }
 }

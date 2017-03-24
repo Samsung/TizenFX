@@ -16,7 +16,7 @@
 
 using System;
 using System.Diagnostics;
-using InteropSource = Interop.MediaVision.MediaSource;
+using InteropSource = Tizen.Multimedia.Interop.MediaVision.MediaSource;
 
 namespace Tizen.Multimedia
 {

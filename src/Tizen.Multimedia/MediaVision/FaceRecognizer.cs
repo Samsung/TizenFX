@@ -17,7 +17,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using InteropFace = Interop.MediaVision.Face;
+using InteropFace = Tizen.Multimedia.Interop.MediaVision.Face;
 
 namespace Tizen.Multimedia
 {

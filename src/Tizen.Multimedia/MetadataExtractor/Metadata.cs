@@ -16,7 +16,7 @@
 
 using System;
 using System.Diagnostics;
-using static Interop.MetadataExtractor;
+using static Tizen.Multimedia.Interop.MetadataExtractor;
 
 namespace Tizen.Multimedia
 {

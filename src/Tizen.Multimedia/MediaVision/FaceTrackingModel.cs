@@ -16,7 +16,7 @@
 
 using System;
 using System.IO;
-using InteropModel = Interop.MediaVision.FaceTrackingModel;
+using InteropModel = Tizen.Multimedia.Interop.MediaVision.FaceTrackingModel;
 
 namespace Tizen.Multimedia
 {

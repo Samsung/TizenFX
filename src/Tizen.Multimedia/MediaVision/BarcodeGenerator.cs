@@ -15,7 +15,7 @@
  */
 
 using System;
-using InteropBarcode = Interop.MediaVision.BarcodeGenerator;
+using InteropBarcode = Tizen.Multimedia.Interop.MediaVision.BarcodeGenerator;
 
 namespace Tizen.Multimedia
 {

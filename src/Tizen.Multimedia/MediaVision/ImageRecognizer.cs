@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using InteropImage = Interop.MediaVision.Image;
+using InteropImage = Tizen.Multimedia.Interop.MediaVision.Image;
 
 namespace Tizen.Multimedia
 {

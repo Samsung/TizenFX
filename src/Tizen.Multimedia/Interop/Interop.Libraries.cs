@@ -14,29 +14,32 @@
  * limitations under the License.
  */
 
-internal static partial class Interop
+namespace Tizen.Multimedia
 {
-    internal static partial class Libraries
+    internal static partial class Interop
     {
-        public const string Player = "libcapi-media-player.so.0";
-        public const string Recorder = "libcapi-media-recorder.so.0";
-        public const string SoundManager = "libcapi-media-sound-manager.so.0";
-        public const string AudioIO = "libcapi-media-audio-io.so.0";
-        public const string ScreenMirroring = "libcapi-media-screen-mirroring.so.0";
-        public const string MetadataEditor = "libcapi-media-metadata-editor.so";
-        public const string MetadataExtractor = "libcapi-media-metadata-extractor.so";
-        public const string MediaController = "libcapi-media-controller.so.0";
-        public const string MediaTool = "libcapi-media-tool.so.0";
-        public const string MediaCodec = "libcapi-media-codec.so.0";
-        public const string MediaVision = "libcapi-media-vision.so.0";
-        public const string Libc = "libc.so.6";
-        public const string Camera = "libcapi-media-camera.so.0";
-        public const string StreamRecorder = "libcapi-media-streamrecorder.so.0";
-        public const string Radio = "libcapi-media-radio.so.0";
-        public const string VideoUtil = "libcapi-media-video-util.so.0";
-        public const string ImageUtil = "libcapi-media-image-util.so.0";
-        public const string ThumbnailExtractor = "libcapi-media-thumbnail-util.so";
-        public const string WavPlayer = "libcapi-media-wav-player.so.0";
-        public const string TonePlayer = "libcapi-media-tone-player.so.0";
+        internal static partial class Libraries
+        {
+            public const string Player = "libcapi-media-player.so.0";
+            public const string Recorder = "libcapi-media-recorder.so.0";
+            public const string SoundManager = "libcapi-media-sound-manager.so.0";
+            public const string AudioIO = "libcapi-media-audio-io.so.0";
+            public const string ScreenMirroring = "libcapi-media-screen-mirroring.so.0";
+            public const string MetadataEditor = "libcapi-media-metadata-editor.so";
+            public const string MetadataExtractor = "libcapi-media-metadata-extractor.so";
+            public const string MediaController = "libcapi-media-controller.so.0";
+            public const string MediaTool = "libcapi-media-tool.so.0";
+            public const string MediaCodec = "libcapi-media-codec.so.0";
+            public const string MediaVision = "libcapi-media-vision.so.0";
+            public const string Libc = "libc.so.6";
+            public const string Camera = "libcapi-media-camera.so.0";
+            public const string StreamRecorder = "libcapi-media-streamrecorder.so.0";
+            public const string Radio = "libcapi-media-radio.so.0";
+            public const string VideoUtil = "libcapi-media-video-util.so.0";
+            public const string ImageUtil = "libcapi-media-image-util.so.0";
+            public const string ThumbnailExtractor = "libcapi-media-thumbnail-util.so";
+            public const string WavPlayer = "libcapi-media-wav-player.so.0";
+            public const string TonePlayer = "libcapi-media-tone-player.so.0";
+        }
     }
 }

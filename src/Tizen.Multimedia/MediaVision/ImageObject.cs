@@ -16,7 +16,7 @@
 
 using System;
 using System.IO;
-using InteropImage = Interop.MediaVision.Image;
+using InteropImage = Tizen.Multimedia.Interop.MediaVision.Image;
 
 namespace Tizen.Multimedia
 {
