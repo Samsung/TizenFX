@@ -180,6 +180,12 @@ namespace Tizen.Multimedia
         /// </summary>
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
         private Interop.Recorder.RecordingLimitReachedCallback _recordingLimitReachedCallback;
+
+        /// <summary>
+        /// Event that occurs when muxed stream data is being delivered.
+        /// </summary>
+        public event EventHandler<MuxedStreamDeliveredEventArgs> MuxedStreamDelivered;
+        private Interop.Recorder.MuxedStreamCallback _muxedStreamCallback;
 #endregion EventHandlers
 
 #region Properties
@@ -317,6 +323,7 @@ namespace Tizen.Multimedia
             RegisterRecordingProgressCallback();
             RegisterAudioStreamDeliveredCallback();
             RegisterRecordingLimitReachedEvent();
+            RegisterMuxedStreamEvent();
         }
 
         private void RegisterErrorCallback()
@@ -377,6 +384,16 @@ namespace Tizen.Multimedia
             };
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.SetLimitReachedCallback(_handle, _recordingLimitReachedCallback, IntPtr.Zero),
                 "Setting limit reached callback failed");
+        }
+
+        private void RegisterMuxedStreamEvent()
+        {
+            _muxedStreamCallback = (IntPtr stream, int streamSize, ulong offset, IntPtr userData) =>
+            {
+                MuxedStreamDelivered?.Invoke(this, new MuxedStreamDeliveredEventArgs(stream, streamSize, offset));
+            };
+            RecorderErrorFactory.ThrowIfError(Interop.Recorder.SetMuxedStreamCallback(_handle, _muxedStreamCallback, IntPtr.Zero),
+                "Setting muxed stream callback failed");
         }
 #endregion Callback registrations
     }

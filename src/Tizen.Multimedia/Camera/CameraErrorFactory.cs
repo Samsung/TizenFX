@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -41,7 +42,8 @@ namespace Tizen.Multimedia
 
     internal static class CameraErrorFactory
     {
-        internal static void ThrowIfError(int errorCode, string errorMessage = null)
+        internal static void ThrowIfError(int errorCode, string errorMessage = null,
+            [CallerMemberName] string caller = null, [CallerLineNumber] int line = 0)
         {
             CameraError err = (CameraError)errorCode;
             if (err == CameraError.None)
@@ -49,7 +51,7 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            Log.Info(CameraLog.Tag, "errorCode : " + err.ToString());
+            Log.Info(CameraLog.Tag, "errorCode : " + err.ToString() + ", Caller : " + caller + ", line " + line.ToString());
 
             switch (err)
             {

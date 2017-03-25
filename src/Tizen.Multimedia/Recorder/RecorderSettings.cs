@@ -327,12 +327,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                bool ret = Interop.RecorderSettings.GetMute(_recorder.GetHandle());
-
-                RecorderErrorFactory.ThrowIfError(ErrorFacts.GetLastResult(),
-                    "Failed to get the mute state of recorder");
-
-                return ret;
+                return Interop.RecorderSettings.GetMute(_recorder.GetHandle());
             }
 
             set

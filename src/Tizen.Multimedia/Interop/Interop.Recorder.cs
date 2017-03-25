@@ -31,6 +31,9 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void StatechangedCallback(RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData);
 
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void MuxedStreamCallback(IntPtr stream, int size, ulong offset, IntPtr userData);
+
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_audiorecorder")]
             internal static extern int Create(out IntPtr handle);
 
@@ -99,6 +102,12 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_recording_limit_reached_cb")]
             internal static extern int UnsetLimitReachedCallback(IntPtr handle);
+
+            [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_muxed_stream_cb")]
+            internal static extern int SetMuxedStreamCallback(IntPtr handle, MuxedStreamCallback callback, IntPtr userData);
+
+            [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_muxed_stream_cb")]
+            internal static extern int UnsetMuxedStreamCallback(IntPtr handle);
         }
     }
 }
