@@ -27,6 +27,33 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
+    /// This class manages the connection handle resources.
+    /// </summary>
+    public sealed class SafeConnectionHandle : SafeHandle
+    {
+        internal SafeConnectionHandle(IntPtr handle) : base(handle, true)
+        {
+        }
+
+        /// <summary>
+        /// Checks whether the handle value is valid or not.
+        /// </summary>
+        public override bool IsInvalid
+        {
+            get
+            {
+                return this.handle == IntPtr.Zero;
+            }
+        }
+
+        protected override bool ReleaseHandle()
+        {
+            this.SetHandle(IntPtr.Zero);
+            return true;
+        }
+    }
+
+    /// <summary>
     /// This class is ConnectionManager. It provides functions to manage data connections.
     /// </summary>
     public static class ConnectionManager
@@ -95,6 +122,16 @@ namespace Tizen.Network.Connection
             {
                 ConnectionInternalManager.Instance.ProxyAddressChanged -= value;
             }
+        }
+
+        /// <summary>
+        /// Gets the connection handle.
+        /// </summary>
+        /// <returns>Instance of SafeConnectionHandle</returns>
+        public static SafeConnectionHandle GetConnectionHandle()
+        {
+            IntPtr handle = ConnectionInternalManager.Instance.GetHandle();
+            return new SafeConnectionHandle(handle);
         }
 
         /// <summary>
