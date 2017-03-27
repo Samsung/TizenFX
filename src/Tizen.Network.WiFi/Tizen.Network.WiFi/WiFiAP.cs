@@ -142,6 +142,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         public void Refresh()
         {
+            Log.Debug(Globals.LogTag, "Refresh");
             int ret = Interop.WiFi.AP.Refresh(_apHandle);
             if (ret != (int)WiFiError.None)
             {
@@ -156,6 +157,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicating whether the Connect method is done or not.</returns>
         public Task ConnectAsync()
         {
+            Log.Debug(Globals.LogTag, "ConnectAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -191,6 +193,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicating whether the ConnectByWpsPbs method is done or not.</returns>
         public Task ConnectByWpsPbcAsync()
         {
+            Log.Debug(Globals.LogTag, "ConnectByWpsPbcAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -227,6 +230,7 @@ namespace Tizen.Network.WiFi
         /// <param name="pin">The WPS PIN is a non-null string with length greater than 0 and less than or equal to 8.</param>
         public Task ConnectByWpsPinAsync(string pin)
         {
+            Log.Debug(Globals.LogTag, "ConnectByWpsPinAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -262,6 +266,7 @@ namespace Tizen.Network.WiFi
         /// <returns> A task indicating whether the Disconnect method is done or not.</returns>
         public Task DisconnectAsync()
         {
+            Log.Debug(Globals.LogTag, "DisconnectAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -297,6 +302,7 @@ namespace Tizen.Network.WiFi
         /// </summary>
         public void RemoveAP()
         {
+            Log.Debug(Globals.LogTag, "RemoveAP");
             int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
             if (ret != (int)WiFiError.None)
             {

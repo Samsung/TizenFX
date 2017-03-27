@@ -33,7 +33,6 @@ namespace Tizen.Network.WiFi
 
         internal HandleHolder()
         {
-            Log.Debug(Globals.LogTag, "HandleHolder() Constructor");
             _handle = WiFiManagerImpl.Instance.Initialize();
             Log.Debug(Globals.LogTag, "Handle: " + _handle);
         }
@@ -122,7 +121,6 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                Log.Debug(Globals.LogTag, "Instance getter");
                 if (_instance == null)
                 {
                     Log.Debug(Globals.LogTag, "Instance is null");
@@ -145,13 +143,12 @@ namespace Tizen.Network.WiFi
 
         internal Interop.WiFi.SafeWiFiManagerHandle GetSafeHandle()
         {
-            Log.Debug(Globals.LogTag, "GetHandle, Thread Id = " + Thread.CurrentThread.ManagedThreadId);
             return s_threadName.Value.GetSafeHandle();
         }
 
         internal Interop.WiFi.SafeWiFiManagerHandle Initialize()
         {
-            Interop.WiFi.SafeWiFiManagerHandle handle = new Interop.WiFi.SafeWiFiManagerHandle();
+            Interop.WiFi.SafeWiFiManagerHandle handle;
             int ret = Interop.WiFi.Initialize(out handle);
             if (ret != (int)WiFiError.None)
             {
@@ -163,6 +160,7 @@ namespace Tizen.Network.WiFi
 
         internal IEnumerable<WiFiAP> GetFoundAPs()
         {
+            Log.Debug(Globals.LogTag, "GetFoundAPs");
             List<WiFiAP> apList = new List<WiFiAP>();
             Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
             {
@@ -189,6 +187,7 @@ namespace Tizen.Network.WiFi
 
         internal IEnumerable<WiFiAP> GetFoundSpecificAPs()
         {
+            Log.Debug(Globals.LogTag, "GetFoundSpecificAPs");
             List<WiFiAP> apList = new List<WiFiAP>();
             Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
             {
@@ -216,6 +215,7 @@ namespace Tizen.Network.WiFi
 
         internal IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
         {
+            Log.Debug(Globals.LogTag, "GetWiFiConfigurations");
             List<WiFiConfiguration> configList = new List<WiFiConfiguration>();
             Interop.WiFi.HandleCallback callback = (IntPtr configHandle, IntPtr userData) =>
             {
@@ -242,6 +242,7 @@ namespace Tizen.Network.WiFi
 
         internal void SaveWiFiNetworkConfiguration(WiFiConfiguration config)
         {
+            Log.Debug(Globals.LogTag, "SaveWiFiNetworkConfiguration");
             IntPtr configHandle = config.GetHandle();
             int ret = Interop.WiFi.Config.SaveConfiguration(GetSafeHandle(), configHandle);
             if (ret != (int)WiFiError.None)
@@ -253,8 +254,8 @@ namespace Tizen.Network.WiFi
 
         internal WiFiAP GetConnectedAP()
         {
+            Log.Debug(Globals.LogTag, "GetConnectedAP");
             IntPtr apHandle;
-
             int ret = Interop.WiFi.GetConnectedAP(GetSafeHandle(), out apHandle);
             if (ret != (int)WiFiError.None)
             {
@@ -267,6 +268,7 @@ namespace Tizen.Network.WiFi
 
         internal Task ActivateAsync()
         {
+            Log.Debug(Globals.LogTag, "ActivateAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -298,6 +300,7 @@ namespace Tizen.Network.WiFi
 
         internal Task ActivateWithWiFiPickerTestedAsync()
         {
+            Log.Debug(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -329,6 +332,7 @@ namespace Tizen.Network.WiFi
 
         internal Task DeactivateAsync()
         {
+            Log.Debug(Globals.LogTag, "DeactivateAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -360,6 +364,7 @@ namespace Tizen.Network.WiFi
 
         internal Task ScanAsync()
         {
+            Log.Debug(Globals.LogTag, "ScanAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -391,6 +396,7 @@ namespace Tizen.Network.WiFi
 
         internal Task ScanSpecificAPAsync(string essid)
         {
+            Log.Debug(Globals.LogTag, "ScanSpecificAPAsync " + essid);
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
