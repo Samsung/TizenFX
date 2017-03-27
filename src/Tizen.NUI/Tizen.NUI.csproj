@@ -49,7 +49,6 @@
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
-    <Compile Include="src\internal\FriendAssembly.cs" />
     <Compile Include="src\internal\ActorContainer.cs" />
     <Compile Include="src\internal\ActorHoverSignal.cs" />
     <Compile Include="src\internal\ActorSignal.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="src\internal\ControlOrientationType.cs" />
     <Compile Include="src\internal\CustomActor.cs" />
     <Compile Include="src\internal\CustomActorImpl.cs" />
+    <Compile Include="src\internal\CustomAlgorithmInterface.cs" />
     <Compile Include="src\internal\DaliEnumConstants.cs" />
     <Compile Include="src\internal\DaliEventHandler.cs" />
     <Compile Include="src\internal\DaliException.cs" />
@@ -97,8 +97,8 @@
     <Compile Include="src\internal\DirectionBias.cs" />
     <Compile Include="src\internal\DirectionType.cs" />
     <Compile Include="src\internal\DisposeQueue.cs" />
-    <Compile Include="src\internal\dotnetcore\HandleRef.cs" />
     <Compile Include="src\internal\dotnetcore\AddedException.cs" />
+    <Compile Include="src\internal\dotnetcore\HandleRef.cs" />
     <Compile Include="src\internal\doublep.cs" />
     <Compile Include="src\internal\DragAndDropDetector.cs" />
     <Compile Include="src\internal\EncodedBufferImage.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="src\internal\FocusGroupChangedSignal.cs" />
     <Compile Include="src\internal\FrameBuffer.cs" />
     <Compile Include="src\internal\FrameBufferImage.cs" />
+    <Compile Include="src\internal\FriendAssembly.cs" />
     <Compile Include="src\internal\GaussianBlurView.cs" />
     <Compile Include="src\internal\GaussianBlurViewSignal.cs" />
     <Compile Include="src\internal\Geometry.cs" />
@@ -165,10 +166,6 @@
     <Compile Include="src\internal\PinchGestureDetector.cs" />
     <Compile Include="src\internal\PixelData.cs" />
     <Compile Include="src\internal\PixelFormat.cs" />
-    <Compile Include="src\internal\VisualTransformPolicyType.cs" />
-    <Compile Include="src\public\CustomView\VisualView.cs" />
-    <Compile Include="src\public\VisualMaps.cs" />
-    <Compile Include="src\public\Position2D.cs" />
     <Compile Include="src\internal\PositionInheritanceMode.cs" />
     <Compile Include="src\internal\PrimitiveVisualShapeType.cs" />
     <Compile Include="src\internal\ProgressBarValueChangedSignal.cs" />
@@ -203,8 +200,6 @@
     <Compile Include="src\internal\Shader.cs" />
     <Compile Include="src\internal\SignalConnectorType.cs" />
     <Compile Include="src\internal\SignalObserver.cs" />
-    <Compile Include="src\public\CustomView\Spin.cs" />
-    <Compile Include="src\public\Size2D.cs" />
     <Compile Include="src\internal\SliderMarkReachedSignal.cs" />
     <Compile Include="src\internal\SliderValueChangedSignal.cs" />
     <Compile Include="src\internal\SlotObserver.cs" />
@@ -252,6 +247,7 @@
     <Compile Include="src\internal\SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_f_r_q_const__Dali__Vector3__float.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_int.cs" />
+    <Compile Include="src\internal\SWIGTYPE_p_KeyboardFocusManager.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_PropertyInputContainer.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_std__type_info.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_uint8_t.cs" />
@@ -293,6 +289,7 @@
     <Compile Include="src\internal\ViewRegistryHelper.cs" />
     <Compile Include="src\internal\ViewWrapper.cs" />
     <Compile Include="src\internal\ViewWrapperImpl.cs" />
+    <Compile Include="src\internal\VisualTransformPolicyType.cs" />
     <Compile Include="src\internal\VisualTransformPropertyType.cs" />
     <Compile Include="src\internal\VisualType.cs" />
     <Compile Include="src\internal\VoidSignal.cs" />
@@ -305,7 +302,8 @@
     <Compile Include="src\public\CheckBoxButton.cs" />
     <Compile Include="src\public\Color.cs" />
     <Compile Include="src\public\CustomView.cs" />
-    <Compile Include="src\public\NUIApplication.cs" />
+    <Compile Include="src\public\CustomView\Spin.cs" />
+    <Compile Include="src\public\CustomView\VisualView.cs" />
     <Compile Include="src\public\Degree.cs" />
     <Compile Include="src\public\FlexContainer.cs" />
     <Compile Include="src\public\FocusManager.cs" />
@@ -316,11 +314,13 @@
     <Compile Include="src\public\KeyFrames.cs" />
     <Compile Include="src\public\Layer.cs" />
     <Compile Include="src\public\LongPressGesture.cs" />
+    <Compile Include="src\public\NUIApplication.cs" />
     <Compile Include="src\public\PanGesture.cs" />
     <Compile Include="src\public\Path.cs" />
     <Compile Include="src\public\PinchGesture.cs" />
     <Compile Include="src\public\Popup.cs" />
     <Compile Include="src\public\Position.cs" />
+    <Compile Include="src\public\Position2D.cs" />
     <Compile Include="src\public\ProgressBar.cs" />
     <Compile Include="src\public\Property.cs" />
     <Compile Include="src\public\PushButton.cs" />
@@ -331,6 +331,7 @@
     <Compile Include="src\public\Rotation.cs" />
     <Compile Include="src\public\ScrollBar.cs" />
     <Compile Include="src\public\Size.cs" />
+    <Compile Include="src\public\Size2D.cs" />
     <Compile Include="src\public\Slider.cs" />
     <Compile Include="src\public\Stage.cs" />
     <Compile Include="src\public\StyleManager.cs" />
@@ -348,6 +349,7 @@
     <Compile Include="src\public\View.cs" />
     <Compile Include="src\public\VisualBase.cs" />
     <Compile Include="src\public\VisualFactory.cs" />
+    <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
   </ItemGroup>

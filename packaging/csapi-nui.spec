@@ -1,7 +1,7 @@
 Name:       csapi-nui
 Summary:    dali-NUI
-Version:    0.2.31
-Release:    pre2
+Version:    0.2.32
+Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
 URL:        https://www.tizen.org

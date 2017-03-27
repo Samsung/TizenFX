@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{7731BE98-0A68-49A9-877C-A30A0D30D9F6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NUISamples.TizenTV</RootNamespace>
+    <AssemblyName>NUISamples.TizenTV</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>DNXCore</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NuGetTargetMoniker>.NETCoreApp,Version=v1.0</NuGetTargetMoniker>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="NUISamples.TizenTV.project.json" />
+    <None Include="res\json\control-dashboard.json" />
+    <None Include="res\json\date-picker-template.json" />
+    <None Include="res\json\date-picker.json" />
+    <None Include="res\json\spin.json" />
+    <None Include="res\json\style-example-theme-one.json" />
+    <None Include="res\models\Dino.mtl" />
+    <None Include="res\models\Dino.obj" />
+    <None Include="tizen-manifest.xml" />
+    <None Include="shared\res\NUISamples.TizenTV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="examples\control-dashboard.cs" />
+    <Compile Include="examples\custom-control.cs" />
+    <Compile Include="examples\dali-test.cs" />
+    <Compile Include="examples\date-picker-using-json.cs" />
+    <Compile Include="examples\date-picker.cs" />
+    <Compile Include="examples\flex-container.cs" />
+    <Compile Include="examples\hello-test.cs" />
+    <Compile Include="examples\hello-world.cs" />
+    <Compile Include="examples\image-view.cs" />
+    <Compile Include="examples\json-loader.cs" />
+    <Compile Include="examples\scroll-view.cs" />
+    <Compile Include="examples\test1.cs" />
+    <Compile Include="examples\user-alphafunction.cs" />
+    <Compile Include="examples\view-navi-property.cs" />
+    <Compile Include="examples\visual-view-test.cs" />
+    <Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
+    <Compile Include="examples\visuals-using-custom-view\ContactView.cs" />
+    <Compile Include="examples\visuals-using-custom-view\visuals-using-custom-view.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tizen.NUI.Extension.Test\Tizen.NUI.Extension.Test.csproj">
+      <Project>{2def21e8-80d1-43b6-9e93-aef1d1be169b}</Project>
+      <Name>Tizen.NUI.Extension.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tizen.NUI\Tizen.NUI.csproj">
+      <Project>{3aee14f6-d600-4f5f-9982-74d011739ad7}</Project>
+      <Name>Tizen.NUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\images\arrow.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_color.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_gloss.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_nmap.png" />
+    <Content Include="res\images\Dino2_lambert2SG_color.png" />
+    <Content Include="res\images\Dino2_lambert2SG_nmap.png" />
+    <Content Include="res\images\gallery-0.jpg" />
+    <Content Include="res\images\gallery-1.jpg" />
+    <Content Include="res\images\gallery-2.jpg" />
+    <Content Include="res\images\gallery-3.jpg" />
+    <Content Include="res\images\gallery-4.jpg" />
+    <Content Include="res\images\gallery-5.jpg" />
+    <Content Include="res\images\gallery-small-43.jpg" />
+    <Content Include="res\images\image-1.jpg" />
+    <Content Include="res\images\image-2.jpg" />
+    <Content Include="res\images\image-3.jpg" />
+    <Content Include="res\images\not_yet_sign.png" />
+    <Content Include="res\images\star-dim.png" />
+    <Content Include="res\images\star-highlight.png" />
+    <Content Include="res\images\star-mod.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+			 https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+		-->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+			 properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+			 to prevent it from outputting a warning (MSB3644).
+		-->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
+        <ProjectCommonFlavorCfg />
+      </FlavorProperties>
+      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
+        <ProjectCommonFlavorCfg />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
