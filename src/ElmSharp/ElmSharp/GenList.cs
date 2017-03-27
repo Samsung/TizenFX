@@ -19,23 +19,63 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for setting genlist item type.
+    /// </summary>
     public enum GenListItemType
     {
+        /// <summary>
+        /// if Normal is set then this item is normal item.
+        /// </summary>
         Normal = 0,
+        /// <summary>
+        /// If tree is set then this item is displayed as an item that is able to expand and have child items.
+        /// </summary>
         Tree = (1 << 0),
+        /// <summary>
+        /// if Group is set then this item is group index item that is displayed at the top until the next group comes.
+        /// </summary>
         Group = (1 << 1),
     }
 
+    /// <summary>
+    /// Enumeration for setting genlist's resizing behavior, transverse axis scrolling and items cropping.
+    /// </summary>
     public enum GenListMode
     {
+        /// <summary>
+        /// The genlist won't set any of its size hints to inform how a possible container should resize it.
+        /// Then, if it's not created as a "resize object", it might end with zeroed dimensions.
+        /// The genlist will respect the container's geometry and, if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
+        /// </summary>
         Compress = 0,
+        /// <summary>
+        /// This is the same as Compress, with the exception that if any of its items won't fit into its transverse axis, one will be able to scroll it in that direction.
+        /// </summary>
         Scroll,
+        /// <summary>
+        /// Sets a minimum size hint on the genlist object, so that containers may respect it (and resize itself to fit the child properly).
+        /// More specifically, a minimum size hint will be set for its transverse axis, so that the largest item in that direction fits well.
+        /// This is naturally bound by the genlist object's maximum size hints, set externally.
+        /// </summary>
         Limit,
+        /// <summary>
+        /// Besides setting a minimum size on the transverse axis, just like on Limit, the genlist will set a minimum size on th longitudinal axis, trying to reserve space to all its children to be visible at a time.
+        /// This is naturally bound by the genlist object's maximum size hints, set externally.
+        /// </summary>
         Expand
     }
 
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// It contains Item which is <see cref="GenListItem"/> type.
+    /// All events of GenList contain GenListItemEventArgs as a parameter.
+    /// </summary>
     public class GenListItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets or sets GenList item. The return type is <see cref="GenListItem"/>.
+        /// </summary>
         public GenListItem Item { get; set; }
 
         internal static GenListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -45,15 +85,40 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration that defines where to position the item in the genlist.
+    /// </summary>
     public enum ScrollToPosition
     {
-        None = 0,   // Scrolls to nowhere
-        In = (1 << 0),   // Scrolls to the nearest viewport
-        Top = (1 << 1),   // Scrolls to the top of the viewport
-        Middle = (1 << 2),   // Scrolls to the middle of the viewport
-        Bottom = (1 << 3)   // Scrolls to the bottom of the viewport
+        /// <summary>
+        /// Scrolls to nowhere.
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Scrolls to the nearest viewport.
+        /// </summary>
+        In = (1 << 0),
+        /// <summary>
+        /// Scrolls to the top of the viewport.
+        /// </summary>
+        Top = (1 << 1),
+        /// <summary>
+        /// Scrolls to the middle of the viewport.
+        /// </summary>
+        Middle = (1 << 2),
+        /// <summary>
+        /// Scrolls to the bottom of the viewport.
+        /// </summary>
+        Bottom = (1 << 3)
     }
 
+    /// <summary>
+    /// It inherits <see cref="Layout"/>.
+    /// The GenList is a widget that aims to have more expansive list than the simple <see cref="List"/> in ElmSharp that could have more flexible items and allow many more entries while still being fast and low on memory usage.
+    /// At the same time it was also made to be able to do tree structures.
+    /// But the price to pay is more complexity when it comes to usage.
+    /// If all you want is a simple list with icons and a single text, use the <see cref="List"/> widget.
+    /// </summary>
     public class GenList : Layout
     {
         HashSet<GenListItem> _children = new HashSet<GenListItem>();
@@ -75,11 +140,21 @@ namespace ElmSharp
         SmartEvent _scrollAnimationStopped;
         SmartEvent _changed;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the GenList class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
         public GenList(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
         }
 
+        /// <summary>
+        /// Gets or sets whether the homogeneous mode is enabled.
+        /// </summary>
+        /// <remarks>
+        /// If true, the genlist items have same height and width.
+        /// </remarks>
         public bool Homogeneous
         {
             get
@@ -92,6 +167,19 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the horizontal stretching mode. This mode used for sizing items horizontally.
+        /// The default value is <see cref="GenListMode.Scroll"/> which means that if items are too wide to fit, the scroller scrolls horizontally.
+        /// If set <see cref="GenListMode.Compress"/> which means that the item width is fixed (restricted to a minimum of) to the list width when calculating its size in order to allow the height to be calculated based on it.
+        /// If set <see cref="GenListMode.Limit"/> which means that items are expanded to the viewport width and limited to that size.
+        /// if set <see cref="GenListMode.Expand"/> which means that genlist try to reserve space to all its items to be visible at a time.
+        /// </summary>
+        /// <remarks>
+        /// Compress makes genlist resize slower as it recalculates every item height again whenever the list width changes.
+        /// The homogeneous mode is so that all items in the genlist are of the same width/height. With Compress, genlist items are initialized fast.
+        /// However, there are no sub-objects in the genlist which can be on the flying resizable (such as TEXTBLOCK).
+        /// If so, then some dynamic resizable objects in the genlist would not be diplayed properly.
+        /// </remarks>
         public GenListMode ListMode
         {
             get
@@ -104,6 +192,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the first item in the genlist.
+        /// </summary>
         public GenListItem FirstItem
         {
             get
@@ -113,6 +204,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the last item in the genlist.
+        /// </summary>
         public GenListItem LastItem
         {
             get
@@ -122,6 +216,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the reorder mode.
+        /// After turning on the reorder mode, longpress on a normal item triggers reordering of the item.
+        /// You can move the item up and down. However, reordering does not work with group items.
+        /// </summary>
         public bool ReorderMode
         {
             get
@@ -134,48 +233,134 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// ItemSelected is raised when a new genlist item is selected.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemSelected;
+
+        /// <summary>
+        /// ItemUnselected is raised when the genlist item is Unselected.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemUnselected;
+
+        /// <summary>
+        /// ItemPressed is raised when a new genlist item is pressed.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemPressed;
+
+        /// <summary>
+        /// ItemReleased is raised when a new genlist item is released.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemReleased;
+
+        /// <summary>
+        /// ItemActivated is raised when a new genlist item is double clicked or pressed (enter|return|spacebar).
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemActivated;
+
+        /// <summary>
+        /// ItemDoubleClicked is raised when a new genlist item is double clicked.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemDoubleClicked;
+
+        /// <summary>
+        /// ItemExpanded is raised when a new genlist item is indicated to expand.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemExpanded;
+
+        /// <summary>
+        /// ItemRealized is raised when a new genlist item is created as a real object.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemRealized;
+
+        /// <summary>
+        /// ItemUnrealized is raised when a new genlist item is unrealized.
+        /// After calling unrealize, the item's content objects are deleted and the item object itself is deleted or is put into a floating cache.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemUnrealized;
+
+        /// <summary>
+        /// ItemLongPressed is raised when a genlist item is pressed for a certain amount of time. By default it's 1 second.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemLongPressed;
+
+        /// <summary>
+        /// ItemMoved is raised when a genlist item is moved in the reorder mode.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemMoved;
+
+        /// <summary>
+        /// ItemMovedAfter is raised when a genlist item is moved after another item in the reorder mode.
+        /// To get the relative previous item, use <see cref="GenListItem.Previous"/>.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemMovedAfter;
+
+        /// <summary>
+        /// ItemMovedBefore is raised when a genlist item is moved before another item in the reorder mode.
+        /// To get the relative next item, use <see cref="GenListItem.Next"/>.
+        /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemMovedBefore;
 
+        /// <summary>
+        /// Changed is raised when genlist is changed.
+        /// </summary>
         public event EventHandler Changed
         {
             add { _changed.On += value; }
             remove { _changed.On -= value; }
         }
 
+        /// <summary>
+        /// ScrollAnimationStarted is raised when scrolling animation has started.
+        /// </summary>
         public event EventHandler ScrollAnimationStarted
         {
             add { _scrollAnimationStarted.On += value; }
             remove { _scrollAnimationStarted.On -= value; }
         }
 
+        /// <summary>
+        /// ScrollAnimationStopped is raised when scrolling animation has stopped.
+        /// </summary>
         public event EventHandler ScrollAnimationStopped
         {
             add { _scrollAnimationStopped.On += value; }
             remove { _scrollAnimationStopped.On -= value; }
         }
 
+        /// <summary>
+        /// Appends a new item to the end of a given genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <seealso cref="GenItemClass"/>
+        /// <seealso cref="GenListItem"/>
         public GenListItem Append(GenItemClass itemClass, object data)
         {
             return Append(itemClass, data, GenListItemType.Normal);
         }
 
+        /// <summary>
+        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type)
         {
             return Append(itemClass, data, type, null);
         }
 
+        /// <summary>
+        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given genlist widget or the end of the children list if the parent is given.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass);
@@ -185,16 +370,38 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepends a new item to the beginning of a given genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Prepend(GenItemClass itemClass, object data)
         {
             return Prepend(itemClass, data, GenListItemType.Normal);
         }
 
+        /// <summary>
+        /// Prepends a new item with <see cref="GenListItemType"/> to the beginning of a given genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type)
         {
             return Prepend(itemClass, data, type, null);
         }
 
+        /// <summary>
+        /// Prepends a new item with <see cref="GenListItemType"/> to the beginning of a given genlist widget or the beginning of the children list if the parent is given.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass);
@@ -204,14 +411,42 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Inserts an item before another item in a genlist widget.
+        /// It is the same tree level or group as the item before which it is inserted.????
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="before">The item before which to place this new one.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before)
         {
             return InsertBefore(itemClass, data, before, GenListItemType.Normal);
         }
+
+        /// <summary>
+        /// Inserts an item with <see cref="GenListItemType"/> before another item in a genlist widget.
+        /// It is the same tree level or group as the item before which it is inserted.????
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="before">The item before which to place this new one.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type)
         {
             return InsertBefore(itemClass, data, before, type, null);
         }
+
+        /// <summary>
+        /// Inserts an item with <see cref="GenListItemType"/> before another item under a parent in a genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="before">The item before which to place this new one.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass);
@@ -230,6 +465,14 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Shows the given item with position type in a genlist.
+        /// When animated is true, genlist will jump to the given item and display it (by animatedly scrolling), if it is not fully visible. This may use animation and may take some time.
+        /// When animated is false, genlist will jump to the given item and display it (by jumping to that position), if it is not fully visible.
+        /// </summary>
+        /// <param name="item">The item to display.</param>
+        /// <param name="position">The position to show the given item to <see cref="ScrollToPosition"/>.</param>
+        /// <param name="animated">The animated indicates how to display the item, by scrolling or by jumping.</param>
         public void ScrollTo(GenListItem item, ScrollToPosition position, bool animated)
         {
             if (animated)
@@ -242,11 +485,24 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Updates the content of all the realized items.
+        /// This updates all the realized items by calling all the <see cref="GenItemClass"/> again to get the content, text and states.
+        /// Use this when the original item data has changed and the changes are desired to reflect.
+        /// To update just one item, use <see cref="GenListItem.Update"/>.
+        /// </summary>
+        /// <seealso cref="GenListItem.Update"/>
         public void UpdateRealizedItems()
         {
             Interop.Elementary.elm_genlist_realized_items_update(RealHandle);
         }
 
+        /// <summary>
+        /// Removes all items from a given genlist widget.
+        /// This removes (and deletes) all items in obj, making it empty.
+        /// To delete just one item, use <see cref="ItemObject.Delete"/>.
+        /// </summary>
+        /// <seealso cref="ItemObject.Delete"/>
         public void Clear()
         {
             Interop.Elementary.elm_genlist_clear(RealHandle);
