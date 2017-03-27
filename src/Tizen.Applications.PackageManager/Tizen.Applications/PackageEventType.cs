@@ -32,6 +32,14 @@ namespace Tizen.Applications
         /// <summary>
         /// Update event.
         /// </summary>
-        Update = Interop.PackageManager.EventType.Update
+        Update = Interop.PackageManager.EventType.Update,
+        /// <summary>
+        /// Move event.
+        /// </summary>
+        Move = Interop.PackageManager.EventType.Move,
+        /// <summary>
+        /// ClearData event.
+        /// </summary>
+        ClearData = Interop.PackageManager.EventType.ClearData
     }
 }
