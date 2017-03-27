@@ -184,7 +184,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManageGetPackageIdByAppId(applicationId, out packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get package Id. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to get package Id of {0}. err = {1}", applicationId, err));
                 if (err != Interop.PackageManager.ErrorCode.InvalidParameter)
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to get package Id");
@@ -489,7 +489,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in creating package manager request handle. err = {1}", packagePath, err));
                 return false;
             }
 
@@ -500,7 +500,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package type. err = {0}", err));
+                        Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in setting request package type. err = {1}", packagePath, err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -511,7 +511,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
+                        Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in setting request package mode. err = {1}", packagePath, err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -528,7 +528,7 @@ namespace Tizen.Applications
                     }
                     else
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                        Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePath, err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -538,7 +538,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestInstall(RequestHandle, packagePath, out requestId);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package. err = {0}", err));
+                        Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePath, err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -618,7 +618,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
+                Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in creating package manager request handle. err = {1}", packageId, err));
                 return false;
             }
 
@@ -627,7 +627,7 @@ namespace Tizen.Applications
                 err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to uninstall package. Error in setting request package type. err = {0}", err));
+                    Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in setting request package type. err = {1}", packageId, err));
                     RequestHandle.Dispose();
                     return false;
                 }
@@ -643,7 +643,7 @@ namespace Tizen.Applications
                     }
                     else
                     {
-                        Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                        Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. err = {1}", packageId, err));
                         RequestHandle.Dispose();
                         return false;
                     }

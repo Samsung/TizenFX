@@ -311,7 +311,7 @@ namespace Tizen.Applications
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppInfo(applicationId, out infoHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get the installed application information.");
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get the installed application information of " + applicationId + ".");
             }
             ApplicationInfo app = new ApplicationInfo(infoHandle);
             return app;
