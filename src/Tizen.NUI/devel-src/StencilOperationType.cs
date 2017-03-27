@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum StencilOperationType {
+    internal enum StencilOperationType {
   ZERO,
   KEEP,
   REPLACE,

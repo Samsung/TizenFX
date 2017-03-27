@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class AngleAxis : global::System.IDisposable {
+    internal class AngleAxis : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

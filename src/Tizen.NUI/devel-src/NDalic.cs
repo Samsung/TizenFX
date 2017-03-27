@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class NDalic {
+    internal class NDalic {
   public static uint int_to_uint(int x) {
     uint ret = NDalicPINVOKE.int_to_uint(x);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -369,7 +369,7 @@ public class NDalic {
     return ret;
   }
 
-  public static string GetName(Property.Type type) {
+  public static string GetName(PropertyType type) {
     string ret = NDalicPINVOKE.GetName((int)type);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -452,7 +452,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public static bool RegisterProperty(string objectName, string name, int index, Property.Type type, System.Delegate setFunc, System.Delegate getFunc) {
+  public static bool RegisterProperty(string objectName, string name, int index, PropertyType type, System.Delegate setFunc, System.Delegate getFunc) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(setFunc); 
 System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(getFunc); 
     {
@@ -967,6 +967,36 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static void Raise(Actor actor) {
+    NDalicPINVOKE.Raise(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void Lower(Actor actor) {
+    NDalicPINVOKE.Lower(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void RaiseToTop(Actor actor) {
+    NDalicPINVOKE.RaiseToTop(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void LowerToBottom(Actor actor) {
+    NDalicPINVOKE.LowerToBottom(Actor.getCPtr(actor));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void RaiseAbove(Actor actor, Actor target) {
+    NDalicPINVOKE.RaiseAbove(Actor.getCPtr(actor), Actor.getCPtr(target));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void LowerBelow(Actor actor, Actor target) {
+    NDalicPINVOKE.LowerBelow(Actor.getCPtr(actor), Actor.getCPtr(target));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public static FittingModeType FittingModeDefault {
     get {
       FittingModeType ret = (FittingModeType)NDalicPINVOKE.FittingModeDefault_get();
@@ -981,6 +1011,39 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 
+  }
+
+  public static SWIGTYPE_p_Dali__SignalT_void_fboolF_t FocusChangedSignal(Window window) {
+    SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.FocusChangedSignal(Window.getCPtr(window)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void SetAcceptFocus(Window window, bool accept) {
+    NDalicPINVOKE.SetAcceptFocus(Window.getCPtr(window), accept);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool IsFocusAcceptable(Window window) {
+    bool ret = NDalicPINVOKE.IsFocusAcceptable(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void Show(Window window) {
+    NDalicPINVOKE.Show(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void Hide(Window window) {
+    NDalicPINVOKE.Hide(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool IsVisible(Window window) {
+    bool ret = NDalicPINVOKE.IsVisible(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public static ViewImpl GetImplementation(View handle) {
@@ -1041,6 +1104,11 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     PixelData ret = new PixelData(NDalicPINVOKE.LoadImageSynchronously__SWIG_2(url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public static void SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager keyboardFocusManager, CustomAlgorithmInterface arg1) {
+    NDalicPINVOKE.SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager.getCPtr(keyboardFocusManager), CustomAlgorithmInterface.getCPtr(arg1));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static readonly int VISUAL_PROPERTY_TYPE = NDalicPINVOKE.VISUAL_PROPERTY_TYPE_get();

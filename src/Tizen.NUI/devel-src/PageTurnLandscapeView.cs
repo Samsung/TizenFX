@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class PageTurnLandscapeView : PageTurnView {
+    internal class PageTurnLandscapeView : PageTurnView {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PageTurnLandscapeView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnLandscapeView_SWIGUpcast(cPtr), cMemoryOwn) {

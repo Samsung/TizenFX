@@ -153,7 +153,7 @@ public class DetectedEventArgs : EventArgs
 
 public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr) {
     PanGestureDetector ret = new PanGestureDetector(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -333,11 +333,12 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     return ret;
   }
 
-  public AngleThresholdPair GetAngle(uint index) {
-    AngleThresholdPair ret = new AngleThresholdPair(NDalicPINVOKE.PanGestureDetector_GetAngle(swigCPtr, index), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal AngleThresholdPair GetAngle(uint index)
+        {
+            AngleThresholdPair ret = new AngleThresholdPair(NDalicPINVOKE.PanGestureDetector_GetAngle(swigCPtr, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
   public void ClearAngles() {
     NDalicPINVOKE.PanGestureDetector_ClearAngles(swigCPtr);
@@ -354,11 +355,12 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public PanGestureDetectedSignal DetectedSignal() {
-    PanGestureDetectedSignal ret = new PanGestureDetectedSignal(NDalicPINVOKE.PanGestureDetector_DetectedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal PanGestureDetectedSignal DetectedSignal()
+        {
+            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(NDalicPINVOKE.PanGestureDetector_DetectedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
   public static void SetPanGestureProperties(PanGesture pan) {
     NDalicPINVOKE.PanGestureDetector_SetPanGestureProperties(PanGesture.getCPtr(pan));

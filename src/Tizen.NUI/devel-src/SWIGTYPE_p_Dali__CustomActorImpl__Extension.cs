@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__CustomActorImpl__Extension {
+    internal class SWIGTYPE_p_Dali__CustomActorImpl__Extension {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__CustomActorImpl__Extension(global::System.IntPtr cPtr, bool futureUse) {

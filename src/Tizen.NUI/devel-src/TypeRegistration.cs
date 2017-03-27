@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class TypeRegistration : global::System.IDisposable {
+    internal class TypeRegistration : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -81,7 +81,7 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public static void RegisterProperty(string controlName, string propertyName, int index, Property.Type type, System.Delegate setFunc, System.Delegate getFunc) {
+  public static void RegisterProperty(string controlName, string propertyName, int index, PropertyType type, System.Delegate setFunc, System.Delegate getFunc) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(setFunc); 
 System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(getFunc); 
     {

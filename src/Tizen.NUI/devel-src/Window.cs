@@ -24,162 +24,273 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
+    /// <summary>
+    /// The window class is used internally for drawing.
+    /// A Window has an orientation and indicator properties.
+    /// </summary>
+    public class Window : BaseHandle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class Window : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Window() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Window(swigCPtr);
+        internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~Window()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Window(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public void Show()
+        {
+            NDalicPINVOKE.Show(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Hide()
+        {
+            NDalicPINVOKE.Hide(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void IsVisible()
+        {
+            NDalicPINVOKE.IsVisible(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="isTransparent">Whether Window is transparent</param>
+        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        public Window(Rectangle windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="className">The Window class name</param>
+        /// <param name="isTransparent">Whether Window is transparent</param>
+        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized handle to a new Window.
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window</param>
+        /// <param name="name">The Window title</param>
+        /// <param name="className">The Window class name</param>
+        public Window(Rectangle windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal Window(Window handle) : this(NDalicPINVOKE.new_Window__SWIG_1(Window.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Window Assign(Window rhs)
+        {
+            Window ret = new Window(NDalicPINVOKE.Window_Assign(swigCPtr, Window.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// This sets whether the indicator bar should be shown or not.
+        /// </summary>
+        /// <param name="visibleMode">Visible mode for indicator bar, Visible in default</param>
+        internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
+        {
+            NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// This sets the opacity mode of indicator bar.
+        /// </summary>
+        /// <param name="opacity">The opacity mode</param>
+        internal void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
+        {
+            NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// This sets the orientation of indicator bar.
+        /// It does not implicitly show the indicator if it is currently hidden.
+        /// </summary>
+        /// <param name="orientation">The orientation</param>
+        internal void RotateIndicator(Window.WindowOrientation orientation)
+        {
+            NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetClass(string name, string klass)
+        {
+            NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Raises window to the top of Window stack.
+        /// </summary>
+        public void Raise()
+        {
+            NDalicPINVOKE.Window_Raise(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Lowers window to the bottom of Window stack.
+        /// </summary>
+        public void Lower()
+        {
+            NDalicPINVOKE.Window_Lower(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Activates window to the top of Window stack even it is iconified.
+        /// </summary>
+        public void Activate()
+        {
+            NDalicPINVOKE.Window_Activate(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void AddAvailableOrientation(Window.WindowOrientation orientation)
+        {
+            NDalicPINVOKE.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void RemoveAvailableOrientation(Window.WindowOrientation orientation)
+        {
+            NDalicPINVOKE.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetPreferredOrientation(Window.WindowOrientation orientation)
+        {
+            NDalicPINVOKE.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Window.WindowOrientation GetPreferredOrientation()
+        {
+            Window.WindowOrientation ret = (Window.WindowOrientation)NDalicPINVOKE.Window_GetPreferredOrientation(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal DragAndDropDetector GetDragAndDropDetector()
+        {
+            DragAndDropDetector ret = new DragAndDropDetector(NDalicPINVOKE.Window_GetDragAndDropDetector(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Any GetNativeHandle()
+        {
+            Any ret = new Any(NDalicPINVOKE.Window_GetNativeHandle(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SWIGTYPE_p_Dali__SignalT_void_fboolF_t IndicatorVisibilityChangedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.Window_IndicatorVisibilityChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
+        /// </summary>
+        public enum WindowOrientation
+        {
+            Portrait = 0,
+            Landscape = 90,
+            PortraitInverse = 180,
+            LandscapeInverse = 270
+        }
+
+        /// <summary>
+        /// Enumeration for opacity of the indicator.
+        /// </summary>
+        internal enum IndicatorBgOpacity
+        {
+            Opaque = 100,
+            Translucent = 50,
+            Transparent = 0
+        }
+
+        /// <summary>
+        /// Enumeration for visible mode of the indicator.
+        /// </summary>
+        internal enum IndicatorVisibleMode
+        {
+            Invisible = 0,
+            Visible = 1,
+            Auto = 2
+        }
+
     }
-  }
-
-
-  public Window (Rectangle windowPosition, string name, bool isTransparent) : this (NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public Window (Rectangle windowPosition, string name) : this (NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public Window (Rectangle windowPosition, string name, string className, bool isTransparent) : this (NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public Window (Rectangle windowPosition, string name, string className) : this (NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public Window(Window handle) : this(NDalicPINVOKE.new_Window__SWIG_1(Window.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Window Assign(Window rhs) {
-    Window ret = new Window(NDalicPINVOKE.Window_Assign(swigCPtr, Window.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ShowIndicator(Window.IndicatorVisibleMode visibleMode) {
-    NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity) {
-    NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void RotateIndicator(Window.WindowOrientation orientation) {
-    NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetClass(string name, string klass) {
-    NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Raise() {
-    NDalicPINVOKE.Window_Raise(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Lower() {
-    NDalicPINVOKE.Window_Lower(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Activate() {
-    NDalicPINVOKE.Window_Activate(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void AddAvailableOrientation(Window.WindowOrientation orientation) {
-    NDalicPINVOKE.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void RemoveAvailableOrientation(Window.WindowOrientation orientation) {
-    NDalicPINVOKE.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetPreferredOrientation(Window.WindowOrientation orientation) {
-    NDalicPINVOKE.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Window.WindowOrientation GetPreferredOrientation() {
-    Window.WindowOrientation ret = (Window.WindowOrientation)NDalicPINVOKE.Window_GetPreferredOrientation(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public DragAndDropDetector GetDragAndDropDetector() {
-    DragAndDropDetector ret = new DragAndDropDetector(NDalicPINVOKE.Window_GetDragAndDropDetector(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Any GetNativeHandle() {
-    Any ret = new Any(NDalicPINVOKE.Window_GetNativeHandle(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_Dali__SignalT_void_fboolF_t IndicatorVisibilityChangedSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.Window_IndicatorVisibilityChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public enum WindowOrientation {
-    PORTRAIT = 0,
-    LANDSCAPE = 90,
-    PORTRAIT_INVERSE = 180,
-    LANDSCAPE_INVERSE = 270
-  }
-
-  public enum IndicatorBgOpacity {
-    OPAQUE = 100,
-    TRANSLUCENT = 50,
-    TRANSPARENT = 0
-  }
-
-  public enum IndicatorVisibleMode {
-    INVISIBLE = 0,
-    VISIBLE = 1,
-    AUTO = 2
-  }
-
-}
 
 }

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum DefaultItemLayoutType {
+    internal enum DefaultItemLayoutType {
   DEPTH,
   GRID,
   LIST,

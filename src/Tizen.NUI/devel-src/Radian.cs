@@ -8,86 +8,136 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class Radian : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+    /// <summary>
+    /// An angle in radians.
+    /// </summary>
+    public class Radian : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-  internal Radian(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Radian obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Radian() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Radian(swigCPtr);
+        internal Radian(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Radian obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~Radian()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public virtual void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Radian(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+
+        /// <summary>
+        /// Default constructor, initializes to 0.
+        /// </summary>
+        public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in radians.
+        /// </summary>
+        /// <param name="value">The initial value in radians</param>
+        public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in radians from an angle in degrees.
+        /// </summary>
+        /// <param name="degree">The initial value in degrees</param>
+        public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Assigns an angle from a float value.
+        /// </summary>
+        /// <param name="value">Float value in radians</param>
+        /// <returns>A reference to this</returns>
+        internal Radian Assign(float value)
+        {
+            Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_0(swigCPtr, value), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Assigns an angle from a Degree value.
+        /// </summary>
+        /// <param name="degree">The value in degrees</param>
+        /// <returns>A reference to this</returns>
+        internal Radian Assign(Degree degree)
+        {
+            Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_1(swigCPtr, Degree.getCPtr(degree)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Conversion to float.
+        /// </summary>
+        /// <returns>The float value of this Radian</returns>
+        public float ConvertToFloat()
+        {
+            float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The value in radians
+        /// </summary>
+        public float radian
+        {
+            set
+            {
+                NDalicPINVOKE.Radian_radian_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Radian_radian_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
-  }
-
-
-  public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Radian Assign(float value) {
-    Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_0(swigCPtr, value), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Radian Assign(Degree degree) {
-    Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_1(swigCPtr, Degree.getCPtr(degree)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public float ConvertToFloat() {
-    float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public float radian {
-    set {
-      NDalicPINVOKE.Radian_radian_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      float ret = NDalicPINVOKE.Radian_radian_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-}
 
 }

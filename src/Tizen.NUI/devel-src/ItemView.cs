@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class ItemView : Scrollable {
+    internal class ItemView : Scrollable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -65,17 +65,17 @@ public class ItemView : Scrollable {
   }
 
 
-  public Tizen.NUI.Property.Array Layout
+  public Tizen.NUI.PropertyArray Layout
   {
     get
     {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
+      Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
       GetProperty( ItemView.Property.LAYOUT).Get( temp );
       return temp;
     }
     set
     {
-      SetProperty( ItemView.Property.LAYOUT, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.LAYOUT, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 
@@ -361,7 +361,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.MINIMUM_SWIPE_SPEED, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.MINIMUM_SWIPE_SPEED, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float MinimumSwipeDistance
@@ -374,7 +374,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.MINIMUM_SWIPE_DISTANCE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.MINIMUM_SWIPE_DISTANCE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float WheelScrollDistanceStep
@@ -387,7 +387,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool SnapToItemEnabled
@@ -400,7 +400,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.SNAP_TO_ITEM_ENABLED, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.SNAP_TO_ITEM_ENABLED, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float RefreshInterval
@@ -413,7 +413,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.REFRESH_INTERVAL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.REFRESH_INTERVAL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float LayoutPosition
@@ -426,7 +426,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.LAYOUT_POSITION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.LAYOUT_POSITION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float ScrollSpeed
@@ -439,7 +439,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.SCROLL_SPEED, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float Overshoot
@@ -452,7 +452,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.OVERSHOOT, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.OVERSHOOT, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ScrollDirection
@@ -465,7 +465,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.SCROLL_DIRECTION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int LayoutOrientation
@@ -478,7 +478,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.LAYOUT_ORIENTATION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.LAYOUT_ORIENTATION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float ScrollContentSize
@@ -491,7 +491,7 @@ public class ItemView : Scrollable {
     }
     set
     {
-      SetProperty( ItemView.Property.SCROLL_CONTENT_SIZE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ItemView.Property.SCROLL_CONTENT_SIZE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

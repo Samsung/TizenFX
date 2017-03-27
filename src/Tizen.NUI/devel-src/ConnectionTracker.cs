@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ConnectionTracker : ConnectionTrackerInterface {
+    internal class ConnectionTracker : ConnectionTrackerInterface {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ConnectionTracker_SWIGUpcast(cPtr), cMemoryOwn) {

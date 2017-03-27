@@ -10,15 +10,9 @@
 
 namespace Tizen.NUI {
 
-public enum ResizePolicyType {
-  FIXED,
-  USE_NATURAL_SIZE,
-  FILL_TO_PARENT,
-  SIZE_RELATIVE_TO_PARENT,
-  SIZE_FIXED_OFFSET_FROM_PARENT,
-  FIT_TO_CHILDREN,
-  DIMENSION_DEPENDENCY,
-  USE_ASSIGNED_SIZE
+    internal enum DirectionType {
+  LEFT_TO_RIGHT = 0,
+  RIGHT_TO_LEFT
 }
 
 }

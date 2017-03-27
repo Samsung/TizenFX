@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__RectT_unsigned_int_t {
+    internal class SWIGTYPE_p_Dali__RectT_unsigned_int_t {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__RectT_unsigned_int_t(global::System.IntPtr cPtr, bool futureUse) {

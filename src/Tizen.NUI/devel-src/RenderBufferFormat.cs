@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum RenderBufferFormat {
+    internal enum RenderBufferFormat {
   COLOR,
   COLOR_DEPTH,
   COLOR_STENCIL,

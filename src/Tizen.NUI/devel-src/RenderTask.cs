@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class RenderTask : Handle {
+    internal class RenderTask : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RenderTask_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -47,7 +47,7 @@ public class RenderTask : Handle {
 
  public static RenderTask GetRenderTaskFromPtr(global::System.IntPtr cPtr) {
     RenderTask ret = new RenderTask(cPtr, false);
-	if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -378,7 +378,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.VIEWPORT_POSITION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.VIEWPORT_POSITION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ViewportSize
@@ -391,7 +391,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.VIEWPORT_SIZE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.VIEWPORT_SIZE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector4 ClearColor
@@ -404,7 +404,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.CLEAR_COLOR, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.CLEAR_COLOR, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool RequiresSync
@@ -417,7 +417,7 @@ public class RenderTask : Handle {
     }
     set
     {
-      SetProperty( RenderTask.Property.REQUIRES_SYNC, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( RenderTask.Property.REQUIRES_SYNC, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

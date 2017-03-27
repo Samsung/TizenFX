@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class Ruler : RefObject {
+    public class Ruler : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Ruler_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -121,7 +121,7 @@ public class Ruler : RefObject {
     return ret;
   }
 
-  public float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
+  internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
     float ret = NDalicPINVOKE.Ruler_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -151,7 +151,7 @@ public class Ruler : RefObject {
     return ret;
   }
 
-  public float SnapAndClamp(float x, float bias, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
+  internal float SnapAndClamp(float x, float bias, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
     float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_4(swigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class AsyncImageLoader : BaseHandle {
+    internal class AsyncImageLoader : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal AsyncImageLoader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.AsyncImageLoader_SWIGUpcast(cPtr), cMemoryOwn) {

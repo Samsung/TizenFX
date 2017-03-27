@@ -28,13 +28,13 @@ namespace Tizen.NUI {
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate void EventCallbackDelegateType1(IntPtr arg1);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    internal delegate void EventCallbackDelegateType2<T,U>(T arg1, U arg2);
-
 
     //this should be removed with EventHandler from .NET
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void DaliEventHandler<T,U>(T source, U e);
+    public delegate void DaliEventHandler<T, U>(T source, U e);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
 
 
 }

@@ -19,9 +19,9 @@ using System;
 
 namespace Tizen.NUI {
 
-public delegate IntPtr SwigDelegatePreFocusChangeSignal(IntPtr current, IntPtr proposed, View.KeyboardFocus.Direction direction);
+internal delegate IntPtr SwigDelegatePreFocusChangeSignal(IntPtr current, IntPtr proposed, View.FocusDirection direction);
 
-public class PreFocusChangeSignal : global::System.IDisposable {
+internal class PreFocusChangeSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -68,7 +68,7 @@ public class PreFocusChangeSignal : global::System.IDisposable {
     return ret;
   }
 
-  public void Connect(FocusManager.PreFocusChangeEventCallbackDelegate func) {
+  public void Connect(FocusManager.PreFocusChangeEventCallback func) {
      NDalicManualPINVOKE.PreFocusChangeSignal_Connect(swigCPtr, func);
      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
  }
@@ -81,7 +81,7 @@ public class PreFocusChangeSignal : global::System.IDisposable {
     }
   }
 
-  public Actor Emit(Actor arg1, Actor arg2, View.KeyboardFocus.Direction arg3) {
+  public Actor Emit(Actor arg1, Actor arg2, View.FocusDirection arg3) {
     Actor ret = new Actor(NDalicManualPINVOKE.PreFocusChangeSignal_Emit(swigCPtr, Actor.getCPtr(arg1), Actor.getCPtr(arg2), (int)arg3), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

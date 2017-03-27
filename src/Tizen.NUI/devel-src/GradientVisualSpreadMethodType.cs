@@ -9,11 +9,11 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-public enum GradientVisualSpreadMethodType {
+/* moved to VisualMaps.cs
+    internal enum GradientVisualSpreadMethodType {
   PAD,
   REFLECT,
   REPEAT
 }
-
+*/
 }

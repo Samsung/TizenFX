@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_PropertyInputContainer {
+    internal class SWIGTYPE_p_PropertyInputContainer {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_PropertyInputContainer(global::System.IntPtr cPtr, bool futureUse) {

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum RenderModeType {
+    internal enum RenderModeType {
   NONE,
   AUTO,
   COLOR,

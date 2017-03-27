@@ -120,30 +120,30 @@ public class ToggleButton : Button {
     PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000
   }
 
-  public Tizen.NUI.Property.Array StateVisuals
+  public Tizen.NUI.PropertyArray StateVisuals
   {
     get
     {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
+      Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
       GetProperty( ToggleButton.Property.STATE_VISUALS).Get(  temp );
       return temp;
     }
     set
     {
-      SetProperty( ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue( value ) );
     }
   }
-  public Tizen.NUI.Property.Array Tooltips
+  public Tizen.NUI.PropertyArray Tooltips
   {
     get
     {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
+      Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
       GetProperty( ToggleButton.Property.TOOLTIPS).Get(  temp );
       return temp;
     }
     set
     {
-      SetProperty( ToggleButton.Property.TOOLTIPS, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int CurrentStateIndex
@@ -156,7 +156,7 @@ public class ToggleButton : Button {
     }
     set
     {
-      SetProperty( ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

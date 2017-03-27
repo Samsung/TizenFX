@@ -24,290 +24,359 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-using System;
-using System.Runtime.InteropServices;
-
-
-public class VideoView : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VideoView_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VideoView obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~VideoView() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_VideoView(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-
-/**
-  * @brief Event arguments that passed via Finished signal
-  *
-  */
-public class FinishedEventArgs : EventArgs
+namespace Tizen.NUI
 {
-   private VideoView _videoView;
 
-   /**
-     * @brief VideoView - VideoView is a control for video playback and display.
-     *
-     */
-   public VideoView VideoView
-   {
-      get
-      {
-         return _videoView;
-      }
-      set
-      {
-         _videoView = value;
-      }
-   }
-}
+    using System;
+    using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// VideoView is a control for video playback and display.
+    /// </summary>
+    public class VideoView : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void FinishedCallbackDelegate(IntPtr data);
-  private DaliEventHandler<object,FinishedEventArgs> _videoViewFinishedEventHandler;
-  private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
-
-  /**
-    * @brief Event for Finished signal which can be used to subscribe/unsubscribe the event handler
-    * (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.
-    * Finished signal is emitted when a video playback have finished.
-    */
-  public event DaliEventHandler<object,FinishedEventArgs> Finished
-  {
-     add
-     {
-        lock(this)
+        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-           // Restricted to only one listener
-           if (_videoViewFinishedEventHandler == null)
-           {
-              _videoViewFinishedEventHandler += value;
-
-              _videoViewFinishedCallbackDelegate = new FinishedCallbackDelegate(OnFinished);
-              this.FinishedSignal().Connect(_videoViewFinishedCallbackDelegate);
-           }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VideoView obj)
         {
-           if (_videoViewFinishedEventHandler != null)
-           {
-              this.FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
-           }
-
-           _videoViewFinishedEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-     }
-  }
 
-  // Callback for VideoView Finished signal
-  private void OnFinished(IntPtr data)
-  {
-     FinishedEventArgs e = new FinishedEventArgs();
-
-     // Populate all members of "e" (FinishedEventArgs) with real data
-     e.VideoView = VideoView.GetVideoViewFromPtr( data );
-
-     if (_videoViewFinishedEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _videoViewFinishedEventHandler(this, e);
-     }
-  }
-
-  public static VideoView GetVideoViewFromPtr(global::System.IntPtr cPtr) {
-    VideoView ret = new VideoView(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_VideoView_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        ~VideoView()
+        {
+            DisposeQueue.Instance.Add(this);
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_VideoView(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Event arguments that passed via Finished signal
+        /// </summary>
+        public class FinishedEventArgs : EventArgs
+        {
+            private VideoView _videoView;
+
+            /// <summary>
+            /// The view for video playback and display.
+            /// </summary>
+            public VideoView VideoView
+            {
+                get
+                {
+                    return _videoView;
+                }
+                set
+                {
+                    _videoView = value;
+                }
+            }
+        }
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void FinishedCallbackDelegate(IntPtr data);
+        private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
+        private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
+
+
+        /// <summary>
+        /// Event for Finished signal which can be used to subscribe/unsubscribe the event handler
+        /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.
+        /// Finished signal is emitted when a video playback have finished.
+        /// </summary>
+        public event EventHandler<FinishedEventArgs> Finished
+        {
+            add
+            {
+                if (_videoViewFinishedEventHandler == null)
+                {
+                    _videoViewFinishedCallbackDelegate = (OnFinished);
+                    FinishedSignal().Connect(_videoViewFinishedCallbackDelegate);
+                }
+                _videoViewFinishedEventHandler += value;
+            }
+            remove
+            {
+                _videoViewFinishedEventHandler -= value;
+                if (_videoViewFinishedEventHandler == null && _videoViewFinishedCallbackDelegate != null)
+                {
+                    FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for VideoView Finished signal
+        private void OnFinished(IntPtr data)
+        {
+            FinishedEventArgs e = new FinishedEventArgs();
+
+            // Populate all members of "e" (FinishedEventArgs) with real data
+            e.VideoView = VideoView.GetVideoViewFromPtr(data);
+
+            if (_videoViewFinishedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _videoViewFinishedEventHandler(this, e);
+            }
+        }
+
+        internal static VideoView GetVideoViewFromPtr(global::System.IntPtr cPtr)
+        {
+            VideoView ret = new VideoView(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Property()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_VideoView_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal Property() : this(NDalicPINVOKE.new_VideoView_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int VIDEO = NDalicPINVOKE.VideoView_Property_VIDEO_get();
+            internal static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();
+            internal static readonly int MUTED = NDalicPINVOKE.VideoView_Property_MUTED_get();
+            internal static readonly int VOLUME = NDalicPINVOKE.VideoView_Property_VOLUME_get();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized VideoView.
+        /// </summary>
+        public VideoView() : this(NDalicPINVOKE.VideoView_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized VideoView.
+        /// If the string is empty, VideoView will not display anything.
+        /// </summary>
+        /// <param name="url">The url of the video resource to display</param>
+        public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal VideoView(VideoView videoView) : this(NDalicPINVOKE.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VideoView Assign(VideoView videoView)
+        {
+            VideoView ret = new VideoView(NDalicPINVOKE.VideoView_Assign(swigCPtr, VideoView.getCPtr(videoView)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts a handle to VideoView handle.
+        /// If handle points to a VideoView, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a VideoView or an uninitialized handle</returns>
+        public new static VideoView DownCast(BaseHandle handle)
+        {
+            VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Starts the video playback.
+        /// </summary>
+        public void Play()
+        {
+            NDalicPINVOKE.VideoView_Play(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Pauses the video playback.
+        /// </summary>
+        public void Pause()
+        {
+            NDalicPINVOKE.VideoView_Pause(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Stops the video playback.
+        /// </summary>
+        public void Stop()
+        {
+            NDalicPINVOKE.VideoView_Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Seeks forward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for forward playback</param>
+        public void Forward(int millisecond)
+        {
+            NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Seeks backward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for backward playback</param>
+        public void Backward(int millisecond)
+        {
+            NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VideoViewSignal FinishedSignal()
+        {
+            VideoViewSignal ret = new VideoViewSignal(NDalicPINVOKE.VideoView_FinishedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX
+        }
+
+        /// <summary>
+        /// video file url as string type or PropertyMap.
+        /// </summary>
+        public PropertyMap Video
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(VideoView.Property.VIDEO).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// looping status, true or false.
+        /// </summary>
+        public bool Looping
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(VideoView.Property.LOOPING).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// mute status, true or false.
+        /// </summary>
+        public bool Muted
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(VideoView.Property.MUTED).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.MUTED, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// left and right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
+        /// </summary>
+        public PropertyMap Volume
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(VideoView.Property.VOLUME).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.VOLUME, new PropertyValue(value));
+            }
+        }
+
     }
-  
-    public Property() : this(NDalicPINVOKE.new_VideoView_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int VIDEO = NDalicPINVOKE.VideoView_Property_VIDEO_get();
-    public static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();
-    public static readonly int MUTED = NDalicPINVOKE.VideoView_Property_MUTED_get();
-    public static readonly int VOLUME = NDalicPINVOKE.VideoView_Property_VOLUME_get();
-  
-  }
-
-  public VideoView () : this (NDalicPINVOKE.VideoView_New__SWIG_0(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public VideoView (string url) : this (NDalicPINVOKE.VideoView_New__SWIG_1(url), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public VideoView(VideoView videoView) : this(NDalicPINVOKE.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VideoView Assign(VideoView videoView) {
-    VideoView ret = new VideoView(NDalicPINVOKE.VideoView_Assign(swigCPtr, VideoView.getCPtr(videoView)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new static VideoView DownCast(BaseHandle handle) {
-    VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void Play() {
-    NDalicPINVOKE.VideoView_Play(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Pause() {
-    NDalicPINVOKE.VideoView_Pause(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Stop() {
-    NDalicPINVOKE.VideoView_Stop(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Forward(int millisecond) {
-    NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Backward(int millisecond) {
-    NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VideoViewSignal FinishedSignal() {
-    VideoViewSignal ret = new VideoViewSignal(NDalicPINVOKE.VideoView_FinishedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX
-  }
-
-  public Tizen.NUI.Property.Map Video
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( VideoView.Property.VIDEO).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( VideoView.Property.VIDEO, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool Looping
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( VideoView.Property.LOOPING).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( VideoView.Property.LOOPING, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool Muted
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( VideoView.Property.MUTED).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( VideoView.Property.MUTED, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map Volume
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( VideoView.Property.VOLUME).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( VideoView.Property.VOLUME, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-
-}
 
 }

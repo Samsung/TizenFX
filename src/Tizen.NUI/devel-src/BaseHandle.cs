@@ -158,7 +158,7 @@ public class BaseHandle : global::System.IDisposable {
   }
 
 
-  public BaseHandle(BaseObject handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_0(BaseObject.getCPtr(handle)), true) {
+  internal BaseHandle(BaseObject handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_0(BaseObject.getCPtr(handle)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -176,8 +176,8 @@ public class BaseHandle : global::System.IDisposable {
     return ret;
   }
 
-  public bool DoAction(string actionName, Property.Map attributes) {
-    bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, Property.Map.getCPtr(attributes));
+  public bool DoAction(string actionName, PropertyMap attributes) {
+    bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -194,7 +194,7 @@ public class BaseHandle : global::System.IDisposable {
     return ret;
   }
 
-  public BaseObject GetBaseObject() {
+  internal BaseObject GetBaseObject() {
     BaseObject ret = new BaseObject(NDalicPINVOKE.BaseHandle_GetBaseObject__SWIG_0(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -217,7 +217,7 @@ public class BaseHandle : global::System.IDisposable {
     return ret;
   }
 
-  public RefObject GetObjectPtr() {
+  internal RefObject GetObjectPtr() {
     global::System.IntPtr cPtr = NDalicPINVOKE.BaseHandle_GetObjectPtr(swigCPtr);
     RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum DirectionBias {
+    public enum DirectionBias {
   DirectionBiasLeft = -1,
   DirectionBiasNone = 0,
   DirectionBiasRight = 1

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class AnimatablePropertyComponentRegistration : global::System.IDisposable {
+    internal class AnimatablePropertyComponentRegistration : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

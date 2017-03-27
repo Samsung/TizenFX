@@ -8,12 +8,20 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-public enum VerticalAlignmentType {
-  TOP,
-  CENTER,
-  BOTTOM
+/* moved to VisualMaps.cs 
+namespace Tizen.NUI
+{
+    public enum AlignType
+    {
+        TOP_BEGIN = 0,
+        TOP_CENTER,
+        TOP_END,
+        CENTER_BEGIN,
+        CENTER,
+        CENTER_END,
+        BOTTOM_BEGIN,
+        BOTTOM_CENTER,
+        BOTTOM_END
+    }
 }
-
-}
+*/

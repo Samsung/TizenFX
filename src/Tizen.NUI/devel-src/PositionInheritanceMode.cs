@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum PositionInheritanceMode {
+    internal enum PositionInheritanceMode {
   INHERIT_PARENT_POSITION,
   USE_PARENT_POSITION,
   USE_PARENT_POSITION_PLUS_LOCAL_POSITION,

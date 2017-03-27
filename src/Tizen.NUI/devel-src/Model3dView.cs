@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Model3dView : View {
+    internal class Model3dView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Model3dView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -153,7 +153,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.GEOMETRY_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.GEOMETRY_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public string MaterialUrl
@@ -166,7 +166,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.MATERIAL_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.MATERIAL_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public string ImagesUrl
@@ -179,7 +179,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.IMAGES_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.IMAGES_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int IlluminationType
@@ -192,7 +192,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.ILLUMINATION_TYPE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.ILLUMINATION_TYPE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public string Texture0Url
@@ -205,7 +205,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.TEXTURE0_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.TEXTURE0_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public string Texture1Url
@@ -218,7 +218,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.TEXTURE1_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.TEXTURE1_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public string Texture2Url
@@ -231,7 +231,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.TEXTURE2_URL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.TEXTURE2_URL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector3 LightPosition
@@ -244,7 +244,7 @@ public class Model3dView : View {
     }
     set
     {
-      SetProperty( Model3dView.Property.LIGHT_POSITION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Model3dView.Property.LIGHT_POSITION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

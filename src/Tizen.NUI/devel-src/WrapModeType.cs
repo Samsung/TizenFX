@@ -9,12 +9,12 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-public enum WrapModeType {
+/* move to VisualMap.cs
+    internal enum WrapModeType {
   DEFAULT = 0,
   CLAMP_TO_EDGE,
   REPEAT,
   MIRRORED_REPEAT
 }
-
+*/
 }

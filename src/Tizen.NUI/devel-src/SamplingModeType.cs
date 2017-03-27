@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
+/* moved to VisualMaps.cs
 public enum SamplingModeType {
   BOX,
   NEAREST,
@@ -19,5 +19,5 @@ public enum SamplingModeType {
   NO_FILTER,
   DONT_CARE
 }
-
+*/
 }

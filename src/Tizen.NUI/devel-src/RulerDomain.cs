@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class RulerDomain : global::System.IDisposable {
+    public class RulerDomain : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -102,7 +102,7 @@ public class RulerDomain : global::System.IDisposable {
     return ret;
   }
 
-  public float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
+  internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped) {
     float ret = NDalicPINVOKE.RulerDomain_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
