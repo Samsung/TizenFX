@@ -1013,6 +1013,39 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     } 
   }
 
+  public static SWIGTYPE_p_Dali__SignalT_void_fboolF_t FocusChangedSignal(Window window) {
+    SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.FocusChangedSignal(Window.getCPtr(window)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void SetAcceptFocus(Window window, bool accept) {
+    NDalicPINVOKE.SetAcceptFocus(Window.getCPtr(window), accept);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool IsFocusAcceptable(Window window) {
+    bool ret = NDalicPINVOKE.IsFocusAcceptable(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void Show(Window window) {
+    NDalicPINVOKE.Show(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void Hide(Window window) {
+    NDalicPINVOKE.Hide(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool IsVisible(Window window) {
+    bool ret = NDalicPINVOKE.IsVisible(Window.getCPtr(window));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static ViewImpl GetImplementation(View handle) {
     ViewImpl ret = new ViewImpl(NDalicPINVOKE.GetImplementation__SWIG_0(View.getCPtr(handle)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1071,6 +1104,11 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     PixelData ret = new PixelData(NDalicPINVOKE.LoadImageSynchronously__SWIG_2(url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public static void SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager keyboardFocusManager, CustomAlgorithmInterface arg1) {
+    NDalicPINVOKE.SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager.getCPtr(keyboardFocusManager), CustomAlgorithmInterface.getCPtr(arg1));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static readonly int VISUAL_PROPERTY_TYPE = NDalicPINVOKE.VISUAL_PROPERTY_TYPE_get();

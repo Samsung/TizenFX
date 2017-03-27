@@ -1567,11 +1567,7 @@ namespace Tizen.NUI
             */
         }
 
-        /// <summary>
-        /// Gets/Sets the actor's mix color; this is an RGBA value.
-        /// The final color of the actor depends on its color mode.
-        /// Note : This is an asynchronous method.
-        /// </summary>
+        /*
         public Color MixColor
         {
             get
@@ -1585,6 +1581,7 @@ namespace Tizen.NUI
                 SetProperty(Actor.Property.COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+        */
 
         /// <summary>
         /// Gets/Sets the actor's mix color red.

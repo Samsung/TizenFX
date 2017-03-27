@@ -73,6 +73,24 @@ namespace Tizen.NUI
             }
         }
 
+        public void Show()
+        {
+            NDalicPINVOKE.Show(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Hide()
+        {
+            NDalicPINVOKE.Hide(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void IsVisible()
+        {
+            NDalicPINVOKE.IsVisible(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// Creates an initialized handle to a new Window.
         /// </summary>
