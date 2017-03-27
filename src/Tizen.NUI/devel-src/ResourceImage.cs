@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class ResourceImage : Image {
+internal class ResourceImage : Image {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ResourceImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ResourceImage_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -137,7 +137,7 @@ public class LoadingFinishedEventArgs : EventArgs
 
 public static ResourceImage GetResourceImageFromPtr(global::System.IntPtr cPtr) {
     ResourceImage ret = new ResourceImage(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

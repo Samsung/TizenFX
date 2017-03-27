@@ -26,8 +26,9 @@
 
 namespace Tizen.NUI {
 
-public class LinearConstrainer : Handle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class LinearConstrainer : Handle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal LinearConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LinearConstrainer_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -91,12 +92,12 @@ public class LinearConstrainer : Handle {
       }
     }
   
-    public Property() : this(NDalicPINVOKE.new_LinearConstrainer_Property(), true) {
+    internal Property() : this(NDalicPINVOKE.new_LinearConstrainer_Property(), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   
-    public static readonly int VALUE = NDalicPINVOKE.LinearConstrainer_Property_VALUE_get();
-    public static readonly int PROGRESS = NDalicPINVOKE.LinearConstrainer_Property_PROGRESS_get();
+    internal static readonly int VALUE = NDalicPINVOKE.LinearConstrainer_Property_VALUE_get();
+    internal static readonly int PROGRESS = NDalicPINVOKE.LinearConstrainer_Property_PROGRESS_get();
   
   }
 
@@ -110,15 +111,17 @@ public class LinearConstrainer : Handle {
     return ret;
   }
 
-  public LinearConstrainer(LinearConstrainer handle) : this(NDalicPINVOKE.new_LinearConstrainer__SWIG_1(LinearConstrainer.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal LinearConstrainer(LinearConstrainer handle) : this(NDalicPINVOKE.new_LinearConstrainer__SWIG_1(LinearConstrainer.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public LinearConstrainer Assign(LinearConstrainer rhs) {
-    LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.LinearConstrainer_Assign(swigCPtr, LinearConstrainer.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal LinearConstrainer Assign(LinearConstrainer rhs)
+        {
+            LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.LinearConstrainer_Assign(swigCPtr, LinearConstrainer.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
   public void Apply(Property target, Property source, Vector2 range, Vector2 wrap) {
     NDalicPINVOKE.LinearConstrainer_Apply__SWIG_0(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
@@ -130,37 +133,38 @@ public class LinearConstrainer : Handle {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void Remove(Handle target) {
-    NDalicPINVOKE.LinearConstrainer_Remove(swigCPtr, Handle.getCPtr(target));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal void Remove(Handle target)
+        {
+            NDalicPINVOKE.LinearConstrainer_Remove(swigCPtr, Handle.getCPtr(target));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public Tizen.NUI.Property.Array Value
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( LinearConstrainer.Property.VALUE).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( LinearConstrainer.Property.VALUE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Array Progress
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( LinearConstrainer.Property.PROGRESS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( LinearConstrainer.Property.PROGRESS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+        public PropertyArray Value
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(LinearConstrainer.Property.VALUE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(LinearConstrainer.Property.VALUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public PropertyArray Progress
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(LinearConstrainer.Property.PROGRESS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(LinearConstrainer.Property.PROGRESS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
 
 }
 

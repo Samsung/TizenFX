@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class RenderTaskSignal : global::System.IDisposable {
+    internal class RenderTaskSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

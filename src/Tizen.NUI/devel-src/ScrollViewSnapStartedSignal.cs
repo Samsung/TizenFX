@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ScrollViewSnapStartedSignal : global::System.IDisposable {
+    internal class ScrollViewSnapStartedSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

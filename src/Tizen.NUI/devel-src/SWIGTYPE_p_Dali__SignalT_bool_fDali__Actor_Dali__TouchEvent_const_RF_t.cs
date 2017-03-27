@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t {
+    internal class SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t(global::System.IntPtr cPtr, bool futureUse) {

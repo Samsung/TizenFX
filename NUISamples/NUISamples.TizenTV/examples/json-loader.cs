@@ -17,24 +17,35 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Dali;
+using Tizen.NUI;
 
-namespace MyExampleApp
+namespace JsonLoaderTest
 {
-  class Example
+  class Example : NUIApplication
   {
-    private Dali.Application _application;
     private Builder _builder;
     private string _jsonFileName;
 
-    public Example(Dali.Application application, string fileName)
+    public Example() : base()
     {
-      _application = application;
-      _jsonFileName = fileName;
-      _application.Initialized += Initialize;
     }
 
-    public void Initialize(object source, NUIApplicationInitEventArgs e)
+    public Example(string stylesheet) : base(stylesheet)
+    {
+       _jsonFileName = stylesheet;
+    }
+
+    public Example(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
+    {
+    }
+
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+        Initialize();
+    }
+
+    public void Initialize()
     {
         if( _jsonFileName.Length == 0)
         {
@@ -44,40 +55,34 @@ namespace MyExampleApp
 
         _builder = new Builder ();
 
-        Property.Map constants = new  Property.Map();
+        PropertyMap constants = new  PropertyMap();
 
         //  In dali-demo we have some JSON files that can be loaded, but they need 3 different macros defining.
         // The JSON folder is typically installed into dali-env/opt/share/com.samsung.dali-demo/res:
         //
         //string demoDirectory = ".../dali-env/opt/share/com.samsung.dali-demo/res";
-        //constants.Insert( "DEMO_IMAGE_DIR" ,  new Property.Value( demoDirectory+"/images") );
-        //constants.Insert( "DEMO_MODEL_DIR" ,  new Property.Value( demoDirectory+"/models") );
-        //constants.Insert( "DEMO_SCRIPT_DIR",  new Property.Value( demoDirectory+"/scripts") );
-        constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new Property.Value( "Verbose") );
+        //constants.Insert( "DEMO_IMAGE_DIR" ,  new PropertyValue( demoDirectory+"/images") );
+        //constants.Insert( "DEMO_MODEL_DIR" ,  new PropertyValue( demoDirectory+"/models") );
+        //constants.Insert( "DEMO_SCRIPT_DIR",  new PropertyValue( demoDirectory+"/scripts") );
+        constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new PropertyValue( "Verbose") );
 
          _builder.AddConstants( constants );
 
 
-        Stage stage = Stage.GetCurrent();
+        Stage stage = Stage.Instance;
         stage.BackgroundColor = Color.White;
 
         _builder.LoadFromFile( _jsonFileName );
 
-        _builder.AddActors( stage.GetRootLayer() );
+        _builder.AddActors( stage.GetDefaultLayer() );
 
-    }
-
-
-    public void MainLoop()
-    {
-      _application.MainLoop ();
     }
 
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
     [STAThread]
-    static void Main(string[] args)
+    static void _Main(string[] args)
     {
       string fileName= "";
 
@@ -87,8 +92,8 @@ namespace MyExampleApp
       }
 
       Console.WriteLine("arguments = " + args.Length);
-      Example example = new Example(Application.NewApplication(), fileName);
-      example.MainLoop ();
+      Example example = new Example(fileName);
+      example.Run(args);
     }
   }
 }

@@ -8,200 +8,263 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-using System;
-using System.Runtime.InteropServices;
-
-public class StyleManager : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.StyleManager_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~StyleManager() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_StyleManager(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-
-
-/**
-  * @brief Event arguments that passed via StyleChanged signal
-  *
-  */
-public class StyleChangedEventArgs : EventArgs
+namespace Tizen.NUI
 {
-   private StyleManager _styleManager;
-   private Tizen.NUI.StyleChangeType _styleChange;
 
-   /**
-     * @brief StyleManager - is the StyleManager that informs applications of system theme change,
-     * and supports application theme change at runtime.
-     *
-     */
-   public StyleManager StyleManager
-   {
-      get
-      {
-         return _styleManager;
-      }
-      set
-      {
-         _styleManager = value;
-      }
-   }
+    using System;
+    using System.Runtime.InteropServices;
 
-   /**
-     * @brief StyleChange - contains Style change information (default font changed or
-     * default font size changed or theme has changed)
-     *
-     */
-   public Tizen.NUI.StyleChangeType StyleChange
-   {
-      get
-      {
-         return _styleChange;
-      }
-      set
-      {
-         _styleChange = value;
-      }
-   }
+    /// <summary>
+    /// StyleManager informs applications of system theme change,
+    /// and supports application theme change at runtime.
+    /// Applies various styles to Controls using the properties system.
+    /// On theme change, it automatically updates all controls, then raises
+    /// a event to inform the application.
+    ///
+    /// If the application wants to customize the theme, RequestThemeChange
+    /// needs to be called.
+    /// It provides the path to the  application resource root folder, 
+    /// from there the filename can an be specified along with
+    /// any sub folders, e.g Images, Models etc.
+    /// </summary>
+    public class StyleManager : BaseHandle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-}
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void StyleChangedCallbackDelegate(IntPtr styleManager, Tizen.NUI.StyleChangeType styleChange);
-  private DaliEventHandler<object,StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
-  private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
-
-  /**
-    * @brief Event for StyleChanged signal which can be used to subscribe/unsubscribe the
-    * event handler (in the type of StyleChangedEventHandler-DaliEventHandler<object,StyleChangedEventArgs>) 
-    * provided by the user. StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
-    * and the controls have been informed.
-    */
-  public event DaliEventHandler<object,StyleChangedEventArgs> StyleChanged
-  {
-     add
-     {
-        lock(this)
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.StyleManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
-           // Restricted to only one listener
-           if (_styleManagerStyleChangedEventHandler == null)
-           {
-              _styleManagerStyleChangedEventHandler += value;
-
-              _styleManagerStyleChangedCallbackDelegate = new StyleChangedCallbackDelegate(OnStyleChanged);
-              this.StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
-           }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
         {
-           if (_styleManagerStyleChangedEventHandler != null)
-           {
-              this.StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
-           }
-
-           _styleManagerStyleChangedEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-     }
-  }
 
-  // Callback for StyleManager StyleChangedsignal
-  private void OnStyleChanged(IntPtr styleManager, Tizen.NUI.StyleChangeType styleChange)
-  {
-     StyleChangedEventArgs e = new StyleChangedEventArgs();
+        ~StyleManager()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
 
-     // Populate all members of "e" (StyleChangedEventArgs) with real data
-     e.StyleManager = StyleManager.GetStyleManagerFromPtr( styleManager );
-     e.StyleChange = styleChange;
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-     if (_styleManagerStyleChangedEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _styleManagerStyleChangedEventHandler(this, e);
-     }
-  }
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_StyleManager(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
 
-   public static StyleManager GetStyleManagerFromPtr(global::System.IntPtr cPtr) {
-      StyleManager ret = new StyleManager(cPtr, false);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-   }
+        /// <summary>
+        /// Style changed event arguments
+        /// </summary>
+        public class StyleChangedEventArgs : EventArgs
+        {
+            private StyleManager _styleManager;
+            private StyleChangeType _styleChange;
 
+            /// <summary>
+            /// StyleManager.
+            /// </summary>
+            public StyleManager StyleManager
+            {
+                get
+                {
+                    return _styleManager;
+                }
+                set
+                {
+                    _styleManager = value;
+                }
+            }
 
-  public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            /// <summary>
+            /// StyleChange - contains Style change information (default font changed or
+            /// default font size changed or theme has changed)
+            /// </summary>
+            public StyleChangeType StyleChange
+            {
+                get
+                {
+                    return _styleChange;
+                }
+                set
+                {
+                    _styleChange = value;
+                }
+            }
 
-  public static StyleManager Get() {
-    StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        }
 
-  public void ApplyTheme(string themeFile) {
-    NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void StyleChangedCallbackDelegate(IntPtr styleManager, Tizen.NUI.StyleChangeType styleChange);
+        private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
+        private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
-  public void ApplyDefaultTheme() {
-    NDalicPINVOKE.StyleManager_ApplyDefaultTheme(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        /// <summary>
+        /// Event for StyleChanged signal which can be used to subscribe/unsubscribe the
+        /// event handler provided by the user. 
+        /// StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
+        /// and the controls have been informed.
+        /// </summary>
+        public event EventHandler<StyleChangedEventArgs> StyleChanged
+        {
+            add
+            {
+                if (_styleManagerStyleChangedEventHandler == null)
+                {
+                    _styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
+                    StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
+                }
+                _styleManagerStyleChangedEventHandler += value;
+            }
+            remove
+            {
+                _styleManagerStyleChangedEventHandler -= value;
+                if (_styleManagerStyleChangedEventHandler == null && _styleManagerStyleChangedCallbackDelegate != null)
+                {
+                    StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                }
+            }
+        }
 
-  public void SetStyleConstant(string key, Property.Value value) {
-    NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, Property.Value.getCPtr(value));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        // Callback for StyleManager StyleChangedsignal
+        private void OnStyleChanged(IntPtr styleManager, StyleChangeType styleChange)
+        {
+            StyleChangedEventArgs e = new StyleChangedEventArgs();
 
-  public bool GetStyleConstant(string key, Property.Value valueOut) {
-    bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, Property.Value.getCPtr(valueOut));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            // Populate all members of "e" (StyleChangedEventArgs) with real data
+            e.StyleManager = StyleManager.GetStyleManagerFromPtr(styleManager);
+            e.StyleChange = styleChange;
 
-  public void ApplyStyle(View control, string jsonFileName, string styleName) {
-    NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            if (_styleManagerStyleChangedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _styleManagerStyleChangedEventHandler(this, e);
+            }
+        }
 
-  public StyleChangedSignal StyleChangedSignal() {
-    StyleChangedSignal ret = new StyleChangedSignal(NDalicPINVOKE.StyleManager_StyleChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal static StyleManager GetStyleManagerFromPtr(global::System.IntPtr cPtr)
+        {
+            StyleManager ret = new StyleManager(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-}
+        /// <summary>
+        /// Creates a StyleManager handle.
+        /// this can be initialized with StyleManager::Get().
+        /// </summary>
+        public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the singleton of StyleManager object.
+        /// </summary>
+        /// <returns>A handle to the StyleManager control</returns>
+        public static StyleManager Get()
+        {
+            StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Applies a new theme to the application. 
+        /// This will be merged on top of the default Toolkit theme.
+        /// If the application theme file doesn't style all controls that the
+        /// application uses, then the default Toolkit theme will be used
+        /// instead for those controls.
+        /// </summary>
+        /// <param name="themeFile">A relative path is specified for style theme</param>
+        public void ApplyTheme(string themeFile)
+        {
+            NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Applies the default Toolkit theme.
+        /// </summary>
+        public void ApplyDefaultTheme()
+        {
+            NDalicPINVOKE.StyleManager_ApplyDefaultTheme(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets a constant for use when building styles.
+        /// </summary>
+        /// <param name="key">The key of the constant</param>
+        /// <param name="value">The value of the constant</param>
+        public void SetStyleConstant(string key, PropertyValue value)
+        {
+            NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns the style constant set for a specific key.
+        /// </summary>
+        /// <param name="key">The key of the constant</param>
+        /// <param name="valueOut">The value of the constant if it exists</param>
+        /// <returns></returns>
+        public bool GetStyleConstant(string key, PropertyValue valueOut)
+        {
+            bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Applies the specified style to the control.
+        /// </summary>
+        /// <param name="control">The control to which to apply the style</param>
+        /// <param name="jsonFileName">The name of the JSON style file to apply</param>
+        /// <param name="styleName">The name of the style within the JSON file to apply</param>
+        public void ApplyStyle(View control, string jsonFileName, string styleName)
+        {
+            NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal StyleChangedSignal StyleChangedSignal()
+        {
+            StyleChangedSignal ret = new StyleChangedSignal(NDalicPINVOKE.StyleManager_StyleChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+    }
+
+    /// <summary>
+    /// Types of style change.
+    /// </summary>
+    public enum StyleChangeType
+    {
+        DefaultFontChange,
+        DefaultFontSizeChange,
+        ThemeChange
+    }
 
 }

@@ -71,13 +71,13 @@ public class KeyInputFocusManager : BaseHandle {
     return ret;
   }
 
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t KeyInputFocusChangedSignal() {
+  internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t KeyInputFocusChangedSignal() {
     SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t(NDalicPINVOKE.KeyInputFocusManager_KeyInputFocusChangedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public KeyEventSignal UnhandledKeyEventSignal() {
+  internal KeyEventSignal UnhandledKeyEventSignal() {
     KeyEventSignal ret = new KeyEventSignal(NDalicPINVOKE.KeyInputFocusManager_UnhandledKeyEventSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

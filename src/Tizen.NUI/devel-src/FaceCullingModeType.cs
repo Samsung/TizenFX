@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum FaceCullingModeType {
+    internal enum FaceCullingModeType {
   NONE,
   FRONT,
   BACK,

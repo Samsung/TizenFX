@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum SnapType {
+    internal enum SnapType {
   Snap,
   Flick
 }

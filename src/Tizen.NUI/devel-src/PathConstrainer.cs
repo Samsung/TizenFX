@@ -26,8 +26,9 @@
 
 namespace Tizen.NUI {
 
-public class PathConstrainer : Handle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class PathConstrainer : Handle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PathConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PathConstrainer_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -95,9 +96,9 @@ public class PathConstrainer : Handle {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   
-    public static readonly int FORWARD = NDalicPINVOKE.PathConstrainer_Property_FORWARD_get();
-    public static readonly int POINTS = NDalicPINVOKE.PathConstrainer_Property_POINTS_get();
-    public static readonly int CONTROL_POINTS = NDalicPINVOKE.PathConstrainer_Property_CONTROL_POINTS_get();
+            internal static readonly int FORWARD = NDalicPINVOKE.PathConstrainer_Property_FORWARD_get();
+            internal static readonly int POINTS = NDalicPINVOKE.PathConstrainer_Property_POINTS_get();
+            internal static readonly int CONTROL_POINTS = NDalicPINVOKE.PathConstrainer_Property_CONTROL_POINTS_get();
   
   }
 
@@ -111,15 +112,17 @@ public class PathConstrainer : Handle {
     return ret;
   }
 
-  public PathConstrainer(PathConstrainer handle) : this(NDalicPINVOKE.new_PathConstrainer__SWIG_1(PathConstrainer.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal PathConstrainer(PathConstrainer handle) : this(NDalicPINVOKE.new_PathConstrainer__SWIG_1(PathConstrainer.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public PathConstrainer Assign(PathConstrainer rhs) {
-    PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.PathConstrainer_Assign(swigCPtr, PathConstrainer.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal PathConstrainer Assign(PathConstrainer rhs)
+        {
+            PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.PathConstrainer_Assign(swigCPtr, PathConstrainer.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
   public void Apply(Property target, Property source, Vector2 range, Vector2 wrap) {
     NDalicPINVOKE.PathConstrainer_Apply__SWIG_0(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
@@ -131,50 +134,53 @@ public class PathConstrainer : Handle {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void Remove(Handle target) {
-    NDalicPINVOKE.PathConstrainer_Remove(swigCPtr, Handle.getCPtr(target));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal void Remove(Handle target)
+        {
+            NDalicPINVOKE.PathConstrainer_Remove(swigCPtr, Handle.getCPtr(target));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public Vector3 Forward
-  {
-    get
-    {
-      Vector3 temp = new Vector3(0.0f,0.0f,0.0f);
-      GetProperty( PathConstrainer.Property.FORWARD).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PathConstrainer.Property.FORWARD, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Array Points
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( PathConstrainer.Property.POINTS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PathConstrainer.Property.POINTS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Array ControlPoints
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( PathConstrainer.Property.CONTROL_POINTS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PathConstrainer.Property.CONTROL_POINTS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+        public Vector3 Forward
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(PathConstrainer.Property.FORWARD).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PathConstrainer.Property.FORWARD, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        public PropertyArray Points
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(PathConstrainer.Property.POINTS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PathConstrainer.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        public PropertyArray ControlPoints
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(PathConstrainer.Property.CONTROL_POINTS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PathConstrainer.Property.CONTROL_POINTS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
 
 }
 

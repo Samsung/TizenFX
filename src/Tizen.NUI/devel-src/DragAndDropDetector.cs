@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class DragAndDropDetector : BaseHandle {
+    internal class DragAndDropDetector : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal DragAndDropDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.DragAndDropDetector_SWIGUpcast(cPtr), cMemoryOwn) {

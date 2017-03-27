@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum DepthTestModeType {
+    internal enum DepthTestModeType {
   OFF,
   AUTO,
   ON

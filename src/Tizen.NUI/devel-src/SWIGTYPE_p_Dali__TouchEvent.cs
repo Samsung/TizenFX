@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__TouchEvent {
+    internal class SWIGTYPE_p_Dali__TouchEvent {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__TouchEvent(global::System.IntPtr cPtr, bool futureUse) {

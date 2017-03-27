@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Shader : Handle {
+    internal class Shader : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -165,17 +165,17 @@ public class Shader : Handle {
     return ret;
   }
 
-  public Tizen.NUI.Property.Map Program
+  public Tizen.NUI.PropertyMap Program
   {
     get
     {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
+      Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
       GetProperty( Shader.Property.PROGRAM).Get(  temp );
       return temp;
     }
     set
     {
-      SetProperty( Shader.Property.PROGRAM, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

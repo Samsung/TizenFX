@@ -123,56 +123,60 @@ public class Handle : BaseHandle {
     return ret;
   }
 
-  public Property.Type GetPropertyType(int index) {
-    Property.Type ret = (Property.Type)NDalicPINVOKE.Handle_GetPropertyType(swigCPtr, index);
+  public PropertyType GetPropertyType(int index) {
+    PropertyType ret = (PropertyType)NDalicPINVOKE.Handle_GetPropertyType(swigCPtr, index);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void SetProperty(int index, Property.Value propertyValue) {
-    NDalicPINVOKE.Handle_SetProperty(swigCPtr, index, Property.Value.getCPtr(propertyValue));
+  public void SetProperty(int index, PropertyValue propertyValue) {
+    NDalicPINVOKE.Handle_SetProperty(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public int RegisterProperty(string name, Property.Value propertyValue) {
-    int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_0(swigCPtr, name, Property.Value.getCPtr(propertyValue));
+  public int RegisterProperty(string name, PropertyValue propertyValue) {
+    int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_0(swigCPtr, name, PropertyValue.getCPtr(propertyValue));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public int RegisterProperty(string name, Property.Value propertyValue, Property.AccessMode accessMode) {
-    int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_1(swigCPtr, name, Property.Value.getCPtr(propertyValue), (int)accessMode);
+  public int RegisterProperty(string name, PropertyValue propertyValue, PropertyAccessMode accessMode) {
+    int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_1(swigCPtr, name, PropertyValue.getCPtr(propertyValue), (int)accessMode);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public Property.Value GetProperty(int index) {
-    Property.Value ret = new Property.Value(NDalicPINVOKE.Handle_GetProperty(swigCPtr, index), true);
+  public PropertyValue GetProperty(int index) {
+    PropertyValue ret = new PropertyValue(NDalicPINVOKE.Handle_GetProperty(swigCPtr, index), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void GetPropertyIndices(VectorInteger indices) {
-    NDalicPINVOKE.Handle_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal void GetPropertyIndices(VectorInteger indices)
+        {
+            NDalicPINVOKE.Handle_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public PropertyNotification AddPropertyNotification(int index, PropertyCondition condition) {
-    PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, index, PropertyCondition.getCPtr(condition)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal PropertyNotification AddPropertyNotification(int index, PropertyCondition condition)
+        {
+            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, index, PropertyCondition.getCPtr(condition)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public PropertyNotification AddPropertyNotification(int index, int componentIndex, PropertyCondition condition) {
-    PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal PropertyNotification AddPropertyNotification(int index, int componentIndex, PropertyCondition condition)
+        {
+            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public void RemovePropertyNotification(PropertyNotification propertyNotification) {
-    NDalicPINVOKE.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        internal void RemovePropertyNotification(PropertyNotification propertyNotification)
+        {
+            NDalicPINVOKE.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
   public void RemovePropertyNotifications() {
     NDalicPINVOKE.Handle_RemovePropertyNotifications(swigCPtr);

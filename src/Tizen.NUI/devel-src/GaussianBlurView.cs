@@ -30,7 +30,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class GaussianBlurView : View {
+    internal class GaussianBlurView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.GaussianBlurView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -137,7 +137,7 @@ public class FinishedEventArgs : EventArgs
 
  public static GaussianBlurView GetGaussianBlurViewFromPtr(global::System.IntPtr cPtr) {
     GaussianBlurView ret = new GaussianBlurView(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

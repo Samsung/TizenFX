@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class NinePatchImage : ResourceImage {
+    internal class NinePatchImage : ResourceImage {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal NinePatchImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NinePatchImage_SWIGUpcast(cPtr), cMemoryOwn) {

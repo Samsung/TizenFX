@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class Image : BaseHandle {
+    internal class Image : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Image(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Image_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -134,7 +134,7 @@ public class UploadedEventArgs : EventArgs
 
 public static Image GetImageFromPtr(global::System.IntPtr cPtr) {
     Image ret = new Image(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

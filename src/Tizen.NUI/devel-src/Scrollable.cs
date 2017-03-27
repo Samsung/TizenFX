@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class Scrollable : View {
+    public class Scrollable : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Scrollable_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -359,19 +359,19 @@ public class CompletedEventArgs : EventArgs
     return ret;
   }
 
-  public ScrollableSignal ScrollStartedSignal() {
+  internal ScrollableSignal ScrollStartedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollStartedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public ScrollableSignal ScrollUpdatedSignal() {
+  internal ScrollableSignal ScrollUpdatedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public ScrollableSignal ScrollCompletedSignal() {
+  internal ScrollableSignal ScrollCompletedSignal() {
     ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollCompletedSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -394,7 +394,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.OVERSHOOT_EFFECT_COLOR, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.OVERSHOOT_EFFECT_COLOR, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public float OvershootAnimationSpeed
@@ -407,7 +407,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.OVERSHOOT_ANIMATION_SPEED, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.OVERSHOOT_ANIMATION_SPEED, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool OvershootEnabled
@@ -420,7 +420,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.OVERSHOOT_ENABLED, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.OVERSHOOT_ENABLED, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 OvershootSize
@@ -433,7 +433,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.OVERSHOOT_SIZE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.OVERSHOOT_SIZE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int ScrollToAlphaFunction
@@ -446,7 +446,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ScrollRelativePosition
@@ -459,7 +459,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.SCROLL_RELATIVE_POSITION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.SCROLL_RELATIVE_POSITION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ScrollPositionMin
@@ -472,7 +472,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.SCROLL_POSITION_MIN, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.SCROLL_POSITION_MIN, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 ScrollPositionMax
@@ -485,7 +485,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.SCROLL_POSITION_MAX, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.SCROLL_POSITION_MAX, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool CanScrollVertical
@@ -498,7 +498,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.CAN_SCROLL_VERTICAL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.CAN_SCROLL_VERTICAL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool CanScrollHorizontal
@@ -511,7 +511,7 @@ public class CompletedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( Scrollable.Property.CAN_SCROLL_HORIZONTAL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Scrollable.Property.CAN_SCROLL_HORIZONTAL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

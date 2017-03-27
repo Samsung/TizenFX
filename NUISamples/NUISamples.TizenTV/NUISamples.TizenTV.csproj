@@ -52,7 +52,29 @@
     <None Include="shared\res\NUISamples.TizenTV.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\date-picker.cs" />
+    <Compile Include="examples\control-dashboard.cs" />
+	<Compile Include="examples\custom-control.cs" />
+	<Compile Include="examples\dali-test.cs" />
+	<Compile Include="examples\date-picker.cs" />
+	<Compile Include="examples\flex-container.cs" />
+	<Compile Include="examples\hello-test.cs" />
+	<Compile Include="examples\hello-world.cs" />
+	<Compile Include="examples\image-view.cs" />
+	<Compile Include="examples\json-loader.cs" />
+	<Compile Include="examples\scroll-view.cs" />
+	<Compile Include="examples\user-alphafunction.cs" />
+	<Compile Include="examples\visuals-example.cs" />
+	<Compile Include="examples\visual-view-test.cs" />
+	<Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
+	<Compile Include="examples\visuals-using-custom-view\ContactView.cs" />
+	<Compile Include="examples\visuals-using-custom-view\visuals-using-custom-view.cs" />
+	<Compile Include="firstscreen\App.cs" />
+	<Compile Include="firstscreen\Constants.cs" />
+	<Compile Include="firstscreen\FocusData.cs" />
+	<Compile Include="firstscreen\FocusEffect.cs" />
+	<Compile Include="firstscreen\IFocusEffect.cs" />
+	<Compile Include="firstscreen\Program.cs" />
+	<Compile Include="firstscreen\ScrollContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,12 +88,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\images\arrow.png" />
+    <Content Include="res\images\Dino2_lambert2SG_color.png" />
+    <Content Include="res\images\Dino2_lambert2SG_nmap.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_color.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_gloss.png" />
+    <Content Include="res\images\Dino-Painted_lambert2SG_nmap.png" />
     <Content Include="res\images\gallery-0.jpg" />
     <Content Include="res\images\gallery-1.jpg" />
     <Content Include="res\images\gallery-2.jpg" />
     <Content Include="res\images\gallery-3.jpg" />
     <Content Include="res\images\gallery-4.jpg" />
     <Content Include="res\images\gallery-5.jpg" />
+    <Content Include="res\images\gallery-small-43.jpg" />
     <Content Include="res\images\image-1.jpg" />
     <Content Include="res\images\image-2.jpg" />
     <Content Include="res\images\image-3.jpg" />

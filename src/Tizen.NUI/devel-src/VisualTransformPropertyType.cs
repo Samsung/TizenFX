@@ -8,6 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+/* moved to VisualMaps.cs 
 namespace Tizen.NUI {
 
 public enum VisualTransformPropertyType {
@@ -15,7 +16,9 @@ public enum VisualTransformPropertyType {
   SIZE,
   ORIGIN,
   ANCHOR_POINT,
-  OFFSET_SIZE_MODE
+  OFFSET_POLICY,
+  SIZE_POLICY
 }
 
 }
+*/

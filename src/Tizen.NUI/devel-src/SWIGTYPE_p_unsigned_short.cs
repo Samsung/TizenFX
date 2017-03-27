@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_unsigned_short {
+    internal class SWIGTYPE_p_unsigned_short {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_unsigned_short(global::System.IntPtr cPtr, bool futureUse) {

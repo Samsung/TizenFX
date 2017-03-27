@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__CallbackBase {
+    internal class SWIGTYPE_p_Dali__CallbackBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__CallbackBase(global::System.IntPtr cPtr, bool futureUse) {

@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class FrameBuffer : BaseHandle {
+    internal class FrameBuffer : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FrameBuffer_SWIGUpcast(cPtr), cMemoryOwn) {

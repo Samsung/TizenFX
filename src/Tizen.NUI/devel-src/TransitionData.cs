@@ -55,11 +55,11 @@ public class TransitionData : BaseHandle {
     }
   }
 
-  public TransitionData (Property.Map transition) : this (NDalicPINVOKE.TransitionData_New__SWIG_0(Property.Map.getCPtr(transition)), true) {
+  public TransitionData (PropertyMap transition) : this (NDalicPINVOKE.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
-  public TransitionData (Property.Array transition) : this (NDalicPINVOKE.TransitionData_New__SWIG_1(Property.Array.getCPtr(transition)), true) {
+  public TransitionData (PropertyArray transition) : this (NDalicPINVOKE.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true) {
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
   }
@@ -85,13 +85,13 @@ public class TransitionData : BaseHandle {
     return ret;
   }
 
-  public Property.Map GetAnimatorAt(uint index) {
-    Property.Map ret = new Property.Map(NDalicPINVOKE.TransitionData_GetAnimatorAt(swigCPtr, index), true);
+  public PropertyMap GetAnimatorAt(uint index) {
+    PropertyMap ret = new PropertyMap(NDalicPINVOKE.TransitionData_GetAnimatorAt(swigCPtr, index), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public TransitionData(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData impl) : this(NDalicPINVOKE.new_TransitionData__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData.getCPtr(impl)), true) {
+  internal TransitionData(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData impl) : this(NDalicPINVOKE.new_TransitionData__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData.getCPtr(impl)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

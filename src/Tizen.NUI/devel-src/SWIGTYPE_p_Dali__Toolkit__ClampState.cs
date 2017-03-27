@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Dali__Toolkit__ClampState {
+    internal class SWIGTYPE_p_Dali__Toolkit__ClampState {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Dali__Toolkit__ClampState(global::System.IntPtr cPtr, bool futureUse) {

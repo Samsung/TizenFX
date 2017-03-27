@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum BlendFactorType {
+    internal enum BlendFactorType {
   ZERO = 0,
   ONE = 1,
   SRC_COLOR = 0x0300,

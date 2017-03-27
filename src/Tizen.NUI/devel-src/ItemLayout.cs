@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ItemLayout : RefObject {
+    internal class ItemLayout : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ItemLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemLayout_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -56,13 +56,13 @@ public class ItemLayout : RefObject {
     return ret;
   }
 
-  public void SetLayoutProperties(Property.Map properties) {
-    NDalicPINVOKE.ItemLayout_SetLayoutProperties(swigCPtr, Property.Map.getCPtr(properties));
+  public void SetLayoutProperties(PropertyMap properties) {
+    NDalicPINVOKE.ItemLayout_SetLayoutProperties(swigCPtr, PropertyMap.getCPtr(properties));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Property.Map GetLayoutProperties() {
-    Property.Map ret = new Property.Map(NDalicPINVOKE.ItemLayout_GetLayoutProperties(swigCPtr), true);
+  public PropertyMap GetLayoutProperties() {
+    PropertyMap ret = new PropertyMap(NDalicPINVOKE.ItemLayout_GetLayoutProperties(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -142,7 +142,7 @@ public class ItemLayout : RefObject {
     return ret;
   }
 
-  public virtual int GetNextFocusItemID(int itemID, int maxItems, View.KeyboardFocus.Direction direction, bool loopEnabled) {
+  public virtual int GetNextFocusItemID(int itemID, int maxItems, View.FocusDirection direction, bool loopEnabled) {
     int ret = NDalicPINVOKE.ItemLayout_GetNextFocusItemID(swigCPtr, itemID, maxItems, (int)direction, loopEnabled);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

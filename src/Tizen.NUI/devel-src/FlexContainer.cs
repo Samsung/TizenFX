@@ -24,266 +24,354 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class FlexContainer : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    public class FlexContainer : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FlexContainer obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~FlexContainer() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_FlexContainer(swigCPtr);
+        internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
 
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_FlexContainer_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FlexContainer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_FlexContainer_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int CONTENT_DIRECTION = NDalicPINVOKE.FlexContainer_Property_CONTENT_DIRECTION_get();
-    public static readonly int FLEX_DIRECTION = NDalicPINVOKE.FlexContainer_Property_FLEX_DIRECTION_get();
-    public static readonly int FLEX_WRAP = NDalicPINVOKE.FlexContainer_Property_FLEX_WRAP_get();
-    public static readonly int JUSTIFY_CONTENT = NDalicPINVOKE.FlexContainer_Property_JUSTIFY_CONTENT_get();
-    public static readonly int ALIGN_ITEMS = NDalicPINVOKE.FlexContainer_Property_ALIGN_ITEMS_get();
-    public static readonly int ALIGN_CONTENT = NDalicPINVOKE.FlexContainer_Property_ALIGN_CONTENT_get();
-  
-  }
 
-  public class ChildProperty : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal ChildProperty(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ChildProperty obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~ChildProperty() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_FlexContainer_ChildProperty(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        ~FlexContainer()
+        {
+            DisposeQueue.Instance.Add(this);
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public ChildProperty() : this(NDalicPINVOKE.new_FlexContainer_ChildProperty(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int FLEX = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_get();
-    public static readonly int ALIGN_SELF = NDalicPINVOKE.FlexContainer_ChildProperty_ALIGN_SELF_get();
-    public static readonly int FLEX_MARGIN = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_MARGIN_get();
-  
-  }
 
-  public FlexContainer () : this (NDalicPINVOKE.FlexContainer_New(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-  }
-  public FlexContainer(FlexContainer handle) : this(NDalicPINVOKE.new_FlexContainer__SWIG_1(FlexContainer.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_FlexContainer(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
 
-  public FlexContainer Assign(FlexContainer handle) {
-    FlexContainer ret = new FlexContainer(NDalicPINVOKE.FlexContainer_Assign(swigCPtr, FlexContainer.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-  public new static FlexContainer DownCast(BaseHandle handle) {
-    FlexContainer ret = new FlexContainer(NDalicPINVOKE.FlexContainer_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
 
-  public enum FlexDirectionType {
-    COLUMN,
-    COLUMN_REVERSE,
-    ROW,
-    ROW_REVERSE
-  }
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
 
-  public enum ContentDirectionType {
-    INHERIT,
-    LTR,
-    RTL
-  }
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
 
-  public enum Justification {
-    JUSTIFY_FLEX_START,
-    JUSTIFY_CENTER,
-    JUSTIFY_FLEX_END,
-    JUSTIFY_SPACE_BETWEEN,
-    JUSTIFY_SPACE_AROUND
-  }
+            ~Property()
+            {
+                Dispose();
+            }
 
-  public enum Alignment {
-    ALIGN_AUTO,
-    ALIGN_FLEX_START,
-    ALIGN_CENTER,
-    ALIGN_FLEX_END,
-    ALIGN_STRETCH
-  }
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_FlexContainer_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
 
-  public enum WrapType {
-    NO_WRAP,
-    WRAP
-  }
+            internal Property() : this(NDalicPINVOKE.new_FlexContainer_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000,
-    CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
-    CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX+1000
-  }
+            internal static readonly int CONTENT_DIRECTION = NDalicPINVOKE.FlexContainer_Property_CONTENT_DIRECTION_get();
+            internal static readonly int FLEX_DIRECTION = NDalicPINVOKE.FlexContainer_Property_FLEX_DIRECTION_get();
+            internal static readonly int FLEX_WRAP = NDalicPINVOKE.FlexContainer_Property_FLEX_WRAP_get();
+            internal static readonly int JUSTIFY_CONTENT = NDalicPINVOKE.FlexContainer_Property_JUSTIFY_CONTENT_get();
+            internal static readonly int ALIGN_ITEMS = NDalicPINVOKE.FlexContainer_Property_ALIGN_ITEMS_get();
+            internal static readonly int ALIGN_CONTENT = NDalicPINVOKE.FlexContainer_Property_ALIGN_CONTENT_get();
 
-  public int ContentDirection
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.CONTENT_DIRECTION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int FlexDirection
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.FLEX_DIRECTION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int FlexWrap
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.FLEX_WRAP).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int JustifyContent
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.JUSTIFY_CONTENT).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int AlignItems
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.ALIGN_ITEMS).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int AlignContent
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( FlexContainer.Property.ALIGN_CONTENT).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+        }
 
-}
+        /// <summary>
+        /// Enumeration for the instance of child properties belonging to the FlexContainer class.
+        /// </summary>
+        public class ChildProperty : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal ChildProperty(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ChildProperty obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~ChildProperty()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_FlexContainer_ChildProperty(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal ChildProperty() : this(NDalicPINVOKE.new_FlexContainer_ChildProperty(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int FLEX = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_get();
+            internal static readonly int ALIGN_SELF = NDalicPINVOKE.FlexContainer_ChildProperty_ALIGN_SELF_get();
+            internal static readonly int FLEX_MARGIN = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_MARGIN_get();
+
+        }
+
+        /// <summary>
+        /// Creates a FlexContainer handle.
+        /// Calling member functions with an uninitialized handle is not allowed.
+        /// </summary>
+        public FlexContainer() : this(NDalicPINVOKE.FlexContainer_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal FlexContainer(FlexContainer handle) : this(NDalicPINVOKE.new_FlexContainer__SWIG_1(FlexContainer.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal FlexContainer Assign(FlexContainer handle)
+        {
+            FlexContainer ret = new FlexContainer(NDalicPINVOKE.FlexContainer_Assign(swigCPtr, FlexContainer.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal new static FlexContainer DownCast(BaseHandle handle)
+        {
+            FlexContainer ret = new FlexContainer(NDalicPINVOKE.FlexContainer_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Enumeration for the direction of the main axis in the flex container. This determines
+        /// the direction that flex items are laid out in the flex container.
+        /// </summary>
+        public enum FlexDirectionType
+        {
+            Column,
+            ColumnReverse,
+            Row,
+            RowReverse
+        }
+
+        /// <summary>
+        /// Enumeration for the primary direction in which content is ordered in the flex container
+        /// and on which sides the ?œstart??and ?œend??are.
+        /// </summary>
+        public enum ContentDirectionType
+        {
+            Inherit,
+            LTR,
+            RTL
+        }
+
+        /// <summary>
+        /// Enumeration for the alignment of the flex items when the items do not use all available
+        /// space on the main-axis.
+        /// </summary>
+        public enum Justification
+        {
+            JustifyFlexStart,
+            JustifyCenter,
+            JustifyFlexEnd,
+            JustifySpaceBetween,
+            JustifySpaceAround
+        }
+
+        /// <summary>
+        /// Enumeration for the alignment of the flex items or lines when the items or lines do not
+        /// use all the available space on the cross-axis.
+        /// </summary>
+        public enum Alignment
+        {
+            AlignAuto,
+            AlignFlexStart,
+            AlignCenter,
+            AlignFlexEnd,
+            AlignStretch
+        }
+
+        /// <summary>
+        /// Enumeration for the wrap type of the flex container when there is no enough room for
+        /// all the items on one flex line.
+        /// </summary>
+        public enum WrapType
+        {
+            NoWrap,
+            Wrap
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
+            CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
+            CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// The primary direction in which content is ordered
+        /// </summary>
+        public ContentDirectionType ContentDirection
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.CONTENT_DIRECTION).Get(ref temp);
+                return (ContentDirectionType)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// The direction of the main-axis which determines the direction that flex items are laid out
+        /// </summary>
+        public FlexDirectionType FlexDirection
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.FLEX_DIRECTION).Get(ref temp);
+                return (FlexDirectionType)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Whether the flex items should wrap or not if there is no enough room for them on one flex line
+        /// </summary>
+        public WrapType FlexWrap
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.FLEX_WRAP).Get(ref temp);
+                return (WrapType)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// The alignment of flex items when the items do not use all available space on the main-axis
+        /// </summary>
+        public Justification JustifyContent
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.JUSTIFY_CONTENT).Get(ref temp);
+                return (Justification)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// The alignment of flex items when the items do not use all available space on the cross-axis
+        /// </summary>
+        public Alignment AlignItems
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.ALIGN_ITEMS).Get(ref temp);
+                return (Alignment)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Similar to "alignItems", but it aligns flex lines, so only works when there are multiple lines
+        /// </summary>
+        public Alignment AlignContent
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(FlexContainer.Property.ALIGN_CONTENT).Get(ref temp);
+                return (Alignment)temp;
+            }
+            set
+            {
+                SetProperty(FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+    }
 
 }

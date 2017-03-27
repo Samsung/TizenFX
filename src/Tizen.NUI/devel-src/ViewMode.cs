@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum ViewMode {
+    internal enum ViewMode {
   MONO,
   STEREO_HORIZONTAL,
   STEREO_VERTICAL,

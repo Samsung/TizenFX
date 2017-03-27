@@ -24,762 +24,899 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-using System;
-using System.Runtime.InteropServices;
-
-
-public class Popup : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Popup_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Popup() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Popup(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
+    using System;
+    using System.Runtime.InteropServices;
 
 
+    /// <summary>
+    /// The Popup widget provides a configurable pop-up dialog with built-in layout of three main fields.
+    /// </summary>
+    public class Popup : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  public class OutsideTouchedEventArgs : EventArgs
-  {
-  }
-
-  public class ShowingEventArgs : EventArgs
-  {
-  }
-
-  public class ShownEventArgs : EventArgs
-  {
-  }
-
-  public class HidingEventArgs : EventArgs
-  {
-  }
-
-  public class HiddenEventArgs : EventArgs
-  {
-  }
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void OutsideTouchedEventCallbackDelegate();
-  private DaliEventHandler<object,OutsideTouchedEventArgs> _popUpOutsideTouchedEventHandler;
-  private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void ShowingEventCallbackDelegate();
-  private DaliEventHandler<object,ShowingEventArgs> _popUpShowingEventHandler;
-  private ShowingEventCallbackDelegate _popUpShowingEventCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void ShownEventCallbackDelegate();
-  private DaliEventHandler<object,ShownEventArgs> _popUpShownEventHandler;
-  private ShownEventCallbackDelegate _popUpShownEventCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void HidingEventCallbackDelegate();
-  private DaliEventHandler<object,HidingEventArgs> _popUpHidingEventHandler;
-  private HidingEventCallbackDelegate _popUpHidingEventCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void HiddenEventCallbackDelegate();
-  private DaliEventHandler<object,HiddenEventArgs> _popUpHiddenEventHandler;
-  private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
-
-  public event DaliEventHandler<object,OutsideTouchedEventArgs> OutsideTouched
-  {
-     add
-     {
-        lock(this)
+        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Popup_SWIGUpcast(cPtr), cMemoryOwn)
         {
-           // Restricted to only one listener
-           if (_popUpOutsideTouchedEventHandler == null)
-           {
-              _popUpOutsideTouchedEventHandler += value;
-
-              _popUpOutsideTouchedEventCallbackDelegate = new OutsideTouchedEventCallbackDelegate(OnOutsideTouched);
-              this.OutsideTouchedSignal().Connect(_popUpOutsideTouchedEventCallbackDelegate);
-           }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
         {
-           if (_popUpOutsideTouchedEventHandler != null)
-           {
-              this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
-           }
-
-           _popUpOutsideTouchedEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-     }
-  }
 
-  // Callback for Popup OutsideTouchedSignal
-  private void OnOutsideTouched()
-  {
-     OutsideTouchedEventArgs e = new OutsideTouchedEventArgs();
-
-     if (_popUpOutsideTouchedEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _popUpOutsideTouchedEventHandler(this, e);
-     }
-  }
-
-  public event DaliEventHandler<object,ShowingEventArgs> Showing
-  {
-     add
-     {
-        lock(this)
+        ~Popup()
         {
-           // Restricted to only one listener
-           if (_popUpShowingEventHandler == null)
-           {
-              _popUpShowingEventHandler += value;
-
-              _popUpShowingEventCallbackDelegate = new ShowingEventCallbackDelegate(OnShowing);
-              this.ShowingSignal().Connect(_popUpShowingEventCallbackDelegate);
-           }
+            DisposeQueue.Instance.Add(this);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        public override void Dispose()
         {
-           if (_popUpShowingEventHandler != null)
-           {
-              this.ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
-           }
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-           _popUpShowingEventHandler -= value;
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Popup(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
         }
-     }
-  }
-
-  // Callback for ShowingSignal
-  private void OnShowing()
-  {
-     ShowingEventArgs e = new ShowingEventArgs();
-
-     if (_popUpShowingEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _popUpShowingEventHandler(this, e);
-     }
-  }
 
 
-  public event DaliEventHandler<object,ShownEventArgs> Shown
-  {
-     add
-     {
-        lock(this)
+
+        /// <summary>
+        /// Event arguments that passed via OutsideTouchedEvent
+        /// </summary>
+        public class OutsideTouchedEventArgs : EventArgs
         {
-           // Restricted to only one listener
-           if (_popUpShownEventHandler == null)
-           {
-              _popUpShownEventHandler += value;
-
-              _popUpShownEventCallbackDelegate = new ShownEventCallbackDelegate(OnShown);
-              this.ShownSignal().Connect(_popUpShownEventCallbackDelegate);
-           }
         }
-     }
 
-     remove
-     {
-        lock(this)
+        /// <summary>
+        /// Event arguments that passed via ShowingEventArgs
+        /// </summary>
+        public class ShowingEventArgs : EventArgs
         {
-           if (_popUpShownEventHandler != null)
-           {
-              this.ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
-           }
-
-           _popUpShownEventHandler -= value;
         }
-     }
-  }
 
-  // Callback for ShownSignal
-  private void OnShown()
-  {
-     ShownEventArgs e = new ShownEventArgs();
-
-     if (_popUpShownEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _popUpShownEventHandler(this, e);
-     }
-  }
-
-  public event DaliEventHandler<object,HidingEventArgs> Hiding
-  {
-     add
-     {
-        lock(this)
+        /// <summary>
+        /// Event arguments that passed via ShownEventArgs
+        /// </summary>
+        public class ShownEventArgs : EventArgs
         {
-           // Restricted to only one listener
-           if (_popUpHidingEventHandler == null)
-           {
-              _popUpHidingEventHandler += value;
-
-              _popUpHidingEventCallbackDelegate = new HidingEventCallbackDelegate(OnHiding);
-              this.HidingSignal().Connect(_popUpHidingEventCallbackDelegate);
-           }
         }
-     }
 
-     remove
-     {
-        lock(this)
+        /// <summary>
+        /// Event arguments that passed via HidingEventArgs
+        /// </summary>
+        public class HidingEventArgs : EventArgs
         {
-           if (_popUpHidingEventHandler != null)
-           {
-              this.HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
-           }
-
-           _popUpHidingEventHandler -= value;
         }
-     }
-  }
 
-  // Callback for HidingSignal
-  private void OnHiding()
-  {
-     HidingEventArgs e = new HidingEventArgs();
-
-     if (_popUpHidingEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _popUpHidingEventHandler(this, e);
-     }
-  }
-
-  public event DaliEventHandler<object,HiddenEventArgs> Hidden
-  {
-     add
-     {
-        lock(this)
+        /// <summary>
+        /// Event arguments that passed via HiddenEventArgs
+        /// </summary>
+        public class HiddenEventArgs : EventArgs
         {
-           // Restricted to only one listener
-           if (_popUpHiddenEventHandler == null)
-           {
-              _popUpHiddenEventHandler += value;
-
-              _popUpHiddenEventCallbackDelegate = new HiddenEventCallbackDelegate(OnHidden);
-              this.HiddenSignal().Connect(_popUpHiddenEventCallbackDelegate);
-           }
         }
-     }
 
-     remove
-     {
-        lock(this)
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void OutsideTouchedEventCallbackDelegate();
+        private EventHandler<OutsideTouchedEventArgs> _popUpOutsideTouchedEventHandler;
+        private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ShowingEventCallbackDelegate();
+        private EventHandler<ShowingEventArgs> _popUpShowingEventHandler;
+        private ShowingEventCallbackDelegate _popUpShowingEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ShownEventCallbackDelegate();
+        private EventHandler<ShownEventArgs> _popUpShownEventHandler;
+        private ShownEventCallbackDelegate _popUpShownEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void HidingEventCallbackDelegate();
+        private EventHandler<HidingEventArgs> _popUpHidingEventHandler;
+        private HidingEventCallbackDelegate _popUpHidingEventCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void HiddenEventCallbackDelegate();
+        private EventHandler<HiddenEventArgs> _popUpHiddenEventHandler;
+        private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
+
+        /// <summary>
+        /// Event is sent when user has touched outside of the Dialog.
+        /// </summary>
+        public event EventHandler<OutsideTouchedEventArgs> OutsideTouched
         {
-           if (_popUpHiddenEventHandler != null)
-           {
-              this.HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
-           }
-
-           _popUpHiddenEventHandler -= value;
+            add
+            {
+                if (_popUpOutsideTouchedEventHandler == null)
+                {
+                    _popUpOutsideTouchedEventCallbackDelegate = (OnOutsideTouched);
+                    OutsideTouchedSignal().Connect(_popUpOutsideTouchedEventCallbackDelegate);
+                }
+                _popUpOutsideTouchedEventHandler += value;
+            }
+            remove
+            {
+                _popUpOutsideTouchedEventHandler -= value;
+                if (_popUpOutsideTouchedEventHandler == null && _popUpOutsideTouchedEventCallbackDelegate != null)
+                {
+                    this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+                }
+            }
         }
-     }
-  }
 
-  // Callback for HiddenSignal
-  private void OnHidden()
-  {
-     HiddenEventArgs e = new HiddenEventArgs();
+        // Callback for Popup OutsideTouchedSignal
+        private void OnOutsideTouched()
+        {
+            OutsideTouchedEventArgs e = new OutsideTouchedEventArgs();
 
-     if (_popUpHiddenEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _popUpHiddenEventHandler(this, e);
-     }
-  }
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_Popup_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            if (_popUpOutsideTouchedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpOutsideTouchedEventHandler(this, e);
+            }
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_Popup_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
-    public static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();
-    public static readonly int FOOTER = NDalicPINVOKE.Popup_Property_FOOTER_get();
-    public static readonly int DISPLAY_STATE = NDalicPINVOKE.Popup_Property_DISPLAY_STATE_get();
-    public static readonly int TOUCH_TRANSPARENT = NDalicPINVOKE.Popup_Property_TOUCH_TRANSPARENT_get();
-    public static readonly int TAIL_VISIBILITY = NDalicPINVOKE.Popup_Property_TAIL_VISIBILITY_get();
-    public static readonly int TAIL_POSITION = NDalicPINVOKE.Popup_Property_TAIL_POSITION_get();
-    public static readonly int CONTEXTUAL_MODE = NDalicPINVOKE.Popup_Property_CONTEXTUAL_MODE_get();
-    public static readonly int ANIMATION_DURATION = NDalicPINVOKE.Popup_Property_ANIMATION_DURATION_get();
-    public static readonly int ANIMATION_MODE = NDalicPINVOKE.Popup_Property_ANIMATION_MODE_get();
-    public static readonly int ENTRY_ANIMATION = NDalicPINVOKE.Popup_Property_ENTRY_ANIMATION_get();
-    public static readonly int EXIT_ANIMATION = NDalicPINVOKE.Popup_Property_EXIT_ANIMATION_get();
-    public static readonly int AUTO_HIDE_DELAY = NDalicPINVOKE.Popup_Property_AUTO_HIDE_DELAY_get();
-    public static readonly int BACKING_ENABLED = NDalicPINVOKE.Popup_Property_BACKING_ENABLED_get();
-    public static readonly int BACKING_COLOR = NDalicPINVOKE.Popup_Property_BACKING_COLOR_get();
-    public static readonly int POPUP_BACKGROUND_IMAGE = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
-    public static readonly int POPUP_BACKGROUND_BORDER = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_BORDER_get();
-    public static readonly int TAIL_UP_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_UP_IMAGE_get();
-    public static readonly int TAIL_DOWN_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_DOWN_IMAGE_get();
-    public static readonly int TAIL_LEFT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_LEFT_IMAGE_get();
-    public static readonly int TAIL_RIGHT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_RIGHT_IMAGE_get();
-  
-  }
 
-  public Popup () : this (NDalicPINVOKE.Popup_New(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        /// <summary>
+        /// Event is sent when the Popup is starting to be shown.
+        /// </summary>
+        public event EventHandler<ShowingEventArgs> Showing
+        {
+            add
+            {
+                if (_popUpShowingEventHandler == null)
+                {
+                    _popUpShowingEventCallbackDelegate = (OnShowing);
+                    ShowingSignal().Connect(_popUpShowingEventCallbackDelegate);
+                }
+                _popUpShowingEventHandler += value;
+            }
+            remove
+            {
+                _popUpShowingEventHandler -= value;
+                if (_popUpShowingEventHandler == null && _popUpShowingEventCallbackDelegate != null)
+                {
+                    ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
+                }
+            }
+        }
 
-  }
-  public Popup(Popup handle) : this(NDalicPINVOKE.new_Popup__SWIG_1(Popup.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        // Callback for ShowingSignal
+        private void OnShowing()
+        {
+            ShowingEventArgs e = new ShowingEventArgs();
 
-  public Popup Assign(Popup handle) {
-    Popup ret = new Popup(NDalicPINVOKE.Popup_Assign(swigCPtr, Popup.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            if (_popUpShowingEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpShowingEventHandler(this, e);
+            }
+        }
 
-  public new static Popup DownCast(BaseHandle handle) {
-    Popup ret = new Popup(NDalicPINVOKE.Popup_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-  public void SetTitle(Actor titleActor) {
-    NDalicPINVOKE.Popup_SetTitle(swigCPtr, Actor.getCPtr(titleActor));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        /// <summary>
+        /// Event is sent when the Popup has been fully displayed.
+        /// </summary>
+        public event EventHandler<ShownEventArgs> Shown
+        {
+            add
+            {
+                if (_popUpShownEventHandler == null)
+                {
+                    _popUpShownEventCallbackDelegate = (OnShown);
+                    ShownSignal().Connect(_popUpShownEventCallbackDelegate);
+                }
+                _popUpShownEventHandler += value;
+            }
+            remove
+            {
+                _popUpShownEventHandler -= value;
+                if (_popUpShownEventHandler == null && _popUpShownEventCallbackDelegate != null)
+                {
+                    ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
+                }
+            }
+        }
 
-  public Actor GetTitle() {
-    Actor ret = new Actor(NDalicPINVOKE.Popup_GetTitle(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        // Callback for ShownSignal
+        private void OnShown()
+        {
+            ShownEventArgs e = new ShownEventArgs();
 
-  public void SetContent(Actor content) {
-    NDalicPINVOKE.Popup_SetContent(swigCPtr, Actor.getCPtr(content));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            if (_popUpShownEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpShownEventHandler(this, e);
+            }
+        }
 
-  public Actor GetContent() {
-    Actor ret = new Actor(NDalicPINVOKE.Popup_GetContent(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        /// <summary>
+        /// Event is sent when the Popup is starting to be hidden.
+        /// </summary>
+        public event EventHandler<HidingEventArgs> Hiding
+        {
+            add
+            {
+                if (_popUpHidingEventHandler == null)
+                {
+                    _popUpHidingEventCallbackDelegate = (OnHiding);
+                    HidingSignal().Connect(_popUpHidingEventCallbackDelegate);
+                }
+                _popUpHidingEventHandler += value;
+            }
+            remove
+            {
+                _popUpHidingEventHandler -= value;
+                if (_popUpHidingEventHandler == null && _popUpHidingEventCallbackDelegate != null)
+                {
+                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                }
+            }
+        }
 
-  public void SetFooter(Actor footer) {
-    NDalicPINVOKE.Popup_SetFooter(swigCPtr, Actor.getCPtr(footer));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        // Callback for HidingSignal
+        private void OnHiding()
+        {
+            HidingEventArgs e = new HidingEventArgs();
 
-  public Actor GetFooter() {
-    Actor ret = new Actor(NDalicPINVOKE.Popup_GetFooter(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            if (_popUpHidingEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpHidingEventHandler(this, e);
+            }
+        }
 
-  public void SetDisplayState(Popup.DisplayStateType displayState) {
-    NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        /// <summary>
+        /// Event is sent when the Popup has been completely hidden.
+        /// </summary>
+        public event EventHandler<HiddenEventArgs> Hidden
+        {
+            add
+            {
+                if (_popUpHiddenEventHandler == null)
+                {
+                    _popUpHiddenEventCallbackDelegate = (OnHidden);
+                    HiddenSignal().Connect(_popUpHiddenEventCallbackDelegate);
+                }
+                _popUpHiddenEventHandler += value;
+            }
+            remove
+            {
+                _popUpHiddenEventHandler -= value;
+                if (_popUpHiddenEventHandler == null && _popUpHiddenEventCallbackDelegate != null)
+                {
+                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+                }
+            }
+        }
 
-  public Popup.DisplayStateType GetDisplayState() {
-    Popup.DisplayStateType ret = (Popup.DisplayStateType)NDalicPINVOKE.Popup_GetDisplayState(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        // Callback for HiddenSignal
+        private void OnHidden()
+        {
+            HiddenEventArgs e = new HiddenEventArgs();
 
-  public VoidSignal OutsideTouchedSignal() {
-    VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_OutsideTouchedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            if (_popUpHiddenEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpHiddenEventHandler(this, e);
+            }
+        }
 
-  public VoidSignal ShowingSignal() {
-    VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShowingSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
 
-  public VoidSignal ShownSignal() {
-    VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShownSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
 
-  public VoidSignal HidingSignal() {
-    VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HidingSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
 
-  public VoidSignal HiddenSignal() {
-    VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HiddenSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            ~Property()
+            {
+                Dispose();
+            }
 
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000
-  }
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_Popup_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
 
-  public enum DisplayStateType {
-    SHOWING,
-    SHOWN,
-    HIDING,
-    HIDDEN
-  }
+            internal Property() : this(NDalicPINVOKE.new_Popup_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
-  public enum AnimationModeType {
-    NONE,
-    ZOOM,
-    FADE,
-    CUSTOM
-  }
+            internal static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
+            internal static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();
+            internal static readonly int FOOTER = NDalicPINVOKE.Popup_Property_FOOTER_get();
+            internal static readonly int DISPLAY_STATE = NDalicPINVOKE.Popup_Property_DISPLAY_STATE_get();
+            internal static readonly int TOUCH_TRANSPARENT = NDalicPINVOKE.Popup_Property_TOUCH_TRANSPARENT_get();
+            internal static readonly int TAIL_VISIBILITY = NDalicPINVOKE.Popup_Property_TAIL_VISIBILITY_get();
+            internal static readonly int TAIL_POSITION = NDalicPINVOKE.Popup_Property_TAIL_POSITION_get();
+            internal static readonly int CONTEXTUAL_MODE = NDalicPINVOKE.Popup_Property_CONTEXTUAL_MODE_get();
+            internal static readonly int ANIMATION_DURATION = NDalicPINVOKE.Popup_Property_ANIMATION_DURATION_get();
+            internal static readonly int ANIMATION_MODE = NDalicPINVOKE.Popup_Property_ANIMATION_MODE_get();
+            internal static readonly int ENTRY_ANIMATION = NDalicPINVOKE.Popup_Property_ENTRY_ANIMATION_get();
+            internal static readonly int EXIT_ANIMATION = NDalicPINVOKE.Popup_Property_EXIT_ANIMATION_get();
+            internal static readonly int AUTO_HIDE_DELAY = NDalicPINVOKE.Popup_Property_AUTO_HIDE_DELAY_get();
+            internal static readonly int BACKING_ENABLED = NDalicPINVOKE.Popup_Property_BACKING_ENABLED_get();
+            internal static readonly int BACKING_COLOR = NDalicPINVOKE.Popup_Property_BACKING_COLOR_get();
+            internal static readonly int POPUP_BACKGROUND_IMAGE = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
+            internal static readonly int POPUP_BACKGROUND_BORDER = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_BORDER_get();
+            internal static readonly int TAIL_UP_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_UP_IMAGE_get();
+            internal static readonly int TAIL_DOWN_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_DOWN_IMAGE_get();
+            internal static readonly int TAIL_LEFT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_LEFT_IMAGE_get();
+            internal static readonly int TAIL_RIGHT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_RIGHT_IMAGE_get();
 
-  public enum ContextualModeType {
-    NON_CONTEXTUAL,
-    ABOVE,
-    RIGHT,
-    BELOW,
-    LEFT
-  }
+        }
 
-  public Tizen.NUI.Property.Map Title
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Popup.Property.TITLE).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TITLE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map Content
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Popup.Property.CONTENT).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.CONTENT, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map Footer
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Popup.Property.FOOTER).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.FOOTER, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string DisplayState
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.DISPLAY_STATE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.DISPLAY_STATE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool TouchTransparent
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Popup.Property.TOUCH_TRANSPARENT).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TOUCH_TRANSPARENT, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool TailVisibility
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Popup.Property.TAIL_VISIBILITY).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_VISIBILITY, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Vector3 TailPosition
-  {
-    get
-    {
-      Vector3 temp = new Vector3(0.0f,0.0f,0.0f);
-      GetProperty( Popup.Property.TAIL_POSITION).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_POSITION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string ContextualMode
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.CONTEXTUAL_MODE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public float AnimationDuration
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( Popup.Property.ANIMATION_DURATION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.ANIMATION_DURATION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string AnimationMode
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.ANIMATION_MODE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.ANIMATION_MODE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map EntryAnimation
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Popup.Property.ENTRY_ANIMATION).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.ENTRY_ANIMATION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map ExitAnimation
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Popup.Property.EXIT_ANIMATION).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.EXIT_ANIMATION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int AutoHideDelay
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( Popup.Property.AUTO_HIDE_DELAY).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.AUTO_HIDE_DELAY, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool BackingEnabled
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Popup.Property.BACKING_ENABLED).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.BACKING_ENABLED, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Vector4 BackingColor
-  {
-    get
-    {
-      Vector4 temp = new Vector4(0.0f,0.0f,0.0f,0.0f);
-      GetProperty( Popup.Property.BACKING_COLOR).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.BACKING_COLOR, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string PopupBackgroundImage
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.POPUP_BACKGROUND_IMAGE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.POPUP_BACKGROUND_IMAGE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Rectangle PopupBackgroundBorder
-  {
-    get
-    {
-      Rectangle temp = new Rectangle(0,0,0,0);
-      GetProperty( Popup.Property.POPUP_BACKGROUND_BORDER).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.POPUP_BACKGROUND_BORDER, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string TailUpImage
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.TAIL_UP_IMAGE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_UP_IMAGE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string TailDownImage
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.TAIL_DOWN_IMAGE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_DOWN_IMAGE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string TailLeftImage
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.TAIL_LEFT_IMAGE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_LEFT_IMAGE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string TailRightImage
-  {
-    get
-    {
-      string temp;
-      GetProperty( Popup.Property.TAIL_RIGHT_IMAGE).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Popup.Property.TAIL_RIGHT_IMAGE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+        /// <summary>
+        /// Create the Popup.
+        /// </summary>
+        public Popup() : this(NDalicPINVOKE.Popup_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-}
+        }
+        internal Popup(Popup handle) : this(NDalicPINVOKE.new_Popup__SWIG_1(Popup.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Popup Assign(Popup handle)
+        {
+            Popup ret = new Popup(NDalicPINVOKE.Popup_Assign(swigCPtr, Popup.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts a handle to Popup handle.
+        /// If handle points to a Popup, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a Popup or an uninitialized handle</returns>
+        public new static Popup DownCast(BaseHandle handle)
+        {
+            Popup ret = new Popup(NDalicPINVOKE.Popup_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a title for this Popup.
+        /// </summary>
+        /// <param name="titleActor">The actor to set a title</param>
+        public void SetTitle(Actor titleActor)
+        {
+            NDalicPINVOKE.Popup_SetTitle(swigCPtr, Actor.getCPtr(titleActor));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Actor GetTitle()
+        {
+            Actor ret = new Actor(NDalicPINVOKE.Popup_GetTitle(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the content actor.
+        /// </summary>
+        /// <param name="content">The actor to use</param>
+        public void SetContent(Actor content)
+        {
+            NDalicPINVOKE.Popup_SetContent(swigCPtr, Actor.getCPtr(content));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Actor GetContent()
+        {
+            Actor ret = new Actor(NDalicPINVOKE.Popup_GetContent(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the actor to use for a footer in this Popup.
+        /// </summary>
+        /// <param name="footer">The footer actor to be added to this Popup</param>
+        public void SetFooter(Actor footer)
+        {
+            NDalicPINVOKE.Popup_SetFooter(swigCPtr, Actor.getCPtr(footer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Actor GetFooter()
+        {
+            Actor ret = new Actor(NDalicPINVOKE.Popup_GetFooter(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the display state of Popup.
+        /// There are 4 total display states.
+        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.
+        ///
+        /// The other two states are getable, but not setable and are there for consistency.
+        ///
+        /// | Value    | Setting the state              | Getting the state              |
+        /// |----------|--------------------------------|--------------------------------|
+        /// | SHOWN    | Show the popup                 | The popup is fully shown       |
+        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |
+        /// | SHOWING  |                                | The popup is transitioning in  |
+        /// | HIDING   |                                | The popup is transitioning out |
+        ///
+        /// All 4 state changes cause notifications via 4 respective signals that can be connected to.
+        /// </summary>
+        /// <param name="displayState">The desired display state to change to</param>
+        public void SetDisplayState(Popup.DisplayStateType displayState)
+        {
+            NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Popup.DisplayStateType GetDisplayState()
+        {
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)NDalicPINVOKE.Popup_GetDisplayState(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal OutsideTouchedSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_OutsideTouchedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ShowingSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShowingSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ShownSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShownSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal HidingSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HidingSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal HiddenSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HiddenSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// The display states of the Popup.
+        /// </summary>
+        public enum DisplayStateType
+        {
+            Showing,
+            Shown,
+            Hiding,
+            Hidden
+        }
+
+        /// <summary>
+        /// The animation mode within popup.
+        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.
+        /// </summary>
+        public enum AnimationModeType
+        {
+            None,
+            Zoom,
+            Fade,
+            Custom
+        }
+
+        /// <summary>
+        /// Types of contextual layout.
+        /// The Popup is positioned adjacent to it's parent in the direction specified by this mode.
+        /// NON_CONTEXTUAL disables any contextual positioning.
+        /// </summary>
+        public enum ContextualModeType
+        {
+            NonContextual,
+            Above,
+            Rright,
+            Below,
+            Left
+        }
+
+        /// <summary>
+        /// Popup title
+        /// </summary>
+        public PropertyMap Title
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Popup.Property.TITLE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TITLE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Popup content
+        /// </summary>
+        public PropertyMap Content
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Popup.Property.CONTENT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.CONTENT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Popup footer
+        /// </summary>
+        public PropertyMap Footer
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Popup.Property.FOOTER).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.FOOTER, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Popup display state
+        /// </summary>
+        public string DisplayState
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.DISPLAY_STATE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.DISPLAY_STATE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Touch transparent
+        /// </summary>
+        public bool TouchTransparent
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Popup.Property.TOUCH_TRANSPARENT).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TOUCH_TRANSPARENT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Popup tail visibility
+        /// </summary>
+        public bool TailVisibility
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Popup.Property.TAIL_VISIBILITY).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_VISIBILITY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Popup tail position
+        /// </summary>
+        public Vector3 TailPosition
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(Popup.Property.TAIL_POSITION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_POSITION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Contextual mode
+        /// </summary>
+        public string ContextualMode
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.CONTEXTUAL_MODE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Animation duration
+        /// </summary>
+        public float AnimationDuration
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(Popup.Property.ANIMATION_DURATION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.ANIMATION_DURATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Animation mode
+        /// </summary>
+        public string AnimationMode
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.ANIMATION_MODE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Entry animation
+        /// </summary>
+        public PropertyMap EntryAnimation
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Popup.Property.ENTRY_ANIMATION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.ENTRY_ANIMATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Exit animation
+        /// </summary>
+        public PropertyMap ExitAnimation
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Popup.Property.EXIT_ANIMATION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.EXIT_ANIMATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Auto hide delay
+        /// </summary>
+        public int AutoHideDelay
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(Popup.Property.AUTO_HIDE_DELAY).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.AUTO_HIDE_DELAY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Backing enabled
+        /// </summary>
+        public bool BackingEnabled
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Popup.Property.BACKING_ENABLED).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.BACKING_ENABLED, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Backing color
+        /// </summary>
+        public Vector4 BackingColor
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Popup.Property.BACKING_COLOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.BACKING_COLOR, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Background image
+        /// </summary>
+        public string PopupBackgroundImage
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.POPUP_BACKGROUND_IMAGE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.POPUP_BACKGROUND_IMAGE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Background border
+        /// </summary>
+        public Rectangle PopupBackgroundBorder
+        {
+            get
+            {
+                Rectangle temp = new Rectangle(0, 0, 0, 0);
+                GetProperty(Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.POPUP_BACKGROUND_BORDER, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Tail up image
+        /// </summary>
+        public string TailUpImage
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.TAIL_UP_IMAGE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_UP_IMAGE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Tail down image
+        /// </summary>
+        public string TailDownImage
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.TAIL_DOWN_IMAGE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_DOWN_IMAGE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Tail left image
+        /// </summary>
+        public string TailLeftImage
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.TAIL_LEFT_IMAGE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_LEFT_IMAGE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Tail right image
+        /// </summary>
+        public string TailRightImage
+        {
+            get
+            {
+                string temp;
+                GetProperty(Popup.Property.TAIL_RIGHT_IMAGE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Popup.Property.TAIL_RIGHT_IMAGE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+    }
 
 }

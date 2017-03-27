@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ActorContainer : global::System.IDisposable, global::System.Collections.IEnumerable
+internal class ActorContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IEnumerable<Actor>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

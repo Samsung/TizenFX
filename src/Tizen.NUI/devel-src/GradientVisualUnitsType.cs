@@ -9,10 +9,10 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-public enum GradientVisualUnitsType {
+/* moved to VisualMap.cs
+    internal enum GradientVisualUnitsType {
   OBJECT_BOUNDING_BOX,
   USER_SPACE
 }
-
+*/
 }

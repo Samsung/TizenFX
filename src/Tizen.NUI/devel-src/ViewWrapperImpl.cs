@@ -24,7 +24,7 @@ namespace Tizen.NUI
         public delegate void OnStageDisconnectionDelegate();
         public delegate void OnChildAddDelegate(Actor actor);
         public delegate void OnChildRemoveDelegate(Actor actor);
-        public delegate void OnPropertySetDelegate(int index, Property.Value propertyValue);
+        public delegate void OnPropertySetDelegate(int index, PropertyValue propertyValue);
         public delegate void OnSizeSetDelegate(Vector3 targetSize);
         public delegate void OnSizeAnimationDelegate(Animation animation, Vector3 targetSize);
         public delegate bool OnTouchDelegate(Touch touch);
@@ -33,7 +33,7 @@ namespace Tizen.NUI
         public delegate bool OnWheelDelegate(Wheel wheel);
         public delegate void OnRelayoutDelegate(Vector2 size, RelayoutContainer container);
         public delegate void OnSetResizePolicyDelegate(ResizePolicyType policy, DimensionType dimension);
-        public delegate Vector3 GetNaturalSizeDelegate();
+        public delegate Size GetNaturalSizeDelegate();
         public delegate float CalculateChildSizeDelegate(Actor child, DimensionType dimension);
         public delegate float GetHeightForWidthDelegate(float width);
         public delegate float GetWidthForHeightDelegate(float height);
@@ -51,15 +51,13 @@ namespace Tizen.NUI
         public delegate bool OnAccessibilityZoomDelegate();
         public delegate void OnKeyInputFocusGainedDelegate();
         public delegate void OnKeyInputFocusLostDelegate();
-        public delegate Actor GetNextKeyboardFocusableActorDelegate(Actor currentFocusedActor, View.KeyboardFocus.Direction direction, bool loopEnabled);
-        public delegate void OnKeyboardFocusChangeCommittedDelegate(Actor commitedFocusableActor);
+        public delegate View GetNextKeyboardFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
+        public delegate void OnKeyboardFocusChangeCommittedDelegate(View commitedFocusableView);
         public delegate bool OnKeyboardEnterDelegate();
         public delegate void OnPinchDelegate(PinchGesture pinch);
         public delegate void OnPanDelegate(PanGesture pan);
         public delegate void OnTapDelegate(TapGesture tap);
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
-        public delegate void SignalConnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
-        public delegate void SignalDisconnectedDelegate(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback);
 
         public OnStageConnectionDelegate OnStageConnection;
         public OnStageDisconnectionDelegate OnStageDisconnection;
@@ -92,15 +90,13 @@ namespace Tizen.NUI
         public OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnKeyInputFocusGainedDelegate OnKeyInputFocusGained;
         public OnKeyInputFocusLostDelegate OnKeyInputFocusLost;
-        public GetNextKeyboardFocusableActorDelegate GetNextKeyboardFocusableActor;
+        public GetNextKeyboardFocusableViewDelegate GetNextKeyboardFocusableView;
         public OnKeyboardFocusChangeCommittedDelegate OnKeyboardFocusChangeCommitted;
         public OnKeyboardEnterDelegate OnKeyboardEnter;
         public OnPinchDelegate OnPinch;
         public OnPanDelegate OnPan;
         public OnTapDelegate OnTap;
         public OnLongPressDelegate OnLongPress;
-        public SignalConnectedDelegate SignalConnected;
-        public SignalDisconnectedDelegate SignalDisconnected;
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -135,7 +131,7 @@ namespace Tizen.NUI
             }
         }
 
-        public ViewWrapperImpl(ViewWrapperImpl.CustomViewBehaviour behaviourFlags) : this(NDalicManualPINVOKE.new_ViewWrapperImpl((int)behaviourFlags), true)
+        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(NDalicManualPINVOKE.new_ViewWrapperImpl((int)behaviourFlags), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             DirectorConnect();
@@ -312,7 +308,10 @@ namespace Tizen.NUI
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            OnPropertySet(index, new Property.Value(propertyValue, true));
+            if ( OnPropertySet != null )
+            {
+                OnPropertySet(index, new PropertyValue(propertyValue, true));
+            }
         }
 
         private void DirectorOnSizeSet(global::System.IntPtr targetSize)
@@ -357,7 +356,7 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNaturalSize()
         {
-            return Vector3.getCPtr(GetNaturalSize()).Handle;
+            return Size.getCPtr(GetNaturalSize()).Handle;
         }
 
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
@@ -411,7 +410,10 @@ namespace Tizen.NUI
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            OnStyleChange(new StyleManager(styleManager, false), (StyleChangeType)change);
+            if (OnStyleChange != null)
+            {
+                OnStyleChange(new StyleManager(styleManager, false), (StyleChangeType)change);
+            }
         }
 
         private bool DirectorOnAccessibilityActivated()
@@ -451,12 +453,12 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNextKeyboardFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            return Actor.getCPtr(GetNextKeyboardFocusableActor(new Actor(currentFocusedActor, false), (View.KeyboardFocus.Direction)direction, loopEnabled)).Handle;
+            return Actor.getCPtr(GetNextKeyboardFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
-        private void DirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableActor)
+        private void DirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnKeyboardFocusChangeCommitted(new Actor(commitedFocusableActor, false));
+            OnKeyboardFocusChangeCommitted(new View(commitedFocusableView, false));
         }
 
         private bool DirectorOnKeyboardEnter()
@@ -482,16 +484,6 @@ namespace Tizen.NUI
         private void DirectorOnLongPress(global::System.IntPtr longPress)
         {
             OnLongPress(new LongPressGesture(longPress, false));
-        }
-
-        private void DirectorSignalConnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
-        {
-            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
-        }
-
-        private void DirectorSignalDisconnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
-        {
-            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
         }
 
         public delegate void DelegateViewWrapperImpl_0(int depth);
@@ -577,15 +569,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_38 Delegate38;
         private DelegateViewWrapperImpl_39 Delegate39;
         private DelegateViewWrapperImpl_40 Delegate40;
-
-        public enum CustomViewBehaviour
-        {
-            VIEW_BEHAVIOUR_DEFAULT = 0,
-            DISABLE_SIZE_NEGOTIATION = 1 << 0,
-            REQUIRES_KEYBOARD_NAVIGATION_SUPPORT = 1 << 5,
-            DISABLE_STYLE_CHANGE_SIGNALS = 1 << 6,
-            LAST_VIEW_BEHAVIOUR_FLAG
-        }
 
         public static readonly int VIEW_BEHAVIOUR_FLAG_COUNT = NDalicManualPINVOKE.ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get();
     }

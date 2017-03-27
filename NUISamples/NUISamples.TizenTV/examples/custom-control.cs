@@ -17,9 +17,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Dali;
+using Tizen.NUI;
 
-namespace MyCSharpExample
+namespace CustomControlTest
 {
     // A custom control for star rating (draggable to change the rating)
     class StarRating : CustomView
@@ -30,6 +30,7 @@ namespace MyCSharpExample
         private int _currentValue;
         private int _myRating;
         private bool _myDragEnabled;
+        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res/";
 
         // Called by DALi Builder if it finds a StarRating control in a JSON file
         static CustomView CreateInstance()
@@ -45,7 +46,7 @@ namespace MyCSharpExample
           ViewRegistry.Instance.Register(CreateInstance, typeof(StarRating) );
         }
 
-        public StarRating() : base(typeof(StarRating).Name, ViewWrapperImpl.CustomViewBehaviour.VIEW_BEHAVIOUR_DEFAULT)
+        public StarRating() : base(typeof(StarRating).Name, CustomViewBehaviour.ViewBehaviourDefault)
         {
         }
 
@@ -54,11 +55,11 @@ namespace MyCSharpExample
             // Create a container for the star images
             _container = new FlexContainer();
 
-            _container.ParentOrigin = NDalic.ParentOriginTopLeft;
-            _container.AnchorPoint = NDalic.AnchorPointTopLeft;
-            _container.FlexDirection = (int)FlexContainer.FlexDirectionType.ROW;
-            _container.WidthResizePolicy = "FILL_TO_PARENT";
-            _container.HeightResizePolicy = "FILL_TO_PARENT";
+            //_container.ParentOrigin = ParentOrigin.TopLeft;
+            //_container.AnchorPoint = AnchorPoint.TopLeft;
+            _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
+            _container.WidthResizePolicy = ResizePolicyType.FillToParent;
+            _container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
             this.Add(_container);
 
@@ -67,7 +68,7 @@ namespace MyCSharpExample
 
             for(int i = 0; i < 5; i++)
             {
-                _images[i] = new ImageView("./images/star-dim.png");
+                _images[i] = new ImageView(_resPath+"images/star-dim.png");
                 _container.Add( _images[i] );
             }
 
@@ -123,16 +124,16 @@ namespace MyCSharpExample
         {
             for(int i = 0; i < rating; i++)
             {
-                _images[i].WidthResizePolicy = "USE_NATURAL_SIZE";
-                _images[i].HeightResizePolicy = "USE_NATURAL_SIZE";
-                _images[i].SetImage("./images/star-highlight.png");
+                _images[i].WidthResizePolicy = ResizePolicyType.UseNaturalSize;
+                _images[i].HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+                _images[i].SetImage(_resPath+"images/star-highlight.png");
             }
 
             for(int i = rating; i < 5; i++)
             {
-                _images[i].WidthResizePolicy = "USE_NATURAL_SIZE";
-                _images[i].HeightResizePolicy = "USE_NATURAL_SIZE";
-                _images[i].SetImage("./images/star-dim.png");
+                _images[i].WidthResizePolicy = ResizePolicyType.UseNaturalSize;
+                _images[i].HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+                _images[i].SetImage(_resPath+"images/star-dim.png");
             }
         }
 
@@ -164,34 +165,46 @@ namespace MyCSharpExample
         }
     }
 
-    class Example
+    class Example : NUIApplication
     {
-        private Dali.Application _application;
+        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res/";
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         delegate void CallbackDelegate();
 
-        public Example(Dali.Application application)
+        public Example() : base()
         {
-            _application = application;
-            _application.Initialized += Initialize;
         }
 
-        public void Initialize(object source, NUIApplicationInitEventArgs e)
+        public Example(string stylesheet) : base(stylesheet)
         {
-            Stage stage = Stage.GetCurrent();
+        }
+
+        public Example(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
+        {
+        }
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
 
             // Create a container to layout the rows of image and rating vertically
             FlexContainer container = new FlexContainer();
 
-            container.ParentOrigin = NDalic.ParentOriginTopLeft;
-            container.AnchorPoint = NDalic.AnchorPointTopLeft;
-            container.FlexDirection = (int)FlexContainer.FlexDirectionType.COLUMN;
-            container.WidthResizePolicy = "FILL_TO_PARENT";
-            container.HeightResizePolicy = "FILL_TO_PARENT";
+            container.ParentOrigin = ParentOrigin.TopLeft;
+            container.AnchorPoint = AnchorPoint.TopLeft;
+            container.FlexDirection = (int)FlexContainer.FlexDirectionType.Column;
+            container.WidthResizePolicy = ResizePolicyType.FillToParent;
+            container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            stage.Add(container);
+            stage.GetDefaultLayer().Add(container);
 
             Random random = new Random();
 
@@ -199,18 +212,18 @@ namespace MyCSharpExample
             {
                 // Create a container to layout the image and rating (in each row) horizontally
                 FlexContainer imageRow = new FlexContainer();
-                imageRow.ParentOrigin = NDalic.ParentOriginTopLeft;
-                imageRow.AnchorPoint = NDalic.AnchorPointTopLeft;
-                imageRow.FlexDirection = (int)FlexContainer.FlexDirectionType.ROW;
+                imageRow.ParentOrigin = ParentOrigin.TopLeft;
+                imageRow.AnchorPoint = AnchorPoint.TopLeft;
+                imageRow.FlexDirection = FlexContainer.FlexDirectionType.Row;
                 imageRow.Flex = 1.0f;
                 container.Add(imageRow);
 
                 // Add the image view to the row
-                ImageView image = new ImageView("./images/gallery-" + i + ".jpg");
+                ImageView image = new ImageView(_resPath+"images/gallery-" + i + ".jpg");
                 image.Size = new Vector3(120.0f, 120.0f, 0.0f);
-                image.WidthResizePolicy = "FIXED";
-                image.HeightResizePolicy = "FIXED";
-                image.AlignSelf = (int)FlexContainer.Alignment.ALIGN_CENTER;
+                image.WidthResizePolicy = ResizePolicyType.Fixed;
+                image.HeightResizePolicy = ResizePolicyType.Fixed;
+                image.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
                 image.Flex = 0.3f;
                 image.FlexMargin = new Vector4(10.0f, 0.0f, 0.0f, 0.0f);
                 imageRow.Add(image);
@@ -219,11 +232,11 @@ namespace MyCSharpExample
                 StarRating view = new StarRating();
 
                 // Add the rating control to the row
-                view.ParentOrigin = NDalic.ParentOriginCenter;
-                view.AnchorPoint = NDalic.AnchorPointCenter;
+                view.ParentOrigin = ParentOrigin.Center;
+                view.AnchorPoint = AnchorPoint.Center;
                 view.Size = new Vector3(200.0f, 40.0f, 0.0f);
                 view.Flex = 0.7f;
-                view.AlignSelf = (int)FlexContainer.Alignment.ALIGN_CENTER;
+                view.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
                 view.FlexMargin = new Vector4(30.0f, 0.0f, 0.0f, 0.0f);
                 imageRow.Add(view);
 
@@ -232,21 +245,16 @@ namespace MyCSharpExample
             }
         }
 
-        public void MainLoop()
-        {
-            _application.MainLoop ();
-        }
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
-            System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(MyCSharpExample.StarRating).TypeHandle);
+            //System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(MyCSharpExample.StarRating).TypeHandle);
 
-            Example example = new Example(Application.NewApplication());
-            example.MainLoop ();
+            Example example = new Example();
+            example.Run(args);
         }
     }
 }

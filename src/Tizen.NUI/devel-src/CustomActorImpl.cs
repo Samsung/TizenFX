@@ -35,7 +35,7 @@ public class CustomActorImpl : RefObject {
     }
   }
 
-  public CustomActor Self() {
+  internal CustomActor Self() {
     CustomActor ret = new CustomActor(NDalicPINVOKE.CustomActorImpl_Self(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -61,8 +61,8 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void OnPropertySet(int index, Property.Value propertyValue) {
-    NDalicPINVOKE.CustomActorImpl_OnPropertySet(swigCPtr, index, Property.Value.getCPtr(propertyValue));
+  public virtual void OnPropertySet(int index, PropertyValue propertyValue) {
+    NDalicPINVOKE.CustomActorImpl_OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -76,7 +76,7 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0) {
+  internal virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0) {
     bool ret = NDalicPINVOKE.CustomActorImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

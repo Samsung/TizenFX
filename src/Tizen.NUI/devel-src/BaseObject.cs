@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class BaseObject : RefObject {
+    internal class BaseObject : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.BaseObject_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -35,8 +35,8 @@ public class BaseObject : RefObject {
     }
   }
 
-  public bool DoAction(string actionName, Property.Map attributes) {
-    bool ret = NDalicPINVOKE.BaseObject_DoAction(swigCPtr, actionName, Property.Map.getCPtr(attributes));
+  public bool DoAction(string actionName, PropertyMap attributes) {
+    bool ret = NDalicPINVOKE.BaseObject_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -53,7 +53,7 @@ public class BaseObject : RefObject {
     return ret;
   }
 
-  public bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
+  internal bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate) {
     bool ret = NDalicPINVOKE.BaseObject_DoConnectSignal(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

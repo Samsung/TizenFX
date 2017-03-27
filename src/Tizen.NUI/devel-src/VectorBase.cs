@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class VectorBase : global::System.IDisposable {
+    internal class VectorBase : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

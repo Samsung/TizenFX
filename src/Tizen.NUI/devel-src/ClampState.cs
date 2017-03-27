@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public enum ClampState {
+    internal enum ClampState {
   NotClamped,
   ClampedToMin,
   ClampedToMax

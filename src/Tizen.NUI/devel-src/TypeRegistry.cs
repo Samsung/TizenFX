@@ -65,7 +65,7 @@ public class TypeRegistry : BaseHandle {
     return ret;
   }
 
-  public TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType) {
+  internal TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType) {
     TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_1(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -83,7 +83,7 @@ public class TypeRegistry : BaseHandle {
     return ret;
   }
 
-  public TypeRegistry(SWIGTYPE_p_Dali__Internal__TypeRegistry typeRegistry) : this(NDalicPINVOKE.new_TypeRegistry__SWIG_2(SWIGTYPE_p_Dali__Internal__TypeRegistry.getCPtr(typeRegistry)), true) {
+  internal TypeRegistry(SWIGTYPE_p_Dali__Internal__TypeRegistry typeRegistry) : this(NDalicPINVOKE.new_TypeRegistry__SWIG_2(SWIGTYPE_p_Dali__Internal__TypeRegistry.getCPtr(typeRegistry)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

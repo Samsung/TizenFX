@@ -14,13 +14,15 @@
  * limitations under the License.
  *
  */
-using System;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// CustomView provides some common functionality required by all views.
+    /// </summary>
     public class CustomView : ViewWrapper
     {
-        public CustomView(string typeName, ViewWrapperImpl.CustomViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
+        public CustomView(string typeName, CustomViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
             viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);
@@ -54,32 +56,31 @@ namespace Tizen.NUI
             viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnKeyInputFocusGained = new ViewWrapperImpl.OnKeyInputFocusGainedDelegate(OnKeyInputFocusGained);
             viewWrapperImpl.OnKeyInputFocusLost = new ViewWrapperImpl.OnKeyInputFocusLostDelegate(OnKeyInputFocusLost);
-            viewWrapperImpl.GetNextKeyboardFocusableActor = new ViewWrapperImpl.GetNextKeyboardFocusableActorDelegate(GetNextKeyboardFocusableActor);
+            viewWrapperImpl.GetNextKeyboardFocusableView = new ViewWrapperImpl.GetNextKeyboardFocusableViewDelegate(GetNextKeyboardFocusableView);
             viewWrapperImpl.OnKeyboardFocusChangeCommitted = new ViewWrapperImpl.OnKeyboardFocusChangeCommittedDelegate(OnKeyboardFocusChangeCommitted);
             viewWrapperImpl.OnKeyboardEnter = new ViewWrapperImpl.OnKeyboardEnterDelegate(OnKeyboardEnter);
             viewWrapperImpl.OnPinch = new ViewWrapperImpl.OnPinchDelegate(OnPinch);
             viewWrapperImpl.OnPan = new ViewWrapperImpl.OnPanDelegate(OnPan);
             viewWrapperImpl.OnTap = new ViewWrapperImpl.OnTapDelegate(OnTap);
             viewWrapperImpl.OnLongPress = new ViewWrapperImpl.OnLongPressDelegate(OnLongPress);
-            viewWrapperImpl.SignalConnected = new ViewWrapperImpl.SignalConnectedDelegate(SignalConnected);
-            viewWrapperImpl.SignalDisconnected = new ViewWrapperImpl.SignalDisconnectedDelegate(SignalDisconnected);
+
+            // By default, we do not want the position to use the anchor point
+            this.PositionUsesAnchorPoint = false;
 
             // Make sure CustomView is initialized.
             OnInitialize();
 
-            // Make sure the style of actors/visuals initialized above are applied by the style manager.
-            viewWrapperImpl.ApplyThemeStyle();
-
-            //Console.WriteLine("[CustomView] CustomView()"); 		
-
+            // Set the StyleName the name of the View
+            // We have to do this because the StyleManager on Native side can't workout it out
+            // This will also ensure that the style of actors/visuals initialized above are applied by the style manager.
+            SetStyleName(this.GetType().Name);
         }
 
-        /**
-         * @brief Set the background with a property map.
-         *
-         * @param[in] map The background property map.
-         */
-        public void SetBackground(Tizen.NUI.Property.Map map)
+        /// <summary>
+        /// Set the background with a property map.
+        /// </summary>
+        /// <param name="map">The background property map</param>
+        public void SetBackground(Tizen.NUI.PropertyMap map)
         {
             viewWrapperImpl.SetBackground(map);
         }
@@ -105,32 +106,60 @@ namespace Tizen.NUI
          * @param[in]  type  The gesture type(s) to disable.
          * @see EnableGetureDetection
          */
-        public void DisableGestureDetection(Gesture.GestureType type)
+        internal void DisableGestureDetection(Gesture.GestureType type)
         {
             viewWrapperImpl.DisableGestureDetection(type);
         }
 
-        /**
-         * @brief Sets whether this control supports two dimensional
-         * keyboard navigation (i.e. whether it knows how to handle the
-         * keyboard focus movement between its child actors).
-         *
-         * The control doesn't support it by default.
-         * @param[in] isSupported Whether this control supports two dimensional keyboard navigation.
-         */
-        public void SetKeyboardNavigationSupport(bool isSupported)
+        /// <summary>
+        /// Sets whether this control supports two dimensional keyboard navigation
+        /// (i.e. whether it knows how to handle the keyboard focus movement between its child actors).
+        /// The control doesn't support it by default.
+        /// </summary>
+        /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
+        public bool FocusNavigationSupport
+        {
+            get
+            {
+                return IsKeyboardNavigationSupported();
+            }
+            set
+            {
+                SetKeyboardNavigationSupport(value);
+            }
+        }
+
+        internal void SetKeyboardNavigationSupport(bool isSupported)
         {
             viewWrapperImpl.SetKeyboardNavigationSupport(isSupported);
         }
+
 
         /**
          * @brief Gets whether this control supports two dimensional keyboard navigation.
          *
          * @return true if this control supports two dimensional keyboard navigation.
          */
-        public bool IsKeyboardNavigationSupported()
+        internal bool IsKeyboardNavigationSupported()
         {
             return viewWrapperImpl.IsKeyboardNavigationSupported();
+        }
+
+
+        /// <summary>
+        /// Sets or Gets whether this control is a focus group for keyboard navigation.
+        /// </summary>
+        /// <returns>true if this control is set as a focus group for keyboard navigation</returns>
+        public bool FocusGroup
+        {
+            get
+            {
+                return IsKeyboardFocusGroup();
+            }
+            set
+            {
+                SetAsKeyboardFocusGroup(value);
+            }
         }
 
         /**
@@ -140,7 +169,7 @@ namespace Tizen.NUI
          * can be limitied to its child actors). The control is not a focus group by default.
          * @param[in] isFocusGroup Whether this control is set as a focus group for keyboard navigation.
          */
-        public void SetAsKeyboardFocusGroup(bool isFocusGroup)
+        internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
         {
             viewWrapperImpl.SetAsKeyboardFocusGroup(isFocusGroup);
         }
@@ -150,7 +179,7 @@ namespace Tizen.NUI
          *
          * @return true if this control is set as a focus group for keyboard navigation.
          */
-        public bool IsKeyboardFocusGroup()
+        internal bool IsKeyboardFocusGroup()
         {
             return viewWrapperImpl.IsKeyboardFocusGroup();
         }
@@ -159,26 +188,25 @@ namespace Tizen.NUI
          * @brief Called by the AccessibilityManager to activate the Control.
          * @SINCE_1_0.0
          */
-        public void AccessibilityActivate()
+        internal void AccessibilityActivate()
         {
             viewWrapperImpl.AccessibilityActivate();
         }
 
-        /**
-         * @brief Called by the KeyboardFocusManager.
-         */
-        public void KeyboardEnter()
+        /// <summary>
+        /// Called by the KeyboardFocusManager.
+        /// </summary>
+        internal void KeyboardEnter()
         {
             viewWrapperImpl.KeyboardEnter();
         }
 
-        /**
-         * @brief Called by the KeyInputFocusManager to emit key event signals.
-         *
-         * @param[in] key The key event.
-         * @return True if the event was consumed.
-         */
-        public bool EmitKeyEventSignal(Key key)
+        /// <summary>
+        /// Called by the KeyInputFocusManager to emit key event signals.
+        /// </summary>
+        /// <param name="key">The key event</param>
+        /// <returns>True if the event was consumed</returns>
+        internal bool EmitKeyEventSignal(Key key)
         {
             return viewWrapperImpl.EmitKeyEventSignal(key);
         }
@@ -205,7 +233,7 @@ namespace Tizen.NUI
          */
         protected float GetHeightForWidthBase(float width)
         {
-            return viewWrapperImpl.GetHeightForWidthBase( width );
+            return viewWrapperImpl.GetHeightForWidthBase(width);
         }
 
         /**
@@ -215,7 +243,7 @@ namespace Tizen.NUI
          */
         protected float GetWidthForHeightBase(float height)
         {
-            return viewWrapperImpl.GetWidthForHeightBase( height );
+            return viewWrapperImpl.GetWidthForHeightBase(height);
         }
 
         /**
@@ -227,7 +255,7 @@ namespace Tizen.NUI
          */
         protected float CalculateChildSizeBase(Actor child, DimensionType dimension)
         {
-            return viewWrapperImpl.CalculateChildSizeBase( child, dimension );
+            return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
 
         /**
@@ -238,7 +266,7 @@ namespace Tizen.NUI
          */
         protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
-            return viewWrapperImpl.RelayoutDependentOnChildrenBase( dimension );
+            return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
         /**
@@ -264,7 +292,7 @@ namespace Tizen.NUI
          */
         protected void RegisterVisual(int index, VisualBase visual)
         {
-            viewWrapperImpl.RegisterVisual( index, visual );
+            viewWrapperImpl.RegisterVisual(index, visual);
         }
 
         /**
@@ -280,7 +308,7 @@ namespace Tizen.NUI
          */
         protected void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
-            viewWrapperImpl.RegisterVisual( index, visual, enabled );
+            viewWrapperImpl.RegisterVisual(index, visual, enabled);
         }
 
         /**
@@ -290,7 +318,7 @@ namespace Tizen.NUI
          */
         protected void UnregisterVisual(int index)
         {
-            viewWrapperImpl.UnregisterVisual( index );
+            viewWrapperImpl.UnregisterVisual(index);
         }
 
         /**
@@ -302,7 +330,7 @@ namespace Tizen.NUI
          */
         protected VisualBase GetVisual(int index)
         {
-            return viewWrapperImpl.GetVisual( index );
+            return viewWrapperImpl.GetVisual(index);
         }
 
         /**
@@ -313,7 +341,7 @@ namespace Tizen.NUI
          */
         protected void EnableVisual(int index, bool enable)
         {
-            viewWrapperImpl.EnableVisual( index, enable );
+            viewWrapperImpl.EnableVisual(index, enable);
         }
 
         /**
@@ -324,7 +352,7 @@ namespace Tizen.NUI
          */
         protected bool IsVisualEnabled(int index)
         {
-            return viewWrapperImpl.IsVisualEnabled( index );
+            return viewWrapperImpl.IsVisualEnabled(index);
         }
 
         /**
@@ -336,7 +364,7 @@ namespace Tizen.NUI
          */
         protected Animation CreateTransition(TransitionData transitionData)
         {
-            return viewWrapperImpl.CreateTransition( transitionData );
+            return viewWrapperImpl.CreateTransition(transitionData);
         }
 
         /**
@@ -348,7 +376,7 @@ namespace Tizen.NUI
          */
         protected void EmitKeyInputFocusSignal(bool focusGained)
         {
-            viewWrapperImpl.EmitKeyInputFocusSignal( focusGained );
+            viewWrapperImpl.EmitKeyInputFocusSignal(focusGained);
         }
 
         /**
@@ -358,7 +386,6 @@ namespace Tizen.NUI
          */
         public virtual void OnInitialize()
         {
-            //Console.WriteLine("[CustomView] OnInitialize()"); 		
         }
 
         /**
@@ -385,7 +412,6 @@ namespace Tizen.NUI
          */
         public virtual void OnStageConnection(int depth)
         {
-            //Console.WriteLine("[CustomView] OnStageConnection()"); 		
         }
 
         /**
@@ -435,7 +461,7 @@ namespace Tizen.NUI
          * @param[in] index The Property index that was set
          * @param[in] propertyValue The value to set
          */
-        public virtual void OnPropertySet(int index, Tizen.NUI.Property.Value propertyValue)
+        public virtual void OnPropertySet(int index, Tizen.NUI.PropertyValue propertyValue)
         {
         }
 
@@ -541,9 +567,9 @@ namespace Tizen.NUI
          *
          * @return The actor's natural size
          */
-        public virtual Vector3 GetNaturalSize()
+        public virtual Size GetNaturalSize()
         {
-            return new Vector3(0.0f, 0.0f, 0.0f);
+            return new Size(0.0f, 0.0f, 0.0f);
         }
 
         /**
@@ -555,7 +581,7 @@ namespace Tizen.NUI
          */
         public virtual float CalculateChildSize(Actor child, DimensionType dimension)
         {
-            return viewWrapperImpl.CalculateChildSizeBase( child, dimension );
+            return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
 
         /**
@@ -568,7 +594,7 @@ namespace Tizen.NUI
          */
         public virtual float GetHeightForWidth(float width)
         {
-            return viewWrapperImpl.GetHeightForWidthBase( width );
+            return viewWrapperImpl.GetHeightForWidthBase(width);
         }
 
         /**
@@ -581,7 +607,7 @@ namespace Tizen.NUI
          */
         public virtual float GetWidthForHeight(float height)
         {
-            return viewWrapperImpl.GetWidthForHeightBase( height );
+            return viewWrapperImpl.GetWidthForHeightBase(height);
         }
 
         /**
@@ -592,7 +618,7 @@ namespace Tizen.NUI
          */
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
-            return viewWrapperImpl.RelayoutDependentOnChildrenBase( dimension );
+            return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
         /**
@@ -642,7 +668,7 @@ namespace Tizen.NUI
          * Derived classes should override this to perform custom accessibility activation.
          * @return true if this control can perform accessibility activation.
          */
-        public virtual bool OnAccessibilityActivated()
+        internal virtual bool OnAccessibilityActivated()
         {
             return false;
         }
@@ -654,7 +680,7 @@ namespace Tizen.NUI
          * @param[in] gesture The pan gesture.
          * @return true if the pan gesture has been consumed by this control
          */
-        public virtual bool OnAccessibilityPan(PanGesture gestures)
+        internal virtual bool OnAccessibilityPan(PanGesture gestures)
         {
             return false;
         }
@@ -666,7 +692,7 @@ namespace Tizen.NUI
          * @param[in] touch The touch event.
          * @return true if the touch event has been consumed by this control
          */
-        public virtual bool OnAccessibilityTouch(Touch touch)
+        internal virtual bool OnAccessibilityTouch(Touch touch)
         {
             return false;
         }
@@ -678,7 +704,7 @@ namespace Tizen.NUI
          * @param[in] isIncrease Whether the value should be increased or decreased
          * @return true if the value changed action has been consumed by this control
          */
-        public virtual bool OnAccessibilityValueChange(bool isIncrease)
+        internal virtual bool OnAccessibilityValueChange(bool isIncrease)
         {
             return false;
         }
@@ -689,7 +715,7 @@ namespace Tizen.NUI
          *
          * @return true if the zoom action has been consumed by this control
          */
-        public virtual bool OnAccessibilityZoom()
+        internal virtual bool OnAccessibilityZoom()
         {
             return false;
         }
@@ -722,10 +748,9 @@ namespace Tizen.NUI
          * @param[in] loopEnabled Whether the focus movement should be looped within the control.
          * @return the next keyboard focusable actor in this control or an empty handle if no actor can be focused.
          */
-        public virtual Actor GetNextKeyboardFocusableActor(Actor currentFocusedActor, View.KeyboardFocus.Direction direction, bool loopEnabled)
+        public virtual View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            //Console.WriteLine("[CustomView] GetNextKeyboardFocusableActor()"); 		
-            return new Actor();
+            return new View();
         }
 
         /**
@@ -736,7 +761,7 @@ namespace Tizen.NUI
          *
          * @param[in] commitedFocusableActor The commited focusable actor.
          */
-        public virtual void OnKeyboardFocusChangeCommitted(Actor commitedFocusableActor)
+        public virtual void OnKeyboardFocusChangeCommitted(View commitedFocusableView)
         {
         }
 
@@ -763,7 +788,7 @@ namespace Tizen.NUI
          * @note Pinch detection should be enabled via EnableGestureDetection().
          * @see EnableGestureDetection
          */
-        public virtual void OnPinch(PinchGesture pinch)
+        internal virtual void OnPinch(PinchGesture pinch)
         {
         }
 
@@ -808,15 +833,7 @@ namespace Tizen.NUI
          * @note Long press detection should be enabled via EnableGestureDetection().
          * @see EnableGestureDetection
          */
-        public virtual void OnLongPress(LongPressGesture longPress)
-        {
-        }
-
-        private void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
-        {
-        }
-
-        private void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
+        internal virtual void OnLongPress(LongPressGesture longPress)
         {
         }
 
@@ -827,5 +844,13 @@ namespace Tizen.NUI
         private void OnControlChildRemove(Actor child)
         {
         }
+    }
+    public enum CustomViewBehaviour
+    {
+        ViewBehaviourDefault = 0,
+        DisableSizeNegotiation = 1 << 0,
+        RequiresKeyboardNavigationSupport = 1 << 5,
+        DisableStyleChangeSignals = 1 << 6,
+        LastViewBehaviourFlag
     }
 }

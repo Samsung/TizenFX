@@ -234,7 +234,7 @@ namespace FirstScreen
         // Hide Bottom Container (Menu ScrollContainer) when it is not focused
         private void HideBottomContainer()
         {
-            _topClipLayer.ClippingBox = new RectInteger(0,
+            _topClipLayer.ClippingBox = new Rectangle(0,
                                                         Convert.ToInt32(_stageSize.Height * Constants.TopContainerPositionFactor),
                                                         Convert.ToInt32((_stageSize.Width)),
                                                         Convert.ToInt32((_stageSize.Height * Constants.TopClipLayerExpandHeightFactor)));  // X, Y, Width, Height
@@ -249,7 +249,7 @@ namespace FirstScreen
         // Show (unhide) Bottom Container (Menu ScrollContainer) when it is focused
         private void ShowBottomContainer()
         {
-            _topClipLayer.ClippingBox = new RectInteger(0,
+            _topClipLayer.ClippingBox = new Rectangle(0,
                                                         Convert.ToInt32(_stageSize.Height * Constants.TopContainerPositionFactor),
                                                         Convert.ToInt32((_stageSize.Width)),
                                                         Convert.ToInt32((_stageSize.Height * Constants.TopClipLayerHeightFactor)));  // X, Y, Width, Height
@@ -313,7 +313,7 @@ namespace FirstScreen
             _topClipLayer.AnchorPoint = AnchorPoint.BottomCenter;
             _topClipLayer.ParentOrigin = ParentOrigin.BottomCenter;
             _topClipLayer.ClippingEnable = true;
-            _topClipLayer.ClippingBox = new RectInteger(0,
+            _topClipLayer.ClippingBox = new Rectangle(0,
                                                         Convert.ToInt32(_stageSize.Height * Constants.TopContainerPositionFactor),
                                                         Convert.ToInt32((_stageSize.Width)),
                                                         Convert.ToInt32((_stageSize.Height * Constants.TopClipLayerHeightFactor)));  // X, Y, Width, Height
@@ -368,7 +368,7 @@ namespace FirstScreen
             _bottomClipLayer.AnchorPoint = AnchorPoint.BottomCenter;
             _bottomClipLayer.ParentOrigin = ParentOrigin.BottomCenter;
             _bottomClipLayer.ClippingEnable = true;
-            _bottomClipLayer.ClippingBox = new RectInteger(Convert.ToInt32(Constants.LauncherWidth),
+            _bottomClipLayer.ClippingBox = new Rectangle(Convert.ToInt32(Constants.LauncherWidth),
                                                            Convert.ToInt32(_stageSize.Height * Constants.BottomContainerShowPositionFactor),
                                                            Convert.ToInt32((_stageSize.Width)),
                                                            Convert.ToInt32((_stageSize.Height - (_stageSize.Height * Constants.BottomClipLayerHeightFactor))));  // X, Y, Width, Height

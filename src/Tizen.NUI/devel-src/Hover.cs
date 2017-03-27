@@ -8,149 +8,221 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class Hover : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+    /// <summary>
+    /// Hover events are a collection of points at a specific moment in time.
+    /// When a multi event occurs, each point represents the points that are currently being
+    /// hovered or the points where a hover has stopped.
+    /// </summary>
+    public class Hover : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-  internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hover obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Hover() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Hover(swigCPtr);
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hover obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~Hover()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public virtual void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Hover(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+
+        internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
+        {
+            Hover ret = new Hover(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The time (in ms) that the hover event occurred.
+        /// </summary>
+        public uint Time
+        {
+            get
+            {
+                return time;
+            }
+        }
+
+        /// <summary>
+        /// Returns the ID of the device used for the Point specified.
+        /// Each point has a unique device ID which specifies the device used for that
+        /// point. This is returned by this method.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The Device ID of this poin</returns>
+        public int GetDeviceId(uint point)
+        {
+            if (point < points.Count)
+            {
+                return points[(int)point].deviceId;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Retrieves the State of the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The state of the point specified</returns>
+        public PointStateType GetState(uint point)
+        {
+            if (point < points.Count)
+            {
+                return (Tizen.NUI.PointStateType)(points[(int)point].state);
+            }
+            return PointStateType.Finished;
+        }
+
+        /// <summary>
+        /// Retrieves the actor that was underneath the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The actor that was underneath the point specified</returns>
+        public Actor GetHitActor(uint point)
+        {
+            if (point < points.Count)
+            {
+                return points[(int)point].hitActor;
+            }
+            else
+            {
+                // Return a native empty handle
+                Actor actor = new Actor();
+                actor.Reset();
+                return actor;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the hit-actor at the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the hit-actor of the point specified</returns>
+        public Vector2 GetLocalPosition(uint point)
+        {
+            if (point < points.Count)
+            {
+                return points[(int)point].local;
+            }
+            return new Vector2(0.0f, 0.0f);
+        }
+
+        /// <summary>
+        /// Retrieves the co-ordinates relative to the top-left of the screen of the point specified.
+        /// </summary>
+        /// <param name="point">The point required</param>
+        /// <returns>The co-ordinates relative to the top-left of the screen of the point specified</returns>
+        public Vector2 GetScreenPosition(uint point)
+        {
+            if (point < points.Count)
+            {
+                return points[(int)point].screen;
+            }
+            return new Vector2(0.0f, 0.0f);
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public Hover() : this(NDalicPINVOKE.new_Hover__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="time">The time the event occurred</param>
+        public Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private TouchPointContainer points
+        {
+            set
+            {
+                NDalicPINVOKE.Hover_points_set(swigCPtr, TouchPointContainer.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.Hover_points_get(swigCPtr);
+                TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private uint time
+        {
+            set
+            {
+                NDalicPINVOKE.Hover_time_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                uint ret = NDalicPINVOKE.Hover_time_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Returns the total number of points.
+        /// </summary>
+        /// <returns>Total number of Points</returns>
+        public uint GetPointCount()
+        {
+            uint ret = NDalicPINVOKE.Hover_GetPointCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TouchPoint GetPoint(uint point)
+        {
+            TouchPoint ret = new TouchPoint(NDalicPINVOKE.Hover_GetPoint(swigCPtr, point), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public static Hover GetHoverFromPtr(global::System.IntPtr cPtr) {
-    Hover ret = new Hover(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint Time
-  {
-    get
-    {
-      return time;
-    }
-  }
-
-  public int GetDeviceId(uint point) {
-    if( point < points.Count )
-    {
-      return points[(int)point].deviceId;
-    }
-    return -1;
-  }
-
-  public PointStateType GetState(uint point) {
-    if( point < points.Count )
-    {
-      return (Tizen.NUI.PointStateType)(points[(int)point].state);
-    }
-    return PointStateType.FINISHED;
-  }
-
-  public Actor GetHitActor(uint point) {
-    if( point < points.Count )
-    {
-      return points[(int)point].hitActor;
-    }
-    else
-    {
-      // Return a native empty handle
-      Actor actor = new Actor();
-      actor.Reset();
-      return actor;
-    }
-  }
-
-  public Vector2 GetLocalPosition(uint point) {
-    if( point < points.Count )
-    {
-      return points[(int)point].local;
-    }
-    return new Vector2(0.0f, 0.0f);
-  }
-
-  public Vector2 GetScreenPosition(uint point) {
-    if( point < points.Count )
-    {
-      return points[(int)point].screen;
-    }
-    return new Vector2(0.0f, 0.0f);
-  }
-
-  public Hover() : this(NDalicPINVOKE.new_Hover__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  private TouchPointContainer points {
-    set {
-      NDalicPINVOKE.Hover_points_set(swigCPtr, TouchPointContainer.getCPtr(value));
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      global::System.IntPtr cPtr = NDalicPINVOKE.Hover_points_get(swigCPtr);
-      TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, false);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  private uint time {
-    set {
-      NDalicPINVOKE.Hover_time_set(swigCPtr, value);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      uint ret = NDalicPINVOKE.Hover_time_get(swigCPtr);
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  public uint GetPointCount() {
-    uint ret = NDalicPINVOKE.Hover_GetPointCount(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public TouchPoint GetPoint(uint point) {
-    TouchPoint ret = new TouchPoint(NDalicPINVOKE.Hover_GetPoint(swigCPtr, point), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

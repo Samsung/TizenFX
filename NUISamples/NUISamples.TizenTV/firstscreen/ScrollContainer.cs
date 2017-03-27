@@ -33,10 +33,24 @@ namespace FirstScreen
         private Animation _focusTransitionAnimation;  // Focus Transition (scaling /unscaling) animation on items of ScrollContainer.
         private Path _circularPath;                   // Circular path used for SpotLight Animation applied to the focused item on ScrollContainer.
 
-        public ScrollContainer() : base(ViewBehaviour.DisableStyleChangeSignals |
-                                        ViewBehaviour.RequiresKeyboardNavigationSupport)
+        static CustomView CreateInstance()
+        {
+            return new ScrollContainer();
+        }
+
+        // static constructor registers the control type (for user can add kinds of visuals to it)
+        static ScrollContainer()
+        {
+            // ViewRegistry registers control type with DALi type registery
+            // also uses introspection to find any properties that need to be registered with type registry
+            ViewRegistry.Instance.Register(CreateInstance, typeof(ScrollContainer));
+        }
+
+        public ScrollContainer() : base(typeof(ScrollContainer).Name, CustomViewBehaviour.DisableStyleChangeSignals |
+                                        CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
+
         public bool IsFocused
         {
             get
@@ -304,7 +318,7 @@ namespace FirstScreen
 
         // This override function supports two dimensional keyboard navigation.
         // This function returns the next keyboard focusable actor in ScrollContainer control towards the given direction.
-        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        public override View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             if (direction == View.FocusDirection.Left)
             {
@@ -320,7 +334,7 @@ namespace FirstScreen
             }
         }
         
-        public override void OnFocusChangeCommitted(View commitedFocusableView)
+        public override void OnKeyboardFocusChangeCommitted(View commitedFocusableView)
         {
             Focus(_focusedItem);
         }

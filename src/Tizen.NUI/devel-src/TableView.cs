@@ -24,485 +24,814 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class TableView : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    /// <summary>
+    /// TableView is a layout container for aligning child actors in a grid like layout.
+    /// TableView constrains the x and y position and width and height of the child actors.
+    /// z position and depth are left intact so that 3D model actors can also be laid out
+    /// in a grid without loosing their depth scaling.
+    /// </summary>
+    public class TableView : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TableView_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TableView obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~TableView() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_TableView(swigCPtr);
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TableView_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
 
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_TableView_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TableView obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_TableView_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
-    public static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
-    public static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
-    public static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
-    public static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
-  
-  }
 
-  public class ChildProperty : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal ChildProperty(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ChildProperty obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~ChildProperty() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_TableView_ChildProperty(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        ~TableView()
+        {
+            DisposeQueue.Instance.Add(this);
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public ChildProperty() : this(NDalicPINVOKE.new_TableView_ChildProperty(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
-    public static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
-    public static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
-    public static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
-    public static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
-  
-  }
 
-  public class CellPosition : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~CellPosition() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_TableView_CellPosition(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_TableView(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Property()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_TableView_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public Property() : this(NDalicPINVOKE.new_TableView_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
+            internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
+            internal static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
+            internal static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
+            internal static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
+
+        }
+
+        internal class ChildProperty : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal ChildProperty(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ChildProperty obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~ChildProperty()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_TableView_ChildProperty(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public ChildProperty() : this(NDalicPINVOKE.new_TableView_ChildProperty(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
+            internal static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
+            internal static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
+            internal static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
+
+        }
+
+        /// <summary>
+        /// Class to specify layout position for child view.
+        /// </summary>
+        public class CellPosition : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~CellPosition()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_TableView_CellPosition(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            /// <param name="rowSpan">The row span initialized</param>
+            /// <param name="columnSpan">The column span initialized</param>
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Constructor to initialise values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            /// <param name="rowSpan">The row span initialized</param>
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Constructor to initialise values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            /// <param name="columnIndex">The column index initialized</param>
+            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Constructor to initialise values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized</param>
+            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Default constructor
+            /// </summary>
+            public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Index of row
+            /// </summary>
+            public uint rowIndex
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_rowIndex_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// Index of column
+            /// </summary>
+            public uint columnIndex
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_columnIndex_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// Span of row
+            /// </summary>
+            public uint rowSpan
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_rowSpan_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// Span of column
+            /// </summary>
+            public uint columnSpan
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_columnSpan_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Creates the TableView view.
+        /// </summary>
+        /// <param name="initialRows">initialRows for the table</param>
+        /// <param name="initialColumns">initialColumns for the table</param>
+        public TableView(uint initialRows, uint initialColumns) : this(NDalicPINVOKE.TableView_New(initialRows, initialColumns), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Copy constructor. Creates another handle that points to the same real object.
+        /// </summary>
+        /// <param name="handle">Handle to copy from</param>
+        public TableView(TableView handle) : this(NDalicPINVOKE.new_TableView__SWIG_1(TableView.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Changes this handle to point to another real object.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>A reference to this</returns>
+        public TableView Assign(TableView handle)
+        {
+            TableView ret = new TableView(NDalicPINVOKE.TableView_Assign(swigCPtr, TableView.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts a handle to TableView handle.
+        /// If handle points to a TableView, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TableView or an uninitialized handle</returns>
+        public new static TableView DownCast(BaseHandle handle)
+        {
+            TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Adds a child to the table.
+        /// If the row or column index is outside the table, the table gets resized bigger.
+        /// </summary>
+        /// <param name="child">The child to add</param>
+        /// <param name="position">The position for the child</param>
+        /// <returns>Tue if the addition succeeded and false if the cell is already occupied</returns>
+        public bool AddChild(Actor child, TableView.CellPosition position)
+        {
+            bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns a child from the given layout position.
+        /// </summary>
+        /// <param name="position">The position in the table</param>
+        /// <returns>Child that was in the cell or an uninitialized handle</returns>
+        public Actor GetChildAt(TableView.CellPosition position)
+        {
+            Actor ret = new Actor(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Removes a child from the given layout position.
+        /// </summary>
+        /// <param name="position">The position for the child to remove</param>
+        /// <returns>Child that was removed or an uninitialized handle</returns>
+        public Actor RemoveChildAt(TableView.CellPosition position)
+        {
+            Actor ret = new Actor(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Finds the child's layout position.
+        /// </summary>
+        /// <param name="child">The child to search for</param>
+        /// <param name="position">The position for the child</param>
+        /// <returns>true if the child was included in this TableView</returns>
+        public bool FindChildPosition(Actor child, TableView.CellPosition position)
+        {
+            bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Inserts a new row to given index.
+        /// </summary>
+        /// <param name="rowIndex">The rowIndex of the new row</param>
+        public void InsertRow(uint rowIndex)
+        {
+            NDalicPINVOKE.TableView_InsertRow(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Deletes a row from the given index.
+        /// Removed elements are deleted.
+        /// </summary>
+        /// <param name="rowIndex">The rowIndex of the row to delete</param>
+        public void DeleteRow(uint rowIndex)
+        {
+            NDalicPINVOKE.TableView_DeleteRow__SWIG_0(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void DeleteRow(uint rowIndex, ActorContainer removed)
+        {
+            NDalicPINVOKE.TableView_DeleteRow__SWIG_1(swigCPtr, rowIndex, ActorContainer.getCPtr(removed));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Inserts a new column to the given index.
+        /// </summary>
+        /// <param name="columnIndex">The columnIndex of the new column</param>
+        public void InsertColumn(uint columnIndex)
+        {
+            NDalicPINVOKE.TableView_InsertColumn(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Deletes a column from the given index.
+        /// Removed elements are deleted.
+        /// </summary>
+        /// <param name="columnIndex">The columnIndex of the column to delete</param>
+        public void DeleteColumn(uint columnIndex)
+        {
+            NDalicPINVOKE.TableView_DeleteColumn__SWIG_0(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void DeleteColumn(uint columnIndex, ActorContainer removed)
+        {
+            NDalicPINVOKE.TableView_DeleteColumn__SWIG_1(swigCPtr, columnIndex, ActorContainer.getCPtr(removed));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Resizes the TableView.
+        /// </summary>
+        /// <param name="rows">The rows for the table</param>
+        /// <param name="columns">The columns for the table</param>
+        public void Resize(uint rows, uint columns)
+        {
+            NDalicPINVOKE.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void Resize(uint rows, uint columns, ActorContainer removed)
+        {
+            NDalicPINVOKE.TableView_Resize__SWIG_1(swigCPtr, rows, columns, ActorContainer.getCPtr(removed));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets horizontal and vertical padding between cells.
+        /// </summary>
+        /// <param name="padding">Width and height</param>
+        public void SetCellPadding(Size2D padding)
+        {
+            NDalicPINVOKE.TableView_SetCellPadding(swigCPtr, Size2D.getCPtr(padding));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the current padding as width and height.
+        /// </summary>
+        /// <returns>The current padding as width and height</returns>
+        public Vector2 GetCellPadding()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.TableView_GetCellPadding(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Specifies this row as fitting its height to its children.
+        /// </summary>
+        /// <param name="rowIndex">The row to set</param>
+        public void SetFitHeight(uint rowIndex)
+        {
+            NDalicPINVOKE.TableView_SetFitHeight(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Checks if the row is a fit row.
+        /// </summary>
+        /// <param name="rowIndex">The row to check</param>
+        /// <returns>true if the row is fit</returns>
+        public bool IsFitHeight(uint rowIndex)
+        {
+            bool ret = NDalicPINVOKE.TableView_IsFitHeight(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Specifies this column as fitting its width to its children.
+        /// </summary>
+        /// <param name="columnIndex">The column to set</param>
+        public void SetFitWidth(uint columnIndex)
+        {
+            NDalicPINVOKE.TableView_SetFitWidth(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Checks if the column is a fit column.
+        /// </summary>
+        /// <param name="columnIndex">The column to check</param>
+        /// <returns>true if the column is fit</returns>
+        public bool IsFitWidth(uint columnIndex)
+        {
+            bool ret = NDalicPINVOKE.TableView_IsFitWidth(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a row to have fixed height.
+        /// Setting a fixed height of 0 has no effect.
+        /// </summary>
+        /// <param name="rowIndex">The rowIndex for row with fixed height</param>
+        /// <param name="height">The height in world coordinate units</param>
+        public void SetFixedHeight(uint rowIndex, float height)
+        {
+            NDalicPINVOKE.TableView_SetFixedHeight(swigCPtr, rowIndex, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets a row's fixed height.
+        /// </summary>
+        /// <param name="rowIndex">The row index with fixed height</param>
+        /// <returns>height The height in world coordinate units</returns>
+        public float GetFixedHeight(uint rowIndex)
+        {
+            float ret = NDalicPINVOKE.TableView_GetFixedHeight(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a row to have relative height. Relative height means percentage of
+        /// the remainder of the table height after subtracting Padding and Fixed height rows.
+        /// Setting a relative height of 0 has no effect.
+        /// </summary>
+        /// <param name="rowIndex">The rowIndex for row with relative height</param>
+        /// <param name="heightPercentage">The height percentage between 0.0f and 1.0f</param>
+        public void SetRelativeHeight(uint rowIndex, float heightPercentage)
+        {
+            NDalicPINVOKE.TableView_SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets a row's relative height.
+        /// </summary>
+        /// <param name="rowIndex">The row index with relative height</param>
+        /// <returns>Height in percentage units, between 0.0f and 1.0f</returns>
+        public float GetRelativeHeight(uint rowIndex)
+        {
+            float ret = NDalicPINVOKE.TableView_GetRelativeHeight(swigCPtr, rowIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a column to have fixed width.
+        /// Setting a fixed width of 0 has no effect.
+        /// </summary>
+        /// <param name="columnIndex">The columnIndex for column with fixed width</param>
+        /// <param name="width">The width in world coordinate units</param>
+        public void SetFixedWidth(uint columnIndex, float width)
+        {
+            NDalicPINVOKE.TableView_SetFixedWidth(swigCPtr, columnIndex, width);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets a column's fixed width.
+        /// </summary>
+        /// <param name="columnIndex">The column index with fixed width</param>
+        /// <returns>Width in world coordinate units</returns>
+        public float GetFixedWidth(uint columnIndex)
+        {
+            float ret = NDalicPINVOKE.TableView_GetFixedWidth(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a column to have relative width. Relative width means percentage of
+        /// the remainder of table width after subtracting Padding and Fixed width columns.
+        /// Setting a relative width of 0 has no effect.
+        /// </summary>
+        /// <param name="columnIndex">The columnIndex for column with fixed width</param>
+        /// <param name="widthPercentage">The widthPercentage between 0.0f and 1.0f</param>
+        public void SetRelativeWidth(uint columnIndex, float widthPercentage)
+        {
+            NDalicPINVOKE.TableView_SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets a column's relative width.
+        /// </summary>
+        /// <param name="columnIndex">The column index with relative width</param>
+        /// <returns>Width in percentage units, between 0.0f and 1.0f</returns>
+        public float GetRelativeWidth(uint columnIndex)
+        {
+            float ret = NDalicPINVOKE.TableView_GetRelativeWidth(swigCPtr, columnIndex);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the amount of rows in the table.
+        /// </summary>
+        /// <returns>The amount of rows in the table</returns>
+        public uint GetRows()
+        {
+            uint ret = NDalicPINVOKE.TableView_GetRows(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the amount of columns in the table.
+        /// </summary>
+        /// <returns>The amount of columns in the table</returns>
+        public uint GetColumns()
+        {
+            uint ret = NDalicPINVOKE.TableView_GetColumns(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the alignment on a cell.
+        /// Cells without calling this function have the default values of LEFT and TOP respectively.
+        /// </summary>
+        /// <param name="position">The cell to set alignment on</param>
+        /// <param name="horizontal">The horizontal alignment</param>
+        /// <param name="vertical">The vertical alignment</param>
+        public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)
+        {
+            NDalicPINVOKE.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
+            CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
+            CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// Enumeration for describing how the size of a row / column has been set.
+        /// </summary>
+        public enum LayoutPolicy
+        {
+            Fixed,
+            Relative,
+            Fill,
+            Fit
+        }
+
+        /// <summary>
+        /// the amount of rows in the table.
+        /// </summary>
+        public int Rows
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TableView.Property.ROWS).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TableView.Property.ROWS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// the amount of columns in the table.
+        /// </summary>
+        public int Columns
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TableView.Property.COLUMNS).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// padding between cells.
+        /// </summary>
+        public Vector2 CellPadding
+        {
+            get
+            {
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                GetProperty(TableView.Property.CELL_PADDING).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TableView.Property.CELL_PADDING, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The number of layout rows
+        /// </summary>
+        public PropertyMap LayoutRows
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(TableView.Property.LAYOUT_ROWS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TableView.Property.LAYOUT_ROWS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The number of layout columns
+        /// </summary>
+        public PropertyMap LayoutColumns
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(TableView.Property.LAYOUT_COLUMNS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TableView.Property.LAYOUT_COLUMNS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
     }
-  
-    public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public uint rowIndex {
-      set {
-        NDalicPINVOKE.TableView_CellPosition_rowIndex_set(swigCPtr, value);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
-      get {
-        uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        return ret;
-      } 
-    }
-  
-    public uint columnIndex {
-      set {
-        NDalicPINVOKE.TableView_CellPosition_columnIndex_set(swigCPtr, value);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
-      get {
-        uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        return ret;
-      } 
-    }
-  
-    public uint rowSpan {
-      set {
-        NDalicPINVOKE.TableView_CellPosition_rowSpan_set(swigCPtr, value);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
-      get {
-        uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        return ret;
-      } 
-    }
-  
-    public uint columnSpan {
-      set {
-        NDalicPINVOKE.TableView_CellPosition_columnSpan_set(swigCPtr, value);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-      } 
-      get {
-        uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
-        if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        return ret;
-      } 
-    }
-  
-  }
 
-  public TableView (uint initialRows, uint initialColumns) : this (NDalicPINVOKE.TableView_New(initialRows, initialColumns), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public TableView(TableView handle) : this(NDalicPINVOKE.new_TableView__SWIG_1(TableView.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TableView Assign(TableView handle) {
-    TableView ret = new TableView(NDalicPINVOKE.TableView_Assign(swigCPtr, TableView.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new static TableView DownCast(BaseHandle handle) {
-    TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool AddChild(Actor child, TableView.CellPosition position) {
-    bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Actor GetChildAt(TableView.CellPosition position) {
-    Actor ret = new Actor(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Actor RemoveChildAt(TableView.CellPosition position) {
-    Actor ret = new Actor(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool FindChildPosition(Actor child, TableView.CellPosition position) {
-    bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void InsertRow(uint rowIndex) {
-    NDalicPINVOKE.TableView_InsertRow(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void DeleteRow(uint rowIndex) {
-    NDalicPINVOKE.TableView_DeleteRow__SWIG_0(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void DeleteRow(uint rowIndex, ActorContainer removed) {
-    NDalicPINVOKE.TableView_DeleteRow__SWIG_1(swigCPtr, rowIndex, ActorContainer.getCPtr(removed));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void InsertColumn(uint columnIndex) {
-    NDalicPINVOKE.TableView_InsertColumn(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void DeleteColumn(uint columnIndex) {
-    NDalicPINVOKE.TableView_DeleteColumn__SWIG_0(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void DeleteColumn(uint columnIndex, ActorContainer removed) {
-    NDalicPINVOKE.TableView_DeleteColumn__SWIG_1(swigCPtr, columnIndex, ActorContainer.getCPtr(removed));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Resize(uint rows, uint columns) {
-    NDalicPINVOKE.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Resize(uint rows, uint columns, ActorContainer removed) {
-    NDalicPINVOKE.TableView_Resize__SWIG_1(swigCPtr, rows, columns, ActorContainer.getCPtr(removed));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetCellPadding(Vector2 padding) {
-    NDalicPINVOKE.TableView_SetCellPadding(swigCPtr, Vector2.getCPtr(padding));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public Vector2 GetCellPadding() {
-    Vector2 ret = new Vector2(NDalicPINVOKE.TableView_GetCellPadding(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetFitHeight(uint rowIndex) {
-    NDalicPINVOKE.TableView_SetFitHeight(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsFitHeight(uint rowIndex) {
-    bool ret = NDalicPINVOKE.TableView_IsFitHeight(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetFitWidth(uint columnIndex) {
-    NDalicPINVOKE.TableView_SetFitWidth(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsFitWidth(uint columnIndex) {
-    bool ret = NDalicPINVOKE.TableView_IsFitWidth(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetFixedHeight(uint rowIndex, float height) {
-    NDalicPINVOKE.TableView_SetFixedHeight(swigCPtr, rowIndex, height);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public float GetFixedHeight(uint rowIndex) {
-    float ret = NDalicPINVOKE.TableView_GetFixedHeight(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetRelativeHeight(uint rowIndex, float heightPercentage) {
-    NDalicPINVOKE.TableView_SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public float GetRelativeHeight(uint rowIndex) {
-    float ret = NDalicPINVOKE.TableView_GetRelativeHeight(swigCPtr, rowIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetFixedWidth(uint columnIndex, float width) {
-    NDalicPINVOKE.TableView_SetFixedWidth(swigCPtr, columnIndex, width);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public float GetFixedWidth(uint columnIndex) {
-    float ret = NDalicPINVOKE.TableView_GetFixedWidth(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetRelativeWidth(uint columnIndex, float widthPercentage) {
-    NDalicPINVOKE.TableView_SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public float GetRelativeWidth(uint columnIndex) {
-    float ret = NDalicPINVOKE.TableView_GetRelativeWidth(swigCPtr, columnIndex);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint GetRows() {
-    uint ret = NDalicPINVOKE.TableView_GetRows(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint GetColumns() {
-    uint ret = NDalicPINVOKE.TableView_GetColumns(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical) {
-    NDalicPINVOKE.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000,
-    CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
-    CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX+1000
-  }
-
-  public enum LayoutPolicy {
-    FIXED,
-    RELATIVE,
-    FILL,
-    FIT
-  }
-
-  public int Rows
-  {
-    get
+    /// <summary>
+    /// Enumeration for horizontal alignment types.
+    /// </summary>
+    public enum HorizontalAlignmentType
     {
-      int temp = 0;
-      GetProperty( TableView.Property.ROWS).Get( ref temp );
-      return temp;
+        Left,
+        Center,
+        Right
     }
-    set
-    {
-      SetProperty( TableView.Property.ROWS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int Columns
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( TableView.Property.COLUMNS).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( TableView.Property.COLUMNS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Vector2 CellPadding
-  {
-    get
-    {
-      Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( TableView.Property.CELL_PADDING).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( TableView.Property.CELL_PADDING, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map LayoutRows
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( TableView.Property.LAYOUT_ROWS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( TableView.Property.LAYOUT_ROWS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map LayoutColumns
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( TableView.Property.LAYOUT_COLUMNS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( TableView.Property.LAYOUT_COLUMNS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
 
-}
+    /// <summary>
+    /// Enumeration for vertical alignment types.
+    /// </summary>
+    public enum VerticalAlignmentType
+    {
+        Top,
+        Center,
+        Bottom
+    }
 
 }

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class PropertyCondition : BaseHandle {
+    internal class PropertyCondition : BaseHandle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyCondition_SWIGUpcast(cPtr), cMemoryOwn) {

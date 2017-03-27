@@ -127,7 +127,7 @@ namespace FirstScreen
                     keyFrames.Add(focusData.KeyFrameEnd + 0.2f, initSize);
                 }
 
-                _animation.AnimateBetween(focusData.ImageItem, "Size", keyFrames, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
+                _animation.AnimateBetween(focusData.ImageItem, "Size", keyFrames, Animation.Interpolation.Linear, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
 
                 // Simulate the vertical frame growing from the top.
                 // Vertical items are anchored to the bottom of the parent... so when they grow
@@ -151,7 +151,7 @@ namespace FirstScreen
                     keyFramesV.Add(focusData.KeyFrameEnd, (-itemHeight / 2)); // animate to halfway up the control
 
 
-                    _animation.AnimateBetween(focusData.ImageItem, "PositionY", keyFramesV, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
+                    _animation.AnimateBetween(focusData.ImageItem, "PositionY", keyFramesV, Animation.Interpolation.Linear, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
 
 
                 }
@@ -166,7 +166,7 @@ namespace FirstScreen
                     keyFramesTL.Add(focusData.KeyFrameEnd, (itemWidth / 2)); // animate to halfway up the control
 
                     // grow these from the left or right
-                    _animation.AnimateBetween(focusData.ImageItem, "PositionX", keyFramesTL, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
+                    _animation.AnimateBetween(focusData.ImageItem, "PositionX", keyFramesTL, Animation.Interpolation.Linear, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
 
 
                 }
@@ -180,7 +180,7 @@ namespace FirstScreen
                     keyFramesTR.Add(focusData.KeyFrameEnd, (-itemWidth / 2)); // animate to halfway up the control
 
                     // grow these from the left or right
-                    _animation.AnimateBetween(focusData.ImageItem, "PositionX", keyFramesTR, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
+                    _animation.AnimateBetween(focusData.ImageItem, "PositionX", keyFramesTR, Animation.Interpolation.Linear, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine));
 
                 }
 

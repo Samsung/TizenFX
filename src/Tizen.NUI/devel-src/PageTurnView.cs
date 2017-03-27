@@ -14,7 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-public class PageTurnView : View {
+    internal class PageTurnView : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -386,7 +386,7 @@ public class PageTurnFinishedEventArgs : EventArgs
 
   public static PageTurnView GetPageTurnViewFromPtr(global::System.IntPtr cPtr) {
     PageTurnView ret = new PageTurnView(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -490,7 +490,7 @@ public class PageTurnFinishedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( PageTurnView.Property.PAGE_SIZE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( PageTurnView.Property.PAGE_SIZE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int CurrentPageId
@@ -503,7 +503,7 @@ public class PageTurnFinishedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( PageTurnView.Property.CURRENT_PAGE_ID, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( PageTurnView.Property.CURRENT_PAGE_ID, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector2 SpineShadow
@@ -516,7 +516,7 @@ public class PageTurnFinishedEventArgs : EventArgs
     }
     set
     {
-      SetProperty( PageTurnView.Property.SPINE_SHADOW, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( PageTurnView.Property.SPINE_SHADOW, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

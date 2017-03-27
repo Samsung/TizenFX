@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class Renderer : Handle {
+    internal class Renderer : Handle {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Renderer_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -190,7 +190,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.DEPTH_INDEX, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.DEPTH_INDEX, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int FaceCullingMode
@@ -203,7 +203,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendMode
@@ -216,7 +216,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_MODE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_MODE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendEquationRgb
@@ -229,7 +229,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendEquationAlpha
@@ -242,7 +242,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendFactorSrcRgb
@@ -255,7 +255,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendFactorDestRgb
@@ -268,7 +268,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendFactorSrcAlpha
@@ -281,7 +281,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int BlendFactorDestAlpha
@@ -294,7 +294,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public Vector4 BlendColor
@@ -307,7 +307,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_COLOR, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_COLOR, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public bool BlendPreMultipliedAlpha
@@ -320,7 +320,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int IndexRangeFirst
@@ -333,7 +333,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int IndexRangeCount
@@ -346,7 +346,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int DepthWriteMode
@@ -359,7 +359,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int DepthFunction
@@ -372,7 +372,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int DepthTestMode
@@ -385,7 +385,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int RenderMode
@@ -398,7 +398,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.RENDER_MODE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.RENDER_MODE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilFunction
@@ -411,7 +411,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilFunctionMask
@@ -424,7 +424,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilFunctionReference
@@ -437,7 +437,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilMask
@@ -450,7 +450,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_MASK, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_MASK, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilOperationOnFail
@@ -463,7 +463,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilOperationOnZFail
@@ -476,7 +476,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.PropertyValue( value ) );
     }
   }
   public int StencilOperationOnZPass
@@ -489,7 +489,7 @@ public class Renderer : Handle {
     }
     set
     {
-      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_Z_PASS, new Tizen.NUI.Property.Value( value ) );
+      SetProperty( Renderer.Property.STENCIL_OPERATION_ON_Z_PASS, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Tizen.NUI
 {
 
-    public class DisposeQueue
+    internal class DisposeQueue
     {
         private static DisposeQueue _disposableQueue = new DisposeQueue();
         private List<IDisposable> _disposables = new List<IDisposable>();

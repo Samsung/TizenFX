@@ -24,238 +24,422 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class ProgressBar : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    using System;
+    using System.Runtime.InteropServices;
 
-  internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBar obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
+    /// <summary>
+    /// ProgressBar is a control to give the user an indication of the progress of an operation.
+    /// </summary>
+    public class ProgressBar : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  ~ProgressBar() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_ProgressBar(swigCPtr);
+        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
 
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_ProgressBar_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBar obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_ProgressBar_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
-    public static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
-    public static readonly int INDETERMINATE = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_get();
-    public static readonly int TRACK_VISUAL = NDalicPINVOKE.ProgressBar_Property_TRACK_VISUAL_get();
-    public static readonly int PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VISUAL_get();
-    public static readonly int SECONDARY_PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
-    public static readonly int INDETERMINATE_VISUAL = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_get();
-    public static readonly int INDETERMINATE_VISUAL_ANIMATION = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
-    public static readonly int LABEL_VISUAL = NDalicPINVOKE.ProgressBar_Property_LABEL_VISUAL_get();
-  
-  }
 
-  public ProgressBar () : this (NDalicPINVOKE.ProgressBar_New(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        ~ProgressBar()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
 
-  }
-  public ProgressBar(ProgressBar handle) : this(NDalicPINVOKE.new_ProgressBar__SWIG_1(ProgressBar.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-  public ProgressBar Assign(ProgressBar handle) {
-    ProgressBar ret = new ProgressBar(NDalicPINVOKE.ProgressBar_Assign(swigCPtr, ProgressBar.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_ProgressBar(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
 
-  public new static ProgressBar DownCast(BaseHandle handle) {
-    ProgressBar ret = new ProgressBar(NDalicPINVOKE.ProgressBar_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__ProgressBar_float_floatF_t ValueChangedSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__ProgressBar_float_floatF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__ProgressBar_float_floatF_t(NDalicPINVOKE.ProgressBar_ValueChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000
-  }
+        /// <summary>
+        /// Event arguments that passed via ValueChangedEventArgs
+        /// </summary>
+        public class ValueChangedEventArgs : EventArgs
+        {
+            private ProgressBar _progressBar;
+            private float _progressValue;
+            private float _secondaryProgressValue;
 
-  public float ProgressValue
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( ProgressBar.Property.PROGRESS_VALUE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.PROGRESS_VALUE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public float SecondaryProgressValue
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( ProgressBar.Property.SECONDARY_PROGRESS_VALUE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.SECONDARY_PROGRESS_VALUE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool Indeterminate
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( ProgressBar.Property.INDETERMINATE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.INDETERMINATE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map TrackVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( ProgressBar.Property.TRACK_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.TRACK_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map ProgressVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( ProgressBar.Property.PROGRESS_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.PROGRESS_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map SecondaryProgressVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( ProgressBar.Property.SECONDARY_PROGRESS_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.SECONDARY_PROGRESS_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map IndeterminateVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( ProgressBar.Property.INDETERMINATE_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.INDETERMINATE_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Array IndeterminateVisualAnimation
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map LabelVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( ProgressBar.Property.LABEL_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( ProgressBar.Property.LABEL_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+            public ProgressBar ProgressBar
+            {
+                get
+                {
+                    return _progressBar;
+                }
+                set
+                {
+                    _progressBar = value;
+                }
+            }
 
-}
+            public float ProgressValue
+            {
+                get
+                {
+                    return _progressValue;
+                }
+                set
+                {
+                    _progressValue = value;
+                }
+            }
+
+            public float SecondaryProgressValue
+            {
+                get
+                {
+                    return _secondaryProgressValue;
+                }
+                set
+                {
+                    _secondaryProgressValue = value;
+                }
+            }
+
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ValueChangedCallbackDelegate(IntPtr progressBar, float progressValue, float secondaryProgressValue);
+        private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
+        private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
+
+        /// <summary>
+        /// Event is sent when the ProgressBar value changes.
+        /// </summary>
+        public event EventHandler<ValueChangedEventArgs> ValueChanged
+        {
+            add
+            {
+                if (_progressBarValueChangedEventHandler == null)
+                {
+                    _progressBarValueChangedCallbackDelegate = (OnValueChanged);
+                    ValueChangedSignal().Connect(_progressBarValueChangedCallbackDelegate);
+                }
+                _progressBarValueChangedEventHandler += value;
+            }
+            remove
+            {
+                _progressBarValueChangedEventHandler -= value;
+                if (_progressBarValueChangedEventHandler == null && _progressBarValueChangedCallbackDelegate != null)
+                {
+                    ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for ProgressBar ValueChanged signal
+        private void OnValueChanged(IntPtr progressBar, float progressValue, float secondaryProgressValue)
+        {
+            ValueChangedEventArgs e = new ValueChangedEventArgs();
+
+            // Populate all members of "e" (ValueChangedEventArgs) with real page
+            e.ProgressBar = ProgressBar.GetProgressBarFromPtr(progressBar);
+            e.ProgressValue = progressValue;
+            e.SecondaryProgressValue = secondaryProgressValue;
+
+            if (_progressBarValueChangedEventHandler != null)
+            {
+                _progressBarValueChangedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        internal static ProgressBar GetProgressBarFromPtr(global::System.IntPtr cPtr)
+        {
+            ProgressBar ret = new ProgressBar(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Property()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_ProgressBar_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal Property() : this(NDalicPINVOKE.new_ProgressBar_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
+            internal static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
+            internal static readonly int INDETERMINATE = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_get();
+            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.ProgressBar_Property_TRACK_VISUAL_get();
+            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VISUAL_get();
+            internal static readonly int SECONDARY_PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
+            internal static readonly int LABEL_VISUAL = NDalicPINVOKE.ProgressBar_Property_LABEL_VISUAL_get();
+
+        }
+
+        /// <summary>
+        /// Creates the ProgressBar.
+        /// </summary>
+        public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal ProgressBar(ProgressBar handle) : this(NDalicPINVOKE.new_ProgressBar__SWIG_1(ProgressBar.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ProgressBar Assign(ProgressBar handle)
+        {
+            ProgressBar ret = new ProgressBar(NDalicPINVOKE.ProgressBar_Assign(swigCPtr, ProgressBar.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts a handle to ProgressBar handle.
+        /// If handle points to a ProgressBar, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a ProgressBar or an uninitialized handle</returns>
+        public new static ProgressBar DownCast(BaseHandle handle)
+        {
+            ProgressBar ret = new ProgressBar(NDalicPINVOKE.ProgressBar_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ProgressBarValueChangedSignal ValueChangedSignal()
+        {
+            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(NDalicPINVOKE.ProgressBar_ValueChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// The progress value of progress bar, progress runs form 0 to 1.
+        /// If Value is set to 0, progress bar will be set to beginning.
+        /// If Value is set to 1, progress bar will be set to end.
+        /// Any Value outside of the range is ignored.
+        /// </summary>
+        public float ProgressValue
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(ProgressBar.Property.PROGRESS_VALUE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.PROGRESS_VALUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The secondary progress value of progress bar, secondary progress runs form 0 to 1.
+        /// Optional. If not supplied, the default is 0.
+        /// If Value is set to 0, progress bar will be set secondary progress to beginning.
+        /// If Value is set to 1, progress bar will be set secondary progress to end.
+        /// Any Value outside of the range is ignored.
+        /// </summary>
+        public float SecondaryProgressValue
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VALUE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VALUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Sets the progress-bar as \e indeterminate state.
+        /// </summary>
+        public bool Indeterminate
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(ProgressBar.Property.INDETERMINATE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.INDETERMINATE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The track Visual value of progress bar, it's a full progress area and it's shown behind PROGRESS_VISUAL.
+        /// Optional. If not supplied, the default track visual will be shown.
+        /// </summary>
+        public Tizen.NUI.PropertyMap TrackVisual
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(ProgressBar.Property.TRACK_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The progress Visual value of progress bar, size of the progress visual is changed based on PROGRESS_VALUE.
+        /// Optional. If not supplied, the default progress visual will be shown.
+        /// </summary>
+        public Tizen.NUI.PropertyMap ProgressVisual
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(ProgressBar.Property.PROGRESS_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The secondary progress visual of progress bar, size of the secondary progress visual is changed based on SECONDARY_PROGRESS_VALUE.
+        /// Optional. If not supplied, the secondary progress visual will not be shown.
+        /// </summary>
+        public Tizen.NUI.PropertyMap SecondaryProgressVisual
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.SECONDARY_PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The indeterminate visual of progress bar.
+        /// Optional. If not supplied, the default inditerminate visual will be shown.
+        /// </summary>
+        public Tizen.NUI.PropertyMap IndeterminateVisual
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(ProgressBar.Property.INDETERMINATE_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.INDETERMINATE_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The transition data for indeterminate visual animation.
+        /// Optional. If not supplied, default animation will be played.
+        /// </summary>
+        public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// The Label visual of progress bar.
+        /// </summary>
+        public Tizen.NUI.PropertyMap LabelVisual
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(ProgressBar.Property.LABEL_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(ProgressBar.Property.LABEL_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+    }
 
 }

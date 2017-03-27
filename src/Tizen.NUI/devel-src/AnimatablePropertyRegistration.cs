@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class AnimatablePropertyRegistration : global::System.IDisposable {
+    internal class AnimatablePropertyRegistration : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -46,11 +46,11 @@ public class AnimatablePropertyRegistration : global::System.IDisposable {
   }
 
 
-  public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, Property.Type type) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_0(TypeRegistration.getCPtr(registered), name, index, (int)type), true) {
+  public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_0(TypeRegistration.getCPtr(registered), name, index, (int)type), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, Property.Value value) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_1(TypeRegistration.getCPtr(registered), name, index, Property.Value.getCPtr(value)), true) {
+  public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyValue value) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_1(TypeRegistration.getCPtr(registered), name, index, PropertyValue.getCPtr(value)), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

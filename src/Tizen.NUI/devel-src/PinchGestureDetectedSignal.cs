@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class PinchGestureDetectedSignal : global::System.IDisposable {
+    internal class PinchGestureDetectedSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

@@ -10,9 +10,10 @@
 
 namespace Tizen.NUI {
 
-public class TimerSignalType : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+    internal class TimerSignalType : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
   internal TimerSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -40,10 +41,6 @@ public class TimerSignalType : global::System.IDisposable {
     }
   }
 
-  public TimerSignalType() : this(NDalicPINVOKE.new_TimerSignalType(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
   public bool Empty() {
     bool ret = NDalicPINVOKE.TimerSignalType_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -56,25 +53,30 @@ public class TimerSignalType : global::System.IDisposable {
     return ret;
   }
 
-  public void Connect(SWIGTYPE_p_f___bool func) {
-    NDalicPINVOKE.TimerSignalType_Connect__SWIG_0(swigCPtr, SWIGTYPE_p_f___bool.getCPtr(func));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  public void Connect(System.Delegate func) {
+System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
+    {
+      NDalicPINVOKE.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    }
   }
 
-  public void Disconnect(SWIGTYPE_p_f___bool func) {
-    NDalicPINVOKE.TimerSignalType_Disconnect(swigCPtr, SWIGTYPE_p_f___bool.getCPtr(func));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1) {
-    NDalicPINVOKE.TimerSignalType_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  public void Disconnect(System.Delegate func) {
+System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func); 
+    {
+      NDalicPINVOKE.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    }
   }
 
   public bool Emit() {
     bool ret = NDalicPINVOKE.TimerSignalType_Emit(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public TimerSignalType() : this(NDalicPINVOKE.new_TimerSignalType(), true) {
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
 }

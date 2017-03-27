@@ -156,24 +156,24 @@ public class Builder : BaseHandle {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void AddConstants(Property.Map map) {
-    NDalicPINVOKE.Builder_AddConstants(swigCPtr, Property.Map.getCPtr(map));
+  public void AddConstants(PropertyMap map) {
+    NDalicPINVOKE.Builder_AddConstants(swigCPtr, PropertyMap.getCPtr(map));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void AddConstant(string key, Property.Value value) {
-    NDalicPINVOKE.Builder_AddConstant(swigCPtr, key, Property.Value.getCPtr(value));
+  public void AddConstant(string key, PropertyValue value) {
+    NDalicPINVOKE.Builder_AddConstant(swigCPtr, key, PropertyValue.getCPtr(value));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Property.Map GetConstants() {
-    Property.Map ret = new Property.Map(NDalicPINVOKE.Builder_GetConstants(swigCPtr), false);
+  public PropertyMap GetConstants() {
+    PropertyMap ret = new PropertyMap(NDalicPINVOKE.Builder_GetConstants(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public Property.Value GetConstant(string key) {
-    Property.Value ret = new Property.Value(NDalicPINVOKE.Builder_GetConstant(swigCPtr, key), false);
+  public PropertyValue GetConstant(string key) {
+    PropertyValue ret = new PropertyValue(NDalicPINVOKE.Builder_GetConstant(swigCPtr, key), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -184,8 +184,8 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public Animation CreateAnimation(string animationName, Property.Map map) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_1(swigCPtr, animationName, Property.Map.getCPtr(map)), true);
+  public Animation CreateAnimation(string animationName, PropertyMap map) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_1(swigCPtr, animationName, PropertyMap.getCPtr(map)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -196,8 +196,8 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public Animation CreateAnimation(string animationName, Property.Map map, Actor sourceActor) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, Property.Map.getCPtr(map), Actor.getCPtr(sourceActor)), true);
+  public Animation CreateAnimation(string animationName, PropertyMap map, Actor sourceActor) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, PropertyMap.getCPtr(map), Actor.getCPtr(sourceActor)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -208,8 +208,8 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public BaseHandle Create(string templateName, Property.Map map) {
-    BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_1(swigCPtr, templateName, Property.Map.getCPtr(map)), true);
+  public BaseHandle Create(string templateName, PropertyMap map) {
+    BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_1(swigCPtr, templateName, PropertyMap.getCPtr(map)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -247,7 +247,7 @@ public class Builder : BaseHandle {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public FrameBufferImage GetFrameBufferImage(string name) {
+  internal FrameBufferImage GetFrameBufferImage(string name) {
     FrameBufferImage ret = new FrameBufferImage(NDalicPINVOKE.Builder_GetFrameBufferImage(swigCPtr, name), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -259,19 +259,19 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public PathConstrainer GetPathConstrainer(string pathConstrainerName) {
+  internal PathConstrainer GetPathConstrainer(string pathConstrainerName) {
     PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.Builder_GetPathConstrainer(swigCPtr, pathConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
+  internal LinearConstrainer GetLinearConstrainer(string linearConstrainerName) {
     LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.Builder_GetLinearConstrainer(swigCPtr, linearConstrainerName), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public VoidSignal QuitSignal() {
+  internal VoidSignal QuitSignal() {
     VoidSignal ret = new VoidSignal(NDalicPINVOKE.Builder_QuitSignal(swigCPtr), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

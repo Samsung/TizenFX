@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ActorHoverSignal : global::System.IDisposable {
+internal class ActorHoverSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

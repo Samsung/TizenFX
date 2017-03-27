@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class ObjectCreatedSignal : global::System.IDisposable {
+    internal class ObjectCreatedSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 

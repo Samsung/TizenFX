@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-public enum PrimitiveVisualShapeType {
+/* moved to VisualMaps.cs
+    internal enum PrimitiveVisualShapeType {
   SPHERE,
   CONICAL_FRUSTRUM,
   CONE,
@@ -19,5 +19,5 @@ public enum PrimitiveVisualShapeType {
   OCTAHEDRON,
   BEVELLED_CUBE
 }
-
+*/
 }

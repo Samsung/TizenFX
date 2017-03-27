@@ -24,221 +24,271 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class PushButton : Button {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    /// <summary>
+    /// A PushButton changes its appearance when is pressed and returns to its original when is released.
+    /// </summary>
+    public class PushButton : Button
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PushButton_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PushButton obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~PushButton() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_PushButton(swigCPtr);
+        internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PushButton_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
 
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_PushButton_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PushButton obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~PushButton()
+        {
+            DisposeQueue.Instance.Add(this);
+        }
+
+        public override void Dispose()
+        {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_PushButton(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Property()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_PushButton_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal Property() : this(NDalicPINVOKE.new_PushButton_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int UNSELECTED_ICON = NDalicPINVOKE.PushButton_Property_UNSELECTED_ICON_get();
+            internal static readonly int SELECTED_ICON = NDalicPINVOKE.PushButton_Property_SELECTED_ICON_get();
+            internal static readonly int ICON_ALIGNMENT = NDalicPINVOKE.PushButton_Property_ICON_ALIGNMENT_get();
+            internal static readonly int LABEL_PADDING = NDalicPINVOKE.PushButton_Property_LABEL_PADDING_get();
+            internal static readonly int ICON_PADDING = NDalicPINVOKE.PushButton_Property_ICON_PADDING_get();
+
+        }
+
+        /// <summary>
+        /// Creates the PushButton.
+        /// </summary>
+        public PushButton() : this(NDalicPINVOKE.PushButton_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal PushButton(PushButton pushButton) : this(NDalicPINVOKE.new_PushButton__SWIG_1(PushButton.getCPtr(pushButton)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal PushButton Assign(PushButton pushButton)
+        {
+            PushButton ret = new PushButton(NDalicPINVOKE.PushButton_Assign(swigCPtr, PushButton.getCPtr(pushButton)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts a handle to PushButton handle.
+        /// If handle points to a PushButton, the downcast produces valid handle.
+        /// If not the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>handle to a PushButton or an uninitialized handle</returns>
+        public new static PushButton DownCast(BaseHandle handle)
+        {
+            PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal new void SetButtonImage(Image image)
+        {
+            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetButtonImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetBackgroundImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal new void SetSelectedImage(Image image)
+        {
+            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetSelectedImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetSelectedBackgroundImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetSelectedBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetDisabledBackgroundImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetDisabledBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetDisabledImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetDisabledImage(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetDisabledSelectedImage(Actor image)
+        {
+            NDalicPINVOKE.PushButton_SetDisabledSelectedImage(swigCPtr, Actor.getCPtr(image));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// Sets the unselected button image.
+        /// </summary>
+        public string UnselectedIcon
+        {
+            set
+            {
+                SetProperty(PushButton.Property.UNSELECTED_ICON, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Sets the selected button image.
+        /// </summary>
+        public string SelectedIcon
+        {
+            set
+            {
+                SetProperty(PushButton.Property.SELECTED_ICON, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Sets the icon alignment.
+        /// </summary>
+        public string IconAlignment
+        {
+            get
+            {
+                string temp;
+                GetProperty(PushButton.Property.ICON_ALIGNMENT).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        /// <summary>
+        /// Sets the label padding value.
+        /// </summary>
+        public Vector4 LabelPadding
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(PushButton.Property.LABEL_PADDING).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PushButton.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Sets the icon padding value.
+        /// </summary>
+        public string IconPadding
+        {
+            get
+            {
+                string temp;
+                GetProperty(PushButton.Property.ICON_PADDING).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(PushButton.Property.ICON_PADDING, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
     }
-  
-    public Property() : this(NDalicPINVOKE.new_PushButton_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int UNSELECTED_ICON = NDalicPINVOKE.PushButton_Property_UNSELECTED_ICON_get();
-    public static readonly int SELECTED_ICON = NDalicPINVOKE.PushButton_Property_SELECTED_ICON_get();
-    public static readonly int ICON_ALIGNMENT = NDalicPINVOKE.PushButton_Property_ICON_ALIGNMENT_get();
-    public static readonly int LABEL_PADDING = NDalicPINVOKE.PushButton_Property_LABEL_PADDING_get();
-    public static readonly int ICON_PADDING = NDalicPINVOKE.PushButton_Property_ICON_PADDING_get();
-  
-  }
-
-  public PushButton () : this (NDalicPINVOKE.PushButton_New(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public PushButton(PushButton pushButton) : this(NDalicPINVOKE.new_PushButton__SWIG_1(PushButton.getCPtr(pushButton)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public PushButton Assign(PushButton pushButton) {
-    PushButton ret = new PushButton(NDalicPINVOKE.PushButton_Assign(swigCPtr, PushButton.getCPtr(pushButton)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new static PushButton DownCast(BaseHandle handle) {
-    PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new void SetButtonImage(Image image) {
-    NDalicPINVOKE.PushButton_SetButtonImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetButtonImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetButtonImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetBackgroundImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetBackgroundImage(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new void SetSelectedImage(Image image) {
-    NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetSelectedImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetSelectedBackgroundImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetSelectedBackgroundImage(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetDisabledBackgroundImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetDisabledBackgroundImage(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetDisabledImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetDisabledImage(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetDisabledSelectedImage(Actor image) {
-    NDalicPINVOKE.PushButton_SetDisabledSelectedImage(swigCPtr, Actor.getCPtr(image));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000
-  }
-
-  public string UnselectedIcon
-  {
-    get
-    {
-      string temp;
-      GetProperty( PushButton.Property.UNSELECTED_ICON).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PushButton.Property.UNSELECTED_ICON, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string SelectedIcon
-  {
-    get
-    {
-      string temp;
-      GetProperty( PushButton.Property.SELECTED_ICON).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PushButton.Property.SELECTED_ICON, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string IconAlignment
-  {
-    get
-    {
-      string temp;
-      GetProperty( PushButton.Property.ICON_ALIGNMENT).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string LabelPadding
-  {
-    get
-    {
-      string temp;
-      GetProperty( PushButton.Property.LABEL_PADDING).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PushButton.Property.LABEL_PADDING, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public string IconPadding
-  {
-    get
-    {
-      string temp;
-      GetProperty( PushButton.Property.ICON_PADDING).Get( out temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( PushButton.Property.ICON_PADDING, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-
-}
 
 }

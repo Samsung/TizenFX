@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class SWIGTYPE_p_Configuration__ContextLoss {
+    internal class SWIGTYPE_p_Configuration__ContextLoss {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal SWIGTYPE_p_Configuration__ContextLoss(global::System.IntPtr cPtr, bool futureUse) {

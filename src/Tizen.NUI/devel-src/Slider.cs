@@ -24,596 +24,708 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-using System;
-using System.Runtime.InteropServices;
-
-
-public class Slider : View {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Slider_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Slider obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~Slider() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Slider(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-
-public class ValueChangedEventArgs : EventArgs
+namespace Tizen.NUI
 {
-   private Slider _slider;
-   private float _slideValue;
 
-   public Slider Slider
-   {
-      get
-      {
-         return _slider;
-      }
-      set
-      {
-         _slider = value;
-      }
-   }
+    using System;
+    using System.Runtime.InteropServices;
 
-   public float SlideValue
-   {
-      get
-      {
-         return _slideValue;
-      }
-      set
-      {
-         _slideValue = value;
-      }
-   }
-}
+    /// <summary>
+    /// Slider is a control to enable sliding an indicator between two values.
+    /// </summary>
+    public class Slider : View
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class SlidingFinishedEventArgs : EventArgs
-{
-   private Slider _slider;
-   private float _slideValue;
-
-   public Slider Slider
-   {
-      get
-      {
-         return _slider;
-      }
-      set
-      {
-         _slider = value;
-      }
-   }
-
-   public float SlideValue
-   {
-      get
-      {
-         return _slideValue;
-      }
-      set
-      {
-         _slideValue = value;
-      }
-   }
-}
-
-public class MarkReachedEventArgs : EventArgs
-{
-   private Slider _slider;
-   private int _slideValue;
-
-   public Slider Slider
-   {
-      get
-      {
-         return _slider;
-      }
-      set
-      {
-         _slider = value;
-      }
-   }
-
-   public int SlideValue
-   {
-      get
-      {
-         return _slideValue;
-      }
-      set
-      {
-         _slideValue = value;
-      }
-   }
-}
-
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate bool ValueChangedCallbackDelegate(IntPtr slider, float slideValue);
-  private DaliEventHandlerWithReturnType<object,ValueChangedEventArgs,bool> _sliderValueChangedEventHandler;
-  private ValueChangedCallbackDelegate _sliderValueChangedCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate bool SlidingFinishedCallbackDelegate(IntPtr slider, float slideValue);
-  private DaliEventHandlerWithReturnType<object,SlidingFinishedEventArgs,bool> _sliderSlidingFinishedEventHandler;
-  private SlidingFinishedCallbackDelegate _sliderSlidingFinishedCallbackDelegate;
-
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate bool MarkReachedCallbackDelegate(IntPtr slider, int slideValue);
-  private DaliEventHandlerWithReturnType<object,MarkReachedEventArgs,bool> _sliderMarkReachedEventHandler;
-  private MarkReachedCallbackDelegate _sliderMarkReachedCallbackDelegate;
-
-  public event DaliEventHandlerWithReturnType<object,ValueChangedEventArgs,bool> ValueChanged
-  {
-     add
-     {
-        lock(this)
+        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Slider_SWIGUpcast(cPtr), cMemoryOwn)
         {
-           // Restricted to only one listener
-           if (_sliderValueChangedEventHandler == null)
-           {
-              _sliderValueChangedEventHandler += value;
-
-              _sliderValueChangedCallbackDelegate = new ValueChangedCallbackDelegate(OnValueChanged);
-              this.ValueChangedSignal().Connect(_sliderValueChangedCallbackDelegate);
-           }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Slider obj)
         {
-           if (_sliderValueChangedEventHandler != null)
-           {
-              this.ValueChangedSignal().Disconnect(_sliderValueChangedCallbackDelegate);
-           }
-
-           _sliderValueChangedEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-     }
-  }
 
-  // Callback for Slider ValueChanged signal
-  private bool OnValueChanged(IntPtr slider, float slideValue)
-  {
-     ValueChangedEventArgs e = new ValueChangedEventArgs();
-
-     // Populate all members of "e" (ValueChangedEventArgs) with real page
-     e.Slider = Slider.GetSliderFromPtr( slider );
-     e.SlideValue = slideValue;
-
-     if (_sliderValueChangedEventHandler != null)
-     {
-        //here we send all page to user event handlers
-      return _sliderValueChangedEventHandler(this, e);
-     }
-     return false;
-  }
-
-  public event DaliEventHandlerWithReturnType<object,SlidingFinishedEventArgs,bool> SlidingFinished
-  {
-     add
-     {
-        lock(this)
+        ~Slider()
         {
-           // Restricted to only one listener
-           if (_sliderSlidingFinishedEventHandler == null)
-           {
-              _sliderSlidingFinishedEventHandler += value;
-
-              _sliderSlidingFinishedCallbackDelegate = new SlidingFinishedCallbackDelegate(OnSlidingFinished);
-              this.SlidingFinishedSignal().Connect(_sliderSlidingFinishedCallbackDelegate);
-           }
+            DisposeQueue.Instance.Add(this);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public override void Dispose()
         {
-           if (_sliderSlidingFinishedEventHandler != null)
-           {
-              this.SlidingFinishedSignal().Disconnect(_sliderSlidingFinishedCallbackDelegate);
-           }
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
 
-           _sliderSlidingFinishedEventHandler -= value;
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Slider(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
         }
-     }
-  }
 
-  // Callback for Slider SlidingFinished signal
-  private bool OnSlidingFinished(IntPtr slider, float slideValue)
-  {
-     SlidingFinishedEventArgs e = new SlidingFinishedEventArgs();
 
-     // Populate all members of "e" (SlidingFinishedEventArgs) with real page
-     e.Slider = Slider.GetSliderFromPtr( slider );
-     e.SlideValue = slideValue;
 
-     if (_sliderSlidingFinishedEventHandler != null)
-     {
-        //here we send all page to user event handlers
-      return _sliderSlidingFinishedEventHandler(this, e);
-     }
-     return false;
-  }
-
-  public event DaliEventHandlerWithReturnType<object,MarkReachedEventArgs,bool> MarkReached
-  {
-     add
-     {
-        lock(this)
+        /// <summary>
+        /// Value changed event arguments.
+        /// </summary>
+        public class ValueChangedEventArgs : EventArgs
         {
-           // Restricted to only one listener
-           if (_sliderMarkReachedEventHandler == null)
-           {
-              _sliderMarkReachedEventHandler += value;
+            private Slider _slider;
+            private float _slideValue;
 
-              _sliderMarkReachedCallbackDelegate = new MarkReachedCallbackDelegate(OnMarkReached);
-              this.MarkReachedSignal().Connect(_sliderMarkReachedCallbackDelegate);
-           }
+            /// <summary>
+            /// Slider.
+            /// </summary>
+            public Slider Slider
+            {
+                get
+                {
+                    return _slider;
+                }
+                set
+                {
+                    _slider = value;
+                }
+            }
+
+            /// <summary>
+            /// Slider value.
+            /// </summary>
+            public float SlideValue
+            {
+                get
+                {
+                    return _slideValue;
+                }
+                set
+                {
+                    _slideValue = value;
+                }
+            }
         }
-     }
 
-     remove
-     {
-        lock(this)
+        /// <summary>
+        /// Sliding finished event arguments.
+        /// </summary>
+        public class SlidingFinishedEventArgs : EventArgs
         {
-           if (_sliderMarkReachedEventHandler != null)
-           {
-              this.MarkReachedSignal().Disconnect(_sliderMarkReachedCallbackDelegate);
-           }
+            private Slider _slider;
+            private float _slideValue;
 
-           _sliderMarkReachedEventHandler -= value;
+            /// <summary>
+            /// Slider.
+            /// </summary>
+            public Slider Slider
+            {
+                get
+                {
+                    return _slider;
+                }
+                set
+                {
+                    _slider = value;
+                }
+            }
+
+            /// <summary>
+            /// Slider value.
+            /// </summary>
+            public float SlideValue
+            {
+                get
+                {
+                    return _slideValue;
+                }
+                set
+                {
+                    _slideValue = value;
+                }
+            }
         }
-     }
-  }
 
-  // Callback for Slider MarkReached signal
-  private bool OnMarkReached(IntPtr slider, int slideValue)
-  {
-     MarkReachedEventArgs e = new MarkReachedEventArgs();
+        /// <summary>
+        /// Mark reached event arguments.
+        /// </summary>
+        public class MarkReachedEventArgs : EventArgs
+        {
+            private Slider _slider;
+            private int _slideValue;
 
-     // Populate all members of "e" (MarkReachedEventArgs) with real page
-     e.Slider = Slider.GetSliderFromPtr( slider );
-     e.SlideValue = slideValue;
+            /// <summary>
+            /// Slider.
+            /// </summary>
+            public Slider Slider
+            {
+                get
+                {
+                    return _slider;
+                }
+                set
+                {
+                    _slider = value;
+                }
+            }
 
-     if (_sliderMarkReachedEventHandler != null)
-     {
-        //here we send all page to user event handlers
-      return _sliderMarkReachedEventHandler(this, e);
-     }
-     return false;
-  }
-
-  public static Slider GetSliderFromPtr(global::System.IntPtr cPtr) {
-    Slider ret = new Slider(cPtr, false);
-   if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-
-  public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_Slider_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            /// <summary>
+            /// Slider value.
+            /// </summary>
+            public int SlideValue
+            {
+                get
+                {
+                    return _slideValue;
+                }
+                set
+                {
+                    _slideValue = value;
+                }
+            }
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_Slider_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int LOWER_BOUND = NDalicPINVOKE.Slider_Property_LOWER_BOUND_get();
-    public static readonly int UPPER_BOUND = NDalicPINVOKE.Slider_Property_UPPER_BOUND_get();
-    public static readonly int VALUE = NDalicPINVOKE.Slider_Property_VALUE_get();
-    public static readonly int TRACK_VISUAL = NDalicPINVOKE.Slider_Property_TRACK_VISUAL_get();
-    public static readonly int HANDLE_VISUAL = NDalicPINVOKE.Slider_Property_HANDLE_VISUAL_get();
-    public static readonly int PROGRESS_VISUAL = NDalicPINVOKE.Slider_Property_PROGRESS_VISUAL_get();
-    public static readonly int POPUP_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_VISUAL_get();
-    public static readonly int POPUP_ARROW_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_ARROW_VISUAL_get();
-    public static readonly int DISABLED_COLOR = NDalicPINVOKE.Slider_Property_DISABLED_COLOR_get();
-    public static readonly int VALUE_PRECISION = NDalicPINVOKE.Slider_Property_VALUE_PRECISION_get();
-    public static readonly int SHOW_POPUP = NDalicPINVOKE.Slider_Property_SHOW_POPUP_get();
-    public static readonly int SHOW_VALUE = NDalicPINVOKE.Slider_Property_SHOW_VALUE_get();
-    public static readonly int MARKS = NDalicPINVOKE.Slider_Property_MARKS_get();
-    public static readonly int SNAP_TO_MARKS = NDalicPINVOKE.Slider_Property_SNAP_TO_MARKS_get();
-    public static readonly int MARK_TOLERANCE = NDalicPINVOKE.Slider_Property_MARK_TOLERANCE_get();
-  
-  }
 
-  public Slider () : this (NDalicPINVOKE.Slider_New(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  }
-  public Slider(Slider handle) : this(NDalicPINVOKE.new_Slider__SWIG_1(Slider.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool ValueChangedCallbackDelegate(IntPtr slider, float slideValue);
+        private EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> _sliderValueChangedEventHandler;
+        private ValueChangedCallbackDelegate _sliderValueChangedCallbackDelegate;
 
-  public Slider Assign(Slider handle) {
-    Slider ret = new Slider(NDalicPINVOKE.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool SlidingFinishedCallbackDelegate(IntPtr slider, float slideValue);
+        private EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> _sliderSlidingFinishedEventHandler;
+        private SlidingFinishedCallbackDelegate _sliderSlidingFinishedCallbackDelegate;
 
-  public new static Slider DownCast(BaseHandle handle) {
-    Slider ret = new Slider(NDalicPINVOKE.Slider_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool MarkReachedCallbackDelegate(IntPtr slider, int slideValue);
+        private EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> _sliderMarkReachedEventHandler;
+        private MarkReachedCallbackDelegate _sliderMarkReachedCallbackDelegate;
 
-  public SliderValueChangedSignal ValueChangedSignal() {
-    SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_ValueChangedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        /// <summary>
+        /// Event emitted when the slider value changes.
+        /// </summary>
+        public event EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> ValueChanged
+        {
+            add
+            {
+                if (_sliderValueChangedEventHandler == null)
+                {
+                    _sliderValueChangedCallbackDelegate = (OnValueChanged);
+                    ValueChangedSignal().Connect(_sliderValueChangedCallbackDelegate);
+                }
+                _sliderValueChangedEventHandler += value;
+            }
+            remove
+            {
+                _sliderValueChangedEventHandler -= value;
+                if (_sliderValueChangedEventHandler == null && _sliderValueChangedCallbackDelegate != null)
+                {
+                    ValueChangedSignal().Disconnect(_sliderValueChangedCallbackDelegate);
+                }
+            }
+        }
 
-  public SliderValueChangedSignal SlidingFinishedSignal() {
-    SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_SlidingFinishedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        // Callback for Slider ValueChanged signal
+        private bool OnValueChanged(IntPtr slider, float slideValue)
+        {
+            ValueChangedEventArgs e = new ValueChangedEventArgs();
 
-  public SliderMarkReachedSignal MarkReachedSignal() {
-    SliderMarkReachedSignal ret = new SliderMarkReachedSignal(NDalicPINVOKE.Slider_MarkReachedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            // Populate all members of "e" (ValueChangedEventArgs) with real page
+            e.Slider = Slider.GetSliderFromPtr(slider);
+            e.SlideValue = slideValue;
 
-  public enum PropertyRange {
-    PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-    PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX+1000
-  }
+            if (_sliderValueChangedEventHandler != null)
+            {
+                //here we send all page to user event handlers
+                return _sliderValueChangedEventHandler(this, e);
+            }
+            return false;
+        }
 
-  public float LowerBound
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( Slider.Property.LOWER_BOUND).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.LOWER_BOUND, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public float UpperBound
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( Slider.Property.UPPER_BOUND).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.UPPER_BOUND, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public float Value
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( Slider.Property.VALUE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.VALUE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map TrackVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Slider.Property.TRACK_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.TRACK_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map HandleVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Slider.Property.HANDLE_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.HANDLE_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map ProgressVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Slider.Property.PROGRESS_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map PopupVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Slider.Property.POPUP_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.POPUP_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Map PopupArrowVisual
-  {
-    get
-    {
-      Tizen.NUI.Property.Map temp = new Tizen.NUI.Property.Map();
-      GetProperty( Slider.Property.POPUP_ARROW_VISUAL).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Vector4 DisabledColor
-  {
-    get
-    {
-      Vector4 temp = new Vector4(0.0f,0.0f,0.0f,0.0f);
-      GetProperty( Slider.Property.DISABLED_COLOR).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.DISABLED_COLOR, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public int ValuePrecision
-  {
-    get
-    {
-      int temp = 0;
-      GetProperty( Slider.Property.VALUE_PRECISION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.VALUE_PRECISION, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool ShowPopup
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Slider.Property.SHOW_POPUP).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.SHOW_POPUP, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool ShowValue
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Slider.Property.SHOW_VALUE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.SHOW_VALUE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public Tizen.NUI.Property.Array Marks
-  {
-    get
-    {
-      Tizen.NUI.Property.Array temp = new Tizen.NUI.Property.Array();
-      GetProperty( Slider.Property.MARKS).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.MARKS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public bool SnapToMarks
-  {
-    get
-    {
-      bool temp = false;
-      GetProperty( Slider.Property.SNAP_TO_MARKS).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
-  public float MarkTolerance
-  {
-    get
-    {
-      float temp = 0.0f;
-      GetProperty( Slider.Property.MARK_TOLERANCE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      SetProperty( Slider.Property.MARK_TOLERANCE, new Tizen.NUI.Property.Value( value ) );
-    }
-  }
+        /// <summary>
+        /// Event emitted when the sliding is finished.
+        /// </summary>
+        public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
+        {
+            add
+            {
+                if (_sliderSlidingFinishedEventHandler == null)
+                {
+                    _sliderSlidingFinishedCallbackDelegate = (OnSlidingFinished);
+                    SlidingFinishedSignal().Connect(_sliderSlidingFinishedCallbackDelegate);
+                }
+                _sliderSlidingFinishedEventHandler += value;
+            }
+            remove
+            {
+                _sliderSlidingFinishedEventHandler -= value;
+                if (_sliderSlidingFinishedEventHandler == null && _sliderSlidingFinishedCallbackDelegate != null)
+                {
+                    SlidingFinishedSignal().Disconnect(_sliderSlidingFinishedCallbackDelegate);
+                }
+            }
+        }
 
-}
+        // Callback for Slider SlidingFinished signal
+        private bool OnSlidingFinished(IntPtr slider, float slideValue)
+        {
+            SlidingFinishedEventArgs e = new SlidingFinishedEventArgs();
+
+            // Populate all members of "e" (SlidingFinishedEventArgs) with real page
+            e.Slider = Slider.GetSliderFromPtr(slider);
+            e.SlideValue = slideValue;
+
+            if (_sliderSlidingFinishedEventHandler != null)
+            {
+                //here we send all page to user event handlers
+                return _sliderSlidingFinishedEventHandler(this, e);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Event emitted when the slider handle reaches a mark.
+        /// </summary>
+        public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
+        {
+            add
+            {
+                if (_sliderMarkReachedEventHandler == null)
+                {
+                    _sliderMarkReachedCallbackDelegate = (OnMarkReached);
+                    MarkReachedSignal().Connect(_sliderMarkReachedCallbackDelegate);
+                }
+                _sliderMarkReachedEventHandler += value;
+            }
+            remove
+            {
+                _sliderMarkReachedEventHandler -= value;
+                if (_sliderMarkReachedEventHandler == null && _sliderMarkReachedCallbackDelegate != null)
+                {
+                    MarkReachedSignal().Disconnect(_sliderMarkReachedCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Slider MarkReached signal
+        private bool OnMarkReached(IntPtr slider, int slideValue)
+        {
+            MarkReachedEventArgs e = new MarkReachedEventArgs();
+
+            // Populate all members of "e" (MarkReachedEventArgs) with real page
+            e.Slider = Slider.GetSliderFromPtr(slider);
+            e.SlideValue = slideValue;
+
+            if (_sliderMarkReachedEventHandler != null)
+            {
+                //here we send all page to user event handlers
+                return _sliderMarkReachedEventHandler(this, e);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Get Slider from the pointer.
+        /// </summary>
+        /// <param name="cPtr">The pointer of Slider</param>
+        /// <returns>Object of Slider type</returns>
+        internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
+        {
+            Slider ret = new Slider(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Property()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this)
+                {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            NDalicPINVOKE.delete_Slider_Property(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal Property() : this(NDalicPINVOKE.new_Slider_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal static readonly int LOWER_BOUND = NDalicPINVOKE.Slider_Property_LOWER_BOUND_get();
+            internal static readonly int UPPER_BOUND = NDalicPINVOKE.Slider_Property_UPPER_BOUND_get();
+            internal static readonly int VALUE = NDalicPINVOKE.Slider_Property_VALUE_get();
+            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.Slider_Property_TRACK_VISUAL_get();
+            internal static readonly int HANDLE_VISUAL = NDalicPINVOKE.Slider_Property_HANDLE_VISUAL_get();
+            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.Slider_Property_PROGRESS_VISUAL_get();
+            internal static readonly int POPUP_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_VISUAL_get();
+            internal static readonly int POPUP_ARROW_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_ARROW_VISUAL_get();
+            internal static readonly int DISABLED_COLOR = NDalicPINVOKE.Slider_Property_DISABLED_COLOR_get();
+            internal static readonly int VALUE_PRECISION = NDalicPINVOKE.Slider_Property_VALUE_PRECISION_get();
+            internal static readonly int SHOW_POPUP = NDalicPINVOKE.Slider_Property_SHOW_POPUP_get();
+            internal static readonly int SHOW_VALUE = NDalicPINVOKE.Slider_Property_SHOW_VALUE_get();
+            internal static readonly int MARKS = NDalicPINVOKE.Slider_Property_MARKS_get();
+            internal static readonly int SNAP_TO_MARKS = NDalicPINVOKE.Slider_Property_SNAP_TO_MARKS_get();
+            internal static readonly int MARK_TOLERANCE = NDalicPINVOKE.Slider_Property_MARK_TOLERANCE_get();
+
+        }
+
+        /// <summary>
+        /// Creates the Slider control.
+        /// </summary>
+        public Slider() : this(NDalicPINVOKE.Slider_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal Slider(Slider handle) : this(NDalicPINVOKE.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Slider Assign(Slider handle)
+        {
+            Slider ret = new Slider(NDalicPINVOKE.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Downcasts an Object handle to Slider.
+        /// If handle points to a Slider, the downcast produces valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a Slider or an uninitialized handle</returns>
+        public new static Slider DownCast(BaseHandle handle)
+        {
+            Slider ret = new Slider(NDalicPINVOKE.Slider_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SliderValueChangedSignal ValueChangedSignal()
+        {
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_ValueChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SliderValueChangedSignal SlidingFinishedSignal()
+        {
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_SlidingFinishedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SliderMarkReachedSignal MarkReachedSignal()
+        {
+            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(NDalicPINVOKE.Slider_MarkReachedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal enum PropertyRange
+        {
+            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
+            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
+        }
+
+        /// <summary>
+        /// Lower bound property
+        /// </summary>
+        public float LowerBound
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(Slider.Property.LOWER_BOUND).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Upper bound property
+        /// </summary>
+        public float UpperBound
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(Slider.Property.UPPER_BOUND).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Value property
+        /// </summary>
+        public float Value
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(Slider.Property.VALUE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.VALUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Track visual property
+        /// </summary>
+        public PropertyMap TrackVisual
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.TRACK_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Handle visual property
+        /// </summary>
+        public PropertyMap HandleVisual
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.HANDLE_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Progress visual property
+        /// </summary>
+        public PropertyMap ProgressVisual
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.PROGRESS_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Popup visual property
+        /// </summary>
+        public PropertyMap PopupVisual
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.POPUP_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Popup arrow visual property
+        /// </summary>
+        public PropertyMap PopupArrowVisual
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Disable color property
+        /// </summary>
+        public Vector4 DisabledColor
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Slider.Property.DISABLED_COLOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Value presicion property
+        /// </summary>
+        public int ValuePrecision
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(Slider.Property.VALUE_PRECISION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Show popup property
+        /// </summary>
+        public bool ShowPopup
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Slider.Property.SHOW_POPUP).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Show value property
+        /// </summary>
+        public bool ShowValue
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Slider.Property.SHOW_VALUE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Marks property
+        /// </summary>
+        public Tizen.NUI.PropertyArray Marks
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(Slider.Property.MARKS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.MARKS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Snap to marks property
+        /// </summary>
+        public bool SnapToMarks
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(Slider.Property.SNAP_TO_MARKS).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Mark tolerance property
+        /// </summary>
+        public float MarkTolerance
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(Slider.Property.MARK_TOLERANCE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+    }
 
 }
