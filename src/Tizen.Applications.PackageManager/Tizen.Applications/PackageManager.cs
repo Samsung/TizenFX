@@ -42,7 +42,16 @@ namespace Tizen.Applications
 
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
 
+        /// <summary>
+        /// Event Callback Method for the request.
+        /// </summary>
+        /// <param name="type">Type of the package which was requested</param>
+        /// <param name="packageId">ID of the package which was requested</param>
+        /// <param name="eventType">Event type of the request</param>
+        /// <param name="eventState">Current event state of the request</param>
+        /// <param name="progress">Progress for the request being processed by the package manager (in percent)</param>
         public delegate void RequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress);
+
         private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
         private static Dictionary<int, SafePackageManagerRequestHandle> RequestHandles = new Dictionary<int, SafePackageManagerRequestHandle>();
 
