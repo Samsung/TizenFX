@@ -509,7 +509,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, value);
+                            _attributes.Add(key, value);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.Bool:
@@ -521,7 +521,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, value);
+                            _attributes.Add(key, value);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.Double:
@@ -533,7 +533,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, value);
+                            _attributes.Add(key, value);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.String:
@@ -545,7 +545,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, value);
+                            _attributes.Add(key, value);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.ByteStr:
@@ -560,12 +560,12 @@ namespace Tizen.Network.IoTConnectivity
                             }
                             byte[] byteStr = new byte[byteStrSize];
                             Marshal.Copy(byteStrPtr, byteStr, 0, byteStrSize);
-                            Add(key, byteStr);
+                            _attributes.Add(key, byteStr);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.Null:
                         {
-                            Add(key, null);
+                            _attributes.Add(key, null);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.List:
@@ -577,7 +577,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, List.GetList(listHandle));
+                            _attributes.Add(key, List.GetList(listHandle));
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.Attributes:
@@ -589,7 +589,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Add(key, new Attributes(attribsHandle));
+                            _attributes.Add(key, new Attributes(attribsHandle));
                             break;
                         }
                     default:
