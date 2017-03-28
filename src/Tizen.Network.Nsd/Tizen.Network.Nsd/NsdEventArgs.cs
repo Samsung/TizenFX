@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// An extended EventArgs class which contains changed service state during service discovery using DNSSD.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DnssdServiceFoundEventArgs : EventArgs
     {
         private DnssdServiceState _state;
@@ -35,6 +36,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// DNSSD service state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DnssdServiceState State
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// DNSSD service instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DnssdService Service
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// An extended EventArgs class which contains changed service state during service discovery using SSDP.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsdpServiceFoundEventArgs : EventArgs
     {
         private SsdpServiceState _state;
@@ -72,6 +76,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// SSDP service state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsdpServiceState State
         {
             get
@@ -83,6 +88,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// SSDP service instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsdpService Service
         {
             get

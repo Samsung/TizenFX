@@ -14,21 +14,41 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Network.Nsd
 {
     /// <summary>
-    /// This interface provides properties for managing local service discovery using DNSSD/SSDP.
+    /// This interface is used for managing local service registration using DNSSD/SSDP.
     /// </summary>
-    public interface INsdService
+    public interface INsdService : IDisposable
     {
         /// <summary>
-        /// Name of local service.
+        /// Registers the DNSSD/SSDP local service for publishing.
         /// </summary>
-        string Name { get; set; }
+        /// <remarks>
+        /// A service created locally must be passed.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        void RegisterService();
 
         /// <summary>
-        /// Type of local/remote service.
+        /// Deregisters the DNSSD/SSDP local service.
         /// </summary>
-        string Type { get; }
+        /// <remarks>
+        /// A local service registered using RegisterService() must be passed.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        void DeregisterService();
     }
 }

@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This class is used for managing network service discovery using DNSSD.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DnssdBrowser : INsdBrowser
     {
         private string _serviceType;
@@ -31,6 +32,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// This event is raised when a DNSSD service is found during service discovery.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<DnssdServiceFoundEventArgs> ServiceFound
         {
             add
@@ -48,15 +50,37 @@ namespace Tizen.Network.Nsd
         /// A public constructor for DnssdBrowser class to create a DnssdBrowser instance for the given service type.
         /// </summary>
         /// <param name="serviceType">The DNSSD service type</param>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="ArgumentException">Thrown when serviceType is null.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         public DnssdBrowser(string serviceType)
         {
             DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
             Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+            if(serviceType == null)
+            {
+                Log.Debug(Globals.LogTag, "serviceType is null");
+                NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidParameter);
+            }
 
             _serviceType = serviceType;
         }
 
-        internal void StartDiscovery()
+        /// <summary>
+        /// Starts browsing the DNSSD remote service.
+        /// </summary>
+        /// <remarks>
+        /// If there are any services available, ServiceFound event will be invoked.
+        /// Application will keep browsing for available/unavailable services until it calls StopDiscovery().
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        public void StartDiscovery()
         {
             DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
             Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
@@ -79,7 +103,14 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void StopDiscovery()
+        /// <summary>
+        /// Stops browsing the DNSSD remote service.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        public void StopDiscovery()
         {
             int ret = Interop.Nsd.Dnssd.StopBrowsing(_browserHandle);
             if (ret != (int)DnssdError.None)

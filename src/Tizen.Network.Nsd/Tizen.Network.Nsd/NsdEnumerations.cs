@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// Enumeration for DNS-SD service state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DnssdServiceState
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// Enumeration for SSDP service state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SsdpServiceState
     {
         /// <summary>
@@ -64,6 +66,7 @@ namespace Tizen.Network.Nsd
     {
         None = ErrorCode.None,
         OutOfMemory = ErrorCode.OutOfMemory,
+        PermissionDenied = ErrorCode.PermissionDenied,
         InvalidOperation = ErrorCode.InvalidOperation,
         InvalidParameter = ErrorCode.InvalidParameter,
         NotSupported = ErrorCode.NotSupported,
@@ -79,6 +82,7 @@ namespace Tizen.Network.Nsd
     {
         None = ErrorCode.None,
         OutOfMemory = ErrorCode.OutOfMemory,
+        PermissionDenied = ErrorCode.PermissionDenied,
         InvalidParameter = ErrorCode.InvalidParameter,
         NotSupported = ErrorCode.NotSupported,
         NotInitialized = -0x01C90000 | 0x01,

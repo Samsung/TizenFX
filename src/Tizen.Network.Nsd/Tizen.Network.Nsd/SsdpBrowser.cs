@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This class is used for managing network service discovery using SSDP.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsdpBrowser : INsdBrowser
     {
         private string _target;
@@ -31,6 +32,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// This event is raised when service has become available or unavailable during service discovery using SSDP.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SsdpServiceFoundEventArgs> ServiceFound
         {
             add
@@ -47,16 +49,36 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// A public constructor for SsdpBrowser class to create a SsdpBrowser instance for the given target.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The target to browse for the service.</param>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="ArgumentException">Thrown when target is null.</exception>
+        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         public SsdpBrowser(string target)
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
             Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+            if (target == null)
+            {
+                Log.Debug(Globals.LogTag, "target is null");
+                NsdErrorFactory.ThrowSsdpException((int)SsdpError.InvalidParameter);
+            }
 
             _target = target;
         }
 
-        internal void StartDiscovery()
+        /// <summary>
+        /// Starts browsing the SSDP remote service.
+        /// </summary>
+        /// <remarks>
+        /// If there are any services available, ServiceFound event will be invoked.
+        /// Application will keep browsing for available/unavailable services until it calls StopDiscovery().
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        public void StartDiscovery()
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
             Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
@@ -79,7 +101,16 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void StopDiscovery()
+        /// <summary>
+        /// Stops browsing the SSDP remote service.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        public void StopDiscovery()
         {
             int ret = Interop.Nsd.Ssdp.StopBrowsing(_browserHandle);
             if (ret != (int)SsdpError.None)

@@ -27,10 +27,12 @@ namespace Tizen.Network.Nsd
             {
             case DnssdError.OutOfMemory:
                 throw new InvalidOperationException("Out of memory");
+            case DnssdError.PermissionDenied:
+                throw new UnauthorizedAccessException("Permission Denied");
             case DnssdError.InvalidOperation:
                 throw new InvalidOperationException("Invalid operation");
             case DnssdError.InvalidParameter:
-                throw new InvalidOperationException("Invalid parameter");
+                throw new ArgumentException("Invalid parameter");
             case DnssdError.NotSupported:
                 throw new NotSupportedException("Not supported");
             case DnssdError.NotInitialized:
@@ -55,8 +57,10 @@ namespace Tizen.Network.Nsd
             {
                 case SsdpError.OutOfMemory:
                     throw new InvalidOperationException("Out of memory");
+                case SsdpError.PermissionDenied:
+                    throw new UnauthorizedAccessException("Permission Denied");
                 case SsdpError.InvalidParameter:
-                    throw new InvalidOperationException("Invalid parameter");
+                    throw new ArgumentException("Invalid parameter");
                 case SsdpError.NotSupported:
                     throw new NotSupportedException("Not supported");
                 case SsdpError.NotInitialized:

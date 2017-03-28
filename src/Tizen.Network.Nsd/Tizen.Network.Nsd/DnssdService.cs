@@ -40,6 +40,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This class is used for managing local service registration and its properties using DNSSD.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DnssdService : INsdService
     {
         private uint _serviceHandle;
@@ -50,9 +51,11 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Constructor to create DnssdService instance that sets the serviceType to a given value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="serviceType">The DNSSD service type. It is expressed as type followed by protocol, separated by a dot(e.g. "_ftp._tcp").
         /// It must begin with an underscore, followed by 1-15 characters which may be letters, digits or hyphens.
         /// </param>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
         public DnssdService(string serviceType)
         {
             _serviceType = serviceType;
@@ -81,10 +84,14 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <remarks>
         /// Set Name for only unregistered service created locally.
+        /// It may be up to 63 bytes.
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
+        /// <exception cref="ArgumentException">Thrown when Name value is set to null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
         public string Name
         {
             get
@@ -107,7 +114,7 @@ namespace Tizen.Network.Nsd
                     DnssdInitializeCreateService();
                 }
 
-                int ret = Interop.Nsd.Dnssd.SetName(_serviceHandle, value.ToString());
+                int ret = Interop.Nsd.Dnssd.SetName(_serviceHandle, value);
                 if (ret != (int)DnssdError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set name of service, Error: " + (DnssdError)ret);
@@ -120,8 +127,11 @@ namespace Tizen.Network.Nsd
         /// Type of DNSSD local/remote service.
         /// </summary>
         /// <remarks>
+        /// It is expressed as type followed by protocol, separated by a dot(e.g. "_ftp._tcp").
+        /// It must begin with an underscore, followed by 1-15 characters which may be letters, digits or hyphens.
         /// In case of error, null will be returned.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public string Type
         {
             get
@@ -142,11 +152,14 @@ namespace Tizen.Network.Nsd
         /// Port number of DNSSD local/remote service.
         /// </summary>
         /// <remarks>
-        /// Set Port for only unregistered service created locally.
+        /// Set Port for only unregistered service created locally. The default value of Port is 0.
         /// In case of error, -1 will be returned during get and exception will be thrown during set.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
+        /// <exception cref="ArgumentException">Thrown if value of Port is set to less than 0 or more than 65535.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
         public int Port
         {
             get
@@ -179,12 +192,13 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// IP of DNSSD remote service.
+        /// IP address of DNSSD remote service.
         /// </summary>
         /// <remarks>
-        /// If there is no IPv4 Address, then IPV4Address would contain null and if there is no IPv6 Address, then IPV6Address would contain null.
+        /// If the remote service has no IPv4 Address, then IPv4Address would contain null and if it has no IPv6 Address, then IPv6Address would contain null.
         /// In case of error, null object will be returned.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public IPAddressInformation IP
         {
             get
@@ -218,10 +232,13 @@ namespace Tizen.Network.Nsd
         /// <remarks>
         /// TXT record should be added after registering local service using RegisterService().
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The key of the TXT record. It must be a null-terminated string with 9 characters or fewer excluding null. It is case insensitive.</param>
         /// <param name="value">The value of the TXT record.If null, then "key" will be added with no value. If non-null but value_length is zero, then "key=" will be added with empty value.</param>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="ArgumentException">Thrown when value of key is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         public void AddTXTRecord(string key, string value)
         {
             byte[] byteValue = Encoding.UTF8.GetBytes(value);
@@ -248,9 +265,12 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Removes the TXT record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The key of the TXT record to be removed.</param>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="ArgumentException">Thrown when value of key is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         public void RemoveTXTRecord(string key)
         {
             int ret = Interop.Nsd.Dnssd.RemoveTxtRecord(_serviceHandle, key);
@@ -274,9 +294,19 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void RegisterService()
+        /// <summary>
+        /// Registers the DNSSD local service for publishing.
+        /// </summary>
+        /// Name of the service must be set.
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        public void RegisterService()
         {
-            if (Globals.s_threadDns.IsValueCreated)
+            if (!Globals.s_threadDns.IsValueCreated)
             {
                 DnssdInitializeCreateService();
             }
@@ -298,7 +328,17 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void DeregisterService()
+        /// <summary>
+        /// Deregisters the DNSSD local service.
+        /// </summary>
+        /// <remarks>
+        /// A local service registered using RegisterService() must be passed.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
+        public void DeregisterService()
         {
             int ret = Interop.Nsd.Dnssd.DeregisterService(_serviceHandle);
             if (ret != (int)DnssdError.None)
@@ -308,19 +348,50 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        ~DnssdService()
+        #region IDisposable Support
+        private bool _disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
         {
-            int ret = Interop.Nsd.Dnssd.DestroyService(_serviceHandle);
-            if (ret != (int)DnssdError.None)
+            if (!_disposedValue)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy the local Dnssd service handle, Error - " + (DnssdError)ret);
+                if (disposing)
+                {
+                    if (_serviceHandle != 0)
+                    {
+                        int ret = Interop.Nsd.Dnssd.DestroyService(_serviceHandle);
+                        if (ret != (int)DnssdError.None)
+                        {
+                            Log.Error(Globals.LogTag, "Failed to destroy the local Dnssd service handle, Error - " + (DnssdError)ret);
+                        }
+                    }
+                }
+
+                _disposedValue = true;
             }
         }
+
+         ~DnssdService()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Disposes the memory allocated to unmanaged resources.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 
     /// <summary>
     /// This class manages the IP address properties of DNSSD service.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class IPAddressInformation
     {
         private string _ipv4, _ipv6;
@@ -337,7 +408,8 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// The IP version 4 address of DNSSD service.
         /// </summary>
-        public IPAddress IPV4Address
+        /// <since_tizen> 4 </since_tizen>
+        public IPAddress IPv4Address
         {
             get
             {
@@ -348,7 +420,8 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// The IP version 6 address of DNSSD service.
         /// </summary>
-        public IPAddress IPV6Address
+        /// <since_tizen> 4 </since_tizen>
+        public IPAddress IPv6Address
         {
             get
             {

@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Threading;
 
 namespace Tizen.Network.Nsd
 {
@@ -38,6 +39,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This class is used for managing local service registration and its properties using SSDP.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsdpService : INsdService
     {
         private uint _serviceHandle;
@@ -47,7 +49,9 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Constructor to create SsdpService instance that sets the target to a given value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The SSDP local service's target. It may be a device type or a service type.</param>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
         public SsdpService(string target)
         {
             _target = target;
@@ -75,61 +79,66 @@ namespace Tizen.Network.Nsd
         /// Unique Service Name of SSDP service.
         /// </summary>
         /// <remarks>
-        /// Set Name for only unregistered service created locally. If service is already registered, Name will not be set.
+        /// Set Usn for only unregistered service created locally. If service is already registered, Usn will not be set.
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
-        public string Name
+        /// <exception cref="ArgumentException">Thrown when Usn value is set to null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
+        public string Usn
         {
             get
             {
-                string name;
-                int ret = Interop.Nsd.Ssdp.GetUsn(_serviceHandle, out name);
+                string usn;
+                int ret = Interop.Nsd.Ssdp.GetUsn(_serviceHandle, out usn);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get name of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get usn of service, Error: " + (SsdpError)ret);
                     return null;
                 }
 
-                return name;
+                return usn;
             }
 
             set
             {
-                if (Globals.s_threadSsd.IsValueCreated)
+                if (!Globals.s_threadSsd.IsValueCreated)
                 {
                     SsdpInitializeCreateService();
                 }
 
-                int ret = Interop.Nsd.Ssdp.SetUsn(_serviceHandle, value.ToString());
+                int ret = Interop.Nsd.Ssdp.SetUsn(_serviceHandle, value);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set name of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, "Failed to set usn of service, Error: " + (SsdpError)ret);
                     NsdErrorFactory.ThrowSsdpException(ret);
                 }
             }
         }
 
         /// <summary>
-        /// Type of SSDP service.
+        /// Target of SSDP service.
         /// </summary>
         /// <remarks>
+        /// It may be a device type or a service type specified in UPnP forum (http://upnp.org).
         /// In case of error, null will be returned.
         /// </remarks>
-        public string Type
+        /// <since_tizen> 4 </since_tizen>
+        public string Target
         {
             get
             {
-                string type;
-                int ret = Interop.Nsd.Ssdp.GetTarget(_serviceHandle, out type);
+                string target;
+                int ret = Interop.Nsd.Ssdp.GetTarget(_serviceHandle, out target);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get type of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get target of service, Error: " + (SsdpError)ret);
                     return null;
                 }
 
-                return type;
+                return target;
             }
         }
 
@@ -140,8 +149,11 @@ namespace Tizen.Network.Nsd
         /// Set Url for only unregistered service created locally. If service is already registered, Url will not be set.
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occured.</exception>
+        /// <exception cref="ArgumentException">Thrown when Url value is set to null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
         public string Url
         {
             get
@@ -159,12 +171,12 @@ namespace Tizen.Network.Nsd
 
             set
             {
-                if (Globals.s_threadSsd.IsValueCreated)
+                if (!Globals.s_threadSsd.IsValueCreated)
                 {
                     SsdpInitializeCreateService();
                 }
 
-                int ret = Interop.Nsd.Ssdp.SetUrl(_serviceHandle, value.ToString());
+                int ret = Interop.Nsd.Ssdp.SetUrl(_serviceHandle, value);
                 if (ret != (int)SsdpError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set url of Ssdp service, Error: " + (SsdpError)ret);
@@ -173,9 +185,22 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void RegisterService()
+        /// <summary>
+        /// Registers the SSDP local service for publishing.
+        /// </summary>
+        /// <remarks>
+        /// A service created locally must be passed.
+        /// Url and Usn of the service must be set before RegisterService is called.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        public void RegisterService()
         {
-            if (Globals.s_threadSsd.IsValueCreated)
+            if (!Globals.s_threadSsd.IsValueCreated)
             {
                 SsdpInitializeCreateService();
             }
@@ -192,7 +217,17 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        internal void DeregisterService()
+        /// <summary>
+        /// Deregisters the SSDP local service.
+        /// </summary>
+        /// <remarks>
+        /// A local service registered using RegisterService() must be passed.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        public void DeregisterService()
         {
             int ret = Interop.Nsd.Ssdp.DeregisterService(_serviceHandle);
             if (ret != (int)SsdpError.None)
@@ -202,13 +237,43 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        ~SsdpService()
+        #region IDisposable Support
+        private bool _disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
         {
-            int ret = Interop.Nsd.Ssdp.DestroyService(_serviceHandle);
-            if (ret != (int)SsdpError.None)
+            if (!_disposedValue)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy the local Ssdp service handle, Error - " + (SsdpError)ret);
+                if (disposing)
+                {
+                    if (_serviceHandle != 0)
+                    {
+                        int ret = Interop.Nsd.Ssdp.DestroyService(_serviceHandle);
+                        if (ret != (int)SsdpError.None)
+                        {
+                            Log.Error(Globals.LogTag, "Failed to destroy the local Ssdp service handle, Error - " + (SsdpError)ret);
+                        }
+                    }
+                }
+
+                _disposedValue = true;
             }
         }
+
+        ~SsdpService()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Disposes the memory allocated to unmanaged resources.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

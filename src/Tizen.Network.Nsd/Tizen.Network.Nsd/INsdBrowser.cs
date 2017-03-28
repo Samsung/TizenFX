@@ -21,5 +21,30 @@ namespace Tizen.Network.Nsd
     /// </summary>
     public interface INsdBrowser
     {
+        /// <summary>
+        /// Starts browsing the DNSSD/SSDP remote service.
+        /// </summary>
+        /// <remarks>
+        /// If there are any services available, ServiceFound event will be invoked.
+        /// Application will keep browsing for available/unavailable services until it calls StopDiscovery().
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        void StartDiscovery();
+
+        /// <summary>
+        /// Stops browsing the DNSSD/SSDP remote service.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        void StopDiscovery();
     }
 }
