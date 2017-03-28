@@ -77,6 +77,7 @@ namespace ElmSharp
 
         public GenList(EvasObject parent) : base(parent)
         {
+            ListMode = GenListMode.Compress;
             InitializeSmartEvent();
         }
 
