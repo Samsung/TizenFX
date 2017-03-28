@@ -191,7 +191,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
                     return null;
                 }
-                return new ResourceInterfaces(interfaceHandle);
+                return (interfaceHandle == IntPtr.Zero) ? null : new ResourceInterfaces(interfaceHandle);
             }
             set
             {
@@ -236,7 +236,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return new Attributes(attributeHandle);
+                return (attributeHandle == IntPtr.Zero) ? null : new Attributes(attributeHandle);
             }
             set
             {
