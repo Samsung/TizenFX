@@ -19,6 +19,9 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The ItemObject is used to manage item object
+    /// </summary>
     public class ItemObject
     {
         private static Dictionary<int, ItemObject> s_IdToItemTable = new Dictionary<int, ItemObject>();
@@ -29,6 +32,10 @@ namespace ElmSharp
         Interop.Evas.SmartCallback _deleteCallback;
         IntPtr _handle = IntPtr.Zero;
 
+        /// <summary>
+        /// Creates and initializes a new instance of ItemObject class.
+        /// </summary>
+        /// <param name="handle">IntPtr</param>
         protected ItemObject(IntPtr handle)
         {
             _deleteCallback = DeleteCallbackHandler;
@@ -46,8 +53,14 @@ namespace ElmSharp
         //        Interop.Elementary.elm_object_item_del(Handle);
         //}
 
+        /// <summary>
+        /// Gets the id of item object
+        /// </summary>
         public int Id { get; private set; }
 
+        /// <summary>
+        /// Sets or gets whether the item object is enabled
+        /// </summary>
         public bool IsEnabled
         {
             get { return !Interop.Elementary.elm_object_item_disabled_get(Handle); }
@@ -75,19 +88,36 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Deleted will be triggered when the item object is deleted
+        /// </summary>
         public event EventHandler Deleted;
 
+        /// <summary>
+        /// Delete the item object
+        /// </summary>
         public void Delete()
         {
             Interop.Elementary.elm_object_item_del(Handle);
             _handle = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Set a content of an object item and delete old content
+        /// </summary>
+        /// <param name="part">The content part name (null for the default content)</param>
+        /// <param name="content">The content of the object item</param>
         public void SetPartContent(string part, EvasObject content)
         {
             SetPartContent(part, content, false);
         }
 
+        /// <summary>
+        /// Set a content of an object item
+        /// </summary>
+        /// <param name="part">The content part name (null for the default content)</param>
+        /// <param name="content">The content of the object item</param>
+        /// <param name="preserveOldContent">judge whether delete old content</param>
         public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             IntPtr oldContent = Interop.Elementary.elm_object_item_part_content_unset(Handle, part);
@@ -99,16 +129,31 @@ namespace ElmSharp
             _partContents[part ?? "__default__"] = content;
         }
 
+        /// <summary>
+        /// Set a label of an object item
+        /// </summary>
+        /// <param name="part">The text part name (null for the default label)</param>
+        /// <param name="text">Text of the label</param>
         public void SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_item_part_text_set(Handle, part, text);
         }
 
+        /// <summary>
+        /// Gets a label of an object item
+        /// </summary>
+        /// <param name="part">The text part name (null for the default label)</param>
+        /// <returns></returns>
         public string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_item_part_text_get(Handle, part);
         }
 
+        /// <summary>
+        /// Sets color of an object item
+        /// </summary>
+        /// <param name="part">The text part name (null for the default label)</param>
+        /// <param name="color">the color</param>
         public void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_item_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -117,6 +162,11 @@ namespace ElmSharp
                                                                               color.A);
         }
 
+        /// <summary>
+        /// Gets color of an object item
+        /// </summary>
+        /// <param name="part">The text part name (null for the default label)</param>
+        /// <returns>the color of object item</returns>
         public Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -124,6 +174,10 @@ namespace ElmSharp
             return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
         }
 
+        /// <summary>
+        /// Gets the handle of object item
+        /// </summary>
+        /// <param name="obj">ItemObject</param>
         public static implicit operator IntPtr(ItemObject obj)
         {
             if (obj == null)
@@ -131,6 +185,9 @@ namespace ElmSharp
             return obj.Handle;
         }
 
+        /// <summary>
+        /// OnInvalidate of object item
+        /// </summary>
         protected virtual void OnInvalidate() { }
 
         internal static ItemObject GetItemById(int id)

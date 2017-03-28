@@ -19,19 +19,33 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// An index widget gives you an index for fast access to whichever group of other UI items one might have.
+    /// Inherits Layout
+    /// </summary>
     public class Index : Layout
     {
         HashSet<IndexItem> _children = new HashSet<IndexItem>();
         SmartEvent _delayedChanged;
 
+        /// <summary>
+        /// Creates and initializes a new instance of Index class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Index as a child. It's <see cref="EvasObject"/> type.</param>
         public Index(EvasObject parent) : base(parent)
         {
             _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
             _delayedChanged.On += _delayedChanged_On;
         }
 
+        /// <summary>
+        /// Changed will be triggered when the selected index item is changed.
+        /// </summary>
         public event EventHandler Changed;
 
+        /// <summary>
+        /// Sets or gets the auto hiding feature is enabled or not for a given index widget.
+        /// </summary>
         public bool AutoHide
         {
             get
@@ -44,6 +58,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets a value whether horizontal mode is enabled or not.
+        /// </summary>
         public bool IsHorizontal
         {
             get
@@ -56,6 +73,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the value of indicator's disabled status.
+        /// </summary>
         public bool IndicatorVisible
         {
             get
@@ -68,6 +88,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the omit feature is enabled or not for a given index widget.
+        /// </summary>
         public bool OmitEnabled
         {
             get
@@ -80,6 +103,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the last selected item, for a given index widget.
+        /// </summary>
         public IndexItem SelectedItem
         {
             get
@@ -89,6 +115,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Append a new item on a given index widget.
+        /// </summary>
+        /// <param name="label">the label which the item should be indexed</param>
+        /// <returns>A object to the IndexItem added or null, on errors</returns>
         public IndexItem Append(string label)
         {
             IndexItem item = new IndexItem(label);
@@ -96,6 +127,11 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepend a new item on a given index widget.
+        /// </summary>
+        /// <param name="label">the label which the item should be indexed</param>
+        /// <returns>A handle to the item added or NULL, on errors</returns>
         public IndexItem Prepend(string label)
         {
             IndexItem item = new IndexItem(label);
@@ -103,6 +139,12 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Insert a new item into the index object before item before.
+        /// </summary>
+        /// <param name="label">the label which the item should be indexed</param>
+        /// <param name="before">The index item to insert after.</param>
+        /// <returns>A object to the IndexItem added or null, on errors</returns>
         public IndexItem InsertBefore(string label, IndexItem before)
         {
             IndexItem item = new IndexItem(label);
@@ -110,6 +152,10 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Flush the changes made to the index items so they work correctly.
+        /// </summary>
+        /// <param name="level">The index level (one of 0 or 1) where changes were made</param>
         public void Update(int level)
         {
             Interop.Elementary.elm_index_level_go(RealHandle, level);

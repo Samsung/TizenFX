@@ -18,19 +18,47 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the icon lookup order. Should look for icons in the theme, FDO paths, or both.
+    /// </summary>
     public enum IconLookupOrder
     {
+        /// <summary>
+        /// Icon look up order: freedesktop, theme
+        /// </summary>
         FreeDesktopFirst = 0,
+        /// <summary>
+        /// Icon look up order: theme, freedesktop
+        /// </summary>
         ThemeFirst,
+        /// <summary>
+        /// Icon look up order: freedesktop
+        /// </summary>
         FreeDesktopOnly,
+        /// <summary>
+        /// Icon look up order: theme
+        /// </summary>
         ThemeOnly
     }
+
+    /// <summary>
+    /// The Icon is a widget that displays standard icon images ("delete", "edit", "arrows", etc.)
+    /// or images coming from a custom file (PNG, JPG, EDJE, etc.), on icon context.
+    /// Inherits Image
+    /// </summary>
     public class Icon : Image
     {
+        /// <summary>
+        /// Creates and initializes a new instance of Icon class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Icon as a child. It's <see cref="EvasObject"/> type.</param>
         public Icon(EvasObject parent) : base(parent)
         {
         }
 
+        /// <summary>
+        /// Sets or gets the standard icon name of a given Icon widget.
+        /// </summary>
         public string StandardIconName
         {
             get
@@ -43,6 +71,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the icon lookup order of a given Icon widget.
+        /// </summary>
         public IconLookupOrder IconLookupOrder
         {
             get
@@ -55,11 +86,21 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the file that is used, but uses a generated thumbnail.
+        /// </summary>
+        /// <param name="file">The path to the file that is used as an icon image</param>
+        /// <param name="group">The group that the icon belongs to</param>
         public void SetThumb(string file, string group)
         {
             Interop.Elementary.elm_icon_thumb_set(RealHandle, file, group);
         }
 
+        /// <summary>
+        /// Adds a new icon object to the parent.
+        /// </summary>
+        /// <param name="parent">EvasObject</param>
+        /// <returns>The new object, otherwise NULL if it cannot be created</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
