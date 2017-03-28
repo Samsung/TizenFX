@@ -24,17 +24,6 @@ namespace Tizen.System
     public class IncomingCallRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _incomingCallRingtone = null;
-        /// <summary>
-        /// The enum for IncomingCallRingtone system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.IncomingCallRingtone;
-            }
-        }
-
         internal IncomingCallRingtoneChangedEventArgs(string val)
         {
             _incomingCallRingtone = val;
@@ -58,17 +47,6 @@ namespace Tizen.System
     public class WallpaperHomeScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperHomeScreen = null;
-        /// <summary>
-        /// The enum for WallpaperHomeScreen system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.WallpaperHomeScreen;
-            }
-        }
-
         internal WallpaperHomeScreenChangedEventArgs(string val)
         {
             _wallpaperHomeScreen = val;
@@ -92,17 +70,6 @@ namespace Tizen.System
     public class WallpaperLockScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperLockScreen = null;
-        /// <summary>
-        /// The enum for WallpaperLockScreen system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.WallpaperLockScreen;
-            }
-        }
-
         internal WallpaperLockScreenChangedEventArgs(string val)
         {
             _wallpaperLockScreen = val;
@@ -126,16 +93,6 @@ namespace Tizen.System
     public class FontSizeChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsFontSize _fontSize;
-        /// <summary>
-        /// The enum for FontSize system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.FontSize;
-            }
-        }
         internal FontSizeChangedEventArgs(SystemSettingsFontSize val)
         {
             _fontSize = val;
@@ -159,16 +116,6 @@ namespace Tizen.System
     public class FontTypeChangedEventArgs : EventArgs
     {
         private readonly string _fontType = null;
-        /// <summary>
-        /// The enum for FontType system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.FontType;
-            }
-        }
         internal FontTypeChangedEventArgs(string val)
         {
             _fontType = val;
@@ -192,16 +139,6 @@ namespace Tizen.System
     public class MotionActivationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionActivation;
-        /// <summary>
-        /// The enum for MotionActivation system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.MotionActivationEnabled;
-            }
-        }
         internal MotionActivationSettingChangedEventArgs(bool val)
         {
             _motionActivation = val;
@@ -225,16 +162,6 @@ namespace Tizen.System
     public class EmailAlertRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _emailAlertRingtone = null;
-        /// <summary>
-        /// The enum for EmailAlertRingtone system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.EmailAlertRingtone;
-            }
-        }
         internal EmailAlertRingtoneChangedEventArgs(string val)
         {
             _emailAlertRingtone = val;
@@ -258,16 +185,6 @@ namespace Tizen.System
     public class UsbDebuggingSettingChangedEventArgs : EventArgs
     {
         private readonly bool _usbDebuggingEnabled;
-        /// <summary>
-        /// The enum for UsbDebuggingEnabled system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.UsbDebuggingEnabled;
-            }
-        }
         internal UsbDebuggingSettingChangedEventArgs(bool val)
         {
             _usbDebuggingEnabled = val;
@@ -291,16 +208,6 @@ namespace Tizen.System
     public class Data3GNetworkSettingChangedEventArgs : EventArgs
     {
         private readonly bool _data3GNetworkEnabled;
-        /// <summary>
-        /// The enum for Data3GNetworkEnabled system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.Data3GNetworkEnabled;
-            }
-        }
         internal Data3GNetworkSettingChangedEventArgs(bool val)
         {
             _data3GNetworkEnabled = val;
@@ -324,16 +231,6 @@ namespace Tizen.System
     public class LockscreenAppChangedEventArgs : EventArgs
     {
         private readonly string _lockscreenApp = null;
-        /// <summary>
-        /// The enum for LockscreenApp system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LockscreenApp;
-            }
-        }
         internal LockscreenAppChangedEventArgs(string val)
         {
             _lockscreenApp = val;
@@ -357,16 +254,6 @@ namespace Tizen.System
     public class LocaleCountryChangedEventArgs : EventArgs
     {
         private readonly string _localeCountry = null;
-        /// <summary>
-        /// The enum for LocaleCountry system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LocaleCountry;
-            }
-        }
         internal LocaleCountryChangedEventArgs(string val)
         {
             _localeCountry = val;
@@ -391,16 +278,6 @@ namespace Tizen.System
     public class LocaleLanguageChangedEventArgs : EventArgs
     {
         private readonly string _localeLanguage = null;
-        /// <summary>
-        /// The enum for LocaleLanguage system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LocaleLanguage;
-            }
-        }
         internal LocaleLanguageChangedEventArgs(string val)
         {
             _localeLanguage = val;
@@ -425,16 +302,6 @@ namespace Tizen.System
     public class LocaleTimeFormat24HourSettingChangedEventArgs : EventArgs
     {
         private readonly bool _localeTimeFormat24Hour;
-        /// <summary>
-        /// The enum for LocaleTimeFormat24Hour system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LocaleTimeFormat24HourEnabled;
-            }
-        }
         internal LocaleTimeFormat24HourSettingChangedEventArgs(bool val)
         {
             _localeTimeFormat24Hour = val;
@@ -458,16 +325,6 @@ namespace Tizen.System
     public class LocaleTimeZoneChangedEventArgs : EventArgs
     {
         private readonly string _localeTimeZone = null;
-        /// <summary>
-        /// The enum for LocaleTimeZone system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LocaleTimeZone;
-            }
-        }
         internal LocaleTimeZoneChangedEventArgs(string val)
         {
             _localeTimeZone = val;
@@ -490,16 +347,6 @@ namespace Tizen.System
     /// </summary>
     public class TimeChangedEventArgs : EventArgs
     {
-        /// <summary>
-        /// The enum for Time system setting event
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.Time;
-            }
-        }
         internal TimeChangedEventArgs()
         {
         }
@@ -511,16 +358,6 @@ namespace Tizen.System
     public class SoundLockSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundLock;
-        /// <summary>
-        /// The enum for SoundLock system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.SoundLockEnabled;
-            }
-        }
         internal SoundLockSettingChangedEventArgs(bool val)
         {
             _soundLock = val;
@@ -544,16 +381,6 @@ namespace Tizen.System
     public class SoundSilentModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundSilentMode;
-        /// <summary>
-        /// The enum for SoundSilentMode system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.SoundSilentModeEnabled;
-            }
-        }
         internal SoundSilentModeSettingChangedEventArgs(bool val)
         {
             _soundSilentMode = val;
@@ -577,16 +404,6 @@ namespace Tizen.System
     public class SoundTouchSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundTouch;
-        /// <summary>
-        /// The enum for SoundTouch system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.SoundTouchEnabled;
-            }
-        }
         internal SoundTouchSettingChangedEventArgs(bool val)
         {
             _soundTouch = val;
@@ -610,16 +427,6 @@ namespace Tizen.System
     public class DisplayScreenRotationAutoSettingChangedEventArgs : EventArgs
     {
         private readonly bool _displayScreenRotationAuto;
-        /// <summary>
-        /// The enum for DisplayScreenRotationAuto system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.DisplayScreenRotationAutoEnabled;
-            }
-        }
         internal DisplayScreenRotationAutoSettingChangedEventArgs(bool val)
         {
             _displayScreenRotationAuto = val;
@@ -643,16 +450,6 @@ namespace Tizen.System
     public class DeviceNameChangedEventArgs : EventArgs
     {
         private readonly string _deviceName = null;
-        /// <summary>
-        /// The enum for DeviceName system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.DeviceName;
-            }
-        }
         internal DeviceNameChangedEventArgs(string val)
         {
             _deviceName = val;
@@ -676,16 +473,6 @@ namespace Tizen.System
     public class MotionSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionEnabled;
-        /// <summary>
-        /// The enum for MotionEnabled system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.MotionEnabled;
-            }
-        }
         internal MotionSettingChangedEventArgs(bool val)
         {
             _motionEnabled = val;
@@ -709,16 +496,6 @@ namespace Tizen.System
     public class NetworkWifiNotificationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkWifiNotification;
-        /// <summary>
-        /// The enum for NetworkWifiNotification system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.NetworkWifiNotificationEnabled;
-            }
-        }
         internal NetworkWifiNotificationSettingChangedEventArgs(bool val)
         {
             _networkWifiNotification = val;
@@ -742,16 +519,6 @@ namespace Tizen.System
     public class NetworkFlightModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkFlightMode;
-        /// <summary>
-        /// The enum for NetworkFlightMode system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.NetworkFlightModeEnabled;
-            }
-        }
         internal NetworkFlightModeSettingChangedEventArgs(bool val)
         {
             _networkFlightMode = val;
@@ -775,16 +542,6 @@ namespace Tizen.System
     public class ScreenBacklightTimeChangedEventArgs : EventArgs
     {
         private readonly int _screenBacklightTime;
-        /// <summary>
-        /// The enum for ScreenBacklightTime system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.ScreenBacklightTime;
-            }
-        }
         internal ScreenBacklightTimeChangedEventArgs(int val)
         {
             _screenBacklightTime = val;
@@ -808,16 +565,6 @@ namespace Tizen.System
     public class SoundNotificationChangedEventArgs : EventArgs
     {
         private readonly string _soundNotification = null;
-        /// <summary>
-        /// The enum for SoundNotification system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.SoundNotification;
-            }
-        }
         internal SoundNotificationChangedEventArgs(string val)
         {
             _soundNotification = val;
@@ -841,16 +588,6 @@ namespace Tizen.System
     public class SoundNotificationRepetitionPeriodChangedEventArgs : EventArgs
     {
         private readonly int _soundNotificationRepetitionPeriod;
-        /// <summary>
-        /// The enum for SoundNotificationRepetitionPeriod system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.SoundNotificationRepetitionPeriod;
-            }
-        }
         internal SoundNotificationRepetitionPeriodChangedEventArgs(int val)
         {
             _soundNotificationRepetitionPeriod = val;
@@ -874,16 +611,6 @@ namespace Tizen.System
     public class LockStateChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsIdleLockState _lockState;
-        /// <summary>
-        /// The enum for LockState system setting key
-        /// </summary>
-        public SystemSettingsKeys Key
-        {
-            get
-            {
-                return SystemSettingsKeys.LockState;
-            }
-        }
         internal LockStateChangedEventArgs(SystemSettingsIdleLockState val)
         {
             _lockState = val;
