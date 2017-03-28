@@ -37,11 +37,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The number of audio channel.
         /// </summary>
-        /// <remarks>
-        /// The attribute is applied only in Created state.
+        /// <value>
         /// For mono recording, set channel to 1.
         /// For stereo recording, set channel to 2.
-        /// </remarks>
+        /// </value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int AudioChannel
         {
             get
@@ -64,6 +64,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio device for recording.
         /// </summary>
+        /// <value>A <see cref="RecorderAudioDevice"/> that specifies the type of audio device.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderAudioDevice AudioDevice
         {
             get
@@ -89,6 +91,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// 0dB indicates maximum input level, -300dB indicates minimum input level.
         /// </remarks>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public double AudioLevel
         {
             get
@@ -105,6 +108,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The sampling rate of an audio stream in hertz.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int AudioSampleRate
         {
             get
@@ -127,6 +131,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an audio encoder in bits per second.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int AudioBitRate
         {
             get
@@ -149,6 +154,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an video encoder in bits per second.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int VideoBitRate
         {
             get
@@ -171,6 +177,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio codec for encoding an audio stream.
         /// </summary>
+        /// <value>A <see cref="RecorderAudioCodec"/> that specifies the type of audio codec.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderAudioCodec AudioCodec
         {
             get
@@ -193,6 +201,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The video codec for encoding video stream.
         /// </summary>
+        /// <value>A <see cref="RecorderVideoCodec"/> that specifies the type of video codec.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderVideoCodec VideoCodec
         {
             get
@@ -215,6 +225,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The file format for recording media stream.
         /// </summary>
+        /// <value>A <see cref="RecorderFileFormat"/> that specifies the file format.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderFileFormat FileFormat
         {
             get
@@ -241,13 +253,14 @@ namespace Tizen.Multimedia
         /// If the same file already exists in the file system, then old file
         /// will be overwritten.
         /// </remarks>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public string FilePath
         {
             get
             {
                 IntPtr val;
-                int ret = Interop.RecorderSettings.GetFileName(_recorder.GetHandle(), out val);
-                if ((RecorderError)ret != RecorderError.None)
+                RecorderError ret = Interop.RecorderSettings.GetFileName(_recorder.GetHandle(), out val);
+                if (ret != RecorderError.None)
                 {
                     Log.Error(RecorderLog.Tag, "Failed to get filepath, " + (RecorderError)ret);
                 }
@@ -272,7 +285,7 @@ namespace Tizen.Multimedia
         /// be discarded and not written to the file.
         /// The recorder state must be in 'Ready' or 'Created' state.
         /// </remarks>
-        ///
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int SizeLimit
         {
             get
@@ -301,6 +314,7 @@ namespace Tizen.Multimedia
         /// be discarded and not written to the file.
         /// The recorder state must be in 'Ready' or 'Created' state.
         /// </remarks>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int TimeLimit
         {
             get
@@ -323,6 +337,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The mute state of a recorder.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public bool Mute
         {
             get
@@ -345,6 +360,7 @@ namespace Tizen.Multimedia
         /// If the rate is in range of 0-1, video is recorded in a slow motion mode.
         /// If the rate is bigger than 1, video is recorded in a fast motion mode.
         /// </remarks>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public double MotionRate
         {
             get
@@ -367,6 +383,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The orientation in a video metadata tag.
         /// </summary>
+        /// <value>A <see cref="RecorderOrientation"/> that specifies the type of orientation.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderOrientation OrientationTag
         {
             get
@@ -389,10 +407,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Resolution of the video.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public Size VideoResolution
         {
             get
@@ -400,7 +416,7 @@ namespace Tizen.Multimedia
                 int width = 0;
                 int height = 0;
 
-                CameraErrorFactory.ThrowIfError(Interop.RecorderSettings.GetVideoResolution(_recorder.GetHandle(), out width, out height),
+                RecorderErrorFactory.ThrowIfError(Interop.RecorderSettings.GetVideoResolution(_recorder.GetHandle(), out width, out height),
                     "Failed to get camera video resolution");
 
                 return new Size(width, height);
@@ -410,7 +426,7 @@ namespace Tizen.Multimedia
             {
                 Size res = value;
 
-                CameraErrorFactory.ThrowIfError(Interop.RecorderSettings.SetVideoResolution(_recorder.GetHandle(), res.Width, res.Height),
+                RecorderErrorFactory.ThrowIfError(Interop.RecorderSettings.SetVideoResolution(_recorder.GetHandle(), res.Width, res.Height),
                     "Failed to set video resolution.");
             }
         }

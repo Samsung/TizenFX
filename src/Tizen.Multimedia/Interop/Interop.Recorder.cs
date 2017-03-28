@@ -35,79 +35,79 @@ namespace Tizen.Multimedia
             internal delegate void MuxedStreamCallback(IntPtr stream, int size, ulong offset, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_audiorecorder")]
-            internal static extern int Create(out IntPtr handle);
+            internal static extern RecorderError Create(out IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_videorecorder")]
-            internal static extern int CreateVideo(IntPtr cameraHandle, out IntPtr handle);
+            internal static extern RecorderError CreateVideo(IntPtr cameraHandle, out IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_destroy")]
-            internal static extern int Destroy(IntPtr handle);
+            internal static extern RecorderError Destroy(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_prepare")]
-            internal static extern int Prepare(IntPtr handle);
+            internal static extern RecorderError Prepare(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unprepare")]
-            internal static extern int Unprepare(IntPtr handle);
+            internal static extern RecorderError Unprepare(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_start")]
-            internal static extern int Start(IntPtr handle);
+            internal static extern RecorderError Start(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_pause")]
-            internal static extern int Pause(IntPtr handle);
+            internal static extern RecorderError Pause(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_commit")]
-            internal static extern int Commit(IntPtr handle);
+            internal static extern RecorderError Commit(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_cancel")]
-            internal static extern int Cancel(IntPtr handle);
+            internal static extern RecorderError Cancel(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_state")]
-            internal static extern int GetState(IntPtr handle, out RecorderState state);
+            internal static extern RecorderError GetState(IntPtr handle, out RecorderState state);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_sound_stream_info")]
-            internal static extern int SetAudioStreamPolicy(IntPtr handle, IntPtr streamInfoHandle);
+            internal static extern RecorderError SetAudioStreamPolicy(IntPtr handle, IntPtr streamInfoHandle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_error_cb")]
-            internal static extern int SetErrorCallback(IntPtr handle, RecorderErrorCallback callback, IntPtr userData);
+            internal static extern RecorderError SetErrorCallback(IntPtr handle, RecorderErrorCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_error_cb")]
-            internal static extern int UnsetErrorCallback(IntPtr handle);
+            internal static extern RecorderError UnsetErrorCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_interrupted_cb")]
-            internal static extern int SetInterruptedCallback(IntPtr handle, InterruptedCallback callback, IntPtr userData);
+            internal static extern RecorderError SetInterruptedCallback(IntPtr handle, InterruptedCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_interrupted_cb")]
-            internal static extern int UnsetInterruptedCallback(IntPtr handle);
+            internal static extern RecorderError UnsetInterruptedCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_state_changed_cb")]
-            internal static extern int SetStateChangedCallback(IntPtr handle, StatechangedCallback callback, IntPtr userData);
+            internal static extern RecorderError SetStateChangedCallback(IntPtr handle, StatechangedCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_state_changed_cb")]
-            internal static extern int UnsetStateChangedCallback(IntPtr handle);
+            internal static extern RecorderError UnsetStateChangedCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_recording_status_cb")]
-            internal static extern int SetRecordingProgressCallback(IntPtr handle, RecordingProgressCallback callback, IntPtr userData);
+            internal static extern RecorderError SetRecordingProgressCallback(IntPtr handle, RecordingProgressCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_recording_status_cb")]
-            internal static extern int UnsetRecordingProgressCallback(IntPtr handle);
+            internal static extern RecorderError UnsetRecordingProgressCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_audio_stream_cb")]
-            internal static extern int SetAudioStreamCallback(IntPtr handle, AudioStreamCallback callback, IntPtr userData);
+            internal static extern RecorderError SetAudioStreamCallback(IntPtr handle, AudioStreamCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_audio_stream_cb")]
-            internal static extern int UnsetAudioStreamCallback(IntPtr handle);
+            internal static extern RecorderError UnsetAudioStreamCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_recording_limit_reached_cb")]
-            internal static extern int SetLimitReachedCallback(IntPtr handle, RecordingLimitReachedCallback callback, IntPtr userData);
+            internal static extern RecorderError SetLimitReachedCallback(IntPtr handle, RecordingLimitReachedCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_recording_limit_reached_cb")]
-            internal static extern int UnsetLimitReachedCallback(IntPtr handle);
+            internal static extern RecorderError UnsetLimitReachedCallback(IntPtr handle);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_muxed_stream_cb")]
-            internal static extern int SetMuxedStreamCallback(IntPtr handle, MuxedStreamCallback callback, IntPtr userData);
+            internal static extern RecorderError SetMuxedStreamCallback(IntPtr handle, MuxedStreamCallback callback, IntPtr userData);
 
             [DllImport(Libraries.Recorder, EntryPoint = "recorder_unset_muxed_stream_cb")]
-            internal static extern int UnsetMuxedStreamCallback(IntPtr handle);
+            internal static extern RecorderError UnsetMuxedStreamCallback(IntPtr handle);
         }
     }
 }

@@ -41,18 +41,17 @@ namespace Tizen.Multimedia
 
     internal static class RecorderErrorFactory
     {
-        internal static void ThrowIfError(int errorCode, string errorMessage = null,
+        internal static void ThrowIfError(RecorderError errorCode, string errorMessage = null,
             [CallerMemberName] string caller = null, [CallerLineNumber] int line = 0)
         {
-            RecorderError err = (RecorderError)errorCode;
-            if (err == RecorderError.None)
+            if (errorCode == RecorderError.None)
             {
                 return;
             }
 
-            Log.Info(RecorderLog.Tag, "errorCode : " + err.ToString() + ", Caller : " + caller + ", line " + line.ToString());
+            Log.Info(RecorderLog.Tag, "errorCode : " + errorCode.ToString() + ", Caller : " + caller + ", line " + line.ToString());
 
-            switch (err)
+            switch (errorCode)
             {
                 case RecorderError.InvalidParameter:
                     throw new ArgumentException(errorMessage);

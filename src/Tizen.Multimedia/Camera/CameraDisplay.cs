@@ -35,6 +35,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display mode.
         /// </summary>
+        /// <value>A <see cref="CameraDisplayMode"/> that specifies the display mode.</value>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraDisplayMode Mode
         {
             get
@@ -58,6 +60,7 @@ namespace Tizen.Multimedia
         /// The display visibility.
         /// True if camera display visible, otherwise false.
         /// </summary>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public bool Visible
         {
             get
@@ -80,9 +83,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display rotation.
         /// </summary>
+        /// <value>A <see cref="CameraRotation"/> that specifies the rotation of camera device.</value>
         /// <privilege>
         /// http://tizen.org/privilege/camera.
         /// </privilege>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraRotation Rotation
         {
             get
@@ -105,9 +110,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display flip.
         /// </summary>
+        /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
         /// <privilege>
         /// http://tizen.org/privilege/camera.
         /// </privilege>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraFlip Flip
         {
             get
@@ -130,6 +137,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// the ROI(Region Of Interest) area of display.
         /// </summary>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public Rectangle RoiArea
         {
             get
@@ -154,6 +162,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Sets the display type and handle to show preview images.
+        /// The camera must be in the <see cref="CameraState.Created"/> state.
         /// </summary>
         /// <param name="displayType">Display type.</param>
         /// <param name="preview">MediaView object to display preview.</param>
@@ -161,10 +170,11 @@ namespace Tizen.Multimedia
         /// This method must be called before StartPreview() method.
         /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void SetInfo(CameraDisplayType displayType, MediaView displayHandle)
         {
             _camera.ValidateState(CameraState.Created);

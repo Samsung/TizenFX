@@ -26,6 +26,8 @@ namespace Tizen.Multimedia
     static internal class CameraLog
     {
         internal const string Tag = "Tizen.Multimedia.Camera";
+        internal const string Enter = "[Enter]";
+        internal const string Leave = "[Leave]";
     }
 
     /// <summary>
@@ -48,6 +50,9 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="Camera"/> Class.
         /// </summary>
         /// <param name="device">The camera device to access</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
         public Camera(CameraDevice device)
         {
             CameraErrorFactory.ThrowIfError(Interop.Camera.Create((int)device, out _handle),
@@ -59,7 +64,7 @@ namespace Tizen.Multimedia
 
             RegisterCallbacks();
 
-            _state = CameraState.Created;
+            SetState(CameraState.Created);
         }
 
         /// <summary>
@@ -109,6 +114,7 @@ namespace Tizen.Multimedia
         {
             if (_disposed)
             {
+                Log.Error(CameraLog.Tag, "Camera handle is disposed.");
                 throw new ObjectDisposedException(nameof(Camera));
             }
         }
@@ -349,10 +355,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the state of the camera.
         /// </summary>
+        /// <value> None, Created, Preview, Capturing, Captured </value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public CameraState State
         {
             get
             {
+                ValidateNotDisposed();
+
                 CameraState val = CameraState.None;
                 CameraErrorFactory.ThrowIfError(Interop.Camera.GetState(_handle, out val),
                     "Failed to get camera state");
@@ -366,11 +376,15 @@ namespace Tizen.Multimedia
         /// If the hint is set to true, the display will be reused when the camera device is changed with
         /// ChangeDevice method.
         /// </summary>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">Invalid state.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public bool DisplayReuseHint
         {
             get
             {
+                ValidateNotDisposed();
+
                 bool val = false;
 
                 CameraErrorFactory.ThrowIfError(Interop.Camera.GetDisplayReuseHint(_handle, out val),
@@ -381,6 +395,8 @@ namespace Tizen.Multimedia
 
             set
             {
+                ValidateState(CameraState.Preview);
+
                 CameraErrorFactory.ThrowIfError(Interop.Camera.SetDisplayReuseHint(_handle, value),
                     "Failed to set display reuse hint.");
             }
@@ -389,10 +405,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the facing direction of camera module.
         /// </summary>
+        /// <value>A <see cref="CameraFacingDirection"/> that specifies the facing direction of camera device.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public CameraFacingDirection Direction
         {
             get
             {
+                ValidateNotDisposed();
+
                 CameraFacingDirection val = 0;
 
                 CameraErrorFactory.ThrowIfError(Interop.Camera.GetFacingDirection(_handle, out val),
@@ -405,14 +425,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the camera device count.
         /// </summary>
-        /// <remarks>
-        /// This returns 2, if the device supports primary and secondary cameras.
-        /// Otherwise 1, if the device only supports primary camera.
-        /// </remarks>
+        /// <value>This returns 2, if the device supports primary and secondary cameras.
+        /// Otherwise 1, if the device only supports primary camera.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int CameraCount
         {
             get
             {
+                ValidateNotDisposed();
+
                 int val = 0;
 
                 CameraErrorFactory.ThrowIfError(Interop.Camera.GetDeviceCount(_handle, out val),
@@ -421,9 +442,9 @@ namespace Tizen.Multimedia
                 return val;
             }
         }
-#endregion Properties
+        #endregion Properties
 
-#region Methods
+        #region Methods
         /// <summary>
         /// Changes the camera device.
         /// </summary>
@@ -437,9 +458,10 @@ namespace Tizen.Multimedia
         /// can be kept even though camera device is changed.
         /// The camera must be in the <see cref="CameraState.Created"/> or <see cref="CameraState.Preview"/> state.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of ChangeDevice feature is not supported</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of ChangeDevice feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void ChangeDevice(CameraDevice device)
         {
             ValidateState(CameraState.Created, CameraState.Preview);
@@ -456,9 +478,9 @@ namespace Tizen.Multimedia
         /// </privilege>
         /// <param name="device">The device to get state.</param>
         /// <returns>Returns the state of camera device</returns>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public CameraDeviceState GetDeviceState(CameraDevice device)
         {
             int val = 0;
@@ -469,6 +491,17 @@ namespace Tizen.Multimedia
             return (CameraDeviceState)val;
         }
 
+        /// <summary>
+        /// Gets the flash state.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
+        /// <param name="device">The device to get state.</param>
+        /// <returns>Returns the flash state of camera device</returns>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public static CameraFlashState GetFlashState(CameraDevice device)
         {
             CameraFlashState val = CameraFlashState.NotUsed;
@@ -481,18 +514,20 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts capturing and drawing preview frames on the screen.
-        /// The display handle must be set using <see cref="Tizen.Multimedia.Camera.SetDisplay"/>
+        /// The display handle must be set using <see cref="CameraDisplay.SetInfo"/>
         /// before using this method.
-        /// If needed set fps <see cref="Tizen.Multimedia.CameraSetting.PreviewFps"/>, preview resolution
-        /// <see cref="Tizen.Multimedia.Camera.PreviewResolution"/>, or preview format <see cref="Tizen.Multimedia.Camera.PreviewFormat"/>
+        /// If needed set fps <see cref="CameraSettings.PreviewFps"/>, preview resolution
+        /// <see cref="CameraSettings.PreviewResolution"/>, or preview format <see cref="CameraSettings.PreviewPixelFormat"/>
         /// before using this method.
+        /// The camera must be in the <see cref="CameraState.Created"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartPreview()
         {
             ValidateState(CameraState.Created, CameraState.Captured);
@@ -506,15 +541,19 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Stops capturing and drawing preview frames on the screen.
+        /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopPreview()
         {
+            ValidateState(CameraState.Preview);
+
             CameraErrorFactory.ThrowIfError(Interop.Camera.StopPreview(_handle),
                 "Failed to stop the camera preview.");
 
@@ -523,9 +562,9 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts capturing of still images.
-        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
-        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
-        /// calling this method.
+        /// EventHandler must be set for capturing using <see cref="Capturing"/>
+        /// and for completed using <see cref="CaptureCompleted"/> before calling this method.
+        /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
@@ -533,12 +572,12 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This function causes the transition of the camera state from Capturing to Captured
         /// automatically and the corresponding EventHandlers will be invoked.
-        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/>
-        /// method.
+        /// The preview should be restarted by calling <see cref="StartPreview"/> method after capture is completed.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartCapture()
         {
             ValidateState(CameraState.Preview);
@@ -551,26 +590,29 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts continuously capturing still images.
-        /// EventHandler must be set for capturing using <see cref="Tizen.Multimedia.Camera.Capturing"/>
-        /// and for completed using <see cref="Tizen.Multimedia.Camera.CaptureCompleted"/> before
-        /// calling this method.
+        /// EventHandler must be set for capturing using <see cref="Capturing"/>
+        /// and for completed using <see cref="CaptureCompleted"/> before calling this method.
+        /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
         /// <param name="count">The number of still images.</param>
         /// <param name="interval">The interval of the capture(milliseconds).</param>
+        /// <param name="cancellationToken">The cancellation token to cancel capturing.</param>
+        /// <seealso cref="System.Threading.CancellationToken"/>
         /// <remarks>
         /// If this is not supported zero shutter lag occurs. The capture resolution could be
         /// changed to the preview resolution. This function causes the transition of the camera state
         /// from Capturing to Captured automatically and the corresponding Eventhandlers will be invoked.
-        /// Each captured image will be delivered through Eventhandler set using <see cref="Tizen.Multimedia.Camera.Capturing"/> event.
-        /// The camera's preview should be restarted by calling <see cref="Tizen.Multimedia.Camera.StartPreview"/> method.
+        /// Each captured image will be delivered through Eventhandler set using <see cref="Capturing"/> event.
+        /// The preview should be restarted by calling <see cref="StartPreview"/> method after capture is completed.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="ArgumentOutOfRangeException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartCapture(int count, int interval, CancellationToken cancellationToken)
         {
             ValidateState(CameraState.Preview);
@@ -604,18 +646,20 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts camera auto-focusing, asynchronously.
+        /// The camera must be in the <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
-        /// <param name="continuous">Continuous.</param>
+        /// <param name="continuous">Continuous auto focus</param>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
         /// <remarks>
         /// If continuous status is true, the camera continuously tries to focus.
         /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartFocusing(bool continuous)
         {
             ValidateState(CameraState.Preview, CameraState.Captured);
@@ -626,13 +670,15 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Stops camera auto focusing.
+        /// The camera must be in the <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFocusing()
         {
             ValidateState(CameraState.Preview, CameraState.Captured);
@@ -643,18 +689,20 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts face detection.
+        /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
         /// <remarks>
-        /// This should be called after <see cref="Tizen.Multimedia.Camera.StartPreview"/> is started.
-        /// The Eventhandler set using <see cref="Tizen.Multimedia.Camera.FaceDetected"/> invoked when the face is detected in preview frame.
+        /// This should be called after <see cref="StartPreview"/> is started.
+        /// The Eventhandler set using <see cref="FaceDetected"/> invoked when the face is detected in preview frame.
         /// Internally it starts continuous focus and focusing on the detected face.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartFaceDetection()
         {
             ValidateState(CameraState.Preview);
@@ -684,6 +732,7 @@ namespace Tizen.Multimedia
         /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
         public void StopFaceDetection()
         {
@@ -748,7 +797,7 @@ namespace Tizen.Multimedia
         {
             _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr _) =>
             {
-                _state = current;
+                SetState(current);
                 Log.Info(CameraLog.Tag, "Camera state changed " + previous.ToString() + " -> " + current.ToString());
                 StateChanged?.Invoke(this, new CameraStateChangedEventArgs(previous, current, byPolicy));
             };

@@ -42,18 +42,17 @@ namespace Tizen.Multimedia
 
     internal static class CameraErrorFactory
     {
-        internal static void ThrowIfError(int errorCode, string errorMessage = null,
+        internal static void ThrowIfError(CameraError errorCode, string errorMessage = null,
             [CallerMemberName] string caller = null, [CallerLineNumber] int line = 0)
         {
-            CameraError err = (CameraError)errorCode;
-            if (err == CameraError.None)
+            if (errorCode == CameraError.None)
             {
                 return;
             }
 
-            Log.Info(CameraLog.Tag, "errorCode : " + err.ToString() + ", Caller : " + caller + ", line " + line.ToString());
+            Log.Info(CameraLog.Tag, "errorCode : " + errorCode.ToString() + ", Caller : " + caller + ", line " + line.ToString());
 
-            switch (err)
+            switch (errorCode)
             {
                 case CameraError.InvalidParameter:
                     throw new ArgumentException(errorMessage);

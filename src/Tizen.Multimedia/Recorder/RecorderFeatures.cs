@@ -42,24 +42,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the file formats supported by the recorder.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported file
-        /// formats by recorder.
+        /// It returns a list containing all the supported <see cref="RecorderFileFormat"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<RecorderFileFormat> SupportedFileFormats
         {
             get
             {
                 if (_fileFormats == null)
                 {
-                    _fileFormats = new List<RecorderFileFormat>();
-
-                    Interop.RecorderFeatures.FileFormatCallback callback = (RecorderFileFormat format, IntPtr userData) =>
+                    try
                     {
-                        _fileFormats.Add(format);
-                        return true;
-                    };
-                    RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.FileFormats(_recorder.GetHandle(), callback, IntPtr.Zero),
+                        _fileFormats = new List<RecorderFileFormat>();
+
+                        Interop.RecorderFeatures.FileFormatCallback callback = (RecorderFileFormat format, IntPtr userData) =>
+                        {
+                            _fileFormats.Add(format);
+                            return true;
+                        };
+                        RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.FileFormats(_recorder.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported fileformats");
+                    }
+                    catch
+                    {
+                        _fileFormats = null;
+                        throw;
+                    }
                 }
 
                 return _fileFormats;
@@ -70,24 +78,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the audio encoders supported by the recorder.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported audio encoders
-        /// by recorder.
+        /// It returns a list containing all the supported <see cref="RecorderAudioCodec"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<RecorderAudioCodec> SupportedAudioEncodings
         {
             get
             {
                 if (_audioCodec == null)
                 {
-                    _audioCodec = new List<RecorderAudioCodec>();
-
-                    Interop.RecorderFeatures.AudioEncoderCallback callback = (RecorderAudioCodec codec, IntPtr userData) =>
+                    try
                     {
-                        _audioCodec.Add(codec);
-                        return true;
-                    };
-                    RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.AudioEncoders(_recorder.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported audio encoders");
+                        _audioCodec = new List<RecorderAudioCodec>();
+
+                        Interop.RecorderFeatures.AudioEncoderCallback callback = (RecorderAudioCodec codec, IntPtr userData) =>
+                        {
+                            _audioCodec.Add(codec);
+                            return true;
+                        };
+                        RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.AudioEncoders(_recorder.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported audio encoders");
+                    }
+                    catch
+                    {
+                        _audioCodec = null;
+                        throw;
+                    }
                 }
 
                 return _audioCodec;
@@ -98,24 +114,33 @@ namespace Tizen.Multimedia
         /// Retrieves all the video encoders supported by the recorder.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported video encoders
+        /// It returns a list containing all the supported <see cref="RecorderVideoCodec"/>.
         /// by recorder.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<RecorderVideoCodec> SupportedVideoEncodings
         {
             get
             {
                 if (_videoCodec == null)
                 {
-                    _videoCodec = new List<RecorderVideoCodec>();
-
-                    Interop.RecorderFeatures.VideoEncoderCallback callback = (RecorderVideoCodec codec, IntPtr userData) =>
+                    try
                     {
-                        _videoCodec.Add(codec);
-                        return true;
-                    };
-                    RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.VideoEncoders(_recorder.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported video encoders");
+                        _videoCodec = new List<RecorderVideoCodec>();
+
+                        Interop.RecorderFeatures.VideoEncoderCallback callback = (RecorderVideoCodec codec, IntPtr userData) =>
+                        {
+                            _videoCodec.Add(codec);
+                            return true;
+                        };
+                        RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.VideoEncoders(_recorder.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported video encoders");
+                    }
+                    catch
+                    {
+                        _videoCodec = null;
+                        throw;
+                    }
                 }
 
                 return _videoCodec;
@@ -129,21 +154,30 @@ namespace Tizen.Multimedia
         /// It returns videoresolution list containing the width and height of
         /// different resolutions supported by recorder.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<Size> SupportedVideoResolutions
         {
             get
             {
                 if (_videoResolution == null)
                 {
-                    _videoResolution = new List<Size>();
-
-                    Interop.RecorderFeatures.VideoResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                    try
                     {
-                        _videoResolution.Add(new Size(width, height));
-                        return true;
-                    };
-                    RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.VideoResolution(_recorder.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported video resolutions.");
+                        _videoResolution = new List<Size>();
+
+                        Interop.RecorderFeatures.VideoResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                        {
+                            _videoResolution.Add(new Size(width, height));
+                            return true;
+                        };
+                        RecorderErrorFactory.ThrowIfError(Interop.RecorderFeatures.VideoResolution(_recorder.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported video resolutions.");
+                    }
+                    catch
+                    {
+                        _videoResolution = null;
+                        throw;
+                    }
                 }
 
                 return _videoResolution;

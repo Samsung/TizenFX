@@ -8,214 +8,214 @@ namespace Tizen.Multimedia
         internal static partial class CameraSettings
         {
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_preview_fps")]
-            internal static extern int SetPreviewFps(IntPtr handle, CameraFps fps);
+            internal static extern CameraError SetPreviewFps(IntPtr handle, CameraFps fps);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_preview_fps")]
-            internal static extern int GetPreviewFps(IntPtr handle, out CameraFps fps);
+            internal static extern CameraError GetPreviewFps(IntPtr handle, out CameraFps fps);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_image_quality")]
-            internal static extern int SetImageQuality(IntPtr handle, int quality);
+            internal static extern CameraError SetImageQuality(IntPtr handle, int quality);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_image_quality")]
-            internal static extern int GetImageQuality(IntPtr handle, out int quality);
+            internal static extern CameraError GetImageQuality(IntPtr handle, out int quality);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_encoded_preview_bitrate")]
-            internal static extern int SetBitrate(IntPtr handle, int bitrate);
+            internal static extern CameraError SetBitrate(IntPtr handle, int bitrate);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_encoded_preview_bitrate")]
-            internal static extern int GetBitrate(IntPtr handle, out int bitrate);
+            internal static extern CameraError GetBitrate(IntPtr handle, out int bitrate);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_encoded_preview_gop_interval")]
-            internal static extern int SetGopInterval(IntPtr handle, int interval);
+            internal static extern CameraError SetGopInterval(IntPtr handle, int interval);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_encoded_preview_gop_interval")]
-            internal static extern int GetGopInterval(IntPtr handle, out int interval);
+            internal static extern CameraError GetGopInterval(IntPtr handle, out int interval);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_zoom")]
-            internal static extern int SetZoom(IntPtr handle, int zoom);
+            internal static extern CameraError SetZoom(IntPtr handle, int zoom);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_zoom")]
-            internal static extern int GetZoom(IntPtr handle, out int zoom);
+            internal static extern CameraError GetZoom(IntPtr handle, out int zoom);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_zoom_range")]
-            internal static extern int GetZoomRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetZoomRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_af_mode")]
-            internal static extern int SetAutoFocusMode(IntPtr handle, CameraAutoFocusMode mode);
+            internal static extern CameraError SetAutoFocusMode(IntPtr handle, CameraAutoFocusMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_af_mode")]
-            internal static extern int GetAutoFocusMode(IntPtr handle, out CameraAutoFocusMode mode);
+            internal static extern CameraError GetAutoFocusMode(IntPtr handle, out CameraAutoFocusMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_af_area")]
-            internal static extern int SetAutoFocusArea(IntPtr handle, int x, int y);
+            internal static extern CameraError SetAutoFocusArea(IntPtr handle, int x, int y);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_clear_af_area")]
-            internal static extern int ClearAutoFocusArea(IntPtr handle);
+            internal static extern CameraError ClearAutoFocusArea(IntPtr handle);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_exposure_mode")]
-            internal static extern int SetExposureMode(IntPtr handle, CameraExposureMode mode);
+            internal static extern CameraError SetExposureMode(IntPtr handle, CameraExposureMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_exposure_mode")]
-            internal static extern int GetExposureMode(IntPtr handle, out CameraExposureMode mode);
+            internal static extern CameraError GetExposureMode(IntPtr handle, out CameraExposureMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_exposure")]
-            internal static extern int SetExposure(IntPtr handle, int value);
+            internal static extern CameraError SetExposure(IntPtr handle, int value);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_exposure")]
-            internal static extern int GetExposure(IntPtr handle, out int value);
+            internal static extern CameraError GetExposure(IntPtr handle, out int value);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_exposure_range")]
-            internal static extern int GetExposureRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetExposureRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_iso")]
-            internal static extern int SetIso(IntPtr handle, CameraIsoLevel iso);
+            internal static extern CameraError SetIso(IntPtr handle, CameraIsoLevel iso);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_iso")]
-            internal static extern int GetIso(IntPtr handle, out CameraIsoLevel iso);
+            internal static extern CameraError GetIso(IntPtr handle, out CameraIsoLevel iso);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_theater_mode")]
-            internal static extern int SetTheaterMode(IntPtr handle, CameraTheaterMode mode);
+            internal static extern CameraError SetTheaterMode(IntPtr handle, CameraTheaterMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_theater_mode")]
-            internal static extern int GetTheaterMode(IntPtr handle, out CameraTheaterMode mode);
+            internal static extern CameraError GetTheaterMode(IntPtr handle, out CameraTheaterMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_brightness")]
-            internal static extern int SetBrightness(IntPtr handle, int level);
+            internal static extern CameraError SetBrightness(IntPtr handle, int level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_brightness")]
-            internal static extern int GetBrightness(IntPtr handle, out int level);
+            internal static extern CameraError GetBrightness(IntPtr handle, out int level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_brightness_range")]
-            internal static extern int GetBrightnessRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetBrightnessRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_contrast")]
-            internal static extern int SetContrast(IntPtr handle, int level);
+            internal static extern CameraError SetContrast(IntPtr handle, int level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_contrast")]
-            internal static extern int GetContrast(IntPtr handle, out int level);
+            internal static extern CameraError GetContrast(IntPtr handle, out int level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_contrast_range")]
-            internal static extern int GetContrastRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetContrastRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_whitebalance")]
-            internal static extern int SetWhitebalance(IntPtr handle, CameraWhiteBalance level);
+            internal static extern CameraError SetWhitebalance(IntPtr handle, CameraWhiteBalance level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_whitebalance")]
-            internal static extern int GetWhiteBalance(IntPtr handle, out CameraWhiteBalance level);
+            internal static extern CameraError GetWhiteBalance(IntPtr handle, out CameraWhiteBalance level);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_effect")]
-            internal static extern int SetEffect(IntPtr handle, CameraEffectMode mode);
+            internal static extern CameraError SetEffect(IntPtr handle, CameraEffectMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_effect")]
-            internal static extern int GetEffect(IntPtr handle, out CameraEffectMode mode);
+            internal static extern CameraError GetEffect(IntPtr handle, out CameraEffectMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_scene_mode")]
-            internal static extern int SetSceneMode(IntPtr handle, CameraSceneMode mode);
+            internal static extern CameraError SetSceneMode(IntPtr handle, CameraSceneMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_scene_mode")]
-            internal static extern int GetSceneMode(IntPtr handle, out CameraSceneMode mode);
+            internal static extern CameraError GetSceneMode(IntPtr handle, out CameraSceneMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_tag")]
-            internal static extern int EnableTag(IntPtr handle, bool enable);
+            internal static extern CameraError EnableTag(IntPtr handle, bool enable);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_tag")]
-            internal static extern int IsEnabledTag(IntPtr handle, out bool enabled);
+            internal static extern CameraError IsEnabledTag(IntPtr handle, out bool enabled);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_tag_image_description")]
-            internal static extern int SetImageDescription(IntPtr handle, string description);
+            internal static extern CameraError SetImageDescription(IntPtr handle, string description);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_tag_image_description")]
-            internal static extern int GetImageDescription(IntPtr handle, out IntPtr description);
+            internal static extern CameraError GetImageDescription(IntPtr handle, out IntPtr description);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_tag_software")]
-            internal static extern int SetTagSoftware(IntPtr handle, string software);
+            internal static extern CameraError SetTagSoftware(IntPtr handle, string software);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_tag_software")]
-            internal static extern int GetTagSoftware(IntPtr handle, out IntPtr software);
+            internal static extern CameraError GetTagSoftware(IntPtr handle, out IntPtr software);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_tag_orientation")]
-            internal static extern int SetTagOrientation(IntPtr handle, CameraTagOrientation orientation);
+            internal static extern CameraError SetTagOrientation(IntPtr handle, CameraTagOrientation orientation);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_tag_orientation")]
-            internal static extern int GetTagOrientation(IntPtr handle, out CameraTagOrientation orientation);
+            internal static extern CameraError GetTagOrientation(IntPtr handle, out CameraTagOrientation orientation);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_geotag")]
-            internal static extern int SetGeotag(IntPtr handle, double latitude, double longtitude, double altitude);
+            internal static extern CameraError SetGeotag(IntPtr handle, double latitude, double longtitude, double altitude);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_geotag")]
-            internal static extern int GetGeotag(IntPtr handle, out double latitude, out double longtitude, out double altitude);
+            internal static extern CameraError GetGeotag(IntPtr handle, out double latitude, out double longtitude, out double altitude);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_remove_geotag")]
-            internal static extern int RemoveGeotag(IntPtr handle);
+            internal static extern CameraError RemoveGeotag(IntPtr handle);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_flash_mode")]
-            internal static extern int SetFlashMode(IntPtr handle, CameraFlashMode mode);
+            internal static extern CameraError SetFlashMode(IntPtr handle, CameraFlashMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_flash_mode")]
-            internal static extern int GetFlashMode(IntPtr handle, out CameraFlashMode mode);
+            internal static extern CameraError GetFlashMode(IntPtr handle, out CameraFlashMode mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_lens_orientation")]
-            internal static extern int GetLensOrientation(IntPtr handle, out int angle);
+            internal static extern CameraError GetLensOrientation(IntPtr handle, out int angle);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_stream_rotation")]
-            internal static extern int SetStreamRotation(IntPtr handle, CameraRotation mode);
+            internal static extern CameraError SetStreamRotation(IntPtr handle, CameraRotation mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_stream_rotation")]
-            internal static extern int GetStreamRotation(IntPtr handle, out CameraRotation mode);
+            internal static extern CameraError GetStreamRotation(IntPtr handle, out CameraRotation mode);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_stream_flip")]
-            internal static extern int SetFlip(IntPtr handle, CameraFlip flip);
+            internal static extern CameraError SetFlip(IntPtr handle, CameraFlip flip);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_stream_flip")]
-            internal static extern int GetFlip(IntPtr handle, out CameraFlip flip);
+            internal static extern CameraError GetFlip(IntPtr handle, out CameraFlip flip);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_hdr_mode")]
-            internal static extern int SetHdrMode(IntPtr handle, CameraHdrMode hdr);
+            internal static extern CameraError SetHdrMode(IntPtr handle, CameraHdrMode hdr);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_hdr_mode")]
-            internal static extern int GetHdrMode(IntPtr handle, out CameraHdrMode hdr);
+            internal static extern CameraError GetHdrMode(IntPtr handle, out CameraHdrMode hdr);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_anti_shake")]
-            internal static extern int EnableAntiShake(IntPtr handle, bool enable);
+            internal static extern CameraError EnableAntiShake(IntPtr handle, bool enable);
 
             [DllImport(Libraries.Camera, EntryPoint = " camera_attr_is_enabled_anti_shake")]
-            internal static extern int IsEnabledAntiShake(IntPtr handle, out bool enabled);
+            internal static extern CameraError IsEnabledAntiShake(IntPtr handle, out bool enabled);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_video_stabilization")]
-            internal static extern int EnableVideoStabilization(IntPtr handle, bool enable);
+            internal static extern CameraError EnableVideoStabilization(IntPtr handle, bool enable);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_video_stabilization")]
-            internal static extern int IsEnabledVideoStabilization(IntPtr handle, out bool enabled);
+            internal static extern CameraError IsEnabledVideoStabilization(IntPtr handle, out bool enabled);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_auto_contrast")]
-            internal static extern int EnableAutoContrast(IntPtr handle, bool enable);
+            internal static extern CameraError EnableAutoContrast(IntPtr handle, bool enable);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_auto_contrast")]
-            internal static extern int IsEnabledAutoContrast(IntPtr handle, out bool enabled);
+            internal static extern CameraError IsEnabledAutoContrast(IntPtr handle, out bool enabled);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_disable_shutter_sound")]
-            internal static extern int DisableShutterSound(IntPtr handle, bool disable);
+            internal static extern CameraError DisableShutterSound(IntPtr handle, bool disable);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_pan")]
-            internal static extern int SetPan(IntPtr handle, CameraPtzMoveType type, int step);
+            internal static extern CameraError SetPan(IntPtr handle, CameraPtzMoveType type, int step);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_pan")]
-            internal static extern int GetPan(IntPtr handle, out int step);
+            internal static extern CameraError GetPan(IntPtr handle, out int step);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_pan_range")]
-            internal static extern int GetPanRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetPanRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_tilt")]
-            internal static extern int SetTilt(IntPtr handle, CameraPtzMoveType type, int step);
+            internal static extern CameraError SetTilt(IntPtr handle, CameraPtzMoveType type, int step);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_tilt")]
-            internal static extern int GetTilt(IntPtr handle, out int step);
+            internal static extern CameraError GetTilt(IntPtr handle, out int step);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_tilt_range")]
-            internal static extern int GetTiltRange(IntPtr handle, out int min, out int max);
+            internal static extern CameraError GetTiltRange(IntPtr handle, out int min, out int max);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_ptz_type")]
-            internal static extern int SetPtzType(IntPtr handle, int type);
+            internal static extern CameraError SetPtzType(IntPtr handle, int type);
         }
     }
 }

@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
@@ -45,6 +44,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Audio recorder constructor.
         /// </summary>
+        /// /// <privilege>
+        /// http://tizen.org/privilege/microphone
+        /// </privilege>
         public Recorder()
         {
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Create(out _handle),
@@ -54,6 +56,8 @@ namespace Tizen.Multimedia
             Setting = new RecorderSettings(this);
 
             RegisterCallbacks();
+
+            SetState(RecorderState.Created);
         }
 
         /// <summary>
@@ -62,6 +66,9 @@ namespace Tizen.Multimedia
         /// <param name="camera">
         /// The camera object.
         /// </param>
+        /// <privilege>
+        /// http://tizen.org/privilege/camera
+        /// </privilege>
         public Recorder(Camera camera)
         {
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.CreateVideo(camera.GetHandle(), out _handle),
@@ -71,6 +78,8 @@ namespace Tizen.Multimedia
             Setting = new RecorderSettings(this);
 
             RegisterCallbacks();
+
+            SetState(RecorderState.Created);
         }
 
         /// <summary>
@@ -202,10 +211,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The current state of the recorder.
         /// </summary>
+        /// <value>A <see cref="RecorderState"/> that specifies the state of recorder.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderState State
         {
             get
             {
+                ValidateNotDisposed();
+
                 RecorderState val = 0;
 
                 RecorderErrorFactory.ThrowIfError(Interop.Recorder.GetState(_handle, out val),
@@ -219,34 +232,55 @@ namespace Tizen.Multimedia
 #region Methods
         /// <summary>
         /// Prepare the media recorder for recording.
+        /// The recorder must be in the <see cref="RecorderState.Created"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
         /// <remarks>
         /// Before calling the function, it is required to set AudioEncoder,
         /// videoencoder and fileformat properties of recorder.
         /// </remarks>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Prepare()
         {
+            ValidateState(RecorderState.Created);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Prepare(_handle),
                 "Failed to prepare media recorder for recording");
+
+            SetState(RecorderState.Ready);
         }
 
         /// <summary>
         /// Resets the media recorder.
+        /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Created"/> state.
         /// </summary>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Unprepare()
         {
+            ValidateState(RecorderState.Ready);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Unprepare(_handle),
                 "Failed to reset the media recorder");
+
+            SetState(RecorderState.Created);
         }
 
         /// <summary>
         /// Starts the recording.
+        /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Recording"/> state.
         /// </summary>
         /// <remarks>
         /// If file path has been set to an existing file, this file is removed automatically and updated by new one.
@@ -255,60 +289,96 @@ namespace Tizen.Multimedia
         ///	The filename should be set before this function is invoked.
         /// </remarks>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Start()
         {
+            ValidateState(RecorderState.Ready);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Start(_handle),
                 "Failed to start the media recorder");
+
+            SetState(RecorderState.Recording);
         }
 
         /// <summary>
         /// Pause the recording.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Paused"/> state.
         /// </summary>
         /// <remarks>
         /// Recording can be resumed with Start().
         /// </remarks>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Pause()
         {
+            ValidateState(RecorderState.Recording);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Pause(_handle),
                 "Failed to pause the media recorder");
+
+            SetState(RecorderState.Paused);
         }
 
         /// <summary>
         /// Stops recording and saves the result.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Commit()
         {
+            ValidateState(RecorderState.Recording, RecorderState.Paused);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Commit(_handle),
                 "Failed to save the recorded content");
+
+            SetState(RecorderState.Ready);
         }
 
         /// <summary>
         /// Cancels the recording.
         /// The recording data is discarded and not written in the recording file.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// After this method is finished without any exception,
+        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
         /// <privilege>
-        /// http://tizen.org/privilege/recorder
+        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
         /// </privilege>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Cancel()
         {
+            ValidateState(RecorderState.Recording, RecorderState.Paused);
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.Cancel(_handle),
                 "Failed to cancel the recording");
+
+            SetState(RecorderState.Ready);
         }
 
         /// <summary>
         /// Sets the audio stream policy.
         /// </summary>
         /// <param name="policy">Policy.</param>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void SetAudioStreamPolicy(AudioStreamPolicy policy)
         {
+            ValidateNotDisposed();
+
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.SetAudioStreamPolicy(_handle, policy.Handle),
                 "Failed to set audio stream policy");
         }
@@ -350,6 +420,8 @@ namespace Tizen.Multimedia
         {
             _stateChangedCallback = (RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData) =>
             {
+                SetState(current);
+                Log.Info(RecorderLog.Tag, "Recorder state changed " + previous.ToString() + " -> " + current.ToString());
                 StateChanged?.Invoke(this, new RecorderStateChangedEventArgs(previous, current, byPolicy));
             };
             RecorderErrorFactory.ThrowIfError(Interop.Recorder.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),

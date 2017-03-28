@@ -34,6 +34,7 @@ namespace Tizen.Multimedia
         private List<CameraPixelFormat> _captureFormats;
         private List<CameraPixelFormat> _previewFormats;
         private List<CameraFps> _fps;
+        private List<CameraFps> _fpsByResolution;
         private List<CameraAutoFocusMode> _autoFocusModes;
         private List<CameraExposureMode> _exposureModes;
         private List<CameraIsoLevel> _isoLevels;
@@ -46,7 +47,7 @@ namespace Tizen.Multimedia
         private List<CameraFlip> _streamFlips;
         private List<CameraPtzType> _ptzTypes;
 
-        private delegate int GetRangeDelegate(IntPtr handle, out int min, out int max);
+        private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
         private delegate bool IsSupportedDelegate(IntPtr handle);
 
         internal CameraFeatures(Camera camera)
@@ -78,7 +79,8 @@ namespace Tizen.Multimedia
             int min = 0;
             int max = 0;
 
-            CameraErrorFactory.ThrowIfError(func(_camera.GetHandle(), out min, out max), "Failed to check feature is suported or not.");
+            CameraErrorFactory.ThrowIfError(func(_camera.GetHandle(), out min, out max),
+                "Failed to check feature is suported or not.");
 
             return min < max;
         }
@@ -168,21 +170,30 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported preview resolutions.
         /// by recorder.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<Size> SupportedPreviewResolutions
         {
             get
             {
                 if (_previewResolutions == null)
                 {
-                    _previewResolutions = new List<Size>();
-
-                    Interop.CameraFeatures.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                    try
                     {
-                        _previewResolutions.Add(new Size(width, height));
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported preview resolutions");
+                        _previewResolutions = new List<Size>();
+
+                        Interop.CameraFeatures.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                        {
+                            _previewResolutions.Add(new Size(width, height));
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported preview resolutions");
+                    }
+                    catch
+                    {
+                        _previewResolutions = null;
+                        throw;
+                    }
                 }
 
                 return _previewResolutions;
@@ -195,21 +206,30 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported capture resolutions.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<Size> SupportedCaptureResolutions
         {
             get
             {
                 if (_cameraResolutions == null)
                 {
-                    _cameraResolutions = new List<Size>();
-
-                    Interop.CameraFeatures.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                    try
                     {
-                        _cameraResolutions.Add(new Size(width, height));
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported capture resolutions");
+                        _cameraResolutions = new List<Size>();
+
+                        Interop.CameraFeatures.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
+                        {
+                            _cameraResolutions.Add(new Size(width, height));
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported capture resolutions");
+                    }
+                    catch
+                    {
+                        _cameraResolutions = null;
+                        throw;
+                    }
                 }
 
                 return _cameraResolutions;
@@ -220,23 +240,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the capture formats supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported capture formats.
+        /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraPixelFormat> SupportedCapturePixelFormats
         {
             get
             {
                 if (_captureFormats == null)
                 {
-                    _captureFormats = new List<CameraPixelFormat>();
-
-                    Interop.CameraFeatures.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+                    try
                     {
-                        _captureFormats.Add(format);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported capture formats.");
+                        _captureFormats = new List<CameraPixelFormat>();
+
+                        Interop.CameraFeatures.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+                        {
+                            _captureFormats.Add(format);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported capture formats.");
+                    }
+                    catch
+                    {
+                        _captureFormats = null;
+                        throw;
+                    }
                 }
 
                 return _captureFormats;
@@ -247,23 +276,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the preview formats supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported preview formats.
+        /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraPixelFormat> SupportedPreviewPixelFormats
         {
             get
             {
                 if (_previewFormats == null)
                 {
-                    _previewFormats = new List<CameraPixelFormat>();
-
-                    Interop.CameraFeatures.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+                    try
                     {
-                        _previewFormats.Add(format);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported preview formats.");
+                        _previewFormats = new List<CameraPixelFormat>();
+
+                        Interop.CameraFeatures.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+                        {
+                            _previewFormats.Add(format);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported preview formats.");
+                    }
+                    catch
+                    {
+                        _previewFormats = null;
+                        throw;
+                    }
                 }
 
                 return _previewFormats;
@@ -274,23 +312,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the fps supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported fps.
+        /// It returns a list containing all the supported <see cref="CameraFps"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFps> SupportedPreviewFps
         {
             get
             {
                 if (_fps == null)
                 {
-                    _fps = new List<CameraFps>();
-
-                    Interop.CameraFeatures.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
+                    try
                     {
-                        _fps.Add(fps);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported camera fps");
+                        _fps = new List<CameraFps>();
+
+                        Interop.CameraFeatures.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
+                        {
+                            _fps.Add(fps);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero),
+                            "Failed to get the supported camera fps");
+                    }
+                    catch
+                    {
+                        _fps = null;
+                        throw;
+                    }
                 }
 
                 return _fps;
@@ -301,55 +348,77 @@ namespace Tizen.Multimedia
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported fps by resolution.
+        /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(int width, int height)
         {
-            var result = new List<CameraFps>();
-
-            Interop.CameraFeatures.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
+            if (_fpsByResolution == null)
             {
-                result.Add(fps);
-                return true;
-            };
-            CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewFpsByResolution(_camera.GetHandle(),
-                width, height, callback, IntPtr.Zero), "Failed to get the supported fps by resolutions.");
+                try
+                {
+                    _fpsByResolution = new List<CameraFps>();
 
-            return result;
+                    Interop.CameraFeatures.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
+                    {
+                        _fpsByResolution.Add(fps);
+                        return true;
+                    };
+                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPreviewFpsByResolution(_camera.GetHandle(),
+                        width, height, callback, IntPtr.Zero), "Failed to get the supported fps by resolutions.");
+                }
+                catch
+                {
+                    _fpsByResolution = null;
+                    throw;
+                }
+            }
+
+            return _fpsByResolution;
         }
 
         /// <summary>
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported fps by resolution.
+        /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(Size size)
         {
             return GetSupportedPreviewFpsByResolution(size.Width, size.Height);
         }
 
         /// <summary>
-        /// Retrieves all the fps by resolution supported by the camera.
+        /// Retrieves all the auto focus modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported fps by resolution.
+        /// It returns a list containing all the supported <see cref="CameraAutoFocusMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraAutoFocusMode> SupportedAutoFocusModes
         {
             get
             {
                 if (_autoFocusModes == null)
                 {
-                    _autoFocusModes = new List<CameraAutoFocusMode>();
-
-                    Interop.CameraFeatures.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
+                    try
                     {
-                        _autoFocusModes.Add(mode);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedAfModes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _autoFocusModes = new List<CameraAutoFocusMode>();
+
+                        Interop.CameraFeatures.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
+                        {
+                            _autoFocusModes.Add(mode);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedAfModes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported Auto focus modes.");
+                    }
+                    catch
+                    {
+                        _autoFocusModes = null;
+                        throw;
+                    }
                 }
 
                 return _autoFocusModes;
@@ -360,23 +429,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the exposure modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera exposure modes.
+        /// It returns a list containing all the supported <see cref="CameraExposureMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraExposureMode> SupportedExposureModes
         {
             get
             {
                 if (_exposureModes == null)
                 {
-                    _exposureModes = new List<CameraExposureMode>();
-
-                    Interop.CameraFeatures.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
+                    try
                     {
-                        _exposureModes.Add(mode);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _exposureModes = new List<CameraExposureMode>();
+
+                        Interop.CameraFeatures.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
+                        {
+                            _exposureModes.Add(mode);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported Exposure modes.");
+                    }
+                    catch
+                    {
+                        _exposureModes = null;
+                        throw;
+                    }
                 }
 
                 return _exposureModes;
@@ -387,23 +465,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the Iso level supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera Iso levels.
+        /// It returns a list containing all the supported <see cref="CameraIsoLevel"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraIsoLevel> SupportedIsoLevels
         {
             get
             {
                 if (_isoLevels == null)
                 {
-                    _isoLevels = new List<CameraIsoLevel>();
-
-                    Interop.CameraFeatures.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
+                    try
                     {
-                        _isoLevels.Add(iso);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _isoLevels = new List<CameraIsoLevel>();
+
+                        Interop.CameraFeatures.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
+                        {
+                            _isoLevels.Add(iso);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported Iso levels.");
+                    }
+                    catch
+                    {
+                        _isoLevels = null;
+                        throw;
+                    }
                 }
 
                 return _isoLevels;
@@ -414,23 +501,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the theater modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera theater modes.
+        /// It returns a list containing all the supported <see cref="CameraTheaterMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraTheaterMode> SupportedTheaterModes
         {
             get
             {
                 if (_theaterModes == null)
                 {
-                    _theaterModes = new List<CameraTheaterMode>();
-
-                    Interop.CameraFeatures.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
+                    try
                     {
-                        _theaterModes.Add(theaterMode);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _theaterModes = new List<CameraTheaterMode>();
+
+                        Interop.CameraFeatures.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
+                        {
+                            _theaterModes.Add(theaterMode);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported theater modes.");
+                    }
+                    catch
+                    {
+                        _theaterModes = null;
+                        throw;
+                    }
                 }
 
                 return _theaterModes;
@@ -438,26 +534,35 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves all the whitebalance mode supported by the camera.
+        /// Retrieves all the whitebalance modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera white balance modes.
+        /// It returns a list containing all the supported <see cref="CameraWhiteBalance"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraWhiteBalance> SupportedWhiteBalances
         {
             get
             {
                 if (_whitebalances == null)
                 {
-                    _whitebalances = new List<CameraWhiteBalance>();
-
-                    Interop.CameraFeatures.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
+                    try
                     {
-                        _whitebalances.Add(whiteBalance);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _whitebalances = new List<CameraWhiteBalance>();
+
+                        Interop.CameraFeatures.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
+                        {
+                            _whitebalances.Add(whiteBalance);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported white balance.");
+                    }
+                    catch
+                    {
+                        _whitebalances = null;
+                        throw;
+                    }
                 }
 
                 return _whitebalances;
@@ -468,23 +573,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the flash modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera flash modes.
+        /// It returns a list containing all the supported <see cref="CameraFlashMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFlashMode> SupportedFlashModes
         {
             get
             {
                 if (_flashModes == null)
                 {
-                    _flashModes = new List<CameraFlashMode>();
-
-                    Interop.CameraFeatures.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
+                    try
                     {
-                        _flashModes.Add(flashMode);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _flashModes = new List<CameraFlashMode>();
+
+                        Interop.CameraFeatures.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
+                        {
+                            _flashModes.Add(flashMode);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported flash modes.");
+                    }
+                    catch
+                    {
+                        _flashModes = null;
+                        throw;
+                    }
                 }
 
                 return _flashModes;
@@ -495,23 +609,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the scene modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera scene modes.
+        /// It returns a list containing all the supported <see cref="CameraSceneMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraSceneMode> SupportedSceneModes
         {
             get
             {
                 if (_sceneModes == null)
                 {
-                    _sceneModes = new List<CameraSceneMode>();
-
-                    Interop.CameraFeatures.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
+                    try
                     {
-                        _sceneModes.Add(sceneMode);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _sceneModes = new List<CameraSceneMode>();
+
+                        Interop.CameraFeatures.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
+                        {
+                            _sceneModes.Add(sceneMode);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported scene modes.");
+                    }
+                    catch
+                    {
+                        _sceneModes = null;
+                        throw;
+                    }
                 }
 
                 return _sceneModes;
@@ -519,26 +642,35 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves all the effects supported by the camera.
+        /// Retrieves all the effect modes supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera effects.
+        /// It returns a list containing all the supported <see cref="CameraEffectMode"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraEffectMode> SupportedEffects
         {
             get
             {
                 if (_effectModes == null)
                 {
-                    _effectModes = new List<CameraEffectMode>();
-
-                    Interop.CameraFeatures.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
+                    try
                     {
-                        _effectModes.Add(effect);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _effectModes = new List<CameraEffectMode>();
+
+                        Interop.CameraFeatures.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
+                        {
+                            _effectModes.Add(effect);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported camera effects.");
+                    }
+                    catch
+                    {
+                        _effectModes = null;
+                        throw;
+                    }
                 }
 
                 return _effectModes;
@@ -549,23 +681,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the stream rotation supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera stream rotations.
+        /// It returns a list containing all the supported <see cref="CameraRotation"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraRotation> SupportedStreamRotations
         {
             get
             {
                 if (_streamRotations == null)
                 {
-                    _streamRotations = new List<CameraRotation>();
-
-                    Interop.CameraFeatures.StreamRotationCallback callback = (CameraRotation streamRotation, IntPtr userData) =>
+                    try
                     {
-                        _streamRotations.Add(streamRotation);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _streamRotations = new List<CameraRotation>();
+
+                        Interop.CameraFeatures.StreamRotationCallback callback = (CameraRotation streamRotation, IntPtr userData) =>
+                        {
+                            _streamRotations.Add(streamRotation);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported camera rotations.");
+                    }
+                    catch
+                    {
+                        _streamRotations = null;
+                        throw;
+                    }
                 }
 
                 return _streamRotations;
@@ -576,23 +717,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the flips supported by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported camera flip.
+        /// It returns a list containing all the supported <see cref="CameraFlip"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFlip> SupportedStreamFlips
         {
             get
             {
                 if (_streamFlips == null)
                 {
-                    _streamFlips = new List<CameraFlip>();
-
-                    Interop.CameraFeatures.StreamFlipCallback callback = (CameraFlip streamFlip, IntPtr userData) =>
+                    try
                     {
-                        _streamFlips.Add(streamFlip);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _streamFlips = new List<CameraFlip>();
+
+                        Interop.CameraFeatures.StreamFlipCallback callback = (CameraFlip streamFlip, IntPtr userData) =>
+                        {
+                            _streamFlips.Add(streamFlip);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported camera flips.");
+                    }
+                    catch
+                    {
+                        _streamFlips = null;
+                        throw;
+                    }
                 }
 
                 return _streamFlips;
@@ -603,23 +753,32 @@ namespace Tizen.Multimedia
         /// Retrieves all the ptz types by the camera.
         /// </summary>
         /// <returns>
-        /// It returns a list containing all the supported ptz types.
+        /// It returns a list containing all the supported <see cref="CameraPtzType"/>.
         /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraPtzType> SupportedPtzTypes
         {
             get
             {
                 if (_ptzTypes.Count == 0)
                 {
-                    _ptzTypes = new List<CameraPtzType>();
-
-                    Interop.CameraFeatures.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
+                    try
                     {
-                        _ptzTypes.Add(ptzType);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero),
+                        _ptzTypes = new List<CameraPtzType>();
+
+                        Interop.CameraFeatures.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
+                        {
+                            _ptzTypes.Add(ptzType);
+                            return true;
+                        };
+                        CameraErrorFactory.ThrowIfError(Interop.CameraFeatures.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero),
                         "Failed to get the supported Ptz types.");
+                    }
+                    catch
+                    {
+                        _ptzTypes = null;
+                        throw;
+                    }
                 }
 
                 return _ptzTypes;
