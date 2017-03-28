@@ -32,6 +32,11 @@ namespace Tizen.Applications
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
+            err = Interop.ApplicationManager.AppInfoGetAppId(infoHandle, out _applicationId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw new ArgumentException("Invalid native handle.");
+            }
             _infoHandle = infoHandle;
         }
 
