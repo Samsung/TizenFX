@@ -119,9 +119,9 @@ namespace Tizen.Network.IoTConnectivity
 
                 Log.Info(IoTConnectivityErrorFactory.LogTag, "Received s_RequestHandlerCallbackMap : " + requestId);
 
-                if (request == null)
+                if (request == IntPtr.Zero)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "request is null");
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "request is IntPtr.Zero");
                     return;
                 }
                 resource.OnRequest(r_resource, request, userData);
