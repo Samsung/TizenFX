@@ -14,6 +14,14 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
+    //This version should be updated and synced for every Dali native release
+    internal static class Version
+    {
+        public const int ver1 = 1;
+        public const int ver2 = 2;
+        public const int ver3 = 32;
+    }
+
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -1058,6 +1066,24 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, Application.WindowMode windowMode)
         {
+            {
+                int ver1 = -1;
+                int ver2 = -1;
+                int ver3 = -1;
+
+                if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
+                {
+                    if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
+                    {
+                        throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                    }
+                }
+                else
+                {
+                    throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                }
+            }
+
             LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 
             // register all Views with the type registry, so that can be created / styled via JSON

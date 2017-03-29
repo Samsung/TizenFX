@@ -6158,22 +6158,22 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_IndicatorVisibilityChangedSignal")]
   public static extern global::System.IntPtr Window_IndicatorVisibilityChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_FocusChangedSignal")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FocusChangedSignal")]
   public static extern global::System.IntPtr FocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_SetAcceptFocus")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_SetAcceptFocus")]
   public static extern void SetAcceptFocus(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_IsFocusAcceptable")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IsFocusAcceptable")]
   public static extern bool IsFocusAcceptable(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_Show")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Show")]
   public static extern void Show(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_Hide")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Hide")]
   public static extern void Hide(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_IsVisible")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IsVisible")]
   public static extern bool IsVisible(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_New__SWIG_0")]
@@ -10004,19 +10004,19 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LoadImageSynchronously__SWIG_2")]
   public static extern global::System.IntPtr LoadImageSynchronously__SWIG_2(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_delete_CustomAlgorithmInterface")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_CustomAlgorithmInterface")]
   public static extern void delete_CustomAlgorithmInterface(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_CustomAlgorithmInterface_GetNextFocusableActor")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_CustomAlgorithmInterface_GetNextFocusableActor")]
   public static extern global::System.IntPtr CustomAlgorithmInterface_GetNextFocusableActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_new_CustomAlgorithmInterface")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_CustomAlgorithmInterface")]
   public static extern global::System.IntPtr new_CustomAlgorithmInterface();
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_CustomAlgorithmInterface_director_connect")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_CustomAlgorithmInterface_director_connect")]
   public static extern void CustomAlgorithmInterface_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1, CustomAlgorithmInterface.SwigDelegateCustomAlgorithmInterface_0 delegate0);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_SetCustomAlgorithm")]
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_SetCustomAlgorithm")]
   public static extern void SetCustomAlgorithm(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ItemIdContainer_Clear")]
