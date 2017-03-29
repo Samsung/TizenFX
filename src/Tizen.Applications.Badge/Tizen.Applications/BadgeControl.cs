@@ -346,6 +346,7 @@ namespace Tizen.Applications
         private static void OnChangedEvent(Interop.Badge.Action action, string appId, uint count, IntPtr userData)
         {
             uint display = 0;
+            uint countLocal = 0;
 
             switch (action)
             {
@@ -366,12 +367,20 @@ namespace Tizen.Applications
                     break;
 
                 case Interop.Badge.Action.Update:
-                case Interop.Badge.Action.ChangedDisplay:
                     Interop.Badge.GetDisplay(appId, out display);
                     s_changed?.Invoke(null, new BadgeEventArgs()
                     {
                         Reason = BadgeEventArgs.Action.Update,
                         Badge = new Badge(appId, (int)count, display == 0 ? false : true)
+                    });
+                    break;
+
+                case Interop.Badge.Action.ChangedDisplay:
+                    Interop.Badge.GetCount(appId, out countLocal);
+                    s_changed?.Invoke(null, new BadgeEventArgs()
+                    {
+                        Reason = BadgeEventArgs.Action.Update,
+                        Badge = new Badge(appId, (int)countLocal, count == 0 ? false : true)
                     });
                     break;
 
