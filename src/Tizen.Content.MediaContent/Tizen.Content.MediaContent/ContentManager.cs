@@ -254,15 +254,12 @@ namespace Tizen.Content.MediaContent
         /// without calling this function.This function is only called when the media server is busy and user needs to get quick result of deleting.
         /// </summary>
         /// <param name="filter">The content filter to which media will be matched</param>
-        /// <returns>Task with the removal result </returns>
-        public static Task RemoveMediaInformationBatchAsync(ContentFilter filter)
+        public static void RemoveMediaInformationBatch(ContentFilter filter)
         {
             Database.ConnectToDB();
-            var task = new TaskCompletionSource<int>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
-            MediaContentError res = Interop.MediaInformation.BatchDelete(handle);
-            task.SetResult((int)res);
-            return task.Task;
+            MediaContentValidator.ThrowIfError(
+                Interop.MediaInformation.BatchDelete(handle), "Failed to remove items");
         }
     }
 }
