@@ -3,7 +3,7 @@
   <metadata>
 		<id>Tizen.Tracer</id>
 		<version>$version$</version>
-		<authors>tizen</authors>
+		<authors>Samsung Electronics</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>http://www.tizen.org</projectUrl>
