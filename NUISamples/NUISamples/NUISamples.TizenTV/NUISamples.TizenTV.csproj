@@ -78,13 +78,17 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Tizen.NUI\Tizen.NUI.csproj">
+      <Project>{f03a3b48-9d9b-4bf3-92ce-bd63cadc3cd3}</Project>
+      <Name>Tizen.NUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tizen.NUI.Extension.Test\Tizen.NUI.Extension.Test.csproj">
       <Project>{2def21e8-80d1-43b6-9e93-aef1d1be169b}</Project>
       <Name>Tizen.NUI.Extension.Test</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tizen.NUI\Tizen.NUI.csproj">
-      <Project>{3aee14f6-d600-4f5f-9982-74d011739ad7}</Project>
-      <Name>Tizen.NUI</Name>
+    <ProjectReference Include="..\NUISamples\NUISamples-dummy.csproj">
+      <Project>{56ca3b27-c662-4ac8-93ca-7acef926b2aa}</Project>
+      <Name>NUISamples-dummy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

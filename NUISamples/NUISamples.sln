@@ -6,10 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUISamples-dummy", "NUISamples\NUISamples\NUISamples-dummy.csproj", "{56CA3B27-C662-4AC8-93CA-7ACEF926B2AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUISamples.TizenTV", "NUISamples\NUISamples.TizenTV\NUISamples.TizenTV.csproj", "{7731BE98-0A68-49A9-877C-A30A0D30D9F6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.NUI", "Tizen.NUI\Tizen.NUI.csproj", "{3AEE14F6-D600-4F5F-9982-74D011739AD7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{56CA3B27-C662-4AC8-93CA-7ACEF926B2AA} = {56CA3B27-C662-4AC8-93CA-7ACEF926B2AA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.NUI.Extension.Test", "Tizen.NUI.Extension.Test\Tizen.NUI.Extension.Test.csproj", "{2DEF21E8-80D1-43B6-9E93-AEF1D1BE169B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +28,14 @@ Global
 		{7731BE98-0A68-49A9-877C-A30A0D30D9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7731BE98-0A68-49A9-877C-A30A0D30D9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7731BE98-0A68-49A9-877C-A30A0D30D9F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3AEE14F6-D600-4F5F-9982-74D011739AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AEE14F6-D600-4F5F-9982-74D011739AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AEE14F6-D600-4F5F-9982-74D011739AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AEE14F6-D600-4F5F-9982-74D011739AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2DEF21E8-80D1-43B6-9E93-AEF1D1BE169B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DEF21E8-80D1-43B6-9E93-AEF1D1BE169B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DEF21E8-80D1-43B6-9E93-AEF1D1BE169B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DEF21E8-80D1-43B6-9E93-AEF1D1BE169B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F03A3B48-9D9B-4BF3-92CE-BD63CADC3CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
