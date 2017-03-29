@@ -158,6 +158,13 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the timeout value set to the Popup(in seconds).
         /// </summary>
+        /// <remarks>
+        /// Since calling Show() on a popup restarts the timer controlling when it is hidden,
+        /// setting this before the popup is shown will in effect mean starting the timer when the popup is shown.
+        /// TimedOut is called afterwards which can be handled if needed.
+        /// Set a value <= 0.0 to disable a running timer.If the value > 0.0 and the popup is previously visible,
+        /// the timer will be started with this value, canceling any running timer.
+        /// </remarks>
         public double Timeout
         {
             get
@@ -219,7 +226,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the Opacity value set to the Popup(in seconds).
+        /// Gets the Opacity value of the Popup.
         /// </summary>
         public override int Opacity
         {

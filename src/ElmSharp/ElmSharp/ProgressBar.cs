@@ -69,6 +69,11 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the value of ProgressBar.
         /// </summary>
+        /// <remarks>
+        /// Use this property to set the progress bar levels.
+        /// If you pass a value out of the specified range(0.0~1.0),
+        /// it is interpreted as the closest of the boundary values in the range.
+        /// </remarks>
         public double Value
         {
             get
