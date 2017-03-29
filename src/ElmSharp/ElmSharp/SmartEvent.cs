@@ -21,6 +21,14 @@ using System.Linq;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="IInvalidatable"/>.
+    /// The event with TEventArgs for <see cref="EvasObject"/>.
+    /// EvasObject can elect SmartEvent occurring inside of them to be reported back to their users via delegates.
+    /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
+    /// They are defined by an event string, which identifies them uniquely.
+    /// </summary>
+    /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
     public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
@@ -31,6 +39,12 @@ namespace ElmSharp
         private readonly SmartEventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of the SmartEvent class.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="eventName">The event name.</param>
+        /// <param name="parser">The event parameter.</param>
         public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
         {
         }
@@ -45,6 +59,11 @@ namespace ElmSharp
             sender.AddToEventLifeTracker(this);
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the SmartEvent class.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="eventName">The event name.</param>
         public SmartEvent(EvasObject sender, string eventName) : this(sender, eventName, null)
         {
         }
@@ -60,6 +79,9 @@ namespace ElmSharp
             public EventHandler<TEventArgs> eventHandler;
         }
 
+        /// <summary>
+        /// Adds or removes delegate for event.
+        /// </summary>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -100,6 +122,9 @@ namespace ElmSharp
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Make current instance invalidate.
+        /// </summary>
         public void MakeInvalidate()
         {
             _sender = null;
@@ -123,11 +148,23 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// It inherits <see cref="IInvalidatable"/>.
+    /// EvasObject can elect SmartEvent occurring inside of them to be reported back to their users via delegates.
+    /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
+    /// They are defined by an event string, which identifies them uniquely.
+    /// </summary>
+    /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
     public class SmartEvent : IInvalidatable
     {
         private SmartEvent<EventArgs> _smartEvent;
         private event EventHandler _handlers;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the SmartEvent class.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="eventName">The event name.</param>
         public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.RealHandle, eventName)
         {
         }
@@ -143,6 +180,9 @@ namespace ElmSharp
             Dispose(false);
         }
 
+        /// <summary>
+        /// Adds or removes delegate for event.
+        /// </summary>
         public event EventHandler On
         {
             add
@@ -175,6 +215,9 @@ namespace ElmSharp
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Make current instance invalidate.
+        /// </summary>
         public void MakeInvalidate()
         {
             _smartEvent.MakeInvalidate();

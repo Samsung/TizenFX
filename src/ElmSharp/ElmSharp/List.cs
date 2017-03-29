@@ -19,17 +19,46 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for setting list's resizing behavior, transverse axis scrolling and items cropping.
+    /// </summary>
     public enum ListMode
     {
+        /// <summary>
+        /// The list won't set any of its size hints to inform how a possible container should resize it.
+        /// Then, if it's not created as a "resize object", it might end with zeroed dimensions.
+        /// The list will respect the container's geometry and, if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
+        /// </summary>
         Compress = 0,
+        /// <summary>
+        /// This is the same as Compress, with the exception that if any of its items won't fit into its transverse axis, one will be able to scroll it in that direction.
+        /// </summary>
         Scroll,
+        /// <summary>
+        /// Sets a minimum size hint on the genlist object, so that containers may respect it (and resize itself to fit the child properly).
+        /// More specifically, a minimum size hint will be set for its transverse axis, so that the largest item in that direction fits well.
+        /// This is naturally bound by the list object's maximum size hints, set externally.
+        /// </summary>
         Limit,
+        /// <summary>
+        /// Besides setting a minimum size on the transverse axis, just like on Limit, the list will set a minimum size on th longitudinal axis, trying to reserve space to all its children to be visible at a time.
+        /// This is naturally bound by the list object's maximum size hints, set externally.
+        /// </summary>
         Expand
     }
 
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// It contains Item which is <see cref="ListItem"/> type.
+    /// All events of List contain ListItemEventArgs as a parameter.
+    /// </summary>
     public class ListItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets or sets List item. The return type is <see cref="ListItem"/>.
+        /// </summary>
         public ListItem Item { get; set; }
+
         internal static ListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             ListItem item = ItemObject.GetItemByHandle(info) as ListItem;
@@ -37,6 +66,13 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// It inherits <see cref="Layout"/>.
+    /// The List is a widget that aims to display simple list item which has 2 icons and 1 text, and can be selected.
+    /// For more robust lists, <see cref="GenList"/> should probably be used.
+    /// </summary>
+    /// <seealso cref="GenList"/>
+    /// <seealso cref="GenGrid"/>
     public class List : Layout
     {
         HashSet<ListItem> _children = new HashSet<ListItem>();
@@ -46,6 +82,10 @@ namespace ElmSharp
         SmartEvent<ListItemEventArgs> _longpressed;
         SmartEvent<ListItemEventArgs> _activated;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the List class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by List as a child. It's <see cref="EvasObject"/> type.</param>
         public List(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "selected", ListItemEventArgs.CreateFromSmartEvent);
@@ -60,6 +100,9 @@ namespace ElmSharp
             _activated.On += (s, e) => { ItemActivated?.Invoke(this, e); };
         }
 
+        /// <summary>
+        /// Gets or sets which mode to use for the list.
+        /// </summary>
         public ListMode Mode
         {
             get
@@ -72,6 +115,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the selected item.
+        /// </summary>
         public ListItem SelectedItem
         {
             get
@@ -81,22 +127,60 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// ItemSelected is raised when a new list item is selected.
+        /// </summary>
         public event EventHandler<ListItemEventArgs> ItemSelected;
+
+        /// <summary>
+        /// ItemUnselected is raised when the list item is Unselected.
+        /// </summary>
         public event EventHandler<ListItemEventArgs> ItemUnselected;
+
+        /// <summary>
+        /// ItemDoubleClicked is raised when a new list item is double clicked.
+        /// </summary>
         public event EventHandler<ListItemEventArgs> ItemDoubleClicked;
+
+        /// <summary>
+        /// ItemLongPressed is raised when a list item is pressed for a certain amount of time. By default it's 1 second.
+        /// </summary>
         public event EventHandler<ListItemEventArgs> ItemLongPressed;
+
+        /// <summary>
+        /// ItemActivated is raised when a new list item is double clicked or pressed (enter|return|spacebar).
+        /// </summary>
         public event EventHandler<ListItemEventArgs> ItemActivated;
 
+        /// <summary>
+        /// Starts the list.
+        /// Call before running <see cref="EvasObject.Show"/> on the list object.
+        /// If not called, it won't display the list properly.
+        /// </summary>
         public void Update()
         {
             Interop.Elementary.elm_list_go(RealHandle);
         }
 
+        /// <summary>
+        /// Appends a new item with a text to the end of a given list widget.
+        /// </summary>
+        /// <param name="label">The text for the item.</param>
+        /// <returns>Return a new added list item that contains a text.</returns>
+        /// <seealso cref="ListItem"/>
         public ListItem Append(string label)
         {
             return Append(label, null, null);
         }
 
+        /// <summary>
+        /// Appends a new item with a text and 2 icons to the end of a given list widget.
+        /// </summary>
+        /// <param name="label">The text for the item.</param>
+        /// <param name="leftIcon">The left icon for the item.</param>
+        /// <param name="rightIcon">The right icon for the item.</param>
+        /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
+        /// <seealso cref="ListItem"/>
         public ListItem Append(string label, EvasObject leftIcon, EvasObject rightIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rightIcon);
@@ -105,11 +189,23 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepends a new item with a text to the beginning of a given list widget.
+        /// </summary>
+        /// <param name="label">The text for the item.</param>
+        /// <returns>Return a new added list item that contains a text.</returns>
         public ListItem Prepend(string label)
         {
             return Prepend(label, null, null);
         }
 
+        /// <summary>
+        /// Prepends a new item with a text and 2 icons to the beginning of a given list widget.
+        /// </summary>
+        /// <param name="label">The text for the item.</param>
+        /// <param name="leftIcon">The left icon for the item.</param>
+        /// <param name="rigthIcon">The right icon for the item.</param>
+        /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
         public ListItem Prepend(string label, EvasObject leftIcon, EvasObject rigthIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rigthIcon);
@@ -118,6 +214,10 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Removes all items from a given list widget.
+        /// To delete just one item, use <see cref="ItemObject.Delete"/>.
+        /// </summary>
         public void Clear()
         {
             Interop.Elementary.elm_list_clear(RealHandle);
