@@ -234,13 +234,26 @@ namespace VisualViewTest
             meshVisualMap1.TexturesPath = resources + "/images/";
             meshVisualMap1.ShadingMode = MeshVisualShadingModeValue.TexturedWithSpecularLighting;
 
-            meshVisualMap1.VisualSize = new Vector2(200.0f, 200.0f);
-            meshVisualMap1.Offset = new Vector2(10.0f, 600.0f);
+            meshVisualMap1.VisualSize = new Size2D(400, 400);
+            meshVisualMap1.Offset = new Position2D(-50, 600);
             meshVisualMap1.OffsetPolicy = new Vector2(1, 1);
             meshVisualMap1.SizePolicy = new Vector2(1, 1);
             meshVisualMap1.Origin = AlignType.TopBegin;
             meshVisualMap1.AnchorPoint = AlignType.TopBegin;
             _visualView.AddVisual("meshVisual1", meshVisualMap1);
+
+            /* n-patch image visual 1. */
+            NpatchImageVisualMap npatchImageVisualMap1 = new NpatchImageVisualMap();
+            npatchImageVisualMap1.URL = resources + "/images/gallery-4.jpg";
+            npatchImageVisualMap1.VisualSize = new Size2D(400, 400);
+            npatchImageVisualMap1.Offset = new Position2D(300, 600);
+            npatchImageVisualMap1.OffsetPolicy = new Vector2(1, 1);
+            npatchImageVisualMap1.SizePolicy = new Vector2(1, 1);
+            npatchImageVisualMap1.Origin = AlignType.TopBegin;
+            npatchImageVisualMap1.AnchorPoint = AlignType.TopBegin;
+            npatchImageVisualMap1.Border = new Rectangle(100, 100, 100, 100);
+            _visualView.AddVisual("npatchImageVisual1", npatchImageVisualMap1);
+
         }
 
         [STAThread]
