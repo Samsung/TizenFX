@@ -175,6 +175,7 @@ namespace Tizen.Network.IoTConnectivity
                 if (resource.ResourceHandle != IntPtr.Zero)
                 {
                     Interop.IoTConnectivity.Server.Resource.Destroy(resource.ResourceHandle);
+                    resource.ResourceHandle = IntPtr.Zero;
                 }
 
                 _resources.Remove(resource);
