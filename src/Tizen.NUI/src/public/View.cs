@@ -36,6 +36,7 @@ namespace Tizen.NUI
 
             // By default, we do not want the position to use the anchor point
             //this.PositionUsesAnchorPoint = false;
+            this.PositionUsesAnchorPoint = !(InternalSetting.DefaultParentOriginAsTopLeft);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)

@@ -43,6 +43,7 @@ namespace VisualsUsingCustomView
 
         private void Initialize()
         {
+            InternalSetting.DefaultParentOriginAsTopLeft = false;
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
 
@@ -88,8 +89,9 @@ namespace VisualsUsingCustomView
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
+            
             VisualsExample visualsExample = new VisualsExample();
             visualsExample.Run(args);
         }

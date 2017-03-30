@@ -1071,16 +1071,26 @@ namespace Tizen.NUI
                 int ver2 = -1;
                 int ver3 = -1;
 
+                try
+                {
                 if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
                 {
                     if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
                     {
-                        throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                            //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
                 else
                 {
-                    throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                        //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                        Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                    }
+                }
+                catch (Exception e)
+                {
+                    //throw new System.InvalidOperationException("Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
+                    Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
                 }
             }
 

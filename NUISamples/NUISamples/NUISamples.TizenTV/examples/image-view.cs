@@ -24,6 +24,8 @@ namespace ImageViewTest
 {
     class Example : NUIApplication
     {
+
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
         public static void Log(string str)
         {
             Console.WriteLine("[DALI C# SAMPLE] " + str);
@@ -77,7 +79,7 @@ namespace ImageViewTest
             }
             // Add a ImageView to the stage
             _imageView = new ImageView();
-            _imageView.ResourceUrl = "./images/gallery-3.jpg";
+            _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
             _imageView.ParentOrigin = ParentOrigin.Center;
             _imageView.AnchorPoint = AnchorPoint.Center;
             _imageView.PixelArea = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
@@ -109,7 +111,7 @@ namespace ImageViewTest
                 Log("OnPushButtonClicked2()!");
                 layer.Remove(_imageView);
                 _imageView = new ImageView();
-                _imageView.ResourceUrl = "./images/gallery-3.jpg";
+                _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
                 _imageView.ParentOrigin = ParentOrigin.Center;
                 _imageView.AnchorPoint = AnchorPoint.Center;
                 _imageView.PixelArea = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);

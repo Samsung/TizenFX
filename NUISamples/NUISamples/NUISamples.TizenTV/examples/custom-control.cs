@@ -21,9 +21,11 @@ using Tizen.NUI;
 
 namespace CustomControlTest
 {
+    
     // A custom control for star rating (draggable to change the rating)
     class StarRating : CustomView
     {
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
         private FlexContainer _container;
         private ImageView[] _images;
         private Vector3 _gestureDisplacement;
@@ -67,7 +69,7 @@ namespace CustomControlTest
 
             for(int i = 0; i < 5; i++)
             {
-                _images[i] = new ImageView("./images/star-dim.png");
+                _images[i] = new ImageView(resources+"/images/star-dim.png");
                 _container.Add( _images[i] );
             }
 
@@ -125,14 +127,14 @@ namespace CustomControlTest
             {
                 _images[i].WidthResizePolicy = ResizePolicyType.UseNaturalSize;
                 _images[i].HeightResizePolicy = ResizePolicyType.UseNaturalSize;
-                _images[i].SetImage("./images/star-highlight.png");
+                _images[i].SetImage(resources+"/images/star-highlight.png");
             }
 
             for(int i = rating; i < 5; i++)
             {
                 _images[i].WidthResizePolicy = ResizePolicyType.UseNaturalSize;
                 _images[i].HeightResizePolicy = ResizePolicyType.UseNaturalSize;
-                _images[i].SetImage("./images/star-dim.png");
+                _images[i].SetImage(resources+"/images/star-dim.png");
             }
         }
 
@@ -168,6 +170,8 @@ namespace CustomControlTest
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         delegate void CallbackDelegate();
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+
 
         public Example() : base()
         {
@@ -216,7 +220,7 @@ namespace CustomControlTest
                 container.Add(imageRow);
 
                 // Add the image view to the row
-                ImageView image = new ImageView("./images/gallery-" + i + ".jpg");
+                ImageView image = new ImageView(resources+"/images/gallery-" + i + ".jpg");
                 image.Size = new Vector3(120.0f, 120.0f, 0.0f);
                 image.WidthResizePolicy = ResizePolicyType.Fixed;
                 image.HeightResizePolicy = ResizePolicyType.Fixed;

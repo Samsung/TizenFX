@@ -23,6 +23,9 @@ namespace ScrollViewTest
 {
   class Example : NUIApplication
   {
+    private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+   
+
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     delegate void CallbackDelegate(IntPtr data);
 
@@ -95,7 +98,7 @@ namespace ScrollViewTest
             for(int column = 0; column < imageColumns;column++)
             {
               int imageId = (row * imageColumns + column) % 2 + 1;
-              ImageView imageView = new ImageView("images/image-" + imageId + ".jpg");
+              ImageView imageView = new ImageView(resources+"/images/image-" + imageId + ".jpg");
               imageView.ParentOrigin = ParentOrigin.Center;
               imageView.AnchorPoint = AnchorPoint.Center;
               imageView.Size = new Size(imageSize.X, imageSize.Y, imageSize.Z);
@@ -131,7 +134,7 @@ namespace ScrollViewTest
 
       // Connect to the OnRelayout signal
       _scrollView.OnRelayoutEvent += OnScrollViewRelayout;
-      _scrollView.Touched += OnTouch;
+      //_scrollView.Touched += OnTouch;
       _scrollView.WheelMoved += Onwheel;
       _scrollView.FocusGained += OnKey;
       _text = new TextLabel("View Touch Event Handler Test");
