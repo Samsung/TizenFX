@@ -42,6 +42,7 @@ namespace Tizen.Applications
         private bool _isAccessible;
         private IReadOnlyDictionary<CertificateType, PackageCertificate> _certificates;
         private List<string> _privileges;
+        private int _installedTime;
 
         private Package(string pkgId)
         {
@@ -117,6 +118,11 @@ namespace Tizen.Applications
         /// Requested privilege for the package
         /// </summary>
         public IEnumerable<string> Privileges { get { return _privileges; } }
+
+        /// <summary>
+        /// Installed time of the package.
+        /// </summary>
+        public int InstalledTime { get { return _installedTime; } }
 
         /// <summary>
         /// Retrieves all application IDs of this package.
@@ -270,6 +276,11 @@ namespace Tizen.Applications
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
+            }
+            Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
             }
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
