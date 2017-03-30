@@ -63,7 +63,7 @@ namespace Tizen.Network.IoTConnectivity
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
 
-            SetAttributes(attributesHandleToClone);
+            SetAttributes(_resourceAttributesHandle);
         }
 
         /// <summary>
@@ -538,14 +538,16 @@ namespace Tizen.Network.IoTConnectivity
                         }
                     case Interop.IoTConnectivity.Common.DataType.String:
                         {
-                            string value;
+                            IntPtr value;
+                            string Str;
                             ret = Interop.IoTConnectivity.Common.Attributes.GetStr(attributes, key, out value);
                             if (ret != (int)IoTConnectivityError.None)
                             {
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            _attributes.Add(key, value);
+                            Str = Marshal.PtrToStringAnsi(value);
+                            _attributes.Add(key, Str);
                             break;
                         }
                     case Interop.IoTConnectivity.Common.DataType.ByteStr:

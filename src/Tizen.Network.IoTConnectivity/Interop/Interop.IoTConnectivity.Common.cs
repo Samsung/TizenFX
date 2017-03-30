@@ -131,7 +131,7 @@ internal static partial class Interop
                 internal static extern int GetDouble(IntPtr attributes, string key, out double val);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_str")]
-                internal static extern int GetStr(IntPtr attributes, string key, out string val);
+                internal static extern int GetStr(IntPtr attributes, string key, out IntPtr val);
 
                 [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_get_byte_str")]
                 internal static extern int GetByteStr(IntPtr attributes, string key, out IntPtr value, out int size);
