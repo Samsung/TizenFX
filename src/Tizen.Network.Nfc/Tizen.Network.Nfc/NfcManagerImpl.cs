@@ -189,7 +189,7 @@ namespace Tizen.Network.Nfc
 
         private NfcManagerImpl()
         {
-            initialize();
+            Initialize();
         }
 
         ~NfcManagerImpl()
@@ -213,26 +213,26 @@ namespace Tizen.Network.Nfc
                 // Free managed objects.
             }
             //Free unmanaged objects
-            deinitialize();
+            Deinitialize();
             disposed = true;
         }
 
-        private void initialize()
+        private void Initialize()
         {
             int ret = Interop.Nfc.Initialize();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to initialize Nfc, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, "Failed to Initialize Nfc, Error - " + (NfcError)ret);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
 
-        private void deinitialize()
+        private void Deinitialize()
         {
             int ret = Interop.Nfc.Deinitialize();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Nfc, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, "Failed to Deinitialize Nfc, Error - " + (NfcError)ret);
             }
         }
 
