@@ -65,8 +65,8 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
 #if (DOT_NET_CORE)
   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
     global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
-    bool hasDerivedMethod = methodInfo.GetType().GetTypeInfo().IsSubclassOf(typeof(CustomAlgorithmInterface));
-    return hasDerivedMethod;
+    bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(CustomAlgorithmInterface));
+    return hasDerivedMethod && (methodInfo != null);
   }
 #else
   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
