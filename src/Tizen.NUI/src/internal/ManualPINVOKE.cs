@@ -264,5 +264,9 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Visual_Property_MIX_COLOR_get")]
         public static extern int Visual_Property_MIX_COLOR_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_NativeVersionCheck")]
+        public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
+
     }
 }
