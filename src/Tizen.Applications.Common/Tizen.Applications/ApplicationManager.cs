@@ -317,6 +317,23 @@ namespace Tizen.Applications
             return app;
         }
 
+        /// <summary>
+        /// Returns if the specified application is running or not.
+        /// </summary>
+        /// <param name="applicationId">The application Id.</param>
+        /// <returns>Returns true if the given application is running, otherwise false.</returns>
+        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        public static bool IsRunning(string applicationId)
+        {
+            bool isRunning = false;
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerIsRunning(applicationId, out isRunning);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(Interop.ApplicationManager.ErrorCode.InvalidParameter, "Invalid parameter");
+            }
+            return isRunning;
+        }
+
         private static void RegisterApplicationChangedEvent()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
