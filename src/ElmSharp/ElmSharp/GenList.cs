@@ -146,6 +146,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
         public GenList(EvasObject parent) : base(parent)
         {
+            ListMode = GenListMode.Compress;
             InitializeSmartEvent();
         }
 
