@@ -47,8 +47,8 @@
     <None Include="test-key-will-be-replaced.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj">
-      <Project>{3aee14f6-d600-4f5f-9982-74d011739ad7}</Project>
+    <ProjectReference Include="..\..\Tizen.NUI\Tizen.NUI.csproj">
+      <Project>{f03a3b48-9d9b-4bf3-92ce-bd63cadc3cd3}</Project>
       <Name>Tizen.NUI</Name>
     </ProjectReference>
   </ItemGroup>
