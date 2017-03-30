@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 namespace Tizen.System
 {
     /// <summary>
-    /// Structure for cpu usage.
+    /// Structure for CPU usage.
     /// </summary>
     public class CpuUsage
     {
@@ -53,7 +53,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// Structure for cpu usage per processes
+    /// Structure for CPU usage per processes
     /// </summary>
     public class ProcessCpuUsage
     {

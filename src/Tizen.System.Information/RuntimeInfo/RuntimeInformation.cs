@@ -31,8 +31,6 @@ namespace Tizen.System
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_wifiHotspotEnabled;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_bluetoothTetheringEnabled;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_usbTetheringEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_locationServiceEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_locationNetworkPositionEnabled;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_packetDataEnabled;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_dataRoamingEnabled;
         private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_vibrationEnabled;
@@ -450,7 +448,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) UsbTetheringEnabled is raised when system preference for USB terhering is changed.
+        /// (event) UsbTetheringEnabled is raised when system preference for USB tethering is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbTetheringEnabled
         {
@@ -770,7 +768,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AutoRotationEnabled is raised when system preference for auto rotaion is changed.
+        /// (event) AutoRotationEnabled is raised when system preference for auto rotation is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AutoRotationEnabled
         {
