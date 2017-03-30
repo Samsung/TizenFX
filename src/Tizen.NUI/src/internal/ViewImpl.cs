@@ -579,10 +579,10 @@ namespace Tizen.NUI
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
-            bool hasDerivedMethod = methodInfo.GetType().GetTypeInfo().IsSubclassOf(typeof(ViewImpl));
+            bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(ViewImpl));
 
             Tizen.Log.Debug("NUI-APP", "hasDerivedMethod=" + hasDerivedMethod);
-            return hasDerivedMethod;
+            return hasDerivedMethod && (methodInfo != null);
         }
 #else
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
