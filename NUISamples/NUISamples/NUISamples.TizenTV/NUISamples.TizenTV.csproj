@@ -64,7 +64,6 @@
     <Compile Include="examples\hello-test.cs" />
     <Compile Include="examples\hello-world.cs" />
     <Compile Include="examples\image-view.cs" />
-    <Compile Include="examples\json-loader.cs" />
     <Compile Include="examples\Main.cs" />
     <Compile Include="examples\scroll-view.cs" />
     <Compile Include="examples\test1.cs" />

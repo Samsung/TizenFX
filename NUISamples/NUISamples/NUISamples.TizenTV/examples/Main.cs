@@ -27,10 +27,9 @@ namespace NUISamples.TizenTV.examples
             //new ScrollViewTest.Example().Run(args);                   //o
             //new ImageViewTest.Example().Run(args);                    //o
             //new FlexContainerTest.SampleMain().Run(args);             //o 
-                                                                        
-                                                                        
-            //new DatePickerUsingJson.Example().Run(args);              //x date-picker-theme.json없음
-            //new DaliTest.Example().Run(args);                         //x 검은화면 나오고 죽음
+            //new DatePickerUsingJson.Example().Run(args);              //o
+            //new DaliTest.Example().Run(args);                         //o
+            //new FirstScreen.FirstScreenApp().Run(args);               //o
 
         }
     }

@@ -42,6 +42,7 @@ namespace DatePickerUsingJson
 
         public void Initialize()
         {
+            InternalSetting.DefaultParentOriginAsTopLeft = false;
 
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;

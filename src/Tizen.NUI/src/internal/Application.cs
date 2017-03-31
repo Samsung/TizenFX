@@ -20,6 +20,10 @@ namespace Tizen.NUI
         public const int ver1 = 1;
         public const int ver2 = 2;
         public const int ver3 = 32;
+        public const int nuiVer1 = 0;
+        public const int nuiVer2 = 2;
+        public const int nuiVer3 = 33;
+        public const string nuiRelease = "-pre1";
     }
 
     /**
@@ -1080,19 +1084,19 @@ namespace Tizen.NUI
                     if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
                     {
                             //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
                 else
                 {
                         //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                        Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
+                        Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
                 catch (Exception e)
                 {
                     //throw new System.InvalidOperationException("Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
-                    Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
+                    Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
                 }
             }
 
