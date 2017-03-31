@@ -31,26 +31,42 @@ namespace Tizen.Multimedia
     };
     public class ScreenMirroringErrorFactory
     {
-        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
+        private const string LogTag = "Tizen.Multimedia.ScreenMirroring";
+        internal static void ThrowException(int errorCode, string errorMessage = null)
         {
             ScreenMirroringError err = (ScreenMirroringError)errorCode;
+
+            if (err == ScreenMirroringError.None)
+            {
+                return;
+            }
+
+            Log.Error(LogTag,"errorCode is : " + errorCode);
             if (string.IsNullOrEmpty(errorMessage))
             {
                 errorMessage = err.ToString();
             }
 
-            switch ((ScreenMirroringError)errorCode)
+            switch (err)
             {
                 case ScreenMirroringError.InvalidParameter:
-                throw new ArgumentException(errorMessage, paramName);
+                    throw new ArgumentException(errorMessage);
 
                 case ScreenMirroringError.OutOfMemory:
-                case ScreenMirroringError.InvalidOperation:
-                case ScreenMirroringError.ConnectionTimeOut:
+                    throw new OutOfMemoryException(errorMessage);
+
                 case ScreenMirroringError.PermissionDenied:
+                    throw new UnauthorizedAccessException(errorMessage);
+
                 case ScreenMirroringError.NotSupported:
-                case ScreenMirroringError.Unknown:
-                throw new InvalidOperationException(errorMessage);
+                    throw new NotSupportedException(errorMessage);
+
+                case ScreenMirroringError.ConnectionTimeOut:
+                case ScreenMirroringError.InvalidOperation:
+                    throw new InvalidOperationException(errorMessage);
+
+                default:
+                    throw new Exception("Unknown error : " + errorCode);
             }
         }
     }
