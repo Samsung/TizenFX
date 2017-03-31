@@ -20,6 +20,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
+    /// This class will be deprecated.
     /// CameraActor controls a camera. 
     /// Allows the developer to use actor semantics to control a camera. 
     /// NUI has a concept of a camera to display its virtual 3D world to a 2D screen.
