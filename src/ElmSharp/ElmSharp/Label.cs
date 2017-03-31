@@ -18,10 +18,18 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Label is a widget to display text, with simple html-like markup.
+    /// Inherits Layout
+    /// </summary>
     public class Label : Layout
     {
         SmartEvent _slideCompleted;
 
+        /// <summary>
+        /// Creates and initializes a new instance of Label class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Label as a child. It's <see cref="EvasObject"/> type.</param>
         public Label(EvasObject parent) : base(parent)
         {
             _slideCompleted = new SmartEvent(this, this.RealHandle, "slide,end");
@@ -31,8 +39,14 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// SlideCompleted will be triggered when the slide is completed.
+        /// </summary>
         public event EventHandler SlideCompleted;
 
+        /// <summary>
+        /// Sets or gets wrap width of the label.
+        /// </summary>
         public int LineWrapWidth
         {
             get
@@ -45,6 +59,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the wrapping behavior of the label.
+        /// </summary>
         public WrapType LineWrapType
         {
             get
@@ -57,6 +74,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the slide mode of the label widget.
+        /// </summary>
         public LabelSlideMode SlideMode
         {
             get
@@ -69,6 +89,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the slide duration of the label.
+        /// </summary>
         public double SlideDuration
         {
             get
@@ -81,6 +104,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the ellipsis behavior of the label.
+        /// </summary>
         public bool IsEllipsis
         {
             get
@@ -93,11 +119,19 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Start slide effect.
+        /// </summary>
         public void PlaySlide()
         {
             Interop.Elementary.elm_label_slide_go(RealHandle);
         }
 
+        /// <summary>
+        /// Sets the content at a part of a given container widget.
+        /// </summary>
+        /// <param name="parent">EvasObject</param>
+        /// <returns>The new object, otherwise null if it cannot be created</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             //TODO: Fix this to use layout
@@ -105,10 +139,22 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration for slide mode of a label widget
+    /// </summary>
     public enum LabelSlideMode
     {
+        /// <summary>
+        /// no slide effect
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// slide only if the label area is bigger than the text width length
+        /// </summary>
         Auto,
+        /// <summary>
+        /// slide always
+        /// </summary>
         Always
     }
 }

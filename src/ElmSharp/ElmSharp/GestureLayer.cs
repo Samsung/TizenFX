@@ -20,6 +20,10 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The GestureLayer is used to detect gestures.
+    /// Inherits EvasObject
+    /// </summary>
     public class GestureLayer : EvasObject
     {
         private readonly Interop.Elementary.GestureEventCallback _gestureCallback;
@@ -29,34 +33,89 @@ namespace ElmSharp
         // but all gestures share the callback and you don't want to desynchronize mapping
         private readonly List<NativeCallback> _handlers = new List<NativeCallback>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of GestureLayer class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by GestureLayer as a child. It's <see cref="EvasObject"/> type.</param>
         public GestureLayer(EvasObject parent) : base(parent)
         {
             _gestureCallback = new Interop.Elementary.GestureEventCallback(GestureCallbackHandler);
         }
 
+        /// <summary>
+        /// Enumeration for supported gesture types.
+        /// </summary>
         public enum GestureType
         {
+            /// <summary>
+            /// N fingers single taps
+            /// </summary>
             Tap = 1,
+            /// <summary>
+            /// N fingers single long-taps
+            /// </summary>
             LongTap,
+            /// <summary>
+            /// N fingers double-single taps
+            /// </summary>
             DoubleTap,
+            /// <summary>
+            /// N fingers triple-single taps
+            /// </summary>
             TripleTap,
+            /// <summary>
+            /// Reports momentum in the direction of move
+            /// </summary>
             Momentum,
+            /// <summary>
+            /// N fingers line gesture
+            /// </summary>
             Line,
+            /// <summary>
+            /// N fingers flick gesture
+            /// </summary>
             Flick,
+            /// <summary>
+            /// Zoom
+            /// </summary>
             Zoom,
+            /// <summary>
+            /// Rotate
+            /// </summary>
             Rotate,
         }
 
+        /// <summary>
+        /// Enumeration for gesture states.
+        /// </summary>
         public enum GestureState
         {
+            /// <summary>
+            /// Gesture not started
+            /// </summary>
             Undefined = -1,
+            /// <summary>
+            /// Gesture started
+            /// </summary>
             Start,
+            /// <summary>
+            /// Gesture is ongoing
+            /// </summary>
             Move,
+            /// <summary>
+            /// Gesture completed
+            /// </summary>
             End,
+            /// <summary>
+            /// Ongoing gesture is aborted
+            /// </summary>
             Abort,
         }
 
         #region Properties
+        /// <summary>
+        /// Sets or gets the repeat-events setting.
+        /// </summary>
         public bool HoldEvents
         {
             get
@@ -69,6 +128,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer continues enable of an object
+        /// </summary>
         public bool Continues
         {
             get
@@ -81,6 +143,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer finger-size for taps.
+        /// </summary>
         public int TapFingerSize
         {
             get
@@ -93,6 +158,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer long tap start timeout of an object
+        /// </summary>
         public double LongTapTimeout
         {
             get
@@ -105,6 +173,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer double tap timeout of an object
+        /// </summary>
         public double DoubleTapTimeout
         {
             get
@@ -117,6 +188,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer flick time limit (in ms) of an object
+        /// </summary>
         public int FlickTimeLimit
         {
             get
@@ -129,6 +203,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer line min length of an object
+        /// </summary>
         public int MinimumLineLength
         {
             get
@@ -141,6 +218,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets  the gesture layer line angular tolerance of an object
+        /// </summary>
         public double LineAngularTolerance
         {
             get
@@ -153,6 +233,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer line distance tolerance of an object
+        /// </summary>
         public int LineDistanceTolerance
         {
             get
@@ -165,6 +248,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets step-value for rotate action.
+        /// </summary>
         public double RotateStep
         {
             get
@@ -177,6 +263,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer rotate angular tolerance of an object
+        /// </summary>
         public double RotateAngularTolerance
         {
             get
@@ -189,6 +278,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets control step value for zoom action.
+        /// </summary>
         public double ZoomStep
         {
             get
@@ -201,6 +293,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer zoom distance tolerance of an object
+        /// </summary>
         public int ZoomDistanceTolerance
         {
             get
@@ -213,6 +308,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer zoom finger factor of an object
+        /// </summary>
         public double ZoomFingerFactor
         {
             get
@@ -225,6 +323,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the gesture layer zoom wheel factor of an object
+        /// </summary>
         public double ZoomWheelFactor
         {
             get
@@ -238,11 +339,23 @@ namespace ElmSharp
         }
         #endregion Properties
 
+        /// <summary>
+        /// Attach a gesture layer widget to an Evas object (setting the widget's target).
+        /// A gesture layer's target may be any Evas object. This object will be used to listen to mouse and key events.
+        /// </summary>
+        /// <param name="target">The object to attach.</param>
         public void Attach(EvasObject target)
         {
             Interop.Elementary.elm_gesture_layer_attach(Handle, target.Handle);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback.
+        /// When all callbacks for the gesture are set to null, it means this gesture is disabled.
+        /// </summary>
+        /// <param name="type">The gesture you want to track state of.</param>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetGestureCallback(GestureType type, GestureState state, Action<object> action)
         {
             lock (_handlers)
@@ -282,6 +395,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// clear the gesture state change callback.
+        /// </summary>
         public void ClearCallbacks()
         {
             lock (_handlers)
@@ -301,42 +417,81 @@ namespace ElmSharp
 
         #region Typed callback setting methods
         // Following methods have been added for convenience, so the user will not have to convert Info structures himself
+        /// <summary>
+        /// Set the tap callback.
+        /// </summary>
+        /// <param name="type">The gesture you want to track state of.</param>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetTapCallback(GestureType type, GestureState state, Action<TapData> action)
         {
             SetCallback(type, state, action);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback with Momentum Gesture Type
+        /// </summary>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetMomentumCallback(GestureState state, Action<MomentumData> action)
         {
             SetCallback(GestureType.Momentum, state, action);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback with Line Gesture Type
+        /// </summary>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetLineCallback(GestureState state, Action<LineData> action)
         {
             SetCallback(GestureType.Line, state, action);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback with Flick Gesture Type
+        /// </summary>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetFlickCallback(GestureState state, Action<LineData> action)
         {
             SetCallback(GestureType.Flick, state, action);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback with Zoom Gesture Type
+        /// </summary>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetZoomCallback(GestureState state, Action<ZoomData> action)
         {
             SetCallback(GestureType.Zoom, state, action);
         }
 
+        /// <summary>
+        /// Set the gesture state change callback with Rotate Gesture Type
+        /// </summary>
+        /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
+        /// <param name="action">The callback itself.</param>
         public void SetRotateCallback(GestureState state, Action<RotateData> action)
         {
             SetCallback(GestureType.Rotate, state, action);
         }
         #endregion Typed callback setting methods
 
+        /// <summary>
+        /// Call this function to construct a new gesture-layer object.
+        /// </summary>
+        /// <param name="parent">The gesture layer's parent widget.</param>
+        /// <returns></returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_gesture_layer_add(parent);
         }
 
+        /// <summary>
+        /// clear the gesture state change callback.
+        /// </summary>
         protected override void OnUnrealize()
         {
             ClearCallbacks();
@@ -387,7 +542,9 @@ namespace ElmSharp
         }
 
         #region Info structures
-
+        /// <summary>
+        /// The struct of TapData
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct TapData
         {
@@ -414,6 +571,9 @@ namespace ElmSharp
 #pragma warning restore 3003
         }
 
+        /// <summary>
+        /// The struct of MomentumData
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct MomentumData
         {
@@ -465,6 +625,9 @@ namespace ElmSharp
 #pragma warning restore 3003
         }
 
+        /// <summary>
+        /// The struct of LineData
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct LineData
         {
@@ -521,6 +684,9 @@ namespace ElmSharp
             public double Angle;
         }
 
+        /// <summary>
+        /// The struct of ZoomData
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct ZoomData
         {
@@ -550,6 +716,9 @@ namespace ElmSharp
             private double Momentum;
         }
 
+        /// <summary>
+        /// The struct of RotateData
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct RotateData
         {
@@ -585,9 +754,14 @@ namespace ElmSharp
         }
 
         #endregion Info structures
-
+        /// <summary>
+        /// Config is a static class, it provides gestureLayer's timeout information.
+        /// </summary>
         public static class Config
         {
+            /// <summary>
+            /// Sets or gets the duration for occurring long tap event of gesture layer.
+            /// </summary>
             public static double DefaultLongTapTimeout
             {
                 get
@@ -600,6 +774,9 @@ namespace ElmSharp
                 }
             }
 
+            /// <summary>
+            /// Sets or gets the duration for occurring double tap event of gesture layer.
+            /// </summary>
             public static double DefaultDoubleTapTimeout
             {
                 get

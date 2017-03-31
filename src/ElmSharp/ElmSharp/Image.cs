@@ -21,6 +21,11 @@ using System.Threading.Tasks;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The Image is a widget that allows one to load and display an image file on it,
+    /// be it from a disk file or from a memory region.
+    /// Inherits Widget
+    /// </summary>
     public class Image : Widget
     {
         bool _canScaleUp = true;
@@ -28,18 +33,34 @@ namespace ElmSharp
         SmartEvent _clicked;
         Color _color = Color.Default;
 
+        /// <summary>
+        /// Creates and initializes a new instance of Image class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
         public Image(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
             _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Clicked will be triggered when the image is clicked.
+        /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// LoadingCompleted will be triggered when the image is loaded completely.
+        /// </summary>
         public event EventHandler LoadingCompleted;
 
+        /// <summary>
+        /// Clicked will be triggered when the image is fail to load.
+        /// </summary>
         public event EventHandler LoadingFailed;
 
+        /// <summary>
+        /// Gets the file that is used as an image.
+        /// </summary>
         public string File
         {
             get
@@ -48,6 +69,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the smooth effect for an image.
+        /// </summary>
         public bool IsSmooth
         {
             get
@@ -60,6 +84,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether scaling is disabled on the object.
+        /// </summary>
         public bool IsScaling
         {
             get
@@ -72,6 +99,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the object is down resizeable.
+        /// </summary>
         public bool CanScaleDown
         {
             get
@@ -85,6 +115,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the object is up resizeable.
+        /// </summary>
         public bool CanScaleUp
         {
             get
@@ -98,6 +131,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the image fills the entire object area, when keeping the aspect ratio.
+        /// </summary>
         public bool CanFillOutside
         {
             get
@@ -110,6 +146,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the prescale size for the image.
+        /// </summary>
         public int PrescaleSize
         {
             get
@@ -122,6 +161,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the original aspect ratio of the image should be kept on resize.
+        /// </summary>
         public bool IsFixedAspect
         {
             get
@@ -134,6 +176,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether an image object (which supports animation) is to animate itself.
+        /// </summary>
         public bool IsAnimated
         {
             get
@@ -146,6 +191,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets whether an image object supports animation.
+        /// </summary>
         public bool IsAnimatedAvailable
         {
             get
@@ -154,6 +202,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether an image object is under animation.
+        /// </summary>
         public bool IsAnimationPlaying
         {
             get
@@ -166,6 +217,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether the image is 'editable'.
+        /// </summary>
         public bool IsEditable
         {
             get
@@ -178,6 +232,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the current size of the image.
+        /// </summary>
         public Size ObjectSize
         {
             get
@@ -188,6 +245,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets whether alpha channel data is being used on the given image object.
+        /// </summary>
         public bool IsOpaque
         {
             get
@@ -209,6 +269,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the image orientation.
+        /// </summary>
         public ImageOrientation Orientation
         {
             get
@@ -221,6 +284,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the image color
+        /// </summary>
         public override Color Color
         {
             get
@@ -247,6 +313,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the background color
+        /// </summary>
         public override Color BackgroundColor
         {
             set
@@ -263,12 +332,24 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the dimensions for an image object's border, a region which is not scaled together with its center ever.
+        /// </summary>
+        /// <param name="left">The border's left width</param>
+        /// <param name="right">The border's right width</param>
+        /// <param name="top">The border's top width</param>
+        /// <param name="bottom">The border's bottom width</param>
         public void SetBorder(int left, int right, int top, int bottom)
         {
             IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
             Interop.Evas.evas_object_image_border_set(evasObj, left, right, top, bottom);
         }
 
+        /// <summary>
+        /// Sets the file that is used as the image's source.
+        /// </summary>
+        /// <param name="file">The path to the file that is used as an image source</param>
+        /// <returns>(true = success, false = error)</returns>
         public bool Load(string file)
         {
             if (file == null)
@@ -279,6 +360,11 @@ namespace ElmSharp
             return Interop.Elementary.elm_image_file_set(RealHandle, file, null);
         }
 
+        /// <summary>
+        /// Sets the uri that is used as the image's source.
+        /// </summary>
+        /// <param name="uri">The uri to the file that is used as an image source</param>
+        /// <returns>(true = success, false = error)</returns>
         public bool Load(Uri uri)
         {
             if (uri == null)
@@ -287,6 +373,17 @@ namespace ElmSharp
             return Load(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri);
         }
 
+        /// <summary>
+        /// Sets a location in the memory to be used as an image object's source bitmap.
+        /// </summary>
+        /// <remarks>
+        /// This function is handy when the contents of an image file are mapped into the memory, for example.
+        /// The format string should be something like "png", "jpg", "tga", "tiff", "bmp" etc, when provided (null, on the contrary).
+        /// This improves the loader performance as it tries the "correct" loader first, before trying a range of other possible loaders until one succeeds.
+        /// </remarks>
+        /// <param name="img">The binary data that is used as an image source</param>
+        /// <param name="size">The size of the binary data blob img</param>
+        /// <returns>(true = success, false = error)</returns>
         [CLSCompliant(false)]
         [Obsolete("This method will be removed. Use Load(Stream stream) instead.")]
         public unsafe bool Load(byte* img, long size)
@@ -299,6 +396,11 @@ namespace ElmSharp
             return Interop.Elementary.elm_image_memfile_set(RealHandle, img, size, IntPtr.Zero, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// Sets the stream that is used as the image's source.
+        /// </summary>
+        /// <param name="stream">The stream that is used as an image source</param>
+        /// <returns>(true = success, false = error)</returns>
         public bool Load(Stream stream)
         {
             if (stream == null)
@@ -318,6 +420,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets the file that is used as the image's source with async.
+        /// </summary>
+        /// <param name="file">The path to the file that is used as an image source</param>
+        /// <param name="cancellationToken">cancellation token</param>
+        /// <returns>(true = success, false = error)</returns>
         public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (file == null)
@@ -367,6 +475,12 @@ namespace ElmSharp
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Sets the uri that is used as the image's source with async.
+        /// </summary>
+        /// <param name="uri">The uri to the file that is used as an image source</param>
+        /// <param name="cancellationToken">cancellation token</param>
+        /// <returns>(true = success, false = error)</returns>
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (uri == null)
@@ -375,6 +489,12 @@ namespace ElmSharp
             return LoadAsync(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri, cancellationToken);
         }
 
+        /// <summary>
+        /// Sets the stream that is used as the image's source with async.
+        /// </summary>
+        /// <param name="stream">The stream that is used as an image source</param>
+        /// <param name="cancellationToken">cancellation token</param>
+        /// <returns>(true = success, false = error)</returns>
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
@@ -434,6 +554,11 @@ namespace ElmSharp
             return await tcs.Task;
         }
 
+        /// <summary>
+        /// Sets the color of color class for a given widget.
+        /// </summary>
+        /// <param name="part">The name of color class.</param>
+        /// <param name="color">The struct of color</param>
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -442,6 +567,11 @@ namespace ElmSharp
                                                                               color.A);
         }
 
+        /// <summary>
+        /// Gets the color of color class for a given widget.
+        /// </summary>
+        /// <param name="part">The name of color class.</param>
+        /// <returns>color object</returns>
         public override Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -449,6 +579,11 @@ namespace ElmSharp
             return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
         }
 
+        /// <summary>
+        /// Sets the content at a part of a given container widget.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <returns>The new object, otherwise null if it cannot be created</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);
@@ -461,15 +596,42 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration for the possible orientation options
+    /// </summary>
     public enum ImageOrientation : int
     {
+        /// <summary>
+        /// No orientation change
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Rotate 90 degrees clockwise
+        /// </summary>
         Rotate90,
+        /// <summary>
+        /// Rotate 180 degrees clockwise
+        /// </summary>
         Rotate180,
+        /// <summary>
+        /// Rotate 90 degrees counter-clockwise (i.e. 270 degrees clockwise)
+        /// </summary>
         Rotate270,
+        /// <summary>
+        /// Flip image horizontally
+        /// </summary>
         FlipHorizontal,
+        /// <summary>
+        /// Flip image vertically
+        /// </summary>
         FlipVertical,
+        /// <summary>
+        /// Flip the image along the y = (width - x) line (bottom-left to top-right)
+        /// </summary>
         FlipTranspose,
+        /// <summary>
+        /// Flip the image along the y = x line (top-left to bottom-right)
+        /// </summary>
         FlipTransverse
     }
 }
