@@ -36,6 +36,7 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="NotSupportedException">Thrown when message service is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public static Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
             return MessagesManagerImpl.Instance.SendMessageAsync(message, saveToSentbox);
@@ -50,6 +51,8 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="NotSupportedException">Thrown when message service is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public static Task<IEnumerable<Message>> SearchMessageAsync(MessagesSearchFilter filter)
         {
             return MessagesManagerImpl.Instance.SearchMessageAsync(filter);

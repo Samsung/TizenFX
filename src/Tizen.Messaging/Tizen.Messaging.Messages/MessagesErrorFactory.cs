@@ -56,17 +56,18 @@ namespace Tizen.Messaging.Messages
                 throw new InvalidOperationException("Invalid instance (object may have been disposed or release)");
             }
 
-            if (err == MessagesError.InvalidParameter)
+            switch (err)
             {
-                throw new ArgumentException(err.ToString());
-            }
-            else if (err == MessagesError.NotSupported)
-            {
-                throw new NotSupportedException("Not supported");
-            }
-            else
-            {
-                throw new InvalidOperationException(err.ToString());
+                case MessagesError.OutOfMemory:
+                    throw new OutOfMemoryException(err.ToString());
+                case MessagesError.InvalidParameter:
+                    throw new ArgumentException(err.ToString());
+                case MessagesError.PermissionDenied:
+                    throw new UnauthorizedAccessException(err.ToString());
+                case MessagesError.NotSupported:
+                    throw new NotSupportedException(err.ToString());
+                default:
+                    throw new InvalidOperationException(err.ToString());
             }
         }
     }
