@@ -22,31 +22,61 @@ using System.Runtime.InteropServices;
 namespace ElmSharp
 {
     /// <summary>
-    /// Event periodicity, used to define if a mark should be repeated beyond event's day. It's set when a mark is added.
+    /// Enumeration for event periodicity, used to define if a mark should be repeated beyond event's day. It's set when a mark is added.
     /// </summary>
     public enum CalendarMarkRepeatType
     {
-        Unique, ///Default value. Marks will be displayed only on event day.
-        Daily, ///Marks will be displayed every day after event day.
-        Weekly, ///Marks will be displayed every week after event day.
-        Monthly, ///Marks will be displayed every month day that coincides to event day.
-        Annually, ///Marks will be displayed every year that coincides to event day.
-        LastDayOfMonth ///Marks will be displayed every last day of month after event day.
+        /// <summary>
+        /// Default value. Marks will be displayed only on event day.
+        /// </summary>
+        Unique,
+        /// <summary>
+        /// Marks will be displayed every day after event day.
+        /// </summary>
+        Daily,
+        /// <summary>
+        /// Marks will be displayed every week after event day.
+        /// </summary>
+        Weekly,
+        /// <summary>
+        /// Marks will be displayed every month day that coincides to event day.
+        /// </summary>
+        Monthly,
+        /// <summary>
+        /// Marks will be displayed every year that coincides to event day.
+        /// </summary>
+        Annually,
+        /// <summary>
+        /// Marks will be displayed every last day of month after event day.
+        /// </summary>
+        LastDayOfMonth
     }
 
     /// <summary>
-    /// The mode, who determine how user could select a day
+    /// Enumeration for the mode, which determine how user could select a day.
     /// </summary>
     public enum CalendarSelectMode
     {
-        Default, ///Default value. a day is always selected.
-        Always, ///a day is always selected.
-        None, ///None of the days can be selected.
-        OnDemand ///User may have selected a day or not.
+        /// <summary>
+        /// Default value. a day is always selected.
+        /// </summary>
+        Default,
+        /// <summary>
+        /// A day is always selected.
+        /// </summary>
+        Always,
+        /// <summary>
+        /// None of the days can be selected.
+        /// </summary>
+        None,
+        /// <summary>
+        /// User may have selected a day or not.
+        /// </summary>
+        OnDemand
     }
 
     /// <summary>
-    /// Item for a calendar mark.
+    /// The CalendarMark is a Item for marking a Calendar's type,date and repeat type.
     /// </summary>
     public class CalendarMark
     {
@@ -67,6 +97,12 @@ namespace ElmSharp
         /// </summary>
         public CalendarMarkRepeatType Repeat;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the CalendarMark class.
+        /// </summary>
+        /// <param name="type">Type of mark</param>
+        /// <param name="date">Date of inclusion of the mark</param>
+        /// <param name="repeat">Repeat type</param>
         public CalendarMark(string type, DateTime date, CalendarMarkRepeatType repeat)
         {
             Handle = IntPtr.Zero;

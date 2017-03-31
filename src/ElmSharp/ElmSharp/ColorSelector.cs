@@ -108,7 +108,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets Alpha of a default Color Class.
+        /// Gets Alpha of a default Color Class(Value is -1).
         /// </summary>
         public override int Opacity
         {
