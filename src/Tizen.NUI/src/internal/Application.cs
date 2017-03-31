@@ -1084,7 +1084,7 @@ namespace Tizen.NUI
                     if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
                     {
                             //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
+                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
                 else
