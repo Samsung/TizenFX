@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -423,6 +424,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Returns a dictionary containing all recent application info.</returns>
         /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<RecentApplicationInfo> GetRecentApplications()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;

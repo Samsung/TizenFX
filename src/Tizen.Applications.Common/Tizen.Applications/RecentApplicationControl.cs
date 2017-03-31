@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
@@ -23,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides methods and properties to get information of recent application.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationControl
     {
         private const string LogTag = "Tizen.Applications";
