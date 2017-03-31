@@ -57,6 +57,7 @@ namespace ScrollViewTest
 
     public void Initialize()
     {
+            InternalSetting.DefaultParentOriginAsTopLeft = false;
       CreateScrollView();
     }
 
@@ -141,7 +142,7 @@ namespace ScrollViewTest
       _text.ParentOrigin = ParentOrigin.Center;
       _text.AnchorPoint = AnchorPoint.Center;
       _text.HorizontalAlignment = "CENTER";
-      _text.PointSize = 48.0f;
+            _text.PointSize = 20.0f;
 
       _scrollView.Add(_text);
     }

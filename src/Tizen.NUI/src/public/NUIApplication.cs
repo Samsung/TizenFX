@@ -232,5 +232,12 @@ namespace Tizen.NUI
             Transparent = 1
         }
 
+        public Window Window
+        {
+            get
+            {
+                return _application.GetWindow();
+            }
+        }
     }
 }

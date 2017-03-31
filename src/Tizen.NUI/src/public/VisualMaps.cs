@@ -1316,22 +1316,14 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of a n-patch image visual.
     /// </summary>
-    public class NpatchImageVisualMap : VisualMap
+    public class NPatchVisualMap : VisualMap
     {
-        public NpatchImageVisualMap() : base()
+        public NPatchVisualMap() : base()
         {
         }
 
         private string _url = "";
-        private FittingModeType _fittingMode = FittingModeType.ShrinkToFit;
-        private SamplingModeType _samplingMode = SamplingModeType.Box;
-        private int _desiredWidth = 0;
-        private int _desiredHeight = 0;
-        private bool _synchronousLoading = false;
         private bool _borderOnly = false;
-        private Vector4 _pixelArea = new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-        private WrapModeType _wrapModeU = WrapModeType.ClampToEdge;
-        private WrapModeType _wrapModeV = WrapModeType.ClampToEdge;
         private Rectangle _border = new Rectangle(0, 0, 0, 0);
 
         /// <summary>
@@ -1346,91 +1338,6 @@ namespace Tizen.NUI
             set
             {
                 _url = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set fitting options, used when resizing images to fit desired dimensions.
-        /// If not supplied, default is FittingMode::SHRINK_TO_FIT.
-        /// For Normal Quad images only.
-        /// </summary>
-        public FittingModeType FittingMode
-        {
-            get
-            {
-                return _fittingMode;
-            }
-            set
-            {
-                _fittingMode = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set filtering options, used when resizing images to sample original pixels.
-        /// If not supplied, default is SamplingMode::BOX.
-        /// For Normal Quad images only.
-        /// </summary>
-        public SamplingModeType SamplingMode
-        {
-            get
-            {
-                return _samplingMode;
-            }
-            set
-            {
-                _samplingMode = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set the desired image width.
-        /// If not specified, the actual image width is used.
-        /// For Normal Quad images only.
-        /// </summary>
-        public int DesiredWidth
-        {
-            get
-            {
-                return _desiredWidth;
-            }
-            set
-            {
-                _desiredWidth = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set the desired image height.
-        /// If not specified, the actual image height is used.
-        /// For Normal Quad images only.
-        /// </summary>
-        public int DesiredHeight
-        {
-            get
-            {
-                return _desiredHeight;
-            }
-            set
-            {
-                _desiredHeight = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set whether to load the image synchronously.
-        /// If not specified, the default is false, i.e. the image is loaded asynchronously.
-        /// For Normal Quad images only.
-        /// </summary>
-        public bool SynchronousLoading
-        {
-            get
-            {
-                return _synchronousLoading;
-            }
-            set
-            {
-                _synchronousLoading = value;
             }
         }
 
@@ -1452,61 +1359,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the image area to be displayed.
-        /// It is a rectangular area.
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.
-        /// If not specified, the default value is [0.0, 0.0, 1.0, 1.0], i.e. the entire area of the image.
-        /// For For Normal QUAD image only.
+        ///  The border of the image in the order: left, right, bottom, top.
         /// </summary>
-        public Vector4 PixelArea
-        {
-            get
-            {
-                return _pixelArea;
-            }
-            set
-            {
-                _pixelArea = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set the wrap mode for u coordinate.
-        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.
-        /// If not specified, the default is CLAMP.
-        /// For Normal QUAD image only.
-        /// </summary>
-        public WrapModeType WrapModeU
-        {
-            get
-            {
-                return _wrapModeU;
-            }
-            set
-            {
-                _wrapModeU = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set the wrap mode for v coordinate.
-        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.
-        /// If not specified, the default is CLAMP.
-        /// For Normal QUAD image only.
-        /// </summary>
-        public WrapModeType WrapModeV
-        {
-            get
-            {
-                return _wrapModeV;
-            }
-            set
-            {
-                _wrapModeV = value;
-            }
-        }
-
         public Rectangle Border
         {
             get
@@ -1524,26 +1378,9 @@ namespace Tizen.NUI
             if (_url != "")
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Npatch));
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
                 _outputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
-                _outputVisualMap.Add(NpatchImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode));
-                _outputVisualMap.Add(NpatchImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode));
-
-                if (_desiredWidth != 0)
-                {
-                    _outputVisualMap.Add(NpatchImageVisualProperty.DesiredWidth, new PropertyValue(_desiredWidth));
-                }
-
-                if (_desiredHeight != 0)
-                {
-                    _outputVisualMap.Add(NpatchImageVisualProperty.DesiredHeight, new PropertyValue(_desiredHeight));
-                }
-
-                _outputVisualMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronousLoading));
                 _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue(_borderOnly));
-                _outputVisualMap.Add(NpatchImageVisualProperty.PixelArea, new PropertyValue(_pixelArea));
-                _outputVisualMap.Add(NpatchImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU));
-                _outputVisualMap.Add(NpatchImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV));
                 _outputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border));
             }
         }
@@ -1650,7 +1487,7 @@ namespace Tizen.NUI
             Primitive,
             Wireframe,
             Text,
-            Npatch
+            NPatch
         }
 
         public struct Property

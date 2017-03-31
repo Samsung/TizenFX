@@ -26,6 +26,7 @@ namespace VisualViewTest
     {
         private VisualView _visualView = null;
         private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private Window _window;
 
         public Example() : base()
         {
@@ -243,7 +244,7 @@ namespace VisualViewTest
             _visualView.AddVisual("meshVisual1", meshVisualMap1);
 
             /* n-patch image visual 1. */
-            NpatchImageVisualMap npatchImageVisualMap1 = new NpatchImageVisualMap();
+            NPatchVisualMap npatchImageVisualMap1 = new NPatchVisualMap();
             npatchImageVisualMap1.URL = resources + "/images/gallery-4.jpg";
             npatchImageVisualMap1.VisualSize = new Size2D(400, 400);
             npatchImageVisualMap1.Offset = new Position2D(300, 600);
@@ -254,6 +255,19 @@ namespace VisualViewTest
             npatchImageVisualMap1.Border = new Rectangle(100, 100, 100, 100);
             _visualView.AddVisual("npatchImageVisual1", npatchImageVisualMap1);
 
+            _window = this.Window;
+            _window.WindowFocusChanged += (sender, ee) =>
+            {
+                Tizen.Log.Debug("NUI", "[WindowFocusTest] WindowFocusChanged event comes! focus gained=" + ee.FocusGained);
+            };
+
+            Tizen.Log.Debug("NUI", "[WindowFocusTest] is focus acceptable=" + _window.IsFocusAcceptable());
+            _window.SetAcceptFocus(false);
+            Tizen.Log.Debug("NUI", "[WindowFocusTest] set focus acceptable=false!!!");
+            Tizen.Log.Debug("NUI", "[WindowFocusTest] is focus acceptable=" + _window.IsFocusAcceptable());
+            _window.SetAcceptFocus(true);
+            Tizen.Log.Debug("NUI", "[WindowFocusTest] set focus acceptable=true!!!");
+            Tizen.Log.Debug("NUI", "[WindowFocusTest] is focus acceptable=" + _window.IsFocusAcceptable());
         }
 
         [STAThread]

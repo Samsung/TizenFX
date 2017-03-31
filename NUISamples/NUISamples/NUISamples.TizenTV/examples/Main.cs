@@ -15,7 +15,6 @@ namespace NUISamples.TizenTV.examples
         static void Main(string[] args)
         {
             new VisualsUsingCustomView.VisualsExample().Run(args);    //o
-            //new VisualsExample().Run(args);                           //o
             //new ControlDashboard.Example().Run(args);                 //o
             //new DatePickerTest.Example().Run(args);                   //o
             //new HelloTest.Example().Run(args);                        //o
@@ -30,7 +29,6 @@ namespace NUISamples.TizenTV.examples
             //new FlexContainerTest.SampleMain().Run(args);             //o 
                                                                         
                                                                         
-            //new JsonLoaderTest.Example().Run(args);                   //x 우분투용
             //new DatePickerUsingJson.Example().Run(args);              //x date-picker-theme.json없음
             //new DaliTest.Example().Run(args);                         //x 검은화면 나오고 죽음
 

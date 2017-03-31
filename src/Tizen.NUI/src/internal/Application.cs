@@ -448,6 +448,8 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
+            DisposeQueue.Instance.Initialize();
             NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
 
             // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
@@ -1109,7 +1111,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public bool AddIdle(System.Delegate func)
+        //Removed from v0.2.33
+        /*public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -1118,7 +1121,7 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
+        }*/
 
 
 

@@ -34,11 +34,16 @@ namespace Tizen.NUI
 
         ~ViewWrapper()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public override void Dispose()
         {
+            if (!Stage.IsInstalled())
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
             lock(this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)

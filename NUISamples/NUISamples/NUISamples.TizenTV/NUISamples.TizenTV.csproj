@@ -45,6 +45,7 @@
     <None Include="NUISamples.TizenTV.project.json" />
     <None Include="res\json\control-dashboard.json" />
     <None Include="res\json\date-picker-template.json" />
+    <None Include="res\json\date-picker-theme.json" />
     <None Include="res\json\date-picker.json" />
     <None Include="res\json\spin.json" />
     <None Include="res\json\style-example-theme-one.json" />

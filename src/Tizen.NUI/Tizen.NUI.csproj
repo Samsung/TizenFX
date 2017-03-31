@@ -292,6 +292,7 @@
     <Compile Include="src\internal\VisualTransformPolicyType.cs" />
     <Compile Include="src\internal\VisualTransformPropertyType.cs" />
     <Compile Include="src\internal\VisualType.cs" />
+    <Compile Include="src\internal\WindowFocusSignalType.cs" />
     <Compile Include="src\internal\VoidSignal.cs" />
     <Compile Include="src\internal\WrapModeType.cs" />
     <Compile Include="src\public\Actor.cs" />
