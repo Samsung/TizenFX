@@ -54,6 +54,8 @@ namespace Tizen.NUI
         // static constructor registers the control type (only runs once)
         static Spin()
         {
+            InternalSetting.DefaultParentOriginAsTopLeft = false;
+
             // ViewRegistry registers control type with DALi type registery
             // also uses introspection to find any properties that need to be registered with type registry
             ViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
@@ -61,7 +63,6 @@ namespace Tizen.NUI
 
         public Spin() : base(typeof(Spin).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
-
         }
 
         /// <summary>

@@ -330,10 +330,10 @@ namespace Tizen.NUI
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
             // add the mapping between the view name and it's create function
-            _constructorMap.Add(viewType.ToString(), createFunction);
+            _constructorMap.Add(viewType.Name, createFunction);
 
             // Call into DALi C++ to register the control with the type registry
-            TypeRegistration.RegisterControl(viewType.ToString(), _createCallback);
+            TypeRegistration.RegisterControl(viewType.Name, _createCallback);
 
             // Cycle through each property in the class
             foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties())
@@ -361,14 +361,14 @@ namespace Tizen.NUI
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
                             // we get the start property index, based on the type and it's heirachy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
-                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
+                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.Name, viewType, scriptableProp.type);
 
                             // get the enum for the property type... E.g. registering a string property returns Tizen.NUI.PropertyType.String
                             Tizen.NUI.PropertyType propertyType = GetDaliPropertyType(propertyInfo.PropertyType.Name);
 
                             // Example   RegisterProperty("spin","maxValue", 50001, FLOAT, set, get );
                             // Native call to register the property
-                            TypeRegistration.RegisterProperty(viewType.ToString(), propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
+                            TypeRegistration.RegisterProperty(viewType.Name, propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
                         }
                     }
                     // Console.WriteLine ("property name = " + propertyInfo.Name);

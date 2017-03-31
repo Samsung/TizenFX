@@ -102,6 +102,7 @@
     <Compile Include="src\internal\doublep.cs" />
     <Compile Include="src\internal\DragAndDropDetector.cs" />
     <Compile Include="src\internal\EncodedBufferImage.cs" />
+    <Compile Include="src\internal\EventThreadCallback.cs" />
     <Compile Include="src\internal\FaceCullingModeType.cs" />
     <Compile Include="src\internal\FilterModeType.cs" />
     <Compile Include="src\internal\FittingModeType.cs" />

@@ -1,7 +1,7 @@
 Name:       csapi-nui
 Summary:    dali-NUI
-Version:    0.2.32
-Release:    1
+Version:    0.2.33
+Release:    pre1
 Group:      Development/Libraries
 License:    Apache-2.0
 URL:        https://www.tizen.org
@@ -32,7 +32,7 @@ cp %{SOURCE1} .
 %build
 for ASM in %{Assemblies}; do
 %dotnet_build $ASM
-%dotnet_pack $ASM/$ASM.nuspec %{version}
+%dotnet_pack $ASM/$ASM.nuspec %{version}-pre1
 done
 
 %install
