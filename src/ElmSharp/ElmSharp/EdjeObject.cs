@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The EdjeObject is a class that evas object exist in
+    /// </summary>
     public class EdjeObject
     {
         IntPtr _edjeHandle;
@@ -27,6 +30,13 @@ namespace ElmSharp
             _edjeHandle = handle;
         }
 
+        /// <summary>
+        /// Checks whether an edje part exists in a given edje object's group definition.
+        /// This function returns if a given part exists in the edje group bound to object obj
+        /// </summary>
+        /// <remarks>This call is useful, for example, when one could expect a given GUI element, depending on the theme applied to obj.</remarks>
+        /// <param name="part">The part's name to check for existence in obj's group</param>
+        /// <returns>TRUE, if the edje part exists in obj's group, otherwise FALSE</returns>
         public EdjeTextPartObject this[string part]
         {
             get
@@ -39,17 +49,31 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sends/emits an edje signal to a given edje object.
+        /// </summary>
+        /// <param name="emission">The signal's "emission" string</param>
+        /// <param name="source">The signal's "source" string</param>
         public void EmitSignal(string emission, string source)
         {
             Interop.Elementary.edje_object_signal_emit(_edjeHandle, emission, source);
         }
 
+        /// <summary>
+        /// Deletes the object color class.
+        /// This function deletes any values at the object level for the specified object and color class.
+        /// </summary>
+        /// <remarks>Deleting the color class defined in the theme file.</remarks>
+        /// <param name="part">The color class to be deleted</param>
         public void DeleteColorClass(string part)
         {
             Interop.Elementary.edje_object_color_class_del(_edjeHandle, part);
         }
     }
 
+    /// <summary>
+    /// An EdjeTextPartObject is a class dealing with parts of type text.
+    /// </summary>
     public class EdjeTextPartObject
     {
         string _part;
@@ -61,8 +85,14 @@ namespace ElmSharp
             _part = part;
         }
 
+        /// <summary>
+        /// Gets the name of the EdjeTextPartObject
+        /// </summary>
         public string Name { get { return _part; } }
 
+        /// <summary>
+        /// Gets or sets the text for an object part.
+        /// </summary>
         public string Text
         {
             get
@@ -75,6 +105,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the style of the object part.
+        /// </summary>
         public string TextStyle
         {
             get
@@ -94,6 +127,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the geometry of a given edje part, in a given edje object's group definition, relative to the object's area.
+        /// </summary>
         public Rect Geometry
         {
             get
@@ -104,6 +140,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the native width and height.
+        /// </summary>
         public Size TextBlockNativeSize
         {
             get
@@ -116,6 +155,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the formatted width and height.
+        /// </summary>
         public Size TextBlockFormattedSize
         {
             get

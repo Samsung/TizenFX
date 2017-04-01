@@ -189,7 +189,7 @@ namespace ElmSharp
         /// <param name="data">data</param>
         /// <param name="obj">obj</param>
         /// <param name="info">info</param>
-        /// <returns></returns>
+        /// <returns> delegate handle</returns>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private bool _disposed = false;
