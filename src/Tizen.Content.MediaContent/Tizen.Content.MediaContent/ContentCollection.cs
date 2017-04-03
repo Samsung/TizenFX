@@ -42,6 +42,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="filter">The media filter</param>
         /// <returns>Task with Media Information list</returns>
-        public abstract Task<IEnumerable<MediaInformation>> GetMediaInformationsAsync(ContentFilter filter);
+        public abstract IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter);
     }
 }

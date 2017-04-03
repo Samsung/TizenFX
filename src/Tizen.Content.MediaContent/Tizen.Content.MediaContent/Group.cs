@@ -82,9 +82,8 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
-        public override Task<IEnumerable<MediaInformation>> GetMediaInformationsAsync(ContentFilter filter)
+        public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)
         {
-            var tcs = new TaskCompletionSource<IEnumerable<MediaInformation>>();
             List<MediaInformation> mediaContents = new List<MediaInformation>();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             Interop.Group.MediaInfoCallback callback = (IntPtr mediaHandle, IntPtr data) =>
@@ -129,8 +128,7 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.Group.ForeachMediaFromDb(Name, _groupType, handle, callback, IntPtr.Zero), "Failed to get media information for the group");
 
-            tcs.TrySetResult(mediaContents);
-            return tcs.Task;
+            return mediaContents;
         }
     }
 }

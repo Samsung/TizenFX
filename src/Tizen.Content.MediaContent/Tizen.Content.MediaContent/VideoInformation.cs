@@ -338,10 +338,8 @@ namespace Tizen.Content.MediaContent
         /// <returns>
         /// Task to get all the Bookmarks </returns>
         /// <param name="filter"> filter for the Tags</param>
-        public Task<IEnumerable<MediaBookmark>> GetMediaBookmarksAsync(ContentFilter filter)
+        public IEnumerable<MediaBookmark> GetMediaBookmarks(ContentFilter filter)
         {
-            var task = new TaskCompletionSource<IEnumerable<MediaBookmark>>();
-
             Collection<MediaBookmark> result = new Collection<MediaBookmark>();
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
             Interop.MediaInformation.MediaBookmarkCallback callback = (IntPtr handle, IntPtr userData) =>
@@ -355,8 +353,7 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetAllBookmarks(MediaId, filterHandle, callback, IntPtr.Zero), "Failed to get value");
 
-            task.SetResult(result);
-            return task.Task;
+            return result;
         }
 
         /// <summary>
@@ -365,14 +362,14 @@ namespace Tizen.Content.MediaContent
         /// <param name="offset">Offset of the video in seconds</param>
         /// <param name="thumbnailPath">Thumbnail path for the bookmark</param>
         /// <returns>Task with added MediaBookmark instance </returns>
-        public async Task<MediaBookmark> AddBookmark(uint offset, string thumbnailPath)
+        public MediaBookmark AddBookmark(uint offset, string thumbnailPath)
         {
             MediaBookmark result = null;
             ContentManager.Database.Insert(MediaId, offset, thumbnailPath);
             ContentFilter bookmarkfilter = new ContentFilter();
             bookmarkfilter.Condition = "BOOKMARK_MARKED_TIME = " + offset;
             IEnumerable<MediaBookmark> bookmarksList = null;
-            bookmarksList = await GetMediaBookmarksAsync(bookmarkfilter);
+            bookmarksList = GetMediaBookmarks(bookmarkfilter);
             foreach (MediaBookmark bookmark in bookmarksList)
             {
                 if (bookmark.Offset == offset)

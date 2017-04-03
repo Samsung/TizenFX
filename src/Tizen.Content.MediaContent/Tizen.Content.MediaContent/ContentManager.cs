@@ -133,14 +133,14 @@ namespace Tizen.Content.MediaContent
         /// If any folder must not be scanned, a blank file ".scan_ignore" has to be created in that folder.
         /// </remarks>
         /// <returns>Task with scanning result</returns>
-        public static Task ScanFolderAsync(string folderPath, bool recursive = true)
+        public static Task<MediaContentError> ScanFolderAsync(string folderPath, bool recursive = true)
         {
-            var task = new TaskCompletionSource<int>();
+            var task = new TaskCompletionSource<MediaContentError>();
 
             Interop.Content.MediaScanCompletedCallback scanCompleted = (MediaContentError scanResult, IntPtr data) =>
             {
                 MediaContentValidator.ThrowIfError(scanResult, "Failed to scan");
-                task.SetResult((int)scanResult);
+                task.SetResult(scanResult);
             };
 
             MediaContentValidator.ThrowIfError(

@@ -446,47 +446,46 @@ namespace Tizen.Content.MediaContent
         /// <returns>
         /// Task with the list of the ContentCollection
         /// </returns>
-        public Task<IEnumerable<T>> SelectAsync<T>(ContentFilter filter)
+        public IEnumerable<T> SelectAll<T>(ContentFilter filter)
         {
             ConnectToDB();
-            var task = new TaskCompletionSource<IEnumerable<T>>();
             if (typeof(T) == typeof(MediaInformation))
             {
                 IEnumerable<MediaInformation> mediaList = GetMediaInformations(filter);
-                task.TrySetResult((IEnumerable<T>)mediaList);
+                return (IEnumerable<T>)mediaList;
             }
             else if (typeof(T) == typeof(Album))
             {
                 IEnumerable<Album> collectionList = ForEachAlbum(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
             else if (typeof(T) == typeof(MediaFolder))
             {
                 IEnumerable<MediaFolder> collectionList = ForEachFolder(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
             else if (typeof(T) == typeof(Group))
             {
                 IEnumerable<Group> collectionList = ForEachGroup(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
             else if (typeof(T) == typeof(Storage))
             {
                 IEnumerable<Storage> collectionList = ForEachStorage(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
             else if (typeof(T) == typeof(Tag))
             {
                 IEnumerable<Tag> collectionList = ForEachTag(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
             else if (typeof(T) == typeof(PlayList))
             {
                 IEnumerable<PlayList> collectionList = ForEachPlayList(filter);
-                task.TrySetResult((IEnumerable<T>)collectionList);
+                return (IEnumerable<T>)collectionList;
             }
 
-            return task.Task;
+            return null;
         }
 
         /// <summary>

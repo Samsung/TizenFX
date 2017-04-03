@@ -246,9 +246,8 @@ namespace Tizen.Content.MediaContent
         /// <returns>
         /// Task to get all the MediaFaces </returns>
         /// <param name="filter"> filter for the Tags</param>
-        public Task<IEnumerable<MediaFace>> GetMediaFacesAsync(ContentFilter filter)
+        public IEnumerable<MediaFace> GetMediaFaces(ContentFilter filter)
         {
-            var task = new TaskCompletionSource<IEnumerable<MediaFace>>();
             Collection<MediaFace> coll = new Collection<MediaFace>();
 
             Interop.MediaInformation.MediaFaceCallback callback = (IntPtr faceHandle, IntPtr userData) =>
@@ -263,8 +262,8 @@ namespace Tizen.Content.MediaContent
             IntPtr filterHandle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetAllFaces(MediaId, filterHandle, callback, IntPtr.Zero), "Failed to get value");
-            task.SetResult(coll);
-            return task.Task;
+
+            return coll;
         }
 
         /// <summary>

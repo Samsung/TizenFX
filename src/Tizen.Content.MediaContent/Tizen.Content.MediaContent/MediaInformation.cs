@@ -80,7 +80,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
-        public async Task<string> CreateThumbnailAsync()
+        public Task<string> CreateThumbnailAsync()
         {
             var task = new TaskCompletionSource<string>();
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
@@ -91,7 +91,7 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero), "Failed to create thumbnail");
 
-            return await task.Task;
+            return task.Task;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>
         /// Task for creation of Thumbnail
         /// </returns>
-        public async Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
+        public Task<string> CreateThumbnailAsync(CancellationToken cancellationToken)
         {
             var task = new TaskCompletionSource<string>();
             cancellationToken.Register(() =>
@@ -123,7 +123,7 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.CreateThumbnail(_handle, thumbnailResult, IntPtr.Zero), "Failed to create thumbnail");
 
-            return await task.Task;
+            return task.Task;
         }
 
         /// <summary>
@@ -132,9 +132,8 @@ namespace Tizen.Content.MediaContent
         /// <returns>
         /// Task to get all the Tags </returns>
         /// <param name="filter"> The filter for the Tags</param>
-        public Task<IEnumerable<Tag>> GetTagsAsync(ContentFilter filter)
+        public IEnumerable<Tag> GetTags(ContentFilter filter)
         {
-            var task = new TaskCompletionSource<IEnumerable<Tag>>();
             Collection<Tag> coll = new Collection<Tag>();
 
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
@@ -150,8 +149,7 @@ namespace Tizen.Content.MediaContent
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetAllTags(MediaId, handle, tagsCallback, IntPtr.Zero), "Failed to get information");
 
-            task.SetResult(coll);
-            return task.Task;
+            return coll;
         }
 
         /// <summary>
