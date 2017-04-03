@@ -9,7 +9,7 @@
 Name:       csapi-maps
 Summary:    Tizen Map Service API for C#
 Version:    1.0.9
-Release:    2
+Release:    3
 Group:      Development/Libraries
 License:    Apache-2.0
 URL:        https://www.tizen.org

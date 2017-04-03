@@ -45,6 +45,11 @@ internal static partial class Interop
         return ctor(NativeGet(getter, propertyName));
     }
 
+    internal static T NativeGet<T>(GetterMethod<IntPtr> getter, Func<IntPtr, bool, T> ctor, bool hasOwnership, [CallerMemberName] string propertyName = "") where T : SafeMapsHandle
+    {
+        return ctor(NativeGet(getter, propertyName), hasOwnership);
+    }
+
     internal static string NativeGet(GetterMethod<string> getter, [CallerMemberName] string propertyName = "")
     {
         string value;

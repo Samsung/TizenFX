@@ -131,7 +131,7 @@ internal static partial class Interop
 
         internal ViewObjectHandle ViewObject
         {
-            get { return NativeGet(this.GetObject, ViewObjectHandle.Create); }
+            get { return NativeGet(this.GetObject, ViewObjectHandle.Create, false ); }
         }
 
         // event_data will be released automatically after this callback is terminated.

@@ -65,9 +65,9 @@ internal static partial class Interop
         {
         }
 
-        internal static ViewObjectHandle Create(IntPtr nativeHandle)
+        internal static ViewObjectHandle Create(IntPtr nativeHandle, bool needToRelease)
         {
-            return new ViewObjectHandle(nativeHandle, true);
+            return new ViewObjectHandle(nativeHandle, needToRelease);
         }
     }
 }
