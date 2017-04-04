@@ -64,8 +64,8 @@ namespace MyCSharpExample
 
         private void Instance_Touch(object sender, Stage.TouchEventArgs e)
         {
-            Tizen.Log.Debug("NUI", "stage touched! set key focus as lastFocusedView!");
-            FocusManager.Instance.SetCurrentFocusView(lastFocusedView);
+            Tizen.Log.Debug("NUI", "stage touched! set key focus as view[0]!");
+            FocusManager.Instance.SetCurrentFocusView(view[0]);
         }
 
         private bool FocusNavigationSample_KeyEvent(object source, View.KeyEventArgs e)

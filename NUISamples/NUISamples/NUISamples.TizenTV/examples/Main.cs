@@ -14,7 +14,7 @@ namespace NUISamples.TizenTV.examples
         [STAThread]
         static void Main(string[] args)
         {
-            new VisualsUsingCustomView.VisualsExample().Run(args);    //o
+            //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new ControlDashboard.Example().Run(args);                 //o
             //new DatePickerTest.Example().Run(args);                   //o
             //new HelloTest.Example().Run(args);                        //o
@@ -30,7 +30,9 @@ namespace NUISamples.TizenTV.examples
             //new DatePickerUsingJson.Example().Run(args);              //o
             //new DaliTest.Example().Run(args);                         //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
-
+            //new MyCSharpExample.Example().Run(args);                  //o
+            new FirstScreen.FirstScreenApp().Run(args);                  //o
+            //new MyCSharpExample.Example().Run(args);                  //o
         }
     }
     
