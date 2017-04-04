@@ -129,13 +129,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// A visual view control for user add any visual to it.
+        ///  Get the total number of Visuals which are added by users
         /// </summary>
-        /// <returns> The number of visuals. </returns>
-        public int NumberOfVisuals()
+        public int NumberOfVisuals
+        {
+            get
         {
             return _visualDictionary.Count;
         }
+        }
+
 
         /// <summary>
         /// Remove all visuals of visual view.
