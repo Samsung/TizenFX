@@ -26,7 +26,7 @@ namespace ElmSharp.Test
 {
     public class TestRunner : CoreUIApplication
     {
-        private Window _firstPageWindow;
+        internal Window _firstPageWindow;
         private static bool s_terminated;
 
         public static string ResourceDir { get; private set; }

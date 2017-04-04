@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using ElmSharp;
 using System;
 using System.Runtime.InteropServices;
 
@@ -136,6 +137,21 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_screen_dpi_get(IntPtr obj, out int xdpi, out int ydpi);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_iconified_set(IntPtr obj, bool iconified);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool elm_win_iconified_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool elm_win_keygrab_set(IntPtr obj, string key, ulong  modifiers, ulong notModifiers, int proirity, KeyGrabMode grabMode);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool elm_win_keygrab_unset(IntPtr obj, string key, ulong modifiers, ulong notModifiers);
 
         [DllImport(Libraries.Eext)]
         internal static extern bool eext_win_keygrab_set(IntPtr obj, string key);

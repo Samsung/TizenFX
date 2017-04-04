@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ElmSharp
 {
@@ -65,6 +66,15 @@ namespace ElmSharp
         /// Transparentizes the status bar
         /// </summary>
         Transparent = 3,
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum KeyGrabMode
+    {
+        Shared = 256,
+        Topmost = 512,
+        Exclusive = 1024,
+        OverrideExclusive = 2048,
     }
 
     /// <summary>
@@ -273,6 +283,19 @@ namespace ElmSharp
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Iconified
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_iconified_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_iconified_set(RealHandle, value);
+            }
+        }
+
         /// <summary>
         /// This function sends a request to the Windows Manager to activate the Window.
         /// If honored by the WM, the window receives the keyboard focus.
@@ -303,6 +326,17 @@ namespace ElmSharp
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WinKeyGrab(string keyname, KeyGrabMode mode)
+        {
+            Interop.Elementary.elm_win_keygrab_set(RealHandle, keyname, 0, 0, 0, mode);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WinKeyUngrab(string keyname)
+        {
+            Interop.Elementary.elm_win_keygrab_unset(RealHandle, keyname, 0, 0);
+        }
 
         /// <summary>
         /// Set the keygrab of the window.

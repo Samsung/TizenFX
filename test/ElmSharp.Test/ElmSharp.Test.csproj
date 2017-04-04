@@ -102,6 +102,7 @@
     <Compile Include="TC\SliderTest1.cs" />
     <Compile Include="TC\SpinnerTest1.cs" />
     <Compile Include="TC\ToolbarTest1.cs" />
+    <Compile Include="TC\WindowInternalTest.cs" />
     <Compile Include="TestCaseBase.cs" />
     <Compile Include="TestRunner.cs" />
   </ItemGroup>
@@ -191,10 +192,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCorporateFlavorCfg />
+        <ProjectCommonFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
