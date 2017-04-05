@@ -43,29 +43,23 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class ContentDatabase
     {
-        private bool _isConnected = false;
-        internal ContentDatabase()
+        /// <summary>
+        /// Connect to the media database to search, insert, remove or modify media information.
+        /// </summary>
+        /// <remarks>
+        /// For information security, disconnect() after use media database.
+        /// </remarks>
+        public static void Connect()
         {
+            MediaContentValidator.ThrowIfError(Interop.Content.Connect(), "Connect failed");
         }
 
-        internal void ConnectToDB()
+        /// <summary>
+        /// Disconnect from the media database.
+        /// </summary>
+        public static void Disconnect()
         {
-            if (!_isConnected)
-            {
-                MediaContentValidator.ThrowIfError(Interop.Content.Connect(), "Connect failed");
-
-                _isConnected = true;
-            }
-        }
-
-        private void DisconnectFromDB()
-        {
-            if (_isConnected)
-            {
-                MediaContentValidator.ThrowIfError(Interop.Content.Disconnect(), "Disconnect failed");
-
-                _isConnected = false;
-            }
+            MediaContentValidator.ThrowIfError(Interop.Content.Disconnect(), "Disconnect failed");
         }
 
         private static readonly Interop.Content.MediaContentDBUpdatedCallback s_contentUpdatedCallback = (
@@ -128,8 +122,6 @@ namespace Tizen.Content.MediaContent
                 groupType = filter.GroupType;
             }
 
-            ConnectToDB();
-
             if (typeof(T) == typeof(MediaInformation))
             {
                 MediaContentValidator.ThrowIfError(
@@ -185,7 +177,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>MediaInformation instance for the associated id.It throws Exception for invalid Id.</returns>
         public MediaInformation Select(string id)
         {
-            ConnectToDB();
             Interop.MediaInformation.SafeMediaInformationHandle mediaHandle;
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.GetMediaFromDB(id, out mediaHandle), "Failed to get information");
@@ -233,7 +224,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
         public T Select<T>(string id) where T : ContentCollection
         {
-            ConnectToDB();
             ContentCollection result = null;
             IntPtr handle = IntPtr.Zero;
 
@@ -273,7 +263,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
         public T Select<T>(int id) where T : ContentCollection
         {
-            ConnectToDB();
             ContentCollection result = null;
             IntPtr handle = IntPtr.Zero;
 
@@ -448,7 +437,6 @@ namespace Tizen.Content.MediaContent
         /// </returns>
         public IEnumerable<T> SelectAll<T>(ContentFilter filter)
         {
-            ConnectToDB();
             if (typeof(T) == typeof(MediaInformation))
             {
                 IEnumerable<MediaInformation> mediaList = GetMediaInformations(filter);
@@ -496,7 +484,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>List of media</returns>
         private IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)
         {
-            ConnectToDB();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             List<MediaInformation> mediaInformationList = new List<MediaInformation>();
             Interop.MediaInformation.MediaInformationCallback callback = (IntPtr mediaHandle, IntPtr userData) =>
@@ -550,7 +537,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaInfo">The MediaInformation to be deleted</param>
         public void Delete(MediaInformation mediaInfo)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.Delete(mediaInfo.MediaId), "Failed to remove information");
         }
@@ -564,7 +550,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="contentcollection">The ContentCollection instance to be deleted</param>
         public void Delete(ContentCollection contentcollection)
         {
-            ConnectToDB();
             Type type = contentcollection.GetType();
 
             if (type == typeof(Tag))
@@ -585,14 +570,12 @@ namespace Tizen.Content.MediaContent
 
         internal void Delete(MediaBookmark bookmark)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(
                 Interop.MediaBookmark.DeleteFromDb(bookmark.Id), "Failed to remove information");
         }
 
         internal void Delete(MediaFace face)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(
                 Interop.Face.DeleteFromDb(face.Id), "Failed to remove face information");
         }
@@ -604,7 +587,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="contentCollection">The content collection to be updated</param>
         public void Update(ContentCollection contentCollection)
         {
-            ConnectToDB();
             Type type = contentCollection.GetType();
             if (type == typeof(Tag))
             {
@@ -633,7 +615,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaInfo">The MediaInformation object to be updated</param>
         public void Update(MediaInformation mediaInfo)
         {
-            ConnectToDB();
             Type type = mediaInfo.GetType();
             if (type == typeof(ImageInformation))
             {
@@ -672,7 +653,6 @@ namespace Tizen.Content.MediaContent
 
         internal void Update(MediaFace face)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(Interop.Face.UpdateToDb(face.Handle), "Failed to update DB");
         }
 
@@ -683,7 +663,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="contentCollection">The content collection to be inserted</param>
         public void Insert(ContentCollection contentCollection)
         {
-            ConnectToDB();
             Type type = contentCollection.GetType();
             IntPtr handle = IntPtr.Zero;
             if (type == typeof(Tag))
@@ -706,14 +685,12 @@ namespace Tizen.Content.MediaContent
 
         internal void Insert(string mediaId, uint offset, string thumbnailPath)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(
                 Interop.MediaBookmark.InsertToDb(mediaId, offset, thumbnailPath), "Failed to insert information");
         }
 
         internal void Insert(MediaFace face)
         {
-            ConnectToDB();
             MediaContentValidator.ThrowIfError(
                 Interop.Face.InsertToDb(((MediaFace)face).Handle), "Failed to insert information");
         }

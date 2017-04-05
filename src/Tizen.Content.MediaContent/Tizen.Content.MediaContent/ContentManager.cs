@@ -71,7 +71,6 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         public static void Scan(string filePath)
         {
-            Database.ConnectToDB();
             MediaContentValidator.ThrowIfError(Interop.Content.ScanFile(filePath), "Failed scan");
         }
 
@@ -82,7 +81,6 @@ namespace Tizen.Content.MediaContent
         /// <returns>the MediaInformation instance about added media path</returns>
         public static MediaInformation AddMediaInformation(string filePath)
         {
-            Database.ConnectToDB();
             Interop.MediaInformation.SafeMediaInformationHandle mediaInformationHandle;
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.Insert(filePath, out mediaInformationHandle), "Failed to Insert MediaInformation to DB");
@@ -211,7 +209,6 @@ namespace Tizen.Content.MediaContent
         /// </returns>
         public static Task AddMediaInformationBatchAsync(IEnumerable<string> filePaths)
         {
-            Database.ConnectToDB();
             var task = new TaskCompletionSource<int>();
             string[] paths = ((List<string>)filePaths).ToArray();
             Interop.MediaInformation.MediaInsertCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
@@ -234,7 +231,6 @@ namespace Tizen.Content.MediaContent
         /// </returns>
         public static Task AddBurstShotImagesAsync(IEnumerable<string> filePaths)
         {
-            Database.ConnectToDB();
             var task = new TaskCompletionSource<int>();
             string[] paths = ((List<string>)filePaths).ToArray();
             Interop.MediaInformation.MediaInsertBurstShotCompletedCallback callback = (MediaContentError error, IntPtr userData) =>
@@ -256,7 +252,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The content filter to which media will be matched</param>
         public static void RemoveMediaInformationBatch(ContentFilter filter)
         {
-            Database.ConnectToDB();
             IntPtr handle = (filter != null) ? filter.Handle : IntPtr.Zero;
             MediaContentValidator.ThrowIfError(
                 Interop.MediaInformation.BatchDelete(handle), "Failed to remove items");
