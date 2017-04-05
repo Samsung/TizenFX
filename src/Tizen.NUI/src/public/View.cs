@@ -104,7 +104,7 @@ namespace Tizen.NUI
             {
                 _keyInputFocusGainedEventHandler -= value;
 
-                if (_keyInputFocusGainedEventHandler == null && _keyInputFocusGainedCallback != null)
+                if (_keyInputFocusGainedEventHandler == null && KeyInputFocusGainedSignal().Empty() == false)
                 {
                     this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
                 }
@@ -146,7 +146,7 @@ namespace Tizen.NUI
             {
                 _keyInputFocusLostEventHandler -= value;
 
-                if (_keyInputFocusLostEventHandler == null && _keyInputFocusLostCallback != null)
+                if (_keyInputFocusLostEventHandler == null && KeyInputFocusLostSignal().Empty() == false)
                 {
                     this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
                 }
@@ -213,7 +213,7 @@ namespace Tizen.NUI
             {
                 _keyEventHandler -= value;
 
-                if (_keyEventHandler == null && _keyCallback != null)
+                if (_keyEventHandler == null && KeyEventSignal().Empty() == false)
                 {
                     this.KeyEventSignal().Disconnect(_keyCallback);
                 }
@@ -260,7 +260,7 @@ namespace Tizen.NUI
             {
                 _onRelayoutEventHandler -= value;
 
-                if (_onRelayoutEventHandler == null && _onRelayoutEventCallback != null)
+                if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
                 {
                     this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
                 }
@@ -329,7 +329,7 @@ namespace Tizen.NUI
             {
                 _touchDataEventHandler -= value;
 
-                if (_touchDataEventHandler == null && _touchDataCallback != null)
+                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
@@ -403,7 +403,7 @@ namespace Tizen.NUI
             {
                 _hoverEventHandler -= value;
 
-                if (_hoverEventHandler == null && _hoverEventCallback != null)
+                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
                 {
                     this.HoveredSignal().Disconnect(_hoverEventCallback);
                 }
@@ -476,7 +476,7 @@ namespace Tizen.NUI
             {
                 _wheelEventHandler -= value;
 
-                if (_wheelEventHandler == null && _wheelEventCallback != null)
+                if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
                 {
                     this.WheelEventSignal().Disconnect(_wheelEventCallback);
                 }
@@ -525,7 +525,7 @@ namespace Tizen.NUI
             {
                 _onStageEventHandler -= value;
 
-                if (_onStageEventHandler == null && _onStageEventCallback != null)
+                if (_onStageEventHandler == null && OnStageSignal().Empty() == false)
                 {
                     this.OnStageSignal().Disconnect(_onStageEventCallback);
                 }
@@ -568,7 +568,7 @@ namespace Tizen.NUI
             {
                 _offStageEventHandler -= value;
 
-                if (_offStageEventHandler == null && _offStageEventCallback != null)
+                if (_offStageEventHandler == null && OffStageSignal().Empty() == false)
                 {
                     this.OffStageSignal().Disconnect(_offStageEventCallback);
                 }
@@ -738,10 +738,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Quries whether the view has key input focus.
+        /// Quries whether the view has focus.
         /// </summary>
-        /// <returns>true if this view has keyboard input focus</returns>
-        public bool HasKeyInputFocus()
+        /// <returns>true if this view has focus</returns>
+        public bool HasFocus()
         {
             bool ret = NDalicPINVOKE.View_HasKeyInputFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

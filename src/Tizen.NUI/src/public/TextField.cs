@@ -153,7 +153,7 @@ namespace Tizen.NUI
             remove
             {
                 _textFieldTextChangedEventHandler -= value;
-                if (_textFieldTextChangedEventHandler == null && _textFieldTextChangedCallbackDelegate != null)
+                if (_textFieldTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
                 {
                     TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
                 }
@@ -191,7 +191,7 @@ namespace Tizen.NUI
             }
             remove
             {
-                if (_textFieldMaxLengthReachedEventHandler == null && _textFieldMaxLengthReachedCallbackDelegate != null)
+                if (_textFieldMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
                 {
                     this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
                 }

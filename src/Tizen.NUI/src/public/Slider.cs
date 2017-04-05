@@ -231,7 +231,7 @@ namespace Tizen.NUI
             remove
             {
                 _sliderValueChangedEventHandler -= value;
-                if (_sliderValueChangedEventHandler == null && _sliderValueChangedCallbackDelegate != null)
+                if (_sliderValueChangedEventHandler == null && ValueChangedSignal().Empty() == false)
                 {
                     ValueChangedSignal().Disconnect(_sliderValueChangedCallbackDelegate);
                 }
@@ -272,7 +272,7 @@ namespace Tizen.NUI
             remove
             {
                 _sliderSlidingFinishedEventHandler -= value;
-                if (_sliderSlidingFinishedEventHandler == null && _sliderSlidingFinishedCallbackDelegate != null)
+                if (_sliderSlidingFinishedEventHandler == null && SlidingFinishedSignal().Empty() == false)
                 {
                     SlidingFinishedSignal().Disconnect(_sliderSlidingFinishedCallbackDelegate);
                 }
@@ -313,7 +313,7 @@ namespace Tizen.NUI
             remove
             {
                 _sliderMarkReachedEventHandler -= value;
-                if (_sliderMarkReachedEventHandler == null && _sliderMarkReachedCallbackDelegate != null)
+                if (_sliderMarkReachedEventHandler == null && MarkReachedSignal().Empty() == false)
                 {
                     MarkReachedSignal().Disconnect(_sliderMarkReachedCallbackDelegate);
                 }

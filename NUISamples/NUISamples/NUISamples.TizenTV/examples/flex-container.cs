@@ -95,6 +95,7 @@ namespace FlexContainerTest
                 Tizen.Log.Debug("NUI", "pushbutton1 clicked! add handler!");
                 _cnt++;
                 FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
+                _ani.Finished += _ani_Finished;
                 pushButton1.LabelText = "Add Handler" + _cnt;
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
@@ -112,6 +113,7 @@ namespace FlexContainerTest
                 Tizen.Log.Debug("NUI", "pushbutton2 clicked! remove handler!");
                 _cnt--;
                 FocusManager.Instance.PreFocusChange -= Instance_PreFocusChange;
+                _ani.Finished -= _ani_Finished;
                 pushButton1.LabelText = "Add Handler" + _cnt;
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
@@ -123,7 +125,13 @@ namespace FlexContainerTest
             _ani.AnimateTo(pushButton1, "Opacity", 0.0f);
             _ani.AnimateTo(pushButton2, "Opacity", 0.0f);
             _ani.EndAction = Animation.EndActions.Discard;
+            _ani.Finished += _ani_Finished;
 
+        }
+
+        private void _ani_Finished(object sender, EventArgs e)
+        {
+            Tizen.Log.Debug("NUI", "_ani finished! _cnt=" + _cnt);
         }
 
         private View Instance_PreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)

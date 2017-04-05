@@ -7,8 +7,8 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
-#define DOT_NET_CORE
 
+#define DOT_NET_CORE
 #if (DOT_NET_CORE)
 using System.Reflection;
 #endif

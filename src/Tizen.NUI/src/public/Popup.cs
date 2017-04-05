@@ -156,7 +156,7 @@ namespace Tizen.NUI
             remove
             {
                 _popUpOutsideTouchedEventHandler -= value;
-                if (_popUpOutsideTouchedEventHandler == null && _popUpOutsideTouchedEventCallbackDelegate != null)
+                if (_popUpOutsideTouchedEventHandler == null && OutsideTouchedSignal().Empty() == false)
                 {
                     this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
                 }
@@ -192,7 +192,7 @@ namespace Tizen.NUI
             remove
             {
                 _popUpShowingEventHandler -= value;
-                if (_popUpShowingEventHandler == null && _popUpShowingEventCallbackDelegate != null)
+                if (_popUpShowingEventHandler == null && ShowingSignal().Empty() == false)
                 {
                     ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
                 }
@@ -229,7 +229,7 @@ namespace Tizen.NUI
             remove
             {
                 _popUpShownEventHandler -= value;
-                if (_popUpShownEventHandler == null && _popUpShownEventCallbackDelegate != null)
+                if (_popUpShownEventHandler == null && ShownSignal().Empty() == false)
                 {
                     ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
                 }
@@ -265,7 +265,7 @@ namespace Tizen.NUI
             remove
             {
                 _popUpHidingEventHandler -= value;
-                if (_popUpHidingEventHandler == null && _popUpHidingEventCallbackDelegate != null)
+                if (_popUpHidingEventHandler == null && HidingSignal().Empty() == false)
                 {
                     HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
                 }
@@ -301,7 +301,7 @@ namespace Tizen.NUI
             remove
             {
                 _popUpHiddenEventHandler -= value;
-                if (_popUpHiddenEventHandler == null && _popUpHiddenEventCallbackDelegate != null)
+                if (_popUpHiddenEventHandler == null && HiddenSignal().Empty() == false)
                 {
                     HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
                 }

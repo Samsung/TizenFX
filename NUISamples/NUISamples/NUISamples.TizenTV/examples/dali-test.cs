@@ -116,6 +116,8 @@ namespace DaliTest
 
         public void Initialize()
         {
+            DowncastTest();
+
             NavigationPropertiesTests();
 
             OperatorTests();
@@ -704,6 +706,48 @@ namespace DaliTest
             }
           }
         }
+
+
+
+        public void DowncastTest()
+        {
+            //Create a View as a child of parent View, get it use parent.GetChildAt(i), then DownCast to View handle, but call BackgroundColor property will crash.
+            View parent = new View();
+            View[] childs = new View[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                childs[i] = new View();
+                childs[i].Name = "child_view_" + i;
+                childs[i].BackgroundColor = Color.Red;
+                parent.Add(childs[i]);
+            }
+
+            for (uint i = 0; i < parent.GetChildCount(); i++)
+            {
+                Actor child = parent.GetChildAt(i);
+                View childView = View.DownCast<View>(child);
+                if (childView)
+                {
+                    Tizen.Log.Debug("NUI", "Type[" + childView.GetTypeName() + "] BGColor[" + childView.BackgroundColor.R + "]" + " Name[" + childView.Name + "]");
+                }
+            }
+
+            PushButton button = new PushButton();
+            button.LabelText = "ButtonTest!";
+            button.BackgroundColor = Color.White;
+            View parentView = new View();
+            parentView.Add(button);
+            PushButton view = PushButton.DownCast(parentView.GetChildAt(0));
+            if (view)
+            {
+                Tizen.Log.Debug("NUI", "NUI view GetTypeName= " + view.GetTypeName());
+                Tizen.Log.Debug("NUI", "NUI view LabelText= " + view.LabelText);
+                Tizen.Log.Debug("NUI", "NUI view color= " +  view.BackgroundColor.R);
+            }
+        }
+
+
 
         /// <summary>
         /// The main entry point for the application.

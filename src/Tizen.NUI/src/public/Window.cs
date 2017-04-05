@@ -139,7 +139,7 @@ namespace Tizen.NUI
             {
                 _windowFocusChangedEventHandler -= value;
 
-                if (_windowFocusChangedEventHandler == null && _windowFocusChangedEventCallback != null)
+                if (_windowFocusChangedEventHandler == null && WindowFocusChangedSignal().Empty() == false)
                 {
                     WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
                 }

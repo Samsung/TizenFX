@@ -1,11 +1,11 @@
-#define DOT_NET_CORE
 
-using System;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
+#define DOT_NET_CORE
 #if (DOT_NET_CORE)
 using System.Reflection;
 #endif
+using System;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
