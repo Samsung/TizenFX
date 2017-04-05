@@ -64,7 +64,8 @@ namespace Tizen.Applications
             InstanceName = Marshal.PtrToStringAnsi(record.instanceName);
             Arg = Marshal.PtrToStringAnsi(record.arg);
             Uri = Marshal.PtrToStringAnsi(record.uri);
-            LaunchTime = new DateTime(1970, 1, 1).AddSeconds(record.launchTime);
+            long seconds = record.launchTime.ToInt64();
+            LaunchTime = new DateTime(1970, 1, 1).AddSeconds(seconds);
             Controller = new RecentApplicationControl(Marshal.PtrToStringAnsi(record.pkgName));
         }
     }

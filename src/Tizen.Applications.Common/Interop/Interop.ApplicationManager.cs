@@ -313,7 +313,7 @@ internal static partial class Interop
             internal IntPtr pkgName;
             internal IntPtr appPath;
             internal IntPtr arg;
-            internal long launchTime;
+            internal IntPtr launchTime;
             internal IntPtr instanceId;
             internal IntPtr instanceName;
             internal IntPtr icon;
