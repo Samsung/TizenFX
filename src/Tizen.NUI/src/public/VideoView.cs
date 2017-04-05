@@ -125,7 +125,7 @@ namespace Tizen.NUI
             remove
             {
                 _videoViewFinishedEventHandler -= value;
-                if (_videoViewFinishedEventHandler == null && _videoViewFinishedCallbackDelegate != null)
+                if (_videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
                     FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
                 }

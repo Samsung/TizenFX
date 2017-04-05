@@ -134,7 +134,7 @@ namespace Tizen.NUI
             remove
             {
                 _scrollBarPanFinishedEventHandler -= value;
-                if (_scrollBarPanFinishedEventHandler == null && _scrollBarPanFinishedEventCallbackDelegate != null)
+                if (_scrollBarPanFinishedEventHandler == null && PanFinishedSignal().Empty() == false)
                 {
                     PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
                 }
@@ -171,7 +171,7 @@ namespace Tizen.NUI
             remove
             {
                 _scrollBarScrollPositionIntervalReachedEventHandler -= value;
-                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && _scrollBarScrollPositionIntervalReachedEventCallbackDelegate != null)
+                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && ScrollPositionIntervalReachedSignal().Empty() == false)
                 {
                     ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
                 }

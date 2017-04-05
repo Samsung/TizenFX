@@ -148,7 +148,7 @@ namespace Tizen.NUI
             remove
             {
                 _progressBarValueChangedEventHandler -= value;
-                if (_progressBarValueChangedEventHandler == null && _progressBarValueChangedCallbackDelegate != null)
+                if (_progressBarValueChangedEventHandler == null && ValueChangedSignal().Empty() == false)
                 {
                     ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
                 }

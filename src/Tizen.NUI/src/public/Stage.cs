@@ -116,7 +116,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageTouchHandler -= value;
-                if (_stageTouchHandler == null && _stageTouchCallbackDelegate != null)
+                if (_stageTouchHandler == null && TouchSignal().Empty() == false)
                 {
                     TouchSignal().Disconnect(_stageTouchCallbackDelegate);
                 }
@@ -181,7 +181,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && _stageWheelCallbackDelegate != null)
+                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
                 {
                     WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
                 }
@@ -246,7 +246,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageKeyHandler -= value;
-                if (_stageKeyHandler == null && _stageKeyCallbackDelegate != null)
+                if (_stageKeyHandler == null && KeyEventSignal().Empty() == false)
                 {
                     KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
                 }
@@ -289,7 +289,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageEventProcessingFinishedEventHandler -= value;
-                if (_stageEventProcessingFinishedEventHandler == null && _stageEventProcessingFinishedEventCallbackDelegate != null)
+                if (_stageEventProcessingFinishedEventHandler == null && EventProcessingFinishedSignal().Empty() == false)
                 {
                     EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
                 }
@@ -323,7 +323,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageContextLostEventHandler -= value;
-                if (_stageContextLostEventHandler == null && _stageContextLostEventCallbackDelegate != null)
+                if (_stageContextLostEventHandler == null && ContextLostSignal().Empty() == false)
                 {
                     ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
                 }
@@ -357,7 +357,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageContextRegainedEventHandler -= value;
-                if (_stageContextRegainedEventHandler == null && _stageContextRegainedEventCallbackDelegate != null)
+                if (_stageContextRegainedEventHandler == null && ContextRegainedSignal().Empty() == false)
                 {
                     this.ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
                 }
@@ -391,7 +391,7 @@ namespace Tizen.NUI
             remove
             {
                 _stageSceneCreatedEventHandler -= value;
-                if (_stageSceneCreatedEventHandler == null && _stageSceneCreatedEventCallbackDelegate != null)
+                if (_stageSceneCreatedEventHandler == null && SceneCreatedSignal().Empty() == false)
                 {
                     SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
                 }

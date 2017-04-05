@@ -115,7 +115,7 @@ namespace Tizen.NUI
             remove
             {
                 _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && _timerTickCallbackDelegate != null)
+                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
                     TickSignal().Disconnect(_timerTickCallbackDelegate);
                 }

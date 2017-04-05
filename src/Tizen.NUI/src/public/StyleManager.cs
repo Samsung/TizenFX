@@ -139,7 +139,7 @@ namespace Tizen.NUI
             remove
             {
                 _styleManagerStyleChangedEventHandler -= value;
-                if (_styleManagerStyleChangedEventHandler == null && _styleManagerStyleChangedCallbackDelegate != null)
+                if (_styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
                 {
                     StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
                 }

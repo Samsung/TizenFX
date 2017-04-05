@@ -127,7 +127,7 @@ namespace Tizen.NUI
             remove
             {
                 _textEditorTextChangedEventHandler -= value;
-                if (_textEditorTextChangedEventHandler == null && _textEditorTextChangedCallbackDelegate != null)
+                if (_textEditorTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
                 {
                     TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
                 }

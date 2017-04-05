@@ -104,7 +104,7 @@ namespace Tizen.NUI
             {
                 _clickedEventHandler -= value;
 
-                if (_clickedEventHandler == null && _clickedCallback != null)
+                if (_clickedEventHandler == null && ClickedSignal().Empty() == false)
                 {
                     ClickedSignal().Disconnect(_clickedCallback);
                 }
@@ -145,7 +145,7 @@ namespace Tizen.NUI
             {
                 _pressedEventHandler -= value;
 
-                if (_pressedEventHandler == null && _pressedCallback != null)
+                if (_pressedEventHandler == null && PressedSignal().Empty() == false)
                 {
                     this.PressedSignal().Disconnect(_pressedCallback);
                 }
@@ -184,7 +184,7 @@ namespace Tizen.NUI
             {
                 _releasedEventHandler -= value;
 
-                if (_releasedEventHandler == null && _releasedCallback != null)
+                if (_releasedEventHandler == null && ReleasedSignal().Empty() == false)
                 {
                     ReleasedSignal().Disconnect(_releasedCallback);
                 }
@@ -224,7 +224,7 @@ namespace Tizen.NUI
             {
                 _stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && _stateChangedCallback != null)
+                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false)
                 {
                     StateChangedSignal().Disconnect(_stateChangedCallback);
                 }
