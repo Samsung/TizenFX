@@ -234,6 +234,9 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.Player, EntryPoint = "player_get_display_rotation")]
             internal static extern int GetDisplayRotation(IntPtr player, out int rotation);
 
+            [DllImport(Libraries.Player, EntryPoint = "player_set_display_roi_area")]
+            internal static extern int SetDisplayRoi(IntPtr player, int x, int y, int width, int height);
+
             [DllImport(Libraries.Player, EntryPoint = "player_get_content_info")]
             internal static extern int GetContentInfo(IntPtr player, int key, out IntPtr value);
 

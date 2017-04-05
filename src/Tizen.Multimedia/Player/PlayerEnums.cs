@@ -193,6 +193,10 @@ namespace Tizen.Multimedia
         /// </summary>
         OriginalOrFull,
 
+        /// <summary>
+        /// Region of interest, See <see cref="PlayerDisplay.SetRoi(Rectangle)"/>.
+        /// </summary>
+        Roi
     }
 
     internal enum StreamType

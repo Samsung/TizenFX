@@ -24,41 +24,33 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PlayerDisplay
     {
-        private readonly EvasObject _evasObject;
-
-        private PlayerDisplay(PlayerDisplayType type, EvasObject evasObject)
+        private PlayerDisplay(PlayerDisplayType type, EvasObject target)
         {
-            if (evasObject == null)
+            if (target == null)
             {
                 Log.Error(PlayerLog.Tag, "evas object is null");
-                throw new ArgumentNullException(nameof(evasObject));
+                throw new ArgumentNullException(nameof(target));
             }
 
-            if (evasObject == IntPtr.Zero)
+            if (target == IntPtr.Zero)
             {
                 Log.Error(PlayerLog.Tag, "The evas object is not realized.");
                 throw new ArgumentException("The evas object is not realized.");
             }
 
             Type = type;
-            _evasObject = evasObject;
+            EvasObject = target;
         }
 
         public PlayerDisplay(Window window) : this(PlayerDisplayType.Overlay, window)
         {
         }
 
-        public PlayerDisplay(ElmSharp.Image image) : this(PlayerDisplayType.Surface, image)
+        public PlayerDisplay(Image image) : this(PlayerDisplayType.Surface, image)
         {
         }
 
-        public EvasObject EvasObject
-        {
-            get
-            {
-                return _evasObject;
-            }
-        }
+        public EvasObject EvasObject { get; }
 
         internal PlayerDisplayType Type { get; }
 
@@ -87,7 +79,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Set/Get Display mode.
         /// </summary>
-        /// <value> LetterBox, OriginalSize, FullScreen, CroppedFull, OriginalOrFull, DstRoi </value>
         /// <exception cref="InvalidOperationException">
         /// The display is not assigned.
         /// <para>-or-</para>
@@ -200,6 +191,46 @@ namespace Tizen.Multimedia
 
                 _rotation = value;
             }
+        }
+
+        /// <summary>
+        /// Sets the roi(region of interest).
+        /// </summary>
+        /// <remarks>
+        /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// The display is not assigned.
+        /// <para>-or-</para>
+        /// Operation failed; internal error.
+        /// <para>-or-</para>
+        /// <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">width or height is less than or equal to zero.</exception>
+        public void SetRoi(Rectangle roi)
+        {
+            ValidatePlayer();
+
+            if (_displayMode != PlayerDisplayMode.Roi)
+            {
+                throw new InvalidOperationException("Mode is not set to Roi");
+            }
+
+            if (roi.Width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(roi), roi.Width,
+                    $"The width of the roi can't be less than or equal to zero.");
+            }
+            if (roi.Height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(roi), roi.Height,
+                    $"The height of the roi can't be less than or equal to zero.");
+            }
+
+            PlayerErrorConverter.ThrowIfError(
+                Interop.Player.SetDisplayRoi(Player.GetHandle(), roi.X, roi.Y, roi.Width, roi.Height),
+                "Failed to set the roi");
         }
     }
 }
