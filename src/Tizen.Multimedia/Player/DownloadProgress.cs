@@ -55,7 +55,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Start : { Start }, Current: { Current }";
+            return $"Start={ Start.ToString() }, Current={ Current.ToString() }";
         }
     }
 }

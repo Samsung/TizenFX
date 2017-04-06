@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Error : { Error }";
+            return $"Error={ Error.ToString() }";
         }
     }
 }

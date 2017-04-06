@@ -36,6 +36,6 @@ namespace Tizen.Multimedia
         /// </summary>
 		public ulong Offset { get; }
 
-        public override string ToString() => $"Offset : { Offset }";
+        public override string ToString() => $"Offset : { Offset.ToString() }";
     }
 }

@@ -21,8 +21,17 @@ namespace Tizen.Multimedia
      /// </summary>
     public enum MediaFormatAacType
     {
+        /// <summary>
+        /// Raw, no header
+        /// </summary>
         None,
+        /// <summary>
+        /// ADTS header
+        /// </summary>
         Adts,
+        /// <summary>
+        /// ADIF header
+        /// </summary>
         Adif
     }
 }

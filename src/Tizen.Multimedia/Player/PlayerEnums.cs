@@ -75,8 +75,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Player.Pause"/>
         Paused,
 
-
-        //TODO is this needed?
         /// <summary>
         /// Preparing in progress.
         /// </summary>

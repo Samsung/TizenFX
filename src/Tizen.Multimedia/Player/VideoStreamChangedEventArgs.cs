@@ -29,11 +29,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initialize a new instance of the VideoStreamChangedEventArgs class.
         /// </summary>
-        internal VideoStreamChangedEventArgs(int height, int width, int fps, int bitrate)
+        internal VideoStreamChangedEventArgs(int height, int width, int fps, int bitRate)
         {
             Size = new Size(width, height);
             Fps = fps;
-            BitRate = bitrate;
+            BitRate = bitRate;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
 
         public override string ToString()
         {
-            return $"Size : ({ Size }), Fps : { Fps }, BitRate : { BitRate }";
+            return $"Size=({ Size.ToString() }), Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }";
         }
     }
 }

@@ -153,7 +153,7 @@ namespace Tizen.Multimedia
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             RegisterSubtitleUpdatedCallback();
-            RegisterErrorOccuuredCallback();
+            RegisterErrorOccurredCallback();
             RegisterPlaybackInterruptedCallback();
             RegisterVideoStreamChangedCallback();
             RegisterBufferingCallback();
@@ -389,14 +389,14 @@ namespace Tizen.Multimedia
             if (display == null)
             {
                 Log.Info(PlayerLog.Tag, "set display to none");
-                return Interop.Player.SetDisplay(_handle, (int)PlayerDisplayType.None, IntPtr.Zero);
+                return Interop.Player.SetDisplay(_handle, PlayerDisplayType.None, IntPtr.Zero);
             }
             Log.Info(PlayerLog.Tag, "set display to " + display.Type + " (" + display.EvasObject + ")");
 
             Debug.Assert(Enum.IsDefined(typeof(PlayerDisplayType), display.Type));
             Debug.Assert(display.EvasObject != null);
 
-            return Interop.Player.SetDisplay(_handle, (int)display.Type, display.EvasObject);
+            return Interop.Player.SetDisplay(_handle, display.Type, display.EvasObject);
         }
 
         private void ReplaceDisplay(PlayerDisplay newDisplay)
@@ -699,7 +699,7 @@ namespace Tizen.Multimedia
 
             if (!File.Exists(path))
             {
-                throw new FileNotFoundException($"The specified file does not exist : { path }.");
+                throw new FileNotFoundException($"The specified file does not exist.", path);
             }
 
             PlayerErrorConverter.ThrowIfError(Interop.Player.SetSubtitlePath(_handle, path),
@@ -942,14 +942,14 @@ namespace Tizen.Multimedia
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        public Task<CapturedFrame> CaptureVideoAsync()
+        public async Task<CapturedFrame> CaptureVideoAsync()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
             TaskCompletionSource<CapturedFrame> t = new TaskCompletionSource<CapturedFrame>();
 
-            Interop.Player.VideoCaptureCallback cb = (data, width, height, size, gchPtr) =>
+            Interop.Player.VideoCaptureCallback cb = (data, width, height, size, _) =>
             {
                 Debug.Assert(size <= int.MaxValue);
 
@@ -957,25 +957,16 @@ namespace Tizen.Multimedia
                 Marshal.Copy(data, buf, 0, (int)size);
 
                 t.TrySetResult(new CapturedFrame(buf, width, height));
-
-                GCHandle.FromIntPtr(gchPtr).Free();
             };
 
-            var gch = GCHandle.Alloc(cb);
-            try
+            using (var cbKeeper = ObjectKeeper.Get(cb))
             {
                 PlayerErrorConverter.ThrowIfError(
-                    Interop.Player.CaptureVideo(_handle, cb, GCHandle.ToIntPtr(gch)),
+                    Interop.Player.CaptureVideo(_handle, cb, IntPtr.Zero),
                     "Failed to capture the video");
-            }
-            catch(Exception)
-            {
-                gch.Free();
-                throw;
-            }
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
 
-            return t.Task;
+                return await t.Task;
+            }
         }
 
         /// <summary>
@@ -1033,7 +1024,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
         /// <seealso cref="GetPlayPosition"/>
-        public Task SetPlayPositionAsync(int position, bool accurate)
+        public async Task SetPlayPositionAsync(int position, bool accurate)
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -1044,15 +1035,18 @@ namespace Tizen.Multimedia
 
             Interop.Player.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
 
-            SetPlayPosition(position, accurate, cb);
-            if (immediateResult)
+            using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                taskCompletionSource.TrySetResult(true);
+                SetPlayPosition(position, accurate, cb);
+                if (immediateResult)
+                {
+                    taskCompletionSource.TrySetResult(true);
+                }
+
+                await taskCompletionSource.Task;
             }
 
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
-
-            return taskCompletionSource.Task;
         }
 
         /// <summary>
@@ -1176,7 +1170,7 @@ namespace Tizen.Multimedia
             PlayerErrorConverter.ThrowIfError(ret, "Failed to set PlaybackInterrupted");
         }
 
-        private void RegisterErrorOccuuredCallback()
+        private void RegisterErrorOccurredCallback()
         {
             _playbackErrorCallback = (code, _) =>
             {
@@ -1229,8 +1223,8 @@ namespace Tizen.Multimedia
             {
                 Log.Debug(PlayerLog.Tag, "height : " + height + ", width : " + width
                 + ", fps : " + fps + ", bitrate : " + bitrate);
-                VideoStreamChangedEventArgs eventArgs = new VideoStreamChangedEventArgs(height, width, fps, bitrate);
-                VideoStreamChanged?.Invoke(this, eventArgs);
+
+                VideoStreamChanged?.Invoke(this, new VideoStreamChangedEventArgs(height, width, fps, bitrate));
             };
             int ret = Interop.Player.SetVideoStreamChangedCb(GetHandle(), _videoStreamChangedCallback, IntPtr.Zero);
             if (ret != (int)PlayerErrorCode.None)
