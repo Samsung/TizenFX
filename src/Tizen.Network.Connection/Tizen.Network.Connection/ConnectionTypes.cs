@@ -33,7 +33,7 @@ namespace Tizen.Network.Connection
         Cellular = 2,      /**< Cellular type */
         Ethernet = 3,      /**< Ethernet type */
         Bluetooth = 4,     /**< Bluetooth type */
-        NetProxy = 5       /**< Proxy type for internet connection (Since 3.0) */
+        NetProxy = 5       /**< Proxy type for internet connection */
     }
 
     /// <summary>
