@@ -1,9 +1,4 @@
 ﻿{
-  "buildOptions": {
-    "debugType": "portable",
-    "platform": "AnyCPU",
-    "preserveCompilationContext": true
-  },
   "dependencies": {
     "ElmSharp": "1.1.0-*",
     "NETStandard.Library": "1.6.1",
