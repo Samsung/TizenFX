@@ -38,6 +38,8 @@ namespace ElmSharp.Test
                 ItemAlignmentY = -1,
                 ItemWidth = window.ScreenSize.Width / 3,
                 ItemHeight = window.ScreenSize.Width / 3,
+                HorizontalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible,
+                VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible
             };
 
             GenItemClass defaultClass = new GenItemClass("default")
@@ -61,7 +63,6 @@ namespace ElmSharp.Test
                     }
                     return null;
                 }
-
             };
 
             var rnd = new Random();

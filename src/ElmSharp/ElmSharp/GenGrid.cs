@@ -29,14 +29,17 @@ namespace ElmSharp
         /// Any further clicks will do nothing, unless you set Always select mode.
         /// </summary>
         Default = 0,
+
         /// <summary>
         /// This means that, even if selected, every click will make the selected callbacks be called.
         /// </summary>
         Always,
+
         /// <summary>
         /// This will turn off the ability to select the item entirely and they will neither appear selected nor call selected callback functions.
         /// </summary>
         None,
+
         /// <summary>
         /// This will apply no-finger-size rule with DisplayOnly.
         /// No-finger-size rule makes an item can be smaller than lower limit.
@@ -236,7 +239,6 @@ namespace ElmSharp
             {
                 int height = ItemHeight;
                 Interop.Elementary.elm_gengrid_item_size_set(RealHandle, value, height);
-
             }
         }
 
@@ -309,6 +311,50 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_gengrid_highlight_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
+        {
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out policy, IntPtr.Zero);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        {
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out policy);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
             }
         }
 
