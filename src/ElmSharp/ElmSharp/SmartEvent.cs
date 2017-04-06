@@ -31,6 +31,13 @@ namespace ElmSharp
     /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
     public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
+        /// <summary>
+        /// The delegate for creating smart event item args.
+        /// </summary>
+        /// <param name="data">The item data.</param>
+        /// <param name="obj">The sender obj.</param>
+        /// <param name="info">The item sender obj.</param>
+        /// <returns>Return smart event item args.</returns>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private EvasObject _sender;
