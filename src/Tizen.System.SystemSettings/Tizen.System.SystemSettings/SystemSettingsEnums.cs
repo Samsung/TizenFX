@@ -50,11 +50,11 @@ namespace Tizen.System
         /// </summary>
         EmailAlertRingtone,
         /// <summary>
-        /// (bool) Indicates whether the USB debugging is enabled (Since 2.4)
+        /// (bool) Indicates whether the USB debugging is enabled
         /// </summary>
         UsbDebuggingEnabled,
         /// <summary>
-        /// (bool) Indicates whether the 3G data network is enabled (Since 2.4)
+        /// (bool) Indicates whether the 3G data network is enabled
         /// </summary>
         Data3GNetworkEnabled,
         /// <summary>

@@ -202,7 +202,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the USB debugging is enabled (Since 2.4)
+        /// Indicates whether the USB debugging is enabled
         /// </summary>
         public static bool UsbDebuggingEnabled
         {
@@ -227,7 +227,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the 3G data network is enabled (Since 2.4)
+        /// Indicates whether the 3G data network is enabled
         /// </summary>
         public static bool Data3GNetworkEnabled
         {
