@@ -516,11 +516,11 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         External = 1,
         /// <summary>
-        /// The external USB storage(Since 2.4)
+        /// The external USB storage
         /// </summary>
         ExternalUSB = 2,
         /// <summary>
-        /// The Cloud storage(Since 2.4).
+        /// The Cloud storage
         /// </summary>
         Cloud = 100
     };
