@@ -436,7 +436,7 @@ namespace Tizen.Network.IoTConnectivity
 
             try
             {
-                representation = (representationHandle == IntPtr.Zero) ? null : new Representation(representationHandle); ;
+                representation = (representationHandle == IntPtr.Zero) ? null : new Representation(representationHandle);
             }
             catch (Exception exp)
             {
