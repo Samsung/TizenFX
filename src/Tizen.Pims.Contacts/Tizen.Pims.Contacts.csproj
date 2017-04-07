@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4096F513-B77A-4319-9406-CAF715E01561}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.Pims.Contacts</RootNamespace>
+    <AssemblyName>Tizen.Pims.Contacts</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Tizen.Pims.Contacts.project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tizen.Pims.Contacts\ContactsErrorFactory.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsList.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsVcard.cs" />
+    <Compile Include="Tizen.Pims.Contacts\DBStatusChangedEventArgs.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsQuery.cs" />
+    <Compile Include="Interop\Interop.Activity.cs" />
+    <Compile Include="Interop\Interop.Contacts.cs" />
+    <Compile Include="Interop\Interop.Database.cs" />
+    <Compile Include="Interop\Interop.Filter.cs" />
+    <Compile Include="Interop\Interop.Group.cs" />
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.List.cs" />
+    <Compile Include="Interop\Interop.Person.cs" />
+    <Compile Include="Interop\Interop.PhoneLog.cs" />
+    <Compile Include="Interop\Interop.Query.cs" />
+    <Compile Include="Interop\Interop.Record.cs" />
+    <Compile Include="Interop\Interop.Setting.cs" />
+    <Compile Include="Interop\Interop.Sim.cs" />
+    <Compile Include="Interop\Interop.Vcard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsDatabase.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsFilter.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsManager.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsRecord.cs" />
+    <Compile Include="Tizen.Pims.Contacts\ContactsViews.cs" />
+    <Compile Include="Tizen.Pims.Contacts\NameDisplayOrderChangedEventArgs.cs" />
+    <Compile Include="Tizen.Pims.Contacts\NameSortingOrderChangedEventArgs.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+			 https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+		-->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+			 properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+			 to prevent it from outputting a warning (MSB3644).
+		-->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Tizen_1Pims_1Contacts_1project_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
