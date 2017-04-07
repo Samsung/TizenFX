@@ -21,6 +21,10 @@ using System.Linq;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// IInvalidatable is a interface which can be overrided by its children class.
+    /// Inherits IDisposable
+    /// </summary>
     public interface IInvalidatable : IDisposable
     {
         void MakeInvalidate();
