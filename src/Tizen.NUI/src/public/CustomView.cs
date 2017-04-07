@@ -54,10 +54,10 @@ namespace Tizen.NUI
             viewWrapperImpl.OnAccessibilityTouch = new ViewWrapperImpl.OnAccessibilityTouchDelegate(OnAccessibilityTouch);
             viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
             viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
-            viewWrapperImpl.OnKeyInputFocusGained = new ViewWrapperImpl.OnKeyInputFocusGainedDelegate(OnKeyInputFocusGained);
-            viewWrapperImpl.OnKeyInputFocusLost = new ViewWrapperImpl.OnKeyInputFocusLostDelegate(OnKeyInputFocusLost);
-            viewWrapperImpl.GetNextKeyboardFocusableView = new ViewWrapperImpl.GetNextKeyboardFocusableViewDelegate(GetNextKeyboardFocusableView);
-            viewWrapperImpl.OnKeyboardFocusChangeCommitted = new ViewWrapperImpl.OnKeyboardFocusChangeCommittedDelegate(OnKeyboardFocusChangeCommitted);
+            viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);
+            viewWrapperImpl.OnFocusLost = new ViewWrapperImpl.OnFocusLostDelegate(OnFocusLost);
+            viewWrapperImpl.GetNextFocusableView = new ViewWrapperImpl.GetNextFocusableViewDelegate(GetNextFocusableView);
+            viewWrapperImpl.OnFocusChangeCommitted = new ViewWrapperImpl.OnFocusChangeCommittedDelegate(OnFocusChangeCommitted);
             viewWrapperImpl.OnKeyboardEnter = new ViewWrapperImpl.OnKeyboardEnterDelegate(OnKeyboardEnter);
             viewWrapperImpl.OnPinch = new ViewWrapperImpl.OnPinchDelegate(OnPinch);
             viewWrapperImpl.OnPan = new ViewWrapperImpl.OnPanDelegate(OnPan);
@@ -171,7 +171,7 @@ namespace Tizen.NUI
          */
         internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
         {
-            viewWrapperImpl.SetAsKeyboardFocusGroup(isFocusGroup);
+            viewWrapperImpl.SetAsFocusGroup(isFocusGroup);
         }
 
         /**
@@ -181,7 +181,7 @@ namespace Tizen.NUI
          */
         internal bool IsKeyboardFocusGroup()
         {
-            return viewWrapperImpl.IsKeyboardFocusGroup();
+            return viewWrapperImpl.IsFocusGroup();
         }
 
         /**
@@ -374,9 +374,9 @@ namespace Tizen.NUI
          *
          * @param[in] focusGained True if gained, False if lost
          */
-        protected void EmitKeyInputFocusSignal(bool focusGained)
+        protected void EmitFocusSignal(bool focusGained)
         {
-            viewWrapperImpl.EmitKeyInputFocusSignal(focusGained);
+            viewWrapperImpl.EmitFocusSignal(focusGained);
         }
 
         /**
@@ -726,7 +726,7 @@ namespace Tizen.NUI
          *
          * @return true if the zoom action has been consumed by this control
          */
-        public virtual void OnKeyInputFocusGained()
+        public virtual void OnFocusGained()
         {
         }
 
@@ -735,7 +735,7 @@ namespace Tizen.NUI
          *
          * Should be overridden by derived classes if they need to customize what happens when focus is lost.
          */
-        public virtual void OnKeyInputFocusLost()
+        public virtual void OnFocusLost()
         {
         }
 
@@ -748,7 +748,7 @@ namespace Tizen.NUI
          * @param[in] loopEnabled Whether the focus movement should be looped within the control.
          * @return the next keyboard focusable actor in this control or an empty handle if no actor can be focused.
          */
-        public virtual View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             return new View();
         }
@@ -761,7 +761,7 @@ namespace Tizen.NUI
          *
          * @param[in] commitedFocusableActor The commited focusable actor.
          */
-        public virtual void OnKeyboardFocusChangeCommitted(View commitedFocusableView)
+        public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
         }
 
