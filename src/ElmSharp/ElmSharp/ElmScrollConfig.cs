@@ -18,8 +18,14 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The ElmScrollConfig is a scrollable views's config
+    /// </summary>
     public static class ElmScrollConfig
     {
+        /// <summary>
+        /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
+        /// </summary>
         public static double BringInScrollFriction
         {
             get
