@@ -28,8 +28,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A 3D parametric curve.
-    /// Paths can be used to animate position and orientation of actors.
+    /// A 3D parametric curve.<br>
+    /// Paths can be used to animate position and orientation of actors.<br>
     /// </summary> 
     public class Path : Handle
     {
@@ -132,9 +132,9 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// Downcasts a handle to Path handle.
-        /// If handle points to a Path object, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to Path handle.<br>
+        /// If handle points to a Path object, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         public new static Path DownCast(BaseHandle handle)
@@ -177,12 +177,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Automatic generation of control points. Generated control points which result in a smooth join between the splines of each segment.
-        /// The generating algorithm is as follows:
-        /// For a given knot point K[N], find the vector that bisects K[N-1],[N] and [N],[N+1].
-        /// Calculate the tangent vector by taking the normal of this bisector.
-        /// The in control point is the length of the preceding segment back along this bisector multiplied by the curvature.
-        /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.
+        /// Automatic generation of control points. Generated control points which result in a smooth join between the splines of each segment.<br>
+        /// The generating algorithm is as follows:<br>
+        /// For a given knot point K[N], find the vector that bisects K[N-1],[N] and [N],[N+1].<br>
+        /// Calculate the tangent vector by taking the normal of this bisector.<br>
+        /// The in control point is the length of the preceding segment back along this bisector multiplied by the curvature.<br>
+        /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.<br>
         /// </summary>
         /// <param name="curvature">The curvature of the spline. 0 gives straight lines between the knots, negative values means the spline contains loops, positive values up to  0.5 result in a smooth curve, positive values between 0.5 and 1 result  in looped curves where the loops are not distinct (i.e. the curve appears to be non-continuous), positive values higher than 1 result in looped curves</param>
         public void GenerateControlPoints(float curvature)

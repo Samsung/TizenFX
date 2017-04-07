@@ -20,7 +20,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Alpha functions are used in animations to specify the rate of change of the animation parameter over time.
+    /// Alpha functions are used in animations to specify the rate of change of the animation parameter over time.<br>
     /// Understanding an animation as a parametric function over time, the alpha function is applied to the parameter of
     /// the animation before computing the final animation value.
     /// </summary>
@@ -72,8 +72,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
-        /// Creates an alpha function object with user defined alpha function.
+        /// Constructor.<br>
+        /// Creates an alpha function object with user defined alpha function.<br>
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
         public AlphaFunction(System.Delegate func) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func), true))), true)
@@ -82,8 +82,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default constructor.
-        /// Creates an alpha function object with the default built-in alpha function.
+        /// Default constructor.<br>
+        /// Creates an alpha function object with the default built-in alpha function.<br>
         /// </summary>
         public AlphaFunction() : this(NDalicPINVOKE.new_AlphaFunction__SWIG_0(), true)
         {
@@ -91,8 +91,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
-        /// Creates an alpha function object with the built-in alpha function passed as a parameter to the constructor.
+        /// Constructor.<br>
+        /// Creates an alpha function object with the built-in alpha function passed as a parameter to the constructor.<br>
         /// </summary>
         /// <param name="function">One of the built-in alpha functions</param>
         public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_1((int)function), true)
@@ -106,9 +106,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
-        /// Creates a bezier alpha function.The bezier will have the first point at(0,0) and the end point at(1,1).
-        /// Note : The x components of the control points will be clamped to the range[0, 1] to prevent non monotonic curves.
+        /// Constructor.<br>
+        /// Creates a bezier alpha function.The bezier will have the first point at(0,0) and the end point at(1,1).<br>
+        /// Note : The x components of the control points will be clamped to the range[0, 1] to prevent non monotonic curves.<br>
         /// </summary>
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve</param>
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrives the control points of the alpha function.
+        /// Retrives the control points of the alpha function.<br>
         /// </summary>
         /// <param name="controlPoint0">A Vector2 which is used as the first control point of the curve</param>
         /// <param name="controlPoint1">A Vector2 which is used as the second control point of the curve</param>
@@ -140,8 +140,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the built-in function used by the alpha function. 
-        /// In case no built-in function has been specified, it will return AlphaFunction::DEFAULT
+        /// Returns the built-in function used by the alpha function.<br>
+        /// In case no built-in function has been specified, it will return AlphaFunction::DEFAULT.<br>
         /// </summary>
         /// <returns>One of the built-in alpha functions.</returns>
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()

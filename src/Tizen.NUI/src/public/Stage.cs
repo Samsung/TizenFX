@@ -15,14 +15,14 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// The Stage is a top-level object used for displaying a tree of Actors.
-    /// Stage is a top-level object that represents the entire screen.
+    /// The Stage is a top-level object used for displaying a tree of Actors.<br>
+    /// Stage is a top-level object that represents the entire screen.<br>
     /// It is used for displaying a hierarchy of actors managed by the scene graph structure,
     /// which means an actor inherits a position relative to its parent,
-    /// and can be moved in relation to this point.
+    /// and can be moved in relation to this point.<br>
     /// The stage instance is a singleton object (the only instance of its class during the
-    /// lifetime of the program). You can get it using a static function.
-    /// To display the contents of an actor, it must be added to a stage.
+    /// lifetime of the program). You can get it using a static function.<br>
+    /// To display the contents of an actor, it must be added to a stage.<br>
     /// </summary>
     public class Stage : BaseHandle
     {
@@ -97,10 +97,10 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
         /// <summary>
-        /// This is emitted when the screen is touched and when the touch ends.
+        /// This is emitted when the screen is touched and when the touch ends.<br>
         /// If there are multiple touch points, then this will be emitted when the first touch occurs and
-        /// then when the last finger is lifted.
-        /// An interrupted event will also be emitted (if it occurs).
+        /// then when the last finger is lifted.<br>
+        /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
         public event EventHandler<TouchEventArgs> Touch
         {
@@ -436,8 +436,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dpi property (read-only).
-        /// Retrieves the DPI of the display device to which the stage is connected.
+        /// Dpi property (read-only).<br>
+        /// Retrieves the DPI of the display device to which the stage is connected.<br>
         /// </summary>
         public Vector2 Dpi
         {
@@ -448,8 +448,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layer count property (read-only).
-        /// Queries the number of on-stage layers.
+        /// Layer count property (read-only).<br>
+        /// Queries the number of on-stage layers.<br>
         /// </summary>
         public uint LayerCount
         {
@@ -462,8 +462,8 @@ namespace Tizen.NUI
         private static readonly Stage instance = Stage.GetCurrent();
 
         /// <summary>
-        /// Stage instance property (read-only).
-        /// Gets the current Stage.
+        /// Stage instance property (read-only).<br>
+        /// Gets the current Stage.<br>
         /// </summary>
         public static Stage Instance
         {

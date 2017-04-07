@@ -31,14 +31,14 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Mechanism to issue simple periodic or one-shot events.
+    /// Mechanism to issue simple periodic or one-shot events.<br>
     /// Timer is provided for application developers to be able to issue
     /// simple periodic or one-shot events.  Please note that timer
     /// callback functions should return as soon as possible, because they
     /// block the next SignalTick.  Please note that timer signals are not
-    /// in sync with Dali's render timer.
+    /// in sync with Dali's render timer.<br>
     /// This class is a handle class so it can be stack allocated and used
-    /// as a member.
+    /// as a member.<br>
     /// </summary>
     public class Timer : BaseHandle
     {
@@ -85,7 +85,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Event arguments that passed via Tick event
+        /// Event arguments that passed via Tick event.
         /// </summary>
         public class TickEventArgs : EventArgs
         {
@@ -98,8 +98,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// brief Event for Ticked signal which can be used to subscribe/unsubscribe the event handler
-        /// (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>) 
-        /// provided by the user. Ticked signal is emitted after specified time interval.
+        /// (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>).<br>
+        /// provided by the user. Ticked signal is emitted after specified time interval.<br>
         /// </summary>
         public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
         {
@@ -169,8 +169,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Starts timer
-        /// In case a Timer is already running, its time is reset and timer is restarted.
+        /// Starts timer.<br>
+        /// In case a Timer is already running, its time is reset and timer is restarted.<br>
         /// </summary>
         public void Start()
         {
@@ -188,8 +188,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a new interval on the timer and starts the timer.
-        /// Cancels the previous timer.
+        /// Sets a new interval on the timer and starts the timer.<br>
+        /// Cancels the previous timer.<br>
         /// </summary>
         /// <param name="milliSec">milliSec Interval in milliseconds</param>
         internal void SetInterval(uint milliSec)

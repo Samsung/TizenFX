@@ -28,10 +28,10 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// TableView is a layout container for aligning child actors in a grid like layout.
-    /// TableView constrains the x and y position and width and height of the child actors.
+    /// TableView is a layout container for aligning child actors in a grid like layout.<br>
+    /// TableView constrains the x and y position and width and height of the child actors.<br>
     /// z position and depth are left intact so that 3D model actors can also be laid out
-    /// in a grid without loosing their depth scaling.
+    /// in a grid without loosing their depth scaling.<br>
     /// </summary>
     public class TableView : View
     {
@@ -377,9 +377,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to TableView handle.
-        /// If handle points to a TableView, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to TableView handle.<br>
+        /// If handle points to a TableView, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a TableView or an uninitialized handle</returns>
@@ -391,8 +391,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds a child to the table.
-        /// If the row or column index is outside the table, the table gets resized bigger.
+        /// Adds a child to the table.<br>
+        /// If the row or column index is outside the table, the table gets resized bigger.<br>
         /// </summary>
         /// <param name="child">The child to add</param>
         /// <param name="position">The position for the child</param>
@@ -452,8 +452,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Deletes a row from the given index.
-        /// Removed elements are deleted.
+        /// Deletes a row from the given index.<br>
+        /// Removed elements are deleted.<br>
         /// </summary>
         /// <param name="rowIndex">The rowIndex of the row to delete</param>
         public void DeleteRow(uint rowIndex)
@@ -479,8 +479,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Deletes a column from the given index.
-        /// Removed elements are deleted.
+        /// Deletes a column from the given index.<br>
+        /// Removed elements are deleted.<br>
         /// </summary>
         /// <param name="columnIndex">The columnIndex of the column to delete</param>
         public void DeleteColumn(uint columnIndex)
@@ -578,8 +578,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a row to have fixed height.
-        /// Setting a fixed height of 0 has no effect.
+        /// Sets a row to have fixed height.<br>
+        /// Setting a fixed height of 0 has no effect.<br>
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with fixed height</param>
         /// <param name="height">The height in world coordinate units</param>
@@ -603,8 +603,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets a row to have relative height. Relative height means percentage of
-        /// the remainder of the table height after subtracting Padding and Fixed height rows.
-        /// Setting a relative height of 0 has no effect.
+        /// the remainder of the table height after subtracting Padding and Fixed height rows.<br>
+        /// Setting a relative height of 0 has no effect.<br>
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with relative height</param>
         /// <param name="heightPercentage">The height percentage between 0.0f and 1.0f</param>
@@ -627,8 +627,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a column to have fixed width.
-        /// Setting a fixed width of 0 has no effect.
+        /// Sets a column to have fixed width.<br>
+        /// Setting a fixed width of 0 has no effect.<br>
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with fixed width</param>
         /// <param name="width">The width in world coordinate units</param>
@@ -652,8 +652,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets a column to have relative width. Relative width means percentage of
-        /// the remainder of table width after subtracting Padding and Fixed width columns.
-        /// Setting a relative width of 0 has no effect.
+        /// the remainder of table width after subtracting Padding and Fixed width columns.<br>
+        /// Setting a relative width of 0 has no effect.<br>
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with fixed width</param>
         /// <param name="widthPercentage">The widthPercentage between 0.0f and 1.0f</param>
@@ -698,8 +698,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the alignment on a cell.
-        /// Cells without calling this function have the default values of LEFT and TOP respectively.
+        /// Sets the alignment on a cell.<br>
+        /// Cells without calling this function have the default values of LEFT and TOP respectively.<br>
         /// </summary>
         /// <param name="position">The cell to set alignment on</param>
         /// <param name="horizontal">The horizontal alignment</param>

@@ -20,13 +20,13 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// CheckBoxButton provides a check box button which user can check or uncheck.
-    /// By default, a CheckBoxButton emits a Button.Clicked event when the button changes its state to selected or unselected.
-    /// The button's appearance could be modified by Button.UnselectedImage, Button.BackgroundImage, Button.SelectedImage, 
-    /// Button.SelectedBackgroundImage, Button.DisabledBackgroundImage, Button.DisabledImage, and Button.DisabledSelectedImage. 
-    /// When the button is not disabled, if it's not selected it only shows the background image. 
-    /// The selected image is shown over the background image when the box is selected (background image is not replaced by \e selected image).
-    /// When the button is disabled, background image and selected image are replaced by disabled images.
+    /// CheckBoxButton provides a check box button which user can check or uncheck.<br>
+    /// By default, a CheckBoxButton emits a Button.Clicked event when the button changes its state to selected or unselected.<br>
+    /// The button's appearance could be modified by Button.UnselectedImage, Button.BackgroundImage, Button.SelectedImage,
+    /// Button.SelectedBackgroundImage, Button.DisabledBackgroundImage, Button.DisabledImage, and Button.DisabledSelectedImage.<br>
+    /// When the button is not disabled, if it's not selected it only shows the background image.<br>
+    /// The selected image is shown over the background image when the box is selected (background image is not replaced by \e selected image).<br>
+    /// When the button is disabled, background image and selected image are replaced by disabled images.<br>
     /// /// </summary>
     public class CheckBoxButton : Button
     {

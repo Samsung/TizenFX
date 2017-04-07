@@ -28,8 +28,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A set of key frames for a property that can be animated using Dali Animation.
-    /// This allows the generation of key frame objects from individual Property::Values.
+    /// A set of key frames for a property that can be animated using Dali Animation.<br>
+    /// This allows the generation of key frame objects from individual Property::Values.<br>
     /// </summary>
     public class KeyFrames : BaseHandle
     {
@@ -108,9 +108,9 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// Downcasts a handle to KeyFrames handle.
-        /// If handle points to a KeyFrames object, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to KeyFrames handle.<br>
+        /// If handle points to a KeyFrames object, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a KeyFrames object or an uninitialized handle</returns>

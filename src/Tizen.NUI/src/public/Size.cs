@@ -263,8 +263,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check equality.
-        /// Utilizes appropriate machine epsilon values.
+        /// Check equality.<br>
+        /// Utilizes appropriate machine epsilon values.<br>
         /// </summary>
         /// <param name="rhs">The Size to test against</param>
         /// <returns>True if the Sizes are equal</returns>
@@ -276,8 +276,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check inequality.
-        /// Utilizes appropriate machine epsilon values.
+        /// Check inequality.<br>
+        /// Utilizes appropriate machine epsilon values.<br>
         /// </summary>
         /// <param name="rhs">The Size to test against</param>
         /// <returns>True if the Sizes are not equal</returns>

@@ -12,8 +12,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.
-    /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.
+    /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.<br>
+    /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.<br>
     /// </summary>
     public class PinchGesture : Gesture
     {
@@ -67,10 +67,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The scale factor from the start of the pinch gesture till the latest pinch gesture.
+        /// The scale factor from the start of the pinch gesture till the latest pinch gesture.<br>
         /// If the user is moving their fingers away from each other, then
         /// this value increases.  Conversely, if the user is moving their
-        /// fingers towards each other, this value will decrease.
+        /// fingers towards each other, this value will decrease.<br>
         /// </summary>
         public float Scale
         {
@@ -81,8 +81,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The speed at which the user is moving their fingers.
-        /// This is the pixel movement per second.
+        /// The speed at which the user is moving their fingers.<br>
+        /// This is the pixel movement per second.<br>
         /// </summary>
         public float Speed
         {

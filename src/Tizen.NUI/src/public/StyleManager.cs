@@ -16,16 +16,16 @@ namespace Tizen.NUI
 
     /// <summary>
     /// StyleManager informs applications of system theme change,
-    /// and supports application theme change at runtime.
-    /// Applies various styles to Controls using the properties system.
+    /// and supports application theme change at runtime.<br>
+    /// Applies various styles to Controls using the properties system.<br>
     /// On theme change, it automatically updates all controls, then raises
-    /// a event to inform the application.
-    ///
+    /// a event to inform the application.<br>
+    /// <br>
     /// If the application wants to customize the theme, RequestThemeChange
-    /// needs to be called.
+    /// needs to be called.<br>
     /// It provides the path to the  application resource root folder, 
     /// from there the filename can an be specified along with
-    /// any sub folders, e.g Images, Models etc.
+    /// any sub folders, e.g Images, Models etc.<br>
     /// </summary>
     public class StyleManager : BaseHandle
     {
@@ -98,7 +98,7 @@ namespace Tizen.NUI
 
             /// <summary>
             /// StyleChange - contains Style change information (default font changed or
-            /// default font size changed or theme has changed)
+            /// default font size changed or theme has changed).<br>
             /// </summary>
             public StyleChangeType StyleChange
             {
@@ -121,9 +121,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Event for StyleChanged signal which can be used to subscribe/unsubscribe the
-        /// event handler provided by the user. 
+        /// event handler provided by the user.<br>
         /// StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
-        /// and the controls have been informed.
+        /// and the controls have been informed.<br>
         /// </summary>
         public event EventHandler<StyleChangedEventArgs> StyleChanged
         {
@@ -170,8 +170,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a StyleManager handle.
-        /// this can be initialized with StyleManager::Get().
+        /// Creates a StyleManager handle.<br>
+        /// this can be initialized with StyleManager::Get().<br>
         /// </summary>
         public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
         {
@@ -190,11 +190,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Applies a new theme to the application. 
-        /// This will be merged on top of the default Toolkit theme.
+        /// Applies a new theme to the application. <br>
+        /// This will be merged on top of the default Toolkit theme.<br>
         /// If the application theme file doesn't style all controls that the
         /// application uses, then the default Toolkit theme will be used
-        /// instead for those controls.
+        /// instead for those controls.<br>
         /// </summary>
         /// <param name="themeFile">A relative path is specified for style theme</param>
         public void ApplyTheme(string themeFile)

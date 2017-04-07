@@ -32,8 +32,8 @@ namespace Tizen.NUI
     
 
     /// <summary>
-    /// The window class is used internally for drawing.
-    /// A Window has an orientation and indicator properties.
+    /// The window class is used internally for drawing.<br>
+    /// A Window has an orientation and indicator properties.<br>
     /// </summary>
     public class Window : BaseHandle
     {
@@ -54,6 +54,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make Window instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -78,31 +81,45 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Sets the focus acceptable flag of an window as true.
+        /// </summary>
         public void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves whether the window is focus acceptable or not.
+        /// </summary>
         public bool IsFocusAcceptable()
         {
             return NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Shows the window if it is hidden.
+        /// </summary>
         public void Show()
         {
             NDalicPINVOKE.Show(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Hides the window if it is showing.
+        /// </summary>
         public void Hide()
         {
             NDalicPINVOKE.Hide(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves whether the window is visible or not.
+        /// </summary>
         public void IsVisible()
         {
             NDalicPINVOKE.IsVisible(swigCPtr);
@@ -247,8 +264,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This sets the orientation of indicator bar.
-        /// It does not implicitly show the indicator if it is currently hidden.
+        /// This sets the orientation of indicator bar.<br>
+        /// It does not implicitly show the indicator if it is currently hidden.<br>
         /// </summary>
         /// <param name="orientation">The orientation</param>
         internal void RotateIndicator(Window.WindowOrientation orientation)

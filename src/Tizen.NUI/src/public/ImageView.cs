@@ -28,8 +28,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// ImageView is a class for displaying an image resource.
-    /// An instance of ImageView can be created using a URL or an Image instance.
+    /// ImageView is a class for displaying an image resource.<br>
+    /// An instance of ImageView can be created using a URL or an Image instance.<br>
     /// </summary>
     public class ImageView : View
     {
@@ -134,8 +134,8 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// Creates an initialized ImageView from an URL to an image resource.
-        /// If the string is empty, ImageView will not display anything.
+        /// Creates an initialized ImageView from an URL to an image resource.<br>
+        /// If the string is empty, ImageView will not display anything.<br>
         /// </summary>
         /// <param name="url">The url of the image resource to display</param>
         public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
@@ -159,9 +159,9 @@ namespace Tizen.NUI
             return ret;
         }
         /// <summary>
-        /// Downcasts a handle to ImageView handle.
-        /// If handle points to a ImageView, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to ImageView handle.<br>
+        /// If handle points to a ImageView, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a ImageView or an uninitialized handle</returns>
@@ -172,8 +172,8 @@ namespace Tizen.NUI
             return ret;
         }
         /// <summary>
-        /// Sets this ImageView from the given URL.
-        /// If the URL is empty, ImageView will not display anything.
+        /// Sets this ImageView from the given URL.<br>
+        /// If the URL is empty, ImageView will not display anything.<br>
         /// </summary>
         /// <param name="url">The URL to the image resource to display</param>
         public void SetImage(string url)
@@ -227,8 +227,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// ImageView PreMultipliedAlpha, type Boolean
-        /// Image must be initialized.
+        /// ImageView PreMultipliedAlpha, type Boolean.<br>
+        /// Image must be initialized.<br>
         /// </summary>
         public bool PreMultipliedAlpha
         {
@@ -244,8 +244,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// ImageView PixelArea, type Vector4 (Animatable property)
-        /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].
+        /// ImageView PixelArea, type Vector4 (Animatable property).<br>
+        /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br>
         /// </summary>
         public Vector4 PixelArea
         {

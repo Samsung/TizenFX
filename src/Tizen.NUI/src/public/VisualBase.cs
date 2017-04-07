@@ -12,10 +12,10 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Sets whether the actor should be focusable by keyboard navigation.
-    /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on-stage.
-    /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.
-    /// Note: The visual responds to the the Actor::COLOR by blending it with the 'Multiply' operator.
+    /// Sets whether the actor should be focusable by keyboard navigation.<br>
+    /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on-stage.<br>
+    /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.<br>
+    /// Note: The visual responds to the the Actor::COLOR by blending it with the 'Multiply' operator.<br>
     /// </summary>
     public class VisualBase : BaseHandle
     {
@@ -138,9 +138,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Return the natural size of the visual.
-        /// Deriving classes stipulate the natural size and by default a visual has a ZERO natural size.
-        /// A visual may not actually have a natural size until it has been placed on stage and acquired all it's resources.
+        /// Return the natural size of the visual.<br>
+        /// Deriving classes stipulate the natural size and by default a visual has a ZERO natural size.<br>
+        /// A visual may not actually have a natural size until it has been placed on stage and acquired all it's resources.<br>
         /// </summary>
         /// <param name="naturalSize">The visual's natural size</param>
         public void GetNaturalSize(Size2D naturalSize)

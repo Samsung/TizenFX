@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
     /// <summary>
     /// ScrollBar is a UI component that can be linked to the scrollable objects
-    /// indicating the current scroll position of the scrollable object.
+    /// indicating the current scroll position of the scrollable object.<br>
     /// </summary>
     public class ScrollBar : View
     {
@@ -53,6 +53,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make ScrollBar instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -276,9 +279,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to ScrollBar handle.
-        /// If handle points to a ScrollBar, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to ScrollBar handle.<br>
+        /// If handle points to a ScrollBar, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a ScrollBar or an uninitialized handle</returns>

@@ -22,7 +22,7 @@ namespace Tizen.NUI
     using System;
 
     /// <summary>
-    /// Color class
+    /// Color class.
     /// </summary>
     public class Color : global::System.IDisposable
     {
@@ -289,7 +289,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// red component
+        /// red component.
         /// </summary>
         public float R
         {
@@ -307,7 +307,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// green component
+        /// green component.
         /// </summary>
         public float G
         {
@@ -325,7 +325,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// blue component
+        /// blue component.
         /// </summary>
         public float B
         {
@@ -343,7 +343,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// alpha component
+        /// alpha component.
         /// </summary>
         public float A
         {
@@ -361,7 +361,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get black colored Color class
+        /// Get black colored Color class.
         /// </summary>
         public static Color Black
         {
@@ -375,7 +375,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get white colored Color class
+        /// Get white colored Color class.
         /// </summary>
         public static Color White
         {
@@ -389,7 +389,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get red colored Color class
+        /// Get red colored Color class.
         /// </summary>
         public static Color Red
         {
@@ -403,7 +403,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get green colored Color class
+        /// Get green colored Color class.
         /// </summary>
         public static Color Green
         {
@@ -417,7 +417,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get blue colored Color class
+        /// Get blue colored Color class.
         /// </summary>
         public static Color Blue
         {
@@ -431,7 +431,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get yellow colored Color class
+        /// Get yellow colored Color class.
         /// </summary>
         public static Color Yellow
         {
@@ -445,7 +445,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get magenta colored Color class
+        /// Get magenta colored Color class.
         /// </summary>
         public static Color Magenta
         {
@@ -459,7 +459,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get cyan colored Color class
+        /// Get cyan colored Color class.
         /// </summary>
         public static Color Cyan
         {
@@ -473,7 +473,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get transparent colored Color class
+        /// Get transparent colored Color class.
         /// </summary>
         public static Color Transparent
         {
