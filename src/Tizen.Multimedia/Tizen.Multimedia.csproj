@@ -89,6 +89,7 @@
     <Compile Include="Camera\SinglePlane.cs" />
     <Compile Include="Camera\TriplePlane.cs" />
     <Compile Include="Common\Display.cs" />
+    <Compile Include="Common\FileFormatException.cs" />
     <Compile Include="Common\IBufferOwner.cs" />
     <Compile Include="Common\IMediaBuffer.cs" />
     <Compile Include="Common\MultimediaDebug.cs" />

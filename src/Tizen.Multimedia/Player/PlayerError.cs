@@ -77,6 +77,8 @@ namespace Tizen.Multimedia
                     throw new UnauthorizedAccessException(msg);
 
                 case PlayerErrorCode.NotSupportedFile:
+                    throw new FileFormatException(msg);
+
                 case PlayerErrorCode.FeatureNotSupported:
                     throw new NotSupportedException(msg);
 
@@ -103,12 +105,6 @@ namespace Tizen.Multimedia
         }
     }
 
-    internal static class PlayerErrorConverter
-    {
-        internal static void ThrowIfError(int errorCode, string errorMessage)
-        {
-        }
-    }
     /// <summary>
     /// The exception that is thrown when there is no available space in a buffer.
     /// </summary>
