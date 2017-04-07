@@ -444,9 +444,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the length of the vector squared.
+        /// Returns the length of the vector squared.<br>
         /// This is faster than using Length() when performing
-        /// threshold checks as it avoids use of the square root.
+        /// threshold checks as it avoids use of the square root.<br>
         /// </summary>
         /// <returns>The length of the vector squared</returns>
         public float LengthSquared()
@@ -457,8 +457,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Normalizes the vector.
-        /// Sets the vector to unit length whilst maintaining its direction.
+        /// Normalizes the vector.<br>
+        /// Sets the vector to unit length whilst maintaining its direction.<br>
         /// </summary>
         public void Normalize()
         {

@@ -12,9 +12,9 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Base structure for different gestures that an application can receive.
+    /// Base structure for different gestures that an application can receive.<br>
     /// A gesture is an event that is produced from a combination of several touch events
-    /// in a particular order or within a certain time frame (e.g pinch).
+    /// in a particular order or within a certain time frame (e.g pinch).<br>
     /// </summary>
     public class Gesture : global::System.IDisposable
     {

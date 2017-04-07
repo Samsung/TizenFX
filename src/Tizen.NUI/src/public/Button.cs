@@ -23,17 +23,17 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Button is a base class for different kinds of buttons.
-    /// This class provides the disabled property and the clicked signal.
-    /// A Clicked event handler is emitted when the button is touched and the touch point doesn't leave the boundary of the button.
-    /// When the disabled property is set to true, no signal is emitted.
-    /// 'Visual' describes not just traditional images like png, bmp but refers to whatever is used to show the button, it could be a color, gradient or some other kind of renderer.
-    /// The button's appearance can be modified by setting properties for the various visuals/images.
-    /// It is not mandatory to set all visuals. A button could be defined only by setting its background visual or by setting its background and selected visuals.
-    /// The button visual is shown over the background visual.
-    /// When pressed the unselected visuals are replaced by the selected visual.
-    /// The text label is always placed on the top of all images.
-    /// When the button is disabled, background, button and selected visuals are replaced by their disabled visuals.
+    /// Button is a base class for different kinds of buttons.<br>
+    /// This class provides the disabled property and the clicked signal.<br>
+    /// A Clicked event handler is emitted when the button is touched and the touch point doesn't leave the boundary of the button.<br>
+    /// When the disabled property is set to true, no signal is emitted.<br>
+    /// 'Visual' describes not just traditional images like png, bmp but refers to whatever is used to show the button, it could be a color, gradient or some other kind of renderer.<br>
+    /// The button's appearance can be modified by setting properties for the various visuals/images.<br>
+    /// It is not mandatory to set all visuals. A button could be defined only by setting its background visual or by setting its background and selected visuals.<br>
+    /// The button visual is shown over the background visual.<br>
+    /// When pressed the unselected visuals are replaced by the selected visual.<br>
+    /// The text label is always placed on the top of all images.<br>
+    /// When the button is disabled, background, button and selected visuals are replaced by their disabled visuals.<br>
     /// </summary>
     public class Button : View
     {
@@ -87,6 +87,9 @@ namespace Tizen.NUI
         private delegate bool ClickedCallbackType(global::System.IntPtr data);
         private ClickedCallbackType _clickedCallback;
 
+        /// <summary>
+        /// Clicked will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
+        /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
             add
@@ -128,6 +131,9 @@ namespace Tizen.NUI
         private delegate bool PressedCallbackType(global::System.IntPtr data);
         private PressedCallbackType _pressedCallback;
 
+        /// <summary>
+        /// Pressed will be triggered when the button is touched.
+        /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
             add
@@ -168,6 +174,9 @@ namespace Tizen.NUI
         private delegate bool ReleasedCallbackType(global::System.IntPtr data);
         private ReleasedCallbackType _releasedCallback;
 
+        /// <summary>
+        /// Released will be triggered when the button is touched and the touch point leaves the boundary of the button.
+        /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
             add
@@ -207,6 +216,9 @@ namespace Tizen.NUI
         private delegate bool StateChangedCallback(global::System.IntPtr data);
         private StateChangedCallback _stateChangedCallback;
 
+        /// <summary>
+        /// StateChanged will be triggered when the button's state is changed.
+        /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
             add
@@ -508,8 +520,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an uninitialized Button.
-        /// Only derived versions can be instantiated.
+        /// Creates an uninitialized Button.<br>
+        /// Only derived versions can be instantiated.<br>
         /// </summary>
         public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
         {
@@ -529,9 +541,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to Button handle.
-        /// If handle points to a Button, the downcast produces valid handle.
-        /// If not the returned handle is left uninitialized.
+        /// Downcasts a handle to Button handle.<br>
+        /// If handle points to a Button, the downcast produces valid handle.<br>
+        /// If not the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a Button or an uninitialized handle</returns>
@@ -686,7 +698,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// If the autorepeating property is set to true then the togglable property is set to false
+        /// If the autorepeating property is set to true then the togglable property is set to false.
         /// </summary>
         public bool AutoRepeating
         {
@@ -720,7 +732,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// default this value is set to 0.05 seconds
+        /// default this value is set to 0.05 seconds.
         /// </summary>
         public float NextAutoRepeatingDelay
         {
@@ -771,7 +783,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the unselected button foreground image
+        /// Gets/Sets the unselected button foreground image.
         /// </summary>
         public Tizen.NUI.PropertyMap UnselectedStateImage
         {
@@ -788,7 +800,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the selected button foreground image
+        /// Gets/Sets the selected button foreground image.
         /// </summary>
         public Tizen.NUI.PropertyMap SelectedStateImage
         {
@@ -805,7 +817,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the disabled whilst unselected foreground button visual
+        /// Gets/Sets the disabled whilst unselected foreground button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap DisabledStateImage
         {
@@ -822,7 +834,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets unselected color 
+        /// Gets/Sets unselected color.
         /// </summary>
         public Color UnselectedColor
         {
@@ -839,7 +851,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets selected color 
+        /// Gets/Sets selected color.
         /// </summary>
         public Color SelectedColor
         {
@@ -856,7 +868,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets label
+        /// Gets/Sets label.
         /// </summary>
         public Tizen.NUI.PropertyMap Label
         {
@@ -873,7 +885,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets text of label
+        /// Gets/Sets text of label.
         /// </summary>
         public string LabelText
         {

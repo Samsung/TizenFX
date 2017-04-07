@@ -12,8 +12,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A LongPressGesture is emitted when the user holds the screen with the stated number of fingers.
-    /// Long press gesture finishes when all touches have been released.
+    /// A LongPressGesture is emitted when the user holds the screen with the stated number of fingers.<br>
+    /// Long press gesture finishes when all touches have been released.<br>
     /// </summary>
     public class LongPressGesture : Gesture
     {
@@ -68,7 +68,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The number of touch points in this long press gesture, i.e. the number of fingers the user had
-        /// on the screen to generate the long press gesture.
+        /// on the screen to generate the long press gesture.<br>
         /// </summary>
         public uint NumberOfTouches
         {
@@ -79,8 +79,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is the point, in screen coordinates, where the long press occurred.
-        /// If a multi-touch long press, then this is the centroid of all the touch points.
+        /// This is the point, in screen coordinates, where the long press occurred.<br>
+        /// If a multi-touch long press, then this is the centroid of all the touch points.<br>
         /// </summary>
         public Vector2 ScreenPoint
         {
@@ -91,8 +91,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is the point, in local actor coordinates, where the long press occurred.
-        /// If a multi-touch long press, then this is the centroid of all the touch points.
+        /// This is the point, in local actor coordinates, where the long press occurred.<br>
+        /// If a multi-touch long press, then this is the centroid of all the touch points.<br>
         /// </summary>
         public Vector2 LocalPoint
         {

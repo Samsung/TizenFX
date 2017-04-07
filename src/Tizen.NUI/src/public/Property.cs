@@ -86,21 +86,45 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Constructor. Create a Property instance.
+        /// </summary>
+        /// <param name="arg0">A valid handle to the target object</param>
+        /// <param name="propertyIndex">The index of a property</param>
         public Property(Handle arg0, int propertyIndex) : this(NDalicPINVOKE.new_Property__SWIG_0(Handle.getCPtr(arg0), propertyIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor. Create a Property instance.
+        /// </summary>
+        /// <param name="arg0">A valid handle to the target object</param>
+        /// <param name="propertyIndex">The index of a property</param>
+        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1)</param>
         public Property(Handle arg0, int propertyIndex, int componentIndex) : this(NDalicPINVOKE.new_Property__SWIG_1(Handle.getCPtr(arg0), propertyIndex, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor. Create a Property instance.<br>
+        /// This performs a property index query and is therefore slower than constructing a Property directly with the index.<br>
+        /// </summary>
+        /// <param name="arg0">A valid handle to the target object</param>
+        /// <param name="propertyName">The property name</param>
         public Property(Handle arg0, string propertyName) : this(NDalicPINVOKE.new_Property__SWIG_2(Handle.getCPtr(arg0), propertyName), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor. Create a Property instance.<br>
+        /// This performs a property index query and is therefore slower than constructing a Property directly with the index.<br>
+        /// </summary>
+        /// <param name="arg0">A valid handle to the target object</param>
+        /// <param name="propertyName">The property name</param>
+        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1)</param>
         public Property(Handle arg0, string propertyName, int componentIndex) : this(NDalicPINVOKE.new_Property__SWIG_3(Handle.getCPtr(arg0), propertyName, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -121,6 +145,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets/Sets the index of the property.
+        /// </summary>
         public int propertyIndex
         {
             set
@@ -136,6 +163,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets/Sets the componentIndex of the property.
+        /// </summary>
         public int componentIndex
         {
             set
@@ -590,8 +620,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Operator to access the element with the specified string key.
-        /// If an element with the key does not exist, then it is created.
+        /// Operator to access the element with the specified string key.<br>
+        /// If an element with the key does not exist, then it is created.<br>
         /// </summary>
         /// <param name="key">The key whose value to access</param>
         /// <returns>A value for the element with the specified key</returns>
@@ -604,8 +634,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Operator to access the element with the specified index key.
-        /// If an element with the key does not exist, then it is created.
+        /// Operator to access the element with the specified index key.<br>
+        /// If an element with the key does not exist, then it is created.<br>
         /// </summary>
         /// <param name="key">The key whose value to access</param>
         /// <returns>A value for the element with the specified key</returns>
@@ -657,8 +687,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.
-        /// Does not check for duplicates.
+        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Does not check for duplicates.<br>
         /// </summary>
         /// <param name="key">The key to insert</param>
         /// <param name="value">The value to insert</param>
@@ -669,8 +699,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as index.
-        /// Does not check for duplicates.
+        /// Inserts the key-value pair in the Map, with the key type as index.<br>
+        /// Does not check for duplicates.<br>
         /// </summary>
         /// <param name="key">The key to insert</param>
         /// <param name="value">The value to insert</param>
@@ -681,8 +711,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.
-        /// Does not check for duplicates.
+        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Does not check for duplicates.<br>
         /// </summary>
         /// <param name="key">The key to insert</param>
         /// <param name="value">The value to insert</param>
@@ -695,8 +725,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.
-        /// Does not check for duplicates.
+        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Does not check for duplicates.<br>
         /// </summary>
         /// <param name="key">The key to insert</param>
         /// <param name="value">The value to insert</param>
@@ -829,8 +859,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Merges values from the map 'from' to the current.
-        /// Any values in 'from' will overwrite the values in the current map.
+        /// Merges values from the map 'from' to the current.<br>
+        /// Any values in 'from' will overwrite the values in the current map.<br>
         /// </summary>
         /// <param name="from">The map to merge from</param>
         public void Merge(PropertyMap from)
@@ -921,7 +951,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Extension to property value class that allows us to create a
-        /// PropertyValue from a C# object, e.g. int, float, string
+        /// PropertyValue from a C# object, e.g. int, float, string.<br>
         /// </summary>
         /// <param name="obj">An object to create</param>
         /// <returns>The created value</returns>
@@ -1440,6 +1470,9 @@ namespace Tizen.NUI
 
     }
 
+    /// <summary>
+    /// This specifies all the property types.
+    /// </summary>
     public enum PropertyType
     {
         None,
@@ -1458,6 +1491,9 @@ namespace Tizen.NUI
         Map
     }
 
+    /// <summary>
+    /// This specifies the property access mode types.
+    /// </summary>
     public enum PropertyAccessMode
     {
         ReadOnly,

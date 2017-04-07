@@ -23,11 +23,11 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Animation can be used to animate the properties of any number of objects, typically Actors.
-    /// If the "Finished" event is connected to a member function of an object, it must be disconnected before the object is destroyed.
-    /// This is typically done in the object destructor, and requires either the Animation handle to be stored.
-    /// The overall animation time is superseded by the values given in the Duration property used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.
-    /// If any of the individual calls to those functions exceeds the overall animation time(Duration), then the overall animation time is automatically extended.
+    /// Animation can be used to animate the properties of any number of objects, typically Actors.<br>
+    /// If the "Finished" event is connected to a member function of an object, it must be disconnected before the object is destroyed.<br>
+    /// This is typically done in the object destructor, and requires either the Animation handle to be stored.<br>
+    /// The overall animation time is superseded by the values given in the Duration property used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br>
+    /// If any of the individual calls to those functions exceeds the overall animation time(Duration), then the overall animation time is automatically extended.<br>
     /// </summary>
     public class Animation : BaseHandle
     {
@@ -76,11 +76,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create an initialized Animation.
-        /// The animation will not loop.
-        /// The default end action is "Cancel".
-        /// The default Alpha function is linear.
-        /// Precodition : DurationmSeconds must be greater than zero.
+        /// Create an initialized Animation.<br>
+        /// The animation will not loop.<br>
+        /// The default end action is "Cancel".<br>
+        /// The default Alpha function is linear.<br>
+        /// Precodition : DurationmSeconds must be greater than zero.<br>
         /// </summary>
         /// <param name="durationMilliSeconds">The duration in milli seconds (int).</param>
         public Animation(int durationMilliSeconds) : this(NDalicPINVOKE.Animation_New((float)durationMilliSeconds / 1000.0f), true)
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         private delegate void AnimationFinishedEventCallbackType(IntPtr data);
         private event EventHandler _animationFinishedEventHandler;
         /**
-        * @brief Event for Finished signal which can be used to subscribe/unsubscribe the event handler
+        * @brief Event for Finished signal which can be used to subscribe/unsubscribe the event handler.
         * Finished signal is emitted when an Animation's animations have finished.
         */
         public event EventHandler Finished
@@ -163,7 +163,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets/Sets the duration of animation
+        /// Gets/Sets the duration of animation.
         /// </summary>
         public int Duration
         {
@@ -205,12 +205,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set : Enables looping for 'count' repeats. A zero is the same as Looping = true; i.e.repeat forever.
-        /// If Play() Stop() or 'count' loops is reached, the loop counter will reset.
-        /// Setting this parameter does not cause the animation to Play().
-        /// 
-        /// Get : Gets the loop count. A zero is the same as Looping = true; ie repeat forever. 
-        /// The loop count is initially 1 for play once.
+        /// Set : Enables looping for 'count' repeats. A zero is the same as Looping = true; i.e.repeat forever.<br>
+        /// If Play() Stop() or 'count' loops is reached, the loop counter will reset.<br>
+        /// Setting this parameter does not cause the animation to Play().<br>
+        /// Get : Gets the loop count. A zero is the same as Looping = true; ie repeat forever.<br>
+        /// The loop count is initially 1 for play once.<br>
         /// </summary>
         public int LoopCount
         {
@@ -226,9 +225,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the status of whether the animation will loop.
-        /// This property resets the loop count and should not be used with LoopCount property.
-        /// Setting this parameter does not cause the animation to Play().
+        /// Gets/Sets the status of whether the animation will loop.<br>
+        /// This property resets the loop count and should not be used with LoopCount property.<br>
+        /// Setting this parameter does not cause the animation to Play().<br>
         /// </summary>
         public bool Looping
         {
@@ -245,9 +244,9 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets/Sets the end action of the animation.
-        /// This action is performed when the animation ends or if it is stopped.
-        /// Default end action is Cancel
+        /// Gets/Sets the end action of the animation.<br>
+        /// This action is performed when the animation ends or if it is stopped.<br>
+        /// Default end action is Cancel.<br>
         /// </summary>
         public EndActions EndAction
         {
@@ -274,8 +273,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the current loop count.
-        /// A value 0 to CurrentLoop indicating the current loop count when looping.
+        /// Gets the current loop count.<br>
+        /// A value 0 to CurrentLoop indicating the current loop count when looping.<br>
         /// </summary>
         public int CurrentLoop
         {
@@ -286,9 +285,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the disconnect action.
-        /// If any of the animated property owners are disconnected from the stage while the animation is being played, then this action is performed.
-        /// Default action is to Cancel.
+        /// Gets/Sets the disconnect action.<br>
+        /// If any of the animated property owners are disconnected from the stage while the animation is being played, then this action is performed.<br>
+        /// Default action is to Cancel.<br>
         /// </summary>
         public EndActions DisconnectAction
         {
@@ -307,10 +306,10 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets/Sets the progress of the animation.
-        /// The animation will play(or continue playing) from this point.
-        /// The progress must be in the 0-1 interval or in the play range interval if defined
-        /// otherwise, it will be ignored.
+        /// Gets/Sets the progress of the animation.<br>
+        /// The animation will play(or continue playing) from this point.<br>
+        /// The progress must be in the 0-1 interval or in the play range interval if defined.<br>
+        /// otherwise, it will be ignored.<br>
         /// </summary>
         public float CurrentProgress
         {
@@ -328,10 +327,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets Specifies a speed factor for the animation.
-        /// The speed factor is a multiplier of the normal velocity of the animation.
-        /// Values between[0, 1] will slow down the animation and values above one will speed up the animation.
-        /// It is also possible to specify a negative multiplier to play the animation in reverse.
+        /// Gets/Sets Specifies a speed factor for the animation.<br>
+        /// The speed factor is a multiplier of the normal velocity of the animation.<br>
+        /// Values between[0, 1] will slow down the animation and values above one will speed up the animation.<br>
+        /// It is also possible to specify a negative multiplier to play the animation in reverse.<br>
         /// </summary>
         public float SpeedFactor
         {
@@ -349,9 +348,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the playing range.
+        /// Gets/Sets the playing range.<br>
         /// Animation will play between the values specified. Both values(range.x and range.y ) should be between 0-1,
-        /// otherwise they will be ignored.If the range provided is not in proper order(minimum, maximum ), it will be reordered.
+        /// otherwise they will be ignored.If the range provided is not in proper order(minimum, maximum ), it will be reordered.<br>
         /// </summary>
         public Vector2 PlayRange
         {
@@ -369,9 +368,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates a property value by a relative amount.
-        /// The default alpha function will be used.
-        /// The effect will start & end when the animation begins & ends.
+        /// Animates a property value by a relative amount.<br>
+        /// The default alpha function will be used.<br>
+        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -402,9 +401,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates a property value by a relative amount.
-        /// The default alpha function will be used.
-        /// The effect will start & end when the animation begins & ends.
+        /// Animates a property value by a relative amount.<br>
+        /// The default alpha function will be used.<br>
+        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -439,9 +438,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates a property to a destination value.
-        /// The default alpha function will be used.
-        /// The effect will start & end when the animation begins & ends.
+        /// Animates a property to a destination value.<br>
+        /// The default alpha function will be used.<br>
+        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -472,9 +471,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates a property to a destination value.
-        /// The default alpha function will be used.
-        /// The effect will start & end when the animation begins & ends.
+        /// Animates a property to a destination value.<br>
+        /// The default alpha function will be used.<br>
+        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -574,9 +573,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates an actor's position and orientation through a predefined path.
-        /// The actor will rotate to orient the supplied forward vector with the path's tangent. 
-        /// If forward is the zero vector then no rotation will happen.
+        /// Animates an actor's position and orientation through a predefined path.<br>
+        /// The actor will rotate to orient the supplied forward vector with the path's tangent.<br>
+        /// If forward is the zero vector then no rotation will happen.<br>
         /// </summary>
         /// <param name="actor">The actor to animate</param>
         /// <param name="path">It defines position and orientation</param>
@@ -595,9 +594,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates an actor's position and orientation through a predefined path.
-        /// The actor will rotate to orient the supplied forward vector with the path's tangent. 
-        /// If forward is the zero vector then no rotation will happen.
+        /// Animates an actor's position and orientation through a predefined path.<br>
+        /// The actor will rotate to orient the supplied forward vector with the path's tangent.<br>
+        /// If forward is the zero vector then no rotation will happen.<br>
         /// </summary>
         /// <param name="actor">The actor to animate</param>
         /// <param name="path">It defines position and orientation</param>
@@ -619,10 +618,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an initialized Animation.
-        /// The animation will not loop.
-        /// The default end action is "Cancel".
-        /// The default alpha function is linear.
+        /// Creates an initialized Animation.<br>
+        /// The animation will not loop.<br>
+        /// The default end action is "Cancel".<br>
+        /// The default alpha function is linear.<br>
         /// </summary>
         public Animation() : this(NDalicPINVOKE.Animation_New(0.0f), true)
         {
@@ -636,9 +635,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to Animation handle.
-        /// If handle points to an Animation object, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to Animation handle.<br>
+        /// If handle points to an Animation object, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to an Animation object or an uninitialized handle</returns>
@@ -795,9 +794,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Plays the animation from a given point.
-        /// The progress must be in the 0-1 interval or in the play range interval if defined 
-        /// otherwise, it will be ignored.
+        /// Plays the animation from a given point.<br>
+        /// The progress must be in the 0-1 interval or in the play range interval if defined,
+        /// otherwise, it will be ignored.<br>
         /// </summary>
         /// <param name="progress">A value between [0,1], or between the play range if specified, from where the animation should start playing</param>
         public void PlayFrom(float progress)
@@ -832,8 +831,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the animation.
-        /// This disconnects any objects that were being animated, effectively stopping the animation.
+        /// Clears the animation.<br>
+        /// This disconnects any objects that were being animated, effectively stopping the animation.<br>
         /// </summary>
         public void Clear()
         {
@@ -981,10 +980,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for what to do when the animation ends, is stopped, or is destroyed.
-        /// Cancel : When the animation ends, the animated property values are saved.
-        /// Discard : When the animation ends, the animated property values are forgotten.
-        /// StopFinal : If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like Cancel.
+        /// Enumeration for what to do when the animation ends, is stopped, or is destroyed.<br>
+        /// Cancel : When the animation ends, the animated property values are saved.<br>
+        /// Discard : When the animation ends, the animated property values are forgotten.<br>
+        /// StopFinal : If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like Cancel.<br>
         /// </summary>
         public enum EndActions
         {
@@ -994,9 +993,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for what interpolation method to use on key-frame animations.
-        /// Linear : Values in between key frames are interpolated using a linear polynomial. (Default)
-        /// Cubic : Values in between key frames are interpolated using a cubic polynomial.
+        /// Enumeration for what interpolation method to use on key-frame animations.<br>
+        /// Linear : Values in between key frames are interpolated using a linear polynomial. (Default).<br>
+        /// Cubic : Values in between key frames are interpolated using a cubic polynomial.<br>
         /// </summary>
         public enum Interpolation
         {
@@ -1005,8 +1004,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for what state the animation is in.
-        /// Note: Calling Reset() on this class will NOT reset the animation. It will call BaseHandle.Reset() which drops the object handle.
+        /// Enumeration for what state the animation is in.<br>
+        /// Note: Calling Reset() on this class will NOT reset the animation. It will call BaseHandle.Reset() which drops the object handle.<br>
         /// </summary>
         public enum States
         {

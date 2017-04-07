@@ -12,8 +12,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// An angle in degrees.
-    /// This reduces ambiguity when using methods which accept angles in degrees or radians.
+    /// An angle in degrees.<br>
+    /// This reduces ambiguity when using methods which accept angles in degrees or radians.<br>
     /// </summary>
     public class Degree : global::System.IDisposable
     {

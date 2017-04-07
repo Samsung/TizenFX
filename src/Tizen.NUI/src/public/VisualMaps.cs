@@ -40,9 +40,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set size of the visual.
+        /// Get or set size of the visual.<br>
         /// It can be either relative (percentage of the parent)
-        /// or absolute (in world units).
+        /// or absolute (in world units).<br>
         /// </summary>
         public Vector2 VisualSize
         {
@@ -57,9 +57,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set offset of the visual.
+        /// Get or set offset of the visual.<br>
         /// It can be either relative (percentage of the parent)
-        /// or absolute (in world units).
+        /// or absolute (in world units).<br>
         /// </summary>
         public Vector2 Offset
         {
@@ -74,10 +74,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set offset policy of the visual.
+        /// Get or set offset policy of the visual.<br>
         /// Indicates which components of the offset are relative
-        /// (percentage of the parent) or absolute (in world units).
-        /// 0 indicates the component is relative, and 1 absolute.
+        /// (percentage of the parent) or absolute (in world units).<br>
+        /// 0 indicates the component is relative, and 1 absolute.<br>
         /// </summary>
         public Vector2 OffsetPolicy
         {
@@ -92,10 +92,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set size policy of the visual.
+        /// Get or set size policy of the visual.<br>
         /// Indicates which components of the size are relative
-        /// (percentage of the parent) or absolute (in world units).
-        /// 0 indicates the component is relative, and 1 absolute.
+        /// (percentage of the parent) or absolute (in world units).<br>
+        /// 0 indicates the component is relative, and 1 absolute.<br>
         /// </summary>
         public Vector2 SizePolicy
         {
@@ -234,9 +234,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set fitting options, used when resizing images to fit desired dimensions.
-        /// If not supplied, default is FittingMode::SHRINK_TO_FIT.
-        /// For Normal Quad images only.
+        /// Get or set fitting options, used when resizing images to fit desired dimensions.<br>
+        /// If not supplied, default is FittingMode::SHRINK_TO_FIT.<br>
+        /// For Normal Quad images only.<br>
         /// </summary>
         public FittingModeType FittingMode
         {
@@ -251,9 +251,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set filtering options, used when resizing images to sample original pixels.
-        /// If not supplied, default is SamplingMode::BOX.
-        /// For Normal Quad images only.
+        /// Get or set filtering options, used when resizing images to sample original pixels.<br>
+        /// If not supplied, default is SamplingMode::BOX.<br>
+        /// For Normal Quad images only.<br>
         /// </summary>
         public SamplingModeType SamplingMode
         {
@@ -268,9 +268,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the desired image width.
-        /// If not specified, the actual image width is used.
-        /// For Normal Quad images only.
+        /// Get or set the desired image width.<br>
+        /// If not specified, the actual image width is used.<br>
+        /// For Normal Quad images only.<br>
         /// </summary>
         public int DesiredWidth
         {
@@ -285,9 +285,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the desired image height.
-        /// If not specified, the actual image height is used.
-        /// For Normal Quad images only.
+        /// Get or set the desired image height.<br>
+        /// If not specified, the actual image height is used.<br>
+        /// For Normal Quad images only.<br>
         /// </summary>
         public int DesiredHeight
         {
@@ -302,9 +302,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to load the image synchronously.
-        /// If not specified, the default is false, i.e. the image is loaded asynchronously.
-        /// For Normal Quad images only.
+        /// Get or set whether to load the image synchronously.<br>
+        /// If not specified, the default is false, i.e. the image is loaded asynchronously.<br>
+        /// For Normal Quad images only.<br>
         /// </summary>
         public bool SynchronousLoading
         {
@@ -319,9 +319,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to draws the borders only(If true).
-        /// If not specified, the default is false.
-        /// For N-Patch images only.
+        /// Get or set whether to draws the borders only(If true).<br>
+        /// If not specified, the default is false.<br>
+        /// For N-Patch images only.<br>
         /// </summary>
         public bool BorderOnly
         {
@@ -336,11 +336,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the image area to be displayed.
-        /// It is a rectangular area.
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.
-        /// If not specified, the default value is [0.0, 0.0, 1.0, 1.0], i.e. the entire area of the image.
-        /// For For Normal QUAD image only.
+        /// Get or set the image area to be displayed.<br>
+        /// It is a rectangular area.<br>
+        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.<br>
+        /// If not specified, the default value is [0.0, 0.0, 1.0, 1.0], i.e. the entire area of the image.<br>
+        /// For For Normal QUAD image only.<br>
         /// </summary>
         public Vector4 PixelArea
         {
@@ -355,10 +355,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the wrap mode for u coordinate.
-        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.
-        /// If not specified, the default is CLAMP.
-        /// For Normal QUAD image only.
+        /// Get or set the wrap mode for u coordinate.<br>
+        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br>
+        /// If not specified, the default is CLAMP.<br>
+        /// For Normal QUAD image only.<br>
         /// </summary>
         public WrapModeType WrapModeU
         {
@@ -373,10 +373,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the wrap mode for v coordinate.
-        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.
-        /// If not specified, the default is CLAMP.
+        /// Get or set the wrap mode for v coordinate.<br>
+        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.<br>
+        /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.<br>
+        /// If not specified, the default is CLAMP.<br>
         /// For Normal QUAD image only.
         /// </summary>
         public WrapModeType WrapModeV
@@ -515,8 +515,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the line horizontal alignment.
-        /// If not specified, the default is BEGIN.
+        /// Get or set the line horizontal alignment.<br>
+        /// If not specified, the default is BEGIN.<br>
         /// </summary>
         public string HorizontalAlignment
         {
@@ -531,8 +531,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the line vertical alignment.
-        /// If not specified, the default is TOP.
+        /// Get or set the line vertical alignment.<br>
+        /// If not specified, the default is TOP.<br>
         /// </summary>
         public string VerticalAlignment
         {
@@ -652,8 +652,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether anti-aliasing of the border is required.
-        /// If not supplied, default is false.
+        /// Get or set whether anti-aliasing of the border is required.<br>
+        /// If not supplied, default is false.<br>
         /// </summary>
         public bool AntiAliasing
         {
@@ -733,8 +733,8 @@ namespace Tizen.NUI
         private GradientVisualSpreadMethodType _spreadMethod = GradientVisualSpreadMethodType.Pad;
 
         /// <summary>
-        /// Get or set the start position of a linear gradient.
-        /// Mandatory for Linear.
+        /// Get or set the start position of a linear gradient.<br>
+        /// Mandatory for Linear.<br>
         /// </summary>
         public Vector2 StartPosition
         {
@@ -749,8 +749,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the end position of a linear gradient.
-        /// Mandatory for Linear.
+        /// Get or set the end position of a linear gradient.<br>
+        /// Mandatory for Linear.<br>
         /// </summary>
         public Vector2 EndPosition
         {
@@ -765,8 +765,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the center point of a radial gradient.
-        /// Mandatory for Radial.
+        /// Get or set the center point of a radial gradient.<br>
+        /// Mandatory for Radial.<br>
         /// </summary>
         public Vector2 Center
         {
@@ -781,8 +781,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the size of the radius of a radial gradient.
-        /// Mandatory for Radial.
+        /// Get or set the size of the radius of a radial gradient.<br>
+        /// Mandatory for Radial.<br>
         /// </summary>
         public float Radius
         {
@@ -797,9 +797,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set all the stop offsets.
-        /// A PropertyArray of float.
-        /// If not supplied, default is 0.0f and 1.0f.
+        /// Get or set all the stop offsets.<br>
+        /// A PropertyArray of float.<br>
+        /// If not supplied, default is 0.0f and 1.0f.<br>
         /// </summary>
         public PropertyArray StopOffset
         {
@@ -814,9 +814,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the color at the stop offsets.
-        /// A PropertyArray of Color.
-        /// At least 2 values required to show a gradient.
+        /// Get or set the color at the stop offsets.<br>
+        /// A PropertyArray of Color.<br>
+        /// At least 2 values required to show a gradient.<br>
         /// </summary>
         public PropertyArray StopColor
         {
@@ -831,8 +831,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set defines the coordinate system for certain attributes of the points in a gradient.
-        /// If not supplied, default is GradientVisualUnitsType.OBJECT_BOUNDING_BOX.
+        /// Get or set defines the coordinate system for certain attributes of the points in a gradient.<br>
+        /// If not supplied, default is GradientVisualUnitsType.OBJECT_BOUNDING_BOX.<br>
         /// </summary>
         public GradientVisualUnitsType Units
         {
@@ -847,8 +847,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set indicates what happens if the gradient starts or ends inside the bounds of the target rectangle.
-        /// If not supplied, default is GradientVisualSpreadMethodType.PAD.
+        /// Get or set indicates what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
+        /// If not supplied, default is GradientVisualSpreadMethodType.PAD.<br>
         /// </summary>
         public GradientVisualSpreadMethodType SpreadMethod
         {
@@ -919,8 +919,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the location of the ".mtl" file.
-        /// If not specified, then a textureless object is assumed.
+        /// Get or set the location of the ".mtl" file.<br>
+        /// If not specified, then a textureless object is assumed.<br>
         /// </summary>
         public string MaterialtURL
         {
@@ -935,8 +935,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set path to the directory the textures (including gloss and normal) are stored in.
-        /// Mandatory if using material.
+        /// Get or set path to the directory the textures (including gloss and normal) are stored in.<br>
+        /// Mandatory if using material.<br>
         /// </summary>
         public string TexturesPath
         {
@@ -951,9 +951,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the type of shading mode that the mesh will use.
-        /// If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.
-        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TEXTURED_WITH_DETAILED_SPECULAR_LIGHTING first).
+        /// Get or set the type of shading mode that the mesh will use.<br>
+        /// If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.<br>
+        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TEXTURED_WITH_DETAILED_SPECULAR_LIGHTING first).<br>
         /// </summary>
         public MeshVisualShadingModeValue ShadingMode
         {
@@ -968,8 +968,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to use mipmaps for textures or not.
-        /// If not specified, the default is true.
+        /// Get or set whether to use mipmaps for textures or not.<br>
+        /// If not specified, the default is true.<br>
         /// </summary>
         public bool UseMipmapping
         {
@@ -984,8 +984,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to average normals at each point to smooth textures or not.
-        /// If not specified, the default is true.
+        /// Get or set whether to average normals at each point to smooth textures or not.<br>
+        /// If not specified, the default is true.<br>
         /// </summary>
         public bool UseSoftNormals
         {
@@ -1000,10 +1000,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the position, in stage space, of the point light that applies lighting to the model.
+        /// Get or set the position, in stage space, of the point light that applies lighting to the model.<br>
         /// This is based off the stage's dimensions, so using the width and height of the stage halved will correspond to the center,
-        /// and using all zeroes will place the light at the top left corner.
-        /// If not specified, the default is an offset outwards from the center of the screen.
+        /// and using all zeroes will place the light at the top left corner.<br>
+        /// If not specified, the default is an offset outwards from the center of the screen.<br>
         /// </summary>
         public Vector3 LightPosition
         {
@@ -1066,8 +1066,8 @@ namespace Tizen.NUI
         private Vector3 _lightPosition = null; // default ?? center of screen
 
         /// <summary>
-        /// Get or set the specific shape to render.
-        /// If not specified, the default is PrimitiveVisualShapeType.SPHERE.
+        /// Get or set the specific shape to render.<br>
+        /// If not specified, the default is PrimitiveVisualShapeType.SPHERE.<br>
         /// </summary>
         public PrimitiveVisualShapeType Shape
         {
@@ -1082,9 +1082,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the color of the shape.
-        /// If not specified, the default is Color(0.5, 0.5, 0.5, 1.0).
-        /// Applies to ALL shapes.
+        /// Get or set the color of the shape.<br>
+        /// If not specified, the default is Color(0.5, 0.5, 0.5, 1.0).<br>
+        /// Applies to ALL shapes.<br>
         /// </summary>
         public Color MixColor
         {
@@ -1099,10 +1099,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the number of slices as you go around the shape.
-        /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.
-        /// If not specified, the default is 128.
-        /// The range is from 1 to 255.
+        /// Get or set the number of slices as you go around the shape.<br>
+        /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.<br>
+        /// If not specified, the default is 128.<br>
+        /// The range is from 1 to 255.<br>
         /// </summary>
         public int Slices
         {
@@ -1117,10 +1117,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the number of stacks as you go down the shape.
-        /// For spheres, 'stacks' determines how many layers there are as you go down the object.
-        /// If not specified, the default is 128.
-        /// The range is from 1 to 255.
+        /// Get or set the number of stacks as you go down the shape.<br>
+        /// For spheres, 'stacks' determines how many layers there are as you go down the object.<br>
+        /// If not specified, the default is 128.<br>
+        /// The range is from 1 to 255.<br>
         /// </summary>
         public int Stacks
         {
@@ -1135,10 +1135,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the scale of the radius of the top circle of a conical frustrum.
-        /// If not specified, the default is 1.0f.
-        /// Applies to: - PrimitiveVisualShapeType.CONICAL_FRUSTRUM
-        /// Only values greater than or equal to 0.0f are accepted.
+        /// Get or set the scale of the radius of the top circle of a conical frustrum.<br>
+        /// If not specified, the default is 1.0f.<br>
+        /// Applies to: - PrimitiveVisualShapeType.CONICAL_FRUSTRUM<br>
+        /// Only values greater than or equal to 0.0f are accepted.<br>
         /// </summary>
         public float ScaleTopRadius
         {
@@ -1153,11 +1153,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the scale of the radius of the bottom circle of a conical frustrum.
-        /// If not specified, the default is 1.5f.
-        /// Applies to:  - PrimitiveVisualShapeType.CONICAL_FRUSTRUM
-        ///              - PrimitiveVisualShapeType.CONE
-        /// Only values greater than or equal to 0.0f are accepted.
+        /// Get or set the scale of the radius of the bottom circle of a conical frustrum.<br>
+        /// If not specified, the default is 1.5f.<br>
+        /// Applies to:  - PrimitiveVisualShapeType.CONICAL_FRUSTRUM<br>
+        ///              - PrimitiveVisualShapeType.CONE<br>
+        /// Only values greater than or equal to 0.0f are accepted.<br>
         /// </summary>
         public float ScaleBottomRadius
         {
@@ -1172,13 +1172,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the scale of the height of a conic.
-        /// If not specified, the default is 3.0f.
-        /// Applies to:
-        ///      - Shape::CONICAL_FRUSTRUM
-        ///      - Shape::CONE
-        ///      - Shape::CYLINDER
-        /// Only values greater than or equal to 0.0f are accepted.
+        /// Get or set the scale of the height of a conic.<br>
+        /// If not specified, the default is 3.0f.<br>
+        /// Applies to:<br>
+        ///      - Shape::CONICAL_FRUSTRUM<br>
+        ///      - Shape::CONE<br>
+        ///      - Shape::CYLINDER<br>
+        /// Only values greater than or equal to 0.0f are accepted.<br>
         /// </summary>
         public float ScaleHeight
         {
@@ -1193,11 +1193,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the scale of the radius of a cylinder.
-        /// If not specified, the default is 1.0f.
-        /// Applies to:
-        ///      - Shape::CYLINDER
-        /// Only values greater than or equal to 0.0f are accepted.
+        /// Get or set the scale of the radius of a cylinder.<br>
+        /// If not specified, the default is 1.0f.<br>
+        /// Applies to:<br>
+        ///      - Shape::CYLINDER<br>
+        /// Only values greater than or equal to 0.0f are accepted.<br>
         /// </summary>
         public float ScaleRadius
         {
@@ -1212,13 +1212,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the dimensions of a cuboid. Scales in the same fashion as a 9-patch image.
-        /// If not specified, the default is Vector3.One.
-        /// Applies to:
-        ///      - Shape::CUBE
-        ///      - Shape::OCTAHEDRON
-        ///      - Shape::BEVELLED_CUBE
-        /// Each vector3 parameter should be greater than or equal to 0.0f.
+        /// Get or set the dimensions of a cuboid. Scales in the same fashion as a 9-patch image.<br>
+        /// If not specified, the default is Vector3.One.<br>
+        /// Applies to:<br>
+        ///      - Shape::CUBE<br>
+        ///      - Shape::OCTAHEDRON<br>
+        ///      - Shape::BEVELLED_CUBE<br>
+        /// Each vector3 parameter should be greater than or equal to 0.0f.<br>
         /// </summary>
         public Vector3 ScaleDimensions
         {
@@ -1233,12 +1233,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set determines how bevelled the cuboid should be, based off the smallest dimension.
-        /// Bevel percentage ranges from 0.0 to 1.0. It affects the ratio of the outer face widths to the width of the overall cube.
-        /// If not specified, the default is 0.0f (no bevel).
-        /// Applies to:
-        ///      - Shape::BEVELLED_CUBE
-        /// The range is from 0.0f to 1.0f.
+        /// Get or set determines how bevelled the cuboid should be, based off the smallest dimension.<br>
+        /// Bevel percentage ranges from 0.0 to 1.0. It affects the ratio of the outer face widths to the width of the overall cube.<br>
+        /// If not specified, the default is 0.0f (no bevel).<br>
+        /// Applies to:<br>
+        ///      - Shape::BEVELLED_CUBE<br>
+        /// The range is from 0.0f to 1.0f.<br>
         /// </summary>
         public float BevelPercentage
         {
@@ -1253,11 +1253,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set defines how smooth the bevelled edges should be.
-        /// If not specified, the default is 0.0f (sharp edges).
-        /// Applies to:
-        ///      - Shape::BEVELLED_CUBE
-        /// The range is from 0.0f to 1.0f.
+        /// Get or set defines how smooth the bevelled edges should be.<br>
+        /// If not specified, the default is 0.0f (sharp edges).<br>
+        /// Applies to:<br>
+        ///      - Shape::BEVELLED_CUBE<br>
+        /// The range is from 0.0f to 1.0f.<br>
         /// </summary>
         public float BevelSmoothness
         {
@@ -1272,10 +1272,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the position, in stage space, of the point light that applies lighting to the model.
+        /// Get or set the position, in stage space, of the point light that applies lighting to the model.<br>
         /// This is based off the stage's dimensions, so using the width and height of the stage halved will correspond to the center,
-        /// and using all zeroes will place the light at the top left corner.
-        /// If not specified, the default is an offset outwards from the center of the screen.
+        /// and using all zeroes will place the light at the top left corner.<br>
+        /// If not specified, the default is an offset outwards from the center of the screen.<br>
         /// Applies to ALL shapes.
         /// </summary>
         public Vector3 LightPosition
@@ -1342,9 +1342,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to draws the borders only(If true).
-        /// If not specified, the default is false.
-        /// For N-Patch images only.
+        /// Get or set whether to draws the borders only(If true).<br>
+        /// If not specified, the default is false.<br>
+        /// For N-Patch images only.<br>
         /// </summary>
         public bool BorderOnly
         {
@@ -1387,7 +1387,9 @@ namespace Tizen.NUI
     }
 
 
-
+    /// <summary>
+    /// This specifies wrap mode types
+    /// </summary>
     public enum WrapModeType
     {
         Default = 0,
@@ -1396,12 +1398,19 @@ namespace Tizen.NUI
         MirroredRepeat
     }
 
+    /// <summary>
+    /// This specifies all kind os types of coordinate system for certain attributes of the points in a gradient.
+    /// </summary>
     public enum GradientVisualUnitsType
     {
         ObjectBoundingBox,
         UserSpace
     }
 
+    /// <summary>
+    /// This specifies SpreadMethod types.<br>
+    /// SpreadMethod defines what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
+    /// </summary>
     public enum GradientVisualSpreadMethodType
     {
         Pad,
@@ -1409,6 +1418,9 @@ namespace Tizen.NUI
         Repeat
     }
 
+    /// <summary>
+    /// This specifies shading mode types.
+    /// </summary>
     public enum MeshVisualShadingModeValue
     {
         TexturelessWithDiffuseLighting,
@@ -1416,6 +1428,9 @@ namespace Tizen.NUI
         TexturedWithDetailedSpecularLighting
     }
 
+    /// <summary>
+    /// This specifies shape types.
+    /// </summary>
     public enum PrimitiveVisualShapeType
     {
         Sphere,
@@ -1427,6 +1442,11 @@ namespace Tizen.NUI
         BevelledCube
     }
 
+    /// <summary>
+    /// This specifies fitting mode types. Fitting options, used when resizing images to fit desired dimensions.<br>
+    /// A fitting mode controls the region of a loaded image to be mapped to the desired image rectangle.<br>
+    /// All fitting modes preserve the aspect ratio of the image contents.<br>
+    /// </summary>
     public enum FittingModeType
     {
         ShrinkToFit,
@@ -1435,6 +1455,12 @@ namespace Tizen.NUI
         FitHeight
     }
 
+    /// <summary>
+    /// This specifies sampling mode types. Filtering options, used when resizing images to sample original pixels.<br>
+    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during a scaling.<br>
+    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and FittingMode,
+    /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
+    /// </summary>
     public enum SamplingModeType
     {
         Box,
@@ -1446,12 +1472,18 @@ namespace Tizen.NUI
         DontCare
     }
 
+    /// <summary>
+    /// This specifies policy types that could be used by the transform for the offset or size.
+    /// </summary>
     public enum VisualTransformPolicyType
     {
         Relative = 0,
         Absolute = 1
     }
 
+    /// <summary>
+    /// This specifies align types.
+    /// </summary>
     public enum AlignType
     {
         TopBegin = 0,
@@ -1465,6 +1497,9 @@ namespace Tizen.NUI
         BottomEnd
     }
 
+    /// <summary>
+    /// This specifies all the transform property types.
+    /// </summary>
     public enum VisualTransformPropertyType
     {
         Offset,
@@ -1475,6 +1510,9 @@ namespace Tizen.NUI
         SizePolicy
     }
 
+    /// <summary>
+    /// This specifies visual types.
+    /// </summary>
     public struct Visual
     {
         public enum Type
@@ -1490,6 +1528,9 @@ namespace Tizen.NUI
             NPatch
         }
 
+        /// <summary>
+        /// This specifies visual properties.
+        /// </summary>
         public struct Property
         {
             public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
@@ -1499,6 +1540,9 @@ namespace Tizen.NUI
             public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
         }
 
+        /// <summary>
+        /// This specifies shader properties.
+        /// </summary>
         public struct ShaderProperty
         {
             public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
@@ -1509,6 +1553,9 @@ namespace Tizen.NUI
         }
     }
 
+    /// <summary>
+    /// This specifies properties of BorderVisual.
+    /// </summary>
     public struct BorderVisualProperty
     {
         public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
@@ -1516,11 +1563,17 @@ namespace Tizen.NUI
         public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
     }
 
+    /// <summary>
+    /// This specifies properties of ColorVisual.
+    /// </summary>
     public struct ColorVisualProperty
     {
         public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
     }
 
+    /// <summary>
+    /// This specifies properties of GradientVisual.
+    /// </summary>
     public struct GradientVisualProperty
     {
         public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
@@ -1533,6 +1586,9 @@ namespace Tizen.NUI
         public static readonly int SpreadMethod = NDalic.GRADIENT_VISUAL_SPREAD_METHOD;
     }
 
+    /// <summary>
+    /// This specifies properties of ImageVisual.
+    /// </summary>
     public struct ImageVisualProperty
     {
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
@@ -1547,6 +1603,9 @@ namespace Tizen.NUI
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
     }
 
+    /// <summary>
+    /// This specifies properties of MeshVisual.
+    /// </summary>
     public struct MeshVisualProperty
     {
         public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
@@ -1558,6 +1617,9 @@ namespace Tizen.NUI
         public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
     }
 
+    /// <summary>
+    /// This specifies properties of PrimitiveVisual.
+    /// </summary>
     public struct PrimitiveVisualProperty
     {
         public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
@@ -1574,6 +1636,9 @@ namespace Tizen.NUI
         public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
     }
 
+    /// <summary>
+    /// This specifies properties of TextVisual.
+    /// </summary>
     public struct TextVisualProperty
     {
         public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
@@ -1586,7 +1651,11 @@ namespace Tizen.NUI
         public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
         public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
     }
-        public struct NpatchImageVisualProperty
+
+    /// <summary>
+    /// This specifies properties of NpatchImageVisual.
+    /// </summary>
+    public struct NpatchImageVisualProperty
     {
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;

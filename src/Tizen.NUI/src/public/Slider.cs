@@ -431,9 +431,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts an Object handle to Slider.
-        /// If handle points to a Slider, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts an Object handle to Slider.<br>
+        /// If handle points to a Slider, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a Slider or an uninitialized handle</returns>

@@ -49,6 +49,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make PushButton instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -146,9 +149,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to PushButton handle.
-        /// If handle points to a PushButton, the downcast produces valid handle.
-        /// If not the returned handle is left uninitialized.
+        /// Downcasts a handle to PushButton handle.<br>
+        /// If handle points to a PushButton, the downcast produces valid handle.<br>
+        /// If not the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>handle to a PushButton or an uninitialized handle</returns>

@@ -111,7 +111,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Event for TextChanged signal which can be used to subscribe/unsubscribe the event handler
-        /// provided by the user. TextChanged signal is emitted when the text changes.
+        /// provided by the user. TextChanged signal is emitted when the text changes.<br>
         /// </summary>
         public event EventHandler<TextChangedEventArgs> TextChanged
         {

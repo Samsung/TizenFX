@@ -35,6 +35,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make Rotation instance be disposed.
+        /// </summary>
         public virtual void Dispose()
         {
             if (!Stage.IsInstalled())

@@ -61,14 +61,17 @@ namespace Tizen.NUI
             ViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
         }
 
+        /// <summary>
+        /// Creates an initialized Spin.
+        /// </summary>
         public Spin() : base(typeof(Spin).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
         /// <summary>
-        /// Override method of OnInitialize() for CustomView class.
-        /// This method is called after the Control has been initialized.
-        /// Derived classes should do any second phase initialization by overriding this method.
+        /// Override method of OnInitialize() for CustomView class.<br>
+        /// This method is called after the Control has been initialized.<br>
+        /// Derived classes should do any second phase initialization by overriding this method.<br>
         /// </summary>
         public override void OnInitialize()
         {
@@ -107,8 +110,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of GetNaturalSize() for CustomView class.
-        /// Return the natural size of the actor.
+        /// Override method of GetNaturalSize() for CustomView class.<br>
+        /// Return the natural size of the actor.<br>
         /// </summary>
         /// <returns> Natural size of this Spin itself</returns>
         public override Size GetNaturalSize()
@@ -117,9 +120,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event handler when the TextField in Spin gets the Key focus
-        /// Make sure when the current spin that takes input focus also takes the keyboard focus
-        /// For example, when you tap the spin directly
+        /// Event handler when the TextField in Spin gets the Key focus.<br>
+        /// Make sure when the current spin that takes input focus also takes the keyboard focus.<br>
+        /// For example, when you tap the spin directly.<br>
         /// </summary>
         /// <param name="source">Sender of this event</param>
         /// <param name="e">Event arguments</param>
@@ -155,9 +158,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of GetNextKeyboardFocusableView() for CustomView class.
-        /// Gets the next key focusable view in this View towards the given direction.
-        /// A View needs to override this function in order to support two dimensional key navigation.
+        /// Override method of GetNextKeyboardFocusableView() for CustomView class.<br>
+        /// Gets the next key focusable view in this View towards the given direction.<br>
+        /// A View needs to override this function in order to support two dimensional key navigation.<br>
         /// </summary>
         /// <param name="currentFocusedView">The current focused view</param>
         /// <param name="direction">The direction to move the focus towards</param>
@@ -188,7 +191,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Value to be set in Spin
+        /// Value to be set in Spin.
         /// </summary>
         [ScriptableProperty()]
         public int Value
@@ -219,7 +222,7 @@ namespace Tizen.NUI
         }
         
         /// <summary>
-        /// Minimum Value of Spin Value
+        /// Minimum Value of Spin Value.
         /// </summary>
         // MinValue property of type int:
         [ScriptableProperty()]
@@ -236,7 +239,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Maximum Value of Spin Value
+        /// Maximum Value of Spin Value.
         /// </summary>
         // MaxValue property of type int:
         [ScriptableProperty()]
@@ -253,7 +256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Increasing, decresing step of Spin Value when Up or Down key is pressed
+        ///  Increasing, decresing step of Spin Value when Up or Down key is pressed.
         /// </summary>
         // Step property of type int:
         [ScriptableProperty()]
@@ -270,7 +273,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Wrapping enabled status
+        /// Wrapping enabled status.
         /// </summary>
         // WrappingEnabled property of type bool:
         [ScriptableProperty()]
@@ -287,7 +290,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Text point size of Spin Value
+        ///  Text point size of Spin Value.
         /// </summary>
         // TextPointSize property of type int:
         [ScriptableProperty()]
@@ -305,7 +308,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The color of Spin Value
+        /// The color of Spin Value.
         /// </summary>
         // TextColor property of type Color:
         [ScriptableProperty()]
@@ -325,7 +328,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Maximum text lengh of Spin Value
+        /// Maximum text lengh of Spin Value.
         /// </summary>
         // MaxTextLength property of type int:
         [ScriptableProperty()]
@@ -343,7 +346,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Reference of TextField of Spin
+        /// Reference of TextField of Spin.
         /// </summary>
         public TextField SpinText
         {

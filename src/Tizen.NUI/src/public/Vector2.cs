@@ -428,9 +428,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the length of the vector squared.
+        /// Returns the length of the vector squared.<br>
         /// This is more efficient than Length() for threshold
-        /// testing as it avoids the use of a square root.
+        /// testing as it avoids the use of a square root.<br>
         /// </summary>
         /// <returns>The length of the vector squared</returns>
         public float LengthSquared()

@@ -106,8 +106,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior before calling OnCreate().
-        /// stage property is initialized in this overrided method.
+        /// Overrides this method if want to handle behavior before calling OnCreate().<br>
+        /// stage property is initialized in this overrided method.<br>
         /// </summary>
         protected override void OnPreCreate()
         {
@@ -232,6 +232,9 @@ namespace Tizen.NUI
             Transparent = 1
         }
 
+        /// <summary>
+        /// Get the window instance.
+        /// </summary>
         public Window Window
         {
             get

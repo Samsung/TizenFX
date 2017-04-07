@@ -83,10 +83,10 @@ namespace Tizen.NUI
         private delegate void KeyInputFocusGainedCallbackType(IntPtr control);
         private KeyInputFocusGainedCallbackType _keyInputFocusGainedCallback;
 
-        /**
-          * @brief Event for KeyInputFocusGained signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. KeyInputFocusGained signal is emitted when the control gets Key Input Focus.
-          */
+        /// <summary>
+        /// Event for KeyInputFocusGained signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// KeyInputFocusGained signal is emitted when the control gets Key Input Focus.<br>
+        /// </summary>
         public event EventHandler FocusGained
         {
             add
@@ -125,10 +125,10 @@ namespace Tizen.NUI
         private delegate void KeyInputFocusLostCallbackType(IntPtr control);
         private KeyInputFocusLostCallbackType _keyInputFocusLostCallback;
 
-        /**
-          * @brief Event for KeyInputFocusLost signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. KeyInputFocusLost signal is emitted when the control loses Key Input Focus.
-          */
+        /// <summary>
+        /// Event for KeyInputFocusLost signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// KeyInputFocusLost signal is emitted when the control loses Key Input Focus.<br>
+        /// </summary>
         public event EventHandler FocusLost
         {
             add
@@ -161,19 +161,16 @@ namespace Tizen.NUI
             }
         }
 
-
-        /**
-          * @brief Event arguments that passed via KeyEvent signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via KeyEvent signal.
+        /// </summary>
         public class KeyEventArgs : EventArgs
         {
             private Key _key;
 
-            /**
-              * @brief KeyEvent - is the keyevent sent to the View.
-              *
-              */
+            /// <summary>
+            /// Key - is the key sent to the View.
+            /// </summary>
             public Key Key
             {
                 get
@@ -192,10 +189,10 @@ namespace Tizen.NUI
         private delegate bool KeyCallbackType(IntPtr control, IntPtr keyEvent);
         private KeyCallbackType _keyCallback;
 
-        /**
-          * @brief Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. KeyPressed signal is emitted when key event is received.
-          */
+        /// <summary>
+        /// Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// KeyPressed signal is emitted when key event is received.<br>
+        /// </summary>
         public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
         {
             add
@@ -239,10 +236,10 @@ namespace Tizen.NUI
         private delegate void OnRelayoutEventCallbackType(IntPtr control);
         private OnRelayoutEventCallbackType _onRelayoutEventCallback;
 
-        /**
-          * @brief Event for OnRelayout signal which can be used to subscribe/unsubscribe the event handler
-          * OnRelayout signal is emitted after the size has been set on the view during relayout.
-          */
+        /// <summary>
+        /// Event for OnRelayout signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// OnRelayout signal is emitted after the size has been set on the view during relayout.<br>
+        /// </summary>
         public event EventHandler OnRelayoutEvent
         {
             add
@@ -277,19 +274,16 @@ namespace Tizen.NUI
             }
         }
 
-
-        /**
-          * @brief Event arguments that passed via Touch signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via Touch signal.
+        /// </summary>
         public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
 
-            /**
-              * @brief TouchData - contains the information of touch points
-              *
-              */
+            /// <summary>
+            /// Touch - contains the information of touch points
+            /// </summary>
             public Touch Touch
             {
                 get
@@ -308,10 +302,10 @@ namespace Tizen.NUI
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
         private TouchDataCallbackType _touchDataCallback;
 
-        /**
-          * @brief Event for Touched signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. Touched signal is emitted when touch input is received.
-          */
+        /// <summary>
+        /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// Touched signal is emitted when touch input is received.<br>
+        /// </summary>
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
         {
             add
@@ -352,18 +346,16 @@ namespace Tizen.NUI
         }
 
 
-        /**
-          * @brief Event arguments that passed via Hover signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via Hover signal.
+        /// </summary>
         public class HoverEventArgs : EventArgs
         {
             private Hover _hover;
-            /**
-              * @brief HoverEvent - contains touch points that represent the points
-              * that are currently being hovered or the points where a hover has stopped
-              *
-              */
+
+            /// <summary>
+            /// Hover - contains touch points that represent the points that are currently being hovered or the points where a hover has stopped.
+            /// </summary>
             public Hover Hover
             {
                 get
@@ -382,10 +374,10 @@ namespace Tizen.NUI
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
         private HoverEventCallbackType _hoverEventCallback;
 
-        /**
-          * @brief Event for Hovered signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. Hovered signal is emitted when hover input is received.
-          */
+        /// <summary>
+        /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// Hovered signal is emitted when hover input is received.<br>
+        /// </summary>
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
         {
             add
@@ -426,17 +418,16 @@ namespace Tizen.NUI
         }
 
 
-        /**
-          * @brief Event arguments that passed via Wheel signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via Wheel signal.
+        /// </summary>
         public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
-            /**
-              * @brief WheelEvent - store a wheel rolling type : MOUSE_WHEEL or CUSTOM_WHEEL
-              *
-              */
+
+            /// <summary>
+            /// WheelEvent - store a wheel rolling type : MOUSE_WHEEL or CUSTOM_WHEEL
+            /// </summary>
             public Wheel Wheel
             {
                 get
@@ -455,10 +446,10 @@ namespace Tizen.NUI
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         private WheelEventCallbackType _wheelEventCallback;
 
-        /**
-          * @brief Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. WheelMoved signal is emitted when wheel event is received.
-          */
+        /// <summary>
+        /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// WheelMoved signal is emitted when wheel event is received.<br>
+        /// </summary>
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
             add
@@ -504,10 +495,10 @@ namespace Tizen.NUI
         private delegate void OnStageEventCallbackType(IntPtr control);
         private OnStageEventCallbackType _onStageEventCallback;
 
-        /**
-          * @brief Event for OnStage signal which can be used to subscribe/unsubscribe the event handler
-          * OnStage signal is emitted after the view has been connected to the stage.
-          */
+        /// <summary>
+        /// Event for OnStage signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// OnStage signal is emitted after the view has been connected to the stage.<br>
+        /// </summary>
         public event EventHandler OnStageEvent
         {
             add
@@ -547,10 +538,10 @@ namespace Tizen.NUI
         private delegate void OffStageEventCallbackType(IntPtr control);
         private OffStageEventCallbackType _offStageEventCallback;
 
-        /**
-          * @brief Event for OffStage signal which can be used to subscribe/unsubscribe the event handler
-          * OffStage signal is emitted after the view has been disconnected from the stage.
-          */
+        /// <summary>
+        /// Event for OffStage signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// OffStage signal is emitted after the view has been disconnected from the stage.<br>
+        /// </summary>
         public event EventHandler OffStageEvent
         {
             add
@@ -690,9 +681,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to View handle.
-        /// If handle points to a View, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to View handle.<br>
+        /// If handle points to a View, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a View or an uninitialized handle</returns>
@@ -1099,9 +1090,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Child Property of FlexContainer
-        /// The proportion of the free space in the container the flex item will receive. 
-        /// If all items in the container set this property, their sizes will be proportional to the specified flex factor
+        /// Child Property of FlexContainer.<br>
+        /// The proportion of the free space in the container the flex item will receive.<br>
+        /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br>
         /// </summary> 
         public float Flex
         {
@@ -1118,8 +1109,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Child Property of FlexContainer
-        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container
+        /// Child Property of FlexContainer.<br>
+        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br>
         /// </summary> 
         public int AlignSelf
         {
@@ -1136,8 +1127,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Child Property of FlexContainer
-        /// The space around the flex item
+        /// Child Property of FlexContainer.<br>
+        /// The space around the flex item.<br>
         /// </summary> 
         public Vector4 FlexMargin
         {
@@ -1239,9 +1230,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The left focusable view.
-        /// This will return NULL if not set.
-        /// This will also return NULL if the specified left focusable view is not on stage.
+        /// The left focusable view.<br>
+        /// This will return NULL if not set.<br>
+        /// This will also return NULL if the specified left focusable view is not on stage.<br>
         /// </summary>
         public View LeftFocusableView
         {
@@ -1261,9 +1252,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The right focusable view.
-        /// This will return NULL if not set.
-        /// This will also return NULL if the specified right focusable view is not on stage.
+        /// The right focusable view.<br>
+        /// This will return NULL if not set.<br>
+        /// This will also return NULL if the specified right focusable view is not on stage.<br>
         /// </summary>
         public View RightFocusableView
         {
@@ -1283,9 +1274,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The up focusable view.
-        /// This will return NULL if not set.
-        /// This will also return NULL if the specified up focusable view is not on stage.
+        /// The up focusable view.<br>
+        /// This will return NULL if not set.<br>
+        /// This will also return NULL if the specified up focusable view is not on stage.<br>
         /// </summary>
         public View UpFocusableView
         {
@@ -1305,9 +1296,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The down focusable view.
-        /// This will return NULL if not set.
-        /// This will also return NULL if the specified down focusable view is not on stage.
+        /// The down focusable view.<br>
+        /// This will return NULL if not set.<br>
+        /// This will also return NULL if the specified down focusable view is not on stage.<br>
         /// </summary>
         public View DownFocusableView
         {

@@ -20,19 +20,19 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// This class will be deprecated.
-    /// CameraActor controls a camera. 
-    /// Allows the developer to use actor semantics to control a camera. 
-    /// NUI has a concept of a camera to display its virtual 3D world to a 2D screen.
-    /// There are 2 ways of using the camera in NUI: 
+    /// This class will be deprecated.<br>
+    /// CameraActor controls a camera.<br>
+    /// Allows the developer to use actor semantics to control a camera.<br>
+    /// NUI has a concept of a camera to display its virtual 3D world to a 2D screen.<br>
+    /// There are 2 ways of using the camera in NUI:<br>
     /// - For 2D applications, you do not need to care about the camera at all. The default camera is already best suited for 2D applications
-    /// (configured to have the origin of the coordinate system at the top-left corner of the screen, and unit 1 as 1 pixel of the screen). This is a typical way.
-    /// - For 3D applications, you can change the view by manipulating the camera.You can translate or rotate the camera in this case.
-    /// Note that the top-left corner of the screen and unit 1 no longer are (0,0,0) and 1 pixel after manipulating the camera.
-    /// There are two types of camera actor, FreeLook and LookAtTarget By default, the camera actor will be FreeLook. 
-    /// - A FreeLook camera uses actor's orientation to control where the camera is looking.
-    /// If no additional rotations are specified, the camera looks in the negative Z direction.
-    /// - For LookAtTarget, the actor's orientation is ignored, instead the camera looks at TargetPosition in world coordinates.
+    /// (configured to have the origin of the coordinate system at the top-left corner of the screen, and unit 1 as 1 pixel of the screen). This is a typical way.<br>
+    /// - For 3D applications, you can change the view by manipulating the camera.You can translate or rotate the camera in this case.<br>
+    /// Note that the top-left corner of the screen and unit 1 no longer are (0,0,0) and 1 pixel after manipulating the camera.<br>
+    /// There are two types of camera actor, FreeLook and LookAtTarget By default, the camera actor will be FreeLook.<br>
+    /// - A FreeLook camera uses actor's orientation to control where the camera is looking.<br>
+    /// If no additional rotations are specified, the camera looks in the negative Z direction.<br>
+    /// - For LookAtTarget, the actor's orientation is ignored, instead the camera looks at TargetPosition in world coordinates.<br>
     /// /// </summary>
     public class CameraActor : Actor
     {
@@ -151,8 +151,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a CameraActor object.
-        /// Sets the default camera perspective projection for the given canvas size
+        /// Creates a CameraActor object.<br>
+        /// Sets the default camera perspective projection for the given canvas size.<br>
         /// </summary>
         /// <param name="size">The canvas size</param>
         public CameraActor(Size2D size) : this(NDalicPINVOKE.CameraActor_New__SWIG_1(Size2D.getCPtr(size)), true)
@@ -162,9 +162,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to CameraActor handle.
-        /// If handle points to a CameraActor, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to CameraActor handle.<br>
+        /// If handle points to a CameraActor, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">to An object</param>
         /// <returns>Handle to a CameraActor or an uninitialized handle</returns>
@@ -378,7 +378,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets near plane distance
+        /// Gets/Sets near plane distance.
         /// </summary>
         public float NearPlaneDistance
         {
@@ -395,7 +395,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets far plane distance
+        /// Gets/Sets far plane distance.
         /// </summary>
         public float FarPlaneDistance
         {
@@ -412,7 +412,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets left plane distance
+        /// Gets/Sets left plane distance.
         /// </summary>
         public float LeftPlaneDistance
         {
@@ -429,7 +429,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets right plane distance
+        /// Gets/Sets right plane distance.
         /// </summary>
         public float RightPlaneDistance
         {
@@ -446,7 +446,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets top plane distance
+        /// Gets/Sets top plane distance.
         /// </summary>
         public float TopPlaneDistance
         {
@@ -463,7 +463,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets bottom plane distance
+        /// Gets/Sets bottom plane distance.
         /// </summary>
         public float BottomPlaneDistance
         {
@@ -535,9 +535,9 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for type determination of how camera operates.
-    /// FreeLook : Camera orientation is taken from CameraActor
-    /// LookAtTarget : Camera is oriented to always look at a target
+    /// Enumeration for type determination of how camera operates.<br>
+    /// FreeLook : Camera orientation is taken from CameraActor.<br>
+    /// LookAtTarget : Camera is oriented to always look at a target.<br>
     /// </summary>
     public enum CameraType
     {
@@ -546,9 +546,9 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for projection modes.
-    /// PerspectiveProjection : Distance causes foreshortening; objects further from the camera appear smaller
-    /// OrthographicProjection : Relative distance from the camera does not affect the size of objects
+    /// Enumeration for projection modes.<br>
+    /// PerspectiveProjection : Distance causes foreshortening; objects further from the camera appear smaller.<br>
+    /// OrthographicProjection : Relative distance from the camera does not affect the size of objects.<br>
     /// </summary>
     public enum ProjectionMode
     {

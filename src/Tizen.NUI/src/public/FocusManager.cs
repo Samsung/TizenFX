@@ -24,9 +24,9 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Provides the functionality of handling keyboard navigation and maintaining the two dimensional keyboard focus chain.
-    /// It provides functionality of setting the focus and moving the focus in four directions(i.e.Left, Right, Up and Down).
-    /// It also draws a highlight for the focused View and sends a event when the focus is changed.
+    /// Provides the functionality of handling keyboard navigation and maintaining the two dimensional keyboard focus chain.<br>
+    /// It provides functionality of setting the focus and moving the focus in four directions(i.e.Left, Right, Up and Down).<br>
+    /// It also draws a highlight for the focused View and sends a event when the focus is changed.<br>
     /// </summary>
     public class FocusManager : BaseHandle
     {
@@ -127,6 +127,13 @@ namespace Tizen.NUI
         internal delegate IntPtr PreFocusChangeEventCallback(IntPtr current, IntPtr proposed, View.FocusDirection direction);
         private PreFocusChangeEventCallback _preFocusChangeCallback;
 
+        /// <summary>
+        /// PreFocusChange will be triggered before the focus is going to be changed.<br>
+        /// FocusManager makes the best guess for which actor to focus towards the given direction, but applications might want to change that.<br>
+        /// By connecting with this event, they can check the proposed actor to focus and return a different actor if they wish.<br>
+        /// This event is only triggered when the navigation key is pressed and KeyboardFocusManager tries to move the focus automatically.<br>
+        /// It won't be emitted for focus movement by calling SetCurrentFocusView directly.<br>
+        /// </summary>
         public event EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> PreFocusChange
         {
             add
@@ -190,7 +197,7 @@ namespace Tizen.NUI
         }
 
         ///<summary>
-        ///Event arguments that passed via FocusChanged signal
+        ///Event arguments that passed via FocusChanged signal.
         /// </summary>
         public class FocusChangedEventArgs : EventArgs
         {
@@ -227,6 +234,9 @@ namespace Tizen.NUI
         internal delegate void FocusChangedEventCallback(IntPtr current, IntPtr next);
         private FocusChangedEventCallback _focusChangedEventCallback;
 
+        /// <summary>
+        /// FocusGroupChanged will be triggered after the current focused actor has been changed.
+        /// </summary>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
@@ -263,7 +273,7 @@ namespace Tizen.NUI
         }
 
         ///<summary>
-        ///Event arguments that passed via FocusGroupChanged signal
+        ///Event arguments that passed via FocusGroupChanged signal.
         /// </summary>
         public class FocusGroupChangedEventArgs : EventArgs
         {
@@ -300,6 +310,11 @@ namespace Tizen.NUI
         private delegate void FocusGroupChangedEventCallback(IntPtr current, bool forwardDirection);
         private FocusGroupChangedEventCallback _focusGroupChangedEventCallback;
 
+        /// <summary>
+        /// FocusGroupChanged will be triggered when the focus group has been changed.<br>
+        /// If the current focus group has a parent layout control, FocusManager will make the best guess for the next focus group to move the focus to in the given direction (forward or backward).<br>
+        /// If not, the application has to set the new focus.<br>
+        /// </summary>
         public event EventHandler<FocusGroupChangedEventArgs> FocusGroupChanged
         {
             add
@@ -360,6 +375,9 @@ namespace Tizen.NUI
         private delegate void FocusedViewEnterKeyEventCallback(IntPtr view);
         private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
 
+        /// <summary>
+        /// FocusedViewEnterKeyPressed will be triggered when the current focused actor has the enter key pressed on it.
+        /// </summary>
         public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
         {
             add
@@ -408,9 +426,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Moves the keyboard focus to the given View.
-        /// Only one View can be focused at the same time.
-        /// The View must be in the stage already and keyboard focusable.
+        /// Moves the keyboard focus to the given View.<br>
+        /// Only one View can be focused at the same time.<br>
+        /// The View must be in the stage already and keyboard focusable.<br>
         /// </summary>
         /// <param name="view">The View to be focused</param>
         /// <returns>Whether the focus is successful or not</returns>
@@ -445,8 +463,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the focus from the current focused actor if any, so that no actor is focused in the focus chain.
-        /// It will emit FocusChanged event without current focused View.
+        /// Clears the focus from the current focused actor if any, so that no actor is focused in the focus chain.<br>
+        /// It will emit FocusChanged event without current focused View.<br>
         /// </summary>
         public void ClearFocus()
         {
@@ -455,8 +473,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets/Gets the status of whether the focus movement should be looped within the same focus group.
-        /// The focus movement is not looped by default.
+        /// Sets/Gets the status of whether the focus movement should be looped within the same focus group.<br>
+        /// The focus movement is not looped by default.<br>
         /// </summary>
         public bool FocusGroupLoop
         {
@@ -484,8 +502,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets whether an View is a focus group that can limit the scope of focus movement to its child actors in the focus chain.
-        /// Layout controls set themselves as focus groups by default.
+        /// Sets whether an View is a focus group that can limit the scope of focus movement to its child actors in the focus chain.<br>
+        /// Layout controls set themselves as focus groups by default.<br>
         /// </summary>
         /// <param name="view">The View to be set as a focus group</param>
         /// <param name="isFocusGroup">Whether to set the View as a focus group or not</param>
@@ -520,8 +538,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets/Gets the focus indicator View.
-        /// This will replace the default focus indicator view in FocusManager and will be added to the focused view as a highlight.
+        /// Sets/Gets the focus indicator View.<br>
+        /// This will replace the default focus indicator view in FocusManager and will be added to the focused view as a highlight.<br>
         /// </summary>
         public View FocusIndicator
         {
@@ -548,6 +566,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Provide the implementation of custom Focus algorithm interface to allow the app define the focus logic.<br>
+        /// </summary>
+        /// <param name="arg0">The user's implementation of ICustomFocusAlgorithm</param>
         public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
             _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
@@ -598,6 +620,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// ICustomFocusAlgorithm is used to provide custom keyboard focus algorithm for retrieving the next focusable actor.<br>
+        /// The application can implement the interface and override the keyboard focus behaviour.<br>
+        /// If focus is changing within a layout container, then the layout container is queried first to provide the next focusable actor.<br>
+        /// If this does not provide a valid actor, then the Keyboard FocusManager will check focusable properties to determine next focusable actor.<br>
+        /// If focusable properties are not set, then the Keyboard FocusManager calls the GetNextFocusableActor() method of this interface.<br>
+        /// </summary>
         public interface ICustomFocusAlgorithm
         {
             View GetNextFocusableActor(View current, View proposed, View.FocusDirection direction);

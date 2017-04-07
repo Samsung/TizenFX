@@ -12,13 +12,13 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A PanGesture is emitted when the user moves one or more fingers in a particular direction.
-    /// A pan gesture will end in the following ways:
-    /// - User releases the primary finger (the first touch).
-    /// - User has more fingers on the screen than the maximum specified.
-    /// - User has less fingers on the screen than the minimum specified.
-    /// - Cancelled by the system.
-    /// A pan gesture will continue to be sent to the actor under than initial pan until it ends.
+    /// A PanGesture is emitted when the user moves one or more fingers in a particular direction.<br>
+    /// A pan gesture will end in the following ways:<br>
+    /// - User releases the primary finger (the first touch).<br>
+    /// - User has more fingers on the screen than the maximum specified.<br>
+    /// - User has less fingers on the screen than the minimum specified.<br>
+    /// - Cancelled by the system.<br>
+    /// A pan gesture will continue to be sent to the actor under than initial pan until it ends.<br>
     /// </summary>
     public class PanGesture : Gesture
     {
@@ -72,10 +72,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The velocity at which the user is moving their fingers.
-        /// This is represented as a Vector2 and is the pixel movement per millisecond.
-        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.
-        /// A positive y value shows that the user is panning downwards, a negative y values means upwards.
+        /// The velocity at which the user is moving their fingers.<br>
+        /// This is represented as a Vector2 and is the pixel movement per millisecond.<br>
+        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
+        /// A positive y value shows that the user is panning downwards, a negative y values means upwards.<br>
         /// </summary>
         public Vector2 Velocity
         {
@@ -87,9 +87,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// This is a Vector2 showing how much the user has panned (dragged) since the last pan gesture or,
-        /// if the gesture has just started, then the amount panned since the user touched the screen.
-        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.
-        /// A positive y value shows that the user is panning downwards, a negative y value means upwards.
+        /// if the gesture has just started, then the amount panned since the user touched the screen.<br>
+        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
+        /// A positive y value shows that the user is panning downwards, a negative y value means upwards.<br>
         /// </summary>
         public Vector2 Displacement
         {
@@ -111,11 +111,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The velocity at which the user is moving their fingers.
-        /// This is represented as a Vector2 and is the pixel movement per millisecond.
-        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.
-        /// A positive y value shows that the user is panning downwards, a negative y values means upwards.
-        /// This value represents the screen coordinates.
+        /// The velocity at which the user is moving their fingers.<br>
+        /// This is represented as a Vector2 and is the pixel movement per millisecond.<br>
+        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
+        /// A positive y value shows that the user is panning downwards, a negative y values means upwards.<br>
+        /// This value represents the screen coordinates.<br>
         /// </summary>
         public Vector2 ScreenVelocity
         {
@@ -127,10 +127,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// This is a Vector2 showing how much the user has panned (dragged) since the last pan gesture or,
-        /// if the gesture has just started, then the amount panned since the user touched the screen.
-        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.
-        /// A positive y value shows that the user is panning downwards, a negative y value means upwards.
-        /// This value is in screen coordinates.
+        /// if the gesture has just started, then the amount panned since the user touched the screen.<br>
+        /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
+        /// A positive y value shows that the user is panning downwards, a negative y value means upwards.<br>
+        /// This value is in screen coordinates.<br>
         /// </summary>
         public Vector2 ScreenDisplacement
         {
@@ -312,8 +312,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the speed at which the user is moving their fingers.
-        /// This is the pixel movement per millisecond.
+        /// Returns the speed at which the user is moving their fingers.<br>
+        /// This is the pixel movement per millisecond.<br>
         /// </summary>
         /// <returns>The speed of the pan (in pixels per millisecond)</returns>
         public float GetSpeed()
@@ -325,8 +325,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// This returns the distance the user has panned (dragged) since the last pan gesture or,
-        /// if the gesture has just started, then the distance moved since the user touched the screen.
-        /// This is always a positive value.
+        /// if the gesture has just started, then the distance moved since the user touched the screen.<br>
+        /// This is always a positive value.<br>
         /// </summary>
         /// <returns>The distance, as a float, a user's finger has panned</returns>
         public float GetDistance()
@@ -337,8 +337,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the speed at which the user is moving their fingers relative to screen coordinates.
-        /// This is the pixel movement per millisecond.
+        /// Returns the speed at which the user is moving their fingers relative to screen coordinates.<br>
+        /// This is the pixel movement per millisecond.<br>
         /// </summary>
         /// <returns>The speed of the pan (in pixels per millisecond)</returns>
         public float GetScreenSpeed()
@@ -351,8 +351,8 @@ namespace Tizen.NUI
         /// <summary>
         /// This returns the distance the user has panned (dragged) since the last pan gesture in screen
         /// coordinates or, if the gesture has just started, then the distance in screen coordinates moved
-        /// since the user touched the screen.
-        /// This is always a positive value.
+        /// since the user touched the screen.<br>
+        /// This is always a positive value.<br>
         /// </summary>
         /// <returns>The distance, as a float, a user's finger has panned</returns>
         public float GetScreenDistance()

@@ -108,8 +108,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Event for Finished signal which can be used to subscribe/unsubscribe the event handler
-        /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.
-        /// Finished signal is emitted when a video playback have finished.
+        /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.<br>
+        /// Finished signal is emitted when a video playback have finished.<br>
         /// </summary>
         public event EventHandler<FinishedEventArgs> Finished
         {
@@ -215,8 +215,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an initialized VideoView.
-        /// If the string is empty, VideoView will not display anything.
+        /// Creates an initialized VideoView.<br>
+        /// If the string is empty, VideoView will not display anything.<br>
         /// </summary>
         /// <param name="url">The url of the video resource to display</param>
         public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
@@ -237,9 +237,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to VideoView handle.
-        /// If handle points to a VideoView, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to VideoView handle.<br>
+        /// If handle points to a VideoView, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a VideoView or an uninitialized handle</returns>

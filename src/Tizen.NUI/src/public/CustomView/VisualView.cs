@@ -21,17 +21,17 @@ namespace Tizen.NUI
     using System.Linq;
 
     /// <summary>
-    /// A visual view control for user add any visual to it.
-    /// Example:
-    /// VisualView _visualView = new VisualView();
-    /// ImageVisualMap imageVisualMap1 = new ImageVisualMap();
-    /// imageVisualMap1.URL = "./NUISample/res/images/image-1.jpg";
-    /// imageVisualMap1.VisualSize = new Vector2( 300.0f, 300.0f );
-    /// imageVisualMap1.Offset = new Vector2( 50.0f, 50.0f );
-    /// imageVisualMap1.OffsetSizeMode = new Vector4( 1.0f, 1.0f, 1.0f, 1.0f );
-    /// imageVisualMap1.Origin = AlignType.TOP_BEGIN;
-    /// imageVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
-    /// _visualView.AddVisual("imageVisual1", imageVisualMap1);
+    /// A visual view control for user add any visual to it.<br>
+    /// Example:<br>
+    /// VisualView _visualView = new VisualView();<br>
+    /// ImageVisualMap imageVisualMap1 = new ImageVisualMap();<br>
+    /// imageVisualMap1.URL = "./NUISample/res/images/image-1.jpg";<br>
+    /// imageVisualMap1.VisualSize = new Vector2( 300.0f, 300.0f );<br>
+    /// imageVisualMap1.Offset = new Vector2( 50.0f, 50.0f );<br>
+    /// imageVisualMap1.OffsetSizeMode = new Vector4( 1.0f, 1.0f, 1.0f, 1.0f );<br>
+    /// imageVisualMap1.Origin = AlignType.TOP_BEGIN;<br>
+    /// imageVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;<br>
+    /// _visualView.AddVisual("imageVisual1", imageVisualMap1);<br>
     /// </summary>
     public class VisualView : CustomView
     {
@@ -134,9 +134,9 @@ namespace Tizen.NUI
         public int NumberOfVisuals
         {
             get
-        {
-            return _visualDictionary.Count;
-        }
+            {
+                return _visualDictionary.Count;
+            }
         }
 
 
@@ -149,11 +149,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of OnRelayout() for CustomView class.
-        /// Called after the size negotiation has been finished for this control.
-        /// The control is expected to assign this given size to itself/its children.
-        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.
-        /// Note! As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored)
+        /// Override method of OnRelayout() for CustomView class.<br>
+        /// Called after the size negotiation has been finished for this control.<br>
+        /// The control is expected to assign this given size to itself/its children.<br>
+        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.<br>
+        /// Note! As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br>
         /// </summary>
         /// <param name="size">The allocated size</param>
         /// <param name="container">The control should add actors to this container that it is not able to allocate a size for.</param>

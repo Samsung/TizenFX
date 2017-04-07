@@ -408,9 +408,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to Popup handle.
-        /// If handle points to a Popup, the downcast produces valid handle.
-        /// If not the returned handle is left uninitialized.
+        /// Downcasts a handle to Popup handle.<br>
+        /// If handle points to a Popup, the downcast produces valid handle.<br>
+        /// If not the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>handle to a Popup or an uninitialized handle</returns>
@@ -473,20 +473,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the display state of Popup.
-        /// There are 4 total display states.
-        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.
-        ///
-        /// The other two states are getable, but not setable and are there for consistency.
-        ///
-        /// | Value    | Setting the state              | Getting the state              |
-        /// |----------|--------------------------------|--------------------------------|
-        /// | SHOWN    | Show the popup                 | The popup is fully shown       |
-        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |
-        /// | SHOWING  |                                | The popup is transitioning in  |
-        /// | HIDING   |                                | The popup is transitioning out |
-        ///
-        /// All 4 state changes cause notifications via 4 respective signals that can be connected to.
+        /// Sets the display state of Popup.<br>
+        /// There are 4 total display states.<br>
+        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br>
+        /// <br>
+        /// The other two states are getable, but not setable and are there for consistency.<br>
+        /// <br>
+        /// | Value    | Setting the state              | Getting the state              |<br>
+        /// |----------|--------------------------------|--------------------------------|<br>
+        /// | SHOWN    | Show the popup                 | The popup is fully shown       |<br>
+        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |<br>
+        /// | SHOWING  |                                | The popup is transitioning in  |<br>
+        /// | HIDING   |                                | The popup is transitioning out |<br>
+        /// <br>
+        /// All 4 state changes cause notifications via 4 respective signals that can be connected to.<br>
         /// </summary>
         /// <param name="displayState">The desired display state to change to</param>
         public void SetDisplayState(Popup.DisplayStateType displayState)
@@ -555,8 +555,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The animation mode within popup.
-        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.
+        /// The animation mode within popup.<br>
+        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.<br>
         /// </summary>
         public enum AnimationModeType
         {
@@ -567,9 +567,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Types of contextual layout.
-        /// The Popup is positioned adjacent to it's parent in the direction specified by this mode.
-        /// NON_CONTEXTUAL disables any contextual positioning.
+        /// Types of contextual layout.<br>
+        /// The Popup is positioned adjacent to it's parent in the direction specified by this mode.<br>
+        /// NON_CONTEXTUAL disables any contextual positioning.<br>
         /// </summary>
         public enum ContextualModeType
         {
@@ -581,7 +581,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Popup title
+        /// Popup title.
         /// </summary>
         public PropertyMap Title
         {
@@ -597,7 +597,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Popup content
+        /// Popup content.
         /// </summary>
         public PropertyMap Content
         {
@@ -613,7 +613,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Popup footer
+        /// Popup footer.
         /// </summary>
         public PropertyMap Footer
         {
@@ -629,7 +629,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Popup display state
+        /// Popup display state.
         /// </summary>
         public string DisplayState
         {
@@ -645,7 +645,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Touch transparent
+        /// Touch transparent.
         /// </summary>
         public bool TouchTransparent
         {
@@ -661,7 +661,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Popup tail visibility
+        /// Popup tail visibility.
         /// </summary>
         public bool TailVisibility
         {
@@ -677,7 +677,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Popup tail position
+        /// Popup tail position.
         /// </summary>
         public Vector3 TailPosition
         {
@@ -693,7 +693,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Contextual mode
+        /// Contextual mode.
         /// </summary>
         public string ContextualMode
         {
@@ -709,7 +709,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Animation duration
+        /// Animation duration.
         /// </summary>
         public float AnimationDuration
         {
@@ -725,7 +725,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Animation mode
+        /// Animation mode.
         /// </summary>
         public string AnimationMode
         {
@@ -741,7 +741,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Entry animation
+        /// Entry animation.
         /// </summary>
         public PropertyMap EntryAnimation
         {
@@ -757,7 +757,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Exit animation
+        /// Exit animation.
         /// </summary>
         public PropertyMap ExitAnimation
         {
@@ -773,7 +773,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Auto hide delay
+        /// Auto hide delay.
         /// </summary>
         public int AutoHideDelay
         {
@@ -789,7 +789,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Backing enabled
+        /// Backing enabled.
         /// </summary>
         public bool BackingEnabled
         {
@@ -805,7 +805,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Backing color
+        /// Backing color.
         /// </summary>
         public Vector4 BackingColor
         {
@@ -821,7 +821,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Background image
+        /// Background image.
         /// </summary>
         public string PopupBackgroundImage
         {
@@ -837,7 +837,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Background border
+        /// Background border.
         /// </summary>
         public Rectangle PopupBackgroundBorder
         {
@@ -853,7 +853,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Tail up image
+        /// Tail up image.
         /// </summary>
         public string TailUpImage
         {
@@ -869,7 +869,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Tail down image
+        /// Tail down image.
         /// </summary>
         public string TailDownImage
         {
@@ -885,7 +885,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Tail left image
+        /// Tail left image.
         /// </summary>
         public string TailLeftImage
         {
@@ -901,7 +901,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// Tail right image
+        /// Tail right image.
         /// </summary>
         public string TailRightImage
         {

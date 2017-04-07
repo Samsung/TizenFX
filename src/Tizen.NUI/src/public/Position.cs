@@ -808,6 +808,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Convert a position instance to a vector3 instance.
         /// </summary>
         public static implicit operator Vector3(Position Position)
         {
@@ -815,6 +816,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Convert a vector3 instance to a position instance.
         /// </summary>
         public static implicit operator Position(Vector3 vec)
         {
@@ -823,6 +825,9 @@ namespace Tizen.NUI
 
     }
 
+    /// <summary>
+    /// ParentOrigin constants.
+    /// </summary>
     public struct ParentOrigin
     {
         public static readonly float Top = Position.ParentOriginTop;
@@ -840,6 +845,10 @@ namespace Tizen.NUI
         public static readonly Position BottomCenter = Position.ParentOriginBottomCenter;
         public static readonly Position BottomRight = Position.ParentOriginBottomRight;
     }
+
+    /// <summary>
+    /// AnchorPoint constants.
+    /// </summary>
     public struct AnchorPoint
     {
         public static readonly float Top = Position.AnchorPointTop;
@@ -857,6 +866,10 @@ namespace Tizen.NUI
         public static readonly Position BottomCenter = Position.AnchorPointBottomCenter;
         public static readonly Position BottomRight = Position.AnchorPointBottomRight;
     }
+
+    /// <summary>
+    /// PositionAxis constants.
+    /// </summary>
     public struct PositionAxis
     {
         public static readonly Position X = Position.XAxis;

@@ -53,6 +53,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make ProgressBar instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())
@@ -257,9 +260,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to ProgressBar handle.
-        /// If handle points to a ProgressBar, the downcast produces valid handle.
-        /// If not the returned handle is left uninitialized.
+        /// Downcasts a handle to ProgressBar handle.<br>
+        /// If handle points to a ProgressBar, the downcast produces valid handle.<br>
+        /// If not the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>handle to a ProgressBar or an uninitialized handle</returns>
@@ -284,10 +287,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The progress value of progress bar, progress runs form 0 to 1.
-        /// If Value is set to 0, progress bar will be set to beginning.
-        /// If Value is set to 1, progress bar will be set to end.
-        /// Any Value outside of the range is ignored.
+        /// The progress value of progress bar, progress runs form 0 to 1.<br>
+        /// If Value is set to 0, progress bar will be set to beginning.<br>
+        /// If Value is set to 1, progress bar will be set to end.<br>
+        /// Any Value outside of the range is ignored.<br>
         /// </summary>
         public float ProgressValue
         {
@@ -303,11 +306,11 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The secondary progress value of progress bar, secondary progress runs form 0 to 1.
-        /// Optional. If not supplied, the default is 0.
-        /// If Value is set to 0, progress bar will be set secondary progress to beginning.
-        /// If Value is set to 1, progress bar will be set secondary progress to end.
-        /// Any Value outside of the range is ignored.
+        /// The secondary progress value of progress bar, secondary progress runs form 0 to 1.<br>
+        /// Optional. If not supplied, the default is 0.<br>
+        /// If Value is set to 0, progress bar will be set secondary progress to beginning.<br>
+        /// If Value is set to 1, progress bar will be set secondary progress to end.<br>
+        /// Any Value outside of the range is ignored.<br>
         /// </summary>
         public float SecondaryProgressValue
         {
@@ -339,8 +342,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The track Visual value of progress bar, it's a full progress area and it's shown behind PROGRESS_VISUAL.
-        /// Optional. If not supplied, the default track visual will be shown.
+        /// The track Visual value of progress bar, it's a full progress area and it's shown behind PROGRESS_VISUAL.<br>
+        /// Optional. If not supplied, the default track visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap TrackVisual
         {
@@ -356,8 +359,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The progress Visual value of progress bar, size of the progress visual is changed based on PROGRESS_VALUE.
-        /// Optional. If not supplied, the default progress visual will be shown.
+        /// The progress Visual value of progress bar, size of the progress visual is changed based on PROGRESS_VALUE.<br>
+        /// Optional. If not supplied, the default progress visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap ProgressVisual
         {
@@ -373,8 +376,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The secondary progress visual of progress bar, size of the secondary progress visual is changed based on SECONDARY_PROGRESS_VALUE.
-        /// Optional. If not supplied, the secondary progress visual will not be shown.
+        /// The secondary progress visual of progress bar, size of the secondary progress visual is changed based on SECONDARY_PROGRESS_VALUE.<br>
+        /// Optional. If not supplied, the secondary progress visual will not be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
@@ -390,8 +393,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The indeterminate visual of progress bar.
-        /// Optional. If not supplied, the default inditerminate visual will be shown.
+        /// The indeterminate visual of progress bar.<br>
+        /// Optional. If not supplied, the default inditerminate visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
@@ -407,8 +410,8 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// The transition data for indeterminate visual animation.
-        /// Optional. If not supplied, default animation will be played.
+        /// The transition data for indeterminate visual animation.<br>
+        /// Optional. If not supplied, default animation will be played.<br>
         /// </summary>
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {

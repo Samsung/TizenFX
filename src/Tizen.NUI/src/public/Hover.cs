@@ -12,9 +12,9 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Hover events are a collection of points at a specific moment in time.
+    /// Hover events are a collection of points at a specific moment in time.<br>
     /// When a multi event occurs, each point represents the points that are currently being
-    /// hovered or the points where a hover has stopped.
+    /// hovered or the points where a hover has stopped.<br>
     /// </summary>
     public class Hover : global::System.IDisposable
     {
@@ -80,9 +80,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the ID of the device used for the Point specified.
+        /// Returns the ID of the device used for the Point specified.<br>
         /// Each point has a unique device ID which specifies the device used for that
-        /// point. This is returned by this method.
+        /// point. This is returned by this method.<br>
         /// </summary>
         /// <param name="point">The point required</param>
         /// <returns>The Device ID of this poin</returns>

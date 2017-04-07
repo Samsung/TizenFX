@@ -85,27 +85,21 @@ namespace Tizen.NUI
             viewWrapperImpl.SetBackground(map);
         }
 
-        /**
-         * @brief Allows deriving classes to enable any of the gesture detectors that are available.
-         *
-         * Gesture detection can be enabled one at a time or in bitwise format as shown:
-         * @code
-         * EnableGestureDetection(Gesture.Type.Pinch | Gesture.Type.Tap | Gesture.Type.Pan));
-         * @endcode
-         * @param[in]  type  The gesture type(s) to enable.
-         */
+        /// <summary>
+        /// Allows deriving classes to enable any of the gesture detectors that are available.<br>
+        /// Gesture detection can be enabled one at a time or in bitwise format.<br>
+        /// </summary>
+        /// <param name="type">The gesture type(s) to enable</param>
         public void EnableGestureDetection(Gesture.GestureType type)
         {
             viewWrapperImpl.EnableGestureDetection(type);
         }
 
-        /**
-         * @brief Allows deriving classes to disable any of the gesture detectors.
-         *
-         * Like EnableGestureDetection, this can also be called using bitwise or.
-         * @param[in]  type  The gesture type(s) to disable.
-         * @see EnableGetureDetection
-         */
+        /// <summary>
+        /// Allows deriving classes to disable any of the gesture detectors.<br>
+        /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br>
+        /// </summary>
+        /// <param name="type">The gesture type(s) to disable</param>
         internal void DisableGestureDetection(Gesture.GestureType type)
         {
             viewWrapperImpl.DisableGestureDetection(type);
@@ -113,8 +107,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets whether this control supports two dimensional keyboard navigation
-        /// (i.e. whether it knows how to handle the keyboard focus movement between its child actors).
-        /// The control doesn't support it by default.
+        /// (i.e. whether it knows how to handle the keyboard focus movement between its child actors).<br>
+        /// The control doesn't support it by default.<br>
         /// </summary>
         /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
         public bool FocusNavigationSupport
@@ -134,12 +128,10 @@ namespace Tizen.NUI
             viewWrapperImpl.SetKeyboardNavigationSupport(isSupported);
         }
 
-
-        /**
-         * @brief Gets whether this control supports two dimensional keyboard navigation.
-         *
-         * @return true if this control supports two dimensional keyboard navigation.
-         */
+        /// <summary>
+        /// Gets whether this control supports two dimensional keyboard navigation.
+        /// </summary>
+        /// <returns>true if this control supports two dimensional keyboard navigation</returns>
         internal bool IsKeyboardNavigationSupported()
         {
             return viewWrapperImpl.IsKeyboardNavigationSupported();
@@ -162,32 +154,27 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-         * @brief Sets whether this control is a focus group for keyboard navigation.
-         *
-         * (i.e. the scope of keyboard focus movement
-         * can be limitied to its child actors). The control is not a focus group by default.
-         * @param[in] isFocusGroup Whether this control is set as a focus group for keyboard navigation.
-         */
+        /// <summary>
+        /// Sets whether this control is a focus group for keyboard navigation.
+        /// (i.e. the scope of keyboard focus movement can be limitied to its child actors). The control is not a focus group by default.
+        /// </summary>
+        /// <param name="isFocusGroup">Whether this control is set as a focus group for keyboard navigation</param>
         internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
         {
             viewWrapperImpl.SetAsFocusGroup(isFocusGroup);
         }
 
-        /**
-         * @brief Gets whether this control is a focus group for keyboard navigation.
-         *
-         * @return true if this control is set as a focus group for keyboard navigation.
-         */
+        /// <summary>
+        /// Gets whether this control is a focus group for keyboard navigation.
+        /// </summary>
         internal bool IsKeyboardFocusGroup()
         {
             return viewWrapperImpl.IsFocusGroup();
         }
 
-        /**
-         * @brief Called by the AccessibilityManager to activate the Control.
-         * @SINCE_1_0.0
-         */
+        /// <summary>
+        /// Called by the AccessibilityManager to activate the Control.
+        /// </summary>
         internal void AccessibilityActivate()
         {
             viewWrapperImpl.AccessibilityActivate();
@@ -211,628 +198,511 @@ namespace Tizen.NUI
             return viewWrapperImpl.EmitKeyEventSignal(key);
         }
 
-        /**
-         * @brief Request a relayout, which means performing a size negotiation on this actor, its parent and children (and potentially whole scene).
-         *
-         * This method can also be called from a derived class every time it needs a different size.
-         * At the end of event processing, the relayout process starts and
-         * all controls which requested Relayout will have their sizes (re)negotiated.
-         *
-         * @note RelayoutRequest() can be called multiple times; the size negotiation is still
-         * only performed once, i.e. there is no need to keep track of this in the calling side.
-         */
+        /// <summary>
+        /// Request a relayout, which means performing a size negotiation on this actor, its parent and children (and potentially whole scene).<br>
+        /// This method can also be called from a derived class every time it needs a different size.<br>
+        /// At the end of event processing, the relayout process starts and all controls which requested Relayout will have their sizes (re)negotiated.<br>
+        /// It can be called multiple times; the size negotiation is still only performed once, i.e. there is no need to keep track of this in the calling side.<br>
+        /// <summary>
         protected void RelayoutRequest()
         {
             viewWrapperImpl.RelayoutRequest();
         }
 
-        /**
-         * @brief Provides the Actor implementation of GetHeightForWidth.
-         * @param width Width to use.
-         * @return The height based on the width.
-         */
+        /// <summary>
+        /// Provides the Actor implementation of GetHeightForWidth.
+        /// <summary>
+        /// <param name="width">Width to use</param>
+        /// <returns>The height based on the width</returns>
         protected float GetHeightForWidthBase(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
         }
 
-        /**
-         * @brief Provides the Actor implementation of GetWidthForHeight.
-         * @param height Height to use.
-         * @return The width based on the height.
-         */
+        /// <summary>
+        /// Provides the Actor implementation of GetWidthForHeight.
+        /// </summary>
+        /// <param name="height">Height to use</param>
+        /// <returns>The width based on the height</returns>
         protected float GetWidthForHeightBase(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
         }
 
-        /**
-         * @brief Calculate the size for a child using the base actor object.
-         *
-         * @param[in] child The child actor to calculate the size for
-         * @param[in] dimension The dimension to calculate the size for. E.g. width or height
-         * @return Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.
-         */
+        /// <summary>
+        /// Calculate the size for a child using the base actor object.
+        /// </summary>
+        /// <param name="child">The child actor to calculate the size for</param>
+        /// <param name="dimension">The dimension to calculate the size for. E.g. width or height</param>
+        /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found</returns>
         protected float CalculateChildSizeBase(Actor child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
 
-        /**
-         * @brief Determine if this actor is dependent on it's children for relayout from the base class.
-         *
-         * @param dimension The dimension(s) to check for
-         * @return Return if the actor is dependent on it's children.
-         */
+        /// <summary>
+        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// </summary>
+        /// <param name="dimension">The dimension(s) to check for</param>
+        /// <returns>Return if the actor is dependent on it's children</returns>
         protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
-        /**
-         * @brief Determine if this actor is dependent on it's children for relayout from the base class.
-         *
-         * @param dimension The dimension(s) to check for
-         * @return Return if the actor is dependent on it's children.
-         */
+        /// <summary>
+        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// </summary>
+        /// <returns>Return if the actor is dependent on it's children</returns>
         protected bool RelayoutDependentOnChildrenBase()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
         }
 
-        /**
-         * @brief Register a visual by Property Index, linking an Actor to visual when required.
-         * In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.
-         * No parenting is done during registration, this should be done by derived class.
-         *
-         * @param[in] index The Property index of the visual, used to reference visual
-         * @param[in] visual The visual to register
-         * @note Derived class should not call visual.SetOnStage(actor). It is the responsibility of the base class to connect/disconnect registered visual to stage.
-         *       Use below API with enabled set to false if derived class wishes to control when visual is staged.
-         */
+        /// <summary>
+        /// Register a visual by Property Index, linking an Actor to visual when required.<br>
+        /// In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.<br>
+        /// No parenting is done during registration, this should be done by derived class.<br>
+        /// </summary>
+        /// <param name="index">The Property index of the visual, used to reference visual</param>
+        /// <param name="visual">The visual to register</param>
         protected void RegisterVisual(int index, VisualBase visual)
         {
             viewWrapperImpl.RegisterVisual(index, visual);
         }
 
-        /**
-         * @brief Register a visual by Property Index, linking an Actor to visual when required.
-         * In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.
-         * If enabled is false then the visual is not set on stage until enabled by the derived class.
-         * @see EnableVisual
-         *
-         * @param[in] index The Property index of the visual, used to reference visual
-         * @param[in] visual The visual to register
-         * @param[in] enabled false if derived class wants to control when visual is set on stage.
-         *
-         */
+        /// <summary>
+        /// Register a visual by Property Index, linking an Actor to visual when required.<br>
+        /// In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.<br>
+        /// If enabled is false then the visual is not set on stage until enabled by the derived class.<br>
+        /// </summary>
+        /// <param name="index">The Property index of the visual, used to reference visual</param>
+        /// <param name="visual">The visual to register</param>
+        /// <param name="enabled">false if derived class wants to control when visual is set on stage</param>
         protected void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
             viewWrapperImpl.RegisterVisual(index, visual, enabled);
         }
 
-        /**
-         * @brief Erase the entry matching the given index from the list of registered visuals
-         * @param[in] index The Property index of the visual, used to reference visual
-         *
-         */
+        /// <summary>
+        /// Erase the entry matching the given index from the list of registered visuals.
+        /// </summary>
+        /// <param name="index">The Property index of the visual, used to reference visual</param>
         protected void UnregisterVisual(int index)
         {
             viewWrapperImpl.UnregisterVisual(index);
         }
 
-        /**
-         * @brief Retrieve the visual associated with the given property index.
-         *
-         * @param[in] index The Property index of the visual.
-         * @return The registered visual if exist, otherwise empty handle.
-         * @note For managing object life-cycle, do not store the returned visual as a member which increments its reference count.
-         */
+        /// <summary>
+        /// Retrieve the visual associated with the given property index.<br>
+        /// For managing object life-cycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// </summary>
+        /// <param name="index">The Property index of the visual, used to reference visual</param>
+        /// <returns>The registered visual if exist, otherwise empty handle</returns>
         protected VisualBase GetVisual(int index)
         {
             return viewWrapperImpl.GetVisual(index);
         }
 
-        /**
-         * @brief Sets the given visual to be displayed or not when parent staged.
-         *
-         * @param[in] index The Property index of the visual
-         * @param[in] enable flag to set enabled or disabled.
-         */
+        /// <summary>
+        /// Sets the given visual to be displayed or not when parent staged.<br>
+        /// For managing object life-cycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// </summary>
+        /// <param name="index">The Property index of the visual, used to reference visual</param>
+        /// <param name="enable">flag to set enabled or disabled</param>
         protected void EnableVisual(int index, bool enable)
         {
             viewWrapperImpl.EnableVisual(index, enable);
         }
 
-        /**
-         * @brief Queries if the given visual is to be displayed when parent staged.
-         *
-         * @param[in] index The Property index of the visual
-         * @return bool whether visual is enabled or not
-         */
+        /// <summary>
+        /// Queries if the given visual is to be displayed when parent staged.<br>
+        /// For managing object life-cycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// </summary>
+        /// <param name="index">The Property index of the visual</param>
+        /// <returns>Whether visual is enabled or not</returns>
         protected bool IsVisualEnabled(int index)
         {
             return viewWrapperImpl.IsVisualEnabled(index);
         }
 
-        /**
-         * @brief Create a transition effect on the control.
-         *
-         * @param[in] transitionData The transition data describing the effect to create
-         * @return A handle to an animation defined with the given effect, or an empty
-         * handle if no properties match.
-         */
+        /// <summary>
+        /// Create a transition effect on the control.
+        /// </summary>
+        /// <param name="transitionData">transitionData The transition data describing the effect to create</param>
+        /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match </returns>
         protected Animation CreateTransition(TransitionData transitionData)
         {
             return viewWrapperImpl.CreateTransition(transitionData);
         }
 
-        /**
-         * @brief Emits KeyInputFocusGained signal if true else emits KeyInputFocusLost signal
-         *
-         * Should be called last by the control after it acts on the Input Focus change.
-         *
-         * @param[in] focusGained True if gained, False if lost
-         */
+        /// <summary>
+        /// Emits KeyInputFocusGained signal if true else emits KeyInputFocusLost signal.<br>
+        /// Should be called last by the control after it acts on the Input Focus change.<br>
+        /// </summary>
+        /// <param name="focusGained">focusGained True if gained, False if lost</param>
         protected void EmitFocusSignal(bool focusGained)
         {
             viewWrapperImpl.EmitFocusSignal(focusGained);
         }
 
-        /**
-         * @brief This method is called after the Control has been initialized.
-         *
-         * Derived classes should do any second phase initialization by overriding this method.
-         */
+        /// <summary>
+        /// This method is called after the Control has been initialized.<br>
+        /// Derived classes should do any second phase initialization by overriding this method.<br>
+        /// </summary>
         public virtual void OnInitialize()
         {
         }
 
-        /**
-         * @brief Called after the actor has been connected to the stage.
-         *
-         * When an actor is connected, it will be directly or indirectly parented to the root Actor.
-         * @param[in] depth The depth in the hierarchy for the actor
-         *
-         * @note The root Actor is provided automatically by Dali::Stage, and is always considered to be connected.
-         * When the parent of a set of actors is connected to the stage, then all of the children
-         * will received this callback.
-         * For the following actor tree, the callback order will be A, B, D, E, C, and finally F.
-         *
-         * @code
-         *
-         *       A (parent)
-         *      / \
-         *     B   C
-         *    / \   \
-         *   D   E   F
-         *
-         * @endcode
-         * @param[in] depth The depth in the hierarchy for the actor
-         */
+        /// <summary>
+        /// Called after the actor has been connected to the stage.<br>
+        /// When an actor is connected, it will be directly or indirectly parented to the root Actor.<br>
+        /// The root Actor is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
+        /// When the parent of a set of actors is connected to the stage, then all of the children will received this callback.<br>
+        /// </summary>
+        /// <param name="depth">The depth in the hierarchy for the actor</param>
         public virtual void OnStageConnection(int depth)
         {
         }
 
-        /**
-         * @brief Called after the actor has been disconnected from Stage.
-         *
-         * If an actor is disconnected it either has no parent, or is parented to a disconnected actor.
-         *
-         * @note When the parent of a set of actors is disconnected to the stage, then all of the children
-         * will received this callback, starting with the leaf actors.
-         * For the following actor tree, the callback order will be D, E, B, F, C, and finally A.
-         *
-         * @code
-         *
-         *       A (parent)
-         *      / \
-         *     B   C
-         *    / \   \
-         *   D   E   F
-         *
-         * @endcode
-         */
+        /// <summary>
+        /// Called after the actor has been disconnected from Stage.<br>
+        /// If an actor is disconnected it either has no parent, or is parented to a disconnected actor.<br>
+        /// When the parent of a set of actors is disconnected to the stage, then all of the children will received this callback, starting with the leaf actors.<br>
+        /// </summary>
         public virtual void OnStageDisconnection()
         {
         }
 
-        /**
-         * @brief Called after a child has been added to the owning actor.
-         *
-         * @param[in] child The child which has been added
-         */
+        /// <summary>
+        /// Called after a child has been added to the owning actor.
+        /// </summary>
+        /// <param name="actor">The child which has been added</param>
         public virtual void OnChildAdd(Actor actor)
         {
         }
 
-        /**
-         * @brief Called after the owning actor has attempted to remove a child( regardless of whether it succeeded or not ).
-         *
-         * @param[in] child The child being removed
-         */
+        /// <summary>
+        /// Called after the owning actor has attempted to remove a child( regardless of whether it succeeded or not ).
+        /// </summary>
+        /// <param name="actor">The child being removed</param>
         public virtual void OnChildRemove(Actor actor)
         {
         }
 
-        /**
-         * @brief Called when the owning actor property is set.
-         *
-         * @param[in] index The Property index that was set
-         * @param[in] propertyValue The value to set
-         */
+        /// <summary>
+        /// Called when the owning actor property is set.
+        /// </summary>
+        /// <param name="index">The Property index that was set</param>
+        /// <param name="propertyValue">The value to set</param>
         public virtual void OnPropertySet(int index, Tizen.NUI.PropertyValue propertyValue)
         {
         }
 
-        /**
-         * @brief Called when the owning actor's size is set e.g. using Actor::SetSize().
-         *
-         * @param[in] targetSize The target size. Note that this target size may not match the size returned via Actor.GetTargetSize.
-         */
+        /// <summary>
+        /// Called when the owning actor's size is set e.g. using Actor.SetSize().
+        /// </summary>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via Actor.GetTargetSize</param>
         public virtual void OnSizeSet(Vector3 targetSize)
         {
         }
 
-        /**
-         * @brief Called when the owning actor's size is animated e.g. using Animation::AnimateTo( Property( actor, Actor::Property::SIZE ), ... ).
-         *
-         * @param[in] animation The object which is animating the owning actor.
-         * @param[in] targetSize The target size. Note that this target size may not match the size returned via @ref Actor.GetTargetSize.
-         */
+        /// <summary>
+        /// Called when the owning actor's size is animated e.g. using Animation::AnimateTo( Property( actor, Actor::Property::SIZE ), ... ).
+        /// </summary>
+        /// <param name="animation">The object which is animating the owning actor</param>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via @ref Actor.GetTargetSize</param>
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
         }
 
-        /**
-         * @DEPRECATED_1_1.37 Connect to TouchSignal() instead.
-         *
-         * @brief Called after a touch-event is received by the owning actor.
-         *
-         * @param[in] touch The touch event
-         * @return True if the event should be consumed.
-         * @note CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).
-         */
+        /// <summary>
+        /// Called after a touch-event is received by the owning actor.<br>
+        /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// </summary>
+        /// <param name="touch">The touch event</param>
+        /// <returns>True if the event should be consumed</returns>
         public virtual bool OnTouch(Touch touch)
         {
             return false; // Do not consume
         }
 
-        /**
-         * @brief Called after a hover-event is received by the owning actor.
-         *
-         * @param[in] hover The hover event
-         * @return True if the hover event should be consumed.
-         * @note CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).
-         */
+        /// <summary>
+        /// Called after a hover-event is received by the owning actor.<br>
+        /// CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// </summary>
+        /// <param name="hover">The hover event</param>
+        /// <returns>True if the hover event should be consumed</returns>
         public virtual bool OnHover(Hover hover)
         {
             return false; // Do not consume
         }
 
-        /**
-         * @brief Called after a key-event is received by the actor that has had its focus set.
-         *
-         * @param[in] key the Key Event
-         * @return True if the event should be consumed.
-         */
+        /// <summary>
+        /// Called after a key-event is received by the actor that has had its focus set.
+        /// </summary>
+        /// <param name="key">The key event</param>
+        /// <returns>True if the key event should be consumed</returns>
         public virtual bool OnKey(Key key)
         {
             return false; // Do not consume
         }
 
-        /**
-         * @brief Called after a wheel-event is received by the owning actor.
-         *
-         * @param[in] wheel The wheel event
-         * @return True if the event should be consumed.
-         * @note CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).
-         */
+        /// <summary>
+        /// Called after a wheel-event is received by the owning actor.<br>
+        /// CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// </summary>
+        /// <param name="wheel">The wheel event</param>
+        /// <returns>True if the wheel event should be consumed</returns>
         public virtual bool OnWheel(Wheel wheel)
         {
             return false; // Do not consume
         }
 
-        /**
-         * @brief Called after the size negotiation has been finished for this control.
-         *
-         * The control is expected to assign this given size to itself/its children.
-         *
-         * Should be overridden by derived classes if they need to layout
-         * actors differently after certain operations like add or remove
-         * actors, resize or after changing specific properties.
-         *
-         * @param[in]      size       The allocated size.
-         * @param[in,out]  container  The control should add actors to this container that it is not able
-         *                            to allocate a size for.
-         * @note  As this function is called from inside the size negotiation algorithm, you cannot
-         * call RequestRelayout (the call would just be ignored).
-         */
+        /// <summary>
+        /// Called after the size negotiation has been finished for this control.<br>
+        /// The control is expected to assign this given size to itself/its children.<br>
+        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.<br>
+        /// As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br>
+        /// </summary>
+        /// <param name="size">The allocated size</param>
+        /// <param name="container">The control should add actors to this container that it is not able to allocate a size for</param>
         public virtual void OnRelayout(Vector2 size, RelayoutContainer container)
         {
         }
 
-        /**
-         * @brief Notification for deriving classes
-         *
-         * @param[in] policy The policy being set
-         * @param[in] dimension The dimension the policy is being set for
-         */
+        /// <summary>
+        /// Notification for deriving classes.
+        /// </summary>
+        /// <param name="policy">policy The policy being set</param>
+        /// <param name="dimension">dimension The dimension the policy is being set for</param>
         public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
         }
 
-        /**
-         * @brief Return the natural size of the actor.
-         *
-         * @return The actor's natural size
-         */
+        /// <summary>
+        /// Return the natural size of the actor.
+        /// </summary>
+        /// <returns>The actor's natural size</returns>
         public virtual Size GetNaturalSize()
         {
             return new Size(0.0f, 0.0f, 0.0f);
         }
 
-        /**
-         * @brief Calculate the size for a child.
-         *
-         * @param[in] child The child actor to calculate the size for
-         * @param[in] dimension The dimension to calculate the size for. E.g. width or height.
-         * @return Return the calculated size for the given dimension.
-         */
+        /// <summary>
+        /// Calculate the size for a child.
+        /// </summary>
+        /// <param name="child">The child actor to calculate the size for</param>
+        /// <param name="dimension">The dimension to calculate the size for. E.g. width or height</param>
+        /// <returns>Return the calculated size for the given dimension</returns>
         public virtual float CalculateChildSize(Actor child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
 
-        /**
-         * @brief This method is called during size negotiation when a height is required for a given width.
-         *
-         * Derived classes should override this if they wish to customize the height returned.
-         *
-         * @param width Width to use.
-         * @return The height based on the width.
-         */
+        /// <summary>
+        /// This method is called during size negotiation when a height is required for a given width.<br>
+        /// Derived classes should override this if they wish to customize the height returned.<br>
+        /// </summary>
+        /// <param name="width">Width to use</param>
+        /// <returns>The height based on the width</returns>
         public virtual float GetHeightForWidth(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
         }
 
-        /**
-         * @brief This method is called during size negotiation when a width is required for a given height.
-         *
-         * Derived classes should override this if they wish to customize the width returned.
-         *
-         * @param height Height to use.
-         * @return The width based on the width.
-         */
+        /// <summary>
+        /// This method is called during size negotiation when a width is required for a given height.<br>
+        /// Derived classes should override this if they wish to customize the width returned.<br>
+        /// </summary>
+        /// <param name="height">Height to use</param>
+        /// <returns>The width based on the width</returns>
         public virtual float GetWidthForHeight(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
         }
 
-        /**
-         * @brief Determine if this actor is dependent on it's children for relayout.
-         *
-         * @param dimension The dimension(s) to check for
-         * @return Return if the actor is dependent on it's children.
-         */
+        /// <summary>
+        /// Determine if this actor is dependent on it's children for relayout.
+        /// </summary>
+        /// <param name="dimension">The dimension(s) to check for</param>
+        /// <returns>Return if the actor is dependent on it's children</returns>
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
-        /**
-         * @brief Determine if this actor is dependent on it's children for relayout from the base class.
-         *
-         * @return Return if the actor is dependent on it's children.
-         */
+        /// <summary>
+        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// </summary>
+        /// <returns>Return true if the actor is dependent on it's children</returns>
         public virtual bool RelayoutDependentOnChildren()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
         }
 
-        /**
-         * @brief Virtual method to notify deriving classes that relayout dependencies have been
-         * met and the size for this object is about to be calculated for the given dimension
-         *
-         * @param dimension The dimension that is about to be calculated
-         */
+        /// <summary>
+        /// Virtual method to notify deriving classes that relayout dependencies have been
+        /// met and the size for this object is about to be calculated for the given dimension.
+        /// </summary>
+        /// <param name="dimension">The dimension that is about to be calculated</param>
         public virtual void OnCalculateRelayoutSize(DimensionType dimension)
         {
         }
 
-        /**
-         * @brief Virtual method to notify deriving classes that the size for a dimension
-         * has just been negotiated
-         *
-         * @param[in] size The new size for the given dimension
-         * @param[in] dimension The dimension that was just negotiated
-         */
+        /// <summary>
+        /// Virtual method to notify deriving classes that the size for a dimension has just been negotiated.
+        /// </summary>
+        /// <param name="size">The new size for the given dimension</param>
+        /// <param name="dimension">The dimension that was just negotiated</param>
         public virtual void OnLayoutNegotiated(float size, DimensionType dimension)
         {
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes requiring notifications when the style changes.
-         *
-         * @param[in] styleManager  The StyleManager object.
-         * @param[in] change  Information denoting what has changed.
-         */
+        /// <summary>
+        /// This method should be overridden by deriving classes requiring notifications when the style changes.
+        /// </summary>
+        /// <param name="styleManager">The StyleManager object</param>
+        /// <param name="change">Information denoting what has changed</param>
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
         }
 
-        /**
-         * @brief This method is called when the control is accessibility activated.
-         *
-         * Derived classes should override this to perform custom accessibility activation.
-         * @return true if this control can perform accessibility activation.
-         */
+        /// <summary>
+        /// This method is called when the control is accessibility activated.<br>
+        /// Derived classes should override this to perform custom accessibility activation.<br>
+        /// </summary>
+        /// <returns>true if this control can perform accessibility activation</returns>
         internal virtual bool OnAccessibilityActivated()
         {
             return false;
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes when they wish to respond the accessibility
-         * pan gesture.
-         *
-         * @param[in] gesture The pan gesture.
-         * @return true if the pan gesture has been consumed by this control
-         */
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
+        /// </summary>
+        /// <param name="gestures">The pan gesture</param>
+        /// <returns>true if the pan gesture has been consumed by this control</returns>
         internal virtual bool OnAccessibilityPan(PanGesture gestures)
         {
             return false;
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes when they wish to respond the accessibility
-         * touch event.
-         *
-         * @param[in] touch The touch event.
-         * @return true if the touch event has been consumed by this control
-         */
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility
+        /// </summary>
+        /// <param name="touch">The touch gesture</param>
+        /// <returns>true if the touch event has been consumed by this control</returns>
         internal virtual bool OnAccessibilityTouch(Touch touch)
         {
             return false;
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes when they wish to respond
-         * the accessibility up and down action (i.e. value change of slider control).
-         *
-         * @param[in] isIncrease Whether the value should be increased or decreased
-         * @return true if the value changed action has been consumed by this control
-         */
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e. value change of slider control).
+        /// </summary>
+        /// <param name="isIncrease">isIncrease Whether the value should be increased or decreased</param>
+        /// <returns>true if the value changed action has been consumed by this control</returns>
         internal virtual bool OnAccessibilityValueChange(bool isIncrease)
         {
             return false;
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes when they wish to respond
-         * the accessibility zoom action.
-         *
-         * @return true if the zoom action has been consumed by this control
-         */
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility zoom action.
+        /// </summary>
+        /// <returns>true if the zoom action has been consumed by this control</returns>
         internal virtual bool OnAccessibilityZoom()
         {
             return false;
         }
 
-        /**
-         * @brief This method should be overridden by deriving classes when they wish to respond
-         * the accessibility zoom action.
-         *
-         * @return true if the zoom action has been consumed by this control
-         */
+        /// <summary>
+        /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when focus is gained.
+        /// </summary>
         public virtual void OnFocusGained()
         {
         }
 
-        /**
-         * @brief Called when the control loses key input focus.
-         *
-         * Should be overridden by derived classes if they need to customize what happens when focus is lost.
-         */
+        /// <summary>
+        /// Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when focus is lost.
+        /// </summary>
         public virtual void OnFocusLost()
         {
         }
 
-        /**
-         * @brief Gets the next keyboard focusable actor in this control towards the given direction.
-         *
-         * A control needs to override this function in order to support two dimensional keyboard navigation.
-         * @param[in] currentFocusedActor The current focused actor.
-         * @param[in] direction The direction to move the focus towards.
-         * @param[in] loopEnabled Whether the focus movement should be looped within the control.
-         * @return the next keyboard focusable actor in this control or an empty handle if no actor can be focused.
-         */
+        /// <summary>
+        /// Gets the next keyboard focusable actor in this control towards the given direction.<br>
+        /// A control needs to override this function in order to support two dimensional keyboard navigation.<br>
+        /// </summary>
+        /// <param name="currentFocusedView">The current focused actor</param>
+        /// <param name="direction">The direction to move the focus towards</param>
+        /// <param name="loopEnabled">Whether the focus movement should be looped within the control</param>
+        /// <returns>the next keyboard focusable actor in this control or an empty handle if no actor can be focused</returns>
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             return new View();
         }
 
-        /**
-         * @brief Informs this control that its chosen focusable actor will be focused.
-         *
-         * This allows the application to preform any actions if wishes
-         * before the focus is actually moved to the chosen actor.
-         *
-         * @param[in] commitedFocusableActor The commited focusable actor.
-         */
+        /// <summary>
+        /// Informs this control that its chosen focusable actor will be focused.<br>
+        /// This allows the application to preform any actions if wishes before the focus is actually moved to the chosen actor.<br>
+        /// </summary>
+        /// <param name="commitedFocusableView">The commited focused actor</param>
         public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
         }
 
-        /**
-         * @brief This method is called when the control has enter pressed on it.
-         *
-         * Derived classes should override this to perform custom actions.
-         * @return true if this control supported this action.
-         */
+        /// <summary>
+        /// This method is called when the control has enter pressed on it.<br>
+        /// Derived classes should override this to perform custom actions.<br>
+        /// </summary>
+        /// <returns>true if this control supported this action</returns>
         public virtual bool OnKeyboardEnter()
         {
             return false;
         }
 
-        /**
-         * @brief Called whenever a pinch gesture is detected on this control.
-         *
-         * This can be overridden by deriving classes when pinch detection
-         * is enabled.  The default behaviour is to scale the control by the
-         * pinch scale.
-         *
-         * @param[in]  pinch  The pinch gesture.
-         * @note If overridden, then the default behaviour will not occur.
-         * @note Pinch detection should be enabled via EnableGestureDetection().
-         * @see EnableGestureDetection
-         */
+        /// <summary>
+        /// Called whenever a pinch gesture is detected on this control.<br>
+        /// This can be overridden by deriving classes when pinch detection is enabled. The default behaviour is to scale the control by the pinch scale.<br>
+        /// If overridden, then the default behaviour will not occur.<br>
+        /// Pinch detection should be enabled via EnableGestureDetection().<br>
+        /// </summary>
+        /// <param name="pinch">pinch tap gesture</param>
         internal virtual void OnPinch(PinchGesture pinch)
         {
         }
 
-        /**
-         * @brief Called whenever a pan gesture is detected on this control.
-         *
-         * This should be overridden by deriving classes when pan detection
-         * is enabled.
-         *
-         * @param[in]  pan  The pan gesture.
-         * @note There is no default behaviour with panning.
-         * @note Pan detection should be enabled via EnableGestureDetection().
-         * @see EnableGestureDetection
-         */
+        /// <summary>
+        /// Called whenever a pan gesture is detected on this control.<br>
+        /// This should be overridden by deriving classes when pan detection is enabled.<br>
+        /// There is no default behaviour with panning.<br>
+        /// Pan detection should be enabled via EnableGestureDetection().<br>
+        /// </summary>
+        /// <param name="pan">The pan gesture</param>
         public virtual void OnPan(PanGesture pan)
         {
         }
 
-        /**
-         * @brief Called whenever a tap gesture is detected on this control.
-         *
-         * This should be overridden by deriving classes when tap detection
-         * is enabled.
-         *
-         * @param[in]  tap  The tap gesture.
-         * @note There is no default behaviour with a tap.
-         * @note Tap detection should be enabled via EnableGestureDetection().
-         * @see EnableGestureDetection
-         */
+        /// <summary>
+        /// Called whenever a tap gesture is detected on this control.<br>
+        /// This should be overridden by deriving classes when tap detection is enabled.<br>
+        /// There is no default behaviour with a tap.<br>
+        /// Tap detection should be enabled via EnableGestureDetection().<br>
+        /// </summary>
+        /// <param name="tap">The tap gesture</param>
         public virtual void OnTap(TapGesture tap)
         {
         }
 
-        /**
-         * @brief Called whenever a long press gesture is detected on this control.
-         *
-         * This should be overridden by deriving classes when long press
-         * detection is enabled.
-         *
-         * @param[in]  longPress  The long press gesture.
-         * @note There is no default behaviour associated with a long press.
-         * @note Long press detection should be enabled via EnableGestureDetection().
-         * @see EnableGestureDetection
-         */
+        /// <summary>
+        /// Called whenever a long press gesture is detected on this control.<br>
+        /// This should be overridden by deriving classes when long press detection is enabled.<br>
+        /// There is no default behaviour associated with a long press.<br>
+        /// Long press detection should be enabled via EnableGestureDetection().<br>
+        /// </summary>
+        /// <param name="longPress">The long press gesture</param>
         internal virtual void OnLongPress(LongPressGesture longPress)
         {
         }
@@ -845,6 +715,10 @@ namespace Tizen.NUI
         {
         }
     }
+
+    /// <summary>
+    /// This specifies ccustomView behaviour types.
+    /// </summary>
     public enum CustomViewBehaviour
     {
         ViewBehaviourDefault = 0,

@@ -28,17 +28,17 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A RadioButton provides a radio button which two states \e selected or \e unselected.
-    /// Radio buttons are designed to select one of many option at the same time.
-    /// RadioButton can change its current state using Selected.
-    /// 
-    /// RadioButtons can be grouped.
-    /// Two or more RadioButtons are in one group when they have this same parent.
-    /// In each groups only one RadioButton can be \e selected at a given time.
-    /// So when RadioButton is set to \e selected, other RadioButtons in its group are set to \e unselected.
-    /// When \e selected RadioButton is set to \e unselected no other RadioButtons in his group is set to \e selected.
-    /// 
-    ///  A StateChanged Event is emitted when the RadioButton change its state to \e selected or \e unselected.
+    /// A RadioButton provides a radio button which two states \e selected or \e unselected.<br>
+    /// Radio buttons are designed to select one of many option at the same time.<br>
+    /// RadioButton can change its current state using Selected.<br>
+    /// <br>
+    /// RadioButtons can be grouped.<br>
+    /// Two or more RadioButtons are in one group when they have this same parent.<br>
+    /// In each groups only one RadioButton can be \e selected at a given time.<br>
+    /// So when RadioButton is set to \e selected, other RadioButtons in its group are set to \e unselected.<br>
+    /// When \e selected RadioButton is set to \e unselected no other RadioButtons in his group is set to \e selected.<br>
+    /// <br>
+    ///  A StateChanged Event is emitted when the RadioButton change its state to \e selected or \e unselected.<br>
     /// </summary>
     public class RadioButton : Button
     {
@@ -59,6 +59,9 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Add(this);
         }
 
+        /// <summary>
+        /// To make RadioButton instance be disposed.
+        /// </summary>
         public override void Dispose()
         {
             if (!Stage.IsInstalled())

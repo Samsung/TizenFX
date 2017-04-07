@@ -26,7 +26,12 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// FlexContainer implements a subset of the flexbox spec (defined by W3C):https://www.w3.org/TR/css3-flexbox/<br>
+    /// It aims at providing a more efficient way to lay out, align and distribute space among items in the container, even when their size is unknown or dynamic.<br>
+    /// FlexContainer has the ability to alter the width and height of its children (i.e. flex items) to fill the available space in the best possible way on different screen sizes.<br>
+    /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br>
+    /// </summary>
     public class FlexContainer : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

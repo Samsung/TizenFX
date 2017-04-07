@@ -58,6 +58,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="x">position in x coordinate</param>
+        /// <param name="y">position in y coordinate</param>
+        /// <param name="width">Width of the rectangle</param>
+        /// <param name="height">Height of the rectangle</param>
         public Rectangle(float x, float y, float width, float height) : this( (int)x, (int)y, (int)width, (int)height )
         {
         }

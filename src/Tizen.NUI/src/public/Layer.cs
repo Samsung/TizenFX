@@ -132,9 +132,9 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// Downcasts a handle to Layer handle.
-        /// If handle points to a Layer, the downcast produces valid handle.
-        /// If not, the returned handle is left uninitialized.
+        /// Downcasts a handle to Layer handle.<br>
+        /// If handle points to a Layer, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a Layer or an uninitialized handle</returns>
@@ -158,8 +158,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries the depth of the layer.
-        /// 0 is the bottom most layer, higher number is on top.
+        /// Queries the depth of the layer.<br>
+        /// 0 is the bottom most layer, higher number is on top.<br>
         /// </summary>
         public uint Depth
         {
@@ -225,8 +225,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Moves the layer directly above the given layer.
-        /// After the call, this layers depth will be immediately above target.
+        /// Moves the layer directly above the given layer.<br>
+        /// After the call, this layers depth will be immediately above target.<br>
         /// </summary>
         /// <param name="target">Layer to get on top of</param>
         public void MoveAbove(Layer target)
@@ -236,8 +236,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Moves the layer directly below the given layer
-        /// After the call, this layers depth will be immediately below target.
+        /// Moves the layer directly below the given layer.<br>
+        /// After the call, this layers depth will be immediately below target.<br>
         /// </summary>
         /// <param name="target">Layer to get below of</param>
         public void MoveBelow(Layer target)
@@ -279,9 +279,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the clipping box of a layer, in window coordinates.
+        /// Sets the clipping box of a layer, in window coordinates.<br>
         /// The contents of the layer will not be visible outside this box, when clipping is
-        /// enabled. The default clipping box is empty (0,0,0,0) which means everything is clipped.
+        /// enabled. The default clipping box is empty (0,0,0,0) which means everything is clipped.<br>
         /// </summary>
         /// <param name="box">The clipping box</param>
         public void SetClippingBox(Rectangle box)
