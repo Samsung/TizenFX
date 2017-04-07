@@ -17,38 +17,33 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the option window type.
+    /// This Class contains data related to DataSet Event
     /// </summary>
-    public enum OptionWindowType
+    public class SetDataEventArgs
     {
-        /// <summary>
-        /// Open from Keyboard
-        /// </summary>
-        Keyboard,
-        /// <summary>
-        /// Open from Setting application
-        /// </summary>
-        SettingApplication
-    };
-
-    /// <summary>
-    /// This class contains information related to OptionWindowCreated event
-    /// </summary>
-    public class OptionWindowCreatedEventArgs
-    {
-        internal OptionWindowCreatedEventArgs(OptionWindow window, OptionWindowType type)
+        internal SetDataEventArgs(byte[] destination, uint dataLength)
         {
-            Window = window;
-            Window.Type = type;
+            Data = destination;
+            DataLength = dataLength;
         }
 
         /// <summary>
-        /// The created window object
+        /// The specific data to be set to the input panel
         /// </summary>
-        public OptionWindow Window
+        public byte[] Data
         {
             get;
             internal set;
         }
+
+        /// <summary>
+        /// The length of data, in bytes, to send to the input panel
+        /// </summary>
+        public uint DataLength
+        {
+            get;
+            internal set;
+        }
+
     }
 }

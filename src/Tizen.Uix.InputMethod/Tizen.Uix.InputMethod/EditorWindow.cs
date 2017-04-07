@@ -14,22 +14,54 @@
 * limitations under the License.
 */
 
+using Tizen;
 using System;
 using ElmSharp;
+using static Interop.InputMethod;
 
 namespace Tizen.Uix.InputMethod
 {
-    public class EditorWindow : EvasObject
+    /// <summary>
+    /// The Editor window class
+    /// </summary>
+    public class EditorWindow : Window
     {
-        internal IntPtr _handle;
-        internal EditorWindow(IntPtr handle)
+        internal static IntPtr _handle = IntPtr.Zero;
+        private IntPtr _realHandle = IntPtr.Zero;
+
+        internal EditorWindow():base("Edit")
         {
-            _handle = handle;
+            _realHandle = _handle;
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return IntPtr.Zero;
+            return _handle;
+        }
+
+        /// <summary>
+        /// This API updates the input panel window's size information.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="portraitWidth">The width in portrait mode</param>
+        /// <param name="portraitHeight">The height in portrait mode</param>
+        /// <param name="landscapeWidth">The width in landscape mode</param>
+        /// <param name="landscapeHeight">The height in landscape mode</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) IME main loop isn't started yet
+        /// </exception>
+        public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
+        {
+            ErrorCode error = ImeSetSize(portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetSize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
         }
     }
 }

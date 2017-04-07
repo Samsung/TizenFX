@@ -21,7 +21,7 @@ namespace Tizen.Uix.InputMethod
     /// </summary>
     public class OptionWindowDestroyedEventArgs
     {
-        internal OptionWindowDestroyedEventArgs(EditorWindow window)
+        internal OptionWindowDestroyedEventArgs(OptionWindow window)
         {
             Window = window;
         }
@@ -29,7 +29,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The window object to destroy
         /// </summary>
-        public EditorWindow Window
+        public OptionWindow Window
         {
             get;
             internal set;

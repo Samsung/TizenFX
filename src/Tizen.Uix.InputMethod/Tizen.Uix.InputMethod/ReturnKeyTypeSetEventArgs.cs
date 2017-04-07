@@ -17,11 +17,11 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to ReturnKeyTypeSet Event
+    /// This Class contains data related to ReturnKeySet Event
     /// </summary>
-    public class ReturnKeyTypeSetEventArgs
+    public class ReturnKeySetEventArgs
     {
-        internal ReturnKeyTypeSetEventArgs(EcoreIMFInputPanelReturnKeyType type)
+        internal ReturnKeySetEventArgs(InputPanelReturnKey type)
         {
             Type = type;
         }
@@ -29,7 +29,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The type of Return key on the input panel
         /// </summary>
-        public EcoreIMFInputPanelReturnKeyType Type
+        public InputPanelReturnKey Type
         {
             get;
             internal set;

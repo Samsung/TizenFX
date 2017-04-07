@@ -21,7 +21,7 @@ namespace Tizen.Uix.InputMethod
     /// </summary>
     public class LayoutSetEventArgs
     {
-        internal LayoutSetEventArgs(EcoreIMFInputPanelLayout layout)
+        internal LayoutSetEventArgs(InputPanelLayout layout)
         {
             Layout = layout;
         }
@@ -29,7 +29,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The input panel layout
         /// </summary>
-        public EcoreIMFInputPanelLayout Layout
+        public InputPanelLayout Layout
         {
             get;
             internal set;

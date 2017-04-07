@@ -17,35 +17,19 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the option window type.
+    /// This Class contains data related to LanguageSet Event
     /// </summary>
-    public enum OptionWindowType
+    public class LanguageSetEventArgs
     {
-        /// <summary>
-        /// Open from Keyboard
-        /// </summary>
-        Keyboard,
-        /// <summary>
-        /// Open from Setting application
-        /// </summary>
-        SettingApplication
-    };
-
-    /// <summary>
-    /// This class contains information related to OptionWindowCreated event
-    /// </summary>
-    public class OptionWindowCreatedEventArgs
-    {
-        internal OptionWindowCreatedEventArgs(OptionWindow window, OptionWindowType type)
+        internal LanguageSetEventArgs(InputPanelLanguage language)
         {
-            Window = window;
-            Window.Type = type;
+            Language = language;
         }
 
         /// <summary>
-        /// The created window object
+        /// The preferred language that the client application wants
         /// </summary>
-        public OptionWindow Window
+        public InputPanelLanguage Language
         {
             get;
             internal set;

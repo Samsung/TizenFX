@@ -17,19 +17,19 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to CursorPositionUpdated Event
+    /// This Class contains data related to CursorPositionitionUpdated Event
     /// </summary>
-    public class CursorPositionUpdatedEventArgs
+    public class CursorPositionitionUpdatedEventArgs
     {
-        internal CursorPositionUpdatedEventArgs(int cursorPos)
+        internal CursorPositionitionUpdatedEventArgs(int cursorPos)
         {
-            CursorPos = cursorPos;
+            CursorPosition = cursorPos;
         }
 
         /// <summary>
         /// The cursor position
         /// </summary>
-        public int CursorPos
+        public int CursorPosition
         {
             get;
             internal set;

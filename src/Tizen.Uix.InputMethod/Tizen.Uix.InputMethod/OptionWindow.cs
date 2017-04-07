@@ -14,38 +14,35 @@
 * limitations under the License.
 */
 
+using Tizen;
+using System;
+using ElmSharp;
+using static Interop.InputMethod;
+
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the option window type.
+    /// Option window Class
     /// </summary>
-    public enum OptionWindowType
+    public class OptionWindow : Window
     {
-        /// <summary>
-        /// Open from Keyboard
-        /// </summary>
-        Keyboard,
-        /// <summary>
-        /// Open from Setting application
-        /// </summary>
-        SettingApplication
-    };
+        internal static IntPtr _handle = IntPtr.Zero;
+        private IntPtr _realHandle = IntPtr.Zero;
 
-    /// <summary>
-    /// This class contains information related to OptionWindowCreated event
-    /// </summary>
-    public class OptionWindowCreatedEventArgs
-    {
-        internal OptionWindowCreatedEventArgs(OptionWindow window, OptionWindowType type)
+        internal OptionWindow():base("Option")
         {
-            Window = window;
-            Window.Type = type;
+            _realHandle = _handle;
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
+        {
+            return _handle;
         }
 
         /// <summary>
-        /// The created window object
+        /// The type of option window
         /// </summary>
-        public OptionWindow Window
+        public OptionWindowType Type
         {
             get;
             internal set;

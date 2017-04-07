@@ -24,7 +24,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Device Class
     /// </summary>
-    public enum EcoreIMFDeviceClass
+    public enum DeviceClass
     {
         /// <summary>
         /// None
@@ -67,7 +67,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Device SubClass
     /// </summary>
-    public enum EcoreIMFDeviceSubclass
+    public enum DeviceSubclass
     {
         /// <summary>
         /// None
@@ -120,7 +120,7 @@ namespace Tizen.Uix.InputMethod
     };
 
     /// <summary>
-    /// this class gives the device information
+    /// this class gives the device information, like the name, class and subclass
     /// </summary>
     public class VoiceControlDeviceInformation
     {
@@ -151,16 +151,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the device class of the key event.
         /// </summary>
-        public EcoreIMFDeviceClass DeviceClass
+        public DeviceClass DeviceClass
         {
             get
             {
-                EcoreIMFDeviceClass devClass;
+                DeviceClass devClass;
                 ErrorCode error = ImeDeviceInfoGetClass(_handle, out devClass);
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetClass Failed with error " + error);
-                    return EcoreIMFDeviceClass.Undefined;
+                    return DeviceClass.Undefined;
                 }
                 return devClass;
             }
@@ -169,16 +169,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the device subclass of the key event.
         /// </summary>
-        public EcoreIMFDeviceSubclass Subclass
+        public DeviceSubclass DeviceSubclass
         {
             get
             {
-                EcoreIMFDeviceSubclass subclass;
+                DeviceSubclass subclass;
                 ErrorCode error = ImeDeviceInfoGetSubclass(_handle, out subclass);
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetSubclass Failed with error " + error);
-                    return EcoreIMFDeviceSubclass.Undefined;
+                    return DeviceSubclass.Undefined;
                 }
                 return subclass;
             }

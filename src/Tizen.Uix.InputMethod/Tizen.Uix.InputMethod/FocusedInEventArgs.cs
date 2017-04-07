@@ -17,35 +17,19 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the option window type.
+    /// This Class contains data related to FocusedIn Event
     /// </summary>
-    public enum OptionWindowType
+    public class FocusedInEventArgs
     {
-        /// <summary>
-        /// Open from Keyboard
-        /// </summary>
-        Keyboard,
-        /// <summary>
-        /// Open from Setting application
-        /// </summary>
-        SettingApplication
-    };
-
-    /// <summary>
-    /// This class contains information related to OptionWindowCreated event
-    /// </summary>
-    public class OptionWindowCreatedEventArgs
-    {
-        internal OptionWindowCreatedEventArgs(OptionWindow window, OptionWindowType type)
+        internal FocusedInEventArgs(int contextId)
         {
-            Window = window;
-            Window.Type = type;
+            ContextId = contextId;
         }
 
         /// <summary>
-        /// The created window object
+        /// The input context identification value of an associated text input UI control
         /// </summary>
-        public OptionWindow Window
+        public int ContextId
         {
             get;
             internal set;

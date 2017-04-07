@@ -25,7 +25,7 @@ namespace Tizen.Uix.InputMethod
         {
             ContextId = contextId;
             Text = text;
-            CursorPos = cursorPos;
+            CursorPosition = cursorPos;
         }
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The cursor position
         /// </summary>
-        public int CursorPos
+        public int CursorPosition
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// The UTF-8 string requested
+        /// The string requested
         /// </summary>
         public string Text
         {

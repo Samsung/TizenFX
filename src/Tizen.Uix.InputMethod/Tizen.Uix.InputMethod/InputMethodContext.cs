@@ -23,7 +23,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Input Panel Layout
     /// </summary>
-    public enum EcoreIMFInputPanelLayout
+    public enum InputPanelLayout
     {
         /// <summary>
         /// Normal
@@ -94,44 +94,44 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Layout Variation
     /// </summary>
-    public enum ImeLayoutVariation
+    public enum LayoutVariation
     {
         /// <summary>
         /// The plain normal layout
         /// </summary>
-        NormalVariationNormal = 0,
+        NormalNormal = 0,
         /// <summary>
         /// Filename layout; symbols such as '/', '\*', '\', '|', '&lt;', '&gt;', '?', '&quot;' and ':' should be disabled
         /// </summary>
-        NormalVariationFileName,
+        NormalFileName,
         /// <summary>
         /// The name of a person
         /// </summary>
-        NormalVariationPersonName,
+        NormalPersonName,
         /// <summary>
         /// The plain normal number layout
         /// </summary>
-        NumberOnlyVariationNormal = 0,
+        NumberOnlyNormal = 0,
         /// <summary>
         /// The number layout to allow a negative sign
         /// </summary>
-        NumberOnlyVariationSigned,
+        NumberOnlySigned,
         /// <summary>
         /// The number layout to allow decimal point to provide fractional value
         /// </summary>
-        NumberOnlyVariationDecimal,
+        NumberOnlyDecimal,
         /// <summary>
         /// The number layout to allow decimal point and negative sign
         /// </summary>
-        NumberOnlyVariationSignedAandDecimal,
+        NumberOnlySignedAndDecimal,
         /// <summary>
         /// The normal password layout
         /// </summary>
-        PasswordVariationNormal = 0,
+        PasswordNormal = 0,
         /// <summary>
         /// The password layout to allow only number
         /// </summary>
-        PasswordVariationNumberOnly,
+        PasswordNumberOnly,
         /// <summary>
         /// Undefined
         /// </summary>
@@ -141,7 +141,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for AutoCapital Type
     /// </summary>
-    public enum EcoreIMFAutocapitalType
+    public enum AutoCapitalization
     {
         /// <summary>
         /// None
@@ -168,7 +168,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputPanel ReturnKey Type
     /// </summary>
-    public enum EcoreIMFInputPanelReturnKeyType
+    public enum InputPanelReturnKey
     {
         /// <summary>
         /// Default
@@ -215,7 +215,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputHints
     /// </summary>
-    public enum EcoreIMFInputHints
+    public enum InputHints
     {
         /// <summary>
         /// None
@@ -242,7 +242,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for BiDi Direction
     /// </summary>
-    public enum EcoreIMFBiDiDirection
+    public enum BiDirection
     {
         /// <summary>
         /// Neutral
@@ -265,7 +265,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputPanel Language
     /// </summary>
-    public enum EcoreIMFInputPanelLang
+    public enum InputPanelLanguage
     {
         /// <summary>
         /// Automatic
@@ -295,16 +295,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the layout information.
         /// </summary>
-        public EcoreIMFInputPanelLayout Layout
+        public InputPanelLayout Layout
         {
             get
             {
-                EcoreIMFInputPanelLayout layout;
+                InputPanelLayout layout;
                 ErrorCode error = ImeContextGetLayout(_handle, out layout);
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetLayout Failed with error " + error);
-                    return EcoreIMFInputPanelLayout.Undefined;
+                    return InputPanelLayout.Undefined;
                 }
                 return layout;
             }
@@ -313,16 +313,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the layout variation information.
         /// </summary>
-        public ImeLayoutVariation LayoutVariation
+        public LayoutVariation LayoutVariation
         {
             get
             {
-                ImeLayoutVariation layoutVariation;
+                LayoutVariation layoutVariation;
                 ErrorCode error = ImeContextGetLayoutVariation(_handle, out layoutVariation);
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetLayoutVariation Failed with error " + error);
-                    return ImeLayoutVariation.Undefined;
+                    return LayoutVariation.Undefined;
                 }
                 return layoutVariation;
             }
@@ -331,15 +331,15 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the cursor position information.
         /// </summary>
-        public int CursorPosition
+        public int CursorPositionition
         {
             get
             {
                 int cursorPosition;
-                ErrorCode error = ImeContextGetCursorPosition(_handle, out cursorPosition);
+                ErrorCode error = ImeContextGetCursorPositionition(_handle, out cursorPosition);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetCursorPosition Failed with error " + error);
+                    Log.Error(LogTag, "GetCursorPositionition Failed with error " + error);
                     return -1;
                 }
                 return cursorPosition;
@@ -349,16 +349,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the autocapital type information.
         /// </summary>
-        public EcoreIMFAutocapitalType AutoCapitalType
+        public AutoCapitalization AutoCapitalization
         {
             get
             {
-                EcoreIMFAutocapitalType autoCapitalType;
+                AutoCapitalization autoCapitalType;
                 ErrorCode error = ImeContextGetAutocapitalType(_handle, out autoCapitalType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetAutoCapitalType Failed with error " + error);
-                    return EcoreIMFAutocapitalType.Undefined;
+                    Log.Error(LogTag, "GetAutoCapitalization Failed with error " + error);
+                    return AutoCapitalization.Undefined;
                 }
                 return autoCapitalType;
             }
@@ -367,16 +367,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the Return key label type information.
         /// </summary>
-        public EcoreIMFInputPanelReturnKeyType ReturnKeyType
+        public InputPanelReturnKey ReturnKey
         {
             get
             {
-                EcoreIMFInputPanelReturnKeyType returnKeyType;
-                ErrorCode error = ImeContextGetReturnKeyType(_handle, out returnKeyType);
+                InputPanelReturnKey returnKeyType;
+                ErrorCode error = ImeContextGetReturnKey(_handle, out returnKeyType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetReturnKeyType Failed with error " + error);
-                    return EcoreIMFInputPanelReturnKeyType.Undefined;
+                    Log.Error(LogTag, "GetReturnKey Failed with error " + error);
+                    return InputPanelReturnKey.Undefined;
                 }
                 return returnKeyType;
             }
@@ -439,16 +439,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the input hint information.
         /// </summary>
-        public EcoreIMFInputHints InputHint
+        public InputHints InputHint
         {
             get
             {
-                EcoreIMFInputHints inputHint;
+                InputHints inputHint;
                 ErrorCode error = ImeContextGetInputHint(_handle, out inputHint);
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetInputHint Failed with error " + error);
-                    return EcoreIMFInputHints.Undefined;
+                    return InputHints.Undefined;
                 }
                 return inputHint;
             }
@@ -457,16 +457,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the text bidirectional information.
         /// </summary>
-        public EcoreIMFBiDiDirection BiDiDirection
+        public BiDirection BiDirection
         {
             get
             {
-                EcoreIMFBiDiDirection biDiDirection;
+                BiDirection biDiDirection;
                 ErrorCode error = ImeContextGetBidiDirection(_handle, out biDiDirection);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetBiDiDirection Failed with error " + error);
-                    return EcoreIMFBiDiDirection.Undefined;
+                    Log.Error(LogTag, "GetBiDirection Failed with error " + error);
+                    return BiDirection.Undefined;
                 }
                 return biDiDirection;
             }
@@ -475,16 +475,16 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the preferred language information.
         /// </summary>
-        public EcoreIMFInputPanelLang Langauge
+        public InputPanelLanguage Language
         {
             get
             {
-                EcoreIMFInputPanelLang langauge;
+                InputPanelLanguage langauge;
                 ErrorCode error = ImeContextGetLanguage(_handle, out langauge);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetLangauge Failed with error " + error);
-                    return EcoreIMFInputPanelLang.Undefined;
+                    Log.Error(LogTag, "GetLanguage Failed with error " + error);
+                    return InputPanelLanguage.Undefined;
                 }
                 return langauge;
             }

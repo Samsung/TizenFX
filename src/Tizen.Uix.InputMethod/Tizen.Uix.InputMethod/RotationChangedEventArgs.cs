@@ -17,35 +17,19 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the option window type.
+    /// This Class contains data related to RotationChanged Event
     /// </summary>
-    public enum OptionWindowType
+    public class RotationChangedEventArgs
     {
-        /// <summary>
-        /// Open from Keyboard
-        /// </summary>
-        Keyboard,
-        /// <summary>
-        /// Open from Setting application
-        /// </summary>
-        SettingApplication
-    };
-
-    /// <summary>
-    /// This class contains information related to OptionWindowCreated event
-    /// </summary>
-    public class OptionWindowCreatedEventArgs
-    {
-        internal OptionWindowCreatedEventArgs(OptionWindow window, OptionWindowType type)
+        internal RotationChangedEventArgs(int degree)
         {
-            Window = window;
-            Window.Type = type;
+            Degree = degree;
         }
 
         /// <summary>
-        /// The created window object
+        /// The rotation degree
         /// </summary>
-        public OptionWindow Window
+        public int Degree
         {
             get;
             internal set;
