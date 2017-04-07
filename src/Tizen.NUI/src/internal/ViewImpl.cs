@@ -171,13 +171,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetAsKeyboardFocusGroup(bool isFocusGroup)
+        public void SetAsFocusGroup(bool isFocusGroup)
         {
             NDalicPINVOKE.ViewImpl_SetAsKeyboardFocusGroup(swigCPtr, isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public bool IsKeyboardFocusGroup()
+        public bool IsFocusGroup()
         {
             bool ret = NDalicPINVOKE.ViewImpl_IsKeyboardFocusGroup(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -431,16 +431,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public virtual Actor GetNextKeyboardFocusableActor(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled)
+        public virtual Actor GetNextFocusableActor(Actor currentFocusedActor, View.FocusDirection direction, bool loopEnabled)
         {
-            Actor ret = new Actor((SwigDerivedClassHasMethod("GetNextKeyboardFocusableActor", swigMethodTypes32) ? NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl(swigCPtr, Actor.getCPtr(currentFocusedActor), (int)direction, loopEnabled) : NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActor(swigCPtr, Actor.getCPtr(currentFocusedActor), (int)direction, loopEnabled)), true);
+            Actor ret = new Actor((SwigDerivedClassHasMethod("GetNextFocusableActor", swigMethodTypes32) ? NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl(swigCPtr, Actor.getCPtr(currentFocusedActor), (int)direction, loopEnabled) : NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActor(swigCPtr, Actor.getCPtr(currentFocusedActor), (int)direction, loopEnabled)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public virtual void OnKeyboardFocusChangeCommitted(Actor commitedFocusableActor)
+        public virtual void OnFocusChangeCommitted(Actor commitedFocusableActor)
         {
-            if (SwigDerivedClassHasMethod("OnKeyboardFocusChangeCommitted", swigMethodTypes33)) NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommittedSwigExplicitViewImpl(swigCPtr, Actor.getCPtr(commitedFocusableActor)); else NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommitted(swigCPtr, Actor.getCPtr(commitedFocusableActor));
+            if (SwigDerivedClassHasMethod("OnFocusChangeCommitted", swigMethodTypes33)) NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommittedSwigExplicitViewImpl(swigCPtr, Actor.getCPtr(commitedFocusableActor)); else NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommitted(swigCPtr, Actor.getCPtr(commitedFocusableActor));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -553,9 +553,9 @@ namespace Tizen.NUI
                 swigDelegate30 = new SwigDelegateViewImpl_30(SwigDirectorOnKeyInputFocusGained);
             if (SwigDerivedClassHasMethod("OnKeyInputFocusLost", swigMethodTypes31))
                 swigDelegate31 = new SwigDelegateViewImpl_31(SwigDirectorOnKeyInputFocusLost);
-            if (SwigDerivedClassHasMethod("GetNextKeyboardFocusableActor", swigMethodTypes32))
+            if (SwigDerivedClassHasMethod("GetNextFocusableActor", swigMethodTypes32))
                 swigDelegate32 = new SwigDelegateViewImpl_32(SwigDirectorGetNextKeyboardFocusableActor);
-            if (SwigDerivedClassHasMethod("OnKeyboardFocusChangeCommitted", swigMethodTypes33))
+            if (SwigDerivedClassHasMethod("OnFocusChangeCommitted", swigMethodTypes33))
                 swigDelegate33 = new SwigDelegateViewImpl_33(SwigDirectorOnKeyboardFocusChangeCommitted);
             if (SwigDerivedClassHasMethod("OnKeyboardEnter", swigMethodTypes34))
                 swigDelegate34 = new SwigDelegateViewImpl_34(SwigDirectorOnKeyboardEnter);
@@ -755,12 +755,12 @@ namespace Tizen.NUI
 
         private global::System.IntPtr SwigDirectorGetNextKeyboardFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            return Actor.getCPtr(GetNextKeyboardFocusableActor(new Actor(currentFocusedActor, true), (View.FocusDirection)direction, loopEnabled)).Handle;
+            return Actor.getCPtr(GetNextFocusableActor(new Actor(currentFocusedActor, true), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
         private void SwigDirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableActor)
         {
-            OnKeyboardFocusChangeCommitted(new Actor(commitedFocusableActor, true));
+            OnFocusChangeCommitted(new Actor(commitedFocusableActor, true));
         }
 
         private bool SwigDirectorOnKeyboardEnter()

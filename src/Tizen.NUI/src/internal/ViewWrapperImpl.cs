@@ -49,10 +49,10 @@ namespace Tizen.NUI
         public delegate bool OnAccessibilityTouchDelegate(Touch touch);
         public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
         public delegate bool OnAccessibilityZoomDelegate();
-        public delegate void OnKeyInputFocusGainedDelegate();
-        public delegate void OnKeyInputFocusLostDelegate();
-        public delegate View GetNextKeyboardFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
-        public delegate void OnKeyboardFocusChangeCommittedDelegate(View commitedFocusableView);
+        public delegate void OnFocusGainedDelegate();
+        public delegate void OnFocusLostDelegate();
+        public delegate View GetNextFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
+        public delegate void OnFocusChangeCommittedDelegate(View commitedFocusableView);
         public delegate bool OnKeyboardEnterDelegate();
         public delegate void OnPinchDelegate(PinchGesture pinch);
         public delegate void OnPanDelegate(PanGesture pan);
@@ -88,10 +88,10 @@ namespace Tizen.NUI
         public OnAccessibilityTouchDelegate OnAccessibilityTouch;
         public OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
         public OnAccessibilityZoomDelegate OnAccessibilityZoom;
-        public OnKeyInputFocusGainedDelegate OnKeyInputFocusGained;
-        public OnKeyInputFocusLostDelegate OnKeyInputFocusLost;
-        public GetNextKeyboardFocusableViewDelegate GetNextKeyboardFocusableView;
-        public OnKeyboardFocusChangeCommittedDelegate OnKeyboardFocusChangeCommitted;
+        public OnFocusGainedDelegate OnFocusGained;
+        public OnFocusLostDelegate OnFocusLost;
+        public GetNextFocusableViewDelegate GetNextFocusableView;
+        public OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
         public OnKeyboardEnterDelegate OnKeyboardEnter;
         public OnPinchDelegate OnPinch;
         public OnPanDelegate OnPan;
@@ -230,7 +230,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void EmitKeyInputFocusSignal(bool focusGained)
+        public void EmitFocusSignal(bool focusGained)
         {
             NDalicManualPINVOKE.ViewWrapperImpl_EmitKeyInputFocusSignal(swigCPtr, focusGained);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -274,10 +274,10 @@ namespace Tizen.NUI
             Delegate27 = new DelegateViewWrapperImpl_27(DirectorOnAccessibilityTouch);
             Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
             Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
-            Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnKeyInputFocusGained);
-            Delegate31 = new DelegateViewWrapperImpl_31(DirectorOnKeyInputFocusLost);
-            Delegate32 = new DelegateViewWrapperImpl_32(DirectorGetNextKeyboardFocusableActor);
-            Delegate33 = new DelegateViewWrapperImpl_33(DirectorOnKeyboardFocusChangeCommitted);
+            Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
+            Delegate31 = new DelegateViewWrapperImpl_31(DirectorOnFocusLost);
+            Delegate32 = new DelegateViewWrapperImpl_32(DirectorGetNextFocusableActor);
+            Delegate33 = new DelegateViewWrapperImpl_33(DirectorOnFocusChangeCommitted);
             Delegate34 = new DelegateViewWrapperImpl_34(DirectorOnKeyboardEnter);
             Delegate35 = new DelegateViewWrapperImpl_35(DirectorOnPinch);
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
@@ -441,24 +441,24 @@ namespace Tizen.NUI
             return OnAccessibilityZoom();
         }
 
-        private void DirectorOnKeyInputFocusGained()
+        private void DirectorOnFocusGained()
         {
-            OnKeyInputFocusGained();
+            OnFocusGained();
         }
 
-        private void DirectorOnKeyInputFocusLost()
+        private void DirectorOnFocusLost()
         {
-            OnKeyInputFocusLost();
+            OnFocusLost();
         }
 
-        private global::System.IntPtr DirectorGetNextKeyboardFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
+        private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            return Actor.getCPtr(GetNextKeyboardFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
+            return Actor.getCPtr(GetNextFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
-        private void DirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
+        private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnKeyboardFocusChangeCommitted(new View(commitedFocusableView, false));
+            OnFocusChangeCommitted(new View(commitedFocusableView, false));
         }
 
         private bool DirectorOnKeyboardEnter()

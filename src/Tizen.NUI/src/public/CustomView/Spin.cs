@@ -163,7 +163,7 @@ namespace Tizen.NUI
         /// <param name="direction">The direction to move the focus towards</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control</param>
         /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused</returns>
-        public override View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             // Respond to Up/Down keys to change the value while keeping the current spin focused
             View nextFocusedView = currentFocusedView;
