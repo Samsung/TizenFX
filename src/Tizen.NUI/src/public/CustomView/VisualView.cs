@@ -107,6 +107,10 @@ namespace Tizen.NUI
                 _visualDictionary.Add(visualIndex, visual);
                 _tranformDictionary.Add(visualIndex, visualMap.OutputTransformMap);
 
+                visualMap.VisualIndex = visualIndex;
+                visualMap.Name = visualName;
+                visualMap.Parent = this;
+
                 RelayoutRequest();
             }
         }
@@ -165,6 +169,42 @@ namespace Tizen.NUI
                 EnableVisual(item.Key, true);
             }
         }
-    }
 
+        internal void UpdateVisual(int visualIndex, string visualName, VisualMap visualMap)
+        {
+            VisualBase visual = null;
+
+            visual = VisualFactory.Get().CreateVisual(visualMap.OutputVisualMap);
+            visual.Name = visualName;
+            visual.DepthIndex = visualMap.DepthIndex;
+
+            RegisterVisual(visualIndex, visual);
+
+            _visualDictionary[visualIndex] = visual;
+            _tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
+
+            RelayoutRequest();
+
+            Tizen.Log.Debug("NUI", "UpdateVisual() name=" + visualName);
+        }
+
+        /// <summary>
+        /// Create visual animation (transition) with the input property map
+        /// </summary>
+        /// <param name="visualMap">property map to define visual animation</param>
+        /// <returns>Animation instance</returns>
+        public Animation AnimateVisual(AnimatorVisual visualMap)
+        {
+            foreach (var item in _visualDictionary.ToList())
+            {
+                if (item.Value.Name == visualMap.Target)
+                {
+                    TransitionData _transitionData = new TransitionData(visualMap.OutputVisualMap);
+                    return this.CreateTransition(_transitionData);
+    }
+            }
+            return null;
+        }
+
+    }
 }
