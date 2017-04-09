@@ -161,8 +161,8 @@ namespace VisualsUsingCustomView
                 .Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute)))
                 .Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute)))
                 .Add((int)VisualTransformPropertyType.Size, new PropertyValue(new Vector2(40.0f, 40.0f)))
-                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)AlignType.CenterBegin))
-                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)AlignType.CenterBegin));
+                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.CenterBegin))
+                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.CenterBegin));
             _imageVisual.SetTransformAndSize(imageVisualTransform, size);
 
             // Configure the transform and size of Text visual.
@@ -171,8 +171,8 @@ namespace VisualsUsingCustomView
                 .Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Relative, (int)VisualTransformPolicyType.Relative)))
                 .Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute)))
                 .Add((int)VisualTransformPropertyType.Size, new PropertyValue(new Vector2(size.X - 100.0f, 50.0f)))
-                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)AlignType.Center))
-                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)AlignType.Center));
+                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.Center))
+                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.Center));
             _textVisual.SetTransformAndSize(textVisualTransform, size);
 
             // Configure the transform and size of Primitive visual.
@@ -181,8 +181,8 @@ namespace VisualsUsingCustomView
                 .Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute)))
                 .Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute)))
                 .Add((int)VisualTransformPropertyType.Size, new PropertyValue(new Vector2(40.0f, 40.0f)))
-                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)AlignType.CenterBegin))
-                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)AlignType.CenterBegin));
+                .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.CenterBegin))
+                .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.CenterBegin));
             _primitiveVisual.SetTransformAndSize(primitiveVisualTransform, size);
 
             // Configure the transform and size of Color visual. This is also the default value.
@@ -191,8 +191,8 @@ namespace VisualsUsingCustomView
                 .Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Relative, (int)VisualTransformPolicyType.Relative)))
                 .Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Relative, (int)VisualTransformPolicyType.Relative)))
                 .Add( (int)VisualTransformPropertyType.Size, new PropertyValue(new Vector2(1.0f, 1.0f)) )
-                .Add( (int)VisualTransformPropertyType.Origin, new PropertyValue((int)AlignType.TopBegin) )
-                .Add( (int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)AlignType.TopBegin) );
+                .Add( (int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.TopBegin) )
+                .Add( (int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.TopBegin) );
             _colorVisual.SetTransformAndSize(colorVisualTransform, size);
         }
     }

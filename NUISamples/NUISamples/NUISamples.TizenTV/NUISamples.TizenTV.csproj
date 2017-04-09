@@ -69,6 +69,7 @@
     <Compile Include="examples\test1.cs" />
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
+    <Compile Include="examples\visual-animation-test.cs" />
     <Compile Include="examples\visual-view-test.cs" />
     <Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
     <Compile Include="examples\visuals-using-custom-view\ContactView.cs" />
@@ -99,6 +100,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\images\application-icon-0.png" />
+    <Content Include="res\images\background-blocks.jpg" />
+    <Content Include="res\images\dali-logo-anim.gif" />
+    <Content Include="res\images\dog-anim.gif" />
+    <Content Include="res\images\echo.gif" />
     <Content Include="res\images\focuseffect\0-normal.png" />
     <Content Include="res\images\focuseffect\1-normal.png" />
     <Content Include="res\images\focuseffect\2-normal.png" />
@@ -127,6 +133,8 @@
     <Content Include="res\images\image-1.jpg" />
     <Content Include="res\images\image-2.jpg" />
     <Content Include="res\images\image-3.jpg" />
+    <Content Include="res\images\Kid1.svg" />
+    <Content Include="res\images\Mail.svg" />
     <Content Include="res\images\menu\0.png" />
     <Content Include="res\images\menu\1.png" />
     <Content Include="res\images\menu\2.png" />
@@ -160,6 +168,7 @@
     <Content Include="res\images\star-mod.png" />
     <Content Include="res\images\focuseffect\thumbnail_shadow.9.png" />
     <Content Include="res\images\focuseffect\white-pixel.png" />
+    <Content Include="res\images\World.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

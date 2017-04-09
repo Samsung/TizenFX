@@ -174,7 +174,7 @@ namespace FlexContainerTest
             Tizen.Log.Debug("NUI", "next index = " + index);
             nextView = label[index];
 
-            if (e.CurrentView.HasKeyInputFocus())
+            if (e.CurrentView.HasFocus())
             {
                 //currentView?.ClearKeyInputFocus();  //removed
             }

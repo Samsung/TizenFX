@@ -22,18 +22,17 @@ namespace NUISamples.TizenTV.examples
             //new Test1.Example().Run(args);                            //o
             //new UserAlphaFunctionTest.Example().Run(args);            //o
             //new MyCSharpExample.Example().Run(args);                  //o
-            //new VisualViewTest.Example().Run(args);                   //o
             //new CustomControlTest.Example().Run(args);                //o
             //new ScrollViewTest.Example().Run(args);                   //o
             //new ImageViewTest.Example().Run(args);                    //o
-            //new FlexContainerTest.SampleMain().Run(args);             //o 
+            //new FlexContainerTest.SampleMain().Run(args);             //o
             //new DatePickerUsingJson.Example().Run(args);              //o
             //new DaliTest.Example().Run(args);                         //o
+            //new MyCSharpExample.Example().Run(args);                  //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new MyCSharpExample.Example().Run(args);                  //o
-            new FirstScreen.FirstScreenApp().Run(args);                  //o
-            //new MyCSharpExample.Example().Run(args);                  //o
+            new VisaulAnimationExample.Example().Run(args);
+            //new VisualViewTest.Example().Run(args);                   //o
         }
     }
-    
 }
