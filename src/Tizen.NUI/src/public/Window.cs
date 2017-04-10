@@ -346,13 +346,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal SWIGTYPE_p_Dali__SignalT_void_fboolF_t IndicatorVisibilityChangedSignal()
-        {
-            SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.Window_IndicatorVisibilityChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
         /// </summary>

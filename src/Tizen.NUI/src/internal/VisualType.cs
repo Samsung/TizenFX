@@ -20,7 +20,10 @@ namespace Tizen.NUI {
   WIREFRAME
 
   ,
-  TEXT
+  TEXT,
+  N_PATCH,
+  SVG,
+  ANIMATED_IMAGE
 }
 
 }
