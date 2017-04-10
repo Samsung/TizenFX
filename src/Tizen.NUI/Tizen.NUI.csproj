@@ -222,7 +222,6 @@
     <Compile Include="src\internal\SWIGTYPE_p_Dali__RectT_unsigned_int_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t.cs" />
-    <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fboolF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t.cs" />
     <Compile Include="src\internal\SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t.cs" />

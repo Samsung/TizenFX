@@ -35,17 +35,17 @@ namespace Tizen.NUI
         private float _depthIndex = 0.0f;
         protected PropertyMap _outputVisualMap = null;
 
-        public string Name
+        internal string Name
         {
             set;
             get;
         }
-        public int VisualIndex
+        internal int VisualIndex
         {
             set;
             get;
         }
-        public VisualView Parent
+        internal VisualView Parent
         {
             set;
             get;
@@ -216,7 +216,7 @@ namespace Tizen.NUI
             }
         }
 
-        public void UpdateVisual()
+        internal void UpdateVisual()
         {
             if (VisualIndex > 0)
             {
@@ -1865,12 +1865,14 @@ namespace Tizen.NUI
             string _str1 = _propertyIndex.Substring(0, 1);
             string _str2 = _propertyIndex.Substring(1);
             string _str = _str1.ToLower() + _str2;
-            dynamic _obj = (object)_destinationValue;
+            
+            //dynamic _obj = (object)_destinationValue;
+            PropertyValue val = PropertyValue.CreateFromObject(_destinationValue);
 
             PropertyMap _transition = new PropertyMap();
             _transition.Add("target", new PropertyValue(_target));
             _transition.Add("property", new PropertyValue(_str));
-            _transition.Add("targetValue", new PropertyValue(_obj));
+            _transition.Add("targetValue", new PropertyValue(val));
             _transition.Add("animator", new PropertyValue(_animator));
 
             _outputVisualMap = _transition;
