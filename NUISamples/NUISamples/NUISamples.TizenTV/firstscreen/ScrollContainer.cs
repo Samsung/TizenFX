@@ -318,7 +318,7 @@ namespace FirstScreen
 
         // This override function supports two dimensional keyboard navigation.
         // This function returns the next keyboard focusable actor in ScrollContainer control towards the given direction.
-        public override View GetNextKeyboardFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             if (direction == View.FocusDirection.Left)
             {
@@ -334,7 +334,7 @@ namespace FirstScreen
             }
         }
         
-        public override void OnKeyboardFocusChangeCommitted(View commitedFocusableView)
+        public override void OnFocusChangeCommitted(View commitedFocusableView)
         {
             Focus(_focusedItem);
         }

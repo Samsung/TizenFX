@@ -21,6 +21,7 @@ namespace Tizen.NUI {
   public static readonly int VISUAL_PROPERTY_TRANSFORM = NDalicManualPINVOKE.Visual_Property_TRANSFORM_get();
   public static readonly int VISUAL_PROPERTY_PREMULTIPLIED_ALPHA = NDalicManualPINVOKE.Visual_Property_PREMULTIPLIED_ALPHA_get();
   public static readonly int VISUAL_PROPERTY_MIX_COLOR = NDalicManualPINVOKE.Visual_Property_MIX_COLOR_get();
+  public static readonly int IMAGE_VISUAL_BORDER = NDalicManualPINVOKE.Image_Visual_BORDER_get();
 
   public static void DaliAssertMessage(string location, string condition) {
     NDalicPINVOKE.DaliAssertMessage(location, condition);
@@ -1013,8 +1014,8 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     } 
   }
 
-  public static SWIGTYPE_p_Dali__SignalT_void_fboolF_t FocusChangedSignal(Window window) {
-    SWIGTYPE_p_Dali__SignalT_void_fboolF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fboolF_t(NDalicPINVOKE.FocusChangedSignal(Window.getCPtr(window)), false);
+    public static WindowFocusSignalType FocusChangedSignal(Window window) {
+    WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(Window.getCPtr(window)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

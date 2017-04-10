@@ -1630,6 +1630,7 @@ namespace Tizen.NUI
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+        public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
     }
 
     /// <summary>
