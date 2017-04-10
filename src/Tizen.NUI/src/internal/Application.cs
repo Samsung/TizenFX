@@ -19,11 +19,11 @@ namespace Tizen.NUI
     {
         public const int ver1 = 1;
         public const int ver2 = 2;
-        public const int ver3 = 32;
+        public const int ver3 = 34;
         public const int nuiVer1 = 0;
         public const int nuiVer2 = 2;
-        public const int nuiVer3 = 33;
-        public const string nuiRelease = "-pre1";
+        public const int nuiVer3 = 34;
+        public const string nuiRelease = "";
     }
 
     /**
