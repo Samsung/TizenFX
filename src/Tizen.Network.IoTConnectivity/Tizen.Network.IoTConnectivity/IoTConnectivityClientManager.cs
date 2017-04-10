@@ -753,8 +753,8 @@ namespace Tizen.Network.IoTConnectivity
             PresenceReceivedEventArgs e = new PresenceReceivedEventArgs()
             {
                 PresenceId = presenceId,
-                HostAddress = Marshal.PtrToStringAnsi(host),
-                Type = Marshal.PtrToStringAnsi(type),
+                HostAddress = (host != IntPtr.Zero) ? Marshal.PtrToStringAnsi(host) : string.Empty,
+                Type = (type != IntPtr.Zero) ? Marshal.PtrToStringAnsi(type) : string.Empty,
                 EventType = (PresenceEventType)trigger
             };
 
@@ -797,10 +797,10 @@ namespace Tizen.Network.IoTConnectivity
             {
                 RequestId = requestId,
                 EventContinue = true,
-                Name = Marshal.PtrToStringAnsi(name),
-                SpecVersion = Marshal.PtrToStringAnsi(specVersion),
-                DeviceId = Marshal.PtrToStringAnsi(deviceId),
-                DataModelVersion = Marshal.PtrToStringAnsi(dataModelVersion)
+                Name = (name != IntPtr.Zero) ? Marshal.PtrToStringAnsi(name) : string.Empty,
+                SpecVersion = (specVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(specVersion) : string.Empty,
+                DeviceId = (deviceId != IntPtr.Zero) ? Marshal.PtrToStringAnsi(deviceId) : string.Empty,
+                DataModelVersion = (dataModelVersion != IntPtr.Zero) ? Marshal.PtrToStringAnsi(dataModelVersion) : string.Empty
             };
 
             return e;

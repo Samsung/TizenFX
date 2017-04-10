@@ -105,7 +105,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to Get uri");
                     throw IoTConnectivityErrorFactory.GetException(ret);
                 }
-                return Marshal.PtrToStringAnsi(path);
+                return (path != IntPtr.Zero) ? Marshal.PtrToStringAnsi(path) : string.Empty;
             }
             set
             {

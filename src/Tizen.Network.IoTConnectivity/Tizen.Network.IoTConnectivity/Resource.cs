@@ -448,7 +448,7 @@ namespace Tizen.Network.IoTConnectivity
 
             return new Request()
             {
-                HostAddress = Marshal.PtrToStringAnsi(hostAddressPtr),
+                HostAddress = (hostAddressPtr != IntPtr.Zero) ? Marshal.PtrToStringAnsi(hostAddressPtr) : string.Empty,
                 Options = opts,
                 Query = query,
                 Representation = representation

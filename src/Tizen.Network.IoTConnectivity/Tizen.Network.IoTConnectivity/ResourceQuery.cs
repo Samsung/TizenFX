@@ -106,7 +106,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get type");
                     return "";
                 }
-                return Marshal.PtrToStringAnsi(type);
+                return (type != IntPtr.Zero) ? Marshal.PtrToStringAnsi(type) : string.Empty;
             }
             set
             {
@@ -146,7 +146,7 @@ namespace Tizen.Network.IoTConnectivity
                     Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get interface");
                     return "";
                 }
-                return Marshal.PtrToStringAnsi(iface);
+                return (iface != IntPtr.Zero) ? Marshal.PtrToStringAnsi(iface) : string.Empty;
             }
             set
             {

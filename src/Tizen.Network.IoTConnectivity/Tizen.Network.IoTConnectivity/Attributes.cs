@@ -546,7 +546,7 @@ namespace Tizen.Network.IoTConnectivity
                                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get attributes");
                                 throw IoTConnectivityErrorFactory.GetException(ret);
                             }
-                            Str = Marshal.PtrToStringAnsi(value);
+                            Str = (value != IntPtr.Zero) ? Marshal.PtrToStringAnsi(value) : string.Empty;
                             _attributes.Add(key, Str);
                             break;
                         }
