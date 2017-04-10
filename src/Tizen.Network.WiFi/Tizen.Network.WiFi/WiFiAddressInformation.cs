@@ -43,6 +43,7 @@ namespace Tizen.Network.WiFi
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
+                Interop.Libc.Free(addrPtr);
                 if (addrStr == null)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
@@ -69,6 +70,7 @@ namespace Tizen.Network.WiFi
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
+                Interop.Libc.Free(addrPtr);
                 if (addrStr == null)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
@@ -95,6 +97,7 @@ namespace Tizen.Network.WiFi
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
+                Interop.Libc.Free(addrPtr);
                 if (addrStr == null)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
@@ -121,6 +124,7 @@ namespace Tizen.Network.WiFi
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
+                Interop.Libc.Free(addrPtr);
                 if (addrStr == null)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
@@ -147,6 +151,7 @@ namespace Tizen.Network.WiFi
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
+                Interop.Libc.Free(addrPtr);
                 if (addrStr == null)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);

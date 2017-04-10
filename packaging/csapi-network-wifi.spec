@@ -1,6 +1,6 @@
 Name:       csapi-network-wifi
 Summary:    Tizen Wi-Fi API for C#
-Version:    1.0.11
+Version:    1.0.12
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
