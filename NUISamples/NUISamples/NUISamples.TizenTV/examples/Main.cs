@@ -29,9 +29,9 @@ namespace NUISamples.TizenTV.examples
             //new DatePickerUsingJson.Example().Run(args);              //o
             //new DaliTest.Example().Run(args);                         //o
             //new MyCSharpExample.Example().Run(args);                  //o
-            //new FirstScreen.FirstScreenApp().Run(args);               //o
+            new FirstScreen.FirstScreenApp().Run(args);               //o
             //new MyCSharpExample.Example().Run(args);                  //o
-            new VisaulAnimationExample.Example().Run(args);
+            //new VisaulAnimationExample.Example().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
         }
     }

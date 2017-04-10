@@ -171,7 +171,7 @@ namespace VisaulAnimationExample
             contentLayout.AddChild(VisualView2, new TableView.CellPosition(2, 0));
 
             gifVisual = new AnimatedImageVisual();
-            gifVisual.URL = _resPath + "/images/echo.gif";
+            gifVisual.URL = _resPath + "/images/dog-anim.gif";
             gifVisual.Size = new Size2D(200, 200);
             gifVisual.SizePolicy = new Vector2(1, 1);
             gifVisual.Position = new Position2D(0, 0);
@@ -196,7 +196,7 @@ namespace VisaulAnimationExample
                 }
                 else
                 {
-                    gifVisual.URL = _resPath + "/images/dog-anim.gif";
+                    gifVisual.URL = _resPath + "/images/echo.gif";
                 }
                 return true;
             };
