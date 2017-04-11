@@ -18,8 +18,17 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="ItemObject"/>.
+    /// MutltiButtonEntryItem is a item which is added to MultiButtonEntry.
+    /// It contains Next and Prev properties to get next and previous item.
+    /// </summary>
     public class MultiButtonEntryItem : ItemObject
     {
+        /// <summary>
+        /// Creates and initializes a new instance of the MultiButtonEntryItem class.
+        /// </summary>
+        /// <param name="text">The text of MultiButtonEntryItem's Label name.</param>
         public MultiButtonEntryItem(string text) : base(IntPtr.Zero)
         {
             Label = text;
@@ -30,8 +39,14 @@ namespace ElmSharp
             Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
         }
 
+        /// <summary>
+        /// Gets the label of this item.
+        /// </summary>
         public string Label { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the selected state of an item.
+        /// </summary>
         public bool IsSelected
         {
             get
@@ -44,6 +59,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Get the next item in the multibuttonentry.
+        /// </summary>
         public MultiButtonEntryItem Next
         {
             get
@@ -53,6 +71,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Get the previous item in the multibuttonentry.
+        /// </summary>
         public MultiButtonEntryItem Prev
         {
             get

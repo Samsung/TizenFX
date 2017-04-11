@@ -19,6 +19,13 @@ using System.Collections.Generic;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits <see cref="Layout"/>.
+    /// The MultiButtonEntry is a widget letting an user enter text and each chunk of text managed as a set of buttons.
+    /// Each text button is inserted by pressing the "return" key. If there is no space in the current row, a new button is added to the next row.
+    /// When a text button is pressed, it will become focused. Backspace removes the focus. When the multi-button entry loses focus, items longer than one line are shrunk to one line.
+    /// The typical use case of multi-button entry is composing emails/messages to a group of addresses, each of which is an item that can be clicked for further actions.
+    /// </summary>
     public class MultiButtonEntry : Layout
     {
         HashSet<MultiButtonEntryItem> _children = new HashSet<MultiButtonEntryItem>();
@@ -35,6 +42,10 @@ namespace ElmSharp
         SmartEvent<MultiButtonEntryItemEventArgs> _itemLongPressed;
         SmartEvent<MultiButtonEntryItemEventArgs> _itemAdded;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the MultiButtonEntry class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by MultiButtonEntry as a child. It's <see cref="EvasObject"/> type.</param>
         public MultiButtonEntry(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
@@ -60,24 +71,55 @@ namespace ElmSharp
             _itemAdded.On += OnItemAdded;
         }
 
+        /// <summary>
+        /// Clicked is raised when a MultiButtonEntry is clicked.
+        /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// Expanded is raised when a MultiButtonEntry is expanded.
+        /// </summary>
         public event EventHandler Expanded;
 
+        /// <summary>
+        /// Contracted is raised when a MultiButtonEntry is contracted.
+        /// </summary>
         public event EventHandler Contracted;
 
+        /// <summary>
+        /// ExpandedStateChanged is raised when shrink mode state of MultiButtonEntry is changed.
+        /// </summary>
         public event EventHandler ExpandedStateChanged;
 
+        /// <summary>
+        /// ItemSelected is raised when an item is selected by api, user interaction, and etc.
+        /// This is also raised when a user press back space while cursor is on the first field of entry.
+        /// </summary>
         public event EventHandler<MultiButtonEntryItemEventArgs> ItemSelected;
 
+        /// <summary>
+        /// ItemClicked is raised when an item is clicked by user interaction.
+        /// </summary>
         public event EventHandler<MultiButtonEntryItemEventArgs> ItemClicked;
 
+        /// <summary>
+        /// ItemLongPressed is raised when MultiButtonEntry item is pressed for a long time.
+        /// </summary>
         public event EventHandler<MultiButtonEntryItemEventArgs> ItemLongPressed;
 
+        /// <summary>
+        /// ItemAdded is raised when a new MultiButtonEntry item is added.
+        /// </summary>
         public event EventHandler<MultiButtonEntryItemEventArgs> ItemAdded;
 
+        /// <summary>
+        /// ItemDeleted is raised when a MultiButtonEntry item is deleted.
+        /// </summary>
         public event EventHandler<MultiButtonEntryItemEventArgs> ItemDeleted;
 
+        /// <summary>
+        /// Gets the selected item in the multibuttonentry.
+        /// </summary>
         public MultiButtonEntryItem SelectedItem
         {
             get
@@ -87,6 +129,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the multibuttonentry is editable or not.
+        /// </summary>
         public bool IsEditable
         {
             get
@@ -99,6 +144,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the multibuttonentry to expanded state.
+        /// If true, expanded state.
+        /// If false, single line state.
+        /// </summary>
         public bool IsExpanded
         {
             get
@@ -111,6 +161,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the first item in the multibuttonentry.
+        /// </summary>
         public MultiButtonEntryItem FirstItem
         {
             get
@@ -120,6 +173,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the last item in the multibuttonentry.
+        /// </summary>
         public MultiButtonEntryItem LastItem
         {
             get
@@ -134,6 +190,11 @@ namespace ElmSharp
             return Interop.Elementary.elm_multibuttonentry_add(parent.Handle);
         }
 
+        /// <summary>
+        /// Append a new item to the multibuttonentry.
+        /// </summary>
+        /// <param name="label">The label of new item.</param>
+        /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem Append(string label)
         {
             var handle = Interop.Elementary.elm_multibuttonentry_item_append(Handle, label, null, IntPtr.Zero);
@@ -141,6 +202,11 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Prepend a new item to the multibuttonentry.
+        /// </summary>
+        /// <param name="label">The label of new item.</param>
+        /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem Prepend(string label)
         {
             var handle = Interop.Elementary.elm_multibuttonentry_item_prepend(Handle, label, null, IntPtr.Zero);
@@ -148,6 +214,12 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Add a new item to the multibuttonentry before the indicated object reference.
+        /// </summary>
+        /// <param name="before">The item before which to add it.</param>
+        /// <param name="label">The label of new item.</param>
+        /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem InsertBefore(MultiButtonEntryItem before, string label)
         {
             var handle = Interop.Elementary.elm_multibuttonentry_item_insert_before(Handle, before.Handle, label, null, IntPtr.Zero);
@@ -155,6 +227,12 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Add a new item to the multibuttonentry after the indicated object.
+        /// </summary>
+        /// <param name="after">The item after which to add it.</param>
+        /// <param name="label">The label of new item.</param>
+        /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem InsertAfter(MultiButtonEntryItem after, string label)
         {
             var handle = Interop.Elementary.elm_multibuttonentry_item_insert_after(Handle, after.Handle, label, null, IntPtr.Zero);
@@ -162,12 +240,19 @@ namespace ElmSharp
             return item;
         }
 
+        /// <summary>
+        /// Remove all items in the multibuttonentry.
+        /// </summary>
         public void Clear()
         {
             Interop.Elementary.elm_multibuttonentry_clear(Handle);
             _children.Clear();
         }
 
+        /// <summary>
+        /// Append an item filter function for text inserted in the Multibuttonentry.
+        /// </summary>
+        /// <param name="func">The function to use as item filter.</param>
         public void AppendFilter(Func<string, bool> func)
         {
             _filters.Add(func);
@@ -177,6 +262,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Prepend a filter function for text inserted in the Multibuttonentry.
+        /// </summary>
+        /// <param name="func">The function to use as text filter.</param>
         public void PrependFilter(Func<string, bool> func)
         {
             _filters.Insert(0, func);
@@ -186,6 +275,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Remove a filter from the list.
+        /// </summary>
+        /// <param name="func">The filter function to remove.</param>
         public void RemoveFilter(Func<string, bool> func)
         {
             _filters.Remove(func);
@@ -224,8 +317,16 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// The MultiButtonEntryItemEventArgs is a argument for all events of MultiButtonEntry.
+    /// It contains Item which is <see cref="MultiButtonEntryItem"/> type.
+    /// </summary>
     public class MultiButtonEntryItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets or sets MultiButtonEntryItem item. The return type is <see cref="MultiButtonEntryItem"/>.
+        /// </summary>
         public MultiButtonEntryItem Item { get; set; }
 
         internal static MultiButtonEntryItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
