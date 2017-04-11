@@ -27,6 +27,7 @@ namespace Tizen.Messaging.Messages
     {
         internal IntPtr _messageHandle = IntPtr.Zero;
         private bool disposed = false;
+        private int _memoryPressureSize = IntPtr.Size * 11 + sizeof(int) * 5 + sizeof(bool) * 5 + sizeof(short) * 2 + sizeof(byte) * 1176;
 
         private ICollection<MessagesAddress> _from = new Collection<MessagesAddress>();
         internal ICollection<MessagesAddress> _to = new Collection<MessagesAddress>();
@@ -41,12 +42,15 @@ namespace Tizen.Messaging.Messages
                 Log.Error(Globals.LogTag, "Failed to create message handle, Error - " + (MessagesError)ret);
                 MessagesErrorFactory.ThrowMessagesException(ret);
             }
+
+            GC.AddMemoryPressure(_memoryPressureSize);
         }
 
         internal Message(IntPtr messageHandle)
         {
             _messageHandle = messageHandle;
             GetAllAddresses();
+            GC.AddMemoryPressure(_memoryPressureSize);
         }
 
         internal void FillHandle()
@@ -64,6 +68,7 @@ namespace Tizen.Messaging.Messages
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+            GC.RemoveMemoryPressure(_memoryPressureSize);
         }
 
         private void Dispose(bool disposing)
