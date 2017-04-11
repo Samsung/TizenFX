@@ -108,8 +108,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor.<br>
         /// Creates a bezier alpha function.The bezier will have the first point at(0,0) and the end point at(1,1).<br>
-        /// Note : The x components of the control points will be clamped to the range[0, 1] to prevent non monotonic curves.<br>
         /// </summary>
+        /// <remarks>The x components of the control points will be clamped to the range[0, 1] to prevent non monotonic curves.</remarks>
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve</param>
         public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
@@ -167,19 +167,61 @@ namespace Tizen.NUI
         /// </summary>
         public enum BuiltinFunctions
         {
+            /// <summary>
+            /// Linear
+            /// </summary>
             Default,
+            /// <summary>
+            /// No transformation
+            /// </summary>
             Linear,
+            /// <summary>
+            /// Reverse linear
+            /// </summary>
             Reverse,
+            /// <summary>
+            /// Speeds up and comes to a sudden stop (Square)
+            /// </summary>
             EaseInSquare,
+            /// <summary>
+            /// Sudden start and slows to a gradual stop (Square)
+            /// </summary>
             EaseOutSquare,
+            /// <summary>
+            /// Speeds up and comes to a sudden stop (Cubic)
+            /// </summary>
             EaseIn,
+            /// <summary>
+            /// Sudden start and slows to a gradual stop (Cubic)
+            /// </summary>
             EaseOut,
+            /// <summary>
+            /// Speeds up and slows to a gradual stop (Cubic)
+            /// </summary>
             EaseInOut,
+            /// <summary>
+            /// Speeds up and comes to a sudden stop (sinusoidal)
+            /// </summary>
             EaseInSine,
+            /// <summary>
+            /// Sudden start and slows to a gradual stop (sinusoidal)
+            /// </summary>
             EaseOutSine,
+            /// <summary>
+            /// Speeds up and slows to a gradual stop (sinusoidal)
+            /// </summary>
             EaseInOutSine,
+            /// <summary>
+            /// Sudden start, loses momentum and returns to start position
+            /// </summary>
             Bounce,
+            /// <summary>
+            /// Single revolution
+            /// </summary>
             Sin,
+            /// <summary>
+            /// Sudden start, exceed end position and return to a gradual stop
+            /// </summary>
             EaseOutBack,
             Count
         }
@@ -189,7 +231,13 @@ namespace Tizen.NUI
         /// </summary>
         public enum Modes
         {
+            /// <summary>
+            /// The user has provided a custom function
+            /// </summary>
             CustomFunction = 1,
+            /// <summary>
+            /// The user has provided the control points of a bezier curve
+            /// </summary>
             Bezier
         }
 

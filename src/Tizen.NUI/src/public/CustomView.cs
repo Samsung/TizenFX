@@ -494,7 +494,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="child">The child actor to calculate the size for</param>
         /// <param name="dimension">The dimension to calculate the size for. E.g. width or height</param>
-        /// <returns>Return the calculated size for the given dimension</returns>
+        /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
         public virtual float CalculateChildSize(Actor child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);

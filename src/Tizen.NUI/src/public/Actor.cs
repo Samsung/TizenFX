@@ -86,7 +86,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Retrieve the position of the Actor.<br>
+        ///  Retrieves the position of the Actor.<br>
         ///  The coordinates are relative to the Actor's parent.<br>
         /// </summary>
         public Position CurrentPosition
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Retrieve the size of the Actor.<br>
+        ///  Retrieves the size of the Actor.<br>
         ///  The coordinates are relative to the Actor's parent.<br>
         /// </summary>
         public Size CurrentSize
@@ -151,11 +151,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Determines whether the anchor point should be used to determine the position of the actor.<br>
-        /// This is true by default.<br>
-        /// Note: If false, then the top-left of the actor is used for the position.<br>
-        /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the actor's position.<br>
+        /// Determines whether the anchor point should be used to determine the position of the actor.
+        /// This is true by default.
         /// </summary>
+        /// <remarks>If false, then the top-left of the actor is used for the position.
+        /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the actor's position.
+        /// </remarks>
         protected bool PositionUsesAnchorPoint
         {
             get
@@ -194,11 +195,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Sets the sibling order of the actor so depth position can be defined within the same parent.<br>
-        ///  Note The initial value is 0.<br>
-        ///  Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove and LowerBelow will override the sibling order.<br>
-        ///  The values set by this Property will likely change.<br>
+        /// Sets the sibling order of the actor so depth position can be defined within the same parent.
         /// </summary>
+        /// <remarks>
+        /// Note The initial value is 0.
+        /// Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove and LowerBelow will override the sibling order.
+        /// The values set by this Property will likely change.
+        /// </remarks>
         public int SiblingOrder
         {
             get
@@ -214,10 +217,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the size of an actor for Width and Height.<br>
+        /// Sets the size of an actor for width and height.<br>
         /// Geometry can be scaled to fit within this area.<br>
         /// This does not interfere with the actors scale factor.<br>
-        /// The actors default depth is the minimum of Width & Height.<br>
+        /// The actors default depth is the minimum of width & height.<br>
         /// </summary>
         public Size2D Size2D
         {
@@ -253,31 +256,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the visibility flag of an actor as true to be shown.<br>
-        /// Note This is an asynchronous method; the value written may not match a value subsequently read with Visible.<br>
-        /// If an actor's visibility flag is set to false, then the actor and its children will not be rendered.<br>
-        /// This is regardless of the individual visibility values of the children i.e.an actor will only be rendered if all of its parents have visibility set to true.<br>
+        /// Shows the Actor.
         /// </summary>
+        /// <remarks>
+        /// This is an asynchronous method.
+        /// </remarks>
         public void Show()
         {
             SetVisible(true);
         }
 
         /// <summary>
-        /// Sets the visibility flag of an actor as false to be hidden.
+        /// Hides the Actor.
         /// </summary>
+        /// <remarks>
+        /// This is an asynchronous method.
+        /// If an actor is hidden, then the actor and its children will not be rendered.
+        /// This is regardless of the individual visibility of the children i.e.an actor will only be rendered if all of its parents are shown.
+        /// </remarks>
         public void Hide()
         {
             SetVisible(false);
         }
 
         /// <summary>
-        /// Raise actor above the next highest level of actor(s).<br>
-        /// Note Sibling order of actors within the parent will be updated automatically.<br>
-        /// Initially actors added to a parent will have the same sibling order and shown in relation to insertion order.<br>
-        /// Raising this actor above actors with the same sibling order as each other will raise this actor above them.<br>
-        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Raise actor above the next highest level of actor(s).
         /// </summary>
+        /// <remarks>
+        /// Sibling order of actors within the parent will be updated automatically.
+        /// Initially actors added to a parent will have the same sibling order and shown in relation to insertion order.
+        /// Raising this actor above actors with the same sibling order as each other will raise this actor above them.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         public void Raise()
         {
             NDalicPINVOKE.Raise(swigCPtr);
@@ -285,11 +295,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Lower the actor to underneath the level below actor(s).<br>
-        /// Note Sibling order of actors within the parent will be updated automatically.<br>
-        /// Lowering this actor below actors with the same sibling order as each other will lower this actor above them.<br>
-        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Lower the actor to underneath the level below actor(s).
         /// </summary>
+        /// <remarks>
+        /// Sibling order of actors within the parent will be updated automatically.
+        /// Lowering this actor below actors with the same sibling order as each other will lower this actor above them.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         public void Lower()
         {
             NDalicPINVOKE.Lower(swigCPtr);
@@ -297,10 +309,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Raise actor above all other actors.<br>
-        /// Note Sibling order of actors within the parent will be updated automatically.<br>
-        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Raise actor above all other actors.
         /// </summary>
+        /// <remarks>
+        /// Sibling order of actors within the parent will be updated automatically.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         public void RaiseToTop()
         {
             NDalicPINVOKE.RaiseToTop(swigCPtr);
@@ -308,10 +322,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Lower actor to the bottom of all actors.<br>
-        /// Note Sibling order of actors within the parent will be updated automatically.<br>
-        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Lower actor to the bottom of all actors.
         /// </summary>
+        /// <remarks>
+        /// Sibling order of actors within the parent will be updated automatically.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         public void LowerToBottom()
         {
             NDalicPINVOKE.LowerToBottom(swigCPtr);
@@ -319,12 +335,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Raise the actor to above the target actor.<br>
-        ///  Note Sibling order of actors within the parent will be updated automatically.<br>
-        ///  Actors on the level above the target actor will still be shown above this actor.<br>
-        ///  Raising this actor above actors with the same sibling order as each other will raise this actor above them.<br>
-        ///  Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Raise the actor to above the target actor.
         /// </summary>
+        /// <remarks>Sibling order of actors within the parent will be updated automatically.
+        /// Actors on the level above the target actor will still be shown above this actor.
+        /// Raising this actor above actors with the same sibling order as each other will raise this actor above them.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         /// <param name="target">Will be raised above this actor</param>
         public void RaiseAbove(Actor target)
         {
@@ -333,11 +350,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Lower the actor to below the target actor.<br>
-        /// Note Sibling order of actors within the parent will be updated automatically.<br>
-        /// Lowering this actor below actors with the same sibling order as each other will lower this actor above them.<br>
-        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.<br>
+        /// Lower the actor to below the target actor.
         /// </summary>
+        /// <remarks>Sibling order of actors within the parent will be updated automatically.
+        /// Lowering this actor below actors with the same sibling order as each other will lower this actor above them.
+        /// Once a raise or lower API is used that actor will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
         /// <param name="target">Will be lowered below this actor</param>
         public void LowerBelow(Actor target)
         {
@@ -466,7 +484,7 @@ namespace Tizen.NUI
         /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">handle to An object</param>
-        /// <returns>handle to a Actor object or an uninitialized handle</returns>
+        /// <returns>handle to an Actor object or an uninitialized handle</returns>
         public new static Actor DownCast(BaseHandle handle)
         {
             Actor ret = new Actor(NDalicPINVOKE.Actor_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -535,11 +553,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds a child Actor to this Actor.<br>
-        /// Precondition : This Actor(the parent) has been initialized. The child actor has been initialized. The child actor is not the same as the parent actor.<br>
-        /// PostCondition : The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.<br>
-        /// Note : If the child already has a parent, it will be removed from old parent and reparented to this actor. This may change child's position, color, scale etc as it now inherits them from this actor.<br>
+        /// Adds a child Actor to this Actor.
         /// </summary>
+        /// <pre>This Actor(the parent) has been initialized. The child actor has been initialized. The child actor is not the same as the parent actor.</pre>
+        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
+        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this actor. This may change child's position, color, scale etc as it now inherits them from this actor.</remarks>
         /// <param name="child">The child</param>
         public void Add(Actor child)
         {
@@ -548,9 +566,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes a child Actor from this Actor. If the actor was not a child of this actor, this is a no-op.<br>
-        /// Precondition : This Actor(the parent) has been initialized. The child actor is not the same as the parent actor.<br>
+        /// Removes a child Actor from this Actor. If the actor was not a child of this actor, this is a no-op.
         /// </summary>
+        /// <pre>This Actor(the parent) has been initialized. The child actor is not the same as the parent actor.</pre>
         /// <param name="child">The child</param>
         public void Remove(Actor child)
         {
@@ -565,9 +583,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the number of children held by the actor.<br>
-        /// Precondition :  The Actor has been initialized.<br>
+        /// Retrieves the number of children held by the actor.
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
         /// <returns>The number of children</returns>
         public uint GetChildCount()
         {
@@ -577,9 +595,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve and child actor by index.<br>
-        /// Precondition : The Actor has been initialized.<br>
+        /// Retrieves child actor by index.
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
         /// <param name="index">The index of the child to retrieve</param>
         /// <returns>The actor for the given index or empty handle if children not initialized</returns>
         public Actor GetChildAt(uint index)
@@ -590,10 +608,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Search through this actor's hierarchy for an actor with the given name.<br>
-        /// The actor itself is also considered in the search.<br>
-        ///Precondition :  The Actor has been initialized.<br>
+        /// Search through this actor's hierarchy for an actor with the given name.
+        /// The actor itself is also considered in the search.
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
         /// <param name="actorName">The name of the actor to find</param>
         /// <returns>A handle to the actor if found, or an empty handle if not</returns>
         public Actor FindChildByName(string actorName)
@@ -976,10 +994,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts screen coordinates into the actor's coordinate system using the default camera.<br>
-        /// Precondition : The Actor has been initialized.<br>
-        /// Note : The actor coordinates are relative to the top-left(0.0, 0.0, 0.5).<br>
+        /// Converts screen coordinates into the actor's coordinate system using the default camera.
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
+        /// <remarks>The actor coordinates are relative to the top-left(0.0, 0.0, 0.5)</remarks>
         /// <param name="localX">On return, the X-coordinate relative to the actor</param>
         /// <param name="localY">On return, the Y-coordinate relative to the actor</param>
         /// <param name="screenX">The screen X-coordinate</param>
@@ -1046,10 +1064,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the relative to parent size factor of the actor.<br>
-        /// This factor is only used when ResizePolicy is set to either.<br>
+        /// This factor is only used when ResizePolicy is set to either:
+        /// ResizePolicy::SIZE_RELATIVE_TO_PARENT or ResizePolicy::SIZE_FIXED_OFFSET_FROM_PARENT.<br>
         /// This actor's size is set to the actor's size multiplied by or added to this factor, depending on ResizePolicy.<br>
-        /// Precondition : The Actor has been initialized.<br>
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
         /// <param name="factor">A Vector3 representing the relative factor to be applied to each axis</param>
         public void SetSizeModeFactor(Vector3 factor)
         {
@@ -1070,7 +1089,7 @@ namespace Tizen.NUI
         /// size 0 is treated as aspect ratio 1:1.<br>
         /// </summary>
         /// <param name="width">Width to use</param>
-        /// <returns>the height based on the width</returns>
+        /// <returns>The height based on the width</returns>
         public float GetHeightForWidth(float width)
         {
             float ret = NDalicPINVOKE.Actor_GetHeightForWidth(swigCPtr, width);
@@ -1084,7 +1103,7 @@ namespace Tizen.NUI
         /// size 0 is treated as aspect ratio 1:1.<br>
         /// </summary>
         /// <param name="height">Height to use</param>
-        /// <returns>the width based on the height</returns>
+        /// <returns>The width based on the height</returns>
         public float GetWidthForHeight(float height)
         {
             float ret = NDalicPINVOKE.Actor_GetWidthForHeight(swigCPtr, height);
@@ -1102,7 +1121,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the padding for use in layout.<br>
         /// </summary>
-        /// <param name="padding">padding Padding for the actor</param>
+        /// <param name="padding">Padding for the actor</param>
         public void SetPadding(PaddingType padding)
         {
             NDalicPINVOKE.Actor_SetPadding(swigCPtr, PaddingType.getCPtr(padding));
@@ -1236,11 +1255,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets/Sets the origin of an actor, within its parent's area.<br>
-        /// This is expressed in unit coordinates, such that(0.0, 0.0, 0.5) is the top-left corner of the parent, and(1.0, 1.0, 0.5) is the bottom-right corner.<br>
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and(1.0, 1.0, 0.5) is the bottom-right corner.<br>
         /// The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br>
         /// An actor's position is the distance between this origin, and the actor's anchor-point.<br>
-        /// Precondition : The Actor has been initialized.<br>
         /// </summary>
+        /// <pre>The Actor has been initialized.</pre>
         public Position ParentOrigin
         {
             get
@@ -1257,11 +1276,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets/Sets the anchor-point of an actor.<br>
-        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the actor, and(1.0, 1.0, 0.5) is the bottom-right corner.<br>
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the actor, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
         /// The default anchor point is AnchorPoint.Center (0.5, 0.5, 0.5).<br>
         /// An actor position is the distance between its parent-origin and this anchor-point.<br>
         /// An actor's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
-        /// Precondition : The Actor has been initialized.
+        /// <pre>The Actor has been initialized.</pre>
         /// </summary>
         public Position AnchorPoint
         {
@@ -1435,8 +1454,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets the orientation of the Actor.<br>
         /// An actor's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br>
-        /// Note: This is an asynchronous method.<br>
         /// </summary>
+        /// <remarks>This is an asynchronous method.</remarks>
         public Rotation Orientation
         {
             get
@@ -1466,7 +1485,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets/Sets the scale factor applied to an actor.<br>
-        /// Note : This is an asynchronous method.<br>
         /// </summary>
         public Vector3 Scale
         {
@@ -1547,10 +1565,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the visibility flag of an actor.<br>
-        /// Note : If an actor is not visible, then the actor and its children will not be rendered.<br>
-        /// This is regardless of the individual visibility values of the children i.e.an actor will only be rendered if all of its parents have visibility set to true.<br>
+        /// Retrieves the visibility flag of an actor.
         /// </summary>
+        /// <remarks>
+        /// If an actor is not visible, then the actor and its children will not be rendered.
+        /// This is regardless of the individual visibility values of the children i.e.an actor will only be rendered if all of its parents have visibility set to true.
+        /// </remarks>
         public bool Visible
         {
             get
@@ -1839,7 +1859,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the width resize policy to be used for the given dimension(s).
+        /// Gets/Sets the width resize policy to be used.
         /// </summary>
         public ResizePolicyType WidthResizePolicy
         {
@@ -1879,7 +1899,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the height resize policy to be used for the given dimension(s).
+        /// Gets/Sets the height resize policy to be used.
         /// </summary>
         public ResizePolicyType HeightResizePolicy
         {
@@ -2110,17 +2130,25 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies whether the Actor uses its own color, or inherits.<br>
-    /// ColorMode.UseOwnColor : Actor will use its own color.<br>
-    /// ColorMode.UseParentColor : Actor will use its parent color.<br>
-    /// ColorMode.UseOwnMultiplyParentColor : Actor will blend its color with its parents color.<br>
-    /// ColorMode.UseOwnMultiplyParentAlpha : Actor will blend its alpha with its parents alpha. This means when parent fades in or out child does as well. This is the default.<br>
+    /// This specifies whether the Actor uses its own color, or inherits.
     /// </summary>
     public enum ColorMode
     {
+        /// <summary>
+        /// Actor will use its own color.
+        /// </summary>
         UseOwnColor,
+         /// <summary>
+        /// Actor will use its parent color.
+        /// </summary>
         UseParentColor,
+        /// <summary>
+        /// Actor will blend its color with its parents color.
+        /// </summary>
         UseOwnMultiplyParentColor,
+        /// <summary>
+        /// Actor will blend its alpha with its parents alpha. This means when parent fades in or out child does as well. This is the default.
+        /// </summary>
         UseOwnMultiplyParentAlpha
     }
 
@@ -2129,52 +2157,110 @@ namespace Tizen.NUI
     /// </summary>
     public enum DimensionType
     {
+        /// <summary>
+        /// Width dimension
+        /// </summary>
         Width = 0x1,
+        /// <summary>
+        /// Height dimension
+        /// </summary>
         Height = 0x2,
+        /// <summary>
+        /// Mask to cover all flags
+        /// </summary>
         AllDimensions = 0x3
     }
 
     /// <summary>
-    /// This specifies draw mode types
+    /// Enumeration for the instance of how the actor and it's children will be drawn.
     /// </summary>
     public enum DrawModeType
     {
+        /// <summary>
+        /// The default draw-mode
+        /// </summary>
         Normal = 0,
+        /// <summary>
+        /// Draw the actor and its children as an overlay
+        /// </summary>
         Overlay2D = 1,
+        /// <summary>
+        /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer
+        /// </summary>
         Stencil = 3
     }
 
     /// <summary>
-    /// This specifies resize policy types
+    /// Enumeration for size negotiation resize policies.
     /// </summary>
     public enum ResizePolicyType
     {
+        /// <summary>
+        /// Size is fixed as set by SetSize
+        /// </summary>
         Fixed,
+        /// <summary>
+        /// Size is to use the actor's natural size
+        /// </summary>
+        /// <see cref="Actor.GetNaturalSize"/>
         UseNaturalSize,
+        /// <summary>
+        /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
+        /// </summary>
         FillToParent,
+        /// <summary>
+        /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
+        /// </summary>
         SizeRelativeToParent,
+        /// <summary>
+        /// The actors size will be ( ParentSize + SizeRelativeToParentFactor ).
+        /// </summary>
         SizeFixedOffsetFromParent,
+        /// <summary>
+        /// Size will adjust to wrap around all children
+        /// </summary>
         FitToChildren,
+        /// <summary>
+        /// One dimension is dependent on the other
+        /// </summary>
         DimensionDependency,
+        /// <summary>
+        /// The size will be assigned to the actor
+        /// </summary>
         UseAssignedSize
     }
 
     /// <summary>
-    /// This specifies size scale policy types
+    /// Enumeration for policies to determine how an actor should resize itself when having its size set in size negotiation.
     /// </summary>
     public enum SizeScalePolicyType
     {
+        /// <summary>
+        /// Use the size that was set
+        /// </summary>
         UseSizeSet,
+        /// <summary>
+        /// Fit within the size set maintaining natural size aspect ratio
+        /// </summary>
         FitWithAspectRatio,
-        FillWithAspectRatio
+        /// <summary>
+        /// Fit within the size set maintaining natural size aspect ratio
+        /// </summary>
+        FillWithAspectRatiox
     }
 
     /// <summary>
-    /// This specifies clipping mode types
+    /// Enumeration for ClippingMode describing how this Actor's children will be clipped against it.
     /// </summary>
     public enum ClippingModeType
     {
+        /// <summary>
+        /// This Actor will not clip its children.
+        /// </summary>
         Disabled,
+        /// <summary>
+        /// This Actor will clip all children to within its boundaries (the actor will also be visible itself).
+        /// </summary>
         ClipChildren
     }
 
