@@ -278,12 +278,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the icon padding value.
         /// </summary>
-        public string IconPadding
+        public Vector4 IconPadding
         {
             get
             {
-                string temp;
-                GetProperty(PushButton.Property.ICON_PADDING).Get(out temp);
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(PushButton.Property.ICON_PADDING).Get(temp);
                 return temp;
             }
             set
