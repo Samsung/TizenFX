@@ -70,6 +70,7 @@
     <Compile Include="Tizen.Content.MediaContent\Group.cs" />
     <Compile Include="Tizen.Content.MediaContent\ImageInformation.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaBookmark.cs" />
+    <Compile Include="Tizen.Content.MediaContent\ContentColumns.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaContentEnums.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaContentError.cs" />
     <Compile Include="Tizen.Content.MediaContent\MediaFace.cs" />

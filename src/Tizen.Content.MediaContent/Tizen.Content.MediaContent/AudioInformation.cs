@@ -394,7 +394,7 @@ namespace Tizen.Content.MediaContent
             MediaBookmark result = null;
             ContentManager.Database.Insert(MediaId, offset, null);
             ContentFilter bookmarkfilter = new ContentFilter();
-            bookmarkfilter.Condition = "BOOKMARK_MARKED_TIME = " + offset;
+            bookmarkfilter.Condition = ContentColumns.Bookmark.Offset + " = " + offset;
             IEnumerable<MediaBookmark> bookmarksList = null;
             bookmarksList = GetMediaBookmarks(bookmarkfilter);
             foreach (MediaBookmark bookmark in bookmarksList)
