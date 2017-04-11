@@ -30,6 +30,8 @@ internal static partial class Interop
         public delegate void ConnectionAddressChangedCallback(IntPtr ipv4, IntPtr ipv6, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ConnectionCallback(ConnectionError result, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate bool IPv6AddressCallback(IntPtr ipv6, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_create")]
         public static extern int Create(out IntPtr handle);
@@ -42,6 +44,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_ip_address")]
         public static extern int GetIPAddress(IntPtr handle, int family, out IntPtr address);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_foreach_ipv6_address")]
+        public static extern int GetAllIPv6Addresses(IntPtr handle, int type, IPv6AddressCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_proxy")]
         public static extern int GetProxy(IntPtr handle, int family, out IntPtr address);
@@ -63,6 +68,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_bt_state")]
         public static extern int GetBtState(IntPtr handle, out int state);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_get_statistics")]
+        public static extern int GetStatistics(IntPtr handle, int connectionType, int statisticsType, out long size);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_reset_statistics")]
+        public static extern int ResetStatistics(IntPtr handle, int connectionType, int statisticsType);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_set_type_changed_cb")]
         public static extern int SetTypeChangedCallback(IntPtr handle, ConnectionTypeChangedCallback callback, IntPtr userData);
@@ -157,6 +168,9 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_state")]
         public static extern int GetState(IntPtr profileHandle, out int type);
 
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_ipv6_state")]
+        public static extern int GetIPv6State(IntPtr profileHandle, out int type);
+
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_ip_config_type")]
         public static extern int GetIPConfigType(IntPtr profileHandle, int family, out int type);
 
@@ -177,6 +191,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_proxy_address")]
         public static extern int GetProxyAddress(IntPtr profileHandle, int family, out IntPtr address);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_prefix_length")]
+        public static extern int GetPrefixLength(IntPtr profileHandle, int family, out int length);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_dns_config_type")]
+        public static extern int GetDnsConfigType(IntPtr profileHandle, int family, out int type);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_refresh")]
+        public static extern int Refresh(IntPtr profileHandle);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_ip_config_type")]
         public static extern int SetIPConfigType(IntPtr profileHandle, int family, int type);
@@ -199,6 +222,12 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_proxy_address")]
         public static extern int SetProxyAddress(IntPtr profileHandle, int family, string address);
 
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_prefix_length")]
+        public static extern int SetPrefixLength(IntPtr profileHandle, int family, int length);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_dns_config_type")]
+        public static extern int SetDnsConfigType(IntPtr profileHandle, int family, int type);
+
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_state_changed_cb")]
         public static extern int SetStateChangeCallback(IntPtr profileHandle, ProfileStateChangedCallback callback, IntPtr userData);
 
@@ -219,6 +248,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_cellular_home_url")]
         public static extern int GetHomeUrl(IntPtr profileHandle, out IntPtr homeUrl);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_cellular_pdn_type")]
+        public static extern int GetPdnType(IntPtr profileHandle, out int pdnType);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_cellular_roam_pdn_type")]
+        public static extern int GetRoamingPdnType(IntPtr profileHandle, out int roamPdnType);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_is_cellular_roaming")]
         public static extern int IsRoaming(IntPtr profileHandle, out bool roaming);
@@ -244,6 +279,11 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_cellular_home_url")]
         public static extern int SetHomeUrl(IntPtr profileHandle, string homeUrl);
 
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_cellular_pdn_type")]
+        public static extern int SetPdnType(IntPtr profileHandle, int pdnType);
+
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_set_cellular_roam_pdn_type")]
+        public static extern int SetRoamingPdnType(IntPtr profileHandle, int roamPdnType);
     }
 
     internal static partial class ConnectionWiFiProfile

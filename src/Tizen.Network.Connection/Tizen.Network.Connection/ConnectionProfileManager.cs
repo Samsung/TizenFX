@@ -36,6 +36,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static void AddCellularProfile(CellularProfile profile)
         {
+            Log.Debug(Globals.LogTag, "AddCellularProfile");
             ConnectionInternalManager.Instance.AddCellularProfile(profile);
         }
 
@@ -47,6 +48,7 @@ namespace Tizen.Network.Connection
         /// <returns>List of connection profile objects.</returns>
         public static Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
+            Log.Debug(Globals.LogTag, "GetProfileListAsync");
             return ConnectionInternalManager.Instance.GetProfileListAsync(type);
         }
 
@@ -60,6 +62,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static Task ConnectProfileAsync(ConnectionProfile profile)
         {
+            Log.Debug(Globals.LogTag, "ConnectProfile");
             return ConnectionInternalManager.Instance.OpenProfileAsync(profile);
         }
 
@@ -72,6 +75,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static Task DisconnectProfileAsync(ConnectionProfile profile)
         {
+            Log.Debug(Globals.LogTag, "DisconnectProfileAsync");
             return ConnectionInternalManager.Instance.CloseProfileAsync(profile);
         }
 
@@ -99,6 +103,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static void UpdateProfile(ConnectionProfile profile)
         {
+            Log.Debug(Globals.LogTag, "UpdateProfile");
             ConnectionInternalManager.Instance.UpdateProfile(profile);
         }
 
@@ -110,6 +115,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static ConnectionProfile GetCurrentProfile()
         {
+            Log.Debug(Globals.LogTag, "GetCurrentProfile");
             return ConnectionInternalManager.Instance.GetCurrentProfile();
         }
 
@@ -122,6 +128,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
+            Log.Debug(Globals.LogTag, "GetDefaultCurrentProfile");
             return ConnectionInternalManager.Instance.GetDefaultCellularProfile(type);
         }
 
@@ -136,6 +143,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public static Task SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
+            Log.Debug(Globals.LogTag, "SetDefaultCellularProfile");
             return ConnectionInternalManager.Instance.SetDefaultCellularProfile(type, profile);
         }
     }
