@@ -29,7 +29,7 @@ namespace Tizen.NUI
     /// (configured to have the origin of the coordinate system at the top-left corner of the screen, and unit 1 as 1 pixel of the screen). This is a typical way.<br>
     /// - For 3D applications, you can change the view by manipulating the camera.You can translate or rotate the camera in this case.<br>
     /// Note that the top-left corner of the screen and unit 1 no longer are (0,0,0) and 1 pixel after manipulating the camera.<br>
-    /// There are two types of camera actor, FreeLook and LookAtTarget By default, the camera actor will be FreeLook.<br>
+    /// There are two types of camera actor, FreeLook and LookAtTarget. By default, the camera actor will be FreeLook.<br>
     /// - A FreeLook camera uses actor's orientation to control where the camera is looking.<br>
     /// If no additional rotations are specified, the camera looks in the negative Z direction.<br>
     /// - For LookAtTarget, the actor's orientation is ignored, instead the camera looks at TargetPosition in world coordinates.<br>

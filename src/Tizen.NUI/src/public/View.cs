@@ -648,7 +648,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Describes the direction to move the keyboard focus towards.
+        /// Describes the direction to move the focus towards.
         /// </summary>
         public enum FocusDirection
         {

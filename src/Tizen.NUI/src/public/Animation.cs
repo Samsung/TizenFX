@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// Animation can be used to animate the properties of any number of objects, typically Actors.<br>
     /// If the "Finished" event is connected to a member function of an object, it must be disconnected before the object is destroyed.<br>
     /// This is typically done in the object destructor, and requires either the Animation handle to be stored.<br>
-    /// The overall animation time is superseded by the values given in the Duration property used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br>
+    /// The overall animation time is superseded by the values given in the animation time used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br>
     /// If any of the individual calls to those functions exceeds the overall animation time(Duration), then the overall animation time is automatically extended.<br>
     /// </summary>
     public class Animation : BaseHandle
@@ -80,9 +80,9 @@ namespace Tizen.NUI
         /// The animation will not loop.<br>
         /// The default end action is "Cancel".<br>
         /// The default Alpha function is linear.<br>
-        /// Precodition : DurationmSeconds must be greater than zero.<br>
         /// </summary>
-        /// <param name="durationMilliSeconds">The duration in milli seconds (int).</param>
+        /// <remarks>DurationmSeconds must be greater than zero.</remarks>
+        /// <param name="durationMilliSeconds">The duration in milli seconds.</param>
         public Animation(int durationMilliSeconds) : this(NDalicPINVOKE.Animation_New((float)durationMilliSeconds / 1000.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -163,7 +163,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets/Sets the duration of animation.
+        /// Gets/Sets the duration in milli seconds of the animation.
         /// </summary>
         public int Duration
         {
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Gets/Sets the default alpha function for an animation.
+        ///  Gets/Sets the default alpha function for the animation.
         /// </summary>
         public AlphaFunction DefaultAlphaFunction
         {
@@ -274,7 +274,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the current loop count.<br>
-        /// A value 0 to CurrentLoop indicating the current loop count when looping.<br>
+        /// A value 0 indicating the current loop count when looping.<br>
         /// </summary>
         public int CurrentLoop
         {
@@ -369,8 +369,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Animates a property value by a relative amount.<br>
-        /// The default alpha function will be used.<br>
-        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -403,8 +401,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Animates a property value by a relative amount.<br>
-        /// The default alpha function will be used.<br>
-        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -441,8 +437,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Animates a property to a destination value.<br>
-        /// The default alpha function will be used.<br>
-        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -475,8 +469,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Animates a property to a destination value.<br>
-        /// The default alpha function will be used.<br>
-        /// The effect will start & end when the animation begins & ends.<br>
         /// </summary>
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
@@ -484,7 +476,7 @@ namespace Tizen.NUI
         /// <param name="alphaFunction">The alpha function to apply</param>
         /// <param name="startTime">Start time of animation</param>
         /// <param name="endTime">End time of animation</param>
-        /// <param name="alphaFunction"></param>
+        /// <param name="alphaFunction">The alpha function to apply</param>
         public void AnimateTo(Actor target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
@@ -549,8 +541,8 @@ namespace Tizen.NUI
         /// <param name="target">The target object to animate</param>
         /// <param name="property">The target property to animate</param>
         /// <param name="keyFrames">The set of time/value pairs between which to animate</param>
-        /// <param name="startTime">Start time of animation</param>
-        /// <param name="endTime">End time of animation</param>
+        /// <param name="startTime">Start time of animation in milli seconds</param>
+        /// <param name="endTime">End time of animation in milli seconds</param>
         /// <param name="interpolation">The method used to interpolate between values</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
         public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
@@ -789,7 +781,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Play the animation.
+        /// Plays the animation.
         /// </summary>
         public void Play()
         {
@@ -984,37 +976,56 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for what to do when the animation ends, is stopped, or is destroyed.<br>
-        /// Cancel : When the animation ends, the animated property values are saved.<br>
-        /// Discard : When the animation ends, the animated property values are forgotten.<br>
-        /// StopFinal : If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like Cancel.<br>
+        /// Enumeration for what to do when the animation ends, is stopped, or is destroyed.
         /// </summary>
         public enum EndActions
         {
+            /// <summary>
+            /// When the animation ends, the animated property values are saved.
+            /// </summary>
             Cancel,
+            /// <summary>
+            /// When the animation ends, the animated property values are forgotten.
+            /// </summary>
             Discard,
+            /// <summary>
+            /// If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like Cancel.
+            /// </summary>
             StopFinal
         }
 
         /// <summary>
-        /// Enumeration for what interpolation method to use on key-frame animations.<br>
-        /// Linear : Values in between key frames are interpolated using a linear polynomial. (Default).<br>
-        /// Cubic : Values in between key frames are interpolated using a cubic polynomial.<br>
+        /// Enumeration for what interpolation method to use on key-frame animations.
         /// </summary>
         public enum Interpolation
         {
+            /// <summary>
+            /// Values in between key frames are interpolated using a linear polynomial. (Default)
+            /// </summary>
             Linear,
+            /// <summary>
+            /// Values in between key frames are interpolated using a cubic polynomial.
+            /// </summary>
             Cubic
         }
 
         /// <summary>
-        /// Enumeration for what state the animation is in.<br>
-        /// Note: Calling Reset() on this class will NOT reset the animation. It will call BaseHandle.Reset() which drops the object handle.<br>
+        /// Enumeration for what state the animation is in.
         /// </summary>
+        /// <remarks>Calling Reset() on this class will NOT reset the animation. It will call BaseHandle.Reset() which drops the object handle.</remarks>
         public enum States
         {
+            /// <summary>
+            /// Animation has stopped
+            /// </summary>
             Stopped,
+            /// <summary>
+            /// The animation is playing
+            /// </summary>
             Playing,
+            /// <summary>
+            /// The animation is paused
+            /// </summary>
             Paused
         }
 
