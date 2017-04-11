@@ -805,9 +805,9 @@ namespace Tizen.Network.IoTConnectivity
                 Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get device id");
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
-            DeviceId = Marshal.PtrToStringAnsi(deviceIdPtr);
-            HostAddress = Marshal.PtrToStringAnsi(hostAddressPtr);
-            UriPath = Marshal.PtrToStringAnsi(uriPathPtr);
+            DeviceId = (deviceIdPtr != IntPtr.Zero) ? Marshal.PtrToStringAnsi(deviceIdPtr) : string.Empty;
+            HostAddress = (hostAddressPtr != IntPtr.Zero) ? Marshal.PtrToStringAnsi(hostAddressPtr) : string.Empty;
+            UriPath = (uriPathPtr != IntPtr.Zero) ? Marshal.PtrToStringAnsi(uriPathPtr) : string.Empty;
             Types = new ResourceTypes(typesHandle);
             Interfaces = new ResourceInterfaces(interfacesHandle);
             Policy = (ResourcePolicy)policy;
