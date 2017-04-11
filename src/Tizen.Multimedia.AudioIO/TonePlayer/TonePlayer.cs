@@ -15,86 +15,121 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
-    static internal class TonePlayerLog
-    {
-        internal const string LogTag = "Tizen.Multimedia.TonePlayer";
-    }
-
     /// <summary>
-    /// The TonePlayer class allows you to play and stop playing the tone. To play a particular
-    /// type of tone <see cref="Tizen.Multimedia.ToneType"/>,
-    /// use <see cref="Tizen.Multimedia.TonePlayer.StartAsync"/>.
+    /// Provides the ability to play a tone.
     /// </summary>
     public static class TonePlayer
     {
         /// <summary>
         /// Plays a tone, asynchronously.
         /// </summary>
-        /// <param name="tone">The tone type to play.</param>
-        /// <param name="streamPolicy">The Audiostream policy object.</param>
-        /// <param name="durationMs">The tone duration in milliseconds. -1 indicates an infinite duration.</param>
-        /// <param name="cancellationToken">The cancellation token which can be used to stop playing the tone.</param>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="ArgumentNullException">In case of null parameters</exception>
-        /// <exception cref="ArgumentOutOfRangeException">In case of play duration less than -1.</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of tone type not supported.</exception>
-        public static async Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy, int durationMs, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="tone">A <see cref="ToneType"/> to play.</param>
+        /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
+        /// <param name="durationMilliseconds">The tone duration in milliseconds. -1 indicates an infinite duration.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="ArgumentException"><paramref name="tone"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="durationMilliseconds"/> is less than -1.</exception>
+        /// <exception cref="InvalidOperationException">Any invalid operations occurred.</exception>
+        /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
+            int durationMilliseconds)
         {
-            if (durationMs < -1)
+            return StartAsync(tone, streamPolicy, durationMilliseconds, CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Plays a tone, asynchronously.
+        /// </summary>
+        /// <param name="tone">A <see cref="ToneType"/> to play.</param>
+        /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
+        /// <param name="durationMilliseconds">The tone duration in milliseconds. -1 indicates an infinite duration.</param>
+        /// <param name="cancellationToken">The cancellation token which can be used to stop playing the tone.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="ArgumentException"><paramref name="tone"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="durationMilliseconds"/> is less than -1.</exception>
+        /// <exception cref="InvalidOperationException">Any invalid operations occurred.</exception>
+        /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
+            int durationMilliseconds, CancellationToken cancellationToken)
+        {
+            if (durationMilliseconds < -1)
             {
-                throw new ArgumentOutOfRangeException(nameof(durationMs));
+                throw new ArgumentOutOfRangeException(nameof(durationMilliseconds), durationMilliseconds,
+                    $"{nameof(durationMilliseconds)} can't be less than -1.");
             }
 
             if (streamPolicy == null)
             {
                 throw new ArgumentNullException(nameof(streamPolicy));
-
             }
 
-            if (Enum.IsDefined(typeof(ToneType), tone) == false)
+            ValidationUtil.ValidateEnum(typeof(ToneType), tone, nameof(tone));
+
+            if (cancellationToken.IsCancellationRequested)
             {
-                throw new ArgumentException("Invalid ToneType provided : " + tone);
+                return Task.FromCanceled(cancellationToken);
             }
 
-            int id;
-            var task = new TaskCompletionSource<int>();
-            int ret = Interop.TonePlayer.Start(tone, streamPolicy.Handle, durationMs, out id);
-            if (ret != (int)TonePlayerError.None)
+            return StartAsyncCore(tone, streamPolicy, durationMilliseconds, cancellationToken);
+        }
+
+        private static async Task StartAsyncCore(ToneType tone, AudioStreamPolicy streamPolicy,
+            int durationMilliseconds, CancellationToken cancellationToken)
+        {
+
+            var tcs = new TaskCompletionSource<bool>();
+
+            Interop.TonePlayer.Start(tone, streamPolicy.Handle, durationMilliseconds, out var id).
+                Validate("Failed to play tone.");
+
+            using (RegisterCancellationAction(tcs, cancellationToken, id))
             {
-                Log.Error(TonePlayerLog.LogTag, "Error Occured with error code: " + (TonePlayerError)ret);
-                throw TonePlayerErrorFactory.CreateException(ret, "Failed to play tone.");
+                await WaitForDuration(tcs, cancellationToken, durationMilliseconds);
+
+                await tcs.Task;
+            }
+        }
+
+        private static async Task WaitForDuration(TaskCompletionSource<bool> tcs,
+            CancellationToken cancellationToken, int durationMilliseconds)
+        {
+            if (durationMilliseconds == -1)
+            {
+                return;
             }
 
-            if (cancellationToken != CancellationToken.None)
+            try
             {
-                cancellationToken.Register((playerId) =>
-                {
-                    int resultCancel = Interop.TonePlayer.Stop((int)playerId);
-                    if ((TonePlayerError)resultCancel != TonePlayerError.None)
-                    {
-                        Log.Error(TonePlayerLog.LogTag, "Failed to stop tone Player with error code: " + (TonePlayerError)resultCancel);
-                    }
-                    task.TrySetCanceled();
-                }, id);
+                await Task.Delay(durationMilliseconds, cancellationToken);
+                tcs.TrySetResult(true);
+            }
+            catch (TaskCanceledException)
+            {
+            }
+        }
+
+        private static IDisposable RegisterCancellationAction(TaskCompletionSource<bool> tcs,
+            CancellationToken cancellationToken, int id)
+        {
+            if (cancellationToken.CanBeCanceled == false)
+            {
+                return null;
             }
 
-            if (durationMs != -1)
+            return cancellationToken.Register(() =>
             {
-                Task delayTask = Task.Delay(durationMs, cancellationToken);
-                await delayTask;
-                if (delayTask.IsCompleted)
-                {
-                    task.TrySetResult(id);
-                }
-            }
-            await task.Task;
+                Interop.TonePlayer.Stop(id).Validate("Failed to cancel");
+                tcs.TrySetCanceled();
+            });
         }
     }
 }

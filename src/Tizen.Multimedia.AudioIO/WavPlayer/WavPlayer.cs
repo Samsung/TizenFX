@@ -15,43 +15,59 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
-    static internal class WavPlayerLog
-    {
-        internal const string LogTag = "Tizen.Multimedia.WavPlayer";
-    }
-
     /// <summary>
-    /// The WavPlayer class allows you to simply play and stop a wav file. To play a certain
-    /// wav file, call <see cref="Tizen.Multimedia.WavPlayer.StartAsync"/> with
-    /// a path to the .wav file.
+    /// Provides the ability to play a wav file.
     /// </summary>
     public static class WavPlayer
     {
         /// <summary>
-        /// Plays a WAV file with the stream information of AudioManager, asynchronously.
+        /// Plays a wav file based on the specified <see cref="AudioStreamPolicy"/>.
         /// </summary>
-        /// <param name="inputFilePath">The file path to play.</param>
-        /// <param name="streamPolicy">The Audiostream policy object.</param>
-        /// <param name="cancellationToken">The cancellation token which can be used to stop the Wav Player.</param>
-        /// <returns>The WAV player ID.</returns>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="ArgumentNullException">In case of null parameters</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of format not supported.</exception>
-        public static async Task StartAsync(string inputFilePath, AudioStreamPolicy streamPolicy, CancellationToken cancellationToken = default(CancellationToken))
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <param name="path">A file path to play.</param>
+        /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="path"/> is null.
+        ///     <para>-or-</para>
+        ///     <paramref name="streamPolicy"/> is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
+        /// <exception cref="FileFormatException">The format of <paramref name=""/> is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
+        public static Task StartAsync(string path, AudioStreamPolicy streamPolicy)
         {
-            int id;
-            var task = new TaskCompletionSource<int>();
+            return StartAsync(path, streamPolicy, CancellationToken.None);
+        }
 
-            if (String.IsNullOrEmpty(inputFilePath))
+        /// <summary>
+        /// Plays a wav file based on the specified <see cref="AudioStreamPolicy"/>.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <param name="path">A file path to play.</param>
+        /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
+        /// <param name="cancellationToken">A cancellation token which can be used to stop.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="path"/> is null.
+        ///     <para>-or-</para>
+        ///     <paramref name="streamPolicy"/> is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
+        /// <exception cref="FileFormatException">The format of <paramref name=""/> is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        public static Task StartAsync(string path, AudioStreamPolicy streamPolicy,
+            CancellationToken cancellationToken)
+        {
+            if (path == null)
             {
-                throw new ArgumentNullException(nameof(inputFilePath));
+                throw new ArgumentNullException(nameof(path));
             }
 
             if (streamPolicy == null)
@@ -59,34 +75,44 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(streamPolicy));
             }
 
-            Interop.WavPlayer.WavPlayerCompletedCallback _playerCompletedCallback = (int playerId, IntPtr userData) =>
+            if (File.Exists(path) == false)
             {
-                task.TrySetResult(playerId);
-            };
-            GCHandle callbackHandle = GCHandle.Alloc(_playerCompletedCallback);
-
-            int ret = Interop.WavPlayer.WavPlayerStart(inputFilePath, streamPolicy.Handle, _playerCompletedCallback, IntPtr.Zero, out id);
-            if (ret != (int)WavPlayerError.None)
-            {
-                Log.Error(WavPlayerLog.LogTag, "Error Occured with error code: " + (WavPlayerError)ret);
-                task.TrySetException(WavPlayerErrorFactory.CreateException(ret, "Failed to play Wav file."));
+                throw new FileNotFoundException("File does not exists.", path);
             }
 
-            if (cancellationToken != CancellationToken.None)
+            return cancellationToken.IsCancellationRequested ? Task.FromCanceled(cancellationToken) :
+                StartAsyncCore(path, streamPolicy, cancellationToken);
+        }
+
+        private static async Task StartAsyncCore(string path, AudioStreamPolicy streamPolicy,
+            CancellationToken cancellationToken)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            Interop.WavPlayer.WavPlayerCompletedCallback cb = (id_, _) => tcs.TrySetResult(true);
+
+            Interop.WavPlayer.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out var id).
+                Validate("Failed to play.");
+
+            using (RegisterCancellationAction(tcs, cancellationToken, id))
             {
-                cancellationToken.Register((playerId) =>
-                {
-                    int resultCancel = Interop.WavPlayer.WavPlayerStop((int)playerId);
-                    if ((WavPlayerError)resultCancel != WavPlayerError.None)
-                    {
-                        Log.Error(WavPlayerLog.LogTag, "Failed to stop Wav Player with error code: " + (WavPlayerError)resultCancel);
-                    }
-                    task.TrySetCanceled();
-                }, id);
+                await tcs.Task;
+            }
+        }
+
+        private static IDisposable RegisterCancellationAction(TaskCompletionSource<bool> tcs,
+            CancellationToken cancellationToken, int id)
+        {
+            if (cancellationToken.CanBeCanceled == false)
+            {
+                return null;
             }
 
-            await task.Task;
-            callbackHandle.Free();
+            return cancellationToken.Register(() =>
+            {
+                Interop.WavPlayer.Stop(id).Validate("Failed to cancel");
+                tcs.TrySetCanceled();
+            });
         }
     }
 }

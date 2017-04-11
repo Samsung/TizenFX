@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -28,43 +28,30 @@ namespace Tizen.Multimedia
         TypeNotSupported = TizenErrorTonePlayer | 0x01
     }
 
-    internal static class TonePlayerErrorFactory
+    internal static class TonePlayerErrorExtensions
     {
-        internal static Exception CreateException(int errorCode, string errorMessage)
+        internal static void Validate(this TonePlayerError error, string message)
         {
-            TonePlayerError err = (TonePlayerError)errorCode;
-            Exception exp;
-            if (string.IsNullOrEmpty(errorMessage))
+            if (error == TonePlayerError.None)
             {
-                errorMessage = err.ToString();
+                return;
             }
 
-            switch ((TonePlayerError)errorCode)
+            switch (error)
             {
                 case TonePlayerError.InvalidParameter:
-                    {
-                        exp = new ArgumentException(errorMessage + "Invalid parameters provided");
-                        break;
-                    }
+                    throw new ArgumentException(message);
 
                 case TonePlayerError.TypeNotSupported:
-                    {
-                        exp = new NotSupportedException(errorMessage + "Not Supported");
-                        break;
-                    }
+                    throw new NotSupportedException(message);
 
                 case TonePlayerError.InvalidOperation:
-                    {
-                        exp = new InvalidOperationException(errorMessage + "Invalid Operation");
-                        break;
-                    }
+                    throw new InvalidOperationException(message);
+
                 default:
-                    {
-                        exp = new InvalidOperationException(errorMessage);
-                        break;
-                    }
+                    throw new InvalidOperationException(message);
+
             }
-            return exp;
         }
     }
 }

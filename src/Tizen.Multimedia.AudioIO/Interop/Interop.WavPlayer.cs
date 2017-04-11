@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Multimedia;
 
 internal static partial class Interop
 {
@@ -25,10 +26,11 @@ internal static partial class Interop
         internal delegate void WavPlayerCompletedCallback(int playerId, IntPtr userData);
 
         [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_new")]
-        internal static extern int WavPlayerStart(string filePath, IntPtr streamInfoHandle, WavPlayerCompletedCallback completedCallback,
-                                                     IntPtr userData, out int playerId);
+        internal static extern WavPlayerError Start(string filePath, IntPtr streamInfoHandle,
+            WavPlayerCompletedCallback completedCallback, IntPtr userData, out int id);
 
         [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_stop")]
-        internal static extern int WavPlayerStop(int PlayerId);
+        internal static extern WavPlayerError Stop(int id);
     }
 }
+

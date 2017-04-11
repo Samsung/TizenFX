@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -72,7 +70,7 @@ namespace Tizen.Multimedia
         /// </summary>
         DtmfS,
         /// <summary>
-        /// Predefined DTMF sharP (#).
+        /// Predefined DTMF sharp (#).
         /// </summary>
         DtmfP,
         /// <summary>

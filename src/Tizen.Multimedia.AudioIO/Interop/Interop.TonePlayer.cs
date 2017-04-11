@@ -23,10 +23,11 @@ internal static partial class Interop
     internal static partial class TonePlayer
     {
         [DllImport(Libraries.TonePlayer, EntryPoint = "tone_player_start_new")]
-        internal static extern int Start(ToneType tone, IntPtr streamInfoHandle, int durationMs, out int playerId);
+        internal static extern TonePlayerError Start(ToneType tone, IntPtr streamInfoHandle,
+            int durationMs, out int id);
 
         [DllImport(Libraries.TonePlayer, EntryPoint = "tone_player_stop")]
-        internal static extern int Stop(int PlayerId);
+        internal static extern TonePlayerError Stop(int id);
     }
 }
 
