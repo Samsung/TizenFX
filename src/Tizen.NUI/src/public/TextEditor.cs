@@ -459,17 +459,55 @@ namespace Tizen.NUI
         /// <summary>
         /// Horizontal alignment property.
         /// </summary>
-        public string HorizontalAlignment
+        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "BEGIN":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                    case "END":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                    default:
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                }
             }
             set
             {
-                SetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    {
+                        valueToString = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                }
+                SetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 

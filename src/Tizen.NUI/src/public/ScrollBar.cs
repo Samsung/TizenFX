@@ -442,34 +442,96 @@ namespace Tizen.NUI
         /// <summary>
         /// Direction of scroll bar
         /// </summary>
-        public string ScrollDirection
+        public Direction ScrollDirection
         {
             get
             {
                 string temp;
-                GetProperty(ScrollBar.Property.SCROLL_DIRECTION).Get(out temp);
-                return temp;
+                if (GetProperty(ScrollBar.Property.SCROLL_DIRECTION).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "ScrollDirection get error!");
+                }
+
+                switch (temp)
+                {
+                    case "Vertical":
+                        return Direction.Vertical;
+                    case "Horizontal":
+                        return Direction.Horizontal;
+                    default:
+                        return Direction.Vertical;
+                }
             }
             set
             {
-                SetProperty(ScrollBar.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Direction.Vertical:
+                    {
+                        valueToString = "Vertical";
+                        break;
+                    }
+                    case Direction.Horizontal:
+                    {
+                        valueToString = "Horizontal";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "Vertical";
+                        break;
+                    }
+                }
+                SetProperty(ScrollBar.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
         /// <summary>
         /// Indicator height policy.
         /// </summary>
-        public string IndicatorHeightPolicy
+        public IndicatorHeightPolicyType IndicatorHeightPolicy
         {
             get
             {
                 string temp;
-                GetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY).Get(out temp);
-                return temp;
+                if (GetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "IndicatorHeightPolicy get error!");
+                }
+
+                switch (temp)
+                {
+                    case "Variable":
+                        return IndicatorHeightPolicyType.Variable;
+                    case "Fixed":
+                        return IndicatorHeightPolicyType.Fixed;
+                    default:
+                        return IndicatorHeightPolicyType.Variable;
+                }
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case IndicatorHeightPolicyType.Variable:
+                    {
+                        valueToString = "Variable";
+                        break;
+                    }
+                    case IndicatorHeightPolicyType.Fixed:
+                    {
+                        valueToString = "Fixed";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "Variable";
+                        break;
+                    }
+                }
+                SetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 

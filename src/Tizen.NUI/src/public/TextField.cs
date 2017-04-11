@@ -594,34 +594,110 @@ namespace Tizen.NUI
         /// <summary>
         /// HorizontalAlignment property.
         /// </summary>
-        public string HorizontalAlignment
+        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TextField.Property.HORIZONTAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TextField.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "BEGIN":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                    case "END":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                    default:
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                }
             }
             set
             {
-                SetProperty(TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    {
+                        valueToString = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                }
+                SetProperty(TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
         /// <summary>
         /// VerticalAlignment property.
         /// </summary>
-        public string VerticalAlignment
+        public Tizen.NUI.Constants.VerticalAlignment VerticalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TextField.Property.VERTICAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TextField.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "VerticalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "TOP":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+                    case "BOTTOM":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                    default:
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                }
             }
             set
             {
-                SetProperty(TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop:
+                    {
+                        valueToString = "TOP";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter:
+                    {
+                        valueToString = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                }
+                SetProperty(TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
