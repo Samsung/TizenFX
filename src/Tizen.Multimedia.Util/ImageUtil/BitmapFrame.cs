@@ -13,29 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-namespace Tizen.Multimedia.Utility
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// JPEG Downscale options for decoding
+    /// Represents image data returned by a decoder class.
     /// </summary>
-    public enum JpegDownscale
+    public class BitmapFrame
     {
+        internal BitmapFrame(IntPtr nativeBuffer, int width, int height, int size)
+        {
+            Debug.Assert(nativeBuffer != IntPtr.Zero);
+            
+            byte[] buf = new byte[size];
+            Marshal.Copy(nativeBuffer, buf, 0, size);
+
+            Buffer = buf;
+
+            Size = new Size(width, height);
+        }
+
         /// <summary>
-        /// No downscale
+        /// Gets the raw image data.
         /// </summary>
-        NoDownscale = global::Interop.JpegDownscale.NoDownscale,
+        public byte[] Buffer { get; }
+
         /// <summary>
-        /// 1/2 downscale
+        /// Gets the size of the image.
         /// </summary>
-        OneHalf = global::Interop.JpegDownscale.OneHalf,
-        /// <summary>
-        /// 1/4 downscale
-        /// </summary>
-        OneFourth = global::Interop.JpegDownscale.OneFourth,
-        /// <summary>
-        /// 1/8 downscale
-        /// </summary>
-        OneEighth = global::Interop.JpegDownscale.OneEighth,
+        public Size Size { get; }
     }
 }

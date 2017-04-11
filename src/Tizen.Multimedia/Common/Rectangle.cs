@@ -94,6 +94,26 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the x-coordinate of the left edge of the rectangle.
+        /// </summary>
+        public int Left => X;
+
+        /// <summary>
+        /// Gets the y-coordinate of the top edge of the rectangle.
+        /// </summary>
+        public int Top => Y;
+
+        /// <summary>
+        /// Gets the x-coordinate of the right edge of the rectangle.
+        /// </summary>
+        public int Right => X + Width;
+
+        /// <summary>
+        /// Gets the y-coordinate of the bottom edge of the rectangle.
+        /// </summary>
+        public int Bottom => Y + Height;
+
+        /// <summary>
         /// Gets or sets the size of the rectangle.
         /// </summary>
         public Size Size

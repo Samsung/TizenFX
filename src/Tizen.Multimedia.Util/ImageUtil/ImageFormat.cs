@@ -14,36 +14,28 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Utility
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// Image rotation options
+    /// Specifies image formats for <see cref="ImageDecoder"/>, <see cref="ImageEncoder"/> and <see cref="ImageUtil"/>.
     /// </summary>
-    public enum ImageRotation
+    public enum ImageFormat
     {
         /// <summary>
-        /// No rotation
+        /// The Joint Photographic Experts Group format.
         /// </summary>
-        None = global::Interop.ImageRotation.None,
+        Jpeg,
         /// <summary>
-        /// Rotate 90 degree
+        /// The Portable Network Graphics format.
         /// </summary>
-        Rotate90 = global::Interop.ImageRotation.Rotate90,
+        Png,
         /// <summary>
-        /// Rotate 180 degree
+        /// The Graphics Interchange Format.
         /// </summary>
-        Rotate180 = global::Interop.ImageRotation.Rotate180,
+        Gif,
         /// <summary>
-        /// Rotate 270 degree
+        /// The Bitmap format.
         /// </summary>
-        Rotate270 = global::Interop.ImageRotation.Rotate270,
-        /// <summary>
-        /// Flip horizontal
-        /// </summary>
-        FlipHorizontal = global::Interop.ImageRotation.FlipHorizontal,
-        /// <summary>
-        /// Flip vertical
-        /// </summary>
-        FlipVertical = global::Interop.ImageRotation.FlipVertical,
+        Bmp,
     }
 }

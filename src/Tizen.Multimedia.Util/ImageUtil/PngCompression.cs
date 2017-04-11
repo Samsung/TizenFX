@@ -14,52 +14,52 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Utility
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// PNG Image Compression Level
+    /// Specifies PNG compression levels.
     /// </summary>
     public enum PngCompression
     {
         /// <summary>
-        /// No Compression
+        /// No Compression.
         /// </summary>
-        NoCompression = global::Interop.PngCompression.NoCompression,
+        None,
         /// <summary>
-        /// Compression Level 1. Best speed
+        /// Compression Level 1. Best speed.
         /// </summary>
-        Level1 = global::Interop.PngCompression.Level1,
+        Level1,
         /// <summary>
-        /// Compression Level 2
+        /// Compression Level 2.
         /// </summary>
-        Level2 = global::Interop.PngCompression.Level2,
+        Level2,
         /// <summary>
-        /// Compression Level 3
+        /// Compression Level 3.
         /// </summary>
-        Level3 = global::Interop.PngCompression.Level3,
+        Level3,
         /// <summary>
-        /// Compression Level 4
+        /// Compression Level 4.
         /// </summary>
-        Level4 = global::Interop.PngCompression.Level4,
+        Level4,
         /// <summary>
-        /// Compression Level 5
+        /// Compression Level 5.
         /// </summary>
-        Level5 = global::Interop.PngCompression.Level5,
+        Level5,
         /// <summary>
-        /// Compression Level 6
+        /// Compression Level 6.
         /// </summary>
-        Level6 = global::Interop.PngCompression.Level6,
+        Level6,
         /// <summary>
-        /// Compression Level 7
+        /// Compression Level 7.
         /// </summary>
-        Level7 = global::Interop.PngCompression.Level7,
+        Level7,
         /// <summary>
-        /// Compression Level 8
+        /// Compression Level 8.
         /// </summary>
-        Level8 = global::Interop.PngCompression.Level8,
+        Level8,
         /// <summary>
-        /// Compression Level 9
+        /// Compression Level 9.
         /// </summary>
-        Level9 = global::Interop.PngCompression.Level9,
+        Level9,
     }
 }

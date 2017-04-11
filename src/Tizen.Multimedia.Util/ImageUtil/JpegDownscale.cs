@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Utility
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// Image Format
+    /// Specifies JPEG Downscale options for decoding.
     /// </summary>
-    public enum ImageFormat
+    public enum JpegDownscale
     {
         /// <summary>
-        /// JPEG image
+        /// No downscale.
         /// </summary>
-        Jpeg = global::Interop.ImageType.Jpeg,
+        None,
         /// <summary>
-        /// PNG image
+        /// 1/2 downscale.
         /// </summary>
-        Png = global::Interop.ImageType.Png,
+        OneHalf,
         /// <summary>
-        /// GIF image
+        /// 1/4 downscale.
         /// </summary>
-        Gif = global::Interop.ImageType.Gif,
+        OneFourth,
         /// <summary>
-        /// BMP image
+        /// 1/8 downscale.
         /// </summary>
-        Bmp = global::Interop.ImageType.Bmp,
+        OneEighth,
     }
 }

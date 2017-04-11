@@ -16,70 +16,65 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen;
+using Tizen.Multimedia.Util;
 
 internal static partial class Interop
 {
-    // Image Decoder
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path")]
-    internal static extern ErrorCode SetInputPath(this ImageDecoderHandle /* image_util_decode_h */ handle, string path);
-
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer")]
-    internal static extern ErrorCode SetInputBuffer(this ImageDecoderHandle /* image_util_decode_h */ handle, byte[] srcBuffer, ulong srcSize);
-
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_output_buffer")]
-    internal static extern ErrorCode SetOutputBuffer(this ImageDecoderHandle /* image_util_decode_h */ handle, out IntPtr dstBuffer);
-
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
-    internal static extern ErrorCode SetColorspace(this ImageDecoderHandle /* image_util_encode_h */ handle, ImageColorSpace /* image_util_colorspace_e */ colorspace);
-
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale")]
-    internal static extern ErrorCode SetJpegDownscale(this ImageDecoderHandle /* image_util_encode_h */ handle, JpegDownscale /* image_util_scale_e */ downscale);
-
-    [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run")]
-    internal static extern ErrorCode DecodeRun(this ImageDecoderHandle /* image_util_decode_h */ handle, out int width, out int height, out ulong size);
-
-    internal class ImageDecoderHandle : SafeMultimediaHandle
+    internal static class Decode
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DecodeCompletedCallback(ErrorCode errorCode, IntPtr /* void */ userData, int width, int height, ulong size);
-
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run_async")]
-        internal static extern ErrorCode DecodeRunAsync(ImageDecoderHandle /* image_util_decode_h */ handle, DecodeCompletedCallback callback, IntPtr /* void */ userData);
+        internal delegate void DecodeCompletedCallback(ImageUtilError error, IntPtr userData, int width, int height, ulong size);
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_create")]
-        internal static extern ErrorCode Create(out IntPtr /* image_util_decode_h */ handle);
+        public static extern ImageUtilError Create(out ImageDecoderHandle handle);
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_destroy")]
-        internal static extern ErrorCode Destroy(IntPtr /* image_util_decode_h */ handle);
+        internal static extern ImageUtilError Destroy(IntPtr handle);
 
-        internal ImageColorSpace Colorspace
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path")]
+        internal static extern ImageUtilError SetInputPath(ImageDecoderHandle handle, IntPtr path);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer")]
+        internal static extern ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_output_buffer")]
+        internal static extern ImageUtilError SetOutputBuffer(ImageDecoderHandle handle, out IntPtr dstBuffer);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
+        internal static extern ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale")]
+        internal static extern ImageUtilError SetJpegDownscale(ImageDecoderHandle handle, JpegDownscale downscale);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run_async")]
+        internal static extern ImageUtilError DecodeRunAsync(ImageDecoderHandle handle, DecodeCompletedCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run")]
+        internal static extern ImageUtilError DecodeRun(ImageDecoderHandle handle, out int width,
+            out int height, out ulong size);
+    }
+
+    internal class ImageDecoderHandle : SafeHandle
+    {
+        protected ImageDecoderHandle() : base(IntPtr.Zero, true)
         {
-            set { NativeSet(this.SetColorspace, value); }
         }
 
-        internal JpegDownscale JpegDownscale
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+        protected override bool ReleaseHandle()
         {
-            set { NativeSet(this.SetJpegDownscale, value); }
+            var ret = Decode.Destroy(handle);
+            if (ret != ImageUtilError.None)
+            {
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType()}");
+                return false;
+            }
+
+            return true;
         }
 
-        internal ImageDecoderHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease)
-        {
-        }
-
-        internal ImageDecoderHandle() : this(CreateNativeHandle(), true)
-        {
-        }
-
-        internal static IntPtr CreateNativeHandle()
-        {
-            IntPtr handle;
-            Create(out handle).ThrowIfFailed("Failed to create native handle");
-            return handle;
-        }
-
-        internal override ErrorCode DisposeNativeHandle()
-        {
-            return Destroy(handle);
-        }
     }
 }
