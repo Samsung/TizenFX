@@ -247,7 +247,7 @@ namespace Tizen.NUI
         /// ImageView PixelArea, type Vector4 (Animatable property).<br>
         /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br>
         /// </summary>
-        public Vector4 PixelArea
+        public RelativeVector4 PixelArea
         {
             get
             {

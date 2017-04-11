@@ -352,7 +352,7 @@ namespace Tizen.NUI
         /// Animation will play between the values specified. Both values(range.x and range.y ) should be between 0-1,
         /// otherwise they will be ignored.If the range provided is not in proper order(minimum, maximum ), it will be reordered.<br>
         /// </summary>
-        public Vector2 PlayRange
+        public RelativeVector2 PlayRange
         {
             set
             {
