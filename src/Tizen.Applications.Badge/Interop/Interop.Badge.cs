@@ -46,6 +46,7 @@ internal static partial class Interop
         }
 
         internal delegate void ForeachCallback(string appId, uint count, IntPtr userData);
+
         internal delegate void ChangedCallback(Action action, string appId, uint count, IntPtr userData);
 
         [DllImport(Libraries.Badge, EntryPoint = "badge_add")]
@@ -74,6 +75,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.Badge, EntryPoint = "badge_unregister_changed_cb")]
         internal static extern ErrorCode UnsetChangedCallback(ChangedCallback callback);
-
     }
 }

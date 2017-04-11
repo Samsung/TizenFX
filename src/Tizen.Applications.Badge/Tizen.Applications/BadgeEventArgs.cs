@@ -23,7 +23,6 @@ namespace Tizen.Applications
     /// </summary>
     public class BadgeEventArgs : EventArgs
     {
-
         internal BadgeEventArgs()
         {
         }

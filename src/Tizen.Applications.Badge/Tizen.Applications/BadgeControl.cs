@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Class for badge operaion.
+    /// Class for badge operation.
     /// </summary>
     public static class BadgeControl
     {
@@ -41,7 +41,10 @@ namespace Tizen.Applications
                 if (s_changed == null && !s_registered)
                 {
                     if (s_callback == null)
+                    {
                         s_callback = new Interop.Badge.ChangedCallback(OnChangedEvent);
+                    }
+
                     Interop.Badge.ErrorCode err = Interop.Badge.SetChangedCallback(s_callback, IntPtr.Zero);
 
                     switch (err)
@@ -57,6 +60,7 @@ namespace Tizen.Applications
                     }
                     s_registered = true;
                 }
+
                 s_changed += value;
             }
             remove
@@ -77,6 +81,7 @@ namespace Tizen.Applications
                         case Interop.Badge.ErrorCode.NotExist:
                             throw new InvalidOperationException("Not exist");
                     }
+
                     s_callback = null;
                     s_registered = false;
                 }
