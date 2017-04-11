@@ -18,8 +18,14 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The HoverselItemEventArgs is an HoverselItem's EventArgs
+    /// </summary>
     public class HoverselItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Hoversel's Item
+        /// </summary>
         public HoverselItem Item { get; set; }
 
         internal static HoverselItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -29,12 +35,19 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// The hoversel is a button that pops up a list of items.
+    /// </summary>
     public class Hoversel : Layout
     {
         SmartEvent _dismissed;
         SmartEvent<HoverselItemEventArgs> _selected;
         Interop.Evas.SmartCallback _onItemSelected;
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Hoversel class.
+        /// </summary>
+        /// <param name="parent">The parent is a given container which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
         public Hoversel(EvasObject parent) : base(parent)
         {
             _dismissed = new SmartEvent(this, "dismissed");
@@ -54,10 +67,19 @@ namespace ElmSharp
             };
         }
 
+        /// <summary>
+        /// Dismissed will be triggered when Hoversel Dismissed
+        /// </summary>
         public event EventHandler Dismissed;
 
+        /// <summary>
+        /// ItemSelected will be triggered when Hoversel's Item Selected
+        /// </summary>
         public event EventHandler<HoverselItemEventArgs> ItemSelected;
 
+        /// <summary>
+        /// Gets or sets the status to control whether the hoversel should expand horizontally.
+        /// </summary>
         public bool IsHorizontal
         {
             get
@@ -70,6 +92,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the hover parent.
+        /// </summary>
         public IntPtr HoverParent
         {
             get
@@ -82,6 +107,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the flag of whether the hoversel is expanded.
+        /// </summary>
         public bool IsExpanded
         {
             get
@@ -90,6 +118,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the status of whether update icon and text of hoversel same to those of selected item automatically.
+        /// </summary>
         public bool AutoUpdate
         {
             get
@@ -102,21 +133,36 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// This triggers the hoversel popup from code, the same as if the user had clicked the button.
+        /// </summary>
         public void HoverBegin()
         {
             Interop.Elementary.elm_hoversel_hover_begin(RealHandle);
         }
 
+        /// <summary>
+        /// This dismisses the hoversel popup as if the user had clicked outside the hover.
+        /// </summary>
         public void HoverEnd()
         {
             Interop.Elementary.elm_hoversel_hover_end(RealHandle);
         }
 
+        /// <summary>
+        /// This will remove all the children items from the hoversel.
+        /// </summary>
         public void Clear()
         {
             Interop.Elementary.elm_hoversel_clear(RealHandle);
         }
 
+        /// <summary>
+        /// Add an item to the hoversel button.
+        /// This adds an item to the hoversel to show when it is clicked.
+        /// </summary>
+        /// <param name="label">Item's label</param>
+        /// <returns>A handle to the added item.</returns>
         public HoverselItem AddItem(string label)
         {
             HoverselItem item = new HoverselItem();
