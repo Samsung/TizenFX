@@ -64,7 +64,7 @@ namespace VisualsUsingCustomView
             title.StyleName = "Title";
             title.WidthResizePolicy = ResizePolicyType.FillToParent;
             title.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
-            title.HorizontalAlignment = "CENTER";
+            title.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             contentLayout.Add(title);
             contentLayout.SetFitHeight(0);
 

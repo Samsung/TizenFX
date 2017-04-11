@@ -151,7 +151,7 @@ namespace DaliTest
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
             text.AnchorPoint = AnchorPoint.Center;
-            text.HorizontalAlignment = "CENTER";
+            text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             stage.GetDefaultLayer().Add(text);
 
             Console.WriteLine( "Text label text:  " + text.Text );

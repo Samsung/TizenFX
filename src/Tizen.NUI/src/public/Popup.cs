@@ -631,17 +631,61 @@ namespace Tizen.NUI
         /// <summary>
         /// Popup display state.
         /// </summary>
-        public string DisplayState
+        public DisplayStateType DisplayState
         {
             get
             {
                 string temp;
-                GetProperty(Popup.Property.DISPLAY_STATE).Get(out temp);
-                return temp;
+                if (GetProperty(Popup.Property.DISPLAY_STATE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "DisplayState get error!");
+                }
+                switch (temp)
+                {
+                    case "SHOWING":
+                        return DisplayStateType.Showing;
+                    case "SHOWN":
+                        return DisplayStateType.Shown;
+                    case "HIDING":
+                        return DisplayStateType.Hiding;
+                    case "HIDDEN":
+                        return DisplayStateType.Hidden;
+                    default:
+                        return DisplayStateType.Hidden;
+                }
             }
             set
             {
-                SetProperty(Popup.Property.DISPLAY_STATE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case DisplayStateType.Showing:
+                    {
+                        valueToString = "SHOWING";
+                        break;
+                    }
+                    case DisplayStateType.Shown:
+                    {
+                        valueToString = "SHOWN";
+                        break;
+                    }
+                    case DisplayStateType.Hiding:
+                    {
+                        valueToString = "HIDING";
+                        break;
+                    }
+                    case DisplayStateType.Hidden:
+                    {
+                        valueToString = "HIDDEN";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "HIDDEN";
+                        break;
+                    }
+                }
+                SetProperty(Popup.Property.DISPLAY_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
         /// <summary>
@@ -695,17 +739,68 @@ namespace Tizen.NUI
         /// <summary>
         /// Contextual mode.
         /// </summary>
-        public string ContextualMode
+        public ContextualModeType ContextualMode
         {
             get
             {
                 string temp;
-                GetProperty(Popup.Property.CONTEXTUAL_MODE).Get(out temp);
-                return temp;
+                if (GetProperty(Popup.Property.CONTEXTUAL_MODE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "ContextualMode get error!");
+                }
+                switch (temp)
+                {
+                    case "NON_CONTEXTUAL":
+                        return ContextualModeType.NonContextual;
+                    case "ABOVE":
+                        return ContextualModeType.Above;
+                    case "RIGHT":
+                        return ContextualModeType.Rright;
+                    case "BELOW":
+                        return ContextualModeType.Below;
+                    case "LEFT":
+                        return ContextualModeType.Left;
+                    default:
+                        return ContextualModeType.Below;
+                }
             }
             set
             {
-                SetProperty(Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case ContextualModeType.NonContextual:
+                    {
+                        valueToString = "NON_CONTEXTUAL";
+                        break;
+                    }
+                    case ContextualModeType.Above:
+                    {
+                        valueToString = "ABOVE";
+                        break;
+                    }
+                    case ContextualModeType.Rright:
+                    {
+                        valueToString = "RIGHT";
+                        break;
+                    }
+                    case ContextualModeType.Below:
+                    {
+                        valueToString = "BELOW";
+                        break;
+                    }
+                    case ContextualModeType.Left:
+                    {
+                        valueToString = "LEFT";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BELOW";
+                        break;
+                    }
+                }
+                SetProperty(Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
         /// <summary>
@@ -727,17 +822,61 @@ namespace Tizen.NUI
         /// <summary>
         /// Animation mode.
         /// </summary>
-        public string AnimationMode
+        public AnimationModeType AnimationMode
         {
             get
             {
                 string temp;
-                GetProperty(Popup.Property.ANIMATION_MODE).Get(out temp);
-                return temp;
+                if (GetProperty(Popup.Property.ANIMATION_MODE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "AnimationMode get error!");
+                }
+                switch (temp)
+                {
+                    case "NONE":
+                        return AnimationModeType.None;
+                    case "ZOOM":
+                        return AnimationModeType.Zoom;
+                    case "FADE":
+                        return AnimationModeType.Fade;
+                    case "CUSTOM":
+                        return AnimationModeType.Custom;
+                    default:
+                        return AnimationModeType.Fade;
+                }
             }
             set
             {
-                SetProperty(Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case AnimationModeType.None:
+                    {
+                        valueToString = "NONE";
+                        break;
+                    }
+                    case AnimationModeType.Zoom:
+                    {
+                        valueToString = "ZOOM";
+                        break;
+                    }
+                    case AnimationModeType.Fade:
+                    {
+                        valueToString = "FADE";
+                        break;
+                    }
+                    case AnimationModeType.Custom:
+                    {
+                        valueToString = "CUSTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "FADE";
+                        break;
+                    }
+                }
+                SetProperty(Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
         /// <summary>

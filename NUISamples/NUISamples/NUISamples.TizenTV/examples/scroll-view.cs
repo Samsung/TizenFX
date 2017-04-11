@@ -18,13 +18,13 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.Constants;
 
 namespace ScrollViewTest
 {
   class Example : NUIApplication
   {
     private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
-   
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     delegate void CallbackDelegate(IntPtr data);
@@ -141,7 +141,7 @@ namespace ScrollViewTest
       _text = new TextLabel("View Touch Event Handler Test");
       _text.ParentOrigin = ParentOrigin.Center;
       _text.AnchorPoint = AnchorPoint.Center;
-      _text.HorizontalAlignment = "CENTER";
+      _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             _text.PointSize = 20.0f;
 
       _scrollView.Add(_text);

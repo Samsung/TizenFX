@@ -956,52 +956,92 @@ namespace Tizen.NUI
         /// <summary>
         /// The current state of the view.
         /// </summary>
-        public string State
+        public States State
         {
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.STATE).Get(ref temp);
+                if (GetProperty(View.Property.STATE).Get(ref temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "State get error!");
+                }
                 switch (temp)
                 {
                     case 0:
                     {
-                        return "NORMAL";
+                        return States.Normal;
                     }
                     case 1:
                     {
-                        return "FOCUSED";
+                        return States.Focused;
                     }
                     case 2:
                     {
-                        return "DISABLED";
+                        return States.Disabled;
                     }
                     default:
                     {
-                        return "";
+                        return States.Normal;
                     }
                 }
             }
             set
             {
-                SetProperty(View.Property.STATE, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.STATE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
 
         /// <summary>
         /// The current sub state of the view.
         /// </summary>
-        public string SubState
+        public States SubState
         {
             get
             {
                 string temp;
-                GetProperty(View.Property.SUB_STATE).Get(out temp);
-                return temp;
+                if (GetProperty(View.Property.SUB_STATE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "subState get error!");
+                }
+                switch (temp)
+                {
+                    case "NORMAL":
+                        return States.Normal;
+                    case "FOCUSED":
+                        return States.Focused;
+                    case "DISABLED":
+                        return States.Disabled;
+                    default:
+                        return States.Normal;
+                }
             }
             set
             {
-                SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case States.Normal:
+                    {
+                        valueToString = "NORMAL";
+                        break;
+                    }
+                    case States.Focused:
+                    {
+                        valueToString = "FOCUSED";
+                        break;
+                    }
+                    case States.Disabled:
+                    {
+                        valueToString = "DISABLED";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "NORMAL";
+                        break;
+                    }
+                }
+                SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -1198,34 +1238,110 @@ namespace Tizen.NUI
         /// <summary>
         /// The horizontal alignment of this child inside the cells, if not set, default value is 'left'
         /// </summary>
-        public string CellHorizontalAlignment
+        public Tizen.NUI.HorizontalAlignmentType CellHorizontalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "CellHorizontalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "left":
+                        return Tizen.NUI.HorizontalAlignmentType.Left;
+                    case "center":
+                        return Tizen.NUI.HorizontalAlignmentType.Center;
+                    case "right":
+                        return Tizen.NUI.HorizontalAlignmentType.Right;
+                    default:
+                        return Tizen.NUI.HorizontalAlignmentType.Left;
+                }
             }
             set
             {
-                SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.HorizontalAlignmentType.Left:
+                    {
+                        valueToString = "left";
+                        break;
+                    }
+                    case Tizen.NUI.HorizontalAlignmentType.Center:
+                    {
+                        valueToString = "center";
+                        break;
+                    }
+                    case Tizen.NUI.HorizontalAlignmentType.Right:
+                    {
+                        valueToString = "right";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "left";
+                        break;
+                    }
+                }
+                SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
         /// <summary>
         /// The vertical alignment of this child inside the cells, if not set, default value is 'top'
         /// </summary>
-        public string CellVerticalAlignment
+        public Tizen.NUI.VerticalAlignmentType CellVerticalAlignment
         {
             get
             {
                 string temp;
                 GetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT).Get(out temp);
-                return temp;
+                {
+                    //Tizen.Log.Error("NUI", "CellVerticalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "top":
+                        return Tizen.NUI.VerticalAlignmentType.Top;
+                    case "center":
+                        return Tizen.NUI.VerticalAlignmentType.Center;
+                    case "bottom":
+                        return Tizen.NUI.VerticalAlignmentType.Bottom;
+                    default:
+                        return Tizen.NUI.VerticalAlignmentType.Top;
+                }
             }
             set
             {
-                SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.VerticalAlignmentType.Top:
+                    {
+                        valueToString = "top";
+                        break;
+                    }
+                    case Tizen.NUI.VerticalAlignmentType.Center:
+                    {
+                        valueToString = "center";
+                        break;
+                    }
+                    case Tizen.NUI.VerticalAlignmentType.Bottom:
+                    {
+                        valueToString = "bottom";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "top";
+                        break;
+                    }
+                }
+                SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -1332,6 +1448,24 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Enumeration for describing the states of view.
+        /// </summary>
+        public enum States
+        {
+            /// <summary>
+            /// Normal state
+            /// </summary>
+            Normal,
+            /// <summary>
+            /// Focused state
+            /// </summary>
+            Focused,
+            /// <summary>
+            /// Disabled state
+            /// </summary>
+            Disabled
+        }
     }
 
 }
