@@ -26,6 +26,7 @@ namespace Tizen.Pims.Contacts
     {
         private string _uri = null;
         private uint _id;
+        private Int64 _memoryPressure = ContactsViews.AverageSizeOfRecord;
         internal IntPtr _recordHandle;
 
         internal ContactsRecord(IntPtr handle)
@@ -38,6 +39,7 @@ namespace Tizen.Pims.Contacts
                 Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
+            GC.AddMemoryPressure(_memoryPressure);
             _uri = Marshal.PtrToStringAnsi(viewUri);
         }
 
@@ -52,6 +54,9 @@ namespace Tizen.Pims.Contacts
                 Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
+
+            if (!_disposedValue)
+                GC.AddMemoryPressure(_memoryPressure);
             _uri = Marshal.PtrToStringAnsi(viewUri);
         }
 
@@ -67,6 +72,7 @@ namespace Tizen.Pims.Contacts
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _uri = Marshal.PtrToStringAnsi(viewUri);
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         /// <summary>
@@ -82,6 +88,7 @@ namespace Tizen.Pims.Contacts
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _uri = viewUri;
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         ~ContactsRecord()
@@ -113,8 +120,8 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, "Dispose Failed with error " + error);
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-
                 _disposedValue = true;
+                GC.RemoveMemoryPressure(_memoryPressure);
             }
         }
 

@@ -390,6 +390,8 @@ namespace Tizen.Pims.Contacts
             Deleted,
         }
 
+        internal const uint AverageSizeOfRecord = 120; ///average size of person record
+
         public static class Addressbook
         {
             /// <summary>
