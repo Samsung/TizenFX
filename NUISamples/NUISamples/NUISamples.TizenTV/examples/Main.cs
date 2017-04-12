@@ -33,6 +33,7 @@ namespace NUISamples.TizenTV.examples
             //new MyCSharpExample.Example().Run(args);                  //o
             //new VisaulAnimationExample.Example().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
+            //new RelativeVectorTest.Example().Run(args);
         }
     }
 }

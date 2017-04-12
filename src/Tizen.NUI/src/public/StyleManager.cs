@@ -15,17 +15,11 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// StyleManager informs applications of system theme change,
-    /// and supports application theme change at runtime.<br>
+    /// StyleManager informs applications of system theme change, and supports application theme change at runtime.<br>
     /// Applies various styles to Controls using the properties system.<br>
-    /// On theme change, it automatically updates all controls, then raises
-    /// a event to inform the application.<br>
-    /// <br>
-    /// If the application wants to customize the theme, RequestThemeChange
-    /// needs to be called.<br>
-    /// It provides the path to the  application resource root folder, 
-    /// from there the filename can an be specified along with
-    /// any sub folders, e.g Images, Models etc.<br>
+    /// On theme change, it automatically updates all controls, then raises a event to inform the application.<br>
+    /// If the application wants to customize the theme, RequestThemeChange needs to be called.<br>
+    /// It provides the path to the  application resource root folder, from there the filename can an be specified along with any sub folders, e.g Images, Models etc.<br>
     /// </summary>
     public class StyleManager : BaseHandle
     {
@@ -258,12 +252,21 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Types of style change.
+    /// Types of style change. Enumeration for StyleChange type.
     /// </summary>
     public enum StyleChangeType
     {
+        /// <summary>
+        /// Denotes that the default font has changed.
+        /// </summary>
         DefaultFontChange,
+        /// <summary>
+        /// Denotes that the default font size has changed.
+        /// </summary>
         DefaultFontSizeChange,
+        /// <summary>
+        /// Denotes that the theme has changed.
+        /// </summary>
         ThemeChange
     }
 

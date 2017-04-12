@@ -819,8 +819,17 @@ namespace Tizen.NUI
     /// </summary>
     public enum HorizontalAlignmentType
     {
+        /// <summary>
+        /// Align horizontally left
+        /// </summary>
         Left,
+        /// <summary>
+        /// Align horizontally center
+        /// </summary>
         Center,
+        /// <summary>
+        /// Align horizontally right
+        /// </summary>
         Right
     }
 
@@ -829,8 +838,17 @@ namespace Tizen.NUI
     /// </summary>
     public enum VerticalAlignmentType
     {
+        /// <summary>
+        /// Align vertically top
+        /// </summary>
         Top,
+        /// <summary>
+        /// Align vertically center
+        /// </summary>
         Center,
+        /// <summary>
+        /// Align vertically bottom
+        /// </summary>
         Bottom
     }
 

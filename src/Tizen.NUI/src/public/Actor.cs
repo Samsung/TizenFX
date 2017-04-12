@@ -2246,7 +2246,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Fit within the size set maintaining natural size aspect ratio
         /// </summary>
-        FillWithAspectRatiox
+        FillWithAspectRatio
     }
 
     /// <summary>

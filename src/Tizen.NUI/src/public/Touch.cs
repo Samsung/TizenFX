@@ -237,13 +237,38 @@ namespace Tizen.NUI
     /// </summary>
     public enum PointStateType
     {
+        /// <summary>
+        /// Touch or hover started
+        /// </summary>
         Started,
+        /// <summary>
+        /// Touch or hover finished
+        /// </summary>
         Finished,
+        /// <summary>
+        /// Screen touched
+        /// </summary>
         Down = Started,
+        /// <summary>
+        /// Touch stopped
+        /// </summary>
         Up = Finished,
+        /// <summary>
+        /// Finger dragged or hovered
+        /// </summary>
         Motion,
+        /// <summary>
+        /// Leave the boundary of an actor
+        /// </summary>
         Leave,
+        /// <summary>
+        /// No change from last event. <br>
+        /// Useful when a multi-point event occurs where all points are sent but indicates that this particular point has not changed since the last time.
+        /// </summary>
         Stationary,
+        /// <summary>
+        /// A system event has occurred which has interrupted the touch or hover event sequence.
+        /// </summary>
         Interrupted
     }
 

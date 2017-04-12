@@ -328,6 +328,9 @@
     <Compile Include="src\public\Radian.cs" />
     <Compile Include="src\public\RadioButton.cs" />
     <Compile Include="src\public\Rectangle.cs" />
+    <Compile Include="src\public\RelativeVector2.cs" />
+    <Compile Include="src\public\RelativeVector3.cs" />
+    <Compile Include="src\public\RelativeVector4.cs" />
     <Compile Include="src\public\RelayoutContainer.cs" />
     <Compile Include="src\public\Rotation.cs" />
     <Compile Include="src\public\ScrollBar.cs" />
