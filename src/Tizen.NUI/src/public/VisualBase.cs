@@ -15,7 +15,6 @@ namespace Tizen.NUI
     /// Sets whether the actor should be focusable by keyboard navigation.<br>
     /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on-stage.<br>
     /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.<br>
-    /// Note: The visual responds to the the Actor::COLOR by blending it with the 'Multiply' operator.<br>
     /// </summary>
     public class VisualBase : BaseHandle
     {

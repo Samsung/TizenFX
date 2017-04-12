@@ -1415,22 +1415,41 @@ namespace Tizen.NUI
 
 
     /// <summary>
-    /// This specifies wrap mode types
+    /// This specifies wrap mode types <br>
+    /// WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.
     /// </summary>
     public enum WrapModeType
     {
+        /// <summary>
+        /// Defualt value
+        /// </summary>
         Default = 0,
+        /// <summary>
+        /// Clamp to edge
+        /// </summary>
         ClampToEdge,
+        /// <summary>
+        /// Repeat
+        /// </summary>
         Repeat,
+        /// <summary>
+        /// Mirrored repeat
+        /// </summary>
         MirroredRepeat
     }
 
     /// <summary>
-    /// This specifies all kind os types of coordinate system for certain attributes of the points in a gradient.
+    /// The type of coordinate system for certain attributes of the points in a gradient.
     /// </summary>
     public enum GradientVisualUnitsType
     {
+        /// <summary>
+        /// Uses the normals for the start, end & center points, i.e. top-left is (-0.5, -0.5) and bottom-right is (0.5, 0.5).
+        /// </summary>
         ObjectBoundingBox,
+        /// <summary>
+        /// Uses the user coordinates for the start, end & center points, i.e. in a 200 by 200 control, top-left is (0, 0) and bottom-right is (200, 200).
+        /// </summary>
         UserSpace
     }
 
@@ -1440,32 +1459,71 @@ namespace Tizen.NUI
     /// </summary>
     public enum GradientVisualSpreadMethodType
     {
+        /// <summary>
+        /// Uses the terminal colors of the gradient to fill the remainder of the quad.
+        /// </summary>
         Pad,
+        /// <summary>
+        /// Reflect the gradient pattern start-to-end, end-to-start, start-to-end etc. until the quad is filled.
+        /// </summary>
         Reflect,
+        /// <summary>
+        /// Repeat the gradient pattern start-to-end, start-to-end, start-to-end etc. until the quad is filled.
+        /// </summary>
         Repeat
     }
 
     /// <summary>
-    /// This specifies shading mode types.
+    /// The shading mode used by MeshVisual.
     /// </summary>
     public enum MeshVisualShadingModeValue
     {
+        /// <summary>
+        /// *Simplest*. One color that is lit by ambient and diffuse lighting.
+        /// </summary>
         TexturelessWithDiffuseLighting,
+        /// <summary>
+        /// Uses only the visual image textures provided with specular lighting in addition to ambient and diffuse lighting.
+        /// </summary>
         TexturedWithSpecularLighting,
+        /// <summary>
+        /// Uses all textures provided including a gloss, normal and texture map along with specular, ambient and diffuse lighting.
+        /// </summary>
         TexturedWithDetailedSpecularLighting
     }
 
     /// <summary>
-    /// This specifies shape types.
+    /// The primitive shape to render as a PrimitiveVisual.
     /// </summary>
     public enum PrimitiveVisualShapeType
     {
+        /// <summary>
+        /// A perfectly round geometrical object in three-dimensional space.
+        /// </summary>
         Sphere,
+        /// <summary>
+        /// The area bound between two circles, i.e. a cone with the tip removed.
+        /// </summary>
         ConicalFrustrum,
+        /// <summary>
+        /// Equivalent to a conical frustrum with top radius of zero.
+        /// </summary>Equivalent to a conical frustrum with top radius of zero.
         Cone,
+        /// <summary>
+        /// Equivalent to a conical frustrum with top radius of zero.
+        /// </summary>
         Cylinder,
+        /// <summary>
+        /// Equivalent to a conical frustrum with equal radii for the top and bottom circles.
+        /// </summary>
         Cube,
+        /// <summary>
+        /// Equivalent to a bevelled cube with a bevel percentage of zero.
+        /// </summary>
         Octahedron,
+        /// <summary>
+        /// Equivalent to a bevelled cube with a bevel percentage of one.
+        /// </summary>
         BevelledCube
     }
 
@@ -1476,26 +1534,61 @@ namespace Tizen.NUI
     /// </summary>
     public enum FittingModeType
     {
+        /// <summary>
+        /// Full-screen image display: Limit loaded image resolution to device resolution using ShrinkToFit mode.
+        /// </summary>
         ShrinkToFit,
+        /// <summary>
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using ScaleToFill mode.
+        /// </summary>
         ScaleToFill,
+        /// <summary>
+        /// Image columns: Limit loaded image resolution to column width using FitWidth mode.
+        /// </summary>
         FitWidth,
+        /// <summary>
+        /// Image rows: Limit loaded image resolution to row height using FitHeight mode.
+        /// </summary>
         FitHeight
     }
 
     /// <summary>
     /// This specifies sampling mode types. Filtering options, used when resizing images to sample original pixels.<br>
     /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during a scaling.<br>
-    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and FittingMode,
+    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and FittingMode,<br>
     /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
     /// </summary>
     public enum SamplingModeType
     {
+        /// <summary>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc width and height and approximately the desired size. <br>
+        /// This is the default.
+        /// </summary>
         Box,
+        /// <summary>
+        /// For each output pixel, read one input pixel.
+        /// </summary>
         Nearest,
+        /// <summary>
+        /// For each output pixel, read a quad of four input pixels and write a weighted average of them.
+        /// </summary>
         Linear,
+        /// <summary>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8 etc width and height and approximately the desired size, <br>
+        /// then for each output pixel, read one pixel from the last level of box filtering.<br>
+        /// </summary>
         BoxThenNearest,
+        /// <summary>
+        /// Iteratively box filter to almost the right size, then for each output pixel, read four pixels from the last level of box filtering and write their weighted average.
+        /// </summary>
         BoxThenLinear,
+        /// <summary>
+        /// No filtering is performed. If the SCALE_TO_FILL scaling mode is enabled, the borders of the image may be trimmed to match the aspect ratio of the desired dimensions.
+        /// </summary>
         NoFilter,
+        /// <summary>
+        /// For caching algorithms where a client strongly prefers a cache-hit to reuse a cached image.
+        /// </summary>
         DontCare
     }
 
@@ -1504,7 +1597,13 @@ namespace Tizen.NUI
     /// </summary>
     public enum VisualTransformPolicyType
     {
+        /// <summary>
+        /// Relative to the control (percentage [0.0f to 1.0f] of the control).
+        /// </summary>
         Relative = 0,
+        /// <summary>
+        /// Absolute value in world units.
+        /// </summary>
         Absolute = 1
     }
 
@@ -1513,11 +1612,29 @@ namespace Tizen.NUI
     /// </summary>
     public enum VisualTransformPropertyType
     {
+        /// <summary>
+        /// Offset of the visual, which can be either relative (percentage [0.0f to 1.0f] of the parent) or absolute (in world units).
+        /// </summary>
         Offset,
+        /// <summary>
+        /// Size of the visual, which can be either relative (percentage [0.0f to 1.0f] of the parent) or absolute (in world units).
+        /// </summary>
         Size,
+        /// <summary>
+        /// The origin of the visual within its control area.
+        /// </summary>
         Origin,
+        /// <summary>
+        /// The anchor-point of the visual
+        /// </summary>
         AnchorPoint,
+        /// <summary>
+        /// Whether the x or y OFFSET values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
+        /// </summary>
         OffsetPolicy,
+        /// <summary>
+        /// Whether the width or height SIZE values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
+        /// </summary>
         SizePolicy
     }
 
@@ -1526,18 +1643,54 @@ namespace Tizen.NUI
     /// </summary>
     public struct Visual
     {
+        /// <summary>
+        /// The index for the visual type.
+        /// </summary>
         public enum Type
         {
+            /// <summary>
+            /// Renders a solid color as an internal border to the control's quad.
+            /// </summary>
             Border,
+            /// <summary>
+            /// Renders a solid color to the control's quad.
+            /// </summary>
             Color,
+            /// <summary>
+            /// Renders a smooth transition of colors to the control's quad.
+            /// </summary>
             Gradient,
+            /// <summary>
+            /// Renders an image into the control's quad.
+            /// </summary>
             Image,
+            /// <summary>
+            /// Renders a mesh using an "obj" file, optionally with textures provided by an "mtl" file.
+            /// </summary>
             Mesh,
+            /// <summary>
+            /// Renders a simple 3D shape, such as a cube or sphere.
+            /// </summary>
             Primitive,
+            /// <summary>
+            /// Renders a simple wire-frame outlining a quad.
+            /// </summary>
             Wireframe,
+            /// <summary>
+            /// Renders text.
+            /// </summary>
             Text,
+            /// <summary>
+            /// Renders an n-patch image.
+            /// </summary>
             NPatch,
+            /// <summary>
+            /// Renders an SVG image.
+            /// </summary>
             SVG,
+            /// <summary>
+            /// Renders a animated image. (Animated GIF)
+            /// </summary>
             AnimatedImage
         }
 
