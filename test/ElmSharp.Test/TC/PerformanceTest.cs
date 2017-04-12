@@ -84,6 +84,7 @@ namespace ElmSharp.Test
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1,
+                Style = "solid/default"
             };
             box.PackEnd(list);
             navi.Push(box, "Performance");
