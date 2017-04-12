@@ -34,6 +34,7 @@ namespace NUISamples.TizenTV.examples
             //new VisaulAnimationExample.Example().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
             //new RelativeVectorTest.Example().Run(args);
+            //new VisualViewTest2.VisualSample().Run(args);
         }
     }
 }

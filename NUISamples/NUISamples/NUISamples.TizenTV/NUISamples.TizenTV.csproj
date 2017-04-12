@@ -71,6 +71,7 @@
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
     <Compile Include="examples\visual-animation-test.cs" />
+    <Compile Include="examples\visual-view-test2.cs" />
     <Compile Include="examples\visual-view-test.cs" />
     <Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
     <Compile Include="examples\visuals-using-custom-view\ContactView.cs" />

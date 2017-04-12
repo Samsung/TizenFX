@@ -89,9 +89,9 @@ namespace VisaulAnimationExample
             //////////////////////////////////////////////////////////////////////
             // Create a conttent view
             _contentView = new VisualView();
-            _contentView.WidthResizePolicy = ResizePolicyType.Fixed;
-            _contentView.HeightResizePolicy = ResizePolicyType.Fixed;
-            _contentView.Size2D = new Size2D(250, 250);
+            _contentView.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            _contentView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            //_contentView.Size2D = new Size2D(250, 250);
             _contentView.BackgroundImage = _resPath + "/images/background-blocks.jpg";
 
             ImageVisual _icon = new ImageVisual();
@@ -103,6 +103,8 @@ namespace VisaulAnimationExample
             _icon.PositionPolicy = new Vector2(1, 1);
             _icon.Origin = Visual.AlignType.TopBegin;
             _icon.AnchorPoint = Visual.AlignType.TopBegin;
+            _icon.MixColor = new Color(0, 1, 0, 0.5f);
+            _icon.Opacity = 0.5f;
             _contentView.AddVisual("icon_visual1", _icon);
 
             contentLayout.AddChild(_contentView, new TableView.CellPosition(0, 0));
@@ -121,6 +123,23 @@ namespace VisaulAnimationExample
             _shadowButton.WidthResizePolicy = ResizePolicyType.FillToParent;
             _shadowButton.HeightResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.AddChild(_shadowButton, new TableView.CellPosition(0, 1));
+
+            //////////////////////////////////////////////////////////////////////
+            // make NPatch visual test
+            NPatchVisual npatch1 = new NPatchVisual();
+            npatch1.URL = _resPath + "/images/gallery-2.jpg";
+            npatch1.Size = new Size2D(400, 400);
+            npatch1.SizePolicy = new Vector2(1, 1);
+            npatch1.Position = new Position2D(400, 0);
+            npatch1.PositionPolicy = new Vector2(1, 1);
+            npatch1.Origin = Visual.AlignType.TopBegin;
+            npatch1.AnchorPoint = Visual.AlignType.TopBegin;
+            npatch1.Border = new Rectangle(100, 100, 100, 100);
+            npatch1.DepthIndex = 2;
+            npatch1.MixColor = new Color(1, 0, 0, 1);
+            npatch1.Opacity = 0.5f;
+            _contentView.AddVisual("npatchImageVisual1", npatch1);
+
 
             //////////////////////////////////////////////////////////////////////
             // make SVG visual test

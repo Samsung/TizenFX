@@ -386,16 +386,15 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
-            //dynamic obj = (object)relativeValue;
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
             {
-                AnimateBy(_prop, new PropertyValue(val), alphaFunction);
+                AnimateBy(_prop, val, alphaFunction);
             }
             else
             {
-                AnimateBy(_prop, new PropertyValue(val));
+                AnimateBy(_prop, val);
             }
         }
 
@@ -420,18 +419,17 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
-            //dynamic obj = (object)relativeValue;
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, new PropertyValue(val), alphaFunction, time);
+                AnimateBy(_prop, val, alphaFunction, time);
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, new PropertyValue(val), time);
+                AnimateBy(_prop, val, time);
             }
         }
 
@@ -454,16 +452,15 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
-            //dynamic obj = (object)destinationValue;
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
             {
-                AnimateTo(_prop, new PropertyValue(val), alphaFunction);
+                AnimateTo(_prop, val, alphaFunction);
             }
             else
             {
-                AnimateTo(_prop, new PropertyValue(val));
+                AnimateTo(_prop, val);
             }
         }
 
@@ -489,18 +486,17 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
-            //dynamic obj = (object)destinationValue;
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, new PropertyValue(val), alphaFunction, time);
+                AnimateTo(_prop, val, alphaFunction, time);
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, new PropertyValue(val), time);
+                AnimateTo(_prop, val, time);
             }
         }
 

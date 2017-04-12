@@ -35,6 +35,7 @@ namespace Tizen.NUI
         private float _depthIndex = 0.0f;
         protected PropertyMap _outputVisualMap = null;
 
+
         internal string Name
         {
             set;
@@ -226,6 +227,75 @@ namespace Tizen.NUI
             else
             {
                 Tizen.Log.Debug("NUI", "VisualIndex was not set");
+            }
+        }
+
+        protected PropertyMap _shader = null;
+        //private PropertyMap _transform = null;
+        protected bool? _premultipliedAlpha = null;
+        protected Color _mixColor = null;
+        protected float? _opacity = null;
+        protected PropertyMap _commonlyUsedMap = null;
+
+        /// <summary>
+        /// The shader to use in the visual.
+        /// </summary>
+        public PropertyMap Shader
+        {
+            get
+            {
+                return _shader;
+            }
+            set
+            {
+                _shader = value;
+                UpdateVisual();
+            }
+        }
+        /// <summary>
+        /// Enables/disables premultiplied alpha. <br>
+        /// The premultiplied alpha is false by default unless this behaviour is modified by the derived Visual type.
+        /// </summary>
+        public bool PremultipliedAlpha
+        {
+            get
+            {
+                return _premultipliedAlpha??false;
+            }
+            set
+            {
+                _premultipliedAlpha = value;
+                UpdateVisual();
+            }
+        }
+        /// <summary>
+        /// Mix color is a blend color for any visual.
+        /// </summary>
+        public Color MixColor
+        {
+            get
+            {
+                return _mixColor;
+            }
+            set
+            {
+                _mixColor = value;
+                UpdateVisual();
+            }
+        }
+        /// <summary>
+        /// Opacity is the alpha component of the mixColor, above.
+        /// </summary>
+        public float Opacity
+        {
+            get
+            {
+                return _opacity??(-1.0f);
+            }
+            set
+            {
+                _opacity = value;
+                UpdateVisual();
             }
         }
 
@@ -448,8 +518,11 @@ namespace Tizen.NUI
             if (_pixelArea != null) { _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
             if (_wrapModeU != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
             if (_wrapModeV != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
-
     }
 
     /// <summary>
@@ -630,6 +703,10 @@ namespace Tizen.NUI
             if (_verticalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
             if (_textColor != null) { _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
             if (_enableMarkup != null) { _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -702,6 +779,10 @@ namespace Tizen.NUI
             if (_color != null) { _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color)); }
             if (_size != null) { _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue((float)_size)); }
             if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue((bool)_antiAliasing)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -714,20 +795,20 @@ namespace Tizen.NUI
         {
         }
 
-        private Color _mixColor = null;
+        private Color _mixColorForColorVisual = null;
 
         /// <summary>
         /// Get or set the solid color required.
         /// </summary>
-        public Color MixColor
+        public Color Color
         {
             get
             {
-                return _mixColor;
+                return _mixColorForColorVisual;
             }
             set
             {
-                _mixColor = value;
+                _mixColorForColorVisual = value;
                 UpdateVisual();
             }
         }
@@ -736,7 +817,10 @@ namespace Tizen.NUI
         {
             _outputVisualMap = new PropertyMap();
             _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            if (_mixColor != null) { _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColor)); }
+            if (_mixColorForColorVisual != null) { _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColorForColorVisual)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -908,6 +992,10 @@ namespace Tizen.NUI
             if (_stopColor != null) { _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor)); }
             if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units)); }
             if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -1059,6 +1147,11 @@ namespace Tizen.NUI
             if (_shadingMode != null) { _outputVisualMap.Add(MeshVisualProperty.ShadingMode, new PropertyValue((int)_shadingMode)); }
             if (_useMipmapping != null) { _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, new PropertyValue((bool)_useMipmapping)); }
             if (_useSoftNormals != null) { _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, new PropertyValue((bool)_useSoftNormals)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+
         }
     }
 
@@ -1072,7 +1165,7 @@ namespace Tizen.NUI
         }
 
         private PrimitiveVisualShapeType? _shape = null;
-        private Color _mixColor = null;
+        private Color _mixColorForPrimitiveVisual = null;
         private int? _slices = null;
         private int? _stacks = null;
         private float? _scaleTopRadius = null;
@@ -1110,11 +1203,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _mixColor;
+                return _mixColorForPrimitiveVisual;
             }
             set
             {
-                _mixColor = value;
+                _mixColorForPrimitiveVisual = value;
                 UpdateVisual();
             }
         }
@@ -1326,7 +1419,7 @@ namespace Tizen.NUI
             _outputVisualMap = new PropertyMap(); ;
             _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Primitive));
             if (_shape != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Shape, new PropertyValue((int)_shape)); }
-            if (_mixColor != null) { _outputVisualMap.Add(PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColor)); }
+            if (_mixColorForPrimitiveVisual != null) { _outputVisualMap.Add(PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColorForPrimitiveVisual)); }
             if (_slices != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Slices, new PropertyValue((int)_slices)); }
             if (_stacks != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Stacks, new PropertyValue((int)_stacks)); }
             if (_scaleTopRadius != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleTopRadius, new PropertyValue((float)_scaleTopRadius)); }
@@ -1337,6 +1430,9 @@ namespace Tizen.NUI
             if (_bevelPercentage != null) { _outputVisualMap.Add(PrimitiveVisualProperty.BevelPercentage, new PropertyValue((float)_bevelPercentage)); }
             if (_bevelSmoothness != null) { _outputVisualMap.Add(PrimitiveVisualProperty.BevelSmoothness, new PropertyValue((float)_bevelSmoothness)); }
             if (_lightPosition != null) { _outputVisualMap.Add(PrimitiveVisualProperty.LightPosition, new PropertyValue(_lightPosition)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -1410,6 +1506,11 @@ namespace Tizen.NUI
             if (_url != null) { _outputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url)); }
             if (_borderOnly != null) { _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
             if (_border != null) { _outputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+
         }
     }
 
@@ -1704,6 +1805,7 @@ namespace Tizen.NUI
             public static readonly int Transform = NDalic.VISUAL_PROPERTY_TRANSFORM;
             public static readonly int PremultipliedAlpha = NDalic.VISUAL_PROPERTY_PREMULTIPLIED_ALPHA;
             public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
+            public static readonly int Opacity = NDalic.VISUAL_PROPERTY_MIX_COLOR + 1;
         }
 
         /// <summary>
@@ -1882,6 +1984,10 @@ namespace Tizen.NUI
             _outputVisualMap = new PropertyMap();
             _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.SVG));
             if (_url != null) { _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -1914,6 +2020,10 @@ namespace Tizen.NUI
             _outputVisualMap = new PropertyMap();
             _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
             if (_url != null) { _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url)); }
+            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
         }
     }
 
@@ -2018,14 +2128,13 @@ namespace Tizen.NUI
             string _str1 = _propertyIndex.Substring(0, 1);
             string _str2 = _propertyIndex.Substring(1);
             string _str = _str1.ToLower() + _str2;
-            
-            //dynamic _obj = (object)_destinationValue;
+
             PropertyValue val = PropertyValue.CreateFromObject(_destinationValue);
 
             PropertyMap _transition = new PropertyMap();
             _transition.Add("target", new PropertyValue(_target));
             _transition.Add("property", new PropertyValue(_str));
-            _transition.Add("targetValue", new PropertyValue(val));
+            _transition.Add("targetValue", val);
             _transition.Add("animator", new PropertyValue(_animator));
 
             _outputVisualMap = _transition;
