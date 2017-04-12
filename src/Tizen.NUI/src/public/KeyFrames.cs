@@ -83,8 +83,8 @@ namespace Tizen.NUI
         /// <param name="value">A value</param>
         public void Add(float progress, object value)
         {
-            dynamic obj = value;
-            Add(progress, new PropertyValue(obj));
+            PropertyValue val = PropertyValue.CreateFromObject(value);
+            Add(progress, val);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace Tizen.NUI
         /// <param name="alpha">The alpha function used to blend to the next keyframe</param>
         public void Add(float progress, object value, AlphaFunction alpha)
         {
-            dynamic obj = value;
-            Add(progress, new PropertyValue(obj), alpha);
+            PropertyValue val = PropertyValue.CreateFromObject(value);
+            Add(progress, val, alpha);
         }
 
         /// <summary>

@@ -1007,19 +1007,49 @@ namespace Tizen.NUI
                 System.Console.WriteLine(" got an Position property value ");
                 value = new PropertyValue((Position)obj);
             }
+            else if (type.Equals(typeof(Position2D)))
+            {
+                System.Console.WriteLine(" got an Position2D property value ");
+                value = new PropertyValue((Position2D)obj);
+            }
             else if (type.Equals(typeof(Size)))
             {
                 System.Console.WriteLine(" got an Size property value ");
                 value = new PropertyValue((Size)obj);
+            }
+            else if (type.Equals(typeof(Size2D)))
+            {
+                System.Console.WriteLine(" got an Size2D property value ");
+                value = new PropertyValue((Size2D)obj);
             }
             else if (type.Equals(typeof(Color)))
             {
                 System.Console.WriteLine(" got an Color property value ");
                 value = new PropertyValue((Color)obj);
             }
+            else if (type.Equals(typeof(Rotation)))
+            {
+                System.Console.WriteLine(" got an Rotation property value ");
+                value = new PropertyValue((Rotation)obj);
+            }
+            else if (type.Equals(typeof(RelativeVector2)))
+            {
+                System.Console.WriteLine(" got an RelativeVector2 property value ");
+                value = new PropertyValue((RelativeVector2)obj);
+            }
+            else if (type.Equals(typeof(RelativeVector3)))
+            {
+                System.Console.WriteLine(" got an RelativeVector3 property value ");
+                value = new PropertyValue((RelativeVector3)obj);
+            }
+            else if (type.Equals(typeof(RelativeVector4)))
+            {
+                System.Console.WriteLine(" got an RelativeVector4 property value ");
+                value = new PropertyValue((RelativeVector4)obj);
+            }
             else
             {
-                throw new global::System.InvalidOperationException("Unimplemented type for Property Value");
+                throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
             }
             return value;
         }
