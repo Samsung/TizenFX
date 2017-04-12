@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    internal class ItemLayout : RefObject {
+    public class ItemLayout : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ItemLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemLayout_SWIGUpcast(cPtr), cMemoryOwn) {
