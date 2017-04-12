@@ -83,10 +83,10 @@ internal static partial class Interop
         internal static extern int elm_win_indicator_opacity_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_win_indicator_mode_set(IntPtr obj, int mode);
+        internal static extern void elm_win_indicator_mode_set(IntPtr obj, IndicatorMode mode);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern int elm_win_indicator_mode_get(IntPtr obj);
+        internal static extern IndicatorMode elm_win_indicator_mode_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_conformant_set(IntPtr obj, bool conformant);
