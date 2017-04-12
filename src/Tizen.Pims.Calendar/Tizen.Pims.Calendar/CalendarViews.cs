@@ -328,6 +328,8 @@ namespace Tizen.Pims.Calendar
             ExtendedValue        = (ViewExtended|DataTypeString) + 4,
         }
 
+        internal const uint AverageSizeOfRecord = 56; ///average size
+
         /// <summary>
         /// </summary>
         public class Book

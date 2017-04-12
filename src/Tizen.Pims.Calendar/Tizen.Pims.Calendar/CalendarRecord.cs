@@ -30,6 +30,7 @@ namespace Tizen.Pims.Calendar
     {
         internal string _uri;
         internal uint _id;
+        private Int64 _memoryPressure = CalendarViews.AverageSizeOfRecord;
         internal IntPtr _recordHandle;
 
         internal CalendarRecord(IntPtr handle)
@@ -44,6 +45,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
             _uri = Marshal.PtrToStringAnsi(viewUri);
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         internal CalendarRecord(IntPtr handle, bool disposedValue)
@@ -59,6 +61,8 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
             _uri = Marshal.PtrToStringAnsi(viewUri);
+            if (!_disposedValue)
+                GC.AddMemoryPressure(_memoryPressure);
         }
 
         internal CalendarRecord(IntPtr handle, int id)
@@ -74,6 +78,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
             _uri = Marshal.PtrToStringAnsi(viewUri);
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         /// <summary>
@@ -90,6 +95,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
             _uri = viewUri;
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         ~CalendarRecord()
@@ -113,6 +119,7 @@ namespace Tizen.Pims.Calendar
                     throw CalendarErrorFactory.GetException(error);
                 }
                 _disposedValue = true;
+                GC.RemoveMemoryPressure(_memoryPressure);
             }
         }
 

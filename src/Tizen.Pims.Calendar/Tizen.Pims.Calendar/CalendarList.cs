@@ -28,11 +28,16 @@ namespace Tizen.Pims.Calendar
     /// </summary>
     public class CalendarList:IDisposable
     {
+        private Int64 _memoryPressure = 20;
         internal int _count = -1;
         internal IntPtr _listHandle;
+
         internal CalendarList(IntPtr handle)
         {
             _listHandle = handle;
+
+            _memoryPressure += this.Count * CalendarViews.AverageSizeOfRecord;
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         /// <summary>
@@ -46,6 +51,7 @@ namespace Tizen.Pims.Calendar
                 Log.Error(Globals.LogTag, "CalendarList Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
+            GC.AddMemoryPressure(_memoryPressure);
         }
 
         ~CalendarList()
@@ -90,6 +96,7 @@ namespace Tizen.Pims.Calendar
                     throw CalendarErrorFactory.GetException(error);
                 }
                 disposedValue = true;
+                GC.RemoveMemoryPressure(_memoryPressure);
             }
         }
 
@@ -113,6 +120,7 @@ namespace Tizen.Pims.Calendar
             }
             record._disposedValue = true;
             _count = -1;
+            _memoryPressure += CalendarViews.AverageSizeOfRecord;
         }
 
         /// <summary>
@@ -129,6 +137,7 @@ namespace Tizen.Pims.Calendar
             }
             record._disposedValue = false;
             _count = -1;
+            _memoryPressure -= CalendarViews.AverageSizeOfRecord;
         }
 
         /// <summary>
