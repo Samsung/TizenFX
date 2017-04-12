@@ -447,6 +447,10 @@ namespace Tizen.NUI
         {
             View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr), true));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ret.HasBody() == false)
+            {
+                return null;
+            }
             return ret;
         }
 
@@ -534,6 +538,10 @@ namespace Tizen.NUI
         {
             View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, Actor.getCPtr(view)), true));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ret.HasBody() == false)
+            {
+                return null;
+            }
             return ret;
         }
 
@@ -563,6 +571,10 @@ namespace Tizen.NUI
         {
             View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr), true));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ret.HasBody() == false)
+            { 
+                return null;
+            }
             return ret;
         }
 
