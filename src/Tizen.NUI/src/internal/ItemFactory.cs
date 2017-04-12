@@ -16,7 +16,7 @@ using System.Reflection;
 namespace Tizen.NUI
 {
 
-    internal class ItemFactory : global::System.IDisposable
+    public class ItemFactory : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

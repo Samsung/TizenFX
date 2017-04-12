@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    internal enum ControlOrientationType {
+    public enum ControlOrientationType {
   Up,
   Left,
   Down,
