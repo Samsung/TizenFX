@@ -18,14 +18,23 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The HoverselItem is the Item of Hoversel
+    /// </summary>
     public class HoverselItem : ItemObject
     {
         internal HoverselItem() : base(IntPtr.Zero)
         {
         }
 
+        /// <summary>
+        /// HoverselItem's label
+        /// </summary>
         public string Label { get; internal set; }
 
+        /// <summary>
+        /// ItemSelected will be triggered when HoverselItem Selected
+        /// </summary>
         public event EventHandler ItemSelected;
 
         internal void SendItemSelected()
