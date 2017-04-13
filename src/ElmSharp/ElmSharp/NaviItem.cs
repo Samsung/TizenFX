@@ -18,6 +18,10 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The NaviItem is a widget to contain the contents to show in Naviframe.
+    /// Inherits ItemObject
+    /// </summary>
     public class NaviItem : ItemObject
     {
         EvasObject _content;
@@ -38,13 +42,22 @@ namespace ElmSharp
             Interop.Elementary.elm_naviframe_item_pop_cb_set(handle, _popped, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// Popped will be triggered when NaviItem is removed.
+        /// </summary>
         public event EventHandler Popped;
 
+        /// <summary>
+        /// Gets the content object. The name of content part is "elm.swallow.content".
+        /// </summary>
         public EvasObject Content
         {
             get { return _content; }
         }
 
+        /// <summary>
+        /// Sets or gets a value whether title area is enabled or not.
+        /// </summary>
         public bool TitleBarVisible
         {
             get
@@ -57,6 +70,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        ///  Sets or gets the title bar background color
+        /// </summary>
         public Color TitleBarBackgroundColor
         {
             get
@@ -77,6 +93,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets an item style.
+        /// </summary>
         public string Style
         {
             get
@@ -89,6 +108,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Invalidate the EventArgs if _isPopped is false.
+        /// The method should be overridden in children class.
+        /// </summary>
         protected override void OnInvalidate()
         {
             if (!_isPopped)
