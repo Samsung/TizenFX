@@ -52,20 +52,6 @@ namespace Tizen.Multimedia
         /// </summary>
         H264
     }
-    /// <summary>
-    /// Enumeration for display surface type.
-    /// </summary>
-    public enum SurfaceType
-    {
-        /// <summary>
-        /// Use overlay surface to display streaming multimedia data
-        /// </summary>
-        Overlay,
-        /// <summary>
-        /// Use Evas pixmap surface to display streaming multimedia data
-        /// </summary>
-        Evas
-    }
 
     /// <summary>
     /// Enumeration for screen mirroring resolution.

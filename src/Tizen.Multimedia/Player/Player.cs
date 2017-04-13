@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
     /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
     /// Note that only one video player can be played at one time.
     /// </remarks>
-    public class Player : IDisposable
+    public class Player : IDisposable, IDisplayable<PlayerErrorCode>
     {
         private PlayerHandle _handle;
 
@@ -118,6 +118,9 @@ namespace Tizen.Multimedia
             RetrieveProperties();
 
             AudioEffect = new AudioEffect(this);
+            DisplaySettings = new PlayerDisplaySettings(this);
+
+            RegisterVideoFrameDecodedCallback();
         }
 
         private void RetrieveProperties()
@@ -152,7 +155,6 @@ namespace Tizen.Multimedia
             RegisterMediaStreamBufferStatusCallback();
             RegisterMediaStreamSeekCallback();
             RegisterPlaybackCompletedCallback();
-            RegisterVideoFrameDecodedCallback();
 
             _callbackRegistered = true;
         }
@@ -350,47 +352,48 @@ namespace Tizen.Multimedia
         }
 
         #region Display methods
-        private PlayerDisplay _display;
+        /// <summary>
+        /// Gets the display settings.
+        /// </summary>
+        /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
+        public PlayerDisplaySettings DisplaySettings { get; }
 
-        private PlayerErrorCode SetDisplay(PlayerDisplay display)
+        private Display _display;
+
+        private PlayerErrorCode SetDisplay(Display display)
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (display == null)
             {
                 Log.Info(PlayerLog.Tag, "set display to none");
-                return Interop.Player.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                return Interop.Player.SetDisplay(Handle, DisplayType.None, IntPtr.Zero);
             }
-            Log.Info(PlayerLog.Tag, "set display to " + display.Type + " (" + display.EvasObject + ")");
 
-            Debug.Assert(Enum.IsDefined(typeof(PlayerDisplayType), display.Type));
-            Debug.Assert(display.EvasObject != null);
-
-            return Interop.Player.SetDisplay(Handle, display.Type, display.EvasObject);
+            return display.ApplyTo(this);
         }
 
-        private void ReplaceDisplay(PlayerDisplay newDisplay)
+        private void ReplaceDisplay(Display newDisplay)
         {
             if (_display != null)
             {
-                _display.Player = null;
+                _display.Owner = null;
             }
             _display = newDisplay;
             if (_display != null)
             {
-                _display.Player = this;
-                Log.Info(PlayerLog.Tag, "replace display to " + newDisplay.Type + " (" + newDisplay.EvasObject + ")");
+                _display.Owner = this;
             }
         }
 
         /// <summary>
         /// Gets or sets the display.
         /// </summary>
-        /// <value>A <see cref="PlayerDisplay"/> that specifies the display configurations.</value>
+        /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        public PlayerDisplay Display
+        public Display Display
         {
             get
             {
@@ -401,15 +404,15 @@ namespace Tizen.Multimedia
                 Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value != null && value.Player != null)
+                if (value != null && value.Owner != null)
                 {
-                    if (ReferenceEquals(this, value.Player))
+                    if (ReferenceEquals(this, value.Owner))
                     {
                         return;
                     }
                     else
                     {
-                        throw new ArgumentException("The display has already been assigned to another player.");
+                        throw new ArgumentException("The display has already been assigned to another.");
                     }
                 }
 
@@ -418,6 +421,15 @@ namespace Tizen.Multimedia
                 ReplaceDisplay(value);
                 Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
             }
+        }
+
+        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
+        {
+            Debug.Assert(IsDisposed == false);
+
+            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+
+            return Interop.Player.SetDisplay(Handle, type, evasObject);
         }
         #endregion
 
@@ -1263,6 +1275,7 @@ namespace Tizen.Multimedia
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }
+
         #endregion
     }
 }

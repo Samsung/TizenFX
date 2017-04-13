@@ -90,24 +90,6 @@ namespace Tizen.Multimedia
         }
     }
 
-    internal enum PlayerDisplayType
-    {
-        /// <summary>
-        /// Overlay surface display
-        /// </summary>
-        Overlay,
-
-        /// <summary>
-        ///  Evas image object surface display
-        /// </summary>
-        Surface,
-
-        /// <summary>
-        /// This disposes off buffers
-        /// </summary>
-        None,
-    }
-
     /// <summary>
     /// Specifies audio latency modes for <see cref="Player"/> .
     /// </summary>
@@ -134,7 +116,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies display rotation modes for <see cref="Player"/>.
     /// </summary>
-    /// <seealso cref="PlayerDisplay.Rotation"/>
+    /// <seealso cref="Display.Rotation"/>
     public enum PlayerDisplayRotation
     {
         /// <summary>
@@ -162,7 +144,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies display modes for <see cref="Player"/>
     /// </summary>
-    /// <seealso cref="PlayerDisplay.Mode"/>
+    /// <seealso cref="Display.Mode"/>
     public enum PlayerDisplayMode
     {
         /// <summary>
@@ -192,7 +174,7 @@ namespace Tizen.Multimedia
         OriginalOrFull,
 
         /// <summary>
-        /// Region of interest, See <see cref="PlayerDisplay.SetRoi(Rectangle)"/>.
+        /// Region of interest, See <see cref="Display.SetRoi(Rectangle)"/>.
         /// </summary>
         Roi
     }

@@ -53,25 +53,6 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for Camera display type.
-    /// </summary>
-    public enum CameraDisplayType
-    {
-        /// <summary>
-        /// Overlay surface display.
-        /// </summary>
-        Overlay,
-        /// <summary>
-        /// Evas object surface display.
-        /// </summary>
-        Evas,
-        /// <summary>
-        /// This disposes off buffers.
-        /// </summary>
-        None
-    }
-
-    /// <summary>
     /// Enumeration for the facing direction of camera module .
     /// </summary>
     public enum CameraFacingDirection

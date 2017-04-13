@@ -14,64 +14,25 @@
  * limitations under the License.
  */
 using System;
-using ElmSharp;
+using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
-    //TODO reimplementation needed
     /// <summary>
     /// Provides means to configure display settings for video <see cref="Player"/>.
     /// </summary>
-    public class PlayerDisplay
+    public class PlayerDisplaySettings
     {
-        private PlayerDisplay(PlayerDisplayType type, EvasObject target)
+        internal PlayerDisplaySettings(Player player)
         {
-            if (target == null)
-            {
-                Log.Error(PlayerLog.Tag, "evas object is null");
-                throw new ArgumentNullException(nameof(target));
-            }
+            Debug.Assert(player != null);
 
-            if (target == IntPtr.Zero)
-            {
-                Log.Error(PlayerLog.Tag, "The evas object is not realized.");
-                throw new ArgumentException("The evas object is not realized.");
-            }
-
-            Type = type;
-            EvasObject = target;
+            Player = player;
         }
 
-        public PlayerDisplay(Window window) : this(PlayerDisplayType.Overlay, window)
-        {
-        }
-
-        public PlayerDisplay(Image image) : this(PlayerDisplayType.Surface, image)
-        {
-        }
-
-        public EvasObject EvasObject { get; }
-
-        internal PlayerDisplayType Type { get; }
-
-        /// <summary>
-        /// Gets the player that the display is assigned to.
-        /// </summary>
-        public Player Player
+        private Player Player
         {
             get;
-            internal set;
-        }
-
-        private void ValidatePlayer()
-        {
-            if (Player == null)
-            {
-                Log.Error(PlayerLog.Tag, "The display is not assigned, yet.");
-                throw new InvalidOperationException("The display is not assigned, yet.");
-            }
-
-            Player.ValidateNotDisposed();
         }
 
         private PlayerDisplayMode _displayMode = PlayerDisplayMode.LetterBox;
@@ -94,8 +55,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidatePlayer();
-
                 if (_displayMode == value)
                 {
                     return;
@@ -130,8 +89,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidatePlayer();
-
                 if (_isVisible == value)
                 {
                     return;
@@ -165,8 +122,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidatePlayer();
-
                 if (_rotation == value)
                 {
                     return;
@@ -198,8 +153,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">width or height is less than or equal to zero.</exception>
         public void SetRoi(Rectangle roi)
         {
-            ValidatePlayer();
-
             if (_displayMode != PlayerDisplayMode.Roi)
             {
                 throw new InvalidOperationException("Mode is not set to Roi");

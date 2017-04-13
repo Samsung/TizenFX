@@ -23,11 +23,11 @@ namespace Tizen.Multimedia
     /// It allows to set and get various display properties such as
     /// rotation, display visibility and display mode.
     /// </summary>
-    public class CameraDisplay
+    public class CameraDisplaySettings
     {
         internal readonly Camera _camera;
 
-        internal CameraDisplay(Camera camera)
+        internal CameraDisplaySettings(Camera camera)
         {
             _camera = camera;
         }
@@ -158,31 +158,6 @@ namespace Tizen.Multimedia
                 CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetRoiArea(_camera.GetHandle(),
                     value.X, value.Y, value.Width, value.Height), "Failed to set display roi area.");
             }
-        }
-
-        /// <summary>
-        /// Sets the display type and handle to show preview images.
-        /// The camera must be in the <see cref="CameraState.Created"/> state.
-        /// </summary>
-        /// <param name="displayType">Display type.</param>
-        /// <param name="preview">MediaView object to display preview.</param>
-        /// <remarks>
-        /// This method must be called before StartPreview() method.
-        /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
-        /// </remarks>
-        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
-        public void SetInfo(CameraDisplayType displayType, MediaView displayHandle)
-        {
-            _camera.ValidateState(CameraState.Created);
-
-            ValidationUtil.ValidateEnum(typeof(CameraDisplayType), displayType);
-
-            CameraErrorFactory.ThrowIfError(Interop.CameraDisplay.SetInfo(_camera.GetHandle(), displayType, displayHandle),
-                "Failed to set the camera display.");
         }
     }
 }

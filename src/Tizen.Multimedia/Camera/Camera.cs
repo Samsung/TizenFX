@@ -20,7 +20,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Collections;
+
 namespace Tizen.Multimedia
 {
     static internal class CameraLog
@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
     /// <privilege>
     /// http://tizen.org/privilege/camera
     /// </privilege>
-    public class Camera : IDisposable
+    public class Camera : IDisposable, IDisplayable<CameraError>
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
@@ -60,7 +60,7 @@ namespace Tizen.Multimedia
 
             Feature = new CameraFeatures(this);
             Setting = new CameraSettings(this);
-            Display = new CameraDisplay(this);
+            DisplaySettings = new CameraDisplaySettings(this);
 
             RegisterCallbacks();
 
@@ -350,7 +350,80 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get/set various camera display properties.
         /// </summary>
-        public CameraDisplay Display { get; }
+        public CameraDisplaySettings DisplaySettings{ get; }
+
+        private Display _display;
+
+        private CameraError SetDisplay(Display display)
+        {
+            if (display == null)
+            {
+                return Interop.CameraDisplay.SetTarget(GetHandle(), DisplayType.None, IntPtr.Zero);
+            }
+
+            return display.ApplyTo(this);
+        }
+
+        private void ReplaceDisplay(Display newDisplay)
+        {
+            if (_display != null)
+            {
+                _display.Owner = null;
+            }
+            _display = newDisplay;
+            if (_display != null)
+            {
+                _display.Owner = this;
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the display type and handle to show preview images.
+        /// The camera must be in the <see cref="CameraState.Created"/> state.
+        /// </summary>
+        /// <remarks>
+        /// This must be set before StartPreview() method.
+        /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
+        public Display Display
+        {
+            get
+            {
+                return _display;
+            }
+            set
+            {
+                ValidateState(CameraState.Created);
+
+                if (value != null && value.Owner != null)
+                {
+                    if (ReferenceEquals(this, value.Owner))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The display has already been assigned to another.");
+                    }
+                }
+                CameraErrorFactory.ThrowIfError(SetDisplay(value), "Failed to set the camera display");
+
+                ReplaceDisplay(value);
+            }
+        }
+
+        CameraError IDisplayable<CameraError>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
+        {
+            Debug.Assert(_disposed == false);
+
+            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+
+            return Interop.CameraDisplay.SetTarget(GetHandle(), type, evasObject);
+        }
 
         /// <summary>
         /// Gets the state of the camera.
@@ -514,7 +587,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts capturing and drawing preview frames on the screen.
-        /// The display handle must be set using <see cref="CameraDisplay.SetInfo"/>
+        /// The display handle must be set using <see cref="CameraDisplaySettings.SetInfo"/>
         /// before using this method.
         /// If needed set fps <see cref="CameraSettings.PreviewFps"/>, preview resolution
         /// <see cref="CameraSettings.PreviewResolution"/>, or preview format <see cref="CameraSettings.PreviewPixelFormat"/>

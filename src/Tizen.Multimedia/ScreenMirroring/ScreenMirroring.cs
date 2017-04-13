@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
@@ -29,15 +30,13 @@ namespace Tizen.Multimedia
     /// start, pause, and resume the screen mirroring sink, set the resolution or display,
     /// register state change callback function.
     /// </summary>
-    public class ScreenMirroring : IDisposable
+    public class ScreenMirroring : IDisposable, IDisplayable<int>
     {
         internal VideoInformation _videoInfo;
         internal AudioInformation _audioInfo;
         internal IntPtr _handle;
         internal string _ip;
         internal string _port;
-        internal SurfaceType _type;
-        internal MediaView _display;
 
         private bool _disposed = false;
         private EventHandler<StateChangedEventArgs> _stateChanged;
@@ -53,7 +52,7 @@ namespace Tizen.Multimedia
         /// <param name="ip">Ip.</param>
         /// <param name="port">Port.</param>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        public ScreenMirroring(SurfaceType type, MediaView display, string ip, string port)
+        public ScreenMirroring(Display display, string ip, string port)
         {
             int ret = Interop.ScreenMirroring.Create(out _handle);
             if (ret != (int)ScreenMirroringError.None)
@@ -64,8 +63,6 @@ namespace Tizen.Multimedia
             // initiate values
             _ip = ip;
             _port = port;
-            _type = type;
-            _display = display;
 
             // Set ip and port
             int ret1 = Interop.ScreenMirroring.SetIpAndPort(_handle, _ip, _port);
@@ -75,13 +72,7 @@ namespace Tizen.Multimedia
                 ScreenMirroringErrorFactory.ThrowException(ret, "set ip and port failed");
             }
 
-            // Set display
-            int ret2 = Interop.ScreenMirroring.SetDisplay(_handle, (int)_type, _display);
-            if (ret2 != (int)ScreenMirroringError.None)
-            {
-                Log.Error(ScreenMirroringLog.LogTag, "Set display failed" + (ScreenMirroringError)ret2);
-                ScreenMirroringErrorFactory.ThrowException(ret, "set display failed");
-            }
+            Display = display;
 
             // AudioInfo
             _audioInfo = new AudioInformation();
@@ -163,25 +154,63 @@ namespace Tizen.Multimedia
             }
         }
 
+        private Display _display;
+
+        private int ApplyDisplay(Display display)
+        {
+            return display.ApplyTo(this);
+        }
+
+        private void ReplaceDisplay(Display newDisplay)
+        {
+            if (_display != null)
+            {
+                _display.Owner = null;
+            }
+            _display = newDisplay;
+            if (_display != null)
+            {
+                _display.Owner = this;
+            }
+        }
+
         /// <summary>
         /// Sets the display.
         /// This must be called before prepare() and after create().
         /// </summary>
         /// <example> If only one handle is used for toggling between more than two source devices,
-        /// then this API ahould be used to assign the parameters to the handle.
+        /// then this API should be used to assign the parameters to the handle.
         /// </example>
-        /// <param name="type">Type.</param>
-        /// <param name="display">Display.</param>
-        /// <remarks> Display Handle creates using mediaview class </remarks>
         /// <exception cref="ArgumentException">Thrown when method fail due to an invalid parameter</exception>
-        public void SetDisplay(SurfaceType type, MediaView display)
+        public Display Display
         {
-            int ret = Interop.ScreenMirroring.SetDisplay(_handle, (int)type, display);
-            if (ret != (int)ScreenMirroringError.None)
+            get
             {
-                Log.Error(ScreenMirroringLog.LogTag, "Set display failed" + (ScreenMirroringError)ret);
-                ScreenMirroringErrorFactory.ThrowException(ret, "set display failed");
+                return _display;
             }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(Display));
+                }
+
+                int ret = ApplyDisplay(value);
+                if (ret != (int)ScreenMirroringError.None)
+                {
+                    Log.Error(ScreenMirroringLog.LogTag, "Set display failed" + (ScreenMirroringError)ret);
+                    ScreenMirroringErrorFactory.ThrowException(ret, "set display failed");
+                }
+            }
+        }
+
+        int IDisplayable<int>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
+        {
+            Debug.Assert(_disposed == false);
+
+            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+
+            return Interop.ScreenMirroring.SetDisplay(_handle, (int)type, evasObject);
         }
 
         /// <summary>

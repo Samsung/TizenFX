@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
             internal static extern CameraError SetRoiArea(IntPtr handle, int x, int y, int width, int height);
 
             [DllImport(Libraries.Camera, EntryPoint = "camera_set_display")]
-            internal static extern CameraError SetInfo(IntPtr handle, CameraDisplayType displayType, IntPtr displayHandle);
+            internal static extern CameraError SetTarget(IntPtr handle, DisplayType displayType, IntPtr displayHandle);
         }
     }
 }
