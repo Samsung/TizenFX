@@ -394,6 +394,23 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets the text for an object's tooltip.
+        /// </summary>
+        /// <param name="text">The text value to display inside the tooltip</param>
+        public void SetTooltipText(string text)
+        {
+            Interop.Elementary.elm_object_tooltip_text_set(RealHandle, text);
+        }
+
+        /// <summary>
+        /// Unsets an object's tooltip.
+        /// </summary>
+        public void UnsetTooltip()
+        {
+            Interop.Elementary.elm_object_tooltip_unset(RealHandle);
+        }
+
+        /// <summary>
         /// Makes the current object visible.
         /// </summary>
         public void Show()

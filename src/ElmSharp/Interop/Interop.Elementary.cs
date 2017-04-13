@@ -75,6 +75,12 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary, EntryPoint = "elm_object_part_text_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
         internal static extern IntPtr _elm_object_part_text_get(IntPtr obj, string part);
 
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_tooltip_text_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_tooltip_unset(IntPtr obj);
+
         internal static string elm_object_part_text_get(IntPtr obj, string part)
         {
             var text = _elm_object_part_text_get(obj, part);
