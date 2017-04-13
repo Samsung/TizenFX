@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Net;
 using Tizen.Network.Connection;
 
 namespace Tizen.Network.WiFi
@@ -241,5 +242,30 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
+        /// <summary>
+        /// DHCP server address. It is only supported for IPv4 address family.
+        /// </summary>
+        /// <value>Represents DHCP server address.</value>
+        public System.Net.IPAddress DhcpServerAddress
+        {
+            get
+            {
+                string dhcpServer;
+                int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, AddressFamily.IPv4, out dhcpServer);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get DHCP server address, Error - " + (WiFiError)ret);
+                }
+
+                if (dhcpServer == null)
+                {
+                    return IPAddress.Parse("0.0.0.0");
+                }
+
+                return IPAddress.Parse(dhcpServer);
+            }
+        }
+
     }
 }
