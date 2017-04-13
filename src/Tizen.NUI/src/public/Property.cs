@@ -963,88 +963,88 @@ namespace Tizen.NUI
 
             if (type.Equals(typeof(int)))
             {
-                System.Console.WriteLine(" got an int property value ");
+                Tizen.Log.Debug("NUI", " got an int property value ");
                 value = new PropertyValue((int)obj);
             }
             if (type.Equals(typeof(System.Int32)))
             {
-                System.Console.WriteLine(" got an int property value ");
+                Tizen.Log.Debug("NUI", " got an int property value ");
                 value = new PropertyValue((int)obj);
             }
             else if (type.Equals(typeof(bool)))
             {
-                System.Console.WriteLine(" got an bool property value ");
+                Tizen.Log.Debug("NUI", " got an bool property value ");
                 value = new PropertyValue((bool)obj);
             }
             else if (type.Equals(typeof(float)))
             {
-                System.Console.WriteLine(" got an float property value ");
+                Tizen.Log.Debug("NUI", " got an float property value ");
                 value = new PropertyValue((float)obj);
             }
             else if (type.Equals(typeof(string)))
             {
-                System.Console.WriteLine(" got a string property value ");
+                Tizen.Log.Debug("NUI", " got a string property value ");
                 value = new PropertyValue((string)obj);
             }
             else if (type.Equals(typeof(Vector2)))
             {
-                System.Console.WriteLine(" got an Vector2 property value ");
+                Tizen.Log.Debug("NUI", " got an Vector2 property value ");
                 value = new PropertyValue((Vector2)obj);
             }
             else if (type.Equals(typeof(Vector3)))
             {
-                System.Console.WriteLine(" got an Vector3 property value ");
+                Tizen.Log.Debug("NUI", " got an Vector3 property value ");
                 value = new PropertyValue((Vector3)obj);
             }
             else if (type.Equals(typeof(Vector4)))
             {
-                System.Console.WriteLine(" got an Vector4 property value ");
+                Tizen.Log.Debug("NUI", " got an Vector4 property value ");
 
                 value = new PropertyValue((Vector4)obj);
             }
             else if (type.Equals(typeof(Position)))
             {
-                System.Console.WriteLine(" got an Position property value ");
+                Tizen.Log.Debug("NUI", " got an Position property value ");
                 value = new PropertyValue((Position)obj);
             }
             else if (type.Equals(typeof(Position2D)))
             {
-                System.Console.WriteLine(" got an Position2D property value ");
+                Tizen.Log.Debug("NUI", " got an Position2D property value ");
                 value = new PropertyValue((Position2D)obj);
             }
             else if (type.Equals(typeof(Size)))
             {
-                System.Console.WriteLine(" got an Size property value ");
+                Tizen.Log.Debug("NUI", " got an Size property value ");
                 value = new PropertyValue((Size)obj);
             }
             else if (type.Equals(typeof(Size2D)))
             {
-                System.Console.WriteLine(" got an Size2D property value ");
+                Tizen.Log.Debug("NUI", " got an Size2D property value ");
                 value = new PropertyValue((Size2D)obj);
             }
             else if (type.Equals(typeof(Color)))
             {
-                System.Console.WriteLine(" got an Color property value ");
+                Tizen.Log.Debug("NUI", " got an Color property value ");
                 value = new PropertyValue((Color)obj);
             }
             else if (type.Equals(typeof(Rotation)))
             {
-                System.Console.WriteLine(" got an Rotation property value ");
+                Tizen.Log.Debug("NUI", " got an Rotation property value ");
                 value = new PropertyValue((Rotation)obj);
             }
             else if (type.Equals(typeof(RelativeVector2)))
             {
-                System.Console.WriteLine(" got an RelativeVector2 property value ");
+                Tizen.Log.Debug("NUI", " got an RelativeVector2 property value ");
                 value = new PropertyValue((RelativeVector2)obj);
             }
             else if (type.Equals(typeof(RelativeVector3)))
             {
-                System.Console.WriteLine(" got an RelativeVector3 property value ");
+                Tizen.Log.Debug("NUI", " got an RelativeVector3 property value ");
                 value = new PropertyValue((RelativeVector3)obj);
             }
             else if (type.Equals(typeof(RelativeVector4)))
             {
-                System.Console.WriteLine(" got an RelativeVector4 property value ");
+                Tizen.Log.Debug("NUI", " got an RelativeVector4 property value ");
                 value = new PropertyValue((RelativeVector4)obj);
             }
             else

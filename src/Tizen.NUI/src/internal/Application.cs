@@ -1052,10 +1052,10 @@ namespace Tizen.NUI
         internal void SetupDelegates()
         {
             InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialize);
-            System.Console.WriteLine("InitSignal connection count");
+            Tizen.Log.Debug("NUI", "InitSignal connection count");
 
             this.InitSignal().Connect(initializeCallback);
-            //Console.WriteLine( "InitSignal connection count = " + app.InitSignal().GetConnectionCount() );
+            //Tizen.Log.Debug("NUI",  "InitSignal connection count = " + app.InitSignal().GetConnectionCount() );
         }
 
         public static Application NewApplication()
