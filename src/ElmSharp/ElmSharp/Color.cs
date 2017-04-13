@@ -259,24 +259,81 @@ namespace ElmSharp
         }
 
         #region Color Definitions
+        /// <summary>
+        /// The Tansparent is a predefined Color, it's rgba value is (0, 0, 0, 0).
+        /// </summary>
         public static readonly Color Transparent = FromRgba(0, 0, 0, 0);
+        /// <summary>
+        /// The Aqua is a predefined Color instance, it's rgb value is (0, 255, 255).
+        /// </summary>
         public static readonly Color Aqua = FromRgb(0, 255, 255);
+        /// <summary>
+        /// The Black is a predefined Color instance, it's rgb value is (0, 0, 0).
+        /// </summary>
         public static readonly Color Black = FromRgb(0, 0, 0);
+        /// <summary>
+        /// The Blue is a predefined Color instance, it's rgb value is (0, 0, 255).
+        /// </summary>
         public static readonly Color Blue = FromRgb(0, 0, 255);
+        /// <summary>
+        /// The Fuchsia is a predefined Color instance, it's rgb value is (255, 0, 255).
+        /// </summary>
         public static readonly Color Fuchsia = FromRgb(255, 0, 255);
+        /// <summary>
+        /// The Gray is a predefined Color instance, it's rgb value is (128, 128, 128).
+        /// </summary>
         public static readonly Color Gray = FromRgb(128, 128, 128);
+        /// <summary>
+        /// The Green is a predefined Color instance, it's rgb value is (0, 128, 0).
+        /// </summary>
         public static readonly Color Green = FromRgb(0, 128, 0);
+        /// <summary>
+        /// The Lime is a predefined Color instance, it's rgb value is (0, 255, 0).
+        /// </summary>
         public static readonly Color Lime = FromRgb(0, 255, 0);
+        /// <summary>
+        /// The Maroon is a predefined Color instance, it's rgb value is (128, 0, 0).
+        /// </summary>
         public static readonly Color Maroon = FromRgb(128, 0, 0);
+        /// <summary>
+        /// The Navy is a predefined Color instance, it's rgb value is (0, 0, 128).
+        /// </summary>
         public static readonly Color Navy = FromRgb(0, 0, 128);
+        /// <summary>
+        /// The Olive is a predefined Color instance, it's rgb value is (128, 128, 0).
+        /// </summary>
         public static readonly Color Olive = FromRgb(128, 128, 0);
+        /// <summary>
+        /// The Orange is a predefined Color instance, it's rgb value is (255, 165, 0).
+        /// </summary>
         public static readonly Color Orange = FromRgb(255, 165, 0);
+        /// <summary>
+        /// The Purple is a predefined Color instance, it's rgb value is (128, 0, 128).
+        /// </summary>
         public static readonly Color Purple = FromRgb(128, 0, 128);
+        /// <summary>
+        /// The Pink is a predefined Color instance, it's rgb value is (255, 102, 255).
+        /// </summary>
         public static readonly Color Pink = FromRgb(255, 102, 255);
+        /// <summary>
+        /// The Red is a predefined Color instance, it's rgb value is (255, 0, 0).
+        /// </summary>
         public static readonly Color Red = FromRgb(255, 0, 0);
+        /// <summary>
+        /// The Silver is a predefined Color instance, it's rgb value is (192, 192, 192).
+        /// </summary>
         public static readonly Color Silver = FromRgb(192, 192, 192);
+        /// <summary>
+        /// The Teal is a predefined Color instance, it's rgb value is (0, 128, 128).
+        /// </summary>
         public static readonly Color Teal = FromRgb(0, 128, 128);
+        /// <summary>
+        /// The White is a predefined Color instance, it's rgb value is (255, 255, 255).
+        /// </summary>
         public static readonly Color White = FromRgb(255, 255, 255);
+        /// <summary>
+        /// The Yellow is a predefined Color instance, it's rgb value is (255, 255, 0).
+        /// </summary>
         public static readonly Color Yellow = FromRgb(255, 255, 0);
         #endregion
     }

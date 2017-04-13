@@ -19,11 +19,28 @@ using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// It inherits System.EventArgs.
+    /// The EcoreKeyEventArgs is a EventArgs to record Ecore event's key name and key code.
+    /// </summary>
     public class EcoreKeyEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets the KeyName property.The return type is string.
+        /// </summary>
         public string KeyName { get; private set; }
+        /// <summary>
+        /// Gets the KeyCode property.The return type is int.
+        /// </summary>
         public int KeyCode { get; private set; }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EcoreKeyEventArgs class.
+        /// </summary>
+        /// <param name="data">data</param>
+        /// <param name="type">type</param>
+        /// <param name="info">information </param>
+        /// <returns>new instance of the EcoreKeyEventArgs class</returns>
         public static EcoreKeyEventArgs Create(IntPtr data, EcoreEventType type, IntPtr info)
         {
             var evt = Marshal.PtrToStructure<EcoreEventKey>(info);

@@ -21,16 +21,47 @@ using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The EcoreEventType is type of EcoreEvent.
+    /// It includes some predefined instance.
+    /// </summary>
     public class EcoreEventType
     {
+        /// <summary>
+        /// Key down Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType KeyDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_DOWN");
+        /// <summary>
+        /// Key Up Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType KeyUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_UP");
+        /// <summary>
+        /// Mouse Button Down Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseButtonDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_DOWN");
+        /// <summary>
+        /// Mouse Button Up Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseButtonUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_UP");
+        /// <summary>
+        /// Mouse Button Cancel Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseButtonCancel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_CANCEL");
+        /// <summary>
+        /// Mouse Move Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseMove = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_MOVE");
+        /// <summary>
+        /// Mouse Wheel Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseWheel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_WHEEL");
+        /// <summary>
+        /// Mouse In Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseIn = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_IN");
+        /// <summary>
+        /// Mouse Out Ecore event type.
+        /// </summary>
         public static readonly EcoreEventType MouseOut = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_OUT");
 
         private string _lib;
@@ -44,6 +75,10 @@ namespace ElmSharp
             _typeValue = -1;
         }
 
+        /// <summary>
+        /// Gets the value associated with the specified type.
+        /// </summary>
+        /// <returns>The value of type.</returns>
         public int GetValue()
         {
             if (_typeValue < 0)
@@ -63,6 +98,10 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// The EcoreEvent is a class to help to create events are being notified of events.
+    /// </summary>
+    /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
     public class EcoreEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
     {
         public delegate TEventArgs EventInfoParser(IntPtr data, EcoreEventType type, IntPtr info);
@@ -72,10 +111,19 @@ namespace ElmSharp
         private readonly EventInfoParser _parser;
         private readonly List<NativeCallback> _nativeCallbacks = new List<NativeCallback>();
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EcoreEvent class.
+        /// </summary>
+        /// <param name="type">EcoreEventType</param>
         public EcoreEvent(EcoreEventType type) : this(type, null)
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EcoreEvent class.
+        /// </summary>
+        /// <param name="type">EcoreEventType</param>
+        /// <param name="parser">EventInfoParser</param>
         public EcoreEvent(EcoreEventType type, EventInfoParser parser)
         {
             _eventType = type;
@@ -94,6 +142,9 @@ namespace ElmSharp
             public EventHandler<TEventArgs> eventHandler;
         }
 
+        /// <summary>
+        /// On Event Handler of EcoreEvent.
+        /// </summary>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -142,8 +193,15 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Event class for EcoreEvent
+    /// </summary>
     public class EcoreEvent : EcoreEvent<EventArgs>
     {
+        /// <summary>
+        /// Creates and initializes a new instance of the EcoreEvent class.
+        /// </summary>
+        /// <param name="type">EcoreEventType</param>
         public EcoreEvent(EcoreEventType type) : base(type)
         {
         }
