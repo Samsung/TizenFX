@@ -30,7 +30,7 @@ namespace Tizen.NUI
         private void LOG(string _str)
         {
             //Tizen.Log.Debug("NUI", _str);
-            //Console.WriteLine("[NUI]" + _str);
+            //Tizen.Log.Debug("NUI", "[NUI]" + _str);
         }
 
         /// <summary>

@@ -103,7 +103,7 @@ namespace Tizen.NUI
                 startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
                 startAnimatablePropertyIndex += maxCountPerDerivation;
 
-                //Console.WriteLine ("getStartPropertyIndex =  " + viewType.Name +"current index " + startEventPropertyIndex);
+                //Tizen.Log.Debug("NUI", "getStartPropertyIndex =  " + viewType.Name +"current index " + startEventPropertyIndex);
 #if (DOT_NET_CORE)
                 viewType = viewType.GetTypeInfo().BaseType;
 #else

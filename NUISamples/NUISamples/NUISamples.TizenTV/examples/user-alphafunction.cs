@@ -32,7 +32,7 @@ namespace UserAlphaFunctionTest
 
         public static void Log(string str)
         {
-            Console.WriteLine("[DALI C# SAMPLE] " + str);
+            Tizen.Log.Debug("NUI", "[DALI C# SAMPLE] " + str);
         }
 
         public Example() : base()

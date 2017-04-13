@@ -28,7 +28,7 @@ namespace ImageViewTest
         private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
         public static void Log(string str)
         {
-            Console.WriteLine("[DALI C# SAMPLE] " + str);
+            Tizen.Log.Debug("NUI", "[DALI C# SAMPLE] " + str);
         }
 
         private Animation _animation;

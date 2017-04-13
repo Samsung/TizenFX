@@ -98,7 +98,7 @@ namespace RelativeVectorTest
         [STAThread]
         static void _Main(string[] args)
         {
-            Console.WriteLine("Hello mono world.");
+            Tizen.Log.Debug("NUI", "Hello mono world.");
             Example example = new Example("stylesheet", WindowMode.Transparent);
             example.Run(args);
         }

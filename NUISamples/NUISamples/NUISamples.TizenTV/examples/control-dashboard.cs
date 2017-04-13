@@ -74,7 +74,7 @@ namespace ControlDashboard
 
         public void Initialize()
         {
-            Console.WriteLine("Customized Application Initialize event handler");
+            Tizen.Log.Debug("NUI", "Customized Application Initialize event handler");
             _stage = Stage.Instance;
             _stage.BackgroundColor = Color.White;
 
@@ -189,7 +189,7 @@ namespace ControlDashboard
                     toggleButton.HeightResizePolicy = ResizePolicyType.FillToParent;
                     toggleButton.Clicked += (obj, e) =>
                     {
-                        Console.WriteLine("Toggle button state changed.");
+                        Tizen.Log.Debug("NUI", "Toggle button state changed.");
                         return true;
                     };
 
@@ -479,7 +479,7 @@ namespace ControlDashboard
         [STAThread]
         static void _Main(string[] args)
         {
-            Console.WriteLine("Hello Mono World");
+            Tizen.Log.Debug("NUI", "Hello Mono World");
 
             Example example = new Example("/home/owner/apps_rw/NUISamples.TizenTV/res/json/control-dashboard-theme.json");
             example.Run(args);

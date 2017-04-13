@@ -128,24 +128,24 @@ namespace DaliTest
             int myPropertyIndex = handle.RegisterProperty("myProperty", new PropertyValue(10.0f), PropertyAccessMode.ReadWrite);
             float myProperty = 0.0f;
             handle.GetProperty(myPropertyIndex).Get(ref myProperty);
-            Console.WriteLine( "myProperty value: " + myProperty );
+            Tizen.Log.Debug("NUI",  "myProperty value: " + myProperty );
 
             int myPropertyIndex2 = handle.RegisterProperty("myProperty2", new PropertyValue(new Size(5.0f, 5.0f, 0.0f)), PropertyAccessMode.ReadWrite);
             Size myProperty2 = new Size(0.0f, 0.0f, 0.0f);
             handle.GetProperty(myPropertyIndex2).Get(myProperty2);
-            Console.WriteLine( "myProperty2 value: " + myProperty2.Width + ", " + myProperty2.Height );
+            Tizen.Log.Debug("NUI",  "myProperty2 value: " + myProperty2.Width + ", " + myProperty2.Height );
 
             Actor actor = new Actor();
             actor.Size = new Size(200.0f, 200.0f, 0.0f);
             actor.Name = "MyActor";
             //actor.MixColor = new Color(1.0f, 0.0f, 1.0f, 0.8f);
-            Console.WriteLine("Actor size: " + actor.Size.Width + ", " + actor.Size.Height);
-            Console.WriteLine("Actor name: " + actor.Name);
+            Tizen.Log.Debug("NUI", "Actor size: " + actor.Size.Width + ", " + actor.Size.Height);
+            Tizen.Log.Debug("NUI", "Actor name: " + actor.Name);
 
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
             Size stageSize = new Size(stage.Size.Width, stage.Size.Height, 0.0f);
-            Console.WriteLine("Stage size: " + stageSize.Width + ", " + stageSize.Height);
+            Tizen.Log.Debug("NUI", "Stage size: " + stageSize.Width + ", " + stageSize.Height);
             stage.GetDefaultLayer().Add(actor);
 
             TextLabel text = new TextLabel("Hello Mono World");
@@ -154,46 +154,46 @@ namespace DaliTest
             text.HorizontalAlignment = "CENTER";
             stage.GetDefaultLayer().Add(text);
 
-            Console.WriteLine( "Text label text:  " + text.Text );
+            Tizen.Log.Debug("NUI",  "Text label text:  " + text.Text );
 
-            Console.WriteLine( "Text label point size:  " + text.PointSize );
+            Tizen.Log.Debug("NUI",  "Text label point size:  " + text.PointSize );
             text.PointSize = 32.0f;
-            Console.WriteLine( "Text label new point size:  " + text.PointSize );
+            Tizen.Log.Debug("NUI",  "Text label new point size:  " + text.PointSize );
 
             RectanglePaddingClassTest();
 
-            Console.WriteLine( " *************************" );
+            Tizen.Log.Debug("NUI",  " *************************" );
             Size Size = new Size(100, 50, 0);
-            Console.WriteLine( "    Created " + Size );
-            Console.WriteLine( "    Size x =  " + Size.Width + ", y = " + Size.Height );
+            Tizen.Log.Debug("NUI",  "    Created " + Size );
+            Tizen.Log.Debug("NUI",  "    Size x =  " + Size.Width + ", y = " + Size.Height );
             Size += new Size(20, 20, 0);
-            Console.WriteLine( "    Size x =  " + Size.Width + ", y = " + Size.Height );
+            Tizen.Log.Debug("NUI",  "    Size x =  " + Size.Width + ", y = " + Size.Height );
             Size.Width += 10;
             Size.Height += 10;
-            Console.WriteLine( "    Size width =  " + Size.Width + ", height = " + Size.Height );
+            Tizen.Log.Debug("NUI",  "    Size width =  " + Size.Width + ", height = " + Size.Height );
 
-            Console.WriteLine( " *************************" );
+            Tizen.Log.Debug("NUI",  " *************************" );
             Position Position = new Position(20, 100, 50);
-            Console.WriteLine( "    Created " + Position );
-            Console.WriteLine( "    Position x =  " + Position.X + ", y = " + Position.Y + ", z = " + Position.Z );
+            Tizen.Log.Debug("NUI",  "    Created " + Position );
+            Tizen.Log.Debug("NUI",  "    Position x =  " + Position.X + ", y = " + Position.Y + ", z = " + Position.Z );
             Position += new Position(20, 20, 20);
-            Console.WriteLine( "    Position x =  " + Position.X + ", y = " + Position.Y + ", z = " + Position.Z );
+            Tizen.Log.Debug("NUI",  "    Position x =  " + Position.X + ", y = " + Position.Y + ", z = " + Position.Z );
             Position.X += 10;
             Position.Y += 10;
             Position.Z += 10;
-            Console.WriteLine( "    Position width =  " + Position.X + ", height = " + Position.Y + ", depth = " + Position.Z );
+            Tizen.Log.Debug("NUI",  "    Position width =  " + Position.X + ", height = " + Position.Y + ", depth = " + Position.Z );
 
-            Console.WriteLine( " *************************" );
+            Tizen.Log.Debug("NUI",  " *************************" );
             Color color = new Color(20, 100, 50, 200);
-            Console.WriteLine( "    Created " + color );
-            Console.WriteLine( "    Color R =  " + color.R + ", G = " + color.G + ", B = " + color.B + ", A = " + color.A );
+            Tizen.Log.Debug("NUI",  "    Created " + color );
+            Tizen.Log.Debug("NUI",  "    Color R =  " + color.R + ", G = " + color.G + ", B = " + color.B + ", A = " + color.A );
             color += new Color(20, 20, 20, 20);
-            Console.WriteLine( "    Color R =  " + color.R + ", G = " + color.G + ", B = " + color.B + ", A = " + color.A );
+            Tizen.Log.Debug("NUI",  "    Color R =  " + color.R + ", G = " + color.G + ", B = " + color.B + ", A = " + color.A );
             color.R += 10;
             color.G += 10;
             color.B += 10;
             color.A += 10;
-            Console.WriteLine( "    Color r =  " + color.R + ", g = " + color.G + ", b = " + color.B + ", a = " + color.A );
+            Tizen.Log.Debug("NUI",  "    Color r =  " + color.R + ", g = " + color.G + ", b = " + color.B + ", a = " + color.A );
 
             ViewDownCastTest();
         }
@@ -202,52 +202,52 @@ namespace DaliTest
         {
             using (Rectangle r1 = new Rectangle(2, 5, 20, 30))
             {
-                Console.WriteLine( "    Created " + r1 );
-                Console.WriteLine( "    IsEmpty() =  " + r1.IsEmpty() );
-                Console.WriteLine( "    Left =  " + r1.Left() );
-                Console.WriteLine( "    Right =  " + r1.Right() );
-                Console.WriteLine( "    Top  = " + r1.Top() );
-                Console.WriteLine( "    Bottom  = " + r1.Bottom() );
-                Console.WriteLine( "    Area  = " + r1.Area() );
+                Tizen.Log.Debug("NUI",  "    Created " + r1 );
+                Tizen.Log.Debug("NUI",  "    IsEmpty() =  " + r1.IsEmpty() );
+                Tizen.Log.Debug("NUI",  "    Left =  " + r1.Left() );
+                Tizen.Log.Debug("NUI",  "    Right =  " + r1.Right() );
+                Tizen.Log.Debug("NUI",  "    Top  = " + r1.Top() );
+                Tizen.Log.Debug("NUI",  "    Bottom  = " + r1.Bottom() );
+                Tizen.Log.Debug("NUI",  "    Area  = " + r1.Area() );
             }
 
-            Console.WriteLine( " *************************" );
+            Tizen.Log.Debug("NUI",  " *************************" );
 
             using (Rectangle r2 = new Rectangle(2, 5, 20, 30))
             {
-                Console.WriteLine( "    Created " + r2 );
+                Tizen.Log.Debug("NUI",  "    Created " + r2 );
                 r2.Set(1,1,40,40);
-                Console.WriteLine( "    IsEmpty() =  " + r2.IsEmpty() );
-                Console.WriteLine( "    Left =  " + r2.Left() );
-                Console.WriteLine( "    Right =  " + r2.Right() );
-                Console.WriteLine( "    Top  = " + r2.Top() );
-                Console.WriteLine( "    Bottom  = " + r2.Bottom() );
-                Console.WriteLine( "    Area  = " + r2.Area() );
+                Tizen.Log.Debug("NUI",  "    IsEmpty() =  " + r2.IsEmpty() );
+                Tizen.Log.Debug("NUI",  "    Left =  " + r2.Left() );
+                Tizen.Log.Debug("NUI",  "    Right =  " + r2.Right() );
+                Tizen.Log.Debug("NUI",  "    Top  = " + r2.Top() );
+                Tizen.Log.Debug("NUI",  "    Bottom  = " + r2.Bottom() );
+                Tizen.Log.Debug("NUI",  "    Area  = " + r2.Area() );
             }
 
-            Console.WriteLine( " *************************" );
+            Tizen.Log.Debug("NUI",  " *************************" );
 
             Rectangle r3 = new Rectangle(10, 10, 20, 20);
             Rectangle r4 = new Rectangle(10, 10, 20, 20);
 
             if (r3 == r4)
             {
-                Console.WriteLine("r3 == r4");
+                Tizen.Log.Debug("NUI", "r3 == r4");
             }
             else
             {
-                Console.WriteLine("r3 != r4");
+                Tizen.Log.Debug("NUI", "r3 != r4");
             }
 
             r4 = new Rectangle(12, 10, 20, 20);
 
             if (r3 == r4)
             {
-                Console.WriteLine("r3 == r4");
+                Tizen.Log.Debug("NUI", "r3 == r4");
             }
             else
             {
-                Console.WriteLine("r3 != r4");
+                Tizen.Log.Debug("NUI", "r3 != r4");
             }
 
             PaddingType p1 = new PaddingType(10.5f, 10.7f, 20.8f, 20.8f);
@@ -255,22 +255,22 @@ namespace DaliTest
 
             if (p1 == p2)
             {
-                Console.WriteLine("p1 == p2");
+                Tizen.Log.Debug("NUI", "p1 == p2");
             }
             else
             {
-                Console.WriteLine("p1 != p2");
+                Tizen.Log.Debug("NUI", "p1 != p2");
             }
 
             p2 = new PaddingType(12.0f, 10.7f, 20.2f, 20.0f);
 
             if (p1 == p2)
             {
-                Console.WriteLine("p1 == p2");
+                Tizen.Log.Debug("NUI", "p1 == p2");
             }
             else
             {
-                Console.WriteLine("p1 != p2");
+                Tizen.Log.Debug("NUI", "p1 != p2");
             }
         }
 
@@ -297,22 +297,22 @@ namespace DaliTest
             tmpView = view.LeftFocusableView;
             if (string.Compare(tmpView.Name, "leftView") == 0)
             {
-                Console.WriteLine("Passed: LeftFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Passed: LeftFocusedView = " + tmpView.Name);
             }
             else
             {
-                Console.WriteLine("Failed: LeftFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Failed: LeftFocusedView = " + tmpView.Name);
             }
 
             view.RightFocusableView = rightView;
             tmpView = view.RightFocusableView;
             if (string.Compare(tmpView.Name, "rightView") == 0)
             {
-                Console.WriteLine("Passed: RightFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Passed: RightFocusedView = " + tmpView.Name);
             }
             else
             {
-                Console.WriteLine("Failed: RightFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Failed: RightFocusedView = " + tmpView.Name);
             }
 
             Stage.Instance.GetDefaultLayer().Add(view);
@@ -321,33 +321,33 @@ namespace DaliTest
             tmpView = view.UpFocusableView;
             if (string.Compare(tmpView.Name, "upView") == 0)
             {
-                Console.WriteLine("Passed: UpFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Passed: UpFocusedView = " + tmpView.Name);
             }
             else
             {
-                Console.WriteLine("Failed: UpFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Failed: UpFocusedView = " + tmpView.Name);
             }
 
             view.DownFocusableView = downView;
             tmpView = view.DownFocusableView;
             if (string.Compare(tmpView.Name, "downView") == 0)
             {
-                Console.WriteLine("Passed: DownFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Passed: DownFocusedView = " + tmpView.Name);
             }
             else
             {
-                Console.WriteLine("Failed: DownFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Failed: DownFocusedView = " + tmpView.Name);
             }
 
             Stage.Instance.GetDefaultLayer().Remove(leftView);
             tmpView = view.LeftFocusableView;
             if (!tmpView)
             {
-                Console.WriteLine("Passed: NULL LeftFocusedView");
+                Tizen.Log.Debug("NUI", "Passed: NULL LeftFocusedView");
             }
             else
             {
-                Console.WriteLine("Failed: LeftFocusedView = " + tmpView.Name);
+                Tizen.Log.Debug("NUI", "Failed: LeftFocusedView = " + tmpView.Name);
             }
         }
 
@@ -361,22 +361,22 @@ namespace DaliTest
             // test the true operator
             if ( actor )
             {
-                Console.WriteLine ("BaseHandle Operator true (actor) : test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (actor) : test passed ");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator true (actor): test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (actor): test failed ");
             }
 
             Actor parent = actor.Parent;
 
             if ( parent )
             {
-                Console.WriteLine ("Handle with Empty body  :failed ");
+                Tizen.Log.Debug("NUI", "Handle with Empty body  :failed ");
             }
             else
             {
-                Console.WriteLine ("Valid with Empty body  :passed ");
+                Tizen.Log.Debug("NUI", "Valid with Empty body  :passed ");
             }
 
             actor.Add( differentActor );
@@ -384,142 +384,142 @@ namespace DaliTest
             // here we test two different C# objects, which on the native side have the same body/ ref-object
             if ( actor == differentActor.Parent )
             {
-                Console.WriteLine ("actor == differentActor.GetParent() :passed ");
+                Tizen.Log.Debug("NUI", "actor == differentActor.GetParent() :passed ");
             }
             else
             {
-                Console.WriteLine ("actor == differentActor.GetParent() :failed ");
+                Tizen.Log.Debug("NUI", "actor == differentActor.GetParent() :failed ");
             }
 
             if ( differentActor == differentActor.Parent )
             {
-                Console.WriteLine ("differentActor == differentActor.GetParent() :failed ");
+                Tizen.Log.Debug("NUI", "differentActor == differentActor.GetParent() :failed ");
             }
             else
             {
-                Console.WriteLine ("differentActor == differentActor.GetParent() :passed ");
+                Tizen.Log.Debug("NUI", "differentActor == differentActor.GetParent() :passed ");
             }
 
             if ( nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator true (nullActor) : test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullActor) : test failed ");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator true (nullActor): test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullActor): test passed ");
             }
 
             // ! operator
             if ( !actor )
             {
-                Console.WriteLine ("BaseHandle Operator !(actor) : test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(actor) : test failed ");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator !(actor): test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(actor): test passed ");
             }
 
             if ( !nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator !(nullActor) : test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullActor) : test passed ");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator !(nullActor): test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullActor): test failed ");
             }
 
             // Note: operator false only used inside & operator
             // test equality operator ==
             if ( actor == actorSame )
             {
-                Console.WriteLine ("BaseHandle Operator  (actor == actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator  (actor == actorSame) : test passed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator  (actor == actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator  (actor == actorSame) : test failed");
             }
 
             if ( actor == differentActor )
             {
-                Console.WriteLine ("BaseHandle Operator (actor == differentActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == differentActor) : test failed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor == differentActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == differentActor) : test passed");
             }
 
             if ( actor == nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (actor == nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == nullActor) : test failed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor == nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == nullActor) : test passed");
             }
 
             if ( nullActor == nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor == nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor == nullActor) : test passed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor == nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor == nullActor) : test failed");
             }
 
             // test || operator
             if ( actor || actorSame )
             {
-                Console.WriteLine ("BaseHandle Operator (actor || actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || actorSame) : test passed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor || actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || actorSame) : test failed");
             }
 
             if ( actor || nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (actor || nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || nullActor) : test passed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor || nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || nullActor) : test failed");
             }
 
             if ( nullActor || nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor || nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor || nullActor) : test failed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor || nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor || nullActor) : test passed");
             }
 
             // test && operator
             if ( actor && actorSame )
             {
-                Console.WriteLine ("BaseHandle Operator (actor && actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && actorSame) : test passed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor && actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && actorSame) : test failed");
             }
 
             if ( actor && nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (actor && nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && nullActor) : test failed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (actor && nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && nullActor) : test passed");
             }
 
             if ( nullActor && nullActor )
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor && nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor && nullActor) : test failed");
             }
             else
             {
-                Console.WriteLine ("BaseHandle Operator (nullActor && nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor && nullActor) : test passed");
             }
         }
 
@@ -539,44 +539,44 @@ namespace DaliTest
             background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
             if( backgroundColor == Color.Red )
             {
-                Console.WriteLine ("Custom View Background property : test passed");
+                Tizen.Log.Debug("NUI", "Custom View Background property : test passed");
             }
             else
             {
-                Console.WriteLine ("Custom View Background property : test failed");
+                Tizen.Log.Debug("NUI", "Custom View Background property : test failed");
             }
 
             // BackgroundColor property
             spin.BackgroundColor = Color.Yellow;
             if(spin.BackgroundColor == Color.Yellow)
             {
-                Console.WriteLine ("Custom View BackgroundColor property : test passed");
+                Tizen.Log.Debug("NUI", "Custom View BackgroundColor property : test passed");
             }
             else
             {
-                Console.WriteLine ("Custom View BackgroundColor property : test failed");
+                Tizen.Log.Debug("NUI", "Custom View BackgroundColor property : test failed");
             }
 
             // BackgroundImage property
             spin.BackgroundImage = "background-image.jpg";
             if(spin.BackgroundImage == "background-image.jpg")
             {
-                Console.WriteLine ("Custom View BackgroundImage property : test passed");
+                Tizen.Log.Debug("NUI", "Custom View BackgroundImage property : test passed");
             }
             else
             {
-                Console.WriteLine ("Custom View BackgroundImage property : test failed");
+                Tizen.Log.Debug("NUI", "Custom View BackgroundImage property : test failed");
             }
 
             // StyleName property
             spin.StyleName = "MyCustomStyle";
             if(spin.StyleName == "MyCustomStyle")
             {
-                Console.WriteLine ("Custom View StyleName property : test passed");
+                Tizen.Log.Debug("NUI", "Custom View StyleName property : test passed");
             }
             else
             {
-                Console.WriteLine ("Custom View StyleName property : test failed");
+                Tizen.Log.Debug("NUI", "Custom View StyleName property : test failed");
             }
         }
 
@@ -591,7 +591,7 @@ namespace DaliTest
           myLabel.Name = "MyLabelName";
           myLabel.Text = "MyText";
 
-          Console.WriteLine("myLabel.Name = " + myLabel.Name + ", Text = " + myLabel.Text);
+          Tizen.Log.Debug("NUI", "myLabel.Name = " + myLabel.Name + ", Text = " + myLabel.Text);
 
           container.Add(myLabel);
 
@@ -601,11 +601,11 @@ namespace DaliTest
             TextLabel newLabel = View.DownCast<TextLabel>(myLabelActor);
             if(newLabel)
             {
-              Console.WriteLine("Downcast to TextLabel successful: newLabel Name = " + newLabel.Name + ", Text = " + newLabel.Text);
+              Tizen.Log.Debug("NUI", "Downcast to TextLabel successful: newLabel Name = " + newLabel.Name + ", Text = " + newLabel.Text);
             }
             else
             {
-              Console.WriteLine("Downcast to TextLabel failed!");
+              Tizen.Log.Debug("NUI", "Downcast to TextLabel failed!");
             }
           }
 
@@ -615,7 +615,7 @@ namespace DaliTest
           myView.MyOwnName = "MyOwnViewName";
           myView._myCurrentValue = 5;
 
-          Console.WriteLine("myView.Name = " + myView.Name + ", MyOwnName = " + myView.MyOwnName + ", myCurrentValue = " + myView._myCurrentValue);
+          Tizen.Log.Debug("NUI", "myView.Name = " + myView.Name + ", MyOwnName = " + myView.MyOwnName + ", myCurrentValue = " + myView._myCurrentValue);
 
           container.Add(myView);
 
@@ -625,11 +625,11 @@ namespace DaliTest
             MyView newView = View.DownCast<MyView>(myViewActor);
             if(newView)
             {
-              Console.WriteLine("Downcast to MyView successful: newView Name = " + newView.Name + ", MyOwnName = " + newView.MyOwnName + ", myCurrentValue = " + newView._myCurrentValue);
+              Tizen.Log.Debug("NUI", "Downcast to MyView successful: newView Name = " + newView.Name + ", MyOwnName = " + newView.MyOwnName + ", myCurrentValue = " + newView._myCurrentValue);
             }
             else
             {
-              Console.WriteLine("Downcast to MyView failed!");
+              Tizen.Log.Debug("NUI", "Downcast to MyView failed!");
             }
           }
 
@@ -640,7 +640,7 @@ namespace DaliTest
           myButton.LabelText = "MyLabelText";
           myButton._myCurrentValue = 5;
 
-          Console.WriteLine("myButton.Name = " + myButton.Name + ", MyOwnName = " + myButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + myButton._myCurrentValue);
+          Tizen.Log.Debug("NUI", "myButton.Name = " + myButton.Name + ", MyOwnName = " + myButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + myButton._myCurrentValue);
 
           container.Add(myButton);
 
@@ -650,11 +650,11 @@ namespace DaliTest
             MyButton newButton = View.DownCast<MyButton>(myButtonActor);
             if(newButton)
             {
-              Console.WriteLine("Downcast to MyButton successful: newButton Name = " + newButton.Name + ", MyOwnName = " + newButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + newButton._myCurrentValue);
+              Tizen.Log.Debug("NUI", "Downcast to MyButton successful: newButton Name = " + newButton.Name + ", MyOwnName = " + newButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + newButton._myCurrentValue);
             }
             else
             {
-              Console.WriteLine("Downcast to MyButton failed!");
+              Tizen.Log.Debug("NUI", "Downcast to MyButton failed!");
             }
           }
 
@@ -663,7 +663,7 @@ namespace DaliTest
           spin.Name = "SpinName";
           spin.MaxValue = 8888;
 
-          Console.WriteLine("spin.Name = " + spin.Name + ", MaxValue = " + spin.MaxValue);
+          Tizen.Log.Debug("NUI", "spin.Name = " + spin.Name + ", MaxValue = " + spin.MaxValue);
 
           container.Add(spin);
 
@@ -673,11 +673,11 @@ namespace DaliTest
             Spin newSpin = View.DownCast<Spin>(spinActor);
             if(newSpin)
             {
-              Console.WriteLine("Downcast to Spin successful: newSpin Name = " + newSpin.Name + ", MaxValue = " + newSpin.MaxValue);
+              Tizen.Log.Debug("NUI", "Downcast to Spin successful: newSpin Name = " + newSpin.Name + ", MaxValue = " + newSpin.MaxValue);
             }
             else
             {
-              Console.WriteLine("Downcast to Spin failed!");
+              Tizen.Log.Debug("NUI", "Downcast to Spin failed!");
             }
           }
 
@@ -688,7 +688,7 @@ namespace DaliTest
           mySpin.MaxValue = 8888;
           mySpin._myCurrentValue = 5;
 
-          Console.WriteLine("mySpin.Name = " + mySpin.Name + ", MyOwnName = " + mySpin.MyOwnName + ", MaxValue = " + mySpin.MaxValue + ", currentValue = " + mySpin._myCurrentValue);
+          Tizen.Log.Debug("NUI", "mySpin.Name = " + mySpin.Name + ", MyOwnName = " + mySpin.MyOwnName + ", MaxValue = " + mySpin.MaxValue + ", currentValue = " + mySpin._myCurrentValue);
 
           container.Add(mySpin);
 
@@ -698,11 +698,11 @@ namespace DaliTest
             MySpin newSpin = View.DownCast<MySpin>(mySpinActor);
             if(newSpin)
             {
-              Console.WriteLine("Downcast to MySpin successful: newSpin Name = " + newSpin.Name + ", MyOwnName = " + newSpin.MyOwnName + ", MaxValue = " + newSpin.MaxValue + ", currentValue = " + newSpin._myCurrentValue);
+              Tizen.Log.Debug("NUI", "Downcast to MySpin successful: newSpin Name = " + newSpin.Name + ", MyOwnName = " + newSpin.MyOwnName + ", MaxValue = " + newSpin.MaxValue + ", currentValue = " + newSpin._myCurrentValue);
             }
             else
             {
-              Console.WriteLine("Downcast to MySpin failed!");
+              Tizen.Log.Debug("NUI", "Downcast to MySpin failed!");
             }
           }
         }
@@ -755,7 +755,7 @@ namespace DaliTest
         [STAThread]
         static void _Main(string[] args)
         {
-            Console.WriteLine ("Hello Mono World");
+            Tizen.Log.Debug("NUI", "Hello Mono World");
 
             Example example = new Example();
             example.Run(args);

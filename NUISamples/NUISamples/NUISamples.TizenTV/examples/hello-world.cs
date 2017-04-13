@@ -141,7 +141,7 @@ namespace HelloWorldTest
         [STAThread]
         static void _Main(string[] args)
         {
-            //Console.WriteLine("Main() called!");
+            //Tizen.Log.Debug("NUI", "Main() called!");
             Example example = new Example();
             example.Run(args);
         }

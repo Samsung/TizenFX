@@ -150,27 +150,27 @@ namespace ScrollViewTest
     // Callback for _animation finished signal handling
     public void AnimationFinished(object sender, EventArgs e)
     {
-      Console.WriteLine("Customized Animation Finished Event handler");
+      Tizen.Log.Debug("NUI", "Customized Animation Finished Event handler");
     }
     private void OnKey(object source, EventArgs e)
     {
-      Console.WriteLine("View Keyevent EVENT callback....");
+      Tizen.Log.Debug("NUI", "View Keyevent EVENT callback....");
     }
 
     private bool Onwheel(object source, View.WheelEventArgs e)
     {
-      Console.WriteLine("View Wheel EVENT callback....");
+      Tizen.Log.Debug("NUI", "View Wheel EVENT callback....");
       return true;
     }
 
     private bool OnTouch(object source, View.TouchEventArgs e)
     {
-      Console.WriteLine("View TOUCH EVENT callback....");
+      Tizen.Log.Debug("NUI", "View TOUCH EVENT callback....");
 
       // Only animate the _text label when touch down happens
       if( e.Touch.GetState(0) == PointStateType.Down )
       {
-        Console.WriteLine("Customized Stage Touch event handler");
+        Tizen.Log.Debug("NUI", "Customized Stage Touch event handler");
         // Create a new _animation
         if( _animation )
         {
@@ -193,7 +193,7 @@ namespace ScrollViewTest
 
     private void OnScrollViewRelayout(object source, EventArgs e)
     {
-      Console.WriteLine("View OnRelayoutEventArgs EVENT callback....");
+      Tizen.Log.Debug("NUI", "View OnRelayoutEventArgs EVENT callback....");
 
       // Set the correct scroll bar size after size negotiation of scroll view is done
       _scrollBar.Size = new Size(0.0f, _scrollView.GetRelayoutSize(DimensionType.Width), 0.0f);

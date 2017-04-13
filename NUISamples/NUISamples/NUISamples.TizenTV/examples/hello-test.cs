@@ -74,8 +74,8 @@ namespace HelloTest
         {
             if (_animation)
             {
-                Console.WriteLine("Duration= " + _animation.Duration);
-                Console.WriteLine("EndAction= " + _animation.EndAction);
+                Tizen.Log.Debug("NUI", "Duration= " + _animation.Duration);
+                Tizen.Log.Debug("NUI", "EndAction= " + _animation.EndAction);
             }
         }
 
@@ -112,7 +112,7 @@ namespace HelloTest
         [STAThread]
         static void _Main(string[] args)
         {
-            Console.WriteLine("Hello mono world.");
+            Tizen.Log.Debug("NUI", "Hello mono world.");
             //Example example = new Example();
             //Example example = new Example("stylesheet");
             Example example = new Example("stylesheet", WindowMode.Transparent);
