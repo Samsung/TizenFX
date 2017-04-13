@@ -170,11 +170,23 @@ namespace Tizen.Applications
         {
             if (RequestCallbacks.ContainsKey(id))
             {
-                RequestCallbacks[id](packageType, packageId, (PackageEventType)eventType, (PackageEventState)eventState, progress);
-                if (eventState == Interop.PackageManager.PackageEventState.Completed || eventState == Interop.PackageManager.PackageEventState.Failed)
+                try
                 {
-                    Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
+                    RequestCallbacks[id](packageType, packageId, (PackageEventType)eventType, (PackageEventState)eventState, progress);
+                    if (eventState == Interop.PackageManager.PackageEventState.Completed || eventState == Interop.PackageManager.PackageEventState.Failed)
+                    {
+                        Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
+                        RequestHandles[id].Dispose();
+                        RequestHandles.Remove(id);
+                        RequestCallbacks.Remove(id);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Warn(LogTag, e.Message);
                     RequestHandles[id].Dispose();
+                    RequestHandles.Remove(id);
+                    RequestCallbacks.Remove(id);
                 }
             }
         };
