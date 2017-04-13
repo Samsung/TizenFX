@@ -18,11 +18,27 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for the wrap type.
+    /// </summary>
     public enum WrapType
     {
+        /// <summary>
+        /// No wrap.
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Char wrap - wrap between characters.
+        /// </summary>
         Char,
+        /// <summary>
+        /// Word wrap - wrap within the allowed wrapping points
+        /// (as defined in the unicode standard).
+        /// </summary>
         Word,
+        /// <summary>
+        /// Mixed wrap - Word wrap, if that fails, char wrap.
+        /// </summary>
         Mixed
     }
 }
