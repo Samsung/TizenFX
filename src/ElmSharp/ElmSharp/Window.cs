@@ -78,6 +78,25 @@ namespace ElmSharp
     }
 
     /// <summary>
+    /// Indicator mode.
+    /// </summary>
+    public enum IndicatorMode
+    {
+        /// <summary>
+        /// Unknown indicator state.
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
+        /// Hides the indicator.
+        /// </summary>
+        Hide,
+        /// <summary>
+        /// Shows the indicator.
+        /// </summary>
+        Show,
+    };
+
+    /// <summary>
     /// The Window is container that contain the graphical user interface of a program.
     /// </summary>
     public class Window : Widget
@@ -112,7 +131,7 @@ namespace ElmSharp
         {
             Name = name;
             Realize(parent);
-            Interop.Elementary.elm_win_indicator_mode_set(Handle, 2 /* ELM_WIN_INDICATOR_SHOW */);
+            IndicatorMode = IndicatorMode.Show;
 
             _deleteRequest = new SmartEvent(this, "delete,request");
             _rotationChanged = new SmartEvent(this, "wm,rotation,changed");
@@ -293,6 +312,22 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_win_iconified_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the window's indicator mode.
+        /// </summary>
+        /// <value>The indicator mode.</value>
+        public IndicatorMode IndicatorMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_indicator_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_indicator_mode_set(RealHandle, value);
             }
         }
 
