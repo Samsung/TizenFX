@@ -166,7 +166,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Resource"/>
         /// <seealso cref="LiteResource"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });

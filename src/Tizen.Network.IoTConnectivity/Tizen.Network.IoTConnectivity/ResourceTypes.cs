@@ -40,7 +40,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes();
         /// </code>
@@ -58,6 +57,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Constructor of ResourceTypes using list of types
         /// </summary>
         /// <param name="types">List of resource types</param>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// </code>
@@ -173,18 +173,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public void Remove(string item)
         {
-            bool isRemoved = _resourceTypes.Remove(item);
-            if (isRemoved)
+            int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
+            if (ret != (int)IoTConnectivityError.None)
             {
-                int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
-                if (ret != (int)IoTConnectivityError.None)
-                {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove type");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
-                }
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove type");
+                throw IoTConnectivityErrorFactory.GetException(ret);
             }
-            else
-                throw IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.InvalidParameter);
+
+            _resourceTypes.Remove(item);
         }
 
         /// <summary>
@@ -231,7 +227,7 @@ namespace Tizen.Network.IoTConnectivity
         internal static bool IsValid(string type)
         {
             Regex r = new Regex("^[a-zA-Z0-9.-]+$");
-            return (type.Length <= MaxLength && char.IsLower(type[0]) && r.IsMatch(type));
+            return (type.Length <= MaxLength && type.Length > 0 && char.IsLower(type[0]) && r.IsMatch(type));
         }
 
         /// <summary>

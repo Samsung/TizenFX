@@ -65,7 +65,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
         /// </code>
@@ -267,7 +266,7 @@ namespace Tizen.Network.IoTConnectivity
         internal static bool IsValid(string type)
         {
             Regex r = new Regex("^[a-zA-Z0-9.-]+$");
-            return (type.Length <= MaxLength && char.IsLower(type[0]) && r.IsMatch(type));
+            return (type.Length <= MaxLength && type.Length > 0 && char.IsLower(type[0]) && r.IsMatch(type));
         }
 
         /// <summary>

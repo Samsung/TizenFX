@@ -281,7 +281,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="policy">The type to specify how client wants to observe</param>
         /// <param name="query">The query to send to server</param>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
@@ -345,7 +344,6 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/internet
         /// </privilege>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         public void StopObserving()

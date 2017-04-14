@@ -386,6 +386,12 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public static void StopReceivingPresence(int presenceId)
         {
+            if (!s_presenceHandlesMap.ContainsKey((IntPtr)presenceId))
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "this presenceId does not exist");
+                throw new ArgumentException("this presenceId does not exist");
+            }
+
             if (s_presenceHandlesMap.ContainsKey((IntPtr)presenceId))
             {
                 IntPtr presenceHandle = s_presenceHandlesMap[(IntPtr)presenceId];
@@ -435,7 +441,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourceFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
@@ -545,7 +550,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="DeviceInformationFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
@@ -645,7 +649,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="PlatformInformationFoundEventArgs"/>
         /// <seealso cref="TimeOut"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>

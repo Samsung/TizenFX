@@ -40,7 +40,6 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// </code>
@@ -282,7 +281,6 @@ namespace Tizen.Network.IoTConnectivity
         /// Clears attributes collection
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
@@ -417,16 +415,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public bool Remove(string key)
         {
-            bool isRemoved = _attributes.Remove(key);
-            if (isRemoved)
+            int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
+            if (ret != (int)IoTConnectivityError.None)
             {
-                int ret = Interop.IoTConnectivity.Common.Attributes.Remove(_resourceAttributesHandle, key);
-                if (ret != (int)IoTConnectivityError.None)
-                {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
-                }
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove attributes");
+                throw IoTConnectivityErrorFactory.GetException(ret);
             }
+
+            bool isRemoved = _attributes.Remove(key);
 
             return isRemoved;
         }

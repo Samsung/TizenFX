@@ -45,7 +45,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// </code>
@@ -252,16 +251,15 @@ namespace Tizen.Network.IoTConnectivity
         /// </code>
         public bool Remove(ushort key)
         {
-            bool isRemoved = _options.Remove(key);
-            if (isRemoved)
+            int ret = Interop.IoTConnectivity.Common.Options.Remove(_resourceOptionsHandle, key);
+            if (ret != (int)IoTConnectivityError.None)
             {
-                int ret = Interop.IoTConnectivity.Common.Options.Remove(_resourceOptionsHandle, key);
-                if (ret != (int)IoTConnectivityError.None)
-                {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove option");
-                    throw IoTConnectivityErrorFactory.GetException(ret);
-                }
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove option");
+                throw IoTConnectivityErrorFactory.GetException(ret);
             }
+
+            bool isRemoved = _options.Remove(key);
+
             return isRemoved;
         }
 
@@ -302,7 +300,6 @@ namespace Tizen.Network.IoTConnectivity
         /// Clears the Options collection
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");

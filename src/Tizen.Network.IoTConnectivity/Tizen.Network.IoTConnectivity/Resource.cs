@@ -55,7 +55,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourcePolicy"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// // Create a class which inherits from Resource
         /// public class DoorResource : Resource
@@ -159,7 +158,6 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Representation"/>
         /// <seealso cref="QualityOfService"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
