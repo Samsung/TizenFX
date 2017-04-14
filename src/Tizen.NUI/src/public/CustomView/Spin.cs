@@ -98,8 +98,8 @@ namespace Tizen.NUI
             _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
             _textField.PlaceholderText = "----";
             _textField.BackgroundColor = _textBackgroundColor;
-            _textField.HorizontalAlignment = "Center";
-            _textField.VerticalAlignment = "Center";
+            _textField.HorizontalAlignment = Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+            _textField.VerticalAlignment = Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
             _textField.Focusable = (true);
             _textField.Name = "_textField";
 

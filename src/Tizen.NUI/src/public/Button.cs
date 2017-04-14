@@ -400,17 +400,61 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets the position of the the label in relation to the foreground/icon if both present
         /// </summary>
-        public string LabelRelativeAlignment
+        public Align LabelRelativeAlignment
         {
             get
             {
                 string temp;
-                GetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "LabelRelativeAlignment get error!");
+                }
+                switch (temp)
+                {
+                    case "BEGIN":
+                        return Align.Begin;
+                    case "END":
+                        return Align.End;
+                    case "TOP":
+                        return Align.Top;
+                    case "BOTTOM":
+                        return Align.Bottom;
+                    default:
+                        return Align.End;
+                }
             }
             set
             {
-                SetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Align.Begin:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                    case Align.End:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                    case Align.Top:
+                    {
+                        valueToString = "TOP";
+                        break;
+                    }
+                    case Align.Bottom:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                }
+                SetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -899,6 +943,29 @@ namespace Tizen.NUI
             {
                 SetProperty(Button.Property.LABEL_TEXT, new Tizen.NUI.PropertyValue(value));
             }
+        }
+
+        /// <summary>
+        /// Enumeration for describing the position the text label can be in relation to the control(and foreground/icon).
+        /// </summary>
+        public enum Align
+        {
+            /// <summary>
+            /// At the start of the control before the foreground/icon
+            /// </summary>
+            Begin,
+            /// <summary>
+            /// At the end of the control after the foreground/icon
+            /// </summary>
+            End,
+            /// <summary>
+            /// At the top of the control above the foreground/icon
+            /// </summary>
+            Top,
+            /// <summary>
+            /// At the bottom of the control below the foreground/icon
+            /// </summary>
+            Bottom
         }
 
     }

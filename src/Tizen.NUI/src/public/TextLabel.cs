@@ -307,17 +307,54 @@ namespace Tizen.NUI
         /// HorizontalAlignment property.<br>
         /// The line horizontal alignment.<br>
         /// </summary>
-        public string HorizontalAlignment
+        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
+                }
+                switch (temp)
+                {
+                    case "BEGIN":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                    case "END":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                    default:
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                }
             }
             set
             {
-                SetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    {
+                        valueToString = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                }
+                SetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -325,17 +362,55 @@ namespace Tizen.NUI
         /// VerticalAlignment property.<br>
         /// The line vertical alignment.<br>
         /// </summary>
-        public string VerticalAlignment
+        public Tizen.NUI.Constants.VerticalAlignment VerticalAlignment
         {
             get
             {
                 string temp;
-                GetProperty(TextLabel.Property.VERTICAL_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(TextLabel.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "VerticalAlignment get error!");
+                }
+
+                switch (temp)
+                {
+                    case "TOP":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+                    case "BOTTOM":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                    default:
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                }
             }
             set
             {
-                SetProperty(TextLabel.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop:
+                    {
+                        valueToString = "TOP";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter:
+                    {
+                        valueToString = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                }
+                SetProperty(TextLabel.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -627,6 +702,44 @@ namespace Tizen.NUI
             }
         }
 
+    }
+
+    /// <summary>
+    /// Enumeration for the text horizontal aligning.
+    /// </summary>
+    public enum HorizontalAlignment
+    {
+        /// <summary>
+        /// Texts place at the begin of horizontal direction.
+        /// </summary>
+        HorizontalAlignBegin,
+        /// <summary>
+        /// Texts place at the center of horizontal direction.
+        /// </summary>
+        HorizontalAlignCenter,
+        /// <summary>
+        /// Texts place at the end of horizontal direction.
+        /// </summary>
+        HorizontalAlignEnd
+    }
+
+    /// <summary>
+    /// Enumeration for the text horizontal aligning.
+    /// </summary>
+    public enum VerticalAlignment
+    {
+        /// <summary>
+        /// Texts place at the top of vertical direction.
+        /// </summary>
+        VerticalAlignTop,
+        /// <summary>
+        /// Texts place at the center of vertical direction.
+        /// </summary>
+        VerticalAlignCenter,
+        /// <summary>
+        /// Texts place at the bottom of vertical direction.
+        /// </summary>
+        VerticalAlignBottom
     }
 
 }

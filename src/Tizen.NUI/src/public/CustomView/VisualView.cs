@@ -205,7 +205,7 @@ namespace Tizen.NUI
                 {
                     TransitionData _transitionData = new TransitionData(visualMap.OutputVisualMap);
                     return this.CreateTransition(_transitionData);
-    }
+                }
             }
             return null;
         }
