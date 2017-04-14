@@ -74,9 +74,4 @@ namespace Tizen.NUI
       }
     }
   } // namespace Constants
-
-    public struct InternalSetting
-    {
-        public static bool DefaultParentOriginAsTopLeft = true;
-    }
 } // namesapce Dali

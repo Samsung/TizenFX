@@ -830,20 +830,141 @@ namespace Tizen.NUI
     /// </summary>
     public struct ParentOrigin
     {
-        public static readonly float Top = Position.ParentOriginTop;
-        public static readonly float Bottom = Position.ParentOriginBottom;
-        public static readonly float Left = Position.ParentOriginLeft;
-        public static readonly float Right = Position.ParentOriginRight;
-        public static readonly float Middle = Position.ParentOriginMiddle;
-        public static readonly Position TopLeft = Position.ParentOriginTopLeft;
-        public static readonly Position TopCenter = Position.ParentOriginTopCenter;
-        public static readonly Position TopRight = Position.ParentOriginTopRight;
-        public static readonly Position CenterLeft = Position.ParentOriginCenterLeft;
-        public static readonly Position Center = Position.ParentOriginCenter;
-        public static readonly Position CenterRight = Position.ParentOriginCenterRight;
-        public static readonly Position BottomLeft = Position.ParentOriginBottomLeft;
-        public static readonly Position BottomCenter = Position.ParentOriginBottomCenter;
-        public static readonly Position BottomRight = Position.ParentOriginBottomRight;
+        public static float Top
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.ParentOriginTop_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Bottom
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.ParentOriginBottom_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Left
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.ParentOriginLeft_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Right
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.ParentOriginRight_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Middle
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.ParentOriginMiddle_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position CenterLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position Center
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position CenterRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
     }
 
     /// <summary>
@@ -851,35 +972,206 @@ namespace Tizen.NUI
     /// </summary>
     public struct AnchorPoint
     {
-        public static readonly float Top = Position.AnchorPointTop;
-        public static readonly float Bottom = Position.AnchorPointBottom;
-        public static readonly float Left = Position.AnchorPointLeft;
-        public static readonly float Right = Position.AnchorPointRight;
-        public static readonly float Middle = Position.AnchorPointMiddle;
-        public static readonly Position TopLeft = Position.AnchorPointTopLeft;
-        public static readonly Position TopCenter = Position.AnchorPointTopCenter;
-        public static readonly Position TopRight = Position.AnchorPointTopRight;
-        public static readonly Position CenterLeft = Position.AnchorPointCenterLeft;
-        public static readonly Position Center = Position.AnchorPointCenter;
-        public static readonly Position CenterRight = Position.AnchorPointCenterRight;
-        public static readonly Position BottomLeft = Position.AnchorPointBottomLeft;
-        public static readonly Position BottomCenter = Position.AnchorPointBottomCenter;
-        public static readonly Position BottomRight = Position.AnchorPointBottomRight;
+        public static float Top
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Bottom
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Left
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Right
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static float Middle
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position TopRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position CenterLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position Center
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position CenterRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        public static Position BottomRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
     }
-
+    }
     /// <summary>
     /// PositionAxis constants.
     /// </summary>
     public struct PositionAxis
     {
-        public static readonly Position X = Position.XAxis;
-        public static readonly Position Y = Position.YAxis;
-        public static readonly Position Z = Position.ZAxis;
-        public static readonly Position NegativeX = Position.NegativeXAxis;
-        public static readonly Position NegativeY = Position.NegativeYAxis;
-        public static readonly Position NegativeZ = Position.NegativeZAxis;
+            public static Position X
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_XAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+            public static Position Y
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_YAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+            public static Position Z
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+            public static Position NegativeX
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_XAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+            public static Position NegativeY
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_YAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+            public static Position NegativeZ
+            {
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_ZAXIS_get();
+                    Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
     }
-
 }
-
-

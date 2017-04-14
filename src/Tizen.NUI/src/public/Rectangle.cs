@@ -59,17 +59,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="x">position in x coordinate</param>
-        /// <param name="y">position in y coordinate</param>
-        /// <param name="width">Width of the rectangle</param>
-        /// <param name="height">Height of the rectangle</param>
-        public Rectangle(float x, float y, float width, float height) : this( (int)x, (int)y, (int)width, (int)height )
-        {
-        }
-
-        /// <summary>
         /// Equality operator.
         /// </summary>
         /// <param name="a">First operand</param>
@@ -107,11 +96,11 @@ namespace Tizen.NUI
         /// <summary>
         /// X position of the rectangle
         /// </summary>
-        public float X
+        public int X
         {
             set
             {
-                x = (int)( value );
+                x = ( value );
             }
             get
             {
@@ -122,11 +111,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Y position of the rectangle
         /// </summary>
-        public float Y
+        public int Y
         {
             set
             {
-                y = (int)( value );
+                y = ( value );
             }
             get
             {
@@ -137,11 +126,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Width of the rectangle
         /// </summary>
-        public float Width
+        public int Width
         {
             set
             {
-                width = (int)( value );
+                width = ( value );
             }
             get
             {
@@ -152,11 +141,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Height of the rectangle
         /// </summary>
-        public float Height
+        public int Height
         {
             set
             {
-                height = (int)( value );
+                height = ( value );
             }
             get
             {

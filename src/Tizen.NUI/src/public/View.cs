@@ -35,8 +35,7 @@ namespace Tizen.NUI
             ViewRegistry.RegisterView(this);
 
             // By default, we do not want the position to use the anchor point
-            //this.PositionUsesAnchorPoint = false;
-            this.PositionUsesAnchorPoint = !(InternalSetting.DefaultParentOriginAsTopLeft);
+            this.PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
