@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.Constants;
 
 namespace VisaulAnimationExample
 {
@@ -73,7 +74,7 @@ namespace VisaulAnimationExample
             _title.SetStyleName("Title");
             _title.WidthResizePolicy = ResizePolicyType.FillToParent;
             _title.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
-            _title.HorizontalAlignment = "CENTER";
+            _title.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             titleLayout.AddChild(_title, new TableView.CellPosition(0, 0));
             titleLayout.SetFitHeight(0);
 

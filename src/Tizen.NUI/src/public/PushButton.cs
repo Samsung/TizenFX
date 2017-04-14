@@ -245,17 +245,61 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the icon alignment.
         /// </summary>
-        public string IconAlignment
+        public IconAlignmentType IconAlignment
         {
             get
             {
                 string temp;
-                GetProperty(PushButton.Property.ICON_ALIGNMENT).Get(out temp);
-                return temp;
+                if (GetProperty(PushButton.Property.ICON_ALIGNMENT).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "IconAlignment get error!");
+                }
+                 switch (temp)
+                {
+                    case "LEFT":
+                        return IconAlignmentType.Left;
+                    case "RIGHT":
+                        return IconAlignmentType.Right;
+                    case "TOP":
+                        return IconAlignmentType.Top;
+                    case "BOTTOM":
+                        return IconAlignmentType.Bottom;
+                    default:
+                        return IconAlignmentType.Default;
+                }
             }
             set
             {
-                SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case IconAlignmentType.Left:
+                    {
+                        valueToString = "LEFT";
+                        break;
+                    }
+                    case IconAlignmentType.Right:
+                    {
+                        valueToString = "RIGHT";
+                        break;
+                    }
+                    case IconAlignmentType.Top:
+                    {
+                        valueToString = "TOP";
+                        break;
+                    }
+                    case IconAlignmentType.Bottom:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "DEFAULT";
+                        break;
+                    }
+                }
+                SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
         /// <summary>
@@ -290,6 +334,33 @@ namespace Tizen.NUI
             {
                 SetProperty(PushButton.Property.ICON_PADDING, new Tizen.NUI.PropertyValue(value));
             }
+        }
+
+        /// <summary>
+        /// Enumeration for the alignment modes of the icon.
+        /// </summary>
+        public enum IconAlignmentType
+        {
+            /// <summary>
+            /// Icon located to the left of text.
+            /// </summary>
+            Left,
+            /// <summary>
+            /// Icon located to the right of text.
+            /// </summary>
+            Right,
+            /// <summary>
+            /// Icon located to the top of text.
+            /// </summary>
+            Top,
+            /// <summary>
+            /// Icon located to the bottom of text.
+            /// </summary>
+            Bottom,
+            /// <summary>
+            /// Icon located to the right of text by default.
+            /// </summary>
+            Default = Right
         }
 
     }

@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.Constants;
 //using Tizen.Applications;
 
 //------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ namespace HelloTest
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
-            _text.HorizontalAlignment = "CENTER";
+            _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             _text.PointSize = 32.0f;
 
             _stage.GetDefaultLayer().Add(_text);

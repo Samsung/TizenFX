@@ -628,15 +628,47 @@ namespace Tizen.NUI
         /// Get or set the line horizontal alignment.<br>
         /// If not specified, the default is BEGIN.<br>
         /// </summary>
-        public string HorizontalAlignment
+        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
         {
             get
             {
-                return _horizontalAlignment;
+                switch (_horizontalAlignment)
+                {
+                    case "BEGIN":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                    case "END":
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                    default:
+                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                }
             }
             set
             {
-                _horizontalAlignment = value;
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    {
+                        _horizontalAlignment = "BEGIN";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    {
+                        _horizontalAlignment = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    {
+                        _horizontalAlignment = "END";
+                        break;
+                    }
+                    default:
+                    {
+                        _horizontalAlignment = "BEGIN";
+                        break;
+                    }
+                }
                 UpdateVisual();
             }
         }
@@ -645,15 +677,47 @@ namespace Tizen.NUI
         /// Get or set the line vertical alignment.<br>
         /// If not specified, the default is TOP.<br>
         /// </summary>
-        public string VerticalAlignment
+        public Tizen.NUI.Constants.VerticalAlignment VerticalAlignment
         {
             get
             {
-                return _verticalAlignment;
+                switch (_verticalAlignment)
+                {
+                    case "TOP":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop;
+                    case "CENTER":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+                    case "BOTTOM":
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                    default:
+                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                }
             }
             set
             {
-                _verticalAlignment = value;
+                switch (value)
+                {
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop:
+                    {
+                        _verticalAlignment = "TOP";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter:
+                    {
+                        _verticalAlignment = "CENTER";
+                        break;
+                    }
+                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom:
+                    {
+                        _verticalAlignment = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        _verticalAlignment = "TOP";
+                        break;
+                    }
+                }
                 UpdateVisual();
             }
         }

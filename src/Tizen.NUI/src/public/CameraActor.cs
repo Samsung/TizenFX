@@ -312,34 +312,94 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets the camera type. The default type is FreeLook
         /// </summary>
-        public string Type
+        public CameraType Type
         {
             get
             {
                 string temp;
-                GetProperty(CameraActor.Property.TYPE).Get(out temp);
-                return temp;
+                if (GetProperty(CameraActor.Property.TYPE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "CameraType get error!");
+                }
+                switch (temp)
+                {
+                    case "LOOK_AT_TARGET":
+                        return CameraType.LookAtTarget;
+                    case "FREE_LOOK":
+                        return CameraType.FreeLook;
+                    default:
+                        return CameraType.FreeLook;
+                }
             }
             set
             {
-                SetProperty(CameraActor.Property.TYPE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case CameraType.LookAtTarget:
+                    {
+                        valueToString = "LOOK_AT_TARGET";
+                        break;
+                    }
+                    case CameraType.FreeLook:
+                    {
+                        valueToString = "FREE_LOOK";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "FREE_LOOK";
+                        break;
+                    }
+                }
+                SetProperty(CameraActor.Property.TYPE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
         /// <summary>
         /// Gets/Sets the projection mode.
         /// </summary>
-        public string ProjectionMode
+        public ProjectionMode ProjectionMode
         {
             get
             {
                 string temp;
-                GetProperty(CameraActor.Property.PROJECTION_MODE).Get(out temp);
-                return temp;
+                if (GetProperty(CameraActor.Property.PROJECTION_MODE).Get(out temp) == false)
+                {
+                    //Tizen.Log.Error("NUI", "ProjectionMode get error!");
+                }
+                switch(temp)
+                {
+                    case "PERSPECTIVE_PROJECTION":
+                        return ProjectionMode.PerspectiveProjection;
+                    case "ORTHOGRAPHIC_PROJECTION":
+                        return ProjectionMode.OrthographicProjection;
+                    default:
+                        return ProjectionMode.PerspectiveProjection;
+                }
             }
             set
             {
-                SetProperty(CameraActor.Property.PROJECTION_MODE, new Tizen.NUI.PropertyValue(value));
+                string valueToString = "";
+                switch (value)
+                {
+                    case ProjectionMode.PerspectiveProjection:
+                    {
+                        valueToString = "PERSPECTIVE_PROJECTION";
+                        break;
+                    }
+                    case ProjectionMode.OrthographicProjection:
+                    {
+                        valueToString = "ORTHOGRAPHIC_PROJECTION";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "PERSPECTIVE_PROJECTION";
+                        break;
+                    }
+                }
+                SetProperty(CameraActor.Property.PROJECTION_MODE, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 

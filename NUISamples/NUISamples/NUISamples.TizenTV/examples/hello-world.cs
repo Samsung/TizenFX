@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.Constants;
 using Tizen.NUI.Extension.Test;
 
 namespace HelloWorldTest
@@ -58,7 +59,7 @@ namespace HelloWorldTest
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
-            _text.HorizontalAlignment = "CENTER";
+            _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
             stage.GetDefaultLayer().Add(_text);
