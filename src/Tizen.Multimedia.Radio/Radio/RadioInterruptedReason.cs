@@ -17,14 +17,13 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Radio Interrupted Reason
+    /// Specifies <see cref="Radio"/> interrupted reasons.
     /// </summary>
     public enum RadioInterruptedReason
     {
         /// <summary>
-        /// Playback interrupted by a resource conflict
+        /// By a resource conflict.
         /// </summary>
-        ResourceConflict = Interop.RadioInterruptedReason.ResourceConflict,
-
+        ResourceConflict = 4,
     }
 }

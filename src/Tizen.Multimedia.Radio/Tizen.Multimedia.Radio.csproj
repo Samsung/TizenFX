@@ -14,4 +14,8 @@
     <PackageReference Include="Tizen.System.Information" Version="1.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
+  </ItemGroup>
+
 </Project>

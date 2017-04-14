@@ -12,6 +12,7 @@
 		<description>Provides the Multimedia Radio API for Tizen.Net</description>
     <dependencies>
 	  <dependency id="Tizen" version="1.0.2" />
+	  <dependency id="Tizen.Multimedia" version="1.2.0" />
     </dependencies>
 	</metadata>
 </package>

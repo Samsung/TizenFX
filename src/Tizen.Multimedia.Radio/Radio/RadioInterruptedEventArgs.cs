@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Arguments for radio Playback Interrupted events
+    /// Provides data for the <see cref="Radio.Interrupted"/> event.
     /// </summary>
     public class RadioInterruptedEventArgs : EventArgs
     {
@@ -29,8 +29,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Tuned radio frequency, in range [87500 ~ 108000] (kHz)
-        /// </summary>
+        /// Gets the reason.
+        /// </summary
         public RadioInterruptedReason Reason { get; }
+
+        public override string ToString()
+        {
+            return $"Reason={ Reason.ToString() }";
+        }
     }
 }
