@@ -50,7 +50,6 @@ namespace HelloWorldTest
 
         public void Initialize()
         {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
             stage.Touch += OnStageTouched;

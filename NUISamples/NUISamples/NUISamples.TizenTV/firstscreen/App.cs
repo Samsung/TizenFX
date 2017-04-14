@@ -249,7 +249,6 @@ namespace FirstScreen
         private void OnInitialize()
         {
             Tizen.Log.Debug("NUI", "OnInitialize() is called!");
-            Tizen.NUI.InternalSetting.DefaultParentOriginAsTopLeft = false;
             _hideScrollContainer = null;
             _stage = Stage.Instance;
             _stageSize = _stage.Size;

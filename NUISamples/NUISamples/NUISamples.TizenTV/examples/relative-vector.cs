@@ -55,8 +55,6 @@ namespace RelativeVectorTest
 
         private void Initialize()
         {
-            // Connect the signal callback for stage touched signal
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
             _stage = Stage.Instance;
             _stage.Touch += OnStageTouched;
 

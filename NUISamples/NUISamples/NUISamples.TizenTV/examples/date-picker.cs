@@ -43,23 +43,22 @@ namespace DatePickerTest
 
         public void Initialize()
         {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
 
             // Create a container for the spins
             _container = new FlexContainer();
 
-            _container.ParentOrigin = ParentOrigin.Center;
+            //_container.ParentOrigin = ParentOrigin.Center;
             _container.AnchorPoint = AnchorPoint.Center;
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
             _container.Size = new Vector3(480.0f, 150.0f, 0.0f);
+            _container.Position2D = new Position2D(400, 400);
 
             stage.GetDefaultLayer().Add(_container);
 
             // Create a Spin control for year
             _spinYear = new Spin();
-            _spinYear.ParentOrigin = ParentOrigin.Center;
             _spinYear.AnchorPoint = AnchorPoint.Center;
             _spinYear.Flex = 0.3f;
             _spinYear.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
@@ -77,7 +76,6 @@ namespace DatePickerTest
 
             // Create a Spin control for month
             _spinMonth = new Spin();
-            _spinMonth.ParentOrigin = ParentOrigin.Center;
             _spinMonth.AnchorPoint = AnchorPoint.Center;
             _spinMonth.Flex = 0.3f;
             _spinMonth.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
@@ -95,7 +93,6 @@ namespace DatePickerTest
 
             // Create a Spin control for day
             _spinDay = new Spin();
-            _spinDay.ParentOrigin = ParentOrigin.Center;
             _spinDay.AnchorPoint = AnchorPoint.Center;
             _spinDay.Flex = 0.3f;
             _spinDay.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);

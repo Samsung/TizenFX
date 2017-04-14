@@ -55,7 +55,6 @@ namespace HelloTest
 
         private void Initialize()
         {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
             // Connect the signal callback for stage touched signal
             _stage = Stage.Instance;
             _stage.Touch += OnStageTouched;

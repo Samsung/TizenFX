@@ -459,7 +459,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Horizontal alignment property.
         /// </summary>
-        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
+        public HorizontalAlignment HorizontalAlignment
         {
             get
             {
@@ -472,13 +472,13 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "BEGIN":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                     case "CENTER":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.HorizontalAlignCenter;
                     case "END":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.HorizontalAlignEnd;
                     default:
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                 }
             }
             set
@@ -486,17 +486,17 @@ namespace Tizen.NUI
                 string valueToString = "";
                 switch (value)
                 {
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.HorizontalAlignBegin:
                     {
                         valueToString = "BEGIN";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.HorizontalAlignCenter:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.HorizontalAlignEnd:
                     {
                         valueToString = "END";
                         break;

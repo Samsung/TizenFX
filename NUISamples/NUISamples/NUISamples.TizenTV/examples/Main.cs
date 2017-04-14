@@ -14,9 +14,9 @@ namespace NUISamples.TizenTV.examples
         [STAThread]
         static void Main(string[] args)
         {
-            //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
-            //new ControlDashboard.Example().Run(args);                 //o
+            new ControlDashboard.Example().Run(args);                 //o
             //new DatePickerTest.Example().Run(args);                   //o
+            //new DatePickerUsingJson.Example().Run(args);              //o
             //new HelloTest.Example().Run(args);                        //o
             //new HelloWorldTest.Example().Run(args);                   //o
             //new Test1.Example().Run(args);                            //o
@@ -26,15 +26,13 @@ namespace NUISamples.TizenTV.examples
             //new ScrollViewTest.Example().Run(args);                   //o
             //new ImageViewTest.Example().Run(args);                    //o
             //new FlexContainerTest.SampleMain().Run(args);             //o
-            //new DatePickerUsingJson.Example().Run(args);              //o
             //new DaliTest.Example().Run(args);                         //o
-            //new MyCSharpExample.Example().Run(args);                  //o
-            new FirstScreen.FirstScreenApp().Run(args);               //o
-            //new MyCSharpExample.Example().Run(args);                  //o
+            //new RelativeVectorTest.Example().Run(args);
             //new VisaulAnimationExample.Example().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
-            //new RelativeVectorTest.Example().Run(args);
             //new VisualViewTest2.VisualSample().Run(args);
+            //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
+            //new FirstScreen.FirstScreenApp().Run(args);               //o
         }
     }
 }

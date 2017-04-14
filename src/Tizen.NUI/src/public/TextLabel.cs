@@ -307,7 +307,7 @@ namespace Tizen.NUI
         /// HorizontalAlignment property.<br>
         /// The line horizontal alignment.<br>
         /// </summary>
-        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
+        public HorizontalAlignment HorizontalAlignment
         {
             get
             {
@@ -319,13 +319,13 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "BEGIN":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                     case "CENTER":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.HorizontalAlignCenter;
                     case "END":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.HorizontalAlignEnd;
                     default:
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                 }
             }
             set
@@ -333,17 +333,17 @@ namespace Tizen.NUI
                 string valueToString = "";
                 switch (value)
                 {
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.HorizontalAlignBegin:
                     {
                         valueToString = "BEGIN";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.HorizontalAlignCenter:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.HorizontalAlignEnd:
                     {
                         valueToString = "END";
                         break;
@@ -362,7 +362,7 @@ namespace Tizen.NUI
         /// VerticalAlignment property.<br>
         /// The line vertical alignment.<br>
         /// </summary>
-        public Tizen.NUI.Constants.VerticalAlignment VerticalAlignment
+        public VerticalAlignment VerticalAlignment
         {
             get
             {
@@ -375,13 +375,13 @@ namespace Tizen.NUI
                 switch (temp)
                 {
                     case "TOP":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop;
+                        return VerticalAlignment.VerticalAlignTop;
                     case "CENTER":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+                        return VerticalAlignment.VerticalAlignCenter;
                     case "BOTTOM":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.VerticalAlignBottom;
                     default:
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.VerticalAlignBottom;
                 }
             }
             set
@@ -389,17 +389,17 @@ namespace Tizen.NUI
                 string valueToString = "";
                 switch (value)
                 {
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop:
+                    case VerticalAlignment.VerticalAlignTop:
                     {
                         valueToString = "TOP";
                         break;
                     }
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter:
+                    case VerticalAlignment.VerticalAlignCenter:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom:
+                    case VerticalAlignment.VerticalAlignBottom:
                     {
                         valueToString = "BOTTOM";
                         break;

@@ -58,7 +58,6 @@ namespace ImageViewTest
 
         public void Initialize()
         {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
             Log("Customized Application Initialize event handler");
             stage = Stage.Instance;
             stage.BackgroundColor = Color.Cyan;

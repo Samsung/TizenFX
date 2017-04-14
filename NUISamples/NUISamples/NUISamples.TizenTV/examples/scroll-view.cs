@@ -57,7 +57,6 @@ namespace ScrollViewTest
 
     public void Initialize()
     {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
       CreateScrollView();
     }
 

@@ -628,37 +628,37 @@ namespace Tizen.NUI
         /// Get or set the line horizontal alignment.<br>
         /// If not specified, the default is BEGIN.<br>
         /// </summary>
-        public Tizen.NUI.Constants.HorizontalAlignment HorizontalAlignment
+        public HorizontalAlignment HorizontalAlignment
         {
             get
             {
                 switch (_horizontalAlignment)
                 {
                     case "BEGIN":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                     case "CENTER":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.HorizontalAlignCenter;
                     case "END":
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.HorizontalAlignEnd;
                     default:
-                        return Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.HorizontalAlignBegin;
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.HorizontalAlignBegin:
                     {
                         _horizontalAlignment = "BEGIN";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.HorizontalAlignCenter:
                     {
                         _horizontalAlignment = "CENTER";
                         break;
                     }
-                    case Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.HorizontalAlignEnd:
                     {
                         _horizontalAlignment = "END";
                         break;
@@ -677,37 +677,37 @@ namespace Tizen.NUI
         /// Get or set the line vertical alignment.<br>
         /// If not specified, the default is TOP.<br>
         /// </summary>
-        public Tizen.NUI.Constants.VerticalAlignment VerticalAlignment
+        public VerticalAlignment VerticalAlignment
         {
             get
             {
                 switch (_verticalAlignment)
                 {
                     case "TOP":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop;
+                        return VerticalAlignment.VerticalAlignTop;
                     case "CENTER":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+                        return VerticalAlignment.VerticalAlignCenter;
                     case "BOTTOM":
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.VerticalAlignBottom;
                     default:
-                        return Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.VerticalAlignBottom;
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignTop:
+                    case VerticalAlignment.VerticalAlignTop:
                     {
                         _verticalAlignment = "TOP";
                         break;
                     }
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter:
+                    case VerticalAlignment.VerticalAlignCenter:
                     {
                         _verticalAlignment = "CENTER";
                         break;
                     }
-                    case Tizen.NUI.Constants.VerticalAlignment.VerticalAlignBottom:
+                    case VerticalAlignment.VerticalAlignBottom:
                     {
                         _verticalAlignment = "BOTTOM";
                         break;

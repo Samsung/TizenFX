@@ -54,8 +54,6 @@ namespace Tizen.NUI
         // static constructor registers the control type (only runs once)
         static Spin()
         {
-            InternalSetting.DefaultParentOriginAsTopLeft = false;
-
             // ViewRegistry registers control type with DALi type registery
             // also uses introspection to find any properties that need to be registered with type registry
             ViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
@@ -91,17 +89,17 @@ namespace Tizen.NUI
 
             // Create a text field
             _textField = new TextField();
-            _textField.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
             _textField.AnchorPoint = Tizen.NUI.AnchorPoint.Center;
             _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
             _textField.PlaceholderText = "----";
             _textField.BackgroundColor = _textBackgroundColor;
-            _textField.HorizontalAlignment = Tizen.NUI.Constants.HorizontalAlignment.HorizontalAlignCenter;
-            _textField.VerticalAlignment = Tizen.NUI.Constants.VerticalAlignment.VerticalAlignCenter;
+            _textField.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _textField.VerticalAlignment = VerticalAlignment.VerticalAlignCenter;
             _textField.Focusable = (true);
             _textField.Name = "_textField";
+            _textField.Position2D = new Position2D(0, 40);
 
             this.Add(_textField);
 
