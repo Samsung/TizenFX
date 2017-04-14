@@ -45,12 +45,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_scan_folder")]
         internal static extern MediaContentError ScanFolder(string folderPath, bool is_recursive, MediaScanCompletedCallback scanCompletedCallback, IntPtr userData);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_content_set_db_updated_cb")]
-        internal static extern MediaContentError SetDbUpdatedCb(MediaContentDBUpdatedCallback mediaContentDBUpdatedCallback, IntPtr userData);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_content_unset_db_updated_cb")]
-        internal static extern MediaContentError UnsetDbUpdatedCb();
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_add_db_updated_cb")]
         internal static extern MediaContentError AddDbUpdatedCb(MediaContentDBUpdatedCallback mediaContentDBUpdatedCallback, IntPtr userData, out IntPtr noti_handle);
 

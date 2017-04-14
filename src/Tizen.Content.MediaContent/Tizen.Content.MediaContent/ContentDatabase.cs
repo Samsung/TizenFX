@@ -43,6 +43,8 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     public class ContentDatabase
     {
+        private static IntPtr _updateHandle = IntPtr.Zero;
+
         /// <summary>
         /// Connect to the media database to search, insert, remove or modify media information.
         /// </summary>
@@ -90,7 +92,7 @@ namespace Tizen.Content.MediaContent
                 if (_contentUpdated == null)
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Content.SetDbUpdatedCb(s_contentUpdatedCallback, IntPtr.Zero), "Failed to set callback");
+                        Interop.Content.AddDbUpdatedCb(s_contentUpdatedCallback, IntPtr.Zero, out _updateHandle), "Failed to set callback");
                 }
 
                 _contentUpdated += value;
@@ -102,7 +104,7 @@ namespace Tizen.Content.MediaContent
                 if (_contentUpdated == null)
                 {
                     MediaContentValidator.ThrowIfError(
-                        Interop.Content.UnsetDbUpdatedCb(), "Failed to unset callback");
+                        Interop.Content.RemoveDbUpdatedCb(_updateHandle), "Failed to unset callback");
                 }
             }
         }
