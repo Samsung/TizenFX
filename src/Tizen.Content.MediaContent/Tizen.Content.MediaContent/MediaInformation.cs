@@ -85,7 +85,11 @@ namespace Tizen.Content.MediaContent
             var task = new TaskCompletionSource<string>();
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                MediaContentValidator.ThrowIfError(createResult, "Failed to create thumbnail");
+                if (createResult != MediaContentError.None)
+                {
+                    task.SetException(new InvalidOperationException("Failed to create thumbnail:" + createResult));
+                }
+
                 task.SetResult(path);
             };
             MediaContentValidator.ThrowIfError(
@@ -116,7 +120,11 @@ namespace Tizen.Content.MediaContent
 
             Interop.MediaInformation.MediaThumbnailCompletedCallback thumbnailResult = (MediaContentError createResult, string path, IntPtr userData) =>
             {
-                MediaContentValidator.ThrowIfError(createResult, "Failed to create thumbnail");
+                if (createResult != MediaContentError.None)
+                {
+                    task.SetException(new InvalidOperationException("Failed to create thumbnail:" + createResult));
+                }
+
                 task.SetResult(path);
             };
 
