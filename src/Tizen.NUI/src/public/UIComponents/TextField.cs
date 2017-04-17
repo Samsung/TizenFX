@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI
+namespace Tizen.NUI.UIComponents
 {
 
     using System;
@@ -165,7 +165,7 @@ namespace Tizen.NUI
             TextChangedEventArgs e = new TextChangedEventArgs();
 
             // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextField = Tizen.NUI.TextField.GetTextFieldFromPtr(textField);
+            e.TextField = Tizen.NUI.UIComponents.TextField.GetTextFieldFromPtr(textField);
 
             if (_textFieldTextChangedEventHandler != null)
             {
@@ -204,7 +204,7 @@ namespace Tizen.NUI
             MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
 
             // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextField = Tizen.NUI.TextField.GetTextFieldFromPtr(textField);
+            e.TextField = Tizen.NUI.UIComponents.TextField.GetTextFieldFromPtr(textField);
 
             if (_textFieldMaxLengthReachedEventHandler != null)
             {

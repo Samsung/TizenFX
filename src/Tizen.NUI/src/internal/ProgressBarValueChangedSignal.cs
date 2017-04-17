@@ -74,8 +74,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(ProgressBar arg1, float arg2, float arg3) {
-    NDalicPINVOKE.ProgressBarValueChangedSignal_Emit(swigCPtr, ProgressBar.getCPtr(arg1), arg2, arg3);
+  public void Emit(Tizen.NUI.UIComponents.ProgressBar arg1, float arg2, float arg3) {
+    NDalicPINVOKE.ProgressBarValueChangedSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.ProgressBar.getCPtr(arg1), arg2, arg3);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -74,8 +74,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public bool Emit(Slider arg1, float arg2) {
-    bool ret = NDalicPINVOKE.SliderValueChangedSignal_Emit(swigCPtr, Slider.getCPtr(arg1), arg2);
+  public bool Emit(Tizen.NUI.UIComponents.Slider arg1, float arg2) {
+    bool ret = NDalicPINVOKE.SliderValueChangedSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.Slider.getCPtr(arg1), arg2);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

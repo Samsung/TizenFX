@@ -7124,14 +7124,8 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyInputFocusManager_RemoveFocus")]
   public static extern void KeyInputFocusManager_RemoveFocus(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyInputFocusManager_IsKeyboardListener")]
-  public static extern bool KeyInputFocusManager_IsKeyboardListener(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyInputFocusManager_KeyInputFocusChangedSignal")]
   public static extern global::System.IntPtr KeyInputFocusManager_KeyInputFocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyInputFocusManager_UnhandledKeyEventSignal")]
-  public static extern global::System.IntPtr KeyInputFocusManager_UnhandledKeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Alignment_Padding__SWIG_0")]
   public static extern global::System.IntPtr new_Alignment_Padding__SWIG_0();

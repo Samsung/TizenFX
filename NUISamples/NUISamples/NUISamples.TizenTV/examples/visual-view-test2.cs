@@ -1,5 +1,6 @@
 using System;
 using Tizen.NUI;
+using Tizen.NUI.UIComponents;
 
 namespace VisualViewTest2
 {
