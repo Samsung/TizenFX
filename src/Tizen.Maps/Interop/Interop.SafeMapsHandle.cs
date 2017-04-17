@@ -36,7 +36,7 @@ internal static partial class Interop
             return value;
         }
 
-        err.WarnIfFailed($"Native getter for {propertyName} failed");
+        //err.WarnIfFailed($"Native getter for {propertyName} failed");
         return default(T);
     }
 
@@ -59,7 +59,7 @@ internal static partial class Interop
             return value;
         }
 
-        err.WarnIfFailed($"Native getter for {propertyName} failed");
+        //err.WarnIfFailed($"Native getter for {propertyName} failed");
         return string.Empty;
     }
 

@@ -53,8 +53,9 @@ namespace Tizen.Maps
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             handle = new Interop.ViewHandle(service.handle, this);
-            _service = service;
+            Log.Info(string.Format("MapView is created"));
 
+            _service = service;
             this.Resize(1, 1);
 
             // We need to keep Gesture Tap event enabled for object event to work
@@ -72,10 +73,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.Scroll, true);
                 _scrolledEventHandler += value;
+                Log.Info(string.Format("Scrolled event handler is added"));
             }
             remove
             {
                 _scrolledEventHandler -= value;
+                Log.Info(string.Format("Scrolled event handler is removed"));
                 if (_scrolledEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.Scroll, false);
@@ -94,10 +97,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.Zoom, true);
                 _zoomedEventHandler += value;
+                Log.Info(string.Format("ZoomChanged event handler is added"));
             }
             remove
             {
                 _zoomedEventHandler -= value;
+                Log.Info(string.Format("ZoomChanged event handler is removed"));
                 if (_zoomedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.Zoom, false);
@@ -116,10 +121,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 //handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
                 _tappedEventHandler += value;
+                Log.Info(string.Format("Clicked event handler is added"));
             }
             remove
             {
                 _tappedEventHandler -= value;
+                Log.Info(string.Format("Clicked event handler is removed"));
                 if (_tappedEventHandler == null)
                 {
                     //handle.SetGestureEnabled(Interop.ViewGesture.Tap, false);
@@ -138,10 +145,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, true);
                 _doubleTappedEventHandler += value;
+                Log.Info(string.Format("DoubleClicked event handler is removed"));
             }
             remove
             {
                 _doubleTappedEventHandler -= value;
+                Log.Info(string.Format("DoubleClicked event handler is removed"));
                 if (_doubleTappedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, false);
@@ -160,10 +169,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, true);
                 _twoFingerTappedEventHandler += value;
+                Log.Info(string.Format("TwoFingerPressed event handler is added"));
             }
             remove
             {
                 _twoFingerTappedEventHandler -= value;
+                Log.Info(string.Format("TwoFingerPressed event handler is removed"));
                 if (_twoFingerTappedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, false);
@@ -182,10 +193,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.Rotate, true);
                 _rotatedEventHandler += value;
+                Log.Info(string.Format("Rotated event handler is added"));
             }
             remove
             {
                 _rotatedEventHandler -= value;
+                Log.Info(string.Format("Rotated event handler is removed"));
                 if (_rotatedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.Rotate, false);
@@ -204,10 +217,12 @@ namespace Tizen.Maps
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.LongPress, true);
                 _longPressedEventHandler += value;
+                Log.Info(string.Format("LongPressed event handler is added"));
             }
             remove
             {
                 _longPressedEventHandler -= value;
+                Log.Info(string.Format("LongPressed event handler is removed"));
                 if (_longPressedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.LongPress, false);
@@ -225,10 +240,12 @@ namespace Tizen.Maps
             {
                 SetViewReadyEventCallback();
                 _viewReadyEventHandler += value;
+                Log.Info(string.Format("ViewReady event handler is added"));
             }
             remove
             {
                 _viewReadyEventHandler -= value;
+                Log.Info(string.Format("ViewReady event handler is removed"));
                 UnsetGestureEventCallback();
             }
         }
@@ -244,6 +261,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("ZoomLevel is changed from {0} to {1}", handle.ZoomLevel, value));
                 handle.ZoomLevel = value;
             }
         }
@@ -259,6 +277,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("MinimumZoomLevel is changed from {0} to {1}", handle.MinimumZoomLevel, value));
                 handle.MinimumZoomLevel = value;
             }
         }
@@ -274,6 +293,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("MaximumZoomLevel is changed from {0} to {1}", handle.MaximumZoomLevel, value));
                 handle.MaximumZoomLevel = value;
             }
         }
@@ -289,6 +309,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Orientation is changed from {0} to {1}", handle.Orientation, value));
                 handle.Orientation = value;
             }
         }
@@ -304,6 +325,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("MapType is changed from {0} to {1}", handle.MapType, value));
                 handle.MapType = (Interop.ViewType)value;
             }
         }
@@ -319,6 +341,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Showing the 3D buildings is {0}", (value ? "enabled" : "disabled")));
                 handle.BuildingsEnabled = value;
             }
         }
@@ -334,6 +357,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Showing the traffic is {0}", (value ? "enabled" : "disabled")));
                 handle.TrafficEnabled = value;
             }
         }
@@ -349,6 +373,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Showing the public transit is {0}", (value ? "enabled" : "disabled")));
                 handle.PublicTransitEnabled = value;
             }
         }
@@ -364,6 +389,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Showing the scale-bar is {0}", (value ? "enabled" : "disabled")));
                 handle.ScalebarEnabled = value;
             }
         }
@@ -379,6 +405,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Language is changed from {0} to {1}", handle.Language, value));
                 handle.Language = value;
             }
         }
@@ -394,6 +421,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Center is changed from {0} to {1}", handle.Center, value.handle));
                 handle.Center = value.handle;
             }
         }
@@ -435,6 +463,7 @@ namespace Tizen.Maps
         /// <param name="child">map object to add</param>
         public void Add(MapObject child)
         {
+            Log.Info(string.Format("Add a object"));
             var objectHandle = child.GetHandle();
             if (!_handleToObjectTable.ContainsKey(objectHandle))
             {
@@ -453,6 +482,7 @@ namespace Tizen.Maps
         /// <remarks>Once removed, child object will be become invalid</remarks>
         public void Remove(MapObject child)
         {
+            Log.Info(string.Format("Remove a object"));
             var objectHandle = child.GetHandle();
             if (_handleToObjectTable.Remove(objectHandle))
             {
@@ -468,6 +498,7 @@ namespace Tizen.Maps
         /// </summary>
         public void RemoveAll()
         {
+            Log.Info(string.Format("Remove all of objects"));
             foreach (var child in _handleToObjectTable.Values)
             {
                 child.InvalidateMapObject();
@@ -508,6 +539,7 @@ namespace Tizen.Maps
                     }
                 };
                 handle.SetEventCb(Interop.ViewEventType.Gesture, _gestureEventCallback, IntPtr.Zero);
+                Log.Info(string.Format("Gesture event callback is set"));
             }
         }
 
@@ -523,6 +555,7 @@ namespace Tizen.Maps
 
             handle.UnsetEventCb(Interop.ViewEventType.Gesture);
             _gestureEventCallback = null;
+            Log.Info(string.Format("Gesture event callback is unset"));
         }
 
         private void SetObjectEventCallback()
@@ -544,6 +577,7 @@ namespace Tizen.Maps
                     }
                 };
                 handle.SetEventCb(Interop.ViewEventType.Object, _objectEventCallback, IntPtr.Zero);
+                Log.Info(string.Format("Object event callback is set"));
             }
         }
 
@@ -556,6 +590,7 @@ namespace Tizen.Maps
                     _viewReadyEventHandler?.Invoke(this, EventArgs.Empty);
                 };
                 handle.SetEventCb(Interop.ViewEventType.Ready, _viewReadyEventCallback, IntPtr.Zero);
+                Log.Info(string.Format("ViewReady event callback is set"));
             }
         }
 
@@ -565,6 +600,7 @@ namespace Tizen.Maps
             {
                 handle.UnsetEventCb(Interop.ViewEventType.Ready);
                 _viewReadyEventCallback = null;
+                Log.Info(string.Format("ViewReady event callback is unset"));
             }
         }
 

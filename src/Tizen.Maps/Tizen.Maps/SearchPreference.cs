@@ -57,6 +57,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Language is changed from {0} to {1}", handle.Language, value));
                 handle.Language = value;
             }
         }
@@ -73,6 +74,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("MaxResult is changed from {0} to {1}", handle.MaxResult, value));
                 handle.MaxResult = value;
             }
         }
@@ -88,6 +90,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Unit is changed from {0} to {1}", handle.Unit, value));
                 handle.Unit = (Interop.DistanceUnit)value;
             }
         }
@@ -103,6 +106,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("CountryCode is changed from {0} to {1}", handle.CountryCode, value));
                 handle.CountryCode = value;
             }
         }
@@ -118,6 +122,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Properties is changed from {0} to {1}", Properties.ToString(), value.ToString()));
                 _properties = value;
             }
         }
@@ -133,6 +138,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("Optimization is changed from {0} to {1}", handle.Optimization, value));
                 handle.Optimization = (Interop.RouteOptimization)value;
             }
         }
@@ -148,6 +154,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("TransportMode is changed from {0} to {1}", handle.TransportMode, value));
                 handle.TransportMode = (Interop.RouteTransportMode)value;
             }
         }
@@ -163,6 +170,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("RouteFeatureWeight is changed from {0} to {1}", handle.FeatureWeight, value));
                 handle.FeatureWeight = (Interop.RouteFeatureWeight)value;
             }
         }
@@ -178,6 +186,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("RouteFeature is changed from {0} to {1}", handle.Feature, value));
                 handle.Feature = (Interop.RouteRequestFeature)value;
             }
         }
@@ -193,6 +202,7 @@ namespace Tizen.Maps
             }
             set
             {
+                Log.Info(string.Format("SearchAlternativeRoutes is {0}", (value ? "enabled" : "disabled")));
                 handle.AlternativesEnabled = value;
             }
         }
