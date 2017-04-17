@@ -66,6 +66,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public string DeviceName
+        {
+            get
+            {
+                string ret = NDalicPINVOKE.GetDeviceName(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         /// <summary>
         /// Name given to the key pressed
         /// </summary> 
@@ -131,6 +141,17 @@ namespace Tizen.NUI
             }
         }
 
+        public DeviceClassType DeviceClass
+        {
+            get
+            {
+                int ret = NDalicPINVOKE.GetDeviceClass(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return (DeviceClassType)ret;
+            }
+        }
+
+
         /// <summary>
         /// Default Constructor.
         /// </summary> 
@@ -153,6 +174,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        public Key(Key rhs) : this(NDalicPINVOKE.new_Key__SWIG_2(Key.getCPtr(rhs)), true) {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Key Assign(Key rhs) {
+            Key ret = new Key(NDalicPINVOKE.Key_Assign(swigCPtr, Key.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
         /// <summary>
         /// Checks to see if Shift key modifier has been supplied.
         /// </summary>
@@ -286,6 +316,18 @@ namespace Tizen.NUI
             Last
         }
 
+    }
+
+    public enum DeviceClassType
+    {
+        None,
+        Seat,
+        Keyboard,
+        Mouse,
+        Touch,
+        Pen,
+        Pointer,
+        Gamepad
     }
 
 }

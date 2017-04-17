@@ -3062,6 +3062,12 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Key__SWIG_1")]
   public static extern global::System.IntPtr new_Key__SWIG_1(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Key__SWIG_2")]
+  public static extern global::System.IntPtr new_Key__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Key_Assign")]
+  public static extern global::System.IntPtr Key_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_Key")]
   public static extern void delete_Key(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -3232,6 +3238,18 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Wheel_timeStamp_get")]
   public static extern uint Wheel_timeStamp_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_GetDeviceName")]
+  public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_SetDeviceName")]
+  public static extern void SetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_GetDeviceClass")]
+  public static extern int GetDeviceClass(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_SetDeviceClass")]
+  public static extern void SetDeviceClass(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Actor_Property_PARENT_ORIGIN_get")]
   public static extern int Actor_Property_PARENT_ORIGIN_get();

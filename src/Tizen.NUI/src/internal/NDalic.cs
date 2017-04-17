@@ -963,6 +963,28 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     } 
   }
 
+  private static string GetDeviceName(Key keyEvent) {
+    string ret = NDalicPINVOKE.GetDeviceName(Key.getCPtr(keyEvent));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  private static void SetDeviceName(Key keyEvent, string deviceName) {
+    NDalicPINVOKE.SetDeviceName(Key.getCPtr(keyEvent), deviceName);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static DeviceClassType GetDeviceClass(Key keyEvent) {
+    DeviceClassType ret = (DeviceClassType)NDalicPINVOKE.GetDeviceClass(Key.getCPtr(keyEvent));
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void SetDeviceClass(Key keyEvent, DeviceClassType deviceClass) {
+    NDalicPINVOKE.SetDeviceClass(Key.getCPtr(keyEvent), (int)deviceClass);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+  }
+  
   public static void UnparentAndReset(Actor actor) {
     NDalicPINVOKE.UnparentAndReset(Actor.getCPtr(actor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
