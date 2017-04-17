@@ -26,9 +26,9 @@ namespace Tizen.System
         OutOfMemory = ErrorCode.OutOfMemory,
         Io = ErrorCode.IoError,
         RemoteIo = ErrorCode.RemoteIo,
-        InvalidOperation = ErrorCode.InvalidOperation,
         PermissionDenied = ErrorCode.PermissionDenied,
-        NotSupported = ErrorCode.NotSupported
+        NotSupported = ErrorCode.NotSupported,
+        NoData = ErrorCode.NoData
     }
 
     internal static class RuntimeInfoErrorFactory
@@ -38,13 +38,13 @@ namespace Tizen.System
         internal static void ThrowException(int err)
         {
             RuntimeInfoError error = (RuntimeInfoError)err;
-            if (error == RuntimeInfoError.OutOfMemory)
-            {
-                throw new InvalidOperationException("Out of memory");
-            }
-            else if (error == RuntimeInfoError.InvalidParameter)
+            if (error == RuntimeInfoError.InvalidParameter)
             {
                 throw new ArgumentException("Invalid parameter");
+            }
+            else if (error == RuntimeInfoError.OutOfMemory)
+            {
+                throw new OutOfMemoryException("Out of memory");
             }
             else if (error == RuntimeInfoError.Io)
             {
@@ -54,17 +54,17 @@ namespace Tizen.System
             {
                 throw new ArgumentException("Remote I/O Error");
             }
-            else if (error == RuntimeInfoError.InvalidOperation)
-            {
-                throw new ArgumentException("Invalid operation");
-            }
             else if (error == RuntimeInfoError.PermissionDenied)
             {
-                throw new ArgumentException("Permission denied");
+                throw new UnauthorizedAccessException("Permission denied");
             }
             else if (error == RuntimeInfoError.NotSupported)
             {
                 throw new NotSupportedException("Not supported");
+            }
+            else if (error == RuntimeInfoError.NoData)
+            {
+                throw new NotSupportedException("No data");
             }
         }
     }
