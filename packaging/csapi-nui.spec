@@ -1,6 +1,6 @@
 Name:       csapi-nui
 Summary:    dali-NUI
-Version:    0.2.34
+Version:    0.2.35
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0 and BSD-2-Clause and MIT
