@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-public class ToggleButton : Button {
+public class ToggleButton : Tizen.NUI.UIComponents.Button {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn) {

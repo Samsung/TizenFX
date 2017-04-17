@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI
+namespace Tizen.NUI.UIComponents
 {
 
     using System;
@@ -139,7 +139,7 @@ namespace Tizen.NUI
             TextChangedEventArgs e = new TextChangedEventArgs();
 
             // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextEditor = Tizen.NUI.TextEditor.GetTextEditorFromPtr(textEditor);
+            e.TextEditor = Tizen.NUI.UIComponents.TextEditor.GetTextEditorFromPtr(textEditor);
 
             if (_textEditorTextChangedEventHandler != null)
             {

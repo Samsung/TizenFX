@@ -74,8 +74,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(TextEditor arg) {
-    NDalicPINVOKE.TextEditorSignal_Emit(swigCPtr, TextEditor.getCPtr(arg));
+  public void Emit(Tizen.NUI.UIComponents.TextEditor arg) {
+    NDalicPINVOKE.TextEditorSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.TextEditor.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

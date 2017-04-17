@@ -74,8 +74,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(TextField arg) {
-    NDalicPINVOKE.TextFieldSignal_Emit(swigCPtr, TextField.getCPtr(arg));
+  public void Emit(Tizen.NUI.UIComponents.TextField arg) {
+    NDalicPINVOKE.TextFieldSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.TextField.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
