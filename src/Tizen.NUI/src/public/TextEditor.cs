@@ -956,12 +956,12 @@ namespace Tizen.NUI
         /// <summary>
         /// InputUnderline property.
         /// </summary>
-        public PropertyMap InputUnderline
+        public string InputUnderline
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.INPUT_UNDERLINE).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.INPUT_UNDERLINE).Get(out temp);
                 return temp;
             }
             set
@@ -990,12 +990,12 @@ namespace Tizen.NUI
         /// <summary>
         /// InputShadow property.
         /// </summary>
-        public PropertyMap InputShadow
+        public string InputShadow
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.INPUT_SHADOW).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.INPUT_SHADOW).Get(out temp);
                 return temp;
             }
             set
@@ -1007,12 +1007,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Emboss property.
         /// </summary>
-        public PropertyMap Emboss
+        public string Emboss
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.EMBOSS).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.EMBOSS).Get(out temp);
                 return temp;
             }
             set
@@ -1024,12 +1024,12 @@ namespace Tizen.NUI
         /// <summary>
         /// InputEmboss property.
         /// </summary>
-        public PropertyMap InputEmboss
+        public string InputEmboss
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.INPUT_EMBOSS).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.INPUT_EMBOSS).Get(out temp);
                 return temp;
             }
             set
@@ -1041,12 +1041,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Outline property.
         /// </summary>
-        public PropertyMap Outline
+        public string Outline
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.OUTLINE).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.OUTLINE).Get(out temp);
                 return temp;
             }
             set
@@ -1058,12 +1058,12 @@ namespace Tizen.NUI
         /// <summary>
         /// InputOutline property.
         /// </summary>
-        public PropertyMap InputOutline
+        public string InputOutline
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextEditor.Property.INPUT_OUTLINE).Get(temp);
+                string temp;
+                GetProperty(TextEditor.Property.INPUT_OUTLINE).Get(out temp);
                 return temp;
             }
             set
