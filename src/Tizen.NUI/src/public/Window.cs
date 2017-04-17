@@ -120,10 +120,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves whether the window is visible or not.
         /// </summary>
-        public void IsVisible()
+        /// <returns>true, if the windoe is visible</returns>
+        public bool IsVisible()
         {
-            NDalicPINVOKE.IsVisible(swigCPtr);
+            bool temp = NDalicPINVOKE.IsVisible(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return temp;
         }
 
         public class WindowFocusChangedEventArgs : EventArgs
