@@ -43,6 +43,7 @@ namespace Tizen.Multimedia
             catch(Exception)
             {
                 InteropSource.Destroy(_handle);
+                _disposed = true;
                 throw;
             }
         }
@@ -202,7 +203,6 @@ namespace Tizen.Multimedia
             {
                 return;
             }
-
             InteropSource.Destroy(_handle);
             _disposed = true;
         }

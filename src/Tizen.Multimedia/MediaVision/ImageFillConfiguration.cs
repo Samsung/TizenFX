@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="ImageFillConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
-        public ImageFillConfiguration()
+        public ImageFillConfiguration() : base("image_recognition")
         {
         }
 

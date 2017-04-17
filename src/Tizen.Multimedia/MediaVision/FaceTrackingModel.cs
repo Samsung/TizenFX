@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
-        /// <exception cref="System.IO.FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
         ///     - or -\n
@@ -88,6 +88,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// <paramref name="region"/> needs to be the position of the face to be tracked when called first time for the tracking model.
+        /// <paramref name="region"/> is fitted to the valid region of <paramref name="source"/> if <paramref name="region"/> has invalid points.
         /// </remarks>
         /// <param name="source">The source where face location is specified.
         ///     Usually it is the first frame of the video or the first image in the continuous
@@ -95,7 +96,6 @@ namespace Tizen.Multimedia
         /// <param name="region">The region determining position of the face to be tracked on the source.
         ///     If null, then tracking model will try to find previously tracked face by itself.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <exception cref="ArgumentException"><paramref name="region"/> has invalid points.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceTrackingModel"/> has already been disposed of.\n
         ///     - or -\n

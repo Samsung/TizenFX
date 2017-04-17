@@ -101,9 +101,6 @@ namespace Tizen.Multimedia
         internal abstract void OnEventDetected(IntPtr trigger, IntPtr source,
             int streamId, IntPtr eventResult, IntPtr userData);
 
-        /// <summary>
-        /// Subscribes trigger to process sources pushed from video identified by @a videoStreamId.
-        /// </summary>
         internal void InvokeAddSource(SurveillanceSource source, SurveillanceEngineConfiguration config)
         {
             if (source == null)

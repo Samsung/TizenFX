@@ -59,7 +59,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="ImageRecognitionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        public ImageRecognitionConfiguration()
+        public ImageRecognitionConfiguration() : base("image_recognition")
         {
         }
 

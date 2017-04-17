@@ -21,7 +21,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class SurveillanceEngineConfiguration : EngineConfiguration
     {
-        internal SurveillanceEngineConfiguration()
+        internal SurveillanceEngineConfiguration() : base("face_recognition", "image_recognition")
         {
         }
     }

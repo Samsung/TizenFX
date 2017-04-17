@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="BarcodeGenerationConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
-        public BarcodeGenerationConfiguration()
+        public BarcodeGenerationConfiguration() : base("barcode_generation")
         {
         }
 

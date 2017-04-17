@@ -155,7 +155,7 @@ namespace Tizen.Multimedia
         {
             if (source == null)
             {
-                throw new ArgumentException("Invalid source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             InvokeAdd(source, label, null).Validate("Failed to add face example image");
@@ -180,7 +180,7 @@ namespace Tizen.Multimedia
         {
             if (source == null)
             {
-                throw new ArgumentException("Invalid source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             InvokeAdd(source, label, area).Validate("Failed to add face example image");

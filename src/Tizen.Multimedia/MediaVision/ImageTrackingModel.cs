@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
-        /// <exception cref="System.IO.FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
         ///     - or -\n

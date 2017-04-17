@@ -153,7 +153,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="source"/> has already been disposed of.\n
         ///     - or -\n
         ///     <paramref name="config"/> has already been disposed of.
-        /// </exception
+        /// </exception>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config)
         {
             InvokeFill(source, config, null);
@@ -170,7 +170,7 @@ namespace Tizen.Multimedia
         ///     The <see cref="ImageObject"/> has already been disposed of.\n
         ///     - or -\n
         ///     <paramref name="source"/> has already been disposed of.\n
-        /// </exception
+        /// </exception>
         public void Fill(MediaVisionSource source, Rectangle rect)
         {
             InvokeFill(source, null, rect);
@@ -190,7 +190,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="source"/> has already been disposed of.\n
         ///     - or -\n
         ///     <paramref name="config"/> has already been disposed of.
-        /// </exception
+        /// </exception>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config, Rectangle rect)
         {
             InvokeFill(source, config, rect);
@@ -208,19 +208,6 @@ namespace Tizen.Multimedia
             return InteropImage.Fill(Handle, config, source, ref rect);
         }
 
-        /// <summary>
-        /// Fills the image object.\n
-        /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
-        /// </summary>
-        /// <param name="source">The source image where image object is depicted.</param>
-        /// <param name="config">The configuration used for extract recognition data from source. This value can be null.</param>
-        /// <param name="area">Location of the image object on the source image, or NULL if the object is shown in full</param>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     - or -\n
-        ///     <paramref name="source"/> has already been disposed of.
-        /// </exception
         private void InvokeFill(MediaVisionSource source, ImageFillConfiguration config, Rectangle? area)
         {
             if (source == null)

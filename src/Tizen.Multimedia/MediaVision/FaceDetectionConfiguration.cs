@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="FaceDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        public FaceDetectionConfiguration()
+        public FaceDetectionConfiguration() : base("face_recognition")
         {
         }
 
