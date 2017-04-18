@@ -116,7 +116,7 @@ namespace ElmSharp
                 if (_renderPostCallback == null)
                 {
                     _renderPostCallback = new Interop.Evas.EvasCallback((o, e, d) => _renderPost?.Invoke(this, EventArgs.Empty));
-                    Interop.Evas.evas_event_callback_add(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback, IntPtr.Zero);
+                    Interop.Evas.evas_event_callback_add(Interop.Evas.evas_object_evas_get(RealHandle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback, IntPtr.Zero);
                 }
             }
             remove
@@ -124,7 +124,7 @@ namespace ElmSharp
                 _renderPost -= value;
                 if (_renderPost?.GetInvocationList().Length == 0)
                 {
-                    Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
+                    Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(RealHandle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
                     _renderPostCallback = null;
                 }
             }
