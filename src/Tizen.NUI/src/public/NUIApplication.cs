@@ -111,6 +111,10 @@ namespace Tizen.NUI
         /// </summary>
         protected override void OnPreCreate()
         {
+            // Initialize DisposeQueue Singleton class.
+            DisposeQueue disposeQ = DisposeQueue.Instance;
+            Tizen.Log.Debug("NUI", "##### 1) DisposeQueue.Instance.Initialize()!");
+
             switch (_appMode)
             {
                 case AppMode.Default:
@@ -127,6 +131,10 @@ namespace Tizen.NUI
             }
             _applicationExt = new ApplicationExtensions(_application);
             _applicationExt.Init();
+
+            // This is also required to create DisposeQueue on main thread.
+            disposeQ.Initialize();
+            Tizen.Log.Debug("NUI", "##### 2) DisposeQueue.Instance.Initialize()!");
 
             _stage = Stage.Instance;
             _stage.SetBackgroundColor(Color.White);
