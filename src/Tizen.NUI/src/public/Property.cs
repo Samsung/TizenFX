@@ -1054,7 +1054,6 @@ namespace Tizen.NUI
             return value;
         }
 
-
         /// <summary>
         /// Creates a Size2D property value.
         /// </summary>
