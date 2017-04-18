@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications.Notifications
 {
@@ -58,7 +59,10 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Value for active notification
         /// </summary>
-        Active = 1 << 4
+        Active = 1 << 4,
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Lock = 1 << 2
     }
 
     /// <summary>

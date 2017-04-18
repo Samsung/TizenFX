@@ -423,6 +423,7 @@ namespace Tizen.Applications.Notifications
                     return NotificationArea.None;
                 }
 
+                appList = appList & ~((int)NotificationArea.Lock);
                 return (NotificationArea)appList;
             }
             set
