@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// <remarks>If false, then the top-left of the actor is used for the position.
         /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the actor's position.
         /// </remarks>
-        protected bool PositionUsesAnchorPoint
+        public bool PositionUsesAnchorPoint
         {
             get
             {
