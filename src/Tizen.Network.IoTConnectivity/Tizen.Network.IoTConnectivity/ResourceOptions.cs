@@ -360,6 +360,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="item">The key value pair to remove</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
         /// <seealso cref="Add()"/>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
