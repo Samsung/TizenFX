@@ -14,7 +14,7 @@ namespace NUISamples.TizenTV.examples
         [STAThread]
         static void Main(string[] args)
         {
-            new ControlDashboard.Example().Run(args);                 //o
+            //new ControlDashboard.Example().Run(args);                 //o
             //new DatePickerTest.Example().Run(args);                   //o
             //new DatePickerUsingJson.Example().Run(args);              //o
             //new HelloTest.Example().Run(args);                        //o
@@ -34,6 +34,7 @@ namespace NUISamples.TizenTV.examples
             //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesAnchorPointTest.Example().Run(args);
+            new TizenVDUIApplication19.Program().Run(args);
         }
     }
 }
