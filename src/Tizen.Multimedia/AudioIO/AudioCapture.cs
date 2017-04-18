@@ -25,8 +25,8 @@ namespace Tizen.Multimedia
     /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
     public abstract class AudioCaptureBase : IDisposable
     {
-        public readonly int MinSampleRate = 8000;
-        public readonly int MaxSampleRate = 48000;
+        public static readonly int MinSampleRate = 8000;
+        public static readonly int MaxSampleRate = 48000;
 
         internal IntPtr _handle = IntPtr.Zero;
 
