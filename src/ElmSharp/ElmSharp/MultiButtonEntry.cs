@@ -30,6 +30,7 @@ namespace ElmSharp
     {
         HashSet<MultiButtonEntryItem> _children = new HashSet<MultiButtonEntryItem>();
         List<Func<string, bool>> _filters = new List<Func<string, bool>>();
+        Entry _entry = null;
 
         Interop.Elementary.MultiButtonEntryItemFilterCallback _filtercallback;
 
@@ -124,7 +125,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_multibuttonentry_selected_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_multibuttonentry_selected_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             }
         }
@@ -136,11 +137,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_multibuttonentry_editable_get(Handle);
+                return Interop.Elementary.elm_multibuttonentry_editable_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_multibuttonentry_editable_set(Handle, value);
+                Interop.Elementary.elm_multibuttonentry_editable_set(RealHandle, value);
             }
         }
 
@@ -153,11 +154,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_multibuttonentry_expanded_get(Handle);
+                return Interop.Elementary.elm_multibuttonentry_expanded_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_multibuttonentry_expanded_set(Handle, value);
+                Interop.Elementary.elm_multibuttonentry_expanded_set(RealHandle, value);
             }
         }
 
@@ -168,7 +169,7 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_multibuttonentry_first_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_multibuttonentry_first_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             }
         }
@@ -180,8 +181,24 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr handle = Interop.Elementary.elm_multibuttonentry_last_item_get(Handle);
+                IntPtr handle = Interop.Elementary.elm_multibuttonentry_last_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets the entry object int the multibuttonentry.
+        /// </summary>
+        public Entry Entry
+        {
+            get
+            {
+                if (_entry == null)
+                {
+                    _entry = new EntryInner(this);
+                }
+
+                return _entry;
             }
         }
 
@@ -197,7 +214,7 @@ namespace ElmSharp
         /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem Append(string label)
         {
-            var handle = Interop.Elementary.elm_multibuttonentry_item_append(Handle, label, null, IntPtr.Zero);
+            var handle = Interop.Elementary.elm_multibuttonentry_item_append(RealHandle, label, null, IntPtr.Zero);
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             return item;
         }
@@ -209,7 +226,7 @@ namespace ElmSharp
         /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem Prepend(string label)
         {
-            var handle = Interop.Elementary.elm_multibuttonentry_item_prepend(Handle, label, null, IntPtr.Zero);
+            var handle = Interop.Elementary.elm_multibuttonentry_item_prepend(RealHandle, label, null, IntPtr.Zero);
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             return item;
         }
@@ -222,7 +239,7 @@ namespace ElmSharp
         /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem InsertBefore(MultiButtonEntryItem before, string label)
         {
-            var handle = Interop.Elementary.elm_multibuttonentry_item_insert_before(Handle, before.Handle, label, null, IntPtr.Zero);
+            var handle = Interop.Elementary.elm_multibuttonentry_item_insert_before(RealHandle, before.Handle, label, null, IntPtr.Zero);
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             return item;
         }
@@ -235,7 +252,7 @@ namespace ElmSharp
         /// <returns>A MultiButtonEntryItem to the item added.</returns>
         public MultiButtonEntryItem InsertAfter(MultiButtonEntryItem after, string label)
         {
-            var handle = Interop.Elementary.elm_multibuttonentry_item_insert_after(Handle, after.Handle, label, null, IntPtr.Zero);
+            var handle = Interop.Elementary.elm_multibuttonentry_item_insert_after(RealHandle, after.Handle, label, null, IntPtr.Zero);
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(handle) as MultiButtonEntryItem;
             return item;
         }
@@ -245,7 +262,7 @@ namespace ElmSharp
         /// </summary>
         public void Clear()
         {
-            Interop.Elementary.elm_multibuttonentry_clear(Handle);
+            Interop.Elementary.elm_multibuttonentry_clear(RealHandle);
             _children.Clear();
         }
 
@@ -258,7 +275,7 @@ namespace ElmSharp
             _filters.Add(func);
             if (_filters.Count == 1)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_append(Handle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_append(RealHandle, _filtercallback, IntPtr.Zero);
             }
         }
 
@@ -271,7 +288,7 @@ namespace ElmSharp
             _filters.Insert(0, func);
             if (_filters.Count == 1)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_prepend(Handle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_prepend(RealHandle, _filtercallback, IntPtr.Zero);
             }
         }
 
@@ -284,7 +301,7 @@ namespace ElmSharp
             _filters.Remove(func);
             if (_filters.Count == 0)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_remove(Handle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_remove(RealHandle, _filtercallback, IntPtr.Zero);
             }
         }
 
@@ -314,6 +331,18 @@ namespace ElmSharp
                     return false;
             }
             return true;
+        }
+
+        internal class EntryInner : Entry
+        {
+            internal EntryInner(EvasObject parent) : base(parent)
+            {
+            }
+
+            protected override IntPtr CreateHandle(EvasObject parent)
+            {
+                return Interop.Elementary.elm_multibuttonentry_entry_get(parent.Handle);
+            }
         }
     }
 
