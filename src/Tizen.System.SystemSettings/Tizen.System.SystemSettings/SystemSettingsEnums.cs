@@ -19,12 +19,12 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for all available system settings
     /// </summary>
-    public enum SystemSettingsKeys
+    public enum SystemSettingsKeys : int
     {
         /// <summary>
         /// (string) The file path of the current ringtone
         /// </summary>
-        IncomingCallRingtone,
+        IncomingCallRingtone = 0,
         /// <summary>
         /// (string) The file path of the current home screen wallpaper
         /// </summary>
