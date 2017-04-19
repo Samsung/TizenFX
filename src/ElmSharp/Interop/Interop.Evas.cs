@@ -282,33 +282,33 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern void evas_event_feed_key_up(IntPtr obj, string keyname, string key, string str, string compose, int timestamp, IntPtr data);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_ref(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_unref(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern int evas_object_ref_get(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_repeat_events_set(IntPtr obj, bool repeat);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool evas_object_repeat_events_get(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_propagate_events_set(IntPtr obj, bool propagate);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool evas_object_propagate_events_get(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_pass_events_set(IntPtr obj, bool propagate);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Evas)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool evas_object_pass_events_get(IntPtr obj);
 
