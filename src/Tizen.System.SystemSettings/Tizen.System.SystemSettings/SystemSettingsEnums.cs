@@ -137,7 +137,19 @@ namespace Tizen.System
         /// <summary>
         /// (int) Indicates the current lock state
         /// </summary>
-        LockState
+        LockState,
+        /// <summary>
+        /// (string)  Indicates Ads ID for each device
+        /// </summary>
+        AdsId,
+        /// <summary>
+        /// (int) Indicates Ultra Data Save status, one of #system_settings_uds_state_e values
+        /// </summary>
+        UltraDataSave,
+        /// <summary>
+        /// (string) Indicates Ultra Data Save Package List (Since 4.0), the list is a string containing whitelisted package names separated with semicolons (;)
+        /// </summary>
+        UltraDataSavePackageList
     }
     /// <summary>
     /// Enumeration for Idle Lock State.
@@ -182,5 +194,23 @@ namespace Tizen.System
         /// A giant size
         /// </summary>
         Giant
+    }
+    /// <summary>
+    /// Enumeration for ultra data save
+    /// </summary>
+    public enum SystemSettingsUdsState
+    {
+        /// <summary>
+        /// UDS Off
+        /// </summary>
+        UdsOff = 0,
+        /// <summary>
+        /// UDS On
+        /// </summary>
+        UdsOn,
+        /// <summary>
+        /// UDS On and the app is whitelisted
+        /// </summary>
+        UdsOnWhitelisted,
     }
 }

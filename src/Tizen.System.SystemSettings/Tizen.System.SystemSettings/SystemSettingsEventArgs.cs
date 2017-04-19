@@ -627,4 +627,73 @@ namespace Tizen.System
             }
         }
     }
+
+    /// <summary>
+    /// EventArgs type for the event AdsIdChanged
+    /// </summary>
+    public class AdsIdChangedEventArgs : EventArgs
+    {
+        private readonly string _adsId = null;
+        internal AdsIdChangedEventArgs(string val)
+        {
+            _adsId = val;
+        }
+
+        /// <summary>
+        /// Indicates the current lock state
+        /// </summary>
+        public string Value
+        {
+            get
+            {
+                return _adsId;
+            }
+        }
+    }
+
+    /// <summary>
+    /// EventArgs type for the event UltraDataSaveChanged
+    /// </summary>
+    public class UltraDataSaveChangedEventArgs : EventArgs
+    {
+        private readonly SystemSettingsUdsState _ultraDataSave = SystemSettingsUdsState.UdsOff;
+        internal UltraDataSaveChangedEventArgs(SystemSettingsUdsState val)
+        {
+            _ultraDataSave = val;
+        }
+
+        /// <summary>
+        /// Indicates the current lock state
+        /// </summary>
+        public SystemSettingsUdsState Value
+        {
+            get
+            {
+                return _ultraDataSave;
+            }
+        }
+    }
+
+    /// <summary>
+    /// EventArgs type for the event UltraDataSavePackageListChanged
+    /// </summary>
+    public class UltraDataSavePackageListChangedEventArgs : EventArgs
+    {
+        private readonly string _ultraDataSavePackageList = null;
+        internal UltraDataSavePackageListChangedEventArgs(string val)
+        {
+            _ultraDataSavePackageList = val;
+        }
+
+        /// <summary>
+        /// Indicates the current lock state
+        /// </summary>
+        public string Value
+        {
+            get
+            {
+                return _ultraDataSavePackageList;
+            }
+        }
+    }
 }

@@ -632,6 +632,51 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// The current system ADS ID
+        /// </summary>
+        public static string AdsId
+        {
+            get
+            {
+                string adsId;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.AdsId, out adsId);
+                if (res != SystemSettingsError.None)
+                {
+                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get AdsId system setting value.");
+                }
+                return adsId;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueString(SystemSettingsKeys.AdsId, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set AdsId system setting.");
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Indicates the time period for notification repetitions.
+        /// </summary>
+        public static SystemSettingsUdsState UltraDataSave
+        {
+            get
+            {
+                int UltraDataSave;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.UltraDataSave, out UltraDataSave);
+                if (res != SystemSettingsError.None)
+                {
+                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get UltraDataSave system setting value.");
+                }
+                return (SystemSettingsUdsState)UltraDataSave;
+            }
+        }
+
+
+
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
             string path = SystemSettings.IncomingCallRingtone;
@@ -1731,6 +1776,129 @@ namespace Tizen.System
                 if (s_lockStateChanged == null)
                 {
                     SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockState);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_adsIdChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            string adsId = SystemSettings.AdsId;
+            AdsIdChangedEventArgs eventArgs = new AdsIdChangedEventArgs(adsId);
+            s_adsIdChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AdsIdChangedEventArgs> s_adsIdChanged;
+        /// <summary>
+        /// AdsIdChanged event is triggered when the current ADS ID state is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">A AdsIdChangedEventArgs object that contains the key & changed value</param>
+        public static event EventHandler<AdsIdChangedEventArgs> AdsIdChanged
+        {
+            add
+            {
+                if (s_adsIdChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_adsIdChanged += value;
+            }
+
+            remove
+            {
+                s_adsIdChanged -= value;
+                if (s_adsIdChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AdsId);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_ultraDataSaveChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            SystemSettingsUdsState ultraDataSave = SystemSettings.UltraDataSave;
+            UltraDataSaveChangedEventArgs eventArgs = new UltraDataSaveChangedEventArgs(ultraDataSave);
+            s_ultraDataSaveChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<UltraDataSaveChangedEventArgs> s_ultraDataSaveChanged;
+        /// <summary>
+        /// UltraDataSaveChanged event is triggered when the current Ultra Data Save state is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">A UltraDataSaveChangedEventArgs object that contains the key & changed value</param>
+        public static event EventHandler<UltraDataSaveChangedEventArgs> UltraDataSaveChanged
+        {
+            add
+            {
+                if (s_ultraDataSaveChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_ultraDataSaveChanged += value;
+            }
+
+            remove
+            {
+                s_ultraDataSaveChanged -= value;
+                if (s_ultraDataSaveChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSave);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_ultraDataSavePackageListChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            string ultraDataSavePackageList = "None";
+            UltraDataSavePackageListChangedEventArgs eventArgs = new UltraDataSavePackageListChangedEventArgs(ultraDataSavePackageList);
+            s_ultraDataSavePackageListChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<UltraDataSavePackageListChangedEventArgs> s_ultraDataSavePackageListChanged;
+        /// <summary>
+        /// UltraDataSavePackageListChanged event is triggered when the current ADS ID state is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">A UltraDataSavePackageListChangedEventArgs object that contains the key & changed value</param>
+        public static event EventHandler<UltraDataSavePackageListChangedEventArgs> UltraDataSavePackageListChanged
+        {
+            add
+            {
+                if (s_ultraDataSavePackageListChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_ultraDataSavePackageListChanged += value;
+            }
+
+            remove
+            {
+                s_ultraDataSavePackageListChanged -= value;
+                if (s_ultraDataSavePackageListChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSavePackageList);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
