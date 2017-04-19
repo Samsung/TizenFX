@@ -19,7 +19,7 @@ using System;
 namespace Tizen.PhonenumberUtils
 {
     /// <summary>
-    /// This class makes applications can use phonenumber utils.
+    /// The PhonenumberUtils class provides methods for parsing, formatting and normalizing phone numbers.
     /// </summary>
     public class PhonenumberUtils : IDisposable
     {
@@ -42,6 +42,10 @@ namespace Tizen.PhonenumberUtils
             Dispose(false);
         }
 
+        /// <summary>
+        /// Releases all resources used by the PhonenumberUtils.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -52,11 +56,6 @@ namespace Tizen.PhonenumberUtils
         {
             if (disposed)
                 return;
-
-            if (disposing)
-            {
-                // Free managed objects
-            }
 
             // Free unmanaged objects
             int ret;
@@ -124,15 +123,20 @@ namespace Tizen.PhonenumberUtils
 
         /// <summary>
         /// Gets the normalized number.
-        /// </summary>
-        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// </summary>        
         /// <param name="number">The number</param>
         /// <returns>The normalized number</returns>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="NotSupportedException">Thrown when phonenumber-utils is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <remarks>
+        /// Normalized number starts with plus('+') and country code, and excludes the separators such as dash or space. 
+        /// It is a format of E.164 standard including the country code based on current network.
+        /// </remarks>
         public string GetNormalizedNumber(string number)
         {
             int ret;

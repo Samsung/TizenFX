@@ -54,6 +54,7 @@
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.PhonenumberUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.PhonenumberUtils\NamespaceDoc.cs" />
     <Compile Include="Tizen.PhonenumberUtils\PhonenumberUtilsEnumerations.cs" />
     <Compile Include="Tizen.PhonenumberUtils\PhonenumberUtilsErrorFactory.cs" />
     <Compile Include="Tizen.PhonenumberUtils\PhonenumberUtils.cs" />
