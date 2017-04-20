@@ -43,6 +43,7 @@
     <Compile Include="TC\BackgroundTest1.cs" />
     <Compile Include="TC\BackgroundTest2.cs" />
     <Compile Include="TC\BackgroundTest3.cs" />
+    <Compile Include="TC\GenListTest10.cs" />
     <Compile Include="TC\MultibuttonEntryTest1.cs" />
     <Compile Include="TC\DateTimeSelectorTest2.cs" />
     <Compile Include="TC\EntryTest2.cs" />
@@ -192,10 +193,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
