@@ -154,7 +154,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for Idle Lock State.
     /// </summary>
-    public enum SystemSettingsIdleLockState
+    public enum SystemSettingsIdleLockState : int
     {
         /// <summary>
         /// Device is unlocked
@@ -172,7 +172,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for font size.
     /// </summary>
-    public enum SystemSettingsFontSize
+    public enum SystemSettingsFontSize : int
     {
         /// <summary>
         /// A small size
@@ -198,7 +198,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for ultra data save
     /// </summary>
-    public enum SystemSettingsUdsState
+    public enum SystemSettingsUdsState : int
     {
         /// <summary>
         /// UDS Off
