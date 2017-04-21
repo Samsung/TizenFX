@@ -134,6 +134,8 @@ namespace Tizen.Pims.Calendar
             EventException          = (ViewEvent|DataTypeRecord) + 54,
             EventExtended           = (ViewEvent|DataTypeRecord) + 55,
             EventIsAllday           = (ViewEvent|DataTypeInteger|PropertyReadOnly) + 56,
+            EventLinkCount          = (ViewEvent|DataTypeInteger|PropertyReadOnly) + 57,
+            EventLinkBaseId         = (ViewEvent|DataTypeInteger|PropertyReadOnly) + 58,
 
             /// Todo
             TodoId                   = (ViewTodo|DataTypeInteger|PropertyReadOnly),
@@ -644,6 +646,14 @@ namespace Tizen.Pims.Calendar
             /// The event is an allday event or not
             /// </summary>
             public const uint IsAllday           = (uint)PropertyIds.EventIsAllday;
+            /// <summary>
+            /// The linked event count
+            /// </summary>
+            public const uint LinkCount          = (uint)PropertyIds.EventLinkCount;
+            /// <summary>
+            /// The event is an base linked event
+            /// </summary>
+            public const uint LinkBaseId         = (uint)PropertyIds.EventLinkBaseId;
         }
 
         /// <summary>

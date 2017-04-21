@@ -24,15 +24,15 @@ internal static partial class Interop
         internal static partial class Service
         {
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect")]
-            internal static extern  int Connect();
+            internal static extern int Connect();
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect")]
-            internal static extern  int Disconnect();
+            internal static extern int Disconnect();
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_on_thread")]
-            internal static extern  int ConnectOnThread();
+            internal static extern int ConnectOnThread();
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect_on_thread")]
-            internal static extern  int DisconnectOnThread();
+            internal static extern int DisconnectOnThread();
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_with_flags")]
-            internal static extern  int ConnectWithFlags(uint flags);
+            internal static extern int ConnectWithFlags(uint flags);
         }
     }
 }

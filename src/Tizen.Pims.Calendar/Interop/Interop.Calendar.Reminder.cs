@@ -27,10 +27,9 @@ internal static partial class Interop
             internal delegate void ReminderAlertedCallback(string param, IntPtr userData);
 
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_reminder_add_cb")]
-            internal static extern  int Add(ReminderAlertedCallback callback, IntPtr userData);
-
+            internal static extern int Add(ReminderAlertedCallback callback, IntPtr userData);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_remove_changed_cb")]
-            internal static extern  int Remove(ReminderAlertedCallback callback, IntPtr userData);
+            internal static extern int Remove(ReminderAlertedCallback callback, IntPtr userData);
         }
     }
 }

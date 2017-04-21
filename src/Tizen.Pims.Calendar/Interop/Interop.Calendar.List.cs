@@ -24,25 +24,25 @@ internal static partial class Interop
         internal static partial class List
         {
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_create")]
-            internal static extern  int Create(out IntPtr listHandle);
+            internal static extern int Create(out IntPtr listHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_destroy")]
-            internal static extern  int Destroy(IntPtr listHandle, bool delete);
+            internal static extern int Destroy(IntPtr listHandle, bool delete);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_get_count")]
-            internal static extern  int GetCount(IntPtr listHandle, out int count);
+            internal static extern int GetCount(IntPtr listHandle, out int count);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_add")]
-            internal static extern  int Add(IntPtr listHandle, IntPtr recordHandle);
+            internal static extern int Add(IntPtr listHandle, IntPtr recordHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_remove")]
-            internal static extern  int Remove(IntPtr listHandle, IntPtr recordHandle);
+            internal static extern int Remove(IntPtr listHandle, IntPtr recordHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_get_current_record_p")]
-            internal static extern  int GetCurrentRecordP(IntPtr listHandle, out IntPtr recordHandle);
+            internal static extern int GetCurrentRecordP(IntPtr listHandle, out IntPtr recordHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_prev")]
-            internal static extern  int Prev(IntPtr listHandle);
+            internal static extern int Prev(IntPtr listHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_next")]
-            internal static extern  int Next(IntPtr listHandle);
+            internal static extern int Next(IntPtr listHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_first")]
-            internal static extern  int First(IntPtr listHandle);
+            internal static extern int First(IntPtr listHandle);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_list_last")]
-            internal static extern  int Last(IntPtr listHandle);
+            internal static extern int Last(IntPtr listHandle);
         }
     }
 }

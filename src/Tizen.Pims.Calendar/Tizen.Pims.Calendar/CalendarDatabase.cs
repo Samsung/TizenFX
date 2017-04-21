@@ -418,5 +418,36 @@ namespace Tizen.Pims.Calendar
             _callbackMap.Remove(viewUri);
             _delegateMap.Remove(viewUri);
         }
+
+        /// <summary>
+        /// Link a record to another record.
+        /// </summary>
+        /// <param name="baseId">The base record ID</param>
+        /// <param name="recordId">The record ID to link to</param>
+        public void LinkRecord(int baseId, int recordId)
+        {
+            Log.Debug(Globals.LogTag, "LinkRecord");
+            int error = Interop.Calendar.Database.LinkRecord(baseId, recordId);
+            if (CalendarError.None != (CalendarError)error)
+            {
+                Log.Error(Globals.LogTag, "LinkRecor Failed with error " + error);
+                throw CalendarErrorFactory.GetException(error);
+            }
+        }
+
+        /// <summary>
+        /// Unlink a record from base record.
+        /// </summary>
+        /// <param name="recordId">The record ID to unlink</param>
+        public void UnlinkRecord(int recordId)
+        {
+            Log.Debug(Globals.LogTag, "UnlinkRecord");
+            int error = Interop.Calendar.Database.UnlinkRecord(recordId);
+            if (CalendarError.None != (CalendarError)error)
+            {
+                Log.Error(Globals.LogTag, "UnlinkRecor Failed with error " + error);
+                throw CalendarErrorFactory.GetException(error);
+            }
+        }
     }
 }
