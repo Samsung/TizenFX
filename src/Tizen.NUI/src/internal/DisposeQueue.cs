@@ -18,10 +18,9 @@ namespace Tizen.NUI
         private static readonly DisposeQueue _disposableQueue = new DisposeQueue();
         private List<IDisposable> _disposables = new List<IDisposable>();
         private Object _listLock = new object();
-        /* temporary removal because of crash issue. this will be fixed later. 2017-04-04
         private EventThreadCallback _eventThreadCallback;
         private EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
-        */
+
         private DisposeQueue()
         {
         }
@@ -37,10 +36,8 @@ namespace Tizen.NUI
 
         public void Initialize()
         {
-            /* temporary removal because of crash issue. this will be fixed later. 2017-04-04
             _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
             _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
-            */
         }
 
         public void Add(IDisposable disposable)
@@ -50,9 +47,10 @@ namespace Tizen.NUI
                 _disposables.Add(disposable);
             }
 
-            /* temporary removal because of crash issue. this will be fixed later. 2017-04-04
-            _eventThreadCallback.Trigger();
-            */
+            if (_eventThreadCallback != null)
+            {
+                _eventThreadCallback.Trigger();
+            }
         }
 
         private void ProcessDisposables()
