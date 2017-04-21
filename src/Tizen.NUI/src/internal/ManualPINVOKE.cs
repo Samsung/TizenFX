@@ -277,5 +277,20 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_NativeVersionCheck")]
         public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GrabKeyTopmost")]
+        public static extern bool GrabKeyTopmost(System.IntPtr Window, int DaliKey);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_UngrabKeyTopmost")]
+        public static extern bool UngrabKeyTopmost(System.IntPtr Window, int DaliKey);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GrabKey")]
+        public static extern bool GrabKey(System.IntPtr Window, int DaliKey, int GrabMode);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_UngrabKey")]
+        public static extern bool UngrabKey(System.IntPtr Window, int DaliKey);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetNativeWindowHandler")]
+        public static extern System.IntPtr GetNativeWindowHandler(System.IntPtr Window);
+
     }
 }

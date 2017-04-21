@@ -19,6 +19,8 @@ namespace VisualViewTest2
         TextVisual textMap1;
         TextVisual textMap2;
 
+        Window _window;
+
         int imgIndex;
 
         readonly string resourcePath = "/home/owner/apps_rw/NUISamples.TizenTV/res/images/";
@@ -137,8 +139,15 @@ namespace VisualViewTest2
             Stage.Instance.Key += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
             Stage.Instance.Touch += Instance_Touch;
+            _window = this.Window;
+            _window.WindowFocusChanged += _window_WindowFocusChanged;
+
         }
 
+        private void _window_WindowFocusChanged(object sender, Window.WindowFocusChangedEventArgs e)
+        {
+            Tizen.Log.Fatal("NUI", "window focus changed!() focus gained=" + e.FocusGained);
+        }
 
         private void Instance_Touch(object sender, Stage.TouchEventArgs e)
         {
@@ -147,7 +156,7 @@ namespace VisualViewTest2
 
         private bool VisualSample_KeyEvent(object source, View.KeyEventArgs e)
         {
-            Tizen.Log.Debug("NUI", "View_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
+            Tizen.Log.Fatal("NUI", "View_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
 
             if (e.Key.State == Key.StateType.Down)
             {
@@ -158,17 +167,35 @@ namespace VisualViewTest2
                         textMap1.PointSize = 14;
                         textMap1.TextColor = Color.Red;
                         textMap1.Text = "Hello NY!";
+                        //this.VersionCheckTest();
+                        /*
+                           DALI_KEY_VOLUME_UP      = 200,      ///< Volume up key @SINCE_1_0.0
+                           DALI_KEY_VOLUME_DOWN    = 201,       ///< Volume down key @SINCE_1_0.0
+                        */
+                        try
+                        {
+                            Tizen.Log.Fatal("NUI", "GrabKeyTopmost (200==vol up) ret=" + _window.GrabKeyTopmost(200));
+                        }
+                        catch (Exception except)
+                        {
+                            Tizen.Log.Fatal("NUI", "Exception!!! GrabKeyTopmost (200==vol up) msg=" + except.Message);
+                        }
+
                     }
                     else if (e.Key.KeyPressedName == "Down")
                     {
                         textMap1.PointSize = 17;
                         textMap1.TextColor = Color.Blue;
                         textMap1.Text = "Goodbye NY.";
+
+                        Tizen.Log.Fatal("NUI", "UngrabKeyTopmost (200==vol up) ret=" + _window.UngrabKeyTopmost(200));
+
                     }
                     else if (e.Key.KeyPressedName == "Return")
                     {
                         imgIndex = (imgIndex + 1) % 6;
                         imageMap.URL = resourcePath + "gallery-" + imgIndex + ".jpg";
+                        //Tizen.Log.Fatal("NUI", "get native ecore wayland hander=" + _window.GetNativeWindowHandler());
                     }
 
                 }
@@ -179,6 +206,7 @@ namespace VisualViewTest2
                         textMap2.PointSize = 14;
                         textMap2.TextColor = Color.Red;
                         textMap2.Text = "I'm happy!";
+                        Tizen.Log.Fatal("NUI", "grab key (201==vol down) ret=" + _window.GrabKey(201, Window.KeyGrabMode.Topmost));
                     }
 
                     if (e.Key.KeyPressedName == "Down")
@@ -186,11 +214,13 @@ namespace VisualViewTest2
                         textMap2.PointSize = 17;
                         textMap2.TextColor = Color.Blue;
                         textMap2.Text = "I'm unhappy";
+                        Tizen.Log.Fatal("NUI", "ungrab key (201==vol down) ret=" + _window.UngrabKey(201));
                     }
                     else if (e.Key.KeyPressedName == "Return")
                     {
                         imgIndex = (imgIndex + 1) % 6;
                         imageMap2.URL = resourcePath + "gallery-" + imgIndex + ".jpg";
+                        //Tizen.Log.Fatal("NUI", "get native ecore wayland hander=" + _window.GetNativeWindowHandler());
                     }
                 }
             }
@@ -201,8 +231,8 @@ namespace VisualViewTest2
         {
             View currentFocusView = FocusManager.Instance.GetCurrentFocusView();
 
-            Tizen.Log.Debug("NUI", "Stage_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
-            //Tizen.Log.Debug("NUI", " CurrentFocusView : " + currentFocusView.HasBody() + currentFocusView?.Name);
+            Tizen.Log.Fatal("NUI", "Stage_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
+            //Tizen.Log.Fatal("NUI", " CurrentFocusView : " + currentFocusView.HasBody() + currentFocusView?.Name);
         }
 
         private void VisualSample_FocusLost(object sender, EventArgs e)
@@ -224,7 +254,7 @@ namespace VisualViewTest2
                 imageMap.Opacity = 0.5f;
             }
 
-            Tizen.Log.Debug("NUI", "FocusLost-" + view.Name);
+            Tizen.Log.Fatal("NUI", "FocusLost-" + view.Name);
         }
 
         private void VisualSample_FocusGained(object sender, EventArgs e)
@@ -246,7 +276,7 @@ namespace VisualViewTest2
                 imageMap.Opacity = 1.0f;
             }
 
-            Tizen.Log.Debug("NUI", "FocusGained-" + view.Name);
+            Tizen.Log.Fatal("NUI", "FocusGained-" + view.Name);
         }
 
         static void _Main(string[] args)

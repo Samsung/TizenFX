@@ -349,6 +349,69 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Grabs the key specified by a key for a window only when a window is the topmost window. <br>
+        /// This function can be used for following example scenarios: <br>
+        /// - Mobile - Using volume up/down as zoom up/down in camera apps. <br>
+        /// </summary>
+        /// <param name="DaliKey">The key code to grab</param>
+        /// <returns>true if the grab succeeds</returns>
+        public bool GrabKeyTopmost(int DaliKey)
+        {
+            bool ret = NDalicManualPINVOKE.GrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Ungrabs the key specified by a key for a window. <br>
+        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event.<br>
+        /// </summary>
+        /// <param name="DaliKey">The key code to ungrab</param>
+        /// <returns>true if the ungrab succeeds</returns>
+        public bool UngrabKeyTopmost(int DaliKey)
+        {
+            bool ret = NDalicManualPINVOKE.UngrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+        /// <summary>
+        ///  Grabs the key specified by a key for a window in a GrabMode. <br>
+        ///  Details: This function can be used for following example scenarios: <br>
+        ///  - TV - A user might want to change the volume or channel of the background TV contents while focusing on the foregrund app. <br>
+        ///  - Mobile - When a user presses Home key, the homescreen appears regardless of current foreground app. <br>
+        ///  - Mobile - Using volume up/down as zoom up/down in camera apps. <br>
+        /// </summary>
+        /// <param name="DaliKey">The key code to grab</param>
+        /// <param name="GrabMode">The grab mode for the key</param>
+        /// <returns>true if the grab succeeds</returns>
+        public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
+        {
+            bool ret = NDalicManualPINVOKE.GrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey, (int)GrabMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+        /// <summary>
+        /// Ungrabs the key specified by a key for a window.  <br>
+        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br>
+        /// </summary>
+        /// <param name="DaliKey">The key code to ungrab</param>
+        /// <returns>true if the ungrab succeeds</returns>
+        public bool UngrabKey(int DaliKey)
+        {
+            bool ret = NDalicManualPINVOKE.UngrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+        internal System.IntPtr GetNativeWindowHandler()
+        {
+            System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+
+        /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
         /// </summary>
         public enum WindowOrientation
@@ -358,6 +421,29 @@ namespace Tizen.NUI
             PortraitInverse = 180,
             LandscapeInverse = 270
         }
+
+        /// <summary>
+        /// Enumeration for key grab mode for platform-level APIs.
+        /// </summary>
+        public enum KeyGrabMode
+        {
+            /// <summary>
+            /// Grab a key only when on the top of the grabbing-window stack mode.
+            /// </summary>
+            Topmost = 0,
+            /// <summary>
+            /// Grab a key together with the other client window(s) mode.
+            /// </summary>
+            Shared,
+            /// <summary>
+            /// Grab a key exclusively regardless of the grabbing-window's position on the window stack with the possibility of overriding the grab by the other client window mode.
+            /// </summary>
+            OverrideExclusive,
+            /// <summary>
+            /// Grab a key exclusively regardless of the grabbing-window's position on the window stack mode.
+            /// </summary>
+            Exclusive
+        };
 
         /// <summary>
         /// Enumeration for opacity of the indicator.
@@ -378,7 +464,5 @@ namespace Tizen.NUI
             Visible = 1,
             Auto = 2
         }
-
     }
-
 }
