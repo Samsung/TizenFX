@@ -65,11 +65,14 @@ namespace Tizen.NUI
 
         public void Trigger()
         {
-            NDalicManualPINVOKE.EventThreadCallback_Trigger(swigCPtr);
+            if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
+            {
+                NDalicManualPINVOKE.EventThreadCallback_Trigger(swigCPtr);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
 
 }
