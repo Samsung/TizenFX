@@ -407,7 +407,9 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "LabelRelativeAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "LabelRelativeAlignment get error!");
+#endif
                 }
                 switch (temp)
                 {

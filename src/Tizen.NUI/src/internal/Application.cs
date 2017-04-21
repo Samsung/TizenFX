@@ -352,7 +352,9 @@ namespace Tizen.NUI
 
         private static void LOG(string str)
         {
-            //Tizen.Log.Debug("NUI", str);
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", str);
+#endif
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -1052,10 +1054,13 @@ namespace Tizen.NUI
         internal void SetupDelegates()
         {
             InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialize);
+#if DEBUG_ON
             Tizen.Log.Debug("NUI", "InitSignal connection count");
-
+#endif
             this.InitSignal().Connect(initializeCallback);
-            //Tizen.Log.Debug("NUI",  "InitSignal connection count = " + app.InitSignal().GetConnectionCount() );
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI",  "InitSignal connection count = " + InitSignal().GetConnectionCount() );
+#endif
         }
 
         public static Application NewApplication()
@@ -1093,13 +1098,14 @@ namespace Tizen.NUI
                         Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
-                catch (Exception e)
+                catch (Exception exc)
                 {
                     //throw new System.InvalidOperationException("Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
                     Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
+                    Tizen.Log.Fatal("NUI", "exception occured! =" + exc.Message);
                 }
+             LOG(" Dali native version="+ver1 + "." + ver2 + "." + ver3 + "	NUI version=" +  Version.nuiVer1 + "." +  Version.nuiVer2 + "." +  Version.nuiVer3 + Version.nuiRelease);
             }
-
             LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 
             // register all Views with the type registry, so that can be created / styled via JSON

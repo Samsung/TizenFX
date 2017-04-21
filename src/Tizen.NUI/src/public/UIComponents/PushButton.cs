@@ -252,7 +252,9 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(PushButton.Property.ICON_ALIGNMENT).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "IconAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "IconAlignment get error!");
+#endif
                 }
                  switch (temp)
                 {

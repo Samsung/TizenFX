@@ -319,7 +319,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(CameraActor.Property.TYPE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "CameraType get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "CameraType get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -366,7 +368,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(CameraActor.Property.PROJECTION_MODE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "ProjectionMode get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "ProjectionMode get error!");
+#endif
                 }
                 switch(temp)
                 {

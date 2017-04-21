@@ -1781,7 +1781,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.COLOR_MODE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "ColorMode get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "ColorMode get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1819,7 +1821,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.DRAW_MODE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "DrawMode get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "DrawMode get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1868,7 +1872,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.WIDTH_RESIZE_POLICY).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "WidthResizePolicy get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "WidthResizePolicy get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1908,7 +1914,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.HEIGHT_RESIZE_POLICY).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "HeightResizePolicy get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "HeightResizePolicy get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1949,7 +1957,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "SizeScalePolicy get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "SizeScalePolicy get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -2109,7 +2119,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(Actor.Property.CLIPPING_MODE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "ClippingMode get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "ClippingMode get error!");
+#endif
                 }
                 switch (temp)
                 {

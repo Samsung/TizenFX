@@ -1,5 +1,5 @@
 
-#define DOT_NET_CORE
+//#define DOT_NET_CORE
 #if (DOT_NET_CORE)
 using System.Reflection;
 #endif
@@ -102,8 +102,9 @@ namespace Tizen.NUI
                 // for every base class increase property start index
                 startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
                 startAnimatablePropertyIndex += maxCountPerDerivation;
-
-                //Tizen.Log.Debug("NUI", "getStartPropertyIndex =  " + viewType.Name +"current index " + startEventPropertyIndex);
+#if DEBUG_ON
+                Tizen.Log.Debug("NUI", "getStartPropertyIndex =  " + viewType.Name +"current index " + startEventPropertyIndex);
+#endif
 #if (DOT_NET_CORE)
                 viewType = viewType.GetTypeInfo().BaseType;
 #else

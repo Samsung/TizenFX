@@ -827,6 +827,9 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Animation_Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+#if DISABLE_ANIMATION
+            Stop(EndActions.StopFinal);
+#endif
         }
 
         /// <summary>

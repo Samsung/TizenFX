@@ -8,7 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-#define DOT_NET_CORE
+//#define DOT_NET_CORE
 #if (DOT_NET_CORE)
 using System.Reflection;
 #endif
@@ -103,7 +103,9 @@ namespace Tizen.NUI
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
             bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(ItemFactory));
+#if DEBUG_ON
             Tizen.Log.Debug("NUI-APP", "hasDerivedMethod=" + hasDerivedMethod);
+#endif
             return hasDerivedMethod && (methodInfo != null);
         }
 #else

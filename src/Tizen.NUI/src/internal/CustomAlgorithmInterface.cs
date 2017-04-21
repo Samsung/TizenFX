@@ -8,8 +8,8 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-#define DOT_NET_CORE
-#if (DOT_NET_CORE)
+//#define DOT_NET_CORE
+#if DOT_NET_CORE
 using System.Reflection;
 #endif
 
@@ -66,7 +66,7 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
     NDalicPINVOKE.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
   }
 
-#if (DOT_NET_CORE)
+#if DOT_NET_CORE
   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
     global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
     bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(CustomAlgorithmInterface));
