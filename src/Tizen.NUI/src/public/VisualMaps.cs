@@ -222,12 +222,16 @@ namespace Tizen.NUI
         {
             if (VisualIndex > 0)
             {
+#if DEBUG_ON
                 Tizen.Log.Debug("NUI", "UpdateVisual()! VisualIndex=" + VisualIndex);
+#endif
                 Parent.UpdateVisual(VisualIndex, Name, this);
             }
             else
             {
+#if DEBUG_ON
                 Tizen.Log.Debug("NUI", "VisualIndex was not set");
+#endif
             }
         }
 

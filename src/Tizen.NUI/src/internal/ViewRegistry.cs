@@ -1,5 +1,5 @@
 
-#define DOT_NET_CORE
+//#define DOT_NET_CORE
 #if (DOT_NET_CORE)
 using System.Reflection;
 #endif
@@ -194,12 +194,16 @@ namespace Tizen.NUI
             Tizen.NUI.PropertyType daliType;
             if (_daliPropertyTypeLookup.TryGetValue(cSharpTypeName, out daliType))
             {
-                //Tizen.Log.Debug("NUI", "mapped "+ cSharpTypeName + " to dAli type " +daliType );
+#if DEBUG_ON
+                Tizen.Log.Debug("NUI", "mapped "+ cSharpTypeName + " to dAli type " +daliType );
+#endif
                 return daliType;
             }
             else
             {
-                // Tizen.Log.Debug("NUI", "Failed to find a mapping between C# property" + cSharpTypeName +" and DALi type");
+#if DEBUG_ON
+                Tizen.Log.Debug("NUI", "Failed to find a mapping between C# property" + cSharpTypeName +" and DALi type");
+#endif
                 return PropertyType.None;
             }
         }
@@ -212,8 +216,9 @@ namespace Tizen.NUI
         private static IntPtr CreateControl(IntPtr cPtrControlName)
         {
             string controlName = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(cPtrControlName);
-            // Tizen.Log.Debug("NUI", "Create controlled called from C++ create a " + controlName);
-
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", "Create controlled called from C++ create a " + controlName);
+#endif
             Func<CustomView> controlConstructor;
 
             // find the control constructor
@@ -240,7 +245,9 @@ namespace Tizen.NUI
             RefObject refObj = view.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
-            //Tizen.Log.Debug("NUI", "________Storing ref object cptr in control map Hex: {0:X}", refCptr);
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", "________Storing ref object cptr in control map Hex: {0:X}"+ refCptr);
+#endif
             if (!Instance._controlMap.ContainsKey(refCptr))
             {
                 Instance._controlMap.Add(refCptr, new WeakReference(view, false));
@@ -275,7 +282,9 @@ namespace Tizen.NUI
         private static void SetProperty(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue)
         {
             string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
-            //Tizen.Log.Debug("NUI",  SetControlProperty  called for:" + name );
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", "SetControlProperty  called for:" + name );
+#endif
             Instance.SetPropertyValue(controlPtr, name, propertyValue);
 
         }
@@ -355,8 +364,9 @@ namespace Tizen.NUI
                         // If the Scriptable attribute exists, then register it with the type registry.
                         if (attr is ScriptableProperty)
                         {
-                            //Tizen.Log.Debug("NUI", "Got a DALi JSON scriptable property = " + propertyInfo.Name +", of type " + propertyInfo.PropertyType.Name);
-
+#if DEBUG_ON
+                            Tizen.Log.Debug("NUI", "Got a DALi JSON scriptable property = " + propertyInfo.Name +", of type " + propertyInfo.PropertyType.Name);
+#endif
                             // first get the attribute type, ( default, or animatable)
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
@@ -371,7 +381,9 @@ namespace Tizen.NUI
                             TypeRegistration.RegisterProperty(viewType.Name, propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
                         }
                     }
-                    // Tizen.Log.Debug("NUI", "property name = " + propertyInfo.Name);
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "property name = " + propertyInfo.Name);
+#endif
                 }
             }
         }
@@ -414,9 +426,9 @@ namespace Tizen.NUI
         private void SetPropertyValue(IntPtr controlPtr, string propertyName, IntPtr propertyValuePtr)
         {
             // Get the C# control that maps to the C++ control
-
-            //Tizen.Log.Debug("NUI", "SetPropertyValue   refObjectPtr = {0:X}", controlPtr);
-
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", "SetPropertyValue   refObjectPtr = {0:X}"+ controlPtr);
+#endif
             PropertyValue propValue = new PropertyValue(propertyValuePtr, false);
 
             WeakReference viewReference;

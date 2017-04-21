@@ -962,7 +962,9 @@ namespace Tizen.NUI
                 int temp = 0;
                 if (GetProperty(View.Property.STATE).Get(ref temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "State get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "State get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1000,7 +1002,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(View.Property.SUB_STATE).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "subState get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "subState get error!");
+#endif
                 }
                 switch (temp)
                 {
@@ -1244,7 +1248,9 @@ namespace Tizen.NUI
                 string temp;
                 if (GetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "CellHorizontalAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "CellHorizontalAlignment get error!");
+#endif
                 }
 
                 switch (temp)
@@ -1299,7 +1305,9 @@ namespace Tizen.NUI
                 string temp;
                 GetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT).Get(out temp);
                 {
-                    //Tizen.Log.Error("NUI", "CellVerticalAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "CellVerticalAlignment get error!");
+#endif
                 }
 
                 switch (temp)

@@ -601,7 +601,9 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(TextField.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
+#endif
                 }
 
                 switch (temp)
@@ -656,7 +658,9 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(TextField.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
                 {
-                    //Tizen.Log.Error("NUI", "VerticalAlignment get error!");
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "VerticalAlignment get error!");
+#endif
                 }
 
                 switch (temp)

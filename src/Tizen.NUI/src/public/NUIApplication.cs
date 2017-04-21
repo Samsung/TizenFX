@@ -29,8 +29,9 @@ namespace Tizen.NUI
     {
         private void LOG(string _str)
         {
-            //Tizen.Log.Debug("NUI", _str);
-            //Tizen.Log.Debug("NUI", "[NUI]" + _str);
+#if DEBUG_ON
+            Tizen.Log.Debug("NUI", _str);
+#endif
         }
 
         /// <summary>
@@ -113,8 +114,9 @@ namespace Tizen.NUI
         {
             // Initialize DisposeQueue Singleton class.
             DisposeQueue disposeQ = DisposeQueue.Instance;
+#if DEBUG_ON
             Tizen.Log.Debug("NUI", "##### 1) DisposeQueue.Instance.Initialize()!");
-
+#endif
             switch (_appMode)
             {
                 case AppMode.Default:
@@ -134,8 +136,9 @@ namespace Tizen.NUI
 
             // This is also required to create DisposeQueue on main thread.
             disposeQ.Initialize();
+#if DEBUG_ON
             Tizen.Log.Debug("NUI", "##### 2) DisposeQueue.Instance.Initialize()!");
-
+#endif
             _stage = Stage.Instance;
             _stage.SetBackgroundColor(Color.White);
             LOG("OnPreCreate() is called!");
