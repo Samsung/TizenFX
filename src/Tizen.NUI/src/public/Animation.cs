@@ -386,6 +386,17 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
+            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
+            if(propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = relativeValue.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)relativeValue;
+                    relativeValue = (float)num;
+                }
+            }
+
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -417,6 +428,17 @@ namespace Tizen.NUI
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
                 throw new System.Exception("second argument string property is invalid parameter!");
+            }
+
+            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
+            if(propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = relativeValue.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)relativeValue;
+                    relativeValue = (float)num;
+                }
             }
 
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
@@ -452,6 +474,17 @@ namespace Tizen.NUI
                 throw new System.Exception("second argument string property is invalid parameter!");
             }
 
+            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
+            if(propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = destinationValue.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)destinationValue;
+                    destinationValue = (float)num;
+                }
+            }
+
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -484,6 +517,17 @@ namespace Tizen.NUI
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
                 throw new System.Exception("second argument string property is invalid parameter!");
+            }
+
+            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
+            if(propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = destinationValue.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)destinationValue;
+                    destinationValue = (float)num;
+                }
             }
 
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
