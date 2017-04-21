@@ -105,6 +105,26 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the slide Speed of the label.
+        /// </summary>
+        /// <remarks>
+        /// The speed of the slide animation in px per seconds.
+        /// If you set the duration of the slide using elm_label_slide_duration_set() you cannot get the correct speed using this function until the label is actually rendered and resized.
+        /// </remarks>
+        /// <seealso cref="SlideDuration"/>
+        public double SlideSpeed
+        {
+            get
+            {
+                return Interop.Elementary.elm_label_slide_speed_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_label_slide_speed_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Sets or gets the ellipsis behavior of the label.
         /// </summary>
         public bool IsEllipsis
