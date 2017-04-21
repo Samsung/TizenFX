@@ -75,7 +75,7 @@ namespace HelloWorldTest
             };
             _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, 500);
             _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
-            _animation.AnimateBy(_text, "ScaleX", 3.0f, 1000, 1500);
+            _animation.AnimateBy(_text, "ScaleX", 3, 1000, 1500);
             _animation.AnimateBy(_text, "ScaleY", 4.0f, 1500, 2000);
             _animation.EndAction = Animation.EndActions.Discard;
             _animation.Finished += AnimationFinished;
