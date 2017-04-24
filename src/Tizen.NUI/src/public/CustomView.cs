@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -715,30 +714,5 @@ namespace Tizen.NUI
         private void OnControlChildRemove(Actor child)
         {
         }
-    }
-
-    /// <summary>
-    /// This specifies ccustomView behaviour types.
-    /// </summary>
-    public enum CustomViewBehaviour
-    {
-        /// <summary>
-        /// Use to provide default behaviour (size negotiation is on, event callbacks are not called)
-        /// </summary>
-        ViewBehaviourDefault = 0,
-        /// <summary>
-        /// True if control does not need size negotiation, i.e. it can be skipped in the algorithm
-        /// </summary>
-        DisableSizeNegotiation = 1 << 0,
-        /// <summary>
-        /// Use to provide key navigation support.
-        /// </summary>
-        RequiresKeyboardNavigationSupport = 1 << 5,
-        /// <summary>
-        /// Use to make style change event disabled.
-        /// </summary>
-        DisableStyleChangeSignals = 1 << 6,
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        LastViewBehaviourFlag
     }
 }

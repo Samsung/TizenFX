@@ -30,7 +30,8 @@ namespace NUISamples.TizenTV.examples
             //new RelativeVectorTest.Example().Run(args);
             //new VisaulAnimationExample.Example().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
-            new VisualViewTest2.VisualSample().Run(args);
+            //new VisualViewTest2.VisualSample().Run(args);
+            new VisualViewTest3.Example().Run(args);                   //o
             //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesAnchorPointTest.Example().Run(args);

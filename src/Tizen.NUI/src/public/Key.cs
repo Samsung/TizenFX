@@ -317,17 +317,4 @@ namespace Tizen.NUI
         }
 
     }
-
-    public enum DeviceClassType
-    {
-        None,
-        Seat,
-        Keyboard,
-        Mouse,
-        Touch,
-        Pen,
-        Pointer,
-        Gamepad
-    }
-
 }

@@ -53,9 +53,9 @@ namespace VisualViewTest2
             imageMap.AnchorPoint = Visual.AlignType.TopBegin;
             imageMap.Origin = Visual.AlignType.TopBegin;
             imageMap.Position = new Vector2(0, 0);
-            imageMap.PositionPolicy = new Vector2(1, 1);
+            imageMap.PositionPolicy = VisualTransformPolicyType.Absolute;
             imageMap.Size = new Vector2(500, 500);
-            imageMap.SizePolicy = new Vector2(1, 1);
+            imageMap.SizePolicy = VisualTransformPolicyType.Absolute;
             imageMap.DepthIndex = 0;
             view[0].AddVisual("bgVisual", imageMap);
 
@@ -65,9 +65,9 @@ namespace VisualViewTest2
             highlightImageMap.AnchorPoint = Visual.AlignType.TopBegin;
             highlightImageMap.Origin = Visual.AlignType.TopBegin;
             highlightImageMap.Size = new Vector2(40, 40);
-            highlightImageMap.SizePolicy = new Vector2(1, 1);
+            highlightImageMap.SizePolicy = VisualTransformPolicyType.Absolute;
             highlightImageMap.Position = new Vector2(10, 10);
-            highlightImageMap.PositionPolicy = new Vector2(1, 1);
+            highlightImageMap.PositionPolicy = VisualTransformPolicyType.Absolute;
             highlightImageMap.DepthIndex = 1;
             view[0].AddVisual("iconVisual", highlightImageMap);
 
@@ -78,9 +78,9 @@ namespace VisualViewTest2
             textMap1.Origin = Visual.AlignType.TopBegin;
             textMap1.PointSize = 20;
             textMap1.Position = new Vector2(60, 210);
-            textMap1.PositionPolicy = new Vector2(1, 1);
+            textMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
             textMap1.Size = new Vector2(600, 200);
-            textMap1.SizePolicy = new Vector2(1, 1);
+            textMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             textMap1.TextColor = Color.Red;
             textMap1.DepthIndex = 5;
             view[0].AddVisual("textVisual", textMap1);
@@ -92,20 +92,20 @@ namespace VisualViewTest2
             imageMap2.AnchorPoint = Visual.AlignType.TopBegin;
             imageMap2.Origin = Visual.AlignType.TopBegin;
             imageMap2.Position = new Vector2(0, 0);
-            imageMap2.PositionPolicy = new Vector2(1, 1);
+            imageMap2.PositionPolicy = VisualTransformPolicyType.Absolute;
             imageMap2.Size = new Vector2(500, 500);
-            imageMap2.SizePolicy = new Vector2(1, 1);
+            imageMap2.SizePolicy = VisualTransformPolicyType.Absolute;
             imageMap2.DepthIndex = 0;
             view[1].AddVisual("bgVisual", imageMap2);
 
             dimImageMap = new ImageVisual();
             dimImageMap.URL = resourcePath + "star-dim.png";
             dimImageMap.Size = new Vector2(40, 40);
-            dimImageMap.SizePolicy = new Vector2(1, 1);
+            dimImageMap.SizePolicy = VisualTransformPolicyType.Absolute;
             dimImageMap.AnchorPoint = Visual.AlignType.TopBegin;
             dimImageMap.Origin = Visual.AlignType.TopBegin;
             dimImageMap.Position = new Vector2(10, 10);
-            dimImageMap.PositionPolicy = new Vector2(1, 1);
+            dimImageMap.PositionPolicy = VisualTransformPolicyType.Absolute;
             dimImageMap.DepthIndex = 1;
             view[1].AddVisual("iconVisual", dimImageMap);
 
@@ -115,9 +115,9 @@ namespace VisualViewTest2
             textMap2.AnchorPoint = Visual.AlignType.TopBegin;
             textMap2.Origin = Visual.AlignType.TopBegin;
             textMap2.Position = new Vector2(60, 210);
-            textMap2.PositionPolicy = new Vector2(1, 1);
+            textMap2.PositionPolicy = VisualTransformPolicyType.Absolute;
             textMap2.Size = new Vector2(600, 200);
-            textMap2.SizePolicy = new Vector2(1, 1);
+            textMap2.SizePolicy = VisualTransformPolicyType.Absolute;
             textMap2.TextColor = Color.Black;
             textMap2.DepthIndex = 5;
             view[1].AddVisual("textVisual", textMap2);

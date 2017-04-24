@@ -597,35 +597,4 @@ namespace Tizen.NUI
         }
 
     }
-
-    /// <summary>
-    /// Enumeration for type determination of how camera operates.
-    /// </summary>
-    public enum CameraType
-    {
-        /// <summary>
-        /// Camera orientation is taken from CameraActor.
-        /// </summary>
-        FreeLook,
-        /// <summary>
-        /// Camera is oriented to always look at a target.
-        /// </summary>
-        LookAtTarget
-    }
-
-    /// <summary>
-    /// Enumeration for projection modes.
-    /// </summary>
-    public enum ProjectionMode
-    {
-        /// <summary>
-        /// Distance causes foreshortening; objects further from the camera appear smaller.
-        /// </summary>
-        PerspectiveProjection,
-        /// <summary>
-        /// Relative distance from the camera does not affect the size of objects.
-        /// </summary>
-        OrthographicProjection
-    }
-
 }

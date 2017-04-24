@@ -64,7 +64,7 @@ namespace HelloTest
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
-            _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
 
             _stage.GetDefaultLayer().Add(_text);

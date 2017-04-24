@@ -474,13 +474,13 @@ namespace Tizen.NUI.UIComponents
                 switch (temp)
                 {
                     case "BEGIN":
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                     case "CENTER":
-                        return HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.Center;
                     case "END":
-                        return HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.End;
                     default:
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                 }
             }
             set
@@ -488,17 +488,17 @@ namespace Tizen.NUI.UIComponents
                 string valueToString = "";
                 switch (value)
                 {
-                    case HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.Begin:
                     {
                         valueToString = "BEGIN";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.Center:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.End:
                     {
                         valueToString = "END";
                         break;

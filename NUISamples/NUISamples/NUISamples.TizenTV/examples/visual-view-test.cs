@@ -67,6 +67,7 @@ namespace VisualViewTest
             ColorVisual colorVisualMap1 = new ColorVisual();
             colorVisualMap1.MixColor = Color.Green;
             _visualView.Background = colorVisualMap1.OutputVisualMap;
+
             stage.GetDefaultLayer().Add(_visualView);
 
             /* image visual 1. */
@@ -74,8 +75,10 @@ namespace VisualViewTest
             imageVisualMap1.URL = resources + "/images/image-1.jpg";
             imageVisualMap1.Size = new Vector2(200.0f, 200.0f);
             imageVisualMap1.Position = new Vector2(10.0f, 10.0f);
-            imageVisualMap1.PositionPolicy = new Vector2(1, 1);
-            imageVisualMap1.SizePolicy = new Vector2(1, 1);
+            imageVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            Console.WriteLine("PositionPolicy:{0}",imageVisualMap1.PositionPolicy);
+            imageVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
+            Console.WriteLine("SizePolicy:{0}",imageVisualMap1.SizePolicy);
             imageVisualMap1.Origin = Visual.AlignType.TopBegin;
             imageVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("imageVisual1", imageVisualMap1);
@@ -85,8 +88,8 @@ namespace VisualViewTest
             imageVisualMap2.URL = resources + "/images/image-2.jpg";
             imageVisualMap2.Size = new Vector2(250.0f, 200.0f);
             imageVisualMap2.Position = new Vector2(220.0f, 10.0f);
-            imageVisualMap2.PositionPolicy = new Vector2(1, 1);
-            imageVisualMap2.SizePolicy = new Vector2(1, 1);
+            imageVisualMap2.PositionPolicy = VisualTransformPolicyType.Absolute;
+            imageVisualMap2.SizePolicy = VisualTransformPolicyType.Absolute;
             imageVisualMap2.Origin = Visual.AlignType.TopBegin;
             imageVisualMap2.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("imageVisual2", imageVisualMap2);
@@ -98,8 +101,8 @@ namespace VisualViewTest
 
             textVisualMap1.Size = new Vector2(900.0f, 250.0f);
             textVisualMap1.Position = new Vector2(10.0f, 220.0f);
-            textVisualMap1.PositionPolicy = new Vector2(1, 1);
-            textVisualMap1.SizePolicy = new Vector2(1, 1);
+            textVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            textVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             textVisualMap1.Origin = Visual.AlignType.TopBegin;
             textVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("textVisual1", textVisualMap1);
@@ -111,8 +114,8 @@ namespace VisualViewTest
 
             borderVisualMap1.Size = new Vector2(100.0f, 100.0f);
             borderVisualMap1.Position = new Vector2(10.0f, 380.0f);
-            borderVisualMap1.PositionPolicy = new Vector2(1, 1);
-            borderVisualMap1.SizePolicy = new Vector2(1, 1);
+            borderVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            borderVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             borderVisualMap1.Origin = Visual.AlignType.TopBegin;
             borderVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("borderVisual1", borderVisualMap1);
@@ -140,8 +143,8 @@ namespace VisualViewTest
 
             gradientVisualMap1.Size = new Vector2(100.0f, 100.0f);
             gradientVisualMap1.Position = new Vector2(120.0f, 380.0f);
-            gradientVisualMap1.PositionPolicy = new Vector2(1, 1);
-            gradientVisualMap1.SizePolicy = new Vector2(1, 1);
+            gradientVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            gradientVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             gradientVisualMap1.Origin = Visual.AlignType.TopBegin;
             gradientVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("gradientVisual1", gradientVisualMap1);
@@ -156,8 +159,8 @@ namespace VisualViewTest
 
             primitiveVisualMap1.Size = new Vector2(100.0f, 100.0f);
             primitiveVisualMap1.Position = new Vector2(230.0f, 380.0f);
-            primitiveVisualMap1.PositionPolicy = new Vector2(1, 1);
-            primitiveVisualMap1.SizePolicy = new Vector2(1, 1);
+            primitiveVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            primitiveVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             primitiveVisualMap1.Origin = Visual.AlignType.TopBegin;
             primitiveVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("primitiveVisual1", primitiveVisualMap1);
@@ -172,8 +175,8 @@ namespace VisualViewTest
 
             primitiveVisualMap2.Size = new Vector2(100.0f, 100.0f);
             primitiveVisualMap2.Position = new Vector2(340.0f, 380.0f);
-            primitiveVisualMap2.PositionPolicy = new Vector2(1, 1);
-            primitiveVisualMap2.SizePolicy = new Vector2(1, 1);
+            primitiveVisualMap2.PositionPolicy = VisualTransformPolicyType.Absolute;
+            primitiveVisualMap2.SizePolicy = VisualTransformPolicyType.Absolute;
             primitiveVisualMap2.Origin = Visual.AlignType.TopBegin;
             primitiveVisualMap2.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("primitiveVisual2", primitiveVisualMap2);
@@ -188,8 +191,8 @@ namespace VisualViewTest
 
             primitiveVisualMap3.Size = new Vector2(100.0f, 100.0f);
             primitiveVisualMap3.Position = new Vector2(10.0f, 490.0f);
-            primitiveVisualMap3.PositionPolicy = new Vector2(1, 1);
-            primitiveVisualMap3.SizePolicy = new Vector2(1, 1);
+            primitiveVisualMap3.PositionPolicy = VisualTransformPolicyType.Absolute;
+            primitiveVisualMap3.SizePolicy = VisualTransformPolicyType.Absolute;
             primitiveVisualMap3.Origin = Visual.AlignType.TopBegin;
             primitiveVisualMap3.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("primitiveVisual3", primitiveVisualMap3);
@@ -204,8 +207,8 @@ namespace VisualViewTest
 
             primitiveVisualMap4.Size = new Vector2(100.0f, 100.0f);
             primitiveVisualMap4.Position = new Vector2(120.0f, 490.0f);
-            primitiveVisualMap4.PositionPolicy = new Vector2(1, 1);
-            primitiveVisualMap4.SizePolicy = new Vector2(1, 1);
+            primitiveVisualMap4.PositionPolicy = VisualTransformPolicyType.Absolute;
+            primitiveVisualMap4.SizePolicy = VisualTransformPolicyType.Absolute;
             primitiveVisualMap4.Origin = Visual.AlignType.TopBegin;
             primitiveVisualMap4.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("primitiveVisual4", primitiveVisualMap4);
@@ -220,8 +223,8 @@ namespace VisualViewTest
 
             primitiveVisualMap5.Size = new Vector2(100.0f, 100.0f);
             primitiveVisualMap5.Position = new Vector2(230.0f, 490.0f);
-            primitiveVisualMap5.PositionPolicy = new Vector2(1, 1);
-            primitiveVisualMap5.SizePolicy = new Vector2(1, 1);
+            primitiveVisualMap5.PositionPolicy = VisualTransformPolicyType.Absolute;
+            primitiveVisualMap5.SizePolicy = VisualTransformPolicyType.Absolute;
             primitiveVisualMap5.Origin = Visual.AlignType.TopBegin;
             primitiveVisualMap5.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("primitiveVisual5", primitiveVisualMap5);
@@ -235,8 +238,8 @@ namespace VisualViewTest
 
             meshVisualMap1.Size = new Size2D(400, 400);
             meshVisualMap1.Position = new Position2D(-50, 600);
-            meshVisualMap1.PositionPolicy = new Vector2(1, 1);
-            meshVisualMap1.SizePolicy = new Vector2(1, 1);
+            meshVisualMap1.PositionPolicy = VisualTransformPolicyType.Absolute;
+            meshVisualMap1.SizePolicy = VisualTransformPolicyType.Absolute;
             meshVisualMap1.Origin = Visual.AlignType.TopBegin;
             meshVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("meshVisual1", meshVisualMap1);
@@ -246,8 +249,10 @@ namespace VisualViewTest
             npatchImageVisualMap1.URL = resources + "/images/gallery-4.jpg";
             npatchImageVisualMap1.Size = new Size2D(400, 400);
             npatchImageVisualMap1.Position = new Position2D(300, 600);
-            npatchImageVisualMap1.PositionPolicy = new Vector2(1, 1);
-            npatchImageVisualMap1.SizePolicy = new Vector2(1, 1);
+            npatchImageVisualMap1.PositionPolicyX = VisualTransformPolicyType.Absolute;
+            npatchImageVisualMap1.PositionPolicyY = VisualTransformPolicyType.Absolute;
+            npatchImageVisualMap1.SizePolicyWidth = VisualTransformPolicyType.Absolute;
+            npatchImageVisualMap1.SizePolicyHeight = VisualTransformPolicyType.Absolute;
             npatchImageVisualMap1.Origin = Visual.AlignType.TopBegin;
             npatchImageVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             npatchImageVisualMap1.Border = new Rectangle(100, 100, 100, 100);

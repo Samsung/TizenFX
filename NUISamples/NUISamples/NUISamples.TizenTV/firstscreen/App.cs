@@ -442,8 +442,8 @@ namespace FirstScreen
             _dateOfTest.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             _dateOfTest.TextColor = Color.White;
             _dateOfTest.Text = "  Common Interface Define Verification Test of 2017-02-10 #1";
-            _dateOfTest.HorizontalAlignment = HorizontalAlignment.HorizontalAlignBegin;
-            _dateOfTest.VerticalAlignment = VerticalAlignment.VerticalAlignCenter;
+            _dateOfTest.HorizontalAlignment = HorizontalAlignment.Begin;
+            _dateOfTest.VerticalAlignment = VerticalAlignment.Center;
             _dateOfTest.PointSize = 12.0f;
             _dateOfTest.UnderlineEnabled = true;
             _stage.GetDefaultLayer().Add(_dateOfTest);

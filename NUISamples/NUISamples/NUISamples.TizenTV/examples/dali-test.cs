@@ -152,7 +152,7 @@ namespace DaliTest
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
             text.AnchorPoint = AnchorPoint.Center;
-            text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            text.HorizontalAlignment = HorizontalAlignment.Center;
             stage.GetDefaultLayer().Add(text);
 
             Tizen.Log.Debug("NUI",  "Text label text:  " + text.Text );

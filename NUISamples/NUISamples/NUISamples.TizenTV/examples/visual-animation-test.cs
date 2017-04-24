@@ -75,7 +75,7 @@ namespace VisaulAnimationExample
             _title.SetStyleName("Title");
             _title.WidthResizePolicy = ResizePolicyType.FillToParent;
             _title.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
-            _title.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _title.HorizontalAlignment = HorizontalAlignment.Center;
             titleLayout.AddChild(_title, new TableView.CellPosition(0, 0));
             titleLayout.SetFitHeight(0);
 
@@ -100,9 +100,9 @@ namespace VisaulAnimationExample
             _icon.URL = _resPath + "/images/application-icon-0.png";
             _icon.DepthIndex = 1;
             _icon.Size = new Size2D(50, 50);
-            _icon.SizePolicy = new Vector2(1, 1);
+            _icon.SizePolicy = VisualTransformPolicyType.Absolute;
             _icon.Position = new Position2D(5, 5);
-            _icon.PositionPolicy = new Vector2(1, 1);
+            _icon.PositionPolicy = VisualTransformPolicyType.Absolute;
             _icon.Origin = Visual.AlignType.TopBegin;
             _icon.AnchorPoint = Visual.AlignType.TopBegin;
             _icon.MixColor = new Color(0, 1, 0, 0.5f);
@@ -131,9 +131,9 @@ namespace VisaulAnimationExample
             NPatchVisual npatch1 = new NPatchVisual();
             npatch1.URL = _resPath + "/images/gallery-2.jpg";
             npatch1.Size = new Size2D(400, 400);
-            npatch1.SizePolicy = new Vector2(1, 1);
+            npatch1.SizePolicy = VisualTransformPolicyType.Absolute;
             npatch1.Position = new Position2D(400, 0);
-            npatch1.PositionPolicy = new Vector2(1, 1);
+            npatch1.PositionPolicy = VisualTransformPolicyType.Absolute;
             npatch1.Origin = Visual.AlignType.TopBegin;
             npatch1.AnchorPoint = Visual.AlignType.TopBegin;
             npatch1.Border = new Rectangle(100, 100, 100, 100);
@@ -154,9 +154,9 @@ namespace VisaulAnimationExample
             svgVisual = new SVGVisual();
             svgVisual.URL = _resPath + "/images/Kid1.svg";
             svgVisual.Size = new Size2D(300, 300);
-            svgVisual.SizePolicy = new Vector2(1, 1);
+            svgVisual.SizePolicy = VisualTransformPolicyType.Absolute;
             svgVisual.Position = new Position2D(0, 0);
-            svgVisual.PositionPolicy = new Vector2(1, 1);
+            svgVisual.PositionPolicy = VisualTransformPolicyType.Absolute;
             svgVisual.Origin = Visual.AlignType.TopBegin;
             svgVisual.AnchorPoint = Visual.AlignType.TopBegin;
             VisualView1.AddVisual("svg_visual1", svgVisual);
@@ -194,9 +194,9 @@ namespace VisaulAnimationExample
             gifVisual = new AnimatedImageVisual();
             gifVisual.URL = _resPath + "/images/dog-anim.gif";
             gifVisual.Size = new Size2D(200, 200);
-            gifVisual.SizePolicy = new Vector2(1, 1);
+            gifVisual.SizePolicy = VisualTransformPolicyType.Absolute;
             gifVisual.Position = new Position2D(0, 0);
-            gifVisual.PositionPolicy = new Vector2(1, 1);
+            gifVisual.PositionPolicy = VisualTransformPolicyType.Absolute;
             gifVisual.Origin = Visual.AlignType.TopBegin;
             gifVisual.AnchorPoint = Visual.AlignType.TopBegin;
             VisualView2.AddVisual("gif_visual", gifVisual);

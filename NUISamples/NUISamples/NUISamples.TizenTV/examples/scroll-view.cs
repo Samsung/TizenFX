@@ -141,7 +141,7 @@ namespace ScrollViewTest
       _text = new TextLabel("View Touch Event Handler Test");
       _text.ParentOrigin = ParentOrigin.Center;
       _text.AnchorPoint = AnchorPoint.Center;
-      _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+      _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 20.0f;
 
       _scrollView.Add(_text);

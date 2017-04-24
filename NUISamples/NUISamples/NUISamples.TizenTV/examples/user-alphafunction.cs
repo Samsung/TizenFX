@@ -72,7 +72,7 @@ namespace UserAlphaFunctionTest
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.BottomCenter;
             _text.AnchorPoint = AnchorPoint.BottomCenter;
-            _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             stage.GetDefaultLayer().Add(_text);
 

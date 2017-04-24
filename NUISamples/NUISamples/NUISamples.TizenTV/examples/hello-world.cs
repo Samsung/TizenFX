@@ -59,7 +59,7 @@ namespace HelloWorldTest
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
-            _text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
             stage.GetDefaultLayer().Add(_text);

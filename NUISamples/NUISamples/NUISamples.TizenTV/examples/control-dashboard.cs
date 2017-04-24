@@ -89,8 +89,8 @@ namespace ControlDashboard
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             topLabel.TextColor = Color.White;
             topLabel.Text = " DALi Views";
-            topLabel.HorizontalAlignment = HorizontalAlignment.HorizontalAlignBegin;
-            topLabel.VerticalAlignment = VerticalAlignment.VerticalAlignCenter;
+            topLabel.HorizontalAlignment = HorizontalAlignment.Begin;
+            topLabel.VerticalAlignment = VerticalAlignment.Center;
             topLabel.PointSize = 42.0f;
             _stage.GetDefaultLayer().Add(topLabel);
             //StyleManager.Get().ApplyStyle(topLabel, _resPath + "/json/control-dashboard-theme.json", "TextFieldFontSize4");
@@ -140,8 +140,8 @@ namespace ControlDashboard
             // Make label for item
             TextLabel itemLabel = new TextLabel("    " + item.name);
             itemLabel.Size = new Vector3(_stage.Size.Width * 0.2f, _stage.Size.Height * 0.05f, 0.0f);
-            itemLabel.HorizontalAlignment = HorizontalAlignment.HorizontalAlignBegin;
-            itemLabel.VerticalAlignment = VerticalAlignment.VerticalAlignBottom;
+            itemLabel.HorizontalAlignment = HorizontalAlignment.Begin;
+            itemLabel.VerticalAlignment = VerticalAlignment.Bottom;
             //itemLabel.PointSize = 18.0f;
             _contentContainer.AddChild(itemLabel, new TableView.CellPosition(((uint)idx / 5) * 2, (uint)idx % 5));
 
@@ -357,7 +357,7 @@ namespace ControlDashboard
                                 TextLabel text = new TextLabel("This is a Toast.\nIt will auto-hide itself");
                                 text.TextColor = Color.White;
                                 text.MultiLine = true;
-                                text.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+                                text.HorizontalAlignment = HorizontalAlignment.Center;
                                 toast.SetTitle(text);
                                 _stage.GetDefaultLayer().Add(toast);
                                 toast.SetDisplayState(Popup.DisplayStateType.Shown);
@@ -425,7 +425,7 @@ namespace ControlDashboard
             TextLabel titleActor = new TextLabel(title);
             titleActor.TextColor = Color.White;
             titleActor.MultiLine = true;
-            titleActor.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            titleActor.HorizontalAlignment = HorizontalAlignment.Center;
             return titleActor;
         }
 
