@@ -23,6 +23,8 @@ internal static partial class Interop
 {
     internal static partial class Privilege
     {
+        internal static string LogTag = "Tizen.Security.Privilege";
+
         [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_display_name")]
             internal static extern int GetDisplayName(string apiVersion, string privilege, out string displayName);
 

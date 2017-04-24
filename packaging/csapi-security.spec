@@ -1,5 +1,5 @@
 %define Assemblies Tizen.Security Tizen.Security.SecureRepository
-%define version_security          1.0.6
+%define version_security          1.0.7
 %define version_secure_repository 1.0.8
 
 Name:       csapi-security

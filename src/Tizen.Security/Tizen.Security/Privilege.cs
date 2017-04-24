@@ -40,7 +40,8 @@ namespace Tizen.Security
             }
             else
             {
-                throw PrivilegeErrorFactory.GetException(ErrorCode.InvalidParameter, "Invalid Parameter");
+                Tizen.Log.Error(Interop.Privilege.LogTag, "Invalid Parameter: PackageType doesn't include TPK or WGT");
+                throw new ArgumentException();
             }
         }
 
@@ -51,13 +52,18 @@ namespace Tizen.Security
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <returns>The display name of given privilege at given api version</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege)
         {
             string displayName;
-            int ret = Interop.Privilege.GetDisplayName(apiVersion, privilege, out displayName);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (apiVersion == null || privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "apiVersion and privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                    Interop.Privilege.GetDisplayName(apiVersion, privilege, out displayName),
+                    "Failed to Get Privilege's Display Name.");
             return displayName;
         }
 
@@ -69,13 +75,18 @@ namespace Tizen.Security
         /// <param name="privilege">The privilege</param>
         /// <param name="packageType">The type of application package</param>
         /// <returns>The display name of given privilege at given api version and the package type</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege, PackageType packageType)
         {
             string displayName;
-            int ret = Interop.Privilege.GetDisplayNameByPkgtype(ToPackageTypeString(packageType), apiVersion, privilege, out displayName);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (apiVersion == null || privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "apiVersion and privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                Interop.Privilege.GetDisplayNameByPkgtype(ToPackageTypeString(packageType), apiVersion, privilege, out displayName),
+                "Failed to Get Privilege's Display Name.");
             return displayName;
         }
 
@@ -86,13 +97,18 @@ namespace Tizen.Security
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
         /// <returns>The description of given privilege at given api version</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege)
         {
             string description;
-            int ret = Interop.Privilege.GetDescription(apiVersion, privilege, out description);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (apiVersion == null || privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "apiVersion and privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                    Interop.Privilege.GetDescription(apiVersion, privilege, out description),
+                    "Failed to Get Privilege's Description.");
             return description;
         }
 
@@ -104,13 +120,18 @@ namespace Tizen.Security
         /// <param name="privilege">The privilege</param>
         /// <param name="packageType">The type of application package</param>
         /// <returns>The description of given privilege at given api version and the package type</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege, PackageType packageType)
         {
             string description;
-            int ret = Interop.Privilege.GetDescriptionByPkgtype(ToPackageTypeString(packageType),apiVersion, privilege, out description);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (apiVersion == null || privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "apiVersion and privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                    Interop.Privilege.GetDescriptionByPkgtype(ToPackageTypeString(packageType),apiVersion, privilege, out description),
+                    "Failed to Get Privilege's Description.");
             return description;
         }
 
@@ -120,13 +141,18 @@ namespace Tizen.Security
         /// <param name="privilege">The privilege</param>
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>The privacy group's display name that the given privilege is included in</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static string GetPrivacyDisplayName(string privilege)
         {
             string displayName;
-            int ret = Interop.Privilege.GetPrivacyDisplayName(privilege, out displayName);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                    Interop.Privilege.GetPrivacyDisplayName(privilege, out displayName),
+                    "Failed to Get Privacy's Display Name in Which the Given Privilege is included.");
             return displayName;
         }
 
@@ -136,46 +162,43 @@ namespace Tizen.Security
         /// <param name="privilege">The privilege</param>
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>status true if the privilege is on and false if the privilege is off.</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when internal error occurs.</exception>
         public static bool GetPrivacyPrivilegeStatus(string privilege)
         {
             bool status;
-            int ret = Interop.Privilege.GetPrivacyPrivilegeStatus(privilege, out status);
-            PrivilegeErrorFactory.ThrowException(ret);
+            if (privilege == null)
+                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "privilege should not be null.");
+            PrivilegeErrorFactory.CheckNThrowException(
+                    Interop.Privilege.GetPrivacyPrivilegeStatus(privilege, out status),
+                    "Failed to Get Privacy Privilege's Status.");
             return status;
         }
     }
 
     internal static class PrivilegeErrorFactory
     {
-        static internal Exception GetException(ErrorCode err, string message)
+        internal static void ThrowException(Exception e, string msg)
         {
-            string errorMessage = string.Format("{0} err = {1}", message, err);
+            Tizen.Log.Error(Interop.Privilege.LogTag, "[" + e.ToString() + "] " + msg);
+            throw e;
+        }
+        internal static void CheckNThrowException(int err, string msg)
+        {
+            if (err == (int)ErrorCode.None)
+                return;
+            string errorMessage = string.Format("[{0}] {1}", ErrorFacts.GetErrorMessage(err), msg);
+            Tizen.Log.Error(Interop.Privilege.LogTag, errorMessage);
             switch (err)
             {
-                case ErrorCode.InvalidParameter:
-                    return new ArgumentException(errorMessage);
-                case ErrorCode.OutOfMemory:
-                    return new InvalidOperationException(errorMessage);
+                case (int)ErrorCode.InvalidParameter:
+                    throw new ArgumentException();
+                case (int)ErrorCode.OutOfMemory:
+                    throw new OutOfMemoryException();
                 default:
-                    return new InvalidOperationException(errorMessage);
-            }
-        }
-
-        static internal void ThrowException(int error)
-        {
-            if ((ErrorCode)error == ErrorCode.None)
-            {
-                return;
-            }
-            else if ((ErrorCode)error == ErrorCode.InvalidParameter)
-            {
-                throw new ArgumentException("Invalid parameter");
-            }
-            else if ((ErrorCode)error == ErrorCode.OutOfMemory)
-            {
-                throw new InvalidOperationException("Out of memory");
+                    throw new InvalidOperationException();
             }
         }
     }
