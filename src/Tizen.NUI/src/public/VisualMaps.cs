@@ -33,20 +33,21 @@ namespace Tizen.NUI
 
         private PropertyMap _visualTransformMap = null;
 
-        private float _depthIndex = 0.0f;
+        private float? _depthIndex = null;
         protected PropertyMap _outputVisualMap = null;
-
 
         internal string Name
         {
             set;
             get;
         }
+
         internal int VisualIndex
         {
             set;
             get;
         }
+
         internal VisualView Parent
         {
             set;
@@ -61,16 +62,21 @@ namespace Tizen.NUI
         /// Get or set size of the visual.<br>
         /// It can be either relative (percentage of the parent)
         /// or absolute (in world units).<br>
+        /// Optional.
         /// </summary>
         public Vector2 Size
         {
             get
             {
-                return _visualSize;
+                return _visualSize ?? (new Vector2(1.0f, 1.0f));
             }
             set
             {
                 _visualSize = value;
+                if (_visualSizePolicy == null)
+                {
+                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                }
                 UpdateVisual();
             }
         }
@@ -79,66 +85,300 @@ namespace Tizen.NUI
         /// Get or set offset of the visual.<br>
         /// It can be either relative (percentage of the parent)
         /// or absolute (in world units).<br>
+        /// Optional.
         /// </summary>
         public Vector2 Position
         {
             get
             {
-                return _visualOffset;
+                return _visualOffset ?? (new Vector2(0.0f, 0.0f));
             }
             set
             {
                 _visualOffset = value;
+                if (_visualOffsetPolicy == null)
+                {
+                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                }
                 UpdateVisual();
             }
         }
 
         /// <summary>
-        /// Get or set offset policy of the visual.<br>
-        /// Indicates which components of the offset are relative
-        /// (percentage of the parent) or absolute (in world units).<br>
-        /// 0 indicates the component is relative, and 1 absolute.<br>
+        /// Get or set relative size of the visual<br>
+        /// (percentage [0.0f to 1.0f] of the control).<br>
+        /// Optional.
         /// </summary>
-        public Vector2 PositionPolicy
+        public RelativeVector2 RelativeSize
         {
             get
             {
-                return _visualOffsetPolicy;
+                return _visualSize ?? (new RelativeVector2(1.0f, 1.0f));
             }
             set
             {
-                _visualOffsetPolicy = value;
+                _visualSize = value;
+                _visualSizePolicy = new Vector2(0.0f, 0.0f);
                 UpdateVisual();
             }
         }
 
         /// <summary>
-        /// Get or set size policy of the visual.<br>
-        /// Indicates which components of the size are relative
-        /// (percentage of the parent) or absolute (in world units).<br>
-        /// 0 indicates the component is relative, and 1 absolute.<br>
+        /// Get or set relative offset of the visual<br>
+        /// (percentage [0.0f to 1.0f] of the control).<br>
+        /// Optional.
         /// </summary>
-        public Vector2 SizePolicy
+        public RelativeVector2 RelativePosition
         {
             get
             {
-                return _visualSizePolicy;
+                return _visualOffset ?? (new RelativeVector2(0.0f, 0.0f));
             }
             set
             {
-                _visualSizePolicy = value;
+                _visualOffset = value;
+                _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
                 UpdateVisual();
             }
         }
 
         /// <summary>
-        /// Get or set the origin of the visual within its control area.
+        /// Get or set whether the x and y offset values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, both the x and the y offset is relative.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType PositionPolicy
+        {
+            get
+            {
+                if (_visualOffsetPolicy != null && _visualOffsetPolicy.X == 1.0f
+                    && _visualOffsetPolicy.Y == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualOffsetPolicy = new Vector2(1.0f, 1.0f);
+                        break;
+                    default:
+                        _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                        break;
+                }
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether the x offset values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, the x offset is relative.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType PositionPolicyX
+        {
+            get
+            {
+                if (_visualOffsetPolicy != null && _visualOffsetPolicy.X == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                if (_visualOffsetPolicy == null)
+                {
+                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                }
+
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualOffsetPolicy.X = 0.0f;
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualOffsetPolicy.X = 1.0f;
+                        break;
+                    default:
+                        _visualOffsetPolicy.X = 0.0f;
+                        break;
+                }
+
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether the y offset values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, the y offset is relative.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType PositionPolicyY
+        {
+            get
+            {
+                if (_visualOffsetPolicy != null && _visualOffsetPolicy.Y == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                if (_visualOffsetPolicy == null)
+                {
+                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                }
+
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualOffsetPolicy.Y = 0.0f;
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualOffsetPolicy.Y = 1.0f;
+                        break;
+                    default:
+                        _visualOffsetPolicy.Y = 0.0f;
+                        break;
+                }
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether the width or height size values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, both the width and the height offset is relative to the control's size.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType SizePolicy
+        {
+            get
+            {
+                if (_visualSizePolicy != null && _visualSizePolicy.X == 1.0f
+                    && _visualSizePolicy.Y == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualSizePolicy = new Vector2(1.0f, 1.0f);
+                        break;
+                    default:
+                        _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                        break;
+                }
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether the width size values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, the width value is relative to the control's width.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType SizePolicyWidth
+        {
+            get
+            {
+                if (_visualSizePolicy != null && _visualSizePolicy.Width == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                if (_visualSizePolicy == null)
+                {
+                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                }
+
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualSizePolicy.Width = 0.0f;
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualSizePolicy.Width = 1.0f;
+                        break;
+                    default:
+                        _visualSizePolicy.Width = 0.0f;
+                        break;
+                }
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether the height size values are relative<br>
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
+        /// Be default, both the height value is relative to the control's height.<br>
+        /// Optional.
+        /// </summary>
+        public VisualTransformPolicyType SizePolicyHeight
+        {
+            get
+            {
+                if (_visualSizePolicy != null && _visualSizePolicy.Height == 1.0f)
+                {
+                    return VisualTransformPolicyType.Absolute;
+                }
+                return VisualTransformPolicyType.Relative;
+            }
+            set
+            {
+                if (_visualSizePolicy == null)
+                {
+                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                }
+
+                switch (value)
+                {
+                    case VisualTransformPolicyType.Relative:
+                        _visualSizePolicy.Height = 0.0f;
+                        break;
+                    case VisualTransformPolicyType.Absolute:
+                        _visualSizePolicy.Height = 1.0f;
+                        break;
+                    default:
+                        _visualSizePolicy.Height = 0.0f;
+                        break;
+                }
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set the origin of the visual within its control area.<br>
+        /// By default, the origin is Center.<br>
+        /// Optional.
         /// </summary>
         public Visual.AlignType Origin
         {
             get
             {
-                return _visualOrigin ?? (Visual.AlignType)(-1);
+                return _visualOrigin ?? (Visual.AlignType.Center);
             }
             set
             {
@@ -148,13 +388,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the anchor-point of the visual.
+        /// Get or set the anchor-point of the visual.<br>
+        /// By default, the anchor point is Center.<br>
+        /// Optional.
         /// </summary>
         public Visual.AlignType AnchorPoint
         {
             get
             {
-                return _visualAnchorPoint ?? (Visual.AlignType)(-1);
+                return _visualAnchorPoint ?? (Visual.AlignType.Center);
             }
             set
             {
@@ -164,13 +406,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the depth index of the visual.
+        /// Get or set the depth index of the visual.<br>
+        /// By default, the depth index is 0.<br>
+        /// Optional.
         /// </summary>
         public float DepthIndex
         {
             get
             {
-                return _depthIndex;
+                return _depthIndex ?? (0.0f);
             }
             set
             {
@@ -257,6 +501,7 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
         /// <summary>
         /// Enables/disables premultiplied alpha. <br>
         /// The premultiplied alpha is false by default unless this behaviour is modified by the derived Visual type.
@@ -265,7 +510,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _premultipliedAlpha??false;
+                return _premultipliedAlpha ?? (false);
             }
             set
             {
@@ -273,6 +518,7 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
         /// <summary>
         /// Mix color is a blend color for any visual.
         /// </summary>
@@ -288,6 +534,7 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
         /// <summary>
         /// Opacity is the alpha component of the mixColor, above.
         /// </summary>
@@ -295,7 +542,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _opacity??(-1.0f);
+                return _opacity ?? (1.0f);
             }
             set
             {
@@ -327,7 +574,8 @@ namespace Tizen.NUI
         private WrapModeType? _wrapModeV = null;
 
         /// <summary>
-        /// Get or set the URL of the image.
+        /// Get or set the URL of the image.<br>
+        /// Mandatory.
         /// </summary>
         public string URL
         {
@@ -344,14 +592,15 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set fitting options, used when resizing images to fit desired dimensions.<br>
-        /// If not supplied, default is FittingMode::SHRINK_TO_FIT.<br>
+        /// If not supplied, default is FittingModeType.ShrinkToFit.<br>
         /// For Normal Quad images only.<br>
+        /// Optional.
         /// </summary>
         public FittingModeType FittingMode
         {
             get
             {
-                return _fittingMode ?? (FittingModeType)(-1);
+                return _fittingMode ?? (FittingModeType.ShrinkToFit);
             }
             set
             {
@@ -362,14 +611,15 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set filtering options, used when resizing images to sample original pixels.<br>
-        /// If not supplied, default is SamplingMode::BOX.<br>
+        /// If not supplied, default is SamplingModeType.Box.<br>
         /// For Normal Quad images only.<br>
+        /// Optional.
         /// </summary>
         public SamplingModeType SamplingMode
         {
             get
             {
-                return _samplingMode ?? (SamplingModeType)(-1);
+                return _samplingMode ?? (SamplingModeType.Box);
             }
             set
             {
@@ -382,6 +632,7 @@ namespace Tizen.NUI
         /// Get or set the desired image width.<br>
         /// If not specified, the actual image width is used.<br>
         /// For Normal Quad images only.<br>
+        /// Optional.
         /// </summary>
         public int DesiredWidth
         {
@@ -400,6 +651,7 @@ namespace Tizen.NUI
         /// Get or set the desired image height.<br>
         /// If not specified, the actual image height is used.<br>
         /// For Normal Quad images only.<br>
+        /// Optional.
         /// </summary>
         public int DesiredHeight
         {
@@ -418,12 +670,13 @@ namespace Tizen.NUI
         /// Get or set whether to load the image synchronously.<br>
         /// If not specified, the default is false, i.e. the image is loaded asynchronously.<br>
         /// For Normal Quad images only.<br>
+        /// Optional.
         /// </summary>
         public bool SynchronousLoading
         {
             get
             {
-                return _synchronousLoading ?? false;
+                return _synchronousLoading ?? (false);
             }
             set
             {
@@ -436,12 +689,13 @@ namespace Tizen.NUI
         /// Get or set whether to draws the borders only(If true).<br>
         /// If not specified, the default is false.<br>
         /// For N-Patch images only.<br>
+        /// Optional.
         /// </summary>
         public bool BorderOnly
         {
             get
             {
-                return _borderOnly ?? false;
+                return _borderOnly ?? (false);
             }
             set
             {
@@ -454,14 +708,15 @@ namespace Tizen.NUI
         /// Get or set the image area to be displayed.<br>
         /// It is a rectangular area.<br>
         /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.<br>
-        /// If not specified, the default value is [0.0, 0.0, 1.0, 1.0], i.e. the entire area of the image.<br>
+        /// If not specified, the default value is Vector4(0.0, 0.0, 1.0, 1.0), i.e. the entire area of the image.<br>
         /// For For Normal QUAD image only.<br>
+        /// Optional.
         /// </summary>
         public Vector4 PixelArea
         {
             get
             {
-                return _pixelArea;
+                return _pixelArea ?? (new Vector4(0.0f, 0.0f, 1.0f, 1.0f));
             }
             set
             {
@@ -473,14 +728,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set the wrap mode for u coordinate.<br>
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br>
-        /// If not specified, the default is CLAMP.<br>
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br>
         /// For Normal QUAD image only.<br>
+        /// Optional.
         /// </summary>
         public WrapModeType WrapModeU
         {
             get
             {
-                return _wrapModeU ?? (WrapModeType)(-1);
+                return _wrapModeU ?? (WrapModeType.Default);
             }
             set
             {
@@ -493,14 +749,15 @@ namespace Tizen.NUI
         /// Get or set the wrap mode for v coordinate.<br>
         /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.<br>
         /// The first two elements indicate the top-left position of the area, and the last two elements are the area width and height respectively.<br>
-        /// If not specified, the default is CLAMP.<br>
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br>
         /// For Normal QUAD image only.
+        /// Optional.
         /// </summary>
         public WrapModeType WrapModeV
         {
             get
             {
-                return _wrapModeV ?? (WrapModeType)(-1);
+                return _wrapModeV ?? (WrapModeType.Default);
             }
             set
             {
@@ -511,22 +768,25 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            if (_url != null) { _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url)); }
-            if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
-            if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
-            if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
-            if (_desiredHeight != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue((int)_desiredHeight)); }
-            if (_synchronousLoading != null) { _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
-            if (_borderOnly != null) { _outputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
-            if (_pixelArea != null) { _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
-            if (_wrapModeU != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
-            if (_wrapModeV != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_url != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
+                if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
+                if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
+                if (_desiredHeight != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue((int)_desiredHeight)); }
+                if (_synchronousLoading != null) { _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
+                if (_borderOnly != null) { _outputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                if (_pixelArea != null) { _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
+                if (_wrapModeU != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
+                if (_wrapModeV != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -550,7 +810,8 @@ namespace Tizen.NUI
         private bool? _enableMarkup = null;
 
         /// <summary>
-        /// Get or set the text to display in UTF-8 format.
+        /// Get or set the text to display in UTF-8 format.<br>
+        /// Mandatory.
         /// </summary>
         public string Text
         {
@@ -566,7 +827,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the requested font family to use.
+        /// Get or set the requested font family to use.<br>
+        /// Optional.
         /// </summary>
         public string FontFamily
         {
@@ -582,7 +844,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the requested font style to use.
+        /// Get or set the requested font style to use.<br>
+        /// Optional.
         /// </summary>
         public PropertyMap FontStyle
         {
@@ -598,13 +861,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the size of font in points.
+        /// Get or set the size of font in points.<br>
+        /// Mandatory.
         /// </summary>
         public float PointSize
         {
             get
             {
-                return _pointSize ?? (-1.0f);
+                return _pointSize ?? (0.0f);
             }
             set
             {
@@ -614,13 +878,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the single-line or multi-line layout option.
+        /// Get or set the single-line or multi-line layout option.<br>
+        /// If not specified, the default is false.<br>
+        /// Optional.
         /// </summary>
         public bool MultiLine
         {
             get
             {
-                return _multiLine ?? false;
+                return _multiLine ?? (false);
             }
             set
             {
@@ -631,7 +897,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set the line horizontal alignment.<br>
-        /// If not specified, the default is BEGIN.<br>
+        /// If not specified, the default is Begin.<br>
+        /// Optional.
         /// </summary>
         public HorizontalAlignment HorizontalAlignment
         {
@@ -640,30 +907,30 @@ namespace Tizen.NUI
                 switch (_horizontalAlignment)
                 {
                     case "BEGIN":
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                     case "CENTER":
-                        return HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.Center;
                     case "END":
-                        return HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.End;
                     default:
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.Begin:
                     {
                         _horizontalAlignment = "BEGIN";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.Center:
                     {
                         _horizontalAlignment = "CENTER";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.End:
                     {
                         _horizontalAlignment = "END";
                         break;
@@ -680,7 +947,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set the line vertical alignment.<br>
-        /// If not specified, the default is TOP.<br>
+        /// If not specified, the default is Top.<br>
+        /// Optional.
         /// </summary>
         public VerticalAlignment VerticalAlignment
         {
@@ -689,30 +957,30 @@ namespace Tizen.NUI
                 switch (_verticalAlignment)
                 {
                     case "TOP":
-                        return VerticalAlignment.VerticalAlignTop;
+                        return VerticalAlignment.Top;
                     case "CENTER":
-                        return VerticalAlignment.VerticalAlignCenter;
+                        return VerticalAlignment.Center;
                     case "BOTTOM":
-                        return VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.Bottom;
                     default:
-                        return VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.Top;
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case VerticalAlignment.VerticalAlignTop:
+                    case VerticalAlignment.Top:
                     {
                         _verticalAlignment = "TOP";
                         break;
                     }
-                    case VerticalAlignment.VerticalAlignCenter:
+                    case VerticalAlignment.Center:
                     {
                         _verticalAlignment = "CENTER";
                         break;
                     }
-                    case VerticalAlignment.VerticalAlignBottom:
+                    case VerticalAlignment.Bottom:
                     {
                         _verticalAlignment = "BOTTOM";
                         break;
@@ -728,7 +996,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the color of the text.
+        /// Get or set the color of the text.<br>
+        /// Optional.
         /// </summary>
         public Color TextColor
         {
@@ -744,13 +1013,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether the mark-up processing is enabled.
+        /// Get or set whether the mark-up processing is enabled.<br>
+        /// Optional.
         /// </summary>
         public bool EnableMarkup
         {
             get
             {
-                return _enableMarkup ?? false;
+                return _enableMarkup ?? (false);
             }
             set
             {
@@ -761,21 +1031,24 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            if (_text != null) { _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text)); }
-            if (_fontFamily != null) { _outputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily)); }
-            if (_fontStyle != null) { _outputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle)); }
-            if (_pointSize != null) { _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize)); }
-            if (_multiLine != null) { _outputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue((bool)_multiLine)); }
-            if (_horizontalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment)); }
-            if (_verticalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
-            if (_textColor != null) { _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
-            if (_enableMarkup != null) { _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_text != null && _pointSize != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
+                _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
+                _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize));
+                if (_fontFamily != null) { _outputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily)); }
+                if (_fontStyle != null) { _outputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle)); }
+                if (_multiLine != null) { _outputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue((bool)_multiLine)); }
+                if (_horizontalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment)); }
+                if (_verticalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
+                if (_textColor != null) { _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
+                if (_enableMarkup != null) { _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -793,7 +1066,8 @@ namespace Tizen.NUI
         private bool? _antiAliasing = null;
 
         /// <summary>
-        /// Get or set the color of the border.
+        /// Get or set the color of the border.<br>
+        /// Mandatory.
         /// </summary>
         public Color Color
         {
@@ -809,7 +1083,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the width of the border (in pixels).
+        /// Get or set the width of the border (in pixels).<br>
+        /// Mandatory.
         /// </summary>
         public float BorderSize
         {
@@ -827,12 +1102,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set whether anti-aliasing of the border is required.<br>
         /// If not supplied, default is false.<br>
+        /// Optional.
         /// </summary>
         public bool AntiAliasing
         {
             get
             {
-                return _antiAliasing ?? false;
+                return _antiAliasing ?? (false);
             }
             set
             {
@@ -843,15 +1119,18 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
-            if (_color != null) { _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color)); }
-            if (_size != null) { _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue((float)_size)); }
-            if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue((bool)_antiAliasing)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_color != null && _size != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
+                _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue((float)_size));
+                _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color));
+                if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue((bool)_antiAliasing)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -867,7 +1146,8 @@ namespace Tizen.NUI
         private Color _mixColorForColorVisual = null;
 
         /// <summary>
-        /// Get or set the solid color required.
+        /// Get or set the solid color required.<br>
+        /// Mandatory.
         /// </summary>
         public Color Color
         {
@@ -884,12 +1164,15 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            if (_mixColorForColorVisual != null) { _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColorForColorVisual)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_mixColorForColorVisual != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColorForColorVisual));
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -983,6 +1266,7 @@ namespace Tizen.NUI
         /// Get or set all the stop offsets.<br>
         /// A PropertyArray of float.<br>
         /// If not supplied, default is 0.0f and 1.0f.<br>
+        /// Optional.
         /// </summary>
         public PropertyArray StopOffset
         {
@@ -1001,6 +1285,7 @@ namespace Tizen.NUI
         /// Get or set the color at the stop offsets.<br>
         /// A PropertyArray of Color.<br>
         /// At least 2 values required to show a gradient.<br>
+        /// Mandatory.
         /// </summary>
         public PropertyArray StopColor
         {
@@ -1017,13 +1302,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set defines the coordinate system for certain attributes of the points in a gradient.<br>
-        /// If not supplied, default is GradientVisualUnitsType.OBJECT_BOUNDING_BOX.<br>
+        /// If not supplied, default is GradientVisualUnitsType.ObjectBoundingBox.<br>
+        /// Optional.
         /// </summary>
         public GradientVisualUnitsType Units
         {
             get
             {
-                return _units ?? (GradientVisualUnitsType)(-1);
+                return _units ?? (GradientVisualUnitsType.ObjectBoundingBox);
             }
             set
             {
@@ -1034,13 +1320,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set indicates what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
-        /// If not supplied, default is GradientVisualSpreadMethodType.PAD.<br>
+        /// If not supplied, default is GradientVisualSpreadMethodType.Pad.<br>
+        /// Optional.
         /// </summary>
         public GradientVisualSpreadMethodType SpreadMethod
         {
             get
             {
-                return _spreadMethod ?? (GradientVisualSpreadMethodType)(-1);
+                return _spreadMethod ?? (GradientVisualSpreadMethodType.Pad);
             }
             set
             {
@@ -1051,20 +1338,23 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Gradient));
-            if (_startPosition != null) { _outputVisualMap.Add(GradientVisualProperty.StartPosition, new PropertyValue(_startPosition)); }
-            if (_endPosition != null) { _outputVisualMap.Add(GradientVisualProperty.EndPosition, new PropertyValue(_endPosition)); }
-            if (_center != null) { _outputVisualMap.Add(GradientVisualProperty.Center, new PropertyValue(_center)); }
-            if (_radius != null) { _outputVisualMap.Add(GradientVisualProperty.Radius, new PropertyValue((float)_radius)); }
-            if (_stopOffset != null) { _outputVisualMap.Add(GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset)); }
-            if (_stopColor != null) { _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor)); }
-            if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units)); }
-            if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (((_startPosition != null && _endPosition != null) || (_center != null && _radius != null)) && _stopColor != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Gradient));
+                _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor));
+                if (_startPosition != null) { _outputVisualMap.Add(GradientVisualProperty.StartPosition, new PropertyValue(_startPosition)); }
+                if (_endPosition != null) { _outputVisualMap.Add(GradientVisualProperty.EndPosition, new PropertyValue(_endPosition)); }
+                if (_center != null) { _outputVisualMap.Add(GradientVisualProperty.Center, new PropertyValue(_center)); }
+                if (_radius != null) { _outputVisualMap.Add(GradientVisualProperty.Radius, new PropertyValue((float)_radius)); }
+                if (_stopOffset != null) { _outputVisualMap.Add(GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset)); }
+                if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units)); }
+                if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -1086,7 +1376,8 @@ namespace Tizen.NUI
         private Vector3 _lightPosition = null;
 
         /// <summary>
-        /// Get or set the location of the ".obj" file.
+        /// Get or set the location of the ".obj" file.<br>
+        /// Mandatory.
         /// </summary>
         public string ObjectURL
         {
@@ -1104,6 +1395,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set the location of the ".mtl" file.<br>
         /// If not specified, then a textureless object is assumed.<br>
+        /// Optional.
         /// </summary>
         public string MaterialtURL
         {
@@ -1138,13 +1430,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set the type of shading mode that the mesh will use.<br>
         /// If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.<br>
-        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TEXTURED_WITH_DETAILED_SPECULAR_LIGHTING first).<br>
+        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting first).<br>
+        /// Optional.
         /// </summary>
         public MeshVisualShadingModeValue ShadingMode
         {
             get
             {
-                return _shadingMode??(MeshVisualShadingModeValue)(-1);
+                return _shadingMode ?? (MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting);
             }
             set
             {
@@ -1156,12 +1449,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set whether to use mipmaps for textures or not.<br>
         /// If not specified, the default is true.<br>
+        /// Optional.
         /// </summary>
         public bool UseMipmapping
         {
             get
             {
-                return _useMipmapping??false;
+                return _useMipmapping ?? (true);
             }
             set
             {
@@ -1173,12 +1467,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set whether to average normals at each point to smooth textures or not.<br>
         /// If not specified, the default is true.<br>
+        /// Optional.
         /// </summary>
         public bool UseSoftNormals
         {
             get
             {
-                return _useSoftNormals??false;
+                return _useSoftNormals ?? (true);
             }
             set
             {
@@ -1192,6 +1487,7 @@ namespace Tizen.NUI
         /// This is based off the stage's dimensions, so using the width and height of the stage halved will correspond to the center,
         /// and using all zeroes will place the light at the top left corner.<br>
         /// If not specified, the default is an offset outwards from the center of the screen.<br>
+        /// Optional.
         /// </summary>
         public Vector3 LightPosition
         {
@@ -1208,19 +1504,21 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Mesh));
-            if (_objectURL != null) { _outputVisualMap.Add(MeshVisualProperty.ObjectURL, new PropertyValue(_objectURL)); }
-            if (_materialtURL != null) { _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, new PropertyValue(_materialtURL)); }
-            if (_texturesPath != null) { _outputVisualMap.Add(MeshVisualProperty.TexturesPath, new PropertyValue(_texturesPath)); }
-            if (_shadingMode != null) { _outputVisualMap.Add(MeshVisualProperty.ShadingMode, new PropertyValue((int)_shadingMode)); }
-            if (_useMipmapping != null) { _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, new PropertyValue((bool)_useMipmapping)); }
-            if (_useSoftNormals != null) { _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, new PropertyValue((bool)_useSoftNormals)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
-
+            if (_objectURL != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Mesh));
+                _outputVisualMap.Add(MeshVisualProperty.ObjectURL, new PropertyValue(_objectURL));
+                if (_materialtURL != null) { _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, new PropertyValue(_materialtURL)); }
+                if (_texturesPath != null) { _outputVisualMap.Add(MeshVisualProperty.TexturesPath, new PropertyValue(_texturesPath)); }
+                if (_shadingMode != null) { _outputVisualMap.Add(MeshVisualProperty.ShadingMode, new PropertyValue((int)_shadingMode)); }
+                if (_useMipmapping != null) { _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, new PropertyValue((bool)_useMipmapping)); }
+                if (_useSoftNormals != null) { _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, new PropertyValue((bool)_useSoftNormals)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -1248,13 +1546,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set the specific shape to render.<br>
-        /// If not specified, the default is PrimitiveVisualShapeType.SPHERE.<br>
+        /// If not specified, the default is PrimitiveVisualShapeType.Sphere.<br>
+        /// Optional.
         /// </summary>
         public PrimitiveVisualShapeType Shape
         {
             get
             {
-                return _shape??(PrimitiveVisualShapeType)(-1);
+                return _shape ?? (PrimitiveVisualShapeType.Sphere);
             }
             set
             {
@@ -1267,12 +1566,13 @@ namespace Tizen.NUI
         /// Get or set the color of the shape.<br>
         /// If not specified, the default is Color(0.5, 0.5, 0.5, 1.0).<br>
         /// Applies to ALL shapes.<br>
+        /// Optional.
         /// </summary>
         public Color MixColor
         {
             get
             {
-                return _mixColorForPrimitiveVisual;
+                return _mixColorForPrimitiveVisual ?? (new Color(0.5f, 0.5f, 0.5f, 1.0f));
             }
             set
             {
@@ -1286,12 +1586,13 @@ namespace Tizen.NUI
         /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.<br>
         /// If not specified, the default is 128.<br>
         /// The range is from 1 to 255.<br>
+        /// Optional.
         /// </summary>
         public int Slices
         {
             get
             {
-                return _slices??(-1);
+                return _slices ?? (128);
             }
             set
             {
@@ -1305,12 +1606,13 @@ namespace Tizen.NUI
         /// For spheres, 'stacks' determines how many layers there are as you go down the object.<br>
         /// If not specified, the default is 128.<br>
         /// The range is from 1 to 255.<br>
+        /// Optional.
         /// </summary>
         public int Stacks
         {
             get
             {
-                return _stacks??(-1);
+                return _stacks ?? (128);
             }
             set
             {
@@ -1322,14 +1624,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set the scale of the radius of the top circle of a conical frustrum.<br>
         /// If not specified, the default is 1.0f.<br>
-        /// Applies to: - PrimitiveVisualShapeType.CONICAL_FRUSTRUM<br>
+        /// Applies to: - PrimitiveVisualShapeType.ConicalFrustrum<br>
         /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Optional.
         /// </summary>
         public float ScaleTopRadius
         {
             get
             {
-                return _scaleTopRadius ?? (-1.0f);
+                return _scaleTopRadius ?? (1.0f);
             }
             set
             {
@@ -1341,15 +1644,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Get or set the scale of the radius of the bottom circle of a conical frustrum.<br>
         /// If not specified, the default is 1.5f.<br>
-        /// Applies to:  - PrimitiveVisualShapeType.CONICAL_FRUSTRUM<br>
-        ///              - PrimitiveVisualShapeType.CONE<br>
+        /// Applies to:  - PrimitiveVisualShapeType.ConicalFrustrum<br>
+        ///              - PrimitiveVisualShapeType.Cone<br>
         /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Optional.
         /// </summary>
         public float ScaleBottomRadius
         {
             get
             {
-                return _scaleBottomRadius ?? (-1.0f);
+                return _scaleBottomRadius ?? (1.5f);
             }
             set
             {
@@ -1362,16 +1666,17 @@ namespace Tizen.NUI
         /// Get or set the scale of the height of a conic.<br>
         /// If not specified, the default is 3.0f.<br>
         /// Applies to:<br>
-        ///      - Shape::CONICAL_FRUSTRUM<br>
-        ///      - Shape::CONE<br>
-        ///      - Shape::CYLINDER<br>
+        ///      - PrimitiveVisualShapeType.ConicalFrustrum<br>
+        ///      - PrimitiveVisualShapeType.Cone<br>
+        ///      - PrimitiveVisualShapeType.Cylinder<br>
         /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Optional.
         /// </summary>
         public float ScaleHeight
         {
             get
             {
-                return _scaleHeight??(-1.0f);
+                return _scaleHeight ?? (3.0f);
             }
             set
             {
@@ -1384,14 +1689,15 @@ namespace Tizen.NUI
         /// Get or set the scale of the radius of a cylinder.<br>
         /// If not specified, the default is 1.0f.<br>
         /// Applies to:<br>
-        ///      - Shape::CYLINDER<br>
+        ///      - PrimitiveVisualShapeType.Cylinder<br>
         /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Optional.
         /// </summary>
         public float ScaleRadius
         {
             get
             {
-                return _scaleRadius ?? (-1.0f);
+                return _scaleRadius ?? (1.0f);
             }
             set
             {
@@ -1404,16 +1710,17 @@ namespace Tizen.NUI
         /// Get or set the dimensions of a cuboid. Scales in the same fashion as a 9-patch image.<br>
         /// If not specified, the default is Vector3.One.<br>
         /// Applies to:<br>
-        ///      - Shape::CUBE<br>
-        ///      - Shape::OCTAHEDRON<br>
-        ///      - Shape::BEVELLED_CUBE<br>
+        ///      - PrimitiveVisualShapeType.Cube<br>
+        ///      - PrimitiveVisualShapeType.Octahedron<br>
+        ///      - PrimitiveVisualShapeType.BevelledCube<br>
         /// Each vector3 parameter should be greater than or equal to 0.0f.<br>
+        /// Optional.
         /// </summary>
         public Vector3 ScaleDimensions
         {
             get
             {
-                return _scaleDimensions;
+                return _scaleDimensions ?? (Vector3.One);
             }
             set
             {
@@ -1427,14 +1734,15 @@ namespace Tizen.NUI
         /// Bevel percentage ranges from 0.0 to 1.0. It affects the ratio of the outer face widths to the width of the overall cube.<br>
         /// If not specified, the default is 0.0f (no bevel).<br>
         /// Applies to:<br>
-        ///      - Shape::BEVELLED_CUBE<br>
+        ///      - PrimitiveVisualShapeType.BevelledCube<br>
         /// The range is from 0.0f to 1.0f.<br>
+        /// Optional.
         /// </summary>
         public float BevelPercentage
         {
             get
             {
-                return _bevelPercentage ?? (-1.0f);
+                return _bevelPercentage ?? (0.0f);
             }
             set
             {
@@ -1447,14 +1755,15 @@ namespace Tizen.NUI
         /// Get or set defines how smooth the bevelled edges should be.<br>
         /// If not specified, the default is 0.0f (sharp edges).<br>
         /// Applies to:<br>
-        ///      - Shape::BEVELLED_CUBE<br>
+        ///      - PrimitiveVisualShapeType.BevelledCube<br>
         /// The range is from 0.0f to 1.0f.<br>
+        /// Optional.
         /// </summary>
         public float BevelSmoothness
         {
             get
             {
-                return _bevelSmoothness ?? (-1.0f);
+                return _bevelSmoothness ?? (0.0f);
             }
             set
             {
@@ -1468,7 +1777,8 @@ namespace Tizen.NUI
         /// This is based off the stage's dimensions, so using the width and height of the stage halved will correspond to the center,
         /// and using all zeroes will place the light at the top left corner.<br>
         /// If not specified, the default is an offset outwards from the center of the screen.<br>
-        /// Applies to ALL shapes.
+        /// Applies to ALL shapes.<br>
+        /// Optional.
         /// </summary>
         public Vector3 LightPosition
         {
@@ -1519,7 +1829,8 @@ namespace Tizen.NUI
         private Rectangle _border = null;
 
         /// <summary>
-        /// Get or set the URL of the image.
+        /// Get or set the URL of the image.<br>
+        /// Mandatory.
         /// </summary>
         public string URL
         {
@@ -1538,6 +1849,7 @@ namespace Tizen.NUI
         /// Get or set whether to draws the borders only(If true).<br>
         /// If not specified, the default is false.<br>
         /// For N-Patch images only.<br>
+        /// Optional.
         /// </summary>
         public bool BorderOnly
         {
@@ -1553,7 +1865,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  The border of the image in the order: left, right, bottom, top.
+        /// The border of the image in the order: left, right, bottom, top.<br>
+        /// For N-Patch images only.<br>
+        /// Optional.
         /// </summary>
         public Rectangle Border
         {
@@ -1570,462 +1884,23 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
-            if (_url != null) { _outputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url)); }
-            if (_borderOnly != null) { _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
-            if (_border != null) { _outputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
-
-        }
-    }
-
-
-    /// <summary>
-    /// This specifies wrap mode types <br>
-    /// WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.
-    /// </summary>
-    public enum WrapModeType
-    {
-        /// <summary>
-        /// Defualt value
-        /// </summary>
-        Default = 0,
-        /// <summary>
-        /// Clamp to edge
-        /// </summary>
-        ClampToEdge,
-        /// <summary>
-        /// Repeat
-        /// </summary>
-        Repeat,
-        /// <summary>
-        /// Mirrored repeat
-        /// </summary>
-        MirroredRepeat
-    }
-
-    /// <summary>
-    /// The type of coordinate system for certain attributes of the points in a gradient.
-    /// </summary>
-    public enum GradientVisualUnitsType
-    {
-        /// <summary>
-        /// Uses the normals for the start, end & center points, i.e. top-left is (-0.5, -0.5) and bottom-right is (0.5, 0.5).
-        /// </summary>
-        ObjectBoundingBox,
-        /// <summary>
-        /// Uses the user coordinates for the start, end & center points, i.e. in a 200 by 200 control, top-left is (0, 0) and bottom-right is (200, 200).
-        /// </summary>
-        UserSpace
-    }
-
-    /// <summary>
-    /// This specifies SpreadMethod types.<br>
-    /// SpreadMethod defines what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
-    /// </summary>
-    public enum GradientVisualSpreadMethodType
-    {
-        /// <summary>
-        /// Uses the terminal colors of the gradient to fill the remainder of the quad.
-        /// </summary>
-        Pad,
-        /// <summary>
-        /// Reflect the gradient pattern start-to-end, end-to-start, start-to-end etc. until the quad is filled.
-        /// </summary>
-        Reflect,
-        /// <summary>
-        /// Repeat the gradient pattern start-to-end, start-to-end, start-to-end etc. until the quad is filled.
-        /// </summary>
-        Repeat
-    }
-
-    /// <summary>
-    /// The shading mode used by MeshVisual.
-    /// </summary>
-    public enum MeshVisualShadingModeValue
-    {
-        /// <summary>
-        /// *Simplest*. One color that is lit by ambient and diffuse lighting.
-        /// </summary>
-        TexturelessWithDiffuseLighting,
-        /// <summary>
-        /// Uses only the visual image textures provided with specular lighting in addition to ambient and diffuse lighting.
-        /// </summary>
-        TexturedWithSpecularLighting,
-        /// <summary>
-        /// Uses all textures provided including a gloss, normal and texture map along with specular, ambient and diffuse lighting.
-        /// </summary>
-        TexturedWithDetailedSpecularLighting
-    }
-
-    /// <summary>
-    /// The primitive shape to render as a PrimitiveVisual.
-    /// </summary>
-    public enum PrimitiveVisualShapeType
-    {
-        /// <summary>
-        /// A perfectly round geometrical object in three-dimensional space.
-        /// </summary>
-        Sphere,
-        /// <summary>
-        /// The area bound between two circles, i.e. a cone with the tip removed.
-        /// </summary>
-        ConicalFrustrum,
-        /// <summary>
-        /// Equivalent to a conical frustrum with top radius of zero.
-        /// </summary>Equivalent to a conical frustrum with top radius of zero.
-        Cone,
-        /// <summary>
-        /// Equivalent to a conical frustrum with top radius of zero.
-        /// </summary>
-        Cylinder,
-        /// <summary>
-        /// Equivalent to a conical frustrum with equal radii for the top and bottom circles.
-        /// </summary>
-        Cube,
-        /// <summary>
-        /// Equivalent to a bevelled cube with a bevel percentage of zero.
-        /// </summary>
-        Octahedron,
-        /// <summary>
-        /// Equivalent to a bevelled cube with a bevel percentage of one.
-        /// </summary>
-        BevelledCube
-    }
-
-    /// <summary>
-    /// This specifies fitting mode types. Fitting options, used when resizing images to fit desired dimensions.<br>
-    /// A fitting mode controls the region of a loaded image to be mapped to the desired image rectangle.<br>
-    /// All fitting modes preserve the aspect ratio of the image contents.<br>
-    /// </summary>
-    public enum FittingModeType
-    {
-        /// <summary>
-        /// Full-screen image display: Limit loaded image resolution to device resolution using ShrinkToFit mode.
-        /// </summary>
-        ShrinkToFit,
-        /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using ScaleToFill mode.
-        /// </summary>
-        ScaleToFill,
-        /// <summary>
-        /// Image columns: Limit loaded image resolution to column width using FitWidth mode.
-        /// </summary>
-        FitWidth,
-        /// <summary>
-        /// Image rows: Limit loaded image resolution to row height using FitHeight mode.
-        /// </summary>
-        FitHeight
-    }
-
-    /// <summary>
-    /// This specifies sampling mode types. Filtering options, used when resizing images to sample original pixels.<br>
-    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during a scaling.<br>
-    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and FittingMode,<br>
-    /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
-    /// </summary>
-    public enum SamplingModeType
-    {
-        /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc width and height and approximately the desired size. <br>
-        /// This is the default.
-        /// </summary>
-        Box,
-        /// <summary>
-        /// For each output pixel, read one input pixel.
-        /// </summary>
-        Nearest,
-        /// <summary>
-        /// For each output pixel, read a quad of four input pixels and write a weighted average of them.
-        /// </summary>
-        Linear,
-        /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8 etc width and height and approximately the desired size, <br>
-        /// then for each output pixel, read one pixel from the last level of box filtering.<br>
-        /// </summary>
-        BoxThenNearest,
-        /// <summary>
-        /// Iteratively box filter to almost the right size, then for each output pixel, read four pixels from the last level of box filtering and write their weighted average.
-        /// </summary>
-        BoxThenLinear,
-        /// <summary>
-        /// No filtering is performed. If the SCALE_TO_FILL scaling mode is enabled, the borders of the image may be trimmed to match the aspect ratio of the desired dimensions.
-        /// </summary>
-        NoFilter,
-        /// <summary>
-        /// For caching algorithms where a client strongly prefers a cache-hit to reuse a cached image.
-        /// </summary>
-        DontCare
-    }
-
-    /// <summary>
-    /// This specifies policy types that could be used by the transform for the offset or size.
-    /// </summary>
-    public enum VisualTransformPolicyType
-    {
-        /// <summary>
-        /// Relative to the control (percentage [0.0f to 1.0f] of the control).
-        /// </summary>
-        Relative = 0,
-        /// <summary>
-        /// Absolute value in world units.
-        /// </summary>
-        Absolute = 1
-    }
-
-    /// <summary>
-    /// This specifies all the transform property types.
-    /// </summary>
-    public enum VisualTransformPropertyType
-    {
-        /// <summary>
-        /// Offset of the visual, which can be either relative (percentage [0.0f to 1.0f] of the parent) or absolute (in world units).
-        /// </summary>
-        Offset,
-        /// <summary>
-        /// Size of the visual, which can be either relative (percentage [0.0f to 1.0f] of the parent) or absolute (in world units).
-        /// </summary>
-        Size,
-        /// <summary>
-        /// The origin of the visual within its control area.
-        /// </summary>
-        Origin,
-        /// <summary>
-        /// The anchor-point of the visual
-        /// </summary>
-        AnchorPoint,
-        /// <summary>
-        /// Whether the x or y OFFSET values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
-        /// </summary>
-        OffsetPolicy,
-        /// <summary>
-        /// Whether the width or height SIZE values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
-        /// </summary>
-        SizePolicy
-    }
-
-    /// <summary>
-    /// This specifies visual types.
-    /// </summary>
-    public struct Visual
-    {
-        /// <summary>
-        /// The index for the visual type.
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Renders a solid color as an internal border to the control's quad.
-            /// </summary>
-            Border,
-            /// <summary>
-            /// Renders a solid color to the control's quad.
-            /// </summary>
-            Color,
-            /// <summary>
-            /// Renders a smooth transition of colors to the control's quad.
-            /// </summary>
-            Gradient,
-            /// <summary>
-            /// Renders an image into the control's quad.
-            /// </summary>
-            Image,
-            /// <summary>
-            /// Renders a mesh using an "obj" file, optionally with textures provided by an "mtl" file.
-            /// </summary>
-            Mesh,
-            /// <summary>
-            /// Renders a simple 3D shape, such as a cube or sphere.
-            /// </summary>
-            Primitive,
-            /// <summary>
-            /// Renders a simple wire-frame outlining a quad.
-            /// </summary>
-            Wireframe,
-            /// <summary>
-            /// Renders text.
-            /// </summary>
-            Text,
-            /// <summary>
-            /// Renders an n-patch image.
-            /// </summary>
-            NPatch,
-            /// <summary>
-            /// Renders an SVG image.
-            /// </summary>
-            SVG,
-            /// <summary>
-            /// Renders a animated image. (Animated GIF)
-            /// </summary>
-            AnimatedImage
-        }
-
-        /// <summary>
-        /// This specifies visual properties.
-        /// </summary>
-        public struct Property
-        {
-            public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
-            public static readonly int Shader = NDalic.VISUAL_PROPERTY_SHADER;
-            public static readonly int Transform = NDalic.VISUAL_PROPERTY_TRANSFORM;
-            public static readonly int PremultipliedAlpha = NDalic.VISUAL_PROPERTY_PREMULTIPLIED_ALPHA;
-            public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
-            public static readonly int Opacity = NDalic.VISUAL_PROPERTY_MIX_COLOR + 1;
-        }
-
-        /// <summary>
-        /// This specifies shader properties.
-        /// </summary>
-        public struct ShaderProperty
-        {
-            public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
-            public static readonly int FragmentShader = NDalic.VISUAL_SHADER_FRAGMENT;
-            public static readonly int ShaderSubdivideGridX = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_X;
-            public static readonly int ShaderSubdivideGridY = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_Y;
-            public static readonly int ShaderHints = NDalic.VISUAL_SHADER_HINTS;
-        }
-
-        /// <summary>
-        /// This specifies Visaul align types.
-        /// </summary>
-        public enum AlignType
-        {
-            TopBegin = 0,
-            TopCenter,
-            TopEnd,
-            CenterBegin,
-            Center,
-            CenterEnd,
-            BottomBegin,
-            BottomCenter,
-            BottomEnd
+            if (_url != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                _outputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
+                if (_borderOnly != null) { _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                if (_border != null) { _outputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border)); }
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
     /// <summary>
-    /// This specifies properties of BorderVisual.
-    /// </summary>
-    public struct BorderVisualProperty
-    {
-        public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
-        public static readonly int Size = NDalic.BORDER_VISUAL_SIZE;
-        public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
-    }
-
-    /// <summary>
-    /// This specifies properties of ColorVisual.
-    /// </summary>
-    public struct ColorVisualProperty
-    {
-        public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
-    }
-
-    /// <summary>
-    /// This specifies properties of GradientVisual.
-    /// </summary>
-    public struct GradientVisualProperty
-    {
-        public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
-        public static readonly int EndPosition = NDalic.GRADIENT_VISUAL_END_POSITION;
-        public static readonly int Center = NDalic.GRADIENT_VISUAL_CENTER;
-        public static readonly int Radius = NDalic.GRADIENT_VISUAL_RADIUS;
-        public static readonly int StopOffset = NDalic.GRADIENT_VISUAL_STOP_OFFSET;
-        public static readonly int StopColor = NDalic.GRADIENT_VISUAL_STOP_COLOR;
-        public static readonly int Units = NDalic.GRADIENT_VISUAL_UNITS;
-        public static readonly int SpreadMethod = NDalic.GRADIENT_VISUAL_SPREAD_METHOD;
-    }
-
-    /// <summary>
-    /// This specifies properties of ImageVisual.
-    /// </summary>
-    public struct ImageVisualProperty
-    {
-        public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
-        public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
-        public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
-        public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
-        public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
-        public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
-        public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
-        public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
-        public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
-        public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
-        public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
-    }
-
-    /// <summary>
-    /// This specifies properties of MeshVisual.
-    /// </summary>
-    public struct MeshVisualProperty
-    {
-        public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
-        public static readonly int MaterialtURL = NDalic.MESH_VISUAL_MATERIAL_URL;
-        public static readonly int TexturesPath = NDalic.MESH_VISUAL_TEXTURES_PATH;
-        public static readonly int ShadingMode = NDalic.MESH_VISUAL_SHADING_MODE;
-        public static readonly int UseMipmapping = NDalic.MESH_VISUAL_USE_MIPMAPPING;
-        public static readonly int UseSoftNormals = NDalic.MESH_VISUAL_USE_SOFT_NORMALS;
-        public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
-    }
-
-    /// <summary>
-    /// This specifies properties of PrimitiveVisual.
-    /// </summary>
-    public struct PrimitiveVisualProperty
-    {
-        public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
-        public static readonly int MixColor = NDalic.PRIMITIVE_VISUAL_MIX_COLOR;
-        public static readonly int Slices = NDalic.PRIMITIVE_VISUAL_SLICES;
-        public static readonly int Stacks = NDalic.PRIMITIVE_VISUAL_STACKS;
-        public static readonly int ScaleTopRadius = NDalic.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS;
-        public static readonly int ScaleBottomRadius = NDalic.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS;
-        public static readonly int ScaleHeight = NDalic.PRIMITIVE_VISUAL_SCALE_HEIGHT;
-        public static readonly int ScaleRadius = NDalic.PRIMITIVE_VISUAL_SCALE_RADIUS;
-        public static readonly int ScaleDimensions = NDalic.PRIMITIVE_VISUAL_SCALE_DIMENSIONS;
-        public static readonly int BevelPercentage = NDalic.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE;
-        public static readonly int BevelSmoothness = NDalic.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS;
-        public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
-    }
-
-    /// <summary>
-    /// This specifies properties of TextVisual.
-    /// </summary>
-    public struct TextVisualProperty
-    {
-        public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
-        public static readonly int FontFamily = NDalic.TEXT_VISUAL_FONT_FAMILY;
-        public static readonly int FontStyle = NDalic.TEXT_VISUAL_FONT_STYLE;
-        public static readonly int PointSize = NDalic.TEXT_VISUAL_POINT_SIZE;
-        public static readonly int MultiLine = NDalic.TEXT_VISUAL_MULTI_LINE;
-        public static readonly int HorizontalAlignment = NDalic.TEXT_VISUAL_HORIZONTAL_ALIGNMENT;
-        public static readonly int VerticalAlignment = NDalic.TEXT_VISUAL_VERTICAL_ALIGNMENT;
-        public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
-        public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
-    }
-
-    /// <summary>
-    /// This specifies properties of NpatchImageVisual.
-    /// </summary>
-    public struct NpatchImageVisualProperty
-    {
-        public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
-        public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
-        public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
-        public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
-        public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
-        public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
-        public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
-        public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
-        public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
-        public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
-        public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
-    }
-
-    /// <summary>
-    /// A class encapsulating the property map of a SVG visual. 
+    /// A class encapsulating the property map of a SVG visual.
     /// </summary>
     public class SVGVisual : VisualMap
     {
@@ -2050,13 +1925,16 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.SVG));
-            if (_url != null) { _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_url != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.SVG));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 
@@ -2086,13 +1964,16 @@ namespace Tizen.NUI
 
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
-            if (_url != null) { _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url)); }
-            if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_url != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            }
         }
     }
 

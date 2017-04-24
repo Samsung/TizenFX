@@ -609,13 +609,13 @@ namespace Tizen.NUI.UIComponents
                 switch (temp)
                 {
                     case "BEGIN":
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                     case "CENTER":
-                        return HorizontalAlignment.HorizontalAlignCenter;
+                        return HorizontalAlignment.Center;
                     case "END":
-                        return HorizontalAlignment.HorizontalAlignEnd;
+                        return HorizontalAlignment.End;
                     default:
-                        return HorizontalAlignment.HorizontalAlignBegin;
+                        return HorizontalAlignment.Begin;
                 }
             }
             set
@@ -623,17 +623,17 @@ namespace Tizen.NUI.UIComponents
                 string valueToString = "";
                 switch (value)
                 {
-                    case HorizontalAlignment.HorizontalAlignBegin:
+                    case HorizontalAlignment.Begin:
                     {
                         valueToString = "BEGIN";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignCenter:
+                    case HorizontalAlignment.Center:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case HorizontalAlignment.HorizontalAlignEnd:
+                    case HorizontalAlignment.End:
                     {
                         valueToString = "END";
                         break;
@@ -666,13 +666,13 @@ namespace Tizen.NUI.UIComponents
                 switch (temp)
                 {
                     case "TOP":
-                        return VerticalAlignment.VerticalAlignTop;
+                        return VerticalAlignment.Top;
                     case "CENTER":
-                        return VerticalAlignment.VerticalAlignCenter;
+                        return VerticalAlignment.Center;
                     case "BOTTOM":
-                        return VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.Bottom;
                     default:
-                        return VerticalAlignment.VerticalAlignBottom;
+                        return VerticalAlignment.Bottom;
                 }
             }
             set
@@ -680,17 +680,17 @@ namespace Tizen.NUI.UIComponents
                 string valueToString = "";
                 switch (value)
                 {
-                    case VerticalAlignment.VerticalAlignTop:
+                    case VerticalAlignment.Top:
                     {
                         valueToString = "TOP";
                         break;
                     }
-                    case VerticalAlignment.VerticalAlignCenter:
+                    case VerticalAlignment.Center:
                     {
                         valueToString = "CENTER";
                         break;
                     }
-                    case VerticalAlignment.VerticalAlignBottom:
+                    case VerticalAlignment.Bottom:
                     {
                         valueToString = "BOTTOM";
                         break;

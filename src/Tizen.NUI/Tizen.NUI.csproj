@@ -313,6 +313,7 @@
     <Compile Include="src\public\Layer.cs" />
     <Compile Include="src\public\LongPressGesture.cs" />
     <Compile Include="src\public\NUIApplication.cs" />
+    <Compile Include="src\public\NUIConstants.cs" />
     <Compile Include="src\public\PanGesture.cs" />
     <Compile Include="src\public\Path.cs" />
     <Compile Include="src\public\PinchGesture.cs" />

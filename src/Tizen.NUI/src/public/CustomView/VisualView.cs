@@ -125,13 +125,17 @@ namespace Tizen.NUI
         /// <param name="visualName"> The name of visual to remove. </param>
         public void RemoveVisual(string visualName)
         {
-            foreach (var item in _visualDictionary.ToList())
+            foreach (var item in _visualDictionary)
             {
                 if (item.Value.Name == visualName)
                 {
                     EnableVisual(item.Key, false);
                     UnregisterVisual(item.Key);
+                    _tranformDictionary.Remove(item.Key);
                     _visualDictionary.Remove(item.Key);
+
+                    RelayoutRequest();
+                    break;
                 }
             }
         }
@@ -147,13 +151,19 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
         /// Remove all visuals of visual view.
         /// </summary>
         public void RemoveAll()
         {
+            foreach (var item in _visualDictionary)
+            {
+                EnableVisual(item.Key, false);
+                UnregisterVisual(item.Key);
+            }
             _visualDictionary.Clear();
+            _tranformDictionary.Clear();
+            RelayoutRequest();
         }
 
         /// <summary>

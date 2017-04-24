@@ -250,24 +250,4 @@ namespace Tizen.NUI
         }
 
     }
-
-    /// <summary>
-    /// Types of style change. Enumeration for StyleChange type.
-    /// </summary>
-    public enum StyleChangeType
-    {
-        /// <summary>
-        /// Denotes that the default font has changed.
-        /// </summary>
-        DefaultFontChange,
-        /// <summary>
-        /// Denotes that the default font size has changed.
-        /// </summary>
-        DefaultFontSizeChange,
-        /// <summary>
-        /// Denotes that the theme has changed.
-        /// </summary>
-        ThemeChange
-    }
-
 }
