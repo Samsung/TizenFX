@@ -32,6 +32,8 @@ namespace Tizen.Multimedia
         InvalidOperation = ErrorCode.InvalidOperation,  // Invalid operation
         FileNoSpaceOnDevice = ErrorCode.FileNoSpaceOnDevice,  // No space left on device
         PermissionDenied = ErrorCode.PermissionDenied,  // Permission deny
+        TizenThumbnailUtilError = -0x02F90000,
+        UnsupportedContent = TizenThumbnailUtilError | 0x01,  // Unsupported content
     };
 
     internal static class ThumbnailExtractorErrorFactory
