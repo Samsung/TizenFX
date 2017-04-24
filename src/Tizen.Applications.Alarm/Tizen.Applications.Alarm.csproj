@@ -61,6 +61,10 @@
       <Project>{663c5a3d-e631-4987-aee7-f498c56a40fc}</Project>
       <Name>Tizen.Applications.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tizen.Applications.Notification\Tizen.Applications.Notification.csproj">
+      <Project>{36C346B4-5ABC-45C7-808B-04178B76FA0D}</Project>
+      <Name>Tizen.Applications.Notification</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

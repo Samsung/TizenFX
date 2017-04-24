@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-
 namespace Tizen.Applications
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
+    using Tizen.Applications.Notifications;
+
     /// <summary>
     /// Enumeration for Alarm Week Flag, the days of the week.
     /// </summary>
@@ -221,6 +222,123 @@ namespace Tizen.Applications
             {
                 throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
             }
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// The date describes the time of the first occurrence.
+        /// </summary>
+        /// <param name="dateTime"> The first active alarm time </param>
+        /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
+        /// <returns> Alarm Instance created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        public static Alarm CreateAlarm(DateTime dateTime, Notification notification)
+        {
+            Alarm alarm = null;
+            int alarmId;
+            NotificationSafeHandle safeHandle = NotificationManager.MakeNotificationSafeHandle(notification);
+            Interop.Alarm.DateTime time = ConvertDateTimeToStruct(dateTime);
+            AlarmError ret = Interop.Alarm.CreateAlarmNotiOnceAtDate(safeHandle, ref time, out alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            alarm = new Alarm(alarmId);
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// The date describes the time of the first occurrence.
+        /// </summary>
+        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
+        /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy.
+        /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
+        /// <returns> Alarm Instance created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        public static Alarm CreateAlarm(int delay, int period, Notification notification)
+        {
+            Alarm alarm = null;
+            int alarmId;
+            NotificationSafeHandle safeHandle = NotificationManager.MakeNotificationSafeHandle(notification);
+            AlarmError ret = Interop.Alarm.CreateAlarmNotiAfterDelay(safeHandle, delay, period, out alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            alarm = new Alarm(alarmId);
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// The date describes the time of the first occurrence.
+        /// </summary
+        /// <param name="dateTime"> The first active alarm time </param>
+        /// <param name="weekFlag"> The day of the week, AlarmWeekFlag may be a combination of days,
+        ///                         like AlarmWeekFlag.Sunday | AlarmWeekFlag.Monday</param>
+        /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
+        /// <returns> Alarm Instance created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        public static Alarm CreateAlarm(DateTime dateTime, AlarmWeekFlag weekFlag, Notification notification)
+        {
+            Alarm alarm = null;
+            int alarmId;
+            NotificationSafeHandle safeHandle = NotificationManager.MakeNotificationSafeHandle(notification);
+            Interop.Alarm.DateTime time = ConvertDateTimeToStruct(dateTime);
+            AlarmError ret = Interop.Alarm.CreateAlarmNotiRecurWeek(safeHandle, ref time, (int)weekFlag, out alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            alarm = new Alarm(alarmId);
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// The date describes the time of the first occurrence.
+        /// </summary>
+        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
+        /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
+        /// <returns> Alarm Instance created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        public static Alarm CreateAlarm(int delay, Notification notification)
+        {
+            Alarm alarm = null;
+            int alarmId;
+            NotificationSafeHandle safeHandle = NotificationManager.MakeNotificationSafeHandle(notification);
+            AlarmError ret = Interop.Alarm.CreateAlarmNotiOnceAfterDelay(safeHandle, delay, out alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            alarm = new Alarm(alarmId);
 
             return alarm;
         }

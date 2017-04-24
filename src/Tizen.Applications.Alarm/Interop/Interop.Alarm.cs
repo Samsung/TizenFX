@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
+using Tizen.Applications.Notifications;
 
 internal static partial class Interop
 {
@@ -81,6 +82,18 @@ internal static partial class Interop
 
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_foreach_registered_alarm")]
         internal static extern int GetAllRegisteredAlarms(RegisteredAlarmCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_at_date")]
+        internal static extern AlarmError CreateAlarmNotiOnceAtDate(NotificationSafeHandle noti, ref DateTime date, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_after_delay")]
+        internal static extern AlarmError CreateAlarmNotiAfterDelay(NotificationSafeHandle noti, int delay, int period, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_after_delay")]
+        internal static extern AlarmError CreateAlarmNotiOnceAfterDelay(NotificationSafeHandle noti, int delay, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_with_recurrence_week_flag")]
+        internal static extern AlarmError CreateAlarmNotiRecurWeek(NotificationSafeHandle noti, ref DateTime date, int week, out int alarmId);
 
         //callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
