@@ -18,7 +18,10 @@
 
 namespace Tizen.Content.MediaContent
 {
-    public class ContentColumns
+    /// <summary>
+    /// A ContentColumns class defines the keyword used for filter condition or sorting.
+    /// </summary>
+    public static class ContentColumns
     {
         /// <summary>
         /// Media column set. \n
