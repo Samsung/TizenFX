@@ -15,6 +15,8 @@
  *
  */
 
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
     public class ViewWrapper : View

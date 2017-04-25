@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI.UIComponents;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI;
 
 namespace CustomControlTest

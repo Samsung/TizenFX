@@ -1,5 +1,6 @@
 using Tizen.NUI;
 using System;
+using Tizen.NUI.BaseComponents;
 
 namespace FirstScreen
 {

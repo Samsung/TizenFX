@@ -6,6 +6,7 @@ using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {

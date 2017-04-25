@@ -1,5 +1,6 @@
 using Tizen.NUI;
 using Tizen.NUI.UIComponents;
+using Tizen.NUI.BaseComponents;
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -163,7 +164,7 @@ namespace FirstScreen
                 }
             }
 
-            return (Tizen.NUI.View)actor;
+            return (View)actor;
         }
 
         // Perform Focus animation Effect on the current Focused Item on ScrollContainer.

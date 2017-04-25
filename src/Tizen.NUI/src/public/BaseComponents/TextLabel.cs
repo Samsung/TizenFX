@@ -24,7 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI.UIComponents
+namespace Tizen.NUI.BaseComponents
 {
 
     /// <summary>

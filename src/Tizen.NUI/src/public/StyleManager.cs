@@ -13,6 +13,7 @@ namespace Tizen.NUI
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// StyleManager informs applications of system theme change, and supports application theme change at runtime.<br>

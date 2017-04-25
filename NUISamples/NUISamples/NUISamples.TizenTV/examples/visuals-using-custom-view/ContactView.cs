@@ -18,6 +18,7 @@
 using System;
 using Tizen.NUI;
 using Tizen.NUI.Constants;
+using Tizen.NUI.BaseComponents;
 
 // A ContactView is a Custom View which consists of four visuals (Image, Primitive, Text and Color).
 // All of these visuals can be configured via properties - ImageURL (Image), Shape (Primitive), Name (Text) and Color.

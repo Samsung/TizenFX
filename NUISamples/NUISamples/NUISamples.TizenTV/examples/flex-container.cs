@@ -2,6 +2,7 @@
 using System;
 using Tizen.NUI;
 using Tizen.NUI.UIComponents;
+using Tizen.NUI.BaseComponents;
 
 namespace FlexContainerTest
 {

@@ -29,7 +29,8 @@ namespace Tizen.NUI.UIComponents
 
     using System;
     using System.Runtime.InteropServices;
-
+    using Tizen.NUI.BaseComponents;
+    
     /// <summary>
     /// Slider is a control to enable sliding an indicator between two values.
     /// </summary>

@@ -15,6 +15,8 @@
  *
  */
 
+using Tizen.NUI.BaseComponents;
+
 using System;
 
 namespace Tizen.NUI {
