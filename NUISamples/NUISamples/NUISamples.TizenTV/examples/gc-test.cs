@@ -2,6 +2,7 @@ using Tizen.Applications;
 
 using System.Collections.Generic;
 using System;
+using Tizen.NUI.BaseComponents;
 
 namespace TizenVDUIApplication19
 {
