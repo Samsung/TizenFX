@@ -65,7 +65,7 @@ namespace VisualViewTest
 
             /* color visual */
             ColorVisual colorVisualMap1 = new ColorVisual();
-            colorVisualMap1.MixColor = Color.Green;
+            colorVisualMap1.Color = Color.Green;
             _visualView.Background = colorVisualMap1.OutputVisualMap;
 
             stage.GetDefaultLayer().Add(_visualView);

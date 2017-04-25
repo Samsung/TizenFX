@@ -63,7 +63,7 @@ namespace PositionUsesAnchorPointTest
             _text1.AnchorPoint = AnchorPoint.Center;
             _text1.Position = new Position(0, 0, 0);
             _text1.PositionUsesAnchorPoint = true;
-            _text1.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _text1.HorizontalAlignment = HorizontalAlignment.Center;
             _text1.Size2D = new Size2D(200, 100);
             _text1.PointSize = 10.0f;
             _text1.BackgroundColor = Color.Blue;
@@ -74,7 +74,7 @@ namespace PositionUsesAnchorPointTest
             _text2.AnchorPoint = AnchorPoint.Center;
             _text2.Position = new Position(0, 0, 0);
             _text2.PositionUsesAnchorPoint = false;
-            _text2.HorizontalAlignment = HorizontalAlignment.HorizontalAlignCenter;
+            _text2.HorizontalAlignment = HorizontalAlignment.Center;
             _text2.Size2D = new Size2D(200, 100);
             _text2.PointSize = 10.0f;
             _text2.BackgroundColor = Color.Red;

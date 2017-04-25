@@ -26,7 +26,7 @@ namespace VisualViewTest3
     class Example : NUIApplication
     {
         private VisualView _visualView = null;
-        //private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
         private Window _window;
 
         public Example() : base()
