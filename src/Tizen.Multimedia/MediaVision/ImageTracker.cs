@@ -43,7 +43,7 @@ namespace Tizen.Multimedia
         ///     - or -\n
         ///     <paramref name="trackingModel"/> has already been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> has no target.</exception>
+        /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel)
@@ -71,7 +71,7 @@ namespace Tizen.Multimedia
         ///     - or -\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> has no target.</exception>
+        /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel, ImageTrackingConfiguration config)

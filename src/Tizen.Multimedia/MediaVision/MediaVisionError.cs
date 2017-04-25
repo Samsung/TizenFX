@@ -66,7 +66,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Permission denied
         /// </summary>
-        PermissionDenied = ErrorCode.PermissionDenied,
+        PermissionDenied = ErrorCode.NotPermitted,
         /// <summary>
         /// Not supported format
         /// </summary>

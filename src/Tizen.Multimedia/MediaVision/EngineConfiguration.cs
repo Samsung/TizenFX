@@ -15,6 +15,7 @@
  */
 
 using System;
+using Tizen.System;
 using System.Runtime.InteropServices;
 using static Tizen.Multimedia.Interop.MediaVision;
 
@@ -28,8 +29,42 @@ namespace Tizen.Multimedia
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
-        internal EngineConfiguration()
+        private const string _featurePath = "http://tizen.org/feature/vision.";
+
+        private bool IsSupportedEngineType(string type)
         {
+            bool isSupported = false;
+
+            string featureType = _featurePath + type;
+
+            bool ret = SystemInfo.TryGetValue(featureType, out isSupported);
+
+            return (isSupported && ret) ? true : false;
+        }
+
+        private bool IsSupportedEngineType(string type1, string type2)
+        {
+            return (IsSupportedEngineType(type1) && IsSupportedEngineType(type2)) ? true : false;
+        }
+
+        internal EngineConfiguration(string engineType)
+        {
+            if (IsSupportedEngineType(engineType) == false)
+            {
+                throw new NotSupportedException($"{engineType} : Not Supported");
+            }
+
+            EngineConfig.Create(out _handle).Validate("Failed to create media vision engine.");
+        }
+
+        internal EngineConfiguration(string engineType1, string engineType2)
+        {
+
+            if (IsSupportedEngineType(engineType1, engineType2) == false)
+            {
+                throw new NotSupportedException($"{engineType1} or {engineType2} : Not Supported");
+            }
+
             EngineConfig.Create(out _handle).Validate("Failed to create media vision engine.");
         }
 

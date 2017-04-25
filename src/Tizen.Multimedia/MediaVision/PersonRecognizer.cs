@@ -104,7 +104,7 @@ namespace Tizen.Multimedia
         ///     - or -\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
-        /// <exception cref="System.IO.FileNotFoundException">
+        /// <exception cref="ArgumentException">
         /// <see cref="PersonRecognitionConfiguration.FaceRecognitionModelPath"/> of <paramref name="config"/> does not exists.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">

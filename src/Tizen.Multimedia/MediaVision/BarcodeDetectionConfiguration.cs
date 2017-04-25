@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="BarcodeDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
-        public BarcodeDetectionConfiguration()
+        public BarcodeDetectionConfiguration() : base("barcode_detection")
         {
         }
 
