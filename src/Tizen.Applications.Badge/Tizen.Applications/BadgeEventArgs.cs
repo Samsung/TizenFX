@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Applications
 {
+    using System;
+
     /// <summary>
     /// Class for event arguments of the badge event
     /// </summary>

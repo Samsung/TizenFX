@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-
 namespace Tizen.Applications
 {
+    using System;
+    using System.Collections.Generic;
     /// <summary>
     /// Class for badge operation.
     /// </summary>
