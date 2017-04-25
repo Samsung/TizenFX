@@ -18,6 +18,7 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.UIComponents;
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// A class encapsulating the transform map of visual.

@@ -13,6 +13,8 @@
 using System.Reflection;
 #endif
 
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI {
 
 internal class CustomAlgorithmInterface : global::System.IDisposable {

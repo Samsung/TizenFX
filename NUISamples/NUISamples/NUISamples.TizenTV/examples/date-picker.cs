@@ -18,6 +18,8 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
+
 
 namespace DatePickerTest
 {

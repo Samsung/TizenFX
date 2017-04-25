@@ -12,7 +12,7 @@ namespace Tizen.NUI {
 
 using System;
 using System.Runtime.InteropServices;
-
+using Tizen.NUI.BaseComponents;
 
     public class Scrollable : View {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;

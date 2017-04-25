@@ -1,6 +1,7 @@
 using Tizen.NUI;
 using Tizen.NUI.Constants;
 using Tizen.NUI.UIComponents;
+using Tizen.NUI.BaseComponents;
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace FirstScreen
             }
         }
 
-        public Tizen.NUI.View Container
+        public Tizen.NUI.BaseComponents.View Container
         {
             get
             {
