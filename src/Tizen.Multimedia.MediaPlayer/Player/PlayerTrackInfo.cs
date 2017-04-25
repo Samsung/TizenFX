@@ -107,50 +107,44 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the selected track index.
+        /// Gets or sets the selected track index.
         /// </summary>
-        /// <returns>The currently selected track index.</returns>
-        /// <remarks>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
-        public int GetSelected()
-        {
-            _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
-
-            int value = 0;
-
-            NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out value).
-                ThrowIfFailed("Failed to get the selected index of the player");
-            Log.Debug(PlayerLog.Tag, "get selected index : " + value);
-            return value;
-        }
-
-        /// <summary>
-        /// Selects the track.
-        /// </summary>
-        /// <param name="index">The index to select.</param>
+        /// <value>The currently selected track index.</value>
         /// <remarks>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="index"/> is less than zero.\n
+        ///     <paramref name="value"/> is less than zero.\n
         ///     -or-\n
-        ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>
+        ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>
         /// </exception>
-        public void SetSelected(int index)
+        public int Selected
         {
-            if (index < 0 || GetCount() <= index)
+            get
             {
-                Log.Error(PlayerLog.Tag, "invalid index");
-                throw new ArgumentOutOfRangeException(nameof(index), index,
-                    $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
+                _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+                int value = 0;
+
+                NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out value).
+                    ThrowIfFailed("Failed to get the selected index of the player");
+                Log.Debug(PlayerLog.Tag, "get selected index : " + value);
+                return value;
             }
+            set
+            {
+                if (value < 0 || GetCount() <= value)
+                {
+                    Log.Error(PlayerLog.Tag, "invalid index");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { value }.");
+                }
 
-            _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            NativePlayer.SelectTrack(_owner.Handle, _streamType, index).
-                ThrowIfFailed("Failed to set the selected index of the player");
+                NativePlayer.SelectTrack(_owner.Handle, _streamType, value).
+                    ThrowIfFailed("Failed to set the selected index of the player");
+            }
         }
-
     }
 }

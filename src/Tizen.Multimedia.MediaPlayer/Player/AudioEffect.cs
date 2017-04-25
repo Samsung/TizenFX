@@ -52,8 +52,7 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Failed to initialize the AudioEffect");
 
             Count = count;
-            MinBandLevel = min;
-            MaxBandLevel = max;
+            BandLevelRange = new Range(min, max);
 
             _bands = new EqualizerBand[count];
         }
@@ -106,16 +105,10 @@ namespace Tizen.Multimedia
 
         public int Count{ get; }
 
-        // TODO replace with range struct
         /// <summary>
-        /// Get the minimum band level of the bands in dB.
+        /// Get the band level range of the bands in dB.
         /// </summary>
-        public int MinBandLevel { get; }
-
-        /// <summary>
-        /// Gets the maximum band level of the bands in dB.
-        /// </summary>
-        public int MaxBandLevel { get; }
+        public Range BandLevelRange { get; }
 
         /// <summary>
         /// Gets the value whether the AudioEffect is available or not.
