@@ -31,6 +31,7 @@ internal static partial class Interop
         public const string Libc = "libc.so.6";
         public const string Rua =  "librua.so.0";
         public const string Notification = "libnotification.so.0";
+        public const string NotificationEventListener = "libnotification.so.0";
         public const string Preference = "libcapi-appfw-preference.so.0";
         public const string Alarm = "libcapi-appfw-alarm.so.0";
         public const string ToastMessage = "libnotification.so.0";

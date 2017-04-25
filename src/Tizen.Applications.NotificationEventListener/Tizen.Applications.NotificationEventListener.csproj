@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{00BA79CF-5F22-48E6-8FE8-315511EBDF9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tizen.Applications.NotificationEventListener</RootNamespace>
+    <AssemblyName>Tizen.Applications.NotificationEventListener</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>$(NoWarn);1701</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Tizen.Applications.NotificationEventListener.project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interop\Interop.Libraries.cs" />
+    <Compile Include="Interop\Interop.NotificationEventListener.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationDeleteEventArgs.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsAccessory.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsBigPictureStyle.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsButtonAction.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsEnumerations.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsProgress.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsReplyAction.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsStyle.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsActiveStyle.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsIndicatorStyle.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsLockStyle.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventListenerErrorFactory.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationListenerManager.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationAccessoryArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationButtonActionArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationDeleteEventArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationEventArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationProgressArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationReplyActionArgsBinder.cs" />
+    <Compile Include="Tizen.Applications.NotificationEventListener\NotificationStyleArgsBinder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj">
+      <Project>{663c5a3d-e631-4987-aee7-f498c56a40fc}</Project>
+      <Name>Tizen.Applications.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <PropertyGroup>
+    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
+			 https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
+		-->
+    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
+			 properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
+			 to prevent it from outputting a warning (MSB3644).
+		-->
+    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
+    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>

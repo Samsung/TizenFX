@@ -16,7 +16,7 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
 
-%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications Tizen.Applications.ToastMessage
+%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.NotificationEventListener Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications Tizen.Applications.ToastMessage
 
 %description
 %{summary}
@@ -107,6 +107,22 @@ Group:  Development/Libraries
 
 %description -n csapi-application-toastmessage-nuget
 A toastmessage library in Tizen C# API package.
+
+%package -n csapi-application-notificationeventlistener
+Summary:  A notificationeventlistener library in Tizen C# API
+Group:  Development/Libraries
+AutoReqProv: no
+ExcludeArch: aarch64
+
+%description -n csapi-application-notificationeventlistener
+A notificationeventlistener library in Tizen C# API package.
+
+%package -n csapi-application-notificationeventlistener-nuget
+Summary:  A notificationeventlistener library in Tizen C# API
+Group:  Development/Libraries
+
+%description -n csapi-application-notificationeventlistener-nuget
+A notificationeventlistener library in Tizen C# API package.
 
 %package -n csapi-application-preference
 Summary:  A preference library in Tizen C# API
@@ -225,6 +241,14 @@ done
 
 %files -n csapi-application-notification-nuget
 /nuget/Tizen.Applications.Notification.%{version}.nupkg
+
+%files -n csapi-application-notificationeventlistener
+%manifest %{name}.manifest
+%license LICENSE
+%attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.NotificationEventListener.dll
+
+%files -n csapi-application-notificationeventlistener-nuget
+/nuget/Tizen.Applications.NotificationEventListener.%{version}.nupkg
 
 %files -n csapi-application-toastmessage
 %manifest %{name}.manifest
