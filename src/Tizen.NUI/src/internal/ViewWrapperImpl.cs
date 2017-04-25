@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     public sealed class ViewWrapperImpl : ViewImpl

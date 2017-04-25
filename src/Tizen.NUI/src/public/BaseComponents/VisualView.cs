@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-namespace Tizen.NUI
+namespace Tizen.NUI.BaseComponents
 {
     using System;
     using System.Runtime.InteropServices;

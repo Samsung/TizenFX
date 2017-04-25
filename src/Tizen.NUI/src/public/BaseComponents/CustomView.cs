@@ -15,7 +15,7 @@
  *
  */
 
-namespace Tizen.NUI
+namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
     /// CustomView provides some common functionality required by all views.

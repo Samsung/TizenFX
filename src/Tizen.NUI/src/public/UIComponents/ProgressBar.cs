@@ -29,7 +29,7 @@ namespace Tizen.NUI.UIComponents
 
     using System;
     using System.Runtime.InteropServices;
-
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// ProgressBar is a control to give the user an indication of the progress of an operation.

@@ -24,6 +24,8 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI {
 
 public class ToggleButton : Tizen.NUI.UIComponents.Button {

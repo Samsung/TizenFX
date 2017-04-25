@@ -22,6 +22,7 @@ namespace Tizen.NUI
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// Provides the functionality of handling keyboard navigation and maintaining the two dimensional keyboard focus chain.<br>
