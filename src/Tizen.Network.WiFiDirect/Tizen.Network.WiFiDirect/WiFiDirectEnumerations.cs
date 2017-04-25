@@ -197,7 +197,6 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for Wi-Fi Direct secondary device type.
     /// </summary>
-    /// </summary>
     public enum WiFiDirectSecondaryDeviceType
     {
         /// <summary>

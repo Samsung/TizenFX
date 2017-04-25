@@ -56,7 +56,6 @@ namespace Tizen.Network.WiFiDirect
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool _isMiracast;
     }
-
     [StructLayout(LayoutKind.Sequential)]
     internal struct ConnectedPeerStruct
     {

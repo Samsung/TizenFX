@@ -52,7 +52,7 @@ namespace Tizen.Network.WiFiDirect
             case WiFiDirectError.OutOfMemory:
                 throw new InvalidOperationException("Out of memory");
             case WiFiDirectError.PermissionDenied:
-                throw new InvalidOperationException("Permission denied");
+                throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/wifidirect)");
             case WiFiDirectError.ResourceBusy:
                 throw new InvalidOperationException("Resource is busy");
             case WiFiDirectError.TooManyClient:
