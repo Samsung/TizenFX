@@ -21,6 +21,7 @@ namespace Tizen.NUI.UIComponents
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// Button is a base class for different kinds of buttons.<br>

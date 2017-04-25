@@ -8,6 +8,8 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI {
 
     internal class TextFieldSignal : global::System.IDisposable {
@@ -74,8 +76,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(Tizen.NUI.UIComponents.TextField arg) {
-    NDalicPINVOKE.TextFieldSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.TextField.getCPtr(arg));
+  public void Emit(TextField arg) {
+    NDalicPINVOKE.TextFieldSignal_Emit(swigCPtr, TextField.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

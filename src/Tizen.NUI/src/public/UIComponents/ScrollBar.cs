@@ -29,7 +29,8 @@ namespace Tizen.NUI.UIComponents
 
     using System;
     using System.Runtime.InteropServices;
-
+    using Tizen.NUI.BaseComponents;
+    
     /// <summary>
     /// ScrollBar is a UI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br>

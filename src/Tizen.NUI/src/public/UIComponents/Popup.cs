@@ -29,7 +29,7 @@ namespace Tizen.NUI.UIComponents
 
     using System;
     using System.Runtime.InteropServices;
-
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// The Popup widget provides a configurable pop-up dialog with built-in layout of three main fields.

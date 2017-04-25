@@ -29,7 +29,8 @@ namespace Tizen.NUI
 
     using System;
     using System.Runtime.InteropServices;
-
+    using Tizen.NUI.BaseComponents;
+    
     /// <summary>
     /// VideoView is a control for video playback and display.
     /// </summary>
