@@ -198,6 +198,12 @@ namespace Tizen.Location
         public GpsSatellite(Locator locator)
         {
             Log.Info(Globals.LogTag, "Calling GpsSatellite constructor");
+            if (locator == null)
+            {
+                Log.Error(Globals.LogTag, "locator is null");
+                throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+            }
+
             LocationType method = locator.LocationType;
             if (method.Equals(LocationType.Gps) || method.Equals(LocationType.Hybrid))
             {

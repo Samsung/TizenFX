@@ -50,6 +50,7 @@ namespace Tizen.Location
         /// <param name="direction"> Device direction with respect to north.</param>
         /// <param name="timestamp"> Time when the measurement took place.</param>
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         public Location(double latitude, double longitude, double altitude, double speed, double direction, double accuracy, int timestamp)
         {
             _latitude = latitude;
@@ -68,11 +69,21 @@ namespace Tizen.Location
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the latitude");
                 return _latitude;
             }
             set
             {
-                _latitude = value;
+                Log.Info(Globals.LogTag, "Setting the latitude");
+                if (value >= -90.0 && value <= 90.0)
+                {
+                    _latitude = value;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error setting latitude");
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                }
             }
         }
 
@@ -83,11 +94,21 @@ namespace Tizen.Location
         {
             get
             {
+                Log.Info(Globals.LogTag, "Getting the longitude");
                 return _longitude;
             }
             set
             {
-                _longitude = value;
+                Log.Info(Globals.LogTag, "Setting the longitude");
+                if (value >= -180.0 && value <= 180.0)
+                {
+                    _longitude = value;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error setting longitude");
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                }
             }
         }
 

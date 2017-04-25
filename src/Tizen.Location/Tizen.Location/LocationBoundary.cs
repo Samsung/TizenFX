@@ -264,6 +264,12 @@ namespace Tizen.Location
         public PolygonBoundary(IList<Coordinate> coordinates)
         {
             Log.Info(Globals.LogTag, "Calling PolygonBoundary Constructor");
+            if (coordinates == null)
+            {
+                Log.Error(Globals.LogTag, "coordingtes list is null");
+                throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+            }
+
             BoundaryType = BoundaryType.Polygon;
             IntPtr listPointer = Marshal.AllocHGlobal(Marshal.SizeOf(coordinates[0]) * coordinates.Count);
             IntPtr boundsHandle;
