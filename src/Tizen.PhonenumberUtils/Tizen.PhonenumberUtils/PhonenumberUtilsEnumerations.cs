@@ -42,7 +42,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Chinese,
         /// <summary>
-        /// Chinese(Traditional)
+        /// Chinese (Traditional)
         /// </summary>
         ChineseTranditional,
         /// <summary>
@@ -126,7 +126,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Spanish,
         /// <summary>
-        /// Swdish
+        /// Swedish
         /// </summary>
         Swedish,
         /// <summary>
@@ -182,7 +182,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Argentina,
         /// <summary>
-        /// Aremenia
+        /// Armenia
         /// </summary>
         Armenia,
         /// <summary>
@@ -190,11 +190,11 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         AscensionIsland,
         /// <summary>
-        /// Atigua and Barbuda
+        /// Antigua and Barbuda
         /// </summary>
-        AtiguaAndBarbuda,
+        AntiguaAndBarbuda,
         /// <summary>
-        /// Autstria
+        /// Austria
         /// </summary>
         Austria,
         /// <summary>
@@ -246,7 +246,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Burundi,
         /// <summary>
-        /// Cabo Verde
+        /// Cabo Verde (Cape Verde)
         /// </summary>
         CaboVerde,
         /// <summary>
@@ -282,7 +282,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Congo,
         /// <summary>
-        /// Cote d'Ivoire
+        /// Cote d'Ivoire (Ivory Coast)
         /// </summary>
         CoteDIvoire,
         /// <summary>
@@ -366,7 +366,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Guernsey,
         /// <summary>
-        /// guinea
+        /// Guinea
         /// </summary>
         Guinea,
         /// <summary>
@@ -486,7 +486,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Nigeria,
         /// <summary>
-        /// Northern Mariana Island
+        /// Northern Mariana Islands
         /// </summary>
         NorthernMarianaIslands,
         /// <summary>
@@ -512,11 +512,11 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Korea (Republic of)
         /// </summary>
-        RepublicOfKorea,
+        Korea,
         /// <summary>
         /// Moldova (Republic of)
         /// </summary>
-        RepublicOfMoldova,
+        Moldova,
         /// <summary>
         /// Romania
         /// </summary>
@@ -606,9 +606,9 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Switzerland,
         /// <summary>
-        /// Taiwan Province of China
+        /// Taiwan, Province of China
         /// </summary>
-        TaiwanProvinceOfChina,
+        Taiwan,
         /// <summary>
         /// Thailand
         /// </summary>
@@ -616,7 +616,7 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Macedonia (the Former Yugoslav Republic of)
         /// </summary>
-        TheFormerYugoslavRepublicOfMacedonia,
+        Macedonia,
         /// <summary>
         /// Togo
         /// </summary>
@@ -942,7 +942,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Malaysia,
         /// <summary>
-        /// New Caledonia (Territoire francais d'outre-mer)
+        /// New Caledonia
         /// </summary>
         NewCaledonia,
         /// <summary>
@@ -962,7 +962,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Nepal,
         /// <summary>
-        /// Naura
+        /// Nauru
         /// </summary>
         Nauru,
         /// <summary>
@@ -982,7 +982,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Panama,
         /// <summary>
-        /// French Polynesia (Tahiti) (Territoire francais d'outre-mer)
+        /// French Polynesia
         /// </summary>
         FrenchPolynesia,
         /// <summary>
@@ -998,13 +998,13 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Pakistan,
         /// <summary>
-        /// Saint Pierre and Miquelon (Collectivite territoriale de la Republique francaise)
+        /// Saint Pierre and Miquelon
         /// </summary>
         SaintPierreAndMiquelon,
         /// <summary>
-        /// Palestinian Authority
+        /// Palestine
         /// </summary>
-        PalestinianAuthority,
+        Palestine,
         /// <summary>
         /// Palau
         /// </summary>
@@ -1018,7 +1018,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Qatar,
         /// <summary>
-        /// Reunion (French Departments and Territories in the Indian Ocean)
+        /// Reunion
         /// </summary>
         Reunion,
         /// <summary>
@@ -1056,7 +1056,7 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// El Salvador
         /// </summary>
-        ElSalvadore,
+        ElSalvador,
         /// <summary>
         /// Syrian Arab Republic
         /// </summary>
@@ -1114,7 +1114,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Vanuatu,
         /// <summary>
-        /// Wallis and Futuna (Territoire francais d'outre-mer)
+        /// Wallis and Futuna
         /// </summary>
         WallisAndFutuna,
         /// <summary>
