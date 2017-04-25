@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 using Tizen.Applications.Notifications;

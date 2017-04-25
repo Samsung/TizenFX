@@ -452,14 +452,6 @@ namespace Tizen.Applications.Notifications
             return state;
         }
 
-        /// <summary>
-        /// Method to get style you already added.
-        /// </summary>
-        /// <exception cref="ArgumentException">Thrown when argument is null</exception>
-        /// <param name="notification">Notification to make <see cref="NotificationSafeHandle"/>.</param>
-        /// <returns>
-        /// The Notification object
-        /// </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static NotificationSafeHandle MakeNotificationSafeHandle(Notification notification)
         {
@@ -473,14 +465,6 @@ namespace Tizen.Applications.Notifications
             return notification.Handle;
         }
 
-        /// <summary>
-        /// Method to get style you already added.
-        /// </summary>
-        /// <exception cref="ArgumentException">Thrown when argument is null</exception>
-        /// <param name="handle">SafeHandle to make <see cref="Notification"/> Object</param>
-        /// <returns>
-        /// The Notification object
-        /// </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Notification MakeNotification(NotificationSafeHandle handle)
         {
