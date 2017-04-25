@@ -48,10 +48,15 @@
   <ItemGroup>
     <Compile Include="Interop\Interop.AttachPanel.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Tizen.Applications\Tizen.Applications.AttachPanel.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\AttachPanelManager.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\ContentCategory.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\StateEventArgs.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\EventType.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\ResultEventArgs.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\StateType.cs" />
+    <Compile Include="Tizen.Applications.AttachPanel\AttachPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
 		Other similar extension points exist, see Microsoft.Common.targets.

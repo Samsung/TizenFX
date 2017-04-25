@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-using Tizen;
+using Tizen.Applications;
 
 internal static partial class Interop
 {
@@ -12,7 +12,16 @@ internal static partial class Interop
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            AlreadyExists = -0x02850000 | 0x01,
+            NotInitialized = -0x02850000 | 0x02,
+            UnsupportedContentCategory = -0x02850000 | 0x03,
+            AlreadyDestroyed = -0x02850000 | 0x05,
         }
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AttachPanelEventCallback(IntPtr attachPanel, int eventType, IntPtr eventInfo, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AttachPanelResultCallback(IntPtr attachPanel, int category, IntPtr result, int resultCode, IntPtr userData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_create")]
         internal static extern ErrorCode CreateAttachPanel(IntPtr conform, ref IntPtr attach_panel);
@@ -30,13 +39,13 @@ internal static partial class Interop
         internal static extern ErrorCode SetExtraData(IntPtr attach_panel, int content_category, IntPtr extraData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_result_cb")]
-        internal static extern ErrorCode SetResultCb(IntPtr attach_panel, IntPtr result_cb, IntPtr userData);
+        internal static extern ErrorCode SetResultCb(IntPtr attach_panel, AttachPanelResultCallback callback, IntPtr userData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_result_cb")]
         internal static extern ErrorCode UnsetResultCb(IntPtr attach_panel);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_event_cb")]
-        internal static extern ErrorCode SetEventCb(IntPtr attach_panel, IntPtr event_cb, IntPtr userData);
+        internal static extern ErrorCode SetEventCb(IntPtr attach_panel, AttachPanelEventCallback callback, IntPtr userData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_event_cb")]
         internal static extern ErrorCode UnsetEventCb(IntPtr attach_panel);
