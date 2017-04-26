@@ -12,7 +12,7 @@
 		<description>Provides the Widget control API for Tizen.Net</description>
 		<dependencies>
 			<dependency id="Tizen" version="1.0.2" />
-			<dependency id="Tizen.Applications" version="1.0.2" />
+			<dependency id="Tizen.Applications.Common" version="1.4.2" />
 		</dependencies>
 	</metadata>
 	<files>

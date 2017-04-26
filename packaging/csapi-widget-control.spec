@@ -15,7 +15,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
-BuildRequires: csapi-application-nuget
+BuildRequires: csapi-application-common-nuget
 
 %define Assemblies Tizen.Applications.WidgetControl
 
