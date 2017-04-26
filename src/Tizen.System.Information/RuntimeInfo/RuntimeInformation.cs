@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -143,11 +144,7 @@ namespace Tizen.System
             [RuntimeInformationKey.AudioJackConnector] = typeof(int)
         };
 
-        /// <summary>
-        /// This function gets current state of the given key which represents specific runtime information
-        /// </summary>
-        /// <param name="key">The runtime information key for which the current should be read </param>
-        /// <returns>The current status of the given key</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal static object GetStatus(RuntimeInformationKey key)
         {
             Type value;

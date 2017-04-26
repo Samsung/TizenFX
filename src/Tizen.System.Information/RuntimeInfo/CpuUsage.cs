@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -27,6 +28,7 @@ namespace Tizen.System
     /// </summary>
     public class CpuUsage
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal CpuUsage(Interop.RuntimeInfo.CpuUsage usage)
         {
             IoWait = usage.IoWait;
@@ -57,6 +59,7 @@ namespace Tizen.System
     /// </summary>
     public class ProcessCpuUsage
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal ProcessCpuUsage(Interop.RuntimeInfo.ProcessCpuUsage usage)
         {
             UTime = usage.UTime;

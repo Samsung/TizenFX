@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -25,6 +26,7 @@ namespace Tizen.System
     {
         private const string LogTag = "Tizen.System";
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private static Interop.SystemInfo.SystemInfoType GetValueType(string key, out Interop.SystemInfo.SystemInfoValueType valueType)
         {
             Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.SystemInfoGetPlatformType(key, out valueType);

@@ -15,10 +15,12 @@
 */
 
 using System;
+using System.ComponentModel;
 using Tizen.Internals.Errors;
 
 namespace Tizen.System
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal enum RuntimeInfoError
     {
         None = ErrorCode.None,
@@ -31,6 +33,7 @@ namespace Tizen.System
         NoData = ErrorCode.NoData
     }
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class RuntimeInfoErrorFactory
     {
         internal const string LogTag = "Tizen.System.RuntimeInformation";

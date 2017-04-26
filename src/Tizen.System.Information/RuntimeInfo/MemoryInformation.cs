@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -27,6 +28,7 @@ namespace Tizen.System
     /// </summary>
     public class SystemMemoryInformation
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal SystemMemoryInformation(Interop.RuntimeInfo.MemoryInfo info)
         {
             Total = info.Total;
@@ -62,6 +64,7 @@ namespace Tizen.System
     /// </summary>
     public class ProcessMemoryInformation
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal ProcessMemoryInformation(Interop.RuntimeInfo.ProcessMemoryInfo info)
         {
             PrivateClean = info.PrivateClean;
