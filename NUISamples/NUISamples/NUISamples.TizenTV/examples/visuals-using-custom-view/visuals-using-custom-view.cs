@@ -84,7 +84,7 @@ namespace VisualsUsingCustomView
                 contactView.Shape = contact.Shape;
                 contentLayout.Add(contactView);
             }
-            }
+        }
 
         /// <summary>
         /// The main entry point for the application.
@@ -92,7 +92,6 @@ namespace VisualsUsingCustomView
         [STAThread]
         static void _Main(string[] args)
         {
-            
             VisualsExample visualsExample = new VisualsExample();
             visualsExample.Run(args);
         }

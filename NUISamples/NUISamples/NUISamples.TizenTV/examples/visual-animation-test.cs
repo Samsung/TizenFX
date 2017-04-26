@@ -143,7 +143,6 @@ namespace VisaulAnimationExample
             npatch1.Opacity = 0.5f;
             _contentView.AddVisual("npatchImageVisual1", npatch1);
 
-
             //////////////////////////////////////////////////////////////////////
             // make SVG visual test
             VisualView VisualView1 = new VisualView();
@@ -223,8 +222,6 @@ namespace VisaulAnimationExample
                 return true;
             };
             contentLayout.AddChild(gifButton, new TableView.CellPosition(2, 1));
-
-
         }
 
         private void StartTransition(bool activate)
@@ -237,25 +234,25 @@ namespace VisaulAnimationExample
 
             if (activate)
             {
-                AnimatorVisual grow = new AnimatorVisual();
-                grow.AlphaFunction = "LINEAR";
+                VisualAnimator grow = new VisualAnimator();
+                grow.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
                 grow.StartTime = 0;
                 grow.EndTime = 1000;
                 grow.Target = "icon_visual1";
                 grow.PropertyIndex = "Size";
                 grow.DestinationValue = new Size2D(200, 200);
-                _animation = _contentView.AnimateVisual(grow);
+                _animation = _contentView.VisualAnimate(grow);
             }
             else
             {
-                AnimatorVisual shrink = new AnimatorVisual();
-                shrink.AlphaFunction = "LINEAR";
+                VisualAnimator shrink = new VisualAnimator();
+                shrink.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
                 shrink.StartTime = 0;
                 shrink.EndTime = 1000;
                 shrink.Target = "icon_visual1";
                 shrink.PropertyIndex = "Size";
                 shrink.DestinationValue = new Size2D(50, 50);
-                _animation = _contentView.AnimateVisual(shrink);
+                _animation = _contentView.VisualAnimate(shrink);
             }
 
             if (_animation)
