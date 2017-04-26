@@ -205,7 +205,7 @@ namespace Tizen.NUI
         LastViewBehaviourFlag
     }
 
-        public enum DeviceClassType
+    public enum DeviceClassType
     {
         None,
         Seat,

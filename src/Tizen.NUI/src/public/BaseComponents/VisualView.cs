@@ -208,7 +208,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="visualMap">property map to define visual animation</param>
         /// <returns>Animation instance</returns>
-        public Animation AnimateVisual(AnimatorVisual visualMap)
+        public Animation VisualAnimate(VisualAnimator visualMap)
         {
             foreach (var item in _visualDictionary.ToList())
             {
