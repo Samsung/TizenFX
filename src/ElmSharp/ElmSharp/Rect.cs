@@ -15,12 +15,14 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace ElmSharp
 {
     /// <summary>
     /// The Rect is a struct that represent rectangluar space.
     /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
     public struct Rect : IEquatable<Rect>
     {
         /// <summary>
