@@ -40,6 +40,7 @@ namespace Tizen.Applications.DataControl
         private static Interop.DataControl.MapBulkAddRequestCallback _mapBulkCallback;
         private static Mutex _lock = new Mutex();
         private bool _disposed = false;
+        private bool _isRunning = false;
 
         /// <summary>
         /// Gets the data ID
@@ -823,6 +824,7 @@ namespace Tizen.Applications.DataControl
             {
                 provider = _providerDict[dataID];
                 provider._nativeHandle = handlePtr;
+                Log.Info(LogTag, "DataID :" + dataID + ", hash code : " + provider.GetHashCode().ToString());
             }
             handle.Dispose();
 
@@ -888,6 +890,7 @@ namespace Tizen.Applications.DataControl
             if (_providerDict.ContainsKey(DataID))
             {
                 _lock.ReleaseMutex();
+                ErrorFactory.ThrowException((ResultType)1, true, "The provider is already running");
                 return;
             }
 
@@ -954,6 +957,8 @@ namespace Tizen.Applications.DataControl
             }
 
             _providerDict.Add(DataID, this);
+            Log.Info(LogTag, "DataID :" + DataID + ", hash code : " + this.GetHashCode().ToString());
+            _isRunning = true;
             _lock.ReleaseMutex();
         }
 
@@ -962,7 +967,12 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         public void Stop()
         {
-            _providerDict.Remove(DataID);
+            if (_isRunning == true)
+            {
+                Log.Info(LogTag, "DataID :" + DataID);
+                _isRunning = false;
+                _providerDict.Remove(DataID);
+            }
         }
 
         ~Provider()
