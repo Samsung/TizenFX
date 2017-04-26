@@ -15,12 +15,13 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
-    /// A class which is used to manage settings of Wi-Fi Direct.<br>
+    /// A class which is used to manage settings of Wi-Fi Direct.<br/>
     /// This class is used to discover peer devices and manage settings of Wi-Fi Direct.
     /// </summary>
     public static class WiFiDirectManager

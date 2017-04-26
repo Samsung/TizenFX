@@ -432,7 +432,6 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for Wi-Fi Direct link status.
     /// </summary>
-    /// </summary>
     public enum WiFiDirectState
     {
         /// <summary>
