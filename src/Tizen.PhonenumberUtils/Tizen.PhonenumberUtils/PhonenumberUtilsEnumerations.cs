@@ -44,7 +44,7 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Chinese (Traditional)
         /// </summary>
-        ChineseTranditional,
+        ChineseTraditional,
         /// <summary>
         /// Czech
         /// </summary>
@@ -246,9 +246,9 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Burundi,
         /// <summary>
-        /// Cabo Verde (Cape Verde)
+        /// Cape Verde (Cabo Verde)
         /// </summary>
-        CaboVerde,
+        CapeVerde,
         /// <summary>
         /// Cameroon
         /// </summary>
@@ -282,9 +282,9 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Congo,
         /// <summary>
-        /// Cote d'Ivoire (Ivory Coast)
+        /// Ivory Coast (Cote d'Ivoire)
         /// </summary>
-        CoteDIvoire,
+        IvoryCoast,
         /// <summary>
         /// Cuba
         /// </summary>
@@ -298,7 +298,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         CzechRepublic,
         /// <summary>
-        /// Congo (Democratic Republic of the)
+        /// Congo, Democratic Republic of the
         /// </summary>
         DemocraticRepublicOfTheCongo,
         /// <summary>
@@ -394,9 +394,9 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Ireland,
         /// <summary>
-        /// Iran (Islamic Republic of)
+        /// Iran, Islamic Republic of
         /// </summary>
-        IslamicRepublicOfIran,
+        Iran,
         /// <summary>
         /// Isle of Man
         /// </summary>
@@ -462,7 +462,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Mauritius,
         /// <summary>
-        /// Monteserrat
+        /// Montserrat
         /// </summary>
         Montserrat,
         /// <summary>
@@ -542,9 +542,9 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         SaintVicentAndTheGrenadines,
         /// <summary>
-        /// Sao Tome and Principe
+        /// Saint Thomas And Principe (Sao Tome and Principe)
         /// </summary>
-        SaoTomeAndPrincipe,
+        SaintThomasAndPrincipe,
         /// <summary>
         /// Saudi Arabia
         /// </summary>
@@ -562,7 +562,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         SierraLeone,
         /// <summary>
-        /// Sint Maarten (Dutch part)
+        /// Saint Martin (Sint Maarten), Dutch part
         /// </summary>
         SintMaarten,
         /// <summary>
@@ -894,7 +894,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Montenegro,
         /// <summary>
-        /// Saint-Martin, French Antilles
+        /// Saint Martin, French part
         /// </summary>
         SaintMartin,
         /// <summary>
