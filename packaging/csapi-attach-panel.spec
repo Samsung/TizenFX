@@ -1,6 +1,6 @@
 Name:       csapi-attach-panel
 Summary:    Tizen attach panel API for C#
-Version:    1.0.0
+Version:    1.0.1
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -15,7 +15,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
-BuildRequires: csapi-application-nuget
+BuildRequires: csapi-application-common-nuget
 BuildRequires: elm-sharp-nuget
 
 %define Assemblies Tizen.Applications.AttachPanel
