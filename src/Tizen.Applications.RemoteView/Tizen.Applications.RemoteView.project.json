@@ -2,8 +2,7 @@
   "dependencies": {
     "ElmSharp": "1.1.0-*",
     "NETStandard.Library": "1.6.0",
-    "Tizen": "1.0.2",
-    "Tizen.Applications": "1.0.3"
+    "Tizen": "1.0.2"
   },
   "frameworks": {
     "netstandard1.3": {}

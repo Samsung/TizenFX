@@ -12,7 +12,6 @@
 		<description>Provides the Widget Viewer API for Tizen.Net</description>
 		<dependencies>
 			<dependency id="Tizen" version="1.0.2" />
-			<dependency id="Tizen.Applications" version="1.0.3" />
 			<dependency id="ElmSharp" version="1.1.0" />
 		</dependencies>
 	</metadata>
