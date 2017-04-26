@@ -44,19 +44,12 @@ namespace Tizen.Applications
                         s_callback = new Interop.Badge.ChangedCallback(OnChangedEvent);
                     }
 
-                    Interop.Badge.ErrorCode err = Interop.Badge.SetChangedCallback(s_callback, IntPtr.Zero);
-
-                    switch (err)
+                    BadgeError err = Interop.Badge.SetChangedCallback(s_callback, IntPtr.Zero);
+                    if (err != BadgeError.None)
                     {
-                        case Interop.Badge.ErrorCode.InvalidParameter:
-                            throw new InvalidOperationException("Invalid parameter at unmanaged code");
-
-                        case Interop.Badge.ErrorCode.PermissionDenied:
-                            throw new UnauthorizedAccessException();
-
-                        case Interop.Badge.ErrorCode.OutOfMemory:
-                            throw new InvalidOperationException("Out-of-memory at unmanaged code");
+                        throw BadgeErrorFactory.GetException(err, "Failed to add event handler");
                     }
+
                     s_registered = true;
                 }
 
@@ -67,18 +60,10 @@ namespace Tizen.Applications
                 s_changed -= value;
                 if (s_changed == null && s_registered)
                 {
-                    Interop.Badge.ErrorCode err = Interop.Badge.UnsetChangedCallback(s_callback);
-
-                    switch (err)
+                    BadgeError err = Interop.Badge.UnsetChangedCallback(s_callback);
+                    if (err != BadgeError.None)
                     {
-                        case Interop.Badge.ErrorCode.InvalidParameter:
-                            throw new InvalidOperationException("Invalid parameter at unmanaged code");
-
-                        case Interop.Badge.ErrorCode.PermissionDenied:
-                            throw new UnauthorizedAccessException();
-
-                        case Interop.Badge.ErrorCode.NotExist:
-                            throw new InvalidOperationException("Not exist");
+                        throw BadgeErrorFactory.GetException(err, "Failed to remove event handler");
                     }
 
                     s_callback = null;
@@ -100,41 +85,16 @@ namespace Tizen.Applications
             uint count;
             uint display;
 
-            Interop.Badge.ErrorCode err = Interop.Badge.GetCount(appId, out count);
-
-            switch (err)
+            BadgeError err = Interop.Badge.GetCount(appId, out count);
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.FromDb:
-                    throw new InvalidOperationException("Error from DB");
-
-                case Interop.Badge.ErrorCode.OutOfMemory:
-                    throw new InvalidOperationException("Out-of-memory at unmanaged code");
+                throw BadgeErrorFactory.GetException(err, "Failed to find badge count of " + appId);
             }
 
             err = Interop.Badge.GetDisplay(appId, out display);
-
-            switch (err)
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.FromDb:
-                    throw new InvalidOperationException("Error from DB");
-
-                case Interop.Badge.ErrorCode.OutOfMemory:
-                    throw new InvalidOperationException("Out-of-memory at unmanaged code");
-
-                case Interop.Badge.ErrorCode.NotExist:
-                    throw new InvalidOperationException("Not exist");
+                throw BadgeErrorFactory.GetException(err, "Failed to find badge display of " + appId);
             }
 
             return new Badge(appId, (int)count, display == 0 ? false : true);
@@ -150,24 +110,10 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Remove(string appId)
         {
-            Interop.Badge.ErrorCode err = Interop.Badge.Remove(appId);
-
-            switch (err)
+            BadgeError err = Interop.Badge.Remove(appId);
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.IoError:
-                    throw new InvalidOperationException("Error from I/O");
-
-                case Interop.Badge.ErrorCode.ServiceNotReady:
-                    throw new InvalidOperationException("Service is not ready");
-
-                case Interop.Badge.ErrorCode.NotExist:
-                    throw new InvalidOperationException("Not exist");
+                throw BadgeErrorFactory.GetException(err, "Failed to Remove badge of " + appId);
             }
         }
 
@@ -183,24 +129,10 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Add(string appId, int count = 1, bool isDisplay = true)
         {
-            Interop.Badge.ErrorCode err = Interop.Badge.Add(appId);
-
-            switch (err)
+            BadgeError err = Interop.Badge.Add(appId);
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.IoError:
-                    throw new InvalidOperationException("Error from I/O");
-
-                case Interop.Badge.ErrorCode.ServiceNotReady:
-                    throw new InvalidOperationException("Service is not ready");
-
-                case Interop.Badge.ErrorCode.InvalidPackage:
-                    throw new InvalidOperationException("The caller application is not signed with the certificate of badge application ID");
+                throw BadgeErrorFactory.GetException(err, "Failed to add badge of " + appId);
             }
 
             try
@@ -225,21 +157,10 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Update(string appId, int count)
         {
-            Interop.Badge.ErrorCode err = Interop.Badge.SetCount(appId, (uint)count);
-
-            switch (err)
+            BadgeError err = Interop.Badge.SetCount(appId, (uint)count);
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.IoError:
-                    throw new InvalidOperationException("Error from I/O");
-
-                case Interop.Badge.ErrorCode.ServiceNotReady:
-                    throw new InvalidOperationException("Service is not ready");
+                throw BadgeErrorFactory.GetException(err, "Failed to update badge of " + appId);
             }
         }
 
@@ -254,21 +175,10 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Update(string appId, bool isDisplay)
         {
-            Interop.Badge.ErrorCode err = Interop.Badge.SetDisplay(appId, isDisplay ? 1U : 0U);
-
-            switch (err)
+            BadgeError err = Interop.Badge.SetDisplay(appId, isDisplay ? 1U : 0U);
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.IoError:
-                    throw new InvalidOperationException("Error from I/O");
-
-                case Interop.Badge.ErrorCode.ServiceNotReady:
-                    throw new InvalidOperationException("Service is not ready");
+                throw BadgeErrorFactory.GetException(err, "Failed to update badge of " + appId);
             }
         }
 
@@ -298,50 +208,21 @@ namespace Tizen.Applications
         {
             IList<Badge> list = new List<Badge>();
 
-            Interop.Badge.ErrorCode err = Interop.Badge.Foreach((appId, count, userData) =>
+            BadgeError err = Interop.Badge.Foreach((appId, count, userData) =>
             {
                 uint display = 0;
-                Interop.Badge.ErrorCode e = Interop.Badge.GetDisplay(appId, out display);
-                switch (e)
+                BadgeError errGetDisplay = Interop.Badge.GetDisplay(appId, out display);
+                if (errGetDisplay != BadgeError.None)
                 {
-                    case Interop.Badge.ErrorCode.InvalidParameter:
-                        throw new InvalidOperationException("Invalid parameter at unmanaged code");
-
-                    case Interop.Badge.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException();
-
-                    case Interop.Badge.ErrorCode.FromDb:
-                        throw new InvalidOperationException("Error from DB");
-
-                    case Interop.Badge.ErrorCode.OutOfMemory:
-                        throw new InvalidOperationException("Out-of-memory at unmanaged code");
-
-                    case Interop.Badge.ErrorCode.NotExist:
-                        throw new InvalidOperationException("Not exist");
-
-                    case Interop.Badge.ErrorCode.ServiceNotReady:
-                        throw new InvalidOperationException("Service is not ready");
+                    throw BadgeErrorFactory.GetException(errGetDisplay, "Failed to get badges ");
                 }
 
                 list.Add(new Badge(appId, (int)count, display == 0 ? false : true));
             }, IntPtr.Zero);
 
-            switch (err)
+            if (err != BadgeError.None)
             {
-                case Interop.Badge.ErrorCode.InvalidParameter:
-                    throw new InvalidOperationException("Invalid parameter at unmanaged code");
-
-                case Interop.Badge.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.Badge.ErrorCode.FromDb:
-                    throw new InvalidOperationException("Error from DB");
-
-                case Interop.Badge.ErrorCode.OutOfMemory:
-                    throw new InvalidOperationException("Out-of-memory at unmanaged code");
-
-                case Interop.Badge.ErrorCode.NotExist:
-                    throw new InvalidOperationException("Not exist");
+                throw BadgeErrorFactory.GetException(err, "Failed to get badges");
             }
 
             return list;
