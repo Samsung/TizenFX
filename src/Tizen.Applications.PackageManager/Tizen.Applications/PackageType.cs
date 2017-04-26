@@ -32,6 +32,11 @@ namespace Tizen.Applications
         /// Tizen web/ hybrid application Package
         /// </summary>
         WGT,
+        /// <summary>
+        /// It's a special meaning type to represent the tizen application package which is installed using rpm spec.
+        /// Only some preloaded packages can have this type.
+        /// </summary>
+        RPM
     }
 
     internal static class PackageTypeMethods
@@ -51,6 +56,10 @@ namespace Tizen.Applications
             else if (lowerType == "wgt")
             {
                 return PackageType.WGT;
+            }
+            else if (lowerType == "rpm")
+            {
+                return PackageType.RPM;
             }
             else
             {
