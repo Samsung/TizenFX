@@ -275,6 +275,7 @@
     <Compile Include="src\internal\TypeRegistration.cs" />
     <Compile Include="src\internal\TypeRegistry.cs" />
     <Compile Include="src\internal\Uint16Pair.cs" />
+    <Compile Include="src\internal\ImfManager.cs" />
     <Compile Include="src\internal\uintp.cs" />
     <Compile Include="src\internal\ushortp.cs" />
     <Compile Include="src\internal\VectorBase.cs" />
