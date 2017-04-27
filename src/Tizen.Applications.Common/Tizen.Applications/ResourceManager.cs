@@ -50,6 +50,24 @@ namespace Tizen.Applications
             Binary
         }
 
+        private static ErrorCode AppResourceManagerGet(Category category, string id, out string path)
+        {
+            ErrorCode err;
+
+            try
+            {
+                err = Interop.AppCommon.AppResourceManagerGet(
+                             (Interop.AppCommon.ResourceCategory)category, id, out path);
+            }
+            catch (System.TypeLoadException)
+            {
+                err = Interop.AppCommon.LegacyAppResourceManagerGet(
+                             (Interop.AppCommon.ResourceCategory)category, id, out path);
+            }
+
+            return err;
+        }
+
         /// <summary>
         /// Converts resource ID to path name.
         /// </summary>
@@ -60,8 +78,7 @@ namespace Tizen.Applications
         public static string GetPath(Category category, string id)
         {
             string path;
-            ErrorCode err = Interop.AppCommon.AppResourceManagerGet(
-                    (Interop.AppCommon.ResourceCategory)category, id, out path);
+            ErrorCode err = AppResourceManagerGet(category, id, out path);
 
             switch (err)
             {
@@ -88,8 +105,7 @@ namespace Tizen.Applications
         public static string TryGetPath(Category category, string id)
         {
             string path;
-            ErrorCode err = Interop.AppCommon.AppResourceManagerGet(
-                    (Interop.AppCommon.ResourceCategory)category, id, out path);
+            ErrorCode err = AppResourceManagerGet(category, id, out path);
 
             switch (err)
             {
