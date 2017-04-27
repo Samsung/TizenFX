@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Slider is a widget that adds a draggable “slider” widget for selecting the value of something within a range.
+    /// The Slider is a widget that adds a draggable slider widget for selecting the value of something within a range.
     /// </summary>
     public class Slider : Layout
     {
@@ -279,6 +279,21 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_slider_indicator_show_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets whether to Show the indicator of slider on focus.
+        /// </summary>
+        public bool IsIndicatorFocusable
+        {
+            get
+            {
+                return Interop.Elementary.elm_slider_indicator_show_on_focus_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_slider_indicator_show_on_focus_set(RealHandle, value);
             }
         }
 

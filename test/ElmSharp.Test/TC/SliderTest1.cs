@@ -46,7 +46,28 @@ namespace ElmSharp.Test
                 AlignmentX = -1,
                 AlignmentY = 0.5,
                 WeightX = 1,
-                WeightY = 1
+                WeightY = 1,
+                IsIndicatorFocusable = true
+            };
+
+            Button btn = new Button(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "Set IsIndicatorFocusable"
+            };
+            btn.Clicked += (s, e) =>
+            {
+                if (sld1.IsIndicatorFocusable)
+                {
+                    sld1.IsIndicatorFocusable = false;
+                }
+                else
+                {
+                    sld1.IsIndicatorFocusable = true;
+                }
             };
 
             Label lb1 = new Label(window)
@@ -58,9 +79,11 @@ namespace ElmSharp.Test
             };
 
             table.Pack(sld1, 1, 1, 2, 1);
-            table.Pack(lb1, 1, 2, 2, 1);
+            table.Pack(btn, 1, 2, 2, 1);
+            table.Pack(lb1, 1, 3, 2, 1);
 
             sld1.Show();
+            btn.Show();
             lb1.Show();
 
             sld1.ValueChanged += (s, e) =>

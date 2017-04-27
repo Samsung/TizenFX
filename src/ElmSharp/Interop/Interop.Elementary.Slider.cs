@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -31,10 +31,17 @@ internal static partial class Interop
         internal static extern bool elm_slider_indicator_show_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_slider_indicator_show_on_focus_set(IntPtr obj, bool focus);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_slider_indicator_show_on_focus_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_slider_indicator_format_set(IntPtr obj, string indicator);
 
         [DllImport(Libraries.Elementary, EntryPoint = "elm_slider_indicator_format_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
         internal static extern IntPtr _elm_slider_indicator_format_get(IntPtr obj);
+
         internal static string elm_slider_indicator_format_get(IntPtr obj)
         {
             var text = _elm_slider_indicator_format_get(obj);
@@ -46,6 +53,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary, EntryPoint = "elm_slider_unit_format_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
         internal static extern IntPtr _elm_slider_unit_format_get(IntPtr obj);
+
         internal static string elm_slider_unit_format_get(IntPtr obj)
         {
             var text = _elm_slider_unit_format_get(obj);
