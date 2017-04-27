@@ -38,7 +38,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.IncomingCallRingtone, out filePath);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get IncomingCallRingtone system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get IncomingCallRingtone system setting.");
                 }
                 return filePath;
             }
@@ -63,7 +63,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.WallpaperHomeScreen, out filePath);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get WallpaperHomeScreen system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get WallpaperHomeScreen system setting.");
                 }
                 return filePath;
             }
@@ -88,7 +88,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.WallpaperLockScreen, out filePath);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get WallpaperLockScreen system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get WallpaperLockScreen system setting.");
                 }
                 return filePath;
             }
@@ -113,7 +113,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.FontSize, out fontSize);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get FontSize system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get FontSize system setting.");
                 }
                 return (SystemSettingsFontSize)fontSize;
             }
@@ -138,7 +138,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.FontType, out fontType);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get FontType system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get FontType system setting.");
                 }
                 return fontType;
             }
@@ -163,7 +163,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.MotionActivationEnabled, out isMotionServiceActivated);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get MotionActivation system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get MotionActivation system setting.");
                 }
                 return isMotionServiceActivated;
             }
@@ -188,7 +188,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.EmailAlertRingtone, out filePath);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get EmailAlertRingtone system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get EmailAlertRingtone system setting.");
                 }
                 return filePath;
             }
@@ -212,7 +212,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.UsbDebuggingEnabled, out isusbDebuggingEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get UsbDebuggingEnabled system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get UsbDebuggingEnabled system setting.");
                 }
                 return isusbDebuggingEnabled;
             }
@@ -237,7 +237,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.Data3GNetworkEnabled, out is3GDataEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get Data3GNetworkEnabled system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get Data3GNetworkEnabled system setting.");
                 }
                 return is3GDataEnabled;
             }
@@ -262,7 +262,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LockscreenApp, out pkgName);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LockscreenApp system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LockscreenApp system setting.");
                 }
                 return pkgName;
             }
@@ -287,7 +287,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.DefaultFontType, out defaultFontType);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get DefaultFontType system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get DefaultFontType system setting value.");
                 }
                 return defaultFontType;
             }
@@ -306,7 +306,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LocaleCountry, out countrySetting);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleCountry system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LocaleCountry system setting.");
                 }
                 return countrySetting;
             }
@@ -333,7 +333,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LocaleLanguage, out languageSetting);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleLanguage system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LocaleLanguage system setting.");
                 }
                 return languageSetting;
             }
@@ -359,7 +359,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, out is24HrFormat);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimeFormat24Hour system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LocaleTimeFormat24Hour system setting.");
                 }
                 return is24HrFormat;
             }
@@ -384,7 +384,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LocaleTimeZone, out timeZone);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LocaleTimeZone system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LocaleTimeZone system setting.");
                 }
                 return timeZone;
             }
@@ -408,7 +408,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundLockEnabled, out isSoundLockEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundLock system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get SoundLock system setting.");
                 }
                 return isSoundLockEnabled;
             }
@@ -425,7 +425,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundSilentModeEnabled, out isSilent);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundSilentMode system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get SoundSilentMode system setting.");
                 }
                 return isSilent;
             }
@@ -442,7 +442,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.SoundTouchEnabled, out isTouchSoundEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundTouch system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get SoundTouch system setting value.");
                 }
                 return isTouchSoundEnabled;
             }
@@ -459,7 +459,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, out isRotationAutomatic);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get DisplayScreenRotationAuto system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get DisplayScreenRotationAuto system setting.");
                 }
                 return isRotationAutomatic;
             }
@@ -476,7 +476,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.DeviceName, out deviceName);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get DeviceName system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get DeviceName system setting value.");
                 }
                 return deviceName;
             }
@@ -492,7 +492,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.MotionEnabled, out isMotionEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get MotionEnabled system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get MotionEnabled system setting value.");
                 }
                 return isMotionEnabled;
             }
@@ -509,7 +509,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkWifiNotificationEnabled, out isWifiNotificationEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get NetworkWifiNotification system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get NetworkWifiNotification system setting.");
                 }
                 return isWifiNotificationEnabled;
             }
@@ -526,7 +526,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.NetworkFlightModeEnabled, out isFlightModeEnabled);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get NetworkFlightMode system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get NetworkFlightMode system setting.");
                 }
                 return isFlightModeEnabled;
             }
@@ -543,7 +543,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.ScreenBacklightTime, out backlightTime);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get ScreenBacklightTime system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get ScreenBacklightTime system setting.");
                 }
                 return backlightTime;
             }
@@ -568,7 +568,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.SoundNotification, out filePath);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundNotification system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get SoundNotification system setting.");
                 }
                 return filePath;
             }
@@ -593,7 +593,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.SoundNotificationRepetitionPeriod, out notificationRepetitionPeriod);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get SoundNotificationRepetitionPeriod system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get SoundNotificationRepetitionPeriod system setting.");
                 }
                 return notificationRepetitionPeriod;
             }
@@ -618,7 +618,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.LockState, out LockState);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get LockState system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LockState system setting.");
                 }
                 return (SystemSettingsIdleLockState)LockState;
             }
@@ -643,7 +643,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.AdsId, out adsId);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get AdsId system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get AdsId system setting.");
                 }
                 return adsId;
             }
@@ -669,7 +669,7 @@ namespace Tizen.System
                 SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.UltraDataSave, out UltraDataSave);
                 if (res != SystemSettingsError.None)
                 {
-                    Log.Warn(SystemSettingsExceptionFactory.LogTag, "unable to get UltraDataSave system setting value.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get UltraDataSave system setting.");
                 }
                 return (SystemSettingsUdsState)UltraDataSave;
             }

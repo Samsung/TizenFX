@@ -47,7 +47,8 @@ namespace Tizen.System
                 case SystemSettingsError.PermissionDenied:
                 //fall through
                 case SystemSettingsError.NotSupported:
-                //fall through
+                    exp = new NotSupportedException(msg);
+                    break;
                 case SystemSettingsError.LockScreenAppPasswordMode:
                 //fall through
                 default:
