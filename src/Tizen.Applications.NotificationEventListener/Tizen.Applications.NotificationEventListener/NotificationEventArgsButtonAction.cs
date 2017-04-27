@@ -16,11 +16,13 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    /// <summary>
+    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Structure to encapsulate Notification ButtonAction.
-        ///  You can get an Text, ImagePath, Action to be invoked when the button is click by the user.
+        ///  Class to display the buttons on the active notification.
         /// </summary>
         public class ButtonActionArgs
         {
@@ -29,10 +31,12 @@ namespace Tizen.Applications.NotificationEventListener
             /// </summary>
             /// <example>
             /// <code>
-            /// int index = NotificationEventArgs.ButtonActionArgs.Index;
+            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
+            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
+            /// ButtonIndex index = button.Index;
             /// </code>
             /// </example>
-            public int Index { get; internal set; }
+            public ButtonIndex Index { get; internal set; }
 
             /// <summary>
             /// Gets the text that describes the button.
@@ -42,7 +46,9 @@ namespace Tizen.Applications.NotificationEventListener
             /// </value>
             /// <example>
             /// <code>
-            /// string text = NotificationEventArgs.ButtonActionArgs.Text;
+            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
+            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
+            /// string text = button.Text;
             /// </code>
             /// </example>
             public string Text { get; internal set; }
@@ -55,7 +61,9 @@ namespace Tizen.Applications.NotificationEventListener
             /// </value>
             /// <example>
             /// <code>
-            /// string imagePath = NotificationEventArgs.ButtonActionArgs.ImagePath;
+            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
+            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
+            /// string imagePath = button.ImagePath;
             /// </code>
             /// </example>
             public string ImagePath { get; internal set; }
@@ -68,7 +76,9 @@ namespace Tizen.Applications.NotificationEventListener
             /// </value>
             /// <example>
             /// <code>
-            /// AppControl action = NotificationEventArgs.ButtonActionArgs.Action;
+            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
+            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
+            /// AppControl action = button.Action;
             /// </code>
             /// </example>
             public AppControl Action { get; internal set; }

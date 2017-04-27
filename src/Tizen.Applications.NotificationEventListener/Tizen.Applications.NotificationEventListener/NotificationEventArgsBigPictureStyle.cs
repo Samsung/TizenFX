@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,8 +16,14 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    /// <summary>
+    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// </summary>
     public partial class NotificationEventArgs
     {
+        /// <summary>
+        ///  Class to generate the BigPicture style notification
+        /// </summary>
         public class BigPictureStyleArgs : StyleArgs
         {
             /// <summary>

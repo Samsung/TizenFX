@@ -20,6 +20,9 @@ namespace Tizen.Applications.NotificationEventListener
     using System.Collections.Generic;
     using System.ComponentModel;
 
+    /// <summary>
+    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// </summary>
     public partial class NotificationEventArgs
     {
         private const string LogTag = "Tizen.Applications.NotificationEventListener";
@@ -28,6 +31,9 @@ namespace Tizen.Applications.NotificationEventListener
         internal IDictionary<string, Bundle> Extender;
         internal Interop.NotificationEventListener.SafeNotificationHandle Handle;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationEventArgs"/> class.
+        /// </summary>
         public NotificationEventArgs()
         {
             Style = new Dictionary<string, StyleArgs>();

@@ -18,8 +18,14 @@ namespace Tizen.Applications.NotificationEventListener
 {
     using Tizen.Common;
 
+    /// <summary>
+    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// </summary>
     public partial class NotificationEventArgs
     {
+        /// <summary>
+        /// Class for Notification AccessorySet which is included vibration, led, sound option
+        /// </summary>
         public class AccessoryArgs
         {
             /// <summary>

@@ -356,7 +356,7 @@ namespace Tizen.Applications.NotificationEventListener
     }
 
     /// <summary>
-    /// Enumeration for notification lauch option type.
+    /// Enumeration for notification launch option type.
     /// </summary>
     internal enum LaunchOption
     {

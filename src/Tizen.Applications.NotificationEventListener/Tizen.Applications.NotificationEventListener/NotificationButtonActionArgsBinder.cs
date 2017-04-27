@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -25,7 +25,7 @@ namespace Tizen.Applications.NotificationEventListener
             SafeAppControlHandle appcontrol = null;
             NotificationEventArgs.ButtonActionArgs button = new NotificationEventArgs.ButtonActionArgs();
 
-            button.Index = index;
+            button.Index = (ButtonIndex)index;
 
             Interop.NotificationEventListener.GetImage(eventargs.Handle, NotificationImage.Button_1 + index, out text);
             if (string.IsNullOrEmpty(text) == false)

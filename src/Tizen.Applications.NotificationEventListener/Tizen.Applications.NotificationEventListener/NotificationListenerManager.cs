@@ -21,6 +21,12 @@ namespace Tizen.Applications.NotificationEventListener
     using System.ComponentModel;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// This class provides a way to register callback function for some notification events.
+    /// </summary>
+    /// <remarks>
+    /// The event listener can use this class to get a list of notification or to clear notifications.
+    /// </remarks>
     public partial class NotificationListenerManager
     {
         private const string LogTag = "Tizen.Applications.NotificationEventListener";

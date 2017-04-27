@@ -16,6 +16,9 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    /// <summary>
+    /// This class provides the property to get information about the deleted notification.
+    /// </summary>
     public class NotificationDeleteEventArgs
     {
         /// <summary>

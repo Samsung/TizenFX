@@ -16,8 +16,14 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    /// <summary>
+    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// </summary>
     public partial class NotificationEventArgs
     {
+        /// <summary>
+        ///  Class to generate the Lock style notification.
+        /// </summary>
         public class LockStyleArgs : StyleArgs
         {
             /// <summary>

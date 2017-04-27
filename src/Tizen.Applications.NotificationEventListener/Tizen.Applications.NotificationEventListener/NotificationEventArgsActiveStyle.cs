@@ -19,14 +19,17 @@ namespace Tizen.Applications.NotificationEventListener
     using System.Collections.Generic;
 
     /// <summary>
-    ///  Class for generating Active style notification
+    /// This class provides the methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
+        /// <summary>
+        ///  Class to generate the Active style notification
+        /// </summary>
         public class ActiveStyleArgs : StyleArgs
         {
             /// <summary>
-            /// Constructor
+            /// Initializes a new instance of the <see cref="ActiveStyleArgs"/> class.
             /// </summary>
             public ActiveStyleArgs()
             {
