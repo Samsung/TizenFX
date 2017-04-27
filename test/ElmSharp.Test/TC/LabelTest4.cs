@@ -16,13 +16,14 @@
 
 using System;
 using ElmSharp;
+using System.Collections.Generic;
 
 namespace ElmSharp.Test
 {
-    class LabelTest1 : TestCaseBase
+    public class LabelTest4 : TestCaseBase
     {
-        public override string TestName => "LabelTest1";
-        public override string TestDescription => "To test basic operation of Label";
+        public override string TestName => "LabelTest4";
+        public override string TestDescription => "To test slide Animation of Label";
 
         public override void Run(Window window)
         {
@@ -32,14 +33,19 @@ namespace ElmSharp.Test
             bg.Resize(window.ScreenSize.Width, window.ScreenSize.Height);
             bg.Show();
 
-            Label label1 = new Label(window);
-            label1.Color = Color.Black;
-            label1.Text = "Label Test!!!";
+            Label label1 = new Label(window)
+            {
+                Style = "slide_long",
+                SlideDuration = 3,
+                SlideMode = LabelSlideMode.Always,
+                Color = Color.Black,
+                Text = "Lab test12345678"
+            };
 
             label1.Show();
             label1.Resize(200, 30);
             label1.Move(0, 0);
+            label1.PlaySlide();
         }
-
     }
 }
