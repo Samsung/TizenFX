@@ -16,10 +16,11 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    using System;
     /// <summary>
     /// This class provides the property to get information about the deleted notification.
     /// </summary>
-    public class NotificationDeleteEventArgs
+    public class NotificationDeleteEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the unique number of the Notification.

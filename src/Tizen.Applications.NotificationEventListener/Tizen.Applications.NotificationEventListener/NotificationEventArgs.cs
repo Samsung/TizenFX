@@ -23,7 +23,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// This class provides the methods and properties to get information about the posted or updated notification.
     /// </summary>
-    public partial class NotificationEventArgs
+    public partial class NotificationEventArgs : EventArgs
     {
         private const string LogTag = "Tizen.Applications.NotificationEventListener";
 
