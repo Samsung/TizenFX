@@ -460,7 +460,7 @@ namespace Tizen.Applications.DataControl
 
             if (insertData == null || insertData.SafeBundleHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "insertData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "insertData");
             }
 
             _lock.WaitOne();
@@ -494,14 +494,14 @@ namespace Tizen.Applications.DataControl
             ResultType ret;
             if (columnList == null || columnList.Length == 0)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "column_list");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "column_list");
             }
 
             for (i = 0; i < columnList.Length; i++)
             {
                 if (string.IsNullOrEmpty(columnList[i]))
                 {
-                    ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "column_list index " + i.ToString());
+                    ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "column_list index " + i.ToString());
                 }
             }
 
@@ -561,12 +561,12 @@ namespace Tizen.Applications.DataControl
 
             if (updateData == null || updateData.SafeBundleHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "insertData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "insertData");
             }
 
             if (string.IsNullOrEmpty(where))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "where");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "where");
             }
 
             _lock.WaitOne();
@@ -598,7 +598,7 @@ namespace Tizen.Applications.DataControl
 
             if (insertData == null || insertData.SafeBulkDataHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "insertData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "insertData");
             }
 
             _lock.WaitOne();
@@ -631,7 +631,7 @@ namespace Tizen.Applications.DataControl
 
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             _lock.WaitOne();
@@ -664,7 +664,7 @@ namespace Tizen.Applications.DataControl
 
             if (string.IsNullOrEmpty(key) || pageNumber <= 0 || countPerPage <= 0)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             _lock.WaitOne();
@@ -696,7 +696,7 @@ namespace Tizen.Applications.DataControl
 
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             _lock.WaitOne();
@@ -730,7 +730,7 @@ namespace Tizen.Applications.DataControl
 
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(oldValue) || string.IsNullOrEmpty(newValue))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             _lock.WaitOne();
@@ -762,7 +762,7 @@ namespace Tizen.Applications.DataControl
 
             if (addData == null || addData.SafeBulkDataHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "addData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "addData");
             }
 
             _lock.WaitOne();
@@ -829,12 +829,12 @@ namespace Tizen.Applications.DataControl
 
             if (string.IsNullOrEmpty(providerId))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "providerId");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "providerId");
             }
 
             if (string.IsNullOrEmpty(dataId))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "dataId");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "dataId");
             }
 
             ret = Interop.DataControl.DataControlCreate(out _handle);

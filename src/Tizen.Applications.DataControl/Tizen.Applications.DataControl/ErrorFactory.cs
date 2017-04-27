@@ -24,7 +24,7 @@ namespace Tizen.Applications.DataControl
         Success = Interop.DataControl.NativeResultType.Success,
         OutOfMemory = Interop.DataControl.NativeResultType.OutOfMemory,
         IoError = Interop.DataControl.NativeResultType.IoError,
-        InvalidParamer = Interop.DataControl.NativeResultType.InvalidParamer,
+        InvalidParamer = Interop.DataControl.NativeResultType.InvalidParameter,
         PermissionDenied = Interop.DataControl.NativeResultType.PermissionDenied,
         MaxExceed = Interop.DataControl.NativeResultType.MaxExceed,
     }
@@ -51,7 +51,7 @@ namespace Tizen.Applications.DataControl
                 case ResultType.IoError:
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");
-                case ResultType.InvalidParamer:
+                case ResultType.InvalidParameter:
                     Log.Error(LogTag, "Invalid parameter : " + errorMessage);
                     throw new ArgumentException(string.IsNullOrEmpty(errorMessage) ? "Invalid parameter" : "Invalid parameter : " + errorMessage);
                 case ResultType.PermissionDenied:

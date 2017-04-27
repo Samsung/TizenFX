@@ -93,7 +93,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Value representing DataControl operation cause Invalid parameter error
         /// </summary>
-        InvalidParamer = Interop.DataControl.NativeResultType.InvalidParamer,
+        InvalidParameter = Interop.DataControl.NativeResultType.InvalidParameter,
         /// <summary>
         /// Value representing DataControl operation cause permission denied error
         /// </summary>

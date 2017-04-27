@@ -846,7 +846,7 @@ namespace Tizen.Applications.DataControl
 
             if (changedData == null || changedData.SafeBundleHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "changedData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "changedData");
             }
 
             if (this._nativeHandle == IntPtr.Zero)
@@ -870,7 +870,7 @@ namespace Tizen.Applications.DataControl
         {
             if (string.IsNullOrEmpty(dataID))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "dataID");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "dataID");
             }
 
             DataID = dataID;

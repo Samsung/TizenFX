@@ -31,7 +31,7 @@ internal static partial class Interop
             Success = Tizen.Internals.Errors.ErrorCode.None,
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
-            InvalidParamer = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
             MaxExceed = -0x01190000 | 0x01,
         }

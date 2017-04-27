@@ -64,7 +64,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             ret = Interop.DataControl.GetItemType(_cursor, index, out type);
@@ -84,7 +84,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             columnName.Length = MaxColumnNameSize;
@@ -149,7 +149,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             ret = Interop.DataControl.GetInt(_cursor, index, out value);
@@ -168,7 +168,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             ret = Interop.DataControl.GetInt64(_cursor, index, out value);
@@ -187,7 +187,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             ret = Interop.DataControl.Getdouble(_cursor, index, out value);
@@ -208,7 +208,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             size = Interop.DataControl.GetItemSize(_cursor, index);
@@ -237,7 +237,7 @@ namespace Tizen.Applications.DataControl.Core
 
             if (index < 0 || index >= _columnCount)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             size = Interop.DataControl.GetItemSize(_cursor, index);

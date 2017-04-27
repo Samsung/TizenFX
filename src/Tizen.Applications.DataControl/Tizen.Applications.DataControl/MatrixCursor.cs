@@ -180,7 +180,7 @@ namespace Tizen.Applications.DataControl
         {
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             return _columnTypes[index];
@@ -195,7 +195,7 @@ namespace Tizen.Applications.DataControl
         {
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             return _columnNames[index];
@@ -257,13 +257,13 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             byte_array = GetValue(index);
             if (byte_array == null)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
             ret = BitConverter.ToInt32(byte_array, 0);
 
@@ -281,13 +281,13 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             byte_array = GetValue(index);
             if (byte_array == null)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
             ret = BitConverter.ToInt64(byte_array, 0);
 
@@ -305,13 +305,13 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             byte_array = GetValue(index);
             if (byte_array == null)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
             ret = BitConverter.ToDouble(byte_array, 0);
 
@@ -329,7 +329,7 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             byte_array = GetValue(index);
@@ -354,7 +354,7 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0 || index >= _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             byte_array = GetValue(index);
@@ -406,14 +406,14 @@ namespace Tizen.Applications.DataControl
             if (columnNames == null || columnTypes == null ||
                 (columnNames.Length != columnTypes.Length) || columnNames.Length < 1)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             for (i = 0; i < columnNames.Length; i++)
             {
                 if (string.IsNullOrEmpty(columnNames[i]))
                 {
-                    ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "columnNames index " + i.ToString());
+                    ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "columnNames index " + i.ToString());
                 }
             }
 
@@ -421,7 +421,7 @@ namespace Tizen.Applications.DataControl
             {
                 if ( columnTypes[i] < ColumnType.ColumnTypeInt || columnTypes[i] > ColumnType.ColumnTypeBlob)
                 {
-                    ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "columnTypes index" + i.ToString());
+                    ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "columnTypes index" + i.ToString());
                 }
             }
 
@@ -493,7 +493,7 @@ namespace Tizen.Applications.DataControl
 
             if (columnValues == null || columnValues.Length <= 0 || columnValues.Length != _columnTypes.Length)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false);
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false);
             }
 
             using (MemoryStream ms = new MemoryStream())
@@ -506,7 +506,7 @@ namespace Tizen.Applications.DataControl
                         case ColumnType.ColumnTypeInt:
                             if (!(columnValues[i] is Int64) && !(columnValues[i] is Int32))
                             {
-                                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "Type mismatch :Index "  + i.ToString());
+                                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "Type mismatch :Index "  + i.ToString());
                             }
 
                             value_array = BitConverter.GetBytes(Convert.ToUInt64(columnValues[i]));
@@ -515,7 +515,7 @@ namespace Tizen.Applications.DataControl
                         case ColumnType.ColumnTypeDouble:
                             if (!(columnValues[i] is Double))
                             {
-                                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "Type mismatch :Index " + i.ToString());
+                                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "Type mismatch :Index " + i.ToString());
                             }
 
                             value_array = BitConverter.GetBytes(Convert.ToDouble(columnValues[i]));
@@ -531,7 +531,7 @@ namespace Tizen.Applications.DataControl
 
                             if (!(columnValues[i] is string))
                             {
-                                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "Type mismatch :Index " + i.ToString());
+                                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "Type mismatch :Index " + i.ToString());
                             }
 
                             string_array = Encoding.UTF8.GetBytes(Convert.ToString(columnValues[i]));
@@ -550,7 +550,7 @@ namespace Tizen.Applications.DataControl
 
                             if (!(columnValues[i] is byte[]))
                             {
-                                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "Type mismatch :Index " + i.ToString());
+                                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "Type mismatch :Index " + i.ToString());
                             }
 
                             value_array = (byte[])columnValues[i];

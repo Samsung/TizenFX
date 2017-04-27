@@ -90,7 +90,7 @@ namespace Tizen.Applications.DataControl
 
             if (data == null || data.SafeBundleHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "data");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "data");
             }
 
             ret = Interop.DataControl.BulkAdd(_handle, data.SafeBundleHandle);
@@ -130,7 +130,7 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "index");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "index");
             }
 
             ret = Interop.DataControl.BulkGetData(_handle, index, out bundlePtr);
@@ -243,7 +243,7 @@ namespace Tizen.Applications.DataControl
 
             if (data == null || data.SafeBundleHandle.IsInvalid)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "data");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "data");
             }
 
             ret = Interop.DataControl.BulkResultAdd(_handle, data.SafeBundleHandle, result);
@@ -289,7 +289,7 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "index");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "index");
             }
 
             ret = Interop.DataControl.BulkResultGetData(_handle, index, out bundlePtr, out result);
@@ -315,7 +315,7 @@ namespace Tizen.Applications.DataControl
 
             if (index < 0)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "index");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "index");
             }
 
             ret = Interop.DataControl.BulkResultGetData(_handle, index, out bundlePtr, out result);

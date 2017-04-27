@@ -86,7 +86,7 @@ namespace Tizen.Applications.DataControl
         {
             if (result == true && (bulkResultData == null || bulkResultData.SafeBulkDataHandle.IsInvalid))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "bulkResultData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "bulkResultData");
             }
 
             BulkResultData = bulkResultData;
@@ -176,26 +176,26 @@ namespace Tizen.Applications.DataControl
 
             if (result == true && cursor == null)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "cursor");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "cursor");
             }
 
             if (result == true && (cursor is MatrixCursor) == false)
             {
                 if (cursor.GetColumnCount() <= 0)
                 {
-                    ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "column count");
+                    ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "column count");
                 }
 
                 for (i = 0; i < cursor.GetColumnCount(); i++)
                 {
                     if (string.IsNullOrEmpty(cursor.GetColumnName(i)))
                     {
-                        ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "column name index " + i.ToString());
+                        ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "column name index " + i.ToString());
                     }
 
                     if (cursor.GetColumnType(i) < ColumnType.ColumnTypeInt || cursor.GetColumnType(i) > ColumnType.ColumnTypeBlob)
                     {
-                        ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "column type index" + i.ToString());
+                        ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "column type index" + i.ToString());
                     }
                 }
             }
@@ -263,7 +263,7 @@ namespace Tizen.Applications.DataControl
         {
             if (result == true && (bulkResultData == null || bulkResultData.SafeBulkDataHandle.IsInvalid))
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "bulkResultData");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "bulkResultData");
             }
 
             BulkResultData = bulkResultData;
@@ -351,7 +351,7 @@ namespace Tizen.Applications.DataControl
         {
             if (result == true && valueLIst == null)
             {
-                ErrorFactory.ThrowException(ResultType.InvalidParamer, false, "valueLIst");
+                ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "valueLIst");
             }
 
             ValueList = valueLIst;
