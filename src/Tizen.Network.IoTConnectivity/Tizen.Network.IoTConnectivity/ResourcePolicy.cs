@@ -22,7 +22,6 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// Enumeration for policy which can be held in a resource.
     /// </summary>
-    [Flags]
     public enum ResourcePolicy
     {
         /// <summary>
