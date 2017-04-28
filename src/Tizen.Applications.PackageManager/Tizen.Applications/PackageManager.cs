@@ -551,6 +551,8 @@ namespace Tizen.Applications
                         RequestHandle.Dispose();
                         return false;
                     }
+                    // RequestHandle isn't necessary when this method is called without 'eventCallback' parameter.
+                    RequestHandle.Dispose();
                 }
                 return true;
             }
@@ -666,6 +668,8 @@ namespace Tizen.Applications
                         RequestHandle.Dispose();
                         return false;
                     }
+                    // RequestHandle isn't necessary when this method is called without 'eventCallback' parameter.
+                    RequestHandle.Dispose();
                 }
                 return true;
             }
@@ -786,6 +790,8 @@ namespace Tizen.Applications
                         RequestHandle.Dispose();
                         result = false;
                     }
+                    // RequestHandle isn't necessary when this method is called without 'eventCallback' parameter.
+                    RequestHandle.Dispose();
                 }
                 return result;
             }
