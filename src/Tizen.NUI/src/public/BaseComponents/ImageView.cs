@@ -201,15 +201,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(ImageView.Property.RESOURCE_URL).Get(out temp);
-                return temp;
+                return _url;
             }
             set
             {
-                SetProperty(ImageView.Property.RESOURCE_URL, new Tizen.NUI.PropertyValue(value));
+                _url = value;
+                UpdateImage();
             }
         }
+
         /// <summary>
         /// ImageView ImageMap, type PropertyMap : string if it is a url, map otherwise
         /// </summary>
@@ -217,15 +217,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(ImageView.Property.IMAGE).Get(temp);
-                return temp;
+                if (_border == null)
+                {
+                    PropertyMap temp = new PropertyMap();
+                    GetProperty(ImageView.Property.IMAGE).Get(temp);
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
             }
             set
             {
-                SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                if (_border == null)
+                {
+                    SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                }
             }
         }
+
         /// <summary>
         /// ImageView PreMultipliedAlpha, type Boolean.<br>
         /// Image must be initialized.<br>
@@ -243,6 +254,7 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(ImageView.Property.PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
         /// <summary>
         /// ImageView PixelArea, type Vector4 (Animatable property).<br>
         /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br>
@@ -260,6 +272,66 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(ImageView.Property.PIXEL_AREA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// The border of the image in the order: left, right, bottom, top.<br>
+        /// If set, ImageMap will be ignored.<br>
+        /// For N-Patch images only.<br>
+        /// Optional.
+        /// </summary>
+        public Rectangle Border
+        {
+            get
+            {
+                return _border;
+            }
+            set
+            {
+                _border = value;
+                UpdateImage();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether to draws the borders only(If true).<br>
+        /// If not specified, the default is false.<br>
+        /// For N-Patch images only.<br>
+        /// Optional.
+        /// </summary>
+        public bool BorderOnly
+        {
+            get
+            {
+                return _borderOnly;
+            }
+            set
+            {
+                _borderOnly = value;
+                UpdateImage();
+            }
+        }
+
+        private void UpdateImage()
+        {
+            if (_border != null && _url != null)
+            {
+                _nPatchMap = new PropertyMap();
+                _nPatchMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                _nPatchMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
+                _nPatchMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                if (_borderOnly) { _nPatchMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue(_borderOnly)); }
+                SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
+            }
+            else
+            {
+                if (_url != null) { SetProperty(ImageView.Property.RESOURCE_URL, new PropertyValue(_url)); }
+            }
+        }
+
+        private Rectangle _border = null;
+        private bool _borderOnly = false;
+        private string _url = null;
+        private PropertyMap _nPatchMap = null;
 
     }
 
