@@ -277,10 +277,18 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
             }
-            Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            try
             {
-                Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
+                Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
+                }
+            }
+            catch (TypeLoadException)
+            {
+                // To support in API vesion 3.0
+                package._installedTime = 0;
             }
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
