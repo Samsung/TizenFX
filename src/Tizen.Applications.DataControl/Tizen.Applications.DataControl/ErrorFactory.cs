@@ -19,16 +19,6 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.Applications.DataControl
 {
-    internal enum ErronType : int
-    {
-        Success = Interop.DataControl.NativeResultType.Success,
-        OutOfMemory = Interop.DataControl.NativeResultType.OutOfMemory,
-        IoError = Interop.DataControl.NativeResultType.IoError,
-        InvalidParamer = Interop.DataControl.NativeResultType.InvalidParameter,
-        PermissionDenied = Interop.DataControl.NativeResultType.PermissionDenied,
-        MaxExceed = Interop.DataControl.NativeResultType.MaxExceed,
-    }
-
     internal static class ErrorFactory
     {
         private const string LogTag = "Tizen.Applications.DataControl";
