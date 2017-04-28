@@ -95,8 +95,19 @@ public class BaseHandle : global::System.IDisposable {
       // drop into native code to see if both handles point to the same body
       return x.IsEqual( y) ;
     }
-    return false;
 
+    if (BaseHandle.ReferenceEquals(x, null) && !BaseHandle.ReferenceEquals(y, null))
+    {
+      if (y.HasBody()) return false;
+      else return true;
+    }
+    if (!BaseHandle.ReferenceEquals(x, null) && BaseHandle.ReferenceEquals(y, null))
+    {
+      if (x.HasBody()) return false;
+      else return true;
+    }
+
+    return false;
   }
 
   // Inequality operator. Returns Null if either operand is Null
@@ -239,3 +250,4 @@ public class BaseHandle : global::System.IDisposable {
 }
 
 }
+
