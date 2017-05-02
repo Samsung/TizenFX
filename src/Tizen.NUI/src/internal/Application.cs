@@ -1104,7 +1104,7 @@ namespace Tizen.NUI
             LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 
             // register all Views with the type registry, so that can be created / styled via JSON
-            ViewRegistryHelper.Initialize();
+            //ViewRegistryHelper.Initialize(); //moved to Application side.
 
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
