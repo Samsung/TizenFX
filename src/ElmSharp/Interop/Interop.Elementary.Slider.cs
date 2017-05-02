@@ -21,6 +21,14 @@ internal static partial class Interop
 {
     internal static partial class Elementary
     {
+        internal enum Elm_Slider_Indicator_Visible_Mode
+        {
+            ELM_SLIDER_INDICATOR_VISIBLE_MODE_DEFAULT, /* show indicator on mouse down or change in slider value */
+            ELM_SLIDER_INDICATOR_VISIBLE_MODE_ALWAYS, /* Always show the indicator. */
+            ELM_SLIDER_INDICATOR_VISIBLE_MODE_ON_FOCUS, /* Show the indicator on focus */
+            ELM_SLIDER_INDICATOR_VISIBLE_MODE_NONE /* Never show the indicator */
+        }
+
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_slider_add(IntPtr parent);
 
@@ -29,6 +37,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_slider_indicator_show_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_slider_indicator_visible_mode_set(IntPtr obj, Elm_Slider_Indicator_Visible_Mode mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern Elm_Slider_Indicator_Visible_Mode elm_slider_indicator_visible_mode_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_slider_indicator_show_on_focus_set(IntPtr obj, bool focus);
