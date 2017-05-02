@@ -39,12 +39,15 @@ internal static partial class Interop
 
         internal AreaHandle(CoordinatesHandle topLeft, CoordinatesHandle bottomRight) : this(IntPtr.Zero, true)
         {
-            CreateRectangle(topLeft, bottomRight, out handle).ThrowIfFailed("Failed to create native handle");
+            IntPtr _topLeft = (topLeft != null ? topLeft : IntPtr.Zero);
+            IntPtr _bottomRight = (bottomRight != null ? bottomRight : IntPtr.Zero);
+            CreateRectangle(_topLeft, _bottomRight, out handle).ThrowIfFailed("Failed to create native handle");
         }
 
-        internal AreaHandle(CoordinatesHandle topLeft, double radius) : this(IntPtr.Zero, true)
+        internal AreaHandle(CoordinatesHandle center, double radius) : this(IntPtr.Zero, true)
         {
-            CreateCircle(topLeft, radius, out handle).ThrowIfFailed("Failed to create native handle");
+            IntPtr _center = (center != null ? center : IntPtr.Zero);
+            CreateCircle(_center, radius, out handle).ThrowIfFailed("Failed to create native handle");
         }
 
         internal static AreaHandle CloneFrom(IntPtr nativeHandle)

@@ -34,13 +34,7 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public Area(Geocoordinates topLeft, Geocoordinates bottomRight)
         {
-            var err = Interop.ErrorCode.InvalidParameter;
-            if (topLeft == null || bottomRight == null)
-            {
-                err.ThrowIfFailed("Need valid coordinates, given null");
-            }
-
-            handle = new Interop.AreaHandle(topLeft.handle, bottomRight.handle);
+            handle = new Interop.AreaHandle(topLeft?.handle, bottomRight?.handle);
         }
 
         /// <summary>
@@ -52,13 +46,7 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
         public Area(Geocoordinates center, double radius)
         {
-            var err = Interop.ErrorCode.InvalidParameter;
-            if (center == null)
-            {
-                err.ThrowIfFailed("Need valid center coordinates, given null");
-            }
-
-            handle = new Interop.AreaHandle(center.handle, radius);
+            handle = new Interop.AreaHandle(center?.handle, radius);
         }
 
         internal Area(Interop.AreaHandle nativeHandle)
