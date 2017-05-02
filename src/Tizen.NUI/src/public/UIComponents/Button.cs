@@ -551,9 +551,6 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int NEXT_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
             internal static readonly int TOGGLABLE = NDalicPINVOKE.Button_Property_TOGGLABLE_get();
             internal static readonly int SELECTED = NDalicPINVOKE.Button_Property_SELECTED_get();
-            internal static readonly int UNSELECTED_STATE_IMAGE = NDalicPINVOKE.Button_Property_UNSELECTED_STATE_IMAGE_get();
-            internal static readonly int SELECTED_STATE_IMAGE = NDalicPINVOKE.Button_Property_SELECTED_STATE_IMAGE_get();
-            internal static readonly int DISABLED_STATE_IMAGE = NDalicPINVOKE.Button_Property_DISABLED_STATE_IMAGE_get();
             internal static readonly int UNSELECTED_COLOR = NDalicPINVOKE.Button_Property_UNSELECTED_COLOR_get();
             internal static readonly int SELECTED_COLOR = NDalicPINVOKE.Button_Property_SELECTED_COLOR_get();
             internal static readonly int LABEL = NDalicPINVOKE.Button_Property_LABEL_get();
@@ -821,57 +818,6 @@ namespace Tizen.NUI.UIComponents
             set
             {
                 SetProperty(Button.Property.SELECTED, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the unselected button foreground image.
-        /// </summary>
-        public Tizen.NUI.PropertyMap UnselectedStateImage
-        {
-            get
-            {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(Button.Property.UNSELECTED_STATE_IMAGE).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(Button.Property.UNSELECTED_STATE_IMAGE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the selected button foreground image.
-        /// </summary>
-        public Tizen.NUI.PropertyMap SelectedStateImage
-        {
-            get
-            {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(Button.Property.SELECTED_STATE_IMAGE).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(Button.Property.SELECTED_STATE_IMAGE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the disabled whilst unselected foreground button visual.
-        /// </summary>
-        public Tizen.NUI.PropertyMap DisabledStateImage
-        {
-            get
-            {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(Button.Property.DISABLED_STATE_IMAGE).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(Button.Property.DISABLED_STATE_IMAGE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
