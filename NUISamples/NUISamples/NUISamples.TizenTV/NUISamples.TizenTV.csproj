@@ -58,7 +58,7 @@
     <Compile Include="examples\control-dashboard.cs" />
     <Compile Include="examples\custom-control.cs" />
     <Compile Include="examples\dali-test.cs" />
-    <Compile Include="examples\date-picker-using-json.cs" />
+    <Compile Include="examples\date-picker-using-json\date-picker-using-json.cs" />
     <Compile Include="examples\date-picker.cs" />
     <Compile Include="examples\flex-container.cs" />
     <Compile Include="examples\gc-test.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="examples\test1.cs" />
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
+    <Compile Include="examples\date-picker-using-json\ViewRegistryHelper.cs" />
     <Compile Include="examples\visual-animation-test.cs" />
     <Compile Include="examples\visual-animation-test2.cs" />
     <Compile Include="examples\visual-view-test2.cs" />

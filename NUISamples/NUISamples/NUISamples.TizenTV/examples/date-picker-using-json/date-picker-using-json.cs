@@ -46,8 +46,10 @@ namespace DatePickerUsingJson
             Stage stage = Stage.Instance;
             stage.BackgroundColor = Color.White;
 
-            // load date JSON template...
+            //This is required for the Application which uses JSON theme and style of Dali builder
+            ViewRegistryHelper.Initialize();
 
+            // load date JSON template...
             _builder = new Builder ();
 
             // Optional constant to see logging information coming out

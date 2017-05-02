@@ -287,7 +287,6 @@
     <Compile Include="src\internal\ViewImpl.cs" />
     <Compile Include="src\internal\ViewMode.cs" />
     <Compile Include="src\internal\ViewRegistry.cs" />
-    <Compile Include="src\internal\ViewRegistryHelper.cs" />
     <Compile Include="src\internal\ViewWrapper.cs" />
     <Compile Include="src\internal\ViewWrapperImpl.cs" />
     <Compile Include="src\internal\VisualTransformPolicyType.cs" />

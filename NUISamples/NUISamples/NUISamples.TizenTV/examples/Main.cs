@@ -15,8 +15,8 @@ namespace NUISamples.TizenTV.examples
         static void Main(string[] args)
         {
             //new ControlDashboard.Example().Run(args);                 //o
-            new DatePickerTest.Example().Run(args);                   //o
-            //new DatePickerUsingJson.Example().Run(args);              //o
+            //new DatePickerTest.Example().Run(args);                   //o
+            new DatePickerUsingJson.Example().Run(args);              //o
             //new HelloTest.Example().Run(args);                        //o
             //new HelloWorldTest.Example().Run(args);                   //o
             //new Test1.Example().Run(args);                            //o
@@ -29,7 +29,7 @@ namespace NUISamples.TizenTV.examples
             //new DaliTest.Example().Run(args);                         //o
             //new RelativeVectorTest.Example().Run(args);
             //new VisaulAnimationExample.Example().Run(args);
-            new VisaulAnimationExample.Example2().Run(args);
+            //new VisaulAnimationExample.Example2().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
             //new VisualViewTest2.VisualSample().Run(args);
             //new VisualViewTest3.Example().Run(args);                   //o
