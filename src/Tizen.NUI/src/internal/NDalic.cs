@@ -1012,6 +1012,12 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t VisibilityChangedSignal(Actor actor) {
+    SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t(NDalicPINVOKE.VisibilityChangedSignal(Actor.getCPtr(actor)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static FittingModeType FittingModeDefault {
     get {
       FittingModeType ret = (FittingModeType)NDalicPINVOKE.FittingModeDefault_get();
