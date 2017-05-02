@@ -47,11 +47,6 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~TextField()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>

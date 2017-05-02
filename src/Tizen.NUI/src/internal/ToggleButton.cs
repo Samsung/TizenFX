@@ -39,10 +39,6 @@ public class ToggleButton : Tizen.NUI.UIComponents.Button {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~ToggleButton() {
-    DisposeQueue.Instance.Add(this);
-  }
-
   public override void Dispose() {
     if (!Stage.IsInstalled()) {
       DisposeQueue.Instance.Add(this);

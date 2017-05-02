@@ -41,11 +41,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~Actor()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// To make Actor instance be disposed.
         /// </summary>
