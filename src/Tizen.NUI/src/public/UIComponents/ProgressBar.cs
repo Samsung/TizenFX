@@ -48,11 +48,6 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~ProgressBar()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// To make ProgressBar instance be disposed.
         /// </summary>

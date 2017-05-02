@@ -49,11 +49,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~TableView()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         public override void Dispose()
         {
             if (!Stage.IsInstalled())

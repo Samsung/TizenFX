@@ -28,11 +28,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~TapGesture()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>

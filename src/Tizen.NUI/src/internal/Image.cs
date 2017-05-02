@@ -25,10 +25,6 @@ using System.Runtime.InteropServices;
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~Image() {
-    DisposeQueue.Instance.Add(this);
-  }
-
   public override void Dispose() {
     if (!Stage.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
