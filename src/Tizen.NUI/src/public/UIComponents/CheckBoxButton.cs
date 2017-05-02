@@ -41,11 +41,6 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~CheckBoxButton()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
 
         /// <summary>
         /// To make CheckBoxButton instance be disposed.

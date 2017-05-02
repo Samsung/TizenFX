@@ -44,11 +44,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~FocusManager()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// To make FocusManager instance be disposed.
         /// </summary>

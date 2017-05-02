@@ -36,11 +36,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~StyleManager()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>

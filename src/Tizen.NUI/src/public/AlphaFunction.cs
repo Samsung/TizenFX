@@ -39,12 +39,10 @@ namespace Tizen.NUI
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
         ~AlphaFunction()
         {
             DisposeQueue.Instance.Add(this);
         }
-
         /// <summary>
         /// To make AlphaFunction instance be disposed.
         /// </summary>
