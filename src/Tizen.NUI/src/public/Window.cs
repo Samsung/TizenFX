@@ -49,11 +49,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~Window()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// To make Window instance be disposed.
         /// </summary>

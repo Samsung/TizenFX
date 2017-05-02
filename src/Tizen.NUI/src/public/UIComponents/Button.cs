@@ -50,11 +50,6 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~Button()
-        {
-            DisposeQueue.Instance.Add(this);
-        }
-
         /// <summary>
         /// To make Button instance be disposed.
         /// </summary>

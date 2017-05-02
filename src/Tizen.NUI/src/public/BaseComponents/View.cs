@@ -45,7 +45,7 @@ namespace Tizen.NUI.BaseComponents
 
         ~View()
         {
-            DisposeQueue.Instance.Add(this);
+            //DisposeQueue.Instance.Add(this);
 
             // Unregister this instance of view from the view registry.
             ViewRegistry.UnregisterView(this);
