@@ -549,7 +549,7 @@ namespace Tizen.NUI
         }
 
         // EventReceivedSignal
-        public class ImfManagerEventReceivedArgs : EventArgs
+        public class ImfManagerEventReceivedEventArgs : EventArgs
         {
             public ImfManager ImfManager
             {
@@ -560,14 +560,13 @@ namespace Tizen.NUI
 
         private delegate void ImfManagerEventReceivedEventCallbackType(global::System.IntPtr data);
         private ImfManagerEventReceivedEventCallbackType _imfManagerEventReceivedEventCallback;
-
-        private event EventHandler<ImfManageEventReceivedEventArgs> _imfManagerEventReceivedEventHandler;
-
+                       
+        private event EventHandler<ImfManagerEventReceivedEventArgs> _imfManagerEventReceivedEventHandler;
         public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
         {
             add
             {
-                if (_imfManageEventReceivedEventHandler == null)
+                if (_imfManagerEventReceivedEventHandler == null)
                 {
                     _imfManagerEventReceivedEventCallback = OnImfManagerEventReceived;
                     EventReceivedSignal().Connect(_imfManagerEventReceivedEventCallback);
@@ -606,7 +605,7 @@ namespace Tizen.NUI
         }
 
         // StatusChangedSignal
-        public class ImfManagerStatusChangedArgs : EventArgs
+        public class ImfManagerStatusChangedEventArgs : EventArgs
         {
             public ImfManager ImfManager
             {
@@ -618,13 +617,13 @@ namespace Tizen.NUI
         private delegate void ImfManagerStatusChangedEventCallbackType(global::System.IntPtr data);
         private ImfManagerStatusChangedEventCallbackType _imfManagerStatusChangedEventCallback;
 
-        private event EventHandler<ImfManageStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
+        private event EventHandler<ImfManagerStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
 
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
             add
             {
-                if (_imfManageStatusChangedEventHandler == null)
+                if (_imfManagerStatusChangedEventHandler == null)
                 {
                     _imfManagerStatusChangedEventCallback = OnImfManagerStatusChanged;
                     StatusChangedSignal().Connect(_imfManagerStatusChangedEventCallback);
@@ -663,7 +662,7 @@ namespace Tizen.NUI
         }
 
         // ResizedSignal
-        public class ImfManagerResizedArgs : EventArgs
+        public class ImfManagerResizedEventArgs : EventArgs
         {
             public ImfManager ImfManager
             {
@@ -675,13 +674,13 @@ namespace Tizen.NUI
         private delegate void ImfManagerResizedEventCallbackType(global::System.IntPtr data);
         private ImfManagerResizedEventCallbackType _imfManagerResizedEventCallback;
 
-        private event EventHandler<ImfManageResizedEventArgs> _imfManagerResizedEventHandler;
+        private event EventHandler<ImfManagerResizedEventArgs> _imfManagerResizedEventHandler;
 
         public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
         {
             add
             {
-                if (_imfManageResizedEventHandler == null)
+                if (_imfManagerResizedEventHandler == null)
                 {
                     _imfManagerResizedEventCallback = OnImfManagerResized;
                     ResizedSignal().Connect(_imfManagerResizedEventCallback);
@@ -714,13 +713,13 @@ namespace Tizen.NUI
 
         public ImfVoidSignalType ResizedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr));
+            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         // LanguageChangedSignal
-        public class ImfManagerLanguageChangedArgs : EventArgs
+        public class ImfManagerLanguageChangedEventArgs : EventArgs
         {
             public ImfManager ImfManager
             {
@@ -732,13 +731,13 @@ namespace Tizen.NUI
         private delegate void ImfManagerLanguageChangedEventCallbackType(global::System.IntPtr data);
         private ImfManagerLanguageChangedEventCallbackType _imfManagerLanguageChangedEventCallback;
 
-        private event EventHandler<ImfManageLanguageChangedEventArgs> _imfManagerLanguageChangedEventHandler;
+        private event EventHandler<ImfManagerLanguageChangedEventArgs> _imfManagerLanguageChangedEventHandler;
 
         public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
         {
             add
             {
-                if (_imfManageLanguageChangedEventHandler == null)
+                if (_imfManagerLanguageChangedEventHandler == null)
                 {
                     _imfManagerLanguageChangedEventCallback = OnImfManagerLanguageChanged;
                     LanguageChangedSignal().Connect(_imfManagerLanguageChangedEventCallback);
@@ -771,7 +770,7 @@ namespace Tizen.NUI
 
         public ImfVoidSignalType LanguageChangedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr));
+            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -975,7 +974,7 @@ namespace Tizen.NUI
 
         public void Emit(bool arg1, bool arg2)
         {
-            NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, arg1, agr2);
+            NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, arg1, arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
