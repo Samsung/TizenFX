@@ -19,6 +19,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.UIComponents;
 
 
 namespace DatePickerTest
@@ -31,6 +32,11 @@ namespace DatePickerTest
         private Spin _spinYear;  // spin control for year
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
+
+        private ImfManager _imfMgr;
+        private TextField _textField;
+        private PushButton _pushButton;
+        public bool _toggle;
 
         public Example() : base()
         {
@@ -114,6 +120,50 @@ namespace DatePickerTest
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
             keyboardFocusManager.FocusedViewEnterKeyPressed += OnFocusedActorEnterKeyPressed;
 
+            ////////////////////////////////////////////////////////////////////////
+            _imfMgr = ImfManager.Get();
+            _imfMgr.ImfManagerActivated += _imfMgr_ImfManagerActivated;
+
+            _textField = new TextField();
+            _textField.Position2D = new Position2D(100, 100);
+            _textField.Size2D = new Size2D(900, 100);
+            _textField.Text = "imf manager test!";
+            _textField.BackgroundColor = Color.Blue;
+            _textField.TextColor = Color.White;
+            stage.GetDefaultLayer().Add(_textField);
+
+            keyboardFocusManager.SetCurrentFocusView(_textField);
+
+            _pushButton = new PushButton();
+            _pushButton.Position2D = new Position2D(100, 210);
+            _pushButton.Size2D = new Size2D(900, 100);
+            _pushButton.LabelText = "imf activate";
+            _pushButton.Clicked += _pushButton_Clicked;
+            stage.GetDefaultLayer().Add(_pushButton);
+        }
+
+        private bool _pushButton_Clicked(object source, EventArgs e)
+        {
+            Tizen.Log.Fatal("NUI", "_pushButton_Clicked event comes!");
+
+            if (_toggle)
+            {
+                _imfMgr.Activate();
+                _pushButton.LabelText = "imf activated";
+                _toggle = false;
+            }
+            else
+            {
+                _imfMgr.Deactivate();
+                _pushButton.LabelText = "imf deactivated";
+                _toggle = true;
+            }
+            return true;
+        }
+
+        private void _imfMgr_ImfManagerActivated(object sender, ImfManager.ImfManagerActivatedEventArgs e)
+        {
+            Tizen.Log.Fatal("NUI", "_imfMgr_ImfManagerActivated event comes!");
         }
 
         private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)

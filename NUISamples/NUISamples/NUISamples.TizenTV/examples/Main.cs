@@ -15,7 +15,7 @@ namespace NUISamples.TizenTV.examples
         static void Main(string[] args)
         {
             //new ControlDashboard.Example().Run(args);                 //o
-            //new DatePickerTest.Example().Run(args);                   //o
+            new DatePickerTest.Example().Run(args);                   //o
             //new DatePickerUsingJson.Example().Run(args);              //o
             //new HelloTest.Example().Run(args);                        //o
             //new HelloWorldTest.Example().Run(args);                   //o
