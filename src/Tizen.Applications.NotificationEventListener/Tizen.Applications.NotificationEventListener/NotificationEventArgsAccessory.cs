@@ -24,48 +24,28 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        /// Class for Notification AccessorySet which is included vibration, led, sound option
+        /// Class to get infomation about Notification accessory.
         /// </summary>
         public class AccessoryArgs
         {
             /// <summary>
             /// Gets the sound option.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// AccessoryOption vibrationOption = NotificationEventArgs.Accessory.SoundOption;
-            /// </code>
-            /// </example>
             public AccessoryOption SoundOption { get; internal set; }
 
             /// <summary>
             /// Gets the sound path.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// string soundPath = NotificationEventArgs.Accessory.SountPath;
-            /// </code>
-            /// </example>
             public string SountPath { get; internal set; }
 
             /// <summary>
             /// Gets the vibration option.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// bool vibrationOption = NotificationEventArgs.Accessory.CanVibrate;
-            /// </code>
-            /// </example>
             public bool CanVibrate { get; internal set; }
 
             /// <summary>
             /// Gets the led option.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// AccessoryOption ledOption = NotificationEventArgs.Accessory.LedOption;
-            /// </code>
-            /// </example>
             public AccessoryOption LedOption { get; internal set; }
 
             /// <summary>
@@ -74,13 +54,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// <value>
             /// Default value of LedOnMilliseconds is 0.
             /// The rate is specified in terms of the number of milliseconds to be on.
-            /// You should always set the LedOnMillisecond and LedOffMillisecond. Otherwise, it may not operate normally.
             /// </value>
-            /// <example>
-            /// <code>
-            /// int ledOnMillisecond = NotificationEventArgs.Accessory.LedOnMillisecond;
-            /// </code>
-            /// </example>
             public int LedOnMillisecond { get; internal set; }
 
             /// <summary>
@@ -89,23 +63,12 @@ namespace Tizen.Applications.NotificationEventListener
             /// <value>
             /// Default value of LedOffMillisecond is 0.
             /// The rate is specified in terms of the number of millisecond to be off.
-            /// You should always set the LedOnMillisecond and LedOffMillisecond. Otherwise, it may not operate normally.
             /// </value>
-            /// <example>
-            /// <code>
-            /// int ledOffMillisecond = NotificationEventArgs.Accessory.LedOffMillisecond;
-            /// </code>
-            /// </example>
             public int LedOffMillisecond { get; internal set; }
 
             /// <summary>
             /// Gets led color that you would like the LED on the device to blink.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// Color ledColor = NotificationEventArgs.Accessory.LedColor;
-            /// </code>
-            /// </example>
             public Color LedColor { get; internal set; }
         }
     }

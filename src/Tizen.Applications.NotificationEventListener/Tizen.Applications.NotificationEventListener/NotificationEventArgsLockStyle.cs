@@ -22,28 +22,18 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to generate the Lock style notification.
+        ///  Class to get infomation about Notification Lock style.
         /// </summary>
         public class LockStyleArgs : StyleArgs
         {
             /// <summary>
             /// Gets the path of the image file to display on the icon of Lock style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// string iconPath = NotificationEventArgs.LockStyleArgs.IconPath;
-            /// </code>
-            /// </example>
             public string IconPath { get; internal set; }
 
             /// <summary>
             /// Gets the path of the thumbnail image file to display on the icon of Lock style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// string thumbnail = NotificationEventArgs.LockStyleArgs.Thumbnail;
-            /// </code>
-            /// </example>
             public string Thumbnail { get; internal set; }
 
             internal override string Key

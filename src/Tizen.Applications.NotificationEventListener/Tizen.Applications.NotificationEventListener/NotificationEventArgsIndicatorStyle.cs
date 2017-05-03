@@ -27,23 +27,13 @@ namespace Tizen.Applications.NotificationEventListener
         public class IndicatorStyleArgs : StyleArgs
         {
             /// <summary>
-            /// Gets the path of the image to display on the icon of the indicator style.
+            ///  Class to get infomation about Notification Indicator style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// string iconPath = NotificationEventArgs.IndicatorStyleArgs.IconPath;
-            /// </code>
-            /// </example>
             public string IconPath { get; internal set; }
 
             /// <summary>
             /// Gets the sub text to display Indicator style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// string subText = NotificationEventArgs.IndicatorStyleArgs.SubText;
-            /// </code>
-            /// </example>
             public string SubText { get; internal set; }
 
             internal override string Key

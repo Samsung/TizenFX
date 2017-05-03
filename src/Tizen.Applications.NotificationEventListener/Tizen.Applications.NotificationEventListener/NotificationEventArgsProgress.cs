@@ -22,41 +22,23 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to display the progress notification.
+        ///  Class to get infomation about Progress Notification.
         /// </summary>
         public class ProgressArgs
         {
             /// <summary>
             /// Gets category of ProgressType.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// ProgressCategory category = NotificationEventArgs.Progress.Category;
-            /// </code>
-            /// </example>
             public ProgressCategory Category { get; internal set; }
 
             /// <summary>
             /// Gets current value of ProgressType.
             /// </summary>
-            /// <value>
-            /// ProgressCurrent should not be less than 0 or greater than ProgressMax
-            /// </value>
-            /// <example>
-            /// <code>
-            /// double current = NotificationEventArgs.Progress.Current;
-            /// </code>
-            /// </example>
             public double Current { get; internal set; }
 
             /// <summary>
             /// Gets max value of ProgressType.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// double max = NotificationEventArgs.Progress.Max;
-            /// </code>
-            /// </example>
             public double Max { get; internal set; }
         }
     }

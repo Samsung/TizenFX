@@ -24,7 +24,7 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to generate the Active style notification
+        /// Class to get infomation about Notification Active style.
         /// </summary>
         public class ActiveStyleArgs : StyleArgs
         {
@@ -44,68 +44,32 @@ namespace Tizen.Applications.NotificationEventListener
             /// When 'IsAutoRemove' is set as false, the active notification will not be removed as long as the user removes
             /// the active notification or the app which posted the active notification removes the active notification.
             /// </value>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// bool isAutoRemove = style.IsAutoRemove;
-            /// </code>
-            /// </example>
             public bool IsAutoRemove { get; internal set; }
 
             /// <summary>
             /// Gets an absolute path for an image file to display on the background of active notification.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// string path = style.BackgroundImage;
-            /// </code>
-            /// </example>
             public string BackgroundImage { get; internal set; }
 
             /// <summary>
             /// Gets timeout value in second when the notification can be hidden from the viewer.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// int hideTimeout = style.HideTimeout;
-            /// </code>
-            /// </example>
             public int HideTimeout { get; internal set; }
 
             /// <summary>
             /// Gets timeout value in second when the notification can be deleted from the viewer.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// int deleteTimeout = style.DeleteTimeout;
-            /// </code>
-            /// </example>
             public int DeleteTimeout { get; internal set; }
 
             /// <summary>
             /// Gets a button to this active notification style.
             /// Buttons are displayed in the notification content.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// IList<ButtonActionArgs> button = NotificationEventArgs.ActiveStyleArgs.Button;
-            /// </code>
-            /// </example>
             public IList<ButtonActionArgs> Button { get; internal set; }
 
             /// <summary>
-            /// Gets a button to this active notification style.
-            /// Buttons are displayed in the notification content.
+            /// Gets a ReplyAction to this active notification style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// ReplyActionArgs reply = style.Replay;
-            /// </code>
-            /// </example>
             public ReplyActionArgs Reply { get; internal set; }
 
             internal override string Key

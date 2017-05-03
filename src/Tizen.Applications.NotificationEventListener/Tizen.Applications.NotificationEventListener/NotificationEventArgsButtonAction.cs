@@ -22,65 +22,28 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to display the buttons on the active notification.
+        ///  Class to get infomation about Notification ButtonAction.
         /// </summary>
         public class ButtonActionArgs
         {
             /// <summary>
             /// Gets the Index of the Button which is appeared at Notification.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
-            /// ButtonIndex index = button.Index;
-            /// </code>
-            /// </example>
             public ButtonIndex Index { get; internal set; }
 
             /// <summary>
             /// Gets the text that describes the button.
             /// </summary>
-            /// <value>
-            /// Default value is null.
-            /// </value>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
-            /// string text = button.Text;
-            /// </code>
-            /// </example>
             public string Text { get; internal set; }
 
             /// <summary>
             /// Gets the image's path that represent the button.
             /// </summary>
-            /// <value>
-            /// Default value is null.
-            /// </value>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
-            /// string imagePath = button.ImagePath;
-            /// </code>
-            /// </example>
             public string ImagePath { get; internal set; }
 
             /// <summary>
             /// Gets the AppControl that is invoked when the button is clicked.
             /// </summary>
-            /// <value>
-            /// Default value is null.
-            /// </value>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.ActiveStyleArgs style = args.GetStyle<NotificationEventArgs.ActiveStyleArgs>();
-            /// NotificationEventArgs.ButtonActionArgs button = style.Button;
-            /// AppControl action = button.Action;
-            /// </code>
-            /// </example>
             public AppControl Action { get; internal set; }
         }
     }

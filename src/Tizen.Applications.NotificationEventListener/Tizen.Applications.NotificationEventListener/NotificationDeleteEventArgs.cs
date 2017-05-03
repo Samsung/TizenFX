@@ -25,11 +25,6 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Gets the unique number of the Notification.
         /// </summary>
-        /// <example>
-        /// <code>
-        /// int uniqueNumber = NotificationDeleteEventArgs.UniqueNumber;
-        /// </code>
-        /// </example>
         public int UniqueNumber { get; internal set; }
     }
 }

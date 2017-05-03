@@ -22,41 +22,23 @@ namespace Tizen.Applications.NotificationEventListener
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to generate the BigPicture style notification
+        ///  Class to get infomation about Notification BigPticture style.
         /// </summary>
         public class BigPictureStyleArgs : StyleArgs
         {
             /// <summary>
             /// Gets the path of the image file to display on the image of BigPicture style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.BigPictureStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.BigPictureStyleArgs>();
-            /// string imagePath = style.ImagePath;
-            /// </code>
-            /// </example>
             public string ImagePath { get; internal set; }
 
             /// <summary>
             /// Gets the size image to display on the image of BigPicture style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.BigPictureStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.BigPictureStyleArgs>();
-            /// int imagesize = imagePath = style.ImageSize;
-            /// </code>
-            /// </example>
             public int ImageSize { get; internal set; }
 
             /// <summary>
             /// Gets the content to display BigPicture style.
             /// </summary>
-            /// <example>
-            /// <code>
-            /// NotificationEventArgs.BigPictureStyleArgs style = NotificationEventArgs.GetStyle<NotificationEventArgs.BigPictureStyleArgs>();
-            /// string content = imagePath = style.Content;
-            /// </code>
-            /// </example>
             public string Content { get; internal set; }
 
             internal override string Key
