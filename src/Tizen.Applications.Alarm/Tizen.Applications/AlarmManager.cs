@@ -125,7 +125,7 @@ namespace Tizen.Applications
         /// The actual interval is calculated by the OS. The minimum value is 600sec</param>
         /// <param name="appControl"> The destination AppControl to perform a specific task when the alarm is triggered </param>
         /// <returns>Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -151,7 +151,7 @@ namespace Tizen.Applications
         /// <param name="delay"> The amount of time before the execution (in seconds) </param>
         /// <param name="appControl"> The destination AppControl to perform a specific task when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -177,7 +177,7 @@ namespace Tizen.Applications
         /// <param name="appControl"> The destination AppControl to perform specific work when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
         /// <remarks>This operation is permitted wit UI application appcontrol only.</remarks>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -207,7 +207,7 @@ namespace Tizen.Applications
         /// <param name="weekFlag"> The day of the week, AlarmWeekFlag may be a combination of days, like AlarmWeekFlag.Sunday | AlarmWeekFlag.Monday</param>
         /// <param name="appControl"> The destination AppControl to perform specific work when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -233,7 +233,7 @@ namespace Tizen.Applications
         /// <param name="dateTime"> The first active alarm time </param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -259,11 +259,11 @@ namespace Tizen.Applications
         /// Sets an alarm to be triggered periodically, starting at a specific time.
         /// The date describes the time of the first occurrence.
         /// </summary>
-        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
-        /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy.
+        /// <param name="delay">The amount of time before the first execution (in seconds). </param>
+        /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy. </param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -287,13 +287,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Sets an alarm to be triggered periodically, starting at a specific time.
         /// The date describes the time of the first occurrence.
-        /// </summary
+        /// </summary>
         /// <param name="dateTime"> The first active alarm time </param>
         /// <param name="weekFlag"> The day of the week, AlarmWeekFlag may be a combination of days,
         ///                         like AlarmWeekFlag.Sunday | AlarmWeekFlag.Monday</param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
@@ -322,7 +322,7 @@ namespace Tizen.Applications
         /// <param name="delay">The amount of time before the first execution (in seconds).</param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
         /// <returns> Alarm Instance created with the set param values.</returns>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
