@@ -144,6 +144,61 @@ namespace Tizen.System
             [RuntimeInformationKey.AudioJackConnector] = typeof(int)
         };
 
+        internal static readonly Dictionary<RuntimeInformationKey, int> s_keyTVkeyMapping = new Dictionary<RuntimeInformationKey, int>
+        {
+            [RuntimeInformationKey.Bluetooth] = 5,
+            [RuntimeInformationKey.WifiHotspot] = 6,
+            [RuntimeInformationKey.BluetoothTethering] = 7,
+            [RuntimeInformationKey.UsbTethering] = 8,
+            [RuntimeInformationKey.PacketData] = 13,
+            [RuntimeInformationKey.DataRoaming] = 14,
+            [RuntimeInformationKey.Vibration] = 16,
+            [RuntimeInformationKey.AudioJack] = 20,
+            [RuntimeInformationKey.BatteryIsCharging] = 22,
+            [RuntimeInformationKey.TvOut] = 18,
+            [RuntimeInformationKey.Charger] = 26,
+            [RuntimeInformationKey.AutoRotation] = 28,
+            [RuntimeInformationKey.Gps] = 21,
+            [RuntimeInformationKey.AudioJackConnector] = 20
+        };
+
+        internal static int is_TV_product = -1;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// This function is for TV product. It will be removed
+        internal static RuntimeInformationKey ConvertKeyIfTvProduct(RuntimeInformationKey key)
+        {
+            bool is_key_existed = false;
+            string profile;
+            int key_TV = -1;
+
+            if (is_TV_product == -1)
+            {
+                is_key_existed = SystemInfo.TryGetValue<string>("http://com.samsung/build_config/product_type", out profile);
+                if (is_key_existed && String.Compare(profile, "TV") == 0)
+                {
+                    is_TV_product = 1;
+                }
+                else
+                {
+                    is_TV_product = 0;
+                }
+            }
+
+            if (is_TV_product == 0)
+            {
+                return key;
+            }
+            else
+            {
+                if (!s_keyTVkeyMapping.TryGetValue(key, out key_TV))
+                {
+                    RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+                }
+                return (RuntimeInformationKey)key_TV;
+            }
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static object GetStatus(RuntimeInformationKey key)
         {
@@ -152,10 +207,11 @@ namespace Tizen.System
             {
                 RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
             }
+
             if (s_keyDataTypeMapping[key] == typeof(int))
             {
                 int status;
-                int ret = Interop.RuntimeInfo.GetValue(key, out status);
+                int ret = Interop.RuntimeInfo.GetValue(ConvertKeyIfTvProduct(key), out status);
                 if (ret != (int)RuntimeInfoError.None)
                 {
                     Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
@@ -167,7 +223,7 @@ namespace Tizen.System
             else
             {
                 bool status;
-                int ret = Interop.RuntimeInfo.GetValue(key, out status);
+                int ret = Interop.RuntimeInfo.GetValue(ConvertKeyIfTvProduct(key), out status);
                 if (ret != (int)RuntimeInfoError.None)
                 {
                     Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
@@ -357,7 +413,7 @@ namespace Tizen.System
             {
                 if (s_bluetoothEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.Bluetooth, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Bluetooth), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -371,7 +427,7 @@ namespace Tizen.System
                 s_bluetoothEnabled -= value;
                 if (s_bluetoothEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.Bluetooth);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Bluetooth));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -389,7 +445,7 @@ namespace Tizen.System
             {
                 if (s_wifiHotspotEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.WifiHotspot, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.WifiHotspot), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -403,7 +459,7 @@ namespace Tizen.System
                 s_wifiHotspotEnabled -= value;
                 if (s_wifiHotspotEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.WifiHotspot);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.WifiHotspot));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -421,7 +477,7 @@ namespace Tizen.System
             {
                 if (s_bluetoothTetheringEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.BluetoothTethering, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.BluetoothTethering), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -435,7 +491,7 @@ namespace Tizen.System
                 s_bluetoothTetheringEnabled -= value;
                 if (s_bluetoothTetheringEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.BluetoothTethering);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.BluetoothTethering));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -453,7 +509,7 @@ namespace Tizen.System
             {
                 if (s_usbTetheringEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.UsbTethering, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.UsbTethering), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -467,7 +523,7 @@ namespace Tizen.System
                 s_usbTetheringEnabled -= value;
                 if (s_usbTetheringEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.UsbTethering);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.UsbTethering));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -485,7 +541,7 @@ namespace Tizen.System
             {
                 if (s_packetDataEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.PacketData, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.PacketData), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -499,7 +555,7 @@ namespace Tizen.System
                 s_packetDataEnabled -= value;
                 if (s_packetDataEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.PacketData);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.PacketData));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -517,7 +573,7 @@ namespace Tizen.System
             {
                 if (s_dataRoamingEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.DataRoaming, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.DataRoaming), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -531,7 +587,7 @@ namespace Tizen.System
                 s_dataRoamingEnabled -= value;
                 if (s_dataRoamingEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.DataRoaming);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.DataRoaming));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -549,7 +605,7 @@ namespace Tizen.System
             {
                 if (s_vibrationEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.Vibration, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Vibration), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -563,7 +619,7 @@ namespace Tizen.System
                 s_vibrationEnabled -= value;
                 if (s_vibrationEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.Vibration);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Vibration));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -581,7 +637,7 @@ namespace Tizen.System
             {
                 if (s_audioJackConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.AudioJack, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJack), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -595,7 +651,7 @@ namespace Tizen.System
                 s_audioJackConnected -= value;
                 if (s_audioJackConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.AudioJack);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJack));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -613,7 +669,7 @@ namespace Tizen.System
             {
                 if (s_gpsStatusChanged == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.Gps, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Gps), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -627,7 +683,7 @@ namespace Tizen.System
                 s_gpsStatusChanged -= value;
                 if (s_gpsStatusChanged == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.Gps);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Gps));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -645,7 +701,7 @@ namespace Tizen.System
             {
                 if (s_batteryIsCharging == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.BatteryIsCharging, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.BatteryIsCharging), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -659,7 +715,7 @@ namespace Tizen.System
                 s_batteryIsCharging -= value;
                 if (s_batteryIsCharging == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.BatteryIsCharging);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.BatteryIsCharging));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -677,7 +733,7 @@ namespace Tizen.System
             {
                 if (s_tvOutConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.TvOut, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.TvOut), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -691,7 +747,7 @@ namespace Tizen.System
                 s_tvOutConnected -= value;
                 if (s_tvOutConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.TvOut);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.TvOut));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -709,7 +765,7 @@ namespace Tizen.System
             {
                 if (s_audioJackConnectorChanged == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.AudioJackConnector, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJackConnector), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -723,7 +779,7 @@ namespace Tizen.System
                 s_audioJackConnectorChanged -= value;
                 if (s_audioJackConnectorChanged == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.AudioJackConnector);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJackConnector));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -741,7 +797,7 @@ namespace Tizen.System
             {
                 if (s_chargerConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.Charger, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Charger), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -755,7 +811,7 @@ namespace Tizen.System
                 s_chargerConnected -= value;
                 if (s_chargerConnected == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.Charger);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.Charger));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -773,7 +829,7 @@ namespace Tizen.System
             {
                 if (s_autoRotationEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(RuntimeInformationKey.AutoRotation, s_runtimeInfoChangedCallback, IntPtr.Zero);
+                    int ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AutoRotation), s_runtimeInfoChangedCallback, IntPtr.Zero);
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
@@ -787,7 +843,7 @@ namespace Tizen.System
                 s_autoRotationEnabled -= value;
                 if (s_autoRotationEnabled == null)
                 {
-                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(RuntimeInformationKey.AutoRotation);
+                    int ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(ConvertKeyIfTvProduct(RuntimeInformationKey.AutoRotation));
                     if (ret != (int)RuntimeInfoError.None)
                     {
                         Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to add event handler");
