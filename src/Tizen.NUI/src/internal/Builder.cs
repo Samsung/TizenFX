@@ -229,12 +229,12 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public void AddActors(View toActor) {
+  public void AddViews(View toActor) {
     NDalicPINVOKE.Builder_AddActors__SWIG_0(swigCPtr, View.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void AddActors(string sectionName, View toActor) {
+  public void AddViews(string sectionName, View toActor) {
     NDalicPINVOKE.Builder_AddActors__SWIG_1(swigCPtr, sectionName, View.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }

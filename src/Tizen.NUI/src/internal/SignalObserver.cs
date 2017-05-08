@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    internal class SignalObserver : global::System.IDisposable {
+    public class SignalObserver : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
