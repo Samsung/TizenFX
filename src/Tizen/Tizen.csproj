@@ -1,78 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7659CA59-410D-41A1-9841-586E88BC78C9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen</RootNamespace>
-    <AssemblyName>Tizen</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Interop\Interop.CommonError.cs" />
-    <Compile Include="Interop\Interop.Dlog.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Common\Color.cs" />
-    <Compile Include="Tizen.Internals.Errors\ErrorCode.cs" />
-    <Compile Include="Tizen.Internals.Errors\ErrorFacts.cs" />
-    <Compile Include="Tizen\Log.cs" />
+    <PackageReference Include="Tizen.Log" Version="1.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.nuspec" />
-    <None Include="Tizen.project.json" />
-    <None Include="Tizen.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+
 </Project>

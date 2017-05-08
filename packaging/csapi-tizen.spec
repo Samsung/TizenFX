@@ -1,6 +1,6 @@
 Name:       csapi-tizen
-Summary:    Tizen API for C#
-Version:    1.0.3
+Summary:    Base components for Tizen .NET
+Version:    1.0.5
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -12,14 +12,21 @@ AutoReqProv: no
 ExcludeArch: aarch64
 
 BuildRequires: dotnet-build-tools
+BuildRequires: csapi-log-nuget
 
 %define Assemblies Tizen
-
 
 %description
 %{summary}
 
-%dotnet_import_sub_packages
+%package nuget
+Summary:   NuGet package for %{name}
+Group:     Development/Libraries
+AutoReqProv: no
+Requires:  csapi-log-nuget
+
+%description nuget
+NuGet package for %{name}
 
 %prep
 %setup -q
@@ -40,3 +47,7 @@ done
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{dotnet_assembly_files}
+
+%files nuget
+/nuget/Tizen.%{version}.nupkg
+
