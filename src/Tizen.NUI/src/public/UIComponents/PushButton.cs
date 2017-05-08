@@ -46,7 +46,7 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-       /// <summary>
+        /// <summary>
         /// To make PushButton instance be disposed.
         /// </summary>
         public override void Dispose()
@@ -92,11 +92,16 @@ namespace Tizen.NUI.UIComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)

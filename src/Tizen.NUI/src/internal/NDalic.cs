@@ -1006,8 +1006,8 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t VisibilityChangedSignal(View view) {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
+  public static ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+    ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1063,6 +1063,18 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
 
   public static ViewImpl GetImplementation(View handle) {
     ViewImpl ret = new ViewImpl(NDalicPINVOKE.GetImplementation__SWIG_0(View.getCPtr(handle)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static KeyInputFocusSignal ResourceReadySignal(View control) {
+    KeyInputFocusSignal ret = new KeyInputFocusSignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(control)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsResourceReady(View control) {
+    bool ret = NDalicPINVOKE.IsResourceReady(View.getCPtr(control));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

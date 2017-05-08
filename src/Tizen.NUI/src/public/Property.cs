@@ -204,11 +204,16 @@ namespace Tizen.NUI
 
         ~PropertyArray()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -403,11 +408,16 @@ namespace Tizen.NUI
 
         ~PropertyKey()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -599,11 +609,16 @@ namespace Tizen.NUI
 
         ~PropertyMap()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -928,11 +943,16 @@ namespace Tizen.NUI
 
         ~PropertyValue()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)

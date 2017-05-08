@@ -32,7 +32,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-    internal class ItemView : Scrollable {
+  public class ItemView : Scrollable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemView_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -95,10 +95,15 @@ using System.Runtime.InteropServices;
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {

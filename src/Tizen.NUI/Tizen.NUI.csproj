@@ -45,7 +45,6 @@
     <None Include="Tizen.NUI.project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="src\internal\BlendModeType.cs" />
     <Compile Include="src\internal\BufferImage.cs" />
     <Compile Include="src\internal\Builder.cs" />
+    <Compile Include="src\internal\Button.cs" />
     <Compile Include="src\internal\ButtonSignal.cs" />
     <Compile Include="src\internal\Camera.cs" />
     <Compile Include="src\internal\ChildPropertyRegistration.cs" />
@@ -102,7 +102,6 @@
     <Compile Include="src\internal\EventThreadCallback.cs" />
     <Compile Include="src\internal\FaceCullingModeType.cs" />
     <Compile Include="src\internal\FilterModeType.cs" />
-    <Compile Include="src\internal\FittingModeType.cs" />
     <Compile Include="src\internal\FixedRuler.cs" />
     <Compile Include="src\internal\floatp.cs" />
     <Compile Include="src\internal\FloatSignal.cs" />
@@ -115,8 +114,6 @@
     <Compile Include="src\internal\GaussianBlurViewSignal.cs" />
     <Compile Include="src\internal\Geometry.cs" />
     <Compile Include="src\internal\GestureDetector.cs" />
-    <Compile Include="src\internal\GradientVisualSpreadMethodType.cs" />
-    <Compile Include="src\internal\GradientVisualUnitsType.cs" />
     <Compile Include="src\internal\HoverSignal.cs" />
     <Compile Include="src\internal\Image.cs" />
     <Compile Include="src\internal\ImageSignal.cs" />
@@ -139,7 +136,6 @@
     <Compile Include="src\internal\ManualPINVOKE.cs" />
     <Compile Include="src\internal\Matrix.cs" />
     <Compile Include="src\internal\Matrix3.cs" />
-    <Compile Include="src\internal\MeshVisualShadingModeValue.cs" />
     <Compile Include="src\internal\Meta.cs" />
     <Compile Include="src\internal\Model3dView.cs" />
     <Compile Include="src\internal\NativeImage.cs" />
@@ -165,8 +161,9 @@
     <Compile Include="src\internal\PinchGestureDetector.cs" />
     <Compile Include="src\internal\PixelData.cs" />
     <Compile Include="src\internal\PixelFormat.cs" />
+    <Compile Include="src\internal\Popup.cs" />
     <Compile Include="src\internal\PositionInheritanceMode.cs" />
-    <Compile Include="src\internal\PrimitiveVisualShapeType.cs" />
+    <Compile Include="src\internal\ProgressBar.cs" />
     <Compile Include="src\internal\ProgressBarValueChangedSignal.cs" />
     <Compile Include="src\internal\PropertyBuffer.cs" />
     <Compile Include="src\internal\PropertyCondition.cs" />
@@ -175,6 +172,7 @@
     <Compile Include="src\internal\PropertyRangeManager.cs" />
     <Compile Include="src\internal\PropertyRanges.cs" />
     <Compile Include="src\internal\PropertyRegistration.cs" />
+    <Compile Include="src\internal\RadioButton.cs" />
     <Compile Include="src\internal\RefObject.cs" />
     <Compile Include="src\internal\RenderBufferFormat.cs" />
     <Compile Include="src\internal\Renderer.cs" />
@@ -189,7 +187,6 @@
     <Compile Include="src\internal\RulerDomain.cs" />
     <Compile Include="src\internal\RulerPtr.cs" />
     <Compile Include="src\internal\Sampler.cs" />
-    <Compile Include="src\internal\SamplingModeType.cs" />
     <Compile Include="src\internal\Scrollable.cs" />
     <Compile Include="src\internal\ScrollableSignal.cs" />
     <Compile Include="src\internal\ScrollView.cs" />
@@ -199,6 +196,8 @@
     <Compile Include="src\internal\Shader.cs" />
     <Compile Include="src\internal\SignalConnectorType.cs" />
     <Compile Include="src\internal\SignalObserver.cs" />
+    <Compile Include="src\internal\Size.cs" />
+    <Compile Include="src\internal\Slider.cs" />
     <Compile Include="src\internal\SliderMarkReachedSignal.cs" />
     <Compile Include="src\internal\SliderValueChangedSignal.cs" />
     <Compile Include="src\internal\SlotObserver.cs" />
@@ -289,17 +288,16 @@
     <Compile Include="src\internal\ViewImpl.cs" />
     <Compile Include="src\internal\ViewMode.cs" />
     <Compile Include="src\internal\ViewRegistry.cs" />
+    <Compile Include="src\internal\ViewResourceReadySignal.cs" />
     <Compile Include="src\internal\ViewSignal.cs" />
+    <Compile Include="src\internal\ViewVisibilityChangedSignal.cs" />
     <Compile Include="src\internal\ViewWrapper.cs" />
     <Compile Include="src\internal\ViewWrapperImpl.cs" />
     <Compile Include="src\internal\VisibilityChangeType.cs" />
-    <Compile Include="src\internal\VisualTransformPolicyType.cs" />
-    <Compile Include="src\internal\VisualTransformPropertyType.cs" />
     <Compile Include="src\internal\VisualType.cs" />
     <Compile Include="src\internal\WheelSignal.cs" />
     <Compile Include="src\internal\WindowFocusSignalType.cs" />
     <Compile Include="src\internal\VoidSignal.cs" />
-    <Compile Include="src\internal\WrapModeType.cs" />
     <Compile Include="src\public\AlphaFunction.cs" />
     <Compile Include="src\public\Animation.cs" />
     <Compile Include="src\public\Color.cs" />
@@ -328,7 +326,6 @@
     <Compile Include="src\public\RelativeVector4.cs" />
     <Compile Include="src\public\RelayoutContainer.cs" />
     <Compile Include="src\public\Rotation.cs" />
-    <Compile Include="src\public\Size.cs" />
     <Compile Include="src\public\Size2D.cs" />
     <Compile Include="src\public\StyleManager.cs" />
     <Compile Include="src\public\TableView.cs" />
@@ -342,14 +339,9 @@
     <Compile Include="src\public\BaseComponents\View.cs" />
     <Compile Include="src\public\BaseComponents\CustomView.cs" />
     <Compile Include="src\public\BaseComponents\VisualView.cs" />
-    <Compile Include="src\public\UIComponents\Button.cs" />
     <Compile Include="src\public\UIComponents\CheckBoxButton.cs" />
-    <Compile Include="src\public\UIComponents\Popup.cs" />
-    <Compile Include="src\public\UIComponents\ProgressBar.cs" />
     <Compile Include="src\public\UIComponents\PushButton.cs" />
-    <Compile Include="src\public\UIComponents\RadioButton.cs" />
     <Compile Include="src\public\UIComponents\ScrollBar.cs" />
-    <Compile Include="src\public\UIComponents\Slider.cs" />
     <Compile Include="src\public\Vector2.cs" />
     <Compile Include="src\public\Vector3.cs" />
     <Compile Include="src\public\Vector4.cs" />
@@ -359,6 +351,9 @@
     <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,0 +1,12 @@
+NUISample2/NUISample2/NUISample2.Tizen/obj
+NUISample2/NUISample2/NUISample2.Tizen/bin
+NUISamples/NUISamples/NUISamples.TizenTV/obj
+NUISamples/NUISamples/NUISamples.TizenTV/bin
+NUISamples/NUISamples/NUISamples/obj
+NUISamples/NUISamples/NUISamples/bin
+NUISamples/Tizen.NUI.Extension.Test/obj
+NUISamples/Tizen.NUI.Extension.Test/bin
+Tizen.NUI/obj
+Tizen.NUI/bin
+*.lock.json
+Tizen.NUI/.vs/

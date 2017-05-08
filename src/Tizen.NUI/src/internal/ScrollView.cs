@@ -158,10 +158,15 @@ public class SnapStartedEventArgs : EventArgs
     }
 
     ~ClampEvent() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
 
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -232,10 +237,15 @@ public class SnapStartedEventArgs : EventArgs
     }
 
     ~SnapEvent() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
 
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -311,10 +321,15 @@ public class SnapStartedEventArgs : EventArgs
     }
 
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
 
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {

@@ -23,7 +23,16 @@ public class RefObject : global::System.IDisposable {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
+  ~RefObject() {
+    DisposeQueue.Instance.Add(this);
+  }
+
   public virtual void Dispose() {
+
+    if (!Window.IsInstalled()) {
+      DisposeQueue.Instance.Add(this);
+      return;
+    }
 
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {

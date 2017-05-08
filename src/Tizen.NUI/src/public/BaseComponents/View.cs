@@ -45,7 +45,7 @@ namespace Tizen.NUI.BaseComponents
 
         ~View()
         {
-            //DisposeQueue.Instance.Add(this);
+            DisposeQueue.Instance.Add(this);
 
             // Unregister this instance of view from the view registry.
             ViewRegistry.UnregisterView(this);
@@ -574,10 +574,110 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Event arguments of visibility changed.
+        /// </summary>
+        public class VisibilityChangedEventArgs : EventArgs
+        {
+            private View _view;
+            private bool _visibility;
+            private VisibilityChangeType _type;
 
+            /// <summary>
+            /// The view, or child of view, whose visibility has changed.
+            /// </summary>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
 
+            /// <summary>
+            /// Whether the view is now visible or not.
+            /// </summary>
+            public bool Visibility
+            {
+                get
+                {
+                    return _visibility;
+                }
+                set
+                {
+                    _visibility = value;
+                }
+            }
 
+            /// <summary>
+            /// Whether the view's visible property has changed or a parent's.
+            /// </summary>
+            public VisibilityChangeType Type
+            {
+                get
+                {
+                    return _type;
+                }
+                set
+                {
+                    _type = value;
+                }
+            }
+        }
 
+        private EventHandler<VisibilityChangedEventArgs> _visibilityChangedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
+        private VisibilityChangedEventCallbackType _visibilityChangedEventCallback;
+
+        /// <summary>
+        /// Event for visibility change which can be used to subscribe/unsubscribe the event handler.<br>
+        /// This signal is emitted when the visible property of this or a parent view is changed.<br>
+        /// </summary>
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
+        {
+            add
+            {
+                if (_visibilityChangedEventHandler == null)
+                {
+                    _visibilityChangedEventCallback = OnVisibilityChanged;
+                    VisibilityChangedSignal(this).Connect(_visibilityChangedEventCallback);
+                }
+
+                _visibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                _visibilityChangedEventHandler -= value;
+
+                if (_visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
+                {
+                    VisibilityChangedSignal(this).Disconnect(_visibilityChangedEventCallback);
+                }
+            }
+        }
+
+        // Callback for View visibility change signal
+        private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
+        {
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
+            if (data != null)
+            {
+                e.View = View.GetViewFromPtr(data);
+            }
+            e.Visibility = visibility;
+            e.Type = type;
+
+            if (_visibilityChangedEventHandler != null)
+            {
+                _visibilityChangedEventHandler(this, e);
+            }
+        }
 
         internal static View GetViewFromPtr(global::System.IntPtr cPtr)
         {
@@ -586,7 +686,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal IntPtr GetPtrfromView() //xb.teng
+        internal IntPtr GetPtrfromView()
         {
             return (IntPtr)swigCPtr;
         }
@@ -609,11 +709,16 @@ namespace Tizen.NUI.BaseComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -1591,6 +1696,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        public bool Visibility
+        {
+            get
+            {
+                return IsVisible();
+            }
+        }
+
         /// <summary>
         /// Retrieves and sets the view's opacity.<br>
         /// </summary>
@@ -1658,6 +1771,18 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 if(this) SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        public bool StateFocusEnable
+        {
+            get
+            {
+                return IsKeyboardFocusable();
+            }
+            set
+            {
+                SetKeyboardFocusable(value);
             }
         }
 
@@ -1798,7 +1923,7 @@ namespace Tizen.NUI.BaseComponents
         /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
         /// <param name="target">Will be raised above this view</param>
-        public void RaiseAbove(View target)
+        internal void RaiseAbove(View target)
         {
             NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1813,7 +1938,7 @@ namespace Tizen.NUI.BaseComponents
         /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
         /// <param name="target">Will be lowered below this view</param>
-        public void LowerBelow(View target)
+        internal void LowerBelow(View target)
         {
             NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1853,6 +1978,21 @@ namespace Tizen.NUI.BaseComponents
         internal bool OnWindow()
         {
             bool ret = NDalicPINVOKE.Actor_OnStage(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool IsLayer()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsLayer(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Layer GetLayer()
+        {
+            Layer ret = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2639,6 +2779,12 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+            ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Gets/Sets the origin of an view, within its parent's area.<br>
         /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and(1.0, 1.0, 0.5) is the bottom-right corner.<br>
@@ -3295,7 +3441,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal string PositionInheritance
+        public string PositionInheritance
         {
             get
             {
