@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-    internal class SlotObserver : global::System.IDisposable {
+    public class SlotObserver : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
