@@ -28,6 +28,7 @@ namespace Tizen.NUI {
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
 
 public class Builder : BaseHandle {
@@ -42,7 +43,7 @@ public class Builder : BaseHandle {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -186,14 +187,14 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public Animation CreateAnimation(string animationName, Actor sourceActor) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_2(swigCPtr, animationName, Actor.getCPtr(sourceActor)), true);
+  public Animation CreateAnimation(string animationName, View sourceActor) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_2(swigCPtr, animationName, View.getCPtr(sourceActor)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public Animation CreateAnimation(string animationName, PropertyMap map, Actor sourceActor) {
-    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, PropertyMap.getCPtr(map), Actor.getCPtr(sourceActor)), true);
+  public Animation CreateAnimation(string animationName, PropertyMap map, View sourceActor) {
+    Animation ret = new Animation(NDalicPINVOKE.Builder_CreateAnimation__SWIG_3(swigCPtr, animationName, PropertyMap.getCPtr(map), View.getCPtr(sourceActor)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -216,25 +217,25 @@ public class Builder : BaseHandle {
     return ret;
   }
 
-  public bool ApplyStyle(string styleName, Handle handle) {
-    bool ret = NDalicPINVOKE.Builder_ApplyStyle(swigCPtr, styleName, Handle.getCPtr(handle));
+  public bool ApplyStyle(string styleName, Animatable handle) {
+    bool ret = NDalicPINVOKE.Builder_ApplyStyle(swigCPtr, styleName, Animatable.getCPtr(handle));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool ApplyFromJson(Handle handle, string json) {
-    bool ret = NDalicPINVOKE.Builder_ApplyFromJson(swigCPtr, Handle.getCPtr(handle), json);
+  public bool ApplyFromJson(Animatable handle, string json) {
+    bool ret = NDalicPINVOKE.Builder_ApplyFromJson(swigCPtr, Animatable.getCPtr(handle), json);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void AddActors(Actor toActor) {
-    NDalicPINVOKE.Builder_AddActors__SWIG_0(swigCPtr, Actor.getCPtr(toActor));
+  public void AddViews(View toActor) {
+    NDalicPINVOKE.Builder_AddActors__SWIG_0(swigCPtr, View.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void AddActors(string sectionName, Actor toActor) {
-    NDalicPINVOKE.Builder_AddActors__SWIG_1(swigCPtr, sectionName, Actor.getCPtr(toActor));
+  public void AddViews(string sectionName, View toActor) {
+    NDalicPINVOKE.Builder_AddActors__SWIG_1(swigCPtr, sectionName, View.getCPtr(toActor));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

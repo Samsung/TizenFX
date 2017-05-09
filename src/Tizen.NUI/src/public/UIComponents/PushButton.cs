@@ -46,12 +46,12 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-       /// <summary>
+        /// <summary>
         /// To make PushButton instance be disposed.
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -92,11 +92,16 @@ namespace Tizen.NUI.UIComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -165,15 +170,15 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetButtonImage(Actor image)
+        internal void SetButtonImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_1(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetBackgroundImage(Actor image)
+        internal void SetBackgroundImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetBackgroundImage(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -183,33 +188,33 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetSelectedImage(Actor image)
+        internal void SetSelectedImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_1(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_1(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetSelectedBackgroundImage(Actor image)
+        internal void SetSelectedBackgroundImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetSelectedBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetSelectedBackgroundImage(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetDisabledBackgroundImage(Actor image)
+        internal void SetDisabledBackgroundImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetDisabledBackgroundImage(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetDisabledBackgroundImage(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetDisabledImage(Actor image)
+        internal void SetDisabledImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetDisabledImage(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetDisabledImage(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetDisabledSelectedImage(Actor image)
+        internal void SetDisabledSelectedImage(View image)
         {
-            NDalicPINVOKE.PushButton_SetDisabledSelectedImage(swigCPtr, Actor.getCPtr(image));
+            NDalicPINVOKE.PushButton_SetDisabledSelectedImage(swigCPtr, View.getCPtr(image));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

@@ -19,7 +19,7 @@
 
 namespace Tizen.NUI
 {
-
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Interface to encapsulate information required for relayout.
     /// </summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         public virtual void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -73,11 +73,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds relayout information to the container if it doesn't already exist.
         /// </summary>
-        /// <param name="actor">The actor to relayout</param>
+        /// <param name="view">The view to relayout</param>
         /// <param name="size">The size to relayout</param>
-        public virtual void Add(Actor actor, Size2D size)
+        public virtual void Add(View view, Size2D size)
         {
-            NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, Actor.getCPtr(actor), Size2D.getCPtr(size));
+            NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

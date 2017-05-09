@@ -10,6 +10,7 @@
 
 namespace Tizen.NUI
 {
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Touch events are a collection of points at a specific moment in time.<br>
     /// When a multi-touch event occurs, each point represents the points that are currently being
@@ -31,7 +32,7 @@ namespace Tizen.NUI
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -138,9 +139,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required</param>
         /// <returns>The actor that was underneath the point specified</returns>
-        public Actor GetHitActor(uint point)
+        public View GetHitView(uint point)
         {
-            Actor ret = new Actor(NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point), true);
+            View ret = new View(NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

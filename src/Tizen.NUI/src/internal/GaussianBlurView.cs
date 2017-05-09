@@ -44,7 +44,7 @@ using System.Runtime.InteropServices;
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -168,13 +168,13 @@ public class FinishedEventArgs : EventArgs
     return ret;
   }
 
-  public new void Add(Actor child) {
-    NDalicPINVOKE.GaussianBlurView_Add(swigCPtr, Actor.getCPtr(child));
+  public new void Add(View child) {
+    NDalicPINVOKE.GaussianBlurView_Add(swigCPtr, View.getCPtr(child));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new void Remove(Actor child) {
-    NDalicPINVOKE.GaussianBlurView_Remove(swigCPtr, Actor.getCPtr(child));
+  public new void Remove(View child) {
+    NDalicPINVOKE.GaussianBlurView_Remove(swigCPtr, View.getCPtr(child));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -29,7 +29,7 @@ namespace Tizen.NUI
 
     using System;
     using System.Runtime.InteropServices;
-    
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// The window class is used internally for drawing.<br>
@@ -38,10 +38,12 @@ namespace Tizen.NUI
     public class Window : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private global::System.Runtime.InteropServices.HandleRef stageCPtr;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj)
@@ -54,7 +56,7 @@ namespace Tizen.NUI
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -68,6 +70,7 @@ namespace Tizen.NUI
                     {
                         swigCMemOwn = false;
                         NDalicPINVOKE.delete_Window(swigCPtr);
+                        NDalicPINVOKE.delete_Stage(stageCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -75,6 +78,20 @@ namespace Tizen.NUI
                 base.Dispose();
             }
         }
+
+        internal static Window GetCurrent()
+        {
+            Window ret = new Window(NDalicPINVOKE.Stage_GetCurrent(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+       internal static bool IsInstalled()
+       {
+            bool ret = NDalicPINVOKE.Stage_IsInstalled();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+       }
 
         /// <summary>
         /// Sets the focus acceptable flag of an window as true.
@@ -153,7 +170,7 @@ namespace Tizen.NUI
             {
                 _windowFocusChangedEventHandler -= value;
 
-                if (_windowFocusChangedEventHandler == null && WindowFocusChangedSignal().Empty() == false)
+                if (_windowFocusChangedEventHandler == null && WindowFocusChangedSignal().Empty() == false && _windowFocusChangedEventCallback != null)
                 {
                     WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
                 }
@@ -172,7 +189,7 @@ namespace Tizen.NUI
             }
         }
 
-        public WindowFocusSignalType WindowFocusChangedSignal()
+        internal WindowFocusSignalType WindowFocusChangedSignal()
         {
             WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -343,6 +360,211 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal WindowFocusSignalType FocusChangedSignal()
+        {
+            WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get default ( root ) layer.
+        /// </summary>
+        /// <returns>The root layer</returns>
+        public Layer GetDefaultLayer()
+        {
+            return this.GetRootLayer();
+        }
+
+        /// <summary>
+        /// Add layer to the Stage.
+        /// </summary>
+        /// <param name="layer">Layer to add</param>
+        public void AddLayer(Layer layer)
+        {
+            NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Remove layer from the Stage.
+        /// </summary>
+        /// <param name="layer">Layer to remove</param>
+        public void RemoveLayer(Layer layer)
+        {
+            NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void Add(View view)
+        {
+            NDalicPINVOKE.Stage_Add(stageCPtr, View.getCPtr(view));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void Remove(View view)
+        {
+            NDalicPINVOKE.Stage_Remove(stageCPtr, View.getCPtr(view));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector2 GetSize()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.Stage_GetSize(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal RenderTaskList GetRenderTaskList()
+        {
+            RenderTaskList ret = new RenderTaskList(NDalicPINVOKE.Stage_GetRenderTaskList(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal uint GetLayerCount()
+        {
+            uint ret = NDalicPINVOKE.Stage_GetLayerCount(stageCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Layer GetLayer(uint depth)
+        {
+            Layer ret = new Layer(NDalicPINVOKE.Stage_GetLayer(stageCPtr, depth), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Layer GetRootLayer()
+        {
+            Layer ret = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetBackgroundColor(Vector4 color)
+        {
+            NDalicPINVOKE.Stage_SetBackgroundColor(stageCPtr, Vector4.getCPtr(color));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector4 GetBackgroundColor()
+        {
+            Vector4 ret = new Vector4(NDalicPINVOKE.Stage_GetBackgroundColor(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Vector2 GetDpi()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.Stage_GetDpi(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ObjectRegistry GetObjectRegistry()
+        {
+            ObjectRegistry ret = new ObjectRegistry(NDalicPINVOKE.Stage_GetObjectRegistry(stageCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Keep rendering for at least the given amount of time.
+        /// </summary>
+        /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame</param>
+        public void KeepRendering(float durationSeconds)
+        {
+            NDalicPINVOKE.Stage_KeepRendering(stageCPtr, durationSeconds);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal KeyEventSignal KeyEventSignal()
+        {
+            KeyEventSignal ret = new KeyEventSignal(NDalicPINVOKE.Stage_KeyEventSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal EventProcessingFinishedSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Stage_EventProcessingFinishedSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TouchSignal TouchSignal()
+        {
+            TouchSignal ret = new TouchSignal(NDalicPINVOKE.Stage_TouchSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private StageWheelSignal WheelEventSignal()
+        {
+            StageWheelSignal ret = new StageWheelSignal(NDalicPINVOKE.Stage_WheelEventSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ContextLostSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Stage_ContextLostSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ContextRegainedSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Stage_ContextRegainedSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal SceneCreatedSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Stage_SceneCreatedSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static Vector4 DEFAULT_BACKGROUND_COLOR
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.Stage_DEFAULT_BACKGROUND_COLOR_get();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        internal static Vector4 DEBUG_BACKGROUND_COLOR
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.Stage_DEBUG_BACKGROUND_COLOR_get();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private static readonly Window instance = Application.Instance.GetWindow();
+
+        /// <summary>
+        /// Stage instance property (read-only).<br>
+        /// Gets the current Window.<br>
+        /// </summary>
+        public static Window Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Grabs the key specified by a key for a window only when a window is the topmost window. <br>
         /// This function can be used for following example scenarios: <br>
@@ -458,6 +680,398 @@ namespace Tizen.NUI
             Invisible = 0,
             Visible = 1,
             Auto = 2
+        }
+
+        /// <summary>
+        /// Touch event argument.
+        /// </summary>
+        public class TouchEventArgs : EventArgs
+        {
+            private Touch _touch;
+
+            /// <summary>
+            /// Touch.
+            /// </summary>
+            public Touch Touch
+            {
+                get
+                {
+                    return _touch;
+                }
+                set
+                {
+                    _touch = value;
+                }
+            }
+        }
+
+        private event EventHandler<TouchEventArgs> _stageTouchHandler;
+        private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
+
+        /// <summary>
+        /// This is emitted when the screen is touched and when the touch ends.<br>
+        /// If there are multiple touch points, then this will be emitted when the first touch occurs and
+        /// then when the last finger is lifted.<br>
+        /// An interrupted event will also be emitted (if it occurs).<br>
+        /// </summary>
+        public event EventHandler<TouchEventArgs> TouchEvent
+        {
+            add
+            {
+                lock (this)
+                {
+                    _stageTouchHandler += value;
+                    _stageTouchCallbackDelegate = OnStageTouch;
+                    this.TouchSignal().Connect(_stageTouchCallbackDelegate);
+                }
+            }
+            remove
+            {
+                lock (this)
+                {
+                    if (_stageTouchHandler != null)
+                    {
+                        this.TouchSignal().Disconnect(_stageTouchCallbackDelegate);
+                    }
+                    _stageTouchHandler -= value;
+                }
+            }
+        }
+
+        private void OnStageTouch(IntPtr data)
+        {
+            TouchEventArgs e = new TouchEventArgs();
+
+            if (data != null)
+            {
+                e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(data);
+            }
+
+            if (_stageTouchHandler != null)
+            {
+                _stageTouchHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Wheel event arguments.
+        /// </summary>
+        public class WheelEventArgs : EventArgs
+        {
+            private Wheel _wheel;
+
+            /// <summary>
+            /// Wheel.
+            /// </summary>
+            public Wheel Wheel
+            {
+                get
+                {
+                    return _wheel;
+                }
+                set
+                {
+                    _wheel = value;
+                }
+            }
+        }
+
+        private event EventHandler<WheelEventArgs> _stageWheelHandler;
+        private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
+
+        /// <summary>
+        /// Event emitted when wheel event is received.
+        /// </summary>
+        public event EventHandler<WheelEventArgs> WheelEvent
+        {
+            add
+            {
+                if (_stageWheelHandler == null)
+                {
+                    _stageWheelCallbackDelegate = OnStageWheel;
+                    WheelEventSignal().Connect(_stageWheelCallbackDelegate);
+                }
+                _stageWheelHandler += value;
+            }
+            remove
+            {
+                _stageWheelHandler -= value;
+                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
+                {
+                    WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+                }
+            }
+        }
+
+        private void OnStageWheel(IntPtr data)
+        {
+            WheelEventArgs e = new WheelEventArgs();
+
+            if (data != null)
+            {
+                e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(data);
+            }
+
+            if (_stageWheelHandler != null)
+            {
+                _stageWheelHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Key event arguments.
+        /// </summary>
+        public class KeyEventArgs : EventArgs
+        {
+            private Key _key;
+
+            /// <summary>
+            /// Key
+            /// </summary>
+            public Key Key
+            {
+                get
+                {
+                    return _key;
+                }
+                set
+                {
+                    _key = value;
+                }
+            }
+        }
+
+        private event EventHandler<KeyEventArgs> _stageKeyHandler;
+        private EventCallbackDelegateType1 _stageKeyCallbackDelegate;
+
+        /// <summary>
+        /// Event emitted when key event is received.
+        /// </summary>
+        public event EventHandler<KeyEventArgs> KeyEvent
+        {
+            add
+            {
+                if (_stageKeyHandler == null)
+                {
+                    _stageKeyCallbackDelegate = OnStageKey;
+                    KeyEventSignal().Connect(_stageKeyCallbackDelegate);
+                }
+                _stageKeyHandler += value;
+            }
+            remove
+            {
+                _stageKeyHandler -= value;
+                if (_stageKeyHandler == null && KeyEventSignal().Empty() == false)
+                {
+                    KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Stage KeyEventsignal
+        private void OnStageKey(IntPtr data)
+        {
+            KeyEventArgs e = new KeyEventArgs();
+
+            if (data != null)
+            {
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
+            }
+
+            if (_stageKeyHandler != null)
+            {
+                //here we send all data to user event handlers
+                _stageKeyHandler(this, e);
+            }
+        }
+
+
+        private event EventHandler _stageEventProcessingFinishedEventHandler;
+        private EventCallbackDelegateType0 _stageEventProcessingFinishedEventCallbackDelegate;
+
+        internal event EventHandler EventProcessingFinished
+        {
+            add
+            {
+                if (_stageEventProcessingFinishedEventHandler == null)
+                {
+                    _stageEventProcessingFinishedEventCallbackDelegate = OnEventProcessingFinished;
+                    EventProcessingFinishedSignal().Connect(_stageEventProcessingFinishedEventCallbackDelegate);
+                }
+                _stageEventProcessingFinishedEventHandler += value;
+
+            }
+            remove
+            {
+                _stageEventProcessingFinishedEventHandler -= value;
+                if (_stageEventProcessingFinishedEventHandler == null && EventProcessingFinishedSignal().Empty() == false)
+                {
+                    EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Stage EventProcessingFinishedSignal
+        private void OnEventProcessingFinished()
+        {
+            if (_stageEventProcessingFinishedEventHandler != null)
+            {
+                _stageEventProcessingFinishedEventHandler(this, null);
+            }
+        }
+
+
+        private EventHandler _stageContextLostEventHandler;
+        private EventCallbackDelegateType0 _stageContextLostEventCallbackDelegate;
+
+        internal event EventHandler ContextLost
+        {
+            add
+            {
+                if (_stageContextLostEventHandler == null)
+                {
+                    _stageContextLostEventCallbackDelegate = OnContextLost;
+                    ContextLostSignal().Connect(_stageContextLostEventCallbackDelegate);
+                }
+                _stageContextLostEventHandler += value;
+            }
+            remove
+            {
+                _stageContextLostEventHandler -= value;
+                if (_stageContextLostEventHandler == null && ContextLostSignal().Empty() == false)
+                {
+                    ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Stage ContextLostSignal
+        private void OnContextLost()
+        {
+            if (_stageContextLostEventHandler != null)
+            {
+                _stageContextLostEventHandler(this, null);
+            }
+        }
+
+
+        private EventHandler _stageContextRegainedEventHandler;
+        private EventCallbackDelegateType0 _stageContextRegainedEventCallbackDelegate;
+
+        internal event EventHandler ContextRegained
+        {
+            add
+            {
+                if (_stageContextRegainedEventHandler == null)
+                {
+                    _stageContextRegainedEventCallbackDelegate = OnContextRegained;
+                    ContextRegainedSignal().Connect(_stageContextRegainedEventCallbackDelegate);
+                }
+                _stageContextRegainedEventHandler += value;
+            }
+            remove
+            {
+                _stageContextRegainedEventHandler -= value;
+                if (_stageContextRegainedEventHandler == null && ContextRegainedSignal().Empty() == false)
+                {
+                    this.ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Stage ContextRegainedSignal
+        private void OnContextRegained()
+        {
+            if (_stageContextRegainedEventHandler != null)
+            {
+                _stageContextRegainedEventHandler(this, null);
+            }
+        }
+
+
+        private EventHandler _stageSceneCreatedEventHandler;
+        private EventCallbackDelegateType0 _stageSceneCreatedEventCallbackDelegate;
+
+        internal event EventHandler SceneCreated
+        {
+            add
+            {
+                if (_stageSceneCreatedEventHandler == null)
+                {
+                    _stageSceneCreatedEventCallbackDelegate = OnSceneCreated;
+                    SceneCreatedSignal().Connect(_stageSceneCreatedEventCallbackDelegate);
+                }
+                _stageSceneCreatedEventHandler += value;
+            }
+            remove
+            {
+                _stageSceneCreatedEventHandler -= value;
+                if (_stageSceneCreatedEventHandler == null && SceneCreatedSignal().Empty() == false)
+                {
+                    SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+                }
+            }
+        }
+
+        // Callback for Stage SceneCreatedSignal
+        private void OnSceneCreated()
+        {
+            if (_stageSceneCreatedEventHandler != null)
+            {
+                _stageSceneCreatedEventHandler(this, null);
+            }
+        }
+
+        /// <summary>
+        /// Window size property (read-only).
+        /// </summary>
+        public Vector2 Size
+        {
+            get
+            {
+                Vector2 ret = GetSize();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Background color property.
+        /// </summary>
+        public Vector4 BackgroundColor
+        {
+            set
+            {
+                SetBackgroundColor(value);
+            }
+            get
+            {
+                Vector4 ret = GetBackgroundColor();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Dpi property (read-only).<br>
+        /// Retrieves the DPI of the display device to which the Window is connected.<br>
+        /// </summary>
+        public Vector2 Dpi
+        {
+            get
+            {
+                return GetDpi();
+            }
+        }
+
+        /// <summary>
+        /// Layer count property (read-only).<br>
+        /// Queries the number of on-Window layers.<br>
+        /// </summary>
+        public uint LayerCount
+        {
+            get
+            {
+                return GetLayerCount();
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ internal class PreFocusChangeSignal : global::System.IDisposable {
   }
 
   public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -83,8 +83,8 @@ internal class PreFocusChangeSignal : global::System.IDisposable {
     }
   }
 
-  public Actor Emit(Actor arg1, Actor arg2, View.FocusDirection arg3) {
-    Actor ret = new Actor(NDalicManualPINVOKE.PreFocusChangeSignal_Emit(swigCPtr, Actor.getCPtr(arg1), Actor.getCPtr(arg2), (int)arg3), true);
+  public View Emit(View arg1, View arg2, View.FocusDirection arg3) {
+            View ret = new View(NDalicManualPINVOKE.PreFocusChangeSignal_Emit(swigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

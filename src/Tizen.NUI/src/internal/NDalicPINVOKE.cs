@@ -6023,6 +6023,26 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ResourceImageSignal")]
   public static extern void delete_ResourceImageSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewVisibilityChangedSignal_Empty")]
+  public static extern bool ViewVisibilityChangedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewVisibilityChangedSignal_GetConnectionCount")]
+  public static extern uint ViewVisibilityChangedSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewVisibilityChangedSignal_Connect")]
+  public static extern void ViewVisibilityChangedSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewVisibilityChangedSignal_Disconnect")]
+  public static extern void ViewVisibilityChangedSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewVisibilityChangedSignal_Emit")]
+  public static extern void ViewVisibilityChangedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ViewVisibilityChangedSignal")]
+  public static extern global::System.IntPtr new_ViewVisibilityChangedSignal();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ViewVisibilityChangedSignal")]
+  public static extern void delete_ViewVisibilityChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Timer__SWIG_0")]
   public static extern global::System.IntPtr new_Timer__SWIG_0();
 
@@ -7121,6 +7141,11 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_View__SWIG_2")]
   public static extern global::System.IntPtr new_View__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResourceReadySignal")]
+  public static extern global::System.IntPtr ResourceReadySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IsResourceReady")]
+  public static extern bool IsResourceReady(global::System.Runtime.InteropServices.HandleRef jarg1);
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_KeyInputFocusManager")]
   public static extern global::System.IntPtr new_KeyInputFocusManager();
 
@@ -10787,6 +10812,26 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_RulerPtr_ReferenceCount")]
   public static extern int RulerPtr_ReferenceCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewResourceReadySignal_Empty")]
+  public static extern bool ViewResourceReadySignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewResourceReadySignal_GetConnectionCount")]
+  public static extern uint ViewResourceReadySignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewResourceReadySignal_Connect")]
+  public static extern void ViewResourceReadySignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewResourceReadySignal_Disconnect")]
+  public static extern void ViewResourceReadySignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ViewResourceReadySignal_Emit")]
+  public static extern void ViewResourceReadySignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ViewResourceReadySignal")]
+  public static extern global::System.IntPtr new_ViewResourceReadySignal();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ViewResourceReadySignal")]
+  public static extern void delete_ViewResourceReadySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_BaseObject_SWIGUpcast")]
   public static extern global::System.IntPtr BaseObject_SWIGUpcast(global::System.IntPtr jarg1);
 

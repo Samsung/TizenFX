@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -170,11 +170,16 @@ namespace Tizen.NUI.BaseComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -256,11 +261,16 @@ namespace Tizen.NUI.BaseComponents
 
             ~InputStyle()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)

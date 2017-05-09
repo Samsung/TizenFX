@@ -65,7 +65,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The instance of the Dali Stage.
         /// </summary>
-        private Stage _stage;
+        private Window _window;
 
         /// <summary>
         /// The default constructor.
@@ -139,8 +139,8 @@ namespace Tizen.NUI
 #if DEBUG_ON
             Tizen.Log.Debug("NUI", "##### 2) DisposeQueue.Instance.Initialize()!");
 #endif
-            _stage = Stage.Instance;
-            _stage.SetBackgroundColor(Color.White);
+            _window = Window.Instance;
+            _window.SetBackgroundColor(Color.White);
             LOG("OnPreCreate() is called!");
         }
 

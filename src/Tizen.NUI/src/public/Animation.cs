@@ -21,9 +21,10 @@ namespace Tizen.NUI
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Animation can be used to animate the properties of any number of objects, typically Actors.<br>
+    /// Animation can be used to animate the properties of any number of objects, typically View.<br>
     /// If the "Finished" event is connected to a member function of an object, it must be disconnected before the object is destroyed.<br>
     /// This is typically done in the object destructor, and requires either the Animation handle to be stored.<br>
     /// The overall animation time is superseded by the values given in the animation time used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br>
@@ -48,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -369,7 +370,7 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate</param>
         /// <param name="relativeValue">The property value will change by this amount</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateBy(Actor target, string property, object relativeValue, AlphaFunction alphaFunction = null)
+        public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -413,7 +414,7 @@ namespace Tizen.NUI
         /// <param name="startTime">Start time of animation</param>
         /// <param name="endTime">End time of animation</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateBy(Actor target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
+        public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -457,7 +458,7 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate</param>
         /// <param name="destinationValue">The destination value</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateTo(Actor target, string property, object destinationValue, AlphaFunction alphaFunction = null)
+        public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -502,7 +503,7 @@ namespace Tizen.NUI
         /// <param name="startTime">Start time of animation</param>
         /// <param name="endTime">End time of animation</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateTo(Actor target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
+        public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -547,7 +548,7 @@ namespace Tizen.NUI
         /// <param name="keyFrames">The set of time/value pairs between which to animate</param>
         /// <param name="interpolation">The method used to interpolate between values</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
+        public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -580,7 +581,7 @@ namespace Tizen.NUI
         /// <param name="endTime">End time of animation in milli seconds</param>
         /// <param name="interpolation">The method used to interpolate between values</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimateBetween(Actor target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
+        public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             string _str1 = property.Substring(0, 1);
             string _str2 = property.Substring(1);
@@ -604,47 +605,47 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Animates an actor's position and orientation through a predefined path.<br>
-        /// The actor will rotate to orient the supplied forward vector with the path's tangent.<br>
+        /// Animates an view's position and orientation through a predefined path.<br>
+        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br>
         /// If forward is the zero vector then no rotation will happen.<br>
         /// </summary>
-        /// <param name="actor">The actor to animate</param>
+        /// <param name="view">The view to animate</param>
         /// <param name="path">It defines position and orientation</param>
         /// <param name="forward">The vector (in local space coordinate system) that will be oriented with the path's tangent direction</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimatePath(Actor actor, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
+        public void AnimatePath(View view, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
         {
             if (alphaFunction == null)
             {
-                Animate(actor, path, forward);
+                Animate(view, path, forward);
             }
             else
             {
-                Animate(actor, path, forward, alphaFunction);
+                Animate(view, path, forward, alphaFunction);
             }
         }
 
         /// <summary>
-        /// Animates an actor's position and orientation through a predefined path.<br>
-        /// The actor will rotate to orient the supplied forward vector with the path's tangent.<br>
+        /// Animates an view's position and orientation through a predefined path.<br>
+        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br>
         /// If forward is the zero vector then no rotation will happen.<br>
         /// </summary>
-        /// <param name="actor">The actor to animate</param>
+        /// <param name="view">The view to animate</param>
         /// <param name="path">It defines position and orientation</param>
         /// <param name="forward">The vector (in local space coordinate system) that will be oriented with the path's tangent direction</param>
         /// <param name="startTime">Start time of animation</param>
         /// <param name="endTime">End time of animation</param>
         /// <param name="alphaFunction">The alpha function to apply</param>
-        public void AnimatePath(Actor actor, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
+        public void AnimatePath(View view, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
             if (alphaFunction == null)
             {
-                Animate(actor, path, forward, time);
+                Animate(view, path, forward, time);
             }
             else
             {
-                Animate(actor, path, forward, alphaFunction, time);
+                Animate(view, path, forward, alphaFunction, time);
             }
         }
 
@@ -977,39 +978,39 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Animate(Actor actor, Path path, Vector3 forward)
+        internal void Animate(View view, Path path, Vector3 forward)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_0(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward));
+            NDalicPINVOKE.Animation_Animate__SWIG_0(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Animate(Actor actor, Path path, Vector3 forward, AlphaFunction alpha)
+        internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_1(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
+            NDalicPINVOKE.Animation_Animate__SWIG_1(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Animate(Actor actor, Path path, Vector3 forward, TimePeriod period)
+        internal void Animate(View view, Path path, Vector3 forward, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_2(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
+            NDalicPINVOKE.Animation_Animate__SWIG_2(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Animate(Actor actor, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
+        internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_3(swigCPtr, Actor.getCPtr(actor), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            NDalicPINVOKE.Animation_Animate__SWIG_3(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Show(Actor actor, float delaySeconds)
+        internal void Show(View view, float delaySeconds)
         {
-            NDalicPINVOKE.Animation_Show(swigCPtr, Actor.getCPtr(actor), delaySeconds);
+            NDalicPINVOKE.Animation_Show(swigCPtr, View.getCPtr(view), delaySeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Hide(Actor actor, float delaySeconds)
+        internal void Hide(View view, float delaySeconds)
         {
-            NDalicPINVOKE.Animation_Hide(swigCPtr, Actor.getCPtr(actor), delaySeconds);
+            NDalicPINVOKE.Animation_Hide(swigCPtr, View.getCPtr(view), delaySeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

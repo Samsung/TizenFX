@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -158,8 +158,8 @@ public class NotifyEventArgs : EventArgs
     return ret;
   }
 
-  public Handle GetTarget() {
-    Handle ret = new Handle(NDalicPINVOKE.PropertyNotification_GetTarget(swigCPtr), true);
+  public Animatable GetTarget() {
+    Animatable ret = new Animatable(NDalicPINVOKE.PropertyNotification_GetTarget(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

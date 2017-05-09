@@ -28,7 +28,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// TableView is a layout container for aligning child actors in a grid like layout.<br>
     /// TableView constrains the x and y position and width and height of the child actors.<br>
@@ -51,7 +51,7 @@ namespace Tizen.NUI
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -92,11 +92,16 @@ namespace Tizen.NUI
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -143,11 +148,16 @@ namespace Tizen.NUI
 
             ~ChildProperty()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -197,11 +207,16 @@ namespace Tizen.NUI
 
             ~CellPosition()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -394,9 +409,9 @@ namespace Tizen.NUI
         /// <param name="child">The child to add</param>
         /// <param name="position">The position for the child</param>
         /// <returns>Tue if the addition succeeded and false if the cell is already occupied</returns>
-        public bool AddChild(Actor child, TableView.CellPosition position)
+        public bool AddChild(View child, TableView.CellPosition position)
         {
-            bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -406,9 +421,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">The position in the table</param>
         /// <returns>Child that was in the cell or an uninitialized handle</returns>
-        public Actor GetChildAt(TableView.CellPosition position)
+        public View GetChildAt(TableView.CellPosition position)
         {
-            Actor ret = new Actor(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
+            View ret = new View(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -418,9 +433,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">The position for the child to remove</param>
         /// <returns>Child that was removed or an uninitialized handle</returns>
-        public Actor RemoveChildAt(TableView.CellPosition position)
+        public View RemoveChildAt(TableView.CellPosition position)
         {
-            Actor ret = new Actor(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
+            View ret = new View(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -431,9 +446,9 @@ namespace Tizen.NUI
         /// <param name="child">The child to search for</param>
         /// <param name="position">The position for the child</param>
         /// <returns>true if the child was included in this TableView</returns>
-        public bool FindChildPosition(Actor child, TableView.CellPosition position)
+        public bool FindChildPosition(View child, TableView.CellPosition position)
         {
-            bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, Actor.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -459,9 +474,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void DeleteRow(uint rowIndex, ActorContainer removed)
+        internal void DeleteRow(uint rowIndex, ViewContainer removed)
         {
-            NDalicPINVOKE.TableView_DeleteRow__SWIG_1(swigCPtr, rowIndex, ActorContainer.getCPtr(removed));
+            NDalicPINVOKE.TableView_DeleteRow__SWIG_1(swigCPtr, rowIndex, ViewContainer.getCPtr(removed));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -486,9 +501,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void DeleteColumn(uint columnIndex, ActorContainer removed)
+        internal void DeleteColumn(uint columnIndex, ViewContainer removed)
         {
-            NDalicPINVOKE.TableView_DeleteColumn__SWIG_1(swigCPtr, columnIndex, ActorContainer.getCPtr(removed));
+            NDalicPINVOKE.TableView_DeleteColumn__SWIG_1(swigCPtr, columnIndex, ViewContainer.getCPtr(removed));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -503,9 +518,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Resize(uint rows, uint columns, ActorContainer removed)
+        internal void Resize(uint rows, uint columns, ViewContainer removed)
         {
-            NDalicPINVOKE.TableView_Resize__SWIG_1(swigCPtr, rows, columns, ActorContainer.getCPtr(removed));
+            NDalicPINVOKE.TableView_Resize__SWIG_1(swigCPtr, rows, columns, ViewContainer.getCPtr(removed));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

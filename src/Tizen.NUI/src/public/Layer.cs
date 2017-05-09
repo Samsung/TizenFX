@@ -26,11 +26,11 @@
 
 namespace Tizen.NUI
 {
-
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
-    public class Layer : Actor
+    public class Layer : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -44,9 +44,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        public override void Dispose()
+        public virtual void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -64,7 +64,7 @@ namespace Tizen.NUI
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
                 global::System.GC.SuppressFinalize(this);
-                base.Dispose();
+                //base.Dispose();  //xb.teng
             }
         }
 
@@ -87,11 +87,16 @@ namespace Tizen.NUI
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -150,6 +155,28 @@ namespace Tizen.NUI
             Layer ret = new Layer(NDalicPINVOKE.Layer_Assign(swigCPtr, Layer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        public View FindChildById(uint id)
+        {
+            View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Add(View child)
+        {
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Remove(View child)
+        {
+            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

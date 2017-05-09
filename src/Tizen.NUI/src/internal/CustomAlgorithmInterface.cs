@@ -35,7 +35,7 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
   }
 
   public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -51,8 +51,8 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
     }
   }
 
-  public virtual Actor GetNextFocusableActor(Actor current, Actor proposed, View.FocusDirection direction) {
-    Actor ret = new Actor(NDalicPINVOKE.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, Actor.getCPtr(current), Actor.getCPtr(proposed), (int)direction), true);
+  public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction) {
+    View ret = new View(NDalicPINVOKE.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -63,8 +63,8 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
   }
 
   private void SwigDirectorConnect() {
-    if (SwigDerivedClassHasMethod("GetNextFocusableActor", swigMethodTypes0))
-      swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableActor);
+    if (SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes0))
+      swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableView);
     NDalicPINVOKE.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
   }
 
@@ -82,15 +82,15 @@ internal class CustomAlgorithmInterface : global::System.IDisposable {
   }
 #endif
 
-  private global::System.IntPtr SwigDirectorGetNextFocusableActor(global::System.IntPtr current, global::System.IntPtr proposed, int direction) {
-    return Actor.getCPtr(GetNextFocusableActor(new Actor(current, true), new Actor(proposed, true), (View.FocusDirection)direction)).Handle;
+  private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction) {
+    return View.getCPtr(GetNextFocusableView(new View(current, true), new View(proposed, true), (View.FocusDirection)direction)).Handle;
   }
 
   public delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
 
   private SwigDelegateCustomAlgorithmInterface_0 swigDelegate0;
 
-  private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(Actor), typeof(Actor), typeof(View.FocusDirection) };
+  private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(View), typeof(View), typeof(View.FocusDirection) };
 }
 
 }

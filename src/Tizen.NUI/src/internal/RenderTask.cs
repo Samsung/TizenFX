@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-    internal class RenderTask : Handle {
+    using Tizen.NUI.BaseComponents;
+    internal class RenderTask : Animatable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RenderTask_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -22,7 +22,7 @@ namespace Tizen.NUI {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -61,10 +61,15 @@ namespace Tizen.NUI {
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -175,13 +180,13 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public void SetSourceActor(Actor actor) {
-    NDalicPINVOKE.RenderTask_SetSourceActor(swigCPtr, Actor.getCPtr(actor));
+  public void SetSourceView(View view) {
+    NDalicPINVOKE.RenderTask_SetSourceActor(swigCPtr, View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Actor GetSourceActor() {
-    Actor ret = new Actor(NDalicPINVOKE.RenderTask_GetSourceActor(swigCPtr), true);
+  public View GetSourceView() {
+    View ret = new View(NDalicPINVOKE.RenderTask_GetSourceActor(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -208,13 +213,13 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public void SetCameraActor(CameraActor cameraActor) {
-    NDalicPINVOKE.RenderTask_SetCameraActor(swigCPtr, CameraActor.getCPtr(cameraActor));
+  public void SetCamera(Camera camera) {
+    NDalicPINVOKE.RenderTask_SetCameraActor(swigCPtr, Camera.getCPtr(camera));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public CameraActor GetCameraActor() {
-    CameraActor ret = new CameraActor(NDalicPINVOKE.RenderTask_GetCameraActor(swigCPtr), true);
+  public Camera GetCamera() {
+    Camera ret = new Camera(NDalicPINVOKE.RenderTask_GetCameraActor(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -253,13 +258,13 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public void SetScreenToFrameBufferMappingActor(Actor mappingActor) {
-    NDalicPINVOKE.RenderTask_SetScreenToFrameBufferMappingActor(swigCPtr, Actor.getCPtr(mappingActor));
+  public void SetScreenToFrameBufferMappingView(View mappingView) {
+    NDalicPINVOKE.RenderTask_SetScreenToFrameBufferMappingActor(swigCPtr, View.getCPtr(mappingView));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public Actor GetScreenToFrameBufferMappingActor() {
-    Actor ret = new Actor(NDalicPINVOKE.RenderTask_GetScreenToFrameBufferMappingActor(swigCPtr), true);
+  public View GetScreenToFrameBufferMappingView() {
+    View ret = new View(NDalicPINVOKE.RenderTask_GetScreenToFrameBufferMappingActor(swigCPtr), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -347,8 +352,8 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public bool ViewportToLocal(Actor actor, float viewportX, float viewportY, out float localX, out float localY) {
-    bool ret = NDalicPINVOKE.RenderTask_ViewportToLocal(swigCPtr, Actor.getCPtr(actor), viewportX, viewportY, out localX, out localY);
+  public bool ViewportToLocal(View view, float viewportX, float viewportY, out float localX, out float localY) {
+    bool ret = NDalicPINVOKE.RenderTask_ViewportToLocal(swigCPtr, View.getCPtr(view), viewportX, viewportY, out localX, out localY);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
