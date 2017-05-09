@@ -59,17 +59,17 @@ namespace VisaulAnimationExample
 
         public void Initialize()
         {
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
 
             TableView titleLayout = new TableView(2, 1);
             titleLayout.Name = ("TitleLayout");
             titleLayout.AnchorPoint = AnchorPoint.TopLeft;
             titleLayout.Position2D = new Position2D(10, 10);
-            titleLayout.Size2D = new Size2D((int)(stage.Size.Width * 0.9f), (int)(stage.Size.Height * 0.9f));
+            titleLayout.Size2D = new Size2D((int)(window.Size.Width * 0.9f), (int)(window.Size.Height * 0.9f));
             titleLayout.SetCellPadding(new Size2D(10, 10));
             titleLayout.BackgroundColor = Color.Cyan;
-            stage.GetDefaultLayer().Add(titleLayout);
+            window.GetDefaultLayer().Add(titleLayout);
 
             _title = new TextLabel("Visual Transition / SVG / AGIF Example");
             _title.Name = ("Title");

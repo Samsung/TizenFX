@@ -24,10 +24,6 @@ namespace Tizen.NUI {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
 
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -152,8 +148,8 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public virtual void ApplyConstraints(Actor actor, int itemId, Vector3 layoutSize, Actor itemViewActor) {
-    NDalicPINVOKE.ItemLayout_ApplyConstraints(swigCPtr, Actor.getCPtr(actor), itemId, Vector3.getCPtr(layoutSize), Actor.getCPtr(itemViewActor));
+  public virtual void ApplyConstraints(View view, int itemId, Vector3 layoutSize, View itemView) {
+    NDalicPINVOKE.ItemLayout_ApplyConstraints(swigCPtr, View.getCPtr(view), itemId, Vector3.getCPtr(layoutSize), View.getCPtr(itemView));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

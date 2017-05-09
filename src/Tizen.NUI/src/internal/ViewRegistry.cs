@@ -227,7 +227,7 @@ namespace Tizen.NUI
             {
                 // Create the control
                 CustomView newControl = controlConstructor();
-                return newControl.GetPtrfromActor();  // return pointer to handle
+                return newControl.GetPtrfromView();  // return pointer to handle
             }
             else
             {
@@ -302,18 +302,18 @@ namespace Tizen.NUI
             }
         }
 
-        public static View GetViewFromActor(Actor actor)
+        public static View GetViewFromActor(View view)
         {
             // we store a dictionary of ref-obects (C++ land) to custom views (C# land)
 
-            RefObject refObj = actor.GetObjectPtr();
+            RefObject refObj = view.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
             WeakReference viewReference;
             if (Instance._controlMap.TryGetValue(refObjectPtr, out viewReference))
             {
-                View view = viewReference.Target as View;
-                return view;
+                View retview = viewReference.Target as View;
+                return retview;
             }
             else
             {

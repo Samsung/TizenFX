@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI {
 
-public class CustomActor : Actor {
+public class CustomActor : Animatable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal CustomActor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CustomActor_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -21,8 +21,8 @@ public class CustomActor : Actor {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+  public virtual void Dispose() {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -36,7 +36,6 @@ public class CustomActor : Actor {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 

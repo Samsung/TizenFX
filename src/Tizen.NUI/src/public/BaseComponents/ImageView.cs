@@ -26,6 +26,8 @@
 
 namespace Tizen.NUI.BaseComponents
 {
+    using System;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// ImageView is a class for displaying an image resource.<br>
@@ -45,9 +47,82 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+
+        /// <summary>
+        /// Event arguments of resource ready.
+        /// </summary>
+        public class ResourceReadyEventArgs : EventArgs
+        {
+            private View _view;
+
+            /// <summary>
+            /// The view whose resource is ready.
+            /// </summary>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+        }
+
+        private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ResourceReadyEventCallbackType(IntPtr data);
+        private ResourceReadyEventCallbackType _resourceReadyEventCallback;
+
+        /// <summary>
+        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// This signal is emitted after all resources required by a control are loaded and ready.<br>
+        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// </summary>
+        public event EventHandler<ResourceReadyEventArgs> ResourceReady
+        {
+            add
+            {
+                if (_resourceReadyEventHandler == null)
+                {
+                    _resourceReadyEventCallback = OnResourceReady;
+                    ResourceReadySignal(this).Connect(_resourceReadyEventCallback);
+                }
+
+                _resourceReadyEventHandler += value;
+            }
+
+            remove
+            {
+                _resourceReadyEventHandler -= value;
+
+                if (_resourceReadyEventHandler == null && ResourceReadySignal(this).Empty() == false)
+                {
+                    ResourceReadySignal(this).Disconnect(_resourceReadyEventCallback);
+                }
+            }
+        }
+
+        // Callback for View ResourceReady signal
+        private void OnResourceReady(IntPtr data)
+        {
+            ResourceReadyEventArgs e = new ResourceReadyEventArgs();
+            if(data != null)
+            {
+                e.View = View.GetViewFromPtr(data);
+            }
+
+            if (_resourceReadyEventHandler != null)
+            {
+                _resourceReadyEventHandler(this, e);
+            }
+        }
+
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -69,7 +144,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
         internal class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -88,11 +162,16 @@ namespace Tizen.NUI.BaseComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -187,6 +266,26 @@ namespace Tizen.NUI.BaseComponents
             PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
             ANIMATABLE_PROPERTY_START_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX,
             ANIMATABLE_PROPERTY_END_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + 1000
+        }
+
+
+        internal ViewResourceReadySignal ResourceReadySignal(View view) {
+            ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Query if all resources required by a control are loaded and ready.<br>
+        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// true if the resources are loaded and ready, false otherwise.<br>
+        /// </summary>
+        public bool IsResourceReady()
+        {
+            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>

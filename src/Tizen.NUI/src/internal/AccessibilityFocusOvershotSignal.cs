@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-internal class AccessibilityFocusOvershotSignal : global::System.IDisposable {
+    using Tizen.NUI.BaseComponents;
+    internal class AccessibilityFocusOvershotSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
@@ -28,7 +28,7 @@ internal class AccessibilityFocusOvershotSignal : global::System.IDisposable {
   }
 
   public virtual void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -74,8 +74,8 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
     }
   }
 
-  public void Emit(Actor arg1, AccessibilityManager.FocusOvershotDirection arg2) {
-    NDalicPINVOKE.AccessibilityFocusOvershotSignal_Emit(swigCPtr, Actor.getCPtr(arg1), (int)arg2);
+  public void Emit(View arg1, AccessibilityManager.FocusOvershotDirection arg2) {
+    NDalicPINVOKE.AccessibilityFocusOvershotSignal_Emit(swigCPtr, View.getCPtr(arg1), (int)arg2);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

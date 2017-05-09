@@ -62,20 +62,20 @@ namespace UserAlphaFunctionTest
         public void Initialize()
         {
             Log("Initialize() is called!");
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
-            stage.Touch += OnStageTouched;
-            stage.Touch += OnStageTouched2;
-            //stage.EventProcessingFinished += OnEventProcessingFinished;
-            stage.Wheel += OnStageWheelEvent;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
+            window.TouchEvent += OnWindowTouched;
+            window.TouchEvent += OnWindowTouched2;
+            //window.EventProcessingFinished += OnEventProcessingFinished;
+            window.WheelEvent += OnWindowWheelEvent;
 
-            // Add a _text label to the stage
+            // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.BottomCenter;
             _text.AnchorPoint = AnchorPoint.BottomCenter;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
-            stage.GetDefaultLayer().Add(_text);
+            window.GetDefaultLayer().Add(_text);
 
             _view1 = new View();
             _view1.Size = new Vector3(200.0f, 200.0f, 0.0f);
@@ -84,8 +84,8 @@ namespace UserAlphaFunctionTest
             _view1.AnchorPoint = AnchorPoint.Center;
             _view1.WidthResizePolicy = ResizePolicyType.Fixed;
             _view1.HeightResizePolicy = ResizePolicyType.Fixed;
-            _view1.OnStageEvent += OnStage;
-            stage.GetDefaultLayer().Add(_view1);
+            _view1.OnWindowEvent += OnWindow;
+            window.GetDefaultLayer().Add(_view1);
 
             _view2 = new View();
             _view2.BackgroundColor = Color.Red;
@@ -149,13 +149,13 @@ namespace UserAlphaFunctionTest
             _animation.Play();
         }
 
-        // Callback for stage touched signal handling
-        public void OnStageTouched(object source, Stage.TouchEventArgs e)
+        // Callback for window touched signal handling
+        public void OnWindowTouched(object source, Window.TouchEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
-                Log("OnStageTouched() is called! PointStateType.DOWN came!");
+                Log("OnWindowTouched() is called! PointStateType.DOWN came!");
                 myCount++;
                 if (myCount > 1)
                 {
@@ -165,10 +165,10 @@ namespace UserAlphaFunctionTest
             }
         }
 
-        // Callback for stage touched signal handling
-        public void OnStageTouched2(object source, Stage.TouchEventArgs e)
+        // Callback for window touched signal handling
+        public void OnWindowTouched2(object source, Window.TouchEventArgs e)
         {
-            Log("OnStageTouched2() is called!state=" + e.Touch.GetState(0));
+            Log("OnWindowTouched2() is called!state=" + e.Touch.GetState(0));
         }
 
         public void OnEventProcessingFinished(object source)
@@ -176,16 +176,16 @@ namespace UserAlphaFunctionTest
             Log("OnEventProcessingFinished() is called!");
         }
 
-        public void OnStageWheelEvent(object source, Stage.WheelEventArgs e)
+        public void OnWindowWheelEvent(object source, Window.WheelEventArgs e)
         {
-            Log("OnStageWheelEvent() is called!");
-            //Log("OnStageWheelEvent() is called!direction="+ e.WheelEvent.direction + " timeStamp=" + e.WheelEvent.timeStamp );
+            Log("OnWindowWheelEvent() is called!");
+            //Log("OnWindowWheelEvent() is called!direction="+ e.WheelEvent.direction + " timeStamp=" + e.WheelEvent.timeStamp );
         }
 
 
-        public void OnStage(object source, EventArgs e)
+        public void OnWindow(object source, EventArgs e)
         {
-            Log("OnStage() is called!");
+            Log("OnWindow() is called!");
         }
 
         [STAThread]

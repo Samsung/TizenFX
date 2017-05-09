@@ -31,17 +31,17 @@ namespace FlexContainerTest
         {
             base.OnCreate();
 
-            Stage.Instance.BackgroundColor = new Color(0.1f, 0.8f, 0.1f, 1.0f);
+            Window.Instance.BackgroundColor = new Color(0.1f, 0.8f, 0.1f, 1.0f);
 
             container = new FlexContainer();
-            container.Size = new Size(Stage.Instance.Size.Width, Stage.Instance.Size.Height, 0);
+            container.Size = new Size(Window.Instance.Size.Width, Window.Instance.Size.Height, 0);
             container.AnchorPoint = AnchorPoint.TopLeft;
             container.Padding = new Vector4(100, 100, 100, 100);
 
             container.FlexWrap = FlexContainer.WrapType.Wrap;
             container.FlexDirection = FlexContainer.FlexDirectionType.Column;
 
-            Stage.Instance.GetDefaultLayer().Add(container);
+            Window.Instance.GetDefaultLayer().Add(container);
 
             numOfSamples = samples.GetLength(0);
             Tizen.Log.Debug("NUI", "NUM = " + numOfSamples);
@@ -79,9 +79,9 @@ namespace FlexContainerTest
             };
 
             //added
-            Stage.Instance.Touch += (sender, e) =>
+            Window.Instance.TouchEvent += (sender, e) =>
             {
-                Tizen.Log.Debug("NUI", "Stage Touch signal callback! To avoid crash, when losing key focus, set here again unless the NextView is null");
+                Tizen.Log.Debug("NUI", "Window Touch signal callback! To avoid crash, when losing key focus, set here again unless the NextView is null");
                 FocusManager.Instance.SetCurrentFocusView(label[3]);
             };
 
@@ -102,7 +102,7 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Stage.Instance.GetDefaultLayer().Add(pushButton1);
+            Window.Instance.GetDefaultLayer().Add(pushButton1);
 
             pushButton2 = new PushButton();
             pushButton2.MinimumSize = new Size2D(400, 200);
@@ -120,7 +120,7 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Stage.Instance.GetDefaultLayer().Add(pushButton2);
+            Window.Instance.GetDefaultLayer().Add(pushButton2);
 
             //added
             _ani = new Animation(2000);

@@ -69,11 +69,16 @@ namespace Tizen.NUI
 
             ~ImfEventData()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -179,11 +184,16 @@ namespace Tizen.NUI
 
             ~ImfCallbackData()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -836,11 +846,16 @@ namespace Tizen.NUI
 
         ~ActivatedSignalType()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -920,11 +935,16 @@ namespace Tizen.NUI
 
         ~ImfEventSignalType()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -1004,11 +1024,16 @@ namespace Tizen.NUI
 
         ~StatusSignalType()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -1088,11 +1113,16 @@ namespace Tizen.NUI
 
         ~ImfVoidSignalType()
         {
-            Dispose();
+            DisposeQueue.Instance.Add(this);
         }
 
         public virtual void Dispose()
         {
+            if (!Window.IsInstalled()) {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
             lock (this)
             {
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)

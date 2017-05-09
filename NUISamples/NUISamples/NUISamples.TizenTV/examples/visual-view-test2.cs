@@ -40,7 +40,7 @@ namespace VisualViewTest2
                 view[i].Position = new Position(400 + i * 800, 600, 0);
                 view[i].Focusable = true;
                 view[i].Name = "MyView" + i;
-                Stage.Instance.GetDefaultLayer().Add(view[i]);
+                Window.Instance.GetDefaultLayer().Add(view[i]);
                 view[i].FocusGained += VisualSample_FocusGained;
                 view[i].FocusLost += VisualSample_FocusLost;
                 view[i].KeyEvent += VisualSample_KeyEvent;
@@ -135,11 +135,11 @@ namespace VisualViewTest2
             guide.Text = "Left/Right - Move focus\n" +
                 "Up/Down - Change Text\n" +
                 "Enter - Change BG image\n";
-            Stage.Instance.GetDefaultLayer().Add(guide);
+            Window.Instance.GetDefaultLayer().Add(guide);
 
-            Stage.Instance.Key += Instance_Key;
+            Window.Instance.KeyEvent += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
-            Stage.Instance.Touch += Instance_Touch;
+            Window.Instance.TouchEvent += Instance_Touch;
             _window = this.Window;
             _window.WindowFocusChanged += _window_WindowFocusChanged;
 
@@ -150,7 +150,7 @@ namespace VisualViewTest2
             Tizen.Log.Fatal("NUI", "window focus changed!() focus gained=" + e.FocusGained);
         }
 
-        private void Instance_Touch(object sender, Stage.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchEventArgs e)
         {
             FocusManager.Instance.SetCurrentFocusView(view[0]);
         }
@@ -228,11 +228,11 @@ namespace VisualViewTest2
             return false;
         }
 
-        private void Instance_Key(object sender, Stage.KeyEventArgs e)
+        private void Instance_Key(object sender, Window.KeyEventArgs e)
         {
             View currentFocusView = FocusManager.Instance.GetCurrentFocusView();
 
-            Tizen.Log.Fatal("NUI", "Stage_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
+            Tizen.Log.Fatal("NUI", "Window_KeyEvent" + e.Key.State.ToString() + ", Pressed-" + e.Key.KeyPressedName);
             //Tizen.Log.Fatal("NUI", " CurrentFocusView : " + currentFocusView.HasBody() + currentFocusView?.Name);
         }
 

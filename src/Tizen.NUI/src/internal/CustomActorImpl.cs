@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
-public class CustomActorImpl : RefObject {
+    using Tizen.NUI.BaseComponents;
+    public class CustomActorImpl : RefObject {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CustomActorImpl_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -22,11 +22,6 @@ public class CustomActorImpl : RefObject {
   }
 
   public override void Dispose() {
-
-    if (!Stage.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
 
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -57,13 +52,13 @@ public class CustomActorImpl : RefObject {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void OnChildAdd(Actor child) {
-    NDalicPINVOKE.CustomActorImpl_OnChildAdd(swigCPtr, Actor.getCPtr(child));
+  public virtual void OnChildAdd(View child) {
+    NDalicPINVOKE.CustomActorImpl_OnChildAdd(swigCPtr, View.getCPtr(child));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void OnChildRemove(Actor child) {
-    NDalicPINVOKE.CustomActorImpl_OnChildRemove(swigCPtr, Actor.getCPtr(child));
+  public virtual void OnChildRemove(View child) {
+    NDalicPINVOKE.CustomActorImpl_OnChildRemove(swigCPtr, View.getCPtr(child));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -122,8 +117,8 @@ public class CustomActorImpl : RefObject {
     return ret;
   }
 
-  public virtual float CalculateChildSize(Actor child, DimensionType dimension) {
-    float ret = NDalicPINVOKE.CustomActorImpl_CalculateChildSize(swigCPtr, Actor.getCPtr(child), (int)dimension);
+  public virtual float CalculateChildSize(View child, DimensionType dimension) {
+    float ret = NDalicPINVOKE.CustomActorImpl_CalculateChildSize(swigCPtr, View.getCPtr(child), (int)dimension);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

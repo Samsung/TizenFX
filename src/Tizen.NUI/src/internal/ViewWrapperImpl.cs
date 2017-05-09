@@ -22,8 +22,8 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         public delegate void OnStageConnectionDelegate(int depth);
         public delegate void OnStageDisconnectionDelegate();
-        public delegate void OnChildAddDelegate(Actor actor);
-        public delegate void OnChildRemoveDelegate(Actor actor);
+        public delegate void OnChildAddDelegate(View view);
+        public delegate void OnChildRemoveDelegate(View view);
         public delegate void OnPropertySetDelegate(int index, PropertyValue propertyValue);
         public delegate void OnSizeSetDelegate(Vector3 targetSize);
         public delegate void OnSizeAnimationDelegate(Animation animation, Vector3 targetSize);
@@ -34,15 +34,15 @@ namespace Tizen.NUI
         public delegate void OnRelayoutDelegate(Vector2 size, RelayoutContainer container);
         public delegate void OnSetResizePolicyDelegate(ResizePolicyType policy, DimensionType dimension);
         public delegate Size GetNaturalSizeDelegate();
-        public delegate float CalculateChildSizeDelegate(Actor child, DimensionType dimension);
+        public delegate float CalculateChildSizeDelegate(View child, DimensionType dimension);
         public delegate float GetHeightForWidthDelegate(float width);
         public delegate float GetWidthForHeightDelegate(float height);
         public delegate bool RelayoutDependentOnChildrenDimensionDelegate(DimensionType dimension);
         public delegate bool RelayoutDependentOnChildrenDelegate();
         public delegate void OnCalculateRelayoutSizeDelegate(DimensionType dimension);
         public delegate void OnLayoutNegotiatedDelegate(float size, DimensionType dimension);
-        public delegate void OnControlChildAddDelegate(Actor child);
-        public delegate void OnControlChildRemoveDelegate(Actor child);
+        public delegate void OnControlChildAddDelegate(View child);
+        public delegate void OnControlChildRemoveDelegate(View child);
         public delegate void OnStyleChangeDelegate(StyleManager styleManager, StyleChangeType change);
         public delegate bool OnAccessibilityActivatedDelegate();
         public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
@@ -110,7 +110,7 @@ namespace Tizen.NUI
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -164,9 +164,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public float CalculateChildSizeBase(Actor child, DimensionType dimension)
+        public float CalculateChildSizeBase(View child, DimensionType dimension)
         {
-            float ret = NDalicManualPINVOKE.ViewWrapperImpl_CalculateChildSizeBase(swigCPtr, Actor.getCPtr(child), (int)dimension);
+            float ret = NDalicManualPINVOKE.ViewWrapperImpl_CalculateChildSizeBase(swigCPtr, View.getCPtr(child), (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -298,12 +298,12 @@ namespace Tizen.NUI
 
         private void DirectorOnChildAdd(global::System.IntPtr child)
         {
-            OnChildAdd(new Actor(child, false));
+            OnChildAdd(new View(child, false));
         }
 
         private void DirectorOnChildRemove(global::System.IntPtr child)
         {
-            OnChildRemove(new Actor(child, false));
+            OnChildRemove(new View(child, false));
         }
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
@@ -361,7 +361,7 @@ namespace Tizen.NUI
 
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
-            return CalculateChildSize(new Actor(child, false), (DimensionType)dimension);
+            return CalculateChildSize(new View(child, false), (DimensionType)dimension);
         }
 
         private float DirectorGetHeightForWidth(float width)
@@ -400,12 +400,12 @@ namespace Tizen.NUI
 
         private void DirectorOnControlChildAdd(global::System.IntPtr child)
         {
-            OnControlChildAdd(new Actor(child, false));
+            OnControlChildAdd(new View(child, false));
         }
 
         private void DirectorOnControlChildRemove(global::System.IntPtr child)
         {
-            OnControlChildRemove(new Actor(child, false));
+            OnControlChildRemove(new View(child, false));
         }
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
@@ -453,7 +453,7 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            return Actor.getCPtr(GetNextFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
+            return View.getCPtr(GetNextFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
         private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)

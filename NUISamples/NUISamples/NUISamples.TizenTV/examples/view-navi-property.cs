@@ -46,7 +46,7 @@ namespace MyCSharpExample
                 view[i].Position = new Position(300 + i * 300, 300, 0);
                 view[i].Name = "MyView" + i;
                 view[i].Focusable = true;
-                Stage.Instance.GetDefaultLayer().Add(view[i]);
+                Window.Instance.GetDefaultLayer().Add(view[i]);
                 view[i].FocusGained += FocusNavigationSample_FocusGained;
                 view[i].FocusLost += FocusNavigationSample_FocusLost;
                 view[i].KeyEvent += FocusNavigationSample_KeyEvent;
@@ -60,12 +60,12 @@ namespace MyCSharpExample
             FocusManager.Instance.SetCurrentFocusView(view[0]);
             FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
 
-            Stage.Instance.Touch += Instance_Touch;
+            Window.Instance.TouchEvent += Instance_Touch;
         }
 
-        private void Instance_Touch(object sender, Stage.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchEventArgs e)
         {
-            Tizen.Log.Debug("NUI", "stage touched! set key focus as view[0]!");
+            Tizen.Log.Debug("NUI", "window touched! set key focus as view[0]!");
             FocusManager.Instance.SetCurrentFocusView(view[0]);
         }
 

@@ -195,8 +195,8 @@ namespace CustomControlTest
 
         public void Initialize()
         {
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
 
             // Create a container to layout the rows of image and rating vertically
             FlexContainer container = new FlexContainer();
@@ -207,7 +207,7 @@ namespace CustomControlTest
             container.WidthResizePolicy = ResizePolicyType.FillToParent;
             container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            stage.GetDefaultLayer().Add(container);
+            window.GetDefaultLayer().Add(container);
 
             Random random = new Random();
 

@@ -95,6 +95,8 @@ namespace DaliTest
 
     class Example : NUIApplication
     {
+        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         delegate void CallbackDelegate(IntPtr appPtr); // void, void delgate
 
@@ -126,7 +128,11 @@ namespace DaliTest
 
             CustomViewPropertyTest();
 
-            Handle handle = new Handle();
+            VisibilityChangeTest();
+
+            ResourceReadyTest();
+
+            Animatable handle = new Animatable();
             int myPropertyIndex = handle.RegisterProperty("myProperty", new PropertyValue(10.0f), PropertyAccessMode.ReadWrite);
             float myProperty = 0.0f;
             handle.GetProperty(myPropertyIndex).Get(ref myProperty);
@@ -137,24 +143,24 @@ namespace DaliTest
             handle.GetProperty(myPropertyIndex2).Get(myProperty2);
             Tizen.Log.Debug("NUI",  "myProperty2 value: " + myProperty2.Width + ", " + myProperty2.Height );
 
-            Actor actor = new Actor();
-            actor.Size = new Size(200.0f, 200.0f, 0.0f);
-            actor.Name = "MyActor";
-            //actor.MixColor = new Color(1.0f, 0.0f, 1.0f, 0.8f);
-            Tizen.Log.Debug("NUI", "Actor size: " + actor.Size.Width + ", " + actor.Size.Height);
-            Tizen.Log.Debug("NUI", "Actor name: " + actor.Name);
+            View view = new View();
+            view.Size = new Size(200.0f, 200.0f, 0.0f);
+            view.Name = "MyView";
+            //view.MixColor = new Color(1.0f, 0.0f, 1.0f, 0.8f);
+            Tizen.Log.Debug("NUI", "View size: " + view.Size.Width + ", " + view.Size.Height);
+            Tizen.Log.Debug("NUI", "View name: " + view.Name);
 
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
-            Size stageSize = new Size(stage.Size.Width, stage.Size.Height, 0.0f);
-            Tizen.Log.Debug("NUI", "Stage size: " + stageSize.Width + ", " + stageSize.Height);
-            stage.GetDefaultLayer().Add(actor);
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
+            Size windowSize = new Size(window.Size.Width, window.Size.Height, 0.0f);
+            Tizen.Log.Debug("NUI", "Window size: " + windowSize.Width + ", " + windowSize.Height);
+            window.GetDefaultLayer().Add(view);
 
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
             text.AnchorPoint = AnchorPoint.Center;
             text.HorizontalAlignment = HorizontalAlignment.Center;
-            stage.GetDefaultLayer().Add(text);
+            window.GetDefaultLayer().Add(text);
 
             Tizen.Log.Debug("NUI",  "Text label text:  " + text.Text );
 
@@ -290,10 +296,10 @@ namespace DaliTest
             downView = new View();
             downView.Name = "downView";
 
-            Stage.Instance.GetDefaultLayer().Add(leftView);
-            Stage.Instance.GetDefaultLayer().Add(rightView);
-            Stage.Instance.GetDefaultLayer().Add(upView);
-            Stage.Instance.GetDefaultLayer().Add(downView);
+            Window.Instance.GetDefaultLayer().Add(leftView);
+            Window.Instance.GetDefaultLayer().Add(rightView);
+            Window.Instance.GetDefaultLayer().Add(upView);
+            Window.Instance.GetDefaultLayer().Add(downView);
 
             view.LeftFocusableView = leftView;
             tmpView = view.LeftFocusableView;
@@ -317,7 +323,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: RightFocusedView = " + tmpView.Name);
             }
 
-            Stage.Instance.GetDefaultLayer().Add(view);
+            Window.Instance.GetDefaultLayer().Add(view);
 
             view.UpFocusableView = upView;
             tmpView = view.UpFocusableView;
@@ -341,7 +347,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: DownFocusedView = " + tmpView.Name);
             }
 
-            Stage.Instance.GetDefaultLayer().Remove(leftView);
+            Window.Instance.GetDefaultLayer().Remove(leftView);
             tmpView = view.LeftFocusableView;
             if (!tmpView)
             {
@@ -355,22 +361,22 @@ namespace DaliTest
 
         public void OperatorTests()
         {
-            Actor actor = new Actor();
-            Actor differentActor = new Actor();
-            Actor actorSame = actor;
-            Actor nullActor = null;
+            View view = new View();
+            View differentView = new View();
+            View viewSame = view;
+            View nullView = null;
 
             // test the true operator
-            if ( actor )
+            if ( view )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator true (actor) : test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (view) : test passed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator true (actor): test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (view): test failed ");
             }
 
-            Actor parent = actor.Parent;
+            View parent = view.Parent;
 
             if ( parent )
             {
@@ -381,148 +387,203 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Valid with Empty body  :passed ");
             }
 
-            actor.Add( differentActor );
+            view.Add( differentView );
 
             // here we test two different C# objects, which on the native side have the same body/ ref-object
-            if ( actor == differentActor.Parent )
+            if ( view == differentView.Parent )
             {
-                Tizen.Log.Debug("NUI", "actor == differentActor.GetParent() :passed ");
+                Tizen.Log.Debug("NUI", "view == differentView.GetParent() :passed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "actor == differentActor.GetParent() :failed ");
+                Tizen.Log.Debug("NUI", "view == differentView.GetParent() :failed ");
             }
 
-            if ( differentActor == differentActor.Parent )
+            if ( differentView == differentView.Parent )
             {
-                Tizen.Log.Debug("NUI", "differentActor == differentActor.GetParent() :failed ");
+                Tizen.Log.Debug("NUI", "differentView == differentView.GetParent() :failed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "differentActor == differentActor.GetParent() :passed ");
+                Tizen.Log.Debug("NUI", "differentView == differentView.GetParent() :passed ");
             }
 
-            if ( nullActor )
+            if ( nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullActor) : test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullView) : test failed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullActor): test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator true (nullView): test passed ");
             }
 
             // ! operator
-            if ( !actor )
+            if ( !view )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator !(actor) : test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(view) : test failed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator !(actor): test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(view): test passed ");
             }
 
-            if ( !nullActor )
+            if ( !nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullActor) : test passed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullView) : test passed ");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullActor): test failed ");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator !(nullView): test failed ");
             }
 
             // Note: operator false only used inside & operator
             // test equality operator ==
-            if ( actor == actorSame )
+            if ( view == viewSame )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator  (actor == actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator  (view == viewSame) : test passed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator  (actor == actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator  (view == viewSame) : test failed");
             }
 
-            if ( actor == differentActor )
+            if ( view == differentView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == differentActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view == differentView) : test failed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == differentActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view == differentView) : test passed");
             }
 
-            if ( actor == nullActor )
+            if ( view == nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view == nullView) : test failed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor == nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view == nullView) : test passed");
             }
 
-            if ( nullActor == nullActor )
+            if ( nullView == nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor == nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView == nullView) : test passed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor == nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView == nullView) : test failed");
             }
 
             // test || operator
-            if ( actor || actorSame )
+            if ( view || viewSame )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view || viewSame) : test passed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view || viewSame) : test failed");
             }
 
-            if ( actor || nullActor )
+            if ( view || nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view || nullView) : test passed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor || nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view || nullView) : test failed");
             }
 
-            if ( nullActor || nullActor )
+            if ( nullView || nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor || nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView || nullView) : test failed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor || nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView || nullView) : test passed");
             }
 
             // test && operator
-            if ( actor && actorSame )
+            if ( view && viewSame )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && actorSame) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view && viewSame) : test passed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && actorSame) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view && viewSame) : test failed");
             }
 
-            if ( actor && nullActor )
+            if ( view && nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view && nullView) : test failed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (actor && nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (view && nullView) : test passed");
             }
 
-            if ( nullActor && nullActor )
+            if ( nullView && nullView )
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor && nullActor) : test failed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView && nullView) : test failed");
             }
             else
             {
-                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullActor && nullActor) : test passed");
+                Tizen.Log.Debug("NUI", "BaseHandle Operator (nullView && nullView) : test passed");
             }
+        }
+
+
+        private TextLabel label;
+        public void VisibilityChangeTest()
+        {
+            label = new TextLabel();
+            label.Text = "Visibility";
+            label.TextColor = Color.Red;
+            label.PointSize = 30.0f;
+            label.ParentOrigin = ParentOrigin.TopLeft;
+            label.AnchorPoint = AnchorPoint.TopLeft;
+            label.Position = new Position(0.0f, 50.0f, 0.0f);
+            Window.GetDefaultLayer().Add(label);
+            label.VisibilityChanged += (sender, e) =>
+            {
+                if (e.Visibility)
+                    Console.WriteLine("VisibilityChanged, label show.");
+                else
+                    Console.WriteLine("VisibilityChanged, label hide.");
+            };
+
+            PushButton button = new PushButton();
+            button.LabelText = "Change Visibility";
+            button.ParentOrigin = ParentOrigin.TopLeft;
+            button.AnchorPoint = AnchorPoint.TopLeft;
+            Window.GetDefaultLayer().Add(button);
+            button.Clicked += (sender, e) =>
+            {
+                if (label.Visible)
+                {
+                    label.Hide();
+                }
+                else
+                {
+                    label.Show();
+                }
+
+                return true;
+            };
+        }
+
+        public void ResourceReadyTest()
+        {
+            ImageView image = new ImageView();
+            image.ResourceUrl = _resPath + "/images/dog-anim.gif";
+            image.Size2D = new Size2D(150, 150);
+            image.ParentOrigin = ParentOrigin.TopLeft;
+            image.AnchorPoint = AnchorPoint.TopLeft;
+            image.Position = new Position(0.0f, 150.0f, 0.0f);
+            image.ResourceReady += (sender, e) =>
+            {
+                Console.WriteLine("Resource is ready!");
+            };
+            Window.GetDefaultLayer().Add(image);
         }
 
         public void CustomViewPropertyTest()
@@ -586,7 +647,7 @@ namespace DaliTest
         {
           View container = new View();
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
-          Stage.Instance.GetDefaultLayer().Add(container);
+          Window.Instance.GetDefaultLayer().Add(container);
 
           // Test downcast for native control
           TextLabel myLabel = new TextLabel();
@@ -597,10 +658,10 @@ namespace DaliTest
 
           container.Add(myLabel);
 
-          Actor myLabelActor  = container.FindChildByName("MyLabelName");
-          if(myLabelActor)
+          View myLabelView  = container.FindChildByName("MyLabelName");
+          if(myLabelView)
           {
-            TextLabel newLabel = View.DownCast<TextLabel>(myLabelActor);
+            TextLabel newLabel = View.DownCast<TextLabel>(myLabelView);
             if(newLabel)
             {
               Tizen.Log.Debug("NUI", "Downcast to TextLabel successful: newLabel Name = " + newLabel.Name + ", Text = " + newLabel.Text);
@@ -621,10 +682,10 @@ namespace DaliTest
 
           container.Add(myView);
 
-          Actor myViewActor  = container.FindChildByName("MyViewName");
-          if(myViewActor)
+          View myViewView  = container.FindChildByName("MyViewName");
+          if(myViewView)
           {
-            MyView newView = View.DownCast<MyView>(myViewActor);
+            MyView newView = View.DownCast<MyView>(myViewView);
             if(newView)
             {
               Tizen.Log.Debug("NUI", "Downcast to MyView successful: newView Name = " + newView.Name + ", MyOwnName = " + newView.MyOwnName + ", myCurrentValue = " + newView._myCurrentValue);
@@ -646,10 +707,10 @@ namespace DaliTest
 
           container.Add(myButton);
 
-          Actor myButtonActor  = container.FindChildByName("MyButtonName");
-          if(myButtonActor)
+          View myButtonView  = container.FindChildByName("MyButtonName");
+          if(myButtonView)
           {
-            MyButton newButton = View.DownCast<MyButton>(myButtonActor);
+            MyButton newButton = View.DownCast<MyButton>(myButtonView);
             if(newButton)
             {
               Tizen.Log.Debug("NUI", "Downcast to MyButton successful: newButton Name = " + newButton.Name + ", MyOwnName = " + newButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + newButton._myCurrentValue);
@@ -669,10 +730,10 @@ namespace DaliTest
 
           container.Add(spin);
 
-          Actor spinActor  = container.FindChildByName("SpinName");
-          if(spinActor)
+          View spinView  = container.FindChildByName("SpinName");
+          if(spinView)
           {
-            Spin newSpin = View.DownCast<Spin>(spinActor);
+            Spin newSpin = View.DownCast<Spin>(spinView);
             if(newSpin)
             {
               Tizen.Log.Debug("NUI", "Downcast to Spin successful: newSpin Name = " + newSpin.Name + ", MaxValue = " + newSpin.MaxValue);
@@ -694,10 +755,10 @@ namespace DaliTest
 
           container.Add(mySpin);
 
-          Actor mySpinActor  = container.FindChildByName("MySpinName");
-          if(mySpinActor)
+          View mySpinView  = container.FindChildByName("MySpinName");
+          if(mySpinView)
           {
-            MySpin newSpin = View.DownCast<MySpin>(mySpinActor);
+            MySpin newSpin = View.DownCast<MySpin>(mySpinView);
             if(newSpin)
             {
               Tizen.Log.Debug("NUI", "Downcast to MySpin successful: newSpin Name = " + newSpin.Name + ", MyOwnName = " + newSpin.MyOwnName + ", MaxValue = " + newSpin.MaxValue + ", currentValue = " + newSpin._myCurrentValue);
@@ -727,7 +788,7 @@ namespace DaliTest
 
             for (uint i = 0; i < parent.GetChildCount(); i++)
             {
-                Actor child = parent.GetChildAt(i);
+                View child = parent.GetChildAt(i);
                 View childView = View.DownCast<View>(child);
                 if (childView)
                 {

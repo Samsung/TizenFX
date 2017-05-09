@@ -43,7 +43,7 @@ namespace ControlDashboard
 
         private TableView _contentContainer;
         private Timer _timer;
-        private Stage _stage;
+        private Window _window;
         private Popup _popup;
         private ProgressBar _progressBar;
         private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
@@ -78,8 +78,8 @@ namespace ControlDashboard
         public void Initialize()
         {
             Tizen.Log.Debug("NUI", "Customized Application Initialize event handler");
-            _stage = Stage.Instance;
-            _stage.BackgroundColor = Color.White;
+            _window = Window.Instance;
+            _window.BackgroundColor = Color.White;
 
             // Top label
             TextLabel topLabel = new TextLabel();
@@ -93,7 +93,7 @@ namespace ControlDashboard
             topLabel.HorizontalAlignment = HorizontalAlignment.Begin;
             topLabel.VerticalAlignment = VerticalAlignment.Center;
             topLabel.PointSize = 42.0f;
-            _stage.GetDefaultLayer().Add(topLabel);
+            _window.GetDefaultLayer().Add(topLabel);
             //StyleManager.Get().ApplyStyle(topLabel, _resPath + "/json/control-dashboard-theme.json", "TextFieldFontSize4");
             topLabel.SetStyleName("TextFieldFontSize4");
 
@@ -103,7 +103,7 @@ namespace ControlDashboard
             _contentContainer.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _contentContainer.SetSizeModeFactor(new Vector3(0.0f, 0.9f, 0.0f));
             _contentContainer.AnchorPoint = AnchorPoint.BottomCenter;
-            _contentContainer.Position = new Position(0, _stage.Size.Height * 0.1f, 0);
+            _contentContainer.Position = new Position(0, _window.Size.Height * 0.1f, 0);
             _contentContainer.SetRelativeHeight(0, 0.07f);
             _contentContainer.SetRelativeHeight(1, 0.26f);
             _contentContainer.SetRelativeHeight(2, 0.07f);
@@ -111,7 +111,7 @@ namespace ControlDashboard
             _contentContainer.SetRelativeHeight(4, 0.07f);
             _contentContainer.SetRelativeHeight(5, 0.26f);
             _contentContainer.Focusable = (true);
-            _stage.GetDefaultLayer().Add(_contentContainer);
+            _window.GetDefaultLayer().Add(_contentContainer);
 
             CreateContent();
 
@@ -140,13 +140,13 @@ namespace ControlDashboard
         {
             // Make label for item
             TextLabel itemLabel = new TextLabel("    " + item.name);
-            itemLabel.Size = new Vector3(_stage.Size.Width * 0.2f, _stage.Size.Height * 0.05f, 0.0f);
+            itemLabel.Size = new Vector3(_window.Size.Width * 0.2f, _window.Size.Height * 0.05f, 0.0f);
             itemLabel.HorizontalAlignment = HorizontalAlignment.Begin;
             itemLabel.VerticalAlignment = VerticalAlignment.Bottom;
             //itemLabel.PointSize = 18.0f;
             _contentContainer.AddChild(itemLabel, new TableView.CellPosition(((uint)idx / 5) * 2, (uint)idx % 5));
 
-            // If item is implemented in public, attach it on stage
+            // If item is implemented in public, attach it on window
             if (item.isImplemented)
             {
                 if (item.name.CompareTo("PushButton") == 0)
@@ -334,7 +334,7 @@ namespace ControlDashboard
 
                     button.Clicked += (obj, ee) =>
                     {
-                        _stage.GetDefaultLayer().Add(_popup);
+                        _window.GetDefaultLayer().Add(_popup);
                         _popup.SetDisplayState(Popup.DisplayStateType.Shown);
                         FocusManager.Instance.SetCurrentFocusView(View.DownCast((_popup.FindChildByName("Footer")).FindChildByName("OKButton")));
                         return true;
@@ -360,7 +360,7 @@ namespace ControlDashboard
                                 text.MultiLine = true;
                                 text.HorizontalAlignment = HorizontalAlignment.Center;
                                 toast.SetTitle(text);
-                                _stage.GetDefaultLayer().Add(toast);
+                                _window.GetDefaultLayer().Add(toast);
                                 toast.SetDisplayState(Popup.DisplayStateType.Shown);
                             }
                         }
@@ -376,7 +376,7 @@ namespace ControlDashboard
             else
             {
                 ImageView notSupportView = new ImageView(_resPath + "/images/not_yet_sign.png");
-                notSupportView.Size = new Vector3(_stage.Size.Width * 0.2f, _stage.Size.Height * 0.25f, 0.0f);
+                notSupportView.Size = new Vector3(_window.Size.Width * 0.2f, _window.Size.Height * 0.25f, 0.0f);
                 notSupportView.Focusable = (true);
                 _contentContainer.AddChild(notSupportView, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));
             }
@@ -385,7 +385,7 @@ namespace ControlDashboard
         {
             Popup confirmationPopup = new Popup();
 
-            Actor footer = new Actor();
+            View footer = new View();
             footer.Name = ("Footer");
             footer.WidthResizePolicy = ResizePolicyType.FillToParent;
             footer.HeightResizePolicy = ResizePolicyType.Fixed;
@@ -421,13 +421,13 @@ namespace ControlDashboard
             confirmationPopup.SetFooter(footer);
             return confirmationPopup;
         }
-        Actor CreateTitle(string title)
+        View CreateTitle(string title)
         {
-            TextLabel titleActor = new TextLabel(title);
-            titleActor.TextColor = Color.White;
-            titleActor.MultiLine = true;
-            titleActor.HorizontalAlignment = HorizontalAlignment.Center;
-            return titleActor;
+            TextLabel titleView = new TextLabel(title);
+            titleView.TextColor = Color.White;
+            titleView.MultiLine = true;
+            titleView.HorizontalAlignment = HorizontalAlignment.Center;
+            return titleView;
         }
 
         PushButton CreateOKButton()
@@ -477,6 +477,7 @@ namespace ControlDashboard
             Tizen.Log.Debug("NUI", "Hello Mono World");
 
             Example example = new Example("/home/owner/apps_rw/NUISamples.TizenTV/res/json/control-dashboard-theme.json");
+            
             example.Run(args);
         }
     }

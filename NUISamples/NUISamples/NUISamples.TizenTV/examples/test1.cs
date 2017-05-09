@@ -43,13 +43,13 @@ namespace Test1
             Initialize();
         }
 
-        Stage _stage;
+        Window _window;
         StyleManager _style;
 
         public void Initialize()
         {
-            _stage = Stage.Instance;
-            _stage.BackgroundColor = Color.White;
+            _window = Window.Instance;
+            _window.BackgroundColor = Color.White;
 
             // 1) sibling order test
             SiblingTest();
@@ -120,7 +120,7 @@ namespace Test1
 
             for (int i = 0; i < 10; i++)
             {
-                _stage.GetDefaultLayer().Add(list_view[i]);
+                _window.GetDefaultLayer().Add(list_view[i]);
                 Tizen.Log.Debug("NUI", list_view[i].Name + "'s sibling order=" + list_view[i].SiblingOrder);
             }
 
@@ -129,7 +129,7 @@ namespace Test1
             _txt.Text = "on top: sibling#, sibling order=?";
             _txt.Position2D = _myPos + new Position2D(-50, 200);
             _txt.TextColor = Color.Blue;
-            _stage.GetDefaultLayer().Add(_txt);
+            _window.GetDefaultLayer().Add(_txt);
 
         }
 
@@ -182,7 +182,7 @@ namespace Test1
                 _visualTest.Size2D = new Size2D(600, 200);
                 _visualTest.Position2D = new Position2D(50, 400);
                 _visualTest.BackgroundColor = Color.Yellow;
-                _stage.GetDefaultLayer().Add(_visualTest);
+                _window.GetDefaultLayer().Add(_visualTest);
             }
             catch (Exception e)
             {
@@ -226,7 +226,7 @@ namespace Test1
             view.AnchorPoint = AnchorPoint.TopLeft;
             view.MinimumSize = new Size2D(100, 100);
             view.BackgroundColor = Color.Red;
-            _stage.GetDefaultLayer().Add(view);
+            _window.GetDefaultLayer().Add(view);
 
             Position position0 = new Position(200.0f, 200.0f, 0.0f);
             Position position1 = new Position(300.0f, 300.0f, 0.0f);

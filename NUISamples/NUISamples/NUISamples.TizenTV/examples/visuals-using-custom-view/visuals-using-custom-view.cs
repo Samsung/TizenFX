@@ -45,8 +45,8 @@ namespace VisualsUsingCustomView
 
         private void Initialize()
         {
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
 
             TableView contentLayout = new TableView(14, 1);
             contentLayout.Name = "ContentLayout";
@@ -54,11 +54,11 @@ namespace VisualsUsingCustomView
             //contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.AnchorPoint = AnchorPoint.Center;
             contentLayout.ParentOrigin = ParentOrigin.Center;
-            contentLayout.Size = new Vector3(stage.Size.Width, stage.Size.Height, 0.0f);
+            contentLayout.Size = new Vector3(window.Size.Width, window.Size.Height, 0.0f);
             contentLayout.SetCellPadding(new Size2D(5, 5));
             contentLayout.BackgroundColor = new Color(0.949f, 0.949f, 0.949f, 1.0f);
 
-            stage.GetDefaultLayer().Add(contentLayout);
+            window.GetDefaultLayer().Add(contentLayout);
 
             TextLabel title = new TextLabel("Contacts List with Visuals");
             title.Name = "Title";

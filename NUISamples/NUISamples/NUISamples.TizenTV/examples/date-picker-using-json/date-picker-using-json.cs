@@ -43,8 +43,8 @@ namespace DatePickerUsingJson
 
         public void Initialize()
         {
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
 
             //This is required for the Application which uses JSON theme and style of Dali builder
             ViewRegistryHelper.Initialize();
@@ -63,13 +63,13 @@ namespace DatePickerUsingJson
             // create the date-picker from the template in the json file
             BaseHandle handle =  _builder.Create( "date-picker");
 
-            Actor actorTree =  Actor.DownCast( handle );
+            View actorTree =  View.DownCast( handle );
 
-            stage.GetDefaultLayer().Add( actorTree );
+            window.GetDefaultLayer().Add( actorTree );
 
-            Actor year  = actorTree.FindChildByName("Year");
-            Actor month  =  actorTree.FindChildByName("Month" );
-            Actor day  = actorTree.FindChildByName("Day");
+            View year  = actorTree.FindChildByName("Year");
+            View month  =  actorTree.FindChildByName("Month" );
+            View day  = actorTree.FindChildByName("Day");
 
             // need to get the actual C# Spin object associated with the actor,
             _spinYear = View.DownCast<Spin>( year );

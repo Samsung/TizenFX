@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -125,8 +125,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br>
-        /// FocusManager makes the best guess for which actor to focus towards the given direction, but applications might want to change that.<br>
-        /// By connecting with this event, they can check the proposed actor to focus and return a different actor if they wish.<br>
+        /// FocusManager makes the best guess for which view to focus towards the given direction, but applications might want to change that.<br>
+        /// By connecting with this event, they can check the proposed view to focus and return a different view if they wish.<br>
         /// This event is only triggered when the navigation key is pressed and KeyboardFocusManager tries to move the focus automatically.<br>
         /// It won't be emitted for focus movement by calling SetCurrentFocusView directly.<br>
         /// </summary>
@@ -172,8 +172,14 @@ namespace Tizen.NUI
             View view = null;
             PreFocusChangeEventArgs e = new PreFocusChangeEventArgs();
 
-            e.CurrentView = View.GetViewFromPtr(current);
-            e.ProposedView = View.GetViewFromPtr(proposed);
+            if (current != global::System.IntPtr.Zero)
+            {
+                e.CurrentView = View.GetViewFromPtr(current);
+            }
+            if (proposed != global::System.IntPtr.Zero)
+            {
+                e.ProposedView = View.GetViewFromPtr(proposed);
+            }
             e.Direction = direction;
 
             if (_preFocusChangeEventHandler != null)
@@ -183,12 +189,13 @@ namespace Tizen.NUI
 
             if (view)
             {
-                return view.GetPtrfromActor();
+                return view.GetPtrfromView();
             }
             else
             {
-                if (e.ProposedView) return proposed;
-                else return current;
+                //if (e.ProposedView) return proposed;
+                //else return current;
+                return current; //xb.teng
             }
         }
 
@@ -231,7 +238,7 @@ namespace Tizen.NUI
         private FocusChangedEventCallback _focusChangedEventCallback;
 
         /// <summary>
-        /// FocusGroupChanged will be triggered after the current focused actor has been changed.
+        /// FocusGroupChanged will be triggered after the current focused view has been changed.
         /// </summary>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
@@ -372,7 +379,7 @@ namespace Tizen.NUI
         private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
 
         /// <summary>
-        /// FocusedViewEnterKeyPressed will be triggered when the current focused actor has the enter key pressed on it.
+        /// FocusedViewEnterKeyPressed will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
         public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
         {
@@ -381,7 +388,7 @@ namespace Tizen.NUI
                 if (_focusedViewEnterKeyEventCallback == null)
                 {
                     _focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
-                    FocusedActorEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback);
+                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback);
                 }
                 _focusedViewEnterKeyEventHandler += value;
             }
@@ -389,9 +396,9 @@ namespace Tizen.NUI
             {
                 _focusedViewEnterKeyEventHandler -= value;
 
-                if (_focusedViewEnterKeyEventCallback == null && FocusedActorEnterKeySignal().Empty() == false)
+                if (_focusedViewEnterKeyEventCallback == null && FocusedViewEnterKeySignal().Empty() == false)
                 {
-                    FocusedActorEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
+                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
                 }
             }
         }
@@ -430,18 +437,18 @@ namespace Tizen.NUI
         /// <returns>Whether the focus is successful or not</returns>
         public bool SetCurrentFocusView(View view)
         {
-            bool ret = NDalicManualPINVOKE.FocusManager_SetCurrentFocusActor(swigCPtr, Actor.getCPtr(view));
+            bool ret = NDalicManualPINVOKE.FocusManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         /// <summary>
-        /// Gets the current focused actor.
+        /// Gets the current focused view.
         /// </summary>
         /// <returns>A handle to the current focused View or an empty handle if no View is focused</returns>
         public View GetCurrentFocusView()
         {
-            View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr), true));
+            View ret = new View(NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret.HasBody() == false)
             {
@@ -463,7 +470,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the focus from the current focused actor if any, so that no actor is focused in the focus chain.<br>
+        /// Clears the focus from the current focused view if any, so that no view is focused in the focus chain.<br>
         /// It will emit FocusChanged event without current focused View.<br>
         /// </summary>
         public void ClearFocus()
@@ -502,37 +509,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets whether an View is a focus group that can limit the scope of focus movement to its child actors in the focus chain.<br>
+        /// Sets whether an View is a focus group that can limit the scope of focus movement to its child views in the focus chain.<br>
         /// Layout controls set themselves as focus groups by default.<br>
         /// </summary>
         /// <param name="view">The View to be set as a focus group</param>
         /// <param name="isFocusGroup">Whether to set the View as a focus group or not</param>
         public void SetAsFocusGroup(View view, bool isFocusGroup)
         {
-            NDalicManualPINVOKE.FocusManager_SetAsFocusGroup(swigCPtr, Actor.getCPtr(view), isFocusGroup);
+            NDalicManualPINVOKE.FocusManager_SetAsFocusGroup(swigCPtr, View.getCPtr(view), isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Checks whether the actor is set as a focus group or not.
+        /// Checks whether the view is set as a focus group or not.
         /// </summary>
         /// <param name="view">The View to be checked</param>
         /// <returns>Whether the View is set as a focus group</returns>
         public bool IsFocusGroup(View view)
         {
-            bool ret = NDalicManualPINVOKE.FocusManager_IsFocusGroup(swigCPtr, Actor.getCPtr(view));
+            bool ret = NDalicManualPINVOKE.FocusManager_IsFocusGroup(swigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         /// <summary>
-        /// Returns the closest ancestor of the given actor that is a focus group.
+        /// Returns the closest ancestor of the given view that is a focus group.
         /// </summary>
         /// <param name="view">The View to be checked for its focus group</param>
         /// <returns>The focus group the given view belongs to or an empty handle if the given view</returns>
         public View GetFocusGroup(View view)
         {
-            View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, Actor.getCPtr(view)), true));
+            View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret.HasBody() == false)
             {
@@ -559,13 +566,13 @@ namespace Tizen.NUI
 
         internal void SetFocusIndicatorView(View indicator)
         {
-            NDalicManualPINVOKE.FocusManager_SetFocusIndicatorActor(swigCPtr, Actor.getCPtr(indicator));
+            NDalicManualPINVOKE.FocusManager_SetFocusIndicatorActor(swigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetFocusIndicatorView()
         {
-            View ret = View.DownCast(new Actor(NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr), true));
+            View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret.HasBody() == false)
             { 
@@ -608,9 +615,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ActorSignal FocusedActorEnterKeySignal()
+        internal ViewSignal FocusedViewEnterKeySignal()
         {
-            ActorSignal ret = new ActorSignal(NDalicManualPINVOKE.FocusManager_FocusedActorEnterKeySignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(NDalicManualPINVOKE.FocusManager_FocusedActorEnterKeySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -629,15 +636,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ICustomFocusAlgorithm is used to provide custom keyboard focus algorithm for retrieving the next focusable actor.<br>
+        /// ICustomFocusAlgorithm is used to provide custom keyboard focus algorithm for retrieving the next focusable view.<br>
         /// The application can implement the interface and override the keyboard focus behaviour.<br>
-        /// If focus is changing within a layout container, then the layout container is queried first to provide the next focusable actor.<br>
-        /// If this does not provide a valid actor, then the Keyboard FocusManager will check focusable properties to determine next focusable actor.<br>
-        /// If focusable properties are not set, then the Keyboard FocusManager calls the GetNextFocusableActor() method of this interface.<br>
+        /// If focus is changing within a layout container, then the layout container is queried first to provide the next focusable view.<br>
+        /// If this does not provide a valid view, then the Keyboard FocusManager will check focusable properties to determine next focusable actor.<br>
+        /// If focusable properties are not set, then the Keyboard FocusManager calls the GetNextFocusableView() method of this interface.<br>
         /// </summary>
         public interface ICustomFocusAlgorithm
         {
-            View GetNextFocusableActor(View current, View proposed, View.FocusDirection direction);
+            View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
         }
 
         private class CustomAlgorithmInterfaceWrapper : CustomAlgorithmInterface
@@ -653,11 +660,11 @@ namespace Tizen.NUI
                 _customFocusAlgorithm = customFocusAlgorithm;
             }
 
-            public override Actor GetNextFocusableActor(Actor current, Actor proposed, View.FocusDirection direction)
+            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
                 View currentView = View.DownCast<View>(current);
                 View proposedView = View.DownCast<View>(proposed);
-                return _customFocusAlgorithm.GetNextFocusableActor(currentView, proposedView, direction);
+                return _customFocusAlgorithm.GetNextFocusableView(currentView, proposedView, direction);
             }
         }
     }

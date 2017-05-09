@@ -35,7 +35,7 @@ namespace PositionUsesAnchorPointTest
     {
         private TextLabel _text1;
         private TextLabel _text2;
-        private Stage _stage;
+        private Window _window;
 
         public Example():base()
         {
@@ -57,8 +57,8 @@ namespace PositionUsesAnchorPointTest
 
         private void Initialize()
         {
-            // Connect the signal callback for stage touched signal
-            _stage = Stage.Instance;
+            // Connect the signal callback for window touched signal
+            _window = Window.Instance;
             _text1 = new TextLabel("PositionUsesAnchorPoint");
             _text1.ParentOrigin = ParentOrigin.Center;
             _text1.AnchorPoint = AnchorPoint.Center;
@@ -68,7 +68,7 @@ namespace PositionUsesAnchorPointTest
             _text1.Size2D = new Size2D(200, 100);
             _text1.PointSize = 10.0f;
             _text1.BackgroundColor = Color.Blue;
-            _stage.GetDefaultLayer().Add(_text1);
+            _window.GetDefaultLayer().Add(_text1);
 
             _text2 = new TextLabel("PositionNotUsesAnchorPoint");
             _text2.ParentOrigin = ParentOrigin.Center;
@@ -79,7 +79,7 @@ namespace PositionUsesAnchorPointTest
             _text2.Size2D = new Size2D(200, 100);
             _text2.PointSize = 10.0f;
             _text2.BackgroundColor = Color.Red;
-            _stage.GetDefaultLayer().Add(_text2);
+            _window.GetDefaultLayer().Add(_text2);
         }
 
 

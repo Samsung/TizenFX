@@ -40,7 +40,7 @@ public class ToggleButton : Tizen.NUI.UIComponents.Button {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -71,10 +71,15 @@ public class ToggleButton : Tizen.NUI.UIComponents.Button {
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {

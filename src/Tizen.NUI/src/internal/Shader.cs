@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-    internal class Shader : Handle {
+    internal class Shader : Animatable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -38,7 +38,7 @@ namespace Tizen.NUI {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -71,10 +71,15 @@ namespace Tizen.NUI {
     }
   
     ~Hint() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -113,10 +118,15 @@ namespace Tizen.NUI {
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -166,12 +176,12 @@ namespace Tizen.NUI {
     get
     {
       Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-      GetProperty( Shader.Property.PROGRAM).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, Shader.Property.PROGRAM).Get(  temp );
       return temp;
     }
     set
     {
-      SetProperty( Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue( value ) );
+      Tizen.NUI.Object.SetProperty(swigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue( value ) );
     }
   }
 

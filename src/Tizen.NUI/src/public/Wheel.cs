@@ -15,7 +15,7 @@ namespace Tizen.NUI
     /// The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br>
     /// There is a key modifier which relates to keys like alt, shift and control functions are supplied to check if they have been pressed when the wheel is being rolled.<br>
     /// We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.<br>
-    /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the stage.<br>
+    /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br>
     /// </summary>
     public class Wheel : global::System.IDisposable
     {
@@ -40,7 +40,7 @@ namespace Tizen.NUI
 
         public virtual void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;

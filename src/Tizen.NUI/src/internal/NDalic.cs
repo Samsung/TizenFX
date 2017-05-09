@@ -440,12 +440,6 @@ namespace Tizen.NUI {
     } 
   }
 
-  public static Handle New() {
-    Handle ret = new Handle(NDalicPINVOKE.New(), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static bool RegisterType(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(f); 
     {
@@ -977,43 +971,43 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
     return ret;
   }
   
-  public static void UnparentAndReset(Actor actor) {
-    NDalicPINVOKE.UnparentAndReset(Actor.getCPtr(actor));
+  public static void UnparentAndReset(View view) {
+    NDalicPINVOKE.UnparentAndReset(View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void Raise(Actor actor) {
-    NDalicPINVOKE.Raise(Actor.getCPtr(actor));
+  public static void Raise(View view) {
+    NDalicPINVOKE.Raise(View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void Lower(Actor actor) {
-    NDalicPINVOKE.Lower(Actor.getCPtr(actor));
+  public static void Lower(View view) {
+    NDalicPINVOKE.Lower(View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void RaiseToTop(Actor actor) {
-    NDalicPINVOKE.RaiseToTop(Actor.getCPtr(actor));
+  public static void RaiseToTop(View view) {
+    NDalicPINVOKE.RaiseToTop(View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void LowerToBottom(Actor actor) {
-    NDalicPINVOKE.LowerToBottom(Actor.getCPtr(actor));
+  public static void LowerToBottom(View view) {
+    NDalicPINVOKE.LowerToBottom(View.getCPtr(view));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void RaiseAbove(Actor actor, Actor target) {
-    NDalicPINVOKE.RaiseAbove(Actor.getCPtr(actor), Actor.getCPtr(target));
+  public static void RaiseAbove(View view, View target) {
+    NDalicPINVOKE.RaiseAbove(View.getCPtr(view), View.getCPtr(target));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void LowerBelow(Actor actor, Actor target) {
-    NDalicPINVOKE.LowerBelow(Actor.getCPtr(actor), Actor.getCPtr(target));
+  public static void LowerBelow(View view, View target) {
+    NDalicPINVOKE.LowerBelow(View.getCPtr(view), View.getCPtr(target));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t VisibilityChangedSignal(Actor actor) {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t(NDalicPINVOKE.VisibilityChangedSignal(Actor.getCPtr(actor)), false);
+  public static ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+    ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1069,6 +1063,18 @@ System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerFor
 
   public static ViewImpl GetImplementation(View handle) {
     ViewImpl ret = new ViewImpl(NDalicPINVOKE.GetImplementation__SWIG_0(View.getCPtr(handle)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static KeyInputFocusSignal ResourceReadySignal(View control) {
+    KeyInputFocusSignal ret = new KeyInputFocusSignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(control)), false);
+    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsResourceReady(View control) {
+    bool ret = NDalicPINVOKE.IsResourceReady(View.getCPtr(control));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

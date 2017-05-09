@@ -34,7 +34,7 @@ namespace RelativeVectorTest
     {
         private Animation _animation;
         private ImageView _imageView;
-        private Stage _stage;
+        private Window _window;
         private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         public Example():base()
@@ -57,8 +57,8 @@ namespace RelativeVectorTest
 
         private void Initialize()
         {
-            _stage = Stage.Instance;
-            _stage.Touch += OnStageTouched;
+            _window = Window.Instance;
+            _window.TouchEvent += OnWindowTouched;
 
             _imageView = new ImageView();
             _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
@@ -66,11 +66,11 @@ namespace RelativeVectorTest
             _imageView.AnchorPoint = AnchorPoint.Center;
             _imageView.PixelArea = new RelativeVector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-            _stage.GetDefaultLayer().Add(_imageView);
+            _window.GetDefaultLayer().Add(_imageView);
         }
 
-        // Callback for stage touched signal handling
-        private void OnStageTouched(object sender, Stage.TouchEventArgs e)
+        // Callback for window touched signal handling
+        private void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)

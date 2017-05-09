@@ -56,20 +56,20 @@ namespace VisualViewTest
 
         public void Initialize()
         {
-            Stage stage = Stage.Instance;
+            Window window = Window.Instance;
 
             /* Create a visual view. */
             _visualView = new VisualView();
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
             _visualView.AnchorPoint = AnchorPoint.TopLeft;
-            _visualView.Size = new Size(stage.Size.Width, stage.Size.Height, 0.0f);
+            _visualView.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             /* color visual */
             ColorVisual colorVisualMap1 = new ColorVisual();
             colorVisualMap1.Color = Color.Green;
             _visualView.Background = colorVisualMap1.OutputVisualMap;
 
-            stage.GetDefaultLayer().Add(_visualView);
+            window.GetDefaultLayer().Add(_visualView);
 
             /* image visual 1. */
             imageVisualMap1 = new ImageVisual();
@@ -83,6 +83,7 @@ namespace VisualViewTest
             imageVisualMap1.Origin = Visual.AlignType.TopBegin;
             imageVisualMap1.AnchorPoint = Visual.AlignType.TopBegin;
             _visualView.AddVisual("imageVisual1", imageVisualMap1);
+            imageVisualMap1.URL = resources + "/images/image-3.jpg";
 
             /* image visual 2. */
             ImageVisual imageVisualMap2 = new ImageVisual();

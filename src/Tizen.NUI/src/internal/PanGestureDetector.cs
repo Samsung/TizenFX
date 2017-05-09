@@ -28,6 +28,7 @@ namespace Tizen.NUI {
 
 using System;
 using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
 
 public class PanGestureDetector : GestureDetector {
@@ -42,7 +43,7 @@ public class PanGestureDetector : GestureDetector {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -65,18 +66,18 @@ public class PanGestureDetector : GestureDetector {
 
 public class DetectedEventArgs : EventArgs
 {
-   private Actor _actor;
+   private View _view;
    private PanGesture _panGesture;
 
-   public Actor Actor
-   {
+   public View View
+            {
       get
       {
-         return _actor;
+         return _view;
       }
       set
       {
-         _actor = value;
+         _view = value;
       }
    }
 
@@ -135,7 +136,7 @@ public class DetectedEventArgs : EventArgs
    DetectedEventArgs e = new DetectedEventArgs();
 
    // Populate all members of "e" (PanGestureEventArgs) with real data
-   e.Actor = Actor.GetActorFromPtr(actor);
+   e.View = View.GetViewFromPtr(actor);
    e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
    if (_panGestureEventHandler != null)
@@ -168,10 +169,15 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -368,7 +374,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.SCREEN_POSITION).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_POSITION).Get(  temp );
       return temp;
     }
 }  public Vector2 ScreenDisplacement
@@ -376,7 +382,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.SCREEN_DISPLACEMENT).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_DISPLACEMENT).Get(  temp );
       return temp;
     }
 }  public Vector2 ScreenVelocity
@@ -384,7 +390,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.SCREEN_VELOCITY).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_VELOCITY).Get(  temp );
       return temp;
     }
 }  public Vector2 LocalPosition
@@ -392,7 +398,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.LOCAL_POSITION).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_POSITION).Get(  temp );
       return temp;
     }
 }  public Vector2 LocalDisplacement
@@ -400,7 +406,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.LOCAL_DISPLACEMENT).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_DISPLACEMENT).Get(  temp );
       return temp;
     }
 }  public Vector2 LocalVelocity
@@ -408,7 +414,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       Vector2 temp = new Vector2(0.0f,0.0f);
-      GetProperty( PanGestureDetector.Property.LOCAL_VELOCITY).Get(  temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_VELOCITY).Get(  temp );
       return temp;
     }
 }  public bool Panning
@@ -416,7 +422,7 @@ public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.Int
     get
     {
       bool temp = false;
-      GetProperty( PanGestureDetector.Property.PANNING).Get( ref temp );
+      Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.PANNING).Get( ref temp );
       return temp;
     }
 }

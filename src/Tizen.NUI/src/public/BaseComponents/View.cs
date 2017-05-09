@@ -23,7 +23,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
-    public class View : CustomActor
+    public class View : Animatable //CustomActor => Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -45,15 +45,15 @@ namespace Tizen.NUI.BaseComponents
 
         ~View()
         {
-            //DisposeQueue.Instance.Add(this);
+            DisposeQueue.Instance.Add(this);
 
             // Unregister this instance of view from the view registry.
             ViewRegistry.UnregisterView(this);
         }
 
-        public override void Dispose()
+        public virtual void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())//Stage=>Window
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
                 global::System.GC.SuppressFinalize(this);
-                base.Dispose();
+                //base.Dispose();
             }
         }
 
@@ -489,101 +489,206 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        private EventHandler _onStageEventHandler;
+        private EventHandler _onWindowEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void OnStageEventCallbackType(IntPtr control);
-        private OnStageEventCallbackType _onStageEventCallback;
+        private delegate void OnWindowEventCallbackType(IntPtr control);
+        private OnWindowEventCallbackType _onWindowEventCallback;
 
         /// <summary>
-        /// Event for OnStage signal which can be used to subscribe/unsubscribe the event handler.<br>
-        /// OnStage signal is emitted after the view has been connected to the stage.<br>
+        /// Event for OnWindow signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// OnWindow signal is emitted after the view has been connected to the Window.<br>
         /// </summary>
-        public event EventHandler OnStageEvent
+        public event EventHandler OnWindowEvent
         {
             add
             {
-                if (_onStageEventHandler == null)
+                if (_onWindowEventHandler == null)
                 {
-                    _onStageEventCallback = OnStage;
-                    this.OnStageSignal().Connect(_onStageEventCallback);
+                    _onWindowEventCallback = OnWindow;
+                    this.OnWindowSignal().Connect(_onWindowEventCallback);
                 }
 
-                _onStageEventHandler += value;
+                _onWindowEventHandler += value;
             }
 
             remove
             {
-                _onStageEventHandler -= value;
+                _onWindowEventHandler -= value;
 
-                if (_onStageEventHandler == null && OnStageSignal().Empty() == false)
+                if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
                 {
-                    this.OnStageSignal().Disconnect(_onStageEventCallback);
+                    this.OnWindowSignal().Disconnect(_onWindowEventCallback);
                 }
             }
         }
 
-        // Callback for View OnStage signal
-        private void OnStage(IntPtr data)
+        // Callback for View OnWindow signal
+        private void OnWindow(IntPtr data)
         {
-            if (_onStageEventHandler != null)
+            if (_onWindowEventHandler != null)
             {
-                _onStageEventHandler(this, null);
+                _onWindowEventHandler(this, null);
             }
         }
 
 
-        private EventHandler _offStageEventHandler;
+        private EventHandler _offWindowEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void OffStageEventCallbackType(IntPtr control);
-        private OffStageEventCallbackType _offStageEventCallback;
+        private delegate void OffWindowEventCallbackType(IntPtr control);
+        private OffWindowEventCallbackType _offWindowEventCallback;
 
         /// <summary>
-        /// Event for OffStage signal which can be used to subscribe/unsubscribe the event handler.<br>
-        /// OffStage signal is emitted after the view has been disconnected from the stage.<br>
+        /// Event for OffWindow signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// OffWindow signal is emitted after the view has been disconnected from the Window.<br>
         /// </summary>
-        public event EventHandler OffStageEvent
+        public event EventHandler OffWindowEvent
         {
             add
             {
-                if (_offStageEventHandler == null)
+                if (_offWindowEventHandler == null)
                 {
-                    _offStageEventCallback = OffStage;
-                    this.OffStageSignal().Connect(_offStageEventCallback);
+                    _offWindowEventCallback = OffWindow;
+                    this.OffWindowSignal().Connect(_offWindowEventCallback);
                 }
 
-                _offStageEventHandler += value;
+                _offWindowEventHandler += value;
             }
 
             remove
             {
-                _offStageEventHandler -= value;
+                _offWindowEventHandler -= value;
 
-                if (_offStageEventHandler == null && OffStageSignal().Empty() == false)
+                if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
                 {
-                    this.OffStageSignal().Disconnect(_offStageEventCallback);
+                    this.OffWindowSignal().Disconnect(_offWindowEventCallback);
                 }
             }
         }
 
-        // Callback for View OffStage signal
-        private void OffStage(IntPtr data)
+        // Callback for View OffWindow signal
+        private void OffWindow(IntPtr data)
         {
-            if (_offStageEventHandler != null)
+            if (_offWindowEventHandler != null)
             {
-                _offStageEventHandler(this, null);
+                _offWindowEventHandler(this, null);
             }
         }
 
+        /// <summary>
+        /// Event arguments of visibility changed.
+        /// </summary>
+        public class VisibilityChangedEventArgs : EventArgs
+        {
+            private View _view;
+            private bool _visibility;
+            private VisibilityChangeType _type;
 
+            /// <summary>
+            /// The view, or child of view, whose visibility has changed.
+            /// </summary>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
 
+            /// <summary>
+            /// Whether the view is now visible or not.
+            /// </summary>
+            public bool Visibility
+            {
+                get
+                {
+                    return _visibility;
+                }
+                set
+                {
+                    _visibility = value;
+                }
+            }
 
+            /// <summary>
+            /// Whether the view's visible property has changed or a parent's.
+            /// </summary>
+            public VisibilityChangeType Type
+            {
+                get
+                {
+                    return _type;
+                }
+                set
+                {
+                    _type = value;
+                }
+            }
+        }
 
+        private EventHandler<VisibilityChangedEventArgs> _visibilityChangedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
+        private VisibilityChangedEventCallbackType _visibilityChangedEventCallback;
+
+        /// <summary>
+        /// Event for visibility change which can be used to subscribe/unsubscribe the event handler.<br>
+        /// This signal is emitted when the visible property of this or a parent view is changed.<br>
+        /// </summary>
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
+        {
+            add
+            {
+                if (_visibilityChangedEventHandler == null)
+                {
+                    _visibilityChangedEventCallback = OnVisibilityChanged;
+                    VisibilityChangedSignal(this).Connect(_visibilityChangedEventCallback);
+                }
+
+                _visibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                _visibilityChangedEventHandler -= value;
+
+                if (_visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
+                {
+                    VisibilityChangedSignal(this).Disconnect(_visibilityChangedEventCallback);
+                }
+            }
+        }
+
+        // Callback for View visibility change signal
+        private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
+        {
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
+            if (data != null)
+            {
+                e.View = View.GetViewFromPtr(data);
+            }
+            e.Visibility = visibility;
+            e.Type = type;
+
+            if (_visibilityChangedEventHandler != null)
+            {
+                _visibilityChangedEventHandler(this, e);
+            }
+        }
 
         internal static View GetViewFromPtr(global::System.IntPtr cPtr)
         {
             View ret = new View(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal IntPtr GetPtrfromView()
+        {
+            return (IntPtr)swigCPtr;
         }
 
         internal class Property : global::System.IDisposable
@@ -604,11 +709,16 @@ namespace Tizen.NUI.BaseComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -627,10 +737,10 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TOOLTIP = NDalicManualPINVOKE.View_Property_TOOLTIP_get();
             internal static readonly int STATE = NDalicManualPINVOKE.View_Property_STATE_get();
             internal static readonly int SUB_STATE = NDalicManualPINVOKE.View_Property_SUB_STATE_get();
-            internal static readonly int LEFT_FOCUSABLE_ACTOR_ID = NDalicManualPINVOKE.View_Property_LEFT_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int RIGHT_FOCUSABLE_ACTOR_ID = NDalicManualPINVOKE.View_Property_RIGHT_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int UP_FOCUSABLE_ACTOR_ID = NDalicManualPINVOKE.View_Property_UP_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int DOWN_FOCUSABLE_ACTOR_ID = NDalicManualPINVOKE.View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
+            internal static readonly int LEFT_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_LEFT_FOCUSABLE_ACTOR_ID_get();
+            internal static readonly int RIGHT_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_RIGHT_FOCUSABLE_ACTOR_ID_get();
+            internal static readonly int UP_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_UP_FOCUSABLE_ACTOR_ID_get();
+            internal static readonly int DOWN_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
 
             internal Property() : this(NDalicPINVOKE.new_View_Property(), true)
             {
@@ -642,7 +752,64 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int BACKGROUND_IMAGE = NDalicPINVOKE.View_Property_BACKGROUND_IMAGE_get();
             internal static readonly int KEY_INPUT_FOCUS = NDalicPINVOKE.View_Property_KEY_INPUT_FOCUS_get();
             internal static readonly int BACKGROUND = NDalicPINVOKE.View_Property_BACKGROUND_get();
-
+            internal static readonly int SIBLING_ORDER = NDalicManualPINVOKE.Actor_Property_SIBLING_ORDER_get();
+            internal static readonly int OPACITY = NDalicManualPINVOKE.Actor_Property_OPACITY_get();
+            internal static readonly int SCREEN_POSITION = NDalicManualPINVOKE.Actor_Property_SCREEN_POSITION_get();
+            internal static readonly int POSITION_USES_ANCHOR_POINT = NDalicManualPINVOKE.Actor_Property_POSITION_USES_ANCHOR_POINT_get();
+            internal static readonly int PARENT_ORIGIN = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_get();
+            internal static readonly int PARENT_ORIGIN_X = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_X_get();
+            internal static readonly int PARENT_ORIGIN_Y = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_Y_get();
+            internal static readonly int PARENT_ORIGIN_Z = NDalicPINVOKE.Actor_Property_PARENT_ORIGIN_Z_get();
+            internal static readonly int ANCHOR_POINT = NDalicPINVOKE.Actor_Property_ANCHOR_POINT_get();
+            internal static readonly int ANCHOR_POINT_X = NDalicPINVOKE.Actor_Property_ANCHOR_POINT_X_get();
+            internal static readonly int ANCHOR_POINT_Y = NDalicPINVOKE.Actor_Property_ANCHOR_POINT_Y_get();
+            internal static readonly int ANCHOR_POINT_Z = NDalicPINVOKE.Actor_Property_ANCHOR_POINT_Z_get();
+            internal static readonly int SIZE = NDalicPINVOKE.Actor_Property_SIZE_get();
+            internal static readonly int SIZE_WIDTH = NDalicPINVOKE.Actor_Property_SIZE_WIDTH_get();
+            internal static readonly int SIZE_HEIGHT = NDalicPINVOKE.Actor_Property_SIZE_HEIGHT_get();
+            internal static readonly int SIZE_DEPTH = NDalicPINVOKE.Actor_Property_SIZE_DEPTH_get();
+            internal static readonly int POSITION = NDalicPINVOKE.Actor_Property_POSITION_get();
+            internal static readonly int POSITION_X = NDalicPINVOKE.Actor_Property_POSITION_X_get();
+            internal static readonly int POSITION_Y = NDalicPINVOKE.Actor_Property_POSITION_Y_get();
+            internal static readonly int POSITION_Z = NDalicPINVOKE.Actor_Property_POSITION_Z_get();
+            internal static readonly int WORLD_POSITION = NDalicPINVOKE.Actor_Property_WORLD_POSITION_get();
+            internal static readonly int WORLD_POSITION_X = NDalicPINVOKE.Actor_Property_WORLD_POSITION_X_get();
+            internal static readonly int WORLD_POSITION_Y = NDalicPINVOKE.Actor_Property_WORLD_POSITION_Y_get();
+            internal static readonly int WORLD_POSITION_Z = NDalicPINVOKE.Actor_Property_WORLD_POSITION_Z_get();
+            internal static readonly int ORIENTATION = NDalicPINVOKE.Actor_Property_ORIENTATION_get();
+            internal static readonly int WORLD_ORIENTATION = NDalicPINVOKE.Actor_Property_WORLD_ORIENTATION_get();
+            internal static readonly int SCALE = NDalicPINVOKE.Actor_Property_SCALE_get();
+            internal static readonly int SCALE_X = NDalicPINVOKE.Actor_Property_SCALE_X_get();
+            internal static readonly int SCALE_Y = NDalicPINVOKE.Actor_Property_SCALE_Y_get();
+            internal static readonly int SCALE_Z = NDalicPINVOKE.Actor_Property_SCALE_Z_get();
+            internal static readonly int WORLD_SCALE = NDalicPINVOKE.Actor_Property_WORLD_SCALE_get();
+            internal static readonly int VISIBLE = NDalicPINVOKE.Actor_Property_VISIBLE_get();
+            internal static readonly int COLOR = NDalicPINVOKE.Actor_Property_COLOR_get();
+            internal static readonly int COLOR_RED = NDalicPINVOKE.Actor_Property_COLOR_RED_get();
+            internal static readonly int COLOR_GREEN = NDalicPINVOKE.Actor_Property_COLOR_GREEN_get();
+            internal static readonly int COLOR_BLUE = NDalicPINVOKE.Actor_Property_COLOR_BLUE_get();
+            internal static readonly int COLOR_ALPHA = NDalicPINVOKE.Actor_Property_COLOR_ALPHA_get();
+            internal static readonly int WORLD_COLOR = NDalicPINVOKE.Actor_Property_WORLD_COLOR_get();
+            internal static readonly int WORLD_MATRIX = NDalicPINVOKE.Actor_Property_WORLD_MATRIX_get();
+            internal static readonly int NAME = NDalicPINVOKE.Actor_Property_NAME_get();
+            internal static readonly int SENSITIVE = NDalicPINVOKE.Actor_Property_SENSITIVE_get();
+            internal static readonly int LEAVE_REQUIRED = NDalicPINVOKE.Actor_Property_LEAVE_REQUIRED_get();
+            internal static readonly int INHERIT_ORIENTATION = NDalicPINVOKE.Actor_Property_INHERIT_ORIENTATION_get();
+            internal static readonly int INHERIT_SCALE = NDalicPINVOKE.Actor_Property_INHERIT_SCALE_get();
+            internal static readonly int COLOR_MODE = NDalicPINVOKE.Actor_Property_COLOR_MODE_get();
+            internal static readonly int POSITION_INHERITANCE = NDalicPINVOKE.Actor_Property_POSITION_INHERITANCE_get();
+            internal static readonly int DRAW_MODE = NDalicPINVOKE.Actor_Property_DRAW_MODE_get();
+            internal static readonly int SIZE_MODE_FACTOR = NDalicPINVOKE.Actor_Property_SIZE_MODE_FACTOR_get();
+            internal static readonly int WIDTH_RESIZE_POLICY = NDalicPINVOKE.Actor_Property_WIDTH_RESIZE_POLICY_get();
+            internal static readonly int HEIGHT_RESIZE_POLICY = NDalicPINVOKE.Actor_Property_HEIGHT_RESIZE_POLICY_get();
+            internal static readonly int SIZE_SCALE_POLICY = NDalicPINVOKE.Actor_Property_SIZE_SCALE_POLICY_get();
+            internal static readonly int WIDTH_FOR_HEIGHT = NDalicPINVOKE.Actor_Property_WIDTH_FOR_HEIGHT_get();
+            internal static readonly int HEIGHT_FOR_WIDTH = NDalicPINVOKE.Actor_Property_HEIGHT_FOR_WIDTH_get();
+            internal static readonly int PADDING = NDalicPINVOKE.Actor_Property_PADDING_get();
+            internal static readonly int MINIMUM_SIZE = NDalicPINVOKE.Actor_Property_MINIMUM_SIZE_get();
+            internal static readonly int MAXIMUM_SIZE = NDalicPINVOKE.Actor_Property_MAXIMUM_SIZE_get();
+            internal static readonly int INHERIT_POSITION = NDalicPINVOKE.Actor_Property_INHERIT_POSITION_get();
+            internal static readonly int CLIPPING_MODE = NDalicPINVOKE.Actor_Property_CLIPPING_MODE_get();
         }
 
 
@@ -697,28 +864,28 @@ namespace Tizen.NUI.BaseComponents
         /// Downcasts a handle to class which inherit View handle.
         /// </summary>
         /// <typeparam name="T">Class which inherit View</typeparam>
-        /// <param name="actor">Actor to an object</param>
+        /// <param name="view">View to an object</param>
         /// <returns>A object which inherit View</returns>
-        public static T DownCast<T>(Actor actor) where T : View
+        public static T DownCast<T>(View view) where T : View
         {
-            return (T)(ViewRegistry.GetViewFromActor(actor));
+            return (T)(ViewRegistry.GetViewFromActor(view));
         }
 
         private View ConvertIdToView(uint id)
         {
-            Actor actor = null;
+            View view = null;
 
             if (Parent)
             {
-                actor = Parent.FindChildById(id);
+                view = Parent.FindChildById(id);
             }
 
-            if (!actor)
+            if (!view)
             {
-                actor = Stage.Instance.GetRootLayer().FindChildById(id);
+                view = Window.Instance.GetRootLayer().FindChildById(id);
             }
 
-            return View.DownCast<View>(actor);
+            return view;
         }
 
         internal void SetKeyInputFocus()
@@ -1076,59 +1243,59 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private int LeftFocusableActorId
+        private int LeftFocusableViewId
         {
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.LEFT_FOCUSABLE_ACTOR_ID).Get(ref temp);
+                GetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID).Get(ref temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.LEFT_FOCUSABLE_ACTOR_ID, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
             }
         }
 
-        private int RightFocusableActorId
+        private int RightFocusableViewId
         {
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.RIGHT_FOCUSABLE_ACTOR_ID).Get(ref temp);
+                GetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID).Get(ref temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.RIGHT_FOCUSABLE_ACTOR_ID, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
             }
         }
 
-        private int UpFocusableActorId
+        private int UpFocusableViewId
         {
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.UP_FOCUSABLE_ACTOR_ID).Get(ref temp);
+                GetProperty(View.Property.UP_FOCUSABLE_VIEW_ID).Get(ref temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.UP_FOCUSABLE_ACTOR_ID, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.UP_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
             }
         }
 
-        private int DownFocusableActorId
+        private int DownFocusableViewId
         {
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.DOWN_FOCUSABLE_ACTOR_ID).Get(ref temp);
+                GetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID).Get(ref temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.DOWN_FOCUSABLE_ACTOR_ID, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1355,88 +1522,88 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The left focusable view.<br>
         /// This will return NULL if not set.<br>
-        /// This will also return NULL if the specified left focusable view is not on stage.<br>
+        /// This will also return NULL if the specified left focusable view is not on Window.<br>
         /// </summary>
         public View LeftFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
             get
             {
-                if (LeftFocusableActorId >= 0)
+                if (LeftFocusableViewId >= 0)
                 {
-                    return ConvertIdToView((uint)LeftFocusableActorId);
+                    return ConvertIdToView((uint)LeftFocusableViewId);
                 }
                 return null;
             }
             set
             {
-                LeftFocusableActorId = (int)value.GetId();
+                LeftFocusableViewId = (int)value.GetId();
             }
         }
 
         /// <summary>
         /// The right focusable view.<br>
         /// This will return NULL if not set.<br>
-        /// This will also return NULL if the specified right focusable view is not on stage.<br>
+        /// This will also return NULL if the specified right focusable view is not on Window.<br>
         /// </summary>
         public View RightFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
             get
             {
-                if (RightFocusableActorId >= 0)
+                if (RightFocusableViewId >= 0)
                 {
-                    return ConvertIdToView((uint)RightFocusableActorId);
+                    return ConvertIdToView((uint)RightFocusableViewId);
                 }
                 return null;
             }
             set
             {
-                RightFocusableActorId = (int)value.GetId();
+                RightFocusableViewId = (int)value.GetId();
             }
         }
 
         /// <summary>
         /// The up focusable view.<br>
         /// This will return NULL if not set.<br>
-        /// This will also return NULL if the specified up focusable view is not on stage.<br>
+        /// This will also return NULL if the specified up focusable view is not on Window.<br>
         /// </summary>
         public View UpFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
             get
             {
-                if (UpFocusableActorId >= 0)
+                if (UpFocusableViewId >= 0)
                 {
-                    return ConvertIdToView((uint)UpFocusableActorId);
+                    return ConvertIdToView((uint)UpFocusableViewId);
                 }
                 return null;
             }
             set
             {
-                UpFocusableActorId = (int)value.GetId();
+                UpFocusableViewId = (int)value.GetId();
             }
         }
 
         /// <summary>
         /// The down focusable view.<br>
         /// This will return NULL if not set.<br>
-        /// This will also return NULL if the specified down focusable view is not on stage.<br>
+        /// This will also return NULL if the specified down focusable view is not on Window.<br>
         /// </summary>
         public View DownFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
             get
             {
-                if (DownFocusableActorId >= 0)
+                if (DownFocusableViewId >= 0)
                 {
-                    return ConvertIdToView((uint)DownFocusableActorId);
+                    return ConvertIdToView((uint)DownFocusableViewId);
                 }
                 return null;
             }
             set
             {
-                DownFocusableActorId = (int)value.GetId();
+                DownFocusableViewId = (int)value.GetId();
             }
         }
 
@@ -1472,6 +1639,2151 @@ namespace Tizen.NUI.BaseComponents
             /// Disabled state
             /// </summary>
             Disabled
+        }
+
+        /// <summary>
+        ///  Retrieves the position of the View.<br>
+        ///  The coordinates are relative to the View's parent.<br>
+        /// </summary>
+        public Position CurrentPosition
+        {
+            get
+            {
+                return GetCurrentPosition();
+            }
+        }
+
+        /// <summary>
+        /// Sets the size of an view for width and height.<br>
+        /// Geometry can be scaled to fit within this area.<br>
+        /// This does not interfere with the views scale factor.<br>
+        /// The views default depth is the minimum of width & height.<br>
+        /// </summary>
+        public Size2D Size2D
+        {
+            get
+            {
+                Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE).Get(temp);
+                return new Size2D(temp);
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(value)));
+            }
+        }
+
+        /// <summary>
+        ///  Retrieves the size of the View.<br>
+        ///  The coordinates are relative to the View's parent.<br>
+        /// </summary>
+        public Size CurrentSize
+        {
+            get
+            {
+                return GetCurrentSize();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the view's parent.<br>
+        /// </summary>
+        public View Parent
+        {
+            get
+            {
+                return GetParent();
+            }
+        }
+
+        public bool Visibility
+        {
+            get
+            {
+                return IsVisible();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves and sets the view's opacity.<br>
+        /// </summary>
+        public float Opacity
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.OPACITY).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Sets the position of the View for X and Y.<br>
+        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// If Position inheritance if disabled, sets the world position.<br>
+        /// </summary>
+        public Position2D Position2D
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.POSITION).Get(temp);
+                return new Position2D(temp);
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION, new Tizen.NUI.PropertyValue(new Position(value)));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves screen postion of view's.<br>
+        /// </summary>
+        public Vector2 ScreenPosition
+        {
+            get
+            {
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                GetProperty(View.Property.SCREEN_POSITION).Get(temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the anchor point should be used to determine the position of the view.
+        /// This is true by default.
+        /// </summary>
+        /// <remarks>If false, then the top-left of the view is used for the position.
+        /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
+        /// </remarks>
+        public bool PositionUsesAnchorPoint
+        {
+            get
+            {
+                bool temp = false;
+                if(this) GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                if(this) SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        public bool StateFocusEnable
+        {
+            get
+            {
+                return IsKeyboardFocusable();
+            }
+            set
+            {
+                SetKeyboardFocusable(value);
+            }
+        }
+
+        /// <summary>
+        /// Queries whether the view is connected to the Stage.<br>
+        /// When an view is connected, it will be directly or indirectly parented to the root View.<br>
+        /// </summary>
+        public bool IsOnWindow
+        {
+            get
+            {
+                return OnWindow();
+            }
+        }
+
+        /// <summary>
+        /// Gets depth in the hierarchy for the view.
+        /// </summary>
+        public int HierarchyDepth
+        {
+            get
+            {
+                return GetHierarchyDepth();
+            }
+        }
+
+        /// <summary>
+        /// Sets the sibling order of the view so depth position can be defined within the same parent.
+        /// </summary>
+        /// <remarks>
+        /// Note The initial value is 0.
+        /// Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove and LowerBelow will override the sibling order.
+        /// The values set by this Property will likely change.
+        /// </remarks>
+        public int SiblingOrder
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(View.Property.SIBLING_ORDER).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIBLING_ORDER, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Shows the View.
+        /// </summary>
+        /// <remarks>
+        /// This is an asynchronous method.
+        /// </remarks>
+        public void Show()
+        {
+            SetVisible(true);
+        }
+
+        /// <summary>
+        /// Hides the View.
+        /// </summary>
+        /// <remarks>
+        /// This is an asynchronous method.
+        /// If an view is hidden, then the view and its children will not be rendered.
+        /// This is regardless of the individual visibility of the children i.e.an view will only be rendered if all of its parents are shown.
+        /// </remarks>
+        public void Hide()
+        {
+            SetVisible(false);
+        }
+
+        /// <summary>
+        /// Raise view above the next highest level of view(s).
+        /// </summary>
+        /// <remarks>
+        /// Sibling order of views within the parent will be updated automatically.
+        /// Initially views added to a parent will have the same sibling order and shown in relation to insertion order.
+        /// Raising this view above views with the same sibling order as each other will raise this view above them.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        public void Raise()
+        {
+            NDalicPINVOKE.Raise(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Lower the view to underneath the level below view(s).
+        /// </summary>
+        /// <remarks>
+        /// Sibling order of views within the parent will be updated automatically.
+        /// Lowering this view below views with the same sibling order as each other will lower this view above them.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        public void Lower()
+        {
+            NDalicPINVOKE.Lower(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Raise view above all other views.
+        /// </summary>
+        /// <remarks>
+        /// Sibling order of views within the parent will be updated automatically.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        public void RaiseToTop()
+        {
+            NDalicPINVOKE.RaiseToTop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Lower view to the bottom of all views.
+        /// </summary>
+        /// <remarks>
+        /// Sibling order of views within the parent will be updated automatically.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        public void LowerToBottom()
+        {
+            NDalicPINVOKE.LowerToBottom(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Raise the view to above the target view.
+        /// </summary>
+        /// <remarks>Sibling order of views within the parent will be updated automatically.
+        /// Views on the level above the target view will still be shown above this view.
+        /// Raising this view above views with the same sibling order as each other will raise this view above them.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        /// <param name="target">Will be raised above this view</param>
+        internal void RaiseAbove(View target)
+        {
+            NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Lower the view to below the target view.
+        /// </summary>
+        /// <remarks>Sibling order of views within the parent will be updated automatically.
+        /// Lowering this view below views with the same sibling order as each other will lower this view above them.
+        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        /// <param name="target">Will be lowered below this view</param>
+        internal void LowerBelow(View target)
+        {
+            NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal string GetName()
+        {
+            string ret = NDalicPINVOKE.Actor_GetName(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetName(string name)
+        {
+            NDalicPINVOKE.Actor_SetName(swigCPtr, name);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetId()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetId(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool IsRoot()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsRoot(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool OnWindow()
+        {
+            bool ret = NDalicPINVOKE.Actor_OnStage(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool IsLayer()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsLayer(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Layer GetLayer()
+        {
+            Layer ret = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Adds a child view to this View.
+        /// </summary>
+        /// <pre>This View(the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
+        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
+        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this view. This may change child's position, color, scale etc as it now inherits them from this view.</remarks>
+        /// <param name="child">The child</param>
+        public void Add(View child)
+        {
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a child View from this View. If the view was not a child of this view, this is a no-op.
+        /// </summary>
+        /// <pre>This View(the parent) has been initialized. The child view is not the same as the parent view.</pre>
+        /// <param name="child">The child</param>
+        public void Remove(View child)
+        {
+            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void Unparent()
+        {
+            NDalicPINVOKE.Actor_Unparent(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the number of children held by the view.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <returns>The number of children</returns>
+        public uint GetChildCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves child view by index.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="index">The index of the child to retrieve</param>
+        /// <returns>The view for the given index or empty handle if children not initialized</returns>
+        public View GetChildAt(uint index)
+        {
+            View ret = new View(NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Search through this view's hierarchy for an view with the given name.
+        /// The view itself is also considered in the search.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="viewName">The name of the view to find</param>
+        /// <returns>A handle to the view if found, or an empty handle if not</returns>
+        public View FindChildByName(string viewName)
+        {
+            View ret = new View(NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal View FindChildById(uint id)
+        {
+            View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal View GetParent()
+        {
+            View ret = new View(NDalicPINVOKE.Actor_GetParent(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetParentOrigin(Vector3 origin)
+        {
+            NDalicPINVOKE.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector3 GetCurrentParentOrigin()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentParentOrigin(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetAnchorPoint(Vector3 anchorPoint)
+        {
+            NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector3 GetCurrentAnchorPoint()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentAnchorPoint(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetSize(float width, float height)
+        {
+            NDalicPINVOKE.Actor_SetSize__SWIG_0(swigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetSize(float width, float height, float depth)
+        {
+            NDalicPINVOKE.Actor_SetSize__SWIG_1(swigCPtr, width, height, depth);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetSize(Vector2 size)
+        {
+            NDalicPINVOKE.Actor_SetSize__SWIG_2(swigCPtr, Vector2.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetSize(Vector3 size)
+        {
+            NDalicPINVOKE.Actor_SetSize__SWIG_3(swigCPtr, Vector3.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector3 GetTargetSize()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetTargetSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Size GetCurrentSize()
+        {
+            Size ret = new Size(NDalicPINVOKE.Actor_GetCurrentSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns the natural size of the view.<br>
+        /// Deriving classes stipulate the natural size and by default an view has a ZERO natural size.<br>
+        /// </summary>
+        /// <returns>The view's natural size</returns>
+        public Vector3 GetNaturalSize()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetPosition(float x, float y)
+        {
+            NDalicPINVOKE.Actor_SetPosition__SWIG_0(swigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetPosition(float x, float y, float z)
+        {
+            NDalicPINVOKE.Actor_SetPosition__SWIG_1(swigCPtr, x, y, z);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetPosition(Vector3 position)
+        {
+            NDalicPINVOKE.Actor_SetPosition__SWIG_2(swigCPtr, Vector3.getCPtr(position));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetX(float x)
+        {
+            NDalicPINVOKE.Actor_SetX(swigCPtr, x);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetY(float y)
+        {
+            NDalicPINVOKE.Actor_SetY(swigCPtr, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetZ(float z)
+        {
+            NDalicPINVOKE.Actor_SetZ(swigCPtr, z);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void TranslateBy(Vector3 distance)
+        {
+            NDalicPINVOKE.Actor_TranslateBy(swigCPtr, Vector3.getCPtr(distance));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Position GetCurrentPosition()
+        {
+            Position ret = new Position(NDalicPINVOKE.Actor_GetCurrentPosition(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Vector3 GetCurrentWorldPosition()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentWorldPosition(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetInheritPosition(bool inherit)
+        {
+            NDalicPINVOKE.Actor_SetInheritPosition(swigCPtr, inherit);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal PositionInheritanceMode GetPositionInheritanceMode()
+        {
+            PositionInheritanceMode ret = (PositionInheritanceMode)NDalicPINVOKE.Actor_GetPositionInheritanceMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool IsPositionInherited()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsPositionInherited(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetOrientation(Degree angle, Vector3 axis)
+        {
+            NDalicPINVOKE.Actor_SetOrientation__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetOrientation(Radian angle, Vector3 axis)
+        {
+            NDalicPINVOKE.Actor_SetOrientation__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetOrientation(Rotation orientation)
+        {
+            NDalicPINVOKE.Actor_SetOrientation__SWIG_2(swigCPtr, Rotation.getCPtr(orientation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void RotateBy(Degree angle, Vector3 axis)
+        {
+            NDalicPINVOKE.Actor_RotateBy__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void RotateBy(Radian angle, Vector3 axis)
+        {
+            NDalicPINVOKE.Actor_RotateBy__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void RotateBy(Rotation relativeRotation)
+        {
+            NDalicPINVOKE.Actor_RotateBy__SWIG_2(swigCPtr, Rotation.getCPtr(relativeRotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Rotation GetCurrentOrientation()
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Actor_GetCurrentOrientation(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetInheritOrientation(bool inherit)
+        {
+            NDalicPINVOKE.Actor_SetInheritOrientation(swigCPtr, inherit);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsOrientationInherited()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsOrientationInherited(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Rotation GetCurrentWorldOrientation()
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Actor_GetCurrentWorldOrientation(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetScale(float scale)
+        {
+            NDalicPINVOKE.Actor_SetScale__SWIG_0(swigCPtr, scale);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetScale(float scaleX, float scaleY, float scaleZ)
+        {
+            NDalicPINVOKE.Actor_SetScale__SWIG_1(swigCPtr, scaleX, scaleY, scaleZ);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetScale(Vector3 scale)
+        {
+            NDalicPINVOKE.Actor_SetScale__SWIG_2(swigCPtr, Vector3.getCPtr(scale));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void ScaleBy(Vector3 relativeScale)
+        {
+            NDalicPINVOKE.Actor_ScaleBy(swigCPtr, Vector3.getCPtr(relativeScale));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector3 GetCurrentScale()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentScale(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Vector3 GetCurrentWorldScale()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetCurrentWorldScale(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetInheritScale(bool inherit)
+        {
+            NDalicPINVOKE.Actor_SetInheritScale(swigCPtr, inherit);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsScaleInherited()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsScaleInherited(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Matrix GetCurrentWorldMatrix()
+        {
+            Matrix ret = new Matrix(NDalicPINVOKE.Actor_GetCurrentWorldMatrix(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetVisible(bool visible)
+        {
+            NDalicPINVOKE.Actor_SetVisible(swigCPtr, visible);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsVisible()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsVisible(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetOpacity(float opacity)
+        {
+            NDalicPINVOKE.Actor_SetOpacity(swigCPtr, opacity);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetCurrentOpacity()
+        {
+            float ret = NDalicPINVOKE.Actor_GetCurrentOpacity(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetColor(Vector4 color)
+        {
+            NDalicPINVOKE.Actor_SetColor(swigCPtr, Vector4.getCPtr(color));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector4 GetCurrentColor()
+        {
+            Vector4 ret = new Vector4(NDalicPINVOKE.Actor_GetCurrentColor(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetColorMode(ColorMode colorMode)
+        {
+            NDalicPINVOKE.Actor_SetColorMode(swigCPtr, (int)colorMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ColorMode GetColorMode()
+        {
+            ColorMode ret = (ColorMode)NDalicPINVOKE.Actor_GetColorMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Vector4 GetCurrentWorldColor()
+        {
+            Vector4 ret = new Vector4(NDalicPINVOKE.Actor_GetCurrentWorldColor(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetDrawMode(DrawModeType drawMode)
+        {
+            NDalicPINVOKE.Actor_SetDrawMode(swigCPtr, (int)drawMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal DrawModeType GetDrawMode()
+        {
+            DrawModeType ret = (DrawModeType)NDalicPINVOKE.Actor_GetDrawMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetSensitive(bool sensitive)
+        {
+            NDalicPINVOKE.Actor_SetSensitive(swigCPtr, sensitive);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsSensitive()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsSensitive(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Converts screen coordinates into the view's coordinate system using the default camera.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <remarks>The view coordinates are relative to the top-left(0.0, 0.0, 0.5)</remarks>
+        /// <param name="localX">On return, the X-coordinate relative to the view</param>
+        /// <param name="localY">On return, the Y-coordinate relative to the view</param>
+        /// <param name="screenX">The screen X-coordinate</param>
+        /// <param name="screenY">The screen Y-coordinate</param>
+        /// <returns>True if the conversion succeeded</returns>
+        public bool ScreenToLocal(out float localX, out float localY, float screenX, float screenY)
+        {
+            bool ret = NDalicPINVOKE.Actor_ScreenToLocal(swigCPtr, out localX, out localY, screenX, screenY);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetLeaveRequired(bool required)
+        {
+            NDalicPINVOKE.Actor_SetLeaveRequired(swigCPtr, required);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool GetLeaveRequired()
+        {
+            bool ret = NDalicPINVOKE.Actor_GetLeaveRequired(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetKeyboardFocusable(bool focusable)
+        {
+            NDalicPINVOKE.Actor_SetKeyboardFocusable(swigCPtr, focusable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsKeyboardFocusable()
+        {
+            bool ret = NDalicPINVOKE.Actor_IsKeyboardFocusable(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        {
+            NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ResizePolicyType GetResizePolicy(DimensionType dimension)
+        {
+            ResizePolicyType ret = (ResizePolicyType)NDalicPINVOKE.Actor_GetResizePolicy(swigCPtr, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetSizeScalePolicy(SizeScalePolicyType policy)
+        {
+            NDalicPINVOKE.Actor_SetSizeScalePolicy(swigCPtr, (int)policy);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal SizeScalePolicyType GetSizeScalePolicy()
+        {
+            SizeScalePolicyType ret = (SizeScalePolicyType)NDalicPINVOKE.Actor_GetSizeScalePolicy(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the relative to parent size factor of the view.<br>
+        /// This factor is only used when ResizePolicy is set to either:
+        /// ResizePolicy::SIZE_RELATIVE_TO_PARENT or ResizePolicy::SIZE_FIXED_OFFSET_FROM_PARENT.<br>
+        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicy.<br>
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="factor">A Vector3 representing the relative factor to be applied to each axis</param>
+        public void SetSizeModeFactor(Vector3 factor)
+        {
+            NDalicPINVOKE.Actor_SetSizeModeFactor(swigCPtr, Vector3.getCPtr(factor));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector3 GetSizeModeFactor()
+        {
+            Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetSizeModeFactor(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the height of the view given a width.<br>
+        /// The natural size is used for default calculation. <br>
+        /// size 0 is treated as aspect ratio 1:1.<br>
+        /// </summary>
+        /// <param name="width">Width to use</param>
+        /// <returns>The height based on the width</returns>
+        public float GetHeightForWidth(float width)
+        {
+            float ret = NDalicPINVOKE.Actor_GetHeightForWidth(swigCPtr, width);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the width of the view given a height.<br>
+        /// The natural size is used for default calculation.<br>
+        /// size 0 is treated as aspect ratio 1:1.<br>
+        /// </summary>
+        /// <param name="height">Height to use</param>
+        /// <returns>The width based on the height</returns>
+        public float GetWidthForHeight(float height)
+        {
+            float ret = NDalicPINVOKE.Actor_GetWidthForHeight(swigCPtr, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public float GetRelayoutSize(DimensionType dimension)
+        {
+            float ret = NDalicPINVOKE.Actor_GetRelayoutSize(swigCPtr, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetPadding(PaddingType padding)
+        {
+            NDalicPINVOKE.Actor_SetPadding(swigCPtr, PaddingType.getCPtr(padding));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void GetPadding(PaddingType paddingOut)
+        {
+            NDalicPINVOKE.Actor_GetPadding(swigCPtr, PaddingType.getCPtr(paddingOut));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetMinimumSize(Vector2 size)
+        {
+            NDalicPINVOKE.Actor_SetMinimumSize(swigCPtr, Vector2.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector2 GetMinimumSize()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.Actor_GetMinimumSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetMaximumSize(Vector2 size)
+        {
+            NDalicPINVOKE.Actor_SetMaximumSize(swigCPtr, Vector2.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector2 GetMaximumSize()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.Actor_GetMaximumSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetHierarchyDepth()
+        {
+            int ret = NDalicPINVOKE.Actor_GetHierarchyDepth(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal uint AddRenderer(Renderer renderer)
+        {
+            uint ret = NDalicPINVOKE.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal uint GetRendererCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetRendererCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Renderer GetRendererAt(uint index)
+        {
+            Renderer ret = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void RemoveRenderer(Renderer renderer)
+        {
+            NDalicPINVOKE.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void RemoveRenderer(uint index)
+        {
+            NDalicPINVOKE.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal TouchDataSignal TouchSignal()
+        {
+            TouchDataSignal ret = new TouchDataSignal(NDalicPINVOKE.Actor_TouchSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal HoverSignal HoveredSignal()
+        {
+            HoverSignal ret = new HoverSignal(NDalicPINVOKE.Actor_HoveredSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WheelSignal WheelEventSignal()
+        {
+            WheelSignal ret = new WheelSignal(NDalicPINVOKE.Actor_WheelEventSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewSignal OnWindowSignal()
+        {
+            ViewSignal ret = new ViewSignal(NDalicPINVOKE.Actor_OnStageSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewSignal OffWindowSignal()
+        {
+            ViewSignal ret = new ViewSignal(NDalicPINVOKE.Actor_OffStageSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewSignal OnRelayoutSignal()
+        {
+            ViewSignal ret = new ViewSignal(NDalicPINVOKE.Actor_OnRelayoutSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+            ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets/Sets the origin of an view, within its parent's area.<br>
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and(1.0, 1.0, 0.5) is the bottom-right corner.<br>
+        /// The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br>
+        /// An view's position is the distance between this origin, and the view's anchor-point.<br>
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        public Position ParentOrigin
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.PARENT_ORIGIN).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PARENT_ORIGIN, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float ParentOriginX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.PARENT_ORIGIN_X).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PARENT_ORIGIN_X, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float ParentOriginY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.PARENT_ORIGIN_Y).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PARENT_ORIGIN_Y, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float ParentOriginZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.PARENT_ORIGIN_Z).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PARENT_ORIGIN_Z, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the anchor-point of an view.<br>
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
+        /// The default anchor point is AnchorPoint.Center (0.5, 0.5, 0.5).<br>
+        /// An view position is the distance between its parent-origin and this anchor-point.<br>
+        /// An view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
+        /// <pre>The View has been initialized.</pre>
+        /// </summary>
+        public Position AnchorPoint
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.ANCHOR_POINT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float AnchorPointX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.ANCHOR_POINT_X).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT_X, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float AnchorPointY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.ANCHOR_POINT_Y).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT_Y, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        internal float AnchorPointZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.ANCHOR_POINT_Z).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT_Z, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the size of an view.<br>
+        /// Geometry can be scaled to fit within this area.<br>
+        /// This does not interfere with the views scale factor.<br>
+        /// </summary>
+        public Size Size
+        {
+            get
+            {
+                Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the size width of an view.
+        /// </summary>
+        public float SizeWidth
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SIZE_WIDTH).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the size height of an view.
+        /// </summary>
+        public float SizeHeight
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SIZE_HEIGHT).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the size depth of an view.
+        /// </summary>
+        public float SizeDepth
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SIZE_DEPTH).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the position of the View.<br>
+        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// If Position inheritance if disabled, sets the world position.<br>
+        /// </summary>
+        public Position Position
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.POSITION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the position x of the View.
+        /// </summary>
+        public float PositionX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.POSITION_X).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_X, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the position y of the View.
+        /// </summary>
+        public float PositionY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.POSITION_Y).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_Y, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the position z of the View.
+        /// </summary>
+        public float PositionZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.POSITION_Z).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_Z, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the world position of the View.
+        /// </summary>
+        public Vector3 WorldPosition
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WORLD_POSITION).Get(temp);
+                return temp;
+            }
+        }
+
+        internal float WorldPositionX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_X).Get(ref temp);
+                return temp;
+            }
+        }
+
+        internal float WorldPositionY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_Y).Get(ref temp);
+                return temp;
+            }
+        }
+
+        internal float WorldPositionZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_Z).Get(ref temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the orientation of the View.<br>
+        /// An view's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br>
+        /// </summary>
+        /// <remarks>This is an asynchronous method.</remarks>
+        public Rotation Orientation
+        {
+            get
+            {
+                Rotation temp = new Rotation();
+                GetProperty(View.Property.ORIENTATION).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ORIENTATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the world orientation of the View.<br>
+        /// </summary>
+        public Rotation WorldOrientation
+        {
+            get
+            {
+                Rotation temp = new Rotation();
+                GetProperty(View.Property.WORLD_ORIENTATION).Get(temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the scale factor applied to an view.<br>
+        /// </summary>
+        public Vector3 Scale
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SCALE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SCALE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the scale x factor applied to an view.
+        /// </summary>
+        public float ScaleX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SCALE_X).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SCALE_X, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the scale y factor applied to an view.
+        /// </summary>
+        public float ScaleY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SCALE_Y).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SCALE_Y, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the scale z factor applied to an view.
+        /// </summary>
+        public float ScaleZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.SCALE_Z).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SCALE_Z, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets the world scale of View.
+        /// </summary>
+        public Vector3 WorldScale
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WORLD_SCALE).Get(temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the visibility flag of an view.
+        /// </summary>
+        /// <remarks>
+        /// If an view is not visible, then the view and its children will not be rendered.
+        /// This is regardless of the individual visibility values of the children i.e.an view will only be rendered if all of its parents have visibility set to true.
+        /// </remarks>
+        public bool Visible
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.VISIBLE).Get(ref temp);
+                return temp;
+            }/* only get is required : removed
+            set
+            {
+                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
+            }*/
+        }
+
+        /// <summary>
+        /// Gets/Sets the view's mix color red.
+        /// </summary>
+        public float ColorRed
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.COLOR_RED).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.COLOR_RED, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the view's mix color green.
+        /// </summary>
+        public float ColorGreen
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.COLOR_GREEN).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.COLOR_GREEN, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the view's mix color blue
+        /// </summary>
+        public float ColorBlue
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.COLOR_BLUE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.COLOR_BLUE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the view's mix color alpha.
+        /// </summary>
+        public float ColorAlpha
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.COLOR_ALPHA).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.COLOR_ALPHA, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets the view's world color.
+        /// </summary>
+        public Vector4 WorldColor
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WORLD_COLOR).Get(temp);
+                return temp;
+            }
+        }
+
+        internal Matrix WorldMatrix
+        {
+            get
+            {
+                Matrix temp = new Matrix();
+                GetProperty(View.Property.WORLD_MATRIX).Get(temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the View's name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                string temp;
+                GetProperty(View.Property.NAME).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.NAME, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the status of whether an view should emit touch or hover signals.
+        /// </summary>
+        public bool Sensitive
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.SENSITIVE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SENSITIVE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the status of whether the view should receive a notification when touch or hover motion events leave the boundary of the view.
+        /// </summary>
+        public bool LeaveRequired
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.LEAVE_REQUIRED).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.LEAVE_REQUIRED, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the status of whether a child view inherits it's parent's orientation.
+        /// </summary>
+        public bool InheritOrientation
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.INHERIT_ORIENTATION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.INHERIT_ORIENTATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the status of whether a child view inherits it's parent's scale.
+        /// </summary>
+        public bool InheritScale
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.INHERIT_SCALE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.INHERIT_SCALE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the view's color mode.<br>
+        /// This specifies whether the View uses its own color, or inherits its parent color.<br>
+        /// The default is UseOwnMultiplyParentAlpha.<br>
+        /// </summary>
+        public ColorMode ColorMode
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.COLOR_MODE).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "ColorMode get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "USE_OWN_COLOR":
+                    return ColorMode.UseOwnColor;
+                    case "USE_PARENT_COLOR":
+                    return ColorMode.UseParentColor;
+                    case "USE_OWN_MULTIPLY_PARENT_COLOR":
+                    return ColorMode.UseOwnMultiplyParentColor;
+                    case "USE_OWN_MULTIPLY_PARENT_ALPHA":
+                    return ColorMode.UseOwnMultiplyParentAlpha;
+                    default:
+                    return ColorMode.UseOwnMultiplyParentAlpha;
+                }
+            }
+            set
+            {
+                SetProperty(View.Property.COLOR_MODE, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        public string PositionInheritance
+        {
+            get
+            {
+                string temp;
+                GetProperty(View.Property.POSITION_INHERITANCE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_INHERITANCE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the status of how the view and its children should be drawn.<br>
+        /// Not all views are renderable, but DrawMode can be inherited from any view.<br>
+        /// If an object is in a 3D layer, it will be depth-tested against other objects in the world i.e. it may be obscured if other objects are in front.<br>
+        /// If DrawMode.Overlay2D is used, the view and its children will be drawn as a 2D overlay.<br>
+        /// Overlay views are drawn in a separate pass, after all non-overlay views within the Layer.<br>
+        /// For overlay views, the drawing order is with respect to tree levels of Views, and depth-testing will not be used.<br>
+        /// </summary>
+        public DrawModeType DrawMode
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.DRAW_MODE).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "DrawMode get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "NORMAL":
+                    return DrawModeType.Normal;
+                    case "OVERLAY_2D":
+                    return DrawModeType.Overlay2D;
+                    case "STENCIL":
+                    return DrawModeType.Stencil;
+                    default:
+                    return DrawModeType.Normal;
+                }
+            }
+            set
+            {
+                SetProperty(View.Property.DRAW_MODE, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the relative to parent size factor of the view.<br>
+        /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br>
+        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br>
+        /// </summary>
+        public Vector3 SizeModeFactor
+        {
+            get
+            {
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE_MODE_FACTOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE_MODE_FACTOR, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the width resize policy to be used.
+        /// </summary>
+        public ResizePolicyType WidthResizePolicy
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.WIDTH_RESIZE_POLICY).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "WidthResizePolicy get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "FIXED":
+                        return ResizePolicyType.Fixed;
+                    case "USE_NATURAL_SIZE":
+                        return ResizePolicyType.UseNaturalSize;
+                    case "FILL_TO_PARENT":
+                        return ResizePolicyType.FillToParent;
+                    case "SIZE_RELATIVE_TO_PARENT":
+                        return ResizePolicyType.SizeRelativeToParent;
+                    case "SIZE_FIXED_OFFSET_FROM_PARENT":
+                        return ResizePolicyType.SizeFixedOffsetFromParent;
+                    case "FIT_TO_CHILDREN":
+                        return ResizePolicyType.FitToChildren;
+                    case "DIMENSION_DEPENDENCY":
+                        return ResizePolicyType.DimensionDependency;
+                    case "USE_ASSIGNED_SIZE":
+                        return ResizePolicyType.UseAssignedSize;
+                    default:
+                        return ResizePolicyType.Fixed;
+                }
+            }
+            set
+            {
+                SetProperty(View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the height resize policy to be used.
+        /// </summary>
+        public ResizePolicyType HeightResizePolicy
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.HEIGHT_RESIZE_POLICY).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "HeightResizePolicy get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "FIXED":
+                        return ResizePolicyType.Fixed;
+                    case "USE_NATURAL_SIZE":
+                        return ResizePolicyType.UseNaturalSize;
+                    case "FILL_TO_PARENT":
+                        return ResizePolicyType.FillToParent;
+                    case "SIZE_RELATIVE_TO_PARENT":
+                        return ResizePolicyType.SizeRelativeToParent;
+                    case "SIZE_FIXED_OFFSET_FROM_PARENT":
+                        return ResizePolicyType.SizeFixedOffsetFromParent;
+                    case "FIT_TO_CHILDREN":
+                        return ResizePolicyType.FitToChildren;
+                    case "DIMENSION_DEPENDENCY":
+                        return ResizePolicyType.DimensionDependency;
+                    case "USE_ASSIGNED_SIZE":
+                        return ResizePolicyType.UseAssignedSize;
+                    default:
+                        return ResizePolicyType.Fixed;
+                }
+            }
+            set
+            {
+                SetProperty(View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the policy to use when setting size with size negotiation.<br>
+        /// Defaults to  SizeScalePolicyType.UseSizeSet.<br>
+        /// </summary>
+        public SizeScalePolicyType SizeScalePolicy
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "SizeScalePolicy get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "USE_SIZE_SET":
+                        return SizeScalePolicyType.UseSizeSet;
+                    case "FIT_WITH_ASPECT_RATIO":
+                        return SizeScalePolicyType.FitWithAspectRatio;
+                    case "FILL_WITH_ASPECT_RATIO":
+                        return SizeScalePolicyType.FillWithAspectRatio;
+                    default:
+                        return SizeScalePolicyType.UseSizeSet;
+                }
+            }
+            set
+            {
+                string valueToString = "";
+                switch (value)
+                {
+                    case SizeScalePolicyType.UseSizeSet:
+                        {
+                            valueToString = "USE_SIZE_SET";
+                            break;
+                        }
+                    case SizeScalePolicyType.FitWithAspectRatio:
+                        {
+                            valueToString = "FIT_WITH_ASPECT_RATIO";
+                            break;
+                        }
+                    case SizeScalePolicyType.FillWithAspectRatio:
+                        {
+                            valueToString = "FILL_WITH_ASPECT_RATIO";
+                            break;
+                        }
+                    default:
+                        {
+                            valueToString = "USE_SIZE_SET";
+                            break;
+                        }
+                }
+                SetProperty(View.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
+            }
+        }
+
+        /// <summary>
+        ///  Gets/Sets the status of whether the width size is dependent on height size.
+        /// </summary>
+        public bool WidthForHeight
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.WIDTH_FOR_HEIGHT).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.WIDTH_FOR_HEIGHT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        ///  Gets/Sets the status of whether the height size is dependent on width size.
+        /// </summary>
+        public bool HeightForWidth
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.HEIGHT_FOR_WIDTH).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.HEIGHT_FOR_WIDTH, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the padding for use in layout.
+        /// </summary>
+        public Vector4 Padding
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.PADDING).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the minimum size an view can be assigned in size negotiation.
+        /// </summary>
+        public Size2D MinimumSize
+        {
+            get
+            {
+                Size2D temp = new Size2D(0, 0);
+                GetProperty(View.Property.MINIMUM_SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets the maximum size an view can be assigned in size negotiation.
+        /// </summary>
+        public Size2D MaximumSize
+        {
+            get
+            {
+                Size2D temp = new Size2D(0, 0);
+                GetProperty(View.Property.MAXIMUM_SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets whether a child view inherits it's parent's position.<br>
+        /// Default is to inherit.<br>
+        /// Switching this off means that using Position sets the view's world position, i.e. translates from the world origin(0,0,0) to the anchor point of the view.<br>
+        /// </summary>
+        public bool InheritPosition
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.INHERIT_POSITION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.INHERIT_POSITION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets clipping behavior(mode) of it's children.
+        /// </summary>
+        public ClippingModeType ClippingMode
+        {
+            get
+            {
+                string temp;
+                if (GetProperty(View.Property.CLIPPING_MODE).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "ClippingMode get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "DISABLED":
+                    return ClippingModeType.Disabled;
+                    case "CLIP_CHILDREN":
+                    return ClippingModeType.ClipChildren;
+                    default:
+                    return ClippingModeType.Disabled;
+                }
+            }
+            set
+            {
+                SetProperty(View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
+            }
         }
     }
 

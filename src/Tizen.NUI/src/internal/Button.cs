@@ -55,7 +55,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -508,11 +508,16 @@ namespace Tizen.NUI.UIComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -653,9 +658,9 @@ namespace Tizen.NUI.UIComponents
             return ret;
         }
 
-        internal void SetLabel(Actor label)
+        internal void SetLabel(View label)
         {
-            NDalicPINVOKE.Button_SetLabel(swigCPtr, Actor.getCPtr(label));
+            NDalicPINVOKE.Button_SetLabel(swigCPtr, View.getCPtr(label));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -671,16 +676,16 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Actor GetButtonImage()
+        internal View GetButtonImage()
         {
-            Actor ret = new Actor(NDalicPINVOKE.Button_GetButtonImage(swigCPtr), true);
+            View ret = new View(NDalicPINVOKE.Button_GetButtonImage(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Actor GetSelectedImage()
+        internal View GetSelectedImage()
         {
-            Actor ret = new Actor(NDalicPINVOKE.Button_GetSelectedImage(swigCPtr), true);
+            View ret = new View(NDalicPINVOKE.Button_GetSelectedImage(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

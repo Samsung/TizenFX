@@ -26,7 +26,7 @@
 
 namespace Tizen.NUI {
 
-    internal class LinearConstrainer : Handle
+    internal class LinearConstrainer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -39,7 +39,7 @@ namespace Tizen.NUI {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -72,10 +72,15 @@ namespace Tizen.NUI {
     }
   
     ~Property() {
-      Dispose();
+      DisposeQueue.Instance.Add(this);
     }
   
     public virtual void Dispose() {
+      if (!Window.IsInstalled()) {
+        DisposeQueue.Instance.Add(this);
+        return;
+      }
+
       lock(this) {
         if (swigCPtr.Handle != global::System.IntPtr.Zero) {
           if (swigCMemOwn) {
@@ -129,9 +134,9 @@ namespace Tizen.NUI {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-        internal void Remove(Handle target)
+        internal void Remove(Animatable target)
         {
-            NDalicPINVOKE.LinearConstrainer_Remove(swigCPtr, Handle.getCPtr(target));
+            NDalicPINVOKE.LinearConstrainer_Remove(swigCPtr, Animatable.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -140,12 +145,12 @@ namespace Tizen.NUI {
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(LinearConstrainer.Property.VALUE).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, LinearConstrainer.Property.VALUE).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(LinearConstrainer.Property.VALUE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, LinearConstrainer.Property.VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
         public PropertyArray Progress
@@ -153,12 +158,12 @@ namespace Tizen.NUI {
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(LinearConstrainer.Property.PROGRESS).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, LinearConstrainer.Property.PROGRESS).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(LinearConstrainer.Property.PROGRESS, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, LinearConstrainer.Property.PROGRESS, new Tizen.NUI.PropertyValue(value));
             }
         }
 

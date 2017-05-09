@@ -25,7 +25,7 @@
 //------------------------------------------------------------------------------
 
 namespace Tizen.NUI {
-
+    using Tizen.NUI.BaseComponents;
     internal class ScrollViewPagePathEffect : ScrollViewEffect {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -38,7 +38,7 @@ namespace Tizen.NUI {
   }
 
   public override void Dispose() {
-    if (!Stage.IsInstalled()) {
+    if (!Window.IsInstalled()) {
       DisposeQueue.Instance.Add(this);
       return;
     }
@@ -67,8 +67,8 @@ namespace Tizen.NUI {
     return ret;
   }
 
-  public void ApplyToPage(Actor page, uint pageOrder) {
-    NDalicPINVOKE.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, Actor.getCPtr(page), pageOrder);
+  public void ApplyToPage(View page, uint pageOrder) {
+    NDalicPINVOKE.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

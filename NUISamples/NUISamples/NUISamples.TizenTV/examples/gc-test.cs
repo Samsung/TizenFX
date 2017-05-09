@@ -19,7 +19,7 @@ namespace TizenVDUIApplication19
         {
             base.OnCreate();
 
-            Stage.Instance.BackgroundColor = Color.White;
+            Window.Instance.BackgroundColor = Color.White;
 
             myViewList = new List<View>();
 
@@ -37,7 +37,7 @@ namespace TizenVDUIApplication19
 
                 myViewList.Add(v);
 
-                Stage.Instance.GetDefaultLayer().Add(v);
+                Window.Instance.GetDefaultLayer().Add(v);
             }
 
             myTimer = new Timer(1000);
@@ -52,7 +52,7 @@ namespace TizenVDUIApplication19
             //Remove current Scene,
             foreach (View v in myViewList)
             {
-                Stage.Instance.GetDefaultLayer().Remove(v);
+                Window.Instance.GetDefaultLayer().Remove(v);
             }
 
             myViewList.Clear();
@@ -74,7 +74,7 @@ namespace TizenVDUIApplication19
 
                 myViewList.Add(v);
 
-                Stage.Instance.GetDefaultLayer().Add(v);
+                Window.Instance.GetDefaultLayer().Add(v);
             }
 
             return true;

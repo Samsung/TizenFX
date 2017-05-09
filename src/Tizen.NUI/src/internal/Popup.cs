@@ -50,7 +50,7 @@ namespace Tizen.NUI.UIComponents
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -333,11 +333,16 @@ namespace Tizen.NUI.UIComponents
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -420,15 +425,15 @@ namespace Tizen.NUI.UIComponents
         /// Sets a title for this Popup.
         /// </summary>
         /// <param name="titleActor">The actor to set a title</param>
-        public void SetTitle(Actor titleActor)
+        public void SetTitle(View titleView)
         {
-            NDalicPINVOKE.Popup_SetTitle(swigCPtr, Actor.getCPtr(titleActor));
+            NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Actor GetTitle()
+        internal View GetTitle()
         {
-            Actor ret = new Actor(NDalicPINVOKE.Popup_GetTitle(swigCPtr), true);
+            View ret = new View(NDalicPINVOKE.Popup_GetTitle(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -437,15 +442,15 @@ namespace Tizen.NUI.UIComponents
         /// Sets the content actor.
         /// </summary>
         /// <param name="content">The actor to use</param>
-        public void SetContent(Actor content)
+        public void SetContent(View content)
         {
-            NDalicPINVOKE.Popup_SetContent(swigCPtr, Actor.getCPtr(content));
+            NDalicPINVOKE.Popup_SetContent(swigCPtr, View.getCPtr(content));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Actor GetContent()
+        internal View GetContent()
         {
-            Actor ret = new Actor(NDalicPINVOKE.Popup_GetContent(swigCPtr), true);
+            View ret = new View(NDalicPINVOKE.Popup_GetContent(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -454,15 +459,15 @@ namespace Tizen.NUI.UIComponents
         /// Sets the actor to use for a footer in this Popup.
         /// </summary>
         /// <param name="footer">The footer actor to be added to this Popup</param>
-        public void SetFooter(Actor footer)
+        public void SetFooter(View footer)
         {
-            NDalicPINVOKE.Popup_SetFooter(swigCPtr, Actor.getCPtr(footer));
+            NDalicPINVOKE.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Actor GetFooter()
+        internal View GetFooter()
         {
-            Actor ret = new Actor(NDalicPINVOKE.Popup_GetFooter(swigCPtr), true);
+            View ret = new View(NDalicPINVOKE.Popup_GetFooter(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

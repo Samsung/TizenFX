@@ -21,7 +21,6 @@ using Tizen.NUI;
 using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
-using Tizen.NUI.Extension.Test;
 
 namespace HelloWorldTest
 {
@@ -52,10 +51,10 @@ namespace HelloWorldTest
 
         public void Initialize()
         {
-            Stage stage = Stage.Instance;
-            stage.BackgroundColor = Color.White;
-            stage.Touch += OnStageTouched;
-            stage.Key += OnStageKeyEvent;
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnWindowKeyEvent;
 
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
@@ -63,7 +62,7 @@ namespace HelloWorldTest
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
-            stage.GetDefaultLayer().Add(_text);
+            window.GetDefaultLayer().Add(_text);
 
             _view = new View();
             _view.Size = new Size(100, 100, 100);
@@ -83,12 +82,6 @@ namespace HelloWorldTest
 
             _view.SizeWidth = 50;
             Tizen.Log.Debug("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
-
-            ActorTest _actorExt = new ActorTest();
-            Actor _actor1 = _actorExt.CreateActor();
-            if(_actor1) Tizen.Log.Debug("NUI", "FriendAssembly Test _actor1 name = " + _actor1.Name);
-            else Tizen.Log.Debug("NUI", "FriendAssembly Test _actor1 is NULL!");
-
         }
 
         public void AnimationFinished(object sender, EventArgs e)
@@ -102,7 +95,7 @@ namespace HelloWorldTest
             Tizen.Log.Debug("NUI", "[3]_view SizeWidth=" + _view.SizeWidth);
         }
 
-        public void OnStageKeyEvent(object sender, Stage.KeyEventArgs e)
+        public void OnWindowKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
             {
@@ -127,7 +120,7 @@ namespace HelloWorldTest
             }
         }
 
-        public void OnStageTouched(object sender, Stage.TouchEventArgs e)
+        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
             {

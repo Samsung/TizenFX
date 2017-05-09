@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Size is to use the actor's natural size
         /// </summary>
-        /// <see cref="Actor.GetNaturalSize"/>
+        /// <see cref="View.GetNaturalSize"/>
         UseNaturalSize,
         /// <summary>
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.

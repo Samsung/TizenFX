@@ -72,7 +72,7 @@ namespace Tizen.NUI.BaseComponents
 
             // Set the StyleName the name of the View
             // We have to do this because the StyleManager on Native side can't workout it out
-            // This will also ensure that the style of actors/visuals initialized above are applied by the style manager.
+            // This will also ensure that the style of views/visuals initialized above are applied by the style manager.
             SetStyleName(this.GetType().Name);
         }
 
@@ -107,7 +107,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets whether this control supports two dimensional keyboard navigation
-        /// (i.e. whether it knows how to handle the keyboard focus movement between its child actors).<br>
+        /// (i.e. whether it knows how to handle the keyboard focus movement between its child views).<br>
         /// The control doesn't support it by default.<br>
         /// </summary>
         /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
@@ -156,7 +156,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets whether this control is a focus group for keyboard navigation.
-        /// (i.e. the scope of keyboard focus movement can be limitied to its child actors). The control is not a focus group by default.
+        /// (i.e. the scope of keyboard focus movement can be limitied to its child views). The control is not a focus group by default.
         /// </summary>
         /// <param name="isFocusGroup">Whether this control is set as a focus group for keyboard navigation</param>
         internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
@@ -199,7 +199,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Request a relayout, which means performing a size negotiation on this actor, its parent and children (and potentially whole scene).<br>
+        /// Request a relayout, which means performing a size negotiation on this view, its parent and children (and potentially whole scene).<br>
         /// This method can also be called from a derived class every time it needs a different size.<br>
         /// At the end of event processing, the relayout process starts and all controls which requested Relayout will have their sizes (re)negotiated.<br>
         /// It can be called multiple times; the size negotiation is still only performed once, i.e. there is no need to keep track of this in the calling side.<br>
@@ -210,7 +210,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Provides the Actor implementation of GetHeightForWidth.
+        /// Provides the View implementation of GetHeightForWidth.
         /// <summary>
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
@@ -220,7 +220,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Provides the Actor implementation of GetWidthForHeight.
+        /// Provides the View implementation of GetWidthForHeight.
         /// </summary>
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the height</returns>
@@ -230,38 +230,38 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Calculate the size for a child using the base actor object.
+        /// Calculate the size for a child using the base view object.
         /// </summary>
-        /// <param name="child">The child actor to calculate the size for</param>
+        /// <param name="child">The child view to calculate the size for</param>
         /// <param name="dimension">The dimension to calculate the size for. E.g. width or height</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found</returns>
-        protected float CalculateChildSizeBase(Actor child, DimensionType dimension)
+        protected float CalculateChildSizeBase(View child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
 
         /// <summary>
-        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// Determine if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for</param>
-        /// <returns>Return if the actor is dependent on it's children</returns>
+        /// <returns>Return if the view is dependent on it's children</returns>
         protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
         /// <summary>
-        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// Determine if this view is dependent on it's children for relayout from the base class.
         /// </summary>
-        /// <returns>Return if the actor is dependent on it's children</returns>
+        /// <returns>Return if the view is dependent on it's children</returns>
         protected bool RelayoutDependentOnChildrenBase()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
         }
 
         /// <summary>
-        /// Register a visual by Property Index, linking an Actor to visual when required.<br>
-        /// In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.<br>
+        /// Register a visual by Property Index, linking an View to visual when required.<br>
+        /// In the case of the visual being an view or control deeming visual not required then visual should be an empty handle.<br>
         /// No parenting is done during registration, this should be done by derived class.<br>
         /// </summary>
         /// <param name="index">The Property index of the visual, used to reference visual</param>
@@ -272,8 +272,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Register a visual by Property Index, linking an Actor to visual when required.<br>
-        /// In the case of the visual being an actor or control deeming visual not required then visual should be an empty handle.<br>
+        /// Register a visual by Property Index, linking an View to visual when required.<br>
+        /// In the case of the visual being an view or control deeming visual not required then visual should be an empty handle.<br>
         /// If enabled is false then the visual is not set on stage until enabled by the derived class.<br>
         /// </summary>
         /// <param name="index">The Property index of the visual, used to reference visual</param>
@@ -355,43 +355,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after the actor has been connected to the stage.<br>
-        /// When an actor is connected, it will be directly or indirectly parented to the root Actor.<br>
-        /// The root Actor is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
-        /// When the parent of a set of actors is connected to the stage, then all of the children will received this callback.<br>
+        /// Called after the view has been connected to the stage.<br>
+        /// When an view is connected, it will be directly or indirectly parented to the root View.<br>
+        /// The root View is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
+        /// When the parent of a set of views is connected to the stage, then all of the children will received this callback.<br>
         /// </summary>
-        /// <param name="depth">The depth in the hierarchy for the actor</param>
+        /// <param name="depth">The depth in the hierarchy for the view</param>
         public virtual void OnStageConnection(int depth)
         {
         }
 
         /// <summary>
-        /// Called after the actor has been disconnected from Stage.<br>
-        /// If an actor is disconnected it either has no parent, or is parented to a disconnected actor.<br>
-        /// When the parent of a set of actors is disconnected to the stage, then all of the children will received this callback, starting with the leaf actors.<br>
+        /// Called after the view has been disconnected from Stage.<br>
+        /// If an view is disconnected it either has no parent, or is parented to a disconnected view.<br>
+        /// When the parent of a set of views is disconnected to the stage, then all of the children will received this callback, starting with the leaf views.<br>
         /// </summary>
         public virtual void OnStageDisconnection()
         {
         }
 
         /// <summary>
-        /// Called after a child has been added to the owning actor.
+        /// Called after a child has been added to the owning view.
         /// </summary>
-        /// <param name="actor">The child which has been added</param>
-        public virtual void OnChildAdd(Actor actor)
+        /// <param name="view">The child which has been added</param>
+        public virtual void OnChildAdd(View view)
         {
         }
 
         /// <summary>
-        /// Called after the owning actor has attempted to remove a child( regardless of whether it succeeded or not ).
+        /// Called after the owning view has attempted to remove a child( regardless of whether it succeeded or not ).
         /// </summary>
-        /// <param name="actor">The child being removed</param>
-        public virtual void OnChildRemove(Actor actor)
+        /// <param name="view">The child being removed</param>
+        public virtual void OnChildRemove(View view)
         {
         }
 
         /// <summary>
-        /// Called when the owning actor property is set.
+        /// Called when the owning view property is set.
         /// </summary>
         /// <param name="index">The Property index that was set</param>
         /// <param name="propertyValue">The value to set</param>
@@ -400,24 +400,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called when the owning actor's size is set e.g. using Actor.SetSize().
+        /// Called when the owning view's size is set e.g. using View.SetSize().
         /// </summary>
-        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via Actor.GetTargetSize</param>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via View.GetTargetSize</param>
         public virtual void OnSizeSet(Vector3 targetSize)
         {
         }
 
         /// <summary>
-        /// Called when the owning actor's size is animated e.g. using Animation::AnimateTo( Property( actor, Actor::Property::SIZE ), ... ).
+        /// Called when the owning view's size is animated e.g. using Animation::AnimateTo( Property( view, View::Property::SIZE ), ... ).
         /// </summary>
-        /// <param name="animation">The object which is animating the owning actor</param>
-        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via @ref Actor.GetTargetSize</param>
+        /// <param name="animation">The object which is animating the owning view</param>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via @ref View.GetTargetSize</param>
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
         }
 
         /// <summary>
-        /// Called after a touch-event is received by the owning actor.<br>
+        /// Called after a touch-event is received by the owning view.<br>
         /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
         /// </summary>
         /// <param name="touch">The touch event</param>
@@ -428,7 +428,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a hover-event is received by the owning actor.<br>
+        /// Called after a hover-event is received by the owning view.<br>
         /// CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
         /// </summary>
         /// <param name="hover">The hover event</param>
@@ -439,7 +439,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a key-event is received by the actor that has had its focus set.
+        /// Called after a key-event is received by the view that has had its focus set.
         /// </summary>
         /// <param name="key">The key event</param>
         /// <returns>True if the key event should be consumed</returns>
@@ -449,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a wheel-event is received by the owning actor.<br>
+        /// Called after a wheel-event is received by the owning view.<br>
         /// CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
         /// </summary>
         /// <param name="wheel">The wheel event</param>
@@ -462,11 +462,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called after the size negotiation has been finished for this control.<br>
         /// The control is expected to assign this given size to itself/its children.<br>
-        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.<br>
+        /// Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize or after changing specific properties.<br>
         /// As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br>
         /// </summary>
         /// <param name="size">The allocated size</param>
-        /// <param name="container">The control should add actors to this container that it is not able to allocate a size for</param>
+        /// <param name="container">The control should add views to this container that it is not able to allocate a size for</param>
         public virtual void OnRelayout(Vector2 size, RelayoutContainer container)
         {
         }
@@ -481,9 +481,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Return the natural size of the actor.
+        /// Return the natural size of the view.
         /// </summary>
-        /// <returns>The actor's natural size</returns>
+        /// <returns>The view's natural size</returns>
         public virtual Size GetNaturalSize()
         {
             return new Size(0.0f, 0.0f, 0.0f);
@@ -492,10 +492,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Calculate the size for a child.
         /// </summary>
-        /// <param name="child">The child actor to calculate the size for</param>
+        /// <param name="child">The child view to calculate the size for</param>
         /// <param name="dimension">The dimension to calculate the size for. E.g. width or height</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
-        public virtual float CalculateChildSize(Actor child, DimensionType dimension)
+        public virtual float CalculateChildSize(View child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
         }
@@ -523,19 +523,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Determine if this actor is dependent on it's children for relayout.
+        /// Determine if this view is dependent on it's children for relayout.
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for</param>
-        /// <returns>Return if the actor is dependent on it's children</returns>
+        /// <returns>Return if the view is dependent on it's children</returns>
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
         }
 
         /// <summary>
-        /// Determine if this actor is dependent on it's children for relayout from the base class.
+        /// Determine if this view is dependent on it's children for relayout from the base class.
         /// </summary>
-        /// <returns>Return true if the actor is dependent on it's children</returns>
+        /// <returns>Return true if the view is dependent on it's children</returns>
         public virtual bool RelayoutDependentOnChildren()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
@@ -632,23 +632,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the next keyboard focusable actor in this control towards the given direction.<br>
+        /// Gets the next keyboard focusable view in this control towards the given direction.<br>
         /// A control needs to override this function in order to support two dimensional keyboard navigation.<br>
         /// </summary>
-        /// <param name="currentFocusedView">The current focused actor</param>
+        /// <param name="currentFocusedView">The current focused view</param>
         /// <param name="direction">The direction to move the focus towards</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control</param>
-        /// <returns>the next keyboard focusable actor in this control or an empty handle if no actor can be focused</returns>
+        /// <returns>the next keyboard focusable view in this control or an empty handle if no view can be focused</returns>
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             return new View();
         }
 
         /// <summary>
-        /// Informs this control that its chosen focusable actor will be focused.<br>
-        /// This allows the application to preform any actions if wishes before the focus is actually moved to the chosen actor.<br>
+        /// Informs this control that its chosen focusable view will be focused.<br>
+        /// This allows the application to preform any actions if wishes before the focus is actually moved to the chosen view.<br>
         /// </summary>
-        /// <param name="commitedFocusableView">The commited focused actor</param>
+        /// <param name="commitedFocusableView">The commited focused view</param>
         public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
         }
@@ -707,11 +707,11 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        private void OnControlChildAdd(Actor child)
+        private void OnControlChildAdd(View child)
         {
         }
 
-        private void OnControlChildRemove(Actor child)
+        private void OnControlChildRemove(View child)
         {
         }
     }

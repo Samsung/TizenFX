@@ -35,7 +35,7 @@ namespace HelloTest
     {
         private Animation _animation;
         private TextLabel _text;
-        private Stage _stage;
+        private Window _window;
 
         public Example():base()
         {
@@ -57,18 +57,18 @@ namespace HelloTest
 
         private void Initialize()
         {
-            // Connect the signal callback for stage touched signal
-            _stage = Stage.Instance;
-            _stage.Touch += OnStageTouched;
+            // Connect the signal callback for window touched signal
+            _window = Window.Instance;
+            _window.TouchEvent += OnWindowTouched;
 
-            // Add a _text label to the stage
+            // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
 
-            _stage.GetDefaultLayer().Add(_text);
+            _window.GetDefaultLayer().Add(_text);
         }
 
         // Callback for _animation finished signal handling
@@ -81,8 +81,8 @@ namespace HelloTest
             }
         }
 
-        // Callback for stage touched signal handling
-        private void OnStageTouched(object sender, Stage.TouchEventArgs e)
+        // Callback for window touched signal handling
+        private void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)

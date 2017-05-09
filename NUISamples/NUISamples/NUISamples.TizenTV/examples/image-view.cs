@@ -38,7 +38,7 @@ namespace ImageViewTest
         private bool _isAniFinised = true;
         private Layer layer, _layer1, _layer2;
         private PushButton _pushButton1, _pushButton2;
-        private Stage stage;
+        private Window window;
 
         public Example() : base()
         {
@@ -61,29 +61,36 @@ namespace ImageViewTest
         public void Initialize()
         {
             Log("Customized Application Initialize event handler");
-            stage = Stage.Instance;
-            stage.BackgroundColor = Color.Cyan;
-            stage.Touch += OnStageTouched;
-            stage.Wheel += OnStageWheelMoved;
-            stage.Key += OnStageKeyPressed;
-            //stage.EventProcessingFinished += OnStageEventProcessingFinished;
+            window = Window.Instance;
+            window.BackgroundColor = Color.Cyan;
+            window.TouchEvent += OnWindowTouched;
+            window.WheelEvent += OnWindowWheelMoved;
+            window.KeyEvent += OnWindowKeyPressed;
+            //window.EventProcessingFinished += OnWindowEventProcessingFinished;
 
-            layer = stage.GetDefaultLayer();
+            layer = window.GetDefaultLayer();
             _layer1 = new Layer();
             _layer2 = new Layer();
-            stage.AddLayer(_layer1);
-            stage.AddLayer(_layer2);
+            window.AddLayer(_layer1);
+            window.AddLayer(_layer2);
             Log("_layer1.Behavior =" + _layer1.Behavior);
             if (_layer1.Behavior == Layer.LayerBehavior.LayerUI)
             {
                 _layer1.Behavior = Layer.LayerBehavior.Layer2D;
                 Log("again _layer1.Behavior =" + _layer1.Behavior);
             }
-            // Add a ImageView to the stage
+            // Add a ImageView to the window
+            // PropertyMap map = new PropertyMap();
+            // map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+            // map.Add(NpatchImageVisualProperty.URL, new PropertyValue(resources+"/images/00_popup_bg.9.png"));
+            // map.Add(NpatchImageVisualProperty.Border, new PropertyValue(new Rectangle(100, 100, 100, 100)));
             _imageView = new ImageView();
-            _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
-            _imageView.ParentOrigin = ParentOrigin.Center;
-            _imageView.AnchorPoint = AnchorPoint.Center;
+            //_imageView.ImageMap = map;
+            _imageView.ResourceUrl = resources+"/images/00_popup_bg.9.png";
+            //_imageView.Border = new Rectangle(100, 100, 100, 100);
+            _imageView.ParentOrigin = ParentOrigin.TopLeft;
+            _imageView.AnchorPoint = AnchorPoint.TopLeft;
+            _imageView.Position = new Position(5.0f, 5.0f, 0.0f);
             _imageView.PixelArea = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
             //_imageView.SetResizePolicy(ResizePolicyType.USE_NATURAL_SIZE, DimensionType.ALL_DIMENSIONS);
             layer.Add(_imageView);
@@ -92,7 +99,7 @@ namespace ImageViewTest
             _pushButton1.ParentOrigin = ParentOrigin.BottomLeft;
             _pushButton1.AnchorPoint = AnchorPoint.BottomLeft;
             _pushButton1.LabelText = "start animation";
-            _pushButton1.Position = new Vector3(0.0f, stage.Size.Height * 0.1f, 0.0f);
+            _pushButton1.Position = new Vector3(0.0f, window.Size.Height * 0.1f, 0.0f);
             _pushButton1.Clicked += OnPushButtonClicked1;
             _layer1.Add(_pushButton1);
 
@@ -100,9 +107,20 @@ namespace ImageViewTest
             _pushButton2.ParentOrigin = ParentOrigin.BottomLeft;
             _pushButton2.AnchorPoint = AnchorPoint.BottomLeft;
             _pushButton2.LabelText = "reload image with same URL";
-            _pushButton2.Position = new Vector3(0.0f, stage.Size.Height * 0.2f, 0.0f);
+            _pushButton2.Position = new Vector3(0.0f, window.Size.Height * 0.2f, 0.0f);
             _pushButton2.Clicked += OnPushButtonClicked2;
             _layer2.Add(_pushButton2);
+
+            PropertyMap _map = new PropertyMap();
+            _map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+            _map.Add(NpatchImageVisualProperty.URL, new PropertyValue(resources+"/images/00_popup_bg.9.png"));
+            _map.Add(NpatchImageVisualProperty.Border, new PropertyValue(new Rectangle(100, 100, 100, 100)));
+            ImageView nPatchImage = new ImageView();
+            nPatchImage.ParentOrigin = ParentOrigin.BottomLeft;
+            nPatchImage.AnchorPoint = AnchorPoint.BottomLeft;
+            nPatchImage.Size = new Size(300.0f, 512.0f, 0.0f);
+            nPatchImage.ImageMap = _map;
+            layer.Add(nPatchImage);
 
         }
 
@@ -146,8 +164,8 @@ namespace ImageViewTest
 
                 KeyFrames _keyFrames = new KeyFrames();
                 _keyFrames.Add(0.0f, new Size(0.0f, 0.0f, 0.0f));
-                _keyFrames.Add(0.3f, new Size(stage.Size.Width * 0.7f, stage.Size.Height * 0.7f, 0.0f));
-                _keyFrames.Add(1.0f, new Size(stage.Size));
+                _keyFrames.Add(0.3f, new Size(window.Size.Width * 0.7f, window.Size.Height * 0.7f, 0.0f));
+                _keyFrames.Add(1.0f, new Size(window.Size));
                 _animation.AnimateBetween(_imageView, "Size", _keyFrames, 4000, 6000, Animation.Interpolation.Linear);
 
                 _animation.EndAction = Animation.EndActions.Discard;
@@ -181,33 +199,33 @@ namespace ImageViewTest
             }
         }
 
-        public void OnStageEventProcessingFinished(object sender, EventArgs e)
+        public void OnWindowEventProcessingFinished(object sender, EventArgs e)
         {
-            Log("OnStageEventProcessingFinished()!");
+            Log("OnWindowEventProcessingFinished()!");
             if (e != null)
             {
                 Log("e != null !");
             }
         }
 
-        public void OnStageKeyPressed(object sender, Stage.KeyEventArgs e)
+        public void OnWindowKeyPressed(object sender, Window.KeyEventArgs e)
         {
-            Log("OnStageKeyEventOccured()!");
+            Log("OnWindowKeyEventOccured()!");
             Log("keyPressedName=" + e.Key.KeyPressedName);
             Log("state=" + e.Key.State);
         }
 
-        public void OnStageWheelMoved(object sender, Stage.WheelEventArgs e)
+        public void OnWindowWheelMoved(object sender, Window.WheelEventArgs e)
         {
-            Log("OnStageWheelEventOccured()!");
+            Log("OnWindowWheelEventOccured()!");
             Log("direction=" + e.Wheel.Direction);
             Log("type=" + e.Wheel.Type);
         }
 
-        // Callback for stage touched signal handling
-        public void OnStageTouched(object sender, Stage.TouchEventArgs e)
+        // Callback for window touched signal handling
+        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
-            Log("OnStageTouched()! e.TouchData.GetState(0)=" + e.Touch.GetState(0));
+            Log("OnWindowTouched()! e.TouchData.GetState(0)=" + e.Touch.GetState(0));
         }
 
         /// <summary>

@@ -10,7 +10,7 @@
 
 namespace Tizen.NUI
 {
-
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Hover events are a collection of points at a specific moment in time.<br>
     /// When a multi event occurs, each point represents the points that are currently being
@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         public virtual void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -110,30 +110,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the actor that was underneath the point specified.
+        /// Retrieves the view that was underneath the point specified.
         /// </summary>
         /// <param name="point">The point required</param>
-        /// <returns>The actor that was underneath the point specified</returns>
-        public Actor GetHitActor(uint point)
+        /// <returns>The view that was underneath the point specified</returns>
+        public View GetHitView(uint point)
         {
             if (point < points.Count)
             {
-                return points[(int)point].hitActor;
+                return points[(int)point].hitView;
             }
             else
             {
                 // Return a native empty handle
-                Actor actor = new Actor();
-                actor.Reset();
-                return actor;
+                View view = new View();
+                view.Reset();
+                return view;
             }
         }
 
         /// <summary>
-        /// Retrieves the co-ordinates relative to the top-left of the hit-actor at the point specified.
+        /// Retrieves the co-ordinates relative to the top-left of the hit-view at the point specified.
         /// </summary>
         /// <param name="point">The point required</param>
-        /// <returns>The co-ordinates relative to the top-left of the hit-actor of the point specified</returns>
+        /// <returns>The co-ordinates relative to the top-left of the hit-view of the point specified</returns>
         public Vector2 GetLocalPosition(uint point)
         {
             if (point < points.Count)

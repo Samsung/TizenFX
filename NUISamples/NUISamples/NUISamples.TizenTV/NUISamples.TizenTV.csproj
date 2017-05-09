@@ -81,12 +81,6 @@
     <Compile Include="examples\visuals-using-custom-view\ContactData.cs" />
     <Compile Include="examples\visuals-using-custom-view\ContactView.cs" />
     <Compile Include="examples\visuals-using-custom-view\visuals-using-custom-view.cs" />
-    <Compile Include="firstscreen\App.cs" />
-    <Compile Include="firstscreen\Constants.cs" />
-    <Compile Include="firstscreen\FocusData.cs" />
-    <Compile Include="firstscreen\FocusEffect.cs" />
-    <Compile Include="firstscreen\IFocusEffect.cs" />
-    <Compile Include="firstscreen\ScrollContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,10 +90,6 @@
     <ProjectReference Include="..\..\..\Tizen.NUI\Tizen.NUI.csproj">
       <Project>{f03a3b48-9d9b-4bf3-92ce-bd63cadc3cd3}</Project>
       <Name>Tizen.NUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tizen.NUI.Extension.Test\Tizen.NUI.Extension.Test.csproj">
-      <Project>{2def21e8-80d1-43b6-9e93-aef1d1be169b}</Project>
-      <Name>Tizen.NUI.Extension.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\NUISamples\NUISamples-dummy.csproj">
       <Project>{56ca3b27-c662-4ac8-93ca-7acef926b2aa}</Project>

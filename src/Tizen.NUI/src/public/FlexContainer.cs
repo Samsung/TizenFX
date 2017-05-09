@@ -50,7 +50,7 @@ namespace Tizen.NUI
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -91,11 +91,16 @@ namespace Tizen.NUI
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -146,11 +151,16 @@ namespace Tizen.NUI
 
             ~ChildProperty()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -219,7 +229,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Enumeration for the primary direction in which content is ordered in the flex container
-        /// and on which sides the ?œstart??and ?œend??are.
+        /// and on which sides the ?ï¿½start??and ?ï¿½end??are.
         /// </summary>
         public enum ContentDirectionType
         {

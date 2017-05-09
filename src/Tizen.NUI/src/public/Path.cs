@@ -31,7 +31,7 @@ namespace Tizen.NUI
     /// A 3D parametric curve.<br>
     /// Paths can be used to animate position and orientation of actors.<br>
     /// </summary> 
-    public class Path : Handle
+    public class Path : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,7 +47,7 @@ namespace Tizen.NUI
 
         public override void Dispose()
         {
-            if (!Stage.IsInstalled())
+            if (!Window.IsInstalled())
             {
                 DisposeQueue.Instance.Add(this);
                 return;
@@ -88,11 +88,16 @@ namespace Tizen.NUI
 
             ~Property()
             {
-                Dispose();
+                DisposeQueue.Instance.Add(this);
             }
 
             public virtual void Dispose()
             {
+                if (!Window.IsInstalled()) {
+                    DisposeQueue.Instance.Add(this);
+                    return;
+                }
+
                 lock (this)
                 {
                     if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -239,12 +244,12 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(Path.Property.POINTS).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.POINTS).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -256,12 +261,12 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(Path.Property.CONTROL_POINTS).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.CONTROL_POINTS).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(Path.Property.CONTROL_POINTS, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.CONTROL_POINTS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
