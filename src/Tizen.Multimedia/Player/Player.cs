@@ -62,17 +62,6 @@ namespace Tizen.Multimedia
         private Interop.Player.PlaybackErrorCallback _playbackErrorCallback;
 
         /// <summary>
-        /// Occurs when a video frame is decoded
-        /// </summary>
-        /// <remarks>
-        ///     <para>The event handler will be executed on an internal thread.</para>
-        ///     <para>The <see cref="VideoFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
-        /// </remarks>
-        /// <see cref="VideoFrameDecodedEventArgs.Packet"/>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded;
-        private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
-
-        /// <summary>
         /// Occurs when the video stream changed.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
@@ -117,10 +106,15 @@ namespace Tizen.Multimedia
 
             RetrieveProperties();
 
-            AudioEffect = new AudioEffect(this);
-            DisplaySettings = new PlayerDisplaySettings(this);
+            if (Features.IsSupported(Features.AudioEffect))
+            {
+                _audioEffect = new AudioEffect(this);
+            }
 
-            RegisterVideoFrameDecodedCallback();
+            if (Features.IsSupported(Features.RawVideo))
+            {
+                RegisterVideoFrameDecodedCallback();
+            }
         }
 
         private void RetrieveProperties()
@@ -490,10 +484,25 @@ namespace Tizen.Multimedia
             }
         }
 
+        private readonly AudioEffect _audioEffect;
+
         /// <summary>
-        /// Gets audio effect.
+        /// Gets the audio effect.
         /// </summary>
-        public AudioEffect AudioEffect { get; }
+        /// <feature>http://tizen.org/feature/multimedia.custom_audio_effect</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        public AudioEffect AudioEffect
+        {
+            get
+            {
+                if (_audioEffect == null)
+                {
+                    throw new NotSupportedException($"The feature({Features.AudioEffect}) is not supported.");
+                }
+
+                return _audioEffect;
+            }
+        }
 
         #endregion
 
@@ -927,12 +936,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Captures a video frame asynchronously.
         /// </summary>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public async Task<CapturedFrame> CaptureVideoAsync()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
+
+            ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
             TaskCompletionSource<CapturedFrame> t = new TaskCompletionSource<CapturedFrame>();
@@ -1156,11 +1170,43 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Failed to set PlaybackError");
         }
 
+        #region VideoFrameDecoded event
+
+        private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
+
+        private Interop.Player.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+
+        /// <summary>
+        /// Occurs when a video frame is decoded
+        /// </summary>
+        /// <remarks>
+        ///     <para>The event handler will be executed on an internal thread.</para>
+        ///     <para>The <see cref="VideoFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
+        /// </remarks>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
+        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
+        {
+            add
+            {
+                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+
+                _videoFrameDecoded += value;
+            }
+            remove
+            {
+                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+
+                _videoFrameDecoded -= value;
+            }
+        }
+
         private void RegisterVideoFrameDecodedCallback()
         {
             _videoFrameDecodedCallback = (packetHandle, _) =>
             {
-                var handler = VideoFrameDecoded;
+                var handler = _videoFrameDecoded;
                 if (handler != null)
                 {
                     Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
@@ -1176,6 +1222,7 @@ namespace Tizen.Multimedia
             Interop.Player.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
                 ThrowIfFailed("Failed to register the VideoFrameDecoded");
         }
+        #endregion
 
         private void RegisterVideoStreamChangedCallback()
         {
