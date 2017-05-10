@@ -62,7 +62,7 @@ namespace Tizen.Pims.Contacts
 
         /// <summary>
         /// Creates a ContactsManager.
-        /// </summary>        
+        /// </summary>
         public ContactsManager()
         {
             int error = Interop.Contacts.Connect();
@@ -97,6 +97,10 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ContactsManager.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -115,38 +119,44 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    _displayOrderDelegate = (ContactDisplayOrder nameDisplayOrder, IntPtr userData) =>
+                    if (_displayOrderDelegate == null)
                     {
-                        NameDisplayOrderChangedEventArgs args = new NameDisplayOrderChangedEventArgs(nameDisplayOrder);
-                        _nameDisplayOrderChanged?.Invoke(this, args);
-                    };
-                    int error = Interop.Setting.AddNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
-                    {
-                        Log.Error(Globals.LogTag, "Add NameDisplayOrderChangedCB Failed with error " + error);
+                        _displayOrderDelegate = (ContactDisplayOrder nameDisplayOrder, IntPtr userData) =>
+                        {
+                            NameDisplayOrderChangedEventArgs args = new NameDisplayOrderChangedEventArgs(nameDisplayOrder);
+                            _nameDisplayOrderChanged?.Invoke(this, args);
+                        };
                     }
-                    else
-                    {
-                        _nameDisplayOrderChanged += value;
-                    }
-                }
 
+                    if (_nameDisplayOrderChanged == null)
+                    {
+                        int error = Interop.Setting.AddNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Add NameDisplayOrderChangedCB Failed with error " + error);
+                        }
+                    }
+
+                    _nameDisplayOrderChanged += value;
+                }
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    int error = Interop.Setting.RemoveNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
-                    {
-                        Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
-                    }
-
                     _nameDisplayOrderChanged -= value;
+
+                    if (_nameDisplayOrderChanged == null)
+                    {
+                        int error = Interop.Setting.RemoveNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
-
         }
 
         /// <summary>
@@ -158,38 +168,44 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    _sortingOrderDelegate = (ContactSortingOrder nameSortingOrder, IntPtr userData) =>
+                    if (_sortingOrderDelegate == null)
                     {
-                        NameSortingOrderChangedEventArgs args = new NameSortingOrderChangedEventArgs(nameSortingOrder);
-                        _nameSortingOrderChanged?.Invoke(this, args);
-                    };
-                    int error = Interop.Setting.AddNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
-                    {
-                        Log.Error(Globals.LogTag, "Add NameSortingOrderChangedCB Failed with error " + error);
+                        _sortingOrderDelegate = (ContactSortingOrder nameSortingOrder, IntPtr userData) =>
+                        {
+                            NameSortingOrderChangedEventArgs args = new NameSortingOrderChangedEventArgs(nameSortingOrder);
+                            _nameSortingOrderChanged?.Invoke(this, args);
+                        };
                     }
-                    else
-                    {
-                        _nameSortingOrderChanged += value;
-                    }
-                }
 
+                    if (_nameSortingOrderChanged == null)
+                    {
+                        int error = Interop.Setting.AddNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Add NameSortingOrderChangedCB Failed with error " + error);
+                        }
+                    }
+
+                    _nameSortingOrderChanged += value;
+                }
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    int error = Interop.Setting.RemoveNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
-                    {
-                        Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
-                    }
-
                     _nameSortingOrderChanged -= value;
+
+                    if (_nameSortingOrderChanged == null)
+                    {
+                        int error = Interop.Setting.RemoveNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
-
         }
 
         /// <summary>
