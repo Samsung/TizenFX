@@ -241,6 +241,7 @@ namespace Tizen.System
         /// <typeparam name="T">The generic type to validate.</typeparam>
         /// <param name="key">The runtime information key for which the status type is validated </param>
         /// <returns>true if the data type matches</returns>.
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
         public static bool Is<T>(RuntimeInformationKey key)
         {
             if (!s_keyDataTypeMapping.ContainsKey(key))
@@ -259,14 +260,18 @@ namespace Tizen.System
         /// <typeparam name="T">The generic type to return.</typeparam>
         /// <param name="key">The runtime information key for which the current should be read </param>
         /// <returns>The current status of the given key</returns>.
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid or I/O error is occurred while reading from system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature related <paramref name="key"/> is not supported.</exception>
         public static T GetStatus<T>(RuntimeInformationKey key)
         {
             return (T)GetStatus(key);
         }
 
         /// <summary>
-        /// The System memory information
+        /// Gets system memory information
         /// </summary>
+        /// <returns>The system memory information structure.</returns>
+        /// <exception cref="ArgumentException">Thrown when I/O error is occurred while reading from system.</exception>
         public static SystemMemoryInformation GetSystemMemoryInformation()
         {
             Interop.RuntimeInfo.MemoryInfo info = new Interop.RuntimeInfo.MemoryInfo();
@@ -285,6 +290,10 @@ namespace Tizen.System
         /// </summary>
         /// <param name="pid">List of unique process ids </param>
         /// <returns>List of memory information per processes</returns>
+        /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is empty or I/O error is occurred while reading from system or requesting to resource management daemon.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when caller doesn't have a privilege to use this method.</exception>
         public static IDictionary<int, ProcessMemoryInformation> GetProcessMemoryInformation(IEnumerable<int> pid)
         {
             int[] processArray = pid.ToArray<int>();
@@ -309,8 +318,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The CPU runtime
+        /// Gets system CPU usage time
         /// </summary>
+        /// <returns>The system CPU usage time structure.</returns>
+        /// <exception cref="ArgumentException">Thrown when I/O error is occurred while reading from system.</exception>
         public static CpuUsage GetCpuUsage()
         {
             Interop.RuntimeInfo.CpuUsage usage = new Interop.RuntimeInfo.CpuUsage();
@@ -324,10 +335,14 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The CPU run time per process
+        /// Gets the CPU usage time per process
         /// </summary>
         /// <param name="pid">List of unique process ids </param>
         /// <returns>List of CPU usage information per processes</returns>
+        /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is empty or I/O error is occurred while reading from system or requesting to resource management daemon.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when caller doesn't have a privilege to use this method.</exception>
         public static IDictionary<int, ProcessCpuUsage> GetProcessCpuUsage(IEnumerable<int> pid)
         {
             int[] processArray = pid.ToArray<int>();
@@ -352,8 +367,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The number of processors
+        /// Gets the number of processors
         /// </summary>
+        /// <value>The number of processors</value>
+        /// <exception cref="ArgumentException">Thrown when I/O error is occurred while reading from system.</exception>
         public static int ProcessorCount
         {
             get
@@ -375,6 +392,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
         /// <returns>The current frequency(MHz) of processor</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid or I/O error is occurred while reading from system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system doesn't store CPU current frequency.</exception>
         public static int GetProcessorCurrentFrequency(int coreId)
         {
             int frequency;
@@ -392,6 +411,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
         /// <returns>The max frequency(MHz) of processor</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid or I/O error is occurred while reading from system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system doesn't store CPU max frequency.</exception>
         public static int GetProcessorMaxFrequency(int coreId)
         {
             int frequency;
