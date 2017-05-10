@@ -28,8 +28,8 @@ namespace ElmSharp
         internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon) : base(IntPtr.Zero)
         {
             Text = text;
-            LeftIcon = LeftIcon;
-            RightIcon = RightIcon;
+            LeftIcon = leftIcon;
+            RightIcon = rightIcon;
         }
 
         /// <summary>
