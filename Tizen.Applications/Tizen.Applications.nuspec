@@ -12,9 +12,16 @@
 		<description>Provides the Application Frameworks API for Tizen.Net</description>
 		<dependencies>
 			<dependency id="Tizen" version="1.0.2" />
+      <dependency id="Tizen.Applications.Alarm" version="1.5.1" />
+      <dependency id="Tizen.Applications.Common" version="1.5.1" />
+      <dependency id="Tizen.Applications.MessagePort" version="1.5.1" />
+      <dependency id="Tizen.Applications.Notification" version="1.5.1" />
+      <dependency id="Tizen.Applications.NotificationEventListener" version="1.5.1" />
+      <dependency id="Tizen.Applications.PackageManager" version="1.5.1" />
+      <dependency id="Tizen.Applications.Preference" version="1.5.1" />
+      <dependency id="Tizen.Applications.Service" version="1.5.1" />
+      <dependency id="Tizen.Applications.ToastMessage" version="1.5.1" />
+      <dependency id="Tizen.Applications.UI" version="1.5.1" />
 		</dependencies>
 	</metadata>
-	<files>
-		<file src="bin/$Configuration$/Tizen.Applications.dll" target="lib/netstandard1.3" />
-	</files>
 </package>

@@ -1,120 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{663C5A3D-E631-4987-AEE7-F498C56A40FC}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Tizen.Applications.Common</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Applications.Common.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Interop\Interop.AppCommon.cs" />
-    <Compile Include="Interop\Interop.AppControl.cs" />
-    <Compile Include="Interop\Interop.Bundle.cs" />
-    <Compile Include="Interop\Interop.Glib.cs" />
-    <Compile Include="Interop\Interop.Libc.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.ApplicationManager.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Applications.CoreBackend\EventType.cs" />
-    <Compile Include="Tizen.Applications.CoreBackend\DefaultCoreBackend.cs" />
-    <Compile Include="Tizen.Applications.CoreBackend\ICoreBackend.cs" />
-    <Compile Include="Tizen.Applications\ApplicationEnabledEventArgs.cs" />
-    <Compile Include="Tizen.Applications\ApplicationDisabledEventArgs.cs" />
-    <Compile Include="Tizen.Applications\ApplicationEventState.cs" />
-    <Compile Include="Tizen.Applications\ApplicationRunningContext.cs" />
-    <Compile Include="Tizen.Applications\RecentApplicationControl.cs" />
-    <Compile Include="Tizen.Applications\RecentApplicationInfo.cs" />
-    <Compile Include="Tizen.Applications\ApplicationInfo.cs" />
-    <Compile Include="Tizen.Applications\ApplicationManager.cs" />
-    <Compile Include="Tizen.Applications\ApplicationInfoFilter.cs" />
-    <Compile Include="Tizen.Applications\ApplicationInfoMetadataFilter.cs" />
-    <Compile Include="Tizen.Applications\ApplicationTerminatedEventArgs.cs" />
-    <Compile Include="Tizen.Applications\Application.cs" />
-    <Compile Include="Tizen.Applications\AppControlReceivedEventArgs.cs" />
-    <Compile Include="Tizen.Applications\AppControlReplyCallback.cs" />
-    <Compile Include="Tizen.Applications\ApplicationType.cs" />
-    <Compile Include="Tizen.Applications\CoreApplication.cs" />
-    <Compile Include="Tizen.Applications\DeviceOrientation.cs" />
-    <Compile Include="Tizen.Applications\DeviceOrientationEventArgs.cs" />
-    <Compile Include="Tizen.Applications\DirectoryInfo.cs" />
-    <Compile Include="Tizen.Applications\ResourceManager.cs" />
-    <Compile Include="Tizen.Applications\LocaleChangedEventArgs.cs" />
-    <Compile Include="Tizen.Applications\LowBatteryEventArgs.cs" />
-    <Compile Include="Tizen.Applications\LowBatteryStatus.cs" />
-    <Compile Include="Tizen.Applications\LowMemoryEventArgs.cs" />
-    <Compile Include="Tizen.Applications\LowMemoryStatus.cs" />
-    <Compile Include="Tizen.Applications\ReceivedAppControl.cs" />
-    <Compile Include="Tizen.Applications\RegionFormatChangedEventArgs.cs" />
-    <Compile Include="Tizen.Applications\SafeAppControlHandle.cs" />
-    <Compile Include="Tizen.Applications\SafeBundleHandle.cs" />
-    <Compile Include="Tizen.Applications\ApplicationLaunchedEventArgs.cs" />
-    <Compile Include="Tizen.Applications\AppControl.cs" />
-    <Compile Include="Tizen.Applications\AppControlLaunchMode.cs" />
-    <Compile Include="Tizen.Applications\AppControlReplyResult.cs" />
-    <Compile Include="Tizen.Applications\AppControlOperations.cs" />
-    <Compile Include="Tizen.Applications\Bundle.cs" />
-    <Compile Include="Tizen.Applications\TizenSynchronizationContext.cs" />
+    <PackageReference Include="Tizen" Version="1.0.4" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.Applications.Common.project.json" />
-    <None Include="Tizen.Applications.Common.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+
 </Project>

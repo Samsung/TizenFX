@@ -193,11 +193,6 @@ An ui application library in Tizen C# API package.
 cp %{SOURCE1} .
 
 %build
-SOURCES="/nuget;$(readlink -f .nuget)"
-
-for ASM in %{Assemblies}; do
-%dotnet_restore $ASM "-Source $SOURCES"
-done
 
 %dotnet_build Tizen.Applications.sln
 

@@ -11,11 +11,7 @@
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
 		<description>Provides the Application Frameworks API for Tizen.Net</description>
 		<dependencies>
-			<dependency id="Tizen" version="1.0.2" />
-			<dependency id="Tizen.Applications.Common" version="1.2.0" />
+			<dependency id="Tizen.Applications.Common" version="1.5.1" />
 		</dependencies>
 	</metadata>
-	<files>
-		<file src="bin/$Configuration$/Tizen.Applications.Notification.dll" target="lib/netstandard1.3" />
-	</files>
 </package>

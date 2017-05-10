@@ -1,202 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6209641F-4B03-4DAD-84D8-4775AD72AD75}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Tizen.Applications</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Applications.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="../Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs" />
-    <Compile Include="../Tizen.Applications.Alarm/Tizen.Applications/AlarmErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControl.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlData.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlLaunchMode.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlOperations.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlReceivedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlReplyCallback.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/AppControlReplyResult.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/Application.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationDisabledEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationEnabledEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationEventState.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfoFilter.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationInfoMetadataFilter.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/RecentApplicationInfo.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/RecentApplicationControl.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationLaunchedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationTerminatedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ApplicationType.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/Bundle.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ResourceManager.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/CertificateType.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs" />
-    <Compile Include="../Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/DefaultCoreBackend.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DirectoryInfo.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/EventType.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications.CoreBackend/ICoreBackend.cs" />
-    <Compile Include="../Tizen.Applications.Alarm/Interop/Interop.Alarm.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.AppCommon.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.AppControl.cs" />
-    <Compile Include="../Tizen.Applications.UI/Interop/Interop.Application.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.ApplicationManager.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.Bundle.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.Glib.cs" />
-    <Compile Include="../Tizen.Applications.Common/Interop/Interop.Libc.cs" />
-    <Compile Include="./Interop/Interop.Libraries.cs" />
-    <Compile Include="../Tizen.Applications.MessagePort/Interop/Interop.MessagePort.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Interop/Interop.Notification.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Interop/Interop.NotificationEventListener.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Interop/Interop.Package.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Interop/Interop.PackageManager.cs" />
-    <Compile Include="../Tizen.Applications.Preference/Interop/Interop.Preference.cs" />
-    <Compile Include="../Tizen.Applications.Service/Interop/Interop.Service.cs" />
-    <Compile Include="../Tizen.Applications.ToastMessage/Interop/Interop.ToastMessage.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LocaleChangedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowBatteryEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowBatteryStatus.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowMemoryEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/LowMemoryStatus.cs" />
-    <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs" />
-    <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePortErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessageReceivedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/Package.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageCertificate.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageEventState.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageEventType.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageFilter.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageManagerEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageSizeInformation.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageType.cs" />
-    <Compile Include="../Tizen.Applications.Preference/Tizen.Applications/Preference.cs" />
-    <Compile Include="../Tizen.Applications.Preference/Tizen.Applications/PreferenceChangedEventArgs.cs" />
-    <Compile Include="./Properties\AssemblyInfo.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/RegionFormatChangedEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.MessagePort/Tizen.Applications.Messages/RemoteValues.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/SafeAppControlHandle.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/SafeBundleHandle.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/SafePackageManagerHandle.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/SafePackageManagerRequestHandle.cs" />
-    <Compile Include="../Tizen.Applications.Service/Tizen.Applications/ServiceApplication.cs" />
-    <Compile Include="../Tizen.Applications.Service/Tizen.Applications.CoreBackend/ServiceCoreBackend.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/StorageType.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/CertCompareResultType.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PermissionType.cs" />
-    <Compile Include="../Tizen.Applications.PackageManager/Tizen.Applications/PackageDrm.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/TizenSynchronizationContext.cs" />
-    <Compile Include="../Tizen.Applications.UI/Tizen.Applications.CoreBackend/UICoreBackend.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientationEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.Common/Tizen.Applications/DeviceOrientation.cs" />
-    <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessage.cs" />
-    <Compile Include="../Tizen.Applications.ToastMessage/Tizen.Applications/ToastMessageErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationSafeHandle.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationBinder.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationAccessorySet.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationAccessorySetBinder.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationActiveStyle.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationButtonAction.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationEnumerations.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationIndicatorStyle.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationLockStyle.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationMakerBase.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationProgress.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationProgressBinder.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationReplyAction.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyle.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyleBinder.cs" />
-    <Compile Include="../Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationBigPictureStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationAccessoryArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationButtonActionArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationDeleteEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationDeleteEventArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgs.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsAccessory.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsActiveStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsBigPictureStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsButtonAction.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsEnumerations.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsIndicatorStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsLockStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsProgress.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsReplyAction.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventArgsStyle.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationEventListenerErrorFactory.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationListenerManager.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationProgressArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationReplyActionArgsBinder.cs" />
-    <Compile Include="../Tizen.Applications.NotificationEventListener/Tizen.Applications.NotificationEventListener/NotificationStyleArgsBinder.cs" />
+    <ProjectReference Include="..\Tizen.Applications.Alarm\Tizen.Applications.Alarm.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.MessagePort\Tizen.Applications.MessagePort.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.NotificationEventListener\Tizen.Applications.NotificationEventListener.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.Notification\Tizen.Applications.Notification.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.PackageManager\Tizen.Applications.PackageManager.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.Preference\Tizen.Applications.Preference.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.Service\Tizen.Applications.Service.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.ToastMessage\Tizen.Applications.ToastMessage.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.UI\Tizen.Applications.UI.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.Applications.project.json" />
-    <None Include="Tizen.Applications.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+
 </Project>
