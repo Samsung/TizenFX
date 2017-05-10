@@ -548,6 +548,37 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr ImfManager_SWIGUpcast(global::System.IntPtr jarg1);
 
         /////////////////////////////////////////////////////////////
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_SMOOTH_SCROLL_get")]
+        public static extern int TextEditor_Property_SMOOTH_SCROLL_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_SMOOTH_SCROLL_DURATION_get")]
+        public static extern int TextEditor_Property_SMOOTH_SCROLL_DURATION_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_ENABLE_SCROLL_BAR_get")]
+        public static extern int TextEditor_Property_ENABLE_SCROLL_BAR_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get")]
+        public static extern int TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_SCROLL_BAR_FADE_DURATION_get")]
+        public static extern int TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PIXEL_SIZE_get")]
+        public static extern int TextEditor_Property_PIXEL_SIZE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get")]
+        public static extern int TextField_Property_HIDDEN_INPUT_SETTINGS_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_PIXEL_SIZE_get")]
+        public static extern int TextField_Property_PIXEL_SIZE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_PIXEL_SIZE_get")]
+        public static extern int TextLabel_Property_PIXEL_SIZE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_ELLIPSIS_get")]
+        public static extern int TextLabel_Property_ELLIPSIS_get();
+
+
 
     }
 }

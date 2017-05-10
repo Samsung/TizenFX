@@ -312,6 +312,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextField_Property_INPUT_EMBOSS_get();
             internal static readonly int OUTLINE = NDalicPINVOKE.TextField_Property_OUTLINE_get();
             internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextField_Property_INPUT_OUTLINE_get();
+            internal static readonly int HIDDEN_INPUT_SETTINGS = NDalicManualPINVOKE.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
+            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
 
         }
 
@@ -1319,6 +1321,40 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextField.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// HiddenInputSettings property.
+        /// </summary>
+        public Tizen.NUI.PropertyMap HiddenInputSettings
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(TextField.Property.HIDDEN_INPUT_SETTINGS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.HIDDEN_INPUT_SETTINGS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// PixelSize property.
+        /// </summary>
+        public float PixelSize
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextField.Property.PIXEL_SIZE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
