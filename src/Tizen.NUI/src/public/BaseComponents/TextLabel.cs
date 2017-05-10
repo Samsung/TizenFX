@@ -145,6 +145,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SHADOW = NDalicPINVOKE.TextLabel_Property_SHADOW_get();
             internal static readonly int EMBOSS = NDalicPINVOKE.TextLabel_Property_EMBOSS_get();
             internal static readonly int OUTLINE = NDalicPINVOKE.TextLabel_Property_OUTLINE_get();
+            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextLabel_Property_PIXEL_SIZE_get();
+            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
 
         }
 
@@ -703,6 +705,42 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.OUTLINE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// PixelSize property.<br>
+        /// The size of font in pixels.<br>
+        /// </summary>
+        public float PixelSize
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextLabel.Property.PIXEL_SIZE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextLabel.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Ellipsis property.<br>
+        /// Enable or disable the ellipsis.<br>
+        /// </summary>
+        public bool Ellipsis
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(TextLabel.Property.ELLIPSIS).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextLabel.Property.ELLIPSIS, new Tizen.NUI.PropertyValue(value));
             }
         }
 

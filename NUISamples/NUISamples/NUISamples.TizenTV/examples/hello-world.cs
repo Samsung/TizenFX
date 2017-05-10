@@ -56,6 +56,23 @@ namespace HelloWorldTest
             window.TouchEvent += OnWindowTouched;
             window.KeyEvent += OnWindowKeyEvent;
 
+            TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
+            pixelLabel.Position2D = new Position2D(10, 10);
+            pixelLabel.PixelSize = 32.0f;
+            window.GetDefaultLayer().Add(pixelLabel);
+
+            TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
+            pointLabel.Position2D = new Position2D(10, 100);
+            pointLabel.PointSize = 32.0f;
+            window.GetDefaultLayer().Add(pointLabel);
+
+            TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
+            ellipsis.Size2D = new Size2D(100, 100);
+            ellipsis.Position2D = new Position2D(10, 250);
+            ellipsis.PointSize = 20.0f;
+            ellipsis.Ellipsis = true;
+            window.GetDefaultLayer().Add(ellipsis);
+
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;

@@ -240,6 +240,12 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextEditor_Property_INPUT_EMBOSS_get();
             internal static readonly int OUTLINE = NDalicPINVOKE.TextEditor_Property_OUTLINE_get();
             internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextEditor_Property_INPUT_OUTLINE_get();
+            internal static readonly int SMOOTH_SCROLL = NDalicManualPINVOKE.TextEditor_Property_SMOOTH_SCROLL_get();
+            internal static readonly int SMOOTH_SCROLL_DURATION = NDalicManualPINVOKE.TextEditor_Property_SMOOTH_SCROLL_DURATION_get();
+            internal static readonly int ENABLE_SCROLL_BAR = NDalicManualPINVOKE.TextEditor_Property_ENABLE_SCROLL_BAR_get();
+            internal static readonly int SCROLL_BAR_SHOW_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
+            internal static readonly int SCROLL_BAR_FADE_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
+            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextEditor_Property_PIXEL_SIZE_get();
 
         }
 
@@ -1076,6 +1082,108 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// SmoothScroll property.
+        /// </summary>
+        public bool SmoothScroll
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(TextEditor.Property.SMOOTH_SCROLL).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SMOOTH_SCROLL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// SmoothScrollDuration property.
+        /// </summary>
+        public float SmoothScrollDuration
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextEditor.Property.SMOOTH_SCROLL_DURATION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SMOOTH_SCROLL_DURATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// EnableScrollBar property.
+        /// </summary>
+        public bool EnableScrollBar
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(TextEditor.Property.ENABLE_SCROLL_BAR).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.ENABLE_SCROLL_BAR, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// ScrollBarShowDuration property.
+        /// </summary>
+        public float ScrollBarShowDuration
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextEditor.Property.SCROLL_BAR_SHOW_DURATION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SCROLL_BAR_SHOW_DURATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// ScrollBarFadeDuration property.
+        /// </summary>
+        public float ScrollBarFadeDuration
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextEditor.Property.SCROLL_BAR_FADE_DURATION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SCROLL_BAR_FADE_DURATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// PixelSize property.
+        /// </summary>
+        public float PixelSize
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextEditor.Property.PIXEL_SIZE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
