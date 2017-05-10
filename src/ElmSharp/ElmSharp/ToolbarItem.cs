@@ -66,15 +66,16 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the enable of the item.
         /// </summary>
+        [Obsolete("Enabled is obsolete as of version v1.1.0-beta-023. Please use IsEnabled instead.")]
         public bool Enabled
         {
             get
             {
-                return !Interop.Elementary.elm_object_disabled_get(Handle);
+                return IsEnabled;
             }
             set
             {
-                Interop.Elementary.elm_object_disabled_set(Handle, !value);
+                IsEnabled = value;
             }
         }
 
