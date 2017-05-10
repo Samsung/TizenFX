@@ -53,6 +53,12 @@ internal static partial class Interop
         internal static extern void elm_win_resize_object_add(IntPtr obj, IntPtr subobj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_raise(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_lower(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_alpha_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
@@ -71,10 +77,28 @@ internal static partial class Interop
         internal static extern void elm_win_role_set(IntPtr obj, string role);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern string elm_win_focus_highlight_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_focus_highlight_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_borderless_set(IntPtr obj, bool borderless);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_focus_highlight_enabled_set(IntPtr obj, bool enabled);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_focus_highlight_enabled_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_autodel_set(IntPtr obj, bool autodel);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_autodel_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_override_set(IntPtr obj, bool isOverride);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_indicator_opacity_set(IntPtr obj, int opacity);
@@ -87,6 +111,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern IndicatorMode elm_win_indicator_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_demand_attention_set(IntPtr obj, bool demandAttention);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_conformant_set(IntPtr obj, bool conformant);
@@ -104,7 +131,16 @@ internal static partial class Interop
         internal static extern int elm_win_rotation_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_rotation_with_resize_set(IntPtr obj, int rotation);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_prop_focus_skip_set(IntPtr obj, bool skip);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_wm_rotation_supported_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_focus_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary, EntryPoint = "elm_win_wm_rotation_available_rotations_set")]
         internal static extern void _elm_win_wm_rotation_available_rotations_set(IntPtr obj, IntPtr rotations, uint count);
@@ -136,6 +172,12 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_layer_set(IntPtr obj, int layer);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_sticky_set(IntPtr obj, bool sticky);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_screen_dpi_get(IntPtr obj, out int xdpi, out int ydpi);
 
         [DllImport(Libraries.Elementary)]
@@ -144,6 +186,9 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_win_iconified_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_floating_mode_set(IntPtr obj, bool floating);
 
         [DllImport(Libraries.Elementary)]
         [return: MarshalAs(UnmanagedType.U1)]
@@ -159,5 +204,30 @@ internal static partial class Interop
         [DllImport(Libraries.Eext)]
         internal static extern bool eext_win_keygrab_unset(IntPtr obj, string key);
 
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_keyboard_win_set(IntPtr obj, bool isKeyboard);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_keyboard_mode_set(IntPtr obj, Elm_Win_Keyboard_Mode mode);
+
+        internal enum Elm_Win_Keyboard_Mode
+        {
+            ELM_WIN_KEYBOARD_UNKNOWN,
+            ELM_WIN_KEYBOARD_OFF,
+            ELM_WIN_KEYBOARD_ON,
+            ELM_WIN_KEYBOARD_ALPHA,
+            ELM_WIN_KEYBOARD_NUMERIC,
+            ELM_WIN_KEYBOARD_PIN,
+            ELM_WIN_KEYBOARD_PHONE_NUMBER,
+            ELM_WIN_KEYBOARD_HEX,
+            ELM_WIN_KEYBOARD_TERMINAL,
+            ELM_WIN_KEYBOARD_PASSWORD,
+            ELM_WIN_KEYBOARD_IP,
+            ELM_WIN_KEYBOARD_HOST,
+            ELM_WIN_KEYBOARD_FILE,
+            ELM_WIN_KEYBOARD_URL,
+            ELM_WIN_KEYBOARD_KEYPAD,
+            ELM_WIN_KEYBOARD_J2ME,
+        }
     }
 }

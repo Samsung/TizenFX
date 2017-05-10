@@ -44,16 +44,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_size_get(IntPtr obj, out int x, out int y);
-
-        internal enum LoadError
-        {
-            None = 0,
-            Generic = 1,
-            DoesNotExist = 2,
-            PermissionDenied = 3,
-            ResourceAllocationFailed = 4,
-            CorruptFile = 5,
-            UnknownFormat = 6,
-        }
     }
 }
