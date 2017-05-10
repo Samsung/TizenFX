@@ -28,7 +28,7 @@ namespace ElmSharp
         private IntPtr _realHandle = IntPtr.Zero;
         internal IntPtr Handle { get; set; }
         internal EvasObject Parent { get; set; }
-        internal IntPtr RealHandle
+        protected IntPtr RealHandle
         {
             get
             {
