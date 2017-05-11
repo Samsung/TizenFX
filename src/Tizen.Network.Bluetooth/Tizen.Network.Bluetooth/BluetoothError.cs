@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -59,7 +59,7 @@ namespace Tizen.Network.Bluetooth
                 throw new InvalidOperationException("Operation not in progress");
 
             case BluetoothError.NotSupported:
-                throw new InvalidOperationException("Bluetooth is not supported");
+                throw new NotSupportedException("Bluetooth is not supported");
 
             case BluetoothError.OperationFailed:
                 throw new InvalidOperationException("Operation failed");
