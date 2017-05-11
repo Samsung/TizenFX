@@ -56,14 +56,15 @@ namespace Tizen.Maps
         /// <exception cref="ArgumentException">Throws if arguments are invalid</exception>
         public async Task<IEnumerable<T>> GetResponseAsync()
         {
+            IEnumerable<T> task = null;
             if (_requestTask == null || _requestTask.Task.IsCanceled)
             {
                 _requestTask = new TaskCompletionSource<IEnumerable<T>>();
                 startExecutionAction();
-                await _requestTask.Task;
+                task = await _requestTask.Task;
             }
             errorCode.WarnIfFailed(errMessage);
-            return await _requestTask.Task;
+            return task;
         }
 
         internal void Cancel()
