@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
         NotSupported = ErrorCode.NotSupported,
         Unknown = ErrorCode.Unknown
     };
-    public class ScreenMirroringErrorFactory
+    internal static class ScreenMirroringErrorFactory
     {
         private const string LogTag = "Tizen.Multimedia.ScreenMirroring";
         internal static void ThrowException(int errorCode, string errorMessage = null)
