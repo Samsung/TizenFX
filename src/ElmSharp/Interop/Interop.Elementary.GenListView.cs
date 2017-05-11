@@ -24,14 +24,19 @@ internal static partial class Interop
         internal enum Elm_Genlist_Item_Scrollto_Type
         {
             ELM_GENLIST_ITEM_SCROLLTO_NONE = 0,
+
             // Scrolls to nowhere
             ELM_GENLIST_ITEM_SCROLLTO_IN = (1 << 0),
+
             // Scrolls to the nearest viewport
             ELM_GENLIST_ITEM_SCROLLTO_TOP = (1 << 1),
+
             // Scrolls to the top of the viewport
             ELM_GENLIST_ITEM_SCROLLTO_MIDDLE = (1 << 2),
+
             // Scrolls to the middle of the viewport
             ELM_GENLIST_ITEM_SCROLLTO_BOTTOM = (1 << 3)
+
             // Scrolls to the bottom of the viewport
         }
 
@@ -148,5 +153,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_genlist_reorder_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern void elm_genlist_item_expanded_set(IntPtr obj, bool isExpanded);
+
+        [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool elm_genlist_item_expanded_get(IntPtr obj);
     }
 }
