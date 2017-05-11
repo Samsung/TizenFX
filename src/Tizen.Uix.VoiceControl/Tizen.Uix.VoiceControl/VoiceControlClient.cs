@@ -228,6 +228,9 @@ namespace Tizen.Uix.VoiceControl
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// Empty string is returned incase of some internal error
         /// </summary>
+        /// <value>
+        /// Current language in voice control.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -252,8 +255,11 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Gets current state of voice control client. 
+        /// Gets current state of voice control client.
         /// </summary>
+        /// <value>
+        /// Current state of voice control client.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -280,6 +286,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets current state of voice control service.
         /// </summary>
+        /// <value>
+        /// Current state of voice control service.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -309,6 +318,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// Invocation name is used to activate background commands. The invocation name can be the same as the application name or any other phrase.
         /// For example, an application "Tizen Sample" has a background command, "Play music", and the invocation name of the application is set to "Tizen Sample".
@@ -344,6 +360,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -370,6 +393,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Operation Failed
@@ -393,6 +423,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Operation Failed
@@ -422,6 +459,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Not Supported
@@ -453,6 +497,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Operation Failed
@@ -491,6 +542,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// In the system command list, there are system commands predefined by product manufacturers.
         /// Those commands have the highest priority. Therefore, the user can not set any commands same with the system commands.
@@ -535,6 +593,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// If autoStart is true, the recognition will start again. In this case, it can be restarted up to 4 times.
         /// </remarks>
@@ -567,6 +632,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// The command type is valid for CommandType 'Foreground' or 'Background'.
         /// The matched commands of command list should be set and they should include type and command text at least.
@@ -607,6 +679,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="type">Command type</param>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
@@ -645,6 +724,13 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="resultDelegate">
         /// Callback function to get recognition result
         /// </param>

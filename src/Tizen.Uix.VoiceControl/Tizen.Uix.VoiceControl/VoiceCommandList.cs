@@ -33,6 +33,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Invalid parameter
@@ -61,6 +71,15 @@ namespace Tizen.Uix.VoiceControl
         /// Gets command count of list.
         /// -1 is returned in case of internal failure.
         /// </summary>
+        /// <value>
+        /// Command counts of the list.
+        /// </value>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
         public int GetCount
         {
             get
@@ -81,6 +100,15 @@ namespace Tizen.Uix.VoiceControl
         /// Get current command from command list by index.
         /// null will be returned in case of Empty List
         /// </summary>
+        /// <value>
+        /// Current command from the command list.
+        /// </value>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
         public VoiceCommand GetCurrent
         {
             get
@@ -100,6 +128,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Adds command to command list.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="command">The command</param>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
@@ -121,6 +159,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Removes command from command list.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="command">The command</param>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
@@ -142,6 +190,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Retrieves all commands of command list.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Permission Denied
@@ -170,6 +228,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to first command.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. List Empty
@@ -189,6 +257,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to last command.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. List Empty
@@ -208,6 +286,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to next command.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. List Empty
@@ -228,6 +316,16 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to previous command.
         /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <privlevel>
+        /// public
+        /// </privlevel>
+        /// <feature>
+        /// http://tizen.org/feature/speech.control
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. List Empty
