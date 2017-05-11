@@ -37,6 +37,12 @@ internal static partial class Interop
         internal static extern double elm_label_slide_duration_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_label_slide_speed_set(IntPtr obj, double speed);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_label_slide_speed_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_label_slide_go(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
