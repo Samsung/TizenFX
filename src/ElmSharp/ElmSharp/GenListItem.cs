@@ -27,14 +27,17 @@ namespace ElmSharp
         /// Default select mode.
         /// </summary>
         Default,
+
         /// <summary>
         /// Always select mode.
         /// </summary>
         Always,
+
         /// <summary>
         /// No select mode.
         /// </summary>
         None,
+
         /// <summary>
         /// No select mode with no finger size rule.
         /// </summary>
@@ -51,18 +54,22 @@ namespace ElmSharp
         /// All item's parts.
         /// </summary>
         All = 0,
+
         /// <summary>
         /// The text part type.
         /// </summary>
         Text = (1 << 0),
+
         /// <summary>
         /// The Content part type.
         /// </summary>
         Content = (1 << 1),
+
         /// <summary>
         /// The state of part.
         /// </summary>
         State = (1 << 2),
+
         /// <summary>
         /// No part type.
         /// </summary>
@@ -93,6 +100,21 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_genlist_item_selected_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether a given genlist item is expanded.
+        /// </summary>
+        public bool IsExpanded
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_expanded_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_item_expanded_set(Handle, value);
             }
         }
 
