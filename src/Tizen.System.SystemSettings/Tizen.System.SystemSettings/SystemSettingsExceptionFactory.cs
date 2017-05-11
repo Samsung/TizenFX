@@ -40,15 +40,15 @@ namespace Tizen.System
                 case SystemSettingsError.InvalidParameter:
                     exp = new ArgumentException(msg);
                     break;
+                case SystemSettingsError.NotSupported:
+                    exp = new NotSupportedException(msg);
+                    break;
                 case SystemSettingsError.OutOfMemory:
                 //fall through
                 case SystemSettingsError.IoError:
                 //fall through
                 case SystemSettingsError.PermissionDenied:
                 //fall through
-                case SystemSettingsError.NotSupported:
-                    exp = new NotSupportedException(msg);
-                    break;
                 case SystemSettingsError.LockScreenAppPasswordMode:
                 //fall through
                 default:

@@ -347,8 +347,17 @@ namespace Tizen.System
     /// </summary>
     public class TimeChangedEventArgs : EventArgs
     {
-        internal TimeChangedEventArgs()
+        private readonly int _time;
+        internal TimeChangedEventArgs(int val)
         {
+            _time = val;
+        }
+        public int Value
+        {
+            get
+            {
+                return _time;
+            }
         }
     }
 

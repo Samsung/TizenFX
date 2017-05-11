@@ -397,6 +397,23 @@ namespace Tizen.System
                 }
             }
         }
+
+        /// <summary>
+        /// Once System changes time, this event occurs to notify time change.
+        /// </summary>
+        public static int Time
+        {
+            get
+            {
+                int time;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueInt(SystemSettingsKeys.Time, out time);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get Time system setting.");
+                }
+                return time;
+            }
+        }
         /// <summary>
         /// Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
         /// </summary>
@@ -1253,8 +1270,9 @@ namespace Tizen.System
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_timeChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            //bool motionActivation = SystemSettings.Time;
-            TimeChangedEventArgs eventArgs = new TimeChangedEventArgs();
+            
+            int time = SystemSettings.Time;
+            TimeChangedEventArgs eventArgs = new TimeChangedEventArgs(time);
             s_timeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<TimeChangedEventArgs> s_timeChanged;

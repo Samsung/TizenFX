@@ -1,6 +1,6 @@
 Name:       csapi-system-settings
 Summary:    Tizen System Settings API for C#
-Version:    1.0.3
+Version:    1.0.4
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
