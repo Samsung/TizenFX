@@ -29,7 +29,7 @@ namespace Tizen.Uix.VoiceControl
             {
                 case ErrorCode.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new OutOfMemoryException("Out Of Memory");
                         break;
                     }
 
@@ -41,13 +41,13 @@ namespace Tizen.Uix.VoiceControl
 
                 case ErrorCode.InvalidParameter:
                     {
-                        exp = new InvalidOperationException("Invalid Parameters Provided");
+                        exp = new ArgumentException("Invalid Parameters Provided");
                         break;
                     }
 
                 case ErrorCode.TimedOut:
                     {
-                        exp = new InvalidOperationException("No answer from service");
+                        exp = new TimeoutException("No answer from service");
                         break;
                     }
 
@@ -59,13 +59,13 @@ namespace Tizen.Uix.VoiceControl
 
                 case ErrorCode.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 
                 case ErrorCode.NotSupported:
                     {
-                        exp = new InvalidOperationException("VC NOT supported");
+                        exp = new NotSupportedException("VC NOT supported");
                         break;
                     }
 

@@ -43,13 +43,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// 4. Out of memory
-        /// </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out of memory. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public VoiceCommandList()
         {
             SafeCommandListHandle handle = new SafeCommandListHandle();
@@ -139,13 +136,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="command">The command</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
-        /// <exception cref="NullReferenceException">This will occur if the provide parameter is null</exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="NullReferenceException"> This will occur if the provide parameter is null. </exception>
         public void Add(VoiceCommand command)
         {
             ErrorCode error = VcCmdListAdd(_handle, command._handle);
@@ -170,13 +164,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="command">The command</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
-        /// <exception cref="NullReferenceException">This will occur if the provide parameter is null</exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="NullReferenceException"> This will occur if the provide parameter is null. </exception>
         public void Remove(VoiceCommand command)
         {
             ErrorCode error = VcCmdListRemove(_handle, command._handle);
@@ -200,11 +191,8 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Permission Denied
-        /// 2. Not supported
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public IEnumerable<VoiceCommand> GetAllCommands()
         {
             _list = new List<VoiceCommand>();
@@ -238,12 +226,9 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. List Empty
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to List Empty. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public void First()
         {
             ErrorCode error = VcCmdListFirst(_handle);
@@ -267,12 +252,9 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. List Empty
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to List Empty. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public void Last()
         {
             ErrorCode error = VcCmdListLast(_handle);
@@ -300,9 +282,9 @@ namespace Tizen.Uix.VoiceControl
         /// This Exception can be due to the following reaons
         /// 1. List Empty
         /// 2. List reached end
-        /// 3. Permission Denied
-        /// 4. Not supported
         /// </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public void Next()
         {
             ErrorCode error = VcCmdListNext(_handle);
@@ -330,9 +312,9 @@ namespace Tizen.Uix.VoiceControl
         /// This Exception can be due to the following reaons
         /// 1. List Empty
         /// 2. List reached end
-        /// 3. Permission Denied
-        /// 4. Not supported
         /// </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public void Previous()
         {
             ErrorCode error = VcCmdListPrev(_handle);

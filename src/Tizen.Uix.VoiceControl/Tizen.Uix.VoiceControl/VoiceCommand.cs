@@ -61,12 +61,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Public Constructor
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Out of memory
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public VoiceCommand()
         {
             SafeCommandHandle handle;
@@ -109,12 +106,9 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets command type.
         /// </summary>
         /// <remarks>If you do not set the command type, the default value is Undefined. You should set type if command is valid</remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons for set operation
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public CommandType Type
         {
             get
@@ -149,12 +143,9 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets the command format.
         /// </summary>
         /// <remarks>The default format is Fixed</remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons for set operation
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public CommandFormat Format
         {
             get
@@ -183,12 +174,9 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets command
         /// in case of get empty string will be returned in case of some internal error
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons for set operation
-        /// 1. Invalid parameter
-        /// 2. Permission Denied
-        /// 3. Not supported
-        /// </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public string Command
         {
             get

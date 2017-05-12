@@ -334,13 +334,10 @@ namespace Tizen.Uix.VoiceControl
         /// This function should be called before SetCommandList().
         /// </remarks>
         /// <param name="name">Invocation name that an application wants to be invoked by</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Invalid parameter
-        /// 2. Invalid state
-        /// 3. Not Supported
-        /// 4. Permission Denied
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State must be Ready.
         /// </precondition>
@@ -367,13 +364,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. Not Supported
-        /// 4. Permission Denied
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <postcondition>
         /// The State will be Initialized.
         /// </postcondition>
@@ -400,13 +394,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Operation Failed
-        /// 2. Invalid state
-        /// 3. Not Supported
-        /// 4. Permission Denied
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public static void Deinitialize()
         {
             ErrorCode error = VcDeinitialize();
@@ -430,13 +421,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Operation Failed
-        /// 2. Not Supported
-        /// 3. Permission Denied
-        /// 4. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Initialized
         /// </precondition>
@@ -466,12 +454,9 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
@@ -504,13 +489,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Operation Failed
-        /// 2. Not Supported
-        /// 3. Permission Denied
-        /// 4. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready or Initialized
         /// </precondition>
@@ -553,12 +535,10 @@ namespace Tizen.Uix.VoiceControl
         /// In the system command list, there are system commands predefined by product manufacturers.
         /// Those commands have the highest priority. Therefore, the user can not set any commands same with the system commands.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
@@ -606,13 +586,10 @@ namespace Tizen.Uix.VoiceControl
         /// <param name="dispText"> Text to be displayed on the screen/// </param>
         /// <param name="uttText">Text to be spoken</param>
         /// <param name="autoStart">A variable for setting whether the dialog session will be restarted automatically or not</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// 4. Invalid parameter
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
@@ -645,13 +622,10 @@ namespace Tizen.Uix.VoiceControl
         /// </remarks>
         /// <param name="list">Command list</param>
         /// <param name="type">Command type</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// 4. Invalid parameter
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
@@ -687,13 +661,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="type">Command type</param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// 4. Invalid parameter
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
@@ -734,12 +705,9 @@ namespace Tizen.Uix.VoiceControl
         /// <param name="resultDelegate">
         /// Callback function to get recognition result
         /// </param>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Not Supported
-        /// 2. Invalid State
-        /// 3. Invalid parameter
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
