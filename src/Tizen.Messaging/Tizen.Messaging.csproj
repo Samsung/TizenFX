@@ -61,6 +61,7 @@
     <Compile Include="Tizen.Messaging.Email\EmailEnumerations.cs" />
     <Compile Include="Tizen.Messaging.Email\EmailErrorFactory.cs" />
     <Compile Include="Tizen.Messaging.Email\EmailRecipient.cs" />
+    <Compile Include="Tizen.Messaging.Email\NamespaceDoc.cs" />
     <Compile Include="Tizen.Messaging.Messages\MessageReceivedEventArgs.cs" />
     <Compile Include="Tizen.Messaging.Messages\MessagesAddress.cs" />
     <Compile Include="Tizen.Messaging.Messages\MessagesAttachment.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Tizen.Messaging.Messages\MessagesEnumerations.cs" />
     <Compile Include="Tizen.Messaging.Messages\Message.cs" />
     <Compile Include="Tizen.Messaging.Messages\MmsMessage.cs" />
+    <Compile Include="Tizen.Messaging.Messages\NamespaceDoc.cs" />
     <Compile Include="Tizen.Messaging.Messages\PushMessage.cs" />
     <Compile Include="Tizen.Messaging.Messages\MessagesSearchFilter.cs" />
     <Compile Include="Tizen.Messaging.Messages\SmsMessage.cs" />
