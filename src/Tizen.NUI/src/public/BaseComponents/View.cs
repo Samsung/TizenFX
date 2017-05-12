@@ -33,9 +33,6 @@ namespace Tizen.NUI.BaseComponents
 
             // Register this instance of view in the view registry.
             ViewRegistry.RegisterView(this);
-
-            // By default, we do not want the position to use the anchor point
-            this.PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -831,6 +828,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
+            PositionUsesAnchorPoint = false;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -1765,12 +1763,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                if(this) GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
+                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
                 return temp;
             }
             set
             {
-                if(this) SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
             }
         }
 
