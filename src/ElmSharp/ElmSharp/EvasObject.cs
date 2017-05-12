@@ -26,6 +26,11 @@ namespace ElmSharp
     public abstract class EvasObject
     {
         private IntPtr _realHandle = IntPtr.Zero;
+        private event EventHandler _backButtonPressed;
+        private event EventHandler _moreButtonPressed;
+        private Interop.Eext.EextEventCallback _backButtonHandler;
+        private Interop.Eext.EextEventCallback _moreButtonHandler;
+
         internal IntPtr Handle { get; set; }
         internal EvasObject Parent { get; set; }
         internal IntPtr RealHandle
@@ -65,6 +70,9 @@ namespace ElmSharp
         /// </summary>
         protected EvasObject()
         {
+            _backButtonHandler = new Interop.Eext.EextEventCallback((d, o, i) => { _backButtonPressed?.Invoke(this, EventArgs.Empty); });
+            _moreButtonHandler = new Interop.Eext.EextEventCallback((d, o, i) => { _moreButtonPressed?.Invoke(this, EventArgs.Empty); });
+
             OnInstantiated();
         }
 
@@ -88,6 +96,54 @@ namespace ElmSharp
         /// KeyDown will be triggered when key is preesd down
         /// </summary>
         public event EventHandler<EvasKeyEventArgs> KeyDown;
+
+        /// <summary>
+        /// BackButtonPressed will be triggered when Back button is pressed
+        /// </summary>
+        public event EventHandler BackButtonPressed
+        {
+            add
+            {
+                if (_backButtonPressed == null)
+                {
+                    Interop.Eext.eext_object_event_callback_add(RealHandle, Interop.Eext.EextCallbackType.EEXT_CALLBACK_BACK, _backButtonHandler, IntPtr.Zero);
+                }
+                _backButtonPressed += value;
+            }
+            remove
+            {
+                _backButtonPressed -= value;
+                if (_backButtonPressed == null)
+                {
+                    Interop.Eext.eext_object_event_callback_del(RealHandle, Interop.Eext.EextCallbackType.EEXT_CALLBACK_BACK, _backButtonHandler);
+                }
+            }
+        }
+
+        /// <summary>
+        /// MoreButtonPressed will be triggered when More button is pressed
+        /// </summary>
+        public event EventHandler MoreButtonPressed
+        {
+            add
+            {
+                if (_moreButtonPressed == null)
+                {
+                    Interop.Eext.eext_object_event_callback_add(RealHandle, Interop.Eext.EextCallbackType.EEXT_CALLBACK_MORE, _moreButtonHandler, IntPtr.Zero);
+                }
+                _moreButtonPressed += value;
+            }
+            remove
+            {
+                _moreButtonPressed -= value;
+                if (_moreButtonPressed == null)
+                {
+                    Interop.Eext.eext_object_event_callback_del(RealHandle, Interop.Eext.EextCallbackType.EEXT_CALLBACK_MORE, _moreButtonHandler);
+                }
+            }
+        }
+
+
         /// <summary>
         /// Moved will be triggered when widght is moved
         /// </summary>

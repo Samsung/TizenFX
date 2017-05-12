@@ -51,6 +51,7 @@
     <Compile Include="ElmSharp\IAccessibleObject.cs" />
     <Compile Include="ElmSharp\ItemObjectExtension.cs" />
     <Compile Include="ElmSharp\ReadingInfoType.cs" />
+    <Compile Include="Interop\Interop.Eext.Event.cs" />
     <Compile Include="Interop\Interop.Elementary.Accessibility.cs" />
     <Compile Include="ElmSharp\Background.cs" />
     <Compile Include="ElmSharp\Box.cs" />

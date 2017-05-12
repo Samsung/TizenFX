@@ -62,12 +62,17 @@ namespace ElmSharp.Test
             popup.TimedOut += (s, e) =>
             {
                 Console.WriteLine("Popup time out");
-                popup.Show();
             };
 
             popup.Append("Label1");
             popup.Append("Label2");
             popup.Append("Label3");
+
+            popup.BackButtonPressed += (s, e) =>
+            {
+                Console.WriteLine("!!! BackButtonPressed Event on Popup!!");
+                popup.Hide();
+            };
 
             btn.Clicked += (s, e) =>
             {

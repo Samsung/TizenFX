@@ -107,27 +107,19 @@ namespace ElmSharp.Test
             window.Show();
             if (isSecond)
             {
-                window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, true);
-                window.KeyUp += (s, e) =>
+                window.BackButtonPressed += (s, e) =>
                 {
-                    if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
-                    {
-                        window.Hide();
-                        window.Unrealize();
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
-                    }
+                    window.Hide();
+                    window.Unrealize();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 };
             }
             else
             {
-                window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
-                window.KeyUp += (s, e) =>
+                window.BackButtonPressed += (s, e) =>
                 {
-                    if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
-                    {
-                        UIExit();
-                    }
+                    UIExit();
                 };
             }
             return window;
@@ -147,7 +139,10 @@ namespace ElmSharp.Test
                 WeightY = 1,
             };
             box.Show();
-            conformant.SetContent(box);
+            var bg = new Background(_firstPageWindow);
+            bg.Color = Color.White;
+            bg.SetContent(box);
+            conformant.SetContent(bg);
 
             GenList list = new GenList(_firstPageWindow)
             {
