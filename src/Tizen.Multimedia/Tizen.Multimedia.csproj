@@ -88,6 +88,7 @@
     <Compile Include="Camera\PreviewEventArgs.cs" />
     <Compile Include="Camera\SinglePlane.cs" />
     <Compile Include="Camera\TriplePlane.cs" />
+    <Compile Include="Common\InternalsVisibleDefinitions.cs" />
     <Compile Include="Common\Display.cs" />
     <Compile Include="Common\FileFormatException.cs" />
     <Compile Include="Common\IBufferOwner.cs" />
