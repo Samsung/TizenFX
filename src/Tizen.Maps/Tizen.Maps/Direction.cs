@@ -22,39 +22,39 @@ namespace Tizen.Maps
     public enum DirectionType
     {
         /// <summary>
-        /// Unknown direction
+        /// Indicates unknown direction.
         /// </summary>
         None = Interop.RouteDirection.None,
         /// <summary>
-        /// North direction
+        /// Indicates north direction.
         /// </summary>
         North = Interop.RouteDirection.North,
         /// <summary>
-        /// North-West direction
+        /// Indicates north-west direction.
         /// </summary>
         NorthWest = Interop.RouteDirection.NorthWest,
         /// <summary>
-        /// North-East direction
+        /// Indicates north-east direction.
         /// </summary>
         NorthEast = Interop.RouteDirection.NorthEast,
         /// <summary>
-        /// South direction
+        /// Indicates south direction.
         /// </summary>
         South = Interop.RouteDirection.South,
         /// <summary>
-        /// South-East direction
+        /// Indicates south-East direction.
         /// </summary>
         SouthEast = Interop.RouteDirection.SouthEast,
         /// <summary>
-        /// South-West direction
+        /// Indicates south-West direction.
         /// </summary>
         SouthWest = Interop.RouteDirection.SouthWest,
         /// <summary>
-        /// West direction
+        /// Indicates west direction.
         /// </summary>
         West = Interop.RouteDirection.West,
         /// <summary>
-        /// East direction
+        /// Indicates east direction.
         /// </summary>
         East = Interop.RouteDirection.East,
     }

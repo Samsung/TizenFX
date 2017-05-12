@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -22,19 +22,19 @@ namespace Tizen.Maps
     public enum MapTypes
     {
         /// <summary>
-        /// Normal street theme
+        /// Indicates normal street theme.
         /// </summary>
         Normal = Interop.ViewType.Normal,
         /// <summary>
-        /// Satellite theme
+        /// Indicates satellite theme.
         /// </summary>
         Satellite = Interop.ViewType.Satellite,
         /// <summary>
-        /// Terrain theme
+        /// Indicates terrain theme.
         /// </summary>
         Terrain = Interop.ViewType.Terrain,
         /// <summary>
-        /// Hybrid theme, has both satellite and normal theme
+        /// Indicates hybrid theme, has both satellite and normal theme.
         /// </summary>
         Hybrid = Interop.ViewType.Hybrid,
     }

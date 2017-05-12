@@ -26,9 +26,9 @@ namespace Tizen.Maps
         internal Interop.PlaceCategoryHandle handle;
 
         /// <summary>
-        /// Constructs search category object
+        /// Constructs search category object.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceCategory()
         {
             handle = new Interop.PlaceCategoryHandle();
@@ -41,7 +41,7 @@ namespace Tizen.Maps
 
 
         /// <summary>
-        /// ID for this category
+        /// Gets or sets an ID for this category.
         /// </summary>
         public string Id
         {
@@ -50,7 +50,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Name for this category
+        /// Gets or sets a name for this category.
         /// </summary>
         public string Name
         {
@@ -59,7 +59,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// URL for this category
+        /// Gets or sets an URL for this category.
         /// </summary>
         public string Url
         {
@@ -68,7 +68,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// String that represents this category
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {
@@ -87,6 +87,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

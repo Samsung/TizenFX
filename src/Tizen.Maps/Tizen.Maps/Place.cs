@@ -32,7 +32,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place ID
+        /// Gets ID string for the place.
         /// </summary>
         public string Id
         {
@@ -43,7 +43,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place Name
+        /// Gets name string for the place.
         /// </summary>
         public string Name
         {
@@ -54,7 +54,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place URI
+        /// Gets view URI for the place.
         /// </summary>
         public string Uri
         {
@@ -65,7 +65,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Distance from the center of the search area
+        /// Gets distance for the place from the center.
         /// </summary>
         public int Distance
         {
@@ -76,7 +76,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place location
+        /// Gets geographical location for the place.
         /// </summary>
         public Geocoordinates Coordinates
         {
@@ -87,7 +87,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place address
+        /// Gets address for the place.
         /// </summary>
         public PlaceAddress Address
         {
@@ -98,7 +98,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Rating for the place
+        /// Gets rating for the place.
         /// </summary>
         public PlaceRating Rating
         {
@@ -109,7 +109,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place image supplier link
+        /// Gets supplier link for the place.
         /// </summary>
         public PlaceLink Supplier
         {
@@ -120,7 +120,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place image related link
+        /// Gets related link for the place.
         /// </summary>
         public PlaceLink Related
         {
@@ -131,7 +131,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All properties attached with this place
+        /// Gets all properties attached to this place.
         /// </summary>
         public IDictionary<string, string> Properties
         {
@@ -144,7 +144,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All categories attached with this place
+        /// Gets all categories attached to this place.
         /// </summary>
         public IEnumerable<PlaceCategory> Categories
         {
@@ -157,7 +157,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All attributes attached with this place
+        /// Gets all attributes attached to this place.
         /// </summary>
         public IEnumerable<PlaceAttribute> Attributes
         {
@@ -170,7 +170,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All contacts attached with this place
+        /// Gets all contacts attached to this place.
         /// </summary>
         public IEnumerable<PlaceContact> Contacts
         {
@@ -183,7 +183,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All editorials attached with this place
+        /// Gets all editorials attached to this place.
         /// </summary>
         public IEnumerable<PlaceEditorial> Editorials
         {
@@ -196,7 +196,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All images attached with this place
+        /// Gets all images attached to this place.
         /// </summary>
         public IEnumerable<PlaceImage> Images
         {
@@ -209,7 +209,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// All reviews attached with this place
+        /// Gets all reviews attached to this place.
         /// </summary>
         public IEnumerable<PlaceReview> Reviews
         {
@@ -233,6 +233,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

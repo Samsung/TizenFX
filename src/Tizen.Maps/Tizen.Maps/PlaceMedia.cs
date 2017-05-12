@@ -35,17 +35,17 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place media attribution
+        /// Gets a string which representing attribution for this place media.
         /// </summary>
         public string Attribution { get { return _attribution; } }
 
         /// <summary>
-        /// Place media supplier value
+        /// Gets an instance of <see cref="PlaceLink"/> object which representing supplier for this place media.
         /// </summary>
         public PlaceLink Supplier { get { return _supplier; } }
 
         /// <summary>
-        /// Place media via value
+        /// Gets an instance of <see cref="PlaceLink"/> object which representing via data for this place media.
         /// </summary>
         public PlaceLink Via { get { return _via; } }
     }

@@ -22,47 +22,47 @@ namespace Tizen.Maps
     public enum RouteFeature
     {
         /// <summary>
-        /// Indicates no route features (are selected)
+        /// Indicates no route features (are selected).
         /// </summary>
         None = Interop.RouteRequestFeature.None,
         /// <summary>
-        /// Indicates toll roads (toll gates/booths)
+        /// Indicates toll roads (toll gates/booths).
         /// </summary>
         Toll = Interop.RouteRequestFeature.Toll,
         /// <summary>
-        /// Indicates motorway
+        /// Indicates motorway.
         /// </summary>
         Motorway = Interop.RouteRequestFeature.MotorWay,
         /// <summary>
-        /// Indicates a boat ferry
+        /// Indicates a boat ferry.
         /// </summary>
         BoatFerry = Interop.RouteRequestFeature.BoatFerry,
         /// <summary>
-        /// Indicates rail (train) ferry
+        /// Indicates rail (train) ferry.
         /// </summary>
         RailFerry = Interop.RouteRequestFeature.RailFerry,
         /// <summary>
-        /// Indicates public transport
+        /// Indicates public transport.
         /// </summary>
         PublicTransit = Interop.RouteRequestFeature.PublicTransit,
         /// <summary>
-        /// Indicates tunnel
+        /// Indicates tunnel.
         /// </summary>
         Tunnel = Interop.RouteRequestFeature.Tunnel,
         /// <summary>
-        /// Indicates dirt road
+        /// Indicates dirt road.
         /// </summary>
         DirtRoad = Interop.RouteRequestFeature.DirtRoad,
         /// <summary>
-        /// Indicates park
+        /// Indicates park.
         /// </summary>
         Parks = Interop.RouteRequestFeature.Parks,
         /// <summary>
-        /// Indicates a high-occupancy vehicle lane
+        /// Indicates a high-occupancy vehicle lane.
         /// </summary>
         Hovlane = Interop.RouteRequestFeature.Hovlane,
         /// <summary>
-        /// Indicates stairs
+        /// Indicates stairs.
         /// </summary>
         Stairs = Interop.RouteRequestFeature.Stairs,
     }

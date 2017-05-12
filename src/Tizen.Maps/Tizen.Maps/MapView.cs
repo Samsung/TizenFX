@@ -23,7 +23,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Map View
+    /// Map View class to show a map on the screen.
     /// </summary>
     public class MapView : Layout, IDisposable
     {
@@ -46,10 +46,15 @@ namespace Tizen.Maps
         private event EventHandler _viewReadyEventHandler;
 
         /// <summary>
-        /// Creates the View and link it to the instance of map service
+        /// Creates the view and link it to the instance of map service.
         /// </summary>
-        /// <param name="parent">The evas object to be drawn</param>
-        /// <param name="service">Map service</param>
+        /// <param name="parent">An instance of <see cref="EvasObject"/> object which map view will be drawn</param>
+        /// <param name="service">An instance of <see cref="MapService"/> object</param>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when parameters are invalid</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service</exception>
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             handle = new Interop.ViewHandle(service.handle, this);
@@ -64,8 +69,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Scrolled gesture event
+        /// Adds or removes event handlers to deliver scrolled gesture event.
         /// </summary>
+        /// <value>Event handlers to get scrolled gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> Scrolled
         {
             add
@@ -88,8 +95,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// ZoomChanged gesture event
+        /// Adds or removes event handlers to deliver zoomed gesture event.
         /// </summary>
+        /// <value>Event handlers to get zoomed gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> ZoomChanged
         {
             add
@@ -112,8 +121,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Clicked gesture event
+        /// Adds or removes event handlers to deliver clicked gesture event.
         /// </summary>
+        /// <value>Event handlers to get clicked gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> Clicked
         {
             add
@@ -136,8 +147,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// DoubleClicked gesture event
+        /// Adds or removes event handlers to deliver double-clicked gesture event.
         /// </summary>
+        /// <value>Event handlers to get double-clicked gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> DoubleClicked
         {
             add
@@ -160,8 +173,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// TwoFingerPressed gesture event
+        /// Adds or removes event handlers to deliver clicked gesture event with two-fingers.
         /// </summary>
+        /// <value>Event handlers to get clicked gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> TwoFingerPressed
         {
             add
@@ -184,8 +199,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Rotated gesture event
+        /// Adds or removes event handlers to deliver rotated gesture event.
         /// </summary>
+        /// <value>Event handlers to get rotated gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> Rotated
         {
             add
@@ -207,9 +224,12 @@ namespace Tizen.Maps
             }
         }
 
+
         /// <summary>
-        /// LongPressed gesture event
+        /// Adds or removes event handlers to deliver long-pressed gesture event.
         /// </summary>
+        /// <value>Event handlers to get long-pressed gesture event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> LongPressed
         {
             add
@@ -232,8 +252,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// ViewReady gesture event
+        /// Adds or removes event handlers to deliver a event representing the view is ready to be used.
         /// </summary>
+        /// <value>Event handlers to get view ready event</value>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler ViewReady
         {
             add
@@ -251,8 +273,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Map View's current zoom level
+        /// Gets or sets current zoom level.
         /// </summary>
+        /// <value>It is an integer value that representing current zoom level.</value>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public int ZoomLevel
         {
             get
@@ -267,8 +295,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Minimum zoom level for map view
+        /// Gets or sets minimum zoom level.
         /// </summary>
+        /// <value>It is an integer value that limits minimal zoom level within range of current map plug-in supported.</value>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public int MinimumZoomLevel
         {
             get
@@ -283,8 +317,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Maximum zoom level for map view
+        /// Gets or sets maximum zoom level.
         /// </summary>
+        /// <value>It is an integer value that limits maximum zoom level within range of current map plug-in supported.</value>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public int MaximumZoomLevel
         {
             get
@@ -299,8 +339,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// orientation on the View [0 ~ 360 degrees]
+        /// Gets or sets orientation on the map view.
         /// </summary>
+        /// <value>It is an integer value from 0 to 360 that indicates orientation of the map view</value>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public double Orientation
         {
             get
@@ -315,8 +361,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Map view type (theme)
+        /// Gets or sets theme type of the map view.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public MapTypes MapType
         {
             get
@@ -331,8 +382,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Indicates whether the map should show the 3D buildings layer
+        /// Indicates whether the map should show the 3D buildings layer.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool BuildingsEnabled
         {
             get
@@ -347,8 +403,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Indicates whether the map should show the traffic layer
+        /// Indicates whether the map should show the traffic layer.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool TrafficEnabled
         {
             get
@@ -363,8 +424,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Indicates whether the map should show the public transit layer
+        /// Indicates whether the map should show the public transit layer.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool PublicTransitEnabled
         {
             get
@@ -379,8 +445,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets whether the scale-bar is enabled or not
+        /// Indicates whether the scale-bar is enabled or not.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool ScalebarEnabled
         {
             get
@@ -395,8 +466,20 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Map view's language
+        /// Sets language of map view.
         /// </summary>
+        /// <value>The display language in the map.
+        /// A language is specified as an ISO 3166 alpha-2 two letter country-code
+        /// followed by ISO 639-1 for the two-letter language code.
+        /// Each language tag is composed of one or more "subtags" separated by hyphens (-).
+        /// Each subtag is composed of basic Latin letters or digits only.
+        /// For example, "ko-KR" for Korean, "en-US" for American English.</value>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         public string Language
         {
             get
@@ -411,8 +494,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Geographical coordinates for map view's center
+        /// Gets or sets geographical coordinates for map view's center.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         public Geocoordinates Center
         {
             get
@@ -427,7 +516,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// List of map object added to map view
+        /// Gets a list of map object added to map view.
         /// </summary>
         public IEnumerable<MapObject> Children
         {
@@ -438,29 +527,44 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Changes geographical coordinates to screen coordinates
+        /// Changes geographical coordinates to screen coordinates.
         /// </summary>
         /// <param name="coordinates">Geographical coordinates</param>
-        /// <returns></returns>
+        /// <returns>Returns an instance of screen coordinates on the current screen</returns>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public Point GeolocationToScreen(Geocoordinates coordinates)
         {
             return handle.GeolocationToScreen(coordinates.handle);
         }
 
         /// <summary>
-        /// Changes screen coordinates to geographical coordinates
+        /// Changes screen coordinates to geographical coordinates.
         /// </summary>
-        /// <param name="screenCoordinates">screen coordinates</param>
-        /// <returns></returns>
+        /// <param name="screenCoordinates">Screen coordinates</param>
+        /// <returns>Returns an instance of geographical coordinates object.</returns>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public Geocoordinates ScreenToGeolocation(Point screenCoordinates)
         {
             return new Geocoordinates(handle.ScreenToGeolocation(screenCoordinates));
         }
 
         /// <summary>
-        /// Adds map object to map view
+        /// Adds a map object to map view.
         /// </summary>
-        /// <param name="child">map object to add</param>
+        /// <param name="child">An instance of map object to be added</param>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public void Add(MapObject child)
         {
             Log.Info(string.Format("Add a object"));
@@ -476,10 +580,15 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Removes map object from map view
+        /// Removes a map object from map view.
         /// </summary>
-        /// <param name="child">map object to remove</param>
-        /// <remarks>Once removed, child object will be become invalid</remarks>
+        /// <param name="child">An instance of map object to be removed</param>
+        /// <remarks>Once removed, the child object will be become invalid</remarks>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public void Remove(MapObject child)
         {
             Log.Info(string.Format("Remove a object"));
@@ -494,8 +603,12 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Removes all map objects from map view
+        /// Removes all map objects from map view.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public void RemoveAll()
         {
             Log.Info(string.Format("Remove all of objects"));
@@ -508,11 +621,16 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Captures a snapshot of the Map View
+        /// Captures a snapshot of map view
         /// </summary>
-        /// <param name="type">type of file format</param>
-        /// <param name="quality">quality for encoding (1~100) </param>
-        /// <param name="path">The file path for snapshot</param>
+        /// <param name="type">Type of file format</param>
+        /// <param name="quality">A integer value which representing quality for encoding, from 1 to 100</param>
+        /// <param name="path">A string which representing The file path for snapshot</param>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
         public void CaptureSnapshot(SnapshotType type, int quality, string path)
         {
             var err = Interop.ViewSnapshot.ViewCaptureSnapshot(handle, (Interop.ViewSnapshotFormatType)type, quality, path);
@@ -620,6 +738,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

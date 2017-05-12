@@ -121,7 +121,8 @@ Various Properties:<br/>
 <para>
 To guarantee that the Maps application runs on a device with Maps profile feature,
 declare the following feature requirements in the config file:<br/>
-http://tizen.org/feature/maps
+http://tizen.org/feature/maps<br/>
+http://tizen.org/feature/internet
 </para>
 
 </remarks>

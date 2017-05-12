@@ -37,12 +37,12 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Clicked event
+        /// Gets or sets clicked event handlers.
         /// </summary>
         public event EventHandler Clicked;
 
         /// <summary>
-        /// Marker's visibility
+        /// Gets or sets marker's visibility.
         /// </summary>
         public override bool IsVisible
         {
@@ -57,7 +57,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Geographical coordinates for marker
+        /// Gets or sets geographical coordinates for this marker.
         /// </summary>
         public Geocoordinates Coordinates
         {
@@ -75,7 +75,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Image file path for marker
+        /// Gets or sets a string representing image file path for this marker.
         /// </summary>
         public string ImagePath
         {
@@ -90,7 +90,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Screen size for marker
+        /// Gets or sets screen size for this marker.
         /// </summary>
         public Size MarkerSize
         {
@@ -105,8 +105,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Z-order for marker
+        /// Gets or sets z-order for this marker.
         /// </summary>
+        /// <value>The integer value is 0 in default, and must be in range of from -100 to 100.</value>
         public int ZOrder
         {
             get
@@ -120,7 +121,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Changes marker size
+        /// Changes marker size.
         /// </summary>
         /// <param name="newSize">New size</param>
         public void Resize(Size newSize)
@@ -129,7 +130,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Changes marker coordinates
+        /// Changes marker coordinates.
         /// </summary>
         /// <param name="newPosition">New position for marker</param>
         public void Move(Geocoordinates newPosition)
@@ -164,6 +165,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -182,21 +186,27 @@ namespace Tizen.Maps
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin_48.png";
 
         /// <summary>
-        /// Creates Pin type parker
+        /// Creates a Pin type marker.
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         public Pin(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Pin)
         {
         }
 
         /// <summary>
-        /// Creates Pin type parker
+        /// Creates a Pin type marker.
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
-        /// <param name="imagePath">Image path</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates or imagePath are invalid</exception>
+        /// <param name="imagePath">Image file path for Marker</param>
+        /// <remark>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path are relevant to external storage.
+        /// </remark>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates or imagePath are invalid.</exception>
         public Pin(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
         {
@@ -211,21 +221,27 @@ namespace Tizen.Maps
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker_48.png";
 
         /// <summary>
-        /// Creates Sticker type parker
+        /// Creates a Sticker type marker.
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates are invalid</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         public Sticker(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Sticker)
         {
         }
 
         /// <summary>
-        /// Creates Sticker type parker
+        /// Creates a Sticker type marker.
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
-        /// <param name="imagePath">Image path</param>
-        /// <exception cref="ArgumentException">Throws if input coordinates or imagePath are invalid</exception>
+        /// <param name="imagePath">Image file path for Marker</param>
+        /// <remark>
+        /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+        /// </remark>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates or imagePath are invalid.</exception>
         public Sticker(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
         {

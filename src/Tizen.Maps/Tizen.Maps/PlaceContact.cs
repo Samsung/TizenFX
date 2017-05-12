@@ -40,22 +40,22 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place contact type
+        /// Gets an ID for this place contact.
         /// </summary>
         public string Id { get { return _type; } }
 
         /// <summary>
-        /// Place contact label
+        /// Gets a label for this place contact.
         /// </summary>
         public string Label { get { return _label; } }
 
         /// <summary>
-        /// Place contact value
+        /// Gets a value for this place contact.
         /// </summary>
         public string Value { get { return _value; } }
 
         /// <summary>
-        /// String that represents this place contact
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {

@@ -34,27 +34,28 @@ namespace Tizen.Maps
             _text = nativeHandle.Text;
         }
 
-        internal PlaceAttribute(IntPtr nativeHandle, bool needToRelease) : this(new Interop.PlaceAttributeHandle(nativeHandle, needToRelease))
+        internal PlaceAttribute(IntPtr nativeHandle, bool needToRelease)
+            : this(new Interop.PlaceAttributeHandle(nativeHandle, needToRelease))
         {
         }
 
         /// <summary>
-        /// Place Attribute ID
+        /// Gets an ID for the place attribute.
         /// </summary>
         public string Id { get { return _id; } }
 
         /// <summary>
-        /// Place attribute label
+        /// Gets a label for the place attribute.
         /// </summary>
         public string Label { get { return _label; } }
 
         /// <summary>
-        /// Place attribute text
+        /// Gets a text for the place attribute.
         /// </summary>
         public string Text { get { return _text; } }
 
         /// <summary>
-        /// String that represents this attribute
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {

@@ -25,11 +25,14 @@ namespace Tizen.Maps
         internal MapObject() { }
 
         /// <summary>
-        /// Map Object's visibility
+        /// Gets or sets visibility of the map object.
         /// </summary>
         public abstract bool IsVisible { get; set; }
+
         internal abstract void HandleClickedEvent();
+
         internal abstract void InvalidateMapObject();
+
         internal abstract Interop.ViewObjectHandle GetHandle();
     }
 }

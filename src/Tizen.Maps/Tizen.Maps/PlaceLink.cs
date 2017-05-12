@@ -38,22 +38,22 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place link ID
+        /// Gets a string which representing ID for this place link.
         /// </summary>
         public string Id { get { return _id; } }
 
         /// <summary>
-        /// Place link name
+        /// Gets a string which representing name for this place link.
         /// </summary>
         public string Name { get { return _name; } }
 
         /// <summary>
-        /// Place link string
+        /// Gets a string which representing link for this place link.
         /// </summary>
         public string Link { get { return _link; } }
 
         /// <summary>
-        /// Place link type
+        /// Gets a string which representing type for this place link.
         /// </summary>
         public string Type { get { return _type; } }
     }

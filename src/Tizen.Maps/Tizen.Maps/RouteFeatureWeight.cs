@@ -22,23 +22,23 @@ namespace Tizen.Maps
     public enum RouteFeatureWeight
     {
         /// <summary>
-        /// Indicates normal weighting
+        /// Indicates normal weighting.
         /// </summary>
         Normal = Interop.RouteFeatureWeight.Normal,
         /// <summary>
-        /// Indicates that a feature is preferred
+        /// Indicates that a feature is preferred.
         /// </summary>
         Prefer = Interop.RouteFeatureWeight.Prefer,
         /// <summary>
-        /// Indicates that a feature is to be avoided
+        /// Indicates that a feature is to be avoided.
         /// </summary>
         Avoid = Interop.RouteFeatureWeight.Avoid,
         /// <summary>
-        /// Indicates that soft-exclude applies to the feature
+        /// Indicates that soft-exclude applies to the feature.
         /// </summary>
         SoftExclude = Interop.RouteFeatureWeight.SoftExclude,
         /// <summary>
-        /// Indicates that the feature is to be strictly excluded
+        /// Indicates that the feature is to be strictly excluded.
         /// </summary>
         StrictExclude = Interop.RouteFeatureWeight.StrictExclude,
     }

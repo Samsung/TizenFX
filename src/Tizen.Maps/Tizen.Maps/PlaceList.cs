@@ -33,7 +33,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Iterator for addresses in this list
+        /// Gets an iterator for addresses in this list.
         /// </summary>
         public IEnumerable<Place> Places
         {
@@ -60,6 +60,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

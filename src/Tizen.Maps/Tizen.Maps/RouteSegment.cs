@@ -47,38 +47,35 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Origin coordinates for this segment
+        /// Gets an origin coordinates for this segment.
         /// </summary>
         public Geocoordinates Origin { get { return _origin; } }
 
         /// <summary>
-        /// Destination coordinates for this segment
+        /// Gets a destination coordinates for this segment.
         /// </summary>
         public Geocoordinates Destination { get { return _destination; } }
 
         /// <summary>
-        /// Total distance for this segment
+        /// Gets total distance for this segment.
         /// </summary>
         public double Distance { get { return _distance; } }
 
         /// <summary>
-        /// Total duration to cover this segment
+        /// Gets total duration to cover this segment.
         /// </summary>
         public double Duration { get { return _duration; } }
 
         /// <summary>
-        /// Maneuver list for this segment path
+        /// Gets a maneuver list for this segment.
         /// </summary>
         public IEnumerable<RouteManeuver> Maneuvers { get { return _maneuvers; } }
 
         /// <summary>
-        /// Coordinates list for this segment path
+        /// Gets a coordinates list for this segment.
         /// </summary>
         public IEnumerable<Geocoordinates> Path { get { return _path; } }
 
-        /// <summary>
-        /// Bounding area for this segment
-        /// </summary>
         private Area BoundingBox { get { return _boundingBox; } }
     }
 }

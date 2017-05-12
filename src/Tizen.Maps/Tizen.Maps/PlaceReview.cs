@@ -48,37 +48,37 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Time of this review
+        /// Gets an instance of <see cref="DateTime"/> object which representing time of this review.
         /// </summary>
         public DateTime Date { get { return _date; } }
 
         /// <summary>
-        /// Title of this review
+        /// Gets a string which representing title of this review.
         /// </summary>
         public string Title { get { return _title; } }
 
         /// <summary>
-        /// Rating of this review
+        /// Gets a value which representing rating of this review.
         /// </summary>
         public double Rating { get { return _rating; } }
 
         /// <summary>
-        /// Description of this review
+        /// Gets a string which representing description of this review.
         /// </summary>
         public string Description { get { return _description; } }
 
         /// <summary>
-        /// Language of this review
+        /// Gets a string which representing language of this review.
         /// </summary>
         public string Language { get { return _language; } }
 
         /// <summary>
-        /// Media attached with this review
+        /// Gets an instance of <see cref="PlaceMedia"/> object which representing review media of this review.
         /// </summary>
         public PlaceMedia ReviewMedia { get { return _media; } }
 
         /// <summary>
-        /// User link of this review
+        /// Gets an instance of <see cref="PlaceLink"/> object which representing user link of this review.
         /// </summary>
         public PlaceLink UserLink { get { return _userLink; } }
     }

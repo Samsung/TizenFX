@@ -41,32 +41,32 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place image Id
+        /// Gets an ID for this place image.
         /// </summary>
         public string Id { get { return _id; } }
 
         /// <summary>
-        /// Place image URL
+        /// Gets an URL for this place image.
         /// </summary>
         public string Url { get { return _url; } }
 
         /// <summary>
-        /// Place image width
+        /// Gets width for this place image.
         /// </summary>
         public int Width { get { return _width; } }
 
         /// <summary>
-        /// Place image height
+        /// Gets height for this place image.
         /// </summary>
         public int Height { get { return _height; } }
 
         /// <summary>
-        /// Place image user link
+        /// Gets an object which representing user link for this place image.
         /// </summary>
         public PlaceLink UserLink { get { return _userLink; } }
 
         /// <summary>
-        /// Place image media
+        /// Gets an object which representing image media for this place image.
         /// </summary>
         public PlaceMedia ImageMedia { get { return _media; } }
     }

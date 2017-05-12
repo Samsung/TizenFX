@@ -22,23 +22,23 @@ namespace Tizen.Maps
     public enum TransportMode
     {
         /// <summary>
-        /// Route is to be traveled by car
+        /// Indicates that route is to be traveled by car.
         /// </summary>
         Car = Interop.RouteTransportMode.Car,
         /// <summary>
-        /// Route is for a pedestrian
+        /// Indicates that route is for a pedestrian.
         /// </summary>
         Pedestrian = Interop.RouteTransportMode.Pedestrian,
         /// <summary>
-        /// Route is for a cyclist
+        /// Indicates that route is for a cyclist.
         /// </summary>
         Bicycle = Interop.RouteTransportMode.Bicycle,
         /// <summary>
-        /// Route is to be traveled using public transport
+        /// Indicates that route is to be traveled using public transport.
         /// </summary>
         Publictransit = Interop.RouteTransportMode.PublicTransit,
         /// <summary>
-        /// Route is for a truck
+        /// Indicates that route is for a truck.
         /// </summary>
         Truck = Interop.RouteTransportMode.Truck,
     }

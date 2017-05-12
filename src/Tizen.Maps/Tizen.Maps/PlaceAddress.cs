@@ -26,9 +26,9 @@ namespace Tizen.Maps
         internal Interop.AddressHandle handle;
 
         /// <summary>
-        /// Construct map address object
+        /// Constructs map address object.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceAddress()
         {
             handle = new Interop.AddressHandle();
@@ -40,7 +40,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Building number for this address
+        /// Gets a building number for this address.
         /// </summary>
         public string Building
         {
@@ -55,7 +55,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// City name for this address
+        /// Gets a city name for this address.
         /// </summary>
         public string City
         {
@@ -70,7 +70,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Country name for this address
+        /// Gets a country name for this address.
         /// </summary>
         public string Country
         {
@@ -85,7 +85,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Country code for this address
+        /// Gets a country code for this address.
         /// </summary>
         public string CountryCode
         {
@@ -100,7 +100,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// County for this address
+        /// Gets a county name for this address.
         /// </summary>
         public string County
         {
@@ -115,7 +115,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// District name for this address
+        /// Gets a district name for this address.
         /// </summary>
         public string District
         {
@@ -130,7 +130,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Free text associated with this address
+        /// Gets a free text associated with this address.
         /// </summary>
         public string Freetext
         {
@@ -145,7 +145,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Postal code for this address
+        /// Gets a postal code for this address.
         /// </summary>
         public string PostalCode
         {
@@ -160,7 +160,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// State name for this address
+        /// Gets a state name for this address.
         /// </summary>
         public string State
         {
@@ -175,7 +175,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Street name for this address
+        /// Gets a street name for this address.
         /// </summary>
         public string Street
         {
@@ -190,7 +190,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// String that represents this address
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {
@@ -209,6 +209,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

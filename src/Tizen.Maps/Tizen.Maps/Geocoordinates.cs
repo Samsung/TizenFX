@@ -19,19 +19,19 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Class representing geographical co-ordinates
+    /// Class representing geographical coordinates.
     /// </summary>
     public class Geocoordinates : IDisposable
     {
         internal Interop.CoordinatesHandle handle;
 
         /// <summary>
-        /// Constructs map coordinate object
+        /// Constructs map coordinate object.
         /// </summary>
-        /// <param name="latitude">latitude value, must be between (-90.0 ~ 90.0) degrees</param>
-        /// <param name="longitude">longitude value, must be between (-180.0 ~ 180.0) degrees</param>
-        /// <exception cref="System.ArgumentException">Throws if values for latitude and longitude are not valid</exception>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <param name="latitude">Latitude value, must be between (-90.0 ~ 90.0) degrees</param>
+        /// <param name="longitude">Longitude value, must be between (-180.0 ~ 180.0) degrees</param>
+        /// <exception cref="System.ArgumentException">Thrown when values for latitude and longitude are not valid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public Geocoordinates(double latitude, double longitude)
         {
             handle = new Interop.CoordinatesHandle(latitude, longitude);
@@ -43,7 +43,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Latitude for this coordinate
+        /// Gets latitude of the coordinates.
         /// </summary>
         public double Latitude
         {
@@ -54,7 +54,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Longitude for this coordinate
+        /// Gets longitude of the coordinates.
         /// </summary>
         public double Longitude
         {
@@ -65,7 +65,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// String that represents this coordinate
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {
@@ -84,6 +84,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

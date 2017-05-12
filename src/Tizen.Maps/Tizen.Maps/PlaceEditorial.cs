@@ -39,22 +39,22 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Place editorial description
+        /// Gets a description for this place editorial.
         /// </summary>
         public string Description { get { return _description; } }
 
         /// <summary>
-        /// Place editorial language
+        /// Gets a language for this place editorial.
         /// </summary>
         public string Language { get { return _language; } }
 
         /// <summary>
-        /// Place editorial value
+        /// Gets an instance of <see cref="PlaceMedia"/> object which representing media for this place editorial.
         /// </summary>
         public PlaceMedia Media { get { return _media; } }
 
         /// <summary>
-        /// String that represents this place media
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {

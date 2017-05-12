@@ -92,7 +92,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// List of way-points to cover between origin and destination
+        /// Gets or sets a list of way-points to cover between origin and destination.
         /// </summary>
         public IEnumerable<Geocoordinates> Waypoints
         {

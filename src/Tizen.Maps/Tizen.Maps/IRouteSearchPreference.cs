@@ -23,32 +23,32 @@ namespace Tizen.Maps
     public interface IRouteSearchPreference
     {
         /// <summary>
-        /// Distance unit
+        /// Gets or sets distance unit.
         /// </summary>
         DistanceUnit Unit { get; set; }
 
         /// <summary>
-        /// Selected route optimization
+        /// Gets or sets route optimization.
         /// </summary>
         RouteOptimization Optimization { get; set; }
 
         /// <summary>
-        /// Route transport mode
+        /// Gets or sets route transport mode.
         /// </summary>
         TransportMode Mode { get; set; }
 
         /// <summary>
-        /// Route feature weight
+        /// Gets or sets route feature weight.
         /// </summary>
         RouteFeatureWeight RouteFeatureWeight { get; set; }
 
         /// <summary>
-        /// Route feature
+        /// Gets or sets route feature.
         /// </summary>
         RouteFeature RouteFeature { get; set; }
 
         /// <summary>
-        /// Indicate if search for alternative routes is enabled.
+        /// Gets or sets if searching for alternative routes is enabled.
         /// </summary>
         bool SearchAlternativeRoutes { get; set; }
     }

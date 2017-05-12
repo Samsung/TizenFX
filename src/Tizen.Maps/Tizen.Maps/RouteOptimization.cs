@@ -19,30 +19,33 @@ namespace Tizen.Maps
     /// <summary>
     /// Allowed route optimization option used in route search requests
     /// </summary>
+    /// <remark>
+    /// Depending on loaded maps plug-in using <paramref name="MapService"/>, some features may have no effect or differences with descriptions.
+    /// </remark>
     public enum RouteOptimization
     {
         /// <summary>
-        /// Search for fastest routes
+        /// Indicates that searching for fastest routes.
         /// </summary>
         Fastest = Interop.RouteOptimization.Fastest,
         /// <summary>
-        /// Search for shortest routes (car mode only)
+        /// Indicates that searching for shortest routes (car mode only).
         /// </summary>
         Shortest = Interop.RouteOptimization.Shortest,
         /// <summary>
-        /// Search for most economic routes (car mode only)
+        /// Indicates that searching for most economic routes (car mode only).
         /// </summary>
         Economic = Interop.RouteOptimization.Economic,
         /// <summary>
-        /// Search for most scenic routes
+        /// Indicates that searching for most scenic routes.
         /// </summary>
         Scenic = Interop.RouteOptimization.Scenic,
         /// <summary>
-        /// Search for most fastest routes now, based on current traffic condition
+        /// Indicates that searching for most fastest routes now, based on current traffic condition.
         /// </summary>
         FastestNow = Interop.RouteOptimization.FastestNow,
         /// <summary>
-        /// Search for direct drive routes
+        /// Indicates that searching for direct drive routes.
         /// </summary>
         DirectDrive = Interop.RouteOptimization.DirectDrive,
     }

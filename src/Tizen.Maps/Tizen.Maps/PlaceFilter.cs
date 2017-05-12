@@ -26,17 +26,20 @@ namespace Tizen.Maps
         internal Interop.PlaceFilterHandle handle;
 
         /// <summary>
-        /// Constructs new place filter
+        /// Constructs new place filter.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceFilter()
         {
             handle = new Interop.PlaceFilterHandle();
         }
 
         /// <summary>
-        /// Filter string for place addresses
+        /// Gets or sets an free-formed address string for this place filter.
         /// </summary>
+        /// <remarks>Depending on maps provider which the application has selected,
+        /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
+        /// as same kind of strings to search places.</remarks>
         public string Address
         {
             get
@@ -50,7 +53,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Category filter for places
+        /// Gets or sets an instance of <see cref="PlaceCategory"/> object for this place filter.
         /// </summary>
         public PlaceCategory Category
         {
@@ -65,8 +68,11 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Filter keyword for place
+        /// Gets or sets a keyword for this place filter.
         /// </summary>
+        /// <remarks>Depending on maps provider which the application has selected,
+        /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
+        /// as same kind of strings to search places.</remarks>
         public string Keyword
         {
             get
@@ -80,8 +86,11 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Filter string for place names
+        /// Gets or sets a name for this place filter.
         /// </summary>
+        /// <remarks>Depending on maps provider which the application has selected,
+        /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
+        /// as same kind of strings to search places.</remarks>
         public string Name
         {
             get
@@ -106,6 +115,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

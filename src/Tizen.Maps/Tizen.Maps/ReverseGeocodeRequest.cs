@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Reverse geocode request for Tizen map service
+    /// Reverse geocode request for map service.
     /// </summary>
     public class ReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {

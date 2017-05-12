@@ -22,19 +22,19 @@ namespace Tizen.Maps
     public enum DistanceUnit
     {
         /// <summary>
-        /// Meter
+        /// Indicates meter unit.
         /// </summary>
         Meter = Interop.DistanceUnit.Meter,
         /// <summary>
-        /// Kilometer
+        /// Indicates kilometer unit.
         /// </summary>
         Kilometer = Interop.DistanceUnit.Kilometer,
         /// <summary>
-        /// Foot
+        /// Indicates foot unit.
         /// </summary>
         Foot = Interop.DistanceUnit.Foot,
         /// <summary>
-        /// Yard
+        /// Indicates yard unit.
         /// </summary>
         Yard = Interop.DistanceUnit.Yard,
     }

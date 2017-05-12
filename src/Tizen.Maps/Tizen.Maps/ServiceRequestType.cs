@@ -22,62 +22,62 @@ namespace Tizen.Maps
     public enum ServiceRequestType
     {
         /// <summary>
-        /// Service request to get position <see cref="Geocoordinates"/> for a given free-formed address string is allowed
+        /// Indicates that service request to get position <see cref="Geocoordinates"/> for a given free-formed address string is allowed.
         /// </summary>
         Geocode = Interop.ServiceType.Geocode,
         /// <summary>
-        /// Service request to get position <see cref="Geocoordinates"/>  for a given address, within the specified bounding <see cref="Area"/>, is allowed
+        /// Indicates that service request to get position <see cref="Geocoordinates"/>  for a given address, within the specified bounding <see cref="Area"/>, is allowed.
         /// </summary>
         GeocodeInsideArea = Interop.ServiceType.GeocodeInsideArea,
         /// <summary>
-        /// Service request to get position <see cref="Geocoordinates"/> for a given <see cref="PlaceAddress"/> is allowed
+        /// Indicates that service request to get position <see cref="Geocoordinates"/> for a given <see cref="PlaceAddress"/> is allowed.
         /// </summary>
         GeocodeByStructuredAddress = Interop.ServiceType.GeocodeByStructuredAddress,
         /// <summary>
-        /// Service request to get <see cref="PlaceAddress"/> for a given <see cref="Geocoordinates"/> is allowed
+        /// Indicates that service request to get <see cref="PlaceAddress"/> for a given <see cref="Geocoordinates"/> is allowed.
         /// </summary>
         ReverseGeocode = Interop.ServiceType.ReverseGeocode,
         /// <summary>
-        /// Service request to get <see cref="PlaceAddress"/> for a given <see cref="GeocoordinatesList"/> is allowed
+        /// Indicates that service request to get <see cref="PlaceAddress"/> for a given <see cref="GeocoordinatesList"/> is allowed.
         /// </summary>
         MultiReverseGeocode = Interop.ServiceType.MultiReverseGeocode,
 
         /// <summary>
-        /// Service request to query <see cref="Place"/> information for a given <see cref="Geocoordinates"/> is allowed
+        /// Indicates that service request to query <see cref="Place"/> information for a given <see cref="Geocoordinates"/> is allowed.
         /// </summary>
         SearchPlace = Interop.ServiceType.SearchPlace,
         /// <summary>
-        /// Service request to query <see cref="Place"/> information for a given <see cref="Area"/> is allowed
+        /// Indicates that service request to query <see cref="Place"/> information for a given <see cref="Area"/> is allowed.
         /// </summary>
         SearchPlaceByArea = Interop.ServiceType.SearchPlaceByArea,
         /// <summary>
-        /// Service request to query <see cref="Place"/> information for a given free-formed address string is allowed
+        /// Indicates that service request to query <see cref="Place"/> information for a given free-formed address string is allowed.
         /// </summary>
         SearchPlaceByAddress = Interop.ServiceType.SearchPlaceByAddress,
         /// <summary>
-        /// Service request to query <see cref="Place"/> information list for all places in a given <see cref="Area"/> is allowed
+        /// Indicates that service request to query <see cref="Place"/> information list for all places in a given <see cref="Area"/> is allowed.
         /// </summary>
         SearchPlaceList = Interop.ServiceType.SearchPlaceList,
         /// <summary>
-        /// Service request to get detailed <see cref="Place"/> information for a given <see cref="PlaceUrl"/> is allowed
+        /// Indicates that service request to get detailed <see cref="Place"/> information for a given <see cref="PlaceUrl"/> is allowed.
         /// </summary>
         SearchGetPlaceDetails = Interop.ServiceType.SearchGetPlaceDetails,
 
         /// <summary>
-        /// Service request to query <see cref="Route"/> information from a given origin <see cref="Geocoordinates"/> and destination <see cref="Geocoordinates"/> is allowed
+        /// Indicates that service request to query <see cref="Route"/> information from a given origin <see cref="Geocoordinates"/> and destination <see cref="Geocoordinates"/> is allowed.
         /// </summary>
         SearchRoute = Interop.ServiceType.SearchRoute,
         /// <summary>
-        /// Service request to query <see cref="Route"/> information passing through specified way-points <see cref="GeocoordinatesList"/> is allowed
+        /// Indicates that service request to query <see cref="Route"/> information passing through specified way-points <see cref="GeocoordinatesList"/> is allowed.
         /// </summary>
         SearchRouteWithWaypoints = Interop.ServiceType.SearchRouteWaypoints,
 
         /// <summary>
-        /// Map view service is allowed
+        /// Indicates that map view service is allowed.
         /// </summary>
         View = Interop.ServiceType.View,
         /// <summary>
-        /// Map view snapshot service is allowed
+        /// Indicates that map view snapshot service is allowed.
         /// </summary>
         ViewSnapshot = Interop.ServiceType.ViewSnapshot,
     }

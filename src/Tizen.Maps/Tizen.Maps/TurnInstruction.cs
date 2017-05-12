@@ -22,63 +22,63 @@ namespace Tizen.Maps
     public enum TurnInstruction
     {
         /// <summary>
-        /// Unknown Instruction
+        /// Indicates unknown instruction.
         /// </summary>
         None = Interop.RouteTurnType.None,
         /// <summary>
-        /// Instruction to move straight
+        /// Indicates instruction to move straight.
         /// </summary>
         Straight = Interop.RouteTurnType.Straight,
         /// <summary>
-        /// Instruction to bear right
+        /// Indicates instruction to bear right.
         /// </summary>
         BearRight = Interop.RouteTurnType.BearRight,
         /// <summary>
-        /// Instruction to turn slightly to the right
+        /// Indicates instruction to turn slightly to the right.
         /// </summary>
         LightRight = Interop.RouteTurnType.LightRight,
         /// <summary>
-        /// Instruction to turn right
+        /// Indicates instruction to turn right.
         /// </summary>
         Right = Interop.RouteTurnType.Right,
         /// <summary>
-        /// Instruction to turn hard to the right
+        /// Indicates instruction to turn hard to the right.
         /// </summary>
         HardRight = Interop.RouteTurnType.HardRight,
         /// <summary>
-        /// Instruction to u-turn to the right
+        /// Indicates instruction to u-turn to the right.
         /// </summary>
         UturnRight = Interop.RouteTurnType.UturnRight,
         /// <summary>
-        /// Instruction to u-turn to the left
+        /// Indicates instruction to u-turn to the left.
         /// </summary>
         UturnLeft = Interop.RouteTurnType.UturnLeft,
         /// <summary>
-        /// Instruction to turn hard to the left
+        /// Indicates instruction to turn hard to the left.
         /// </summary>
         HardLeft = Interop.RouteTurnType.HardLeft,
         /// <summary>
-        /// Instruction to turn left
+        /// Indicates instruction to turn left.
         /// </summary>
         Left = Interop.RouteTurnType.Left,
         /// <summary>
-        /// Instruction to turn slightly to the left
+        /// Indicates instruction to turn slightly to the left.
         /// </summary>
         LightLeft = Interop.RouteTurnType.LightLeft,
         /// <summary>
-        /// Instruction to bear left
+        /// Indicates instruction to bear left.
         /// </summary>
         BearLeft = Interop.RouteTurnType.BearLeft,
         /// <summary>
-        /// Instruction to take right fork
+        /// Indicates instruction to take right fork.
         /// </summary>
         RightFork = Interop.RouteTurnType.RightFork,
         /// <summary>
-        /// Instruction to take left fork
+        /// Indicates instruction to take left fork.
         /// </summary>
         LeftFork = Interop.RouteTurnType.LeftFork,
         /// <summary>
-        /// Instruction to take straight fork
+        /// Indicates instruction to take straight fork.
         /// </summary>
         StraightFork = Interop.RouteTurnType.StraightFork,
     }

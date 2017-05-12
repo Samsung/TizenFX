@@ -28,9 +28,10 @@ namespace Tizen.Maps
         private List<PlaceAddress> _list;
 
         /// <summary>
-        /// Construct map address list object
+        /// Constructs a map address list object.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceAddressList()
         {
             handle = new Interop.AddressListHandle();
@@ -42,7 +43,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Iterator for addresses in this list
+        /// Gets an iterator for addresses in this list.
         /// </summary>
         public IEnumerable<PlaceAddress> Addresses
         {
@@ -69,6 +70,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Route information, used in Route Search requests
+    /// Route information, used in Route Search requests.
     /// </summary>
     public class Route : IDisposable
     {
@@ -33,7 +33,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Destination coordinates for this route
+        /// Gets an instance of <see cref="Geocoordinates"/> object which representing destination coordinates for this route.
         /// </summary>
         public Geocoordinates Destination
         {
@@ -44,7 +44,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Total distance for this route
+        /// Gets total distance for this route.
         /// </summary>
         public double Distance
         {
@@ -55,7 +55,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Total duration to cover this route
+        /// Get total duration to cover this route.
         /// </summary>
         public double Duration
         {
@@ -66,7 +66,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Id for this route
+        /// Gets an ID for this route.
         /// </summary>
         public string Id
         {
@@ -77,7 +77,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Transport Mode for this route
+        /// Gets transport mode for this route.
         /// </summary>
         public TransportMode Mode
         {
@@ -88,7 +88,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Origin coordinates for this route
+        /// Gets origin coordinates for this route.
         /// </summary>
         public Geocoordinates Origin
         {
@@ -99,7 +99,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Coordinates list for this route
+        /// Gets a coordinates list for this route.
         /// </summary>
         public IEnumerable<Geocoordinates> Path
         {
@@ -112,7 +112,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Segment list for this route
+        /// Gets a segment list for this route.
         /// </summary>
         public IEnumerable<RouteSegment> Segments
         {
@@ -125,7 +125,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Distance unit for this route
+        /// Gets distance unit for this route.
         /// </summary>
         public DistanceUnit Unit
         {
@@ -136,7 +136,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Bounding area for this route
+        /// Gets an instance of <see cref="Area"/> object which representing bounding area for this route.
         /// </summary>
         private Area BoundingBox
         {
@@ -158,6 +158,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

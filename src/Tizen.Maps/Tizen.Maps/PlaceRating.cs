@@ -33,17 +33,17 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Number of users rated for this rating
+        /// Gets the number of users rated for this place rating.
         /// </summary>
         public int UserCount { get { return _count; } }
 
         /// <summary>
-        /// Average value of user rating
+        /// Gets average value of this place rating.
         /// </summary>
         public double Average { get { return _average; } }
 
         /// <summary>
-        /// String that represents this place rating
+        /// Returns a string that represents this object.
         /// </summary>
         public override string ToString()
         {

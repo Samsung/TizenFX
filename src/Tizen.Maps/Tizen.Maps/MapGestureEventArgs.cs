@@ -38,32 +38,32 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Type of gesture event
+        /// Gets type of gesture event.
         /// </summary>
         public GestureType GestureType { get; }
 
         /// <summary>
-        /// Screen coordinates for the event
+        /// Gets screen coordinates in the event.
         /// </summary>
         public Point Position { get; }
 
         /// <summary>
-        /// Number of fingers detected in the event
+        /// Gets the number of fingers detected in the event.
         /// </summary>
         public int TouchCount { get; }
 
         /// <summary>
-        /// Zoom factor for zoom gesture event
+        /// Gets zoom factor for zoom gesture event.
         /// </summary>
         public double ZoomFactor { get; }
 
         /// <summary>
-        /// Angle of rotation for rotate gesture event
+        /// Gets angle of rotation for rotate gesture event.
         /// </summary>
         public double RotationAngle { get; }
 
         /// <summary>
-        /// Geo-coordinates for the event
+        /// Gets geographical coordinates for the event.
         /// </summary>
         public Geocoordinates Geocoordinates { get; }
     }

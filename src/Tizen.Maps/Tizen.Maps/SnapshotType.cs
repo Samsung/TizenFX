@@ -22,11 +22,11 @@ namespace Tizen.Maps
     public enum SnapshotType
     {
         /// <summary>
-        /// BMP file format
+        /// Indicates BMP file format.
         /// </summary>
         BMP = Interop.ViewSnapshotFormatType.ViewSnapshotBmp,
         /// <summary>
-        /// JPEG file format
+        /// Indicates JPEG file format.
         /// </summary>
         JPEG = Interop.ViewSnapshotFormatType.ViewSnapshotJpeg,
     }

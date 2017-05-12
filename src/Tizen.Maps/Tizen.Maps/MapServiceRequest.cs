@@ -37,7 +37,7 @@ namespace Tizen.Maps
         internal MapService _service;
 
         /// <summary>
-        /// Creates map service request
+        /// Creates a map service request.
         /// </summary>
         /// <param name="service">map service object</param>
         /// <param name="type">Request type</param>
@@ -48,12 +48,16 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Sends request to map service provider
+        /// Sends a request to map service provider.
         /// </summary>
         /// <returns>Response from map service provider</returns>
-        /// <exception cref="TaskCanceledException">Throws if request is canceled</exception>
-        /// <exception cref="InvalidOperationException">Throws if native operation failed</exception>
-        /// <exception cref="ArgumentException">Throws if arguments are invalid</exception>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the result is invalid.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when arguments are invalid</exception>
         public async Task<IEnumerable<T>> GetResponseAsync()
         {
             IEnumerable<T> task = null;
@@ -98,6 +102,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

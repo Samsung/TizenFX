@@ -25,30 +25,29 @@ namespace Tizen.Maps
     public interface IPlaceSearchPreference
     {
         /// <summary>
-        /// Distance unit
+        /// Gets or sets distance unit.
         /// </summary>
         DistanceUnit Unit { get; set; }
 
         /// <summary>
-        /// Preferred language
+        /// Gets or sets preferred language.
         /// </summary>
-        /// <remarks>
-        /// Language should be specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code e.g. "ko-KR"
-        /// </remarks>
+        /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
+        /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
         string Language { get; set; }
 
         /// <summary>
-        /// Maximum result count for a service request
+        /// Gets or sets the maximum number of results.
         /// </summary>
         int MaxResults { get; set; }
 
         /// <summary>
-        /// Preferred country
+        /// Gets or sets a string that represents code of preferred country.
         /// </summary>
         string CountryCode { get; set; }
 
         /// <summary>
-        /// Search properties as key value pair
+        /// Gets or sets search properties as key value pair.
         /// </summary>
         IReadOnlyDictionary<string, string> Properties { get; set; }
     }

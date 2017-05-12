@@ -31,12 +31,12 @@ namespace Tizen.Maps
         private List<Geocoordinates> _coordinateList;
 
         /// <summary>
-        /// Creates polyline visual object
+        /// Creates polyline visual object.
         /// </summary>
         /// <param name="coordinates">List of geographical coordinates</param>
         /// <param name="color">Line color</param>
         /// <param name="width">The width of line [1 ~ 100] (pixels)</param>
-        /// <exception cref="ArgumentException">Throws if input values are invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when input values are invalid</exception>
         public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -50,7 +50,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Clicked event
+        /// Adds or removes clicked event handlers.
         /// </summary>
         public event EventHandler Clicked;
 
@@ -61,7 +61,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// List of geographical coordinates for polyline vertices
+        /// Gets or sets a list of geographical coordinates for polyline vertices.
         /// </summary>
         public IEnumerable<Geocoordinates> Coordinates
         {
@@ -87,7 +87,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Line color
+        /// Gets or sets line color.
         /// </summary>
         public Color LineColor
         {
@@ -102,7 +102,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// line width [1 ~ 100 pixels]
+        /// Gets or sets line width from 1 to 100 pixels.
         /// </summary>
         public int Width
         {
@@ -147,6 +147,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

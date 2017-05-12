@@ -28,7 +28,7 @@ namespace Tizen.Maps
         private IReadOnlyDictionary<string, string> _properties = new Dictionary<string, string>();
 
         /// <summary>
-        /// Constructor for search preference
+        /// Constructors a new search preference.
         /// </summary>
         public SearchPreference()
         {
@@ -36,7 +36,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Constructor for search preference
+        /// Constructors a new search preference.
         /// </summary>
         internal SearchPreference(Interop.PreferenceHandle nativeHandle)
         {
@@ -44,11 +44,10 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Preferred language
+        /// Gets or sets preferred language.
         /// </summary>
-        /// <remarks>
-        /// Language should be specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code e.g. "ko-KR"
-        /// </remarks>
+        /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
+        /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
         public string Language
         {
             get
@@ -63,7 +62,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Maximum result count for a service request
+        /// Gets or sets the maximum result count for each service request.
         /// </summary>
         /// <remarks>Setting negative value will not have any effect on MaxResults value</remarks>
         public int MaxResults
@@ -80,7 +79,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Distance unit
+        /// Gets or sets distance unit.
         /// </summary>
         public DistanceUnit Unit
         {
@@ -96,7 +95,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Preferred country
+        /// Gets or sets preferred country.
         /// </summary>
         public string CountryCode
         {
@@ -112,7 +111,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Search properties as key value pair
+        /// Gets or sets search properties as key value pair.
         /// </summary>
         public IReadOnlyDictionary<string, string> Properties
         {
@@ -128,7 +127,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Selected route optimization
+        /// Gets or sets route optimization.
         /// </summary>
         public RouteOptimization Optimization
         {
@@ -144,7 +143,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Route transport mode
+        /// Gets or sets route transport mode.
         /// </summary>
         public TransportMode Mode
         {
@@ -160,7 +159,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Route feature weight
+        /// Gets or sets route feature weight.
         /// </summary>
         public RouteFeatureWeight RouteFeatureWeight
         {
@@ -176,7 +175,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Route feature
+        /// Gets or sets route feature.
         /// </summary>
         public RouteFeature RouteFeature
         {
@@ -192,7 +191,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Indicate if search for alternative routes is enabled.
+        /// Gets or sets if searching for alternative routes is enabled.
         /// </summary>
         public bool SearchAlternativeRoutes
         {
@@ -219,6 +218,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -26,24 +26,26 @@ namespace Tizen.Maps
         internal Interop.AreaHandle handle;
 
         /// <summary>
-        /// Constructs rectangular area
+        /// Constructs rectangular area.
         /// </summary>
         /// <param name="topLeft">Top left coordinate of the area</param>
         /// <param name="bottomRight">Bottom left coordinate of the area</param>
-        /// <exception cref="System.ArgumentException">Throws if input coordinates are invalid</exception>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public Area(Geocoordinates topLeft, Geocoordinates bottomRight)
         {
             handle = new Interop.AreaHandle(topLeft?.handle, bottomRight?.handle);
         }
 
         /// <summary>
-        /// Constructs circular area
+        /// Constructs circular area.
         /// </summary>
         /// <param name="center">Coordinate for center of the area</param>
         /// <param name="radius">Radius of the area</param>
-        /// <exception cref="System.ArgumentException">Throws if input coordinates are invalid</exception>
-        /// <exception cref="System.InvalidOperationException">Throws if native operation failed to allocate memory</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public Area(Geocoordinates center, double radius)
         {
             handle = new Interop.AreaHandle(center?.handle, radius);
@@ -66,6 +68,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

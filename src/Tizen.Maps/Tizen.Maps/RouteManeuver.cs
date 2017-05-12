@@ -45,42 +45,42 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Direction type for this maneuver
+        /// Gets direction type for this maneuver.
         /// </summary>
         public DirectionType Direction { get { return (DirectionType)_direction; } }
 
         /// <summary>
-        /// Turn type for this maneuver
+        /// Gets turn type for this maneuver.
         /// </summary>
         public TurnInstruction Turn { get { return (TurnInstruction)_turntype; } }
 
         /// <summary>
-        /// Position for this maneuver
+        /// Gets a geographical coordinates position for this maneuver.
         /// </summary>
         public Geocoordinates Position { get { return _coordinates; } }
 
         /// <summary>
-        /// Name of the road for this maneuver
+        /// Gets a name of the road for this maneuver.
         /// </summary>
         public string Road { get { return _road; } }
 
         /// <summary>
-        /// Instruction text for this maneuver
+        /// Gets an instruction text for this maneuver.
         /// </summary>
         public string Instruction { get { return _instruction; } }
 
         /// <summary>
-        /// Locale for this maneuver
+        /// Gets a locale for this maneuver.
         /// </summary>
         public string Locale { get { return _locale; } }
 
         /// <summary>
-        /// Time to next instruction for this maneuver
+        /// Gets time to next instruction for this maneuver.
         /// </summary>
         public int TimeToNextInstruction { get { return _timeToNextInstruction; } }
 
         /// <summary>
-        /// Distance to next instruction for this maneuver
+        /// Gets distance to next instruction for this maneuver.
         /// </summary>
         public double DistanceToNextInstruction { get { return _distanceToNextInstruction; } }
     }

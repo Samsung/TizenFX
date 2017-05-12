@@ -31,11 +31,11 @@ namespace Tizen.Maps
         private List<Geocoordinates> _coordinateList;
 
         /// <summary>
-        /// Creates a polygon visual object
+        /// Creates a polygon visual object.
         /// </summary>
-        /// <param name="coordinates">list of geographical coordinates</param>
-        /// <param name="color">background color</param>
-        /// <exception cref="ArgumentException">Throws if input values are invalid</exception>
+        /// <param name="coordinates">List of geographical coordinates</param>
+        /// <param name="color">Background color</param>
+        /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -49,10 +49,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Clicked event
+        /// Adds or removes clicked event handlers.
         /// </summary>
         public event EventHandler Clicked;
 
+        /// <summary>
+        /// Gets or sets visibility for the polygon.
+        /// </summary>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -60,7 +63,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// List of geographical coordinates of polygon vertices
+        /// Gets or sets a list of geographical coordinates of polygon vertices.
         /// </summary>
         public IEnumerable<Geocoordinates> Coordinates
         {
@@ -86,7 +89,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Background fill color
+        /// Gets or sets background color to fill the polygon.
         /// </summary>
         public Color FillColor
         {
@@ -131,6 +134,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

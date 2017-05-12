@@ -27,12 +27,13 @@ namespace Tizen.Maps
         internal Interop.OverlayHandle handle;
 
         /// <summary>
-        /// Creates normal overlay map object
+        /// Creates a normal overlay map object.
         /// </summary>
         /// <param name="coordinates"></param>
         /// <param name="objectToContain"></param>
-        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
-        public Overlay(Geocoordinates coordinates, EvasObject objectToContain) : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
+        /// <exception cref="ArgumentException">Thrown when input coordinates or objectToContain are invalid</exception>
+        public Overlay(Geocoordinates coordinates, EvasObject objectToContain)
+            : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
         {
         }
 
@@ -46,6 +47,9 @@ namespace Tizen.Maps
             handle = new Interop.OverlayHandle(coordinates.handle, objectToContain, type);
         }
 
+        /// <summary>
+        /// Gets or sets visibility of overlay map object.
+        /// </summary>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -53,7 +57,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Geographical coordinates for overlay
+        /// Gets or sets geographical coordinates for overlay map object.
         /// </summary>
         public Geocoordinates Coordinates
         {
@@ -70,7 +74,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Minimum zoom level for overlay
+        /// Gets or sets minimum zoom level for overlay map object.
         /// </summary>
         public int MinimumZoomLevel
         {
@@ -85,7 +89,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Maximum zoom lever for overlay
+        /// Gets or sets maximum zoom lever for overlay map object.
         /// </summary>
         public int MaximumZoomLevel
         {
@@ -127,6 +131,9 @@ namespace Tizen.Maps
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -141,10 +148,14 @@ namespace Tizen.Maps
     public class BubbleOverlay : Overlay
     {
         /// <summary>
-        /// Creates Box overlay
+        /// Creates a Bubble overlay.
         /// </summary>
-        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
-        public BubbleOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Bubble)
+        /// <param name="coordinates">The geographical coordinates to be pointed</param>
+        /// <param name="objectToContain">The EvasObject to be shown</param>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when input coordinates or objectToContain are invalid</exception>
+        public BubbleOverlay(Geocoordinates coordinates, EvasObject objectToContain)
+            : base(coordinates, objectToContain, Interop.ViewOverlayType.Bubble)
         {
         }
     }
@@ -155,10 +166,14 @@ namespace Tizen.Maps
     public class BoxOverlay : Overlay
     {
         /// <summary>
-        /// Creates Box overlay
+        /// Creates a Box overlay.
         /// </summary>
-        /// <exception cref="ArgumentException">Throws if input coordinates or objectToContain are invalid</exception>
-        public BoxOverlay(Geocoordinates coordinates, EvasObject objectToContain) : base(coordinates, objectToContain, Interop.ViewOverlayType.Box)
+        /// <param name="coordinates">The geographical coordinates to be pointed</param>
+        /// <param name="objectToContain">The EvasObject to be shown</param>
+        /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when input coordinates or objectToContain are invalid</exception>
+        public BoxOverlay(Geocoordinates coordinates, EvasObject objectToContain)
+            : base(coordinates, objectToContain, Interop.ViewOverlayType.Box)
         {
         }
     }
