@@ -11,8 +11,8 @@
                 <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
                 <description>Provides the Messaging APIs for Tizen.Messaging</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.2" />
-      <dependency id="Tizen.System" version="1.0.5" />
+      <dependency id="Tizen" version="1.0.3" />
+      <dependency id="Tizen.System.Information" version="1.0.3" />
     </dependencies>
   </metadata>
   <files>
