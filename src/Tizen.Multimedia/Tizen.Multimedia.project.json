@@ -3,7 +3,7 @@
     "ElmSharp": "1.1.0-*",
     "NETStandard.Library": "1.6.1",
     "Tizen": "1.0.3",
-    "Tizen.Applications": "1.3.2",
+    "Tizen.Applications.Common": "1.4.2",
     "Tizen.System.Information": "1.0.3"
   },
   "frameworks": {
