@@ -203,7 +203,6 @@ namespace Tizen.Applications.Notifications
             /// </summary>
             /// <param name="index">The index to remove a button</param>
             /// <returns>true if the element is successfully found and removed; otherwise, false</returns>
-            /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
             public bool RemoveButtonAction(ButtonIndex index)
             {
                 bool ret = buttonDictionary.Remove(index);

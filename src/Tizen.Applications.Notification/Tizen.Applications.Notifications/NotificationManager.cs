@@ -426,8 +426,6 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets notification block state.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <remarks>
         /// The user can set the notification block state in settings.
         /// The block state indicates whether or not notifications can be posted.
@@ -435,7 +433,8 @@ namespace Tizen.Applications.Notifications
         /// Sound, Vibrate and Active notifications are blocked.
         /// </remarks>
         /// <returns>NotificationBlockState is state if notification is posted</returns>
-        /// <exception cref="InvalidOperationException">Thrown when no template with input name exists</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static NotificationBlockState GetBlockState()
         {

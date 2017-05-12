@@ -55,7 +55,6 @@ namespace Tizen.Applications.Notifications
             /// <value>
             /// If you don't set Action, nothing happens when button is clicked.
             /// </value>
-            /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
             /// <example>
             /// <code>
             /// ButtonAction button = new ButtonAction
