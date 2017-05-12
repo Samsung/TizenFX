@@ -93,7 +93,7 @@ class NDalicPINVOKE {
     static void SetPendingArgumentNullException(string message, string paramName) {
       global::System.Exception e = SWIGPendingException.Retrieve();
       if (e != null) message = message + " Inner Exception: " + e.Message;
-      SWIGPendingException.Set(new global::System.ArgumentNullException(paramName, message));
+      SWIGPendingException.Set(new global::System.ArgumentNullException(message, paramName));
     }
     static void SetPendingArgumentOutOfRangeException(string message, string paramName) {
       global::System.Exception e = SWIGPendingException.Retrieve();
