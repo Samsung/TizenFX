@@ -498,7 +498,6 @@ namespace Tizen.Applications.Notifications
             IndicatorBinder.BindSafeHandle(this);
             ActiveBinder.BindSafeHandle(this);
             LockBinder.BindSafehandle(this);
-            BigPictureBinder.BindSafeHandle(this);
 
             return this;
         }

@@ -250,41 +250,4 @@ namespace Tizen.Applications.Notifications
             }
         }
     }
-
-    internal static class BigPictureBinder
-    {
-        internal static void BindObject(Notification notification)
-        {
-            Notification.BigPictureStyle style = (Notification.BigPictureStyle)notification.GetStyle("BigPicture");
-
-            Interop.Notification.SetImage(notification.Handle, NotificationImage.BigPicture, style.ImagePath);
-            Interop.Notification.SetBigPictureSize(notification.Handle, style.ImageSize);
-            Interop.Notification.SetText(notification.Handle, NotificationText.BigPicture, style.Content, null, -1);
-            Interop.Notification.SetLayout(notification.Handle, NotificationLayout.Extension);
-        }
-
-        internal static void BindSafeHandle(Notification notification)
-        {
-            NotificationLayout layout;
-
-            Interop.Notification.GetLayout(notification.Handle, out layout);
-            if (layout == NotificationLayout.Extension)
-            {
-                Notification.BigPictureStyle style = new Notification.BigPictureStyle();
-
-                string text;
-                Interop.Notification.GetImage(notification.Handle, NotificationImage.BigPicture, out text);
-                style.ImagePath = text;
-
-                int size;
-                Interop.Notification.GetBigPictureSize(notification.Handle, out size);
-                style.ImageSize = size;
-
-                Interop.Notification.GetText(notification.Handle, NotificationText.BigPicture, out text);
-                style.Content = text;
-
-                notification.AddStyle(style);
-            }
-        }
-    }
 }

@@ -23,9 +23,7 @@ namespace Tizen.Applications.NotificationEventListener
             bool autoRemove;
             string path;
             int styleList;
-            int size;
             int timeout;
-            NotificationLayout layout;
 
             Interop.NotificationEventListener.GetStyleList(eventargs.Handle, out styleList);
 
@@ -77,32 +75,6 @@ namespace Tizen.Applications.NotificationEventListener
                 Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.FirstMainText, out path);
                 indicatorStyle.SubText = path;
             }
-
-            Interop.NotificationEventListener.GetLayout(eventargs.Handle, out layout);
-            if (layout == NotificationLayout.Extension)
-            {
-                NotificationEventArgs.BigPictureStyleArgs bigpictureStyle = new NotificationEventArgs.BigPictureStyleArgs();
-
-                Interop.NotificationEventListener.GetImage(eventargs.Handle, NotificationImage.BigPicture, out path);
-                if (string.IsNullOrEmpty(path) == false)
-                {
-                    bigpictureStyle.ImagePath = path;
-                }
-
-                Interop.NotificationEventListener.GetBigPictureSize(eventargs.Handle, out size);
-                if (size > 0)
-                {
-                    bigpictureStyle.ImageSize = size;
-                }
-
-                Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.ContentExtension, out path);
-                if (string.IsNullOrEmpty(path) == false)
-                {
-                    bigpictureStyle.Content = path;
-                }
-
-                eventargs.Style.Add(bigpictureStyle.Key, bigpictureStyle);
-            }
-        }
+       }
     }
 }

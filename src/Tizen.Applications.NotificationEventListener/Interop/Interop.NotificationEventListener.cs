@@ -87,9 +87,6 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_text_input_max_length")]
         internal static extern ErrorCode GetPlaceHolderLength(SafeNotificationHandle handle, out int max);
 
-        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_extension_image_size")]
-        internal static extern ErrorCode GetBigPictureSize(SafeNotificationHandle handle, out int size);
-
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_launch_option")]
         internal static extern ErrorCode GetAppControl(SafeNotificationHandle handle, LaunchOption type, out SafeAppControlHandle appControlHandle);
 

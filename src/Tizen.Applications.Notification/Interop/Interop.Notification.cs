@@ -203,12 +203,6 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_delete_timeout")]
         internal static extern NotificationError SetDeleteTime(NotificationSafeHandle handle, int timeout);
 
-        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extension_image_size")]
-        internal static extern NotificationError SetBigPictureSize(NotificationSafeHandle handle, int size);
-
-        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_image_size")]
-        internal static extern NotificationError GetBigPictureSize(NotificationSafeHandle handle, out int size);
-
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_extention_data")]
         internal static extern NotificationError SetExtentionData(NotificationSafeHandle handle, string key, SafeBundleHandle bundleHandle);
 

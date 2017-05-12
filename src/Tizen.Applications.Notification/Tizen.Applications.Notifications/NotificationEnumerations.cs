@@ -180,7 +180,6 @@ namespace Tizen.Applications.Notifications
         ThirdButton = 15,
         PlaceHolder = 19,
         InputButton = 20,
-        BigPicture = 21,
     }
 
     internal enum NotificationImage
@@ -196,7 +195,6 @@ namespace Tizen.Applications.Notifications
         SecondButton,
         ThirdButton,
         TextInputButton = 18,
-        BigPicture = 19,
     }
 
     internal enum LaunchOption

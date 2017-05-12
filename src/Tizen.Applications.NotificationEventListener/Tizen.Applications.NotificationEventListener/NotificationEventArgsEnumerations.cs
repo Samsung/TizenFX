@@ -246,11 +246,6 @@ namespace Tizen.Applications.NotificationEventListener
         /// Text on button the on message reply box
         /// </summary>
         InputButton = 20,
-
-        /// <summary>
-        /// Content for extended notification
-        /// </summary>
-        ContentExtension = 21,
     }
 
     /// <summary>
@@ -312,11 +307,6 @@ namespace Tizen.Applications.NotificationEventListener
         /// Image for message reply
         /// </summary>
         TextInputButton = 18,
-
-        /// <summary>
-        /// Image for extended notification
-        /// </summary>
-        BigPicture = 19,
     }
 
     /// <summary>
@@ -348,11 +338,6 @@ namespace Tizen.Applications.NotificationEventListener
         /// Layout for ongoing notification. Used to display progress
         /// </summary>
         OngoingProgress = 5,
-
-        /// <summary>
-        /// Layout for extended notification
-        /// </summary>
-        Extension = 6
     }
 
     /// <summary>
