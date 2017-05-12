@@ -29,7 +29,6 @@ namespace Tizen.Multimedia
             public const string MetadataExtractor = "libcapi-media-metadata-extractor.so";
             public const string MediaController = "libcapi-media-controller.so.0";
             public const string MediaTool = "libcapi-media-tool.so.0";
-            public const string MediaCodec = "libcapi-media-codec.so.0";
             public const string MediaVision = "libcapi-media-vision.so.0";
             public const string Libc = "libc.so.6";
             public const string Camera = "libcapi-media-camera.so.0";

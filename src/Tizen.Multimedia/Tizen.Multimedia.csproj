@@ -116,7 +116,6 @@
     <Compile Include="Interop\Interop.ImageUtil.Encode.cs" />
     <Compile Include="Interop\Interop.ImageUtil.Transform.cs" />
     <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.MediaCodec.cs" />
     <Compile Include="Interop\Interop.MediaController.cs" />
     <Compile Include="Interop\Interop.MediaTool.cs" />
     <Compile Include="Interop\Interop.MediaVision.BarCode.cs" />
