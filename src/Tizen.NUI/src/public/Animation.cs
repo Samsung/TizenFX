@@ -379,7 +379,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
@@ -423,7 +423,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
@@ -467,7 +467,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
@@ -512,7 +512,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
@@ -557,7 +557,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             if (alphaFunction != null)
@@ -590,7 +590,7 @@ namespace Tizen.NUI
             Property _prop = new Property(target, _str);
             if (_prop.propertyIndex == Property.INVALID_INDEX)
             {
-                throw new System.Exception("second argument string property is invalid parameter!");
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
 
             Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));

@@ -20,17 +20,17 @@ namespace System
     {
         public ApplicationException()
         {
-            new global::System.InvalidCastException();
+            new global::System.ApplicationException();
         }
 
         public ApplicationException(string message)
         {
-            new global::System.InvalidCastException(message);
+            new global::System.ApplicationException(message);
         }
 
         public ApplicationException(string message, Exception innerException)
         {
-            new global::System.InvalidCastException(message, innerException);
+            new global::System.ApplicationException(message, innerException);
         }
     }
 
@@ -38,17 +38,17 @@ namespace System
     {
         public SystemException()
         {
-            new global::System.InvalidCastException();
+            new global::System.SystemException();
         }
 
         public SystemException(string message)
         {
-            new global::System.InvalidCastException(message);
+            new global::System.SystemException(message);
         }
 
         public SystemException(string message, Exception innerException)
         {
-            new global::System.InvalidCastException(message, innerException);
+            new global::System.SystemException(message, innerException);
         }
     }
 }
