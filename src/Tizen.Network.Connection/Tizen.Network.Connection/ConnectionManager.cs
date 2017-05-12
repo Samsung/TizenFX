@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class manages the connection handle resources.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class SafeConnectionHandle : SafeHandle
     {
         internal SafeConnectionHandle(IntPtr handle) : base(handle, true)
@@ -128,6 +130,7 @@ namespace Tizen.Network.Connection
         /// Gets the connection handle.
         /// </summary>
         /// <returns>Instance of SafeConnectionHandle</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static SafeConnectionHandle GetConnectionHandle()
         {
             IntPtr handle = ConnectionInternalManager.Instance.GetHandle();
