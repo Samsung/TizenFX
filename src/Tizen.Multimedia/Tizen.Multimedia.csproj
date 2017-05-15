@@ -101,6 +101,7 @@
     <Compile Include="Common\Range.cs" />
     <Compile Include="Common\Rectangle.cs" />
     <Compile Include="Common\Size.cs" />
+    <Compile Include="Common\Features.cs" />
     <Compile Include="Common\ValdiationUtil.cs" />
     <Compile Include="Common\Visibility.cs" />
     <Compile Include="Interop\Interop.AudioIO.cs" />

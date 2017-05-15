@@ -15,6 +15,7 @@
  */
 
 using System;
+using Tizen.System;
 
 namespace Tizen.Multimedia
 {
@@ -27,11 +28,20 @@ namespace Tizen.Multimedia
                 throw new ArgumentException($"Invalid { enumType.Name } value : { value }");
             }
         }
+
         internal static void ValidateEnum(Type enumType, object value, string paramName)
         {
             if (!Enum.IsDefined(enumType, value))
             {
                 throw new ArgumentException($"Invalid { enumType.Name } value : { value }", paramName);
+            }
+        }
+
+        internal static void ValidateFeatureSupported(string featureKey)
+        {
+            if (Features.IsSupported(featureKey) == false)
+            {
+                throw new NotSupportedException($"The feature({featureKey}) is not supported.");
             }
         }
     }
