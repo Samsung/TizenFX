@@ -239,8 +239,7 @@ namespace ElmSharp
         {
             get
             {
-                int w, h;
-                Interop.Elementary.elm_image_object_size_get(RealHandle, out w, out h);
+                Interop.Elementary.elm_image_object_size_get(RealHandle, out int w, out int h);
                 return new Size(w, h);
             }
         }
@@ -384,7 +383,6 @@ namespace ElmSharp
         /// <param name="img">The binary data that is used as an image source</param>
         /// <param name="size">The size of the binary data blob img</param>
         /// <returns>(true = success, false = error)</returns>
-        [CLSCompliant(false)]
         [Obsolete("This method will be removed. Use Load(Stream stream) instead.")]
         public unsafe bool Load(byte* img, long size)
         {
@@ -574,8 +572,7 @@ namespace ElmSharp
         /// <returns>color object</returns>
         public override Color GetPartColor(string part)
         {
-            int r, g, b, a;
-            Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
+            Interop.Elementary.elm_object_color_class_color_get(Handle, part, out int r, out int g, out int b, out int a);
             return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
         }
 
