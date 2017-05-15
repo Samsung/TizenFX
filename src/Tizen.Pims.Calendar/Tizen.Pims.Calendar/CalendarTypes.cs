@@ -249,7 +249,7 @@ namespace Tizen.Pims.Calendar
 		/// <summary>
 		/// Enumeration for the range type.
 		/// </summary>
-		public enum Range
+		public enum RangeType
 		{
 			/// <summary>
 			/// Range until

@@ -373,7 +373,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Visibility  = (uint)PropertyIds.BookVisibility;
             /// <summary>
-            /// Currently NOT Used</tr>
+            /// Currently NOT Used
             /// </summary>
             public const uint SyncEvent   = (uint)PropertyIds.BookSyncEvent;
             /// <summary>
@@ -381,7 +381,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint AccountId   = (uint)PropertyIds.BookAccountId;
             /// <summary>
-            /// Type of calendar contents(refer to the @ref calendar_book_type_e)
+            /// Type of calendar contents(refer to the CalendarTypes.StoreType)
             /// </summary>
             public const uint StoreType   = (uint)PropertyIds.BookStoreType;
             /// <summary>
@@ -401,7 +401,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint SyncData4   = (uint)PropertyIds.BookSyncData4;
             /// <summary>
-            /// Calendar book mode (refer to the @ref calendar_book_mode_e)
+            /// Calendar book mode(refer to the CalendarTypes.BookMode)
             /// </summary>
             public const uint Mode        = (uint)PropertyIds.BookMode;
         }
@@ -447,15 +447,15 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Exdate             = (uint)PropertyIds.EventExdate;
             /// <summary>
-            /// Refer to the @ref calendar_event_status_e
+            /// The status of event(refer to the CalendarTypes.EventStatus).
             /// </summary>
             public const uint EventStatus        = (uint)PropertyIds.EventEventStatus;
             /// <summary>
-            /// Refer to the @ref calendar_event_priority_e
+            /// The priority of event(refer to the CalendarTypes.Priority).
             /// </summary>
             public const uint Priority           = (uint)PropertyIds.EventPriority;
             /// <summary>
-            /// The timezone_id of the event if it exists. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_timezone
+            /// The timezone_id of the event if it exists.
             /// </summary>
             public const uint Timezone           = (uint)PropertyIds.EventTimezone;
             /// <summary>
@@ -463,11 +463,11 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint ContactId          = (uint)PropertyIds.EventContactId;
             /// <summary>
-            /// Refer to the @ref calendar_event_busy_status_e
+            /// The busy status of event(refer to the CalendarTypes.BusyStatus).
             /// </summary>
             public const uint BusyStatus         = (uint)PropertyIds.EventBusyStatus;
             /// <summary>
-            /// Refer to the @ref calendar_sensitivity_e
+            /// The Sensitivity of event(refer to the CalendarTypes.Sensitivity).
             /// </summary>
             public const uint Sensitivity        = (uint)PropertyIds.EventSensitivity;
             /// <summary>
@@ -483,7 +483,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint OrganizerEmail     = (uint)PropertyIds.EventOrganizerEmail;
             /// <summary>
-            /// Refer to the @ref calendar_meeting_status_e
+            /// The meeting status of event(refer to the CalendarTypes.MeetingStatus).
             /// </summary>
             public const uint MeetingStatus      = (uint)PropertyIds.EventMeetingStatus;
             /// <summary>
@@ -515,19 +515,19 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint IsDeleted          = (uint)PropertyIds.EventIsDeleted;
             /// <summary>
-            /// The frequent type of event recurrence. Refer to the @ref calendar_recurrence_frequency_e
+            /// The frequent type of event recurrence(refer to the CalendarTypes.Recurrence).
             /// </summary>
             public const uint Freq               = (uint)PropertyIds.EventFreq;
             /// <summary>
-            /// Refer to the @ref calendar_range_type_e
+            /// The range type of event recurrence(refer to the CalendarTypes.RangeType).
             /// </summary>
             public const uint RangeType          = (uint)PropertyIds.EventRangeType;
             /// <summary>
-            /// The end time of the event recurrence. If the range_type is @ref CALENDAR_RANGE_UNTIL
+            /// The end time of the event recurrence. Only if this is used with RangeType.Until.
             /// </summary>
             public const uint Until              = (uint)PropertyIds.EventUntil;
             /// <summary>
-            /// The count of the event recurrence. If the range_type is @ref CALENDAR_RANGE_COUNT
+            /// The count of the event recurrence. Only if this is used with RangeType.Count.
             /// </summary>
             public const uint Count              = (uint)PropertyIds.EventCount;
             /// <summary>
@@ -535,43 +535,43 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Interval           = (uint)PropertyIds.EventInterval;
             /// <summary>
-            /// The second list of the event recurrence. The value can be from 0 to 59. The list is seperated by comma
+            /// The second list of the event recurrence. The value can be from 0 to 59. The list is separated by comma
             /// </summary>
             public const uint Bysecond           = (uint)PropertyIds.EventBysecond;
             /// <summary>
-            /// The minute list of the event recurrence. The value can be from 0 to 59. The list is seperated by commas
+            /// The minute list of the event recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
             public const uint Byminute           = (uint)PropertyIds.EventByminute;
             /// <summary>
-            /// The hour list of the event recurrence. The value can be from 0 to 23. The list is seperated by commas
+            /// The hour list of the event recurrence. The value can be from 0 to 23. The list is separated by commas
             /// </summary>
             public const uint Byhour             = (uint)PropertyIds.EventByhour;
             /// <summary>
-            /// The day list of the event recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is seperated by commas.
+            /// The day list of the event recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is separated by commas.
             /// </summary>
             public const uint Byday              = (uint)PropertyIds.EventByday;
             /// <summary>
-            /// The month day list of the event recurrence. The value can be from 1 to 31 and from -31 to -1. The list is seperated by commas.
+            /// The month day list of the event recurrence. The value can be from 1 to 31 and from -31 to -1. The list is separated by commas.
             /// </summary>
             public const uint Bymonthday         = (uint)PropertyIds.EventBymonthday;
             /// <summary>
-            /// The year day list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is seperated by commas
+            /// The year day list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
             public const uint Byyearday          = (uint)PropertyIds.EventByyearday;
             /// <summary>
-            /// The week number list of the event recurrence. The value can be from 1 to 53 and from -53 to -1. The list is seperated by commas
+            /// The week number list of the event recurrence. The value can be from 1 to 53 and from -53 to -1. The list is separated by commas
             /// </summary>
             public const uint Byweekno           = (uint)PropertyIds.EventByweekno;
             /// <summary>
-            /// The month list of the event recurrence. The value can be from 1 to 12. The list is seperated by commas
+            /// The month list of the event recurrence. The value can be from 1 to 12. The list is separated by commas
             /// </summary>
             public const uint Bymonth            = (uint)PropertyIds.EventBymonth;
             /// <summary>
-            /// The position list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is seperated by commas
+            /// The position list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
             public const uint Bysetpos           = (uint)PropertyIds.EventBysetpos;
             /// <summary>
-            /// The start day of the week. Refer to the @ref calendar_days_of_week_e
+            /// The start day of the week(refer to the CalendarTypes.WeekDay).
             /// </summary>
             public const uint Wkst               = (uint)PropertyIds.EventWkst;
             /// <summary>
@@ -615,15 +615,15 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint End                = (uint)PropertyIds.EventEnd;
             /// <summary>
-            /// The alarm list of the event. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_alarm
+            /// The alarm list of the event.
             /// </summary>
             public const uint Alarm              = (uint)PropertyIds.EventAlarm;
             /// <summary>
-            /// The attendee list of the event. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_attendee
+            /// The attendee list of the event.
             /// </summary>
             public const uint Attendee           = (uint)PropertyIds.EventAttendee;
             /// <summary>
-            /// Refer to the @ref calendar_system_type_e
+            /// The Calendar system type(refer to the CalendarTypes.SystemType).
             /// </summary>
             public const uint CalendarSystemType = (uint)PropertyIds.EventCalendarSystemType;
             /// <summary>
@@ -639,7 +639,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Exception          = (uint)PropertyIds.EventException;
             /// <summary>
-            /// The extended property list of the event. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_extended_property
+            /// The extended property list of the event.
             /// </summary>
             public const uint Extended           = (uint)PropertyIds.EventExtended;
             /// <summary>
@@ -694,15 +694,15 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Categories        = (uint)PropertyIds.TodoCategories;
             /// <summary>
-            /// Refer to the @ref calendar_todo_status_e
+            /// The status of todo(refer to the CalendarTypes.TodoStatus).
             /// </summary>
             public const uint TodoStatus        = (uint)PropertyIds.TodoStatus;
             /// <summary>
-            /// Refer to the @ref calendar_todo_priority_e
+            /// The Priority of todo(refer to the CalendarTypes.Priority).
             /// </summary>
             public const uint Priority          = (uint)PropertyIds.TodoPriority;
             /// <summary>
-            /// Refer to the @ref calendar_sensitivity_e
+            /// The Sensitivity of todo(refer to the CalendarTypes.Sensitivity).
             /// </summary>
             public const uint Sensitivity       = (uint)PropertyIds.TodoSensitivity;
             /// <summary>
@@ -738,19 +738,19 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint IsDeleted         = (uint)PropertyIds.TodoIsDeleted;
             /// <summary>
-            /// The frequent type of todo recurrence. Refer to the @ref calendar_recurrence_frequency_e
+            /// The frequent type of todo recurrence(refer to the CalendarTypes.Recurrence).
             /// </summary>
             public const uint Freq              = (uint)PropertyIds.TodoFreq;
             /// <summary>
-            /// Refer to the @ref calendar_range_type_e
+            /// The range type of todo recurrence(refer to the CalendarTypes.RangeType).
             /// </summary>
             public const uint RangeType         = (uint)PropertyIds.TodoRangeType;
             /// <summary>
-            /// The end time of the todo recurrence. If the range_type is CALENDAR_RANGE_UNTI
+            /// The end time of the todo recurrence. Only if this is used with RangeType.Until.
             /// </summary>
             public const uint Until             = (uint)PropertyIds.TodoUntil;
             /// <summary>
-            /// The count of the todo recurrence. If the range_type is CALENDAR_RANGE_COUNT
+            /// The count of the todo recurrence. Only if this is used with RangeType.Count.
             /// </summary>
             public const uint Count             = (uint)PropertyIds.TodoCount;
             /// <summary>
@@ -758,43 +758,43 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Integererval      = (uint)PropertyIds.TodoIntegererval;
             /// <summary>
-            /// The second list of the todo recurrence. The value can be from 0 to 59. The list is seperated by commas
+            /// The second list of the todo recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
             public const uint Bysecond          = (uint)PropertyIds.TodoBysecond;
             /// <summary>
-            /// The minute list of the todo recurrence. The value can be from 0 to 59. The list is seperated by commas
+            /// The minute list of the todo recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
             public const uint Byminute          = (uint)PropertyIds.TodoByminute;
             /// <summary>
-            /// The hour list of the todo recurrence. The value can be from 0 to 23. The list is seperated by commas
+            /// The hour list of the todo recurrence. The value can be from 0 to 23. The list is separated by commas
             /// </summary>
             public const uint Byhour            = (uint)PropertyIds.TodoByhour;
             /// <summary>
-            /// The day list of the todo recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is seperated by commas
+            /// The day list of the todo recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is separated by commas
             /// </summary>
             public const uint Byday             = (uint)PropertyIds.TodoByday;
             /// <summary>
-            /// The month day list of the todo recurrence. The value can be from 1 to 31 and from -31 to -1. The list is seperated by commas
+            /// The month day list of the todo recurrence. The value can be from 1 to 31 and from -31 to -1. The list is separated by commas
             /// </summary>
             public const uint Bymonthday        = (uint)PropertyIds.TodoBymonthday;
             /// <summary>
-            /// The year day list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is seperated by commas
+            /// The year day list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
             public const uint Byyearday         = (uint)PropertyIds.TodoByyearday;
             /// <summary>
-            /// The week number list of the todo recurrence. The value can be from 1 to 53 and from -53 to -1. The list is seperated by commas
+            /// The week number list of the todo recurrence. The value can be from 1 to 53 and from -53 to -1. The list is separated by commas
             /// </summary>
             public const uint Byweekno          = (uint)PropertyIds.TodoByweekno;
             /// <summary>
-            /// The month list of the todo recurrence. The value can be from 1 to 12. The list is seperated by commas
+            /// The month list of the todo recurrence. The value can be from 1 to 12. The list is separated by commas
             /// </summary>
             public const uint Bymonth           = (uint)PropertyIds.TodoBymonth;
             /// <summary>
-            /// The position list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is seperated by commas
+            /// The position list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
             public const uint Bysetpos          = (uint)PropertyIds.TodoBysetpos;
             /// <summary>
-            /// The start day of the week. Refer to the @ref calendar_days_of_week_e
+            /// The start day of the week(refer to the CalendarTypes.WeekDay).
             /// </summary>
             public const uint Wkst              = (uint)PropertyIds.TodoWkst;
             /// <summary>
@@ -826,7 +826,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Due               = (uint)PropertyIds.TodoDue;
             /// <summary>
-            /// The alarm list of the todo. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_alarm
+            /// The alarm list of the todo.
             /// </summary>
             public const uint Alarm             = (uint)PropertyIds.TodoAlarm;
             /// <summary>
@@ -850,11 +850,11 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint HasAttendee       = (uint)PropertyIds.TodoHasAttendee;
             /// <summary>
-            /// The attendee list of the todo. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_attendee
+            /// The attendee list of the todo.
             /// </summary>
             public const uint Attendee          = (uint)PropertyIds.TodoAttendee;
             /// <summary>
-            /// The extended property list of the todo. Refer to the @ref CAPI_SOCIAL_CALENDAR_SVC_VIEW_MODULE_calendar_extended_property
+            /// The extended property list of the todo.
             /// </summary>
             public const uint Extended          = (uint)PropertyIds.TodoExtended;
             /// <summary>
@@ -955,7 +955,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Number       = (uint)PropertyIds.AttendeeNumber;
             /// <summary>
-            /// The type of attendee (one of CALENDAR_ATTENDEE_CUTYPE_INDIVIDUAL, CALENDAR_ATTENDEE_CUTYPE_GROUP, CALENDAR_ATTENDEE_CUTYPE_RESOURCE, CALENDAR_ATTENDEE_CUTYPE_ROOM, CALENDAR_ATTENDEE_CUTYPE_UNKNOWN) </tr>
+            /// The type of attendee(refer to the CalendarTypes.Cutype).
             /// </summary>
             public const uint Cutype       = (uint)PropertyIds.AttendeeCutype;
             /// <summary>
@@ -975,11 +975,11 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Email        = (uint)PropertyIds.AttendeeEmail;
             /// <summary>
-            /// Attendee role (one of CALENDAR_ATTENDEE_ROLE_REQ_PARTICIPANT, CALENDAR_ATTENDEE_ROLE_OPT_PARTICIPANT, CALENDAR_ATTENDEE_ROLE_NON_PARTICIPANT, CALENDAR_ATTENDEE_ROLE_CHAIR)
+            /// Attendee role(refer to the CalendarTypes.AttendeeRole).
             /// </summary>
             public const uint Role         = (uint)PropertyIds.AttendeeRole;
             /// <summary>
-            /// Attendee status (one of CALENDAR_ATTENDEE_STATUS_PENDING, CALENDAR_ATTENDEE_STATUS_ACCEPTED, CALENDAR_ATTENDEE_STATUS_DECLINED, CALENDAR_ATTENDEE_STATUS_TENTATIVE, CALENDAR_ATTENDEE_STATUS_DELEGATED, CALENDAR_ATTENDEE_STATUS_COMPLETED, CALENDAR_ATTENDEE_STATUS_IN_PROCESS)
+            /// Attendee status(refer to the CalendarTypes.AttendeeStatus).
             /// </summary>
             public const uint Status       = (uint)PropertyIds.AttendeeStatus;
             /// <summary>
@@ -1021,11 +1021,11 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const string Uri = "tizen.calendar_view.alarm";
             /// <summary>
-            /// The number of unit before start time. This MUST be used with one of CALENDAR_ALARM_TIME_UNIT_MINUTE, CALENDAR_ALARM_TIME_UNIT_HOUR, CALENDAR_ALARM_TIME_UNIT_DAY, CALENDAR_ALARM_TIME_UNIT_WEEK.
+            /// The number of unit before start time. This MUST be used with one of TickUnit.
             /// </summary>
             public const uint Tick        = (uint)PropertyIds.AlarmTick;
             /// <summary>
-            /// Reminder tick time unit (one of CALENDAR_ALARM_NONE, CALENDAR_ALARM_TIME_UNIT_SPECIFIC, CALENDAR_ALARM_TIME_UNIT_MINUTE, CALENDAR_ALARM_TIME_UNIT_HOUR, CALENDAR_ALARM_TIME_UNIT_DAY, CALENDAR_ALARM_TIME_UNIT_WEEK)
+            /// Reminder tick time unit(refer to the CalendarTypes.TickUnit).
             /// </summary>
             public const uint TickUnit    = (uint)PropertyIds.AlarmTickUnit;
             /// <summary>
@@ -1041,7 +1041,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint Summary     = (uint)PropertyIds.AlarmSummary;
             /// <summary>
-            /// Action of alarm (one of CALENDAR_ALARM_ACTION_AUDIO, CALENDAR_ALARM_ACTION_DISPLAY, CALENDAR_ALARM_ACTION_EMAIL)
+            /// Action of alarm(refer to the CalendarTypes.Action).
             /// </summary>
             public const uint Action      = (uint)PropertyIds.AlarmAction;
             /// <summary>
@@ -1475,7 +1475,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint CalendarId = (uint)PropertyIds.UpdateInfoCalendarId;
             /// <summary>
-            /// Enumeration value of the modified status (@ref calendar_record_modified_status_e)
+            /// Enumeration value of the modified status.
             /// </summary>
             public const uint Type       = (uint)PropertyIds.UpdateInfoType;
             /// <summary>
@@ -1505,7 +1505,7 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             public const uint RecordId   = (uint)PropertyIds.ExtendedRecordId;
             /// <summary>
-            /// Enumeration value of the record type (@ref calendar_record_type_e)
+            /// Enumeration value of the record type.
             /// </summary>
             public const uint RecordType = (uint)PropertyIds.ExtendedRecordType;
             /// <summary>
