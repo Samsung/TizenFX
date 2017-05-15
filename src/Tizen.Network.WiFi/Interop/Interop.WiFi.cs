@@ -16,8 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Network.WiFi;
-using Tizen.Network.Connection;
 
 internal static partial class Interop
 {
@@ -137,8 +135,6 @@ internal static partial class Interop
             internal static extern int SetIPConfigType(SafeWiFiAPHandle ap, int addressFamily, int ipConfigType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_ip_address")]
             internal static extern int GetIPAddress(SafeWiFiAPHandle ap, int addressFamily, out IntPtr ipAddress);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_foreach_ipv6_address")]
-            internal static extern int GetAllIPv6Addresses(SafeWiFiAPHandle ap, HandleCallback callback, IntPtr userData);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_ip_address")]
             internal static extern int SetIPAddress(SafeWiFiAPHandle ap, int addressFamily, string ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_subnet_mask")]
@@ -161,14 +157,6 @@ internal static partial class Interop
             internal static extern int GetDnsAddress(SafeWiFiAPHandle ap, int order, int addressFamily, out IntPtr dnsAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_dns_address")]
             internal static extern int SetDnsAddress(SafeWiFiAPHandle ap, int order, int addressFamily, string dnsAddress);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_prefix_length")]
-            internal static extern int GetPrefixLength(SafeWiFiAPHandle ap, int addressFamily, out int length);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_prefix_length")]
-            internal static extern int SetPrefixLength(SafeWiFiAPHandle ap, int addressFamily, int length);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_dns_config_type")]
-            internal static extern int GetDnsConfigType(SafeWiFiAPHandle ap, int addressFamily, out int type);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_dns_config_type")]
-            internal static extern int SetDnsConfigType(SafeWiFiAPHandle ap, int addressFamily, int type);
 
             ////Security Information
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_security_type")]
@@ -267,6 +255,28 @@ internal static partial class Interop
             internal static extern int SetEapSubjectMatch(SafeWiFiConfigHandle config, string subjectMatch);
         }
 
+        internal sealed class SafeWiFiManagerHandle : SafeHandle
+        {
+            public SafeWiFiManagerHandle() : base(IntPtr.Zero, true)
+            {
+            }
+
+            public override bool IsInvalid
+            {
+                get
+                {
+                    return this.handle == IntPtr.Zero;
+                }
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                WiFi.Deinitialize(this.handle);
+                this.SetHandle(IntPtr.Zero);
+                return true;
+            }
+        }
+
         internal sealed class SafeWiFiAPHandle : SafeHandle
         {
             public SafeWiFiAPHandle() : base(IntPtr.Zero, true)
@@ -318,6 +328,7 @@ internal static partial class Interop
                 return true;
             }
         }
+
     }
 
     internal static partial class Libc

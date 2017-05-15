@@ -29,7 +29,7 @@ namespace Tizen.Network.WiFi
 
     internal class HandleHolder
     {
-        private SafeWiFiManagerHandle _handle;
+        private Interop.WiFi.SafeWiFiManagerHandle _handle;
 
         internal HandleHolder()
         {
@@ -37,7 +37,7 @@ namespace Tizen.Network.WiFi
             Log.Debug(Globals.LogTag, "Handle: " + _handle);
         }
 
-        internal SafeWiFiManagerHandle GetSafeHandle()
+        internal Interop.WiFi.SafeWiFiManagerHandle GetSafeHandle()
         {
             Log.Debug(Globals.LogTag, "Handleholder safehandle = " + _handle);
             return _handle;
@@ -141,14 +141,14 @@ namespace Tizen.Network.WiFi
         {
         }
 
-        internal SafeWiFiManagerHandle GetSafeHandle()
+        internal Interop.WiFi.SafeWiFiManagerHandle GetSafeHandle()
         {
             return s_threadName.Value.GetSafeHandle();
         }
 
-        internal SafeWiFiManagerHandle Initialize()
+        internal Interop.WiFi.SafeWiFiManagerHandle Initialize()
         {
-            SafeWiFiManagerHandle handle;
+            Interop.WiFi.SafeWiFiManagerHandle handle;
             int ret = Interop.WiFi.Initialize(out handle);
             if (ret != (int)WiFiError.None)
             {
