@@ -220,6 +220,7 @@ namespace Tizen.Uix.VoiceControl
         private static List<string> s_supportedLanguages;
         private static VcSupportedLanguageCb s_supportedLanguagesCb;
         private static VcResultCb s_resultCb;
+        private static RecognitionResult s_recognitionResult;
 
         /// <summary>
         /// Gets current language.
@@ -496,7 +497,7 @@ namespace Tizen.Uix.VoiceControl
         /// <precondition>
         /// The State should be Ready or Initialized
         /// </precondition>
-        public static IEnumerable<string> GetSupportedLangauges()
+        public static IEnumerable<string> GetSupportedLanguages()
         {
             s_supportedLanguages = new List<string>();
             s_supportedLanguagesCb = (IntPtr language, IntPtr userData) =>
@@ -508,7 +509,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcForeachSupportedLanguages(s_supportedLanguagesCb, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSupportedLangauges Failed with error " + error);
+                Log.Error(LogTag, "GetSupportedLanguages Failed with error " + error);
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -542,7 +543,7 @@ namespace Tizen.Uix.VoiceControl
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
-        public static VoiceCommandList GetSytemCommandList()
+        public static VoiceCommandList GetSystemCommandList()
         {
             IntPtr handle = IntPtr.Zero;
             ErrorCode error = VcGetSystemCommandList(out handle);
@@ -702,22 +703,19 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <param name="resultDelegate">
-        /// Callback function to get recognition result
-        /// </param>
         /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
+        /// <returns>The Recognition Result if possible else a null object</returns>
         /// <precondition>
         /// The State should be Ready
         /// </precondition>
-        public static void GetResult(RecognitionResultDelegate resultDelegate)
+        public static RecognitionResult GetResult()
         {
+            s_recognitionResult = null;
             s_resultCb = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
             {
-                VoiceCommandList list = new VoiceCommandList(new SafeCommandListHandle(cmdList));
-                string resultStr = Marshal.PtrToStringAnsi(result);
-                resultDelegate(evt, list, resultStr);
+                s_recognitionResult = new RecognitionResult(evt, cmdList, result);
             };
             ErrorCode error = VcGetResult(s_resultCb, IntPtr.Zero);
             if (error != ErrorCode.None)
@@ -725,6 +723,8 @@ namespace Tizen.Uix.VoiceControl
                 Log.Error(LogTag, "GetResult Failed with error " + error);
                 throw ExceptionFactory.CreateException(error);
             }
+
+            return s_recognitionResult;
         }
 
         /// <summary>
@@ -742,7 +742,7 @@ namespace Tizen.Uix.VoiceControl
                     Log.Info(LogTag, "Recognition Result Event Triggered");
                     if ((cmdList != null) && (result != null))
                     {
-                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(evt, cmdList, result);
+                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult( evt, cmdList, result));
                         _recognitionResult?.Invoke(null, args);
                     }
                     else

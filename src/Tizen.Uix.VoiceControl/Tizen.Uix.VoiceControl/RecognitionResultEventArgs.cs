@@ -15,47 +15,24 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using static Interop.VoiceControl;
-using static Interop.VoiceControlCommand;
 
 namespace Tizen.Uix.VoiceControl
 {
     /// <summary>
     /// The recognition result from the engine.
-    /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of command may be rejected
-    /// for selecting command as priority.If you set similar or same commands or the recognized results are multi-results, CommandList has the multi commands.
     /// </summary>
-    public class RecognitionResultEventArgs
+    public class RecognitionResultEventArgs : EventArgs
     {
-        private ResultEvent _resultEvent;
-        private VoiceCommandList _list;
-        private string _result;
-
-        internal RecognitionResultEventArgs(ResultEvent evt, IntPtr cmdList, IntPtr result)
+        private RecognitionResult _result;
+        internal RecognitionResultEventArgs(RecognitionResult result)
         {
-            _resultEvent = evt;
-            SafeCommandListHandle handle = new SafeCommandListHandle(cmdList);
-            _list = new VoiceCommandList(handle);
-            _result = Marshal.PtrToStringAnsi(result);
+            _result = result;
         }
 
         /// <summary>
-        /// The result event
+        /// Gets the Recognition result
         /// </summary>
-        public ResultEvent Result
-        {
-            get
-            {
-                return _resultEvent;
-            }
-        }
-
-        /// <summary>
-        /// The spoken text
-        /// </summary>
-        public string ResultMessage
+        public RecognitionResult Result
         {
             get
             {
@@ -63,16 +40,5 @@ namespace Tizen.Uix.VoiceControl
             }
         }
 
-
-        /// <summary>
-        /// The recognized command list
-        /// </summary>
-        public VoiceCommandList CommandList
-        {
-            get
-            {
-                return _list;
-            }
-        }
     }
 }

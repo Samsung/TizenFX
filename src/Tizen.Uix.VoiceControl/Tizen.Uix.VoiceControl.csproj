@@ -48,6 +48,7 @@
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.VoiceControlCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tizen.Uix.VoiceControl\RecognitionResult.cs" />
     <Compile Include="Tizen.Uix.VoiceControl\VoiceCommand.cs" />
     <Compile Include="Tizen.Uix.VoiceControl\VoiceCommandList.cs" />
     <Compile Include="Tizen.Uix.VoiceControl\VoiceControlClient.cs" />
