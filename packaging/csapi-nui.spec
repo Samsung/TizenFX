@@ -16,7 +16,8 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 
 BuildRequires: csapi-tizen-nuget
-BuildRequires: csapi-application-nuget
+BuildRequires: csapi-application-common-nuget
+BuildRequires: csapi-application-ui-nuget
 
 %define Assemblies Tizen.NUI
 
