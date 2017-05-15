@@ -71,6 +71,7 @@
     <Compile Include="Tizen.Pims.Contacts\ContactsViews.cs" />
     <Compile Include="Tizen.Pims.Contacts\NameDisplayOrderChangedEventArgs.cs" />
     <Compile Include="Tizen.Pims.Contacts\NameSortingOrderChangedEventArgs.cs" />
+    <Compile Include="Tizen.Pims.Contacts\NamespaceDoc.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
