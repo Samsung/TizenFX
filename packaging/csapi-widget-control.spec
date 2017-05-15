@@ -1,6 +1,6 @@
 Name:       csapi-widget-control
 Summary:    Tizen widget control API for C#
-Version:    1.0.4
+Version:    1.0.5
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
