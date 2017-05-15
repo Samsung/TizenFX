@@ -41,8 +41,8 @@ namespace Tizen.Network.Connection
     /// </summary>
     public enum AddressFamily
     {
-        IPv4 = 0,   /**< IPv4 Address */
-        IPv6 = 1    /**< IPv6 Address */
+        IPv4 = 0,
+        IPv6 = 1
     }
 
     /// <summary>
@@ -75,17 +75,6 @@ namespace Tizen.Network.Connection
     {
         Detached = 0,  /**< Ethernet cable is detached */
         Attached = 1,  /**< Ethernet cable is attached */
-    }
-
-    /// <summary>
-    /// Enumeration for statistics type.
-    /// </summary>
-    public enum StatisticsType
-    {
-        LastReceivedData = 0,  /**< Last received data */
-        LastSentData = 1,  /**< Last sent data */
-        TotalReceivedData = 2,  /**< Total received data */
-        TotalSentData = 3,  /**< Total sent data */
     }
 
     /// <summary>
@@ -144,27 +133,6 @@ namespace Tizen.Network.Connection
         PrepaidMMS = 4,  /**< Prepaid MMS */
         Tethering = 5,  /**< Tethering */
         Application = 6,  /**< Specific application */
-    }
-
-    /// <summary>
-    /// Enumeration for cellular pdn type.
-    /// </summary>
-    public enum CellularPdnType
-    {
-        Unknown = 0,  /**< Unknown */
-        IPv4 = 1,  /**< IPv4 */
-        IPv6 = 2,  /**< IPv6 */
-        IPv4_IPv6 = 3,  /**< Both IPv4 and IPv6 */
-    }
-
-    /// <summary>
-    /// Enumeration for DNS configuration type.
-    /// </summary>
-    public enum DnsConfigType
-    {
-        None = 0,  /**< Not defined */
-        Static = 1,  /**< Manual DNS configuration */
-        Dynamic = 2,  /**< Config DNS using DHCP client */
     }
 
     static internal class ConnectionErrorValue

@@ -47,7 +47,6 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                Log.Debug(Globals.LogTag, "ProfileStateChanged add");
                 if (_ProfileStateChanged == null)
                 {
                     ProfileStateChangedStart();
@@ -56,7 +55,6 @@ namespace Tizen.Network.Connection
             }
             remove
             {
-                Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
                 _ProfileStateChanged -= value;
                 if (_ProfileStateChanged == null)
                 {
@@ -75,7 +73,6 @@ namespace Tizen.Network.Connection
                 }
             };
 
-            Log.Debug(Globals.LogTag, "ProfileStateChangedStart");
             int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, _profileChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -85,7 +82,6 @@ namespace Tizen.Network.Connection
 
         private void ProfileStateChangedStop()
         {
-            Log.Debug(Globals.LogTag, "ProfileStateChangedStop");
             int ret = Interop.ConnectionProfile.UnsetStateChangeCallback(ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -137,15 +133,6 @@ namespace Tizen.Network.Connection
         private void Destroy()
         {
             Interop.ConnectionProfile.Destroy(ProfileHandle);
-            ProfileHandle = IntPtr.Zero;
-        }
-
-        internal void CheckDisposed()
-        {
-            if (disposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
         }
 
         /// <summary>
@@ -224,42 +211,20 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Refreshes the profile information.
+        /// The profile state.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        public void Refresh()
+        public ProfileState State
         {
-            int ret = Interop.ConnectionProfile.Refresh(ProfileHandle);
-            if ((ConnectionError)ret != ConnectionError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Get the network state.
-        /// </summary>
-        /// <param name="family">The address family</param>
-        /// <returns>The network state.</returns>
-        public ProfileState GetState(AddressFamily family)
-        {
                 int Value;
-                int ret = (int)ConnectionError.None;
-                if (family == AddressFamily.IPv4)
-                {
-                    ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
-                }
-                else
-                {
-                    ret = Interop.ConnectionProfile.GetIPv6State(ProfileHandle, out Value);
-                }
-
+                int ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get profile state, " + (ConnectionError)ret);
                 }
                 return (ProfileState)Value;
+            }
         }
 
         /// <summary>
@@ -319,7 +284,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The address information (IPv4)
+        /// The subnet mask address(IPv4).
         /// </summary>
         public IAddressInformation IPv4Settings
         {
@@ -331,7 +296,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The address information (IPv6)
+        /// The subnet mask address(IPv4).
         /// </summary>
         public IAddressInformation IPv6Settings
         {

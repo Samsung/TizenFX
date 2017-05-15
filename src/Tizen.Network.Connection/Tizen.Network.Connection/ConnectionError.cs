@@ -24,34 +24,7 @@ namespace Tizen.Network.Connection
 {
     internal static class ConnectionErrorFactory
     {
-        internal static void CheckFeatureUnsupportedException(int err, string message)
-        {
-            if ((ConnectionError)err == ConnectionError.NotSupported)
-            {
-                ThrowConnectionException(err, message);
-            }
-        }
-
-        internal static void CheckPermissionDeniedException(int err, string message)
-        {
-            if ((ConnectionError)err == ConnectionError.PermissionDenied)
-            {
-                ThrowConnectionException(err, message);
-            }
-        }
-
-        internal static void CheckHandleNullException(int err, bool isHandleInvalid, string message)
-        {
-            if ((ConnectionError)err == ConnectionError.InvalidParameter)
-            {
-                if (isHandleInvalid)
-                {
-                    ThrowConnectionException((int)ConnectionError.InvalidOperation, message);
-                }
-            }
-        }
-
-        internal static void ThrowConnectionException(int errno , string message = "")
+        internal static void ThrowConnectionException(int errno)
         {
             ConnectionError _error = (ConnectionError)errno;
             Log.Debug(Globals.LogTag, "ThrowConnectionException " + _error);
@@ -68,15 +41,15 @@ namespace Tizen.Network.Connection
                 case ConnectionError.InvalidKey:
                     throw new InvalidOperationException("Invalid Key");
                 case ConnectionError.InvalidOperation:
-                    throw new InvalidOperationException("Invalid Operation " + message);
+                    throw new InvalidOperationException("Invalid Operation");
                 case ConnectionError.InvalidParameter:
-                    throw new ArgumentException("Invalid Parameter");
+                    throw new InvalidOperationException("Invalid Parameter");
                 case ConnectionError.NoConnection:
                     throw new InvalidOperationException("No Connection");
                 case ConnectionError.NoReply:
                     throw new InvalidOperationException("No Reply");
                 case ConnectionError.NotSupported:
-                    throw new NotSupportedException("Unsupported feature " + message);
+                    throw new NotSupportedException("Not Supported");
                 case ConnectionError.NowInProgress:
                     throw new InvalidOperationException("Now In Progress");
                 case ConnectionError.OperationAborted:
@@ -84,9 +57,9 @@ namespace Tizen.Network.Connection
                 case ConnectionError.OperationFailed:
                     throw new InvalidOperationException("Operation Failed");
                 case ConnectionError.OutOfMemoryError:
-                    throw new OutOfMemoryException("Out Of Memory Error");
+                    throw new InvalidOperationException("Out Of Memory Error");
                 case ConnectionError.PermissionDenied:
-                    throw new UnauthorizedAccessException("Permission Denied " + message);
+                    throw new InvalidOperationException("Permission Denied");
             }
         }
     }
