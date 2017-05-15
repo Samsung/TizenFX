@@ -86,7 +86,7 @@ namespace Tizen.Uix.VoiceControl
         /// This property should be used for commands which have non-fixed format.
         /// empty string will be returned in case of some internal error
         /// </summary>
-        public string GetUnfixedCommand
+        public string UnfixedCommand
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcCmdGetUnfixedCommand(_handle, out unfixedCommand);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetUnfixedCommand Failed with error " + error);
+                    Log.Error(LogTag, "UnfixedCommand Failed with error " + error);
                     return "";
                 }
 

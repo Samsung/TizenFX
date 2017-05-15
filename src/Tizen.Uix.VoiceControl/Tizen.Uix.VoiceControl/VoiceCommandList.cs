@@ -77,7 +77,7 @@ namespace Tizen.Uix.VoiceControl
         /// <privlevel>
         /// public
         /// </privlevel>
-        public int GetCount
+        public int Count
         {
             get
             {
@@ -106,7 +106,7 @@ namespace Tizen.Uix.VoiceControl
         /// <privlevel>
         /// public
         /// </privlevel>
-        public VoiceCommand GetCurrent
+        public VoiceCommand Current
         {
             get
             {

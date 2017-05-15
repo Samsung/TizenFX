@@ -237,20 +237,20 @@ namespace Tizen.Uix.VoiceControl
         /// <precondition>
         /// The State must be Initialized or Ready.
         /// </precondition>
-        public static string GetCurrentLanaguge
+        public static string CurrentLanguage
         {
             get
             {
-                string currentLanaguge;
+                string currentLanguage;
 
-                ErrorCode error = VcGetCurrentLanguage(out currentLanaguge);
+                ErrorCode error = VcGetCurrentLanguage(out currentLanguage);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "CurrentLanaguge Failed with error " + error);
+                    Log.Error(LogTag, "CurrentLanguage Failed with error " + error);
                     return "";
                 }
 
-                return currentLanaguge;
+                return currentLanguage;
             }
         }
 
@@ -266,7 +266,7 @@ namespace Tizen.Uix.VoiceControl
         /// <precondition>
         /// The State must be Initialized or Ready.
         /// </precondition>
-        public static State GetState
+        public static State State
         {
             get
             {
@@ -275,7 +275,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcGetState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetState Failed with error " + error);
+                    Log.Error(LogTag, "State Failed with error " + error);
                     return State.Unavailable;
                 }
 
@@ -295,7 +295,7 @@ namespace Tizen.Uix.VoiceControl
         /// <precondition>
         /// The State must be Ready.
         /// </precondition>
-        public static ServiceState GetServiceState
+        public static ServiceState ServiceState
         {
             get
             {
@@ -304,7 +304,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcGetServiceState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetServiceState Failed with error " + error);
+                    Log.Error(LogTag, "ServiceState Failed with error " + error);
                     return ServiceState.Unavailable;
                 }
 
