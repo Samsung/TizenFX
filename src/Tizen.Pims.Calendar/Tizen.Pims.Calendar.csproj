@@ -67,6 +67,7 @@
     <Compile Include="Tizen.Pims.Calendar\CalendarStructs.cs" />
     <Compile Include="Tizen.Pims.Calendar\CalendarErrorFactory.cs" />
     <Compile Include="Tizen.Pims.Calendar\ReminderEventArgs.cs" />
+    <Compile Include="Tizen.Pims.Calendar\NamespaceDoc.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
