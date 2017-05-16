@@ -64,6 +64,7 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
         /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public VoiceCommand()
         {
             SafeCommandHandle handle;
@@ -106,7 +107,6 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets command type.
         /// </summary>
         /// <remarks>If you do not set the command type, the default value is Undefined. You should set type if command is valid</remarks>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public CommandType Type
@@ -143,7 +143,6 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets the command format.
         /// </summary>
         /// <remarks>The default format is Fixed</remarks>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public CommandFormat Format
@@ -174,7 +173,6 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets command
         /// in case of get empty string will be returned in case of some internal error
         /// </summary>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public string Command

@@ -136,7 +136,6 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="command">The command</param>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="NullReferenceException"> This will occur if the provide parameter is null. </exception>
@@ -164,7 +163,6 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="command">The command</param>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="NullReferenceException"> This will occur if the provide parameter is null. </exception>
