@@ -486,7 +486,7 @@ namespace Tizen.Multimedia.MediaCodec
                 }
                 catch (Exception)
                 {
-                    Tizen.Multimedia.Interop.MediaPacket.Destroy(packetHandle);
+                    Interop.MediaPacket.Destroy(packetHandle);
 
                     // TODO should we throw it to unmanaged code?
                     throw;

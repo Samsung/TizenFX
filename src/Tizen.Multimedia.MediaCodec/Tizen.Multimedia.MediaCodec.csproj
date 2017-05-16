@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Interop\Interop.Libraries.cs" />
     <Compile Include="Interop\Interop.MediaCodec.cs" />
+    <Compile Include="Interop\Interop.MediaTool.cs" />
     <Compile Include="MediaCodec\BufferStatusChangedEventArgs.cs" />
     <Compile Include="MediaCodec\InputProcessedEventArgs.cs" />
     <Compile Include="MediaCodec\MediaCodec.cs" />
