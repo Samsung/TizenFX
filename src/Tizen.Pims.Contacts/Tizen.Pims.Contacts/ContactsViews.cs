@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// This class provides information about views with properties. 
+    /// This class provides information about views with properties.
     /// </summary>
     /// <remarks>
     ///  A view is a class which describes properties of a record. A record can have basic properties of five types: integer, string, boolean, long, double.
@@ -390,7 +390,7 @@ namespace Tizen.Pims.Contacts
             Deleted,
         }
 
-        internal const uint AverageSizeOfRecord = 120; ///average size of person record
+        internal const uint AverageSizeOfRecord = 120;  /* average size of person record */
 
         public static class Addressbook
         {

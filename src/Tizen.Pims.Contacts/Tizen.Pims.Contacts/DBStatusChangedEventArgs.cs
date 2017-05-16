@@ -18,14 +18,17 @@ using static Tizen.Pims.Contacts.ContactsDatabase;
 
 namespace Tizen.Pims.Contacts
 {
+    /// <summary>
+    /// Event arguments passed when contacts database status is changed
+    /// </summary>
     public class DBStatusChangedEventArgs
     {
-        internal DBStatusChangedEventArgs(DbStatus status)
+        internal DBStatusChangedEventArgs(DBStatus status)
         {
             this.Status = status;
         }
 
-        public DbStatus Status
+        public DBStatus Status
         {
             get;
             internal set;

@@ -20,7 +20,12 @@ using static Interop.Contacts;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
+    /// A query is used to retrieve data which satisfies given criteria
     /// </summary>
+    /// <remarks>
+    /// A query is used to retrieve person, group, speed dial, and log data which satisfies a given criteria, such as an integer property being greater than a given value, or a string property containing a given substring. 
+    /// A query needs a filter which can set the conditions for the search.
+    /// </remarks>
     public class ContactsQuery : IDisposable
     {
         internal IntPtr _queryHandle;
@@ -29,6 +34,9 @@ namespace Tizen.Pims.Contacts
         /// Creates a query.
         /// </summary>
         /// <param name="viewUri">The view URI of a query</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public ContactsQuery(string viewUri)
         {
             int error = Interop.Query.ContactsQueryCreate(viewUri, out _queryHandle);
@@ -59,13 +67,16 @@ namespace Tizen.Pims.Contacts
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "ContactsQueryDestroy Failed with error " + error);
-                    throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
 
                 disposedValue = true;
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ContactsQuery.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -76,6 +87,7 @@ namespace Tizen.Pims.Contacts
         /// Adds property IDs for projection.
         /// </summary>
         /// <param name="propertyIdArray">The property ID array </param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetProjection(uint[] propertyIdArray)
         {
             int error = Interop.Query.ContactsQuerySetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
@@ -90,6 +102,7 @@ namespace Tizen.Pims.Contacts
         /// Sets the "distinct" option for projection.
         /// </summary>
         /// <param name="set">If true it is set, otherwise if false it is unset</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetDistinct(bool set)
         {
             int error = Interop.Query.ContactsQuerySetDistinct(_queryHandle, set);
@@ -104,6 +117,7 @@ namespace Tizen.Pims.Contacts
         /// Sets the filter for a query.
         /// </summary>
         /// <param name="filter">The filter</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetFilter(ContactsFilter filter)
         {
             int error = Interop.Query.ContactsQuerySetFilter(_queryHandle, filter._filterHandle);
@@ -119,6 +133,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="propertyId">The property ID to sort</param>
         /// <param name="isAscending">If true it sorts in the ascending order, otherwise if false it sorts in the descending order</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetSort(uint propertyId, bool isAscending)
         {
             int error = Interop.Query.ContactsQuerySetSort(_queryHandle, propertyId, isAscending);

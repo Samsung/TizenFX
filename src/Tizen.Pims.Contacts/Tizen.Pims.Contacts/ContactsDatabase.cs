@@ -21,43 +21,46 @@ using System.Runtime.InteropServices;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// ContactsDatabase class is the interface class for managing contacts information from/to the database.
-    /// This class allows user to access/create/update db operations for contacts information.
+    /// ContactsDatabase provides methods to manage contacts information from/to the database.
     /// </summary>
+    /// <remarks>
+    /// This class allows user to access/create/update db operations for contacts information.
+    /// </remarks>
     public class ContactsDatabase
     {
         /// <summary>
-        /// Called when the designated view changes.
+        /// Delegete for detecting the contacts database changes
         /// </summary>
         /// <param name="uri">The contacts view URI</param>
         /// <remarks>
         /// The delegate must be registered using AddDBChangedDelegate.
+        /// It's invoked when the designated view changes.
         /// </remarks>
         /// <see cref="AddDBChangedDelegate"/>
-        public delegate void ContactsDbChangedDelegate(string uri);
+        public delegate void ContactsDBChangedDelegate(string uri);
         private Object thisLock = new Object();
-        private Interop.Database.ContactsDbStatusChangedCallback _contactsDbStatusChangedCallback;
+        private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
         private event EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
-        private Dictionary<string, ContactsDbChangedDelegate> _callbackMap = new Dictionary<string, ContactsDbChangedDelegate>();
-        private Dictionary<string, Interop.Database.ContactsDbChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.ContactsDbChangedCallback>();
-        private Interop.Database.ContactsDbChangedCallback _dbChangedDelegate;
+        private Dictionary<string, ContactsDBChangedDelegate> _callbackMap = new Dictionary<string, ContactsDBChangedDelegate>();
+        private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
+        private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
 
         internal ContactsDatabase()
         {
-            //To be created in ContactsManager only.
+            ///To be created in ContactsManager only.
         }
 
         /// <summary>
         /// Enumeration for contacts database status.
         /// </summary>
-        public enum DbStatus
+        public enum DBStatus
         {
             /// <summary>
             /// Normal
             /// </summary>
             Normal,
             /// <summary>
-            /// Enumeration for contact DB status.
+            /// Changing collation.
             /// </summary>
             ChangingCollation
         }
@@ -86,7 +89,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// (event) DBStatusChanged is raised when changing contacts database status.
+        /// Occurs when contacts database status is changed.
         /// </summary>
         public event EventHandler<DBStatusChangedEventArgs> DBStatusChanged
         {
@@ -94,13 +97,13 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    _contactsDbStatusChangedCallback = (DbStatus status, IntPtr userData) =>
+                    _contactsDBStatusChangedCallback = (DBStatus status, IntPtr userData) =>
                     {
                         DBStatusChangedEventArgs args = new DBStatusChangedEventArgs(status);
                         _dbStatusChanged?.Invoke(this, args);
                     };
 
-                    int error = Interop.Database.AddStatusChangedCb(_contactsDbStatusChangedCallback, IntPtr.Zero);
+                    int error = Interop.Database.AddStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
                     if ((int)ContactsError.None != error)
                     {
                         Log.Error(Globals.LogTag, "Add StatusChanged Failed with error " + error);
@@ -117,7 +120,7 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    int error = Interop.Database.RemoveStatusChangedCb(_contactsDbStatusChangedCallback, IntPtr.Zero);
+                    int error = Interop.Database.RemoveStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
                     if ((int)ContactsError.None != error)
                     {
                         Log.Error(Globals.LogTag, "Remove StatusChanged Failed with error " + error);
@@ -129,49 +132,14 @@ namespace Tizen.Pims.Contacts
 
         }
 
-
-        /// <summary>
-        /// The current contacts database version.
-        /// </summary>
-        public int Version
-        {
-            get
-            {
-                int version = -1;
-                int error = Interop.Database.GetVersion(out version);
-                if ((int)ContactsError.None != error)
-                {
-                    Log.Error(Globals.LogTag, "Version Failed with error " + error);
-                }
-                return version;
-            }
-        }
-
-        /// <summary>
-        /// The last successful changed contacts database version on the current connection.
-        /// </summary>
-        public int LastChangeVersion
-        {
-            get
-            {
-                int version = -1;
-                int error = Interop.Database.GetLastChangeVersion(out version);
-                if ((int)ContactsError.None != error)
-                {
-                    Log.Error(Globals.LogTag, "LastChangeVersion Failed with error " + error);
-                }
-                return version;
-            }
-        }
-
         /// <summary>
         /// The contacts database status.
         /// </summary>
-        public DbStatus Status
+        public DBStatus Status
         {
             get
             {
-                DbStatus status;
+                DBStatus status;
                 int error = Interop.Database.GetStatus(out status);
                 if ((int)ContactsError.None != error)
                 {
@@ -182,10 +150,61 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
+        /// Gets current contacts database version.
+        /// </summary>
+        /// <returns>The current contacts database version</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        public int GetVersion()
+        {
+            int version = -1;
+            int error = Interop.Database.GetVersion(out version);
+            if ((int)ContactsError.None != error)
+            {
+                Log.Error(Globals.LogTag, "GetVersion() Failed with error " + error);
+                throw ContactsErrorFactory.CheckAndCreateException(error);
+            }
+            return version;
+        }
+
+        /// <summary>
+        /// Gets last successful changed contacts database version on the current connection.
+        /// </summary>
+        /// <returns>The last successful changed contacts database version on the current connection</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        public int GetLastChangeVersion
+        {
+            get
+            {
+                int version = -1;
+                int error = Interop.Database.GetLastChangeVersion(out version);
+                if ((int)ContactsError.None != error)
+                {
+                    Log.Error(Globals.LogTag, "GetLastChangeVersion Failed with error " + error);
+                }
+                return version;
+            }
+        }
+
+        /// <summary>
         /// Inserts a record into the contacts database.
         /// </summary>
         /// <param name="record">The record to insert</param>
         /// <returns>The ID of inserted record</returns>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public int Insert(ContactsRecord record)
         {
             int id = -1;
@@ -203,6 +222,13 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="list">The record list</param>
         /// <returns>The inserted record ID array</returns>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public int[] Insert(ContactsList list)
         {
             IntPtr ids;
@@ -226,6 +252,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="viewUri">The view URI of a record</param>
         /// <param name="recordId">The record ID</param>
         /// <returns>The record associated with the record ID</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public ContactsRecord Get(string viewUri, int recordId)
         {
             IntPtr handle;
@@ -242,6 +275,13 @@ namespace Tizen.Pims.Contacts
         /// Updates a record in the contacts database.
         /// </summary>
         /// <param name="record">The record to update</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Update(ContactsRecord record)
         {
             int error = Interop.Database.Update(record._recordHandle);
@@ -256,6 +296,13 @@ namespace Tizen.Pims.Contacts
         /// Updates multiple records in the contacts database as a batch operation.
         /// </summary>
         /// <param name="list">The record list</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Update(ContactsList list)
         {
             int error = Interop.Database.UpdateRecords(list._listHandle);
@@ -271,6 +318,13 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of a record</param>
         /// <param name="recordId">The record ID to delete</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(string viewUri, int recordId)
         {
             int error = Interop.Database.Delete(viewUri, recordId);
@@ -286,6 +340,13 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of the records to delete</param>
         /// <param name="idArray">The record IDs to delete</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(string viewUri, int[] idArray)
         {
             int error = Interop.Database.DeleteRecords(viewUri, idArray, idArray.Length);
@@ -300,7 +361,14 @@ namespace Tizen.Pims.Contacts
         /// Replaces a record in the contacts database.
         /// </summary>
         /// <param name="record">The record to replace</param>
-        /// <param name="id">the record ID</param>
+        /// <param name="id">the record ID to be replaced</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Replace(ContactsRecord record, int recordId)
         {
             int error = Interop.Database.Replace(record._recordHandle, recordId);
@@ -315,7 +383,14 @@ namespace Tizen.Pims.Contacts
         /// Replaces multiple records in the contacts database as a batch operation.
         /// </summary>
         /// <param name="list">The record list to replace</param>
-        /// <param name="idArray">The record IDs</param>
+        /// <param name="idArray">The record IDs to be replaced</param>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Replace(ContactsList list, int[] idArray)
         {
             int error = Interop.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
@@ -335,6 +410,13 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The record list
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public ContactsList GetAll(string viewUri, int offset, int limit)
         {
             IntPtr handle;
@@ -356,6 +438,13 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The record list
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public ContactsList GetRecordsWithQuery(ContactsQuery query, int offset, int limit)
         {
             IntPtr handle;
@@ -378,6 +467,12 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The record list
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public ContactsList GetChangesByVersion(string viewUri, int addressbookId, int contactsDBVersion, out int currentDBVersion)
         {
             IntPtr recordList;
@@ -394,19 +489,19 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on a given keyword.
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned
-        /// and @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned.
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned and PersonGroupNotAssigned.
         /// </remarks>
         /// <param name="viewUri">The view URI to find records</param>
-        /// <param name="keywrod">The keyword</param>
+        /// <param name="keyword">The keyword</param>
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
         /// <returns></returns>
-        public ContactsList Search(string viewUri, string keywrod, int offset, int limit)
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        public ContactsList Search(string viewUri, string keyword, int offset, int limit)
         {
             IntPtr recordList;
-            int error = Interop.Database.Search(viewUri, keywrod, offset, limit, out recordList);
+            int error = Interop.Database.Search(viewUri, keyword, offset, limit, out recordList);
             if ((int)ContactsError.None != error)
             {
                 Log.Error(Globals.LogTag, "Search Failed with error " + error);
@@ -419,9 +514,8 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on given query and keyword.
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned
-        /// and @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned.
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned and PersonGroupNotAssigned.
         /// </remarks>
         /// <param name="query">The query to filter</param>
         /// <param name="keyword">The keyword</param>
@@ -444,11 +538,8 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on a keyword and range.
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned. These views can search records with range @ref CONTACTS_SEARCH_RANGE_NAME, @ref CONTACTS_SEARCH_RANGE_NUMBER, @ref CONTACTS_SEARCH_RANGE_DATA.
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_number can search records with @ref CONTACTS_SEARCH_RANGE_NAME and @ref CONTACTS_SEARCH_RANGE_NUMBER.
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_email can search records with @ref CONTACTS_SEARCH_RANGE_NAME and @ref CONTACTS_SEARCH_RANGE_EMAIL.
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, PersonGroupNotAssigned, PersonNumber and PersonEmail
         /// </remarks>
         /// <param name="viewUri">The view URI</param>
         /// <param name="keyword">The keyword</param>
@@ -472,10 +563,9 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on a given keyword for snippet
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned
-        /// and @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned
-        /// Because start match and end match is needed to be composed with keyword, this API performance is lower than contacts_db_search_records().
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned and PersonGroupNotAssigned.
+        /// Because start match and end match are needed to be composed with keyword, this API performance is lower than Search(string viewUri, string keyword, int offset, int limit).
         /// </remarks>
         /// <param name="viewUri">The view URI to find records</param>
         /// <param name="keyword">The keyword</param>
@@ -501,10 +591,9 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on given query and keyword for snippet.
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned
-        /// and @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned
-        /// Because start match and end match is needed to be composed with keyword, this API performance is lower than contacts_db_search_records_with_query().
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned and PersonGroupNotAssigned.
+        /// Because start match and end match are needed to be composed with keyword, this API performance is lower than Search(ContactsQuery query, string keyword, int offset, int limit).
         /// </remarks>
         /// <param name="query">The query to filter</param>
         /// <param name="keyword">The keyword</param>
@@ -530,12 +619,9 @@ namespace Tizen.Pims.Contacts
         /// Finds records based on a keyword and range for snippet.
         /// </summary>
         /// <remarks>
-        /// This API works only for @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_contact,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_grouprel, @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_assigned,
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_group_not_assigned. These views can search records with range @ref CONTACTS_SEARCH_RANGE_NAME, @ref CONTACTS_SEARCH_RANGE_NUMBER, @ref CONTACTS_SEARCH_RANGE_DATA.
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_number can search records with @ref CONTACTS_SEARCH_RANGE_NAME and @ref CONTACTS_SEARCH_RANGE_NUMBER.
-        /// @ref CAPI_SOCIAL_CONTACTS_SVC_VIEW_MODULE_contacts_person_email can search records with @ref CONTACTS_SEARCH_RANGE_NAME and @ref CONTACTS_SEARCH_RANGE_EMAIL.
-        /// Because start match and end match is needed to be composed with keyword, this API performance is lower than contacts_db_search_records_with_range().
+        /// This API works only for the Views below.
+        /// Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, PersonGroupNotAssigned, PersonNumber and PersonEmail
+        /// Because start match and end match are needed to be composed with keyword, this API performance is lower than Search(string viewUri, string keyword, int offset, int limit, int range).
         /// </remarks>
         /// <param name="viewUri">The view URI</param>
         /// <param name="keyword">The keyword</param>
@@ -597,7 +683,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="callback">The callback function to register</param>
-        public void AddDBChangedDelegate(string viewUri, ContactsDbChangedDelegate callback)
+        public void AddDBChangedDelegate(string viewUri, ContactsDBChangedDelegate callback)
         {
             _dbChangedDelegate = (string uri, IntPtr userData) =>
             {
@@ -618,7 +704,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="callback">The callback function to register</param>
-        public void RemoveDBChangedDelegate(string viewUri, ContactsDbChangedDelegate callback)
+        public void RemoveDBChangedDelegate(string viewUri, ContactsDBChangedDelegate callback)
         {
             int error = Interop.Database.RemoveChangedCb(viewUri, _delegateMap[viewUri], IntPtr.Zero);
             if ((int)ContactsError.None != error)

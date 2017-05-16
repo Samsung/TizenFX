@@ -19,6 +19,7 @@ using System;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
+    /// A list of records with the same type
     /// </summary>
     public class ContactsList:IDisposable
     {
@@ -42,6 +43,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a contacts record list.
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public ContactsList()
         {
             int error = Interop.List.ContactsListCreate(out _listHandle);
@@ -70,7 +73,6 @@ namespace Tizen.Pims.Contacts
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "ContactsList Count Failed with error " + error);
-                    throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 return count;
             }
@@ -87,7 +89,6 @@ namespace Tizen.Pims.Contacts
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "ContactsListDestroy Failed with error " + error);
-                    throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
 
                 disposedValue = true;
@@ -95,6 +96,10 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ContactsList.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -105,6 +110,8 @@ namespace Tizen.Pims.Contacts
         /// Adds a record to the contacts list.
         /// </summary>
         /// <param name="record">The record to add</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddRecord(ContactsRecord record)
         {
             int error = Interop.List.ContactsListAdd(_listHandle, record._recordHandle);
@@ -120,7 +127,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Removes a record from the contacts list.
         /// </summary>
-        /// <param name="record">The record to remov</param>
+        /// <param name="record">The record to remove</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveRecord(ContactsRecord record)
         {
             int error = Interop.List.ContactsListRemove(_listHandle, record._recordHandle);
@@ -155,7 +164,7 @@ namespace Tizen.Pims.Contacts
         /// Moves a contacts list to the previous position.
         /// </summary>
         /// <returns>
-        /// if cursor is moved to the first, it returns false.
+        /// When the cursor is already at the first position, it returns false.
         /// </returns>
         public bool MovePrevious()
         {
@@ -181,7 +190,7 @@ namespace Tizen.Pims.Contacts
         /// Moves a contacts list to the next position.
         /// </summary>
         /// <returns>
-        /// if cursor is moved to the end, it returns false.
+        /// When the cursor is already at the last position, it returns false.
         /// </returns>
         public bool MoveNext()
         {

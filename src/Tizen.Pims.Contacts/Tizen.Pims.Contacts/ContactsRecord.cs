@@ -21,7 +21,13 @@ using System.Runtime.InteropServices;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
+    /// A record represents an actual record in the database
     /// </summary>
+    /// <remarks>
+    /// A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts. 
+    /// A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record. 
+    /// An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.
+    /// </remarks>
     public class ContactsRecord : IDisposable
     {
         private string _uri = null;
@@ -79,6 +85,9 @@ namespace Tizen.Pims.Contacts
         /// Creates a record.
         /// </summary>
         /// <param name="viewUri">The view URI</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public ContactsRecord(string viewUri)
         {
             int error = Interop.Record.Create(viewUri, out _recordHandle);
@@ -118,13 +127,16 @@ namespace Tizen.Pims.Contacts
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "Dispose Failed with error " + error);
-                    throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 _disposedValue = true;
                 GC.RemoveMemoryPressure(_memoryPressure);
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ContactsRecord.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -135,6 +147,7 @@ namespace Tizen.Pims.Contacts
         /// Makes a clone of a record.
         /// </summary>
         /// <returns>A cloned record</returns>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public ContactsRecord Clone()
         {
             IntPtr _clonedRecordHandle;
@@ -154,6 +167,7 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The value of the property corresponding to property id.
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public T Get<T>(uint propertyId)
         {
             object parsedValue = null;
@@ -225,6 +239,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="value">The value to set</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void Set<T>(uint propertyId, T value)
         {
             if (typeof(T) == typeof(string))
@@ -289,6 +304,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="childRecord">The child record to add to parent record</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddChildRecord(uint propertyId, ContactsRecord childRecord)
         {
             int error = Interop.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -305,6 +321,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="childRecord">The child record to remove from parent record</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveChildRecord(uint propertyId, ContactsRecord childRecord)
         {
             int error = Interop.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -321,6 +338,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <returns>The number of child records corresponding to property ID</returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public int GetChildRecordCount(uint propertyId)
         {
             int count = 0;
@@ -339,6 +357,7 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID</param>
         /// <param name="index">The index of child record</param>
         /// <returns>The record </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public ContactsRecord GetChildRecord(uint propertyId, int index)
         {
             IntPtr handle;
@@ -359,6 +378,7 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The record list
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public ContactsList CloneChildRecordList(uint propertyId)
         {
             IntPtr listHandle;

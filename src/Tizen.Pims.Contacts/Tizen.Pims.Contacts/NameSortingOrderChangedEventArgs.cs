@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,9 @@
 
 namespace Tizen.Pims.Contacts
 {
+    /// <summary>
+    /// Event arguments passed when setting value of contacts name sorting order is changed
+    /// </summary>
     public class NameSortingOrderChangedEventArgs
     {
         internal NameSortingOrderChangedEventArgs(ContactSortingOrder SortingOrder)

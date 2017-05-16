@@ -63,6 +63,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a ContactsManager.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public ContactsManager()
         {
             int error = Interop.Contacts.Connect();
@@ -90,7 +91,6 @@ namespace Tizen.Pims.Contacts
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
-                    throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
 
                 disposedValue = true;
@@ -113,6 +113,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// (event) NameDisplayOrderChanged is raised when changing setting value of contacts name display order
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         public event EventHandler<NameDisplayOrderChangedEventArgs> NameDisplayOrderChanged
         {
             add
@@ -162,6 +163,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// (event) NameSortingOrderChanged is raised when changing setting value of contacts name sorting order
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         public event EventHandler<NameSortingOrderChangedEventArgs> NameSortingOrderChanged
         {
             add
@@ -222,6 +224,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name display order
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         public ContactDisplayOrder NameDisplayOrder
         {
             get
@@ -247,6 +251,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name sorting order
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         public ContactSortingOrder NameSortingOrder
         {
             get

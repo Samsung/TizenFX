@@ -22,7 +22,11 @@ namespace Tizen.Pims.Contacts
 {
     using static ContactsViews;
     /// <summary>
+    /// A class for parsing and making vCards.
     /// </summary>
+    /// <remarks>
+    /// It's based on the vCard v3.0 specification
+    /// </remarks>
     public static class ContactsVcard
     {
         public delegate bool ParseDelegate(ContactsRecord record);
@@ -34,6 +38,9 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The vCard stream.
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static string Compose(ContactsRecord record)
         {
             int error = 0;
@@ -72,6 +79,8 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The contacts list
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static ContactsList Parse(string stream)
         {
             IntPtr listHandle;
@@ -91,6 +100,9 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="path">The file path of vCard stream file</param>
         /// <param name="callback">The callback function to invoke</param>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static void ParseForEach(string path, ParseDelegate callback)
         {
             Interop.Vcard.ContactsVcardParseCallback cb = (IntPtr handle, IntPtr data) =>

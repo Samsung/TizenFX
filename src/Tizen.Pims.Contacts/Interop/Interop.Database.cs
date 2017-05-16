@@ -62,16 +62,16 @@ internal static partial class Interop
         internal static extern int ReplaceRecords(IntPtr listHandle, int[] recordIdArray, int count);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_get_current_version")]
-        internal static extern int GetVersion(out int contactsDbVersion);
+        internal static extern int GetVersion(out int contactsDBVersion);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_add_changed_cb")]
-        internal static extern int AddChangedCb(string uri, ContactsDbChangedCallback callback, IntPtr userData);
+        internal static extern int AddChangedCb(string uri, ContactsDBChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_remove_changed_cb")]
-        internal static extern int RemoveChangedCb(string uri, ContactsDbChangedCallback callback, IntPtr userData);
+        internal static extern int RemoveChangedCb(string uri, ContactsDBChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_get_changes_by_version")]
-        internal static extern int GetChangesByVersion(string uri, int addressBookId, int contactsDbVersion, out IntPtr changeRecordList, out int currentContactsDbVersion);
+        internal static extern int GetChangesByVersion(string uri, int addressBookId, int contactsDBVersion, out IntPtr changeRecordList, out int currentContactsDBVersion);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_search_records")]
         internal static extern int Search(string uri, string keyword, int offset, int limit, out IntPtr listHandle);
@@ -101,18 +101,18 @@ internal static partial class Interop
         internal static extern int GetLastChangeVersion(out int version);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_get_status")]
-        internal static extern int GetStatus(out Tizen.Pims.Contacts.ContactsDatabase.DbStatus status);
+        internal static extern int GetStatus(out Tizen.Pims.Contacts.ContactsDatabase.DBStatus status);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_add_changed_cb")]
-        internal static extern int AddStatusChangedCb(ContactsDbStatusChangedCallback callback, IntPtr userData);
+        internal static extern int AddStatusChangedCb(ContactsDBStatusChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_remove_changed_cb")]
-        internal static extern int RemoveStatusChangedCb(ContactsDbStatusChangedCallback callback, IntPtr userData);
+        internal static extern int RemoveStatusChangedCb(ContactsDBStatusChangedCallback callback, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void ContactsDbChangedCallback(string uri, IntPtr userData);
+        internal delegate void ContactsDBChangedCallback(string uri, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void ContactsDbStatusChangedCallback(Tizen.Pims.Contacts.ContactsDatabase.DbStatus status, IntPtr userData);
+        internal delegate void ContactsDBStatusChangedCallback(Tizen.Pims.Contacts.ContactsDatabase.DBStatus status, IntPtr userData);
     }
 }
