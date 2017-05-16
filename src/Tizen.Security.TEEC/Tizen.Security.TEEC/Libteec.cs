@@ -288,7 +288,7 @@ namespace Tizen.Security.TEEC
         /// <param name="commandID">The command</param>
         /// <param name="paramlist">The array of parameters</param>
         /// <param name="token">The token for task manipulation</param>
-        public async Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token)
+        public async Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             await Task.Factory.StartNew(() => InvokeCommand(commandID, paramlist));
         }
@@ -362,7 +362,7 @@ namespace Tizen.Security.TEEC
         /// <param name="connectionData">The data to be verified by given login method</param>
         /// <param name="paramlist">The parameters to be passed to TA open-session-callback</param>
         /// <param name="token">The token for task manipulation</param>
-        public async Task<Session> OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token)
+        public async Task<Session> OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             Task<Session> task = Task<Session>.Factory.StartNew(() =>
             {
@@ -376,7 +376,7 @@ namespace Tizen.Security.TEEC
         /// </summary>
         /// <param name="destination">The UUID of destination TA</param>
         /// <param name="token">The token for task manipulation</param>
-        public async Task<Session> OpenSessionAsync(Guid destination, CancellationToken token)
+        public async Task<Session> OpenSessionAsync(Guid destination, CancellationToken token = default(CancellationToken))
         {
             Task<Session> task = Task<Session>.Factory.StartNew(() =>
             {
