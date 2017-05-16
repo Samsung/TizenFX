@@ -5,6 +5,14 @@ namespace Tizen.Applications.AttachPanel
 {
     public partial class AttachPanel
     {
+        private static IntPtr _attachPanel;
+
+        private static event EventHandler<StateEventArgs> _eventEventHandler;
+        private static event EventHandler<ResultEventArgs> _resultEventHandler;
+
+        private static Interop.AttachPanel.AttachPanelEventCallback SetEventListener;
+        private static Interop.AttachPanel.AttachPanelResultCallback SetResultListener;
+
         private void StateEventListenStart()
         {
             Interop.AttachPanel.ErrorCode err = 0;
@@ -48,9 +56,9 @@ namespace Tizen.Applications.AttachPanel
             switch (err)
             {
                 case Interop.AttachPanel.ErrorCode.InvalidParameter:
-                    throw new InvalidOperationException("Invalid parameter error at unmanaged code");
+                    throw new ArgumentOutOfRangeException("Invalid parameter error at unmanaged code");
                 case Interop.AttachPanel.ErrorCode.OutOfMemory:
-                    throw new InvalidOperationException("Out of Memory");
+                    throw new OutOfMemoryException("Out of Memory");
                 case Interop.AttachPanel.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
                 case Interop.AttachPanel.ErrorCode.AlreadyExists:
@@ -58,7 +66,7 @@ namespace Tizen.Applications.AttachPanel
                 case Interop.AttachPanel.ErrorCode.NotInitialized:
                     throw new InvalidOperationException("Not initialized");
                 case Interop.AttachPanel.ErrorCode.UnsupportedContentCategory:
-                    throw new InvalidOperationException("Unsupported Content Category");
+                    throw new NotSupportedException("Unsupported Content Category");
                 case Interop.AttachPanel.ErrorCode.AlreadyDestroyed:
                     throw new InvalidOperationException("Already Destroyed");
             }
