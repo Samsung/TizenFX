@@ -38,12 +38,12 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// </summary>
         /// <param name="uri">The record uri</param>
-        public delegate void CalendarDbChangedDelegate(string uri);
+        public delegate void CalendarDBChangedDelegate(string uri);
 
         private Object thisLock = new Object();
-        private Dictionary<string, CalendarDbChangedDelegate> _callbackMap = new Dictionary<string, CalendarDbChangedDelegate>();
-        private Dictionary<string, Interop.Calendar.Database.DbChangedCallback> _delegateMap = new Dictionary<string, Interop.Calendar.Database.DbChangedCallback>();
-        private Interop.Calendar.Database.DbChangedCallback _dbChangedDelegate;
+        private Dictionary<string, CalendarDBChangedDelegate> _callbackMap = new Dictionary<string, CalendarDBChangedDelegate>();
+        private Dictionary<string, Interop.Calendar.Database.DBChangedCallback> _delegateMap = new Dictionary<string, Interop.Calendar.Database.DBChangedCallback>();
+        private Interop.Calendar.Database.DBChangedCallback _dbChangedDelegate;
 
         internal CalendarDatabase()
         {
@@ -382,7 +382,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
-        public void AddDBChangedDelegate(string viewUri, CalendarDbChangedDelegate callback)
+        public void AddDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
         {
             Log.Debug(Globals.LogTag, "AddDBChangedDelegate");
 
@@ -405,7 +405,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
-        public void RemoveDBChangedDelegate(string viewUri, CalendarDbChangedDelegate callback)
+        public void RemoveDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
         {
             Log.Debug(Globals.LogTag, "RemoveDBChangedDelegate");
 

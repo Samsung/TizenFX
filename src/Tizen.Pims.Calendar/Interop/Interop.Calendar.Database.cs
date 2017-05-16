@@ -24,7 +24,7 @@ internal static partial class Interop
         internal static partial class Database
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void DbChangedCallback(string uri, IntPtr userData);
+            internal delegate void DBChangedCallback(string uri, IntPtr userData);
 
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_insert_record")]
             internal static extern int Insert(IntPtr recordHandle, out int recordId);
@@ -51,11 +51,11 @@ internal static partial class Interop
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_get_current_version")]
             internal static extern int GetCurrentVersion(out int version);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_add_changed_cb")]
-            internal static extern int AddChangedCallback(string uri, DbChangedCallback callback, IntPtr userData);
+            internal static extern int AddChangedCallback(string uri, DBChangedCallback callback, IntPtr userData);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_remove_changed_cb")]
-            internal static extern int RemoveChangedCallback(string uri, DbChangedCallback callback, IntPtr userData);
+            internal static extern int RemoveChangedCallback(string uri, DBChangedCallback callback, IntPtr userData);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_get_changes_by_version")]
-            internal static extern int GetChangesByVersion(string uri, int bookId, int dbVersion, out IntPtr recordListHandle, out int currentDbVersion);
+            internal static extern int GetChangesByVersion(string uri, int bookId, int dbVersion, out IntPtr recordListHandle, out int currentDBVersion);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_insert_vcalendars")]
             internal static extern int InsertVcalendars(string stream, out IntPtr recordIds, out int count);
             [DllImport(Libraries.Calendar, EntryPoint = "calendar_db_replace_vcalendars")]

@@ -79,8 +79,8 @@ namespace Tizen.Pims.Calendar
                 Log.Error(Globals.LogTag, "No data found");
                 break;
             case CalendarError.DBLocked:
-                exp = new InvalidOperationException("Db locked");
-                Log.Error(Globals.LogTag, "Db locked");
+                exp = new InvalidOperationException("DB locked");
+                Log.Error(Globals.LogTag, "DB locked");
                 break;
             case CalendarError.ErrorDB:
                 exp = new InvalidOperationException("DB error");
