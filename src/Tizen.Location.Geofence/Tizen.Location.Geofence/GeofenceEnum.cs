@@ -17,22 +17,22 @@
 namespace Tizen.Location.Geofence
 {
     /// <summary>
-    /// Enumeration for geofence type
+    /// Enumeration for geofence type.
     /// </summary>
     public enum FenceType
     {
         /// <summary>
-        /// Geofence is specified by geospatial coordinate
+        /// Geofence is specified by geospatial coordinate.
         /// </summary>
         GeoPoint = 1,
 
         /// <summary>
-        /// Geofence is specified by Wi-Fi access point
+        /// Geofence is specified by Wi-Fi access point.
         /// </summary>
         Wifi,
 
         /// <summary>
-        /// Geofence is specified by Bluetooth device
+        /// Geofence is specified by Bluetooth device.
         /// </summary>
         Bluetooth
     };
@@ -43,17 +43,17 @@ namespace Tizen.Location.Geofence
     public enum GeofenceState
     {
         /// <summary>
-        /// Uncertain state of geofence
+        /// Uncertain state of geofence.
         /// </summary>
         Uncertain = 0,
 
         /// <summary>
-        /// Geofence In state
+        /// Geofence In state.
         /// </summary>
         In,
 
         /// <summary>
-        /// Geofence Out state
+        /// Geofence Out state.
         /// </summary>
         Out
     };
@@ -64,78 +64,78 @@ namespace Tizen.Location.Geofence
     public enum GeoFenceEventType
     {
         /// <summary>
-        ///Geofence is added
+        /// Geofence is added.
         /// </summary>
         FenceAdded = 0,
 
         /// <summary>
-        /// Geofence is removed
+        /// Geofence is removed.
         /// </summary>
         FenceRemoved,
 
         /// <summary>
-        ///Geofencing is started
+        /// Geofencing is started.
         /// </summary>
         FenceStarted,
 
         /// <summary>
-        /// Geofencing is stopped
+        /// Geofencing is stopped.
         /// </summary>
         FenceStopped,
 
         /// <summary>
-        ///Place is added
+        /// Place is added.
         /// </summary>
         PlaceAdded = 0x10,
 
         /// <summary>
-        /// Place is removed
+        /// Place is removed.
         /// </summary>
         PlaceRemoved,
 
         /// <summary>
-        ///Place is updated
+        /// Place is updated.
         /// </summary>
         PlaceUpdated,
 
         /// <summary>
-        /// Setting for geofencing is enabled
+        /// Setting for geofencing is enabled.
         /// </summary>
         SettingEnabled = 0x20,
 
         /// <summary>
-        /// Setting for geofencing is disabled
+        /// Setting for geofencing is disabled.
         /// </summary>
         SettingDisabled
     };
 
     /// <summary>
-    /// Enumeration for the provider of proximity
+    /// Enumeration for the provider of proximity.
     /// </summary>
     public enum ProximityProvider
     {
         /// <summary>
-        /// Proximity is specified by geospatial coordinate
+        /// Proximity is specified by geospatial coordinate.
         /// </summary>
         Location = 0,
 
         /// <summary>
-        /// Proximity is specified by Wi-Fi access point
+        /// Proximity is specified by Wi-Fi access point.
         /// </summary>
         Wifi,
 
         /// <summary>
-        /// Proximity is specified by Bluetooth device
+        /// Proximity is specified by Bluetooth device.
         /// </summary>
         Bluetooth,
 
         /// <summary>
-        ///Proximity is specified by Bluetooth low energy device
+        /// Proximity is specified by Bluetooth low energy device.
         /// </summary>
         BLE,
 
         /// <summary>
-        /// Proximity is specified by Sensor
+        /// Proximity is specified by Sensor.
         /// </summary>
         Sensor
     }
@@ -146,22 +146,22 @@ namespace Tizen.Location.Geofence
     public enum ProximityState
     {
         /// <summary>
-        /// Uncertain state of proximity
+        /// Uncertain state of proximity.
         /// </summary>
         Uncertain = 0,
 
         /// <summary>
-        /// Far state of proximity
+        /// Far state of proximity.
         /// </summary>
         Far,
 
         /// <summary>
-        /// Far state of proximity
+        /// Far state of proximity.
         /// </summary>
         Near,
 
         /// <summary>
-        /// Immediate state of proximity
+        /// Immediate state of proximity.
         /// </summary>
         Immediate
     }

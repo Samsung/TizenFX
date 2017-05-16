@@ -30,7 +30,7 @@ namespace Tizen.Location.Geofence
             Count = count;
         }
         /// <summary>
-        /// Geofence instance
+        /// Geofence instance.
         /// </summary>
         public Fence Fence
         {
@@ -39,7 +39,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The geofence id
+        /// The geofence id.
         /// </summary>
         public int GeofenceId
         {
@@ -49,8 +49,8 @@ namespace Tizen.Location.Geofence
 
         /// <summary>
         /// The index number of the fences in the list.
-        /// Index value starts from 1.
         /// </summary>
+        /// <value>Index value starts from 1.</value>
         public int Index
         {
             get;
@@ -58,7 +58,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The total number of fences that exists for the requester
+        /// The total number of fences that exists for the requester.
         /// </summary>
         public int Count
         {
@@ -80,7 +80,7 @@ namespace Tizen.Location.Geofence
             Count = count;
         }
         /// <summary>
-        /// The current place id
+        /// The current place id.
         /// </summary>
         public int PlaceId
         {
@@ -89,7 +89,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The current place name
+        /// The current place name.
         /// </summary>
         public string Name
         {
@@ -99,8 +99,8 @@ namespace Tizen.Location.Geofence
 
         /// <summary>
         /// The index number of the places in the list.
-        /// Index value starts from 1.
         /// </summary>
+        /// <value>Index value starts from 1.</value>
         public int Index
         {
             get;
@@ -108,7 +108,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The total number of places that exists for the requester
+        /// The total number of places that exists for the requester.
         /// </summary>
         public int Count
         {

@@ -46,52 +46,52 @@ namespace Tizen.Location.Geofence
         PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
 
         /// <summary>
-        /// Not Supported
+        /// Not Supported.
         /// </summary>
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
 
         /// <summary>
-        ///Geofence Manager is not initialized
+        /// Geofence Manager is not initialized.
         /// </summary>
         NotInitialized = -0x02C00000 | 0x100 | 0x01,
 
         /// <summary>
-        ///Invalid geofence ID
+        /// Invalid geofence ID.
         /// </summary>
         InvalidID = -0x02C00000 | 0x100 | 0x02,
 
         /// <summary>
-        /// Exception occurs
+        /// Exception occurs.
         /// </summary>
         Exception = -0x02C00000 | 0x100 | 0x03,
 
         /// <summary>
-        ///Geofencing is already started
+        /// Geofencing is already started.
         /// </summary>
         AlreadyStarted = -0x02C00000 | 0x100 | 0x04,
 
         /// <summary>
-        ///Too many geofence
+        /// Too many geofence.
         /// </summary>
         TooManyGeofence = -0x02C00000 | 0x100 | 0x05,
 
         /// <summary>
-        ///Error in GPS, Wi-Fi, or BT
+        /// Error in GPS, Wi-Fi, or BT.
         /// </summary>
         IPC = -0x02C00000 | 0x100 | 0x06,
 
         /// <summary>
-        ///DB error in the server side
+        /// DB error in the server side.
         /// </summary>
         DBFailed = -0x02C00000 | 0x100 | 0x07,
 
         /// <summary>
-        ///Access to specified place is denied
+        /// Access to specified place is denied.
         /// </summary>
         PlaceAccessDenied = -0x02C00000 | 0x100 | 0x08,
 
         /// <summary>
-        /// Access to specified geofence is denied
+        /// Access to specified geofence is denied.
         /// </summary>
         GeofenceAccessDenied = -0x02C00000 | 0x100 | 0x09
     };

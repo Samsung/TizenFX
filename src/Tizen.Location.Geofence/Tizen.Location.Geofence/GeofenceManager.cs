@@ -46,10 +46,9 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a new geofence manager.
         /// </summary>
-        /// <exception cref="OutOfMemoryException">Incase of OutOfMemory condition</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Incase of OutOfMemory condition.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public GeofenceManager()
         {
             IntPtr handle;
@@ -88,15 +87,15 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Starts the geofencing service.
         /// </summary>
-        /// <param name="geofenceId">The specified geofence id </param>
+        /// <param name="geofenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <remarks>
-        /// When the location service is enabled, the StateChanged event is invoked and the service starts
+        /// When the location service is enabled, the StateChanged event is invoked and the service starts.
         /// </remarks>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public void Start(int geofenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.GeofenceManager.Start(Handle, geofenceId);
@@ -109,16 +108,16 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Stops the geofenceing service.
         /// </summary>
-        /// <param name="geofenceId">The specified geofence id </param>
+        /// <param name="geofenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <remarks>
-        ///This function initiates the process of stopping the service.
-        ///You can stop and start the geofence manager as needed.
+        /// This function initiates the process of stopping the service.
+        /// You can stop and start the geofence manager as needed.
         /// </remarks>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public void Stop(int geofenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.GeofenceManager.Stop(Handle, geofenceId);
@@ -143,7 +142,7 @@ namespace Tizen.Location.Geofence
         /// <remarks>
         /// Call to Start() will invoke this event.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Incase of feature Not supported</exception>
+        /// <exception cref="NotSupportedException">Incase of feature Not supported.</exception>
         public event EventHandler<GeofenceStateEventArgs> StateChanged
         {
             add
@@ -187,7 +186,7 @@ namespace Tizen.Location.Geofence
         /// <remarks>
         /// Call to Start() will invoke this event.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Incase of feature Not supported</exception>
+        /// <exception cref="NotSupportedException">Incase of feature Not supported.</exception>
         public event EventHandler<ProximityStateEventArgs> ProximityChanged
         {
             add
@@ -233,7 +232,7 @@ namespace Tizen.Location.Geofence
         /// Call to Start() will invoke this event.
         /// The value of place_id or geofence_id is -1 when the place id or geofence id is not assigned.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Incase of feature Not supported</exception>
+        /// <exception cref="NotSupportedException">Incase of feature Not supported.</exception>
         public event EventHandler<GeofenceResponseEventArgs> GeoFenceEventChanged
         {
             add

@@ -24,11 +24,11 @@ namespace Tizen.Location.Geofence
     public class ProximityStateEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor
+        /// Internal constructor.
         /// </summary>
-        /// <param name="id">The geofence id </param>
-        /// <param name="state">The proximity state</param>
-        /// <param name="provider">The proximity provider</param>
+        /// <param name="id">The geofence id.</param>
+        /// <param name="state">The proximity state.</param>
+        /// <param name="provider">The proximity provider.</param>
         internal ProximityStateEventArgs(int id, ProximityState state, ProximityProvider provider)
         {
             GeofenceId = id;
@@ -37,7 +37,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The geofence id
+        /// The geofence id.
         /// </summary>
         public int GeofenceId
         {
@@ -45,7 +45,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The proximity state
+        /// The proximity state.
         /// </summary>
         public ProximityState State
         {
@@ -53,7 +53,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The proximity provider
+        /// The proximity provider.
         /// </summary>
         public ProximityProvider Provider
         {
@@ -67,10 +67,10 @@ namespace Tizen.Location.Geofence
     public class GeofenceStateEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor
+        /// Internal constructor.
         /// </summary>
-        /// <param name="fenceId">The specified geofence id</param>
-        /// <param name="state">The geofence state</param>
+        /// <param name="fenceId">The specified geofence id.</param>
+        /// <param name="state">The geofence state.</param>
         internal GeofenceStateEventArgs(int fenceId, GeofenceState state)
         {
             GeofenceId = fenceId;
@@ -78,7 +78,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The specified geofence id
+        /// The specified geofence id.
         /// </summary>
         public int GeofenceId
         {
@@ -86,7 +86,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The geofence state
+        /// The geofence state.
         /// </summary>
         public GeofenceState State
         {
@@ -100,12 +100,12 @@ namespace Tizen.Location.Geofence
     public class GeofenceResponseEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor
+        /// Internal constructor.
         /// </summary>
-        /// <param name="placeId">The place id </param>
-        /// <param name="fenceId">The specified geofence id</param>
-        /// <param name="error">The error code for the particular action </param>
-        /// <param name="eventType">The result code for the particular place and geofence management</param>
+        /// <param name="placeId">The place id.</param>
+        /// <param name="fenceId">The specified geofence id.</param>
+        /// <param name="error">The error code for the particular action.</param>
+        /// <param name="eventType">The result code for the particular place and geofence management.</param>
         internal GeofenceResponseEventArgs(int placeId, int fenceId, GeofenceError error, GeoFenceEventType eventType)
         {
             PlaceId = placeId;
@@ -115,7 +115,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The place id
+        /// The place id.
         /// </summary>
         public int PlaceId
         {
@@ -123,7 +123,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The specified geofence id
+        /// The specified geofence id.
         /// </summary>
         public int FenceId
         {
@@ -131,7 +131,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The error code for the particular action
+        /// The error code for the particular action.
         /// </summary>
         public GeofenceError ErrorCode
         {
@@ -139,7 +139,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The result code for the particular place and geofence management
+        /// The result code for the particular place and geofence management.
         /// </summary>
         public GeoFenceEventType EventType
         {

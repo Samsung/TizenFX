@@ -22,7 +22,7 @@ namespace Tizen.Location.Geofence
     /// Geo-fence defines a virtual perimeter for a real-world geographic area.
     /// If you create a geofence, you can trigger some activities when a device enters(or exits) the geofences defined by you.
     /// You can create a geofence with the information of Geopoint, Wi-Fi, or BT.
-    /// <list >
+    /// <list>
     /// <item>Geopoint: Geofence is specified by coordinates (Latitude and Longitude) and Radius</item>
     /// <item>WIFI: Geofence is specified by BSSID of Wi-Fi access point</item>
     /// <item>BT: Geofence is specified by Bluetooth address</item>
@@ -49,8 +49,9 @@ namespace Tizen.Location.Geofence
         {
             Dispose(false);
         }
+
         /// <summary>
-        /// Gets the type of geofence
+        /// Gets the type of geofence.
         /// </summary>
         public FenceType Type
         {
@@ -86,7 +87,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        ///Gets the longitude of geofence.
+        /// Gets the longitude of geofence.
         /// </summary>
         public double Longitude
         {
@@ -105,7 +106,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        ///Gets the latitude of geofence.
+        /// Gets the latitude of geofence.
         /// </summary>
         public double Latitude
         {
@@ -177,7 +178,7 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        ///Gets the ssid of geofence.
+        /// Gets the ssid of geofence.
         /// </summary>
         public string Ssid
         {
@@ -197,16 +198,15 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a geopoint type of new geofence.
         /// </summary>
-        /// <param name="placeId">The current place id</param>
-        /// <param name="latitude">Specifies the value of latitude of geofence [-90.0 ~ 90.0] (degrees) </param>
-        /// <param name="longitude">Specifies the value of longitude of geofence [-180.0 ~ 180.0] (degrees) </param>
-        /// <param name="radius">Specifies the value of radius of geofence [100 ~ 500](meter) </param>
-        /// <param name="adsress">Specifies the value of address</param>
-        /// <returns>Newly created geofence instance </returns>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <param name="placeId">The current place id.</param>
+        /// <param name="latitude">Specifies the value of latitude of geofence [-90.0 ~ 90.0] (degrees).</param>
+        /// <param name="longitude">Specifies the value of longitude of geofence [-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="radius">Specifies the value of radius of geofence [100 ~ 500](meter).</param>
+        /// <param name="adsress">Specifies the value of address.</param>
+        /// <returns>Newly created geofence instance.</returns>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public static Fence CreateGPSFence(int placeId, int latitude, int longitude, int radius, string address)
         {
             IntPtr handle = IntPtr.Zero;
@@ -222,14 +222,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a Wi-Fi type of new geofence.
         /// </summary>
-        /// <param name="placeId">The current place id </param>
-        /// <param name="bssid">Specifies the value of BSSID of Wi-Fi MAC address</param>
-        /// <param name="ssid"> Specifies the value of SSID of Wi-Fi Device </param>
-        /// <returns>Newly created geofence instance </returns>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <param name="placeId">The current place id.</param>
+        /// <param name="bssid">Specifies the value of BSSID of Wi-Fi MAC address.</param>
+        /// <param name="ssid"> Specifies the value of SSID of Wi-Fi Device.</param>
+        /// <returns>Newly created geofence instance.</returns>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public static Fence CreateWifiFence(int placeId, string bssid, string ssid)
         {
             IntPtr handle = IntPtr.Zero;
@@ -245,14 +244,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a bluetooth type of new geofence.
         /// </summary>
-        /// <param name="placeId">The current place id </param>
-        /// <param name="bssid">Specifies the value of BSSID of BT MAC address</param>
-        /// <param name="ssid"> Specifies the value of SSID of BT Device </param>
-        /// <returns>Newly created geofence instance </returns>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <param name="placeId">The current place id.</param>
+        /// <param name="bssid">Specifies the value of BSSID of BT MAC address.</param>
+        /// <param name="ssid"> Specifies the value of SSID of BT Device.</param>
+        /// <returns>Newly created geofence instance.</returns>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public static Fence CreateBTFence(int placeId, string bssid, string ssid)
         {
             IntPtr handle = IntPtr.Zero;

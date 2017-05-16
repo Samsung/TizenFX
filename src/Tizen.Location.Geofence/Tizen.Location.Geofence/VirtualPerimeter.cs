@@ -30,8 +30,8 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a VirtualPerimeter which can be used to create virtual fence.
         /// </summary>
-        /// <param name="manager">GeofenceManager instance</param>
-        /// <exception cref="ArgumentException"> Incase of invlid parameter</exception>
+        /// <param name="manager">GeofenceManager instance.</param>
+        /// <exception cref="ArgumentException"> Incase of invlid parameter.</exception>
         public VirtualPerimeter(GeofenceManager manager)
         {
             if (manager == null)
@@ -47,13 +47,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a new place for geofencing service.
         /// </summary>
-        /// <param name="name">A place name to be created </param>
-        /// <returns>The place id to be newly created on success</returns>
+        /// <param name="name">A place name to be created.</param>
+        /// <returns>The place id to be newly created on success.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public int AddPlaceName(string name)
         {
             int placeId = 0;
@@ -69,13 +69,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Updates the place name of a given place id.
         /// </summary>
-        /// <param name="placeId">The specified place id</param>
-        /// <param name="name">A new place name of the place id </param>
+        /// <param name="placeId">The specified place id.</param>
+        /// <param name="name">A new place name of the place id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public void UpdatePlace(int placeId, string name)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.UpdatePlace(Handle, placeId, name);
@@ -88,12 +88,12 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Removes the specific place for geofencing service.
         /// </summary>
-        /// <param name="placeId">The specified place id</param>
+        /// <param name="placeId">The specified place id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public void RemovePlace(int placeId)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.RemovePlace(Handle, placeId);
@@ -107,13 +107,13 @@ namespace Tizen.Location.Geofence
         /// Adds a geofence for a given geofence manager.
         /// </summary>
         /// <param name="fence">The Geofence instance to be added.</param>
-        /// <returns>The geofence id to be newly created on success</returns>
-        /// <remarks> The retun value will always be a number greater than zero </remarks>
+        /// <returns>The geofence id to be newly created on success.</returns>
+        /// <remarks> The retun value will always be a number greater than zero.</remarks>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public int AddGeofence(Fence fence)
         {
             int fenceId = 0;
@@ -129,12 +129,12 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Removes a geofence with a given geofence id.
         /// </summary>
-        /// <param name="fenceId">The specified geofence id </param>
+        /// <param name="fenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public void RemoveGeofence(int fenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.RemoveFence(Handle, fenceId);
@@ -147,13 +147,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the name of place.
         /// </summary>
-        /// <param name="placeId">  The place id</param>
-        /// <returns>The name of the place </returns>
+        /// <param name="placeId">The place id.</param>
+        /// <returns>The name of the place.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public string GetPlaceName(int placeId)
         {
             string name = "";
@@ -171,9 +171,9 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <returns>list of places registered as PlaceData instance list.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public IEnumerable<PlaceData> GetPlaceDataList()
         {
             List<PlaceData> places = new List<PlaceData>();
@@ -199,11 +199,11 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Retrieves a list of fences registered in the specified geofence manager.
         /// </summary>
-        /// <returns>list of FenceData instances registred for each Geofence</returns>
+        /// <returns>list of FenceData instances registred for each Geofence.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public IEnumerable<FenceData> GetFenceDataList()
         {
             List<FenceData> fences = new List<FenceData>();
@@ -229,13 +229,13 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Retrieves a list of fences registered in the specified place.
         /// </summary>
-        /// <param name="placeId"> The place id </param>
-        /// <returns>list of FenceData instances registred for each Geofence for specified place</returns>
+        /// <param name="placeId"> The place id.</param>
+        /// <returns>list of FenceData instances registred for each Geofence for specified place.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Geofence is not supported</exception>
+        /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
+        /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public IEnumerable<FenceData> GetGeoFenceDataListByPlaceId(int placeId)
         {
             List<FenceData> fences = new List<FenceData>();
