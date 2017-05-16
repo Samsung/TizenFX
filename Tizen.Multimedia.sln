@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia", "Tizen.Multimedia\Tizen.Multimedia.csproj", "{0CE698B0-4849-4096-9D7F-30E611F50DAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.MediaCodec", "Tizen.Multimedia.MediaCodec\Tizen.Multimedia.MediaCodec.csproj", "{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CE698B0-4849-4096-9D7F-30E611F50DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE698B0-4849-4096-9D7F-30E611F50DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE698B0-4849-4096-9D7F-30E611F50DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE698B0-4849-4096-9D7F-30E611F50DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,6 @@
 Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
-Version:    1.1.0
+Version:    1.0.0
 Release:    0
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -19,7 +19,9 @@ BuildRequires: csapi-application-common-nuget
 BuildRequires: elm-sharp-nuget
 BuildRequires: csapi-information-nuget
 
-%define Assemblies Tizen.Multimedia
+%define Assemblies \
+	Tizen.Multimedia 1.1.1 \
+	Tizen.Multimedia.MediaCodec 1.0.0
 
 %description
 %{summary}
@@ -31,14 +33,23 @@ BuildRequires: csapi-information-nuget
 cp %{SOURCE1} .
 
 %build
-for ASM in %{Assemblies}; do
-%dotnet_build $ASM
-%dotnet_pack $ASM/$ASM.nuspec %{version}
+AssemArray=(%Assemblies)
+
+for((i=0; i<${#AssemArray[*]};i+=2))
+do
+	AsmName=${AssemArray[$i]}
+	AsmVer=${AssemArray[$i+1]}
+	%dotnet_build $AsmName
+	%dotnet_pack $AsmName/$AsmName.nuspec $AsmVer
 done
 
 %install
-for ASM in %{Assemblies}; do
-%dotnet_install $ASM
+AssemArray=(%Assemblies)
+
+for((i=0; i<${#AssemArray[*]};i+=2))
+do
+	AsmName=${AssemArray[$i]}
+	%dotnet_install $AsmName
 done
 
 %files

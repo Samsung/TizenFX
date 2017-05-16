@@ -14,10 +14,21 @@
  * limitations under the License.
  */
 
-using System.Runtime.CompilerServices;
+namespace Tizen.Multimedia.MediaCodec
+{
+    /// <summary>
+    /// Specifies the status of a codec.
+    /// </summary>
+    public enum MediaCodecStatus
+    {
+        /// <summary>
+        /// Not enough data to decode or encode.
+        /// </summary>
+        LackOfData,
 
-[assembly: InternalsVisibleTo("Tizen.Multimedia.MediaCodec, " +
-    "PublicKey=002400000480000094000000060200000024000052534131000400000100010085f7b7a5984e7e995" +
-    "d5f86234bfd1d4b2609b9334d5cb6cd3076c5faab98f8c4922d88fec96bea747fec274bceedc2bd1adb28c38a33" +
-    "c66182245adec7fbcee69cc556c337758646936500b770e19a562ebd10a527787f176eba8fdcf58c8e220042580" +
-    "75fe2903b3b5090953ac1d41c587993377cde63269a7cdd6cbf98efda")]
+        /// <summary>
+        /// Enough data to decode or encode.
+        /// </summary>
+        EnoughData
+    }
+}
