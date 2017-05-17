@@ -39,10 +39,13 @@ internal static partial class Interop
         internal static extern bool elm_bg_file_set(IntPtr obj, string file, IntPtr group);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_bg_file_get(IntPtr obj, ref IntPtr file, IntPtr group);
+        internal static extern void elm_bg_file_get(IntPtr obj, out IntPtr file, IntPtr group);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_bg_option_set(IntPtr obj, BackgroundOptions option);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_bg_load_size_set(IntPtr obj, int w, int h);
 
         [DllImport(Libraries.Elementary)]
         internal static extern BackgroundOptions elm_bg_option_get(IntPtr obj);
@@ -50,10 +53,8 @@ internal static partial class Interop
         internal static string BackgroundFileGet(IntPtr obj)
         {
             IntPtr file = IntPtr.Zero;
-            elm_bg_file_get(obj, ref file, IntPtr.Zero);
-            string r = Marshal.PtrToStringAnsi(file);
-            Marshal.FreeHGlobal(file);
-            return r;
+            elm_bg_file_get(obj, out file, IntPtr.Zero);
+            return Marshal.PtrToStringAnsi(file);
         }
     }
 }

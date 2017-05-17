@@ -98,6 +98,26 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Set the size of the pixmap representation of the image set on a given background widget.
+        /// This method just makes sense if an image file was set.
+        /// This is just a hint for the underlying system.
+        /// The real size of the pixmap may differ depending on the type of image being loaded, being bigger than requested.
+        /// </summary>
+        /// <param name="w">The new width of the image pixmap representation.</param>
+        /// <param name="h">The new height of the image pixmap representation.</param>
+        public void SetFileLoadSize(int w, int h)
+        {
+            if (File != null)
+            {
+                Interop.Elementary.elm_bg_load_size_set(RealHandle, w, h);
+            }
+            else
+            {
+                throw new Exception("This method just makes sense if an image file was set.");
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
@@ -119,14 +139,17 @@ namespace ElmSharp
         /// Centers the background image
         /// </summary>
         Center,
+
         /// <summary>
         /// Scales the background image, retaining the aspect ratio
         /// </summary>
         Scale,
+
         /// <summary>
         /// Stretches the background image to fill the UI component's area.
         /// </summary>
         Stretch,
+
         /// <summary>
         /// Tiles the background image at its original size
         /// </summary>
