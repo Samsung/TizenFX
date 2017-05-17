@@ -15,6 +15,6 @@
     </dependencies>
 	</metadata>
   <files>
-    <file src="bin/$Configuration$/Tizen.Tracer.dll" target="lib/netstandard1.3" />
+    <file src="bin/$Configuration$/netstandard1.3/Tizen.Tracer.dll" target="lib/netstandard1.3" />
   </files>
 </package>
