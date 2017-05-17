@@ -36,7 +36,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// <summary>
             /// Gets the sound path.
             /// </summary>
-            public string SountPath { get; internal set; }
+            public string SoundPath { get; internal set; }
 
             /// <summary>
             /// Gets the vibration option.

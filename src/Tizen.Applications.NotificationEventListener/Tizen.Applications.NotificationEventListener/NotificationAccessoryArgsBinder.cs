@@ -46,7 +46,7 @@ namespace Tizen.Applications.NotificationEventListener
             accessory.SoundOption = type;
             if (type == AccessoryOption.Custom)
             {
-                accessory.SountPath = path;
+                accessory.SoundPath = path;
             }
 
             Interop.NotificationEventListener.GetVibration(eventargs.Handle, out type, out path);
