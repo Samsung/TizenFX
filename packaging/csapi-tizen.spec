@@ -13,6 +13,7 @@ ExcludeArch: aarch64
 
 BuildRequires: dotnet-build-tools
 BuildRequires: csapi-log-nuget
+Requires: csapi-log
 
 %define Assemblies Tizen
 
