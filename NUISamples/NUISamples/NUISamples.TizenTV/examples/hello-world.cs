@@ -73,6 +73,15 @@ namespace HelloWorldTest
             ellipsis.Ellipsis = true;
             window.GetDefaultLayer().Add(ellipsis);
 
+            TextLabel autoScrollStopMode = new TextLabel("AutoScrollStopMode is finish-loop.");
+            autoScrollStopMode.Size2D = new Size2D(400, 100);
+            autoScrollStopMode.Position2D = new Position2D(10, 400);
+            autoScrollStopMode.PointSize = 15.0f;
+            autoScrollStopMode.AutoScrollStopMode = AutoScrollStopMode.FinishLoop;
+            //autoScrollStopMode.AutoScrollLoopDelay = 10.0f;
+            autoScrollStopMode.EnableAutoScroll = true;
+            window.GetDefaultLayer().Add(autoScrollStopMode);
+
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
             _text.AnchorPoint = AnchorPoint.Center;
