@@ -25,10 +25,10 @@ namespace Tizen.Pims.Calendar
 {
     /// <summary>
     /// </summary>
-    public class CalendarTime : IDisposable
+    public class CalendarTime : IComparable<CalendarTime>
     {
         internal int _type;
-        internal DateTime _dateTime;
+        internal const int milliseconds = 10000000;
 
         /// <summary>
         /// Enumeration for the time type.
@@ -46,36 +46,14 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Get time type.
-        /// </summary>
-        public int TypeValue
-        {
-            get
-            {
-                return _type;
-            }
-        }
-
-        /// <summary>
-        /// Get datatime.
-        /// </summary>
-        public DateTime DateTime
-        {
-            get
-            {
-                return _dateTime;
-            }
-        }
-
-        /// <summary>
         /// Create UTC CalendarTime
         /// </summary>
         /// <param name="utcTime">UTC epoch time. 0 is 1971/01/01</param>
         public CalendarTime(long utcTime)
         {
             _type = (int)Type.Utc;
-            utcTime -= utcTime % 10000000; /* delete millisecond */
-            _dateTime = new DateTime(utcTime);
+            utcTime -= utcTime % milliseconds; /* delete millisecond */
+            UtcTime = new DateTime(utcTime);
         }
 
         /// <summary>
@@ -90,32 +68,41 @@ namespace Tizen.Pims.Calendar
         public CalendarTime(int year, int month, int day, int hour, int minute, int second)
         {
             _type = (int)Type.Local;
-            _dateTime = new DateTime(year, month, day, hour, minute, second);
+            LocalTime = new DateTime(year, month, day, hour, minute, second);
+        }
+
+        /// <summary>
+        /// Get utcTime
+        /// </summary>
+        public DateTime UtcTime
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Get localTime
+        /// </summary>
+        public DateTime LocalTime
+        {
+            get;
         }
 
         /// <summary>
         /// Compare CalendarTime
         /// </summary>
-        /// <param name="t1">The first CalendarTime to compare</param>
-        /// <param name="t1">The second CalendarTime to compare</param>
+        /// <param name="t">The CalendarTime to be compared</param>
         /// <returns>
-        /// A signed number indicating the relative values of t1 and t2.
+        /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
-        public static int Compare(CalendarTime t1, CalendarTime t2)
+        public int CompareTo(CalendarTime t)
         {
-            if (t1.TypeValue != t2.TypeValue)
-                return -1;
+            if (_type != t._type)
+                throw new NotImplementedException("Not to compare with different type");
 
-            long ret = (t1.DateTime.Ticks / 10000000) - (t2.DateTime.Ticks / 10000000);
-            return (int)(0 == ret ? 0 : (ret / ret));
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name=""></param>
-        public void Dispose()
-        {
-
+            if (_type == (int)Type.Utc)
+                return UtcTime.CompareTo(t.UtcTime);
+            else
+                return LocalTime.CompareTo(t.LocalTime);
         }
     }
 }
