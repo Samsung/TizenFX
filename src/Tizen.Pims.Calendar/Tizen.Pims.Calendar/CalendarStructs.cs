@@ -17,13 +17,10 @@
 using System;
 using System.Runtime.InteropServices;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A class for time to set, get or calcurate.
     /// </summary>
     public class CalendarTime : IComparable<CalendarTime>
     {
@@ -65,6 +62,8 @@ namespace Tizen.Pims.Calendar
         /// <param name="hour">hour</param>
         /// <param name="minute">minute</param>
         /// <param name="second">second</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarTime(int year, int month, int day, int hour, int minute, int second)
         {
             _type = (int)Type.Local;
@@ -94,10 +93,15 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public int CompareTo(CalendarTime t)
         {
             if (_type != t._type)
-                throw new NotImplementedException("Not to compare with different type");
+            {
+                Log.Error(Globals.LogTag, "Not to compare with different type");
+                throw CalendarErrorFactory.GetException((int)CalendarError.InvalidParameter);
+            }
 
             if (_type == (int)Type.Utc)
                 return UtcTime.CompareTo(t.UtcTime);

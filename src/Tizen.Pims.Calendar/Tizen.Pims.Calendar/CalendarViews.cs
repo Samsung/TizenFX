@@ -18,14 +18,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// This class provides information about views with properties.
     /// </summary>
+    /// <remarks>
+    ///  A view is a class which describes properties of a record.
+    ///  A record can have basic properties of five types: integer, string, long, double, CalendarTime.
+    /// </remarks>
     public static class CalendarViews
     {
         /// data type mask 0x0FF00000
@@ -330,16 +331,11 @@ namespace Tizen.Pims.Calendar
             ExtendedValue        = (ViewExtended|DataTypeString) + 4,
         }
 
-        internal const uint AverageSizeOfRecord = 56; ///average size
+        ///average size
+        internal const uint AverageSizeOfRecord = 56;
 
-        /// <summary>
-        /// </summary>
-        public class Book
+        public static class Book
         {
-            internal Book()
-            {
-            }
-
             /// <summary>
             /// Identifier of this calendar book view
             /// </summary>
@@ -406,14 +402,8 @@ namespace Tizen.Pims.Calendar
             public const uint Mode        = (uint)PropertyIds.BookMode;
         }
 
-        /// <summary>
-        /// </summary>
-        public class Event
+        public static class Event
         {
-            internal Event()
-            {
-            }
-
             /// <summary>
             /// Identifier of this event view
             /// </summary>
@@ -656,15 +646,8 @@ namespace Tizen.Pims.Calendar
             public const uint LinkBaseId         = (uint)PropertyIds.EventLinkBaseId;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name=""></param>
-        public class Todo
+        public static class Todo
         {
-            internal Todo()
-            {
-            }
-
             /// <summary>
             /// Identifier of this todo view
             /// </summary>
@@ -863,15 +846,8 @@ namespace Tizen.Pims.Calendar
             public const uint IsAllday          = (uint)PropertyIds.TodoIsAllday;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name=""></param>
-        public class Timezone
+        public static class Timezone
         {
-            internal Timezone()
-            {
-            }
-
             /// <summary>
             /// Identifier of this timezone view
             /// </summary>
@@ -938,14 +914,8 @@ namespace Tizen.Pims.Calendar
             public const uint CalendarId                  = (uint)PropertyIds.TimezoneCalendarId;
         }
 
-        /// <summary>
-        /// </summary>
-        public class Attendee
+        public static class Attendee
         {
-            internal Attendee()
-            {
-            }
-
             /// <summary>
             /// Identifier of this calendar attendee view
             /// </summary>
@@ -1008,14 +978,8 @@ namespace Tizen.Pims.Calendar
             public const uint ParentId     = (uint)PropertyIds.AttendeeParentId;
         }
 
-        /// <summary>
-        /// </summary>
-        public class Alarm
+        public static class Alarm
         {
-            internal Alarm()
-            {
-            }
-
             /// <summary>
             /// Identifier of this calendar alarm view
             /// </summary>
@@ -1054,14 +1018,8 @@ namespace Tizen.Pims.Calendar
             public const uint AlarmTime   = (uint)PropertyIds.AlarmAlarm;
         }
 
-        /// <summary>
-        /// </summary>
-        public class InstanceUtimeBook
+        public static class InstanceUtimeBook
         {
-            internal InstanceUtimeBook()
-            {
-            }
-
             /// <summary>
             /// Identifier of this instance utime book
             /// </summary>
@@ -1140,14 +1098,8 @@ namespace Tizen.Pims.Calendar
             public const uint SyncData1        = (uint)PropertyIds.InstanceUtimeBookSyncData1;
         }
 
-        /// <summary>
-        /// </summary>
-        public class InstanceLocaltimeBook
+        public static class InstanceLocaltimeBook
         {
-            internal InstanceLocaltimeBook()
-            {
-            }
-
             /// <summary>
             /// Uri
             /// </summary>
@@ -1230,15 +1182,8 @@ namespace Tizen.Pims.Calendar
             public const uint IsAllday         = (uint)PropertyIds.InstanceLocaltimeBookIsAllday;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name=""></param>
-        public class InstanceUtimeBookExtended
+        public static class InstanceUtimeBookExtended
         {
-            internal InstanceUtimeBookExtended()
-            {
-            }
-
             /// <summary>
             /// Uri
             /// </summary>
@@ -1341,15 +1286,8 @@ namespace Tizen.Pims.Calendar
             public const uint SyncData4         = (uint)PropertyIds.InstanceUtimeBookExtendedSyncData4;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name=""></param>
-        public class InstanceLocaltimeBookExtended
+        public static class InstanceLocaltimeBookExtended
         {
-            internal InstanceLocaltimeBookExtended()
-            {
-            }
-
             /// <summary>
             /// Uri
             /// </summary>
@@ -1454,14 +1392,8 @@ namespace Tizen.Pims.Calendar
             public const uint IsAllday         = (uint)PropertyIds.InstanceLocaltimeBookExtendedIsAllday;
         }
 
-        /// <summary>
-        /// </summary>
-        public class UpdatedInfo
+        public static class UpdatedInfo
         {
-            internal UpdatedInfo()
-            {
-            }
-
             /// <summary>
             /// Identifier of this updatedInfo view
             /// </summary>
@@ -1484,14 +1416,8 @@ namespace Tizen.Pims.Calendar
             public const uint Version    = (uint)PropertyIds.UpdateInfoVersion;
         }
 
-        /// <summary>
-        /// </summary>
-        public class Extended
+        public static class Extended
         {
-            internal Extended()
-            {
-            }
-
             /// <summary>
             /// Identifier of this extended_property view
             /// </summary>

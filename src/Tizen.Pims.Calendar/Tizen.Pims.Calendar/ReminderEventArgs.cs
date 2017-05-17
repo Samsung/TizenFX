@@ -17,10 +17,6 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>

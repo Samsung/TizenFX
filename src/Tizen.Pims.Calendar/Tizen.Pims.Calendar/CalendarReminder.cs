@@ -17,14 +17,14 @@
 using System;
 using static Interop.Calendar.Reminder;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A class for reminder for event.
     /// </summary>
+    /// <remarks>
+    /// The client who wants to be alerted at specific time should register MIME("application/x-tizen.calendar.reminder") type in manifest.xml file.
+    /// </remarks>
     public class CalendarReminder : IDisposable
     {
 #region IDisposable Support
@@ -42,6 +42,10 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the CalendarReminder.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -85,12 +89,12 @@ namespace Tizen.Pims.Calendar
                 if (s_reminderAlerted == null)
                 {
                     /// _reminderAlertedCallback is removed by .Net Core
-                    ///				int error = Interop.Calendar.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
-                    ///				if (CalendarError.None != (CalendarError)error)
-                    ///				{
-                    ///					Log.Error(Globals.LogTag, "Remove reminder Failed with error " + error);
-                    ///					throw CalendarErrorFactory.GetException(error);
-                    ///				}
+                    int error = Interop.Calendar.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
+                    if (CalendarError.None != (CalendarError)error)
+                    {
+                        Log.Error(Globals.LogTag, "Remove reminder Failed with error " + error);
+                        throw CalendarErrorFactory.GetException(error);
+                    }
                 }
             }
         }

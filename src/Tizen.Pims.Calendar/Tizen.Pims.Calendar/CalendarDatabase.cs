@@ -24,20 +24,28 @@ using System.Runtime.InteropServices;
 /// <remarks>
 /// The Calendar Service API provides functions and ienumerations used in the entire Content Service.
 /// The Information about calendar items i.e. book, event, todo, alarm, attendee and extended are managed in the database
-/// and operations that involve database requires an active connection with the calendar contact service.
+/// and operations that involve database requires an active connection with the calendar service.
 /// </remarks>
 
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// CalendarDatabase class is the interface class for managing the record from/to the database.
-    /// This class allows usre to access/create/update db operations for media content.
+    /// CalendarDatabase provides methods to manage calendar information from/to the database.
     /// </summary>
+    /// <remarks>
+    /// This class allows usre to access/create/update db operations for calendar information.
+    /// </remarks>
     public class CalendarDatabase
     {
         /// <summary>
+        /// Delegete for detecting the calendar database changes.
         /// </summary>
         /// <param name="uri">The record uri</param>
+        /// <remarks>
+        /// The delegate must be registered using AddDBChangedDelegate.
+        /// It's invoked when the designated view changes.
+        /// </remarks>
+        /// <see cref="AddDBChangedDelegate"/>
         public delegate void CalendarDBChangedDelegate(string uri);
 
         private Object thisLock = new Object();
@@ -47,7 +55,7 @@ namespace Tizen.Pims.Calendar
 
         internal CalendarDatabase()
         {
-
+            ///To be created in CalendarManager only
         }
 
         /// <summary>
@@ -68,8 +76,13 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The calendar database version on the current connection.
+        /// Gets last successful changed calendar database version on the current connection.
         /// </summary>
+        /// <returns>The last successful changed calendar database version on the current connection</returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public int LastChangeVersion
         {
             get
@@ -88,9 +101,13 @@ namespace Tizen.Pims.Calendar
         /// Inserts a record into the calendar database.
         /// </summary>
         /// <param name="record">The record to be inserted</param>
-        /// <returns>
-        /// The record id
-        /// </returns>
+        /// <returns>The ID of inserted record</returns>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public int Insert(CalendarRecord record)
         {
             int id = -1;
@@ -109,16 +126,27 @@ namespace Tizen.Pims.Calendar
         /// <param name="viewUri">The view URI of a record</param>
         /// <param name="recordId">The record ID</param>
         /// <returns>
-        /// CalendarRecord instance.
+        /// The record associated with the record ID
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public CalendarRecord Get(string viewUri, int recordId)
         {
             IntPtr handle;
             int error = Interop.Calendar.Database.Get(viewUri, recordId, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Get Failed with error " + error);
-                throw CalendarErrorFactory.GetException(error);
+				if (CalendarError.DBNotFound == (CalendarError)error)
+				{
+					Log.Error(Globals.LogTag, "No data" + error);
+					return null;
+				}
+				Log.Error(Globals.LogTag, "Get Failed with error " + error);
+				throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarRecord(handle);
         }
@@ -127,6 +155,12 @@ namespace Tizen.Pims.Calendar
         /// Updates a record in the calendar database.
         /// </summary>
         /// <param name="record">The record to be updated</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Update(CalendarRecord record)
         {
             int error = Interop.Calendar.Database.Update(record._recordHandle);
@@ -142,6 +176,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of a record</param>
         /// <param name="recordId">The record ID to be deleted</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(string viewUri, int recordId)
         {
             int error = Interop.Calendar.Database.Delete(viewUri, recordId);
@@ -157,6 +197,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="record">The record to be replaced</param>
         /// <param name="id">the record id</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Replace(CalendarRecord record, int id)
         {
             int error = Interop.Calendar.Database.Replace(record._recordHandle, id);
@@ -174,8 +220,14 @@ namespace Tizen.Pims.Calendar
         /// <param name="offset">The index from which results are received</param>
         /// <param name="limit">The maximum number of results(value 0 is used for all records)</param>
         /// <returns>
-        /// CalendarList
+        /// The record list
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public CalendarList GetAll(string viewUri, int offset, int limit)
         {
             IntPtr handle;
@@ -197,6 +249,12 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// CalendarList
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public CalendarList GetRecordsWithQuery(CalendarQuery query, int offset, int limit)
         {
             IntPtr handle;
@@ -216,6 +274,12 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// The inserted record id array
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public int[] Insert(CalendarList list)
         {
             IntPtr ids;
@@ -236,6 +300,12 @@ namespace Tizen.Pims.Calendar
         /// Updates multiple records into the calendar database as a batch operation.
         /// </summary>
         /// <param name="list">The record list</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Update(CalendarList list)
         {
             int error = Interop.Calendar.Database.UpdateRecords(list._listHandle);
@@ -251,6 +321,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of the records to delete</param>
         /// <param name="idArray">The record IDs to delete</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(string viewUri, int[] idArray)
         {
             int error = Interop.Calendar.Database.DeleteRecords(viewUri, idArray, idArray.Length);
@@ -265,6 +341,12 @@ namespace Tizen.Pims.Calendar
         /// Deletes multiple records with related child records from the calendar database as a batch operation.
         /// </summary>
         /// <param name="list">The record list</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(CalendarList list)
         {
             CalendarRecord record = null;
@@ -307,6 +389,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="list">The record list</param>
         /// <param name="idArray">The record IDs</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Replace(CalendarList list, int[] idArray)
         {
             int error = Interop.Calendar.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
@@ -325,8 +413,14 @@ namespace Tizen.Pims.Calendar
         /// <param name="calendarDBVersion">The calendar database version</param>
         /// <param name="currentDBVersion"The current calendar database versio></param>
         /// <returns>
-        /// CalendarList
+        /// The record list
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public CalendarList GetChangesByVersion(string viewUri, int BookId, int calendarDBVersion, out int currentDBVersion)
         {
             IntPtr recordList;
@@ -344,8 +438,9 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI to get records from</param>
         /// <returns>
-        /// The count
+        /// The count of records
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         public int GetCount(string viewUri)
         {
             int count = -1;
@@ -363,8 +458,9 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="query">The query used for filtering the results</param>
         /// <returns>
-        /// The count
+        /// The count of records
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         public int GetCount(CalendarQuery query)
         {
             int count = -1;
@@ -382,6 +478,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         public void AddDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
         {
             Log.Debug(Globals.LogTag, "AddDBChangedDelegate");
@@ -405,6 +502,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
+        /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         public void RemoveDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
         {
             Log.Debug(Globals.LogTag, "RemoveDBChangedDelegate");
@@ -424,6 +522,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="baseId">The base record ID</param>
         /// <param name="recordId">The record ID to link to</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void LinkRecord(int baseId, int recordId)
         {
             Log.Debug(Globals.LogTag, "LinkRecord");
@@ -439,6 +543,12 @@ namespace Tizen.Pims.Calendar
         /// Unlink a record from base record.
         /// </summary>
         /// <param name="recordId">The record ID to unlink</param>
+        /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void UnlinkRecord(int recordId)
         {
             Log.Debug(Globals.LogTag, "UnlinkRecord");

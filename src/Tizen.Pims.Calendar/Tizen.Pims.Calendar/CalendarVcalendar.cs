@@ -18,14 +18,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A class for parsing and composing vCalendar.
     /// </summary>
+    /// <remarks>
+    /// It's based on the vCalendar v2.0 specification
+    /// </remarks>
     public class CalendarVcalendar
     {
         internal CalendarVcalendar()
@@ -41,6 +41,8 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// The composed stream.
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static string Compose(CalendarList list)
         {
             string stream;
@@ -58,8 +60,10 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="stream">The vcalendar stream</param>
         /// <returns>
-        /// List of records
+        /// the record list
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static CalendarList Parse(string stream)
         {
             int error = 0;
@@ -77,7 +81,10 @@ namespace Tizen.Pims.Calendar
         /// Parse vcalendar file with foreach
         /// </summary>
         /// <param name="path">The file path of the vCalendar stream file</param>
-        /// <param name="callback"></param>
+        /// <param name="callback">he callback function to invoke</param>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public static void ParseForEach(string path, ParseDelegate callback)
         {
             int error = 0;

@@ -18,14 +18,20 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A record represents an actual record in the database
     /// </summary>
+    /// <remarks>
+    /// A record represents an actual record in the database,
+    /// but you can also consider it a piece of information, such as an alarm, attendee and extended.
+    /// A record can be a complex set of data, containing other data.
+    /// For example, a calendar record contains the alarm property, which is a reference to an alarm record.
+    /// An alarm record could belong to a event record,
+    /// and its alarm id property is set to the identifier of the corresponding event.
+    /// In this case, the alarm is the child record of the event and the event is the parent record.
+    /// </remarks>
     public class CalendarRecord : IDisposable
     {
         internal string _uri;
@@ -85,6 +91,9 @@ namespace Tizen.Pims.Calendar
         /// Creates a record.
         /// </summary>
         /// <param name="viewUri">The view URI</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarRecord(string viewUri)
         {
             int error = 0;
@@ -104,7 +113,8 @@ namespace Tizen.Pims.Calendar
         }
 
 #region IDisposable Support
-        internal bool _disposedValue = false; // To detect redundant calls
+        /// To detect redundant calls
+        internal bool _disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -123,6 +133,10 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the CalendarRecord.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -167,6 +181,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Makes a clone of a record.
         /// </summary>
+        /// <returns>
+        /// A cloned record
+        /// </returns>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarRecord Clone()
         {
             IntPtr _clonedRecordHandle;
@@ -195,8 +213,9 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <returns>
-        /// The value of record which property id is matched.
+        /// The value of the property corresponding to property id.
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public T Get<T>(uint propertyId)
         {
             object parsedValue = null;
@@ -265,10 +284,11 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Sets a object to a record.
+        /// Sets a value of the property to a record.
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="value">value</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void Set<T>(uint propertyId, T value)
         {
             if (typeof(T) == typeof(string))
@@ -334,6 +354,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="childRecord">The child record</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddChildRecord(uint propertyId, CalendarRecord childRecord)
         {
             int error = Interop.Calendar.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -350,6 +371,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="childRecord">The child record</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveChildRecord(uint propertyId, CalendarRecord childRecord)
         {
             int error = Interop.Calendar.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -362,12 +384,13 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Get a child record count.
+        /// Gets a child record from the parent record
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <returns>
-        /// Count
+        /// The number of child records corresponding to property ID
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public int GetChildRecordCount(uint propertyId)
         {
             int count = 0;
@@ -381,13 +404,14 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Get a child record with index.
+        /// Gets a child record from the parent record
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <param name="index">The child record index</param>
         /// <returns>
-        /// CalendarRecord
+        /// The record
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public CalendarRecord GetChildRecord(uint propertyId, int index)
         {
             IntPtr handle;
@@ -402,12 +426,13 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Makes a clone of a given record's child record list.
+        /// Clones a child record list corresponding to property ID
         /// </summary>
         /// <param name="propertyId">The property ID</param>
         /// <returns>
-        /// CalendarList
+        /// the record list
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public CalendarList CloneChildRecordList(uint propertyId)
         {
             IntPtr listHandle;

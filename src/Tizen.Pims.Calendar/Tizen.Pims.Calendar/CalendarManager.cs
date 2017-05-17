@@ -18,13 +18,10 @@ using System;
 using System.Collections.Generic;
 using static Interop.Calendar.Service;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A class for managing calendar information. It allows applications to use calendar service.
     /// </summary>
     public class CalendarManager : IDisposable
     {
@@ -33,6 +30,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Create a manager.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public CalendarManager()
         {
             int error = Interop.Calendar.Service.Connect();
@@ -50,7 +48,8 @@ namespace Tizen.Pims.Calendar
         }
 
 #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        /// To detect redundant calls
+        private bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -68,6 +67,10 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the CalendarManager.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

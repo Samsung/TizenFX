@@ -18,13 +18,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
+    /// A list of records with the same type.
     /// </summary>
     public class CalendarList:IDisposable
     {
@@ -43,6 +40,8 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Creates a calendar list.
         /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarList()
         {
             int error = Interop.Calendar.List.Create(out _listHandle);
@@ -100,6 +99,10 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the CalendarList.
+        /// It should be called after finished using of the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -110,6 +113,8 @@ namespace Tizen.Pims.Calendar
         /// Adds a record to the calendar list.
         /// </summary>
         /// <param name="record">The record to be added</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddRecord(CalendarRecord record)
         {
             int error = Interop.Calendar.List.Add(_listHandle, record._recordHandle);
@@ -127,6 +132,8 @@ namespace Tizen.Pims.Calendar
         /// Removes a record from the calendar list.
         /// </summary>
         /// <param name="record">The record to be removed</param>
+        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveRecord(CalendarRecord record)
         {
             int error = Interop.Calendar.List.Remove(_listHandle, record._recordHandle);
@@ -144,7 +151,7 @@ namespace Tizen.Pims.Calendar
         /// Retrieves a record from the calendar list.
         /// </summary>
         /// <returns>
-        /// CalendarRecord
+        /// calendar record
         /// </returns>
         public CalendarRecord GetCurrentRecord()
         {
@@ -168,7 +175,9 @@ namespace Tizen.Pims.Calendar
         {
             int error = Interop.Calendar.List.Prev(_listHandle);
             if (CalendarError.None == (CalendarError)error)
+            {
                 return true;
+            }
             else if (this.Count > 0 && CalendarError.NoData == (CalendarError)error)
             {
                 Log.Debug(Globals.LogTag, "Nodata MovePrevious " + error);
@@ -191,7 +200,9 @@ namespace Tizen.Pims.Calendar
         {
             int error = Interop.Calendar.List.Next(_listHandle);
             if (CalendarError.None == (CalendarError)error)
+            {
                 return true;
+            }
             else if (this.Count > 0 && CalendarError.NoData == (CalendarError)error)
             {
                 Log.Debug(Globals.LogTag, "Nodata MoveNext" + error);
