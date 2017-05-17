@@ -161,5 +161,32 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_genlist_item_expanded_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_highlight_mode_set(IntPtr obj, bool highlight);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_at_xy_item_get(IntPtr obj, int x, int y, out int posret);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_item_insert_after(IntPtr obj, IntPtr itc, IntPtr data, IntPtr parent, IntPtr after, int type, Evas_Smart_Cb func, IntPtr func_data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_item_item_class_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_longpress_timeout_set(IntPtr obj, double timeout);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_multi_select_set(IntPtr obj, bool multi);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_nth_item_get(IntPtr obj, int nth);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_selected_item_get(IntPtr obj);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void Evas_Smart_Cb(IntPtr data, IntPtr obj, IntPtr eventInfo);
     }
 }

@@ -122,5 +122,20 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_update(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_at_xy_item_get(IntPtr obj, int x, int y, out int xposret, out int yposret);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_selected_item_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_first_item_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_class_free(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_last_item_get(IntPtr obj);
     }
 }

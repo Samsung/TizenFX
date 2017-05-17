@@ -71,5 +71,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_check_state_set(IntPtr obj, bool value);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_check_state_pointer_set(IntPtr obj, bool value);
     }
 }

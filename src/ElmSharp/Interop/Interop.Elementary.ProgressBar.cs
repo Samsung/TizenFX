@@ -58,6 +58,9 @@ internal static partial class Interop
         internal static extern void elm_progressbar_pulse(IntPtr obj, bool state);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_progressbar_part_value_set(IntPtr obj, string part, double val);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_progressbar_unit_format_set(IntPtr obj, string format);
 
         [DllImport(Libraries.Elementary)]

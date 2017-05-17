@@ -22,6 +22,7 @@ internal static partial class Interop
     internal static partial class Elementary
     {
         public delegate void BoxLayoutCallback(IntPtr obj, IntPtr priv, IntPtr userData);
+
         public delegate void BoxDataFreeCallback(IntPtr data);
 
         [DllImport(Libraries.Elementary)]
@@ -38,6 +39,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_box_pack_end(IntPtr obj, IntPtr subobj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_box_pack_before(IntPtr obj, IntPtr subobj, IntPtr before);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_box_pack_after(IntPtr obj, IntPtr subobj, IntPtr after);
@@ -77,6 +81,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_box_layout_set(IntPtr obj, BoxLayoutCallback cb, IntPtr data, IntPtr dataFreeCb);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_box_homogeneous_set(IntPtr obj, bool ishomogeneous);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_box_recalculate(IntPtr obj);
     }
 }
 

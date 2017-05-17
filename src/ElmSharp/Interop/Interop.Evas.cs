@@ -60,6 +60,115 @@ internal static partial class Interop
             AxisUpdate,
             CanvasViewportResize
         }
+
+        public enum LoadError
+        {
+            None = 0, /* No error on load */
+            Generic = 1, /* A non-specific error occurred */
+            DoesNotRxist = 2, /* File (or file path) does not exist */
+            PermissionDenied = 3, /* Permission denied to an existing file (or path) */
+            ResourceAllocationFailed = 4, /* Allocation of resources failure prevented load */
+            CorruptFile = 5, /* File corrupt (but was detected as a known format) */
+            UnknownFormat = 6 /* File is not a known format */
+        }
+
+        public enum Colorspace
+        {
+            Argb8888, /* ARGB 32 bits per pixel, high-byte is Alpha, accessed 1 32bit word at a time */
+            Ycbcr422p709pl, /* YCbCr 4:2:2 Planar, ITU.BT-709 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows */
+            Ergb565a5p, /* 16bit rgb565 + Alpha plane at end - 5 bits of the 8 being used per alpha byte */
+            Egry8, /* 8bit grayscale */
+            Eycbcr422601pl, /*  YCbCr 4:2:2, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to line of Y,Cb,Y,Cr bytes */
+            Eycbcr420nv12601pl, /* YCbCr 4:2:0, ITU.BT-601 specification. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb,Cr rows. */
+            Eycbcr420tm12601pl, /* YCbCr 4:2:0, ITU.BT-601 specification. The data pointed to is just an array of tiled row pointer, pointing to the Y rows, then the Cb,Cr rows. */
+            Eagry88, /* AY 8bits Alpha and 8bits Grey, accessed 1 16bits at a time */
+            Eetc1, /* OpenGL ETC1 encoding of RGB texture (4 bit per pixel) @since 1.10 */
+            Ergb8etc2, /* OpenGL GL_COMPRESSED_RGB8_ETC2 texture compression format (4 bit per pixel) @since 1.10 */
+            Ergba8etc2eac, /* OpenGL GL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha (8 bit per pixel) @since 1.10 */
+            Eetc1alpha,     /* ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha @since 1.11 */
+        }
+
+        public enum ImageScaleHint
+        {
+            None = 0, /* No scale hint at all */
+            Dynamic = 1, /* Image is being re-scaled over time, thus turning scaling cache @b off for its data */
+            Static = 2 /* Image is not being re-scaled over time, thus turning scaling cache @b on for its data */
+        }
+
+        public enum RenderOp
+        {
+            Blend = 0, /* default op: d = d*(1-sa) + s */
+            BlendRel = 1, /* d = d*(1 - sa) + s*da */
+            Copy = 2, /* d = s */
+            CopyRel = 3, /* d = s*da */
+            Add = 4, /* d = d + s */
+            AddRel = 5, /* d = d + s*da */
+            Sub = 6, /* d = d - s */
+            SubRel = 7, /* d = d - s*da */
+            Tint = 8, /* d = d*s + d*(1 - sa) + s*(1 - da) */
+            TintRel = 9, /* d = d*(1 - sa + s) */
+            Mask = 10, /* d = d*sa */
+            Mul = 11 /* d = d*s */
+        }
+
+        public enum AspectControl
+        {
+            None = 0, /* Preference on scaling unset */
+            Neither = 1, /* Same effect as unset preference on scaling */
+            Horizontal = 2, /* Use all horizontal container space to place an object, using the given aspect */
+            Vertical = 3, /* Use all vertical container space to place an object, using the given aspect */
+            Both = 4 /* Use all horizontal @b and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect */
+        }
+
+        public enum ObjectCallbackPriority
+        {
+            After = 100,
+            Before = -100,
+            Default = 0
+        }
+
+        public enum TableHomogeneousMode
+        {
+            None = 0,
+            Table = 1,
+            Item = 2
+        }
+
+        public enum TextStyleType
+        {
+            Plain, /* plain, standard text */
+            Shadow, /* text with shadow underneath */
+            Outline, /* text with an outline */
+            SoftOutline, /* text with a soft outline */
+            Glow, /* text with a glow effect */
+            OutlineShadow, /* text with both outline and shadow effects */
+            FarShadow, /* text with (far) shadow underneath */
+            OutlineSoftShadow, /* text with outline and soft shadow effects combined */
+            SoftShadow, /* text with(soft) shadow underneath */
+            FarSoftShadow, /* text with(far soft) shadow underneath */
+            ShadowDirectionBottomRight, /* shadow growing to bottom right */
+            ShadowDirectionBottom, /* shadow growing to the bottom */
+            ShadowDirectionBottomLeft, /* shadow growing to bottom left */
+            ShadowDirectionLeft, /* shadow growing to the left */
+            ShadowDirectionTopLeft, /* shadow growing to top left */
+            ShadowDirectionTop, /* shadow growing to the top */
+            ShadowDirectionTopRight, /* shadow growing to top right */
+            ShadowDirectionRight, /* shadow growing to the right */
+        }
+
+        //public struct TextBlockStyle
+        //{
+        //    string StyleText;
+        //    string DefaultTag;
+
+        //    List objects;
+        //    bool DeleteMe;
+        //}
+
+        //public struct StyleTag
+        //{
+        //}
+
         internal delegate void EventCallback(IntPtr data, IntPtr evas, IntPtr obj, IntPtr info);
 
         internal delegate void EvasCallback(IntPtr data, IntPtr evas, IntPtr info);
@@ -72,6 +181,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_event_callback_add(IntPtr obj, ObjectCallbackType type, EventCallback func, IntPtr data);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_event_callback_del(IntPtr obj, ObjectCallbackType type, EventCallback func);
 
@@ -87,11 +197,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern bool evas_object_key_grab(IntPtr obj, string keyname, ulong modifier, ulong not_modifier, bool exclusive);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_key_ungrab(IntPtr obj, string keyname, ulong modifier, ulong not_modifier);
 
         [DllImport(Libraries.Evas)]
-        internal static extern IntPtr evas_object_data_get(IntPtr obj, string keyname) ;
+        internal static extern IntPtr evas_object_data_get(IntPtr obj, string keyname);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_data_set(IntPtr obj, string keyname, IntPtr data);
@@ -122,43 +233,61 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern bool evas_object_visible_get(IntPtr obj);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_smart_callback_add(IntPtr obj, string eventName, SmartCallback seh, IntPtr data);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_smart_callback_del(IntPtr obj, string eventName, SmartCallback seh);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_min_set(IntPtr obj, int w, int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_min_get(IntPtr obj, out int w, out int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_min_get(IntPtr obj, IntPtr w, out int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_min_get(IntPtr obj, out int w, IntPtr h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_max_set(IntPtr obj, int w, int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_max_get(IntPtr obj, out int w, out int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_max_get(IntPtr obj, IntPtr w, out int h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_max_get(IntPtr obj, out int w, IntPtr h);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_weight_get(IntPtr obj, out double x, out double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_weight_get(IntPtr obj, out double x, IntPtr y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_weight_get(IntPtr obj, IntPtr x, out double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_align_get(IntPtr obj, out double x, out double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_align_get(IntPtr obj, out double x, IntPtr y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_align_get(IntPtr obj, IntPtr x, out double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_weight_set(IntPtr obj, double x, double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_align_set(IntPtr obj, double x, double y);
+
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_move(IntPtr obj, int x, int y);
 
@@ -166,7 +295,7 @@ internal static partial class Interop
         internal static extern void evas_object_resize(IntPtr obj, int w, int h);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_geometry_set(IntPtr obj,int x, int y, int w, int h);
+        internal static extern void evas_object_geometry_set(IntPtr obj, int x, int y, int w, int h);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_geometry_get(IntPtr obj, out int x, out int y, out int w, out int h);
@@ -321,6 +450,246 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_smart_changed(IntPtr obj);
 
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_color_argb_premul(int a, out int r, out int g, out int b);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_damage_rectangle_add(IntPtr obj, int x, int y, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_data_argb_premul(uint data, uint length);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_event_callback_del_full(IntPtr obj, ObjectCallbackType type, EvasCallback func, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_font_path_global_append(string path);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_image_cache_flush(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_image_cache_set(IntPtr obj, int size);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern string evas_load_error_str(LoadError error);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_data_del(IntPtr obj, string key);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_focus_set(IntPtr obj, bool focus);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_freeze_events_set(IntPtr obj, bool freeze);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_colorspace_set(IntPtr obj, Colorspace colorSpace);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_data_copy_set(IntPtr obj, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_image_data_get(IntPtr obj, bool forWriting);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_data_set(IntPtr obj, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_data_update_add(IntPtr obj, int x, int y, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_fill_set(IntPtr obj, int x, int y, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_image_filled_add(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_filled_set(IntPtr obj, bool setting);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_memfile_set(IntPtr obj, IntPtr data, int size, string format, string key);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_pixels_dirty_set(IntPtr obj, bool dirty);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_save(IntPtr obj, string file, string key, string flags);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_scale_hint_set(IntPtr obj, ImageScaleHint hint);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_size_set(IntPtr obj, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_smooth_scale_set(IntPtr obj, bool smoothScale);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_source_set(IntPtr obj, IntPtr src);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_source_visible_set(IntPtr obj, bool visible);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_layer_set(IntPtr obj, int layer);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_raise(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_render_op_set(IntPtr obj, RenderOp op);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_size_hint_aspect_set(IntPtr obj, AspectControl aspect, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_smart_add(IntPtr obj, IntPtr smart);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_smart_data_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_data_set(IntPtr obj, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_member_add(IntPtr obj, IntPtr smart);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_member_del(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_stack_above(IntPtr obj, IntPtr avobe);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_text_add(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_font_set(IntPtr obj, string font, int size);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_text_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_textblock_add(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_textblock_style_set(IntPtr obj, IntPtr textBlockStyle);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_textblock_text_markup_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_obscured_clear(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_smart_class_new(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern string evas_device_name_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern string evas_font_path_global_clear();
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_object_above_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_event_callback_priority_add(IntPtr obj, ObjectCallbackType type, ObjectCallbackPriority priority, EventCallback func, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_object_focus_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_object_freeze_events_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern int evas_object_layer_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_callback_priority_add(IntPtr obj, string eventName, ObjectCallbackPriority priority, EventCallback func, IntPtr data);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_clipped_smart_set(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_table_homogeneous_set(IntPtr obj, TableHomogeneousMode mode);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_object_table_pack(IntPtr obj, IntPtr child, uint col, uint row, uint colspan, uint rowspan);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_table_padding_set(IntPtr obj, int horizontal, int vertical);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_filter_program_set(IntPtr obj, string program);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_glow_color_set(IntPtr obj, int r, int g, int b, int a);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_outline_color_set(IntPtr obj, int r, int g, int b, int a);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_shadow_color_set(IntPtr obj, int r, int g, int b, int a);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_text_style_set(IntPtr obj, TextStyleType type);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_object_textblock_line_number_geometry_get(IntPtr obj, int line, int x, int y, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_textblock_valign_set(IntPtr obj, double align);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern int evas_string_char_len_get(string str);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern int evas_textblock_style_free(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_textblock_style_new();
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_textblock_style_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern string evas_textblock_text_markup_to_utf8(IntPtr obj, string text);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern string evas_textblock_text_utf8_to_markup(IntPtr obj, string text);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_obscured_rectangle_add(IntPtr obj, int x, int y, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_render(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_norender(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern int evas_image_cache_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_font_path_global_prepend(string path);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_color_argb_unpremul(int a, out int r, out int g, out int b);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_color_hsv_to_rgb(int r, int g, int b, out float h, out float s, out float v);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_color_rgb_to_hsv(float h, float s, float v, out int r, out int g, out int b);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_stack_below(IntPtr obj, IntPtr below);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_size_hint_aspect_get(IntPtr obj, out AspectControl aspect, out int w, out int h);
+
         internal static void SetX(IntPtr obj, int x)
         {
             int y = GetY(obj);
@@ -439,7 +808,7 @@ internal static partial class Interop
 
         internal static void SetPremultipliedColor(IntPtr obj, int r, int g, int b, int a)
         {
-            evas_object_color_set(obj, r*a/255, g*a/255, b*a/255, a);
+            evas_object_color_set(obj, r * a / 255, g * a / 255, b * a / 255, a);
         }
     }
 }
