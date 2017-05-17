@@ -122,7 +122,7 @@ namespace VisaulAnimationExample
             _shadowButton1.Clicked += (obj, ev) =>
             {
                 _active1 = !_active1;
-                StartTransition(_contentView1, "icon_visual1", "Offset", _active1);
+                StartTransition(_contentView1, _icon, "Offset", _active1);
                 return true;
             };
             _shadowButton1.WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -160,7 +160,7 @@ namespace VisaulAnimationExample
             _shadowButton2.Clicked += (obj, ev) =>
             {
                 _active2 = !_active2;
-                StartTransition(_contentView2, "icon_visual2", "Opacity", _active2);
+                StartTransition(_contentView2, _icon2, "Opacity", _active2);
                 return true;
             };
             _shadowButton2.WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -198,7 +198,7 @@ namespace VisaulAnimationExample
             _shadowButton3.Clicked += (obj, ev) =>
             {
                 _active3 = !_active3;
-                StartTransition(_contentView3, "icon_visual3", "MixColor", _active3);
+                StartTransition(_contentView3, _icon3, "MixColor", _active3);
                 return true;
             };
             _shadowButton3.WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -206,7 +206,7 @@ namespace VisaulAnimationExample
             contentLayout.AddChild(_shadowButton3, new TableView.CellPosition(2, 1));
         }
 
-        private void StartTransition(VisualView view, string target, string property, bool activate)
+        private void StartTransition(VisualView view, VisualMap target, string property, bool activate)
         {
             if (_animation)
             {
@@ -216,47 +216,33 @@ namespace VisaulAnimationExample
 
             if (activate)
             {
-                VisualAnimator state1 = new VisualAnimator();
-                state1.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
-                state1.StartTime = 0;
-                state1.EndTime = 1000;
-                state1.Target = target;
-                state1.PropertyIndex = property;
                 if (property == "Offset")
                 {
-                    state1.DestinationValue = new Position2D(20, 20);
+                    _animation = view.AnimateVisual(target, property, new Position2D(20, 20), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
                 else if (property == "Opacity")
                 {
-                    state1.DestinationValue = 0.0f;
+                    _animation = view.AnimateVisual(target, property, 0.0f, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
                 else if (property == "MixColor")
                 {
-                    state1.DestinationValue = Color.Green;
+                    _animation = view.AnimateVisual(target, property, Color.Green, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
-                _animation = view.VisualAnimate(state1);
             }
             else
             {
-                VisualAnimator state2 = new VisualAnimator();
-                state2.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
-                state2.StartTime = 0;
-                state2.EndTime = 1000;
-                state2.Target = target;
-                state2.PropertyIndex = property;
                 if (property == "Offset")
                 {
-                    state2.DestinationValue = new Position2D(5, 5);
+                    _animation = view.AnimateVisual(target, property, new Position2D(5, 5), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
                 else if (property == "Opacity")
                 {
-                    state2.DestinationValue = 1.0f;
+                    _animation = view.AnimateVisual(target, property, 1.0f, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
                 else if (property == "MixColor")
                 {
-                    state2.DestinationValue = Color.Red;
+                    _animation = view.AnimateVisual(target, property, Color.Red, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
                 }
-                _animation = view.VisualAnimate(state2);
             }
 
             if (_animation)

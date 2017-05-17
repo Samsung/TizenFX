@@ -33,9 +33,6 @@ namespace Tizen.NUI.BaseComponents
 
             // Register this instance of view in the view registry.
             ViewRegistry.RegisterView(this);
-
-            // By default, we do not want the position to use the anchor point
-            this.PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -831,6 +828,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
+            PositionUsesAnchorPoint = false;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -1765,12 +1763,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                if(this) GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
+                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
                 return temp;
             }
             set
             {
-                if(this) SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1832,6 +1830,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets the natural size of the view.<br>
+        /// </summary>
+        /// <remarks>
+        /// Readonly.
+        /// </remarks>
+        public Vector3 NaturalSize
+        {
+            get
+            {
+                Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Shows the View.
         /// </summary>
         /// <remarks>
@@ -1855,31 +1870,14 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(false);
         }
 
-        /// <summary>
-        /// Raise view above the next highest level of view(s).
-        /// </summary>
-        /// <remarks>
-        /// Sibling order of views within the parent will be updated automatically.
-        /// Initially views added to a parent will have the same sibling order and shown in relation to insertion order.
-        /// Raising this view above views with the same sibling order as each other will raise this view above them.
-        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
-        /// </remarks>
-        public void Raise()
+        internal void Raise()
         {
             NDalicPINVOKE.Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Lower the view to underneath the level below view(s).
-        /// </summary>
-        /// <remarks>
-        /// Sibling order of views within the parent will be updated automatically.
-        /// Lowering this view below views with the same sibling order as each other will lower this view above them.
-        /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
-        /// </remarks>
-        public void Lower()
+        internal void Lower()
         {
             NDalicPINVOKE.Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2163,12 +2161,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /// <summary>
-        /// Returns the natural size of the view.<br>
-        /// Deriving classes stipulate the natural size and by default an view has a ZERO natural size.<br>
-        /// </summary>
-        /// <returns>The view's natural size</returns>
-        public Vector3 GetNaturalSize()
+        internal Vector3 GetNaturalSize()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)

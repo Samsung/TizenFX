@@ -369,6 +369,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves child view by index.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="index">The index of the child to retrieve</param>
+        /// <returns>The view for the given index or empty handle if children not initialized</returns>
+        public View GetChildAt(uint index)
+        {
+            View ret = new View(NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Enumeration for the behavior of the layer.
         /// </summary>
         public enum LayerBehavior

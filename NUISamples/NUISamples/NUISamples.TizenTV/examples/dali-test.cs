@@ -131,6 +131,7 @@ namespace DaliTest
             VisibilityChangeTest();
 
             ResourceReadyTest();
+            WindowDevelPropertyTest();
 
             Animatable handle = new Animatable();
             int myPropertyIndex = handle.RegisterProperty("myProperty", new PropertyValue(10.0f), PropertyAccessMode.ReadWrite);
@@ -546,9 +547,9 @@ namespace DaliTest
             label.VisibilityChanged += (sender, e) =>
             {
                 if (e.Visibility)
-                    Console.WriteLine("VisibilityChanged, label show.");
+                    Tizen.Log.Debug("NUI", "VisibilityChanged, label show.");
                 else
-                    Console.WriteLine("VisibilityChanged, label hide.");
+                    Tizen.Log.Debug("NUI", "VisibilityChanged, label hide.");
             };
 
             PushButton button = new PushButton();
@@ -581,9 +582,51 @@ namespace DaliTest
             image.Position = new Position(0.0f, 150.0f, 0.0f);
             image.ResourceReady += (sender, e) =>
             {
-                Console.WriteLine("Resource is ready!");
+                Tizen.Log.Debug("NUI", "Resource is ready!");
             };
             Window.GetDefaultLayer().Add(image);
+        }
+
+        public void WindowDevelPropertyTest()
+        {
+            Window window = Window.Instance;
+            uint count = window.GetSupportedAuxiliaryHintCount();
+            if (count > 0)
+            {
+                window.BackgroundColor = Color.Blue;
+            }
+            uint id = window.AddAuxiliaryHint("wm.policy.win.effect.disable", "1");
+            window.RemoveAuxiliaryHint(id);
+            window.RemoveAuxiliaryHint(2);
+
+            id = window.AddAuxiliaryHint("wm.policy.win.effect.disable", "1");
+            window.SetAuxiliaryHintValue(id, "0");
+            string value = window.GetAuxiliaryHintValue(id);
+            if(value.Length > 0)
+            {
+                window.BackgroundColor = Color.Red;
+            }
+
+            window.SetInputRegion(new Rectangle(0, 0, 0, 0));
+            WindowType type = window.Type;
+            Tizen.Log.Debug("NUI", "window type is "+type);
+            window.Type = WindowType.Notification;
+
+            NotificationLevelType level = window.GetNotificationLevel();
+            window.SetNotificationLevel(NotificationLevelType.High);
+            level = window.GetNotificationLevel();
+            Tizen.Log.Debug("NUI", "window notification level is " + level);
+
+            window.SetOpaqueState(true);
+            Tizen.Log.Debug("NUI", "window is opaque? " + window.IsOpaqueState());
+
+            window.SetScreenMode(ScreenModeType.AlwaysOn);
+            ScreenModeType screenMode = window.GetScreenMode();
+            Tizen.Log.Debug("NUI", "window screen mode is " + screenMode);
+
+            bool ret = window.SetBrightness(50);
+            int brightness = window.GetBrightness();
+            Tizen.Log.Debug("NUI", "window brightness is " + brightness, ", return "+ret);
         }
 
         public void CustomViewPropertyTest()
@@ -648,7 +691,8 @@ namespace DaliTest
           View container = new View();
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
           Window.Instance.GetDefaultLayer().Add(container);
-
+          Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.GetLayerCount());
+          Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.GetDefaultLayer().GetChildAt(0));
           // Test downcast for native control
           TextLabel myLabel = new TextLabel();
           myLabel.Name = "MyLabelName";

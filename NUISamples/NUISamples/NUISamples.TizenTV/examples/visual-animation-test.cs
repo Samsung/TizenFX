@@ -38,6 +38,7 @@ namespace VisaulAnimationExample
 
         private SVGVisual svgVisual;
         private AnimatedImageVisual gifVisual;
+        private ImageVisual _icon;
 
         public Example() : base()
         {
@@ -97,7 +98,7 @@ namespace VisaulAnimationExample
             //_contentView.Size2D = new Size2D(250, 250);
             _contentView.BackgroundImage = _resPath + "/images/background-blocks.jpg";
 
-            ImageVisual _icon = new ImageVisual();
+            _icon = new ImageVisual();
             _icon.URL = _resPath + "/images/application-icon-0.png";
             _icon.DepthIndex = 1;
             _icon.Size = new Size2D(50, 50);
@@ -234,25 +235,11 @@ namespace VisaulAnimationExample
 
             if (activate)
             {
-                VisualAnimator grow = new VisualAnimator();
-                grow.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
-                grow.StartTime = 0;
-                grow.EndTime = 1000;
-                grow.Target = "icon_visual1";
-                grow.PropertyIndex = "Size";
-                grow.DestinationValue = new Size2D(200, 200);
-                _animation = _contentView.VisualAnimate(grow);
+                _animation = _contentView.AnimateVisual(_icon, "Size", new Size2D(200, 200), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
             }
             else
             {
-                VisualAnimator shrink = new VisualAnimator();
-                shrink.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
-                shrink.StartTime = 0;
-                shrink.EndTime = 1000;
-                shrink.Target = "icon_visual1";
-                shrink.PropertyIndex = "Size";
-                shrink.DestinationValue = new Size2D(50, 50);
-                _animation = _contentView.VisualAnimate(shrink);
+                _animation = _contentView.AnimateVisual(_icon, "Size", new Position2D(50, 50), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
             }
 
             if (_animation)

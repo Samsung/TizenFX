@@ -38,6 +38,8 @@ namespace Tizen.NUI.BaseComponents
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            // By default, we do not want the position to use the anchor point
+            PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
@@ -147,6 +149,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int OUTLINE = NDalicPINVOKE.TextLabel_Property_OUTLINE_get();
             internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextLabel_Property_PIXEL_SIZE_get();
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
+            internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
+            internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
 
         }
 
@@ -741,6 +745,55 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.ELLIPSIS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// AutoScrollLoopDelay property.<br>
+        /// do something.<br>
+        /// </summary>
+        public float AutoScrollLoopDelay
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_DELAY).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_DELAY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// AutoScrollStopMode property.<br>
+        /// do something.<br>
+        /// </summary>
+        public AutoScrollStopMode AutoScrollStopMode
+        {
+            get
+            {
+                string temp;
+                if(GetProperty(TextLabel.Property.AUTO_SCROLL_STOP_MODE).Get(out temp) == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Error("NUI", "AutoScrollStopMode get error!");
+#endif
+                }
+                switch (temp)
+                {
+                    case "FINISH_LOOP":
+                    return AutoScrollStopMode.FinishLoop;
+                    case "IMMEDIATE":
+                    return AutoScrollStopMode.Immediate;
+                    default:
+                    return AutoScrollStopMode.FinishLoop;
+                }
+            }
+            set
+            {
+                SetProperty(TextLabel.Property.AUTO_SCROLL_STOP_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
 
