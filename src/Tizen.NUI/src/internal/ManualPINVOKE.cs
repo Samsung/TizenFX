@@ -578,7 +578,11 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_ELLIPSIS_get")]
         public static extern int TextLabel_Property_ELLIPSIS_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextLabel_Property_AUTO_SCROLL_STOP_MODE_get")]
+        public static extern int TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get")]
+        public static extern int TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
 
     }
 }

@@ -140,6 +140,193 @@ namespace Tizen.NUI
             return temp;
         }
 
+        /// <summary>
+        /// Gets the count of supported auxiliary hints of the window.
+        /// </summary>
+        /// <returns>The number of supported auxiliary hints.</returns>
+        public uint GetSupportedAuxiliaryHintCount() {
+            uint ret = NDalicPINVOKE.GetSupportedAuxiliaryHintCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the supported auxiliary hint string of the window.
+        /// </summary>
+        /// <param name="index">The index of the supported auxiliary hint lists.</param>
+        /// <returns>The auxiliary hint string of the index.</returns>
+        public string GetSupportedAuxiliaryHint(uint index) {
+            string ret = NDalicPINVOKE.GetSupportedAuxiliaryHint(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Creates an auxiliary hint of the window.
+        /// </summary>
+        /// <param name="hint">The auxiliary hint string.</param>
+        /// <param name="value">The value string.</param>
+        /// <returns>The ID of created auxiliary hint, or 0 on failure.</returns>
+        public uint AddAuxiliaryHint(string hint, string value) {
+            uint ret = NDalicPINVOKE.AddAuxiliaryHint(swigCPtr, hint, value);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Removes an auxiliary hint of the window.
+        /// </summary>
+        /// <param name="id">The ID of the auxiliary hint.</param>
+        /// <returns>True if no error occurred, false otherwise.</returns>
+        public bool RemoveAuxiliaryHint(uint id) {
+            bool ret = NDalicPINVOKE.RemoveAuxiliaryHint(swigCPtr, id);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Changes a value of the auxiliary hint.
+        /// </summary>
+        /// <param name="id">The auxiliary hint ID.</param>
+        /// <param name="value">The value string to be set.</param>
+        /// <returns>True if no error occurred, false otherwise.</returns>
+        public bool SetAuxiliaryHintValue(uint id, string value) {
+            bool ret = NDalicPINVOKE.SetAuxiliaryHintValue(swigCPtr, id, value);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets a value of the auxiliary hint.
+        /// </summary>
+        /// <param name="id">The auxiliary hint ID.</param>
+        /// <returns>The string value of the auxiliary hint ID, or an empty string if none exists.</returns>
+        public string GetAuxiliaryHintValue(uint id) {
+            string ret = NDalicPINVOKE.GetAuxiliaryHintValue(swigCPtr, id);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets an ID of the auxiliary hint string.
+        /// </summary>
+        /// <param name="hint">The auxiliary hint string.</param>
+        /// <returns>The ID of auxiliary hint string, or 0 on failure.</returns>
+        public uint GetAuxiliaryHintId(string hint) {
+            uint ret = NDalicPINVOKE.GetAuxiliaryHintId(swigCPtr, hint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a region to accept input events.
+        /// </summary>
+        /// <param name="inputRegion">The region to accept input events.</param>
+        public void SetInputRegion(Rectangle inputRegion) {
+            NDalicPINVOKE.SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets/Sets a window type.
+        /// </summary>
+        public WindowType Type
+        {
+            get
+            {
+                WindowType ret = (WindowType)NDalicPINVOKE.GetType(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                NDalicPINVOKE.SetType(swigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets a priority level for the specified notification window.
+        /// </summary>
+        /// <param name="level">The notification window level.</param>
+        /// <returns>True if no error occurred, false otherwise.</returns>
+        public bool SetNotificationLevel(NotificationLevelType level) {
+            bool ret = NDalicPINVOKE.SetNotificationLevel(swigCPtr, (int)level);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets a priority level for the specified notification window.
+        /// </summary>
+        /// <returns>The notification window level.</returns>
+        public NotificationLevelType GetNotificationLevel() {
+            NotificationLevelType ret = (NotificationLevelType)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a transparent window's visual state to opaque.
+        /// </summary>
+        /// <param name="opaque">Whether the window's visual state is opaque.</param>
+        public void SetOpaqueState(bool opaque) {
+            NDalicPINVOKE.SetOpaqueState(swigCPtr, opaque);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether a transparent window's visual state is opaque or not.
+        /// </summary>
+        /// <returns>True if the window's visual state is opaque, false otherwise.</returns>
+        public bool IsOpaqueState() {
+            bool ret = NDalicPINVOKE.IsOpaqueState(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets a window's screen mode.
+        /// </summary>
+        /// <param name="screenMode">The screen mode.</param>
+        /// <returns>True if no error occurred, false otherwise.</returns>
+        public bool SetScreenMode(ScreenModeType screenMode) {
+            bool ret = NDalicPINVOKE.SetScreenMode(swigCPtr, (int)screenMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets a screen mode of the window.
+        /// </summary>
+        /// <returns>The screen mode.</returns>
+        public ScreenModeType GetScreenMode() {
+            ScreenModeType ret = (ScreenModeType)NDalicPINVOKE.GetScreenMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets preferred brightness of the window.
+        /// </summary>
+        /// <param name="brightness">The preferred brightness (0 to 100).</param>
+        /// <returns>True if no error occurred, false otherwise.</returns>
+        public bool SetBrightness(int brightness) {
+            bool ret = NDalicPINVOKE.SetBrightness(swigCPtr, brightness);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets preffered brightness of the window.
+        /// </summary>
+        /// <returns>The preffered brightness.</returns>
+        public int GetBrightness() {
+            int ret = NDalicPINVOKE.GetBrightness(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         public class WindowFocusChangedEventArgs : EventArgs
         {
             public bool FocusGained
@@ -422,7 +609,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal uint GetLayerCount()
+        /// <summary>
+        /// Queries the number of on-window layers.
+        /// </summary>
+        /// <returns>The number of layers.</returns>
+        /// <remarks>Note that a default layer is always provided (count >= 1).</remarks>
+        public uint GetLayerCount()
         {
             uint ret = NDalicPINVOKE.Stage_GetLayerCount(stageCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

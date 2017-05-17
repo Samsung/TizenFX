@@ -1229,4 +1229,85 @@ namespace Tizen.NUI
             }
         }
     }
+
+    /// <summary>
+    /// Auto scrolling stop behaviour.
+    /// </summary>
+    public enum AutoScrollStopMode
+    {
+        /// <summary>
+        /// Stop animation after current loop finished.
+        /// </summary>
+        FinishLoop,
+        /// <summary>
+        /// Stop animation immediatly and reset position.
+        /// </summary>
+        Immediate
+    }
+
+    /// <summary>
+    /// An enum of screen mode.
+    /// </summary>
+    public enum ScreenModeType {
+        /// <summary>
+        /// The mode which turns the screen off after a timeout.
+        /// </summary>
+        Default,
+        /// <summary>
+        /// The mode which keeps the screen turned on.
+        /// </summary>
+        AlwaysOn
+    }
+
+    /// <summary>
+    /// An enum of notification window's priority level.
+    /// </summary>
+    public enum NotificationLevelType {
+        /// <summary>
+        /// No notification level.<br>
+        /// Default level.<br>
+        /// This value makes the notification window place in the layer of the normal window.
+        /// </summary>
+        None = -1,
+        /// <summary>
+        /// Base nofitication level.
+        /// </summary>
+        Base = 10,
+        /// <summary>
+        /// Medium notification level than base.
+        /// </summary>
+        Medium = 20,
+        /// <summary>
+        /// Higher notification level than medium.
+        /// </summary>
+        High = 30,
+        /// <summary>
+        /// The highest notification level.
+        /// </summary>
+        Top = 40
+    }
+
+    /// <summary>
+    /// An enum of Window types.
+    /// </summary>
+    public enum WindowType {
+        /// <summary>
+        /// A default window type.<br>
+        /// Indicates a normal, top-level window.
+        /// Almost every window will be created with this type.
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// A notification window, like a warning about battery life or a new E-Mail received.
+        /// </summary>
+        Notification,
+        /// <summary>
+        /// A persistent utility window, like a toolbox or palette.
+        /// </summary>
+        Utility,
+        /// <summary>
+        /// Used for simple dialog windows.
+        /// </summary>
+        Dialog
+    }
 }
