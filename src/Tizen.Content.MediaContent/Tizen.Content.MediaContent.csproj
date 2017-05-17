@@ -1,111 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A106C68E-0E2F-4A1F-9E87-113DC4F78787}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Content</RootNamespace>
-    <AssemblyName>Tizen.Content.MediaContent</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Content.MediaContent.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Interop\Interop.AudioInformation.cs" />
-    <Compile Include="Interop\Interop.Glib.cs" />
-    <Compile Include="Interop\Interop.ImageInformation.cs" />
-    <Compile Include="Interop\Interop.Libc.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Interop\Interop.MediaBookmark.cs" />
-    <Compile Include="Interop\Interop.MediaContent.cs" />
-    <Compile Include="Interop\Interop.MediaFace.cs" />
-    <Compile Include="Interop\Interop.MediaFilter.cs" />
-    <Compile Include="Interop\Interop.MediaFolder.cs" />
-    <Compile Include="Interop\Interop.MediaGroup.cs" />
-    <Compile Include="Interop\Interop.MediaInformation.cs" />
-    <Compile Include="Interop\Interop.MediaPlaylist.cs" />
-    <Compile Include="Interop\Interop.MediaStorage.cs" />
-    <Compile Include="Interop\Interop.MediaTag.cs" />
-    <Compile Include="Interop\Interop.VideoInformation.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Content.MediaContent\Album.cs" />
-    <Compile Include="Tizen.Content.MediaContent\AudioInformation.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentCollection.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentDatabase.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentEventArgs.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentFilter.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentManager.cs" />
-    <Compile Include="Tizen.Content.MediaContent\FaceRect.cs" />
-    <Compile Include="Tizen.Content.MediaContent\Group.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ImageInformation.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaBookmark.cs" />
-    <Compile Include="Tizen.Content.MediaContent\ContentColumns.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaContentEnums.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaContentError.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaFace.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaFolder.cs" />
-    <Compile Include="Tizen.Content.MediaContent\MediaInformation.cs" />
-    <Compile Include="Tizen.Content.MediaContent\PlayList.cs" />
-    <Compile Include="Tizen.Content.MediaContent\Storage.cs" />
-    <Compile Include="Tizen.Content.MediaContent\Tag.cs" />
-    <Compile Include="Tizen.Content.MediaContent\VideoInformation.cs" />
+    <PackageReference Include="Tizen" Version="1.0.5" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.Content.MediaContent.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tizen.Content.MediaContent.project.json" />
-    <None Include="Tizen.Content.MediaContent.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+
 </Project>
+
