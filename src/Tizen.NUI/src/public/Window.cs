@@ -609,7 +609,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal uint GetLayerCount()
+        /// <summary>
+        /// Queries the number of on-window layers.
+        /// </summary>
+        /// <returns>The number of layers.</returns>
+        /// <remarks>Note that a default layer is always provided (count >= 1).</remarks>
+        public uint GetLayerCount()
         {
             uint ret = NDalicPINVOKE.Stage_GetLayerCount(stageCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
