@@ -402,16 +402,6 @@ namespace Tizen.Applications.NotificationEventListener
             return list;
         }
 
-        /// <summary>
-        /// Sends a event type to an application that posted notification.
-        /// Sends the event from the viewer application to the application that posts the notification.
-        /// </summary>
-        /// <param name="uniqueNumber">The unique number of the notification.</param>
-        /// <param name="type">The event type. See enum EventType.</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
-        /// <privilege>http://tizen.org/privilege/notification</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SendEvent(int uniqueNumber, UserEventType type)
         {
