@@ -35,20 +35,20 @@ namespace Tizen.Security.TEEC
     /// <summary>
     /// This type denotes Value parameter
     /// </summary>
-    public enum ValueType : UInt32
+    public enum TEFValueType : UInt32
     {
-        Input  = 0x00000001, ///< The Parameter is a ValueType tagged as input.
-        Output = 0x00000002, ///< The Parameter is a ValueType tagged as output.
-        InOut  = 0x00000003, ///< The Parameter is a ValueType tagged as both as input and output.
+        Input  = 0x00000001, ///< The Parameter is a TEFValueType tagged as input.
+        Output = 0x00000002, ///< The Parameter is a TEFValueType tagged as output.
+        InOut  = 0x00000003, ///< The Parameter is a TEFValueType tagged as both as input and output.
     }
 
     /// <summary>
     /// This type denotes TempMemoryReference parameter
     /// describing a region of memory which needs to be temporarily registered for the duration of the operation.
     /// </summary>
-    public enum TempMemoryType : UInt32
+    public enum TEFTempMemoryType : UInt32
     {
-        Input  = 0x00000005, ///< The Parameter is a TempMemoryType and is tagged as input
+        Input  = 0x00000005, ///< The Parameter is a TEFTempMemoryType and is tagged as input
         Output = 0x00000006, ///< Same as Input, but the Memory Reference is tagged as output
         InOut  = 0x00000007, ///< A Temporary Memory Reference tagged as both input and output.
     }
@@ -56,7 +56,7 @@ namespace Tizen.Security.TEEC
     /// <summary>
     /// This type denotes SharedMemoryReference parameter
     /// </summary>
-    public enum RegisteredMemoryType : UInt32
+    public enum TEFRegisteredMemoryType : UInt32
     {
         Whole         = 0x0000000C, ///< The Parameter is a Registered Memory Reference that refers to the entirety of its parent Shared Memory block.
         PartialInput  = 0x0000000D, ///< A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as input.
@@ -151,9 +151,9 @@ namespace Tizen.Security.TEEC
     /// <summary>
     /// This type defines a temporary memory reference.
     /// </summary>
-    public sealed class TempMemoryReference : BaseParameter<TempMemoryType>
+    public sealed class TempMemoryReference : BaseParameter<TEFTempMemoryType>
     {
-        public TempMemoryReference(IntPtr buffer, uint size, TempMemoryType type) :
+        public TempMemoryReference(IntPtr buffer, uint size, TEFTempMemoryType type) :
                 base(type)
         {
             this.Buffer = buffer;
@@ -172,9 +172,9 @@ namespace Tizen.Security.TEEC
     /// <summary>
     /// This type defines a memory reference that uses a pre-registered or pre-allocated Shared Memory block.
     /// </summary>
-    public sealed class RegisteredMemoryReference : BaseParameter<RegisteredMemoryType>
+    public sealed class RegisteredMemoryReference : BaseParameter<TEFRegisteredMemoryType>
     {
-        public RegisteredMemoryReference(SharedMemory parent, uint size, uint offset, RegisteredMemoryType type) :
+        public RegisteredMemoryReference(SharedMemory parent, uint size, uint offset, TEFRegisteredMemoryType type) :
                 base(type)
         {
             this.Parent = parent;
@@ -199,9 +199,9 @@ namespace Tizen.Security.TEEC
     /// This type defines a parameter that is not referencing shared memory, but carries instead small raw data
     /// passed by value.
     /// </summary>
-    public sealed class Value : BaseParameter<ValueType>
+    public sealed class Value : BaseParameter<TEFValueType>
     {
-        public Value(uint a, uint b, ValueType type) :
+        public Value(uint a, uint b, TEFValueType type) :
                 base(type)
         {
             this.A = a;
