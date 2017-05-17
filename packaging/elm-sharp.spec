@@ -1,8 +1,8 @@
-%define DEV_VERSION beta-024
+%define DEV_VERSION beta-001
 
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
-Version:    1.1.0
+Version:    1.2.0
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
