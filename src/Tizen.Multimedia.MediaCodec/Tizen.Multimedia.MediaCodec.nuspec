@@ -12,7 +12,6 @@
 		<description>Provides the Multimedia MediaCodec API for Tizen.Net</description>
     <dependencies>
 	  <dependency id="Tizen" version="1.0.2" />
-      <dependency id="Tizen.Applications.Common" version="1.4.2" />
       <dependency id="Tizen.Multimedia" version="1.1.0" />
     </dependencies>
 	</metadata>

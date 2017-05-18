@@ -200,7 +200,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        internal IntPtr Handle {
+        public IntPtr Handle {
             get {
                 return _streamInfo;
             }

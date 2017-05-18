@@ -9,7 +9,7 @@
     <projectUrl>https://www.tizen.org/</projectUrl>
     <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
-		<description>Provides the Multimedia API for Tizen.Net</description>
+		<description>Common classes and interfaces for the Tizen.Net Multimedia</description>
     <dependencies>
       <dependency id="Tizen" version="1.0.2" />
       <dependency id="ElmSharp" version="1.0.14" />

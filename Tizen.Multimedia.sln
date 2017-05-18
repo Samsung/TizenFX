@@ -1,11 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia", "Tizen.Multimedia\Tizen.Multimedia.csproj", "{0CE698B0-4849-4096-9D7F-30E611F50DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "Tizen.Multimedia\Tizen.Multimedia.csproj", "{0CE698B0-4849-4096-9D7F-30E611F50DAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.MediaCodec", "Tizen.Multimedia.MediaCodec\Tizen.Multimedia.MediaCodec.csproj", "{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.MediaPlayer", "Tizen.Multimedia.MediaPlayer\Tizen.Multimedia.MediaPlayer.csproj", "{4A913E20-F979-438A-9AD5-10FC83500B37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Radio", "Tizen.Multimedia.Radio\Tizen.Multimedia.Radio.csproj", "{51FCEC86-3091-4907-94FF-617307124B7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Recorder", "Tizen.Multimedia.Recorder\Tizen.Multimedia.Recorder.csproj", "{43292612-BB87-432D-B512-2CD97618F5D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.StreamRecorder", "Tizen.Multimedia.StreamRecorder\Tizen.Multimedia.StreamRecorder.csproj", "{799D9285-21D5-4B2E-89A1-F5F42C6067ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Camera", "Tizen.Multimedia.Camera\Tizen.Multimedia.Camera.csproj", "{70A0AF21-CF19-4C91-9F79-CF2F75560341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Remoting", "Tizen.Multimedia.Remoting\Tizen.Multimedia.Remoting.csproj", "{C9CAA864-1D46-451C-B818-C58F9C9CC18A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.Util", "Tizen.Multimedia.Util\Tizen.Multimedia.Util.csproj", "{35C35151-C16A-4473-95FF-E26F0205DFF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Vision", "Tizen.Multimedia.Vision\Tizen.Multimedia.Vision.csproj", "{443E3507-0F92-48B7-B0C4-0424928C3F72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Metadata", "Tizen.Multimedia.Metadata\Tizen.Multimedia.Metadata.csproj", "{C6138D98-B52D-448A-AE8B-36FAF55E6F93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.AudioIO", "Tizen.Multimedia.AudioIO\Tizen.Multimedia.AudioIO.csproj", "{7C22F20F-8327-4DA5-952D-403C44FCC69B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +41,46 @@ Global
 		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C74F30BE-BC8D-4D1A-84D6-F7255A6687BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A913E20-F979-438A-9AD5-10FC83500B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A913E20-F979-438A-9AD5-10FC83500B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A913E20-F979-438A-9AD5-10FC83500B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A913E20-F979-438A-9AD5-10FC83500B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51FCEC86-3091-4907-94FF-617307124B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51FCEC86-3091-4907-94FF-617307124B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51FCEC86-3091-4907-94FF-617307124B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51FCEC86-3091-4907-94FF-617307124B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43292612-BB87-432D-B512-2CD97618F5D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43292612-BB87-432D-B512-2CD97618F5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43292612-BB87-432D-B512-2CD97618F5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43292612-BB87-432D-B512-2CD97618F5D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799D9285-21D5-4B2E-89A1-F5F42C6067ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799D9285-21D5-4B2E-89A1-F5F42C6067ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799D9285-21D5-4B2E-89A1-F5F42C6067ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799D9285-21D5-4B2E-89A1-F5F42C6067ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A0AF21-CF19-4C91-9F79-CF2F75560341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A0AF21-CF19-4C91-9F79-CF2F75560341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A0AF21-CF19-4C91-9F79-CF2F75560341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A0AF21-CF19-4C91-9F79-CF2F75560341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CAA864-1D46-451C-B818-C58F9C9CC18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CAA864-1D46-451C-B818-C58F9C9CC18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CAA864-1D46-451C-B818-C58F9C9CC18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CAA864-1D46-451C-B818-C58F9C9CC18A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C35151-C16A-4473-95FF-E26F0205DFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C35151-C16A-4473-95FF-E26F0205DFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C35151-C16A-4473-95FF-E26F0205DFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C35151-C16A-4473-95FF-E26F0205DFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443E3507-0F92-48B7-B0C4-0424928C3F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443E3507-0F92-48B7-B0C4-0424928C3F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443E3507-0F92-48B7-B0C4-0424928C3F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443E3507-0F92-48B7-B0C4-0424928C3F72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6138D98-B52D-448A-AE8B-36FAF55E6F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6138D98-B52D-448A-AE8B-36FAF55E6F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6138D98-B52D-448A-AE8B-36FAF55E6F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6138D98-B52D-448A-AE8B-36FAF55E6F93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C22F20F-8327-4DA5-952D-403C44FCC69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C22F20F-8327-4DA5-952D-403C44FCC69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C22F20F-8327-4DA5-952D-403C44FCC69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C22F20F-8327-4DA5-952D-403C44FCC69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

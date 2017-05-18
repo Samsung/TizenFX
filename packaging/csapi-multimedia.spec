@@ -1,6 +1,6 @@
 Name:       csapi-multimedia
 Summary:    Tizen Multimedia API for C#
-Version:    1.0.0
+Version:    1.1.0
 Release:    0
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -20,8 +20,18 @@ BuildRequires: elm-sharp-nuget
 BuildRequires: csapi-information-nuget
 
 %define Assemblies \
-	Tizen.Multimedia 1.1.1 \
-	Tizen.Multimedia.MediaCodec 1.0.0
+	Tizen.Multimedia 1.2.0 \
+	Tizen.Multimedia.AudioIO 1.0.0 \
+	Tizen.Multimedia.Camera 1.0.0 \
+	Tizen.Multimedia.MediaCodec 1.0.0 \
+	Tizen.Multimedia.MediaPlayer 1.0.0 \
+	Tizen.Multimedia.Metadata 1.0.0 \
+	Tizen.Multimedia.Radio 1.0.0 \
+	Tizen.Multimedia.Recorder 1.0.0 \
+	Tizen.Multimedia.StreamRecorder 1.0.0 \
+	Tizen.Multimedia.Remoting 1.0.0 \
+	Tizen.Multimedia.Util 1.0.0 \
+	Tizen.Multimedia.Vision 1.0.0
 
 %description
 %{summary}
