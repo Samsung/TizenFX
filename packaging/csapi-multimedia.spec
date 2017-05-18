@@ -33,13 +33,14 @@ BuildRequires: csapi-information-nuget
 cp %{SOURCE1} .
 
 %build
+%dotnet_build Tizen.Multimedia.sln
+
 AssemArray=(%Assemblies)
 
 for((i=0; i<${#AssemArray[*]};i+=2))
 do
 	AsmName=${AssemArray[$i]}
 	AsmVer=${AssemArray[$i+1]}
-	%dotnet_build $AsmName
 	%dotnet_pack $AsmName/$AsmName.nuspec $AsmVer
 done
 

@@ -16,7 +16,4 @@
       <dependency id="Tizen.Multimedia" version="1.1.0" />
     </dependencies>
 	</metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Multimedia.MediaCodec.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
