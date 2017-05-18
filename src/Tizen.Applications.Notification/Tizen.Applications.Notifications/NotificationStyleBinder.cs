@@ -25,28 +25,35 @@ namespace Tizen.Applications.Notifications
             int flag;
             NotificationError ret = NotificationError.None;
             Notification.IndicatorStyle style = (Notification.IndicatorStyle)notification.GetStyle("Indicator");
-
-            ret = Interop.Notification.SetText(notification.Handle, NotificationText.FirstMainText, style.SubText, null, -1);
-            if (ret != NotificationError.None)
-            {
-                throw NotificationErrorFactory.GetException(ret, "unable to set indicator text");
-            }
-
-            ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.IconForIndicator, style.IconPath);
-            if (ret != NotificationError.None)
-            {
-                throw NotificationErrorFactory.GetException(ret, "unable to set indicator image");
-            }
-
             Interop.Notification.GetApplist(notification.Handle, out flag);
-            Interop.Notification.SetApplist(notification.Handle, flag | (int)NotificationDisplayApplist.Indicator | (int)NotificationDisplayApplist.Ticker);
+
+            if (string.IsNullOrEmpty(style.SubText) == false)
+            {
+                ret = Interop.Notification.SetText(notification.Handle, NotificationText.FirstMainText, style.SubText, null, -1);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "unable to set indicator text");
+                }
+                flag |= (int)NotificationDisplayApplist.Ticker;
+            }
+
+            if (string.IsNullOrEmpty(style.IconPath) == false)
+            {
+                ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.IconForIndicator, style.IconPath);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "unable to set indicator image");
+                }
+                flag |= (int)NotificationDisplayApplist.Indicator;
+            }
+            Interop.Notification.SetApplist(notification.Handle, flag);
         }
 
         internal static void BindSafeHandle(Notification notification)
         {
             int appList;
             Interop.Notification.GetApplist(notification.Handle, out appList);
-            if ((appList & ((int)NotificationDisplayApplist.Ticker | (int)NotificationDisplayApplist.Indicator)) != 0)
+            if ((appList & (int)NotificationDisplayApplist.Ticker) != 0 || (appList & (int)NotificationDisplayApplist.Indicator) != 0)
             {
                 string path, text;
                 Notification.IndicatorStyle indicator = new Notification.IndicatorStyle();

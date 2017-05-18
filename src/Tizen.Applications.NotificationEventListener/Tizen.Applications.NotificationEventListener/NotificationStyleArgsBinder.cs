@@ -64,7 +64,7 @@ namespace Tizen.Applications.NotificationEventListener
                 lockStyle.Thumbnail = path;
             }
 
-            if ((styleList & ((int)NotificatioDisplayApplist.Ticker | (int)NotificatioDisplayApplist.Indicator)) != 0)
+            if ((styleList & (int)NotificatioDisplayApplist.Ticker) != 0 || (styleList & (int)NotificatioDisplayApplist.Indicator) != 0)
             {
                 NotificationEventArgs.IndicatorStyleArgs indicatorStyle = new NotificationEventArgs.IndicatorStyleArgs();
                 eventargs.Style.Add(indicatorStyle.Key, indicatorStyle);
