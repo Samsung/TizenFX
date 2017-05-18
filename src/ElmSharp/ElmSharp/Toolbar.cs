@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace ElmSharp
 {
@@ -73,6 +74,32 @@ namespace ElmSharp
         /// Expands all items according to the size of the toolbar.
         /// </summary>
         Expand
+    }
+
+    /// <summary>
+    /// Enumeration for the icon lookup order of Toolbar.
+    /// </summary>
+    public enum ToolbarIconLookupOrder
+    {
+        /// <summary>
+        /// Icon look up order: freedesktop, theme.
+        /// </summary>
+        FreedesktopTheme,
+
+        /// <summary>
+        /// Icon look up order: theme, freedesktop.
+        /// </summary>
+        ThemeFreedesktop,
+
+        /// <summary>
+        /// Icon look up order: freedesktop.
+        /// </summary>
+        Freedesktop,
+
+        /// <summary>
+        /// Icon look up order: theme.
+        /// </summary>
+        Theme,
     }
 
     /// <summary>
@@ -181,6 +208,68 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_toolbar_shrink_mode_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the orientation of a given toolbar widget.
+        /// By default, a toolbar will be horizontal. Use this function to create a vertical toolbar.
+        /// </summary>
+        //TODO: Below browsable limitation will be removed when the EFL-929 issue is resolved.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsHorizontal
+        {
+            get
+            {
+                return Interop.Elementary.elm_toolbar_horizontal_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_toolbar_horizontal_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the icon lookup order, for toolbar items' icons.
+        /// The default lookup order is ToolbarIocnLookupOrder.ThemeFreedesktop.
+        /// Icons added before calling this function will not be affected.
+        /// </summary>
+        public ToolbarIconLookupOrder IconLookupOrder
+        {
+            get
+            {
+                return (ToolbarIconLookupOrder)Interop.Elementary.elm_toolbar_icon_order_lookup_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_toolbar_icon_order_lookup_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the icon size of a given toolbar widget.
+        /// Default value is 32 pixels, to be used by toolbar items.
+        /// </summary>
+        public int IconSize
+        {
+            get
+            {
+                return Interop.Elementary.elm_toolbar_icon_size_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_toolbar_icon_size_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of items in a toolbar widget.
+        /// </summary>
+        public int ItemsCount
+        {
+            get
+            {
+                return Interop.Elementary.elm_toolbar_items_count(RealHandle);
             }
         }
 
@@ -304,6 +393,32 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Inserts a new item which contains label and icon into the toolbar object after item <paramref name="after"/>.
+        /// </summary>
+        /// <param name="after">The toolbar item to insert after</param>
+        /// <param name="label">The label of the item</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <seealso cref="InsertAfter(ToolbarItem, string)"/>
+        public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
+        {
+            ToolbarItem item = new ToolbarItem(label, icon);
+            item.Handle = Interop.Elementary.elm_toolbar_item_insert_after(RealHandle, after, icon, label, null, (IntPtr)item.Id);
+            return item;
+        }
+
+        /// <summary>
+        /// Find the item with that label in the toolbar.
+        /// </summary>
+        /// <param name="label">The label of the item</param>
+        /// <returns>The <see cref="ToolbarItem"/> into the toolbar</returns>
+        public ToolbarItem FindItemByLabel(string label)
+        {
+            IntPtr handle = Interop.Elementary.elm_toolbar_item_find_by_label(RealHandle, label);
+            return ItemObject.GetItemByHandle(handle) as ToolbarItem;
+        }
+
+        /// <summary>
         /// Gets the selected ToolbarItemItem of the toolbar.
         /// </summary>
         public ToolbarItem SelectedItem
@@ -311,6 +426,30 @@ namespace ElmSharp
             get
             {
                 IntPtr handle = Interop.Elementary.elm_toolbar_selected_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as ToolbarItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets the first ToolbarItemItem of the toolbar.
+        /// </summary>
+        public ToolbarItem FirstItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_toolbar_first_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as ToolbarItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets the last ToolbarItemItem of the toolbar.
+        /// </summary>
+        public ToolbarItem LastItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_toolbar_last_item_get(RealHandle);
                 return ItemObject.GetItemByHandle(handle) as ToolbarItem;
             }
         }

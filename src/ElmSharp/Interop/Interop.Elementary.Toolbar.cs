@@ -64,6 +64,24 @@ internal static partial class Interop
         internal static extern bool elm_toolbar_homogeneous_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_toolbar_horizontal_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_toolbar_horizontal_set(IntPtr obj, bool horizontal);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_toolbar_icon_order_lookup_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_toolbar_icon_order_lookup_set(IntPtr obj, int order);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_toolbar_icon_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_toolbar_icon_size_set(IntPtr obj, int size);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_toolbar_item_icon_set(IntPtr obj, string icon);
 
         [DllImport(Libraries.Elementary, EntryPoint = "elm_toolbar_item_icon_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
@@ -94,5 +112,23 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_toolbar_item_separator_set(IntPtr obj, bool separator);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_toolbar_item_find_by_label(IntPtr obj, string label);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_toolbar_item_insert_after(IntPtr obj, IntPtr after, string icon, string label, Evas_Smart_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_toolbar_items_count(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_toolbar_menu_parent_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_toolbar_menu_parent_set(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_toolbar_more_item_get(IntPtr obj);
     }
 }
