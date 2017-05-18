@@ -339,7 +339,7 @@ namespace Tizen.Applications.DataControl
                 return null;
             }
 
-            ret = Encoding.UTF8.GetString(byte_array);
+            ret = Encoding.UTF8.GetString(byte_array).TrimEnd('\0');
             return ret;
 
         }
