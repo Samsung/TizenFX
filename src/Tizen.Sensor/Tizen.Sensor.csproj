@@ -1,137 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB655C6A-F73B-448E-913C-CA4DCBC5E401}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Sensor</RootNamespace>
-    <AssemblyName>Tizen.Sensor</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Tizen.Sensor.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interop\Interop.Sensor.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\FaceDownGestureDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\PickUpGestureDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\RunningActivityDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\StationaryActivityDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\InVehicleActivityDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\WalkingActivityDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\WristUpGestureDetectorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\ActivityDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\PickUpGestureDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\RunningActivityDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\InVehicleActivityDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\StationaryActivityDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\WalkingActivityDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\WristUpGestureDetector.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\FaceDownGestureDetector.cs" />
-    <Compile Include="Tizen.Sensor\SensorEnumerations.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\GravitySensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\GyroscopeDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\GyroscopeRotationVectorSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\HeartRateMonitorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\HumiditySensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\LightSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\LinearAccelerationSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\MagnetometerDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\MagnetometerRotationVectorSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\OrientationSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\PedometerDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\PressureSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\ProximitySensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\RotationVectorSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\SleepMonitorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\TemperatureSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\UltravioletSensorDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\UncalibratedGyroscopeDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\UncalibratedMagnetometerDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\GravitySensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\Gyroscope.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\GyroscopeRotationVectorSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\HeartRateMonitor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\HumiditySensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\LightSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\LinearAccelerationSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\Magnetometer.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\MagnetometerRotationVectorSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\OrientationSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\Pedometer.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\PressureSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\ProximitySensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\RotationVectorSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\SleepMonitor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\TemperatureSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\UltravioletSensor.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\UncalibratedGyroscope.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\UncalibratedMagnetometer.cs" />
-    <Compile Include="Tizen.Sensor\Sensor.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Tizen.Sensor\Plugins\Accelerometer.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\SensorAccuracyChangedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\EventArgs\AccelerometerDataUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Sensor\SensorErrorFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.Sensor.nuspec" />
-    <None Include="Tizen.Sensor.project.json" />
-    <None Include="Tizen.Sensor.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard1.3</TargetFramework>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>Tizen.Sensor.snk</AssemblyOriginatorKeyFile>
+		<PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+		<GenerateReferenceAssembly>True</GenerateReferenceAssembly>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Tizen" Version="1.0.3" />
+		<PackageReference Include="Tizen.System.Information" Version="1.0.1" />
+	</ItemGroup>
 </Project>

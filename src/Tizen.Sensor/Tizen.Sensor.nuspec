@@ -11,11 +11,8 @@
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
 		<description>Provides the classes to control and get data from the sensors supported by the device.</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.2" />
+      <dependency id="Tizen" version="1.0.3" />
       <dependency id="Tizen.System.Information" version="1.0.1" />
     </dependencies>
 	</metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Sensor.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
