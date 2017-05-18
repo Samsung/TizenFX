@@ -11,10 +11,7 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <description>Geofence management APIs for Tizen.Location</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.3" />
+      <dependency id="Tizen" version="1.0.5" />
     </dependencies>
   </metadata>
-   <files>
-    <file src="bin/$Configuration$/Tizen.Location.Geofence.dll" target="lib/netstandard1.6" />
-   </files>
 </package>
